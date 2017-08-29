@@ -8,7 +8,8 @@ from app.validation.error_messages import error_messages
 
 class TestResponseRequiredValidator(unittest.TestCase):
     def test_response_empty_invalid(self):
-        validator = ResponseRequired()
+        message = "test_response_empty_invalid"
+        validator = ResponseRequired(message)
 
         mock_form = Mock()
 
@@ -19,10 +20,11 @@ class TestResponseRequiredValidator(unittest.TestCase):
         with self.assertRaises(StopValidation) as ite:
             validator(mock_form, mock_field)
 
-        self.assertEqual(error_messages['MANDATORY'], str(ite.exception))
+        self.assertEqual(message, str(ite.exception))
 
     def test_response_blank_invalid(self):
-        validator = ResponseRequired()
+        message = "test_response_blank_invalid"
+        validator = ResponseRequired(message)
 
         mock_form = Mock()
 
@@ -33,11 +35,12 @@ class TestResponseRequiredValidator(unittest.TestCase):
         with self.assertRaises(StopValidation) as ite:
             validator(mock_form, mock_field)
 
-        self.assertEqual(error_messages['MANDATORY'], str(ite.exception))
+        self.assertEqual(message, str(ite.exception))
 
     def test_required_empty(self):
 
-        validator = ResponseRequired()
+        message = "test_required_empty"
+        validator = ResponseRequired(message)
 
         mock_form = Mock()
 
@@ -51,7 +54,8 @@ class TestResponseRequiredValidator(unittest.TestCase):
 
     def test_required_contains_content(self):
 
-        validator = ResponseRequired()
+        message = "test_required_contains_content"
+        validator = ResponseRequired(message)
 
         mock_form = Mock()
 
@@ -64,7 +68,8 @@ class TestResponseRequiredValidator(unittest.TestCase):
             self.fail("Response that needs further validation raised StopValidation")
 
     def test_response_blank_valid_when_whitespace_on(self):
-        validator = ResponseRequired(strip_whitespace=False)
+        message = "test_response_blank_valid_when_whitespace_on"
+        validator = ResponseRequired(message=message, strip_whitespace=False)
 
         mock_form = Mock()
 

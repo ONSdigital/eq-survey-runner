@@ -1,11 +1,13 @@
 import unittest
 from unittest.mock import Mock
 
+from app.jinja_filters import format_number
 from app.validation.error_messages import error_messages
 from app.validation.validators import NumberRange
 from wtforms.validators import ValidationError
 from app.forms.fields import get_number_field, CustomIntegerField
 from app.data_model.answer_store import Answer, AnswerStore
+
 
 class TestNumberRangeValidator(unittest.TestCase):
     """
@@ -57,7 +59,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, mock_field)
 
-        self.assertEqual(error_messages['NUMBER_TOO_SMALL'], str(ite.exception))
+        self.assertEqual(error_messages['NUMBER_TOO_SMALL'] % dict(min=0), str(ite.exception))
 
     def test_too_big_when_max_set_is_invalid(self):
         validator = NumberRange(maximum=9999999999)
@@ -69,7 +71,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, mock_field)
 
-        self.assertEqual(error_messages['NUMBER_TOO_LARGE'], str(ite.exception))
+        self.assertEqual(error_messages['NUMBER_TOO_LARGE'] % dict(max=format_number(9999999999)), str(ite.exception))
 
     def test_within_range(self):
         validator = NumberRange(minimum=0, maximum=10)
@@ -210,8 +212,7 @@ class TestNumberRangeValidator(unittest.TestCase):
                       {'messages':
                            {'INVALID_NUMBER': 'Please only enter whole numbers into the field.',
                             'NUMBER_TOO_SMALL': 'The minimum value allowed is 10. Please correct your answer.',
-                            'NUMBER_TOO_LARGE': 'The maximum value allowed is 20. Please correct your answer.',
-                            'OUT_OF_RANGE': 'The value must be between 10 and 20. Please correct your answer.'
+                            'NUMBER_TOO_LARGE': 'The maximum value allowed is 20. Please correct your answer.'
                            }
                       },
                    'description': '',
@@ -235,7 +236,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             test_validator(mock_form, integer_field)
 
-            self.assertEqual(str(ite.exception), error_messages['OUT_OF_RANGE'])
+        self.assertEqual(str(ite.exception), error_messages['NUMBER_TOO_SMALL'])
 
         try:
             integer_field.data = 20
@@ -261,8 +262,7 @@ class TestNumberRangeValidator(unittest.TestCase):
                       {'messages':
                            {'INVALID_NUMBER': 'Please only enter whole numbers into the field.',
                             'NUMBER_TOO_SMALL': 'The minimum value allowed is 10. Please correct your answer.',
-                            'NUMBER_TOO_LARGE': 'The maximum value allowed is 20. Please correct your answer.',
-                            'OUT_OF_RANGE': 'The value must be between 10 and 20. Please correct your answer.'
+                            'NUMBER_TOO_LARGE': 'The maximum value allowed is 20. Please correct your answer.'
                            }
                       },
                    'description': '',
@@ -286,7 +286,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             test_validator(mock_form, integer_field)
 
-            self.assertEqual(str(ite.exception), error_messages['OUT_OF_RANGE'])
+        self.assertEqual(str(ite.exception), error_messages['NUMBER_TOO_SMALL'])
 
         try:
             integer_field.data = 20
@@ -306,8 +306,7 @@ class TestNumberRangeValidator(unittest.TestCase):
                       {'messages':
                            {'INVALID_NUMBER': 'Please only enter whole numbers into the field.',
                             'NUMBER_TOO_SMALL': 'The minimum value allowed is 10. Please correct your answer.',
-                            'NUMBER_TOO_LARGE': 'The maximum value allowed is 20. Please correct your answer.',
-                            'OUT_OF_RANGE': 'The value must be between 10 and 20. Please correct your answer.'
+                            'NUMBER_TOO_LARGE': 'The maximum value allowed is 20. Please correct your answer.'
                            }
                       },
                    'description': '',
@@ -339,8 +338,7 @@ class TestNumberRangeValidator(unittest.TestCase):
                       {'messages':
                            {'INVALID_NUMBER': 'Please only enter whole numbers into the field.',
                             'NUMBER_TOO_SMALL': 'The minimum value allowed is 10. Please correct your answer.',
-                            'NUMBER_TOO_LARGE': 'The maximum value allowed is 20. Please correct your answer.',
-                            'OUT_OF_RANGE': 'The value must be between 10 and 20. Please correct your answer.'
+                            'NUMBER_TOO_LARGE': 'The maximum value allowed is 20. Please correct your answer.'
                            }
                       },
                    'description': '', 'type': 'Currency'
@@ -367,8 +365,7 @@ class TestNumberRangeValidator(unittest.TestCase):
                       {'messages':
                            {'INVALID_NUMBER': 'Please only enter whole numbers into the field.',
                             'NUMBER_TOO_SMALL': 'The minimum value allowed is 10. Please correct your answer.',
-                            'NUMBER_TOO_LARGE': 'The maximum value allowed is 20. Please correct your answer.',
-                            'OUT_OF_RANGE': 'The value must be between 10 and 20. Please correct your answer.'
+                            'NUMBER_TOO_LARGE': 'The maximum value allowed is 20. Please correct your answer.'
                            }
                       },
                    'description': '',
@@ -398,8 +395,7 @@ class TestNumberRangeValidator(unittest.TestCase):
                       {'messages':
                            {'INVALID_NUMBER': 'Please only enter whole numbers into the field.',
                             'NUMBER_TOO_SMALL': 'The minimum value allowed is 10. Please correct your answer.',
-                            'NUMBER_TOO_LARGE': 'The maximum value allowed is 20. Please correct your answer.',
-                            'OUT_OF_RANGE': 'The value must be between 10 and 20. Please correct your answer.'
+                            'NUMBER_TOO_LARGE': 'The maximum value allowed is 20. Please correct your answer.'
                            }
                       },
                    'description': '', 'type': 'Currency'
@@ -425,8 +421,7 @@ class TestNumberRangeValidator(unittest.TestCase):
                       {'messages':
                            {'INVALID_NUMBER': 'Please only enter whole numbers into the field.',
                             'NUMBER_TOO_SMALL': 'The minimum value allowed is 10. Please correct your answer.',
-                            'NUMBER_TOO_LARGE': 'The maximum value allowed is 20. Please correct your answer.',
-                            'OUT_OF_RANGE': 'The value must be between 10 and 20. Please correct your answer.'
+                            'NUMBER_TOO_LARGE': 'The maximum value allowed is 20. Please correct your answer.'
                            }
                       },
                    'description': '',

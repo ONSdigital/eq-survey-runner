@@ -7,12 +7,6 @@
     "description": "Test Description",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "messages": {
-        "NUMBER_TOO_LARGE": "The maximum value allowed is %(max)s. Please correct your answer.",
-        "NUMBER_TOO_SMALL": "The minimum value allowed is %(min)s. Please correct your answer.",
-        "INVALID_NUMBER": "Please only enter a valid number into the field.",
-        "MANDATORY": "Please provide a value, even if your value is 0."
-    },
     "groups": [{
             "blocks": [{
                     "type": "Questionnaire",
@@ -26,10 +20,7 @@
                                 "label": "Minimum Value",
                                 "mandatory": true,
                                 "options": [],
-                                "type": "Number",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "type": "Number"
                             },
                             {
                                 "id": "set-maximum",
@@ -38,10 +29,7 @@
                                 "label": "Maximum Value",
                                 "mandatory": true,
                                 "options": [],
-                                "type": "Number",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "type": "Number"
                             }
                         ],
                         "description": "",
@@ -68,12 +56,6 @@
                                 },
                                 "min_value": {
                                     "answer_id": "set-minimum"
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "OUT_OF_RANGE": "The value must be between %(min)s and %(max)s. Please correct your answer.",
-                                        "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                    }
                                 }
                             },
                             {
@@ -85,12 +67,6 @@
                                 "type": "Number",
                                 "min_value": {
                                     "value": 123
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_SMALL": "The minimum value allowed is %(min)s. Please correct your answer.",
-                                        "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                    }
                                 }
                             },
                             {
@@ -99,16 +75,9 @@
                                 "label": "Max Test (0 to 1,234)",
                                 "mandatory": false,
                                 "options": [],
-                                "type": "Unit",
-                                "unit": "area-square-centimeter",
+                                "type": "Number",
                                 "max_value": {
                                     "value": 1234
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE": "The maximum value allowed is %(max)s. Please correct your answer.",
-                                        "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                    }
                                 }
                             },
                             {
@@ -120,11 +89,6 @@
                                 "type": "Percentage",
                                 "max_value": {
                                     "value": 100
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "OUT_OF_RANGE": "Percentages must be between 0 and 100."
-                                    }
                                 }
                             },
                             {
@@ -135,10 +99,7 @@
                                 "options": [],
                                 "type": "Currency",
                                 "currency": "GBP",
-                                "decimal_places": 2,
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "decimal_places": 2
                             }
                         ],
                         "description": "",

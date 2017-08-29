@@ -7,11 +7,6 @@
     "theme": "starwars",
     "legal_basis": "Voluntary",
     "description": "Kitchen sink test for the Star Wars questionnaire",
-    "messages": {
-        "NUMBER_TOO_LARGE": "Too big, that number is",
-        "NUMBER_TOO_SMALL": "It must be a positive number",
-        "INVALID_NUMBER": "Please enter an integer"
-    },
     "groups": [{
         "blocks": [{
                 "type": "Introduction",
@@ -62,10 +57,7 @@
                             }
                         ],
                         "q_code": "20",
-                        "type": "Radio",
-                        "validation": {
-                            "messages": {}
-                        }
+                        "type": "Radio"
                     }],
                     "description": "",
                     "id": "choose-your-side-question",
@@ -137,10 +129,7 @@
                                 }
                             ],
                             "q_code": "21",
-                            "type": "Radio",
-                            "validation": {
-                                "messages": {}
-                            }
+                            "type": "Radio"
                         }],
                         "description": "",
                         "id": "light-side-pick-character-question",
@@ -162,10 +151,7 @@
                                 }
                             ],
                             "q_code": "23",
-                            "type": "Radio",
-                            "validation": {
-                                "messages": {}
-                            }
+                            "type": "Radio"
                         }],
                         "description": "",
                         "id": "light-side-pick-ship-question",
@@ -223,10 +209,7 @@
                                 }
                             ],
                             "q_code": "22",
-                            "type": "Radio",
-                            "validation": {
-                                "messages": {}
-                            }
+                            "type": "Radio"
                         }],
                         "description": "",
                         "id": "dark-side-pick-character-question",
@@ -252,10 +235,7 @@
                                 }
                             ],
                             "q_code": "23",
-                            "type": "Radio",
-                            "validation": {
-                                "messages": {}
-                            }
+                            "type": "Radio"
                         }],
                         "description": "",
                         "id": "dark-side-pick-ship-question",
@@ -315,10 +295,7 @@
                             }
                         ],
                         "q_code": "22",
-                        "type": "Radio",
-                        "validation": {
-                            "messages": {}
-                        }
+                        "type": "Radio"
                     }],
                     "description": "",
                     "id": "light-side-ship-type-question",
@@ -351,10 +328,7 @@
                             }
                         ],
                         "q_code": "22",
-                        "type": "Radio",
-                        "validation": {
-                            "messages": {}
-                        }
+                        "type": "Radio"
                     }],
                     "description": "",
                     "id": "dark-side-ship-type-question",
@@ -420,8 +394,7 @@
                             "validation": {
                                 "messages": {
                                     "NUMBER_TOO_LARGE": "How much, idiot you must be",
-                                    "NUMBER_TOO_SMALL": "How can it be negative?",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
+                                    "NUMBER_TOO_SMALL": "How can it be negative?"
                                 }
                             }
                         }],
@@ -441,8 +414,7 @@
                             "validation": {
                                 "messages": {
                                     "NUMBER_TOO_LARGE": "Thats hotter then the sun, Jar Jar Binks you must be",
-                                    "NUMBER_TOO_SMALL": "How can it be negative?",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
+                                    "NUMBER_TOO_SMALL": "How can it be negative?"
                                 }
                             }
                         }],
@@ -595,13 +567,7 @@
                                 "mandatory": true,
                                 "options": [],
                                 "q_code": "81",
-                                "type": "Date",
-                                "validation": {
-                                    "messages": {
-                                        "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-                                        "MANDATORY": "Please provide an answer to continue."
-                                    }
-                                }
+                                "type": "Date"
                             },
                             {
                                 "id": "empire-strikes-back-to-answer",
@@ -609,13 +575,7 @@
                                 "mandatory": true,
                                 "options": [],
                                 "q_code": "82",
-                                "type": "Date",
-                                "validation": {
-                                    "messages": {
-                                        "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-                                        "MANDATORY": "Please provide an answer to continue."
-                                    }
-                                }
+                                "type": "Date"
                             }
                         ],
                         "description": "It could be between {{exercise.start_date|format_date}} and {{exercise.end_date|format_date}}. But that might just be a test",
@@ -641,8 +601,7 @@
                             "validation": {
                                 "messages": {
                                     "NUMBER_TOO_LARGE": "Thats hotter then the sun, Jar Jar Binks you must be",
-                                    "NUMBER_TOO_SMALL": "How can it be negative?",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
+                                    "NUMBER_TOO_SMALL": "How can it be negative?"
                                 }
                             }
                         }],

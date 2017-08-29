@@ -94,12 +94,7 @@
                             "id": "what-is-your-age",
                             "label": "What is their age?",
                             "mandatory": true,
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please answer before continuing."
-                                }
-                            }
+                            "type": "Number"
                         }]
                     }]
                 },
@@ -118,12 +113,7 @@
                             "id": "what-is-your-shoe-size",
                             "label": "What is their shoe size?",
                             "mandatory": true,
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please answer before continuing."
-                                }
-                            }
+                            "type": "Number"
                         }]
                     }]
                 }

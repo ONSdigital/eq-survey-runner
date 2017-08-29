@@ -7,11 +7,6 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to test percentage input type",
-    "messages": {
-        "NUMBER_TOO_LARGE": "Number cannot be greater than one hundred",
-        "NUMBER_TOO_SMALL": "Number cannot be less than zero",
-        "INVALID_NUMBER": "Please enter an integer"
-    },
     "navigation": {
         "visible": true,
         "sections": [{

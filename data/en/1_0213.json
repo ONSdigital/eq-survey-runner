@@ -271,13 +271,7 @@
                             "id": "period-from",
                             "alias": "period_from",
                             "q_code": "11",
-                            "type": "Date",
-                            "validation": {
-                                "messages": {
-                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-                                    "MANDATORY": "Please provide an answer to continue."
-                                }
-                            }
+                            "type": "Date"
                         },
                         {
                             "mandatory": true,
@@ -286,13 +280,7 @@
                             "id": "period-to",
                             "alias": "period_to",
                             "q_code": "12",
-                            "type": "Date",
-                            "validation": {
-                                "messages": {
-                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-                                    "MANDATORY": "Please provide an answer to continue."
-                                }
-                            }
+                            "type": "Date"
                         }
                     ]
                 }],
@@ -334,15 +322,7 @@
                         "options": [],
                         "q_code": "20",
                         "type": "Currency",
-                        "currency": "GBP",
-                        "validation": {
-                            "messages": {
-                                "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                "MANDATORY": "Please provide a value, even if your value is 0.",
-                                "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                            }
-                        }
+                        "currency": "GBP"
                     }],
                     "description": "",
                     "id": "total-turnover-question",
@@ -381,14 +361,7 @@
                         "options": [],
                         "q_code": "22",
                         "type": "Currency",
-                        "currency": "GBP",
-                        "validation": {
-                            "messages": {
-                                "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                            }
-                        }
+                        "currency": "GBP"
                     }],
                     "description": "",
                     "id": "total-sales-food-question",
@@ -420,14 +393,7 @@
                         "options": [],
                         "q_code": "23",
                         "type": "Currency",
-                        "currency": "GBP",
-                        "validation": {
-                            "messages": {
-                                "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                            }
-                        }
+                        "currency": "GBP"
                     }],
                     "description": "",
                     "id": "total-sales-alcohol-question",
@@ -461,14 +427,7 @@
                         "options": [],
                         "q_code": "24",
                         "type": "Currency",
-                        "currency": "GBP",
-                        "validation": {
-                            "messages": {
-                                "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                            }
-                        }
+                        "currency": "GBP"
                     }],
                     "description": "",
                     "id": "total-sales-clothing-question",
@@ -514,14 +473,7 @@
                         "options": [],
                         "q_code": "25",
                         "type": "Currency",
-                        "currency": "GBP",
-                        "validation": {
-                            "messages": {
-                                "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                            }
-                        }
+                        "currency": "GBP"
                     }],
                     "description": "",
                     "id": "total-sales-household-goods-question",
@@ -577,14 +529,7 @@
                         "options": [],
                         "q_code": "26",
                         "type": "Currency",
-                        "currency": "GBP",
-                        "validation": {
-                            "messages": {
-                                "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                            }
-                        }
+                        "currency": "GBP"
                     }],
                     "description": "",
                     "id": "total-sales-other-goods-question",
@@ -614,14 +559,7 @@
                         "options": [],
                         "q_code": "21",
                         "type": "Currency",
-                        "currency": "GBP",
-                        "validation": {
-                            "messages": {
-                                "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                            }
-                        }
+                        "currency": "GBP"
                     }],
                     "description": "",
                     "id": "internet-sales-question",
@@ -660,11 +598,6 @@
                                 "value": "No"
                             }
                         ],
-                        "validation": {
-                            "messages": {
-                                "MANDATORY": "Please select an answer to continue."
-                            }
-                        },
                         "q_code": "146a",
                         "type": "Radio"
                     }],
@@ -729,11 +662,6 @@
                                 "value": "Other"
                             }
                         ],
-                        "validation": {
-                            "messages": {
-                                "MANDATORY": "Please select all that apply to continue."
-                            }
-                        },
                         "type": "Checkbox"
                     }],
 
@@ -782,12 +710,7 @@
                         "mandatory": true,
                         "options": [],
                         "q_code": "146",
-                        "type": "TextArea",
-                        "validation": {
-                            "messages": {
-                                "MANDATORY": "Please enter a comment to continue."
-                            }
-                        }
+                        "type": "TextArea"
                     }],
                     "description": "We rely on your commentary to \u2018tell the story\u2019 behind changes in figures. By commenting here it will reduce the need for us to call you.",
                     "id": "change-comment-question",
@@ -828,15 +751,7 @@
                         "mandatory": true,
                         "options": [],
                         "q_code": "50",
-                        "type": "Number",
-                        "validation": {
-                            "messages": {
-                                "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                "MANDATORY": "Please provide a value, even if your value is 0.",
-                                "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                            }
-                        }
+                        "type": "Number"
                     }],
                     "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                     "id": "total-number-employees-question",
@@ -876,14 +791,7 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "51",
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                }
-                            }
+                            "type": "Number"
                         },
                         {
                             "id": "number-male-employees-under-30-hours",
@@ -891,14 +799,7 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "52",
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                }
-                            }
+                            "type": "Number"
                         },
                         {
                             "id": "number-female-employees-over-30-hours",
@@ -906,14 +807,7 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "53",
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                }
-                            }
+                            "type": "Number"
                         },
                         {
                             "id": "number-female-employees-under-30-hours",
@@ -921,14 +815,7 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "54",
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                }
-                            }
+                            "type": "Number"
                         }
                     ],
                     "description": "",

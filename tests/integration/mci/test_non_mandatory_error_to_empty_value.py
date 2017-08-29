@@ -1,3 +1,4 @@
+from app.validation.error_messages import error_messages
 from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.mci import mci_test_urls
 
@@ -28,7 +29,7 @@ class TestNonMandatoryErrorToEmptyValue(IntegrationTestCase):
         self.post(form_data)
 
         # Get the page content
-        self.assertInPage("Please only enter whole numbers into the field")
+        self.assertInPage(error_messages["INVALID_NUMBER"])
 
         # We remove the non-mandatory field value
         form_data = {

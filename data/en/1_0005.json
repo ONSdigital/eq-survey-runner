@@ -177,8 +177,8 @@
                     "title": "How we use your data",
                     "content": [{
                         "list": [
-                            "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
-                            "The data from your business is essential as it helps us measure the increase of wages over time."
+                            "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy",
+                            "The data from your business is essential as it helps us measure the increase of wages over time"
                         ]
                     }]
                 }]
@@ -223,12 +223,8 @@
                                     "value": "Five weekly"
                                 }
                             ],
-                            "type": "Checkbox",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please select all that apply to continue."
-                                }
-                            }
+                            "type": "Checkbox"
+
                         }],
                         "description": "<p>If your pay pattern is different from the options available, please contact the Survey Contact Line on 0300 1234 931.</p>",
                         "id": "pay-pattern-frequency-question",
@@ -349,12 +345,7 @@
                             "label": "Total number of weekly paid employees",
                             "mandatory": true,
                             "q_code": "40",
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please enter a value, even if that value is 0."
-                                }
-                            }
+                            "type": "Number"
                         }],
                         "description": "<p>If the last week of the month is affected by holidays please use a more representative week.</p>",
                         "guidance": {
@@ -414,12 +405,7 @@
                             "q_code": "50",
                             "type": "Currency",
                             "currency": "GBP",
-                            "alias": "weekly_total_gross",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please enter a value, even if that value is 0."
-                                }
-                            }
+                            "alias": "weekly_total_gross"
                         }],
                         "guidance": {
                             "content": [{
@@ -459,12 +445,7 @@
                                 "mandatory": true,
                                 "q_code": "60",
                                 "type": "Currency",
-                                "currency": "GBP",
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY": "Please enter a value, even if that value is 0."
-                                    }
-                                }
+                                "currency": "GBP"
                             },
                             {
                                 "description": "Please round to the nearest pound. Do not include pence.",
@@ -473,12 +454,7 @@
                                 "mandatory": true,
                                 "q_code": "70",
                                 "type": "Currency",
-                                "currency": "GBP",
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY": "Please enter a value, even if that value is 0."
-                                    }
-                                }
+                                "currency": "GBP"
                             },
                             {
                                 "description": "Please round to the nearest pound. Do not include pence.",
@@ -516,12 +492,7 @@
                                 "mandatory": true,
                                 "q_code": "80",
                                 "type": "Currency",
-                                "currency": "GBP",
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY": "Please enter a value, even if that value is 0."
-                                    }
-                                }
+                                "currency": "GBP"
                             }
                         ],
                         "id": "weekly-pay-breakdown-question",
@@ -806,24 +777,14 @@
                                 "max_value": {
                                     "value": 100
                                 },
-                                "decimal_places": 2,
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
-                                    }
-                                }
+                                "decimal_places": 2
                             },
                             {
                                 "id": "weekly-pay-significant-changes-pay-rates-increase-date-from-answer",
                                 "label": "If your figures are back dated, from when:",
                                 "mandatory": false,
                                 "q_code": "110",
-                                "type": "Date",
-                                "validation": {
-                                    "messages": {
-                                        "INVALID_DATE": "The date entered is not valid. Please correct your answer."
-                                    }
-                                }
+                                "type": "Date"
                             },
                             {
                                 "id": "weekly-pay-significant-changes-pay-rates-increase-percent-employees-answer",
@@ -910,7 +871,7 @@
                             "type": "TextArea",
                             "validation": {
                                 "messages": {
-                                    "MANDATORY": "Please enter a comment to continue."
+                                    "MANDATORY_TEXTAREA": "Enter a comment to continue."
                                 }
                             }
                         }],
@@ -964,12 +925,7 @@
                             "label": "Total number of fortnightly paid employees",
                             "mandatory": true,
                             "q_code": "40f",
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please enter a value, even if that value is 0."
-                                }
-                            }
+                            "type": "Number"
                         }],
                         "description": "<p>If the last week of the month is affected by holidays please use a more representative week.</p>",
                         "guidance": {
@@ -1028,13 +984,8 @@
                             "mandatory": true,
                             "q_code": "50f",
                             "type": "Currency",
-                            "currency": "GBP",
                             "alias": "fortnightly_total_gross",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please enter a value, even if that value is 0."
-                                }
-                            }
+                            "currency": "GBP"
                         }],
                         "guidance": {
                             "content": [{
@@ -1074,12 +1025,7 @@
                                 "mandatory": true,
                                 "q_code": "60f",
                                 "type": "Currency",
-                                "currency": "GBP",
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY": "Please enter a value, even if that value is 0."
-                                    }
-                                }
+                                "currency": "GBP"
                             },
                             {
                                 "description": "Please round to the nearest pound. Do not include pence.",
@@ -1088,12 +1034,7 @@
                                 "mandatory": true,
                                 "q_code": "70f",
                                 "type": "Currency",
-                                "currency": "GBP",
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY": "Please enter a value, even if that value is 0."
-                                    }
-                                }
+                                "currency": "GBP"
                             },
                             {
                                 "description": "Please round to the nearest pound. Do not include pence.",
@@ -1114,12 +1055,7 @@
                                 "mandatory": true,
                                 "q_code": "80f",
                                 "type": "Currency",
-                                "currency": "GBP",
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY": "Please enter a value, even if that value is 0."
-                                    }
-                                }
+                                "currency": "GBP"
                             }
                         ],
                         "id": "fortnightly-pay-breakdown-question",
@@ -1404,24 +1340,14 @@
                                 "max_value": {
                                     "value": 100
                                 },
-                                "decimal_places": 2,
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
-                                    }
-                                }
+                                "decimal_places": 2
                             },
                             {
                                 "id": "fortnightly-pay-significant-changes-pay-rates-increase-date-from-answer",
                                 "label": "If your figures are back dated, from when:",
                                 "mandatory": false,
                                 "q_code": "110f",
-                                "type": "Date",
-                                "validation": {
-                                    "messages": {
-                                        "INVALID_DATE": "The date entered is not valid. Please correct your answer."
-                                    }
-                                }
+                                "type": "Date"
                             },
                             {
                                 "id": "fortnightly-pay-significant-changes-pay-rates-increase-percent-employees-answer",
@@ -1508,7 +1434,7 @@
                             "type": "TextArea",
                             "validation": {
                                 "messages": {
-                                    "MANDATORY": "Please enter a comment to continue."
+                                    "MANDATORY_TEXTAREA": "Enter a comment to continue."
                                 }
                             }
                         }],
@@ -1563,12 +1489,7 @@
                             "label": "Total number of calendar monthly paid employees",
                             "mandatory": true,
                             "q_code": "140m",
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please enter a value, even if that value is 0."
-                                }
-                            }
+                            "type": "Number"
                         }],
                         "description": "<p>If there are two pay days in the same month only give details for one.</p>",
                         "guidance": {
@@ -1628,13 +1549,8 @@
                             "mandatory": true,
                             "q_code": "151",
                             "type": "Currency",
-                            "currency": "GBP",
                             "alias": "monthly_total_gross",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please enter a value, even if that value is 0."
-                                }
-                            }
+                            "currency": "GBP"
                         }],
                         "guidance": {
                             "content": [{
@@ -1674,12 +1590,7 @@
                                 "mandatory": true,
                                 "q_code": "171",
                                 "type": "Currency",
-                                "currency": "GBP",
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY": "Please enter a value, even if that value is 0."
-                                    }
-                                }
+                                "currency": "GBP"
                             },
                             {
                                 "description": "Please round to the nearest pound. Do not include pence.",
@@ -1700,12 +1611,7 @@
                                 "mandatory": true,
                                 "q_code": "181",
                                 "type": "Currency",
-                                "currency": "GBP",
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY": "Please enter a value, even if that value is 0."
-                                    }
-                                }
+                                "currency": "GBP"
                             }
                         ],
                         "id": "calendar-monthly-pay-breakdown-question",
@@ -1990,24 +1896,14 @@
                                 "max_value": {
                                     "value": 100
                                 },
-                                "decimal_places": 2,
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
-                                    }
-                                }
+                                "decimal_places": 2
                             },
                             {
                                 "id": "calendar-monthly-pay-significant-changes-pay-rates-increase-date-from-answer",
                                 "label": "If your figures are back dated, from when:",
                                 "mandatory": false,
                                 "q_code": "210",
-                                "type": "Date",
-                                "validation": {
-                                    "messages": {
-                                        "INVALID_DATE": "The date entered is not valid. Please correct your answer."
-                                    }
-                                }
+                                "type": "Date"
                             },
                             {
                                 "id": "calendar-monthly-pay-significant-changes-pay-rates-increase-percent-employees-answer",
@@ -2094,7 +1990,7 @@
                             "type": "TextArea",
                             "validation": {
                                 "messages": {
-                                    "MANDATORY": "Please enter a comment to continue."
+                                    "MANDATORY_TEXTAREA": "Enter a comment to continue."
                                 }
                             }
                         }],
@@ -2149,12 +2045,7 @@
                             "label": "Total number of four weekly paid employees",
                             "mandatory": true,
                             "q_code": "140w4",
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please enter a value, even if that value is 0."
-                                }
-                            }
+                            "type": "Number"
                         }],
                         "description": "<p>If there are two pay days in the same month only give details for one.</p>",
                         "guidance": {
@@ -2213,13 +2104,8 @@
                             "mandatory": true,
                             "q_code": "152",
                             "type": "Currency",
-                            "currency": "GBP",
                             "alias": "four_weekly_total_gross",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please enter a value, even if that value is 0."
-                                }
-                            }
+                            "currency": "GBP"
                         }],
                         "guidance": {
                             "content": [{
@@ -2259,12 +2145,7 @@
                                 "mandatory": true,
                                 "q_code": "172",
                                 "type": "Currency",
-                                "currency": "GBP",
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY": "Please enter a value, even if that value is 0."
-                                    }
-                                }
+                                "currency": "GBP"
                             },
                             {
                                 "description": "Please round to the nearest pound. Do not include pence.",
@@ -2285,12 +2166,7 @@
                                 "mandatory": true,
                                 "q_code": "182",
                                 "type": "Currency",
-                                "currency": "GBP",
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY": "Please enter a value, even if that value is 0."
-                                    }
-                                }
+                                "currency": "GBP"
                             }
                         ],
                         "id": "four-weekly-pay-breakdown-question",
@@ -2575,24 +2451,14 @@
                                 "max_value": {
                                     "value": 100
                                 },
-                                "decimal_places": 2,
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
-                                    }
-                                }
+                                "decimal_places": 2
                             },
                             {
                                 "id": "four-weekly-pay-significant-changes-pay-rates-increase-date-from-answer",
                                 "label": "If your figures are back dated, from when:",
                                 "mandatory": false,
                                 "q_code": "210w4",
-                                "type": "Date",
-                                "validation": {
-                                    "messages": {
-                                        "INVALID_DATE": "The date entered is not valid. Please correct your answer."
-                                    }
-                                }
+                                "type": "Date"
                             },
                             {
                                 "id": "four-weekly-pay-significant-changes-pay-rates-increase-percent-employees-answer",
@@ -2679,7 +2545,7 @@
                             "type": "TextArea",
                             "validation": {
                                 "messages": {
-                                    "MANDATORY": "Please enter a comment to continue."
+                                    "MANDATORY_TEXTAREA": "Enter a comment to continue."
                                 }
                             }
                         }],
@@ -2734,12 +2600,7 @@
                             "label": "Total number of five weekly paid employees",
                             "mandatory": true,
                             "q_code": "140w5",
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please enter a value, even if that value is 0."
-                                }
-                            }
+                            "type": "Number"
                         }],
                         "description": "<p>If there are two pay dates in the same month only give details for one.</p>",
                         "guidance": {
@@ -2799,13 +2660,8 @@
                             "mandatory": true,
                             "q_code": "153",
                             "type": "Currency",
-                            "currency": "GBP",
                             "alias": "five_weekly_total_gross",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please enter a value, even if that value is 0."
-                                }
-                            }
+                            "currency": "GBP"
                         }],
                         "guidance": {
                             "content": [{
@@ -2846,12 +2702,7 @@
                                 "mandatory": true,
                                 "q_code": "173",
                                 "type": "Currency",
-                                "currency": "GBP",
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY": "Please enter a value, even if that value is 0."
-                                    }
-                                }
+                                "currency": "GBP"
                             },
                             {
                                 "description": "Please round to the nearest pound. Do not include pence.",
@@ -2872,12 +2723,7 @@
                                 "mandatory": true,
                                 "q_code": "183",
                                 "type": "Currency",
-                                "currency": "GBP",
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY": "Please enter a value, even if that value is 0."
-                                    }
-                                }
+                                "currency": "GBP"
                             }
                         ],
                         "id": "five-weekly-pay-breakdown-question",
@@ -3162,24 +3008,14 @@
                                 "max_value": {
                                     "value": 100
                                 },
-                                "decimal_places": 2,
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
-                                    }
-                                }
+                                "decimal_places": 2
                             },
                             {
                                 "id": "five-weekly-pay-significant-changes-pay-rates-increase-date-from-answer",
                                 "label": "If your figures are back dated, from when:",
                                 "mandatory": false,
                                 "q_code": "210w5",
-                                "type": "Date",
-                                "validation": {
-                                    "messages": {
-                                        "INVALID_DATE": "The date entered is not valid. Please correct your answer."
-                                    }
-                                }
+                                "type": "Date"
                             },
                             {
                                 "id": "five-weekly-pay-significant-changes-pay-rates-increase-percent-employees-answer",
@@ -3266,7 +3102,7 @@
                             "type": "TextArea",
                             "validation": {
                                 "messages": {
-                                    "MANDATORY": "Please enter a comment to continue."
+                                    "MANDATORY_TEXTAREA": "Enter a comment to continue."
                                 }
                             }
                         }],
@@ -3321,7 +3157,12 @@
                             "label": "Comments",
                             "mandatory": false,
                             "q_code": "300",
-                            "type": "TextArea"
+                            "type": "TextArea",
+                            "validation": {
+                                "messages": {
+                                    "MANDATORY_TEXTAREA": "Enter a comment to continue."
+                                }
+                            }
                         }],
                         "id": "general-comments-question",
                         "number": "7.1",
@@ -3346,12 +3187,6 @@
     ],
     "legal_basis": "StatisticsOfTradeAct",
     "mime_type": "application/json/ons/eq",
-    "messages": {
-        "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-        "MANDATORY": "Please select an answer to continue.",
-        "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-        "INVALID_NUMBER": "The value you have entered is invalid. Please enter a numeric value."
-    },
     "schema_version": "0.0.1",
     "survey_id": "134",
     "theme": "default",

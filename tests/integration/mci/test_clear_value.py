@@ -1,3 +1,4 @@
+from app.validation.error_messages import error_messages
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -43,7 +44,7 @@ class TestClearValue(IntegrationTestCase):
 
         # We submit the form
         self.post(form_data)
-        self.assertInPage("The 'period to' date cannot be before the 'period from' date.")
+        self.assertInPage(error_messages['INVALID_DATE_RANGE'])
 
         # Fill the dates incorrectly again, but this time supply an invalid value for retail total
         form_data = {
@@ -63,8 +64,8 @@ class TestClearValue(IntegrationTestCase):
         self.post(form_data)
 
         # Get the page content again
-        self.assertInPage("The 'period to' date cannot be before the 'period from' date.")
-        self.assertInPage('Please only enter whole numbers into the field.')
+        self.assertInPage(error_messages['INVALID_DATE_RANGE'])
+        self.assertInPage(error_messages['INVALID_NUMBER'])
         self.assertNotInPage('100000')  # We have cleared the valid value
         self.assertInPage('Invalid Retail Total')  # Our invalid value is redisplayed
 
@@ -85,7 +86,7 @@ class TestClearValue(IntegrationTestCase):
         # We submit the form
         self.post(form_data)
 
-        self.assertInPage("The 'period to' date cannot be before the 'period from' date.")
-        self.assertNotInPage('Please only enter whole numbers into the field.')  # Our message has gone
+        self.assertInPage(error_messages['INVALID_DATE_RANGE'])
+        self.assertNotInPage(error_messages['INVALID_INTEGER'])  # Our message has gone
         self.assertNotInPage('Invalid Retail Total')  # Our invalid value has gone
         self.assertInPage('1000')  # Our new valid value is redisplayed

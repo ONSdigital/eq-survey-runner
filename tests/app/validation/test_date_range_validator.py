@@ -31,7 +31,7 @@ class TestDateRangeValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, period_from, period_to)
 
-        self.assertEqual(error_messages['INVALID_DATE_RANGE_TO_FROM_SAME'], str(ite.exception))
+        self.assertEqual(error_messages['INVALID_DATE_RANGE'], str(ite.exception))
 
     def test_date_range_to_before_from(self):
 
@@ -52,7 +52,7 @@ class TestDateRangeValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, period_from, period_to)
 
-        self.assertEqual(error_messages['INVALID_DATE_RANGE_TO_BEFORE_FROM'], str(ite.exception))
+        self.assertEqual(error_messages['INVALID_DATE_RANGE'], str(ite.exception))
 
     def test_date_range_valid(self):
 

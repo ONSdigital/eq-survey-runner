@@ -35,10 +35,10 @@ describe('NumericRange', function() {
           .setValue(TestMinMax.testMax(), '12345')
           .setValue(TestMinMax.testPercent(), '101')
           .click(TestMinMax.submit())
-          .getText('ul > li:nth-child(1) > a').should.eventually.contain('The value must be between 10 and 20. Please correct your answer.')
-          .getText('ul > li:nth-child(2) > a').should.eventually.contain('The minimum value allowed is 123. Please correct your answer.')
-          .getText('ul > li:nth-child(3) > a').should.eventually.contain('The maximum value allowed is 1,234. Please correct your answer.')
-          .getText('ul > li:nth-child(4) > a').should.eventually.contain('Percentages must be between 0 and 100.');
+          .getText('ul > li:nth-child(1) > a').should.eventually.contain("Enter a number more than or equal to 10.")
+          .getText('ul > li:nth-child(2) > a').should.eventually.contain("Enter a number more than or equal to 123.")
+          .getText('ul > li:nth-child(3) > a').should.eventually.contain("Enter a number less than or equal to 1,234.")
+          .getText('ul > li:nth-child(4) > a').should.eventually.contain("Enter a number less than or equal to 100.");
       });
   });
 
@@ -52,8 +52,8 @@ describe('NumericRange', function() {
           .setValue(TestMinMax.testRange(), '12.3')
           .setValue(TestMinMax.testDecimal(), '1.234')
           .click(TestMinMax.submit())
-          .getText('ul > li:nth-child(1) > a').should.eventually.contain('Please only enter whole numbers into the field.')
-          .getText('ul > li:nth-child(2) > a').should.eventually.contain('Enter a number rounded to 2 decimal places.');
+          .getText('ul > li:nth-child(1) > a').should.eventually.contain("Enter a whole number.")
+          .getText('ul > li:nth-child(2) > a').should.eventually.contain("Enter a number rounded to 2 decimal places.");
       });
   });
 
