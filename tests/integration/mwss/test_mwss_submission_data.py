@@ -148,6 +148,11 @@ class TestMwssSubmissionData(IntegrationTestCase):
 
         self.post(form_data)
 
+        # When I submit an answer
+        form_data = {'pay-pattern-frequency-confirmation-answer': 'Yes'}
+
+        self.post(form_data)
+
         # We are in weekly pay section
         self.assertInPage('>Weekly Pay</')
         self.assertInPage('The next section covers Weekly pay.')

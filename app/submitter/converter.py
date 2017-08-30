@@ -94,6 +94,9 @@ def convert_answers_to_data(answer_store, questionnaire_json, routing_path):
 
             if answer_schema is not None and value is not None and 'parent_answer_id' not in answer_schema:
                 if answer_schema['type'] != 'Checkbox' or any('q_code' not in option for option in answer_schema['options']):
+                    if 'q_code' not in answer_schema:
+                        continue
+
                     answer_data = _get_answer_data(data, answer_schema['q_code'], value)
                     if answer_data is not None:
                         data[answer_schema['q_code']] = answer_data
