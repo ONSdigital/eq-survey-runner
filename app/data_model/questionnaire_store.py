@@ -1,56 +1,49 @@
-import simplejson
-
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.location import Location
+import simplejson as json
 
 
 class QuestionnaireStore:
 
     def __init__(self, storage):
         self._storage = storage
-        self._initial_data = {}
         self.metadata = {}
         self.answer_store = AnswerStore()
         self.completed_blocks = []
 
         raw_data = self._storage.get_user_data()
         if raw_data:
-            self._initial_data = self._deserialise(raw_data)
-            data_copy = self._deserialise(raw_data)
-            self._set_data(data_copy)
+            self._deserialise(raw_data)
 
-    @staticmethod
-    def _deserialise(raw_data):
-        data = simplejson.loads(raw_data)
-        data['COMPLETED_BLOCKS'] = [Location.from_dict(location_dict=completed_block) for completed_block in data['COMPLETED_BLOCKS']]
-        return data
+    def _deserialise(self, data):
+        json_data = json.loads(data)
+        # pylint: disable=maybe-no-member
+        completed_blocks = [Location.from_dict(location_dict=completed_block) for completed_block in
+                            json_data.get('COMPLETED_BLOCKS', [])]
+        self.metadata = json_data.get('METADATA', {})
+        self.answer_store.answers = json_data.get('ANSWERS', [])
+        self.completed_blocks = completed_blocks
 
-    @staticmethod
-    def _serialise(data):
-        # Override default function to return object as a dict
-        return simplejson.dumps(data, default=lambda o: o.__dict__)
-
-    def _set_data(self, data):
-        self.metadata = data.get('METADATA') or {}
-        self.answer_store.answers = data.get('ANSWERS') or []
-        self.completed_blocks = data.get('COMPLETED_BLOCKS') or []
-
-    def _get_data(self):
-        return {
+    def _serialise(self):
+        data = {
             'METADATA': self.metadata,
             'ANSWERS': self.answer_store.answers,
             'COMPLETED_BLOCKS': self.completed_blocks,
         }
-
-    def has_changed(self):
-        return self._initial_data != self._get_data()
+        return json.dumps(data, default=self._encode_questionnaire_store)
 
     def delete(self):
         self._storage.delete()
-        self._set_data(data={})
-        self._initial_data = {}
+        self.metadata = {}
+        self.answer_store.answers = []
+        self.completed_blocks = []
 
     def add_or_update(self):
-        data = self._get_data()
-        serialised_data = self._serialise(data)
-        self._storage.add_or_update(data=serialised_data)
+        data = self._serialise()
+        self._storage.add_or_update(data=data)
+
+    def _encode_questionnaire_store(self, o):
+        if hasattr(o, 'to_dict'):
+            return o.to_dict()
+
+        return json.JSONEncoder.default(self, o)
