@@ -4,6 +4,10 @@ if [ -z "$EQ_DEV_MODE" ]; then
   export EQ_DEV_MODE=True
 fi
 
+if [ -z "$EQ_DEVELOPER_LOGGING" ]; then
+    export EQ_DEVELOPER_LOGGING=True
+fi
+
 if [ -z "$EQ_RABBITMQ_ENABLED" ]; then
   export EQ_RABBITMQ_ENABLED=False
 fi

@@ -1,0 +1,12 @@
+.feedback__message {
+  margin: 3rem 0;
+}
+
+.feedback__field {
+  padding: 0;
+  margin-bottom: 1rem;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}

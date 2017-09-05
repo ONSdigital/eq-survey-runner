@@ -9,7 +9,6 @@ let config = {
   logLevel: 'error',
   coloredLogs: true,
   bail: 1,
-  screenshotPath: paths.test.errorShots,
   baseUrl: process.env.BASEURL,
   waitforTimeout: 2000,
   updateJob: true,
@@ -71,19 +70,17 @@ const phantomjsConfig = {
 
 };
 
+const chromeHeadlessConfig = Object.assign(
+  {},
+  config,
+  {
+    capabilities: [capabilities.chromeHeadless],
+    maxInstances: 4
+  }
+);
+
 if (process.env.TRAVIS === 'true') {
-  config = Object.assign(config, phantomjsConfig, {logLevel: 'silent'});
-
-  // Yuk, is there a better way to add behaviour to the before hook?
-  const before = config.before;
-  config.before = () => {
-    before();
-    browser.setViewportSize({
-      width: 1280,
-      height: 1024
-    });
-
-  };
+  config = chromeHeadlessConfig;
 
 } else {
   if (argv.sauce) {

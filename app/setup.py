@@ -11,6 +11,8 @@ from flask import url_for
 from flask_caching import Cache
 from flask_babel import Babel
 from flask_themes2 import Themes
+from flask_wtf.csrf import CSRFProtect
+
 from structlog import get_logger
 
 from app import settings
@@ -198,16 +200,24 @@ def start_dev_mode(application):
 
 
 def add_blueprints(application):
+    csrf = CSRFProtect(application)
+
     # import and register the main application blueprint
     from app.views.questionnaire import questionnaire_blueprint
     application.register_blueprint(questionnaire_blueprint)
     questionnaire_blueprint.config = application.config.copy()
 
+    from app.views.feedback import feedback_blueprint
+    application.register_blueprint(feedback_blueprint)
+    feedback_blueprint.config = application.config.copy()
+
     from app.views.session import session_blueprint
+    csrf.exempt(session_blueprint)
     application.register_blueprint(session_blueprint)
     session_blueprint.config = application.config.copy()
 
     from app.views.flush import flush_blueprint
+    csrf.exempt(flush_blueprint)
     application.register_blueprint(flush_blueprint)
     flush_blueprint.config = application.config.copy()
 

@@ -18,6 +18,7 @@ class TemplateRenderer:
         self.environment.filters['format_currency'] = format_currency
         self.environment.filters['format_household_name'] = format_household_member_name
         self.environment.filters['format_household_summary'] = format_household_summary
+
         self.environment.globals['format_conditional_date'] = format_conditional_date
 
     def render(self, renderable, **context):

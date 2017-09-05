@@ -13,7 +13,7 @@ class TestTimeout(IntegrationTestCase):
 
     def test_timeout_continue_returns_200(self):
         self.launchSurvey('test', 'timeout')
-        self.get('/questionnaire/test/timeout/789/timeout-continue')
+        self.get('/timeout-continue')
         self.assertStatusOK()
 
     def test_when_session_times_out_server_side_401_is_returned(self):

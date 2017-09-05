@@ -5,7 +5,8 @@ class TestSessionExpired(IntegrationTestCase):
 
     def test_session_expired_should_log_user_out(self):
         self.launchSurvey('1', '0205')
-        self.post(url='/questionnaire/1/0205/789/expire-session')
+        startPage = self.last_url
+        self.post(url='/expire-session')
         self.assertStatusOK()
-        self.post(url='/questionnaire/1/0205/789/expire-session')
+        self.get(url=startPage)
         self.assertStatusUnauthorised()

@@ -64,9 +64,9 @@ class TimeoutUI {
 domready(() => {
   const sessionTimeout = window.__EQ_SESSION_TIMEOUT__
   const promptTime = window.__EQ_SESSION_TIMEOUT_PROMPT__
-  const sessionExpiredUrl = window.__EQ_SESSION_EXPIRED_URL__
-  const expireSessionUrl = window.__EQ_EXPIRE_SESSION_URL__
-  const sessionContinueUrl = window.__EQ_SESSION_CONTINUE_URL__
+  const sessionExpiredUrl = '/session-expired'
+  const expireSessionUrl = '/expire-session'
+  const sessionContinueUrl = '/timeout-continue'
 
   const continueBtn = new LoaderBtn('.js-timeout-continue')
   const saveBtn = document.querySelector('.js-timeout-save')

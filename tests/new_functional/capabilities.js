@@ -8,10 +8,7 @@ const defaultCapabilities = {
 };
 
 const chrome = Object.assign({
-  browserName: 'chrome',
-  version: '48.0',
-  os: 'OS X',
-  os_version: 'Yosemite'
+  browserName: 'chrome'
 }, defaultCapabilities);
 
 const chromeNoJS = Object.assign(
@@ -19,6 +16,16 @@ const chromeNoJS = Object.assign(
     name: 'Chrome (No JavaScript)',
     chromeOptions: {
       prefs: {'profile.managed_default_content_settings.javascript': 2}
+    }
+  },
+  chrome
+);
+
+const chromeHeadless = Object.assign(
+  {
+    name: 'Chrome Headless',
+    chromeOptions: {
+      args: ['--headless', '--window-size=1024,1158']
     }
   },
   chrome
@@ -73,6 +80,7 @@ const ie8 = Object.assign(
 module.exports = {
   chrome,
   chromeNoJS,
+  chromeHeadless,
   phantomjs,
   firefox,
   edge,

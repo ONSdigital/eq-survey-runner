@@ -14,7 +14,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self.post(action='start_questionnaire')
 
         # Then
-        self.assertStatusForbidden()
+        self.assertStatusCode(400)
         self.assertEqualUrl(self.last_url)
 
     def test_given_on_interstitial_page_when_submit_with_invalid_csrf_token_then_forbidden(self):
@@ -26,7 +26,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self.post(action='start_questionnaire')
 
         # Then
-        self.assertStatusForbidden()
+        self.assertStatusCode(400)
         self.assertEqualUrl(self.last_url)
 
     def test_given_on_introduction_page_when_submit_valid_token_then_redirect_to_next_page(self):
@@ -51,7 +51,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self.post({'favourite-breakfast': 'Pancakes'})
 
         # Then
-        self.assertStatusForbidden()
+        self.assertStatusCode(400)
         self.get('/dump/answers')
         answers = json.loads(self.getResponseData())
         self.assertEqual('Muesli', answers['answers'][0]['value'])
@@ -66,7 +66,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self.post(url='/questionnaire/census/household/789/who-lives-here/0/household-composition', post_data=post_data)
 
         # Then
-        self.assertStatusForbidden()
+        self.assertStatusCode(400)
         self.get('/dump/answers')
         answers = json.loads(self.getResponseData())
         self.assertEqual(0, len(answers['answers']))
@@ -82,7 +82,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self.post(post_data=post_data, action='save_sign_out')
 
         # Then
-        self.assertStatusForbidden()
+        self.assertStatusCode(400)
         self.get('/dump/answers')
         answers = json.loads(self.getResponseData())
         self.assertEqual(0, len(answers['answers']))

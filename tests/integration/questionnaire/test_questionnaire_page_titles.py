@@ -49,7 +49,7 @@ class TestQuestionnairePageTitles(IntegrationTestCase):
         # Given
         self.launchSurvey('test', 'final_confirmation')
         # When
-        self.get('/questionnaire/test/final_confirmation/789/signed-out')
+        self.get('/signed-out')
         # Then
         self.assertEqualPageTitle('Signed out - Final confirmation to submit')
 
@@ -57,7 +57,7 @@ class TestQuestionnairePageTitles(IntegrationTestCase):
         # Given
         self.launchSurvey('test', 'final_confirmation')
         # When
-        self.get('/questionnaire/test/final_confirmation/789/session-expired')
+        self.get('/session-expired')
         # Then
         self.assertEqualPageTitle('Session expired')
 

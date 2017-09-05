@@ -1,10 +1,10 @@
-from flask import Blueprint, current_app
-from flask import redirect
-from flask import request
-from flask import session
-from flask_login import current_user
-from structlog import get_logger
+from flask import Blueprint, current_app, redirect, request, session
+from flask_login import current_user, login_required
+from flask_themes2 import render_theme_template
+
 from werkzeug.exceptions import NotFound, Unauthorized
+
+from structlog import get_logger
 
 from app.authentication.authenticator import store_session, decrypt_token
 from app.authentication.jti_claim_storage import JtiTokenUsed, JtiClaimStorage
@@ -12,6 +12,8 @@ from app.globals import get_answer_store, get_completed_blocks
 from app.questionnaire.path_finder import PathFinder
 from app.storage.metadata_parser import parse_metadata
 from app.utilities.schema import load_schema_from_metadata
+from app.helpers.session_helper import end_session_with_schema_context
+from app.templating.template_renderer import TemplateRenderer
 
 logger = get_logger()
 
@@ -70,3 +72,36 @@ def login():
     current_location = navigator.get_latest_location(get_completed_blocks(current_user))
 
     return redirect(current_location.url(metadata))
+
+
+@session_blueprint.route('/timeout-continue', methods=["GET"])
+@login_required
+def get_timeout_continue():
+    return 'true'
+
+
+@session_blueprint.route('/expire-session', methods=["POST"])
+@login_required
+def post_expire_session():
+    end_session_with_schema_context()
+    return get_session_expired()
+
+
+@session_blueprint.route('/session-expired', methods=["GET"])
+def get_session_expired():
+    if current_user.is_active:
+        end_session_with_schema_context()
+
+    return render_theme_template(session['theme'], template_name='session-expired.html',
+                                 analytics_ua_id=current_app.config['EQ_UA_ID'],
+                                 survey_title=TemplateRenderer.safe_content(session['survey_title']))
+
+
+@session_blueprint.route('/signed-out', methods=["GET"])
+def get_sign_out():
+    if current_user.is_active:
+        end_session_with_schema_context()
+
+    return render_theme_template(session['theme'], template_name='signed-out.html',
+                                 analytics_ua_id=current_app.config['EQ_UA_ID'],
+                                 survey_title=TemplateRenderer.safe_content(session['survey_title']))

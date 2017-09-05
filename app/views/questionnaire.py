@@ -2,28 +2,34 @@ import re
 from collections import defaultdict
 
 from flask import Blueprint, g, redirect, request, url_for, current_app
-from flask_login import current_user, login_required, logout_user
+from flask_login import current_user, login_required
 from flask_themes2 import render_theme_template
+
 from structlog import get_logger
-from werkzeug.exceptions import Forbidden
 
 from app.data_model.answer_store import Answer
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
 from app.helpers.form_helper import get_form_for_location, post_form_for_location
 from app.helpers.schema_helper import SchemaHelper
+from app.helpers.path_finder_helper import path_finder
+from app.helpers.session_helper import end_session_with_schema_context, _remove_survey_session_data
+from app.helpers import template_helper
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
-from app.questionnaire.path_finder import PathFinder
+
 from app.questionnaire.rules import evaluate_skip_conditions
 from app.submitter.converter import convert_answers
 from app.submitter.encrypter import encrypt
 from app.submitter.submission_failed import SubmissionFailedException
-from app.templating.metadata_context import build_metadata_context, build_metadata_context_for_survey_completed
+from app.templating.metadata_context import build_metadata_context_for_survey_completed
 from app.templating.schema_context import build_schema_context
 from app.templating.summary_context import build_summary_rendering_context
 from app.templating.template_renderer import renderer, TemplateRenderer
+
 from app.utilities.schema import load_schema_from_metadata, load_schema_from_params
 from app.views.errors import MultipleSurveyError
+
+END_BLOCKS = "Summary", "Confirmation"
 
 logger = get_logger()
 
@@ -67,64 +73,48 @@ def save_questionnaire_store(response):
 @login_required
 def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=unused-argument,too-many-locals
     current_location = Location(group_id, group_instance, block_id)
-    metadata = get_metadata(current_user)
-    answer_store = get_answer_store(current_user)
-    path_finder = PathFinder(g.schema_json, answer_store, metadata)
-    valid_group = group_id in SchemaHelper.get_group_ids(g.schema_json)
-    full_routing_path = path_finder.get_routing_path()
-    is_valid_location = valid_group and current_location in path_finder.get_routing_path(group_id, group_instance)
-    latest_location = path_finder.get_latest_location(get_completed_blocks(current_user), routing_path=full_routing_path)
-    if not is_valid_location:
-        return _redirect_to_location(collection_id, eq_id, form_type, latest_location)
+
+    if not _is_valid_group(group_id) or not _is_valid_location(current_location):
+        return _redirect_to_latest_location(collection_id, eq_id, form_type)
 
     block = _render_schema(current_location)
-    block_type = block['type']
-    is_skipping_to_end = block_type in ['Summary', 'Confirmation'] and current_location != latest_location
-    if is_skipping_to_end:
-        return _redirect_to_location(collection_id, eq_id, form_type, latest_location)
 
-    context = _get_context(block, current_location, answer_store)
-    return _build_template(current_location, context, template=block_type, routing_path=full_routing_path)
+    if _is_skipping_to_the_end(block, current_location):
+        return _redirect_to_latest_location(collection_id, eq_id, form_type)
+
+    return _render_block(block, current_location)
 
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["POST"])
 @login_required
 def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=too-many-locals
     current_location = Location(group_id, group_instance, block_id)
-    metadata = get_metadata(current_user)
-    answer_store = get_answer_store(current_user)
-    path_finder = PathFinder(g.schema_json, answer_store, metadata)
 
-    valid_group = group_id in SchemaHelper.get_group_ids(g.schema_json)
-    full_routing_path = path_finder.get_routing_path()
-    is_valid_location = valid_group and current_location in path_finder.get_routing_path(group_id, group_instance)
-    if not is_valid_location:
-        latest_location = path_finder.get_latest_location(get_completed_blocks(current_user), routing_path=full_routing_path)
-        return _redirect_to_location(collection_id, eq_id, form_type, latest_location)
+    if not _is_valid_group(group_id) or not _is_valid_location(current_location):
+        return _redirect_to_latest_location(collection_id, eq_id, form_type)
 
-    error_messages = SchemaHelper.get_messages(g.schema_json)
     block = _render_schema(current_location)
-    disable_mandatory = 'action[save_sign_out]' in request.form
-    form, _ = post_form_for_location(block, current_location, answer_store, request.form, error_messages, disable_mandatory)
+    form = _generate_wtf_form(request.form, block, current_location)
 
     if 'action[save_sign_out]' in request.form:
-        return _save_sign_out(collection_id, eq_id, form_type, current_location, form)
-    elif _is_invalid_form(form):
-        context = {'form': form, 'block': block}
-        return _build_template(current_location, context, template=block['type'], routing_path=full_routing_path)
-    else:
+        return _save_sign_out(current_location, form)
+
+    if form.validate():
         _update_questionnaire_store(current_location, form)
         next_location = path_finder.get_next_location(current_location=current_location)
 
-        if next_location is None and block['type'] in ["Summary", "Confirmation"]:
-            return submit_answers(eq_id, form_type, collection_id, metadata, answer_store)
+        if _is_end_of_questionnaire(block, next_location):
+            return submit_answers(eq_id, form_type, collection_id)
 
-        return redirect(next_location.url(metadata))
+        return redirect(_next_location_url(next_location))
+
+    return _render_block(block, current_location, post_form=form)
 
 
 @questionnaire_blueprint.route('<group_id>/0/household-composition', methods=["POST"])
 @login_required
-def post_household_composition(eq_id, form_type, collection_id, group_id):  # pylint: disable=too-many-locals
+def post_household_composition(**kwargs):
+    group_id = kwargs['group_id']
     answer_store = get_answer_store(current_user)
     if _household_answers_changed(answer_store):
         _remove_repeating_on_household_answers(answer_store, group_id)
@@ -139,25 +129,31 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):  # py
 
     if 'action[add_answer]' in request.form:
         form.household.append_entry()
-    elif 'action[remove_answer]' in request.form:
+
+        return _render_block(block, current_location, post_form=form)
+
+    if 'action[remove_answer]' in request.form:
         index_to_remove = int(request.form.get('action[remove_answer]'))
         form.remove_person(index_to_remove)
-    elif 'action[save_sign_out]' in request.form:
-        response = _save_sign_out(collection_id, eq_id, form_type, current_location, form)
+
+        return _render_block(block, current_location, post_form=form)
+
+    if 'action[save_sign_out]' in request.form:
+        response = _save_sign_out(current_location, form)
         remove_empty_household_members_from_answer_store(answer_store, group_id)
+
         return response
 
-    if _is_invalid_form(form) or 'action[add_answer]' in request.form or 'action[remove_answer]' in request.form:
-        context = {'form': form, 'block': block}
-        return _build_template(current_location, context, template='questionnaire')
-    else:
+    if form.validate():
         questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
         update_questionnaire_store_with_answer_data(questionnaire_store, current_location, form.serialise(current_location))
 
         metadata = get_metadata(current_user)
-        path_finder = PathFinder(g.schema_json, get_answer_store(current_user), metadata)
         next_location = path_finder.get_next_location(current_location=current_location)
+
         return redirect(next_location.url(metadata))
+
+    return _render_block(block, current_location, form)
 
 
 @questionnaire_blueprint.route('thank-you', methods=["GET"])
@@ -175,72 +171,15 @@ def get_thank_you(eq_id, form_type, collection_id):  # pylint: disable=unused-ar
                                                    survey_title=TemplateRenderer.safe_content(schema['title']))
         return thank_you_template
     else:
-        return _redirect_to_latest_location(collection_id, eq_id, form_type, schema)
+        return _redirect_to_latest_location(collection_id, eq_id, form_type)
 
 
 @login_required
-def _redirect_to_latest_location(collection_id, eq_id, form_type, schema):
-    metadata = get_metadata(current_user)
-    answer_store = get_answer_store(current_user)
-    path_finder = PathFinder(schema, answer_store, metadata)
+def _redirect_to_latest_location(collection_id, eq_id, form_type):
     routing_path = path_finder.get_routing_path()
     latest_location = path_finder.get_latest_location(get_completed_blocks(current_user),
                                                       routing_path=routing_path)
     return _redirect_to_location(collection_id, eq_id, form_type, latest_location)
-
-
-@questionnaire_blueprint.route('signed-out', methods=["GET"])
-def get_sign_out(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
-    schema = load_schema_from_params(eq_id, form_type)
-    signed_out_template = render_theme_template(schema['theme'], template_name='signed-out.html',
-                                                analytics_ua_id=current_app.config['EQ_UA_ID'],
-                                                survey_title=TemplateRenderer.safe_content(schema['title']))
-    return signed_out_template
-
-
-@questionnaire_blueprint.route('timeout-continue', methods=["GET"])
-@login_required
-def get_timeout_continue(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
-    return 'true'
-
-
-@questionnaire_blueprint.route('expire-session', methods=["POST"])
-@login_required
-def post_expire_session(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
-    _remove_survey_session_data()
-    return get_session_expired(eq_id, form_type, collection_id)
-
-
-@questionnaire_blueprint.route('session-expired', methods=["GET"])
-def get_session_expired(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
-    schema = load_schema_from_params(eq_id, form_type)
-    return render_theme_template(schema['theme'], template_name='session-expired.html',
-                                 analytics_ua_id=current_app.config['EQ_UA_ID'],
-                                 survey_title=TemplateRenderer.safe_content(schema['title']))
-
-
-def submit_answers(eq_id, form_type, collection_id, metadata, answer_store):
-    is_completed, invalid_location = is_survey_completed(answer_store, metadata)
-
-    if is_completed:
-        path_finder = PathFinder(g.schema_json, answer_store, metadata)
-
-        message = convert_answers(metadata, g.schema_json, answer_store, path_finder.get_routing_path())
-        encrypted_message = encrypt(message, current_app.eq['secret_store'])
-        sent = current_app.eq['submitter'].send_message(encrypted_message,
-                                                        current_app.config['EQ_RABBITMQ_QUEUE_NAME'],
-                                                        metadata['tx_id'])
-
-        if not sent:
-            raise SubmissionFailedException()
-
-        current_app.eq['session_storage'].store_survey_completed_metadata(metadata['tx_id'], metadata['period_str'], metadata['ru_ref'])
-        get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
-        _remove_survey_session_data()
-
-        return redirect(url_for('.get_thank_you', eq_id=eq_id, form_type=form_type, collection_id=collection_id))
-    else:
-        return redirect(invalid_location.url(metadata))
 
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/permanent-or-family-home', methods=["POST"])
@@ -251,8 +190,110 @@ def post_everyone_at_address_confirmation(eq_id, form_type, collection_id, group
     return post_block(eq_id, form_type, collection_id, group_id, group_instance, 'permanent-or-family-home')
 
 
-def is_survey_completed(answer_store, metadata):
-    path_finder = PathFinder(g.schema_json, answer_store, metadata)
+def _render_block(block, current_location, post_form=None):
+
+    if post_form is None:
+        context = _get_context(block, current_location, get_answer_store(current_user))
+    else:
+        context = {'form': post_form, 'block': block}
+
+    full_routing_path = path_finder.get_routing_path()
+
+    return _build_template(
+        current_location,
+        context,
+        block['type'],
+        routing_path=full_routing_path)
+
+
+def _is_valid_location(location):
+    return location in path_finder.get_routing_path(
+        location.group_id,
+        location.group_instance,
+    )
+
+
+def _is_valid_group(group_id):
+    return group_id in SchemaHelper.get_group_ids(g.schema_json)
+
+
+def _generate_wtf_form(form, block, location):
+    error_messages = SchemaHelper.get_messages(g.schema_json)
+    disable_mandatory = 'action[save_sign_out]' in form
+
+    wtf_form, _ = post_form_for_location(
+        block,
+        location,
+        get_answer_store(current_user),
+        request.form,
+        error_messages,
+        disable_mandatory)
+
+    return wtf_form
+
+
+def _next_location_url(location):
+    metadata = get_metadata(current_user)
+    return location.url(metadata)
+
+
+def _is_end_of_questionnaire(block, next_location):
+
+    return next_location is None and \
+        block['type'] in END_BLOCKS
+
+
+def _is_skipping_to_the_end(block, current_location):
+    latest_location = path_finder.get_latest_location(
+        get_completed_blocks(current_user),
+        routing_path=path_finder.get_routing_path(),
+    )
+
+    return current_location != latest_location and \
+        block['type'] in END_BLOCKS
+
+
+def submit_answers(eq_id, form_type, collection_id):
+    is_completed, invalid_location = is_survey_completed()
+    metadata = get_metadata(current_user)
+    answer_store = get_answer_store(current_user)
+
+    if is_completed:
+        message = convert_answers(
+            metadata,
+            g.schema_json,
+            answer_store,
+            path_finder.get_routing_path(),
+        )
+
+        encrypted_message = encrypt(message, current_app.eq['secret_store'])
+        sent = current_app.eq['submitter'].send_message(
+            encrypted_message,
+            current_app.config['EQ_RABBITMQ_QUEUE_NAME'],
+            metadata['tx_id'],
+        )
+
+        if not sent:
+            raise SubmissionFailedException()
+
+        current_app.eq['session_storage'].store_survey_completed_metadata(
+            metadata['tx_id'],
+            metadata['period_str'],
+            metadata['ru_ref'])
+
+        get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
+        _remove_survey_session_data()
+
+        return redirect(url_for(
+            '.get_thank_you',
+            eq_id=eq_id,
+            form_type=form_type,
+            collection_id=collection_id))
+    else:
+        return redirect(invalid_location.url(metadata))
+
+
+def is_survey_completed():
     completed_blocks = get_completed_blocks(current_user)
 
     for location in path_finder.get_routing_path():
@@ -265,26 +306,21 @@ def is_survey_completed(answer_store, metadata):
     return True, None
 
 
-def _save_sign_out(collection_id, eq_id, form_type, this_location, form):
+def _save_sign_out(this_location, form):
     questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-    block_json = _render_schema(this_location)
-    if _is_invalid_form(form):
-        content = {'block': block_json, 'form': form}
-        return _build_template(this_location, content, template=block_json['type'])
-    else:
+    block = _render_schema(this_location)
+    if form.validate():
         _update_questionnaire_store(this_location, form)
+
         if this_location in questionnaire_store.completed_blocks:
             questionnaire_store.completed_blocks.remove(this_location)
             questionnaire_store.add_or_update()
 
-        _remove_survey_session_data()
-        return redirect(url_for('.get_sign_out', eq_id=eq_id, form_type=form_type, collection_id=collection_id))
+        end_session_with_schema_context(schema=g.schema_json)
 
+        return redirect(url_for('session.get_sign_out'))
 
-def _remove_survey_session_data():
-    current_app.eq['session_storage'].delete_session_from_db()
-    current_app.eq['session_storage'].remove_user_ik()
-    logout_user()
+    return _render_block(block, this_location, post_form=form)
 
 
 def _household_answers_changed(answer_store):
@@ -299,16 +335,25 @@ def _household_answers_changed(answer_store):
     for answer in request.form:
         answer_id, answer_index = extract_answer_id_and_instance(answer)
 
-        stored_answer = next((d for d in household_answers if d['answer_id'] == answer_id and
-                              d['answer_instance'] == answer_index), None)
+        stored_answer = next(
+            (d for d in household_answers if d['answer_id'] == answer_id and
+             d['answer_instance'] == answer_index),
+            None,
+        )
+
         if stored_answer and (stored_answer['value'] or '') != request.form[answer]:
             return True
+
     return False
 
 
 def _remove_repeating_on_household_answers(answer_store, group_id):
     answer_store.remove(group_id=group_id, block_id='household-composition')
-    questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+    questionnaire_store = get_questionnaire_store(
+        current_user.user_id,
+        current_user.user_ik,
+    )
+
     for answer in SchemaHelper.get_answers_that_repeat_in_block(g.schema_json, 'household-composition'):
         groups_to_delete = SchemaHelper.get_groups_that_repeat_with_answer_id(g.schema_json, answer['id'])
         for group in groups_to_delete:
@@ -406,15 +451,6 @@ def update_questionnaire_store_with_answer_data(questionnaire_store, location, a
         questionnaire_store.completed_blocks.append(location)
 
 
-def _is_invalid_form(form):
-    is_valid = form.validate()
-    if form.csrf_token.errors:
-        logger.warn('Invalid csrf token')
-        raise Forbidden
-
-    return not is_valid
-
-
 def _check_same_survey(eq_id, form_type, collection_id):
     metadata = get_metadata(current_user)
     current_survey = eq_id + form_type + collection_id
@@ -457,6 +493,7 @@ def _get_context(block, current_location, answer_store):
 
     error_messages = SchemaHelper.get_messages(g.schema_json)
     form, template_params = get_form_for_location(block, current_location, answer_store, error_messages)
+
     content = {'form': form, 'block': block}
     if template_params:
         content.update(template_params)
@@ -507,43 +544,28 @@ def get_page_title_for_location(schema_json, current_location):
 
 def _build_template(current_location, context, template, routing_path=None):
     metadata = get_metadata(current_user)
-    metadata_context = build_metadata_context(metadata)
-
     answer_store = get_answer_store(current_user)
     front_end_navigation = _get_front_end_navigation(answer_store, current_location, metadata, routing_path)
-
-    path_finder = PathFinder(g.schema_json, answer_store, metadata)
     previous_location = path_finder.get_previous_location(current_location)
-
     previous_url = previous_location.url(metadata) if previous_location is not None else None
-    return _render_template(context, current_location, template, front_end_navigation, metadata_context, previous_url)
+
+    return _render_template(context, current_location, template, front_end_navigation, previous_url)
 
 
-def _render_template(context, current_location, template, front_end_navigation, metadata_context, previous_url):
-    theme = g.schema_json.get('theme', None)
-    logger.debug("theme selected", theme=theme)
-    session_timeout = current_app.config['EQ_SESSION_TIMEOUT_SECONDS']
-    schema_session_timeout = g.schema_json.get('session_timeout_in_seconds')
-    if schema_session_timeout is not None and schema_session_timeout < current_app.config['EQ_SESSION_TIMEOUT_SECONDS']:
-        session_timeout = schema_session_timeout
-    session_timeout_prompt = g.schema_json.get('session_prompt_in_seconds') or current_app.config['EQ_SESSION_TIMEOUT_PROMPT_SECONDS']
-
-    survey_data = metadata_context['survey']
-    url_prefix = '/questionnaire/{}/{}/{}'.format(survey_data['eq_id'], survey_data['form_type'], survey_data['collection_id'])
-
+@template_helper.with_session_timeout
+@template_helper.with_questionnaire_url_prefix
+@template_helper.with_metadata
+@template_helper.with_analytics
+@template_helper.with_legal_basis
+def _render_template(context, current_location, template, front_end_navigation, previous_url, **kwargs):
     page_title = get_page_title_for_location(g.schema_json, current_location)
-    template = '{}.html'.format(template).lower()
-    return render_theme_template(theme, template,
-                                 meta=metadata_context,
-                                 content=context,
-                                 current_location=current_location,
-                                 analytics_ua_id=current_app.config['EQ_UA_ID'],
-                                 previous_location=previous_url,
-                                 navigation=front_end_navigation,
-                                 survey_title=TemplateRenderer.safe_content(g.schema_json['title']),
-                                 legal_basis=g.schema_json['legal_basis'],
-                                 survey_id=g.schema_json['survey_id'],
-                                 session_timeout=session_timeout,
-                                 session_timeout_prompt=session_timeout_prompt,
-                                 url_prefix=url_prefix,
-                                 page_title=page_title)
+
+    return template_helper.render_template(
+        template,
+        content=context,
+        current_location=current_location,
+        navigation=front_end_navigation,
+        previous_location=previous_url,
+        page_title=page_title,
+        **kwargs
+    )
