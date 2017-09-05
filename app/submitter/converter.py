@@ -194,12 +194,13 @@ def _build_metadata(metadata):
 
 
 def _encode_value(value):
-    if isinstance(value, int):
-        return str(value)
-    elif isinstance(value, str) and value == '':
-        return None
+    if isinstance(value, str):
+        if value == '':
+            return None
+        else:
+            return value
     else:
-        return value
+        return str(value)
 
 
 def convert_feedback(message, name, email, url, metadata, survey_id):
