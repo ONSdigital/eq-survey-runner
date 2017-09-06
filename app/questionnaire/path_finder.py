@@ -1,5 +1,4 @@
 import copy
-
 from structlog import get_logger
 
 from app.data_model.answer_store import AnswerStore
@@ -16,6 +15,8 @@ class PathFinder:
         self.answer_store = answer_store or AnswerStore()
         self.metadata = metadata or {}
         self.survey_json = survey_json
+        self._answer_store_hash = self.answer_store.get_hash()
+        self._full_routing_path = None
 
     @staticmethod
     def _block_index_for_location(blocks, location):
@@ -96,18 +97,40 @@ class PathFinder:
                     self.answer_store.remove(answer_id=condition['id'],
                                              answer_instance=0,)
 
-    def get_routing_path(self, group_id=None, group_instance=0):
+    def get_routing_path(self, group_id, group_instance=0):
         """
         Returns a list of the block ids visited based on answers provided
         :return: List of block location dicts
         """
-        if group_id is None:
-            group_id = SchemaHelper.get_first_group_id(self.survey_json)
+        self.get_full_routing_path()
+
+        for i, location in enumerate(self._full_routing_path):
+            if location.group_id == group_id and location.group_instance == group_instance:
+                return self._full_routing_path[i:]
 
         first_block_in_group = SchemaHelper.get_first_block_id_for_group(self.survey_json, group_id)
         location = Location(group_id, group_instance, first_block_in_group)
 
         return self.build_path(self.get_blocks(), location)
+
+    def get_full_routing_path(self):
+        """
+        Returns a list of the block ids visited based on answers provided
+        :return: List of block location dicts
+        """
+        latest_answer_store_hash = self.answer_store.get_hash()
+        if self._full_routing_path and \
+                self._answer_store_hash == latest_answer_store_hash:
+            return self._full_routing_path
+
+        group_id = SchemaHelper.get_first_group_id(self.survey_json)
+        first_block_in_group = SchemaHelper.get_first_block_id_for_group(self.survey_json, group_id)
+        location = Location(group_id, 0, first_block_in_group)
+
+        self._answer_store_hash = latest_answer_store_hash
+        self._full_routing_path = self.build_path(self.get_blocks(), location)
+
+        return self._full_routing_path
 
     def get_blocks(self):
         blocks = []
@@ -189,7 +212,7 @@ class PathFinder:
         :param routing_path:
         :return:
         """
-        routing_path = self.get_routing_path() if routing_path is None else routing_path
+        routing_path = self.get_full_routing_path() if routing_path is None else routing_path
         latest_location = routing_path[0]
         if completed_blocks:
             incomplete_blocks = [item for item in routing_path if item not in completed_blocks]

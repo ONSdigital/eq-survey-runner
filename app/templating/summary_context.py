@@ -14,7 +14,7 @@ def build_summary_rendering_context(schema_json, answer_store, metadata):
     :return: questionnaire summary context
     """
     navigator = PathFinder(schema_json, answer_store, metadata)
-    path = navigator.get_routing_path()
+    path = navigator.get_full_routing_path()
     groups = []
 
     answers_map = answer_store.map()

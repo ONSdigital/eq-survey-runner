@@ -47,7 +47,7 @@ def _submit_data(user):
     if answer_store.answers:
         metadata = get_metadata(user)
         schema = load_schema_from_metadata(metadata)
-        routing_path = PathFinder(schema, answer_store, metadata).get_routing_path()
+        routing_path = PathFinder(schema, answer_store, metadata).get_full_routing_path()
 
         message = convert_answers(metadata, schema, answer_store, routing_path, flushed=True)
         encrypted_message = encrypt(message, current_app.eq['secret_store'])

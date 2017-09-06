@@ -1,6 +1,6 @@
-import re
-
 from collections import OrderedDict
+import re
+import simplejson as json
 
 
 class Answer(object):
@@ -263,6 +263,9 @@ class AnswerStore(object):
         """
 
         self.remove(group_id=location.group_id, block_id=location.block_id, group_instance=location.group_instance)
+
+    def get_hash(self):
+        return hash(json.dumps(self.answers, sort_keys=True))
 
 
 def number_else_string(text):

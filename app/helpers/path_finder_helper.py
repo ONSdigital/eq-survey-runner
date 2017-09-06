@@ -1,3 +1,5 @@
+from functools import wraps
+
 from flask import g
 from flask_login import current_user
 from werkzeug.local import LocalProxy
@@ -19,3 +21,11 @@ def get_path_finder():
 
 
 path_finder = LocalProxy(get_path_finder)
+
+
+def full_routing_path_required(function):
+    @wraps(function)
+    def wrap_function(*args, **kwargs):
+        routing_path = path_finder.get_full_routing_path()
+        return function(routing_path, *args, **kwargs)
+    return wrap_function
