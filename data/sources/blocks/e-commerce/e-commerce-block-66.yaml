@@ -1,0 +1,28 @@
+id: e-commerce-block-66
+questions:
+- answers:
+  - description: ''
+    id: e-commerce-answer-66-0
+    label: Percentage of sales to private customers (B2C)?
+    mandatory: true
+    options: []
+    q_code: '348'
+    type: Percentage
+    max_value:
+      value: 100
+  - description: ''
+    id: e-commerce-answer-66-1
+    label: Percentage of sales to other businesses (B2B) and sales to public authorities (B2G)?
+    mandatory: true
+    options: []
+    q_code: '349'
+    type: Percentage
+    max_value:
+      value: 100
+  description: ''
+  id: e-commerce-question-66
+  title: 'During 2017, of the percentage given in the previous question, what percentage
+    was received from the following:'
+  type: General
+title: e-Commerce
+type: Questionnaire

@@ -1,0 +1,30 @@
+id: access-and-use-of-the-internet-block-17
+questions:
+- answers:
+  - description: ''
+    id: access-and-use-of-the-internet-answer-17
+    label: ''
+    mandatory: true
+    options:
+    - label: 'Yes'
+      value: 'Yes'
+    - label: 'No'
+      value: 'No'
+    q_code: 038
+    type: Radio
+  description: ''
+  id: access-and-use-of-the-internet-question-17
+  title: Does {{respondent.trad_as}} have internet access?
+  type: General
+title: Access and Use of the Internet
+type: Questionnaire
+routing_rules:
+- goto:
+    id: use-of-3d-printing-block-42
+    when:
+    - condition: equals
+      id: access-and-use-of-the-internet-answer-17
+      value: 'No'
+- goto:
+    id: access-and-use-of-the-internet-block-18
+

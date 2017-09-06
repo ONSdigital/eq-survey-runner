@@ -1,0 +1,34 @@
+id: access-and-use-of-the-internet-block-20
+questions:
+- answers:
+  - description: ''
+    id: access-and-use-of-the-internet-answer-20
+    label: ''
+    mandatory: true
+    options:
+    - label: Less than 2Mbps
+      value: Less than 2Mbps
+    - label: 2Mbps or more, but less than 10Mbps
+      value: 2Mbps or more, but less than 10Mbps
+    - label: 10 Mbps or more, but less than 30Mbps
+      value: 10 Mbps or more, but less than 30Mbps
+    - label: 30Mbps or more, but less than 100Mbps
+      value: 30Mbps or more, but less than 100Mbps
+    - label: 100Mbps or more
+      value: 100Mbps or more
+    type: Radio
+    guidance:
+      show_guidance: Show Mbps and Internet Connection Speeds Definitions
+      hide_guidance: Hide Mbps and Internet Connection Speeds Definitions
+      content:
+      - title: Mbps (Megabits per second)
+        description: "This refers to the speed that data can be transmitted."
+      - title: Internet Connection Speeds
+        description: 'The contracted broadband speed is the advertised maximum speed for each connection.'
+  description: ''
+  id: access-and-use-of-the-internet-question-20
+  title: What is the maximum contracted download speed of the fastest fixed internet
+    connection of {{respondent.trad_as}}?
+  type: General
+title: Access and Use of the Internet
+type: Questionnaire

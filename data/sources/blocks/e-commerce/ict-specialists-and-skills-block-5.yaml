@@ -1,0 +1,38 @@
+id: ict-specialists-and-skills-block-5
+questions:
+- answers:
+  - description: ''
+    id: ict-specialists-and-skills-answer-5
+    label: ''
+    mandatory: true
+    options:
+    - label: 'Yes'
+      value: 'Yes'
+    - label: 'No'
+      value: 'No'
+    type: Radio
+    guidance:
+      show_guidance: Show ICT Definition
+      hide_guidance: Hide ICT Definition
+      content:
+      - title: ICT (Information and Communication Technology)
+        description: "It is similar to Information Technology (IT), but focuses primarily on communication\
+            \ technologies. This includes the internet, wireless networks, mobile phones and other communication media."
+  description: ''
+  guidance:
+    content:
+    - description: "<p>ICT or IT is the employee\u2019s main function. ICT or IT specialist\
+        \ skills involve developing, operating or maintaining ICT or IT systems or applications.</p>"
+    - description: ''
+      list:
+      - all agency staff on your payroll
+      title: 'Include:'
+    - description: ''
+      list:
+      - agency staff not on your payroll
+      title: 'Exclude:'
+  id: ict-specialists-and-skills-question-5
+  title: Does {{respondent.trad_as}} employ ICT or IT specialists?
+  type: General
+title: ICT Specialists and Skills
+type: Questionnaire

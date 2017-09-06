@@ -1,0 +1,49 @@
+id: use-of-computers-block-2
+questions:
+- answers:
+  - description: ''
+    id: use-of-computers-answer-2
+    label: ''
+    mandatory: true
+    options:
+    - label: 'Yes'
+      value: 'Yes'
+    - label: 'No'
+      value: 'No'
+    q_code: '010'
+    type: Radio
+    guidance:
+      show_guidance: Show EPOS Definition
+      hide_guidance: Hide EPOS Definition
+      content:
+      - title: EPOS (Electronic Point of Sale)
+        description: "Computerised equipment that performs all tasks of a store checkout counter.\
+            \ It may allow payments by bank or credit cards, verify transactions, provide sales reports,\
+            \ coordinate inventory data and perform several other services"
+  description: ''
+  guidance:
+    content:
+    - description: ''
+      list:
+      - Devices owned personally or by the business that are used for business purposes
+      title: 'Include:'
+    - description: ''
+      list:
+      - terminals and computers solely used for EPOS (Electronic Point of Sale) and
+        computer controlled machinery
+      title: 'Exclude:'
+  id: use-of-computers-question-2
+  title: "Does {{respondent.trad_as}} use any of the following computers: desktops, laptops, notebooks, netbooks,\
+    \ tablets, and other portable devices such as smartphones?"
+  type: General
+title: Use of computers
+type: Questionnaire
+routing_rules:
+- goto:
+    id: comments-block-4
+    when:
+    - condition: equals
+      id: use-of-computers-answer-2
+      value: 'No'
+- goto:
+    id: use-of-computers-block-3

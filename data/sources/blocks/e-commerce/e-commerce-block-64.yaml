@@ -1,0 +1,56 @@
+id: e-commerce-block-64
+questions:
+- answers:
+  - description: ''
+    id: e-commerce-answer-64
+    label: ''
+    mandatory: true
+    options:
+    - label: 'Yes'
+      value: 'Yes'
+    - label: 'No'
+      value: 'No'
+    type: Radio
+    guidance:
+      show_guidance: Show EDI and Extranet Definitions
+      hide_guidance: Hide EDI and Extranet Definitions
+      content:
+      - title: EDI (Electronic Data Interchange)
+        description: "A set of standards for structuring information that is to be electronically exchanged between\
+          \ businesses or organisations. The standards describe formats that emulate documents, eg purchase orders\
+          \ or invoices; define messages and their contents, but not the method of exchanging the messages themselves.\
+          \ An example of EDI is EDIFACT (Electronic Data Interchange for Administration Commerce and\
+          \ Transport standards)."
+      - title: Extranet
+        description: "A private network, with restricted access, which uses Internet Protocol for sharing information\
+         \ with customers, suppliers, and other business pertners. It can take the form of a secure extension to an\
+         \ intranet or secure access part of a website. It is usually used for placing orders or accessing information."
+  description: ''
+  guidance:
+    content:
+    - description: ''
+      list:
+      - "orders received for utilities, goods, materials and services via an online
+        store, web forms on a website or extranet or \u2018app\u2019"
+      title: 'Include:'
+    - description: ''
+      list:
+      - manually typed email, EDI, fax, automated telephone entry, phone (person to
+        person) and conventional fax
+      - enquiries that did not result in receiving an order
+      title: 'Exclude:'
+  id: e-commerce-question-64
+  title: "During 2017, did {{respondent.trad_as}} receive any orders from customers\
+    \ for goods or services via a website or \u2018app\u2019?"
+  type: General
+title: e-Commerce
+type: Questionnaire
+routing_rules:
+- goto:
+    id: e-commerce-block-70
+    when:
+    - condition: equals
+      id: e-commerce-answer-64
+      value: 'No'
+- goto:
+    id: e-commerce-block-65

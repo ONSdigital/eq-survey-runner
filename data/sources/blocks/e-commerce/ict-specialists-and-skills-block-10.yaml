@@ -1,0 +1,29 @@
+id: ict-specialists-and-skills-block-10
+questions:
+- answers:
+  - description: ''
+    id: ict-specialists-and-skills-answer-10
+    label: ''
+    mandatory: true
+    options:
+    - label: Mainly performed by own employees including those employed in parent
+        or affiliate businesses
+      value: Mainly performed by own employees including those employed in parent
+        or affiliate businesses
+    - label: Mainly external suppliers
+      value: Mainly external suppliers
+    - label: Not applicable
+      value: Not applicable
+    type: Radio
+  description: ''
+  guidance:
+    content:
+    - description: For example Microsoft Office, Google Docs, etc
+      list: []
+      title: ''
+  id: ict-specialists-and-skills-question-10
+  title: During 2017, please indicate who mainly performed the <em>support
+    for office software</em>?
+  type: General
+title: ICT Specialists and Skills
+type: Questionnaire
