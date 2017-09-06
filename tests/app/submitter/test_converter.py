@@ -150,6 +150,78 @@ class TestConverter(SurveyRunnerTestCase):
             # Check the converter correctly
             self.assertEqual("0", answer_object["data"]["003"])
 
+    def test_answer_with_float(self):
+        with self.application.test_request_context():
+            user_answer = [create_answer('GHI', 10.02, group_id='group-1', block_id='block-1')]
+
+            questionnaire = {
+                "survey_id": "021",
+                "data_version": "0.0.1",
+                "groups": [
+                    {
+                        "id": "group-1",
+                        "blocks": [
+                            {
+                                "id": "block-1",
+                                "questions": [{
+                                    "id": 'question-2',
+                                    "answers": [
+                                        {
+                                            "id": "GHI",
+                                            "type": "TextField",
+                                            "q_code": "003"
+                                        }
+                                    ]
+                                }]
+                            }
+                        ]
+                    }
+                ]
+            }
+
+            routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
+
+            answer_object = convert_answers(metadata, questionnaire, AnswerStore(user_answer), routing_path)
+
+            # Check the converter correctly
+            self.assertEqual("10.02", answer_object["data"]["003"])
+
+    def test_answer_with_string(self):
+        with self.application.test_request_context():
+            user_answer = [create_answer('GHI', "String test + !", group_id='group-1', block_id='block-1')]
+
+            questionnaire = {
+                "survey_id": "021",
+                "data_version": "0.0.1",
+                "groups": [
+                    {
+                        "id": "group-1",
+                        "blocks": [
+                            {
+                                "id": "block-1",
+                                "questions": [{
+                                    "id": 'question-2',
+                                    "answers": [
+                                        {
+                                            "id": "GHI",
+                                            "type": "TextField",
+                                            "q_code": "003"
+                                        }
+                                    ]
+                                }]
+                            }
+                        ]
+                    }
+                ]
+            }
+
+            routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
+
+            answer_object = convert_answers(metadata, questionnaire, AnswerStore(user_answer), routing_path)
+
+            # Check the converter correctly
+            self.assertEqual("String test + !", answer_object["data"]["003"])
+
     def test_answer_with_multiple_instances(self):
         with self.application.test_request_context():
             user_answer = [create_answer('GHI', 0, group_id='group-1', block_id='block-1'),

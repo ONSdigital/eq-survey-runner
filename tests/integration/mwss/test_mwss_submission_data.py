@@ -37,7 +37,7 @@ class TestMwssSubmissionData(IntegrationTestCase):
                     "60": "10",
                     "70": "20",
                     "80": "30",
-                    "100": 50.58,
+                    "100": "50.58",
                     "110": "01/04/2016",
                     "120": "20%",
                     "130": "Calendar monthly",
