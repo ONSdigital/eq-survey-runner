@@ -1002,3 +1002,22 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         # Then go to the first block
         self.assertEqual(Location('textarea-group', 0, 'textarea-summary'), latest_location)
+
+    def test_build_path_with_group_routing(self):
+        # Given i have answered the routing question
+        survey = load_schema_file("test_routing_group.json")
+
+        answer_store = AnswerStore()
+        answer_store.add(Answer(group_id='which-group', block_id='which-group-block',
+                                answer_id='which-group-answer', value='group2'))
+
+        # When i build the path
+        path_finder = PathFinder(survey, answer_store=answer_store)
+
+        location = Location("which-group", 0, "which-group-block")
+
+        path = path_finder.build_path(path_finder.get_blocks(), location)
+
+        # Then it should route me straight to Group2 and not Group1
+        self.assertNotIn(Location('group1', 0, 'group1-block'), path)
+        self.assertIn(Location('group2', 0, 'group2-block'), path)

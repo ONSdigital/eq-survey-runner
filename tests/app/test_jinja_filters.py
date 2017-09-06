@@ -6,8 +6,9 @@ from unittest import TestCase
 from mock import Mock
 
 from app.jinja_filters import format_date, format_conditional_date, format_currency, format_multilined_string, \
-     format_percentage, format_start_end_date, format_household_member_name, format_str_as_date, \
-     format_str_as_date_range, format_str_as_month_year_date, format_number_to_alphabetic_letter, format_unit
+    format_percentage, format_start_end_date, format_household_member_name, format_str_as_date, \
+    format_str_as_date_range, format_str_as_month_year_date, format_number_to_alphabetic_letter, format_unit, \
+    format_list
 
 
 class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
@@ -307,3 +308,26 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         self.assertEqual(format_unit("volume-liter", 100), '100 l')
         self.assertEqual(format_unit("volume-hectoliter", 100), '100 hl')
         self.assertEqual(format_unit("volume-megaliter", 100), '100 Ml')
+
+    def test_format_list(self):
+        list_items = [["item 1", "item 2"]]
+
+        formatted_value = format_list(list_items)
+
+        expected_value = "<ul><li>item 1</li><li>item 2</li></ul>"
+
+        self.assertEqual(expected_value, formatted_value)
+
+    def test_format_list_with_no_input(self):
+        list_items = []
+
+        formatted_value = format_list(list_items)
+
+        self.assertEqual("", formatted_value)
+
+    def test_format_list_with_empty_list(self):
+        list_items = [[]]
+
+        formatted_value = format_list(list_items)
+
+        self.assertEqual("", formatted_value)

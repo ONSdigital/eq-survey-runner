@@ -102,14 +102,26 @@ def format_household_member_name(names):
 
 
 @blueprint.app_template_filter()
+def format_list(list_items):
+    summary_list = ''
+
+    if len(list_items) > 0 and len(list_items[0]) > 0:
+        summary_list = '<ul>'
+        for item in list_items[0]:
+            summary_list += '<li>{}</li>'.format(item)
+        summary_list += '</ul>'
+
+    return summary_list
+
+
+@blueprint.app_template_filter()
 def format_household_summary(names):
     if len(names) > 0:
-        person_list = '<ul>'
+        person_list = []
         for first_name, middle_name, last_name in zip(names[0], names[1], names[2]):
-            person_list += '<li>{}</li>'.format(format_household_member_name([first_name, middle_name, last_name]))
-        person_list += '</ul>'
+            person_list.append(format_household_member_name([first_name, middle_name, last_name]))
 
-        return person_list
+        return format_list([person_list])
     return ''
 
 

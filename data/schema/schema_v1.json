@@ -162,10 +162,25 @@
               "id": {
                 "type": "string"
               },
+              "group": {
+                "type": "string"
+              },
               "when": {
                 "$ref": "#/definitions/when"
               }
             },
+            "oneOf": [
+              {
+                "required": [
+                  "id"
+                ]
+              },
+              {
+                "required": [
+                  "group"
+                ]
+              }
+            ],
             "required": [
               "id"
             ]
@@ -192,6 +207,7 @@
             ]
           }
         },
+        "additionalProperties": false,
         "oneOf": [
           {
             "required": [

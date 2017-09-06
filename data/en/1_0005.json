@@ -188,56 +188,147 @@
         },
         {
             "blocks": [{
-                "id": "pay-pattern-frequency",
-                "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                "number": "1",
-                "questions": [{
-                    "answers": [{
-                        "id": "pay-pattern-frequency-answer",
-                        "label": "Please select all that apply",
-                        "mandatory": true,
-                        "options": [{
-                                "label": "Weekly",
-                                "q_code": "133w",
-                                "value": "Weekly"
-                            },
-                            {
-                                "label": "Fortnightly",
-                                "q_code": "134f",
-                                "value": "Fortnightly"
-                            },
-                            {
-                                "label": "Calendar monthly",
-                                "q_code": "130",
-                                "value": "Calendar monthly"
-                            },
-                            {
-                                "label": "Four weekly",
-                                "q_code": "131",
-                                "value": "Four weekly"
-                            },
-                            {
-                                "label": "Five weekly",
-                                "q_code": "132",
-                                "value": "Five weekly"
+                    "id": "pay-pattern-frequency",
+                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
+                    "number": "1",
+                    "questions": [{
+                        "answers": [{
+                            "id": "pay-pattern-frequency-answer",
+                            "label": "Please select all that apply",
+                            "alias": "pay_pattern",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "Weekly",
+                                    "q_code": "133w",
+                                    "value": "Weekly"
+                                },
+                                {
+                                    "label": "Fortnightly",
+                                    "q_code": "134f",
+                                    "value": "Fortnightly"
+                                },
+                                {
+                                    "label": "Calendar monthly",
+                                    "q_code": "130",
+                                    "value": "Calendar monthly"
+                                },
+                                {
+                                    "label": "Four weekly",
+                                    "q_code": "131",
+                                    "value": "Four weekly"
+                                },
+                                {
+                                    "label": "Five weekly",
+                                    "q_code": "132",
+                                    "value": "Five weekly"
+                                }
+                            ],
+                            "type": "Checkbox",
+                            "validation": {
+                                "messages": {
+                                    "MANDATORY": "Please select all that apply to continue."
+                                }
                             }
-                        ],
-                        "type": "Checkbox",
-                        "validation": {
-                            "messages": {
-                                "MANDATORY": "Please select all that apply to continue."
+                        }],
+                        "description": "<p>If your pay pattern is different from the options available, please contact the Survey Contact Line on 0300 1234 931.</p>",
+                        "id": "pay-pattern-frequency-question",
+                        "number": "1.1",
+                        "title": "Please indicate how frequently employees are paid:",
+                        "type": "General"
+                    }],
+                    "title": "Pay Pattern",
+                    "type": "Questionnaire"
+                },
+                {
+                    "type": "Questionnaire",
+                    "id": "pay-pattern-frequency-confirmation",
+                    "title": "Pay Pattern",
+                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
+                    "questions": [{
+                        "id": "pay-pattern-frequency-confirmation-question",
+                        "title": "Employees are paid in the following patterns:",
+                        "number": "1.2",
+                        "description": "{{ answers.pay_pattern|format_list }}",
+                        "type": "General",
+                        "answers": [{
+                            "id": "pay-pattern-frequency-confirmation-answer",
+                            "label": "Confirm that these are all of the pay patterns used to pay employees at {{respondent.trad_as_or_ru_name}}",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No, I need to update the patterns",
+                                    "value": "No, I need to update the patterns"
+                                }
+                            ],
+                            "type": "Radio"
+                        }]
+                    }],
+                    "routing_rules": [{
+                            "goto": {
+                                "id": "pay-pattern-frequency",
+                                "when": [{
+                                    "id": "pay-pattern-frequency-confirmation-answer",
+                                    "condition": "equals",
+                                    "value": "No, I need to update the patterns"
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "group": "weekly-pay",
+                                "when": [{
+                                    "id": "pay-pattern-frequency-answer",
+                                    "condition": "contains",
+                                    "value": "Weekly"
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "group": "fortnightly-pay",
+                                "when": [{
+                                    "id": "pay-pattern-frequency-answer",
+                                    "condition": "contains",
+                                    "value": "Fortnightly"
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "group": "calendar-monthly-pay",
+                                "when": [{
+                                    "id": "pay-pattern-frequency-answer",
+                                    "condition": "contains",
+                                    "value": "Calendar monthly"
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "group": "four-weekly-pay",
+                                "when": [{
+                                    "id": "pay-pattern-frequency-answer",
+                                    "condition": "contains",
+                                    "value": "Four weekly"
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "group": "five-weekly-pay",
+                                "when": [{
+                                    "id": "pay-pattern-frequency-answer",
+                                    "condition": "contains",
+                                    "value": "Five weekly"
+                                }]
                             }
                         }
-                    }],
-                    "description": "<p>If your pay pattern is different from the options available, please contact the Survey Contact Line on 0300 1234 931.</p>",
-                    "id": "pay-pattern-frequency-question",
-                    "number": "1.1",
-                    "title": "Please indicate how frequently employees are paid:",
-                    "type": "General"
-                }],
-                "title": "Pay Pattern",
-                "type": "Questionnaire"
-            }],
+                    ]
+                }
+            ],
             "id": "pay-pattern",
             "title": "Pay Pattern"
         },

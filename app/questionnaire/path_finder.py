@@ -55,7 +55,12 @@ class PathFinder:
 
                     if should_goto:
                         next_location = copy.copy(this_location)
-                        next_location.block_id = rule['goto']['id']
+
+                        if "group" in rule['goto']:
+                            next_location.group_id = rule['goto']['group']
+                            next_location.block_id = SchemaHelper.get_first_block_id_for_group(self.survey_json, rule['goto']['group'])
+                        else:
+                            next_location.block_id = rule['goto']['id']
 
                         next_block_index = PathFinder._block_index_for_location(blocks, next_location)
                         next_precedes_current = next_block_index is not None and next_block_index < block_index
