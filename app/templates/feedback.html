@@ -1,10 +1,11 @@
 {% extends 'layouts/_onecol.html' %}
-
+{% block page_title %}{{_("Survey feedback")}}{% endblock page_title %}
 {% block feedback %}
 {% endblock feedback %}
 
 {% block content %}
 <div class="feedback">
+    <h1>Survey feedback</h1>
     {% include('partials/feedback_form.html') %}
 </div>
 {% endblock content %}
