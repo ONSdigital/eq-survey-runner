@@ -28,4 +28,7 @@ if [ -z "$EQ_SERVER_SIDE_STORAGE_DATABASE_NAME" ]; then
   export EQ_SERVER_SIDE_STORAGE_DATABASE_NAME="//tmp/questionnaire.db"
 fi
 
+export FLASK_DEBUG=1
+
+
 python scripts/generate_secrets.py jwt-test-keys/
