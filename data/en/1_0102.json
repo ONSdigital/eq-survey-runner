@@ -82,18 +82,58 @@
                 }]
             },
             {
-                "type": "Questionnaire",
-                "id": "reporting-period",
-                "description": "",
                 "questions": [{
+                    "type": "General",
                     "answers": [{
-                            "id": "period-from",
-                            "alias": "period_from",
-                            "label": "Period from",
-                            "mandatory": true,
-                            "options": [],
-                            "q_code": "11",
+                        "type": "Radio",
+                        "q_code": "d12",
+                        "id": "reporting-period-choice-answer",
+                        "options": [{
+                                "label": "Yes",
+                                "value": "Yes"
+                            },
+                            {
+                                "label": "No",
+                                "value": "No"
+                            }
+                        ],
+                        "mandatory": true
+                    }],
+                    "id": "reporting-period-choice-question",
+                    "title": "Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?"
+                }],
+                "type": "Questionnaire",
+                "title": "Reporting period",
+                "id": "reporting-period-choice",
+                "routing_rules": [{
+                        "goto": {
+                            "when": [{
+                                "value": "Yes",
+                                "id": "reporting-period-choice-answer",
+                                "condition": "equals"
+                            }],
+                            "id": "total-retail-turnover-block"
+                        }
+                    },
+                    {
+                        "goto": {
+                            "id": "reporting-period"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "Questionnaire",
+                "questions": [{
+                    "type": "DateRange",
+                    "answers": [{
+                            "label": "From",
                             "type": "Date",
+                            "id": "period-from",
+                            "q_code": "11",
+                            "options": [],
+                            "mandatory": true,
+                            "alias": "period_from",
                             "validation": {
                                 "messages": {
                                     "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
@@ -102,13 +142,13 @@
                             }
                         },
                         {
-                            "id": "period-to",
-                            "alias": "period_to",
-                            "label": "Period to",
-                            "mandatory": true,
-                            "options": [],
-                            "q_code": "12",
+                            "label": "To",
                             "type": "Date",
+                            "id": "period-to",
+                            "q_code": "12",
+                            "options": [],
+                            "mandatory": true,
+                            "alias": "period_to",
                             "validation": {
                                 "messages": {
                                     "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
@@ -117,17 +157,15 @@
                             }
                         }
                     ],
-                    "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
                     "id": "reporting-period-question",
-                    "title": "What are the dates of the sales period you are reporting for?",
-                    "type": "DateRange"
+                    "title": "What are the dates of the period that you will be reporting for?"
                 }],
-                "title": "Reporting Period"
+                "id": "reporting-period",
+                "title": "Reporting period"
             },
             {
                 "type": "Questionnaire",
                 "id": "total-retail-turnover-block",
-                "description": "",
                 "questions": [{
                     "guidance": {
                         "content": [{
@@ -167,9 +205,8 @@
                             }
                         }
                     }],
-                    "description": "",
                     "id": "total-turnover-question",
-                    "title": "For the period {{answers.period_from|format_str_as_date}} to {{answers.period_to|format_str_as_date}}, what was the value of {{respondent.trad_as_or_ru_name}}\u2019s <em>total retail turnover</em>?",
+                    "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}\u2019s <em>total retail turnover</em>?",
                     "type": "General"
                 }],
                 "title": "Retail Turnover"
@@ -177,7 +214,6 @@
             {
                 "type": "Questionnaire",
                 "id": "total-internet-sales",
-                "description": "",
                 "questions": [{
                     "guidance": {
                         "content": [{
@@ -205,7 +241,6 @@
                             }
                         }
                     }],
-                    "description": "",
                     "id": "internet-sales-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
                     "type": "General"
@@ -230,7 +265,6 @@
                         }
                     }
                 ],
-                "description": "",
                 "questions": [{
                     "guidance": {
                         "content": [{
@@ -245,9 +279,7 @@
                         }]
                     },
                     "answers": [{
-                        "description": "",
                         "id": "significant-change-established-answer",
-                        "label": "",
                         "mandatory": true,
                         "options": [{
                                 "label": "Yes",
@@ -277,12 +309,9 @@
             {
                 "type": "Questionnaire",
                 "id": "reason-for-change",
-                "description": "",
                 "questions": [{
                     "answers": [{
-                        "description": "",
                         "id": "reason-for-change-answer",
-                        "label": "",
                         "mandatory": true,
                         "options": [{
                                 "label": "In-store / online promotions",
@@ -338,7 +367,6 @@
             {
                 "type": "Questionnaire",
                 "id": "change-comment-block",
-                "description": "",
                 "questions": [{
                     "answers": [{
                         "guidance": {
