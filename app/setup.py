@@ -232,6 +232,10 @@ def add_blueprints(application):
     from app.jinja_filters import blueprint as filter_blueprint
     application.register_blueprint(filter_blueprint)
 
+    from app.views.static import contact_blueprint
+    application.register_blueprint(contact_blueprint)
+    contact_blueprint.config = application.config.copy()
+
 
 def setup_secure_cookies(application):
     session_timeout = application.config['EQ_SESSION_TIMEOUT_SECONDS']

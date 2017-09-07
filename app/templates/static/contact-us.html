@@ -1,0 +1,86 @@
+{% extends 'layouts/_twocol.html' %}
+
+{% set survey_title  = 'About ONS' %}
+
+<header class="page__header">
+    {% block header %}
+    {% include theme('partials/header2.html') %}
+    {% include theme('partials/topbar.html') %}
+    {% endblock %}
+</header>
+
+{% block subheader_container %}
+{% endblock subheader_container %}
+
+<div class="page">
+    <div class="page__content">
+            <div class="grid grid--reverse">
+                <div class="grid__col col-4@m">
+                </div>
+                <div class="grid__col col-7@m pull-1@m">
+                    <main role="main" id="main" class="page__main">
+                        {% block content %}
+                    </br>
+                        <div class="'group" id="rsi">
+                        <div class="block" id>
+                        <section class="section id">
+                        <h1 class="section__title saturn">
+                            Contact us
+                        </h1>
+                        <div class="question">
+                            <h2 class="question__title neptune">
+                                Email
+                            </h2>
+                            <div class="question__description mars">
+                                <p><a href="mailto:surveys@ons.gov.uk"
+                                      target="_top">surveys@ons.gov.uk</a></p>
+                            </div>
+                            <h2 class="question__title neptune">
+                                Telephone
+                            </h2>
+                            <div class="question__description mars">
+                                <p>0300 1234 931</p>
+                            </div>
+                            <div class="question__description mars">
+                                <p>Opening hours:</p>
+                                <p>Monday to Thursday 8:30am – 5:30pm</p>
+                                <p>Friday 8:30am - 4:30pm</p>
+                            </div>
+                            <h2 class="question__title neptune">
+                                Post
+                            </h2>
+                            <div class="question__description mars">
+                                <p>
+                                Office for National Statistics
+                                <br>
+                                Government Buildings
+                                <br>
+                                Cardiff Road
+                                <br>
+                                    Newport
+                                    <br>
+                                    South Wales
+                                <br>
+                                    NP10 8XG
+                                </p>
+                            </div>
+                        </div>
+                        </section>
+                        </div>
+                        </div>
+                    </main>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% block footer %}
+{% include 'partials/footer2.html' %}
+{% endblock %}
+
+
+
+
+

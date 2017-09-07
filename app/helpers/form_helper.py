@@ -5,6 +5,10 @@ from app.forms.household_composition_form import generate_household_composition_
 from app.forms.household_relationship_form import build_relationship_choices, deserialise_relationship_answers, generate_relationship_form
 from app.forms.questionnaire_form import generate_form
 
+from structlog import get_logger
+
+logger = get_logger()
+
 
 def get_form_for_location(block_json, location, answer_store, error_messages, disable_mandatory=False):
     """

@@ -84,3 +84,13 @@
 @mixin icon($name) {
   background: url("/s/img/icons/icons--#{$name}.svg") no-repeat center;
 }
+
+// =============================================================================
+// Remove nth-Child Padding
+// =============================================================================
+
+@mixin nth-element($num,$px) {
+  &:nth-child(#{$num}){
+    padding-left: $px;
+  }
+}
