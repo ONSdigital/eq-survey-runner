@@ -59,10 +59,10 @@
                         "answers": [{
                                 "id": "test-range",
                                 "description": "",
-                                "label": "Range Test {{answers.min_value}} to {{answers.max_value}}",
+                                "label": "Range Test {{answers.min_value|format_number}} to {{answers.max_value|format_number}}",
                                 "mandatory": false,
                                 "options": [],
-                                "type": "Currency",
+                                "type": "Number",
                                 "max_value": {
                                     "answer_id": "set-maximum"
                                 },
@@ -79,7 +79,7 @@
                             {
                                 "id": "test-min",
                                 "description": "",
-                                "label": "Min Test (123 to 9999999999)",
+                                "label": "Min Test (123 to 9,999,999,999)",
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Number",
@@ -96,12 +96,13 @@
                             {
                                 "id": "test-max",
                                 "description": "",
-                                "label": "Max Test (0 to 456)",
+                                "label": "Max Test (0 to 1,234)",
                                 "mandatory": false,
                                 "options": [],
-                                "type": "Number",
+                                "type": "Unit",
+                                "unit": "area-square-centimeter",
                                 "max_value": {
-                                    "value": 456
+                                    "value": 1234
                                 },
                                 "validation": {
                                     "messages": {
@@ -132,7 +133,8 @@
                                 "label": "Decimal test to 2 decimal places",
                                 "mandatory": false,
                                 "options": [],
-                                "type": "Number",
+                                "type": "Currency",
+                                "currency": "GBP",
                                 "decimal_places": 2,
                                 "validation": {
                                     "messages": {}

@@ -40,7 +40,7 @@ class TestLightSidePath(StarWarsTestCase):
         self.assertInPage('>Your responses<')
         self.assertRegexPage('(?s)How old is Chewy?.*?234')
         self.assertRegexPage('(?s)How many Octillions do Nasa reckon it would cost to build a death star?.*?£40')
-        self.assertRegexPage('(?s)How hot is a lightsaber in degrees C?.*?1370')
+        self.assertRegexPage('(?s)How hot is a lightsaber in degrees C?.*?1,370')
         self.assertRegexPage('(?s)What animal was used to create the engine sound of the Empire\'s TIE fighters?.*?Elephant')
         self.assertRegexPage('(?s)Which of these Darth Vader quotes is wrong?.*?Luke, I am your father')
         self.assertRegexPage('(?s)Which 3 have wielded a green lightsaber?.*?Yoda')

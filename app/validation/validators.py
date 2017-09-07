@@ -1,6 +1,10 @@
 from decimal import Decimal, InvalidOperation
 from datetime import datetime
 
+from babel import numbers
+
+from app.jinja_filters import format_number
+from app.settings import DEFAULT_LOCALE
 from app.validation.error_messages import error_messages
 
 from wtforms import validators
@@ -19,8 +23,8 @@ class NumberCheck(object):
 
     def __call__(self, form, field):
         try:
-            Decimal(field.raw_data[0])
-        except (ValueError, TypeError, InvalidOperation):
+            Decimal(field.raw_data[0].replace(numbers.get_group_symbol(DEFAULT_LOCALE), ''))
+        except (ValueError, TypeError, InvalidOperation, AttributeError):
             raise validators.StopValidation(self.message)
 
 
@@ -80,7 +84,7 @@ class NumberRange(object):
                 error_message = self.messages.get('OUT_OF_RANGE', self.messages['NUMBER_TOO_LARGE'])
 
             if error_message:
-                raise validators.ValidationError(error_message % dict(min=self.minimum, max=self.maximum))
+                raise validators.ValidationError(error_message % dict(min=format_number(self.minimum), max=format_number(self.maximum)))
 
 
 class DecimalPlaces(object):
@@ -98,11 +102,12 @@ class DecimalPlaces(object):
         self.messages = messages
 
     def __call__(self, form, field):
-        data = field.raw_data[0]
-        if data and '.' in data:
+        data = field.raw_data[0].replace(numbers.get_group_symbol(DEFAULT_LOCALE), '')
+        decimal_symbol = numbers.get_decimal_symbol(DEFAULT_LOCALE)
+        if data and decimal_symbol in data:
             if self.max_decimals == 0:
                 raise validators.ValidationError(self.messages['INVALID_INTEGER'])
-            elif len(data.split('.')[1]) > self.max_decimals:
+            elif len(data.split(decimal_symbol)[1]) > self.max_decimals:
                 raise validators.ValidationError(self.messages['INVALID_DECIMAL'] % dict(max=self.max_decimals))
 
 
@@ -157,7 +162,8 @@ class DateCheck(object):
 
     def __call__(self, form, field):
         try:
-            date_str = "{:02d}/{:02d}/{}".format(int(form.day.data or 0), int(form.month.data or 0), form.year.data or '')
+            date_str = "{:02d}/{:02d}/{}".format(int(form.day.data or 0), int(form.month.data or 0), form.year.data or
+                                                 '')
 
             datetime.strptime(date_str, "%d/%m/%Y")
         except ValueError:

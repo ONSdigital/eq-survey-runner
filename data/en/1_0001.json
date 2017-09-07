@@ -418,7 +418,8 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "1410",
-                            "type": "Currency"
+                            "type": "Currency",
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "guidance": {
@@ -504,7 +505,8 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "1420",
-                            "type": "Currency"
+                            "type": "Currency",
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "guidance": {
@@ -619,7 +621,8 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "1430",
-                            "type": "Currency"
+                            "type": "Currency",
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "guidance": {
@@ -705,7 +708,8 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "1440",
-                            "type": "Currency"
+                            "type": "Currency",
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "guidance": {
@@ -791,7 +795,8 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "1450",
-                            "type": "Currency"
+                            "type": "Currency",
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "guidance": {
@@ -877,7 +882,8 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "1460",
-                            "type": "Currency"
+                            "type": "Currency",
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "guidance": {
@@ -997,7 +1003,8 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "1470",
-                            "type": "Currency"
+                            "type": "Currency",
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "guidance": {
@@ -4310,7 +4317,8 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "2410",
-                            "type": "Currency"
+                            "type": "Currency",
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "id": "turnover-2014-question",
@@ -4333,7 +4341,8 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "2420",
-                            "type": "Currency"
+                            "type": "Currency",
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "id": "turnover-2016-question",
@@ -4356,7 +4365,8 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "2440",
-                            "type": "Currency"
+                            "type": "Currency",
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "id": "exports-2016-question",

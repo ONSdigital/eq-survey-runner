@@ -109,6 +109,7 @@
                                 ]
                             },
                             "type": "Currency",
+                            "currency": "GBP",
                             "options": [],
                             "mandatory": false
                         }]
@@ -135,6 +136,7 @@
                                 }]
                             },
                             "type": "Currency",
+                            "currency": "GBP",
                             "options": [],
                             "mandatory": false,
                             "validation": {
@@ -171,6 +173,7 @@
                                 }]
                             },
                             "type": "Currency",
+                            "currency": "GBP",
                             "options": [],
                             "mandatory": false
                         }]
@@ -209,6 +212,7 @@
                                 }]
                             },
                             "type": "Currency",
+                            "currency": "GBP",
                             "options": [],
                             "mandatory": false
                         }]
@@ -257,6 +261,7 @@
                                 ]
                             },
                             "type": "Currency",
+                            "currency": "GBP",
                             "options": [],
                             "mandatory": false
                         }]
@@ -294,6 +299,7 @@
                                 ]
                             },
                             "type": "Currency",
+                            "currency": "GBP",
                             "options": [],
                             "mandatory": true,
                             "validation": {
@@ -325,6 +331,7 @@
                                 }]
                             },
                             "type": "Currency",
+                            "currency": "GBP",
                             "options": [],
                             "mandatory": false
                         }]
@@ -359,6 +366,7 @@
                                 ]
                             },
                             "type": "Currency",
+                            "currency": "GBP",
                             "options": [],
                             "mandatory": false
                         }]

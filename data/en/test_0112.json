@@ -83,6 +83,7 @@
                         "options": [],
                         "q_code": "20",
                         "type": "Currency",
+                        "currency": "GBP",
                         "validation": {
                             "messages": {
                                 "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
@@ -131,6 +132,7 @@
                         "options": [],
                         "q_code": "21",
                         "type": "Currency",
+                        "currency": "GBP",
                         "validation": {
                             "messages": {
                                 "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",

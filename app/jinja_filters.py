@@ -7,19 +7,45 @@ from datetime import datetime
 
 import flask
 
+from app.settings import DEFAULT_LOCALE
+
 from jinja2 import Markup, escape, evalcontextfilter
 
-from babel import units
+from babel import units, numbers
 
 blueprint = flask.Blueprint('filters', __name__)
 
 
 @blueprint.app_template_filter()
-def format_currency(value):
-    if value is not None and len(str(value)) > 0:
-        return "£{:,.2f}".format(value)
+def format_number(value):
+    if value is None or value == '':
+        return ''
     else:
-        return ""
+        return numbers.format_number(value, locale=DEFAULT_LOCALE)
+
+
+@blueprint.app_template_filter()
+def format_currency(value, currency="GBP"):
+    if value is None or value == '':
+        return ''
+    else:
+        return numbers.format_currency(number=value, currency=currency, locale=DEFAULT_LOCALE)
+
+
+@blueprint.app_template_filter()
+def get_currency_symbol(currency="GBP"):
+    return numbers.get_currency_symbol(currency, locale=DEFAULT_LOCALE)
+
+
+@blueprint.app_template_filter()
+def format_currency_for_input(value, decimal_places=0):
+    if value is None or value == '':
+        return ''
+    else:
+        if decimal_places is None or decimal_places == 0:
+            return format_number(value)
+        else:
+            return format_currency(value).replace(get_currency_symbol(), '')
 
 
 @blueprint.app_template_filter()
@@ -28,7 +54,7 @@ def format_percentage(value):
 
 
 def format_unit(unit, value=''):
-    return units.format_unit(value=value, measurement_unit=unit, length="short", locale='en_GB')
+    return units.format_unit(value=value, measurement_unit=unit, length="short", locale=DEFAULT_LOCALE)
 
 
 @evalcontextfilter
@@ -145,3 +171,23 @@ def conditional_dates_check():
 @blueprint.app_context_processor
 def format_unit_processor():
     return dict(format_unit=format_unit)
+
+
+@blueprint.app_context_processor
+def format_currency_processor():
+    return dict(format_currency=format_currency)
+
+
+@blueprint.app_context_processor
+def get_currency_symbol_processor():
+    return dict(get_currency_symbol=get_currency_symbol)
+
+
+@blueprint.app_context_processor
+def format_currency_for_input_processor():
+    return dict(format_currency_for_input=format_currency_for_input)
+
+
+@blueprint.app_context_processor
+def format_number_processor():
+    return dict(format_number=format_number)

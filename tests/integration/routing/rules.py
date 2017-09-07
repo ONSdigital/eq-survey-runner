@@ -170,7 +170,7 @@ QUIZ_PAGE_1 = [
             {
                 'answer': 'How hot is a lightsaber in degrees C?',
                 'answer_id': 'lightsaber-cost-answer',
-                'user_answer': '1370'
+                'user_answer': '1,370'
             },
             {
                 'answer': 'What animal was used to create the engine sound of the Empire',

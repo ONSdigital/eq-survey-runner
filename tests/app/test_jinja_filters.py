@@ -5,40 +5,52 @@ from unittest import TestCase
 
 from mock import Mock
 
-from app.jinja_filters import format_date, format_conditional_date, format_currency, format_multilined_string, \
-    format_percentage, format_start_end_date, format_household_member_name, format_str_as_date, \
-    format_str_as_date_range, format_str_as_month_year_date, format_number_to_alphabetic_letter, format_unit, \
-    format_list
+from app.jinja_filters import format_date, format_conditional_date, format_currency, get_currency_symbol, \
+     format_multilined_string, format_percentage, format_start_end_date, format_household_member_name, \
+     format_str_as_date, format_str_as_date_range, format_str_as_month_year_date, format_number_to_alphabetic_letter, \
+     format_unit, format_currency_for_input, format_number, format_list
 
 
 class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
 
-    def test_format_currency_without_decimals(self):
-        # Given
-        currency = 1
+    def test_format_currency_for_input(self):
+        self.assertEqual(format_currency_for_input('100', 2), '100.00')
+        self.assertEqual(format_currency_for_input('100.0', 2), '100.00')
+        self.assertEqual(format_currency_for_input('100.00', 2), '100.00')
+        self.assertEqual(format_currency_for_input('1000'), '1,000')
+        self.assertEqual(format_currency_for_input('10000'), '10,000')
+        self.assertEqual(format_currency_for_input('100000000'), '100,000,000')
+        self.assertEqual(format_currency_for_input('100000000', 2), '100,000,000.00')
+        self.assertEqual(format_currency_for_input(0, 2), '0.00')
+        self.assertEqual(format_currency_for_input(0), '0')
+        self.assertEqual(format_currency_for_input(''), '')
+        self.assertEqual(format_currency_for_input(None), '')
 
-        # When
-        format_value = format_currency(currency)
-
-        self.assertEqual(format_value, '£1.00')
+    def test_get_currency_symbol(self):
+        self.assertEqual(get_currency_symbol('GBP'), '£')
+        self.assertEqual(get_currency_symbol('EUR'), '€')
+        self.assertEqual(get_currency_symbol('USD'), 'US$')
+        self.assertEqual(get_currency_symbol('JPY'), 'JP¥')
+        self.assertEqual(get_currency_symbol(''), '')
 
     def test_format_currency(self):
-        # Given
-        currency = 1.12
+        self.assertEqual(format_currency('11', 'GBP'), '£11.00')
+        self.assertEqual(format_currency('11.99', 'GBP'), '£11.99')
+        self.assertEqual(format_currency('11000', 'USD'), 'US$11,000.00')
+        self.assertEqual(format_currency(0), '£0.00')
+        self.assertEqual(format_currency('', ), '')
+        self.assertEqual(format_currency(None), '')
 
-        # When
-        format_value = format_currency(currency)
-
-        self.assertEqual(format_value, '£1.12')
-
-    def test_format_currency_no_value_returns_empty_string(self):
-        # Given
-        currency = ''
-
-        # When
-        format_value = format_currency(currency)
-
-        self.assertEqual(format_value, '')
+    def test_format_number(self):
+        self.assertEqual(format_number(123), '123')
+        self.assertEqual(format_number('123.4'), '123.4')
+        self.assertEqual(format_number('123.40'), '123.4')
+        self.assertEqual(format_number('1000'), '1,000')
+        self.assertEqual(format_number('10000'), '10,000')
+        self.assertEqual(format_number('100000000'), '100,000,000')
+        self.assertEqual(format_number(0), '0')
+        self.assertEqual(format_number(''), '')
+        self.assertEqual(format_number(None), '')
 
     def test_format_multilined_string_matches_carriage_return(self):
         # Given

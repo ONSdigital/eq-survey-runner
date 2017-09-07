@@ -253,6 +253,7 @@
                             "options": [],
                             "q_code": "2",
                             "type": "Currency",
+                            "currency": "GBP",
                             "validation": {
                                 "messages": {
                                     "NUMBER_TOO_LARGE": "How much, fool you must be",
