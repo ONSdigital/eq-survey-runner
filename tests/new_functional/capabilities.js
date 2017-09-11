@@ -22,13 +22,14 @@ const chromeNoJS = Object.assign(
 );
 
 const chromeHeadless = Object.assign(
+  {},
+  chrome,
   {
     name: 'Chrome Headless',
     chromeOptions: {
       args: ['--headless', '--window-size=1024,1158']
     }
-  },
-  chrome
+  }
 );
 
 const phantomjs = {

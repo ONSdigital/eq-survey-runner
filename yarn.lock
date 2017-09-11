@@ -7310,9 +7310,9 @@ scss-tokenizer@^0.2.3:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
 
-selenium-standalone@^6.5.0, selenium-standalone@^6.7.0:
-  version "6.7.0"
-  resolved "https://registry.yarnpkg.com/selenium-standalone/-/selenium-standalone-6.7.0.tgz#4039c7d2b4a108f962eee462186344372d762d30"
+selenium-standalone@^6.5.0, selenium-standalone@^6.9.0:
+  version "6.9.0"
+  resolved "https://registry.yarnpkg.com/selenium-standalone/-/selenium-standalone-6.9.0.tgz#5805f403c82b48b4e136d8a97f1832aad7852bd5"
   dependencies:
     async "^2.1.4"
     commander "^2.9.0"
@@ -8452,11 +8452,7 @@ utils-merge@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.0.tgz#0294fb922bb9375153541c4f7096231f287c8af8"
 
-uuid@^3.0.0, uuid@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
-
-uuid@^3.1.0:
+uuid@^3.0.0, uuid@^3.0.1, uuid@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
 
@@ -8605,13 +8601,9 @@ wdio-browserstack-service@^0.1.4:
     request "^2.81.0"
     request-promise "^4.2.1"
 
-wdio-dot-reporter@^0.0.9:
+wdio-dot-reporter@^0.0.9, wdio-dot-reporter@~0.0.8:
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/wdio-dot-reporter/-/wdio-dot-reporter-0.0.9.tgz#929b2adafd49d6b0534fda068e87319b47e38fe5"
-
-wdio-dot-reporter@~0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/wdio-dot-reporter/-/wdio-dot-reporter-0.0.8.tgz#36195576da0d998210c71948cbb65f5bf11bfc65"
 
 wdio-mocha-framework@^0.5.11:
   version "0.5.11"

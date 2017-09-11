@@ -44,14 +44,6 @@ let config = {
   }
 };
 
-const sauceLabsConfig = {
-  services: ['sauce'],
-  sauceConnect: true,
-  user: process.env.SAUCE_USERNAME,
-  key: process.env.SAUCE_ACCESS_KEY,
-  capabilities: [capabilities.firefox]
-};
-
 const browserStackConfig = {
   services: ['browserstack'],
   user: process.env.BROWSERSTACK_USER,
@@ -59,23 +51,32 @@ const browserStackConfig = {
   browserstackLocal: true
 }
 
-const phantomjsConfig = {
-  services: ['phantomjs'],
-  waitforTimeout: 3000,
-  capabilities: [capabilities.phantomjs],
-  maxInstances: 4,
-  phantomjsOpts: {
-    ignoreSslErrors: true
+const phantomjsConfig = Object.assign(
+  {},
+  config,
+  {
+    services: ['phantomjs'],
+    waitforTimeout: 3000,
+    capabilities: [capabilities.phantomjs],
+    maxInstances: 4,
+    phantomjsOpts: {
+      ignoreSslErrors: true
+    },
+    before: function() {
+      chaiAsPromised.transferPromiseness = browser.transferPromiseness;
+      browser.setViewportSize({
+        width: 1280,
+        height: 1024
+      });
+    }
   }
-
-};
+);
 
 const chromeHeadlessConfig = Object.assign(
   {},
   config,
   {
-    capabilities: [capabilities.chromeHeadless],
-    maxInstances: 4
+    capabilities: [capabilities.chromeHeadless]
   }
 );
 
@@ -83,9 +84,7 @@ if (process.env.TRAVIS === 'true') {
   config = chromeHeadlessConfig;
 
 } else {
-  if (argv.sauce) {
-    config = Object.assign(config, sauceLabsConfig);
-  } else if (argv.browserstack) {
+  if (argv.browserstack) {
     config = Object.assign(config, browserStackConfig);
   } else if (argv.headless) {
     config = Object.assign(config, phantomjsConfig);
