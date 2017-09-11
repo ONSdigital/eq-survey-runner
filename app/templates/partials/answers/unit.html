@@ -11,12 +11,20 @@
     {% else %}
     {% set input_classes = 'input-type__input' %}
     {% endif %}
+
     <div class="input-type input-type--unit">
+
+        {% if form.errors or form.question_errors %}
+            {% set data_input = form.get_data(answer['id']) %}
+        {% else %}
+            {% set data_input = format_number(form.get_data(answer['id'])) %}
+        {% endif %}
+
         {% set input = {
         'type': 'number',
         'classes': input_classes,
         'hasType': true,
-        'data': form.get_data(answer['id'])|e,
+        'data': data_input,
         'name': input.name,
         'id': answer.id
         } %}

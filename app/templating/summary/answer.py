@@ -8,3 +8,4 @@ class Answer:
         self.unit = answer_schema.get('unit')
         self.parent_answer_id = answer_schema.get('parent_answer_id')
         self.child_answer_value = child_answer_value
+        self.currency = answer_schema.get('currency')

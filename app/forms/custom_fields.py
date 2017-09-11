@@ -1,5 +1,9 @@
 from decimal import Decimal, InvalidOperation
+
+from babel import numbers
 from wtforms import TextAreaField, IntegerField, DecimalField
+
+from app.settings import DEFAULT_LOCALE
 
 
 class MaxTextAreaField(TextAreaField):
@@ -25,7 +29,7 @@ class CustomIntegerField(IntegerField):
 
         if valuelist:
             try:
-                self.data = int(valuelist[0])
+                self.data = int(valuelist[0].replace(numbers.get_group_symbol(DEFAULT_LOCALE), ''))
             except ValueError:
                 pass
 
@@ -47,6 +51,6 @@ class CustomDecimalField(DecimalField):
 
         if valuelist:
             try:
-                self.data = Decimal(valuelist[0])
+                self.data = Decimal(valuelist[0].replace(numbers.get_group_symbol(DEFAULT_LOCALE), ''))
             except (ValueError, TypeError, InvalidOperation):
                 pass

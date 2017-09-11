@@ -32,12 +32,12 @@ describe('NumericRange', function() {
           .click(SetMinMax.submit())
           .setValue(TestMinMax.testRange(), '9')
           .setValue(TestMinMax.testMin(), '0')
-          .setValue(TestMinMax.testMax(), '789')
+          .setValue(TestMinMax.testMax(), '12345')
           .setValue(TestMinMax.testPercent(), '101')
           .click(TestMinMax.submit())
           .getText('ul > li:nth-child(1) > a').should.eventually.contain('The value must be between 10 and 20. Please correct your answer.')
           .getText('ul > li:nth-child(2) > a').should.eventually.contain('The minimum value allowed is 123. Please correct your answer.')
-          .getText('ul > li:nth-child(3) > a').should.eventually.contain('The maximum value allowed is 456. Please correct your answer.')
+          .getText('ul > li:nth-child(3) > a').should.eventually.contain('The maximum value allowed is 1,234. Please correct your answer.')
           .getText('ul > li:nth-child(4) > a').should.eventually.contain('Percentages must be between 0 and 100.');
       });
   });

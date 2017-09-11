@@ -578,6 +578,9 @@
                             "unit": {
                               "$ref": "units.json#/unit"
                             },
+                            "currency": {
+                              "$ref": "currencies.json#/currency"
+                            },
                             "validation": {
                               "type": "object",
                               "properties": {
