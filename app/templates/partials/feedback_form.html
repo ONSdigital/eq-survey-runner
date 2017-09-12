@@ -1,12 +1,9 @@
-<form method="POST" class="feeback__form {{ 'u-hidden' if feedback_form_hidden }}">
+<form id="feedback-form" method="POST" class="feedback__form">
     {{ form.csrf_token }}
     <div class="group">
         <div class="feedback__field">
             <label id="feedback-message-label" class="label venus" for="feedback-message">How can we improve this survey?</label>
-            {% if feedback_form_hidden %}
-            <a class="feeback__close" href="#close">Close</a>
-            {% endif %}
-            <textarea class="input input--textarea js-charlimit-input" name="message" id="feedback-message" rows="8" cols="60" maxlength="2000"></textarea>
+            <textarea class="input input--textarea js-charlimit-input js-feedback-message" name="message" id="feedback-message" rows="8" cols="60" maxlength="2000"></textarea>
             <div id="feedback-message-remaining" class="input__limit u-mt-xs mercury">Characters remaining: <span>-</span></div>
         </div>
         <div class="feedback__field">
@@ -14,15 +11,15 @@
                 <div class="label__inner">
                     Name (optional)
                     <br />
-                    <span class="label__description pluto">Please include your name and email address if you're interested in taking part in further research to improve this survey</span>
+                    <span class="label__description pluto">Please include your name and email address if you’re interested in taking part in further research to improve this survey</span>
                 </div>
             </label>
-            <input type="text" class="input" name="name" id="feedback-name" value=""/>
+            <input type="text" class="input js-feedback-name" name="name" id="feedback-name" value=""/>
         </div>
         <div class="feedback__field">
             <label id="feedback-email-label" class="label venus" for="feedback-email">Email address (optional)</label>
-            <input type="text" class="input" name="email" id="feedback-email" value=""/>
+            <input type="text" class="input js-feedback-email" name="email" id="feedback-email" value=""/>
         </div>
     </div>
-    <button class="btn btn--primary btn--lg" type="submit" name="action[send_feedback]" data-qa="btn-submit">Send feedback</button>
+    <button class="btn btn--primary js-feedback-submit" type="submit" name="action[send_feedback]" data-qa="btn-feedback-submit" data-ga="click" data-ga-category="Feedback" data-ga-action="Send">Send feedback</button>
 </form>

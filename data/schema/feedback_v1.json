@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema",
-  "$id": "https://edc.ons.gov.uk/schemas/feeback_v1.json",
+  "$id": "https://edc.ons.gov.uk/schemas/feedback_v1.json",
   "type": "object",
   "properties": {
     "tx_id": {
