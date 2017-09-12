@@ -20,7 +20,7 @@ class TestDateRequiredValidator(unittest.TestCase):
         with self.assertRaises(StopValidation) as ite:
             validator(mock_form, mock_field)
 
-        self.assertEqual(error_messages['MANDATORY'], str(ite.exception))
+        self.assertEqual(error_messages['MANDATORY_DATE'], str(ite.exception))
 
     def test_date_month_year_required_empty(self):
         validator = DateRequired()
@@ -37,7 +37,7 @@ class TestDateRequiredValidator(unittest.TestCase):
         with self.assertRaises(StopValidation) as ite:
             validator(mock_form, mock_field)
 
-        self.assertEqual(error_messages['MANDATORY'], str(ite.exception))
+        self.assertEqual(error_messages['MANDATORY_DATE'], str(ite.exception))
 
     def test_valid_date(self):
 

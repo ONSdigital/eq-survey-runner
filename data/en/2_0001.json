@@ -104,12 +104,6 @@
         "title": "Quarterly Business Survey"
     }],
     "legal_basis": "StatisticsOfTradeAct",
-    "messages": {
-        "MANDATORY": "Please provide a value, even if your value is 0.",
-        "INVALID_NUMBER": "Please only enter whole numbers into the field.",
-        "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-        "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
-    },
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "survey_id": "139",

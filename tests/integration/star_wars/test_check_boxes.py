@@ -22,7 +22,7 @@ class TestEmptyCheckBoxes(StarWarsTestCase):
         self.assertInPage('Star Wars Quiz')
         self.assertInPage('May the force be with you young EQ developer')
         self.assertInPage('This page has 1 errors')
-        self.assertInPage('This field is mandatory.')
+        self.assertInPage('Select all that apply to continue.')
 
         # We correct the error
         self.post(STAR_WARS_TRIVIA_PART_1_DEFAULT_ANSWERS)

@@ -21,7 +21,7 @@ class TestFields(unittest.TestCase):
         answer = {
             'mandatory': False
         }
-        validate_with = get_mandatory_validator(answer, None)
+        validate_with = get_mandatory_validator(answer, None, "MANDATORY_TEXTFIELD")
 
         self.assertIsInstance(validate_with[0], validators.Optional)
 
@@ -30,8 +30,8 @@ class TestFields(unittest.TestCase):
             'mandatory': True
         }
         validate_with = get_mandatory_validator(answer, {
-            'MANDATORY': 'This is the default mandatory message'
-        })
+            'MANDATORY_TEXTFIELD': 'This is the default mandatory message'
+        }, "MANDATORY_TEXTFIELD")
 
         self.assertIsInstance(validate_with[0], ResponseRequired)
         self.assertEqual(validate_with[0].message, 'This is the default mandatory message')
@@ -41,13 +41,13 @@ class TestFields(unittest.TestCase):
             'mandatory': True,
             'validation': {
                 'messages': {
-                    'MANDATORY': 'This is the mandatory message for an answer'
+                    'MANDATORY_TEXTFIELD': 'This is the mandatory message for an answer'
                 }
             }
         }
         validate_with = get_mandatory_validator(answer, {
-            'MANDATORY': 'This is the default mandatory message'
-        })
+            'MANDATORY_TEXTFIELD': 'This is the default mandatory message'
+        }, "MANDATORY_TEXTFIELD")
 
         self.assertIsInstance(validate_with[0], ResponseRequired)
         self.assertEqual(validate_with[0].message, 'This is the mandatory message for an answer')

@@ -1,3 +1,4 @@
+from app.validation.error_messages import error_messages
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -41,7 +42,7 @@ class TestClearError(IntegrationTestCase):
 
         # We submit the form
         self.post(form_data)
-        self.assertInPage("The 'period to' date cannot be before the 'period from' date.")
+        self.assertInPage(error_messages['INVALID_DATE_RANGE'])
 
         # Fill the dates in correctly, but this time miss out the required value
         form_data = {
@@ -61,5 +62,5 @@ class TestClearError(IntegrationTestCase):
         self.post(form_data)
 
         # Check the page content again
-        self.assertInPage('Please provide a value, even if your value is 0.')
-        self.assertNotInPage("The 'period to' date cannot be before the 'period from' date.")
+        self.assertInPage('Enter an answer, even if it is 0.')
+        self.assertNotInPage(error_messages['INVALID_DATE_RANGE'])

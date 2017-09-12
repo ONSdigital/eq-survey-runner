@@ -28,12 +28,7 @@
                             "id": "no-of-repeats-answer",
                             "label": "How many times are we going to repeat?",
                             "mandatory": true,
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please answer before continuing."
-                                }
-                            }
+                            "type": "Number"
                         }]
                     }]
                 }
@@ -68,12 +63,7 @@
                             "id": "conditional-answer",
                             "label": "Which conditional question should we jump to?",
                             "mandatory": true,
-                            "type": "Radio",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please answer before continuing."
-                                }
-                            }
+                            "type": "Radio"
                         }]
                     }],
                     "routing_rules": [{
@@ -113,12 +103,7 @@
                             "id": "what-is-your-age",
                             "label": "",
                             "mandatory": true,
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please answer before continuing."
-                                }
-                            }
+                            "type": "Number"
                         }]
                     }]
                 },
@@ -137,12 +122,7 @@
                             "id": "what-is-your-shoe-size",
                             "label": "",
                             "mandatory": true,
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please answer before continuing."
-                                }
-                            }
+                            "type": "Number"
                         }]
                     }]
                 }

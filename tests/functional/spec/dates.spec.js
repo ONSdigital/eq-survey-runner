@@ -3,7 +3,6 @@ import {openQuestionnaire} from '../helpers'
 import DatesPage from '../pages/surveys/dates/dates-answers.page'
 import SummaryPage from '../pages/surveys/dates/dates-summary.page'
 
-
 describe('Date checks', function() {
 
       it('Given the test_dates survey is selected when dates are entered then the summary screen shows the dates entered formatted', function() {
@@ -53,7 +52,7 @@ describe('Date checks', function() {
               .submit()
 
             // Then an error message is shown
-            expect(DatesPage.getAlertText()).to.contain('The \'period to\' date cannot be before the \'period from\' date.')
+            expect(DatesPage.getAlertText()).to.contain("Enter a 'period to' date later than the 'period from' date.")
 
         })
 
@@ -76,7 +75,7 @@ describe('Date checks', function() {
               .submit()
 
             // Then an error message is shown
-            expect(DatesPage.getAlertText()).to.contain('The \'period to\' date must be different to the \'period from\' date.')
+            expect(DatesPage.getAlertText()).to.contain("Enter a 'period to' date later than the 'period from' date.")
 
         })
 
@@ -99,7 +98,7 @@ describe('Date checks', function() {
               .submit()
 
             // Then an error message is shown
-            expect(DatesPage.getAlertText()).to.contain('The date entered is not valid. Please correct your answer.')
+            expect(DatesPage.getAlertText()).to.contain("Enter a valid date.")
 
         })
 
@@ -123,7 +122,7 @@ describe('Date checks', function() {
               .submit()
 
             // Then an error message is shown
-            expect(DatesPage.getAlertText()).to.contain('The date entered is not valid. Please correct your answer.')
+            expect(DatesPage.getAlertText()).to.contain("Enter a valid date.")
 
         })
 
@@ -146,7 +145,7 @@ describe('Date checks', function() {
               .setDateOfBirthYear(1999)
               .submit()
 
-            expect(DatesPage.getAlertText()).to.contain('The date entered is not valid. Please correct your answer.')
+            expect(DatesPage.getAlertText()).to.contain("Enter a valid date.")
 
 
             // Then when it is corrected, it goes to the summary page and the information is correct
@@ -190,7 +189,7 @@ describe('Date checks', function() {
                      .setNonMandatoryDateAnswerMonth(10)
                      .submit()
             // Then
-            expect(DatesPage.getAlertText()).to.contain('The date entered is not valid. Please correct your answer.')
+            expect(DatesPage.getAlertText()).to.contain("Enter a valid date.")
       })
 
       it('Given a optional date is successfully submitted, when the date is edited, it should then be possible to select an empty month', function() {
@@ -225,7 +224,7 @@ describe('Date checks', function() {
               .submit()
 
             // Then
-            expect(DatesPage.getAlertText()).to.contain('The date entered is not valid. Please correct your answer.')
+            expect(DatesPage.getAlertText()).to.contain("Enter a valid date.")
       })
 
       it('Given the test_dates survey is selected, when a user clicks the day label then the day subfield should gain the focus', function() {

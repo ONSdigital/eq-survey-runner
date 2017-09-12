@@ -1,3 +1,4 @@
+from app.validation.error_messages import error_messages
 from tests.integration.star_wars import STAR_WARS_TRIVIA_PART_1_DEFAULT_ANSWERS
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 
@@ -29,7 +30,7 @@ class TestDarkSidePath(StarWarsTestCase):
         self.post(form_data)
 
         # Test error messages
-        self.assertInPage('This field is mandatory.')
+        self.assertInPage('Enter an answer, even if it is 0.')
 
     def test_date_range_validation(self):
         self.launchSurvey()
@@ -48,7 +49,7 @@ class TestDarkSidePath(StarWarsTestCase):
         # Submit the form
         self.post(form_data)
         # Test error messages
-        self.assertInPage("The 'period to' date cannot be before the 'period from' date.")
+        self.assertInPage(error_messages['INVALID_DATE_RANGE'])
 
     def test_negative_currency(self):
         self.launchSurvey()
@@ -87,10 +88,10 @@ class TestDarkSidePath(StarWarsTestCase):
         # Submit the form
         self.post(form_data)
         # Test error messages
-        self.assertInPage('This field is mandatory')
+        self.assertInPage(error_messages["MANDATORY_NUMBER"])
         self.assertInPage('How much, idiot you must be')
         self.assertInPage('How can it be negative?')
-        self.assertInPage("The 'period to' date must be different to the 'period from' date.")
+        self.assertInPage(error_messages["INVALID_DATE_RANGE"])
 
     def test_more_validation_combinations(self):
         """
@@ -126,6 +127,6 @@ class TestDarkSidePath(StarWarsTestCase):
         self.post(form_data)
         # Test error messages
         self.assertInPage('No one lives that long, not even Yoda')
-        self.assertInPage('Please only enter whole numbers into the field.')
-        self.assertInPage('This field is mandatory.')
-        self.assertInPage('The date entered is not valid')
+        self.assertInPage(error_messages['INVALID_NUMBER'])
+        self.assertInPage('Select an answer to continue.')
+        self.assertInPage(error_messages["MANDATORY_DATE"])

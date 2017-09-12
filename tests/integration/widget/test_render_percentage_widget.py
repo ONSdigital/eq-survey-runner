@@ -13,22 +13,22 @@ class TestRenderPercentageWidget(IntegrationTestCase):
     def test_entering_invalid_number_displays_error(self):
         self.post({'answer': 'not a percentage'})
         self.assertStatusOK()
-        self.assertInPage('Please enter an integer')
+        self.assertInPage('Enter a number.')
 
     def test_entering_value_less_than_zero_displays_error(self):
         self.post({'answer': '-50'})
         self.assertStatusOK()
-        self.assertInPage('Number cannot be less than zero')
+        self.assertInPage('Enter a number more than or equal to 0')
 
     def test_entering_value_greater_than_one_hundred_displays_error(self):
         self.post({'answer': '150'})
         self.assertStatusOK()
-        self.assertInPage('Number cannot be greater than one hundred')
+        self.assertInPage('Enter a number less than or equal to 100')
 
     def test_entering_float_displays_error(self):
         self.post({'answer': '0.5'})
         self.assertStatusOK()
-        self.assertInPage('Please only enter whole numbers into the field.')
+        self.assertInPage('Enter a whole number.')
 
     def test_entering_valid_percentage_redirects_to_summary(self):
         self.post({'answer': '50'})

@@ -30,10 +30,10 @@ def get_date_form(answer=None, error_messages=None):
 
     if answer['mandatory'] is True:
         if 'validation' in answer and 'messages' in answer['validation'] \
-                and 'MANDATORY' in answer['validation']['messages']:
-            date_messages['MANDATORY'] = answer['validation']['messages']['MANDATORY']
+                and 'MANDATORY_DATE' in answer['validation']['messages']:
+            date_messages['MANDATORY_DATE'] = answer['validation']['messages']['MANDATORY_DATE']
 
-        validate_with = [DateRequired(message=date_messages['MANDATORY'])]
+        validate_with = [DateRequired(message=date_messages['MANDATORY_DATE'])]
 
     if 'validation' in answer and 'messages' in answer['validation'] \
             and 'INVALID_DATE' in answer['validation']['messages']:
@@ -64,10 +64,10 @@ def get_month_year_form(answer, error_messages):
     validate_with = [OptionalForm()]
 
     if answer['mandatory'] is True:
-        error_message = error_messages['MANDATORY']
+        error_message = error_messages['MANDATORY_DATE']
         if 'validation' in answer and 'messages' in answer['validation'] \
-                and 'MANDATORY' in answer['validation']['messages']:
-            error_message = answer['validation']['messages']['MANDATORY']
+                and 'MANDATORY_DATE' in answer['validation']['messages']:
+            error_message = answer['validation']['messages']['MANDATORY_DATE']
 
         validate_with = [DateRequired(message=error_message)]
 
