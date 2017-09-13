@@ -33,7 +33,7 @@ class TestIntroduction(IntegrationTestCase):
 
         # When on the introduction page
         # Then basis for completion should be displayed
-        self.assertInPage('basis-for-completion')
+        self.assertInPage('Information you need')
 
     def test_intro_basis_for_completion_not_displayed(self):
         # Given survey without basis for completion

@@ -6,25 +6,53 @@
                 "type": "Introduction",
                 "id": "introduction",
                 "primary_content": [{
-                    "id": "basis-for-completion",
-                    "type": "Basic",
-                    "title": "Basis for completion",
+                    "id": "get-started",
+                    "title": "Get started",
+                    "content": [{
+                            "description": "On average it takes 10 minutes to complete this survey once you’ve collected the information."
+                        },
+                        {
+                            "description": "Data should relate to all sites in England, Scotland and Wales. You can provide informed estimates if actual figures aren't available."
+                        },
+                        {
+                            "description": "All information you provide is strictly confidential. "
+                        }
+                    ]
+                }],
+                "secondary_content": [{
+                    "id": "preview",
+                    "title": "Information you need",
                     "content": [{
                         "list": [
-                            "Please complete this statutory questionnaire for {{respondent.trad_as_or_ru_name}}, for the period {{exercise.start_date|format_date}}.",
-                            "Data should relate to all sites in England, Scotland and Wales, unless otherwise stated in the ‘trading as’ name, above."
+                            "Total number of employees",
+                            "Male employees working more than 30 hours per week",
+                            "Male employees working 30 hours or less per week",
+                            "Female employees working more than 30 hours per week",
+                            "Female employees working 30 hours or less per week"
+                        ]
+                    }, {
+                        "title": "Include:",
+                        "list": [
+                            "all workers paid directly from this business’s payroll(s)",
+                            "those temporarily absent but still being paid, for example on maternity leave"
+                        ]
+                    }, {
+                        "title": "Exclude:",
+                        "list": [
+                            "agency workers paid directly from the agency payroll",
+                            "voluntary workers",
+                            "former employees only receiving a pension",
+                            "self-employed workers",
+                            "working owners who are not paid via PAYE"
                         ]
                     }]
                 }, {
-                    "id": "information-to-provide",
-                    "type": "Basic",
-                    "title": "You will be asked to provide information for the business, including:",
+                    "title": "How we use your data",
                     "content": [{
                         "list": [
-                            "Employee numbers"
+                            "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
+                            "The information you provide contributes to the Labour Market Statistics."
                         ]
-                    }, {
-                        "description": "<strong>If actual figures are not available, please provide informed estimates.</strong>"
                     }]
                 }]
             },

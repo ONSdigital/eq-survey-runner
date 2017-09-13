@@ -7,6 +7,13 @@
 <p class="mars qa-intro-description">
     {{ content.description }}
 </p>
+{% if content.list %}
+<ul>
+    {% for li in content.list %}
+    <li>{{ li }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 {% endfor %}
 </div>
 <div class="accordion js-accordion">
