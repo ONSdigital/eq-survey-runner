@@ -1,0 +1,65 @@
+$header2-bp: 36em;
+
+.header2 {
+  display: block;
+  overflow: hidden;
+  padding: 1.4rem 0 1rem;
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 8px;
+    background-color: $color-secondary;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+  }
+  @include mq($header2-bp) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.header2__logo {
+  margin-bottom: 1rem;
+  @include mq($header2-bp) {
+    margin-bottom: 0;
+    flex: 1 1 100%;
+  }
+}
+
+.header2__info {
+  white-space: nowrap;
+  min-height: 3rem;
+  width: 550px;
+
+  @include mq($from: xs, $to: m) {
+    max-width: 100%;
+  }
+
+  @include mq($header2-bp) {
+    float: right;
+    flex: 1 1 auto;
+    margin-left: 2rem;
+    position: relative;
+    text-align: right;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 8px;
+      background-color: #a8bd3a;
+      position: absolute;
+      top: -1.3rem;
+      right: 0;
+    }
+  }
+
+  @include fixed {
+    width: 20em;
+    float: right;
+    position: relative;
+  }
+}

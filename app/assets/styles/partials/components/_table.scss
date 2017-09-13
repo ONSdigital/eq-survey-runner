@@ -1,0 +1,32 @@
+.table {
+
+}
+caption {
+  text-align: left;
+}
+.table__dense {
+  font-size: 81.25%;
+
+.table--header--cell {
+    padding: 0.5rem 0 0.25rem 1rem;
+    @include nth-element(1, 0);
+  }
+}
+
+.table--row {
+  border-bottom: 1px solid $color-grey;
+}
+
+.table--header--cell {
+  padding: 0.5rem 0 0.5rem 1rem;
+  border-bottom: 2px solid $color-very-dark-grey;
+  @include nth-element(1, 0);
+}
+.table--cell__numeric {
+  text-align: right;
+}
+
+.table--cell {
+    padding: 0.5rem 0 0.5rem 1rem;
+    @include nth-element(1, 0);
+}

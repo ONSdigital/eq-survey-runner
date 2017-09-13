@@ -153,7 +153,7 @@ def format_household_summary(names):
 
 @blueprint.app_template_filter()
 def format_number_to_alphabetic_letter(number):
-    if int(number) >= 0 and int(number) < 26:
+    if 0 <= int(number) < 26:
         return string.ascii_lowercase[int(number)]
     return ''
 

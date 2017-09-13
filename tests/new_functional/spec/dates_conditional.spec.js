@@ -9,7 +9,6 @@ describe('Piped Dates', function () {
 
     // Given the test_dates survey is selected
     return helpers.openQuestionnaire('test_conditional_dates.json').then(() => {
-
       return browser
 
       // When dates are entered
@@ -34,7 +33,6 @@ describe('Piped Dates', function () {
 
     // Given the test_dates survey is selected
     return helpers.openQuestionnaire('test_conditional_dates.json').then(() => {
-
       return browser
 
       // When dates are entered
