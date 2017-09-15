@@ -1,13 +1,13 @@
 id: turnover-block-4
 questions:
 - answers:
-  - description: Round to the nearest pound. Do not include pence.
-    id: turnover-answer-4-0
+  - id: turnover-answer-4-0
     label: Total turnover excluding VAT
     mandatory: true
     options: []
     q_code: '40'
     type: Currency
+    currency: "GBP"
   description: <p>If you do not have a figure to report for this survey period, please
     enter zero.</p><p>If you are unable to calculate a figure, please provide a careful
     estimate.</p>
