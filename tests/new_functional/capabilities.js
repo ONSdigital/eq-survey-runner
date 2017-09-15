@@ -27,7 +27,7 @@ const chromeHeadless = Object.assign(
   {
     name: 'Chrome Headless',
     chromeOptions: {
-      args: ['--headless', '--window-size=1024,1158']
+      args: ['--headless', '--window-size=1024,1158', '--no-sandbox']
     }
   }
 );
