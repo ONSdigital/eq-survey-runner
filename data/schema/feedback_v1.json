@@ -1,10 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema",
-  "$id": "https://edc.ons.gov.uk/schemas/feeback_v1.json",
+  "$id": "https://edc.ons.gov.uk/schemas/feedback_v1.json",
   "type": "object",
   "properties": {
     "tx_id": {
       "type": "string",
+      "description": "A lowercase alphanumeric string separated by hyphens.",
       "pattern": "^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$"
     },
     "type": {
@@ -21,6 +22,7 @@
     },
     "survey_id": {
       "type": "string",
+      "description": "The ONS id of the survey derived from the inquiry code already in use for that survey",
       "pattern": "^[0-9]{3}$"
     },
     "collection": {
@@ -39,6 +41,7 @@
     },
     "submitted_at": {
       "type": "string",
+      "description": "Survey submission date-time-stamp",
       "format": "date-time"
     },
     "metadata": {

@@ -114,6 +114,7 @@
     },
     "messages": {
       "type": "object",
+      "description": "Standardised error and warning messages for all schemas.",
       "properties": {
         "MANDATORY_TEXTFIELD": {
           "type": "string"
@@ -162,6 +163,7 @@
     },
     "routing_rules": {
       "type": "array",
+      "description": "Used to direct the journey through a schema (in conjunction with navigation)",
       "items": {
         "type": "object",
         "properties": {
@@ -256,7 +258,8 @@
       ]
     },
     "survey_id": {
-      "type": "string"
+      "type": "string",
+      "description": "The ONS id of the survey derived from the inquiry code already in use for that survey"
     },
     "session_timeout_in_seconds": {
       "description": "The amount of time in seconds before timing out a users session.",
@@ -283,6 +286,7 @@
     },
     "navigation": {
       "type": "object",
+      "description": "Used in conjunction with routing to take user through a schema",
       "properties": {
         "visible": {
           "type": "boolean"

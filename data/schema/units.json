@@ -2,6 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema",
   "unit": {
     "type": "string",
+    "description": "Internationalised units for length, area, volume, and others",
     "enum": [
       "acceleration-g-force",
       "acceleration-meter-per-second-squared",
