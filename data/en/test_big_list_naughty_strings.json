@@ -3,6 +3,7 @@
     "groups": [{
         "blocks": [{
             "type": "Questionnaire",
+            "description": "Test schema for known bad text combinations.",
             "routing_rules": [],
             "questions": [{
                 "answers": [{
