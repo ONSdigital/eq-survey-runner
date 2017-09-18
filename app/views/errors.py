@@ -1,4 +1,4 @@
-from flask import Blueprint, request, current_app
+from flask import Blueprint, request, current_app, session
 from flask_themes2 import render_theme_template
 from flask_login import current_user
 from flask_wtf.csrf import CSRFError
@@ -11,6 +11,7 @@ from app.authentication.no_token_exception import NoTokenException
 from app.globals import get_metadata
 from app.libs.utils import convert_tx_id
 from app.submitter.submission_failed import SubmissionFailedException
+from app.templating.template_renderer import TemplateRenderer
 
 logger = get_logger()
 
@@ -31,7 +32,7 @@ def add_cache_control(response):
 @errors_blueprint.app_errorhandler(NoTokenException)
 def unauthorized(error=None):
     log_exception(error, 401)
-    return render_theme_template('default', 'session-expired.html'), 401
+    return render_template('session-expired.html'), 401
 
 
 @errors_blueprint.app_errorhandler(InvalidTokenException)
@@ -49,13 +50,13 @@ def service_unavailable(error=None):
 @errors_blueprint.app_errorhandler(MultipleSurveyError)
 def multiple_survey_error(error=None):
     log_exception(error, 200)
-    return render_theme_template('default', 'multiple_survey.html')
+    return render_template('multiple_survey.html')
 
 
 @errors_blueprint.app_errorhandler(CSRFError)
 def csrf_exception(error):
     log_exception(error, error.code)
-    return render_theme_template('default', 'csrf_exception.html'), error.code
+    return render_template('csrf_exception.html'), error.code
 
 
 @errors_blueprint.app_errorhandler(Exception)
@@ -94,3 +95,15 @@ def get_tx_id():
     if metadata:
         tx_id = convert_tx_id(metadata["tx_id"])
     return tx_id
+
+
+def render_template(template_name):
+    tx_id = get_tx_id()
+    user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
+
+    return render_theme_template(session.get('theme', 'default'),
+                                 template_name=template_name,
+                                 analytics_ua_id=current_app.config['EQ_UA_ID'],
+                                 ua=user_agent,
+                                 tx_id=tx_id,
+                                 survey_title=TemplateRenderer.safe_content(session.get('survey_title', '')))

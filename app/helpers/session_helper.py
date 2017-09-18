@@ -1,4 +1,4 @@
-from flask import current_app, session
+from flask import current_app
 from flask_login import current_user, logout_user
 
 from app.globals import get_questionnaire_store
@@ -18,6 +18,3 @@ def end_session_with_schema_context(schema=None):
         schema = load_schema_from_metadata(metadata)
 
     _remove_survey_session_data()
-
-    session['theme'] = schema['theme']
-    session['survey_title'] = schema['title']
