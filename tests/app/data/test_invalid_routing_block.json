@@ -3,7 +3,7 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
     "survey_id": "023",
-    "title": "Test Invalid Routing",
+    "title": "Test Invalid Routing Block ID",
     "description": "",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
