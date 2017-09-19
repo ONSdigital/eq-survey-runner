@@ -20,18 +20,33 @@ configure(logger_factory=LoggerFactory(), processors=[ConsoleRenderer()])
 
 class TestSchemaValidation(unittest.TestCase):
 
-    def test_invalid_schema(self):
+    def test_invalid_schema_block(self):
         schema_file = open(get_schema_definition_path(), encoding="utf8")
         schema = load(schema_file)
 
-        file = "test_invalid_routing.json"
+        file = "test_invalid_routing_block.json"
 
         json_file = open(os.path.join(os.path.dirname(os.path.realpath(__file__)), file), encoding="utf8")
         json_to_validate = load(json_file)
 
         errors = self.validate_schema(schema, file, json_to_validate)
+        block_errors = [error for error in errors if "invalid block" in error]
 
-        self.assertNotEqual(len(errors), 0, "This schema should fail on invalid routing rules")
+        self.assertNotEqual(len(block_errors), 0, "This schema should fail with an invalid block")
+
+    def test_invalid_schema_group(self):
+        schema_file = open(get_schema_definition_path(), encoding="utf8")
+        schema = load(schema_file)
+
+        file = "test_invalid_routing_group.json"
+
+        json_file = open(os.path.join(os.path.dirname(os.path.realpath(__file__)), file), encoding="utf8")
+        json_to_validate = load(json_file)
+
+        errors = self.validate_schema(schema, file, json_to_validate)
+        group_errors = [error for error in errors if "invalid group" in error]
+
+        self.assertNotEqual(len(group_errors), 0, "This schema should fail with an invalid group")
 
     def test_schemas(self):
 
@@ -187,6 +202,13 @@ class TestSchemaValidation(unittest.TestCase):
                             invalid_block_error = "Routing rule routes to invalid block [{}]".format(block_id)
                             errors.append(TestSchemaValidation._error_message(invalid_block_error, file))
 
+                    if 'goto' in rule and 'group' in rule['goto'].keys():
+                        group_id = rule['goto']['group']
+
+                        if not cls.contains_group(json_to_validate, group_id):
+                            invalid_group_error = "Routing rule routes to invalid group [{}]".format(group_id)
+                            errors.append(TestSchemaValidation._error_message(invalid_group_error, file))
+
         return errors
 
     @staticmethod
@@ -237,6 +259,11 @@ class TestSchemaValidation(unittest.TestCase):
     def contains_block(json, block_id):
         matching_blocks = [b for b in SchemaHelper.get_blocks(json) if b["id"] == block_id]
         return len(matching_blocks) == 1
+
+    @staticmethod
+    def contains_group(json, group_id):
+        matching_groups = [g for g in SchemaHelper.get_groups(json) if g["id"] == group_id]
+        return len(matching_groups) == 1
 
     @staticmethod
     def validate_range_types_from_answers(file, json_to_validate):
