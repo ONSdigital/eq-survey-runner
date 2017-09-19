@@ -1,12 +1,9 @@
 #!/usr/bin/env python
 
 import argparse
-
-import datetime
 import json
 import logging
 import os
-import sys
 import re
 from string import Template
 
@@ -19,29 +16,27 @@ parser.add_argument('SCHEMA', type=argparse.FileType('r'),
 
 parser.add_argument('OUT_DIRECTORY', help='The path to the directory where the pages should be written.')
 
+parser.add_argument('-s', '--spec_file', help='The file where the template spec should be written.')
+
 parser.add_argument('-r', '--require_path', default='..',
                     help='The relative path from a page file to the directory containing the base/parent page classes. Defaults to ".."')
 
-parser.add_argument('-t', '--tests', metavar='TEST_SKELETON_FILE', type=argparse.FileType('w'),
-                    help='The file path where a test skeleton that uses the generated pages should be written.')
 
+SPEC_PAGE_HEADER = "const helpers = require('../helpers');\n\n"
 
-
-SPEC_PAGE_HEADER = Template(r"""const helpers = require('../helpers');
-
-""")
-
-SPEC_PAGE_IMPORT = Template(r"""const $pageName = require('../pages/${pageDir}${pageFile}');
+SPEC_PAGE_IMPORT = Template(r"""const ${pageName}Page = require('../pages/${pageDir}/${pageFile}');
 """)
 
 SPEC_EXAMPLE_TEST = Template(r"""
 describe('Example Test', function() {
 
   it('Given..., When..., Then...', function() {
-    helpers.openQuestionnaire('{schema}');
-  })
+    return helpers.openQuestionnaire('${schema}').then(() => {
+        return browser    
+    });
+  });
 
-})
+});
 
 """)
 
@@ -80,6 +75,15 @@ REPEATING_ANSWER_ADD_REMOVE = r"""  addPerson() {
   }
 
 """
+
+SUMMARY_ANSWER_GETTER = Template(r"""  ${answerName}() { return '#${answerId}-answer'; }
+
+""")
+
+
+SUMMARY_ANSWER_EDIT_GETTER = Template(r"""  ${answerName}Edit() { return '[data-qa="${answerId}-edit"]'; }
+
+""")
 
 CONSTRUCTOR = Template(r"""  constructor() {
     super('${block_id}');
@@ -152,7 +156,7 @@ def process_answer(question_type, answer, page_spec, long_names, page_name):
     elif answer['type'] in ('MonthYearDate'):
         page_spec.write(_write_month_year_date_answer(answer_name, answer['id'], prefix))
 
-    elif answer['type'] in ('TextField', 'Number', 'TextArea', 'Currency', 'Percentage', 'Relationship'):
+    elif answer['type'] in ('TextField', 'Number', 'TextArea', 'Currency', 'Percentage', 'Relationship', 'Unit'):
 
         answer_context = {
             'answerName': camel_case(answer_name),
@@ -180,6 +184,19 @@ def process_question(question, page_spec, num_questions, page_name):
 
     for answer in question['answers']:
         process_answer(question_type, answer, page_spec, long_names, page_name)
+
+def process_summary(schema_data, page_spec):
+    for group in schema_data['groups']:
+        for block in group['blocks']:
+            for question in block.get('questions', []):
+                for answer in question['answers']:
+                    answer_name = generate_pascal_case_from_id(answer['id'])
+                    answer_context = {
+                        'answerName': camel_case(answer_name),
+                        'answerId': answer['id']
+                    }
+                    page_spec.write(SUMMARY_ANSWER_GETTER.substitute(answer_context))
+                    page_spec.write(SUMMARY_ANSWER_EDIT_GETTER.substitute(answer_context))
 
 
 def long_names_required(question, num_questions):
@@ -218,7 +235,7 @@ def find_kv(block, key, values):
     return False
 
 
-def process_block(block, dir_out, relative_require = '..', spec_out=None):
+def process_block(block, dir_out, schema_data, spec_file, relative_require = '..'):
     logger.debug("Processing Block: %s", block['id'])
 
     page_filename = block['id'] + '.page.js'
@@ -246,39 +263,50 @@ def process_block(block, dir_out, relative_require = '..', spec_out=None):
         page_spec.write(CLASS_NAME.substitute(block_context))
         page_spec.write(CONSTRUCTOR.substitute(block_context))
 
-        num_questions = len(block['questions'])
+        if block['type'] == 'Summary':
+            process_summary(schema_data, page_spec)
+        else:
+            num_questions = len(block.get('questions', []))
 
-        for question in block.get('questions', []):
-            process_question(question, page_spec, num_questions, page_name)
+            for question in block.get('questions', []):
+                process_question(question, page_spec, num_questions, page_name)
+
 
         page_spec.write(FOOTER.substitute(block_context))
 
-        if spec_out:
-            with open(spec_out, 'a') as template_spec:
-                template_spec.write(IMPORT_PAGE_SPEC.substitute(block_context))
+        if spec_file:
+            with open(spec_file, 'a') as template_spec:
+                template_spec.write(SPEC_PAGE_IMPORT.substitute(block_context))
 
 
-def process_schema(in_schema, out_dir, require_path='..', spec_out=None):
+def process_schema(in_schema, out_dir, spec_file, require_path='..'):
 
     data = json.loads(in_schema.read())
 
+    try:
+        os.stat(out_dir)
+    except:
+        os.mkdir(out_dir)
+
     for group in data['groups']:
         for block in group['blocks']:
-            process_block(block, out_dir, require_path, spec_out)
+            process_block(block, out_dir, data, spec_file, require_path)
 
 
 if __name__ == '__main__':
     args = parser.parse_args()
 
-    if 'TEST_SKELETON' in args:
-        spec_out = args.TEST_SKELETON
+    spec_file = args.spec_file
 
-        with open(spec_out, 'w') as template_spec:
+    if spec_file:
+        with open(spec_file, 'w') as template_spec:
             template_spec.write(SPEC_PAGE_HEADER)
+            template_spec.close()
 
-        process_schema(args.SCHEMA, args.OUT_DIRECTORY, args.require_path, args.TEST_SKELETON)
+            process_schema(args.SCHEMA, args.OUT_DIRECTORY, spec_file, args.require_path)
 
-        with open(spec_out, 'a') as template_spec:
-            template_spec.write(SPEC_EXAMPLE_TEST.replace('{schema}', schema_in.split('/').pop()))
+            with open(spec_file, 'a') as template_spec:
+                schema_name = { 'schema': args.SCHEMA.name.split('/').pop() }
+                template_spec.write(SPEC_EXAMPLE_TEST.substitute(schema_name))
     else:
-        process_schema(args.SCHEMA, args.OUT_DIRECTORY, args.require_path)
+        process_schema(args.SCHEMA, args.OUT_DIRECTORY, spec_file, args.require_path)
