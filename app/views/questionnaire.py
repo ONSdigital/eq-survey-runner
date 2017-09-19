@@ -19,7 +19,9 @@ from app.questionnaire.navigation import Navigation
 
 from app.questionnaire.rules import evaluate_skip_conditions
 from app.submitter.converter import convert_answers
-from app.submitter.encrypter import encrypt
+from app.secrets import KEY_PURPOSE_SUBMISSION
+
+# from app.submitter.encrypter import encrypt
 from app.submitter.submission_failed import SubmissionFailedException
 from app.templating.metadata_context import build_metadata_context_for_survey_completed
 from app.templating.schema_context import build_schema_context
@@ -28,6 +30,8 @@ from app.templating.template_renderer import renderer, TemplateRenderer
 
 from app.utilities.schema import load_schema_from_metadata, load_schema_from_params
 from app.views.errors import MultipleSurveyError
+
+from sdc.crypto.encrypter import encrypt
 
 END_BLOCKS = "Summary", "Confirmation"
 
@@ -266,7 +270,7 @@ def submit_answers(eq_id, form_type, collection_id):
             path_finder.get_routing_path(),
         )
 
-        encrypted_message = encrypt(message, current_app.eq['secret_store'])
+        encrypted_message = encrypt(message, current_app.eq['secret_store'], KEY_PURPOSE_SUBMISSION)
         sent = current_app.eq['submitter'].send_message(
             encrypted_message,
             current_app.config['EQ_RABBITMQ_QUEUE_NAME'],
