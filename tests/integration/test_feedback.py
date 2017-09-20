@@ -1,9 +1,12 @@
 import json
 from jsonschema import SchemaError, ValidationError, validate
 from mock import patch
+from sdc.crypto.decrypter import decrypt
+from sdc.crypto.helper import extract_kid_from_header
+
+
 from tests.integration.integration_test_case import IntegrationTestCase
 from jwcrypto import jwt
-from app.cryptography.token_helper import decrypt_jwe, extract_kid_from_header
 from app.secrets import KEY_PURPOSE_SUBMISSION
 from structlog import getLogger
 
@@ -12,6 +15,7 @@ logger = getLogger()
 
 FEEDBACK_FORM_URL = '/feedback'
 FEEDBACK_THANKYOU_URL = '/feedback/thank-you'
+
 
 class Feedback(IntegrationTestCase):
     def setUp(self):
@@ -24,29 +28,24 @@ class Feedback(IntegrationTestCase):
         super().setUp()
         self.launchSurvey('test', 'textfield')
 
-
     def tearDown(self):
         self.patcher.stop()
-
 
     def test_correct_feeback_link_in_page(self):
         soup = self.getHtmlSoup()
         links = soup.find_all('a')
-        feedbackLinks = [link['href'] for link in links if FEEDBACK_FORM_URL in link['href']]
-        self.assertGreaterEqual(len(feedbackLinks), 1)
-
+        feedback_links = [link['href'] for link in links if FEEDBACK_FORM_URL in link['href']]
+        self.assertGreaterEqual(len(feedback_links), 1)
 
     def test_get_feedback_page(self):
         self.get(FEEDBACK_FORM_URL)
         self.assertStatusOK()
         self.assertEqualUrl(FEEDBACK_FORM_URL)
 
-
     def test_feedback_empty_post_redirects_to_thankyou(self):
         self.post(url=FEEDBACK_FORM_URL, post_data='', action='send_feedback')
         self.assertStatusOK()
         self.assertEqualUrl(FEEDBACK_THANKYOU_URL)
-
 
     def test_post_with_empty_message_does_not_send_message(self):
         post_data = {
@@ -59,7 +58,6 @@ class Feedback(IntegrationTestCase):
         self.assertStatusOK()
 
         self.assertEqual(self.instance.send_message.call_count, 0)  # pylint: disable=no-member
-
 
     def test_post_sends_message(self):
         post_data = {
@@ -80,7 +78,6 @@ class Feedback(IntegrationTestCase):
         expected_message['url'] = referer
         self.assertEqual(message['data'], expected_message)
 
-
     def test_post_csrf_failure_returns_bad_args(self):
         self.last_csrf_token = None
         post_data = {
@@ -91,7 +88,6 @@ class Feedback(IntegrationTestCase):
 
         self.post(url='/feedback', post_data=post_data, action='send_feedback')
         self.assertStatusCode(400)
-
 
     def test_post_html_encodes_user_input(self):
         post_data = {
@@ -106,7 +102,6 @@ class Feedback(IntegrationTestCase):
         self.assertEqual(data['message'], expected)
         self.assertEqual(data['name'], expected)
         self.assertEqual(data['email'], expected)
-
 
     def test_post_sends_valid_message(self):
         post_data = {
@@ -128,7 +123,6 @@ class Feedback(IntegrationTestCase):
 
             self.fail("{} Schema Validation Errors.\n{}".format(len(errors), errors))
 
-
     def test_post_with_broken_send_message_returns_503(self):
         post_data = {
             "message": "This survey is awesome",
@@ -141,11 +135,10 @@ class Feedback(IntegrationTestCase):
         self.post(url=FEEDBACK_FORM_URL, post_data=post_data, action='send_feedback')
         self.assertStatusCode(503)
 
-
     def post_then_intercept_and_decrypt_message(self, post_data, **kwargs):
         self.post(url=FEEDBACK_FORM_URL, post_data=post_data, action='send_feedback', **kwargs)
 
-        signed_token = decrypt_jwe(self.instance.send_message.call_args[0][0], self._secret_store, KEY_PURPOSE_SUBMISSION) # pylint: disable=no-member
+        signed_token = decrypt(self.instance.send_message.call_args[0][0], self._secret_store, KEY_PURPOSE_SUBMISSION) # pylint: disable=no-member
         return decode_jwt(signed_token, self._secret_store)
 
 
