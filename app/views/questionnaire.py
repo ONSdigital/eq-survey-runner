@@ -21,7 +21,6 @@ from app.questionnaire.rules import evaluate_skip_conditions
 from app.submitter.converter import convert_answers
 from app.secrets import KEY_PURPOSE_SUBMISSION
 
-# from app.submitter.encrypter import encrypt
 from app.submitter.submission_failed import SubmissionFailedException
 from app.templating.metadata_context import build_metadata_context_for_survey_completed
 from app.templating.schema_context import build_schema_context
