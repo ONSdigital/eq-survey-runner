@@ -129,7 +129,17 @@ Command                                    | Task
 
 ---
 
-### Functional test options
+## Functional test options
+
+To create functional test pages from a schema use the following command.
+
+`generate_pages.py <schema.json> <page_directory>` 
+
+This can combined with `-spec_file=<spec_file_path>` to provide a populated template for the functional tests spec file.
+and/or `-require_path='../..` To provide a relative path from a page file to the directory containing the base/parent page classes. Defaults to ".."
+
+For example: 
+`./generate_pages.py ../../data/en/test_navigation.json ./pages/surveys/navigation --spec_file=./spec/navigation.spec.js` 
 
 The functional tests can be executed with a couple of options.
 

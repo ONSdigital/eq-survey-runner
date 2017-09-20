@@ -22,7 +22,7 @@ function openQuestionnaire(schema, userId = getRandomString(10), collectionId = 
 
 function startQuestionnaire(schema, userId = getRandomString(10), collectionId = getRandomString(10)) {
   return openQuestionnaire(schema, userId, collectionId).then(() => {
-    return landingPage.getStarted();
+      return browser.click(landingPage.getStarted());
   });
 }
 
