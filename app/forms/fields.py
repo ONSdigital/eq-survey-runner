@@ -173,12 +173,17 @@ def get_number_field(answer, label, guidance, error_messages, answer_store):
         raise Exception('decimal_places: {} > system maximum: {} for answer id: {}'
                         .format(max_decimals, MAX_DECIMAL_PLACES, answer['id']))
 
-    min_value = get_schema_defined_limit(answer['id'], answer.get('min_value'), answer_store) or 0
+    min_value = get_schema_defined_limit(answer['id'], answer.get('min_value'), answer_store)
+    if min_value is None:
+        min_value = 0
     if min_value < MIN_NUMBER:
         raise Exception('min_value: {} < system minimum: {} for answer id: {}'
                         .format(min_value, MIN_NUMBER, answer['id']))
 
-    max_value = get_schema_defined_limit(answer['id'], answer.get('max_value'), answer_store) or MAX_NUMBER
+    max_value = get_schema_defined_limit(answer['id'], answer.get('max_value'), answer_store)
+    if max_value is None:
+        max_value = MAX_NUMBER
+
     if max_value > MAX_NUMBER:
         raise Exception('max_value: {} > system maximum: {} for answer id: {}'
                         .format(max_value, MAX_NUMBER, answer['id']))
