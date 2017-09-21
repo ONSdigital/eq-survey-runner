@@ -20,6 +20,8 @@ class TestMwssSubmissionData(IntegrationTestCase):
                 "tx_id": tx_id,
                 "submitted_at": submitted_at,
                 "metadata": {
+                    "ref_period_end_date": "2016-04-30",
+                    "ref_period_start_date": "2016-04-01",
                     "user_id": "integration-test",
                     "ru_ref": "123456789012A"
                 },

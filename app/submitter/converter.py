@@ -190,10 +190,15 @@ def _build_collection(metadata):
 
 
 def _build_metadata(metadata):
-    return {
+    downstream_metadata = {
         'user_id': metadata['user_id'],
         'ru_ref': metadata['ru_ref'],
+        'ref_period_start_date': metadata['ref_p_start_date'],
     }
+    if 'ref_p_end_date' in metadata and metadata['ref_p_end_date'] is not None:
+        downstream_metadata['ref_period_end_date'] = metadata['ref_p_end_date']
+
+    return downstream_metadata
 
 
 def _encode_value(value):

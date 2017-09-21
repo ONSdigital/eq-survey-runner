@@ -60,6 +60,8 @@ class TestRsiSubmissionData(IntegrationTestCase):
                 "flushed": False,
                 "origin": "uk.gov.ons.edc.eq",
                 "metadata": {
+                    "ref_period_end_date": "2016-04-30",
+                    "ref_period_start_date": "2016-04-01",
                     "user_id": "integration-test",
                     "ru_ref": "123456789012A"
                 },
@@ -158,6 +160,8 @@ class TestRsiSubmissionData(IntegrationTestCase):
                 },
                 "origin": "uk.gov.ons.edc.eq",
                 "metadata": {
+                    "ref_period_end_date": "2016-04-30",
+                    "ref_period_start_date": "2016-04-01",
                     "ru_ref": "123456789012A",
                     "user_id": "integration-test"
                 },

@@ -127,8 +127,6 @@ class TestDumpSubmission(IntegrationTestCase):
 
         # And the JSON response contains the data I submitted
         actual = json.loads(self.getResponseData())
-
-        # tx_id and submitted_at are dynamic; so copy them over
         expected = {
             'submission': {
                 'version': '0.0.1',
@@ -145,11 +143,15 @@ class TestDumpSubmission(IntegrationTestCase):
                 },
                 'data': {},
                 'metadata': {
+                    'ref_period_end_date': '2016-04-30',
+                    'ref_period_start_date': '2016-04-01',
                     'ru_ref': '123456789012A',
                     'user_id': 'integration-test'
                 }
             }
         }
+
+        # tx_id and submitted_at are dynamic; so copy them over
 
         # Enable full dictionary diffs on test failure
         self.maxDiff = None
@@ -191,6 +193,8 @@ class TestDumpSubmission(IntegrationTestCase):
                     '20': 'Bacon'
                 },
                 'metadata': {
+                    'ref_period_end_date': '2016-04-30',
+                    'ref_period_start_date': '2016-04-01',
                     'ru_ref': '123456789012A',
                     'user_id': 'integration-test'
                 }
