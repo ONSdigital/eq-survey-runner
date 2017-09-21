@@ -12,25 +12,178 @@
                 "type": "Introduction",
                 "id": "introduction",
                 "primary_content": [{
-                    "id": "use-of-information",
+                    "id": "get-started",
+                    "title": "Get started",
                     "content": [{
-                        "description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>.</p>"
-                    }]
-                }, {
-                    "id": "information-to-provide",
-                    "type": "Basic",
-                    "title": "You will be asked to provide information for the business, including:",
-                    "content": [{
-                            "list": [
-                                "value of total retail turnover",
-                                "value of internet sales",
-                                "reasons for changes to figures"
-                            ]
+                            "description": "On average it takes 10 minutes to complete this survey once you’ve collected the information."
                         },
                         {
-                            "description": "<strong>If actual figures are not available, please provide informed estimates.</strong>"
+                            "description": "Data should relate to all sites in England, Scotland and Wales. You can provide informed estimates if actual figures aren't available."
+                        },
+                        {
+                            "description": "All information you provide is strictly confidential."
                         }
                     ]
+                }],
+                "preview_content": {
+                    "id": "preview",
+                    "title": "Information you need",
+                    "content": [{
+                            "description": "The total retail turnover must be less than or equal to the value of food sales, alcohol, confectionary and tobacco sales, clothing and footwear sales,  household goods, and other goods."
+                        },
+                        {
+                            "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
+                        }
+                    ],
+                    "questions": [{
+                        "question": "Total retail turnover",
+                        "content": [{
+                            "description": "Include:",
+                            "list": [
+                                "VAT",
+                                "internet sales",
+                                "retail sales from outlets in Great Britain to customers abroad"
+                            ]
+                        }, {
+                            "description": "Exclude:",
+                            "list": [
+                                "revenue from mobile phone network commission and top-up",
+                                "sales from catering facilities used by customers",
+                                "lottery sales and commission from lottery sales",
+                                "sales of car accessories and motor vehicles",
+                                "NHS receipts"
+                            ]
+                        }]
+                    }, {
+                        "question": "Food sales",
+                        "content": [{
+                            "description": "Include:",
+                            "list": [
+                                "all fresh food",
+                                "other food for human consumption (except chocolate and sugar confectionery)",
+                                "soft drinks"
+                            ]
+                        }, {
+                            "description": "Exclude:",
+                            "list": [
+                                "sales from catering facilities used by customers"
+                            ]
+                        }]
+                    }, {
+                        "question": "Alcohol, confectionary and tobacco sales",
+                        "content": [{
+                            "description": "Include:",
+                            "list": [
+                                "chocolate and sugar confectionery",
+                                "tobacco and smokers’ requisites"
+                            ]
+                        }]
+                    }, {
+                        "question": "Clothing and footwear sales",
+                        "content": [{
+                            "description": "Include:",
+                            "list": [
+                                "clothing fabrics",
+                                "haberdashery and furs",
+                                "leather and travel goods",
+                                "handbags and umbrellas"
+                            ]
+                        }]
+                    }, {
+                        "question": "Household goods sales",
+                        "content": [{
+                            "description": "Include:",
+                            "list": [
+                                "carpets, rugs and other floor coverings",
+                                "furniture",
+                                "household textiles and soft furnishings",
+                                "prints and picture frames",
+                                "antiques and works of art",
+                                "domestic electrical and gas appliances, audio/visual equipment and home computers",
+                                "lighting and minor electrical supplies",
+                                "records, compact discs, audio and video tapes",
+                                "musical instruments and goods",
+                                "decorators’ and DIY supplies",
+                                "lawn-mowers",
+                                "hardware",
+                                "china, glassware and cutlery",
+                                "novelties, souvenirs and gifts",
+                                "e-cigarettes"
+                            ]
+                        }]
+                    }, {
+                        "question": "Other sales",
+                        "content": [{
+                            "description": "Include:",
+                            "list": [
+                                "toiletries and medications (except NHS receipts)",
+                                "newspapers and periodicals",
+                                "books, stationery and office supplies",
+                                "photographic and optical goods",
+                                "spectacles, contact lenses and sunglasses",
+                                "toys and games",
+                                "cycles and cycle accessories",
+                                "sport and camping equipment",
+                                "jewellery",
+                                "silverware and plates, clocks and watches",
+                                "household cleaning products and kitchen paper products",
+                                "pets, pets’ requisites and pet foods",
+                                "cut flowers, plants, seeds and other garden sundries",
+                                "other new and secondhand goods",
+                                "mobile phones"
+                            ]
+                        }, {
+                            "description": "Exclude:",
+                            "list": [
+                                "revenue from mobile phone network commission and top up",
+                                "lottery sales and commission from lottery sales",
+                                "sales of car accessories and motor vehicles",
+                                "NHS receipts"
+                            ]
+                        }]
+                    }, {
+                        "question": "Internet sales",
+                        "content": [{
+                            "description": "Include: VAT"
+                        }]
+                    }, {
+                        "question": "Automotive fuel",
+                        "content": [{
+                            "description": "Include:",
+                            "list": [
+                                "VAT",
+                                "sales of fuel owned by you",
+                                "sales of other items not paid a commission for"
+                            ]
+                        }, {
+                            "description": "Exclude:",
+                            "list": [
+                                "sales of fuel not own"
+                            ]
+                        }]
+                    }, {
+                        "question": "Significant changes to the total retail turnover",
+                        "content": [{
+                            "description": "Include:",
+                            "list": [
+                                "in-store / online promotions",
+                                "special events (e.g.  sporting events)",
+                                "calendar events (e.g.  Christmas, Easter, Bank Holiday)",
+                                "weather",
+                                "store closures/openings"
+                            ]
+                        }]
+                    }]
+                },
+                "secondary_content": [{
+                    "id": "how-we-use-your-data",
+                    "title": "How we use your data",
+                    "content": [{
+                        "list": [
+                            "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
+                            "The information you supply is used to produce monthly estimates of the total retail sales in Great Britain. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the UK National Accounts."
+                        ]
+                    }]
                 }]
             }, {
                 "type": "Questionnaire",
