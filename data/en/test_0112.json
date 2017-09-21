@@ -33,7 +33,6 @@
             {
                 "type": "Questionnaire",
                 "id": "reporting-period",
-                "description": "",
                 "questions": [{
                     "answers": [{
                             "id": "period-from",
@@ -62,7 +61,6 @@
             {
                 "type": "Questionnaire",
                 "id": "total-retail-turnover",
-                "description": "",
                 "questions": [{
                     "answers": [{
                         "id": "total-retail-turnover-answer",
@@ -71,9 +69,10 @@
                         "options": [],
                         "q_code": "20",
                         "type": "Currency",
-                        "currency": "GBP"
+                        "currency": "GBP",
+                        "decimal_places": 2
                     }],
-                    "description": "<p>Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.</p>",
+                    "description": "<p>Even if your figures are zero, please still complete.</p>",
                     "guidance": {
                         "content": [{
                                 "title": "Include",
@@ -103,7 +102,6 @@
             {
                 "type": "Questionnaire",
                 "id": "internet-sales",
-                "description": "",
                 "questions": [{
                     "answers": [{
                         "id": "internet-sales-answer",
@@ -112,7 +110,8 @@
                         "options": [],
                         "q_code": "21",
                         "type": "Currency",
-                        "currency": "GBP"
+                        "currency": "GBP",
+                        "decimal_places": 2
                     }],
                     "description": "<p>Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.</p>",
                     "guidance": {
@@ -132,7 +131,6 @@
             {
                 "type": "Questionnaire",
                 "id": "changes-in-retail-turnover",
-                "description": "",
                 "questions": [{
                     "answers": [{
                         "guidance": {
@@ -262,7 +260,6 @@
             {
                 "type": "Questionnaire",
                 "id": "changes-in-employees",
-                "description": "",
                 "questions": [{
                     "answers": [{
                         "id": "changes-in-employees-answer",
@@ -272,7 +269,6 @@
                         "q_code": "147",
                         "type": "TextArea"
                     }],
-                    "description": "",
                     "guidance": {
                         "content": [{
                                 "description": "<p>Comment on significant changes in the number of employees from:</p>"

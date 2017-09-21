@@ -203,7 +203,6 @@
             {
                 "type": "Questionnaire",
                 "id": "total-retail-turnover-block",
-                "description": "",
                 "questions": [{
                     "guidance": {
                         "content": [{
@@ -229,13 +228,13 @@
                     "answers": [{
                         "id": "total-retail-turnover",
                         "alias": "total_turnover",
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                         "label": "Total retail turnover",
                         "mandatory": true,
                         "options": [],
                         "q_code": "20",
                         "type": "Currency",
-                        "currency": "GBP"
+                        "currency": "GBP",
+                        "decimal_places": 2
                     }],
                     "description": "",
                     "id": "total-turnover-question",
@@ -247,7 +246,6 @@
             {
                 "type": "Questionnaire",
                 "id": "food-sales",
-                "description": "",
                 "questions": [{
                     "guidance": {
                         "content": [{
@@ -267,14 +265,14 @@
                         ]
                     },
                     "answers": [{
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                         "id": "total-sales-food",
                         "label": "Food",
                         "mandatory": false,
                         "options": [],
                         "q_code": "22",
                         "type": "Currency",
-                        "currency": "GBP"
+                        "currency": "GBP",
+                        "decimal_places": 2
                     }],
                     "description": "",
                     "id": "total-sales-food-question",
@@ -286,7 +284,6 @@
             {
                 "type": "Questionnaire",
                 "id": "alcohol-sales",
-                "description": "",
                 "questions": [{
                     "guidance": {
                         "content": [{
@@ -299,14 +296,14 @@
                         }]
                     },
                     "answers": [{
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                         "id": "total-sales-alcohol",
                         "label": "Alcohol, confectionery and tobacco",
                         "mandatory": false,
                         "options": [],
                         "q_code": "23",
                         "type": "Currency",
-                        "currency": "GBP"
+                        "currency": "GBP",
+                        "decimal_places": 2
                     }],
                     "description": "",
                     "id": "total-sales-alcohol-question",
@@ -318,7 +315,6 @@
             {
                 "type": "Questionnaire",
                 "id": "clothing-sales",
-                "description": "",
                 "questions": [{
                     "guidance": {
                         "content": [{
@@ -333,14 +329,14 @@
                         }]
                     },
                     "answers": [{
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                         "id": "total-sales-clothing",
                         "label": "Clothing and footwear",
                         "mandatory": false,
                         "options": [],
                         "q_code": "24",
                         "type": "Currency",
-                        "currency": "GBP"
+                        "currency": "GBP",
+                        "decimal_places": 2
                     }],
                     "description": "",
                     "id": "total-sales-clothing-question",
@@ -352,7 +348,6 @@
             {
                 "type": "Questionnaire",
                 "id": "household-goods-sales",
-                "description": "",
                 "questions": [{
                     "answers": [{
                         "guidance": {
@@ -379,16 +374,16 @@
                                 ]
                             }]
                         },
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                         "id": "total-sales-household-goods",
                         "label": "Household goods",
                         "mandatory": false,
                         "options": [],
                         "q_code": "25",
                         "type": "Currency",
-                        "currency": "GBP"
+                        "currency": "GBP",
+                        "decimal_places": 2
+
                     }],
-                    "description": "",
                     "id": "total-sales-household-goods-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of sales for <em>household goods</em>?",
                     "type": "General"
@@ -398,7 +393,6 @@
             {
                 "type": "Questionnaire",
                 "id": "other-goods-sales",
-                "description": "",
                 "questions": [{
                     "answers": [{
                         "guidance": {
@@ -435,14 +429,14 @@
                                 }
                             ]
                         },
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                         "id": "total-sales-other-goods",
                         "label": "Other goods",
                         "mandatory": false,
                         "options": [],
                         "q_code": "26",
                         "type": "Currency",
-                        "currency": "GBP"
+                        "currency": "GBP",
+                        "decimal_places": 2
                     }],
                     "description": "",
                     "id": "total-sales-other-goods-question",
@@ -454,7 +448,6 @@
             {
                 "type": "Questionnaire",
                 "id": "total-internet-sales",
-                "description": "",
                 "questions": [{
                     "guidance": {
                         "content": [{
@@ -466,14 +459,14 @@
                         }]
                     },
                     "answers": [{
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                         "id": "internet-sales",
                         "label": "Internet sales",
                         "mandatory": false,
                         "options": [],
                         "q_code": "21",
                         "type": "Currency",
-                        "currency": "GBP"
+                        "currency": "GBP",
+                        "decimal_places": 2
                     }],
                     "description": "",
                     "id": "internet-sales-question",
@@ -515,7 +508,6 @@
                         }]
                     },
                     "answers": [{
-                        "description": "",
                         "id": "significant-change-established-answer",
                         "label": "",
                         "mandatory": true,
@@ -542,7 +534,6 @@
             {
                 "type": "Questionnaire",
                 "id": "reason-for-change",
-                "description": "",
                 "questions": [{
                     "answers": [{
                         "description": "",
@@ -598,7 +589,6 @@
             {
                 "type": "Questionnaire",
                 "id": "change-comment-block",
-                "description": "",
                 "questions": [{
                     "answers": [{
                         "guidance": {

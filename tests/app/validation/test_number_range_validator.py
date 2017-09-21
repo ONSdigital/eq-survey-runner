@@ -197,6 +197,79 @@ class TestNumberRangeValidator(unittest.TestCase):
         except ValidationError:
             self.fail("Valid integer raised ValidationError")
 
+
+    def test_zero_max(self):
+        max_value = 0
+        answer = {
+            'max_value': {
+                "value": max_value
+            },
+            'label': 'Max Test',
+            'mandatory': False,
+            'id': 'test-range',
+            'type': 'Currency'
+        }
+        label = answer['label']
+        error_message = error_messages['NUMBER_TOO_LARGE'] % dict(max=max_value)
+
+        integer_field = get_number_field(answer, label, '', error_messages, self.store)
+
+        self.assertTrue(integer_field.field_class == CustomIntegerField)
+
+        for validator in integer_field.kwargs['validators']:
+            if isinstance(validator, NumberRange):
+                test_validator = validator
+
+        mock_form = Mock()
+        integer_field.data = 1
+
+        with self.assertRaises(ValidationError) as ite:
+            test_validator(mock_form, integer_field)
+
+        self.assertEqual(str(ite.exception), error_message)
+
+        try:
+            integer_field.data = 0
+            test_validator(mock_form, integer_field)
+        except ValidationError:
+            self.fail("Valid integer raised ValidationError")
+
+    def test_zero_min(self):
+        min_value = 0
+        answer = {
+            'min_value': {
+                "value": min_value
+            },
+            'label': 'Min Test',
+            'mandatory': False,
+            'id': 'test-range',
+            'type': 'Currency'
+        }
+        label = answer['label']
+        error_message = error_messages['NUMBER_TOO_SMALL'] % dict(min=min_value)
+
+        integer_field = get_number_field(answer, label, '', error_messages, self.store)
+
+        self.assertTrue(integer_field.field_class == CustomIntegerField)
+
+        for validator in integer_field.kwargs['validators']:
+            if isinstance(validator, NumberRange):
+                test_validator = validator
+
+        mock_form = Mock()
+        integer_field.data = -1
+
+        with self.assertRaises(ValidationError) as ite:
+            test_validator(mock_form, integer_field)
+
+        self.assertEqual(str(ite.exception), error_message)
+
+        try:
+            integer_field.data = 0
+            test_validator(mock_form, integer_field)
+        except ValidationError:
+            self.fail("Valid integer raised ValidationError")
+
     def test_value_range(self):
         answer = { 'min_value': {
                         "value": 10

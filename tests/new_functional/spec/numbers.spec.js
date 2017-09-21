@@ -56,5 +56,4 @@ describe('NumericRange', function() {
           .getText('ul > li:nth-child(2) > a').should.eventually.contain("Enter a number rounded to 2 decimal places.");
       });
   });
-
 });

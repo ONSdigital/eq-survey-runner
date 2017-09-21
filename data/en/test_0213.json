@@ -36,7 +36,6 @@
             {
                 "type": "Questionnaire",
                 "id": "reporting-period",
-                "description": "",
                 "questions": [{
                         "answers": [{
                                 "id": "period-from",
@@ -96,9 +95,9 @@
                             "options": [],
                             "q_code": "22",
                             "type": "Currency",
-                            "currency": "GBP"
+                            "currency": "GBP",
+                            "decimal_places": 2
                         }],
-                        "description": "",
                         "id": "total-sales-food-question",
                         "title": "",
                         "type": "General"
@@ -123,9 +122,9 @@
                             "options": [],
                             "q_code": "23",
                             "type": "Currency",
-                            "currency": "GBP"
+                            "currency": "GBP",
+                            "decimal_places": 2
                         }],
-                        "description": "",
                         "id": "total-sales-alcohol-question",
                         "title": "",
                         "type": "General"
@@ -153,9 +152,9 @@
                             "options": [],
                             "q_code": "24",
                             "type": "Currency",
-                            "currency": "GBP"
+                            "currency": "GBP",
+                            "decimal_places": 2
                         }],
-                        "description": "",
                         "id": "total-sales-clothing-question",
                         "title": "",
                         "type": "General"
@@ -192,9 +191,9 @@
                             "options": [],
                             "q_code": "25",
                             "type": "Currency",
-                            "currency": "GBP"
+                            "currency": "GBP",
+                            "decimal_places": 2
                         }],
-                        "description": "",
                         "id": "total-sales-household-goods-question",
                         "title": "",
                         "type": "General"
@@ -241,9 +240,9 @@
                             "options": [],
                             "q_code": "26",
                             "type": "Currency",
-                            "currency": "GBP"
+                            "currency": "GBP",
+                            "decimal_places": 2
                         }],
-                        "description": "",
                         "id": "total-sales-other-goods-question",
                         "title": "",
                         "type": "General"
@@ -279,9 +278,9 @@
                             "options": [],
                             "q_code": "20",
                             "type": "Currency",
-                            "currency": "GBP"
+                            "currency": "GBP",
+                            "decimal_places": 2
                         }],
-                        "description": "",
                         "id": "total-retail-turnover-question",
                         "title": "",
                         "type": "General"
@@ -305,9 +304,9 @@
                             "options": [],
                             "q_code": "21",
                             "type": "Currency",
-                            "currency": "GBP"
+                            "currency": "GBP",
+                            "decimal_places": 2
                         }],
-                        "description": "",
                         "id": "internet-sales-question",
                         "title": "",
                         "type": "General"
@@ -362,7 +361,6 @@
                             "q_code": "51",
                             "type": "Number"
                         }],
-                        "description": "",
                         "id": "number-male-employees-over-30-hours-question",
                         "title": "",
                         "type": "General"
@@ -376,7 +374,6 @@
                             "q_code": "52",
                             "type": "Number"
                         }],
-                        "description": "",
                         "id": "number-male-employees-under-30-hours-question",
                         "title": "",
                         "type": "General"
@@ -390,7 +387,6 @@
                             "q_code": "53",
                             "type": "Number"
                         }],
-                        "description": "",
                         "id": "number-female-employees-over-30-hours-question",
                         "title": "",
                         "type": "General"
@@ -404,7 +400,6 @@
                             "q_code": "54",
                             "type": "Number"
                         }],
-                        "description": "",
                         "id": "number-female-employees-under-30-hours-question",
                         "title": "",
                         "type": "General"

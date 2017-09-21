@@ -294,7 +294,7 @@
                         },
                         {
                             "goto": {
-                                "group": "calendar-monthly-pay",
+                                "group": "calendar-monthly",
                                 "when": [{
                                     "id": "pay-pattern-frequency-answer",
                                     "condition": "contains",

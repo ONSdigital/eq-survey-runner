@@ -122,9 +122,9 @@
                         ]
                     }]
                 }]
-            },
-            {
-                "title": "Reporting period",
+            }, {
+                "type": "Questionnaire",
+                "id": "reporting-period",
                 "questions": [{
                     "title": "What are the dates of the period that you will be reporting for?",
                     "type": "DateRange",
@@ -180,12 +180,12 @@
                         "id": "total-retail-turnover-answer",
                         "alias": "total_turnover",
                         "label": "Total retail turnover",
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                         "mandatory": true,
                         "options": [],
                         "q_code": "20",
                         "type": "Currency",
-                        "currency": "GBP"
+                        "currency": "GBP",
+                        "decimal_places": 2
                     }],
                     "id": "total-turnover-question",
                     "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}\u2019s <em>total retail turnover</em>?",
@@ -207,14 +207,14 @@
                         }]
                     },
                     "answers": [{
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                         "id": "internet-sales-answer",
                         "label": "Internet sales",
                         "mandatory": true,
                         "options": [],
                         "q_code": "21",
                         "type": "Currency",
-                        "currency": "GBP"
+                        "currency": "GBP",
+                        "decimal_places": 2
                     }],
                     "id": "internet-sales-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
@@ -464,7 +464,7 @@
                         }
                     ],
                     "id": "employee-breakdown-questions",
-                    "title": "Of the <em>{{answers.employee_count}}</em> total employees employed on {{exercise.employment_date|format_date}}, please specify the number of:",
+                    "title": "Of the <em>{{answers.employee_count|format_number}}</em> total employees employed on {{exercise.employment_date|format_date}}, please specify the number of:",
                     "type": "General"
                 }],
                 "title": "Employees"
