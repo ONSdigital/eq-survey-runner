@@ -1,6 +1,6 @@
 from flask import Blueprint, Response, request, session, current_app
+from sdc.crypto.decrypter import decrypt
 
-from app.authentication.authenticator import decrypt_jwe, decode_jwt
 from app.authentication.user import User
 from app.globals import get_answer_store, get_metadata, get_questionnaire_store
 from app.questionnaire.path_finder import PathFinder
@@ -24,9 +24,9 @@ def flush_data():
     if not encrypted_token or encrypted_token is None:
         return Response(status=403)
 
-    jwt_token = decrypt_jwe(encrypted_token, current_app.eq['secret_store'], purpose=KEY_PURPOSE_AUTHENTICATION)
-
-    decrypted_token = decode_jwt(jwt_token, current_app.eq['secret_store'], purpose=KEY_PURPOSE_AUTHENTICATION)
+    decrypted_token = decrypt(token=encrypted_token,
+                              key_store=current_app.eq['secret_store'],
+                              key_purpose=KEY_PURPOSE_AUTHENTICATION)
 
     roles = decrypted_token.get('roles')
 
