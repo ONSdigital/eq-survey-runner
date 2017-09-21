@@ -24,7 +24,9 @@ def flush_data():
     if not encrypted_token or encrypted_token is None:
         return Response(status=403)
 
-    decrypted_token = decrypt(encrypted_token, current_app.eq['secret_store'], purpose=KEY_PURPOSE_AUTHENTICATION)
+    decrypted_token = decrypt(token=encrypted_token,
+                              key_store=current_app.eq['secret_store'],
+                              key_purpose=KEY_PURPOSE_AUTHENTICATION)
 
     roles = decrypted_token.get('roles')
 
