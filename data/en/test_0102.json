@@ -69,7 +69,8 @@
                         "options": [],
                         "q_code": "20",
                         "type": "Currency",
-                        "currency": "GBP"
+                        "currency": "GBP",
+                        "decimal_places": 2
                     }],
                     "description": "<p>Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.</p>",
                     "guidance": {
@@ -110,9 +111,10 @@
                         "options": [],
                         "q_code": "21",
                         "type": "Currency",
-                        "currency": "GBP"
+                        "currency": "GBP",
+                        "decimal_places": 2
                     }],
-                    "description": "<p>Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.</p>",
+                    "description": "<p>Even if your figures are zero, please still complete.</p>",
                     "guidance": {
                         "content": [{
                             "title": "Include",
