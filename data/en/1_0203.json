@@ -274,7 +274,7 @@
                         "q_code": "20",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
                     }],
                     "description": "",
                     "id": "total-turnover-question",
@@ -312,7 +312,7 @@
                         "q_code": "22",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
                     }],
                     "description": "",
                     "id": "total-sales-food-question",
@@ -343,7 +343,7 @@
                         "q_code": "23",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
                     }],
                     "description": "",
                     "id": "total-sales-alcohol-question",
@@ -376,7 +376,7 @@
                         "q_code": "24",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
                     }],
                     "description": "",
                     "id": "total-sales-clothing-question",
@@ -421,7 +421,7 @@
                         "q_code": "25",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
 
                     }],
                     "id": "total-sales-household-goods-question",
@@ -476,7 +476,7 @@
                         "q_code": "26",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
                     }],
                     "description": "",
                     "id": "total-sales-other-goods-question",
@@ -506,7 +506,7 @@
                         "q_code": "21",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
                     }],
                     "description": "",
                     "id": "internet-sales-question",
