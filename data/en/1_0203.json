@@ -173,6 +173,46 @@
             },
             {
                 "title": "Reporting period",
+                "routing_rules": [{
+                        "goto": {
+                            "when": [{
+                                "value": "Yes",
+                                "condition": "equals",
+                                "id": "reporting-period-choice-answer"
+                            }],
+                            "id": "total-retail-turnover-block"
+                        }
+                    },
+                    {
+                        "goto": {
+                            "id": "reporting-period"
+                        }
+                    }
+                ],
+                "questions": [{
+                    "title": "Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?",
+                    "type": "General",
+                    "id": "reporting-period-choice-question",
+                    "answers": [{
+                        "mandatory": true,
+                        "options": [{
+                                "label": "Yes",
+                                "value": "Yes"
+                            },
+                            {
+                                "label": "No",
+                                "value": "No"
+                            }
+                        ],
+                        "id": "reporting-period-choice-answer",
+                        "type": "Radio"
+                    }]
+                }],
+                "id": "reporting-period-choice",
+                "type": "Questionnaire"
+            },
+            {
+                "title": "Reporting period",
                 "questions": [{
                     "title": "What are the dates of the period that you will be reporting for?",
                     "type": "DateRange",
