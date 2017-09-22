@@ -288,7 +288,7 @@
                         "q_code": "20",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
                     }],
                     "description": "",
                     "id": "total-turnover-question",
@@ -326,7 +326,7 @@
                         "q_code": "22",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
                     }],
                     "id": "total-sales-food-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>food</em> sales?",
@@ -356,7 +356,7 @@
                         "q_code": "23",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
                     }],
                     "description": "",
                     "id": "total-sales-alcohol-question",
@@ -389,7 +389,7 @@
                         "q_code": "24",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
                     }],
                     "id": "total-sales-clothing-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>clothing and footwear</em> sales?",
@@ -433,7 +433,7 @@
                         "q_code": "25",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
                     }],
                     "id": "total-sales-household-goods-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of sales for <em>household goods</em>?",
@@ -489,7 +489,7 @@
                         "q_code": "26",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
                     }],
                     "id": "total-sales-other-goods-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>other</em> sales?",
@@ -518,7 +518,7 @@
                         "q_code": "21",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
                     }],
                     "id": "internet-sales-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
@@ -556,7 +556,7 @@
                         "q_code": "27",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
                     }],
                     "id": "total-sales-automotive-fuel-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>automotive fuel</em> sales?",
