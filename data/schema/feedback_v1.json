@@ -5,6 +5,7 @@
   "properties": {
     "tx_id": {
       "type": "string",
+      "description": "Survey transaction identifier. This will be the same for all feedback during a survey session.",
       "pattern": "^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$"
     },
     "type": {
@@ -21,6 +22,7 @@
     },
     "survey_id": {
       "type": "string",
+      "description": "The ONS id of the survey derived from the inquiry code already in use for that survey.",
       "pattern": "^[0-9]{3}$"
     },
     "collection": {
@@ -39,6 +41,7 @@
     },
     "submitted_at": {
       "type": "string",
+      "description": "Time at which survey feedback was submitted.",
       "format": "date-time"
     },
     "metadata": {

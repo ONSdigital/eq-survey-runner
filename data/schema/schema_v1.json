@@ -14,16 +14,16 @@
   "definitions": {
     "id": {
       "type": "string",
-      "description": "A lowercase alphanumeric string separated by hyphens.",
+      "description": "Used to identify groups, blocks, questions and answers.",
       "pattern": "^[a-z0-9][a-z0-9\\-]*[a-z0-9]$"
     },
     "q_code": {
       "type": "string",
-      "description": "A question code used by downstream systems to identify answers",
+      "description": "A question code used by downstream systems to identify answers.",
       "pattern": "^[0-9a-z]+$"
     },
     "guidance_content": {
-      "description": "Allows customisation of guidance text",
+      "description": "Allows customisation of guidance text.",
       "type": "array",
       "minItems": 1,
       "items": {
@@ -86,7 +86,8 @@
             "type": "string"
           },
           "meta": {
-            "type": "string"
+            "type": "string",
+            "description": "Metadata provided by the calling service. This will vary between surveys."
           },
           "condition": {
             "enum": [
@@ -124,6 +125,7 @@
     },
     "messages": {
       "type": "object",
+      "description": "These messages override the standard error messages.",
       "properties": {
         "MANDATORY_TEXTFIELD": {
           "type": "string"
@@ -172,6 +174,7 @@
     },
     "routing_rules": {
       "type": "array",
+      "description": "Used to direct the journey through a survey (in conjunction with navigation).",
       "items": {
         "type": "object",
         "properties": {
@@ -179,10 +182,12 @@
             "type": "object",
             "properties": {
               "id": {
-                "type": "string"
+                "type": "string",
+                "description": "The id of another block in the same group."
               },
               "group": {
-                "type": "string"
+                "type": "string",
+                "description": "The id of another group. The first block in that group will be routed to."
               },
               "when": {
                 "$ref": "#/definitions/when"
@@ -266,7 +271,8 @@
       ]
     },
     "survey_id": {
-      "type": "string"
+      "type": "string",
+      "description": "The ONS id of the survey derived from the inquiry code already in use for that survey."
     },
     "session_timeout_in_seconds": {
       "description": "The amount of time in seconds before timing out a users session.",
@@ -293,6 +299,7 @@
     },
     "navigation": {
       "type": "object",
+      "description": "Used in conjunction with routing to take user through a survey. ",
       "properties": {
         "visible": {
           "type": "boolean"
@@ -300,24 +307,36 @@
         "sections": {
           "type": "array",
           "items": {
-            "title": "string",
-            "title_from_answers": "array",
-            "group_order": "array",
-            "required": [
-              "group_order"
-            ],
-            "oneOf": [
-              {
-                "required": [
-                  "title"
-                ]
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Title for a given id."
               },
-              {
-                "required": [
-                  "title_from_answers"
-                ]
+              "title_from_answers": {
+                "type": "array",
+                "description": "Takes a list of answer ids. Title will be generated from answer values concatenated together with spaces."
+              },
+              "group_order": {
+                "type": "array",
+                "description": "Order in which groups will be navigated within this section."
               }
-            ]
+            },
+              "required": [
+                "group_order"
+              ],
+              "oneOf": [
+                {
+                  "required": [
+                    "title"
+                  ]
+                },
+                {
+                  "required": [
+                    "title_from_answers"
+                  ]
+                }
+              ]
           }
         }
       }
@@ -335,17 +354,6 @@
           },
           "title": {
             "type": "string"
-          },
-          "completed_id": {
-            "type": "string"
-          },
-          "highlight_when": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "minItems": 1,
-            "uniqueItems": true
           },
           "hide_in_navigation": {
             "type": "boolean"
@@ -469,7 +477,8 @@
                               "$ref": "#/definitions/id"
                             },
                             "parent_answer_id": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "The id of an answer which is the parent of this child answer, for example a radio option leading to a text field answer."
                             },
                             "q_code": {
                               "$ref": "#/definitions/q_code"
@@ -481,10 +490,12 @@
                               "type": "object",
                               "properties": {
                                 "show_guidance": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "The text that is used for the 'Show guidance' link."
                                 },
                                 "hide_guidance": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "The text that is used for the 'Hide guidance' link."
                                 },
                                 "content": {
                                   "$ref": "#/definitions/guidance_content"
@@ -524,7 +535,8 @@
                                     "$ref": "#/definitions/q_code"
                                   },
                                   "child_answer_id": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "description": "The id of an answer that should be treated as a child of this one, for example a text field answer can be the child of a radio option. The id must be of an answer in this list of answers."
                                   }
                                 },
                                 "required": [
@@ -540,22 +552,23 @@
                               "type": "integer"
                             },
                             "decimal_places": {
-                              "type": "integer"
+                              "type": "integer",
+                              "description": "Number of decimal places allowed"
                             },
                             "alias": {
-                              "type": "string"
-                            },
-                            "repeats": {
-                              "type": "boolean"
+                              "type": "string",
+                              "description": "An alias that can be used when piping this answer."
                             },
                             "max_value": {
                               "type": "object",
                               "properties": {
                                 "value": {
-                                  "type": "integer"
+                                  "type": "integer",
+                                  "description": "Maximum numeric value allowed."
                                 },
                                 "answer_id": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "The id of an answer from which to obtain the max_value"
                                 }
                               },
                               "oneOf": [
@@ -575,10 +588,12 @@
                               "type": "object",
                               "properties": {
                                 "value": {
-                                  "type": "integer"
+                                  "type": "integer",
+                                  "description": "Minimum numeric value allowed."
                                 },
                                 "answer_id": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "The id of an answer from which to obtain the min_value"
                                 }
                               },
                               "oneOf": [
@@ -609,7 +624,8 @@
                               }
                             },
                             "calculated": {
-                              "type": "boolean"
+                              "type": "boolean",
+                              "description": "Indicates that the answer should be treated as the result of a calculation."
                             }
                           },
                           "additionalProperties": false,
