@@ -27,6 +27,9 @@ class NumberCheck(object):
         except (ValueError, TypeError, InvalidOperation, AttributeError):
             raise validators.StopValidation(self.message)
 
+        if 'e' in field.raw_data[0].lower():
+            raise validators.StopValidation(self.message)
+
 
 class ResponseRequired(object):
     """

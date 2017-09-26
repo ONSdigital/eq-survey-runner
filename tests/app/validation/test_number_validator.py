@@ -48,6 +48,18 @@ class TestNumberValidator(unittest.TestCase):
 
         self.assertEqual(error_messages['INVALID_NUMBER'], str(ite.exception))
 
+    def test_numeric_exponential_invalid(self):
+        validator = NumberCheck()
+
+        mock_form = Mock()
+        mock_field = Mock()
+        mock_field.raw_data = ['2E2']
+
+        with self.assertRaises(StopValidation) as ite:
+            validator(mock_form, mock_field)
+
+        self.assertEqual(error_messages['INVALID_NUMBER'], str(ite.exception))
+
     def test_decimal_number_invalid(self):
         validator = DecimalPlaces(2)
 
