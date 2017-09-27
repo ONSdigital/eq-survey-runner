@@ -11,3 +11,11 @@
   } %}
   {{attr|xmlattr}}
 {%- endmacro -%}
+
+{%- macro telephone_number(aria_describedby=None, class=None) -%}
+  {% set attr = {
+    "aria-describedby": aria_describedby,
+    "class": class
+  } %}
+<a href="tel:03001234931" {{attr|xmlattr}}>0300 1234 931</a>
+{%- endmacro -%}

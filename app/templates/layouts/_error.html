@@ -1,5 +1,5 @@
 {% extends 'layouts/_twocol.html' %}
-
+{% import 'macros/helpers.html' as helpers %}
 {% block page_title %}{{_("Error")}} {{status_code}}{% endblock %}
 
 {% block main %}
@@ -14,9 +14,7 @@
         {%- endfor -%}
       </ul>
     {%- endif -%}
-
-
-    <p class="u-mb-no">If the problem continues please call <a class="info__link" href="tel:03001234931" aria-describedby="survey-help">0300 1234 931</a></p>
+    <p class="u-mb-no">If the problem continues please call {{helpers.telephone_number('survey-help')}}</p>
   </div>
 
   {{answer_guidance}}
@@ -27,3 +25,4 @@
     <div>{{ua.os.family}} ({{ua.os.major or '0'}}.{{ua.os.minor or '0'}}.{{ua.os.patch or '0'}})</div>
   </div>
 {% endblock %}
+

@@ -1,4 +1,5 @@
 {% extends 'layouts/_twocol.html' %}
+{% import 'macros/helpers.html' as helpers %}
 
 {% set survey_title  = 'About ONS' %}
 
@@ -39,7 +40,7 @@
                                 Telephone
                             </h2>
                             <div class="question__description mars">
-                                <p>0300 1234 931</p>
+                                <p>{{helpers.telephone_number()}}</p>
                             </div>
                             <div class="question__description mars">
                                 <p>Opening hours:</p>
