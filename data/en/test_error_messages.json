@@ -1,0 +1,64 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "023",
+    "title": "Test Error Messages",
+    "description": "Test Description",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "groups": [{
+            "blocks": [{
+                "type": "Questionnaire",
+                "id": "test-errors",
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                            "id": "test-number",
+                            "description": "",
+                            "label": "Number Test",
+                            "mandatory": false,
+                            "options": [],
+                            "type": "Number"
+                        },
+                        {
+                            "id": "test-percent",
+                            "description": "",
+                            "label": "Percent Test (0 to 100)",
+                            "mandatory": false,
+                            "options": [],
+                            "type": "Percentage",
+                            "max_value": {
+                                "value": 100
+                            }
+                        },
+                        {
+                            "id": "test-currency",
+                            "description": "",
+                            "label": "Currency test to 2 decimal places",
+                            "mandatory": false,
+                            "options": [],
+                            "type": "Currency",
+                            "decimal_places": 2
+                        }
+                    ],
+                    "description": "",
+                    "id": "test-min-max-range-question",
+                    "title": "Please enter test values (none mandatory)",
+                    "type": "General"
+                }],
+                "title": ""
+            }],
+            "id": "test",
+            "title": ""
+        },
+        {
+            "blocks": [{
+                "type": "Summary",
+                "id": "summary"
+            }],
+            "id": "summary-group",
+            "title": "Summary"
+        }
+    ]
+}
