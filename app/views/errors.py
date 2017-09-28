@@ -22,12 +22,6 @@ class MultipleSurveyError(Exception):
     pass
 
 
-@errors_blueprint.after_request
-def add_cache_control(response):
-    response.cache_control.no_cache = True
-    return response
-
-
 @errors_blueprint.app_errorhandler(401)
 @errors_blueprint.app_errorhandler(NoTokenException)
 def unauthorized(error=None):
@@ -73,6 +67,10 @@ def http_exception(error):
 
 
 def log_exception(error, status_code):
+    metadata = get_metadata(current_user)
+    if metadata:
+        logger.bind(tx_id=metadata['tx_id'])
+
     if error:
         logger.error('an error has occurred', exc_info=error, url=request.url, status_code=status_code)
     else:
