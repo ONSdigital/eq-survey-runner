@@ -89,11 +89,17 @@ def convert_answers_to_data(answer_store, questionnaire_json, routing_path):
         answer_schema_list = SchemaHelper.get_answers_by_id_for_block(block_json)
 
         for answer in answers_in_block:
-            answer_schema = answer_schema_list[answer['answer_id']]
+            try:
+                answer_schema = answer_schema_list[answer['answer_id']]
+            except KeyError:
+                logger.error("No matching answer schema found in the store")
+                continue
+
             value = answer['value']
 
             if answer_schema is not None and value is not None and 'parent_answer_id' not in answer_schema:
-                if answer_schema['type'] != 'Checkbox' or any('q_code' not in option for option in answer_schema['options']):
+                if answer_schema['type'] != 'Checkbox' or any('q_code' not in option for option in
+                                                              answer_schema['options']):
                     if 'q_code' not in answer_schema:
                         continue
 
