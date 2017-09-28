@@ -1,11 +1,12 @@
 from flask import Blueprint, redirect, url_for, escape, request, current_app, g
 from flask_login import login_required, current_user
 from flask_wtf import FlaskForm
+from sdc.crypto.encrypter import encrypt
 from wtforms import StringField, TextAreaField
 from wtforms.validators import InputRequired
 
 from app.helpers import template_helper
-from app.submitter.encrypter import encrypt
+from app.secrets import KEY_PURPOSE_SUBMISSION
 from app.submitter.submission_failed import SubmissionFailedException
 from app.globals import get_metadata
 from app.submitter.converter import convert_feedback
@@ -59,7 +60,7 @@ def send_feedback():
             g.schema_json['survey_id'],
         )
 
-        encrypted_message = encrypt(message, current_app.eq['secret_store'])
+        encrypted_message = encrypt(message, current_app.eq['secret_store'], key_purpose=KEY_PURPOSE_SUBMISSION)
         sent = current_app.eq['submitter'].send_message(encrypted_message,
                                                         current_app.config['EQ_RABBITMQ_QUEUE_NAME'],
                                                         metadata['tx_id'])

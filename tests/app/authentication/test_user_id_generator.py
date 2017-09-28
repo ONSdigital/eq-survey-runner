@@ -1,7 +1,7 @@
 import unittest
+from sdc.crypto.exceptions import InvalidTokenException
 
 from app import settings
-from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.user_id_generator import UserIDGenerator
 
 

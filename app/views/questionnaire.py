@@ -4,6 +4,7 @@ from collections import defaultdict
 from flask import Blueprint, g, redirect, request, url_for, current_app
 from flask_login import current_user, login_required
 from flask_themes2 import render_theme_template
+from sdc.crypto.encrypter import encrypt
 
 from structlog import get_logger
 
@@ -18,8 +19,8 @@ from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
 
 from app.questionnaire.rules import evaluate_skip_conditions
+from app.secrets import KEY_PURPOSE_SUBMISSION
 from app.submitter.converter import convert_answers
-from app.submitter.encrypter import encrypt
 from app.submitter.submission_failed import SubmissionFailedException
 from app.templating.metadata_context import build_metadata_context_for_survey_completed
 from app.templating.schema_context import build_schema_context
@@ -269,7 +270,7 @@ def submit_answers(eq_id, form_type, collection_id):
             path_finder.get_routing_path(),
         )
 
-        encrypted_message = encrypt(message, current_app.eq['secret_store'])
+        encrypted_message = encrypt(message, current_app.eq['secret_store'], KEY_PURPOSE_SUBMISSION)
         sent = current_app.eq['submitter'].send_message(
             encrypted_message,
             current_app.config['EQ_RABBITMQ_QUEUE_NAME'],

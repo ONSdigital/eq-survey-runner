@@ -3,7 +3,7 @@ from datetime import datetime
 
 from structlog import get_logger
 
-from app.authentication.invalid_token_exception import InvalidTokenException
+from sdc.crypto.exceptions import InvalidTokenException
 
 logger = get_logger()
 
