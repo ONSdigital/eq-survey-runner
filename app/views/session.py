@@ -11,7 +11,7 @@ from app.globals import get_answer_store, get_completed_blocks
 from app.questionnaire.path_finder import PathFinder
 from app.storage.metadata_parser import parse_metadata
 from app.utilities.schema import load_schema_from_metadata
-from app.helpers.session_helper import end_session_with_schema_context
+from app.helpers.session_helper import remove_survey_session_data
 from app.views.errors import render_template
 
 logger = get_logger()
@@ -85,14 +85,14 @@ def get_timeout_continue():
 @session_blueprint.route('/expire-session', methods=["POST"])
 @login_required
 def post_expire_session():
-    end_session_with_schema_context()
+    remove_survey_session_data()
     return get_session_expired()
 
 
 @session_blueprint.route('/session-expired', methods=["GET"])
 def get_session_expired():
     if current_user.is_active:
-        end_session_with_schema_context()
+        remove_survey_session_data()
 
     return render_template('session-expired.html')
 
@@ -100,6 +100,6 @@ def get_session_expired():
 @session_blueprint.route('/signed-out', methods=["GET"])
 def get_sign_out():
     if current_user.is_active:
-        end_session_with_schema_context()
+        remove_survey_session_data()
 
     return render_template('signed-out.html')

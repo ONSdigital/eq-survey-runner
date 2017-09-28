@@ -12,7 +12,7 @@ from app.globals import get_answer_store, get_completed_blocks, get_metadata, ge
 from app.helpers.form_helper import get_form_for_location, post_form_for_location
 from app.helpers.schema_helper import SchemaHelper
 from app.helpers.path_finder_helper import path_finder
-from app.helpers.session_helper import end_session_with_schema_context, _remove_survey_session_data
+from app.helpers.session_helper import remove_survey_session_data
 from app.helpers import template_helper
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
@@ -282,7 +282,7 @@ def submit_answers(eq_id, form_type, collection_id):
             metadata['ru_ref'])
 
         get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
-        _remove_survey_session_data()
+        remove_survey_session_data()
 
         return redirect(url_for(
             '.get_thank_you',
@@ -316,7 +316,7 @@ def _save_sign_out(this_location, form):
             questionnaire_store.completed_blocks.remove(this_location)
             questionnaire_store.add_or_update()
 
-        end_session_with_schema_context(schema=g.schema_json)
+        remove_survey_session_data()
 
         return redirect(url_for('session.get_sign_out'))
 
