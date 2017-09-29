@@ -7,11 +7,6 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A survey that tests the totalling of percentage input fields",
-    "messages": {
-        "NUMBER_TOO_LARGE": "Number cannot be greater than one hundred",
-        "NUMBER_TOO_SMALL": "Number cannot be less than zero",
-        "INVALID_NUMBER": "Please enter an integer"
-    },
     "groups": [{
         "blocks": [{
                 "type": "Questionnaire",
@@ -28,11 +23,6 @@
                             "type": "Percentage",
                             "max_value": {
                                 "value": 100
-                            },
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
-                                }
                             }
                         },
                         {
@@ -45,11 +35,6 @@
                             "type": "Percentage",
                             "max_value": {
                                 "value": 100
-                            },
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
-                                }
                             }
                         },
                         {
@@ -62,11 +47,6 @@
                             "type": "Percentage",
                             "max_value": {
                                 "value": 100
-                            },
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
-                                }
                             }
                         },
                         {
@@ -79,11 +59,6 @@
                             "type": "Percentage",
                             "max_value": {
                                 "value": 100
-                            },
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
-                                }
                             }
                         },
                         {
@@ -100,7 +75,8 @@
                             },
                             "validation": {
                                 "messages": {
-                                    "NUMBER_TOO_LARGE": "The total percentages should be 100%"
+                                    "NUMBER_TOO_SMALL": "The total percentages should equal %(min)s",
+                                    "NUMBER_TOO_LARGE": "The total percentages should equal %(max)s"
                                 }
                             }
                         }

@@ -19,6 +19,7 @@ class QuestionPage extends BasePage {
 
   submit() { return '[data-qa="btn-submit"]'; }
 
+  saveSignOut() { return '[data-qa="btn-save-sign-out"]'; }
 
 }
 

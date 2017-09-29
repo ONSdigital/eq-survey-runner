@@ -39,6 +39,7 @@
                             "mandatory": false,
                             "options": [],
                             "type": "Currency",
+                            "currency": "GBP",
                             "decimal_places": 2
                         }
                     ],
