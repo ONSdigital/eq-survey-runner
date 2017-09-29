@@ -51,7 +51,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey)
 
-        blocks = [b.block_id for b in path_finder.get_routing_path()]
+        blocks = [b.block_id for b in path_finder.get_full_routing_path()]
 
         self.assertIn('introduction', blocks)
 
@@ -60,7 +60,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey)
 
-        blocks = [b.block_id for b in path_finder.get_routing_path()]
+        blocks = [b.block_id for b in path_finder.get_full_routing_path()]
 
         self.assertNotIn('introduction', blocks)
 
@@ -123,7 +123,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         ]
 
         path_finder = PathFinder(survey)
-        routing_path = path_finder.get_routing_path()
+        routing_path = path_finder.get_full_routing_path()
 
         self.assertEqual(routing_path, expected_path)
 
@@ -159,7 +159,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         answers.add(answer_2)
 
         path_finder = PathFinder(survey, answer_store=answers)
-        routing_path = path_finder.get_routing_path()
+        routing_path = path_finder.get_full_routing_path()
 
         self.assertEqual(routing_path, expected_path)
 
@@ -380,7 +380,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey, answer_store=answers)
 
-        self.assertFalse(Location("star-wars", 0, 'summary') in path_finder.get_routing_path())
+        self.assertFalse(Location("star-wars", 0, 'summary') in path_finder.get_full_routing_path())
 
     def test_repeating_groups(self):
         survey = load_schema_file("test_repeating_household.json")
@@ -410,7 +410,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey, answer_store=answers)
 
-        self.assertEqual(expected_path, path_finder.get_routing_path())
+        self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
     def test_should_not_show_block_for_zero_repeats(self):
         survey = load_schema_file("test_repeating_household.json")
@@ -436,7 +436,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey, answer_store=answers)
 
-        self.assertEqual(expected_path, path_finder.get_routing_path())
+        self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
     def test_repeating_groups_no_of_answers(self):
         survey = load_schema_file("test_repeating_household.json")
@@ -488,7 +488,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey, answer_store=answers)
 
-        self.assertEqual(expected_path, path_finder.get_routing_path())
+        self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
     def test_repeating_groups_no_of_answers_minus_one(self):
         survey = load_schema_file("test_repeating_household.json")
@@ -529,7 +529,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey, answer_store=answers)
 
-        self.assertEqual(expected_path, path_finder.get_routing_path())
+        self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
     def test_repeating_groups_previous_location_first_instance(self):
         survey = load_schema_file("census_household.json")
@@ -674,7 +674,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey, answer_store=answers)
 
-        self.assertEqual(expected_path, path_finder.get_routing_path())
+        self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
     def test_excessive_repeating_groups_conditional_location_path(self):
         survey = load_schema_file("test_repeating_and_conditional_routing.json")
@@ -699,7 +699,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey, answer_store=answers)
 
-        self.assertEqual("summary", path_finder.get_routing_path().pop().block_id)
+        self.assertEqual("summary", path_finder.get_full_routing_path().pop().block_id)
 
     def test_next_with_conditional_path_based_on_metadata(self):
         survey = load_schema_file("test_metadata_routing.json")

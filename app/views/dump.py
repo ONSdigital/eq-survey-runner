@@ -28,6 +28,6 @@ def dump_submission():
     answer_store = get_answer_store(current_user)
     metadata = get_metadata(current_user)
     schema = load_schema_from_metadata(metadata)
-    routing_path = PathFinder(schema, answer_store, metadata).get_routing_path()
+    routing_path = PathFinder(schema, answer_store, metadata).get_full_routing_path()
     response = {'submission': convert_answers(metadata, schema, answer_store, routing_path)}
     return jsonify(response), 200
