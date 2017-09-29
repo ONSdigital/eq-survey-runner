@@ -62,15 +62,17 @@ def add_cache_control(response):
     return response
 
 
-@questionnaire_blueprint.after_request
-def save_questionnaire_store(response):
-    if not current_user.is_anonymous:
-        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+def save_questionnaire_store(func):
+    def save_questionnaire_store_wrapper(*args, **kwargs):
+        response = func(*args, **kwargs)
+        if not current_user.is_anonymous:
+            questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
 
-        if questionnaire_store.has_changed():
             questionnaire_store.add_or_update()
 
-    return response
+        return response
+
+    return save_questionnaire_store_wrapper
 
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["GET"])
@@ -393,6 +395,7 @@ def _update_questionnaire_store(current_location, form):
         update_questionnaire_store_with_form_data(questionnaire_store, current_location, form.data)
 
 
+@save_questionnaire_store
 def update_questionnaire_store_with_form_data(questionnaire_store, location, answer_dict):
 
     survey_answer_ids = SchemaHelper.get_answer_ids_for_location(g.schema_json, location)
@@ -445,6 +448,7 @@ def _format_answer_value(answer_value):
     return formatted_answer_value
 
 
+@save_questionnaire_store
 def update_questionnaire_store_with_answer_data(questionnaire_store, location, answers):
 
     survey_answer_ids = SchemaHelper.get_answer_ids_for_location(g.schema_json, location)

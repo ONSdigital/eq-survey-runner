@@ -45,6 +45,9 @@ class Location(object):
         block_id = location_dict['block_id']
         return cls(group_id, group_instance, block_id)
 
+    def to_dict(self):
+        return vars(self)
+
     def url(self, metadata):
         """
         Return the survey runner url that this location represents

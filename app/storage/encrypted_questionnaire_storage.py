@@ -1,4 +1,5 @@
 import hashlib
+import simplejson as json
 
 from jwcrypto import jwe, jwk
 from jwcrypto.common import base64url_encode, base64url_decode
@@ -27,13 +28,14 @@ class EncryptedQuestionnaireStorage:
 
     def add_or_update(self, data):
         encrypted_data = self._encrypt_data(data)
+        encrypted_data_json = json.dumps({'data': encrypted_data})
         questionnaire_state = self._find_questionnaire_state()
         if questionnaire_state:
             logger.debug("updating questionnaire data", user_id=self._user_id)
-            questionnaire_state.set_data(encrypted_data)
+            questionnaire_state.state = encrypted_data_json
         else:
             logger.debug("creating questionnaire data", user_id=self._user_id)
-            questionnaire_state = QuestionnaireState(self._user_id, encrypted_data)
+            questionnaire_state = QuestionnaireState(self._user_id, encrypted_data_json)
 
         # session has a add function but it is wrapped in a session_scope which confuses pylint
         self._database.add(questionnaire_state)
@@ -42,10 +44,10 @@ class EncryptedQuestionnaireStorage:
         data = None
         questionnaire_state = self._find_questionnaire_state()
         if questionnaire_state:
-            data = questionnaire_state.get_data()
+            data = json.loads(questionnaire_state.state)
 
         if data is not None and 'data' in data:
-            decrypted_data = self._decrypt_data(data)
+            decrypted_data = self._decrypt_data(data['data'])
             return decrypted_data
         else:
             return None
@@ -79,11 +81,9 @@ class EncryptedQuestionnaireStorage:
 
         jwe_token.add_recipient(key)
 
-        return {'data': jwe_token.serialize(compact=True)}
+        return jwe_token.serialize(compact=True)
 
-    def _decrypt_data(self, encrypted_data):
-
-        encrypted_token = encrypted_data['data']
+    def _decrypt_data(self, encrypted_token):
 
         key = self.generate_jwk_from_cek(self._cek)
 

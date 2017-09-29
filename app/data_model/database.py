@@ -1,5 +1,4 @@
 import datetime
-import json
 import time
 
 from sqlalchemy import Column
@@ -21,21 +20,12 @@ class QuestionnaireState(base):
     user_id = Column('userid', String, primary_key=True)
     state = Column('questionnaire_data', String)
 
-    def __init__(self, user_id, data):
+    def __init__(self, user_id, state):
         self.user_id = user_id
-        self.state = json.dumps(data)
-
-    def set_data(self, data):
-        logger.debug("setting data for questionnaire state")
-        self.state = json.dumps(data)
-
-    def get_data(self):
-        data = json.loads(self.state)
-        logger.debug("loading questionnaire state")
-        return data
+        self.state = state
 
     def __repr__(self):
-        return "<QuestionnaireState('%s','%s')>" % (self.user_id, self.state)
+        return "<QuestionnaireState('%s','%s')>" % (self.user_id, self._state)
 
 
 class EQSession(base):

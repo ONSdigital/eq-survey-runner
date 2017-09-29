@@ -1,7 +1,6 @@
-import json
-
 from flask import g
 from mock import Mock
+import simplejson as json
 
 from app.data_model.answer_store import Answer
 from app.data_model.questionnaire_store import QuestionnaireStore
@@ -26,7 +25,7 @@ class TestQuestionnaire(IntegrationTestCase):
             'ANSWERS': [],
             'COMPLETED_BLOCKS': []
         }
-        storage.get_user_data = Mock(return_value=json.dumps(data, default=lambda o: o.__dict__))
+        storage.get_user_data = Mock(return_value=json.dumps(data))
 
         self.question_store = QuestionnaireStore(storage)
 
@@ -43,7 +42,8 @@ class TestQuestionnaire(IntegrationTestCase):
             'total-retail-turnover-answer': "1000",
         }
 
-        update_questionnaire_store_with_form_data(self.question_store, location, form_data)
+        with self._application.test_request_context():
+            update_questionnaire_store_with_form_data(self.question_store, location, form_data)
 
         self.assertEqual(self.question_store.completed_blocks, [location])
 
@@ -67,7 +67,8 @@ class TestQuestionnaire(IntegrationTestCase):
             'month-year-answer': {'month': '11', 'year': '2014'},
         }
 
-        update_questionnaire_store_with_form_data(self.question_store, location, form_data)
+        with self._application.test_request_context():
+            update_questionnaire_store_with_form_data(self.question_store, location, form_data)
 
         self.assertEqual(self.question_store.completed_blocks, [location])
 
@@ -99,7 +100,9 @@ class TestQuestionnaire(IntegrationTestCase):
             'non-mandatory-date-answer': {'day': '', 'month': '', 'year': ''},
         }
 
-        update_questionnaire_store_with_form_data(self.question_store, location, form_data)
+        with self._application.test_request_context():
+            update_questionnaire_store_with_form_data(self.question_store, location, form_data)
+
         self.assertEqual([], self.question_store.answer_store.answers)
 
     def test_update_questionnaire_store_with_empty_month_year_date(self):
@@ -112,7 +115,9 @@ class TestQuestionnaire(IntegrationTestCase):
             'month-year-answer': {'month': '', 'year': ''},
         }
 
-        update_questionnaire_store_with_form_data(self.question_store, location, form_data)
+        with self._application.test_request_context():
+            update_questionnaire_store_with_form_data(self.question_store, location, form_data)
+
         self.assertEqual([], self.question_store.answer_store.answers)
 
     def test_update_questionnaire_store_with_answer_data(self):
@@ -166,7 +171,8 @@ class TestQuestionnaire(IntegrationTestCase):
             )
         ]
 
-        update_questionnaire_store_with_answer_data(self.question_store, location, answers)
+        with self._application.test_request_context():
+            update_questionnaire_store_with_answer_data(self.question_store, location, answers)
 
         self.assertEqual(self.question_store.completed_blocks, [location])
 
