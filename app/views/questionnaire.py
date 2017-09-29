@@ -40,13 +40,16 @@ questionnaire_blueprint = Blueprint(name='questionnaire',
 
 @questionnaire_blueprint.before_request
 def before_request():
-    values = request.view_args
-    logger.info('questionnaire request', eq_id=values['eq_id'], form_type=values['form_type'],
-                ce_id=values['collection_id'], method=request.method, url_path=request.full_path)
-
     metadata = get_metadata(current_user)
     if metadata:
         logger.bind(tx_id=metadata['tx_id'])
+
+    values = request.view_args
+    logger.bind(eq_id=values['eq_id'], form_type=values['form_type'],
+                ce_id=values['collection_id'])
+    logger.info('questionnaire request', method=request.method, url_path=request.full_path)
+
+    if metadata:
         g.schema_json = load_schema_from_metadata(metadata)
         _check_same_survey(values['eq_id'], values['form_type'], values['collection_id'])
 
