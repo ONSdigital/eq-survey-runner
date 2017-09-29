@@ -40,7 +40,14 @@ module.exports = function(config) {
 
     reporters: ['mocha', 'progress', 'coverage'],
 
-    browsers: ['ChromeHeadless'],
+    browsers: ['ChromeHeadlessNoSandbox'],
+
+    customLaunchers: {
+      ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
 
     coverageReporter: {
       dir : 'coverage/',
