@@ -1,11 +1,8 @@
-import json
-import os
 import time
 
 from httmock import urlmatch, HTTMock, response
-from mock import patch
 
-from app.utilities.schema import DEFAULT_LANGUAGE_CODE, get_schema_file_path
+from app.utilities.schema import get_schema_file_path
 from tests.integration.create_token import PAYLOAD
 from tests.integration.integration_test_case import IntegrationTestCase
 

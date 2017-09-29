@@ -5,7 +5,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from structlog import get_logger
 
-from app.authentication.invalid_token_exception import InvalidTokenException
+from sdc.crypto.exceptions import InvalidTokenException
 from app.utilities.strings import to_bytes
 from app.utilities.strings import to_str
 

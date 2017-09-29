@@ -1,7 +1,8 @@
 import time
 from uuid import uuid4
 
-from app.cryptography.token_helper import encode_jwt, encrypt_jwe
+from sdc.crypto.encrypter import encrypt
+
 from app.secrets import KEY_PURPOSE_AUTHENTICATION
 
 PAYLOAD = {
@@ -63,6 +64,4 @@ class TokenGenerator:
         return self.generate_token(payload_vars)
 
     def generate_token(self, payload):
-        token = encode_jwt(payload, self._upstream_kid, self._secret_store, KEY_PURPOSE_AUTHENTICATION)
-
-        return encrypt_jwe(token, self._sr_public_kid, self._secret_store, KEY_PURPOSE_AUTHENTICATION)
+        return encrypt(payload, self._secret_store, KEY_PURPOSE_AUTHENTICATION)

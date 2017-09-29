@@ -1,6 +1,6 @@
 from jwcrypto import jwk
 
-from app.authentication.invalid_token_exception import InvalidTokenException
+from sdc.crypto.exceptions import InvalidTokenException
 
 EXPECTED_SECRETS = [
     "EQ_SERVER_SIDE_STORAGE_USER_ID_SALT",

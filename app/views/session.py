@@ -1,5 +1,6 @@
 from flask import Blueprint, current_app, redirect, request, session
 from flask_login import current_user, login_required
+from sdc.crypto.exceptions import InvalidTokenException
 
 from werkzeug.exceptions import NotFound, Unauthorized
 
@@ -50,6 +51,8 @@ def login():
         jti_claim_storage.use_jti_claim(jti_claim)
     except JtiTokenUsed as e:
         raise Unauthorized from e
+    except (TypeError, ValueError) as e:
+        raise InvalidTokenException from e
 
     metadata = parse_metadata(decrypted_token)
     eq_id = metadata["eq_id"]
