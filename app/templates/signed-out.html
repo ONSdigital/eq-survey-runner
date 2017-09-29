@@ -4,12 +4,11 @@
 
 {% block main %}
 
-  <div class="u-mb-s">
-    <h1 class="saturn">Your survey has been saved</h1>
-  </div>
 
-  <div class="panel panel--simple panel--success panel--spacious">
-    <p>You have been signed out of the survey, to complete the survey you will need to sign back in.</p>
-  </div>
+<div class="u-mb-s">
+    <h1 class="saturn">Your survey answers have been saved. You are now signed out.</h1>
+</div>
+
+<a href="{{respondent_account_url}}">Return to your account</a>
 
 {% endblock %}

@@ -76,7 +76,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
     def test_save_sign_out_with_household_question(self):
         self.add_answers()
         self.post(action='save_sign_out')
-        self.assertInPage('Your survey has been saved')
+        self.assertInPage('Your survey answers have been saved')
         self.assertInUrl('signed-out')
 
     def remove_answer(self):

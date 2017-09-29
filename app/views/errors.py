@@ -104,4 +104,5 @@ def render_template(template_name):
                                  analytics_ua_id=current_app.config['EQ_UA_ID'],
                                  ua=user_agent,
                                  tx_id=tx_id,
+                                 respondent_account_url=current_app.config['RESPONDENT_ACCOUNT_URL'],
                                  survey_title=TemplateRenderer.safe_content(session.get('survey_title', '')))
