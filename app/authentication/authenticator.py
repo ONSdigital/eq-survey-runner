@@ -1,12 +1,12 @@
 from flask import session
 from flask import current_app
 from flask_login import LoginManager
+from sdc.crypto.exceptions import InvalidTokenException
+from sdc.crypto.decrypter import decrypt
 from structlog import get_logger
 
-from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.user import User
-from app.cryptography.token_helper import decrypt_jwe, decode_jwt
 from app.globals import get_questionnaire_store
 from app.secrets import KEY_PURPOSE_AUTHENTICATION
 from app.storage.metadata_parser import is_valid_metadata
@@ -81,14 +81,10 @@ def decrypt_token(encrypted_token):
     if not encrypted_token or encrypted_token is None:
         raise NoTokenException("Please provide a token")
 
-    jwt_token = decrypt_jwe(encrypted_token=encrypted_token,
-                            secret_store=current_app.eq['secret_store'],
-                            purpose=KEY_PURPOSE_AUTHENTICATION)
-
-    decrypted_token = decode_jwt(jwt_token=jwt_token,
-                                 secret_store=current_app.eq['secret_store'],
-                                 purpose=KEY_PURPOSE_AUTHENTICATION,
-                                 leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'])
+    decrypted_token = decrypt(token=encrypted_token,
+                              key_store=current_app.eq['secret_store'],
+                              key_purpose=KEY_PURPOSE_AUTHENTICATION,
+                              leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'])
 
     valid, field = is_valid_metadata(decrypted_token)
     if not valid:

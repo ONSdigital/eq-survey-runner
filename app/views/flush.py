@@ -1,12 +1,13 @@
 from flask import Blueprint, Response, request, session, current_app
+from sdc.crypto.encrypter import encrypt
+from sdc.crypto.decrypter import decrypt
 
-from app.authentication.authenticator import decrypt_jwe, decode_jwt
+
 from app.authentication.user import User
 from app.globals import get_answer_store, get_metadata, get_questionnaire_store
 from app.questionnaire.path_finder import PathFinder
-from app.secrets import KEY_PURPOSE_AUTHENTICATION
+from app.secrets import KEY_PURPOSE_AUTHENTICATION, KEY_PURPOSE_SUBMISSION
 from app.submitter.converter import convert_answers
-from app.submitter.encrypter import encrypt
 from app.submitter.submission_failed import SubmissionFailedException
 from app.utilities.schema import load_schema_from_metadata
 
@@ -24,9 +25,10 @@ def flush_data():
     if not encrypted_token or encrypted_token is None:
         return Response(status=403)
 
-    jwt_token = decrypt_jwe(encrypted_token, current_app.eq['secret_store'], purpose=KEY_PURPOSE_AUTHENTICATION)
-
-    decrypted_token = decode_jwt(jwt_token, current_app.eq['secret_store'], purpose=KEY_PURPOSE_AUTHENTICATION)
+    decrypted_token = decrypt(token=encrypted_token,
+                              key_store=current_app.eq['secret_store'],
+                              key_purpose=KEY_PURPOSE_AUTHENTICATION,
+                              leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'])
 
     roles = decrypted_token.get('roles')
 
@@ -50,7 +52,7 @@ def _submit_data(user):
         routing_path = PathFinder(schema, answer_store, metadata).get_full_routing_path()
 
         message = convert_answers(metadata, schema, answer_store, routing_path, flushed=True)
-        encrypted_message = encrypt(message, current_app.eq['secret_store'])
+        encrypted_message = encrypt(message, current_app.eq['secret_store'], KEY_PURPOSE_SUBMISSION)
 
         sent = current_app.eq['submitter'].send_message(encrypted_message, current_app.config['EQ_RABBITMQ_QUEUE_NAME'], metadata["tx_id"])
 

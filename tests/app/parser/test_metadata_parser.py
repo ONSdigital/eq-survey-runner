@@ -1,7 +1,7 @@
 import unittest
 import uuid
 
-from app.authentication.invalid_token_exception import InvalidTokenException
+from sdc.crypto.exceptions import InvalidTokenException
 from app.storage.metadata_parser import parse_metadata, is_valid_metadata
 from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 

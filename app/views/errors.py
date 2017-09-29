@@ -2,11 +2,11 @@ from flask import Blueprint, request, current_app, session
 from flask_themes2 import render_theme_template
 from flask_login import current_user
 from flask_wtf.csrf import CSRFError
+from sdc.crypto.exceptions import InvalidTokenException
 
 from structlog import get_logger
 from ua_parser import user_agent_parser
 
-from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
 from app.globals import get_metadata
 from app.libs.utils import convert_tx_id

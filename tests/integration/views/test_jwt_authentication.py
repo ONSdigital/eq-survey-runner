@@ -3,7 +3,8 @@ import time
 import unittest
 import uuid
 
-from app.cryptography.token_helper import encode_jwt, encrypt_jwe
+from sdc.crypto.encrypter import encrypt
+
 from app.secrets import SecretStore, KEY_PURPOSE_AUTHENTICATION
 from tests.app.app_context_test_case import AppContextTestCase
 from tests.app.authentication import (
@@ -28,6 +29,7 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
 
     def test_invalid_token(self):
         token = "invalid"
+
         response = self.client.get('/session?token=' + token)
         self.assertEqual(403, response.status_code)
 
@@ -46,8 +48,7 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
 
         payload = self.create_payload()
 
-        token = encode_jwt(payload, EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID, secret_store, KEY_PURPOSE_AUTHENTICATION)
-        encrypted_token = encrypt_jwe(token, SR_USER_AUTHENTICATION_PUBLIC_KEY_KID, secret_store, KEY_PURPOSE_AUTHENTICATION)
+        encrypted_token = encrypt(payload, secret_store, KEY_PURPOSE_AUTHENTICATION)
 
         response = self.client.get('/session?token=' + encrypted_token)
         self.assertEqual(302, response.status_code)

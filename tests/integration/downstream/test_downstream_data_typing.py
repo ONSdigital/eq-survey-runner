@@ -1,10 +1,8 @@
 # coding: utf-8
-import json
-
-from jwcrypto import jwt
 from mock import patch
+from sdc.crypto.decrypter import decrypt
 
-from app.cryptography.token_helper import decrypt_jwe, extract_kid_from_header
+
 from app.secrets import KEY_PURPOSE_SUBMISSION
 from tests.integration.star_wars import star_wars_test_urls, STAR_WARS_TRIVIA_PART_1_DEFAULT_ANSWERS
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
@@ -50,8 +48,8 @@ class TestDownstreamDataTyping(StarWarsTestCase):
         self.post(action=None)
 
         # Get the message that would be sent downstream
-        signed_token = decrypt_jwe(self.instance.send_message.call_args[0][0], self._secret_store, KEY_PURPOSE_SUBMISSION) # pylint: disable=no-member
-        message = decode_jwt(signed_token, self._secret_store)
+        # pylint: disable=no-member
+        message = decrypt(self.instance.send_message.call_args[0][0], self._secret_store, KEY_PURPOSE_SUBMISSION)
 
         self.assertIn('data', message.keys())
 
@@ -79,15 +77,3 @@ class TestDownstreamDataTyping(StarWarsTestCase):
             if isinstance(expected[key], list):
                 for item in expected[key]:
                     self.assertIn(item, value)
-
-
-def decode_jwt(jwt_token, secret_store):
-    jwt_kid = extract_kid_from_header(jwt_token)
-
-    public_key = secret_store.get_public_key_by_kid(KEY_PURPOSE_SUBMISSION, jwt_kid)
-
-    signed_token = jwt.JWT(algs=['RS256'], check_claims={})
-
-    signed_token.deserialize(jwt_token, key=public_key.as_jwk())
-
-    return json.loads(signed_token.claims)
