@@ -2,10 +2,12 @@ from datetime import datetime, timedelta, timezone
 
 import dateutil.parser
 
+from mock import patch
+
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.location import Location
 from app.storage.metadata_parser import parse_metadata
-from app.submitter.converter import convert_answers, DataVersionError
+from app.submitter.converter import convert_answers, DataVersionError, convert_answers_to_data
 from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
 
@@ -130,6 +132,54 @@ class TestConverter(SurveyRunnerTestCase):
             self.assertEqual(answer_object['metadata']['ru_ref'], self.metadata['ru_ref'])
             self.assertEqual(answer_object['data']['001'], '2016-01-01')
             self.assertEqual(answer_object['data']['002'], '2016-03-30')
+
+    def test_convert_answers_to_data_with_key_error(self):
+        with self.application.test_request_context():
+            user_answer = [create_answer('ABC', '2016-01-01', group_id='group-1', block_id='block-1'),
+                           create_answer('DEF', '2016-03-30', group_id='group-1', block_id='block-1'),
+                           create_answer('GHI', '2016-05-30', group_id='group-1', block_id='block-1')]
+
+            questionnaire = {
+                "survey_id": "021",
+                "data_version": "0.0.1",
+                "groups": [
+                    {
+                        "id": "group-1",
+                        "blocks": [
+                            {
+                                "id": "block-1",
+                                "questions": [{
+                                    "id": 'question-1',
+                                    "answers": [
+                                        {
+                                            "id": "LMN",
+                                            "type": "TextField",
+                                            "q_code": "001"
+                                        },
+                                        {
+                                            "id": "DEF",
+                                            "type": "TextField",
+                                            "q_code": "002"
+                                        },
+                                        {
+                                            "id": "JKL",
+                                            "type": "TextField",
+                                            "q_code": "003"
+                                        },
+                                    ]
+                                }]
+                            }
+                        ]
+                    }
+                ]
+            }
+
+            routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
+            with patch('app.submitter.converter.logger') as patched_logger:
+                answer_object = convert_answers_to_data(AnswerStore(user_answer), questionnaire, routing_path)
+                self.assertEqual(patched_logger.error.call_count, 2)
+                self.assertEqual(answer_object['002'], '2016-03-30')
+                self.assertEqual(len(answer_object), 1)
 
     def test_submitted_at_should_be_set_in_payload(self):
         with self.application.test_request_context():
