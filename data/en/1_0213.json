@@ -320,7 +320,7 @@
                         "q_code": "20",
                         "type": "Currency",
                         "currency": "GBP",
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
+                        "decimal_places": 2
                     }],
                     "id": "total-turnover-question",
                     "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}\u2019s <em>total retail turnover</em>?",
@@ -357,7 +357,7 @@
                         "q_code": "22",
                         "type": "Currency",
                         "currency": "GBP",
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
+                        "decimal_places": 2
                     }],
                     "id": "total-sales-food-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>food</em> sales?",
@@ -387,7 +387,7 @@
                         "q_code": "23",
                         "type": "Currency",
                         "currency": "GBP",
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
+                        "decimal_places": 2
                     }],
                     "id": "total-sales-alcohol-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>alcohol, confectionery and tobacco</em> sales?",
@@ -419,7 +419,7 @@
                         "q_code": "24",
                         "type": "Currency",
                         "currency": "GBP",
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
+                        "decimal_places": 2
                     }],
                     "id": "total-sales-clothing-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>clothing and footwear</em> sales?",
@@ -463,7 +463,7 @@
                         "q_code": "25",
                         "type": "Currency",
                         "currency": "GBP",
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
+                        "decimal_places": 2
                     }],
                     "id": "total-sales-household-goods-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of sales for <em>household goods</em>?",
@@ -517,7 +517,7 @@
                         "q_code": "26",
                         "type": "Currency",
                         "currency": "GBP",
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
+                        "decimal_places": 2
                     }],
                     "id": "total-sales-other-goods-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>other</em> sales?",
@@ -545,7 +545,7 @@
                         "q_code": "21",
                         "type": "Currency",
                         "currency": "GBP",
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
+                        "decimal_places": 2
                     }],
                     "id": "internet-sales-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",

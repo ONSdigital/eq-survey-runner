@@ -183,7 +183,7 @@
                         "q_code": "20",
                         "type": "Currency",
                         "currency": "GBP",
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
+                        "decimal_places": 2
                     }],
                     "id": "total-turnover-question",
                     "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}\u2019s <em>total retail turnover</em>?",
@@ -212,7 +212,7 @@
                         "q_code": "21",
                         "type": "Currency",
                         "currency": "GBP",
-                        "description": "Round to the nearest (\u00a3) pound. Do not  include pence"
+                        "decimal_places": 2
                     }],
                     "id": "internet-sales-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
