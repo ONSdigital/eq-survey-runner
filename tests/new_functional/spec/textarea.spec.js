@@ -5,6 +5,7 @@ const TextareaSummary = require('../pages/surveys/textarea/textarea-summary.page
 describe('Textarea', function() {
 
   const textarea_schema = 'test_textarea.json';
+  const textarea_limit = '[data-qa="textarea-with-limit"]';
 
   it('Given a textarea option, a user should be able to click the label of the textarea to focus', function() {
     return helpers.openQuestionnaire(textarea_schema)
@@ -39,7 +40,7 @@ describe('Textarea', function() {
     return helpers.openQuestionnaire(textarea_schema)
       .then(() => {
         return browser
-          .getText('.input__limit').should.eventually.contain('20');
+          .getText(textarea_limit).should.eventually.contain('20');
       });
   });
 
@@ -48,7 +49,7 @@ describe('Textarea', function() {
       .then(() => {
         return browser
           .setValue(TextareaBlock.answer(), 'Banjo')
-          .getText('.input__limit').should.eventually.contain('15');
+          .getText(textarea_limit).should.eventually.contain('15');
       });
   });
 
@@ -57,7 +58,7 @@ describe('Textarea', function() {
       .then(() => {
         return browser
           .setValue(TextareaBlock.answer(), 'This sentence is over twenty characters long')
-          .getText('.input__limit').should.eventually.contain('0')
+          .getText(textarea_limit).should.eventually.contain('0')
           .getValue(TextareaBlock.answer()).should.eventually.equal('This sentence is ove');
       });
   });

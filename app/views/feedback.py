@@ -29,6 +29,8 @@ class FeedbackForm(FlaskForm):
 
 @feedback_blueprint.before_request
 def before_request():
+    logger.info('feedback request', url_path=request.full_path)
+
     metadata = get_metadata(current_user)
     if metadata:
         logger.bind(tx_id=metadata['tx_id'])
@@ -68,7 +70,10 @@ def send_feedback():
         if not sent:
             raise SubmissionFailedException()
 
-    return redirect(url_for('feedback.thank_you'))
+    if request.form.get('redirect', 'true') == 'true':
+        return redirect(url_for('feedback.thank_you'))
+
+    return '', 200
 
 
 @feedback_blueprint.route('/thank-you', methods=['GET'])

@@ -10,11 +10,9 @@
 {% endblock %}
 
 {% block subheader %}
-<div class="feedback">
-    {% set feedback_form_hidden = true %}
-    {% include theme('partials/feedback_call_to_action.html') %}
+{% set form = content.form %}
+{% include theme('partials/feedback/expandable_inline.html') %}
 
-</div>
 {{super()}}
 {% endblock subheader %}
 
