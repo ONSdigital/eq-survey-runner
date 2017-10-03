@@ -184,7 +184,6 @@ def get_thank_you(eq_id, form_type, collection_id):  # pylint: disable=unused-ar
         return _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type)
 
 
-@login_required
 def _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type):
     latest_location = path_finder.get_latest_location(get_completed_blocks(current_user),
                                                       routing_path=routing_path)
