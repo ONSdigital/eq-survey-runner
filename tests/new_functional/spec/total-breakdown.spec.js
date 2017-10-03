@@ -2,7 +2,7 @@ const helpers = require('../helpers');
 
 const BreakDownPage = require('../pages/surveys/total_breakdown/block.page.js');
 
-describe('Example Test', function() {
+describe('Total Breakdown', function() {
 
   it('Given four percentage fields, When I enter 10, 20, 30 and 40 in the field, Then total should be 100', function() {
     return helpers.openQuestionnaire('test_total_breakdown.json').then(() => {
