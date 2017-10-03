@@ -9,6 +9,9 @@ from app.helpers.path_finder_helper import path_finder
 @patch('app.helpers.path_finder_helper.get_metadata')
 @patch('app.helpers.path_finder_helper.get_answer_store')
 class TestPathFinderHelper(AppContextTestCase):
+
+    LOGIN_DISABLED = True
+
     def test_path_finder_instantiated_once(self, mock_path_finder, _, __):
         g.schema_json = {}
 

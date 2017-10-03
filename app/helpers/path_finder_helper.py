@@ -1,13 +1,14 @@
 from functools import wraps
 
 from flask import g
-from flask_login import current_user
+from flask_login import current_user, login_required
 from werkzeug.local import LocalProxy
 
 from app.globals import get_answer_store, get_metadata
 from app.questionnaire.path_finder import PathFinder
 
 
+@login_required
 def get_path_finder():
     finder = getattr(g, 'path_finder', None)
 
