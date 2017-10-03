@@ -2,7 +2,7 @@ const helpers = require('../helpers');
 
 const TestErrorsPage = require('../pages/surveys/error_messages/test-errors.page.js');
 
-describe('Example Test', function() {
+describe('Error Messages', function() {
 
   it('Given a survey has an error when errors are displayed then page error messages are correct', function() {
     return helpers.openQuestionnaire('test_error_messages.json').then(() => {

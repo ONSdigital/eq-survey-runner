@@ -15,7 +15,7 @@ import Confirmation from '../pages/confirmation.page.js'
 import ThankYou from '../pages/thank-you.page'
 
 
-describe('Example Test', function() {
+describe('Census Communal', function() {
 
   it('Given Respondent Home has identified the respondent should have the Communal Establishment Questionnaire, When I complete the EQ, Then i should be able to successfully submit', function() {
       openQuestionnaire('census_communal.json')
