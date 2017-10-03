@@ -58,7 +58,8 @@ input:checked ~ .field__other {
     cursor: pointer;
     overflow: hidden;
     position: relative;
-    transition: background-color 200ms ease-in, color 200ms ease-in, box-shadow 200ms ease-in, border-color 200ms ease-in;
+    transition: background-color 200ms ease-in, color 200ms ease-in,
+      box-shadow 200ms ease-in, border-color 200ms ease-in;
     &:hover {
       border-color: $color-links-hover;
       box-shadow: none;
@@ -205,7 +206,9 @@ input:checked ~ .field__other {
       border-color: $color-links-hover;
       color: $color-links-hover;
       label {
+        /* stylelint-disable declaration-no-important */
         background: transparent !important;
+        /* stylelint-enable */
       }
     }
 

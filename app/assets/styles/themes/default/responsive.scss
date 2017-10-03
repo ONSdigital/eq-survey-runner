@@ -2,7 +2,7 @@ $responsive: true;
 
 @import "../../partials/helpers/**/*.scss";
 @import "../../partials/vars/*.scss";
-@import "../../partials/vendor/normalize.scss";
+@import "../../vendor/normalize.scss";
 @import "../../partials/base/**/*.scss";
 @import "../../partials/objects/**/*.scss";
 @import "../../partials/components/**/*.scss";

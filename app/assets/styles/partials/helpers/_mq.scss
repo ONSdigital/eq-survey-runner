@@ -12,19 +12,16 @@
       @media only screen and (max-width: $to) {
         @content;
       }
-    }
-    @else if $to == none {
+    } @else if $to == none {
       @media only screen and (min-width: $from) {
         @content;
       }
-    }
-    @else {
+    } @else {
       @media only screen and (min-width: $from) and (max-width: $to) {
         @content;
       }
     }
-  }
-  @else {
+  } @else {
     @if (strip-unit($from) <= strip-unit($grid-bp-fixed)) {
       @content;
     }
@@ -56,8 +53,7 @@
 @function get-bp-width($name, $breakpoints: $grid-bp) {
   @if map-has-key($breakpoints, $name) {
     @return map-get($breakpoints, $name);
-  }
-  @else {
+  } @else {
     @warn "Breakpoint #{$name} wasn't found in $breakpoints.";
   }
 }
@@ -65,7 +61,7 @@
 /// @param {Number} $number - Number to remove unit from
 /// @return {Number} - Unitless number
 @function strip-unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
+  @if type-of($number) == "number" and not unitless($number) {
     @return $number / ($number * 0 + 1);
   }
   @return $number;
