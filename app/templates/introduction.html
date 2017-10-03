@@ -10,11 +10,12 @@
 {% endblock %}
 
 {% block subheader %}
-{% set form = content.form %}
-{% include theme('partials/feedback/expandable_inline.html') %}
+{% include theme('partials/feedback_call_to_action.html') %}
 
 {{super()}}
 {% endblock subheader %}
+
+{% set form = content.form %}
 
 {%- if legal_basis == 'StatisticsOfTradeAct' -%}
   {% set legal_text = "Your response is legally required" %}
@@ -23,6 +24,8 @@
 {% block page_title %}{{survey_title}}{% endblock %}
 
 {% block main %}
+
+  {% include theme('partials/feedback/expandable_inline.html') %}
 
   {% block business_details %}
 

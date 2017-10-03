@@ -4,7 +4,7 @@
 {% block page_title %}{{page_title}}{% endblock %}
 
 {% block subheader %}
-{% include theme('partials/feedback/expandable_inline.html') %}
+{% include theme('partials/feedback_call_to_action.html') %}
 
 {{super()}}
 {% endblock subheader %}
@@ -20,6 +20,8 @@
 {% endblock %}
 
 {% block main %}
+
+    {% include theme('partials/feedback/expandable_inline.html') %}
 
     {% block form_errors %}{% endblock %}
 
