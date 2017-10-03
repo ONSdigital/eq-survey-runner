@@ -5,7 +5,7 @@ const RepeatingBlock1Page = require('../pages/surveys/household/repeating-block-
 const RepeatingBlock2Page = require('../pages/surveys/household/repeating-block-2.page.js');
 const SummaryPage = require('../pages/surveys/household/summary.page.js');
 
-describe('Example Test', function() {
+describe('Household Repeating', function() {
 
   it('Given I enter one name, when I navigate through the subsequent group, I should see the name on each block.', function() {
     return helpers.startQuestionnaire('test_repeating_household.json').then(() => {

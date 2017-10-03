@@ -3,7 +3,7 @@ const helpers = require('../helpers');
 const HouseholdCompositionPage = require('../pages/surveys/household/household-composition.page.js');
 const HouseholdSummaryPage = require('../pages/surveys/household/household-summary.page.js');
 
-describe('Example Test', function() {
+describe('Household Composition', function() {
 
   it('Given no people added, when enter a name and submit, then name should be displayed on summary.', function() {
     return helpers.startQuestionnaire('test_household_question.json').then(() => {
@@ -53,11 +53,7 @@ describe('Example Test', function() {
           .setValue(HouseholdCompositionPage.firstName('_1'),'Bravo')
           .setValue(HouseholdCompositionPage.lastName('_1'),'Two')
           .click(HouseholdCompositionPage.removePerson())
-          .waitUntil(function () {
-          return browser.elements(HouseholdCompositionPage.removePerson()).then(function (e) {
-              return e.value.length === 0;
-            });
-          }, 2000, 'Person not removed in time')
+          .waitForExist(HouseholdCompositionPage.removePerson(), 2000, true)
           .click(HouseholdCompositionPage.submit())
           .getText(HouseholdSummaryPage.houseIncludes()).should.eventually.contain('Alpha One')
           .isExisting(HouseholdSummaryPage.houseIncludes(2)).should.eventually.be.false;
@@ -76,11 +72,7 @@ describe('Example Test', function() {
           .setValue(HouseholdCompositionPage.firstName('_2'),'Charlie')
           .setValue(HouseholdCompositionPage.lastName('_2'),'Three')
           .click(HouseholdCompositionPage.removePerson())
-          .waitUntil(function () {
-          return browser.elements(HouseholdCompositionPage.numRemoveButtons()).then(function (e) {
-              return e.value.length === 1;
-            });
-          }, 2000, 'Person not removed in time')
+          .waitForExist(HouseholdCompositionPage.removePerson(3), 2000, true)
           .click(HouseholdCompositionPage.submit())
           .getText(HouseholdSummaryPage.houseIncludes()).should.eventually.contain('Alpha One')
           .getText(HouseholdSummaryPage.houseIncludes(2)).should.eventually.contain('Charlie Three')

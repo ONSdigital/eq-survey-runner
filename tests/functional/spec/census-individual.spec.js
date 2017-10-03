@@ -33,7 +33,7 @@ const ConfirmationPage = require('../pages/surveys/census/individual/confirmatio
 const ThankYou = require('../pages/thank-you.page');
 
 
-describe('Example Test', function() {
+describe('Census Individual', function() {
 
   it('Given Respondent Home has identified the respondent should have the Individual Questionnaire without the sexual id question, When I complete the EQ, Then I should not be asked the sexual id question', function() {
     return helpers.openCensusQuestionnaire('census_individual.json').then(() => {

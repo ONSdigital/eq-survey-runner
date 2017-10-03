@@ -4,7 +4,7 @@ const HouseholdCompositionPage = require('../pages/surveys/household/household-c
 const RelationshipsPage = require('../pages/surveys/household/relationships.page.js');
 const SummaryPage = require('../pages/surveys/household/summary.page.js');
 
-describe('Example Test', function() {
+describe('Household Relationship', function() {
 
   it('Given I am on the household page when I enter one name then I should not have to enter relationship details', function() {
     return helpers.openQuestionnaire('test_relationship_household.json').then(() => {

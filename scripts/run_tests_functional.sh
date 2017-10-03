@@ -26,15 +26,7 @@ npm config set python python2.7
 yarn test_unit_no_watch
 display_result $? 4 "Front end unit tests"
 
-if [ -z "$EQ_FUNCTIONAL_TEST_SUITES" ]; then
-    export EQ_FUNCTIONAL_TEST_SUITES="core,components,features,census"
-fi
-
-if [ -z "$EQ_FUNCTIONAL_TEST_ENV" ]; then
-    export EQ_FUNCTIONAL_TEST_ENV="local"
-fi
-
-echo "Running front end functional tests [${EQ_FUNCTIONAL_TEST_SUITES}]"
-yarn test_functional -- --suite ${EQ_FUNCTIONAL_TEST_SUITES} --env ${EQ_FUNCTIONAL_TEST_ENV}
+echo "Running front end functional tests"
+yarn test_functional
 
 display_result $? 5 "Front end functional tests"

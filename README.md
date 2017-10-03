@@ -70,7 +70,7 @@ pipenv run ./scripts/run_app.sh
 ```
 
 Note, you will also need to run an upstream tool (eg, https://github.com/ONSDigital/go-launch-a-survey) to launch a survey.
- 
+
 ```
 docker run -it -p 8000:8000 onsdigital/go-launch-a-survey:latest
 ```
@@ -102,9 +102,7 @@ Command                                    | Task
 `yarn dev`                              | Build assets and watch for changes. Runs Browsersync.
 `yarn test`                             | Runs the unit tests through Karma and the functional tests through a local Selenium instance
 `yarn test_unit`                        | Watches the unit tests via Karma
-`yarn test_functional`                  | Runs the functional tests through a local Selenium instance (requires app running on localhost:5000)
-`yarn test_functional_sauce`            | Runs the functional tests through Sauce Labs (requires app running on localhost:5000)
-`yarn test_functional_browserstack`     | Runs the functional tests through BrowserStack (requires app running on localhost:5000)
+`yarn test_functional`                  | Runs the functional tests through ChimpJS (requires app running on localhost:5000)
 `yarn lint`                             | Lints the JS, reporting errors/warnings.
 `yarn format`                           | Format the json schemas.
 
@@ -114,25 +112,29 @@ Command                                    | Task
 
 To create functional test pages from a schema use the following command.
 
-`generate_pages.py <schema.json> <page_directory>` 
+`generate_pages.py <schema.json> <page_directory>`
 
 This can combined with `-spec_file=<spec_file_path>` to provide a populated template for the functional tests spec file.
 and/or `-require_path='../..` To provide a relative path from a page file to the directory containing the base/parent page classes. Defaults to ".."
 
-For example: 
-`./generate_pages.py ../../data/en/test_navigation.json ./pages/surveys/navigation --spec_file=./spec/navigation.spec.js` 
+For example:
+`./generate_pages.py ../../data/en/test_navigation.json ./pages/surveys/navigation --spec_file=./spec/navigation.spec.js`
 
-The functional tests can be executed with a couple of options.
+The functional tests can be executed with:
 
-`--env=preprod` Will run the test against preprod.
-`--spec=mci` Will run a single test spec (`mci.spec.js`) instead of the entire suite.
-`--suite=core` Will run a suite of tests (core) instead of the entire suite.
+`yarn test_functional`
 
-These options can be combined with `test_functional` or `test_functional_sauce`, eg:
+This can be limited to tests under a directory with:
 
-`yarn test_functional_sauce -- --env=preprod --spec=mci` Will run the MCI spec against preprod via SauceLabs.
+`yarn test_functional --path tests/functional/spec/components/`
 
-*NOTE:* You will need the appropriate environment variables to be able to connect to SauceLabs.
+To run a single test, add `@watch` into the name of any `describe` or `it` function and run:
+
+`yarn test_functional --watch`
+
+To run the tests against a remote deployment you will need to specify the environment variable of EQ_FUNCTIONAL_TEST_ENV eg:
+
+`EQ_FUNCTIONAL_TEST_ENV=https://staging-new-surveys.dev.eq.ons.digital/ yarn test_functional`
 
 ## Deployment with elastic beanstalk
 

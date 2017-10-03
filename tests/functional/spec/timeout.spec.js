@@ -5,7 +5,7 @@ const SummaryPage = require('../pages/surveys/timeout/summary.page.js');
 
 const dialog = '#dialog';
 
-describe('Example Test', function() {
+describe('Timeout', function() {
 
   it('Given I am completing an electronic questionnaire, when I have been inactive for X minutes, then I will be informed that my session is going to expire (in 2 minutes) and will be able to see how long I have until the session expires', function() {
     return helpers.openQuestionnaire('test_timeout.json').then(() => {
