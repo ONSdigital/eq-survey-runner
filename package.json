@@ -17,7 +17,7 @@
     "test": "gulp test",
     "test_unit": "gulp test:scripts:unit:watch",
     "test_unit_no_watch": "gulp test:scripts:unit",
-    "test_functional": "gulp test:scripts:functional",
+    "test_functional": "chimp",
     "test_functional_sauce": "gulp test:scripts:functional --sauce",
     "test_functional_browserstack": "gulp test:scripts:functional --browserstack",
     "test_functional_headless": "gulp test:scripts:functional --headless",
