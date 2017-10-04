@@ -15,6 +15,17 @@ export const chrome = {
   ...defaultCapabilities
 }
 
+export const chromeHeadless = {
+  browserName: 'chrome',
+  browser_version: '48.0',
+  os: 'OS X',
+  os_version: 'Yosemite',
+  chromeOptions: {
+    args: ['--headless', '--window-size=1024,1158', '--no-sandbox']
+  },
+  ...defaultCapabilities
+}
+
 export const chromeNoJS = {
   ...chrome,
   name: 'Chrome (No JavaScript)',
