@@ -22,7 +22,7 @@ let config = {
           waitForInterval: 500,
           chromeOptions: {
             args: [
-              // "--headless",
+              "--headless",
               "--window-size=1280,1080",
               "--no-sandbox",
               "--disable-gpu"
