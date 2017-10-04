@@ -378,7 +378,6 @@
                     "number": "2",
                     "questions": [{
                         "answers": [{
-                            "description": "Please round to the nearest pound. Do not include pence.",
                             "guidance": {
                                 "show_guidance": "Show further guidance",
                                 "hide_guidance": "Hide further guidance",
@@ -405,6 +404,7 @@
                             "q_code": "50",
                             "type": "Currency",
                             "currency": "GBP",
+                            "decimal_places": 2,
                             "alias": "weekly_total_gross"
                         }],
                         "guidance": {
@@ -439,25 +439,24 @@
                     "number": "2",
                     "questions": [{
                         "answers": [{
-                                "description": "Please round to the nearest pound. Do not include pence.",
                                 "id": "weekly-pay-breakdown-holiday-answer",
                                 "label": "Holiday pay, paid in advance (estimate if necessary)",
                                 "mandatory": true,
                                 "q_code": "60",
                                 "type": "Currency",
-                                "currency": "GBP"
+                                "currency": "GBP",
+                                "decimal_places": 2
                             },
                             {
-                                "description": "Please round to the nearest pound. Do not include pence.",
                                 "id": "weekly-pay-breakdown-arrears-answer",
                                 "label": "Arrears of pay owing to pay awards",
                                 "mandatory": true,
                                 "q_code": "70",
                                 "type": "Currency",
-                                "currency": "GBP"
+                                "currency": "GBP",
+                                "decimal_places": 2
                             },
                             {
-                                "description": "Please round to the nearest pound. Do not include pence.",
                                 "guidance": {
                                     "show_guidance": "Show further guidance",
                                     "hide_guidance": "Hide further guidance",
@@ -492,7 +491,8 @@
                                 "mandatory": true,
                                 "q_code": "80",
                                 "type": "Currency",
-                                "currency": "GBP"
+                                "currency": "GBP",
+                                "decimal_places": 2
                             }
                         ],
                         "id": "weekly-pay-breakdown-question",
@@ -958,7 +958,6 @@
                     "number": "3",
                     "questions": [{
                         "answers": [{
-                            "description": "Please round to the nearest pound. Do not include pence.",
                             "guidance": {
                                 "show_guidance": "Show further guidance",
                                 "hide_guidance": "Hide further guidance",
@@ -985,7 +984,8 @@
                             "q_code": "50f",
                             "type": "Currency",
                             "alias": "fortnightly_total_gross",
-                            "currency": "GBP"
+                            "currency": "GBP",
+                            "decimal_places": 2
                         }],
                         "guidance": {
                             "content": [{
@@ -1019,25 +1019,24 @@
                     "number": "3",
                     "questions": [{
                         "answers": [{
-                                "description": "Please round to the nearest pound. Do not include pence.",
                                 "id": "fortnightly-pay-breakdown-holiday-answer",
                                 "label": "Holiday pay, paid in advance (estimate if necessary)",
                                 "mandatory": true,
                                 "q_code": "60f",
                                 "type": "Currency",
-                                "currency": "GBP"
+                                "currency": "GBP",
+                                "decimal_places": 2
                             },
                             {
-                                "description": "Please round to the nearest pound. Do not include pence.",
                                 "id": "fortnightly-pay-breakdown-arrears-answer",
                                 "label": "Arrears of pay owing to pay awards",
                                 "mandatory": true,
                                 "q_code": "70f",
                                 "type": "Currency",
-                                "currency": "GBP"
+                                "currency": "GBP",
+                                "decimal_places": 2
                             },
                             {
-                                "description": "Please round to the nearest pound. Do not include pence.",
                                 "guidance": {
                                     "show_guidance": "Show further guidance",
                                     "hide_guidance": "Hide further guidance",
@@ -1055,7 +1054,8 @@
                                 "mandatory": true,
                                 "q_code": "80f",
                                 "type": "Currency",
-                                "currency": "GBP"
+                                "currency": "GBP",
+                                "decimal_places": 2
                             }
                         ],
                         "id": "fortnightly-pay-breakdown-question",
@@ -1523,7 +1523,6 @@
                     "number": "4",
                     "questions": [{
                         "answers": [{
-                            "description": "Please round to the nearest pound. Do not include pence.",
                             "guidance": {
                                 "show_guidance": "Show further guidance",
                                 "hide_guidance": "Hide further guidance",
@@ -1550,7 +1549,8 @@
                             "q_code": "151",
                             "type": "Currency",
                             "alias": "monthly_total_gross",
-                            "currency": "GBP"
+                            "currency": "GBP",
+                            "decimal_places": 2
                         }],
                         "guidance": {
                             "content": [{
@@ -1584,16 +1584,15 @@
                     "number": "4",
                     "questions": [{
                         "answers": [{
-                                "description": "Please round to the nearest pound. Do not include pence.",
                                 "id": "calendar-monthly-pay-breakdown-arrears-answer",
                                 "label": "Arrears of pay owing to pay awards",
                                 "mandatory": true,
                                 "q_code": "171",
                                 "type": "Currency",
-                                "currency": "GBP"
+                                "currency": "GBP",
+                                "decimal_places": 2
                             },
                             {
-                                "description": "Please round to the nearest pound. Do not include pence.",
                                 "guidance": {
                                     "show_guidance": "Show further guidance",
                                     "hide_guidance": "Hide further guidance",
@@ -1611,7 +1610,8 @@
                                 "mandatory": true,
                                 "q_code": "181",
                                 "type": "Currency",
-                                "currency": "GBP"
+                                "currency": "GBP",
+                                "decimal_places": 2
                             }
                         ],
                         "id": "calendar-monthly-pay-breakdown-question",
@@ -2079,7 +2079,6 @@
                     "number": "5",
                     "questions": [{
                         "answers": [{
-                            "description": "Please round to the nearest pound. Do not include pence.",
                             "guidance": {
                                 "show_guidance": "Show further guidance",
                                 "hide_guidance": "Hide further guidance",
@@ -2105,7 +2104,8 @@
                             "q_code": "152",
                             "type": "Currency",
                             "alias": "four_weekly_total_gross",
-                            "currency": "GBP"
+                            "currency": "GBP",
+                            "decimal_places": 2
                         }],
                         "guidance": {
                             "content": [{
@@ -2139,16 +2139,15 @@
                     "number": "5",
                     "questions": [{
                         "answers": [{
-                                "description": "Please round to the nearest pound. Do not include pence.",
                                 "id": "four-weekly-pay-breakdown-arrears-answer",
                                 "label": "Arrears of pay owing to pay awards",
                                 "mandatory": true,
                                 "q_code": "172",
                                 "type": "Currency",
-                                "currency": "GBP"
+                                "currency": "GBP",
+                                "decimal_places": 2
                             },
                             {
-                                "description": "Please round to the nearest pound. Do not include pence.",
                                 "guidance": {
                                     "show_guidance": "Show further guidance",
                                     "hide_guidance": "Hide further guidance",
@@ -2166,7 +2165,8 @@
                                 "mandatory": true,
                                 "q_code": "182",
                                 "type": "Currency",
-                                "currency": "GBP"
+                                "currency": "GBP",
+                                "decimal_places": 2
                             }
                         ],
                         "id": "four-weekly-pay-breakdown-question",
@@ -2634,7 +2634,6 @@
                     "number": "6",
                     "questions": [{
                         "answers": [{
-                            "description": "Please round to the nearest pound. Do not include pence.",
                             "guidance": {
                                 "show_guidance": "Show further guidance",
                                 "hide_guidance": "Hide further guidance",
@@ -2661,7 +2660,8 @@
                             "q_code": "153",
                             "type": "Currency",
                             "alias": "five_weekly_total_gross",
-                            "currency": "GBP"
+                            "currency": "GBP",
+                            "decimal_places": 2
                         }],
                         "guidance": {
                             "content": [{
@@ -2695,16 +2695,15 @@
                     "number": "6",
                     "questions": [{
                         "answers": [{
-                                "description": "Please round to the nearest pound. Do not include pence.",
                                 "id": "five-weekly-pay-breakdown-arrears-answer",
                                 "label": "Arrears of pay owing to pay awards",
                                 "mandatory": true,
                                 "q_code": "173",
                                 "type": "Currency",
-                                "currency": "GBP"
+                                "currency": "GBP",
+                                "decimal_places": 2
                             },
                             {
-                                "description": "Please round to the nearest pound. Do not include pence.",
                                 "guidance": {
                                     "show_guidance": "Show further guidance",
                                     "hide_guidance": "Hide further guidance",
@@ -2722,7 +2721,8 @@
                                 "mandatory": true,
                                 "q_code": "183",
                                 "type": "Currency",
-                                "currency": "GBP"
+                                "currency": "GBP",
+                                "decimal_places": 2
                             }
                         ],
                         "id": "five-weekly-pay-breakdown-question",
