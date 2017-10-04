@@ -109,7 +109,7 @@ const ApproachedTelephonePage = require('../pages/surveys/navigation/approached-
 const ConfirmationPage = require('../pages/surveys/navigation/confirmation.page.js');
 const ThankYou = require('../pages/thank-you.page');
 
-describe('Example Test', function() {
+describe('UKIS', function() {
 
   it('Given I am completing the UKIS survey, When I enter valid answers, Then I should be able to successfuly submit the survey', function() {
     return helpers.startQuestionnaire('1_0001.json').then(() => {

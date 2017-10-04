@@ -4,7 +4,7 @@ const RadioPage = require('../pages/surveys/summary_screen/radio.page.js');
 const TestNumberPage = require('../pages/surveys/summary_screen/test-number-block.page.js');
 const SummaryPage = require('../pages/surveys/summary_screen/summary.page.js');
 
-describe('Example Test', function() {
+describe('Summary Screen', function() {
 
   it('Given a survey has been completed when a summary page is displayed then it should contain all answers', function() {
   return helpers.openQuestionnaire('test_summary.json')
@@ -27,7 +27,6 @@ describe('Example Test', function() {
         .getUrl().should.eventually.contain('thank-you');
       });
   });
-
 
   it('Given a survey has been completed when a summary page edit link is clicked then it should return to that question', function() {
   return helpers.openQuestionnaire('test_summary.json')
