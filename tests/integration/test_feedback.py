@@ -4,7 +4,7 @@ from mock import patch
 from sdc.crypto.decrypter import decrypt
 
 from tests.integration.integration_test_case import IntegrationTestCase
-from app.secrets import KEY_PURPOSE_SUBMISSION
+from app.keys import KEY_PURPOSE_SUBMISSION
 from structlog import getLogger
 
 
@@ -136,7 +136,7 @@ class Feedback(IntegrationTestCase):
         self.post(url=FEEDBACK_FORM_URL, post_data=post_data, action='send_feedback', **kwargs)
 
         # pylint: disable=no-member
-        return decrypt(self.instance.send_message.call_args[0][0], self._secret_store, KEY_PURPOSE_SUBMISSION)
+        return decrypt(self.instance.send_message.call_args[0][0], self._key_store, KEY_PURPOSE_SUBMISSION)
 
 
 def validate_json_with_schema(data, schema):

@@ -3,9 +3,10 @@ import time
 import unittest
 import uuid
 
+from sdc.crypto.key_store import KeyStore
 from sdc.crypto.encrypter import encrypt
 
-from app.secrets import SecretStore, KEY_PURPOSE_AUTHENTICATION
+from app.keys import KEY_PURPOSE_AUTHENTICATION
 from tests.app.app_context_test_case import AppContextTestCase
 from tests.app.authentication import (
     TEST_DO_NOT_USE_UPSTREAM_PRIVATE_KEY,
@@ -35,7 +36,7 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
 
     def test_fully_encrypted(self):
 
-        secret_store = SecretStore({
+        key_store = KeyStore({
             "keys": {
                 SR_USER_AUTHENTICATION_PUBLIC_KEY_KID: {'purpose': KEY_PURPOSE_AUTHENTICATION,
                                                         'type': 'public',
@@ -48,7 +49,7 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
 
         payload = self.create_payload()
 
-        encrypted_token = encrypt(payload, secret_store, KEY_PURPOSE_AUTHENTICATION)
+        encrypted_token = encrypt(payload, key_store, KEY_PURPOSE_AUTHENTICATION)
 
         response = self.client.get('/session?token=' + encrypted_token)
         self.assertEqual(302, response.status_code)

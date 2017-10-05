@@ -79,6 +79,7 @@ htmlcov/
 
 data/cy
 
+keys.yml
 secrets.yml
 
 data/en/mci_*

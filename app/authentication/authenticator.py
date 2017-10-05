@@ -8,7 +8,7 @@ from structlog import get_logger
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.user import User
 from app.globals import get_questionnaire_store
-from app.secrets import KEY_PURPOSE_AUTHENTICATION
+from app.keys import KEY_PURPOSE_AUTHENTICATION
 from app.storage.metadata_parser import is_valid_metadata
 
 logger = get_logger()
@@ -82,7 +82,7 @@ def decrypt_token(encrypted_token):
         raise NoTokenException("Please provide a token")
 
     decrypted_token = decrypt(token=encrypted_token,
-                              key_store=current_app.eq['secret_store'],
+                              key_store=current_app.eq['key_store'],
                               key_purpose=KEY_PURPOSE_AUTHENTICATION,
                               leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'])
 

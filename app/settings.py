@@ -43,6 +43,7 @@ MAX_CONTENT_LENGTH = os.getenv('EQ_MAX_HTTP_POST_CONTENT_LENGTH', 65536)
 EQ_PROFILING = parse_mode(os.getenv('EQ_PROFILING', 'False'))
 
 EQ_SECRETS_FILE = os.getenv('EQ_SECRETS_FILE', 'secrets.yml')
+EQ_KEYS_FILE = os.getenv('EQ_KEYS_FILE', 'keys.yml')
 
 EQ_RABBITMQ_HOST = get_env_or_fail('EQ_RABBITMQ_HOST')
 EQ_RABBITMQ_HOST_SECONDARY = get_env_or_fail('EQ_RABBITMQ_HOST_SECONDARY')
