@@ -1,5 +1,5 @@
 import {paths} from '../../gulp/paths'
-import {chrome, firefox, phantomjs} from './capabilities'
+import {chrome, firefox, chromeHeadless} from './capabilities'
 import {argv} from 'yargs'
 
 let config = {
@@ -59,26 +59,14 @@ const browserStackConfig = {
   browserstackLocal: true
 }
 
-const phantomjsConfig = {
-  services: ['phantomjs'],
-  waitforTimeout: 3000,
-  capabilities: [phantomjs],
-  maxInstances: 4,
-  phantomjsOpts: {
-    ignoreSslErrors: true
-  },
-  before: function() {
-    browser.setViewportSize({
-      width: 1280,
-      height: 1024
-    })
-  }
+const chromeHeadlessConfig = {
+  capabilities: [chromeHeadless]
 }
 
 if (process.env.TRAVIS === 'true') {
   config = {
     ...config,
-    ...phantomjsConfig,
+    ...chromeHeadlessConfig,
     logLevel: 'silent'
   }
 } else {
@@ -87,7 +75,7 @@ if (process.env.TRAVIS === 'true') {
   } else if (argv.browserstack) {
     config = Object.assign(config, browserStackConfig)
   } else if (argv.headless) {
-    config = Object.assign(config, phantomjsConfig)
+    config = Object.assign(config, chromeHeadlessConfig)
   }
 }
 
