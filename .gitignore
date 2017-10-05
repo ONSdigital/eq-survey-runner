@@ -82,5 +82,5 @@ data/cy
 keys.yml
 secrets.yml
 
-data/en/mci_*
-data/en/rsi_*
+data/en/e_commerce.json
+data/en/mbs_0111.json
