@@ -9,3 +9,4 @@ shred -u -v $Keys
 rm -f $Keys
 
 shred -u -v secrets.yml
+shred -u -v keys.yml

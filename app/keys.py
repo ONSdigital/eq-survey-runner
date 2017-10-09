@@ -1,0 +1,2 @@
+KEY_PURPOSE_AUTHENTICATION = 'authentication'
+KEY_PURPOSE_SUBMISSION = 'submission'

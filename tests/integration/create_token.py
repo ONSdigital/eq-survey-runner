@@ -3,7 +3,7 @@ from uuid import uuid4
 
 from sdc.crypto.encrypter import encrypt
 
-from app.secrets import KEY_PURPOSE_AUTHENTICATION
+from app.keys import KEY_PURPOSE_AUTHENTICATION
 
 PAYLOAD = {
     'user_id': 'integration-test',
@@ -26,8 +26,8 @@ PAYLOAD = {
 
 class TokenGenerator:
 
-    def __init__(self, secret_store, upstream_kid, sr_public_kid):
-        self._secret_store = secret_store
+    def __init__(self, key_store, upstream_kid, sr_public_kid):
+        self._key_store = key_store
         self._upstream_kid = upstream_kid
         self._sr_public_kid = sr_public_kid
 
@@ -64,4 +64,4 @@ class TokenGenerator:
         return self.generate_token(payload_vars)
 
     def generate_token(self, payload):
-        return encrypt(payload, self._secret_store, KEY_PURPOSE_AUTHENTICATION)
+        return encrypt(payload, self._key_store, KEY_PURPOSE_AUTHENTICATION)

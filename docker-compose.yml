@@ -43,6 +43,7 @@ services:
       EQ_RABBITMQ_HOST: rabbit
       EQ_RABBITMQ_HOST_SECONDARY: rabbit
       EQ_SECRETS_FILE: docker-secrets.yml
+      EQ_KEYS_FILE: docker-keys.yml
     restart: always
     depends_on:
       - db

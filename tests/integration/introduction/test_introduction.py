@@ -9,7 +9,7 @@ class TestIntroduction(IntegrationTestCase):
 
         # When on the landing page
         # Then the email link is present with the ru_ref in the subject
-        self.assertRegexPage('\"mailto\:.+\?subject\=.+123456789012A\"')
+        self.assertRegexPage(r'\"mailto\:.+\?subject\=.+123456789012A\"')
 
     def test_intro_description_displayed(self):
         # Given survey containing intro description

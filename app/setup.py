@@ -15,6 +15,8 @@ from flask_wtf.csrf import CSRFProtect
 
 from structlog import get_logger
 
+from sdc.crypto.key_store import validate_required_keys, KeyStore
+
 from app import settings
 from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
@@ -23,6 +25,7 @@ from app.authentication.session_storage import SessionStorage
 from app.authentication.user_id_generator import UserIDGenerator
 from app.data_model.database import Database
 
+from app.keys import KEY_PURPOSE_SUBMISSION
 from app.new_relic import setup_newrelic
 from app.secrets import SecretStore, validate_required_secrets
 
@@ -60,8 +63,11 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     application.eq = {}
 
     secrets = yaml.safe_load(open(application.config['EQ_SECRETS_FILE']))
+    keys = yaml.safe_load(open(application.config['EQ_KEYS_FILE']))
     validate_required_secrets(secrets)
+    validate_required_keys(keys, KEY_PURPOSE_SUBMISSION)
     application.eq['secret_store'] = SecretStore(secrets)
+    application.eq['key_store'] = KeyStore(keys)
 
     if setting_overrides:
         application.config.update(setting_overrides)
