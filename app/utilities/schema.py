@@ -22,7 +22,7 @@ def load_schema_from_metadata(metadata):
 
 @cache.memoize()
 def load_schema_from_params(eq_id, form_type, language_code=DEFAULT_LANGUAGE_CODE):
-    return load_schema_file("{}_{}.json".format(eq_id, form_type), language_code)
+    return load_schema_file('{}_{}.json'.format(eq_id, form_type), language_code)
 
 
 def load_schema_file(schema_file, language_code=None):
@@ -39,35 +39,35 @@ def load_schema_file(schema_file, language_code=None):
                     schema_file=schema_file, language_code=language_code, schema_path=schema_path)
         schema_path = get_schema_file_path(schema_file, DEFAULT_LANGUAGE_CODE)
 
-    logger.info("loading schema", schema_file=schema_file, language_code=language_code, schema_path=schema_path)
+    logger.info('loading schema', schema_file=schema_file, language_code=language_code, schema_path=schema_path)
 
     try:
-        with open(schema_path, encoding="utf8") as json_data:
+        with open(schema_path, encoding='utf8') as json_data:
             return json.load(json_data)
 
     except FileNotFoundError as e:
-        logger.error("no schema file exists", filename=schema_path)
+        logger.error('no schema file exists', filename=schema_path)
         raise e
 
 
 @cache.memoize()
 def load_schema_from_url(survey_url, language_code):
-    logger.info("loading schema from URL", survey_url=survey_url, language_code=language_code)
+    logger.info('loading schema from URL', survey_url=survey_url, language_code=language_code)
 
-    constructed_survey_url = "{}?language={}".format(survey_url, language_code)
+    constructed_survey_url = '{}?language={}'.format(survey_url, language_code)
 
     req = requests.get(constructed_survey_url)
     schema_response = req.content.decode()
 
     if req.status_code == 404:
-        logger.error("no schema exists", survey_url=constructed_survey_url)
+        logger.error('no schema exists', survey_url=constructed_survey_url)
         raise NotFound
 
     return json.loads(schema_response)
 
 
 def get_schema_definition_path(schema_dir=DEFAULT_SCHEMA_DIR):
-    return os.path.join(schema_dir, "schema/schema_v1.json")
+    return os.path.join(schema_dir, 'schema/schema_v1.json')
 
 
 def get_schema_path(schema_dir=DEFAULT_SCHEMA_DIR, language_code=DEFAULT_LANGUAGE_CODE):

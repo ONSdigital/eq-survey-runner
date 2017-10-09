@@ -49,7 +49,7 @@ class TestTemplateRenderer(unittest.TestCase):
 
     def test_household_summary_values_are_escaped_and_not_encoded(self):
         description = "<h2 class='neptune'>Your household includes:</h2> " \
-                      "{{ [answers.first_name, answers.middle_names, answers.last_name]|format_household_summary }}"
+                      '{{ [answers.first_name, answers.middle_names, answers.last_name]|format_household_summary }}'
         context = {
             'answers': {
                 'first_name': ['Alice', 'Bob', '\\', 'Dave'],
@@ -60,21 +60,21 @@ class TestTemplateRenderer(unittest.TestCase):
 
         rendered = TemplateRenderer().render(description, **context)
         self.assertEqual(rendered, "<h2 class='neptune'>Your household includes:</h2> "
-                                   "<ul>"
-                                   "<li>Alice Aardvark</li>"
-                                   "<li>Bob Berty Brown</li>"
+                                   '<ul>'
+                                   '<li>Alice Aardvark</li>'
+                                   '<li>Bob Berty Brown</li>'
                                    r'<li>\ " !</li>'
-                                   "<li>Dave Dixon Davies</li>"
-                                   "</ul>")
+                                   '<li>Dave Dixon Davies</li>'
+                                   '</ul>')
 
     def test_household_summary_with_no_names(self):
         description = "<h2 class='neptune'>Your household includes:</h2> " \
-                      "{{ []|format_household_summary }}"
+                      '{{ []|format_household_summary }}'
         context = {}
 
         rendered = TemplateRenderer().render(description, **context)
         self.assertEqual(rendered, "<h2 class='neptune'>Your household includes:</h2> "
-                                   "")
+                                   '')
 
     def test_render_nested_templatable_property(self):
         guidance = {

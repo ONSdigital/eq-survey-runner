@@ -430,13 +430,13 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
     def test_evaluate_when_rules_condition_is_not_met(self):
         # Given
         answer_1 = Answer(
-            answer_id="my_answers",
+            answer_id='my_answers',
             answer_instance=0,
             group_instance=0,
             value=10,
         )
         answer_2 = Answer(
-            answer_id="my_answers",
+            answer_id='my_answers',
             answer_instance=1,
             group_instance=0,
             value=20,
@@ -459,4 +459,4 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         # When
         with self.assertRaises(Exception) as err:
             evaluate_when_rules(when['when'], None, answer_store, 0)
-        self.assertEqual("Multiple answers (2) found evaluating when rule for answer (my_answers)", str(err.exception))
+        self.assertEqual('Multiple answers (2) found evaluating when rule for answer (my_answers)', str(err.exception))

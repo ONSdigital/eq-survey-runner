@@ -31,10 +31,10 @@ class EncryptedQuestionnaireStorage:
         encrypted_data_json = json.dumps({'data': encrypted_data})
         questionnaire_state = self._find_questionnaire_state()
         if questionnaire_state:
-            logger.debug("updating questionnaire data", user_id=self._user_id)
+            logger.debug('updating questionnaire data', user_id=self._user_id)
             questionnaire_state.state = encrypted_data_json
         else:
-            logger.debug("creating questionnaire data", user_id=self._user_id)
+            logger.debug('creating questionnaire data', user_id=self._user_id)
             questionnaire_state = QuestionnaireState(self._user_id, encrypted_data_json)
 
         # session has a add function but it is wrapped in a session_scope which confuses pylint
@@ -53,7 +53,7 @@ class EncryptedQuestionnaireStorage:
             return None
 
     def delete(self):
-        logger.debug("deleting users data", user_id=self._user_id)
+        logger.debug('deleting users data', user_id=self._user_id)
         questionnaire_state = self._find_questionnaire_state()
         if questionnaire_state:
             # session has a delete function but it is wrapped in a session_scope which confuses pylint
@@ -71,9 +71,9 @@ class EncryptedQuestionnaireStorage:
 
     def _encrypt_data(self, data):
         protected_header = {
-            "alg": "dir",
-            "enc": "A256GCM",
-            "kid": "1,1",
+            'alg': 'dir',
+            'enc': 'A256GCM',
+            'kid': '1,1',
         }
         jwe_token = jwe.JWE(plaintext=base64url_encode(data), protected=protected_header)
 
@@ -93,7 +93,7 @@ class EncryptedQuestionnaireStorage:
         return base64url_decode(jwe_token.payload.decode()).decode()
 
     def _find_questionnaire_state(self):
-        logger.debug("getting questionnaire data", user_id=self._user_id)
+        logger.debug('getting questionnaire data', user_id=self._user_id)
         # pylint: disable=maybe-no-member
         # SQLAlchemy doing declarative magic which makes session scope query property available
         return QuestionnaireState.query.filter(QuestionnaireState.user_id == self._user_id).first()
@@ -101,8 +101,8 @@ class EncryptedQuestionnaireStorage:
     @staticmethod
     def generate_jwk_from_cek(cek):
         password = {
-            "kty": "oct",
-            "k": base64url_encode(cek),
+            'kty': 'oct',
+            'k': base64url_encode(cek),
         }
 
         return jwk.JWK(**password)

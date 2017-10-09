@@ -14,48 +14,48 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_for_block_location(self):
         with self.test_request_context():
-            survey = load_schema_file("test_0102.json")
+            survey = load_schema_file('test_0102.json')
 
-            block_json = SchemaHelper.get_block(survey, "reporting-period")
+            block_json = SchemaHelper.get_block(survey, 'reporting-period')
             location = SchemaHelper.get_first_location(survey)
             error_messages = SchemaHelper.get_messages(survey)
 
             form, _ = get_form_for_location(block_json, location, AnswerStore(), error_messages)
 
-            self.assertTrue(hasattr(form, "period-to"))
-            self.assertTrue(hasattr(form, "period-from"))
+            self.assertTrue(hasattr(form, 'period-to'))
+            self.assertTrue(hasattr(form, 'period-from'))
 
-            period_from_field = getattr(form, "period-from")
-            period_to_field = getattr(form, "period-to")
+            period_from_field = getattr(form, 'period-from')
+            period_to_field = getattr(form, 'period-to')
 
             self.assertIsInstance(period_from_field.month.validators[0], DateRequired)
             self.assertIsInstance(period_to_field.month.validators[0], DateRequired)
 
     def test_get_form_and_disable_mandatory_answers(self):
         with self.test_request_context():
-            survey = load_schema_file("test_0102.json")
+            survey = load_schema_file('test_0102.json')
 
-            block_json = SchemaHelper.get_block(survey, "reporting-period")
+            block_json = SchemaHelper.get_block(survey, 'reporting-period')
             location = SchemaHelper.get_first_location(survey)
             error_messages = SchemaHelper.get_messages(survey)
 
             form, _ = get_form_for_location(block_json, location,
                                             AnswerStore(), error_messages, disable_mandatory=True)
 
-            self.assertTrue(hasattr(form, "period-from"))
-            self.assertTrue(hasattr(form, "period-to"))
+            self.assertTrue(hasattr(form, 'period-from'))
+            self.assertTrue(hasattr(form, 'period-to'))
 
-            period_from_field = getattr(form, "period-from")
-            period_to_field = getattr(form, "period-to")
+            period_from_field = getattr(form, 'period-from')
+            period_to_field = getattr(form, 'period-to')
 
             self.assertIsInstance(period_from_field.month.validators[0], OptionalForm)
             self.assertIsInstance(period_to_field.month.validators[0], OptionalForm)
 
     def test_get_form_deserialises_dates(self):
         with self.test_request_context():
-            survey = load_schema_file("test_0102.json")
+            survey = load_schema_file('test_0102.json')
 
-            block_json = SchemaHelper.get_block(survey, "reporting-period")
+            block_json = SchemaHelper.get_block(survey, 'reporting-period')
             location = Location('rsi', 0, 'reporting-period')
             error_messages = SchemaHelper.get_messages(survey)
 
@@ -77,11 +77,11 @@ class TestFormHelper(AppContextTestCase):
                 }
             ]), error_messages)
 
-            self.assertTrue(hasattr(form, "period-to"))
-            self.assertTrue(hasattr(form, "period-from"))
+            self.assertTrue(hasattr(form, 'period-to'))
+            self.assertTrue(hasattr(form, 'period-from'))
 
-            period_to_field = getattr(form, "period-to")
-            period_from_field = getattr(form, "period-from")
+            period_to_field = getattr(form, 'period-to')
+            period_from_field = getattr(form, 'period-from')
 
             self.assertEqual(period_from_field.data, {
                 'day': '01',
@@ -96,9 +96,9 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_deserialises_month_year_dates(self):
         with self.test_request_context():
-            survey = load_schema_file("test_dates.json")
+            survey = load_schema_file('test_dates.json')
 
-            block_json = SchemaHelper.get_block(survey, "date-block")
+            block_json = SchemaHelper.get_block(survey, 'date-block')
             location = SchemaHelper.get_first_location(survey)
             error_messages = SchemaHelper.get_messages(survey)
 
@@ -113,9 +113,9 @@ class TestFormHelper(AppContextTestCase):
                 }
             ]), error_messages)
 
-            self.assertTrue(hasattr(form, "month-year-answer"))
+            self.assertTrue(hasattr(form, 'month-year-answer'))
 
-            month_year_field = getattr(form, "month-year-answer")
+            month_year_field = getattr(form, 'month-year-answer')
 
             self.assertEqual(month_year_field.data, {
                 'month': '5',
@@ -124,9 +124,9 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_deserialises_lists(self):
         with self.test_request_context():
-            survey = load_schema_file("test_checkbox.json")
+            survey = load_schema_file('test_checkbox.json')
 
-            block_json = SchemaHelper.get_block(survey, "mandatory-checkbox")
+            block_json = SchemaHelper.get_block(survey, 'mandatory-checkbox')
             location = SchemaHelper.get_first_location(survey)
             error_messages = SchemaHelper.get_messages(survey)
 
@@ -141,17 +141,17 @@ class TestFormHelper(AppContextTestCase):
                 }
             ]), error_messages)
 
-            self.assertTrue(hasattr(form, "mandatory-checkbox-answer"))
+            self.assertTrue(hasattr(form, 'mandatory-checkbox-answer'))
 
-            checkbox_field = getattr(form, "mandatory-checkbox-answer")
+            checkbox_field = getattr(form, 'mandatory-checkbox-answer')
 
             self.assertEqual(checkbox_field.data, ['Cheese', 'Ham'])
 
     def test_post_form_for_block_location(self):
         with self.test_request_context():
-            survey = load_schema_file("test_0102.json")
+            survey = load_schema_file('test_0102.json')
 
-            block_json = SchemaHelper.get_block(survey, "reporting-period")
+            block_json = SchemaHelper.get_block(survey, 'reporting-period')
             location = SchemaHelper.get_first_location(survey)
             error_messages = SchemaHelper.get_messages(survey)
 
@@ -164,11 +164,11 @@ class TestFormHelper(AppContextTestCase):
                 'period-to-year': '2017',
             }, error_messages)
 
-            self.assertTrue(hasattr(form, "period-to"))
-            self.assertTrue(hasattr(form, "period-from"))
+            self.assertTrue(hasattr(form, 'period-to'))
+            self.assertTrue(hasattr(form, 'period-from'))
 
-            period_to_field = getattr(form, "period-to")
-            period_from_field = getattr(form, "period-from")
+            period_to_field = getattr(form, 'period-to')
+            period_from_field = getattr(form, 'period-from')
 
             self.assertIsInstance(period_from_field.month.validators[0], DateRequired)
             self.assertIsInstance(period_to_field.month.validators[0], DateRequired)
@@ -186,27 +186,27 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_and_disable_mandatory(self):
         with self.test_request_context():
-            survey = load_schema_file("test_0102.json")
+            survey = load_schema_file('test_0102.json')
 
-            block_json = SchemaHelper.get_block(survey, "reporting-period")
+            block_json = SchemaHelper.get_block(survey, 'reporting-period')
             location = SchemaHelper.get_first_location(survey)
             error_messages = SchemaHelper.get_messages(survey)
 
             form, _ = post_form_for_location(block_json, location, AnswerStore(), {
             }, error_messages, disable_mandatory=True)
 
-            self.assertTrue(hasattr(form, "period-from"))
-            self.assertTrue(hasattr(form, "period-to"))
+            self.assertTrue(hasattr(form, 'period-from'))
+            self.assertTrue(hasattr(form, 'period-to'))
 
-            period_from_field = getattr(form, "period-from")
-            period_to_field = getattr(form, "period-to")
+            period_from_field = getattr(form, 'period-from')
+            period_to_field = getattr(form, 'period-to')
 
             self.assertIsInstance(period_from_field.month.validators[0], OptionalForm)
             self.assertIsInstance(period_to_field.month.validators[0], OptionalForm)
 
     def test_get_form_for_household_composition(self):
         with self.test_request_context():
-            survey = load_schema_file("census_household.json")
+            survey = load_schema_file('census_household.json')
 
             block_json = SchemaHelper.get_block(survey, 'household-composition')
             location = Location('who-lives-here', 0, 'household-composition')
@@ -214,18 +214,18 @@ class TestFormHelper(AppContextTestCase):
 
             form, _ = get_form_for_location(block_json, location, AnswerStore(), error_messages)
 
-            self.assertTrue(hasattr(form, "household"))
+            self.assertTrue(hasattr(form, 'household'))
             self.assertEqual(len(form.household.entries), 1)
 
             first_field_entry = form.household[0]
 
-            self.assertTrue(hasattr(first_field_entry, "first-name"))
-            self.assertTrue(hasattr(first_field_entry, "middle-names"))
-            self.assertTrue(hasattr(first_field_entry, "last-name"))
+            self.assertTrue(hasattr(first_field_entry, 'first-name'))
+            self.assertTrue(hasattr(first_field_entry, 'middle-names'))
+            self.assertTrue(hasattr(first_field_entry, 'last-name'))
 
     def test_post_form_for_household_composition(self):
         with self.test_request_context():
-            survey = load_schema_file("census_household.json")
+            survey = load_schema_file('census_household.json')
 
             block_json = SchemaHelper.get_block(survey, 'household-composition')
             location = Location('who-lives-here', 0, 'household-composition')
@@ -252,7 +252,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_for_household_relationship(self):
         with self.test_request_context():
-            survey = load_schema_file("census_household.json")
+            survey = load_schema_file('census_household.json')
 
             block_json = SchemaHelper.get_block(survey, 'household-relationships')
             location = Location('who-lives-here-relationship', 0, 'household-relationships')
@@ -302,7 +302,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_for_household_relationship(self):
         with self.test_request_context():
-            survey = load_schema_file("census_household.json")
+            survey = load_schema_file('census_household.json')
 
             block_json = SchemaHelper.get_block(survey, 'household-relationships')
             location = Location('who-lives-here-relationship', 0, 'household-relationships')
@@ -346,11 +346,11 @@ class TestFormHelper(AppContextTestCase):
             self.assertEqual(len(field_list.entries), 1)
 
             # Check the data matches what was passed from request
-            self.assertEqual(field_list.entries[0].data, "3")
+            self.assertEqual(field_list.entries[0].data, '3')
 
     def test_post_form_for_radio_other_not_selected(self):
         with self.test_request_context():
-            survey = load_schema_file("test_radio.json")
+            survey = load_schema_file('test_radio.json')
 
             block_json = SchemaHelper.get_block(survey, 'radio-mandatory')
             location = Location('radio', 0, 'radio-mandatory')
@@ -385,7 +385,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_for_radio_other_selected(self):
         with self.test_request_context():
-            survey = load_schema_file("test_radio.json")
+            survey = load_schema_file('test_radio.json')
 
             block_json = SchemaHelper.get_block(survey, 'radio-mandatory')
             location = Location('radio', 0, 'radio-mandatory')

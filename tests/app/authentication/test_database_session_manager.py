@@ -16,8 +16,8 @@ class TestSessionManager(AppContextTestCase):
 
     def setUp(self):
         super().setUp()
-        self.database = Mock(Database(driver="sqlite",
-                                      database_name="",
+        self.database = Mock(Database(driver='sqlite',
+                                      database_name='',
                                       setup_attempts=1,
                                       setup_retry_delay=0))
         self.session_storage = SessionStorage(self.database)

@@ -21,32 +21,32 @@ configure(logger_factory=LoggerFactory(), processors=[ConsoleRenderer()])
 class TestSchemaValidation(unittest.TestCase):
 
     def test_invalid_schema_block(self):
-        schema_file = open(get_schema_definition_path(), encoding="utf8")
+        schema_file = open(get_schema_definition_path(), encoding='utf8')
         schema = load(schema_file)
 
-        file = "test_invalid_routing_block.json"
+        file = 'test_invalid_routing_block.json'
 
-        json_file = open(os.path.join(os.path.dirname(os.path.realpath(__file__)), file), encoding="utf8")
+        json_file = open(os.path.join(os.path.dirname(os.path.realpath(__file__)), file), encoding='utf8')
         json_to_validate = load(json_file)
 
         errors = self.validate_schema(schema, file, json_to_validate)
-        block_errors = [error for error in errors if "invalid block" in error]
+        block_errors = [error for error in errors if 'invalid block' in error]
 
-        self.assertNotEqual(len(block_errors), 0, "This schema should fail with an invalid block")
+        self.assertNotEqual(len(block_errors), 0, 'This schema should fail with an invalid block')
 
     def test_invalid_schema_group(self):
-        schema_file = open(get_schema_definition_path(), encoding="utf8")
+        schema_file = open(get_schema_definition_path(), encoding='utf8')
         schema = load(schema_file)
 
-        file = "test_invalid_routing_group.json"
+        file = 'test_invalid_routing_group.json'
 
-        json_file = open(os.path.join(os.path.dirname(os.path.realpath(__file__)), file), encoding="utf8")
+        json_file = open(os.path.join(os.path.dirname(os.path.realpath(__file__)), file), encoding='utf8')
         json_to_validate = load(json_file)
 
         errors = self.validate_schema(schema, file, json_to_validate)
-        group_errors = [error for error in errors if "invalid group" in error]
+        group_errors = [error for error in errors if 'invalid group' in error]
 
-        self.assertNotEqual(len(group_errors), 0, "This schema should fail with an invalid group")
+        self.assertNotEqual(len(group_errors), 0, 'This schema should fail with an invalid group')
 
     def test_schemas(self):
 
@@ -54,11 +54,11 @@ class TestSchemaValidation(unittest.TestCase):
 
         files = self.all_schema_files()
 
-        schema_file = open(get_schema_definition_path(), encoding="utf8")
+        schema_file = open(get_schema_definition_path(), encoding='utf8')
         schema = load(schema_file)
 
         for file in files:
-            with open(file, encoding="utf8") as json_file:
+            with open(file, encoding='utf8') as json_file:
                 json_to_validate = load(json_file)
 
                 errors.extend(self.validate_schema(schema, file, json_to_validate))
@@ -67,7 +67,7 @@ class TestSchemaValidation(unittest.TestCase):
             for error in errors:
                 logger.error(error)
 
-            self.fail("{} Schema Validation Errors.".format(len(errors)))
+            self.fail('{} Schema Validation Errors.'.format(len(errors)))
 
     def validate_schema(self, schema, file, json_to_validate):
 
@@ -82,7 +82,7 @@ class TestSchemaValidation(unittest.TestCase):
 
             errors.extend(self.validate_range_types_from_answers(file, json_to_validate))
         except SchemaError as e:
-            errors.append("JSON Error! File [{}]. Error [{}]".format(file, e))
+            errors.append('JSON Error! File [{}]. Error [{}]'.format(file, e))
 
         return errors
 
@@ -99,7 +99,7 @@ class TestSchemaValidation(unittest.TestCase):
     def find_duplicates(self, ignored_keys, special_key):
         schema_files = self.all_schema_files()
         for schema_file in schema_files:
-            with open(schema_file, encoding="utf8") as file:
+            with open(schema_file, encoding='utf8') as file:
                 schema_json = load(file)
                 unique_items = []
                 for value in self._parse_values(schema_json, ignored_keys, special_key):
@@ -117,17 +117,17 @@ class TestSchemaValidation(unittest.TestCase):
 
     @staticmethod
     def contains_confirmation_or_summary(schema_file):
-        with open(schema_file, encoding="utf8") as file:
+        with open(schema_file, encoding='utf8') as file:
             schema_json = load(file)
             blocks = SchemaHelper.get_blocks(schema_json)
             for block in blocks:
-                if block['type'] in ["Summary", "Confirmation"]:
+                if block['type'] in ['Summary', 'Confirmation']:
                     return True
         return False
 
     def test_child_answers_define_parent(self):
         for schema_file in self.all_schema_files():
-            with open(schema_file, encoding="utf8") as file:
+            with open(schema_file, encoding='utf8') as file:
                 schema_json = load(file)
 
                 for block in SchemaHelper.get_blocks(schema_json):
@@ -146,7 +146,7 @@ class TestSchemaValidation(unittest.TestCase):
                                               % (child_answer_id, answer_id, schema_file))
                                 if answers_by_id[child_answer_id]['parent_answer_id'] != answer_id:
                                     self.fail("Child answer '%s' defines incorrect parent_answer_id '%s' in schema %s: "
-                                              "Should be '%s"
+                                              "Should be '%s'"
                                               % (child_answer_id, answers_by_id[child_answer_id]['parent_answer_id'],
                                                  schema_file, answer_id))
 
@@ -155,7 +155,7 @@ class TestSchemaValidation(unittest.TestCase):
         schema_files = []
         for folder, _, files in os.walk(get_schema_path()):
             for filename in files:
-                if filename.endswith(".json"):
+                if filename.endswith('.json'):
                     schema_files.append(os.path.join(folder, filename))
         return schema_files
 
@@ -180,9 +180,9 @@ class TestSchemaValidation(unittest.TestCase):
             validate(json_to_validate, schema, resolver=resolver)
             return []
         except ValidationError as e:
-            return ["Schema Validation Error! File [{}] does not validate against schema. Error [{}]".format(file, e)]
+            return ['Schema Validation Error! File [{}] does not validate against schema. Error [{}]'.format(file, e)]
         except SchemaError as e:
-            return ["JSON Parse Error! Could not parse [{}]. Error [{}]".format(file, e)]
+            return ['JSON Parse Error! Could not parse [{}]. Error [{}]'.format(file, e)]
 
     @classmethod
     def validate_schema_contains_valid_routing_rules(cls, file, json_to_validate):
@@ -199,14 +199,14 @@ class TestSchemaValidation(unittest.TestCase):
                             continue
 
                         if not cls.contains_block(json_to_validate, block_id):
-                            invalid_block_error = "Routing rule routes to invalid block [{}]".format(block_id)
+                            invalid_block_error = 'Routing rule routes to invalid block [{}]'.format(block_id)
                             errors.append(TestSchemaValidation._error_message(invalid_block_error, file))
 
                     if 'goto' in rule and 'group' in rule['goto'].keys():
                         group_id = rule['goto']['group']
 
                         if not cls.contains_group(json_to_validate, group_id):
-                            invalid_group_error = "Routing rule routes to invalid group [{}]".format(group_id)
+                            invalid_group_error = 'Routing rule routes to invalid group [{}]'.format(group_id)
                             errors.append(TestSchemaValidation._error_message(invalid_group_error, file))
 
         return errors
@@ -242,27 +242,27 @@ class TestSchemaValidation(unittest.TestCase):
             has_unrouted_options = len(options) > 0 and len(options) != len(answer['options'])
 
             if answer['mandatory'] is False and not has_default_route:
-                default_route_not_defined = "Default route not defined for optional question [{}]".format(answer['id'])
+                default_route_not_defined = 'Default route not defined for optional question [{}]'.format(answer['id'])
                 answer_errors.append(TestSchemaValidation._error_message(default_route_not_defined, file))
 
             if has_unrouted_options:
-                unrouted_error_template = "Routing rule not defined for all answers or default not defined for answer [{}] missing options {}"
+                unrouted_error_template = 'Routing rule not defined for all answers or default not defined for answer [{}] missing options {}'
                 unrouted_error = unrouted_error_template.format(answer['id'], options)
                 answer_errors.append(TestSchemaValidation._error_message(unrouted_error, file))
         return answer_errors
 
     @staticmethod
     def _error_message(message, file):
-        return "Schema Integrity Error. File[{}] {}".format(file, message)
+        return 'Schema Integrity Error. File[{}] {}'.format(file, message)
 
     @staticmethod
     def contains_block(json, block_id):
-        matching_blocks = [b for b in SchemaHelper.get_blocks(json) if b["id"] == block_id]
+        matching_blocks = [b for b in SchemaHelper.get_blocks(json) if b['id'] == block_id]
         return len(matching_blocks) == 1
 
     @staticmethod
     def contains_group(json, group_id):
-        matching_groups = [g for g in SchemaHelper.get_groups(json) if g["id"] == group_id]
+        matching_groups = [g for g in SchemaHelper.get_groups(json) if g['id'] == group_id]
         return len(matching_groups) == 1
 
     @staticmethod
@@ -310,19 +310,19 @@ class TestSchemaValidation(unittest.TestCase):
                     used_answer_decimals = int(answer.get('decimal_places', 0))
 
         if not used_answer_exists:
-            error_message = "{} used for {} is not an answer id in schema".format(used_answer_id, answer_id)
+            error_message = '{} used for {} is not an answer id in schema'.format(used_answer_id, answer_id)
             range_errors.append(TestSchemaValidation._error_message(error_message, file))
         elif used_answer_type not in ['Number', 'Currency', 'Percentage']:
-            error_message = "{} is of type {} and therefore can not be passed to max/min values for {}"\
+            error_message = '{} is of type {} and therefore can not be passed to max/min values for {}'\
                 .format(used_answer_id, used_answer_type, answer_id)
             range_errors.append(TestSchemaValidation._error_message(error_message, file))
         elif used_answer_decimals > answer_decimals:
             if answer_decimals == 0:
-                error_message = "{} of type decimal is being passed to " \
-                                "max/min value for {} of type integer".format(used_answer_id, answer_id)
+                error_message = '{} of type decimal is being passed to ' \
+                                'max/min value for {} of type integer'.format(used_answer_id, answer_id)
             else:
-                error_message = "{} is of type decimal with {} places is being passed to" \
-                                " max/min value for {} of {} decimal_places"\
+                error_message = '{} is of type decimal with {} places is being passed to' \
+                                ' max/min value for {} of {} decimal_places'\
                     .format(used_answer_id, used_answer_decimals, answer_id, answer_decimals)
 
             range_errors.append(TestSchemaValidation._error_message(error_message, file))
@@ -331,13 +331,13 @@ class TestSchemaValidation(unittest.TestCase):
 
     @staticmethod
     def validate_range_value(value, file, answer_id, answer_decimals):
-        error_message = "Decimal Places used in {} should be less than or equal to {}, currently {}" \
+        error_message = 'Decimal Places used in {} should be less than or equal to {}, currently {}' \
             .format(answer_id, MAX_DECIMAL_PLACES, answer_decimals)
 
         if answer_decimals > MAX_DECIMAL_PLACES:
             return [TestSchemaValidation._error_message(error_message, file)]
 
-        error_message = "Value {} used in {} should be between system limits {} to {}"\
+        error_message = 'Value {} used in {} should be between system limits {} to {}'\
             .format(value, answer_id, MIN_NUMBER, MAX_NUMBER)
 
         if MIN_NUMBER <= value <= MAX_NUMBER:

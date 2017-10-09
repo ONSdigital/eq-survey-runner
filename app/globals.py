@@ -20,7 +20,7 @@ def get_questionnaire_store(user_id, user_ik):
 
 def get_metadata(user):
     if user.is_anonymous:
-        logger.debug("anonymous user requesting metadata get instance")
+        logger.debug('anonymous user requesting metadata get instance')
         return None
 
     questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)

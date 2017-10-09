@@ -163,10 +163,10 @@ class DateCheck(object):
 
     def __call__(self, form, field):
         try:
-            date_str = "{:02d}/{:02d}/{}".format(int(form.day.data or 0), int(form.month.data or 0), form.year.data or
+            date_str = '{:02d}/{:02d}/{}'.format(int(form.day.data or 0), int(form.month.data or 0), form.year.data or
                                                  '')
 
-            datetime.strptime(date_str, "%d/%m/%Y")
+            datetime.strptime(date_str, '%d/%m/%Y')
         except ValueError:
             raise validators.StopValidation(self.message)
 
@@ -179,9 +179,9 @@ class MonthYearCheck(object):
 
     def __call__(self, form, field):
         try:
-            datestr = "{:02d}/{}".format(int(form.month.data or 0), form.year.data or '')
+            datestr = '{:02d}/{}'.format(int(form.month.data or 0), form.year.data or '')
 
-            datetime.strptime(datestr, "%m/%Y")
+            datetime.strptime(datestr, '%m/%Y')
         except ValueError:
             raise validators.ValidationError(self.message)
 
@@ -194,13 +194,13 @@ class DateRangeCheck(object):
 
     def __call__(self, form, from_field, to_field):
 
-        from_date_str = "{:02d}/{:02d}/{}".format(int(from_field.day.data or 0), int(from_field.month.data or 0),
+        from_date_str = '{:02d}/{:02d}/{}'.format(int(from_field.day.data or 0), int(from_field.month.data or 0),
                                                   from_field.year.data or '')
-        to_date_str = "{:02d}/{:02d}/{}".format(int(to_field.day.data or 0), int(to_field.month.data or 0),
+        to_date_str = '{:02d}/{:02d}/{}'.format(int(to_field.day.data or 0), int(to_field.month.data or 0),
                                                 to_field.year.data or '')
 
-        from_date = datetime.strptime(from_date_str, "%d/%m/%Y")
-        to_date = datetime.strptime(to_date_str, "%d/%m/%Y")
+        from_date = datetime.strptime(from_date_str, '%d/%m/%Y')
+        to_date = datetime.strptime(to_date_str, '%d/%m/%Y')
 
         if from_date == to_date or from_date > to_date:
             raise validators.ValidationError(self.messages['INVALID_DATE_RANGE'])

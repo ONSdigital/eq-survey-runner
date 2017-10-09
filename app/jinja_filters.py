@@ -25,7 +25,7 @@ def format_number(value):
 
 
 @blueprint.app_template_filter()
-def format_currency(value, currency="GBP"):
+def format_currency(value, currency='GBP'):
     if value is None or value == '':
         return ''
     else:
@@ -33,7 +33,7 @@ def format_currency(value, currency="GBP"):
 
 
 @blueprint.app_template_filter()
-def get_currency_symbol(currency="GBP"):
+def get_currency_symbol(currency='GBP'):
     return numbers.get_currency_symbol(currency, locale=DEFAULT_LOCALE)
 
 
@@ -50,11 +50,11 @@ def format_currency_for_input(value, decimal_places=0):
 
 @blueprint.app_template_filter()
 def format_percentage(value):
-    return "{}%".format(value)
+    return '{}%'.format(value)
 
 
 def format_unit(unit, value=''):
-    return units.format_unit(value=value, measurement_unit=unit, length="short", locale=DEFAULT_LOCALE)
+    return units.format_unit(value=value, measurement_unit=unit, length='short', locale=DEFAULT_LOCALE)
 
 
 @evalcontextfilter
@@ -90,12 +90,12 @@ def format_conditional_date(date1=None, date2=None):
         date = date2
 
     if date is None:
-        raise Exception("No valid dates passed to format_conditional_dates filter")
+        raise Exception('No valid dates passed to format_conditional_dates filter')
 
     if isinstance(date, datetime):
         return format_date(date)
     else:
-        return format_date(datetime.strptime(date, "%d/%m/%Y"))
+        return format_date(datetime.strptime(date, '%d/%m/%Y'))
 
 
 def format_start_end_date(start_date, end_date=None):
@@ -114,12 +114,12 @@ def format_str_as_date_range(value):
 
 @blueprint.app_template_filter()
 def format_str_as_month_year_date(value):
-    return datetime.strptime(value, "%m/%Y").strftime('%B %Y')
+    return datetime.strptime(value, '%m/%Y').strftime('%B %Y')
 
 
 @blueprint.app_template_filter()
 def format_str_as_date(value):
-    return format_date(datetime.strptime(value, "%d/%m/%Y"))
+    return format_date(datetime.strptime(value, '%d/%m/%Y'))
 
 
 @blueprint.app_template_filter()

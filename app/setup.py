@@ -137,7 +137,7 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     # Add theme manager
     application.config['THEME_PATHS'] = os.path.dirname(os.path.abspath(__file__))
-    Themes(application, app_identifier="surveyrunner")
+    Themes(application, app_identifier='surveyrunner')
 
     @application.before_request
     def before_request():  # pylint: disable=unused-variable
@@ -167,7 +167,7 @@ def setup_profiling(application):
 
     from werkzeug.contrib.profiler import ProfilerMiddleware, MergeStream
 
-    profiling_dir = "profiling"
+    profiling_dir = 'profiling'
 
     f = open('profiler.log', 'w')
     stream = MergeStream(sys.stdout, f)
@@ -185,7 +185,7 @@ def configure_flask_logging(application):
     # set the logger for this application and stop using flasks broken solution
     application._logger = logging.getLogger(__name__)  # pylint: disable=protected-access
     # workaround flask crazy logging mechanism (https://github.com/pallets/flask/issues/641)
-    application.logger_name = "nowhere"
+    application.logger_name = 'nowhere'
     # the line below is required to trigger disabling the logger
     application.logger  # pylint: disable=pointless-statement
 
@@ -288,7 +288,7 @@ def get_minimized_asset(filename):
     """
     if settings.EQ_MINIMIZE_ASSETS:
         if 'css' in filename:
-            filename = filename.replace(".css", ".min.css")
+            filename = filename.replace('.css', '.min.css')
         elif 'js' in filename:
-            filename = filename.replace(".js", ".min.js")
+            filename = filename.replace('.js', '.min.js')
     return filename

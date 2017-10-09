@@ -29,7 +29,7 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
         self.assertEqual(401, response.status_code)
 
     def test_invalid_token(self):
-        token = "invalid"
+        token = 'invalid'
 
         response = self.client.get('/session?token=' + token)
         self.assertEqual(403, response.status_code)
@@ -37,7 +37,7 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
     def test_fully_encrypted(self):
 
         key_store = KeyStore({
-            "keys": {
+            'keys': {
                 SR_USER_AUTHENTICATION_PUBLIC_KEY_KID: {'purpose': KEY_PURPOSE_AUTHENTICATION,
                                                         'type': 'public',
                                                         'value': TEST_DO_NOT_USE_SR_PUBLIC_KEY},
@@ -59,20 +59,20 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
         iat = time.time()
         exp = time.time() + (5 * 60)
         return {
-            "jti": str(uuid.uuid4()),
-            "user_id": 'jimmy',
+            'jti': str(uuid.uuid4()),
+            'user_id': 'jimmy',
             'iat': int(iat),
             'exp': int(exp),
-            "eq_id": 'test',
-            "period_str": '2016-01-01',
-            "period_id": '12',
-            "form_type": '0203',
-            "collection_exercise_sid": "sid",
-            "ref_p_start_date": "2016-01-01",
-            "ref_p_end_date": "2016-09-01",
-            "ru_ref": "1234",
-            "ru_name": "Test",
-            "return_by": "2016-09-09"
+            'eq_id': 'test',
+            'period_str': '2016-01-01',
+            'period_id': '12',
+            'form_type': '0203',
+            'collection_exercise_sid': 'sid',
+            'ref_p_start_date': '2016-01-01',
+            'ref_p_end_date': '2016-09-01',
+            'ru_ref': '1234',
+            'ru_name': 'Test',
+            'return_by': '2016-09-09'
         }
 
 if __name__ == '__main__':

@@ -28,7 +28,7 @@ class Location(object):
 
         :return:
         """
-        return "{}/{}/{}".format(self.group_id, self.group_instance, self.block_id)
+        return '{}/{}/{}'.format(self.group_id, self.group_instance, self.block_id)
 
     def __repr__(self):
         """
@@ -55,9 +55,9 @@ class Location(object):
         :param metadata:
         :return:
         """
-        eq_id = metadata["eq_id"]
-        collection_id = metadata["collection_exercise_sid"]
-        form_type = metadata["form_type"]
+        eq_id = metadata['eq_id']
+        collection_id = metadata['collection_exercise_sid']
+        form_type = metadata['form_type']
 
         path_params = {
             'eq_id': eq_id,

@@ -18,8 +18,8 @@ class TestDatabaseSetupRetry(TestCase):
             # When I attempt to setup the database
             # Then a TimeoutError is raised
             with self.assertRaises(TimeoutError) as exception:
-                Database(driver="sqlite",
-                         database_name="",
+                Database(driver='sqlite',
+                         database_name='',
                          setup_attempts=retry_count)
 
             # And the TimeoutError explains the failure
@@ -38,8 +38,8 @@ class TestDatabaseSetupRetry(TestCase):
     def test_database_retry_success(self):
         # Given the database setup returns successfully first time
         # When I call the create
-        database = Database(driver="sqlite",
-                            database_name="",
+        database = Database(driver='sqlite',
+                            database_name='',
                             setup_attempts=1,
                             setup_retry_delay=0)
 
@@ -54,8 +54,8 @@ class TestDatabaseSetupRetry(TestCase):
             setup.side_effect = iter([ConnectionRefusedError, ConnectionRefusedError, 'success'])
 
             # When I call the create with retry function
-            database = Database(driver="sqlite",
-                                database_name="",
+            database = Database(driver='sqlite',
+                                database_name='',
                                 setup_attempts=3,
                                 setup_retry_delay=0)
 
@@ -73,12 +73,12 @@ class TestDatabaseSetupRetry(TestCase):
             password = str(uuid.uuid4())
 
             # When I call the create with retry function
-            database = Database(driver="postgresql",
-                                host="localhost",
+            database = Database(driver='postgresql',
+                                host='localhost',
                                 port=5432,
-                                username="testUsername",
+                                username='testUsername',
                                 password=password,
-                                database_name="digitaleqrds",
+                                database_name='digitaleqrds',
                                 setup_attempts=1,
                                 setup_retry_delay=0)
 

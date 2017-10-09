@@ -26,7 +26,7 @@ class TestSettings(unittest.TestCase):
 
     def test_invalid_key_raises_exception(self):
         with self.assertRaises(Exception) as exception:
-            settings.get_env_or_fail("MISSING_ENVIRONMENT_VARIABLE")
+            settings.get_env_or_fail('MISSING_ENVIRONMENT_VARIABLE')
 
         self.assertEqual("Setting 'MISSING_ENVIRONMENT_VARIABLE' Missing", str(exception.exception))
 

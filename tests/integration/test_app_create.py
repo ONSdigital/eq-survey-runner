@@ -13,8 +13,8 @@ from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
 class TestCreateApp(unittest.TestCase):
     def setUp(self):
         self._setting_overrides = {
-            "EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER": "sqlite",
-            "EQ_SERVER_SIDE_STORAGE_DATABASE_NAME": ""
+            'EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER': 'sqlite',
+            'EQ_SERVER_SIDE_STORAGE_DATABASE_NAME': ''
         }
 
     def test_returns_application(self):
@@ -24,7 +24,7 @@ class TestCreateApp(unittest.TestCase):
     # Probably better for create app to have the control
     def test_setups_newrelic(self):
         with patch('newrelic.agent.initialize') as new_relic:
-            settings.EQ_NEW_RELIC_ENABLED = "True"
+            settings.EQ_NEW_RELIC_ENABLED = 'True'
             create_app(self._setting_overrides)
             self.assertEqual(new_relic.call_count, 1)
 
@@ -88,7 +88,7 @@ class TestCreateApp(unittest.TestCase):
     def test_versioned_url_for_with_version(self):
         settings.EQ_APPLICATION_VERSION = 'abc123'
         application = create_app(self._setting_overrides)
-        application.config['SERVER_NAME'] = "test"
+        application.config['SERVER_NAME'] = 'test'
 
         with application.app_context():
             self.assertEqual(
@@ -104,7 +104,7 @@ class TestCreateApp(unittest.TestCase):
     def test_versioned_url_for_without_version(self):
         settings.EQ_MINIMIZE_VERSION = False
         application = create_app(self._setting_overrides)
-        application.config['SERVER_NAME'] = "test"
+        application.config['SERVER_NAME'] = 'test'
 
         with application.app_context():
             self.assertEqual(
@@ -115,7 +115,7 @@ class TestCreateApp(unittest.TestCase):
     def test_versioned_url_for_minimized_assets(self):
         settings.EQ_MINIMIZE_ASSETS = True
         application = create_app(self._setting_overrides)
-        application.config['SERVER_NAME'] = "test"
+        application.config['SERVER_NAME'] = 'test'
 
         with application.app_context():
             self.assertEqual(
@@ -137,7 +137,7 @@ class TestCreateApp(unittest.TestCase):
     def test_versioned_url_for_regular_assets(self):
         settings.EQ_MINIMIZE_ASSETS = False
         application = create_app(self._setting_overrides)
-        application.config['SERVER_NAME'] = "test"
+        application.config['SERVER_NAME'] = 'test'
 
         with application.app_context():
             self.assertEqual(

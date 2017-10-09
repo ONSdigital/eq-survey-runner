@@ -88,9 +88,9 @@ class Feedback(IntegrationTestCase):
 
     def test_post_html_encodes_user_input(self):
         post_data = {
-            'message': '&<>\'"',
-            'name': '&<>\'"',
-            'email': '&<>\'"'
+            'message': '&<>\'\"',
+            'name': '&<>\'\"',
+            'email': '&<>\'\"'
         }
 
         data = self.post_then_intercept_and_decrypt_message(post_data)['data']
@@ -102,14 +102,14 @@ class Feedback(IntegrationTestCase):
 
     def test_post_sends_valid_message(self):
         post_data = {
-            "message": "This survey is awesome",
-            "name": "Bill",
-            "email": "Bill@email.com",
+            'message': 'This survey is awesome',
+            'name': 'Bill',
+            'email': 'Bill@email.com',
         }
 
         message = self.post_then_intercept_and_decrypt_message(post_data)
 
-        with open("data/schema/feedback_v1.json") as schema_file:
+        with open('data/schema/feedback_v1.json') as schema_file:
             schema = json.load(schema_file)
 
         errors = validate_json_with_schema(message, schema)
@@ -118,13 +118,13 @@ class Feedback(IntegrationTestCase):
             for error in errors:
                 logger.error(error)
 
-            self.fail("{} Schema Validation Errors.\n{}".format(len(errors), errors))
+            self.fail('{} Schema Validation Errors.\n{}'.format(len(errors), errors))
 
     def test_post_with_broken_send_message_returns_503(self):
         post_data = {
-            "message": "This survey is awesome",
-            "name": "Bill",
-            "email": "Bill@email.com"
+            'message': 'This survey is awesome',
+            'name': 'Bill',
+            'email': 'Bill@email.com'
         }
 
         self.instance.send_message.return_value = False  # pylint: disable=no-member
@@ -146,10 +146,10 @@ def validate_json_with_schema(data, schema):
         validate(data, schema)
 
     except ValidationError as e:
-        errors.append("Schema Validation Error! message [{}] does not validate against schema. Error [{}]".format(data,
+        errors.append('Schema Validation Error! message [{}] does not validate against schema. Error [{}]'.format(data,
                                                                                                                   e))
 
     except SchemaError as e:
-        errors.append("JSON Parse Error! Could not parse [{}]. Error [{}]".format(data, e))
+        errors.append('JSON Parse Error! Could not parse [{}]. Error [{}]'.format(data, e))
 
     return errors

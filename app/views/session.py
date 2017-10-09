@@ -55,15 +55,15 @@ def login():
         raise InvalidTokenException from e
 
     metadata = parse_metadata(decrypted_token)
-    eq_id = metadata["eq_id"]
-    form_type = metadata["form_type"]
-    tx_id = metadata["tx_id"]
-    ru_ref = metadata["ru_ref"]
+    eq_id = metadata['eq_id']
+    form_type = metadata['form_type']
+    tx_id = metadata['tx_id']
+    ru_ref = metadata['ru_ref']
     logger.bind(eq_id=eq_id, form_type=form_type, tx_id=tx_id, ru_ref=ru_ref)
-    logger.info("decrypted token and parsed metadata")
+    logger.info('decrypted token and parsed metadata')
 
     if not eq_id or not form_type:
-        logger.error("missing eq id or form type in jwt")
+        logger.error('missing eq id or form type in jwt')
         raise NotFound
 
     store_session(metadata)
@@ -79,20 +79,20 @@ def login():
     return redirect(current_location.url(metadata))
 
 
-@session_blueprint.route('/timeout-continue', methods=["GET"])
+@session_blueprint.route('/timeout-continue', methods=['GET'])
 @login_required
 def get_timeout_continue():
     return 'true'
 
 
-@session_blueprint.route('/expire-session', methods=["POST"])
+@session_blueprint.route('/expire-session', methods=['POST'])
 @login_required
 def post_expire_session():
     remove_survey_session_data()
     return get_session_expired()
 
 
-@session_blueprint.route('/session-expired', methods=["GET"])
+@session_blueprint.route('/session-expired', methods=['GET'])
 def get_session_expired():
     if current_user.is_active:
         remove_survey_session_data()
@@ -100,7 +100,7 @@ def get_session_expired():
     return render_template('session-expired.html')
 
 
-@session_blueprint.route('/signed-out', methods=["GET"])
+@session_blueprint.route('/signed-out', methods=['GET'])
 def get_sign_out():
     if current_user.is_active:
         remove_survey_session_data()

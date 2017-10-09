@@ -40,5 +40,5 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertInPage("On <span class='date'>2 June 1983</span> how many were employed?")
 
         # Textarea question
-        self.assertInPage('Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
+        self.assertInPage("Why doesn't Chewbacca receive a medal at the end of A New Hope?")
         self.assertInPage('chewbacca-medal-answer')

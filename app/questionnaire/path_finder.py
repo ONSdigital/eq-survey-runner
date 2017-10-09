@@ -20,8 +20,8 @@ class PathFinder:
 
     @staticmethod
     def _block_index_for_location(blocks, location):
-        return next((index for (index, b) in enumerate(blocks) if b["block"]["id"] == location.block_id and
-                     b["group_id"] == location.group_id and
+        return next((index for (index, b) in enumerate(blocks) if b['block']['id'] == location.block_id and
+                     b['group_id'] == location.group_id and
                      b['group_instance'] == location.group_instance),
                     None)
 
@@ -46,7 +46,7 @@ class PathFinder:
                 return path
 
             path.append(this_location)
-            block = blocks[block_index]["block"]
+            block = blocks[block_index]['block']
 
             # If routing rules exist then a rule must match (i.e. default goto)
             if 'routing_rules' in block and len(block['routing_rules']) > 0:
@@ -57,7 +57,7 @@ class PathFinder:
                     if should_goto:
                         next_location = copy.copy(this_location)
 
-                        if "group" in rule['goto']:
+                        if 'group' in rule['goto']:
                             next_location.group_id = rule['goto']['group']
                             next_location.block_id = SchemaHelper.get_first_block_id_for_group(self.survey_json, rule['goto']['group'])
                         else:
@@ -155,9 +155,9 @@ class PathFinder:
                             continue
 
                     blocks.append({
-                        "group_id": group['id'],
-                        "group_instance": i,
-                        "block": block,
+                        'group_id': group['id'],
+                        'group_instance': i,
+                        'block': block,
                     })
         return blocks
 

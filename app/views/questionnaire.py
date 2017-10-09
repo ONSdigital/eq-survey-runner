@@ -30,7 +30,7 @@ from app.templating.template_renderer import renderer, TemplateRenderer
 from app.utilities.schema import load_schema_from_metadata, load_schema_from_params
 from app.views.errors import MultipleSurveyError
 
-END_BLOCKS = "Summary", "Confirmation"
+END_BLOCKS = 'Summary', 'Confirmation'
 
 logger = get_logger()
 
@@ -75,7 +75,7 @@ def save_questionnaire_store(func):
     return save_questionnaire_store_wrapper
 
 
-@questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["GET"])
+@questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=['GET'])
 @login_required
 @full_routing_path_required
 def get_block(routing_path, eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=unused-argument,too-many-locals
@@ -92,7 +92,7 @@ def get_block(routing_path, eq_id, form_type, collection_id, group_id, group_ins
     return _render_block(routing_path, block, current_location)
 
 
-@questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["POST"])
+@questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=['POST'])
 @login_required
 @full_routing_path_required
 def post_block(routing_path, eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=too-many-locals
@@ -119,7 +119,7 @@ def post_block(routing_path, eq_id, form_type, collection_id, group_id, group_in
     return _render_block(routing_path, block, current_location, post_form=form)
 
 
-@questionnaire_blueprint.route('<group_id>/0/household-composition', methods=["POST"])
+@questionnaire_blueprint.route('<group_id>/0/household-composition', methods=['POST'])
 @login_required
 @full_routing_path_required
 def post_household_composition(routing_path, **kwargs):
@@ -165,7 +165,7 @@ def post_household_composition(routing_path, **kwargs):
     return _render_block(routing_path, block, current_location, form)
 
 
-@questionnaire_blueprint.route('thank-you', methods=["GET"])
+@questionnaire_blueprint.route('thank-you', methods=['GET'])
 def get_thank_you(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
     survey_completed_metadata = current_app.eq['session_storage'].get_survey_completed_metadata()
     schema = load_schema_from_params(eq_id, form_type)
@@ -190,7 +190,7 @@ def _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type):
     return _redirect_to_location(collection_id, eq_id, form_type, latest_location)
 
 
-@questionnaire_blueprint.route('<group_id>/<int:group_instance>/permanent-or-family-home', methods=["POST"])
+@questionnaire_blueprint.route('<group_id>/<int:group_instance>/permanent-or-family-home', methods=['POST'])
 @login_required
 def post_everyone_at_address_confirmation(eq_id, form_type, collection_id, group_id, group_instance):
     if request.form.get('permanent-or-family-home-answer') == 'No':
@@ -330,7 +330,7 @@ def _save_sign_out(routing_path, this_location, form):
 
 
 def _household_answers_changed(answer_store):
-    household_answers = answer_store.filter(block_id="household-composition")
+    household_answers = answer_store.filter(block_id='household-composition')
     stripped_form = request.form.copy()
     del stripped_form['csrf_token']
     remove = [k for k in stripped_form if 'action[' in k]
@@ -437,13 +437,13 @@ def _format_answer_value(answer_value):
     is_month_year = 'day' not in answer_value and 'year' in answer_value and 'month' in answer_value
 
     if is_day_month_year and answer_value['day'] and answer_value['month']:
-        formatted_answer_value = "{:02d}/{:02d}/{}".format(
+        formatted_answer_value = '{:02d}/{:02d}/{}'.format(
             int(answer_value['day']),
             int(answer_value['month']),
             answer_value['year'],
         )
     elif is_month_year and answer_value['month']:
-        formatted_answer_value = "{:02d}/{}".format(int(answer_value['month']), answer_value['year'])
+        formatted_answer_value = '{:02d}/{}'.format(int(answer_value['month']), answer_value['year'])
     return formatted_answer_value
 
 
@@ -462,7 +462,7 @@ def update_questionnaire_store_with_answer_data(questionnaire_store, location, a
 def _check_same_survey(eq_id, form_type, collection_id):
     metadata = get_metadata(current_user)
     current_survey = eq_id + form_type + collection_id
-    metadata_survey = metadata["eq_id"] + metadata["form_type"] + metadata["collection_exercise_sid"]
+    metadata_survey = metadata['eq_id'] + metadata['form_type'] + metadata['collection_exercise_sid']
     if current_survey != metadata_survey:
         raise MultipleSurveyError
 

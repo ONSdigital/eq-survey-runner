@@ -27,23 +27,23 @@ def convert_answers(metadata, questionnaire_json, answer_store, routing_path, fl
     :param flushed: True when system submits the users answers, False when user submits there own answers
     :return: a JSON object in the following format:
       {
-        "tx_id": "0f534ffc-9442-414c-b39f-a756b4adc6cb",
-        "type" : "uk.gov.ons.edc.eq:surveyresponse",
-        "version" : "0.0.1",
-        "origin" : "uk.gov.ons.edc.eq",
-        "survey_id": "021",
-        "flushed": true|false
-        "collection":{
-          "exercise_sid": "hfjdskf",
-          "instrument_id": "yui789",
-          "period": "2016-02-01"
+        'tx_id': '0f534ffc-9442-414c-b39f-a756b4adc6cb',
+        'type' : 'uk.gov.ons.edc.eq:surveyresponse',
+        'version' : '0.0.1',
+        'origin' : 'uk.gov.ons.edc.eq',
+        'survey_id': '021',
+        'flushed': true|false
+        'collection':{
+          'exercise_sid': 'hfjdskf',
+          'instrument_id': 'yui789',
+          'period': '2016-02-01'
         },
-        "submitted_at": "2016-03-07T15:28:05Z",
-        "metadata": {
-          "user_id": "789473423",
-          "ru_ref": "432423423423"
+        'submitted_at': '2016-03-07T15:28:05Z',
+        'metadata': {
+          'user_id': '789473423',
+          'ru_ref': '432423423423'
         },
-        "data": {}
+        'data': {}
       }
     """
     survey_id = questionnaire_json['survey_id']
@@ -66,16 +66,16 @@ def convert_answers(metadata, questionnaire_json, answer_store, routing_path, fl
     else:
         raise DataVersionError(questionnaire_json['data_version'])
 
-    logger.debug("converted answer ready for submission")
+    logger.debug('converted answer ready for submission')
     return payload
 
 
 def convert_answers_to_data(answer_store, questionnaire_json, routing_path):
     """
     Convert answers into the data format below
-    "data": {
-          "001": "01-01-2016",
-          "002": "30-03-2016"
+    'data': {
+          '001': '01-01-2016',
+          '002': '30-03-2016'
         }
     :param answer_store: questionnaire answers
     :param questionnaire_json: The survey json
@@ -92,7 +92,7 @@ def convert_answers_to_data(answer_store, questionnaire_json, routing_path):
             try:
                 answer_schema = answer_schema_list[answer['answer_id']]
             except KeyError:
-                logger.error("No matching answer schema found in the store")
+                logger.error('No matching answer schema found in the store')
                 continue
 
             value = answer['value']
@@ -136,7 +136,7 @@ def _get_checkbox_answer_data(answer_store, checkboxes_with_qcode, value):
                 filtered = answer_store.filter(answer_id=option['child_answer_id'])
 
                 if len(filtered) > 1:
-                    raise Exception("Multiple answers found for {}".format(option['child_answer_id']))
+                    raise Exception('Multiple answers found for {}'.format(option['child_answer_id']))
 
                 # if the user has selected 'other' we need to find the value it refers to.
                 # when non-mandatory, the other box value can be empty, in this case we just use its value
@@ -150,30 +150,30 @@ def _get_checkbox_answer_data(answer_store, checkboxes_with_qcode, value):
 def convert_answers_to_census_data(answer_store, routing_path):
     """
     Convert answers into the data format below
-    "data": [
+    'data': [
         {
-            "value": "Joe Bloggs",
-            "block_id": "household-composition",
-            "answer_id": "household-full-name",
-            "group_id": "multiple-questions-group",
-            "group_instance": 0,
-            "answer_instance": 0
+            'value': 'Joe Bloggs',
+            'block_id': 'household-composition',
+            'answer_id': 'household-full-name',
+            'group_id': 'multiple-questions-group',
+            'group_instance': 0,
+            'answer_instance': 0
         },
         {
-            "value": "Fred Flintstone",
-            "block_id": "household-composition",
-            "answer_id": "household-full-name",
-            "group_id": "multiple-questions-group",
-            "group_instance": 0,
-            "answer_instance": 1
+            'value': 'Fred Flintstone',
+            'block_id': 'household-composition',
+            'answer_id': 'household-full-name',
+            'group_id': 'multiple-questions-group',
+            'group_instance': 0,
+            'answer_instance': 1
         },
         {
-            "value": "Husband or wife",
-            "block_id": "relationships",
-            "answer_id": "who-is-related",
-            "group_id": "household-relationships",
-            "group_instance": 0,
-            "answer_instance": 0
+            'value': 'Husband or wife',
+            'block_id': 'relationships',
+            'answer_id': 'who-is-related',
+            'group_id': 'household-relationships',
+            'group_instance': 0,
+            'answer_instance': 0
         }
     ]
     :param answer_store: questionnaire answers
@@ -225,22 +225,22 @@ def convert_feedback(message, name, email, url, metadata, survey_id):
     :param survey_id: the string representing the survey id
     :return: a JSON object in the following format:
       {
-        "tx_id": "0f534ffc-9442-414c-b39f-a756b4adc6cb",
-        "type" : "uk.gov.ons.edc.eq:feedback",
-        "version" : "0.0.1",
-        "origin" : "uk.gov.ons.edc.eq",
-        "survey_id": "021",
-        "collection":{
-          "exercise_sid": "hfjdskf",
-          "instrument_id": "yui789",
-          "period": "201602"
+        'tx_id': '0f534ffc-9442-414c-b39f-a756b4adc6cb',
+        'type' : 'uk.gov.ons.edc.eq:feedback',
+        'version' : '0.0.1',
+        'origin' : 'uk.gov.ons.edc.eq',
+        'survey_id': '021',
+        'collection':{
+          'exercise_sid': 'hfjdskf',
+          'instrument_id': 'yui789',
+          'period': '201602'
         },
-        "submitted_at": "2016-03-07T15:28:05Z",
-        "metadata": {
-          "user_id": "789473423",
-          "ru_ref": "432423423423"
+        'submitted_at': '2016-03-07T15:28:05Z',
+        'metadata': {
+          'user_id': '789473423',
+          'ru_ref': '432423423423'
         },
-        "data": {}
+        'data': {}
       }
     """
     submitted_at = datetime.now(timezone.utc)

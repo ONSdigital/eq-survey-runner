@@ -15,10 +15,10 @@ def build_schema_context(metadata, aliases, answer_store, routing_path, group_in
     :return: questionnaire schema context
     """
     return {
-        "exercise": _build_exercise(metadata),
-        "respondent": _build_respondent(metadata),
-        "answers": _map_alias_to_answers(aliases, answer_store, routing_path),
-        "group_instance": group_instance,
+        'exercise': _build_exercise(metadata),
+        'respondent': _build_respondent(metadata),
+        'answers': _map_alias_to_answers(aliases, answer_store, routing_path),
+        'group_instance': group_instance,
     }
 
 
@@ -54,20 +54,20 @@ def _is_answer_in_routing_path(routing_path, answer):
 
 def _build_exercise(metadata):
     return {
-        "start_date": to_date(metadata["ref_p_start_date"]),
-        "end_date": to_date(metadata["ref_p_end_date"]),
-        "period_str": json_and_html_safe(metadata["period_str"]),
-        "employment_date": to_date(metadata["employment_date"]),
-        "return_by": to_date(metadata["return_by"]),
-        "region_code": json_and_html_safe(metadata["region_code"]),
+        'start_date': to_date(metadata['ref_p_start_date']),
+        'end_date': to_date(metadata['ref_p_end_date']),
+        'period_str': json_and_html_safe(metadata['period_str']),
+        'employment_date': to_date(metadata['employment_date']),
+        'return_by': to_date(metadata['return_by']),
+        'region_code': json_and_html_safe(metadata['region_code']),
     }
 
 
 def _build_respondent(metadata):
     return {
-        "ru_name": json_and_html_safe(metadata["ru_name"]),
-        "trad_as": json_and_html_safe(metadata["trad_as"]),
-        "trad_as_or_ru_name": json_and_html_safe(metadata["trad_as"] or metadata["ru_name"]),
+        'ru_name': json_and_html_safe(metadata['ru_name']),
+        'trad_as': json_and_html_safe(metadata['trad_as']),
+        'trad_as_or_ru_name': json_and_html_safe(metadata['trad_as'] or metadata['ru_name']),
     }
 
 

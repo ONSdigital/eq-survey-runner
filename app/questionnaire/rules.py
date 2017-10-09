@@ -115,7 +115,7 @@ def evaluate_when_rules(when_rules, metadata, answer_store, group_instance):
             filtered = answer_store.filter(answer_id=answer_index, group_instance=group_instance)
 
             if len(filtered) > 1:
-                raise Exception("Multiple answers ({:d}) found evaluating when rule for answer ({})".format(len(filtered), answer_index))
+                raise Exception('Multiple answers ({:d}) found evaluating when rule for answer ({})'.format(len(filtered), answer_index))
             answer = filtered[0]['value'] if len(filtered) == 1 else None
             if not evaluate_rule(when_rule, answer):
                 return False
@@ -132,8 +132,8 @@ def get_metadata_value(metadata, keys):
     if not _contains_in_dict(metadata, keys):
         return None
 
-    if "." in keys:
-        key, rest = keys.split(".", 1)
+    if '.' in keys:
+        key, rest = keys.split('.', 1)
         return get_metadata_value(metadata[key], rest)
     else:
         return metadata[keys]
@@ -144,8 +144,8 @@ def is_goto_rule(rule):
 
 
 def _contains_in_dict(metadata, keys):
-    if "." in keys:
-        key, rest = keys.split(".", 1)
+    if '.' in keys:
+        key, rest = keys.split('.', 1)
         if key not in metadata:
             return False
         return _contains_in_dict(metadata[key], rest)

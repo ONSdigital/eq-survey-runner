@@ -5,7 +5,7 @@ from structlog import get_logger
 logger = get_logger()
 
 
-def to_date(input_date_string, date_format="%Y-%m-%d"):
+def to_date(input_date_string, date_format='%Y-%m-%d'):
     formatted_date = None
 
     try:

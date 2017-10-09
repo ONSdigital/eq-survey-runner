@@ -12,13 +12,13 @@ from app.setup import create_app
 
 from tests.integration.create_token import TokenGenerator
 
-EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID = "709eb42cfee5570058ce0711f730bfbb7d4c8ade"
-SR_USER_AUTHENTICATION_PUBLIC_KEY_KID = "e19091072f920cbf3ca9f436ceba309e7d814a62"
+EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID = '709eb42cfee5570058ce0711f730bfbb7d4c8ade'
+SR_USER_AUTHENTICATION_PUBLIC_KEY_KID = 'e19091072f920cbf3ca9f436ceba309e7d814a62'
 
-EQ_SUBMISSION_SDX_PRIVATE_KEY = "2225f01580a949801274a5f3e6861947018aff5b"
-EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY = "fe425f951a0917d7acdd49230b23a5c405c28510"
+EQ_SUBMISSION_SDX_PRIVATE_KEY = '2225f01580a949801274a5f3e6861947018aff5b'
+EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY = 'fe425f951a0917d7acdd49230b23a5c405c28510'
 
-KEYS_FOLDER = "./jwt-test-keys"
+KEYS_FOLDER = './jwt-test-keys'
 
 
 def get_file_contents(filename, trim=False):
@@ -42,13 +42,13 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
     def _setUpApp(self):
         setting_overrides = {
-            "EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER": "sqlite",
-            "EQ_SERVER_SIDE_STORAGE_DATABASE_NAME": ""
+            'EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER': 'sqlite',
+            'EQ_SERVER_SIDE_STORAGE_DATABASE_NAME': ''
         }
         self._application = create_app(setting_overrides)
 
         self._key_store = KeyStore({
-            "keys": {
+            'keys': {
                 EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID: {'purpose': KEY_PURPOSE_AUTHENTICATION,
                                                              'type': 'private',
                                                              'value': get_file_contents('third-party/sdc-rrm-authentication-signing-private-v1.pem')},
@@ -161,11 +161,11 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         self.last_response = response
         self.last_url = environ['PATH_INFO']
         if environ['QUERY_STRING']:
-            self.last_url += "?" + environ['QUERY_STRING']
+            self.last_url += '?' + environ['QUERY_STRING']
 
     @staticmethod
     def _extract_csrf_token(html):
-        match = re.search('<input id="csrf_token" name="csrf_token" type="hidden" value="(.+?)">', html)
+        match = re.search(r'<input id="csrf_token" name="csrf_token" type="hidden" value="(.+?)">', html)
         return match and match.group(1) or None
 
     def getResponseData(self):

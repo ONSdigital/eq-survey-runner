@@ -29,10 +29,10 @@ class QuestionnaireState(base):
 
 
 class EQSession(base):
-    __tablename__ = "eq_session"
-    eq_session_id = Column("eq_session_id", String, primary_key=True)
-    user_id = Column("user_id", String, primary_key=True)
-    timestamp = Column("timestamp", DateTime)
+    __tablename__ = 'eq_session'
+    eq_session_id = Column('eq_session_id', String, primary_key=True)
+    user_id = Column('user_id', String, primary_key=True)
+    timestamp = Column('timestamp', DateTime)
 
     def __init__(self, eq_session_id, user_id):
         self.eq_session_id = eq_session_id
@@ -44,9 +44,9 @@ class EQSession(base):
 
 
 class UsedJtiClaim(base):
-    __tablename__ = "used_jti_claim"
-    jti_claim = Column("jti_claim", String, primary_key=True)
-    used_at = Column("used_at", DateTime)
+    __tablename__ = 'used_jti_claim'
+    jti_claim = Column('jti_claim', String, primary_key=True)
+    used_at = Column('used_at', DateTime)
 
     def __init__(self, jti_claim):
         self.jti_claim = jti_claim
@@ -66,11 +66,11 @@ class Database:
                  username=None, password=None, setup_attempts=SETUP_ATTEMPTS,
                  setup_retry_delay=SETUP_RETRY_DELAY_SECONDS):
 
-        if driver == "sqlite":
-            self._database_url = "{driver}://{name}".format(driver=driver,
+        if driver == 'sqlite':
+            self._database_url = '{driver}://{name}'.format(driver=driver,
                                                             name=database_name)
         else:
-            self._database_url = "{driver}://{username}:{password}@{host}:{port}/{name}".format(driver=driver,
+            self._database_url = '{driver}://{username}:{password}@{host}:{port}/{name}'.format(driver=driver,
                                                                                                 username=username,
                                                                                                 password=password,
                                                                                                 host=host,
@@ -83,13 +83,13 @@ class Database:
         self._db_session = self._create_session_and_engine_with_retry()
 
     def _create_session_and_engine(self):
-        logger.info("setting up database...")
-        logger.debug("creating database engine")
+        logger.info('setting up database...')
+        logger.debug('creating database engine')
         eng = create_engine(self._database_url, convert_unicode=True)
-        logger.debug("creating database session")
+        logger.debug('creating database session')
         session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=eng))
         base.query = session.query_property()
-        logger.debug("creating database and tables")
+        logger.debug('creating database and tables')
         base.metadata.create_all(eng)
         logger.info('database setup complete.')
         return session

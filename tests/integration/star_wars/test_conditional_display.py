@@ -66,7 +66,7 @@ class TestConditionalDisplay(StarWarsTestCase):
         form_data = STAR_WARS_TRIVIA_PART_2_DEFAULT_ANSWERS.copy()
         form_data.update({
             # this answer means the jar jar binks question doesn't appear
-            'star-wars-prequel-answer': 'I like to pretend they didn\'t happen'
+            'star-wars-prequel-answer': "I like to pretend they didn't happen"
         })
 
         self.post(form_data)
