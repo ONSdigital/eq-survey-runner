@@ -18,7 +18,7 @@ let config = {
       `${paths.test.wdioSpec}/*.spec.js`
     ],
     census: [
-      `${paths.test.wdioSpec}/census/**/*.spec.js`
+      `${paths.test.wdioSpec}/census/*.spec.js`
     ],
     ukis: [
       `${paths.test.wdioSpec}/ukis/**/*.spec.js`

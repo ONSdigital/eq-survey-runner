@@ -1,5 +1,5 @@
 // >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
-const QuestionPage = require('../../question.page');
+const QuestionPage = require('../question.page');
 
 class HouseholdCompositionPage extends QuestionPage {
 
@@ -12,7 +12,7 @@ class HouseholdCompositionPage extends QuestionPage {
   }
 
   removePerson(index = 2) {
-    return 'div:nth-child(' + index + ') > h3 > small > button';
+    return 'div:nth-child(' + index + ') > h3 > small > span > button';
   }
 
   numRemoveButtons() {
@@ -32,7 +32,7 @@ class HouseholdCompositionPage extends QuestionPage {
   }
 
   personLegend(index = 1) {
-    return 'div:nth-child(' + index + ') > fieldset > legend'
+    return 'div:nth-child(' + index + ') > fieldset > legend';
   }
 
 }
