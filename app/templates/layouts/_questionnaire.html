@@ -12,7 +12,6 @@
 {% set block = content.block %}
 {% set form = content.form %}
 
-
 {% block sidebar %}
   {% if navigation %}
     {% include theme('partials/navigation.html') %}
@@ -21,7 +20,7 @@
 
 {% block main %}
 
-    {% include theme('partials/feedback/expandable_inline.html') %}
+    {% block inline_feedback %}{% include theme('partials/feedback/expandable_inline.html') %}{% endblock %}
 
     {% block form_errors %}{% endblock %}
 
