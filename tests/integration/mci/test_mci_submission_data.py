@@ -51,30 +51,30 @@ class TestMciSubmissionData(IntegrationTestCase):
         actual = self.dumpSubmission()
 
         expected = {
-            "submission": {
-                "type": "uk.gov.ons.edc.eq:surveyresponse",
-                "data": {
-                    "11": "01/04/2016",
-                    "12": "30/04/2016",
-                    "20": "100000"
+            'submission': {
+                'type': 'uk.gov.ons.edc.eq:surveyresponse',
+                'data': {
+                    '11': '01/04/2016',
+                    '12': '30/04/2016',
+                    '20': '100000'
                 },
-                "metadata": {
-                    "ref_period_end_date": "2016-04-30",
-                    "ref_period_start_date": "2016-04-01",
-                    "ru_ref": "123456789012A",
-                    "user_id": "integration-test"
+                'metadata': {
+                    'ref_period_end_date': '2016-04-30',
+                    'ref_period_start_date': '2016-04-01',
+                    'ru_ref': '123456789012A',
+                    'user_id': 'integration-test'
                 },
-                "version": "0.0.1",
-                "survey_id": "023",
-                "flushed": False,
-                "tx_id": actual['submission']['tx_id'],
-                "submitted_at": actual['submission']['submitted_at'],
-                "collection": {
-                    "period": "201604",
-                    "exercise_sid": "789",
-                    "instrument_id": form_type_id
+                'version': '0.0.1',
+                'survey_id': '023',
+                'flushed': False,
+                'tx_id': actual['submission']['tx_id'],
+                'submitted_at': actual['submission']['submitted_at'],
+                'collection': {
+                    'period': '201604',
+                    'exercise_sid': '789',
+                    'instrument_id': form_type_id
                 },
-                "origin": "uk.gov.ons.edc.eq"
+                'origin': 'uk.gov.ons.edc.eq'
             }
         }
 

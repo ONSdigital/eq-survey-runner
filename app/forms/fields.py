@@ -19,20 +19,20 @@ logger = get_logger()
 def get_field(answer, label, error_messages, answer_store):
     guidance = answer.get('guidance', '')
 
-    if answer['type'] in ["Number", "Currency", "Percentage", "Unit"]:
+    if answer['type'] in ['Number', 'Currency', 'Percentage', 'Unit']:
         field = get_number_field(answer, label, guidance, error_messages, answer_store)
     else:
         field = {
-            "Radio": get_select_field,
-            "Checkbox": get_select_multiple_field,
-            "Date": get_date_field,
-            "MonthYearDate": get_month_year_field,
-            "TextArea": get_text_area_field,
-            "TextField": get_string_field,
+            'Radio': get_select_field,
+            'Checkbox': get_select_multiple_field,
+            'Date': get_date_field,
+            'MonthYearDate': get_month_year_field,
+            'TextArea': get_text_area_field,
+            'TextField': get_string_field,
         }[answer['type']](answer, label, guidance, error_messages)
 
     if field is None:
-        logger.error("Unknown answer type used during form creation", type=answer['type'])
+        logger.error('Unknown answer type used during form creation', type=answer['type'])
 
     return field
 
@@ -82,7 +82,7 @@ def get_mandatory_validator(answer, error_messages, mandatory_message_key):
 
 
 def get_string_field(answer, label, guidance, error_messages):
-    validate_with = get_mandatory_validator(answer, error_messages, "MANDATORY_TEXTFIELD")
+    validate_with = get_mandatory_validator(answer, error_messages, 'MANDATORY_TEXTFIELD')
 
     return StringField(
         label=label,
@@ -92,7 +92,7 @@ def get_string_field(answer, label, guidance, error_messages):
 
 
 def get_text_area_field(answer, label, guidance, error_messages):
-    validate_with = get_mandatory_validator(answer, error_messages, "MANDATORY_TEXTAREA")
+    validate_with = get_mandatory_validator(answer, error_messages, 'MANDATORY_TEXTAREA')
     validate_with.extend(get_length_validator(answer, error_messages))
 
     return MaxTextAreaField(
@@ -121,7 +121,7 @@ def get_month_year_field(answer, label, guidance, error_messages):
 
 
 def get_select_multiple_field(answer, label, guidance, error_messages):
-    validate_with = get_mandatory_validator(answer, error_messages, "MANDATORY_CHECKBOX")
+    validate_with = get_mandatory_validator(answer, error_messages, 'MANDATORY_CHECKBOX')
 
     return SelectMultipleField(
         label=label,
@@ -141,7 +141,7 @@ def _coerce_str_unless_none(value):
 
 
 def get_select_field(answer, label, guidance, error_messages):
-    validate_with = get_mandatory_validator(answer, error_messages, "MANDATORY_RADIO")
+    validate_with = get_mandatory_validator(answer, error_messages, 'MANDATORY_RADIO')
 
     # We use a custom coerce function to avoid a defect where Python NoneType
     # is coerced to the string 'None' which clashes with legitimate Radio field
@@ -166,7 +166,7 @@ def get_number_field(answer, label, guidance, error_messages, answer_store):
         for error_key, error_message in answer['validation']['messages'].items():
             answer_errors[error_key] = error_message
 
-    mandatory_or_optional = get_mandatory_validator(answer, answer_errors, "MANDATORY_NUMBER")
+    mandatory_or_optional = get_mandatory_validator(answer, answer_errors, 'MANDATORY_NUMBER')
 
     max_decimals = answer.get('decimal_places', 0)
     if max_decimals > MAX_DECIMAL_PLACES:

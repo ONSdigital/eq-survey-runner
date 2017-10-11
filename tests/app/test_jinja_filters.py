@@ -139,7 +139,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
             format_conditional_date(None, None)
 
         # Then
-        self.assertIn("No valid dates passed to format_conditional_dates filter", str(exception.exception))
+        self.assertIn('No valid dates passed to format_conditional_dates filter', str(exception.exception))
 
     def test_format_conditional_date(self):
         # Given
@@ -149,7 +149,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
                     (datetime(2019, 5, 12), None, '12 May 2019'),
                     (None, datetime(2017, 6, 22), '22 June 2017'),
                     ('12/08/2017', datetime(2017, 9, 10), '12 August 2017'),
-                    (datetime(2018, 4, 7), "12/3/2018", '7 April 2018'),
+                    (datetime(2018, 4, 7), '12/3/2018', '7 April 2018'),
                     (None, datetime(2017, 10, 12), '12 October 2017'),
                     (datetime(2019, 10, 12), datetime(2017, 9, 12), '12 October 2019')]
 
@@ -305,28 +305,28 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         self.assertEqual(format_number_to_alphabetic_letter(-1), '')
 
     def test_format_unit(self):
-        self.assertEqual(format_unit("length-meter", 100), '100 m')
-        self.assertEqual(format_unit("length-centimeter", 100), '100 cm')
-        self.assertEqual(format_unit("length-mile", 100), '100 mi')
-        self.assertEqual(format_unit("length-kilometer", 100), '100 km')
-        self.assertEqual(format_unit("area-square-meter", 100), '100 m²')
-        self.assertEqual(format_unit("area-square-centimeter", 100), '100 cm²')
-        self.assertEqual(format_unit("area-square-kilometer", 100), '100 km²')
-        self.assertEqual(format_unit("area-square-mile", 100), '100 sq mi')
-        self.assertEqual(format_unit("area-hectare", 100), '100 ha')
-        self.assertEqual(format_unit("area-acre", 100), '100 ac')
-        self.assertEqual(format_unit("volume-cubic-meter", 100), '100 m³')
-        self.assertEqual(format_unit("volume-cubic-centimeter", 100), '100 cm³')
-        self.assertEqual(format_unit("volume-liter", 100), '100 l')
-        self.assertEqual(format_unit("volume-hectoliter", 100), '100 hl')
-        self.assertEqual(format_unit("volume-megaliter", 100), '100 Ml')
+        self.assertEqual(format_unit('length-meter', 100), '100 m')
+        self.assertEqual(format_unit('length-centimeter', 100), '100 cm')
+        self.assertEqual(format_unit('length-mile', 100), '100 mi')
+        self.assertEqual(format_unit('length-kilometer', 100), '100 km')
+        self.assertEqual(format_unit('area-square-meter', 100), '100 m²')
+        self.assertEqual(format_unit('area-square-centimeter', 100), '100 cm²')
+        self.assertEqual(format_unit('area-square-kilometer', 100), '100 km²')
+        self.assertEqual(format_unit('area-square-mile', 100), '100 sq mi')
+        self.assertEqual(format_unit('area-hectare', 100), '100 ha')
+        self.assertEqual(format_unit('area-acre', 100), '100 ac')
+        self.assertEqual(format_unit('volume-cubic-meter', 100), '100 m³')
+        self.assertEqual(format_unit('volume-cubic-centimeter', 100), '100 cm³')
+        self.assertEqual(format_unit('volume-liter', 100), '100 l')
+        self.assertEqual(format_unit('volume-hectoliter', 100), '100 hl')
+        self.assertEqual(format_unit('volume-megaliter', 100), '100 Ml')
 
     def test_format_list(self):
-        list_items = [["item 1", "item 2"]]
+        list_items = [['item 1', 'item 2']]
 
         formatted_value = format_list(list_items)
 
-        expected_value = "<ul><li>item 1</li><li>item 2</li></ul>"
+        expected_value = '<ul><li>item 1</li><li>item 2</li></ul>'
 
         self.assertEqual(expected_value, formatted_value)
 
@@ -335,11 +335,11 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
 
         formatted_value = format_list(list_items)
 
-        self.assertEqual("", formatted_value)
+        self.assertEqual('', formatted_value)
 
     def test_format_list_with_empty_list(self):
         list_items = [[]]
 
         formatted_value = format_list(list_items)
 
-        self.assertEqual("", formatted_value)
+        self.assertEqual('', formatted_value)

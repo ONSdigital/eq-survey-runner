@@ -91,7 +91,7 @@ def get_tx_id():
     tx_id = None
     metadata = get_metadata(current_user)
     if metadata:
-        tx_id = convert_tx_id(metadata["tx_id"])
+        tx_id = convert_tx_id(metadata['tx_id'])
     return tx_id
 
 

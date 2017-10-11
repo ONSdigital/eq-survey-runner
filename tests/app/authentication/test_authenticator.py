@@ -17,8 +17,8 @@ class TestAuthenticator(unittest.TestCase): # pylint: disable=too-many-public-me
         application.permanent_session_lifetime = timedelta(seconds=1)
         self.application = application
         # Use an in memory database
-        self.database = Database(driver="sqlite",
-                                 database_name="",
+        self.database = Database(driver='sqlite',
+                                 database_name='',
                                  setup_attempts=1,
                                  setup_retry_delay=0)
         self.session_storage = Mock(SessionStorage(self.database))

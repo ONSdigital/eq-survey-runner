@@ -99,23 +99,23 @@ def deserialise_dates(block_json, mapped_answers):
     answer_json_list = SchemaHelper.get_answers_for_block(block_json)
 
     # Deserialise all dates from the store
-    date_answer_ids = [a['id'] for a in answer_json_list if a['type'] == "Date" or a['type'] == 'MonthYearDate']
+    date_answer_ids = [a['id'] for a in answer_json_list if a['type'] == 'Date' or a['type'] == 'MonthYearDate']
 
     for date_answer_id in date_answer_ids:
         if date_answer_id in mapped_answers:
-            substrings = mapped_answers[date_answer_id].split("/")
+            substrings = mapped_answers[date_answer_id].split('/')
 
             if len(substrings) == 3:
                 del mapped_answers[date_answer_id]
                 mapped_answers.update({
                     '{answer_id}-day'.format(answer_id=date_answer_id): substrings[0],
-                    '{answer_id}-month'.format(answer_id=date_answer_id): substrings[1].lstrip("0"),
+                    '{answer_id}-month'.format(answer_id=date_answer_id): substrings[1].lstrip('0'),
                     '{answer_id}-year'.format(answer_id=date_answer_id): substrings[2],
                 })
             elif len(substrings) == 2:
                 del mapped_answers[date_answer_id]
                 mapped_answers.update({
-                    '{answer_id}-month'.format(answer_id=date_answer_id): substrings[0].lstrip("0"),
+                    '{answer_id}-month'.format(answer_id=date_answer_id): substrings[0].lstrip('0'),
                     '{answer_id}-year'.format(answer_id=date_answer_id): substrings[1],
                 })
     return mapped_answers

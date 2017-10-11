@@ -9,7 +9,7 @@ class Answer(object):
 
         if location:
             assert not (group_id or group_instance or block_id), \
-                "Expected either a location object or one or more of group_id, group_instance, block_id params"
+                'Expected either a location object or one or more of group_id, group_instance, block_id params'
 
             group_id = location.group_id
             group_instance = location.group_instance
@@ -51,7 +51,7 @@ class Answer(object):
             answer_dict['group_id'],
             answer_dict['block_id'],
             answer_dict['answer_id'],
-            "",
+            '',
             answer_dict['group_instance'],
             answer_dict['answer_instance'],
         ))
@@ -71,7 +71,7 @@ class AnswerStore(object):
     @staticmethod
     def _validate(answer):
         if not isinstance(answer, Answer):
-            raise TypeError("Method only supports Answer argument type")
+            raise TypeError('Method only supports Answer argument type')
 
     def add(self, answer):
         """
@@ -84,7 +84,7 @@ class AnswerStore(object):
         answer_to_add = answer.__dict__.copy()
 
         if self.exists(answer):
-            raise ValueError("Answer instance already exists in store")
+            raise ValueError('Answer instance already exists in store')
         else:
             self.answers.append(answer_to_add)
 
@@ -97,7 +97,7 @@ class AnswerStore(object):
         position = self.find(answer)
 
         if position is None:
-            raise ValueError("Answer instance does not exist in store")
+            raise ValueError('Answer instance does not exist in store')
         else:
             self.answers[position]['value'] = answer.value
 
@@ -122,7 +122,7 @@ class AnswerStore(object):
         position = self.find(answer)
 
         if position is None:
-            raise ValueError("Answer instance does not exist in store")
+            raise ValueError('Answer instance does not exist in store')
         else:
             return self.answers[position]['value']
 
@@ -190,11 +190,11 @@ class AnswerStore(object):
         filtered = []
 
         filter_vars = {
-            "answer_id": answer_id,
-            "block_id": block_id,
-            "group_id": group_id,
-            "answer_instance": answer_instance,
-            "group_instance": group_instance,
+            'answer_id': answer_id,
+            'block_id': block_id,
+            'group_id': group_id,
+            'answer_instance': answer_instance,
+            'group_instance': group_instance,
         }
 
         for answer in self.answers:
@@ -226,7 +226,7 @@ class AnswerStore(object):
         result = {}
         for answer in self.filter(group_id, block_id, answer_id, group_instance, answer_instance):
             answer_id = answer['answer_id']
-            answer_id += "_" + str(answer['answer_instance']) if answer['answer_instance'] > 0 else ''
+            answer_id += '_' + str(answer['answer_instance']) if answer['answer_instance'] > 0 else ''
 
             result[answer_id] = answer['value']
 

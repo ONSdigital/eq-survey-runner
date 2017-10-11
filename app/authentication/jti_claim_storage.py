@@ -42,12 +42,12 @@ class JtiClaimStorage:
         if jti_claim is None:
             raise ValueError
         if not _is_valid(jti_claim):
-            logger.info("jti claim is invalid", jti_claim=jti_claim)
+            logger.info('jti claim is invalid', jti_claim=jti_claim)
             raise TypeError
 
         try:
             jti = UsedJtiClaim(jti_claim)
             self._database.add(jti)
         except IntegrityError as e:
-            logger.error("jti claim has already been used", jti_claim=jti_claim)
+            logger.error('jti claim has already been used', jti_claim=jti_claim)
             raise JtiTokenUsed(jti_claim) from e

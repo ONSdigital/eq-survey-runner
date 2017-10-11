@@ -29,4 +29,4 @@ class TestEmptyRadioBoxes(StarWarsTestCase):
         self.assertInUrl(star_wars_test_urls.STAR_WARS_TRIVIA_PART_2)
 
         # Check we are on the next page
-        self.assertInPage('Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
+        self.assertInPage("Why doesn't Chewbacca receive a medal at the end of A New Hope?")

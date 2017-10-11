@@ -88,10 +88,10 @@ class TestDarkSidePath(StarWarsTestCase):
         # Submit the form
         self.post(form_data)
         # Test error messages
-        self.assertInPage(error_messages["MANDATORY_NUMBER"])
+        self.assertInPage(error_messages['MANDATORY_NUMBER'])
         self.assertInPage('How much, idiot you must be')
         self.assertInPage('How can it be negative?')
-        self.assertInPage(error_messages["INVALID_DATE_RANGE"])
+        self.assertInPage(error_messages['INVALID_DATE_RANGE'])
 
     def test_more_validation_combinations(self):
         """
@@ -129,4 +129,4 @@ class TestDarkSidePath(StarWarsTestCase):
         self.assertInPage('No one lives that long, not even Yoda')
         self.assertInPage(error_messages['INVALID_NUMBER'])
         self.assertInPage('Select an answer to continue.')
-        self.assertInPage(error_messages["MANDATORY_DATE"])
+        self.assertInPage(error_messages['MANDATORY_DATE'])

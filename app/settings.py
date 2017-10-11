@@ -19,12 +19,12 @@ def parse_mode(string):
 
 def read_file(file_name):
     if file_name and os.path.isfile(file_name):
-        logger.debug("reading from file", filename=file_name)
-        with open(file_name, "r") as file:
+        logger.debug('reading from file', filename=file_name)
+        with open(file_name, 'r') as file:
             contents = file.read()
             return contents
     else:
-        logger.info("Did not load file because filename supplied was None or not a file", filename=file_name)
+        logger.info('Did not load file because filename supplied was None or not a file', filename=file_name)
         return None
 
 
@@ -55,7 +55,7 @@ EQ_SESSION_TIMEOUT_SECONDS = int(os.getenv('EQ_SESSION_TIMEOUT_SECONDS', 45 * 60
 EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS = int(os.getenv('EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS', '30'))
 EQ_SESSION_TIMEOUT_PROMPT_SECONDS = int(os.getenv('EQ_SESSION_TIMEOUT_PROMPT_SECONDS', 120))
 EQ_UA_ID = os.getenv('EQ_UA_ID', '')
-EQ_NEW_RELIC_ENABLED = parse_mode(os.getenv("EQ_NEW_RELIC_ENABLED", 'False'))
+EQ_NEW_RELIC_ENABLED = parse_mode(os.getenv('EQ_NEW_RELIC_ENABLED', 'False'))
 EQ_APPLICATION_VERSION_PATH = '.application-version'
 EQ_APPLICATION_VERSION = read_file(EQ_APPLICATION_VERSION_PATH)
 
@@ -65,9 +65,9 @@ EQ_SERVER_SIDE_STORAGE_DATABASE_PORT = os.getenv('EQ_SERVER_SIDE_STORAGE_DATABAS
 EQ_SERVER_SIDE_STORAGE_DATABASE_NAME = os.getenv('EQ_SERVER_SIDE_STORAGE_DATABASE_NAME', 'digitaleqrds')
 EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS = ensure_min(os.getenv('EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS', 10000), 1000)
 
-EQ_DEV_MODE = parse_mode(os.getenv("EQ_DEV_MODE", "False"))
-EQ_ENABLE_CACHE = parse_mode(os.getenv("EQ_ENABLE_CACHE", "True"))
-EQ_ENABLE_FLASK_DEBUG_TOOLBAR = parse_mode(os.getenv("EQ_ENABLE_FLASK_DEBUG_TOOLBAR", "False"))
+EQ_DEV_MODE = parse_mode(os.getenv('EQ_DEV_MODE', 'False'))
+EQ_ENABLE_CACHE = parse_mode(os.getenv('EQ_ENABLE_CACHE', 'True'))
+EQ_ENABLE_FLASK_DEBUG_TOOLBAR = parse_mode(os.getenv('EQ_ENABLE_FLASK_DEBUG_TOOLBAR', 'False'))
 
 EQ_JWT_LEEWAY_IN_SECONDS = 120
 DEFAULT_LOCALE = 'en_GB'

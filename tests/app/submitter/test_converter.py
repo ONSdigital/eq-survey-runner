@@ -15,17 +15,17 @@ class TestConverter(SurveyRunnerTestCase):
     def setUp(self):
         super().setUp()
         self.metadata = parse_metadata({
-            "user_id": "789473423",
-            "form_type": "0205",
-            "collection_exercise_sid": "test-sid",
-            "eq_id": "1",
-            "period_id": "2016-02-01",
-            "period_str": "2016-01-01",
-            "ref_p_start_date": "2016-02-02",
-            "ref_p_end_date": "2016-03-03",
-            "ru_ref": "432423423423",
-            "ru_name": "Apple",
-            "return_by": "2016-07-07"
+            'user_id': '789473423',
+            'form_type': '0205',
+            'collection_exercise_sid': 'test-sid',
+            'eq_id': '1',
+            'period_id': '2016-02-01',
+            'period_str': '2016-01-01',
+            'ref_p_start_date': '2016-02-02',
+            'ref_p_end_date': '2016-03-03',
+            'ru_ref': '432423423423',
+            'ru_name': 'Apple',
+            'return_by': '2016-07-07'
         })
 
     def test_convert_answers_flushed_flag_default_is_false(self):
@@ -33,8 +33,8 @@ class TestConverter(SurveyRunnerTestCase):
             user_answer = [create_answer('GHI', 0)]
 
             questionnaire = {
-                "survey_id": "021",
-                "data_version": "0.0.2"
+                'survey_id': '021',
+                'data_version': '0.0.2'
             }
 
             answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), {})
@@ -46,8 +46,8 @@ class TestConverter(SurveyRunnerTestCase):
             user_answer = [create_answer('GHI', 0)]
 
             questionnaire = {
-                "survey_id": "021",
-                "data_version": "0.0.2"
+                'survey_id': '021',
+                'data_version': '0.0.2'
             }
             self.metadata['ref_p_end_date'] = None
             answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), {})
@@ -62,21 +62,21 @@ class TestConverter(SurveyRunnerTestCase):
             user_answer = [create_answer('GHI', 0)]
 
             questionnaire = {
-                "survey_id": "021",
-                "data_version": "0.0.2"
+                'survey_id': '021',
+                'data_version': '0.0.2'
             }
 
             answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), {})
-            self.assertEqual(answer_object['metadata']['ref_period_start_date'], "2016-02-02")
-            self.assertEqual(answer_object['metadata']['ref_period_end_date'], "2016-03-03")
+            self.assertEqual(answer_object['metadata']['ref_period_start_date'], '2016-02-02')
+            self.assertEqual(answer_object['metadata']['ref_period_end_date'], '2016-03-03')
 
     def test_convert_answers_flushed_flag_overriden_to_true(self):
         with self.application.test_request_context():
             user_answer = [create_answer('GHI', 0)]
 
             questionnaire = {
-                "survey_id": "021",
-                "data_version": "0.0.2"
+                'survey_id': '021',
+                'data_version': '0.0.2'
             }
 
             answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), {}, flushed=True)
@@ -89,26 +89,26 @@ class TestConverter(SurveyRunnerTestCase):
                            create_answer('DEF', '2016-03-30', group_id='group-1', block_id='block-1')]
 
             questionnaire = {
-                "survey_id": "021",
-                "data_version": "0.0.1",
-                "groups": [
+                'survey_id': '021',
+                'data_version': '0.0.1',
+                'groups': [
                     {
-                        "id": "group-1",
-                        "blocks": [
+                        'id': 'group-1',
+                        'blocks': [
                             {
-                                "id": "block-1",
-                                "questions": [{
-                                    "id": 'question-1',
-                                    "answers": [
+                                'id': 'block-1',
+                                'questions': [{
+                                    'id': 'question-1',
+                                    'answers': [
                                         {
-                                            "id": "ABC",
-                                            "type": "TextField",
-                                            "q_code": "001"
+                                            'id': 'ABC',
+                                            'type': 'TextField',
+                                            'q_code': '001'
                                         },
                                         {
-                                            "id": "DEF",
-                                            "type": "TextField",
-                                            "q_code": "002"
+                                            'id': 'DEF',
+                                            'type': 'TextField',
+                                            'q_code': '002'
                                         }
                                     ]
                                 }]
@@ -140,31 +140,31 @@ class TestConverter(SurveyRunnerTestCase):
                            create_answer('GHI', '2016-05-30', group_id='group-1', block_id='block-1')]
 
             questionnaire = {
-                "survey_id": "021",
-                "data_version": "0.0.1",
-                "groups": [
+                'survey_id': '021',
+                'data_version': '0.0.1',
+                'groups': [
                     {
-                        "id": "group-1",
-                        "blocks": [
+                        'id': 'group-1',
+                        'blocks': [
                             {
-                                "id": "block-1",
-                                "questions": [{
-                                    "id": 'question-1',
-                                    "answers": [
+                                'id': 'block-1',
+                                'questions': [{
+                                    'id': 'question-1',
+                                    'answers': [
                                         {
-                                            "id": "LMN",
-                                            "type": "TextField",
-                                            "q_code": "001"
+                                            'id': 'LMN',
+                                            'type': 'TextField',
+                                            'q_code': '001'
                                         },
                                         {
-                                            "id": "DEF",
-                                            "type": "TextField",
-                                            "q_code": "002"
+                                            'id': 'DEF',
+                                            'type': 'TextField',
+                                            'q_code': '002'
                                         },
                                         {
-                                            "id": "JKL",
-                                            "type": "TextField",
-                                            "q_code": "003"
+                                            'id': 'JKL',
+                                            'type': 'TextField',
+                                            'q_code': '003'
                                         },
                                     ]
                                 }]
@@ -186,8 +186,8 @@ class TestConverter(SurveyRunnerTestCase):
             user_answer = [create_answer('GHI', 0)]
 
             questionnaire = {
-                "survey_id": "021",
-                "data_version": "0.0.2"
+                'survey_id': '021',
+                'data_version': '0.0.2'
             }
 
             answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), {})
@@ -200,21 +200,21 @@ class TestConverter(SurveyRunnerTestCase):
             user_answer = [create_answer('GHI', 0, group_id='group-1', block_id='block-1')]
 
             questionnaire = {
-                "survey_id": "021",
-                "data_version": "0.0.1",
-                "groups": [
+                'survey_id': '021',
+                'data_version': '0.0.1',
+                'groups': [
                     {
-                        "id": "group-1",
-                        "blocks": [
+                        'id': 'group-1',
+                        'blocks': [
                             {
-                                "id": "block-1",
-                                "questions": [{
-                                    "id": 'question-2',
-                                    "answers": [
+                                'id': 'block-1',
+                                'questions': [{
+                                    'id': 'question-2',
+                                    'answers': [
                                         {
-                                            "id": "GHI",
-                                            "type": "TextField",
-                                            "q_code": "003"
+                                            'id': 'GHI',
+                                            'type': 'TextField',
+                                            'q_code': '003'
                                         }
                                     ]
                                 }]
@@ -229,28 +229,28 @@ class TestConverter(SurveyRunnerTestCase):
             answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), routing_path)
 
             # Check the converter correctly
-            self.assertEqual("0", answer_object["data"]["003"])
+            self.assertEqual('0', answer_object['data']['003'])
 
     def test_answer_with_float(self):
         with self.application.test_request_context():
             user_answer = [create_answer('GHI', 10.02, group_id='group-1', block_id='block-1')]
 
             questionnaire = {
-                "survey_id": "021",
-                "data_version": "0.0.1",
-                "groups": [
+                'survey_id': '021',
+                'data_version': '0.0.1',
+                'groups': [
                     {
-                        "id": "group-1",
-                        "blocks": [
+                        'id': 'group-1',
+                        'blocks': [
                             {
-                                "id": "block-1",
-                                "questions": [{
-                                    "id": 'question-2',
-                                    "answers": [
+                                'id': 'block-1',
+                                'questions': [{
+                                    'id': 'question-2',
+                                    'answers': [
                                         {
-                                            "id": "GHI",
-                                            "type": "TextField",
-                                            "q_code": "003"
+                                            'id': 'GHI',
+                                            'type': 'TextField',
+                                            'q_code': '003'
                                         }
                                     ]
                                 }]
@@ -265,28 +265,28 @@ class TestConverter(SurveyRunnerTestCase):
             answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), routing_path)
 
             # Check the converter correctly
-            self.assertEqual("10.02", answer_object["data"]["003"])
+            self.assertEqual('10.02', answer_object['data']['003'])
 
     def test_answer_with_string(self):
         with self.application.test_request_context():
-            user_answer = [create_answer('GHI', "String test + !", group_id='group-1', block_id='block-1')]
+            user_answer = [create_answer('GHI', 'String test + !', group_id='group-1', block_id='block-1')]
 
             questionnaire = {
-                "survey_id": "021",
-                "data_version": "0.0.1",
-                "groups": [
+                'survey_id': '021',
+                'data_version': '0.0.1',
+                'groups': [
                     {
-                        "id": "group-1",
-                        "blocks": [
+                        'id': 'group-1',
+                        'blocks': [
                             {
-                                "id": "block-1",
-                                "questions": [{
-                                    "id": 'question-2',
-                                    "answers": [
+                                'id': 'block-1',
+                                'questions': [{
+                                    'id': 'question-2',
+                                    'answers': [
                                         {
-                                            "id": "GHI",
-                                            "type": "TextField",
-                                            "q_code": "003"
+                                            'id': 'GHI',
+                                            'type': 'TextField',
+                                            'q_code': '003'
                                         }
                                     ]
                                 }]
@@ -301,7 +301,7 @@ class TestConverter(SurveyRunnerTestCase):
             answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), routing_path)
 
             # Check the converter correctly
-            self.assertEqual("String test + !", answer_object["data"]["003"])
+            self.assertEqual('String test + !', answer_object['data']['003'])
 
     def test_answer_with_multiple_instances(self):
         with self.application.test_request_context():
@@ -310,21 +310,21 @@ class TestConverter(SurveyRunnerTestCase):
                            create_answer('GHI', value=2, answer_instance=2, group_id='group-1', block_id='block-1')]
 
             questionnaire = {
-                "survey_id": "021",
-                "data_version": "0.0.1",
-                "groups": [
+                'survey_id': '021',
+                'data_version': '0.0.1',
+                'groups': [
                     {
-                        "id": "group-1",
-                        "blocks": [
+                        'id': 'group-1',
+                        'blocks': [
                             {
-                                "id": "block-1",
-                                "questions": [{
-                                    "id": 'question-2',
-                                    "answers": [
+                                'id': 'block-1',
+                                'questions': [{
+                                    'id': 'question-2',
+                                    'answers': [
                                         {
-                                            "id": "GHI",
-                                            "type": "TextField",
-                                            "q_code": "003"
+                                            'id': 'GHI',
+                                            'type': 'TextField',
+                                            'q_code': '003'
                                         }
                                     ]
                                 }]
@@ -339,7 +339,7 @@ class TestConverter(SurveyRunnerTestCase):
             answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), routing_path)
 
             # Check the converter correctly
-            self.assertEqual(answer_object["data"]["003"], ['0', '1', '2'])
+            self.assertEqual(answer_object['data']['003'], ['0', '1', '2'])
 
     def test_get_checkbox_answer_with_duplicate_child_answer_ids(self):
         with self.application.test_request_context():
@@ -355,27 +355,27 @@ class TestConverter(SurveyRunnerTestCase):
                                       group_instance=1)]
 
             questionnaire = {
-                "survey_id": "999",
-                "data_version": "0.0.1",
-                "groups": [
+                'survey_id': '999',
+                'data_version': '0.0.1',
+                'groups': [
                     {
-                        "id": "favourite-food",
-                        "blocks": [
+                        'id': 'favourite-food',
+                        'blocks': [
                             {
-                                "id": "crisps",
-                                "questions": [{
-                                    "id": 'crisps-question',
-                                    "answers": [
+                                'id': 'crisps',
+                                'questions': [{
+                                    'id': 'crisps-question',
+                                    'answers': [
                                         {
-                                            "id": "crisps-answer",
-                                            "type": "Checkbox",
-                                            "options": [
+                                            'id': 'crisps-answer',
+                                            'type': 'Checkbox',
+                                            'options': [
                                                 {
-                                                    "label": "Other",
-                                                    "q_code": "4",
-                                                    "description": "Choose any other flavour",
-                                                    "value": "Other",
-                                                    "child_answer_id": "other-answer-mandatory"
+                                                    'label': 'Other',
+                                                    'q_code': '4',
+                                                    'description': 'Choose any other flavour',
+                                                    'value': 'Other',
+                                                    'child_answer_id': 'other-answer-mandatory'
                                                 }
                                             ]
                                         },
@@ -389,7 +389,7 @@ class TestConverter(SurveyRunnerTestCase):
 
         with self.assertRaises(Exception) as err:
             convert_answers(self.metadata, questionnaire, AnswerStore(answers), routing_path)
-        self.assertEqual("Multiple answers found for {}".format('other-answer-mandatory'), str(err.exception))
+        self.assertEqual('Multiple answers found for {}'.format('other-answer-mandatory'), str(err.exception))
 
     def test_convert_census_answers(self):
         with self.application.test_request_context():
@@ -404,8 +404,8 @@ class TestConverter(SurveyRunnerTestCase):
                                      group_instance=1)]
 
             questionnaire = {
-                "survey_id": "021",
-                "data_version": "0.0.2"
+                'survey_id': '021',
+                'data_version': '0.0.2'
             }
 
             # When
@@ -441,8 +441,8 @@ class TestConverter(SurveyRunnerTestCase):
                 create_answer('name', ['Ready salted', 'Sweet chilli'], group_id='favourite-food', block_id='crisps')]
 
             questionnaire = {
-                "survey_id": "021",
-                "data_version": "0.0.2"
+                'survey_id': '021',
+                'data_version': '0.0.2'
             }
 
             # When
@@ -459,8 +459,8 @@ class TestConverter(SurveyRunnerTestCase):
     def test_converter_raises_runtime_error_for_unsupported_version(self):
         with self.application.test_request_context():
             questionnaire = {
-                "survey_id": "021",
-                "data_version": "-0.0.1"
+                'survey_id': '021',
+                'data_version': '-0.0.1'
             }
 
             with self.assertRaises(DataVersionError) as err:
@@ -477,51 +477,51 @@ class TestConverter(SurveyRunnerTestCase):
             ], group_id='favourite-food', block_id='crisps')]
 
             questionnaire = {
-                "survey_id": "999",
-                "data_version": "0.0.1",
-                "groups": [
+                'survey_id': '999',
+                'data_version': '0.0.1',
+                'groups': [
                     {
-                        "id": "favourite-food",
-                        "blocks": [
+                        'id': 'favourite-food',
+                        'blocks': [
                             {
-                                "id": "crisps",
-                                "questions": [{
-                                    "id": 'crisps-question',
-                                    "answers": [
+                                'id': 'crisps',
+                                'questions': [{
+                                    'id': 'crisps-question',
+                                    'answers': [
                                         {
-                                            "id": "crisps-answer",
-                                            "type": "Checkbox",
-                                            "options": [
+                                            'id': 'crisps-answer',
+                                            'type': 'Checkbox',
+                                            'options': [
                                                 {
-                                                    "label": "Ready salted",
-                                                    "value": "Ready salted",
-                                                    "q_code": "1"
+                                                    'label': 'Ready salted',
+                                                    'value': 'Ready salted',
+                                                    'q_code': '1'
                                                 },
                                                 {
-                                                    "label": "Sweet chilli",
-                                                    "value": "Sweet chilli",
-                                                    "q_code": "2"
+                                                    'label': 'Sweet chilli',
+                                                    'value': 'Sweet chilli',
+                                                    'q_code': '2'
                                                 },
                                                 {
-                                                    "label": "Cheese and onion",
-                                                    "value": "Cheese and onion",
-                                                    "q_code": "3"
+                                                    'label': 'Cheese and onion',
+                                                    'value': 'Cheese and onion',
+                                                    'q_code': '3'
                                                 },
                                                 {
-                                                    "label": "Other",
-                                                    "q_code": "4",
-                                                    "description": "Choose any other flavour",
-                                                    "value": "Other",
-                                                    "child_answer_id": "other-answer-mandatory"
+                                                    'label': 'Other',
+                                                    'q_code': '4',
+                                                    'description': 'Choose any other flavour',
+                                                    'value': 'Other',
+                                                    'child_answer_id': 'other-answer-mandatory'
                                                 }
                                             ]
                                         },
                                         {
-                                            "parent_answer_id": "crisps-answer",
-                                            "mandatory": True,
-                                            "id": "other-answer-mandatory",
-                                            "label": "Please specify other",
-                                            "type": "TextField"
+                                            'parent_answer_id': 'crisps-answer',
+                                            'mandatory': True,
+                                            'id': 'other-answer-mandatory',
+                                            'label': 'Please specify other',
+                                            'type': 'TextField'
                                         }
                                     ]
                                 }]
@@ -550,51 +550,51 @@ class TestConverter(SurveyRunnerTestCase):
             answers += [create_answer('other-answer-mandatory', 'Bacon', group_id='favourite-food', block_id='crisps')]
 
             questionnaire = {
-                "survey_id": "999",
-                "data_version": "0.0.1",
-                "groups": [
+                'survey_id': '999',
+                'data_version': '0.0.1',
+                'groups': [
                     {
-                        "id": "favourite-food",
-                        "blocks": [
+                        'id': 'favourite-food',
+                        'blocks': [
                             {
-                                "id": "crisps",
-                                "questions": [{
-                                    "id": 'crisps-question',
-                                    "answers": [
+                                'id': 'crisps',
+                                'questions': [{
+                                    'id': 'crisps-question',
+                                    'answers': [
                                         {
-                                            "id": "crisps-answer",
-                                            "type": "Checkbox",
-                                            "options": [
+                                            'id': 'crisps-answer',
+                                            'type': 'Checkbox',
+                                            'options': [
                                                 {
-                                                    "label": "Ready salted",
-                                                    "value": "Ready salted",
-                                                    "q_code": "1"
+                                                    'label': 'Ready salted',
+                                                    'value': 'Ready salted',
+                                                    'q_code': '1'
                                                 },
                                                 {
-                                                    "label": "Sweet chilli",
-                                                    "value": "Sweet chilli",
-                                                    "q_code": "2"
+                                                    'label': 'Sweet chilli',
+                                                    'value': 'Sweet chilli',
+                                                    'q_code': '2'
                                                 },
                                                 {
-                                                    "label": "Cheese and onion",
-                                                    "value": "Cheese and onion",
-                                                    "q_code": "3"
+                                                    'label': 'Cheese and onion',
+                                                    'value': 'Cheese and onion',
+                                                    'q_code': '3'
                                                 },
                                                 {
-                                                    "label": "Other",
-                                                    "q_code": "4",
-                                                    "description": "Choose any other flavour",
-                                                    "value": "Other",
-                                                    "child_answer_id": "other-answer-mandatory"
+                                                    'label': 'Other',
+                                                    'q_code': '4',
+                                                    'description': 'Choose any other flavour',
+                                                    'value': 'Other',
+                                                    'child_answer_id': 'other-answer-mandatory'
                                                 }
                                             ]
                                         },
                                         {
-                                            "parent_answer_id": "crisps-answer",
-                                            "mandatory": True,
-                                            "id": "other-answer-mandatory",
-                                            "label": "Please specify other",
-                                            "type": "TextField"
+                                            'parent_answer_id': 'crisps-answer',
+                                            'mandatory': True,
+                                            'id': 'other-answer-mandatory',
+                                            'label': 'Please specify other',
+                                            'type': 'TextField'
                                         }
                                     ]
                                 }]
@@ -620,28 +620,28 @@ class TestConverter(SurveyRunnerTestCase):
                 create_answer('other-crisps-answer', 'Ready salted', group_id='favourite-food', block_id='crisps')]
 
             questionnaire = {
-                "survey_id": "999",
-                "data_version": "0.0.1",
-                "groups": [
+                'survey_id': '999',
+                'data_version': '0.0.1',
+                'groups': [
                     {
-                        "id": "favourite-food",
-                        "blocks": [
+                        'id': 'favourite-food',
+                        'blocks': [
                             {
-                                "id": "crisps",
-                                "questions": [{
-                                    "id": 'crisps-question',
-                                    "answers": [
+                                'id': 'crisps',
+                                'questions': [{
+                                    'id': 'crisps-question',
+                                    'answers': [
                                         {
-                                            "id": "crisps-answer",
-                                            "type": "TextArea",
-                                            "options": [],
-                                            "q_code": "1"
+                                            'id': 'crisps-answer',
+                                            'type': 'TextArea',
+                                            'options': [],
+                                            'q_code': '1'
                                         },
                                         {
-                                            "id": "other-crisps-answer",
-                                            "type": "TextArea",
-                                            "options": [],
-                                            "q_code": "2"
+                                            'id': 'other-crisps-answer',
+                                            'type': 'TextArea',
+                                            'options': [],
+                                            'q_code': '2'
                                         }
                                     ]
                                 }]

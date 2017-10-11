@@ -23,7 +23,7 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         super().setUp()
         self.answer_store = AnswerStore([])
 
-        self.routing_path = [Location("group1", 0, "block1")]
+        self.routing_path = [Location('group1', 0, 'block1')]
 
     def test_build_schema_context(self):
         aliases = {
@@ -237,7 +237,7 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
 
     def test_respondent_display_name_is_ru_name_as_when_trading_as_empty(self):
         metadata = self.metadata.copy()
-        metadata['trad_as'] = ""
+        metadata['trad_as'] = ''
 
         schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
 
@@ -246,7 +246,7 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
     def test_given_quotes_in_trading_name_when_create_context_then_quotes_are_html_encoded(self):
         # Given
         metadata = self.metadata.copy()
-        metadata['trad_as'] = "\"trading name\""
+        metadata['trad_as'] = '\"trading name\"'
 
         # When
         schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
@@ -257,7 +257,7 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
     def test_given_backslash_in_trading_name_when_create_context_then_backslash_are_escaped(self):
         # Given
         metadata = self.metadata.copy()
-        metadata['trad_as'] = "\\trading name\\"
+        metadata['trad_as'] = '\\trading name\\'
 
         # When
         schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
@@ -268,7 +268,7 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
     def test_given_quotes_in_ru_name_when_create_context_then_quotes_are_html_encoded(self):
         # Given
         metadata = self.metadata.copy()
-        metadata['ru_name'] = "\"ru name\""
+        metadata['ru_name'] = '\"ru name\"'
 
         # When
         schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
@@ -279,7 +279,7 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
     def test_given_backslash_in_ru_name_when_create_context_then_backslash_are_escaped(self):
         # Given
         metadata = self.metadata.copy()
-        metadata['ru_name'] = "\\ru name\\"
+        metadata['ru_name'] = '\\ru name\\'
 
         # When
         schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
@@ -290,7 +290,7 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
     def test_given_quotes_in_ru_name_or_trading_name_when_create_context_then_quotes_are_html_encoded(self):
         # Given
         metadata = self.metadata.copy()
-        metadata['ru_name'] = '"ru_name"'
+        metadata['ru_name'] = '\"ru_name\"'
         metadata['trad_as'] = None
 
         # When
@@ -302,7 +302,7 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
     def test_given_backslash_in_ru_name_or_trading_name_when_create_context_then_backslash_are_escaped(self):
         # Given
         metadata = self.metadata.copy()
-        metadata['trad_as'] = "\\trading name\\"
+        metadata['trad_as'] = '\\trading name\\'
 
         # When
         schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)

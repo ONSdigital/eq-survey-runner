@@ -33,7 +33,7 @@ class Navigation(object):
         """
 
         navigation_block = self.survey_json.get('navigation')
-        if navigation_block is None or navigation_block.get("visible", True) is False:
+        if navigation_block is None or navigation_block.get('visible', True) is False:
             return None
 
         navigation = []
@@ -205,11 +205,11 @@ class Navigation(object):
 
     def _generate_item(self, name, completed, location, highlight, repeating=False):
         return {
-            "link_name": name,
-            "link_url": location.url(self.metadata),
-            "completed": completed,
-            "highlight": highlight,
-            "repeating": repeating,
+            'link_name': name,
+            'link_url': location.url(self.metadata),
+            'completed': completed,
+            'highlight': highlight,
+            'repeating': repeating,
         }
 
     def _generate_link_names(self, label_answer_ids):
@@ -222,6 +222,6 @@ class Navigation(object):
                     link_names[answer['answer_instance']].append(escape(answer['value']))
 
         for link_name in link_names:
-            link_names[link_name] = " ".join(link_names[link_name])
+            link_names[link_name] = ' '.join(link_names[link_name])
 
         return link_names

@@ -27,7 +27,7 @@ class TestSummaryContext(AppContextTestCase):
 
     def setUp(self):
         super().setUp()
-        self.schema_json = load_schema_file("{}_{}.json".format("0", "star_wars"))
+        self.schema_json = load_schema_file('{}_{}.json'.format('0', 'star_wars'))
 
     def test_build_summary_rendering_context(self):
         answer_store = MagicMock()
@@ -60,4 +60,4 @@ class TestSummaryContext(AppContextTestCase):
             context = build_summary_rendering_context(self.schema_json, answer_store, self.metadata)
 
         answer = context[0].blocks[0].questions[0].answers[0]
-        self.assertEqual(answer.value, "&lt;&gt;&#34;&#39;&amp;")
+        self.assertEqual(answer.value, '&lt;&gt;&#34;&#39;&amp;')

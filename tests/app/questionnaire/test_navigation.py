@@ -10,11 +10,11 @@ from tests.app.app_context_test_case import AppContextTestCase
 class TestNavigation(AppContextTestCase):
 
     def test_navigation_no_blocks_completed(self):
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         navigation = Navigation(survey, AnswerStore(), metadata)
@@ -53,17 +53,17 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_non_repeating_block_completed(self):
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         answer_store = AnswerStore()
 
         answer_1 = Answer(
-            value="Contents",
+            value='Contents',
             group_instance=0,
             block_id='insurance-type',
             group_id='property-details',
@@ -122,11 +122,11 @@ class TestNavigation(AppContextTestCase):
 
     def test_navigation_repeating_household_and_hidden_household_groups_completed(self):
 
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         completed_blocks = [
@@ -238,11 +238,11 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_navigation_repeating_group_extra_answered_not_completed(self):
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         completed_blocks = [
@@ -338,11 +338,11 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_navigation_repeating_group_extra_answered_completed(self):
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         completed_blocks = [
@@ -446,11 +446,11 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_navigation_repeating_group_link_name_format(self):
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         completed_blocks = [
@@ -547,12 +547,12 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_navigation_skip_condition_hide_group(self):
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
 
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         completed_blocks = []
@@ -560,7 +560,7 @@ class TestNavigation(AppContextTestCase):
         answer_store = AnswerStore()
 
         answer_1 = Answer(
-            value="Buildings",
+            value='Buildings',
             group_instance=0,
             block_id='insurance-type',
             group_id='property-details',
@@ -576,12 +576,12 @@ class TestNavigation(AppContextTestCase):
         self.assertNotIn('Property Interstitial', link_names)
 
     def test_navigation_skip_condition_show_group(self):
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
 
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         completed_blocks = []
@@ -589,7 +589,7 @@ class TestNavigation(AppContextTestCase):
         answer_store = AnswerStore()
 
         answer_1 = Answer(
-            value="Contents",
+            value='Contents',
             group_instance=0,
             block_id='insurance-type',
             group_id='property-details',
@@ -606,12 +606,12 @@ class TestNavigation(AppContextTestCase):
         self.assertIn('Property Interstitial', link_names)
 
     def test_navigation_skip_condition_change_answer(self):
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
 
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         completed_blocks = []
@@ -619,7 +619,7 @@ class TestNavigation(AppContextTestCase):
         answer_store = AnswerStore()
 
         answer_1 = Answer(
-            value="Contents",
+            value='Contents',
             group_instance=0,
             block_id='insurance-type',
             group_id='property-details',
@@ -635,7 +635,7 @@ class TestNavigation(AppContextTestCase):
         self.assertIn('Property Interstitial', link_names)
 
         change_answer = Answer(
-            value="Buildings",
+            value='Buildings',
             group_instance=0,
             block_id='insurance-type',
             group_id='property-details',
@@ -651,8 +651,8 @@ class TestNavigation(AppContextTestCase):
 
     def test_build_navigation_returns_none_when_schema_navigation_is_false(self):
         # Given
-        survey = load_schema_file("test_navigation.json")
-        survey['navigation'] = {"visible": False}
+        survey = load_schema_file('test_navigation.json')
+        survey['navigation'] = {'visible': False}
         completed_blocks = []
         metadata = {}
         navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
@@ -665,7 +665,7 @@ class TestNavigation(AppContextTestCase):
 
     def test_build_navigation_returns_none_when_no_schema_navigation_property(self):
         # Given
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
         del survey['navigation']
         completed_blocks = []
         metadata = {}
@@ -679,13 +679,13 @@ class TestNavigation(AppContextTestCase):
 
     def test_build_navigation_returns_navigation_when_schema_navigation_is_true(self):
         # Given
-        survey = load_schema_file("test_navigation.json")
-        survey['navigation'] = {"visible": True, "sections": [{"title": "Nav", "group_order": ["property-details"]}]}
+        survey = load_schema_file('test_navigation.json')
+        survey['navigation'] = {'visible': True, 'sections': [{'title': 'Nav', 'group_order': ['property-details']}]}
         completed_blocks = []
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
         navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
 
@@ -696,11 +696,11 @@ class TestNavigation(AppContextTestCase):
         self.assertIsNotNone(nav_menu)
 
     def test_build_navigation_summary_link_hidden_when_no_sections_completed(self):
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         navigation = Navigation(survey, AnswerStore(), metadata)
@@ -716,11 +716,11 @@ class TestNavigation(AppContextTestCase):
         self.assertNotIn(confirmation_link, navigation.build_navigation('property-details', 0))
 
     def test_build_navigation_summary_link_hidden_when_not_all_sections_completed(self):
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         completed_blocks = [
@@ -746,11 +746,11 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_summary_link_visible_when_all_sections_complete(self):
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         completed_blocks = [
@@ -803,11 +803,11 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 5)
 
     def test_build_navigation_submit_answers_link_not_visible_for_survey_with_summary(self):
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         completed_blocks = [
@@ -842,11 +842,11 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_submit_answers_link_hidden_when_no_sections_completed(self):
-        survey = load_schema_file("test_navigation_confirmation.json")
+        survey = load_schema_file('test_navigation_confirmation.json')
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         navigation = Navigation(survey, AnswerStore(), metadata)
@@ -864,11 +864,11 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_submit_answers_link_hidden_when_not_all_sections_completed(self):
-        survey = load_schema_file("test_navigation_confirmation.json")
+        survey = load_schema_file('test_navigation_confirmation.json')
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         completed_blocks = [
@@ -894,11 +894,11 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_submit_answers_link_visible_when_all_sections_complete(self):
-        survey = load_schema_file("test_navigation_confirmation.json")
+        survey = load_schema_file('test_navigation_confirmation.json')
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         completed_blocks = [
@@ -951,11 +951,11 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 5)
 
     def test_build_navigation_summary_link_not_visible_for_survey_with_confirmation(self):
-        survey = load_schema_file("test_navigation_confirmation.json")
+        survey = load_schema_file('test_navigation_confirmation.json')
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         completed_blocks = [
@@ -988,23 +988,23 @@ class TestNavigation(AppContextTestCase):
         self.assertNotIn(confirmation_link, navigation.build_navigation('property-details', 0))
 
     def test_build_navigation_summary_link_not_visible_when_hidden_group_not_completed(self):
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
 
         # Payment details group not displayed in navigation
-        survey['navigation'] = {"sections": [{"title": "Property Details", "group_order": ["property-details",
-                                                                                           "property-interstitial-group",
-                                                                                           "house-details",
-                                                                                           "multiple-questions-group",
-                                                                                           "repeating-group",
-                                                                                           "extra-cover",
-                                                                                           "extra-cover-items-group",
-                                                                                           "skip-payment-group",
-                                                                                           "payment-details"]}]}
+        survey['navigation'] = {'sections': [{'title': 'Property Details', 'group_order': ['property-details',
+                                                                                           'property-interstitial-group',
+                                                                                           'house-details',
+                                                                                           'multiple-questions-group',
+                                                                                           'repeating-group',
+                                                                                           'extra-cover',
+                                                                                           'extra-cover-items-group',
+                                                                                           'skip-payment-group',
+                                                                                           'payment-details']}]}
 
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         # Payment details thus not completed
@@ -1054,12 +1054,12 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 1)
 
     def test_build_navigation_submit_answers_link_not_visible_when_no_completed_blocks(self):
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
 
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         completed_blocks = []
@@ -1080,11 +1080,11 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_summary_link_hidden_when_not_on_routing_path(self):
-        survey = load_schema_file("test_navigation.json")
+        survey = load_schema_file('test_navigation.json')
         metadata = {
-            "eq_id": '1',
-            "collection_exercise_sid": '999',
-            "form_type": "some_form"
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
         }
 
         completed_blocks = [

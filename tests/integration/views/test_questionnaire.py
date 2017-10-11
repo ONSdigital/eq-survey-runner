@@ -34,12 +34,12 @@ class TestQuestionnaire(IntegrationTestCase):
 
     def test_update_questionnaire_store_with_form_data(self):
 
-        g.schema_json = load_schema_file("test_0112.json")
+        g.schema_json = load_schema_file('test_0112.json')
 
-        location = Location("rsi", 0, "total-retail-turnover")
+        location = Location('rsi', 0, 'total-retail-turnover')
 
         form_data = {
-            'total-retail-turnover-answer': "1000",
+            'total-retail-turnover-answer': '1000',
         }
 
         with self._application.test_request_context():
@@ -58,9 +58,9 @@ class TestQuestionnaire(IntegrationTestCase):
 
     def test_update_questionnaire_store_with_date_form_data(self):
 
-        g.schema_json = load_schema_file("test_dates.json")
+        g.schema_json = load_schema_file('test_dates.json')
 
-        location = Location("dates", 0, "date-block")
+        location = Location('dates', 0, 'date-block')
 
         form_data = {
             'single-date-answer': {'day': '12', 'month': '03', 'year': '2016'},
@@ -92,9 +92,9 @@ class TestQuestionnaire(IntegrationTestCase):
 
     def test_update_questionnaire_store_with_empty_day_month_year_date(self):
 
-        g.schema_json = load_schema_file("test_dates.json")
+        g.schema_json = load_schema_file('test_dates.json')
 
-        location = Location("dates", 0, "date-block")
+        location = Location('dates', 0, 'date-block')
 
         form_data = {
             'non-mandatory-date-answer': {'day': '', 'month': '', 'year': ''},
@@ -107,9 +107,9 @@ class TestQuestionnaire(IntegrationTestCase):
 
     def test_update_questionnaire_store_with_empty_month_year_date(self):
 
-        g.schema_json = load_schema_file("test_dates.json")
+        g.schema_json = load_schema_file('test_dates.json')
 
-        location = Location("dates", 0, "date-block")
+        location = Location('dates', 0, 'date-block')
 
         form_data = {
             'month-year-answer': {'month': '', 'year': ''},
@@ -121,7 +121,7 @@ class TestQuestionnaire(IntegrationTestCase):
         self.assertEqual([], self.question_store.answer_store.answers)
 
     def test_update_questionnaire_store_with_answer_data(self):
-        g.schema_json = load_schema_file("census_household.json")
+        g.schema_json = load_schema_file('census_household.json')
 
         location = Location('who-lives-here', 0, 'household-composition')
 
@@ -180,7 +180,7 @@ class TestQuestionnaire(IntegrationTestCase):
             self.assertIn(answer.__dict__, self.question_store.answer_store.answers)
 
     def test_remove_empty_household_members_from_answer_store(self):
-        g.schema_json = load_schema_file("census_household.json")
+        g.schema_json = load_schema_file('census_household.json')
 
         answers = [
             Answer(
@@ -237,7 +237,7 @@ class TestQuestionnaire(IntegrationTestCase):
             self.assertFalse(self.question_store.answer_store.exists(answer))
 
     def test_remove_empty_household_members_values_entered_are_stored(self):
-        g.schema_json = load_schema_file("census_household.json")
+        g.schema_json = load_schema_file('census_household.json')
 
         answered = [
             Answer(
@@ -305,7 +305,7 @@ class TestQuestionnaire(IntegrationTestCase):
             self.assertFalse(self.question_store.answer_store.exists(answer))
 
     def test_remove_empty_household_members_partial_answers_are_stored(self):
-        g.schema_json = load_schema_file("census_household.json")
+        g.schema_json = load_schema_file('census_household.json')
 
         answered = [
             Answer(
@@ -394,7 +394,7 @@ class TestQuestionnaire(IntegrationTestCase):
             self.assertTrue(self.question_store.answer_store.exists(answer))
 
     def test_remove_empty_household_members_middle_name_only_not_stored(self):
-        g.schema_json = load_schema_file("census_household.json")
+        g.schema_json = load_schema_file('census_household.json')
 
         unanswered = [
             Answer(
@@ -431,7 +431,7 @@ class TestQuestionnaire(IntegrationTestCase):
 
     def test_given_introduction_page_when_get_page_title_then_defaults_to_survey_title(self):
         # Given
-        g.schema_json = load_schema_file("test_final_confirmation.json")
+        g.schema_json = load_schema_file('test_final_confirmation.json')
 
         # When
         page_title = get_page_title_for_location(g.schema_json, Location('final-confirmation', 0, 'introduction'))
@@ -441,7 +441,7 @@ class TestQuestionnaire(IntegrationTestCase):
 
     def test_given_interstitial_page_when_get_page_title_then_group_title_and_survey_title(self):
         # Given
-        g.schema_json = load_schema_file("test_interstitial_page.json")
+        g.schema_json = load_schema_file('test_interstitial_page.json')
 
         # When
         page_title = get_page_title_for_location(g.schema_json, Location('favourite-foods', 0, 'breakfast-interstitial'))
@@ -451,7 +451,7 @@ class TestQuestionnaire(IntegrationTestCase):
 
     def test_given_questionnaire_page_when_get_page_title_then_question_title_and_survey_title(self):
         # Given
-        g.schema_json = load_schema_file("test_final_confirmation.json")
+        g.schema_json = load_schema_file('test_final_confirmation.json')
 
         # When
         page_title = get_page_title_for_location(g.schema_json, Location('final-confirmation', 0, 'breakfast'))
@@ -461,7 +461,7 @@ class TestQuestionnaire(IntegrationTestCase):
 
     def test_given_jinja_variable_question_title_when_get_page_title_then_replace_with_ellipsis(self):
         # Given
-        g.schema_json = load_schema_file("census_household.json")
+        g.schema_json = load_schema_file('census_household.json')
 
         # When
         page_title = get_page_title_for_location(g.schema_json, Location('who-lives-here-relationship', 0, 'household-relationships'))

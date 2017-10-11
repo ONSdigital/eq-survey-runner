@@ -101,10 +101,10 @@ class TestUserIDGenerator(unittest.TestCase):
     @staticmethod
     def create_token(eq_id, collection_exercise_sid, ru_ref, form_type):
         return {
-            "eq_id": eq_id,
-            "collection_exercise_sid": collection_exercise_sid,
-            "ru_ref": ru_ref,
-            "form_type": form_type}
+            'eq_id': eq_id,
+            'collection_exercise_sid': collection_exercise_sid,
+            'ru_ref': ru_ref,
+            'form_type': form_type}
 
     def test_generate_id_no_metadata_raises_error(self):
         id_generator = UserIDGenerator(self._iterations, '', '')

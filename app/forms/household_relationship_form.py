@@ -121,7 +121,7 @@ def generate_relationship_form(block_json, number_of_entries, data, error_messag
         description=answer.get('label'),
         choices=choices,
         default='',
-        validators=get_mandatory_validator(answer, error_messages, "MANDATORY_TEXTFIELD"),
+        validators=get_mandatory_validator(answer, error_messages, 'MANDATORY_TEXTFIELD'),
     ), min_entries=number_of_entries)
 
     setattr(HouseHoldRelationshipForm, answer['id'], field)

@@ -12,9 +12,9 @@ def create_schema_with_id(schema_id='answer'):
     :param schema_id: The Id to use for the answer.
     :return: The JSON file with the Id swapped for schema_id
     """
-    schema_path = get_schema_file_path("test_percentage.json")
+    schema_path = get_schema_file_path('test_percentage.json')
 
-    with open(schema_path, encoding="utf8") as json_data:
+    with open(schema_path, encoding='utf8') as json_data:
         json_content = json.load(json_data)
 
         json_content['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['id'] = schema_id
@@ -26,14 +26,14 @@ def validate_json_against_schema(json_to_validate, schema):
         validate(json_to_validate, schema)
         return []
     except ValidationError as e:
-        return ["Schema Validation Error! JSON [{}] does not validate against schema. Error [{}]"
+        return ['Schema Validation Error! JSON [{}] does not validate against schema. Error [{}]'
                 .format(json_to_validate, e)]
 
 
 class TestSchemaIdRegEx(unittest.TestCase):
 
     def setUp(self):
-        schema_file = open(get_schema_definition_path(), encoding="utf8")
+        schema_file = open(get_schema_definition_path(), encoding='utf8')
         self.errors = []
         self.schema = json.load(schema_file)
 

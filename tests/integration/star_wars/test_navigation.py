@@ -39,7 +39,7 @@ class TestNavigation(StarWarsTestCase):
 
         # third page
         self.assertInUrl('star-wars-trivia-part-3')
-        self.assertInPage("Finally, which  is your favourite film?")
+        self.assertInPage('Finally, which  is your favourite film?')
         self.post(STAR_WARS_TRIVIA_PART_3_DEFAULT_ANSWERS)
 
         # There are no validation errors
@@ -51,14 +51,14 @@ class TestNavigation(StarWarsTestCase):
         self.assertRegexPage('(?s)How old is Chewy?.*?234')
         self.assertRegexPage('(?s)How many Octillions do Nasa reckon it would cost to build a death star?.*?£40')
         self.assertRegexPage('(?s)How hot is a lightsaber in degrees C?.*?1,370')
-        self.assertRegexPage('(?s)What animal was used to create the engine sound of the Empire\'s TIE fighters?.*?Elephant')  # NOQA
+        self.assertRegexPage("(?s)What animal was used to create the engine sound of the Empire's TIE fighters?.*?Elephant")  # NOQA
         self.assertRegexPage('(?s)Which of these Darth Vader quotes is wrong?.*?Luke, I am your father')
         self.assertRegexPage('(?s)Which 3 have wielded a green lightsaber?.*?Yoda')  # NOQA
         self.assertRegexPage('(?s)Which 3 appear in any of the opening crawlers?')
         self.assertRegexPage("(?s)When was The Empire Strikes Back released?.*?<span class='date'>28 May 1983</span> "
                              "to <span class='date'>29 May 1983</span>")  # NOQA
         self.assertRegexPage('(?s)What was the total number of Ewoks?.*?')
-        self.assertRegexPage('(?s)Why doesn\'t Chewbacca receive a medal at the end of A New Hope?.*?'
+        self.assertRegexPage("(?s)Why doesn't Chewbacca receive a medal at the end of A New Hope?.*?"
                              'Wookiees don’t place value in material rewards and refused the medal initially')  # NOQA
         self.assertInPage('>Please check your responses carefully before submitting.<')
         self.assertInPage('>Submit answers<')
@@ -68,7 +68,7 @@ class TestNavigation(StarWarsTestCase):
         self.assertInUrl('thank-you')
 
     def _check_quiz_first_page(self):
-        self.assertInPage(">Save and continue<")
+        self.assertInPage('>Save and continue<')
         self.assertInPage('Star Wars Quiz')
         self.assertInPage('May the force be with you young EQ developer')
 
@@ -81,7 +81,7 @@ class TestNavigation(StarWarsTestCase):
         self.assertInPage('death-star-cost-answer')
 
         # Radio box question
-        self.assertInPage('What animal was used to create the engine sound of the Empire\'s TIE fighters?')  # NOQA
+        self.assertInPage("What animal was used to create the engine sound of the Empire's TIE fighters?")  # NOQA
         self.assertInPage('Lion')
         self.assertInPage('Cow')
         self.assertInPage('Elephant')

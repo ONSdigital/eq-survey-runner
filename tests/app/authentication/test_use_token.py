@@ -12,8 +12,8 @@ class TestJtiClaimStorage(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.database = Mock(Database(driver="sqlite",
-                                      database_name="",
+        self.database = Mock(Database(driver='sqlite',
+                                      database_name='',
                                       setup_attempts=1,
                                       setup_retry_delay=0))
         self.jti_claim_storage = JtiClaimStorage(self.database)

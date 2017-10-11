@@ -18,13 +18,13 @@ login_manager = LoginManager()
 
 @login_manager.user_loader
 def user_loader(user_id):
-    logger.debug("loading user", user_id=user_id)
+    logger.debug('loading user', user_id=user_id)
     return load_user()
 
 
 @login_manager.request_loader
 def request_load_user(request):  # pylint: disable=unused-argument
-    logger.debug("load user")
+    logger.debug('load user')
     return load_user()
 
 
@@ -39,12 +39,12 @@ def load_user():
         questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
         metadata = questionnaire_store.metadata
         if metadata:
-            logger.bind(tx_id=metadata["tx_id"])
-        logger.debug("session token exists")
+            logger.bind(tx_id=metadata['tx_id'])
+        logger.debug('session token exists')
 
         return user
     else:
-        logger.info("session does not have an authenticated token")
+        logger.info('session does not have an authenticated token')
         return None
 
 
@@ -73,13 +73,13 @@ def store_session(metadata):
     questionnaire_store = get_questionnaire_store(user_id, user_ik)
     questionnaire_store.metadata = metadata
     questionnaire_store.add_or_update()
-    logger.info("user authenticated")
+    logger.info('user authenticated')
 
 
 def decrypt_token(encrypted_token):
-    logger.debug("decrypting token")
+    logger.debug('decrypting token')
     if not encrypted_token or encrypted_token is None:
-        raise NoTokenException("Please provide a token")
+        raise NoTokenException('Please provide a token')
 
     decrypted_token = decrypt(token=encrypted_token,
                               key_store=current_app.eq['key_store'],
@@ -88,7 +88,7 @@ def decrypt_token(encrypted_token):
 
     valid, field = is_valid_metadata(decrypted_token)
     if not valid:
-        raise InvalidTokenException("Missing value {}".format(field))
+        raise InvalidTokenException('Missing value {}'.format(field))
 
-    logger.debug("token decrypted")
+    logger.debug('token decrypted')
     return decrypted_token

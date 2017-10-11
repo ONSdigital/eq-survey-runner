@@ -5,10 +5,10 @@ from structlog import get_logger
 
 from app.data_model.database import EQSession
 
-USER_ID = "user_id"
-USER_IK = "user_ik"
-SURVEY_COMPLETED_METADATA = "survey_completed_metadata"
-EQ_SESSION_ID = "eq-session-id"
+USER_ID = 'user_id'
+USER_IK = 'user_ik'
+SURVEY_COMPLETED_METADATA = 'survey_completed_metadata'
+EQ_SESSION_ID = 'eq-session-id'
 
 logger = get_logger()
 
@@ -26,7 +26,7 @@ class SessionStorage:
         session[EQ_SESSION_ID] = eq_session_id
         eq_session = EQSession(eq_session_id, user_id)
 
-        logger.debug("Adding eq_session to database", eq_session_id=eq_session_id, user_id=user_id)
+        logger.debug('Adding eq_session to database', eq_session_id=eq_session_id, user_id=user_id)
         self._database.add(eq_session)
 
     def delete_session_from_db(self):
@@ -59,19 +59,19 @@ class SessionStorage:
 
     @staticmethod
     def _get_user_session(eq_session_id):
-        logger.debug("finding eq_session_id in database", eq_session_id=eq_session_id)
+        logger.debug('finding eq_session_id in database', eq_session_id=eq_session_id)
 
         # pylint: disable=maybe-no-member
         # SQLAlchemy doing declarative magic which makes session scope query property available
         eq_session = EQSession.query.filter(EQSession.eq_session_id == eq_session_id).first()
 
         if eq_session is not None:
-            logger.debug("found matching eq_session for eq_session_id in database",
+            logger.debug('found matching eq_session for eq_session_id in database',
                          session_id=eq_session.eq_session_id,
                          user_id=eq_session.user_id,
                          timestamp=eq_session.timestamp.isoformat())
         else:
-            logger.debug("eq_session_id not found in database", eq_session_id=eq_session_id)
+            logger.debug('eq_session_id not found in database', eq_session_id=eq_session_id)
 
         return eq_session
 

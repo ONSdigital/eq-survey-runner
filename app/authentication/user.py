@@ -7,4 +7,4 @@ class User(UserMixin):
             self.user_id = user_id
             self.user_ik = user_ik
         else:
-            raise ValueError("No user_id or user_ik found in session")
+            raise ValueError('No user_id or user_ik found in session')
