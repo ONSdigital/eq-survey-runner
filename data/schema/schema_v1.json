@@ -1,16 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "eq_id": {
-    "type": "string",
-    "description": "Used in combination with the form_type to uniquely identify a questionnaire.",
-    "required": "false"
-  },
-  "form_type": {
-    "type": "string",
-    "description": "Used in combination with the eq_id to uniquely identify a questionnaire.",
-    "required": "false"
-  },
   "definitions": {
     "id": {
       "type": "string",
@@ -258,6 +248,14 @@
     "legal_basis"
   ],
   "properties": {
+    "eq_id": {
+      "type": "string",
+      "description": "Used in combination with the form_type to uniquely identify a questionnaire."
+    },
+    "form_type": {
+      "type": "string",
+      "description": "Used in combination with the eq_id to uniquely identify a questionnaire."
+    },
     "mime_type": {
       "type": "string"
     },
@@ -322,21 +320,21 @@
                 "description": "Order in which groups will be navigated within this section."
               }
             },
-              "required": [
-                "group_order"
-              ],
-              "oneOf": [
-                {
-                  "required": [
-                    "title"
-                  ]
-                },
-                {
-                  "required": [
-                    "title_from_answers"
-                  ]
-                }
-              ]
+            "required": [
+              "group_order"
+            ],
+            "oneOf": [
+              {
+                "required": [
+                  "title"
+                ]
+              },
+              {
+                "required": [
+                  "title_from_answers"
+                ]
+              }
+            ]
           }
         }
       }
