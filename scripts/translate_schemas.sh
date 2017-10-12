@@ -6,7 +6,7 @@ schema_dir="${path_to_parent}"/data
 temp_dir="${path_to_parent}"/temp
 
 # Clone translation schema
-git clone --branch v1.2.0 --depth 1 https://github.com/ONSdigital/eq-translations.git "${temp_dir}"/eq-translations
+git clone --branch v1.3.0 --depth 1 https://github.com/ONSdigital/eq-translations.git "${temp_dir}"/eq-translations
 "${temp_dir}"/eq-translations/scripts/run_translate_all_surveys.sh "${schema_dir}"
 # Delete repo
 rm -rf "${temp_dir}"
