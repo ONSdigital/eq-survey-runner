@@ -159,7 +159,8 @@
                         }, {
                             "description": "Exclude:",
                             "list": [
-                                "sales of fuel not own"
+                                "sales of fuel not owned by you",
+                                "any commissions"
                             ]
                         }]
                     }, {
