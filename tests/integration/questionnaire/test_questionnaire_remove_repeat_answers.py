@@ -7,6 +7,9 @@ class TestQuestionnaireRemoveRepeatAnswers(IntegrationTestCase):
 
     def test_should_remove_household_composition_answer_when_no_answer(self):
         with patch('app.views.questionnaire.get_answer_store') as get_answer_store:
+            # avoid TypeError when trying to compare MagicMock and int in rules.py
+            get_answer_store.return_value.filter.return_value.count.return_value = 1
+
             # Given
             self.launchSurvey('census', 'household')
 
@@ -18,6 +21,9 @@ class TestQuestionnaireRemoveRepeatAnswers(IntegrationTestCase):
 
     def test_should_not_remove_answers_when_yes_answer(self):
         with patch('app.views.questionnaire.get_answer_store') as get_answer_store:
+            # avoid TypeError when trying to compare MagicMock and int in rules.py
+            get_answer_store.return_value.filter.return_value.count.return_value = 1
+
             # Given
             self.launchSurvey('census', 'household')
 
@@ -29,6 +35,9 @@ class TestQuestionnaireRemoveRepeatAnswers(IntegrationTestCase):
 
     def test_should_remove_all_repeating_groups(self):
         with patch('app.views.questionnaire.get_answer_store') as get_answer_store:
+            # avoid TypeError when trying to compare MagicMock and int in rules.py
+            get_answer_store.return_value.filter.return_value.count.return_value = 1
+
             # Given
             self.launchSurvey('census', 'household')
 

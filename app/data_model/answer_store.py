@@ -1,5 +1,5 @@
-from collections import OrderedDict
 import re
+from jinja2 import escape
 import simplejson as json
 
 
@@ -68,6 +68,12 @@ class AnswerStore(object):
     def __init__(self, existing_answers=None):
         self.answers = existing_answers or []
 
+    def __iter__(self):
+        return iter(self.answers)
+
+    def __getitem__(self, key):
+        return self.answers[key]
+
     @staticmethod
     def _validate(answer):
         if not isinstance(answer, Answer):
@@ -83,7 +89,7 @@ class AnswerStore(object):
 
         answer_to_add = answer.__dict__.copy()
 
-        if self.exists(answer):
+        if self.find(answer) is not None:
             raise ValueError('Answer instance already exists in store')
         else:
             self.answers.append(answer_to_add)
@@ -107,24 +113,10 @@ class AnswerStore(object):
 
         :param answer: An answer object.
         """
-        if self.exists(answer):
+        try:
             self.update(answer)
-        else:
+        except ValueError:
             self.add(answer)
-
-    def get(self, answer):
-        """
-        Returns the value of an answer.
-
-        :param answer: The ids for the answer to return
-        :return: The value of the answer found
-        """
-        position = self.find(answer)
-
-        if position is None:
-            raise ValueError('Answer instance does not exist in store')
-        else:
-            return self.answers[position]['value']
 
     def find(self, answer):
         """
@@ -141,30 +133,42 @@ class AnswerStore(object):
 
         return None
 
-    def exists(self, answer):
+    def count(self):
         """
-        Checks to see if an answer exists in the answer store.
+        Count of the number of answers in the answer store.
+        NB: can be combined with `filter` method to find count of an answer, e.g.:
 
-        :param answer: A dict of flattened answer details.
-        :return: True if the answer is in the store, False if not.
+            `answer_store.filter(answer_id=example_id).count()`
+
+        :return: Number of answers in this store.
         """
-        return self.find(answer) is not None
+        return len(self.answers)
 
-    def count(self, answer):
+    def values(self):
         """
-        Count of the number of instances of an answer in the answer store.
+        Return a flat list of all values in the answer store.
 
-        :param answer: A dict of flattened answer details.
-        :return: 0 if the answer doesn't exist, otherwise the number of instances.
+        :return: Return a list of answer values
         """
-        self._validate(answer)
+        return [answer['value'] for answer in self.answers]
 
-        return len(self.filter(answer.group_id, answer.block_id, answer.answer_id, answer.group_instance,
-                               answer.answer_instance))
+    def escaped(self):
+        """
+        Escape all answer values and return a new AnswerStore instance.
+
+        :return: Return a new AnswerStore object with escaped answers for chaining
+        """
+        escaped = []
+        for answer in self.answers:
+            answer = answer.copy()
+            if isinstance(answer['value'], str):
+                answer['value'] = escape(answer['value'])
+            escaped.append(answer)
+        return self.__class__(escaped)
 
     def filter_by_location(self, location):
         """
-        Find all answers in he answer store for a given location
+        Find all answers in the answer store for a given location
 
         :param location: The location to filter results by
         return: Return a list of answers which match the location
@@ -176,8 +180,7 @@ class AnswerStore(object):
                limit=None):
         """
         Find all answers in the answer store for a given set of filter parameter matches.
-        If no filter parameters are passed it returns a copy of the list of all answers.
-
+        If no filter parameters are passed it returns a copy of the instance.
 
         :param answer_id: The answer id to filter results by
         :param block_id: The block id to filter results by
@@ -185,7 +188,7 @@ class AnswerStore(object):
         :param answer_instance: The answer instance to filter results by
         :param group_instance: The group instance to filter results by
         :param limit: True | False Limit the number of answers returned
-        :return: Return a list of answers which satisfy the filter criteria
+        :return: Return a new AnswerStore object with filtered answers for chaining
         """
         filtered = []
 
@@ -198,52 +201,26 @@ class AnswerStore(object):
         }
 
         for answer in self.answers:
-            matches = True
-            for k, v in filter_vars.items():
-                if v is not None:
-                    matches = matches and answer[k] == v
+            matches = all(
+                answer[key] == value
+                for key, value in filter_vars.items()
+                if value is not None
+            )
             if matches:
                 filtered.append(answer)
                 if limit and len(filtered) == self.EQ_MAX_NUM_REPEATS:
                     break
-        return filtered
+        return self.__class__(filtered)
 
     def clear(self):
+        """
+        Clears answers *in place*
+        """
         self.answers.clear()
-
-    def map(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None):
-        """
-        Maps the answers in this store to a dictionary of key, value answers. Keys include instance
-        id's when the instance id is non zero.
-
-        :param answer_id:
-        :param block_id:
-        :param group_id:
-        :param answer_instance:
-        :param group_instance:
-        :return:
-        """
-        result = {}
-        for answer in self.filter(group_id, block_id, answer_id, group_instance, answer_instance):
-            answer_id = answer['answer_id']
-            answer_id += '_' + str(answer['answer_instance']) if answer['answer_instance'] > 0 else ''
-
-            result[answer_id] = answer['value']
-
-        return OrderedDict(sorted(result.items(), key=lambda t: natural_order(t[0])))
-
-    def remove_answer(self, answer):
-        """
-        Removes an answer from the answer store.
-        :param answer: A dict of flattened answer details.
-        """
-        index = self.find(answer)
-        if index is not None:
-            del self.answers[index]
 
     def remove(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None):
         """
-        Removes answer(s) from the answer store.
+        Removes answer(s) *in place* from the answer store.
 
         :param answer_id: The answer id to filter results to remove
         :param block_id: The block id to filter results to remove
@@ -251,7 +228,6 @@ class AnswerStore(object):
         :param answer_instance: The answer instance to filter results to remove
         :param group_instance: The group instance to filter results to remove
         """
-
         for answer in self.filter(group_id, block_id, answer_id, group_instance, answer_instance):
             self.answers.remove(answer)
 
@@ -261,10 +237,14 @@ class AnswerStore(object):
 
         :param location: The location to filter results
         """
-
         self.remove(group_id=location.group_id, block_id=location.block_id, group_instance=location.group_instance)
 
     def get_hash(self):
+        """
+        Gets unique hash from answers contained within this AnswerStore
+
+        :return: Return a unique hash value
+        """
         return hash(json.dumps(self.answers, sort_keys=True))
 
 
@@ -280,28 +260,3 @@ def natural_order(key):
     :return:
     """
     return [number_else_string(c) for c in re.split(r'(\d+)', key)]
-
-
-def iterate_over_instance_ids(answer_instances):
-    """
-    Iterates over a collection of answer instances yielding the answer Id and answer instance Id.
-    :param answer_instances: A list of raw answer_instance_ids
-    :return: Tuple containing the answer Id and answer instance Id.
-    """
-
-    answer_instance_ids = sorted(answer_instances, key=natural_order)
-
-    for answer_instance_id in answer_instance_ids:
-        answer_id, answer_index = extract_answer_instance_id(answer_instance_id)
-        yield answer_id, answer_index
-
-
-def extract_answer_instance_id(answer_instance_id):
-    matches = re.match(r'^(.+?)_(\d+)$', answer_instance_id)
-    if matches:
-        answer_id, index = matches.groups()
-    else:
-        answer_id = answer_instance_id
-        index = 0
-
-    return answer_id, int(index)

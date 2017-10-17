@@ -234,7 +234,7 @@ class TestQuestionnaire(IntegrationTestCase):
         remove_empty_household_members_from_answer_store(self.question_store.answer_store, 'who-lives-here')
 
         for answer in answers:
-            self.assertFalse(self.question_store.answer_store.exists(answer))
+            self.assertIsNone(self.question_store.answer_store.find(answer))
 
     def test_remove_empty_household_members_values_entered_are_stored(self):
         g.schema_json = load_schema_file('census_household.json')
@@ -299,10 +299,10 @@ class TestQuestionnaire(IntegrationTestCase):
         remove_empty_household_members_from_answer_store(self.question_store.answer_store, 'who-lives-here')
 
         for answer in answered:
-            self.assertTrue(self.question_store.answer_store.exists(answer))
+            self.assertIsNotNone(self.question_store.answer_store.find(answer))
 
         for answer in unanswered:
-            self.assertFalse(self.question_store.answer_store.exists(answer))
+            self.assertIsNone(self.question_store.answer_store.find(answer))
 
     def test_remove_empty_household_members_partial_answers_are_stored(self):
         g.schema_json = load_schema_file('census_household.json')
@@ -388,10 +388,10 @@ class TestQuestionnaire(IntegrationTestCase):
         remove_empty_household_members_from_answer_store(self.question_store.answer_store, 'who-lives-here')
 
         for answer in answered:
-            self.assertTrue(self.question_store.answer_store.exists(answer))
+            self.assertIsNotNone(self.question_store.answer_store.find(answer))
 
         for answer in partially_answered:
-            self.assertTrue(self.question_store.answer_store.exists(answer))
+            self.assertIsNotNone(self.question_store.answer_store.find(answer))
 
     def test_remove_empty_household_members_middle_name_only_not_stored(self):
         g.schema_json = load_schema_file('census_household.json')
@@ -427,7 +427,7 @@ class TestQuestionnaire(IntegrationTestCase):
         remove_empty_household_members_from_answer_store(self.question_store.answer_store, 'who-lives-here')
 
         for answer in unanswered:
-            self.assertFalse(self.question_store.answer_store.exists(answer))
+            self.assertIsNone(self.question_store.answer_store.find(answer))
 
     def test_given_introduction_page_when_get_page_title_then_defaults_to_survey_title(self):
         # Given

@@ -1,5 +1,7 @@
+from collections import OrderedDict
 from werkzeug.datastructures import MultiDict
 
+from app.data_model.answer_store import natural_order
 from app.helpers.schema_helper import SchemaHelper
 from app.forms.household_composition_form import generate_household_composition_form, deserialise_composition_answers
 from app.forms.household_relationship_form import build_relationship_choices, deserialise_relationship_answers, generate_relationship_form
@@ -43,7 +45,8 @@ def get_form_for_location(block_json, location, answer_store, error_messages, di
 
         return form, {'relation_instances': choices}
 
-    mapped_answers = answer_store.map(
+    mapped_answers = get_mapped_answers(
+        answer_store,
         group_id=location.group_id,
         group_instance=location.group_instance,
         block_id=location.block_id,
@@ -143,3 +146,25 @@ def clear_other_text_field(data, questions_for_block):
                 form_data[answer['id']] = ''
 
     return form_data
+
+
+def get_mapped_answers(answer_store, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None):
+    """
+    Maps the answers in an answer store to a dictionary of key, value answers. Keys include instance
+    id's when the instance id is non zero.
+
+    :param answer_id:
+    :param block_id:
+    :param group_id:
+    :param answer_instance:
+    :param group_instance:
+    :return:
+    """
+    result = {}
+    for answer in answer_store.filter(group_id, block_id, answer_id, group_instance, answer_instance).escaped():
+        answer_id = answer['answer_id']
+        answer_id += '_' + str(answer['answer_instance']) if answer['answer_instance'] > 0 else ''
+
+        result[answer_id] = answer['value']
+
+    return OrderedDict(sorted(result.items(), key=lambda t: natural_order(t[0])))
