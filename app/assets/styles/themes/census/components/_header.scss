@@ -59,10 +59,14 @@
   width: auto;
   @include mq($from: xs, $to: s) {
     font-size: 0.8rem;
+    /* stylelint-disable declaration-no-important */
     padding: 0.3rem 0.5rem !important;
+    /* stylelint-enable */
   }
   @include fixed() {
+    /* stylelint-disable declaration-no-important */
     display: none !important;
+    /* stylelint-enable */
   }
 }
 
@@ -93,7 +97,9 @@
     width: 100%;
     height: 100%;
     text-align: right;
+    /* stylelint-disable declaration-no-important */
     max-height: 3rem !important;
+    /* stylelint-enable */
   }
   a {
     color: white;

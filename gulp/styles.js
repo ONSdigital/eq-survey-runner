@@ -1,6 +1,5 @@
 // Styles
 import gulp from 'gulp'
-import gulpif from 'gulp-if'
 import gutil from 'gulp-util'
 import plumber from 'gulp-plumber'
 import sass from 'gulp-sass'
@@ -9,12 +8,10 @@ import cssnano from 'cssnano'
 import autoprefixer from 'autoprefixer'
 import postcss from 'gulp-postcss'
 import pixrem from 'pixrem'
-import scss from 'postcss-scss'
 import pseudoelements from 'postcss-pseudoelements'
 import sourcemaps from 'gulp-sourcemaps'
-import lazypipe from 'lazypipe'
 import rename from 'gulp-rename'
-import stylelint from 'stylelint'
+import gulpStylelint from 'gulp-stylelint'
 import reporter from 'postcss-reporter'
 import inlineblock from 'postcss-inline-block'
 
@@ -22,23 +19,31 @@ import { paths } from './paths'
 import browserSync from './bs'
 
 export function lint() {
-  gulp.src(paths.styles.input)
-    .pipe(postcss([
-      stylelint({
-        ignoreFiles: [`${paths.styles.dir}/partials/base/_sprite.scss`]
-      }),
-      reporter({ clearMessages: true })
-    ], {
-      syntax: scss
-    }))
+  gulp.src([paths.styles.input_all]).pipe(
+    gulpStylelint({
+      reporters: [{ formatter: 'string', console: true }]
+    }).on('error', error => {
+      gutil.log('linting failed')
+      gutil.log(error)
+      process.exit(1)
+    })
+  )
 }
 
 export function styles() {
-  const minifyAssets = process.env.EQ_MINIMIZE_ASSETS === undefined || process.env.EQ_MINIMIZE_ASSETS === 'True'
+  const minifyAssets =
+    process.env.EQ_MINIMIZE_ASSETS === undefined ||
+    process.env.EQ_MINIMIZE_ASSETS === 'True'
 
   let postCssPlugins = [
     autoprefixer({
-      browsers: ['last 2 versions', 'Explorer >= 8', 'Android >= 4.1', 'Safari >= 7', 'iOS >= 7']
+      browsers: [
+        'last 2 versions',
+        'Explorer >= 8',
+        'Android >= 4.1',
+        'Safari >= 7',
+        'iOS >= 7'
+      ]
     }),
     pixrem({
       replace: false
@@ -49,45 +54,46 @@ export function styles() {
   ]
 
   if (minifyAssets) {
-    postCssPlugins.push(cssnano({
-      calc: false,
-      discardComments: {
-        removeAll: true
-      }
-    }))
+    postCssPlugins.push(
+      cssnano({
+        calc: false,
+        discardComments: {
+          removeAll: true
+        }
+      })
+    )
   }
 
-  let assets = gulp.src(paths.styles.input)
+  let assets = gulp
+    .src(paths.styles.input)
     .pipe(sourcemaps.init())
     .pipe(plumber())
     .pipe(sassGlob())
-    .pipe(sass({
-      errLogToConsole: true,
-      outputStyle: 'expanded',
-      sourceComments: false,
-      includePaths: [
-        paths.styles.dir
-      ],
-      onSuccess: function(msg) {
-        gutil.log('Done', gutil.colors.cyan(msg))
-      }
-    })
-      .on('error', function(err) {
+    .pipe(
+      sass({
+        errLogToConsole: true,
+        outputStyle: 'expanded',
+        sourceComments: false,
+        includePaths: [paths.styles.dir],
+        onSuccess: function(msg) {
+          gutil.log('Done', gutil.colors.cyan(msg))
+        }
+      }).on('error', function(err) {
         gutil.log(err.message.toString())
         browserSync.notify('Browserify Error!')
         this.emit('end')
       })
     )
     .pipe(postcss(postCssPlugins))
-    .pipe(rename(function(path) {
-      path.dirname = path.dirname.replace('themes/', '')
-      return path
-    }))
+    .pipe(
+      rename(function(path) {
+        path.dirname = path.dirname.replace('themes/', '')
+        return path
+      })
+    )
 
   if (minifyAssets) {
-    assets = assets
-      .pipe(rename({ suffix: '.min' }))
-      .pipe(sourcemaps.write('.'))
+    assets = assets.pipe(rename({ suffix: '.min' })).pipe(sourcemaps.write('.'))
   }
 
   return assets

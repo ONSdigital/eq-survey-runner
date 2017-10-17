@@ -2,8 +2,7 @@
   box-sizing: border-box;
   @if $grid-use-letter-spacing-hack {
     letter-spacing: -0.32em;
-  }
-  @else {
+  } @else {
     font-size: 0;
   }
 
@@ -81,7 +80,6 @@
 }
 
 .grid--flex {
-  flex-wrap: wrap;
   flex-flow: row wrap;
   display: flex;
   .grid__col {
@@ -116,8 +114,7 @@
   @if $grid-use-letter-spacing-hack {
     letter-spacing: normal;
     word-spacing: normal;
-  }
-  @else {
+  } @else {
     font-size: $base-font-size;
   }
 
@@ -159,8 +156,8 @@
   left: 0;
 }
 
-#bp-helper {
-  font-family: 'Consolas', 'Lucida Grande', sans-serif;
+.bp-helper {
+  font-family: "Consolas", "Lucida Grande", sans-serif;
   font-size: 0.8rem;
   position: fixed;
   bottom: 0;

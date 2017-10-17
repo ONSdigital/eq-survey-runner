@@ -3,6 +3,9 @@
   "ignoreFiles": ["**/_sprite.scss", "styles/vendor/**/*.scss"],
   "rules": {
     "at-rule-empty-line-before": null,
-    "rule-empty-line-before": null
+    "rule-empty-line-before": null,
+    "selector-max-specificity": "0,4,1",
+    "declaration-no-important": true,
+    "string-quotes": "double",
   }
 }

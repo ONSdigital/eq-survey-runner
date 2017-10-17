@@ -4,7 +4,9 @@
 
 .time__visual {
   position: relative;
+  /* stylelint-disable declaration-no-important */
   overflow: visible !important;
+  /* stylelint-enable */
   margin: 2rem auto;
   display: block;
 }

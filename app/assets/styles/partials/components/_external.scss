@@ -9,9 +9,9 @@
     right: 0;
     margin: auto;
     content: " ";
-    background: url("/s/img/icons/icons--external-link.svg") no-repeat center center;
+    background: transparent url("/s/img/icons/icons--external-link.svg")
+      no-repeat center center;
     background-size: 1.9em;
-    background-color: transparent !important;
     width: 1em;
     height: 1em;
     display: inline-block;
