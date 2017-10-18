@@ -190,7 +190,6 @@
             "blocks": [{
                     "id": "pay-pattern-frequency",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "1",
                     "questions": [{
                         "answers": [{
                             "id": "pay-pattern-frequency-answer",
@@ -228,7 +227,6 @@
                         }],
                         "description": "<p>If your pay pattern is different from the options available, please contact the Survey Contact Line on 0300 1234 931.</p>",
                         "id": "pay-pattern-frequency-question",
-                        "number": "1.1",
                         "title": "Please indicate how frequently employees are paid:",
                         "type": "General"
                     }],
@@ -243,7 +241,6 @@
                     "questions": [{
                         "id": "pay-pattern-frequency-confirmation-question",
                         "title": "Employees are paid in the following patterns:",
-                        "number": "1.2",
                         "description": "{{ answers.pay_pattern|format_list }}",
                         "type": "General",
                         "answers": [{
@@ -333,12 +330,10 @@
                     "id": "weekly-pay-introduction",
                     "title": "Weekly Pay",
                     "description": "<p>The next section covers Weekly pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable)</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
-                    "section_number": "2",
                     "type": "Interstitial"
                 },
                 {
                     "id": "weekly-pay-paid-employees",
-                    "number": "2",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-paid-employees-answer",
@@ -366,7 +361,6 @@
                             ]
                         },
                         "id": "weekly-pay-paid-employees-question",
-                        "number": "2.1",
                         "title": "What was the number of <em>weekly paid</em> employees paid in the last week of {{exercise.period_str}}?",
                         "type": "General"
                     }],
@@ -375,7 +369,6 @@
                 },
                 {
                     "id": "weekly-pay-gross-pay",
-                    "number": "2",
                     "questions": [{
                         "answers": [{
                             "guidance": {
@@ -427,7 +420,6 @@
                             ]
                         },
                         "id": "weekly-pay-gross-pay-question",
-                        "number": "2.2",
                         "title": "What was the <em>total gross weekly pay</em> paid to employees in the last week of {{exercise.period_str}}?",
                         "type": "General"
                     }],
@@ -436,7 +428,6 @@
                 },
                 {
                     "id": "weekly-pay-breakdown",
-                    "number": "2",
                     "questions": [{
                         "answers": [{
                                 "id": "weekly-pay-breakdown-holiday-answer",
@@ -496,7 +487,6 @@
                             }
                         ],
                         "id": "weekly-pay-breakdown-question",
-                        "number": "2.3",
                         "title": "Of the <em>{{answers.weekly_total_gross|format_currency}}</em> paid to <em>weekly paid employees</em> in the last week of {{exercise.period_str}}, what amount was:",
                         "type": "General"
                     }],
@@ -506,7 +496,6 @@
                 {
                     "id": "weekly-pay-significant-changes-paid-employees",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "2",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-paid-employees-answer",
@@ -534,7 +523,6 @@
                             }]
                         },
                         "id": "weekly-pay-significant-changes-paid-employees-question",
-                        "number": "2.4",
                         "title": "Did any significant changes occur to the <em>number of weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -565,7 +553,6 @@
                 {
                     "id": "weekly-pay-significant-changes-redundancies",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "2",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-redundancies-answer",
@@ -583,7 +570,6 @@
                             "type": "Radio"
                         }],
                         "id": "weekly-pay-significant-changes-redundancies-question",
-                        "number": "2.5",
                         "title": "Did any significant changes occur to the number of <em>redundancies</em> among <em>weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -593,7 +579,6 @@
                 {
                     "id": "weekly-pay-significant-changes-temp-employees",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "2",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-temp-employees-answer",
@@ -615,7 +600,6 @@
                             "type": "Radio"
                         }],
                         "id": "weekly-pay-significant-changes-temp-employees-question",
-                        "number": "2.6",
                         "title": "Did any significant changes occur to the <em>number of temporary weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -625,7 +609,6 @@
                 {
                     "id": "weekly-pay-significant-changes-gross-pay",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "2",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-gross-pay-answer",
@@ -654,7 +637,6 @@
                             }]
                         },
                         "id": "weekly-pay-significant-changes-gross-pay-question",
-                        "number": "2.7",
                         "title": "Did any significant changes occur to the <em>total gross pay</em> paid to <em>weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -685,7 +667,6 @@
                 {
                     "id": "weekly-pay-significant-changes-overtime",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "2",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-overtime-answer",
@@ -707,7 +688,6 @@
                             "type": "Radio"
                         }],
                         "id": "weekly-pay-significant-changes-overtime-question",
-                        "number": "2.8",
                         "title": "Did any significant changes occur to the <em>amount of overtime</em> paid to <em>weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -717,7 +697,6 @@
                 {
                     "id": "weekly-pay-significant-changes-pay-rates",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "2",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-pay-rates-answer",
@@ -735,7 +714,6 @@
                             "type": "Radio"
                         }],
                         "id": "weekly-pay-significant-changes-pay-rates-question",
-                        "number": "2.9",
                         "title": "Did any significant changes occur to the <em>pay rates</em> of <em>weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -766,7 +744,6 @@
                 {
                     "id": "weekly-pay-significant-changes-pay-rates-increase",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "2",
                     "questions": [{
                         "answers": [{
                                 "id": "weekly-pay-significant-changes-pay-rates-increase-percent-increase-answer",
@@ -795,7 +772,6 @@
                             }
                         ],
                         "id": "weekly-pay-significant-changes-pay-rates-increase-question",
-                        "number": "2.10",
                         "title": "Please enter the percentage increase of new pay rates, if possible:",
                         "type": "General"
                     }],
@@ -805,7 +781,6 @@
                 {
                     "id": "weekly-pay-significant-changes-industrial-action",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "2",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-industrial-action-answer",
@@ -823,7 +798,6 @@
                             "type": "Radio"
                         }],
                         "id": "weekly-pay-significant-changes-industrial-action-question",
-                        "number": "2.11",
                         "title": "Did <em>industrial action</em> significantly affect total gross pay paid to <em>weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -833,7 +807,6 @@
                 {
                     "id": "weekly-pay-significant-changes-other",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "2",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-other-answer",
@@ -851,7 +824,6 @@
                             "type": "Radio"
                         }],
                         "id": "weekly-pay-significant-changes-other-question",
-                        "number": "2.12",
                         "title": "Did any other significant changes occur to the pay or number of <em>weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -861,7 +833,6 @@
                 {
                     "id": "weekly-pay-significant-changes-other-specify",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "2",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-other-specify-answer",
@@ -876,7 +847,6 @@
                             }
                         }],
                         "id": "weekly-pay-significant-changes-other-specify-question",
-                        "number": "2.13",
                         "title": "Please specify any other significant changes to the pay or number of <em>weekly paid employees</em>:",
                         "type": "General"
                     }],
@@ -913,12 +883,10 @@
                     "id": "fortnightly-pay-introduction",
                     "title": "Fortnightly Pay",
                     "description": "<p>The next section covers Fortnightly Pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
-                    "section_number": "3",
                     "type": "Interstitial"
                 },
                 {
                     "id": "fortnightly-pay-paid-employees",
-                    "number": "3",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-paid-employees-answer",
@@ -946,7 +914,6 @@
                             ]
                         },
                         "id": "fortnightly-pay-paid-employees-question",
-                        "number": "3.1",
                         "title": "What was the number of <em>fortnightly paid employees</em> paid in the last week of {{exercise.period_str}}?",
                         "type": "General"
                     }],
@@ -955,7 +922,6 @@
                 },
                 {
                     "id": "fortnightly-pay-gross-pay",
-                    "number": "3",
                     "questions": [{
                         "answers": [{
                             "guidance": {
@@ -1007,7 +973,6 @@
                             ]
                         },
                         "id": "fortnightly-pay-gross-pay-question",
-                        "number": "3.2",
                         "title": "What was the <em>total gross fortnightly pay</em> paid to employees in the last week of {{exercise.period_str}}?",
                         "type": "General"
                     }],
@@ -1016,7 +981,6 @@
                 },
                 {
                     "id": "fortnightly-pay-breakdown",
-                    "number": "3",
                     "questions": [{
                         "answers": [{
                                 "id": "fortnightly-pay-breakdown-holiday-answer",
@@ -1059,7 +1023,6 @@
                             }
                         ],
                         "id": "fortnightly-pay-breakdown-question",
-                        "number": "3.3",
                         "title": "Of the <em>{{answers.fortnightly_total_gross|format_currency}}</em> paid to <em>fortnightly paid employees</em> in the last week of {{exercise.period_str}}, what amount was:",
                         "type": "General"
                     }],
@@ -1069,7 +1032,6 @@
                 {
                     "id": "fortnightly-pay-significant-changes-paid-employees",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "3",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-paid-employees-answer",
@@ -1097,7 +1059,6 @@
                             }]
                         },
                         "id": "fortnightly-pay-significant-changes-paid-employees-question",
-                        "number": "3.4",
                         "title": "Did any significant changes occur to the <em>number of fortnightly paid employees</em>?",
                         "type": "General"
                     }],
@@ -1128,7 +1089,6 @@
                 {
                     "id": "fortnightly-pay-significant-changes-redundancies",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "3",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-redundancies-answer",
@@ -1146,7 +1106,6 @@
                             "type": "Radio"
                         }],
                         "id": "fortnightly-pay-significant-changes-redundancies-question",
-                        "number": "3.5",
                         "title": "Did any significant changes occur to the number of <em>redundancies</em> among <em>fortnightly paid employees</em>?",
                         "type": "General"
                     }],
@@ -1156,7 +1115,6 @@
                 {
                     "id": "fortnightly-pay-significant-changes-temp-employees",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "3",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-temp-employees-answer",
@@ -1178,7 +1136,6 @@
                             "type": "Radio"
                         }],
                         "id": "fortnightly-pay-significant-changes-temp-employees-question",
-                        "number": "3.6",
                         "title": "Did any significant changes occur to the <em>number of temporary fortnightly paid employees</em>?",
                         "type": "General"
                     }],
@@ -1188,7 +1145,6 @@
                 {
                     "id": "fortnightly-pay-significant-changes-gross-pay",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "3",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-gross-pay-answer",
@@ -1217,7 +1173,6 @@
                             }]
                         },
                         "id": "fortnightly-pay-significant-changes-gross-pay-question",
-                        "number": "3.7",
                         "title": "Did any significant changes occur to the <em>total gross pay</em> paid to <em>fortnightly paid employees</em>?",
                         "type": "General"
                     }],
@@ -1248,7 +1203,6 @@
                 {
                     "id": "fortnightly-pay-significant-changes-overtime",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "3",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-overtime-answer",
@@ -1270,7 +1224,6 @@
                             "type": "Radio"
                         }],
                         "id": "fortnightly-pay-significant-changes-overtime-question",
-                        "number": "3.8",
                         "title": "Did any significant changes occur to the <em>amount of overtime</em> paid to <em>fortnightly paid employees</em>?",
                         "type": "General"
                     }],
@@ -1280,7 +1233,6 @@
                 {
                     "id": "fortnightly-pay-significant-changes-pay-rates",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "3",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-pay-rates-answer",
@@ -1298,7 +1250,6 @@
                             "type": "Radio"
                         }],
                         "id": "fortnightly-pay-significant-changes-pay-rates-question",
-                        "number": "3.9",
                         "title": "Did any significant changes occur to the <em>pay rates</em> of <em>fortnightly paid employees</em>?",
                         "type": "General"
                     }],
@@ -1329,7 +1280,6 @@
                 {
                     "id": "fortnightly-pay-significant-changes-pay-rates-increase",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "3",
                     "questions": [{
                         "answers": [{
                                 "id": "fortnightly-pay-significant-changes-pay-rates-increase-percent-increase-answer",
@@ -1358,7 +1308,6 @@
                             }
                         ],
                         "id": "fortnightly-pay-significant-changes-pay-rates-increase-question",
-                        "number": "3.10",
                         "title": "Please enter the percentage increase of new pay rates if possible:",
                         "type": "General"
                     }],
@@ -1368,7 +1317,6 @@
                 {
                     "id": "fortnightly-pay-significant-changes-industrial-action",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "3",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-industrial-action-answer",
@@ -1386,7 +1334,6 @@
                             "type": "Radio"
                         }],
                         "id": "fortnightly-pay-significant-changes-industrial-action-question",
-                        "number": "3.11",
                         "title": "Did <em>industrial action</em> significantly affect total gross pay paid to <em>fortnightly paid employees</em>?",
                         "type": "General"
                     }],
@@ -1396,7 +1343,6 @@
                 {
                     "id": "fortnightly-pay-significant-changes-other",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "3",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-other-answer",
@@ -1414,7 +1360,6 @@
                             "type": "Radio"
                         }],
                         "id": "fortnightly-pay-significant-changes-other-question",
-                        "number": "3.12",
                         "title": "Did any other significant changes occur to the pay or number of <em>fortnightly paid employees</em>?",
                         "type": "General"
                     }],
@@ -1424,7 +1369,6 @@
                 {
                     "id": "fortnightly-pay-significant-changes-other-specify",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "3",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-other-specify-answer",
@@ -1439,7 +1383,6 @@
                             }
                         }],
                         "id": "fortnightly-pay-significant-changes-other-specify-question",
-                        "number": "3.13",
                         "title": "Please specify any other significant changes to the pay or number of <em>fortnightly paid employees</em>:",
                         "type": "General"
                     }],
@@ -1476,13 +1419,11 @@
                     "id": "calendar-monthly-pay-introduction",
                     "title": "Calendar Monthly Pay",
                     "description": "<p>The next section covers Calendar Monthly pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable)</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
-                    "section_number": "4",
                     "type": "Interstitial"
                 },
                 {
                     "id": "calendar-monthly-pay-paid-employees",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "4",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-paid-employees-answer",
@@ -1510,7 +1451,6 @@
                             ]
                         },
                         "id": "calendar-monthly-pay-paid-employees-question",
-                        "number": "4.1",
                         "title": "What was the number of <em>calendar monthly paid employees</em> paid in {{exercise.period_str}}?",
                         "type": "General"
                     }],
@@ -1520,7 +1460,6 @@
                 {
                     "id": "calendar-monthly-pay-gross-pay",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "4",
                     "questions": [{
                         "answers": [{
                             "guidance": {
@@ -1571,7 +1510,6 @@
                             ]
                         },
                         "id": "calendar-monthly-pay-gross-pay-question",
-                        "number": "4.2",
                         "title": "What was the <em>total gross calendar monthly pay</em> paid to employees in {{exercise.period_str}}?",
                         "type": "General"
                     }],
@@ -1581,7 +1519,6 @@
                 {
                     "id": "calendar-monthly-pay-breakdown",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "4",
                     "questions": [{
                         "answers": [{
                                 "id": "calendar-monthly-pay-breakdown-arrears-answer",
@@ -1615,7 +1552,6 @@
                             }
                         ],
                         "id": "calendar-monthly-pay-breakdown-question",
-                        "number": "4.3",
                         "title": "Of the <em>{{answers.monthly_total_gross|format_currency}}</em> paid to <em>calendar monthly paid employees</em> in {{exercise.period_str}}, what amount was:",
                         "type": "General"
                     }],
@@ -1625,7 +1561,6 @@
                 {
                     "id": "calendar-monthly-pay-significant-changes-paid-employees",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "4",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-paid-employees-answer",
@@ -1653,7 +1588,6 @@
                             }]
                         },
                         "id": "calendar-monthly-pay-significant-changes-paid-employees-question",
-                        "number": "4.4",
                         "title": "Did any significant changes occur to the <em>number of calendar monthly paid employees</em>?",
                         "type": "General"
                     }],
@@ -1684,7 +1618,6 @@
                 {
                     "id": "calendar-monthly-pay-significant-changes-redundancies",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "4",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-redundancies-answer",
@@ -1702,7 +1635,6 @@
                             "type": "Radio"
                         }],
                         "id": "calendar-monthly-pay-significant-changes-redundancies-question",
-                        "number": "4.5",
                         "title": "Did any significant changes occur to the number of <em>redundancies</em> among <em>calendar monthly paid employees</em>?",
                         "type": "General"
                     }],
@@ -1712,7 +1644,6 @@
                 {
                     "id": "calendar-monthly-pay-significant-changes-temp-employees",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "4",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-temp-employees-answer",
@@ -1734,7 +1665,6 @@
                             "type": "Radio"
                         }],
                         "id": "calendar-monthly-pay-significant-changes-temp-employees-question",
-                        "number": "4.6",
                         "title": "Did any significant changes occur to the <em>number of temporary calendar monthly paid employees</em>?",
                         "type": "General"
                     }],
@@ -1744,7 +1674,6 @@
                 {
                     "id": "calendar-monthly-pay-significant-changes-gross-pay",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "4",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-gross-pay-answer",
@@ -1773,7 +1702,6 @@
                             }]
                         },
                         "id": "calendar-monthly-pay-significant-changes-gross-pay-question",
-                        "number": "4.7",
                         "title": "Did any significant changes occur to the <em>total gross pay</em> paid to <em>calendar monthly paid employees</em>?",
                         "type": "General"
                     }],
@@ -1804,7 +1732,6 @@
                 {
                     "id": "calendar-monthly-pay-significant-changes-overtime",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "4",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-overtime-answer",
@@ -1826,7 +1753,6 @@
                             "type": "Radio"
                         }],
                         "id": "calendar-monthly-pay-significant-changes-overtime-question",
-                        "number": "4.8",
                         "title": "Did any significant changes occur to the <em>amount of overtime</em> paid to <em>calendar monthly paid employees</em>?",
                         "type": "General"
                     }],
@@ -1836,7 +1762,6 @@
                 {
                     "id": "calendar-monthly-pay-significant-changes-pay-rates",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "4",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-pay-rates-answer",
@@ -1854,7 +1779,6 @@
                             "type": "Radio"
                         }],
                         "id": "calendar-monthly-pay-significant-changes-pay-rates-question",
-                        "number": "4.9",
                         "title": "Did any significant changes occur to the <em>pay rates</em> of <em>calendar monthly paid employees</em>?",
                         "type": "General"
                     }],
@@ -1885,7 +1809,6 @@
                 {
                     "id": "calendar-monthly-pay-significant-changes-pay-rates-increase",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "4",
                     "questions": [{
                         "answers": [{
                                 "id": "calendar-monthly-pay-significant-changes-pay-rates-increase-percent-increase-answer",
@@ -1914,7 +1837,6 @@
                             }
                         ],
                         "id": "calendar-monthly-pay-significant-changes-pay-rates-increase-question",
-                        "number": "4.10",
                         "title": "Please enter the percentage increase of new pay rates, if possible:",
                         "type": "General"
                     }],
@@ -1924,7 +1846,6 @@
                 {
                     "id": "calendar-monthly-pay-significant-changes-industrial-action",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "4",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-industrial-action-answer",
@@ -1942,7 +1863,6 @@
                             "type": "Radio"
                         }],
                         "id": "calendar-monthly-pay-significant-changes-industrial-action-question",
-                        "number": "4.11",
                         "title": "Did <em>industrial action</em> significantly affect total gross pay paid to <em>calendar monthly paid employees</em>?",
                         "type": "General"
                     }],
@@ -1952,7 +1872,6 @@
                 {
                     "id": "calendar-monthly-pay-significant-changes-other",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "4",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-other-answer",
@@ -1970,7 +1889,6 @@
                             "type": "Radio"
                         }],
                         "id": "calendar-monthly-pay-significant-changes-other-question",
-                        "number": "4.12",
                         "title": "Did any other significant changes occur to the pay or number of <em>calendar monthly paid employees</em>?",
                         "type": "General"
                     }],
@@ -1980,7 +1898,6 @@
                 {
                     "id": "calendar-monthly-pay-significant-changes-other-specify",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "4",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-other-specify-answer",
@@ -1995,7 +1912,6 @@
                             }
                         }],
                         "id": "calendar-monthly-pay-significant-changes-other-specify-question",
-                        "number": "4.13",
                         "title": "Please specify any other significant changes to the pay or number of <em>calendar monthly paid employees</em>:",
                         "type": "General"
                     }],
@@ -2032,13 +1948,11 @@
                     "id": "four-weekly-pay-introduction",
                     "title": "Four Weekly Pay",
                     "description": "<p>The next section covers Four Weekly pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
-                    "section_number": "5",
                     "type": "Interstitial"
                 },
                 {
                     "id": "four-weekly-pay-paid-employees",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "5",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-paid-employees-answer",
@@ -2066,7 +1980,6 @@
                             ]
                         },
                         "id": "four-weekly-pay-paid-employees-question",
-                        "number": "5.1",
                         "title": "What was the number of <em>four weekly paid employees</em> paid in {{exercise.period_str}}?",
                         "type": "General"
                     }],
@@ -2076,7 +1989,6 @@
                 {
                     "id": "four-weekly-pay-gross-pay",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "5",
                     "questions": [{
                         "answers": [{
                             "guidance": {
@@ -2126,7 +2038,6 @@
                             ]
                         },
                         "id": "four-weekly-pay-gross-pay-question",
-                        "number": "5.2",
                         "title": "What was the <em>total gross four weekly pay</em> paid to employees in {{exercise.period_str}}?",
                         "type": "General"
                     }],
@@ -2136,7 +2047,6 @@
                 {
                     "id": "four-weekly-pay-breakdown",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "5",
                     "questions": [{
                         "answers": [{
                                 "id": "four-weekly-pay-breakdown-arrears-answer",
@@ -2170,7 +2080,6 @@
                             }
                         ],
                         "id": "four-weekly-pay-breakdown-question",
-                        "number": "5.3",
                         "title": "Of the <em>{{answers.four_weekly_total_gross|format_currency}}</em> paid to <em>four weekly paid employees</em> in {{exercise.period_str}}, what amount was:",
                         "type": "General"
                     }],
@@ -2180,7 +2089,6 @@
                 {
                     "id": "four-weekly-pay-significant-changes-paid-employees",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "5",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-paid-employees-answer",
@@ -2208,7 +2116,6 @@
                             }]
                         },
                         "id": "four-weekly-pay-significant-changes-paid-employees-question",
-                        "number": "5.4",
                         "title": "Did any significant changes occur to the <em>number of four weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -2239,7 +2146,6 @@
                 {
                     "id": "four-weekly-pay-significant-changes-redundancies",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "5",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-redundancies-answer",
@@ -2257,7 +2163,6 @@
                             "type": "Radio"
                         }],
                         "id": "four-weekly-pay-significant-changes-redundancies-question",
-                        "number": "5.5",
                         "title": "Did any significant changes occur to the number of <em>redundancies</em> among <em>four weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -2267,7 +2172,6 @@
                 {
                     "id": "four-weekly-pay-significant-changes-temp-employees",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "5",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-temp-employees-answer",
@@ -2289,7 +2193,6 @@
                             "type": "Radio"
                         }],
                         "id": "four-weekly-pay-significant-changes-temp-employees-question",
-                        "number": "5.6",
                         "title": "Did any significant changes occur to the <em>number of temporary four weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -2299,7 +2202,6 @@
                 {
                     "id": "four-weekly-pay-significant-changes-gross-pay",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "5",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-gross-pay-answer",
@@ -2328,7 +2230,6 @@
                             }]
                         },
                         "id": "four-weekly-pay-significant-changes-gross-pay-question",
-                        "number": "5.7",
                         "title": "Did any significant changes occur to the <em>total gross pay</em> paid to <em>four weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -2359,7 +2260,6 @@
                 {
                     "id": "four-weekly-pay-significant-changes-overtime",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "5",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-overtime-answer",
@@ -2381,7 +2281,6 @@
                             "type": "Radio"
                         }],
                         "id": "four-weekly-pay-significant-changes-overtime-question",
-                        "number": "5.8",
                         "title": "Did any significant changes occur to the <em>amount of overtime</em> paid to <em>four weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -2391,7 +2290,6 @@
                 {
                     "id": "four-weekly-pay-significant-changes-pay-rates",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "5",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-pay-rates-answer",
@@ -2409,7 +2307,6 @@
                             "type": "Radio"
                         }],
                         "id": "four-weekly-pay-significant-changes-pay-rates-question",
-                        "number": "5.9",
                         "title": "Did any significant changes occur to the <em>pay rates</em> of <em>four weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -2440,7 +2337,6 @@
                 {
                     "id": "four-weekly-pay-significant-changes-pay-rates-increase",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "5",
                     "questions": [{
                         "answers": [{
                                 "id": "four-weekly-pay-significant-changes-pay-rates-increase-percent-increase-answer",
@@ -2469,7 +2365,6 @@
                             }
                         ],
                         "id": "four-weekly-pay-significant-changes-pay-rates-increase-question",
-                        "number": "5.10",
                         "title": "Please enter the percentage increase of new pay rates if possible:",
                         "type": "General"
                     }],
@@ -2479,7 +2374,6 @@
                 {
                     "id": "four-weekly-pay-significant-changes-industrial-action",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "5",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-industrial-action-answer",
@@ -2497,7 +2391,6 @@
                             "type": "Radio"
                         }],
                         "id": "four-weekly-pay-significant-changes-industrial-action-question",
-                        "number": "5.11",
                         "title": "Did <em>industrial action</em> significantly affect total gross pay paid to <em>four weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -2507,7 +2400,6 @@
                 {
                     "id": "four-weekly-pay-significant-changes-other",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "5",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-other-answer",
@@ -2525,7 +2417,6 @@
                             "type": "Radio"
                         }],
                         "id": "four-weekly-pay-significant-changes-other-question",
-                        "number": "5.12",
                         "title": "Did any other significant changes occur to the pay or number of <em>four weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -2535,7 +2426,6 @@
                 {
                     "id": "four-weekly-pay-significant-changes-other-specify",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "5",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-other-specify-answer",
@@ -2550,7 +2440,6 @@
                             }
                         }],
                         "id": "four-weekly-pay-significant-changes-other-specify-question",
-                        "number": "5.13",
                         "title": "Please specify any other significant changes to the pay or number of <em>four weekly paid employees</em>:",
                         "type": "General"
                     }],
@@ -2587,13 +2476,11 @@
                     "id": "five-weekly-pay-introduction",
                     "title": "Five Weekly Pay",
                     "description": "<p>The next section covers Five Weekly Pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
-                    "section_number": "6",
                     "type": "Interstitial"
                 },
                 {
                     "id": "five-weekly-pay-paid-employees",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "6",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-paid-employees-answer",
@@ -2621,7 +2508,6 @@
                             ]
                         },
                         "id": "five-weekly-pay-paid-employees-question",
-                        "number": "6.1",
                         "title": "What was the number of <em>five weekly paid employees</em> paid in {{exercise.period_str}}?",
                         "type": "General"
                     }],
@@ -2631,7 +2517,6 @@
                 {
                     "id": "five-weekly-pay-gross-pay",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "6",
                     "questions": [{
                         "answers": [{
                             "guidance": {
@@ -2682,7 +2567,6 @@
                             ]
                         },
                         "id": "five-weekly-pay-gross-pay-question",
-                        "number": "6.2",
                         "title": "What was the total gross <em>five weekly pay</em> paid to employees in {{exercise.period_str}}?",
                         "type": "General"
                     }],
@@ -2692,7 +2576,6 @@
                 {
                     "id": "five-weekly-pay-breakdown",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "6",
                     "questions": [{
                         "answers": [{
                                 "id": "five-weekly-pay-breakdown-arrears-answer",
@@ -2726,7 +2609,6 @@
                             }
                         ],
                         "id": "five-weekly-pay-breakdown-question",
-                        "number": "6.3",
                         "title": "Of the <em>{{answers.five_weekly_total_gross|format_currency}}</em> paid to <em>five weekly paid employees</em> in {{exercise.period_str}}, what amount was:",
                         "type": "General"
                     }],
@@ -2736,7 +2618,6 @@
                 {
                     "id": "five-weekly-pay-significant-changes-paid-employees",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "6",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-paid-employees-answer",
@@ -2764,7 +2645,6 @@
                             }]
                         },
                         "id": "five-weekly-pay-significant-changes-paid-employees-question",
-                        "number": "6.4",
                         "title": "Did any significant changes occur to the <em>number of five weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -2795,7 +2675,6 @@
                 {
                     "id": "five-weekly-pay-significant-changes-redundancies",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "6",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-redundancies-answer",
@@ -2813,7 +2692,6 @@
                             "type": "Radio"
                         }],
                         "id": "five-weekly-pay-significant-changes-redundancies-question",
-                        "number": "6.5",
                         "title": "Did any significant changes occur to the number of <em>redundancies</em> among <em>five weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -2823,7 +2701,6 @@
                 {
                     "id": "five-weekly-pay-significant-changes-temp-employees",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "6",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-temp-employees-answer",
@@ -2845,7 +2722,6 @@
                             "type": "Radio"
                         }],
                         "id": "five-weekly-pay-significant-changes-temp-employees-question",
-                        "number": "6.6",
                         "title": "Did any significant changes occur to the <em>number of temporary five weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -2855,7 +2731,6 @@
                 {
                     "id": "five-weekly-pay-significant-changes-gross-pay",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "6",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-gross-pay-answer",
@@ -2884,7 +2759,6 @@
                             }]
                         },
                         "id": "five-weekly-pay-significant-changes-gross-pay-question",
-                        "number": "6.7",
                         "title": "Did any significant changes occur to the <em>total gross pay</em> paid to <em>five weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -2915,7 +2789,6 @@
                 {
                     "id": "five-weekly-pay-significant-changes-overtime",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "6",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-overtime-answer",
@@ -2937,7 +2810,6 @@
                             "type": "Radio"
                         }],
                         "id": "five-weekly-pay-significant-changes-overtime-question",
-                        "number": "6.8",
                         "title": "Did any significant changes occur to the <em>amount of overtime</em> paid to <em>five weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -2947,7 +2819,6 @@
                 {
                     "id": "five-weekly-pay-significant-changes-pay-rates",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "6",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-pay-rates-answer",
@@ -2965,7 +2836,6 @@
                             "type": "Radio"
                         }],
                         "id": "five-weekly-pay-significant-changes-pay-rates-question",
-                        "number": "6.9",
                         "title": "Did any significant changes occur to the <em>pay rates</em> of <em>five weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -2996,7 +2866,6 @@
                 {
                     "id": "five-weekly-pay-significant-changes-pay-rates-increase",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "6",
                     "questions": [{
                         "answers": [{
                                 "id": "five-weekly-pay-significant-changes-pay-rates-increase-percent-increase-answer",
@@ -3025,7 +2894,6 @@
                             }
                         ],
                         "id": "five-weekly-pay-significant-changes-pay-rates-increase-question",
-                        "number": "6.10",
                         "title": "Please enter the percentage increase of new pay rates if possible:",
                         "type": "General"
                     }],
@@ -3035,7 +2903,6 @@
                 {
                     "id": "five-weekly-pay-significant-changes-industrial-action",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "6",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-industrial-action-answer",
@@ -3053,7 +2920,6 @@
                             "type": "Radio"
                         }],
                         "id": "five-weekly-pay-significant-changes-industrial-action-question",
-                        "number": "6.11",
                         "title": "Did <em>industrial action</em> significantly affect total gross pay paid to <em>five weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -3063,7 +2929,6 @@
                 {
                     "id": "five-weekly-pay-significant-changes-other",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "6",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-other-answer",
@@ -3081,7 +2946,6 @@
                             "type": "Radio"
                         }],
                         "id": "five-weekly-pay-significant-changes-other-question",
-                        "number": "6.12",
                         "title": "Did any other significant changes occur to the pay or number of <em>five weekly paid employees</em>?",
                         "type": "General"
                     }],
@@ -3091,7 +2955,6 @@
                 {
                     "id": "five-weekly-pay-significant-changes-other-specify",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "6",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-other-specify-answer",
@@ -3106,7 +2969,6 @@
                             }
                         }],
                         "id": "five-weekly-pay-significant-changes-other-specify-question",
-                        "number": "6.13",
                         "title": "Please specify any other significant changes to the pay or number of <em>five weekly paid employees</em>:",
                         "type": "General"
                     }],
@@ -3143,13 +3005,11 @@
                     "id": "general-comments-introduction",
                     "title": "General Comments",
                     "description": "<p>The next section covers general comments about this survey.</p>",
-                    "section_number": "7",
                     "type": "Interstitial"
                 },
                 {
                     "id": "general-comments",
                     "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
-                    "number": "7",
                     "questions": [{
                         "answers": [{
                             "id": "general-comments-answer",
@@ -3164,7 +3024,6 @@
                             }
                         }],
                         "id": "general-comments-question",
-                        "number": "7.1",
                         "title": "Please write any additional comments you would like to make on the information you have provided.",
                         "type": "General"
                     }],
