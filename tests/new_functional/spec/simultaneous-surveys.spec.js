@@ -17,7 +17,6 @@ describe('Given the user launches two surveys', function() {
 
     let launchSecondTab = browser
         .newWindow('/status', this.secondTab)
-        .setViewportSize({ width: 1024, height: 1158 })
         .then( () => {
           return helpers.openQuestionnaire('test_textarea.json');
         });
