@@ -5,12 +5,14 @@
 
 {% block main %}
 
-  <div class="u-mb-s">
+<div class="u-mb-s">
     <h1 class="saturn" {{helpers.track('visible', 'Timeout', 'Timeout expired')}}>Your session has expired</h1>
-  </div>
+</div>
 
-  <div class="panel panel--simple panel--success panel--spacious">
+  <div class="panel panel--simple panel--success panel--spacious u-mb-s">
     <p>To help protect your information we have signed you out.</p>
   </div>
+
+    <a href="{{respondent_account_url}}">Return to your account</a>
 
 {% endblock %}
