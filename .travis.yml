@@ -22,9 +22,9 @@ before_install:
     - pyenv install --skip-existing
     - pyenv rehash
     - pyenv global $(cat .python-version)
-    - pip install -U pip wheel
-    - pip install --require-hashes -r requirements.txt
-    - pip install -r requirements_for_test.txt
+    - pip install -U pip pipenv wheel
+    - pipenv install --dev
+    - pipenv check
 cache:
     - yarn
     - pip
@@ -33,7 +33,7 @@ cache:
 script:
     - set -e
     - yarn compile
-    - ./scripts/run.sh
+    - pipenv run ./scripts/run.sh
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - export TAG=`if [ "$TRAVIS_PULL_REQUEST_BRANCH" == "" ]; then echo "latest"; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi`
     - docker build -t onsdigital/eq-survey-runner:$TAG -f Dockerfile .
@@ -42,9 +42,9 @@ script:
     - docker push onsdigital/eq-survey-runner:$TAG
     - docker push onsdigital/eq-survey-runner-static:$TAG
 after_success:
-    - bash <(curl -s https://codecov.io/bash)
-    - pip install codacy-coverage
-    - python-codacy-coverage -r coverage.xml
+    - pipenv run bash <(curl -s https://codecov.io/bash)
+    - pipenv run pip install codacy-coverage
+    - pipenv run python-codacy-coverage -r coverage.xml
 branches:
     only:
         - master

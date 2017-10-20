@@ -53,38 +53,19 @@ It is preferable to use the version of Python locally that matches that
 used on deployment. This project has a `.python_version` file for this
 purpose.
 
-If you are using pyenv (https://github.com/yyuu/pyenv), you can install
-the correct version of Python alongside any existing versions easily:
-
-```
-pyenv install
-```
-
-You should also use a virtualenv (https://github.com/yyuu/pyenv-virtualenv)
-to keep this project's package installations separate from others you
-are working on, to create a new virtualenv:
-
-```
-pyenv virtualenv <your env name>
-pyenv activate <your env name>
-```
 
 Upgrade pip and install dependencies:
 
 ```
-pip install --upgrade pip setuptools
-pip install -r requirements.txt
+brew install pyenv
+pip install --upgrade pip setuptools pipenv
+pipenv install --dev
 ```
 
-If you need to run the tests:
-```
-pip install -r requirements_for_test.txt
-```
-
-Run the server with
+Run the server inside the virtual env created by Pipenv with:
 
 ```
-./scripts/run_app.sh
+pipenv run ./scripts/run_app.sh
 
 ```
 
@@ -157,14 +138,14 @@ These options can be combined with `test_functional` or `test_functional_sauce`,
 
 You will need to install the EB CLI tools using PIP.
 
-*NOTE:* The EB tools do not currently work with Python 3.5.  I installed the EB CLI tools *outside* my virtual environment and installed installed them globally using the following commands
-
 ```
-pyenv deactivate                 # to exit the virtual environment
-sudo pip install awsebcli        # install the eb cli tools
+pip install --user awsebcli        # install the eb cli tools
 ```
 
-Using the Elastic Beanstalk CLI is quite simple but mus tbe done *outside* the virtual environment of the project itself.  It will use the requirements.txt to ensure any requirements are at the right version for the deployed application.
+The Elastic Beanstalk CLI requires the presence of a requirements.txt file. To generate one with Pipenv use the following:
+```
+pipenv lock -r > requirements.txt
+```
 
 Initialise the project using the command
 
@@ -306,10 +287,11 @@ will load the file into the interactive browser where it can be sorted and queri
 
 ## Updating / Installing dependencies
 
-We make use of python pip's support for only installing packages if their sha-256 hash matches a known good value.
-To add a new dependency, try installing the `hashin` python package that calculates a hash and adds it to the
-local `requirements.txt`. When installing the dependencies, always use `--require-hashes` to force this check
-on downloaded packages.
+We make use of Python pip's support for only installing packages if their sha-256 hash matches a known good value.
+
+To add a new dependency, use `pipenv install [package-name]`, which not only installs the package but Pipenv will also go to the trouble of updating the Pipfile as well.
+
+NB: both the Pipfile and Pipfile.lock files are required in source control to accurately pin dependencies.
 
 ## Alpha Survey Runner
 If you're looking for the Survey Runner code from the Alpha then it has been renamed to: alpha-eq-survey-runner

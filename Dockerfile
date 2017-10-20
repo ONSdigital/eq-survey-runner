@@ -1,7 +1,19 @@
-FROM python:3.4-onbuild
+FROM python:3.4
+
+RUN pip install -U pipenv==8.2.7
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
 ENV AWS_DEFAULT_REGION eu-west-1
+
+COPY Pipfile Pipfile
+COPY Pipfile.lock Pipfile.lock
+
+RUN pipenv install --deploy --system
 
 EXPOSE 5000
 
 ENTRYPOINT ["sh", "docker-entrypoint.sh"]
+
+COPY . /usr/src/app
