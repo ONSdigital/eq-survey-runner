@@ -30,6 +30,5 @@ fi
 
 export FLASK_DEBUG=1
 
-
 python scripts/generate_secrets.py jwt-test-secrets/
 python -m sdc.crypto.scripts.generate_keys jwt-test-keys/

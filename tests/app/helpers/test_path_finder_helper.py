@@ -19,6 +19,8 @@ class TestPathFinderHelper(AppContextTestCase):
         # attribute access. We use an example of a fake
         # method call to check the mock (which will be the PathFinder
         # class outside of this test) is only called once.
-        path_finder.some_method_call()
-        path_finder.some_method_call()
+        with self._app.test_request_context():
+            path_finder.some_method_call()
+            path_finder.some_method_call()
+
         self.assertEqual(1, len(mock_path_finder.mock_calls))
