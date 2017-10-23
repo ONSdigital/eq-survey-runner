@@ -41,7 +41,6 @@
                     "questions": [{
                         "id": "permanent-or-family-home-question",
                         "title": "Does anyone live here as their permanent or family home?",
-                        "number": "1",
                         "guidance": {
                             "content": [{
                                 "title": "Include",
@@ -106,7 +105,6 @@
                     "questions": [{
                         "id": "else-permanent-or-family-home-question",
                         "title": "Can you confirm no one lives here as their permanent or family home?",
-                        "number": "1a",
                         "guidance": {
                             "content": [{
                                 "title": "This could be:",
@@ -165,7 +163,6 @@
                     "questions": [{
                         "id": "household-composition-question",
                         "title": "List the names of everyone  who lives here.",
-                        "number": "2",
                         "guidance": {
                             "content": [{
                                 "title": "Include",
@@ -242,7 +239,6 @@
                     "questions": [{
                         "id": "everyone-at-address-confirmation-question",
                         "title": "Is this everyone for whom this is their permanent or family home?",
-                        "number": "3",
                         "description": "Please note that you will need to ensure that everyone is included because you will be unable to make changes later",
                         "guidance": {
                             "content": [{
@@ -297,7 +293,6 @@
                     "questions": [{
                         "id": "overnight-visitors-question",
                         "title": "How many visitors are staying overnight here on 9th April 2017?",
-                        "number": "4",
                         "guidance": {
                             "content": [{
                                 "title": "Include",
@@ -337,7 +332,6 @@
                 "questions": [{
                     "id": "household-relationships-question",
                     "title": "How is {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }} related to the people below?",
-                    "number": "5",
                     "description": "If members are not related, select the ‘unrelated’ option",
                     "type": "Relationship",
                     "answers": [{
@@ -437,7 +431,6 @@
                     "questions": [{
                         "id": "type-of-accommodation-question",
                         "title": "What type of accommodation is this?",
-                        "number": "1",
                         "type": "General",
                         "answers": [{
                             "id": "type-of-accommodation-answer",
@@ -492,7 +485,6 @@
                     "questions": [{
                         "id": "type-of-house-question",
                         "title": "Is your house or bungalow:",
-                        "number": "1a",
                         "type": "General",
                         "answers": [{
                             "id": "type-of-house-answer",
@@ -526,7 +518,6 @@
                     "questions": [{
                         "id": "type-of-flat-question",
                         "title": "Is your flat, maisonette or apartment:",
-                        "number": "1a",
                         "type": "General",
                         "answers": [{
                             "id": "type-of-flat-answer",
@@ -555,7 +546,6 @@
                     "questions": [{
                         "id": "self-contained-accommodation-question",
                         "title": "Is this household’s accommodation self-contained?",
-                        "number": "2",
                         "guidance": {
                             "content": [{
                                 "description": "This means that all the rooms, including the kitchen, bathroom and toilet, are behind a door that only this household can use"
@@ -585,7 +575,6 @@
                     "questions": [{
                         "id": "number-of-bedrooms-question",
                         "title": "How many bedrooms are available for use only by this household?",
-                        "number": "3",
                         "guidance": {
                             "content": [{
                                 "description": "Include all rooms built or converted for use as bedrooms, even if they’re not currently used as bedrooms"
@@ -607,7 +596,6 @@
                     "questions": [{
                         "id": "central-heating-question",
                         "title": "What type of central heating does this accommodation have?",
-                        "number": "4",
                         "description": "<p>Central heating is a central system that generates heat for multiple rooms.</p><p>Select all that apply, whether or not you use it.</p>",
                         "type": "General",
                         "answers": [{
@@ -675,7 +663,6 @@
                     "questions": [{
                         "id": "own-or-rent-question",
                         "title": "Does your household own or rent this accommodation?",
-                        "number": "5",
                         "type": "General",
                         "answers": [{
                             "id": "own-or-rent-answer",
@@ -755,7 +742,6 @@
                     "questions": [{
                         "id": "landlord-question",
                         "title": "Who is your landlord?",
-                        "number": "6",
                         "type": "General",
                         "answers": [{
                             "id": "landlord-answer",
@@ -796,7 +782,6 @@
                     "questions": [{
                         "id": "number-of-vehicles-question",
                         "title": "In total, how many cars or vans are owned, or available for use, by members of this household?",
-                        "number": "7",
                         "guidance": {
                             "content": [{
                                 "description": "Include any company cars or vans available for private use"
@@ -841,7 +826,6 @@
                     "questions": [{
                         "id": "details-correct-question",
                         "title": "Is the name {{ [answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name }} correct, including any middle name(s)?",
-                        "number": "1",
                         "type": "General",
                         "answers": [{
                             "id": "details-correct-answer",
@@ -882,7 +866,6 @@
                     "questions": [{
                         "id": "correct-name-question",
                         "title": "What is your correct name?",
-                        "number": "1a",
                         "type": "General",
                         "answers": [{
                                 "id": "correct-first-name",
@@ -912,7 +895,6 @@
                     "questions": [{
                         "id": "over-16-question",
                         "title": "Are you aged 16 or over?",
-                        "number": "1b",
                         "type": "General",
                         "answers": [{
                             "id": "over-16-answer",
@@ -954,7 +936,6 @@
                         "id": "private-response-question",
                         "title": "Do you want to request a personal form?",
                         "description": "Anyone aged 16 or over who would like to keep their answers private can request a personal and confidential form.",
-                        "number": "1c",
                         "type": "General",
                         "answers": [{
                             "id": "private-response-answer",
@@ -1013,7 +994,6 @@
                     "questions": [{
                         "id": "sex-question",
                         "title": "What is your sex?",
-                        "number": "2",
                         "type": "General",
                         "answers": [{
                             "id": "sex-answer",
@@ -1038,7 +1018,6 @@
                     "questions": [{
                         "id": "date-of-birth-question",
                         "title": "What is your date of birth?",
-                        "number": "3",
                         "description": "For example 20 March 1980",
                         "type": "General",
                         "answers": [{
@@ -1055,7 +1034,6 @@
                     "questions": [{
                         "id": "marital-status-question",
                         "title": "On 9 April 2017, what is your legal marital or same-sex civil partnership status?",
-                        "number": "4",
                         "type": "General",
                         "answers": [{
                             "id": "marital-status-answer",
@@ -1122,7 +1100,6 @@
                     "questions": [{
                         "id": "another-address-question",
                         "title": "Do you stay at another address for more than 30 days a year?",
-                        "number": "5",
                         "type": "General",
                         "answers": [{
                                 "id": "another-address-answer",
@@ -1226,7 +1203,6 @@
                     "questions": [{
                         "id": "other-address-question",
                         "title": "Enter details of the other UK address where you stay more than 30 days a year",
-                        "number": "5a",
                         "type": "General",
                         "answers": [{
                                 "id": "other-address-answer-building",
@@ -1268,7 +1244,6 @@
                     "questions": [{
                         "id": "address-type-question",
                         "title": "What is that address?",
-                        "number": "6",
                         "type": "General",
                         "answers": [{
                                 "id": "address-type-answer",
@@ -1322,7 +1297,6 @@
                     "questions": [{
                         "id": "in-education-question",
                         "title": "Are you a schoolchild or student in full-time education?",
-                        "number": "7",
                         "type": "General",
                         "answers": [{
                             "id": "in-education-answer",
@@ -1387,7 +1361,6 @@
                     "questions": [{
                         "id": "term-time-location-question",
                         "title": "During term time, do you live:",
-                        "number": "8",
                         "type": "General",
                         "answers": [{
                             "id": "term-time-location-answer",
@@ -1428,7 +1401,6 @@
                     "questions": [{
                             "id": "country-of-birth-england-question",
                             "title": "What is your country of birth?",
-                            "number": "9",
                             "type": "General",
                             "answers": [{
                                     "id": "country-of-birth-england-answer",
@@ -1480,7 +1452,6 @@
                         {
                             "id": "country-of-birth-wales-question",
                             "title": "What is your country of birth?",
-                            "number": "9",
                             "type": "General",
                             "answers": [{
                                     "id": "country-of-birth-wales-answer",
@@ -1624,7 +1595,6 @@
                     "questions": [{
                         "id": "arrive-in-uk-question",
                         "title": "If you were not born in the United Kingdom, when did you most recently arrive to live here?",
-                        "number": "10",
                         "guidance": {
                             "content": [{
                                 "description": "Exclude short visits away from the UK"
@@ -1645,7 +1615,6 @@
                     "questions": [{
                         "id": "length-of-stay-question",
                         "title": "Including the time you have already spent here, how long do you intend to stay in the United Kingdom?",
-                        "number": "12",
                         "type": "General",
                         "answers": [{
                             "id": "length-of-stay-answer",
@@ -1681,7 +1650,6 @@
                     "questions": [{
                         "id": "carer-question",
                         "title": "Do you look after, or give any help or support to family members, friends, neighbours or others because of either:",
-                        "number": "13",
                         "description": "<div><ul><li>Long-term physical or mental ill-health/disability?</li><li>Problems related to old age?</li></ul></div>",
                         "guidance": {
                             "content": [{
@@ -1720,7 +1688,6 @@
                     "questions": [{
                             "id": "national-identity-england-question",
                             "title": "How would you describe your national identity?",
-                            "number": "14",
                             "type": "General",
                             "answers": [{
                                     "id": "national-identity-england-answer",
@@ -1790,7 +1757,6 @@
                         {
                             "id": "national-identity-wales-question",
                             "title": "How would you describe your national identity?",
-                            "number": "14",
                             "type": "General",
                             "answers": [{
                                     "id": "national-identity-wales-answer",
@@ -1866,7 +1832,6 @@
                     "questions": [{
                             "id": "ethnic-group-england-question",
                             "title": "What is your ethnic group?",
-                            "number": "15",
                             "type": "General",
                             "answers": [{
                                 "id": "ethnic-group-england-answer",
@@ -1924,7 +1889,6 @@
                         {
                             "id": "ethnic-group-wales-question",
                             "title": "What is your ethnic group?",
-                            "number": "15",
                             "type": "General",
                             "answers": [{
                                 "id": "ethnic-group-wales-answer",
@@ -2120,7 +2084,6 @@
                     "questions": [{
                             "id": "white-ethnic-group-england-question",
                             "title": "Which one best describes your White ethnic group or background?",
-                            "number": "15a",
                             "type": "General",
                             "answers": [{
                                     "id": "white-ethnic-group-england-answer",
@@ -2175,7 +2138,6 @@
                         {
                             "id": "white-ethnic-group-wales-question",
                             "title": "Which one best describes your White ethnic group or background?",
-                            "number": "15a",
                             "type": "General",
                             "answers": [{
                                     "id": "white-ethnic-group-wales-answer",
@@ -2268,7 +2230,6 @@
                     "questions": [{
                         "id": "mixed-ethnic-group-question",
                         "title": "Which one best describes your Mixed / multiple ethnic group or background?",
-                        "number": "15a",
                         "type": "General",
                         "answers": [{
                                 "id": "mixed-ethnic-group-answer",
@@ -2353,7 +2314,6 @@
                     "questions": [{
                         "id": "asian-ethnic-group-question",
                         "title": "Which one best describes your Asian / Asian British ethnic group or background?",
-                        "number": "15a",
                         "type": "General",
                         "answers": [{
                                 "id": "asian-ethnic-group-answer",
@@ -2442,7 +2402,6 @@
                     "questions": [{
                         "id": "black-ethnic-group-question",
                         "title": "Which one best describes your Black / African / Caribbean / Black British ethnic group or background?",
-                        "number": "15a",
                         "type": "General",
                         "answers": [{
                                 "id": "black-ethnic-group-answer",
@@ -2523,7 +2482,6 @@
                     "questions": [{
                         "id": "other-ethnic-group-question",
                         "title": "Which one best describes your Other ethnic group or background?",
-                        "number": "15a",
                         "type": "General",
                         "answers": [{
                                 "id": "other-ethnic-group-answer",
@@ -2600,7 +2558,6 @@
                     "questions": [{
                         "id": "sexual-identity-question",
                         "title": "Which of the following options best describes how you think of yourself?",
-                        "number": "17",
                         "description": "This question is voluntary",
                         "type": "General",
                         "answers": [{
@@ -2686,7 +2643,6 @@
                     "questions": [{
                         "id": "understand-welsh-question",
                         "title": "Can you understand, speak, read or write Welsh",
-                        "number": "18",
                         "description": "Select all that apply",
                         "type": "General",
                         "answers": [{
@@ -2724,7 +2680,6 @@
                     "questions": [{
                             "id": "language-england-question",
                             "title": "What is your main language?",
-                            "number": "19",
                             "type": "General",
                             "answers": [{
                                     "id": "language-england-answer",
@@ -2761,7 +2716,6 @@
                         {
                             "id": "language-welsh-question",
                             "title": "What is your main language?",
-                            "number": "19",
                             "type": "General",
                             "answers": [{
                                     "id": "language-welsh-answer",
@@ -2830,7 +2784,6 @@
                     "questions": [{
                         "id": "english-question",
                         "title": "How well can you speak English?",
-                        "number": "20",
                         "type": "General",
                         "answers": [{
                             "id": "english-answer",
@@ -2864,7 +2817,6 @@
                             "id": "religion-question",
                             "title": "What is your religion?",
                             "description": "This question is voluntary",
-                            "number": "21",
                             "type": "General",
                             "answers": [{
                                     "id": "religion-answer",
@@ -2925,7 +2877,6 @@
                             "id": "religion-welsh-question",
                             "title": "What is your religion?",
                             "description": "This question is voluntary",
-                            "number": "21",
                             "type": "General",
                             "answers": [{
                                     "id": "religion-welsh-answer",
@@ -2991,7 +2942,6 @@
                     "questions": [{
                         "id": "past-usual-address-question",
                         "title": "One year ago, what was your usual address?",
-                        "number": "22",
                         "description": "If you had no usual address one year ago, state the address where you were staying",
                         "type": "General",
                         "answers": [{
@@ -3067,7 +3017,6 @@
                     "questions": [{
                         "id": "last-year-address-question",
                         "title": "Enter details of your address one year ago",
-                        "number": "22a",
                         "type": "General",
                         "answers": [{
                                 "id": "last-year-address-answer-building",
@@ -3109,7 +3058,6 @@
                     "questions": [{
                         "id": "passports-question",
                         "title": "What passports do you hold?",
-                        "number": "23",
                         "description": "Select all that apply",
                         "type": "General",
                         "answers": [{
@@ -3159,7 +3107,6 @@
                     "questions": [{
                         "id": "other-passports-question",
                         "title": "Please specify other passports held",
-                        "number": "23a",
                         "type": "General",
                         "answers": [{
                             "id": "other-passports-answer",
@@ -3176,7 +3123,6 @@
                     "questions": [{
                         "id": "disability-question",
                         "title": "Are your day-to-day activities limited because of a health problem or disability which has lasted, or is expected to last, at least 12 months?",
-                        "number": "24",
                         "guidance": {
                             "content": [{
                                 "description": "<strong>Include</strong> Problems related to old age"
@@ -3226,7 +3172,6 @@
                     "questions": [{
                             "id": "qualifications-england-question",
                             "title": "Thinking of any studies, exams or qualifications, which of the following do you have?",
-                            "number": "26",
                             "description": "Select every option that applies (whether UK or foreign equivalent) if you have any of the qualifications listed",
                             "type": "General",
                             "answers": [{
@@ -3310,7 +3255,6 @@
                         {
                             "id": "qualifications-welsh-question",
                             "title": "Thinking of any studies, exams or qualifications, which of the following do you have?",
-                            "number": "26",
                             "description": "Select every option that applies (whether UK or foreign equivalent) if you have any of the qualifications listed",
                             "type": "General",
                             "answers": [{
@@ -3400,7 +3344,6 @@
                     "questions": [{
                         "id": "volunteering-question",
                         "title": "Thinking of the last 12 months, have you taken part in any volunteering for any groups, clubs or organisations?",
-                        "number": "27",
                         "guidance": {
                             "content": [{
                                 "description": "<strong>Exclude</strong> any Court ordered activities"
@@ -3438,7 +3381,6 @@
                     "questions": [{
                         "id": "employment-type-question",
                         "title": "Last week were you:",
-                        "number": "28",
                         "description": "Select all that apply",
                         "guidance": {
                             "content": [{
@@ -3555,7 +3497,6 @@
                     "questions": [{
                         "id": "jobseeker-question",
                         "title": "Were you actively looking for any kind of paid work during the last four weeks?",
-                        "number": "29",
                         "type": "General",
                         "answers": [{
                             "id": "jobseeker-answer",
@@ -3580,7 +3521,6 @@
                     "questions": [{
                         "id": "job-availability-question",
                         "title": "If a job had been available last week, could you have started it within two weeks?",
-                        "number": "30",
                         "type": "General",
                         "answers": [{
                             "id": "job-availability-answer",
@@ -3605,7 +3545,6 @@
                     "questions": [{
                         "id": "job-pending-question",
                         "title": "Last week, were you waiting to start a job already obtained?",
-                        "number": "31",
                         "type": "General",
                         "answers": [{
                             "id": "job-pending-answer",
@@ -3630,7 +3569,6 @@
                     "questions": [{
                         "id": "occupation-question",
                         "title": "Last week, were you:",
-                        "number": "32",
                         "description": "Select all that apply",
                         "type": "General",
                         "answers": [{
@@ -3668,7 +3606,6 @@
                     "questions": [{
                         "id": "ever-worked-question",
                         "title": "Have you ever worked?",
-                        "number": "33",
                         "type": "General",
                         "answers": [{
                             "id": "ever-worked-answer",
@@ -3735,7 +3672,6 @@
                     "questions": [{
                         "id": "main-job-question",
                         "title": "In your main job, are (were) you:",
-                        "number": "35",
                         "guidance": {
                             "content": [{
                                 "description": "<p>If you are not working answer the remaining questions about your last main job.</p><p>Your main job is the job which you usually work (worked) the most hours</p>"
@@ -3769,7 +3705,6 @@
                     "questions": [{
                         "id": "job-title-question",
                         "title": "What is (was) your full and specific job title?",
-                        "number": "36",
                         "guidance": {
                             "content": [{
                                 "description": "<p>For example, <b>primary school teacher, car mechanic, district nurse, structural engineer</b></p><p>Do not state your grade or pay band</p>"
@@ -3805,7 +3740,6 @@
                     "questions": [{
                         "id": "job-description-question",
                         "title": "Briefly describe what you do (did) in your main job.",
-                        "number": "37",
                         "type": "General",
                         "answers": [{
                             "id": "job-description-answer",
@@ -3833,7 +3767,6 @@
                     "questions": [{
                         "id": "employers-business-question",
                         "title": "At your workplace what is (was) the main activity of your employer or business?",
-                        "number": "38",
                         "guidance": {
                             "content": [{
                                 "list": [
@@ -3876,7 +3809,6 @@
                     "questions": [{
                         "id": "main-job-type-question",
                         "title": "In your main job are (were) you:",
-                        "number": "39",
                         "type": "General",
                         "answers": [{
                             "id": "main-job-type-answer",
@@ -3922,7 +3854,6 @@
                     "questions": [{
                         "id": "business-name-question",
                         "title": "In your main job, what is (was) the name of the organisation or business you work (worked) for?",
-                        "number": "39a",
                         "guidance": {
                             "content": [{
                                 "description": "If you were self-employed in your own organisation or business, enter the name"
@@ -3981,7 +3912,6 @@
                     "questions": [{
                         "id": "visitor-name-question",
                         "title": "What is the name of visitor {{group_instance + 1}}?",
-                        "number": "1",
                         "type": "General",
                         "answers": [{
                                 "id": "visitor-first-name",
@@ -4005,7 +3935,6 @@
                     "questions": [{
                         "id": "visitor-sex-question",
                         "title": "What is this person’s sex?",
-                        "number": "2",
                         "type": "General",
                         "answers": [{
                             "id": "visitor-sex-answer",
@@ -4030,7 +3959,6 @@
                     "questions": [{
                         "id": "visitor-date-of-birth-question",
                         "title": "What is this person’s date of birth?",
-                        "number": "3",
                         "description": "For example 20 March 1980",
                         "type": "General",
                         "answers": [{
@@ -4047,7 +3975,6 @@
                     "questions": [{
                         "id": "visitor-uk-resident-question",
                         "title": "Does this person usually live in the United Kingdom?",
-                        "number": "4",
                         "type": "General",
                         "answers": [{
                                 "id": "visitor-uk-resident-answer",
@@ -4097,7 +4024,6 @@
                     "questions": [{
                         "id": "visitor-address-question",
                         "title": "Enter details of this person’s usual UK address",
-                        "number": "4a",
                         "type": "General",
                         "answers": [{
                                 "id": "visitor-address-answer-building",

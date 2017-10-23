@@ -17,7 +17,6 @@
                 "questions": [{
                     "id": "establishment-type-question",
                     "title": "How would you describe your establishment?",
-                    "number": "1",
                     "type": "General",
                     "answers": [{
                             "id": "establishment-type-answer",
@@ -63,7 +62,6 @@
                 "questions": [{
                     "id": "bed-spaces-question",
                     "title": "How many guest bed spaces does your establishment offer?",
-                    "number": "2",
                     "description": "Count double rooms as 2 guest bed spaces",
                     "type": "General",
                     "answers": [{
@@ -97,7 +95,6 @@
                 "questions": [{
                     "id": "usual-residents-question",
                     "title": "Are there any usual residents living at this establishment?",
-                    "number": "1",
                     "type": "General",
                     "guidance": {
                         "content": [{
@@ -151,7 +148,6 @@
                 "questions": [{
                     "id": "usual-residents-number-question",
                     "title": "How many usual residents live at this establishment?",
-                    "number": "2",
                     "type": "General",
                     "answers": [{
                         "id": "usual-residents-number-answer",
@@ -168,7 +164,6 @@
                 "questions": [{
                     "id": "describe-residents-question",
                     "title": "How would you describe your usual residents?",
-                    "number": "3",
                     "description": "Select all that apply",
                     "type": "General",
                     "answers": [{
@@ -212,7 +207,6 @@
                     "id": "completion-preference-individual-question",
                     "title": "If tomorrow was Census Day, to the best of your knowledge, how do you think your usual residents would prefer to complete their individual questionnaires?",
                     "description": "For the 2021 Census all hotels, B&B, guest houses etc. will be expected to complete a questionnaire about their establishment. All usual residents will be required to complete an individual questionnaire (with more personal details).",
-                    "number": "1",
                     "type": "General",
                     "answers": [{
                         "id": "completion-preference-individual-answer",
@@ -267,7 +261,6 @@
                 "questions": [{
                     "id": "why-paper-individual-question",
                     "title": "Why do you think they would choose to do it on paper?",
-                    "number": "2",
                     "description": "Select all that apply",
                     "type": "General",
                     "answers": [{
@@ -315,7 +308,6 @@
                     "id": "completion-preference-establishment-question",
                     "title": "If tomorrow was Census Day, how would you (or a member of staff) complete the Census establishment questionnaire?",
                     "description": "For the 2021 Census all hotels, B&B, guest houses etc. will be expected to complete a questionnaire about their establishment.",
-                    "number": "3",
                     "type": "General",
                     "answers": [{
                         "id": "completion-preference-establishment-answer",
@@ -356,7 +348,6 @@
                 "questions": [{
                     "id": "why-paper-establishment-question",
                     "title": "Why would you choose to do it on paper?",
-                    "number": "4",
                     "description": "Select all that apply",
                     "type": "General",
                     "answers": [{
@@ -395,7 +386,6 @@
                 "questions": [{
                     "id": "further-contact-question",
                     "title": "Would you be happy to be contacted in the future, by the Office for National Statistics, to help us design the 2021 Census?",
-                    "number": "1",
                     "type": "General",
                     "answers": [{
                         "id": "further-contact-answer",
@@ -436,7 +426,6 @@
                 "questions": [{
                     "id": "contact-details-question",
                     "title": "Please complete your contact details:",
-                    "number": "2",
                     "type": "General",
                     "answers": [{
                             "id": "contact-details-answer-name",
