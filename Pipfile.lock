@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b67e22bd8dc92cfee7ffcd3c35e90ca6fa8d1ce79c4f8158cfb3e02617147a19"
+            "sha256": "5f07efc6662cb9903b56846dab1730fa0c316f5797d7d8f9fa3e98a4af7493a8"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -9,9 +9,9 @@
             "os_name": "posix",
             "platform_machine": "x86_64",
             "platform_python_implementation": "CPython",
-            "platform_release": "16.5.0",
+            "platform_release": "16.7.0",
             "platform_system": "Darwin",
-            "platform_version": "Darwin Kernel Version 16.5.0: Fri Mar  3 16:52:33 PST 2017; root:xnu-3789.51.2~3/RELEASE_X86_64",
+            "platform_version": "Darwin Kernel Version 16.7.0: Thu Jun 15 17:36:27 PDT 2017; root:xnu-3789.70.16~2/RELEASE_X86_64",
             "python_full_version": "3.4.2",
             "python_version": "3.4",
             "sys_platform": "darwin"
@@ -459,10 +459,10 @@
     "develop": {
         "astroid": {
             "hashes": [
-                "sha256:944400d94e45865af150fb98700b27b788ddee5ad17c77d0725f67ac271f7a10",
-                "sha256:a483e7891ce3a06dadfc6cb9095b0938aca58940d43576d72e4502b480c085d7"
+                "sha256:39a21dd2b5d81a6731dc0ac2884fa419532dffd465cdd43ea6c168d36b76efb3",
+                "sha256:492c2a2044adbf6a84a671b7522e9295ad2f6a7c781b899014308db25312dd35"
             ],
-            "version": "==1.4.9"
+            "version": "==1.5.3"
         },
         "beautifulsoup4": {
             "hashes": [
@@ -731,10 +731,10 @@
         },
         "pylint": {
             "hashes": [
-                "sha256:eeeeb81c8095586b417ea0602c01f53d1c87694fcf3c866f8681457f94875a8e",
-                "sha256:ef901a34b62ed7a734370ba5b162d890231ba8822abe88c6dda1268e2575f5f1"
+                "sha256:948679535a28afc54afb9210dabc6973305409042ece8e5768ca1409910c1ed8",
+                "sha256:1f65b3815c3bf7524b845711d54c4242e4057dd93826586620239ecdfe591fb1"
             ],
-            "version": "==1.6.4"
+            "version": "==1.7.4"
         },
         "pylint-mccabe": {
             "hashes": [
