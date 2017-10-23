@@ -203,12 +203,11 @@ def get_number_field(answer, label, guidance, error_messages, answer_store):
             validators=validate_with,
             description=guidance,
         )
-    else:
-        return CustomIntegerField(
-            label=label,
-            validators=validate_with,
-            description=guidance,
-        )
+    return CustomIntegerField(
+        label=label,
+        validators=validate_with,
+        description=guidance,
+    )
 
 
 def get_schema_defined_limit(answer_id, definition, answer_store):

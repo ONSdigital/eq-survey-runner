@@ -72,7 +72,7 @@ def generate_household_composition_form(block_json, data, error_messages):
         def map_errors(self):
             ordered_errors = []
 
-            if 'household' in self.errors and len(self.errors['household']) > 0:
+            if 'household' in self.errors and self.errors['household']:
                 for index, field in enumerate(self.household):
                     ordered_errors += map_field_errors(field.errors, index)
             return ordered_errors

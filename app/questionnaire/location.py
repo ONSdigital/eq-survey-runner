@@ -66,11 +66,11 @@ class Location(object):
         }
         if self.block_id == 'thank-you':
             return url_for('questionnaire.get_thank_you', **path_params)
-        else:
-            return url_for('questionnaire.get_block',
-                           eq_id=eq_id,
-                           form_type=form_type,
-                           collection_id=collection_id,
-                           group_id=self.group_id,
-                           group_instance=self.group_instance,
-                           block_id=self.block_id)
+
+        return url_for('questionnaire.get_block',
+                       eq_id=eq_id,
+                       form_type=form_type,
+                       collection_id=collection_id,
+                       group_id=self.group_id,
+                       group_instance=self.group_instance,
+                       block_id=self.block_id)

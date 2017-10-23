@@ -74,5 +74,4 @@ def _build_respondent(metadata):
 def json_and_html_safe(data):
     if isinstance(data, str):
         return escape(data.replace('\\', r'\\'))
-    else:
-        return data
+    return data

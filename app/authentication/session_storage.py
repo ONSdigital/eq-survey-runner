@@ -103,8 +103,7 @@ class SessionStorage:
 
         if SURVEY_COMPLETED_METADATA in session:
             return session[SURVEY_COMPLETED_METADATA] is not None
-        else:
-            return False
+        return False
 
     @staticmethod
     def has_user_ik():
@@ -114,8 +113,7 @@ class SessionStorage:
         """
         if USER_IK in session:
             return session[USER_IK] is not None
-        else:
-            return False
+        return False
 
     def remove_user_ik(self):
         """
@@ -132,8 +130,7 @@ class SessionStorage:
         """
         if self.has_survey_completed_metadata():
             return session[SURVEY_COMPLETED_METADATA]
-        else:
-            return None
+        return None
 
     def get_user_ik(self):
         """
@@ -142,5 +139,4 @@ class SessionStorage:
         """
         if self.has_user_ik():
             return session[USER_IK]
-        else:
-            return None
+        return None

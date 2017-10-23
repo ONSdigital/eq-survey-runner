@@ -36,10 +36,8 @@ def flush_data():
         user = _get_user(decrypted_token)
         if _submit_data(user):
             return Response(status=200)
-        else:
-            return Response(status=404)
-    else:
-        return Response(status=403)
+        return Response(status=404)
+    return Response(status=403)
 
 
 def _submit_data(user):

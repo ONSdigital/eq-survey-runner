@@ -17,7 +17,7 @@ class TestDatabaseSetupRetry(TestCase):
 
             # When I attempt to setup the database
             # Then a TimeoutError is raised
-            with self.assertRaises(TimeoutError) as exception:
+            with self.assertRaises(TimeoutError) as exception: # pylint: disable=redefined-argument-from-local
                 Database(driver='sqlite',
                          database_name='',
                          setup_attempts=retry_count)

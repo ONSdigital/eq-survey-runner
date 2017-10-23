@@ -191,7 +191,7 @@ class TestSchemaValidation(unittest.TestCase):
 
         blocks = SchemaHelper.get_blocks(json_to_validate)
         for block in blocks:
-            if 'routing_rules' in block and len(block['routing_rules']) > 0:
+            if 'routing_rules' in block and block['routing_rules']:
                 for rule in block['routing_rules']:
                     if 'goto' in rule and 'id' in rule['goto'].keys():
                         block_id = rule['goto']['id']
@@ -226,7 +226,7 @@ class TestSchemaValidation(unittest.TestCase):
     @staticmethod
     def validate_answer(file, block, answer):
         answer_errors = []
-        if 'routing_rules' in block and len(block['routing_rules']) > 0 and 'options' in answer:
+        if 'routing_rules' in block and block['routing_rules'] and 'options' in answer:
             options = [option['value'] for option in answer['options']]
             has_default_route = False
 
@@ -239,7 +239,7 @@ class TestSchemaValidation(unittest.TestCase):
                     options = []
                     has_default_route = True
 
-            has_unrouted_options = len(options) > 0 and len(options) != len(answer['options'])
+            has_unrouted_options = options and len(options) != len(answer['options'])
 
             if answer['mandatory'] is False and not has_default_route:
                 default_route_not_defined = 'Default route not defined for optional question [{}]'.format(answer['id'])
@@ -342,8 +342,8 @@ class TestSchemaValidation(unittest.TestCase):
 
         if MIN_NUMBER <= value <= MAX_NUMBER:
             return []
-        else:
-            return [TestSchemaValidation._error_message(error_message, file)]
+
+        return [TestSchemaValidation._error_message(error_message, file)]
 
 if __name__ == '__main__':
     unittest.main()

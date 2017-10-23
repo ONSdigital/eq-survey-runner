@@ -46,11 +46,10 @@ class EncryptedQuestionnaireStorage:
         if questionnaire_state:
             data = json.loads(questionnaire_state.state)
 
-        if data is not None and 'data' in data:
+        if data and 'data' in data:
             decrypted_data = self._decrypt_data(data['data'])
             return decrypted_data
-        else:
-            return None
+        return None
 
     def delete(self):
         logger.debug('deleting users data', user_id=self._user_id)

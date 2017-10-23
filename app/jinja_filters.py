@@ -20,16 +20,14 @@ blueprint = flask.Blueprint('filters', __name__)
 def format_number(value):
     if value is None or value == '':
         return ''
-    else:
-        return numbers.format_number(value, locale=DEFAULT_LOCALE)
+    return numbers.format_number(value, locale=DEFAULT_LOCALE)
 
 
 @blueprint.app_template_filter()
 def format_currency(value, currency='GBP'):
     if value is None or value == '':
         return ''
-    else:
-        return numbers.format_currency(number=value, currency=currency, locale=DEFAULT_LOCALE)
+    return numbers.format_currency(number=value, currency=currency, locale=DEFAULT_LOCALE)
 
 
 @blueprint.app_template_filter()
@@ -41,11 +39,9 @@ def get_currency_symbol(currency='GBP'):
 def format_currency_for_input(value, decimal_places=0):
     if value is None or value == '':
         return ''
-    else:
-        if decimal_places is None or decimal_places == 0:
-            return format_number(value)
-        else:
-            return format_currency(value).replace(get_currency_symbol(), '')
+    if decimal_places is None or decimal_places == 0:
+        return format_number(value)
+    return format_currency(value).replace(get_currency_symbol(), '')
 
 
 @blueprint.app_template_filter()
@@ -94,8 +90,7 @@ def format_conditional_date(date1=None, date2=None):
 
     if isinstance(date, datetime):
         return format_date(date)
-    else:
-        return format_date(datetime.strptime(date, '%d/%m/%Y'))
+    return format_date(datetime.strptime(date, '%d/%m/%Y'))
 
 
 def format_start_end_date(start_date, end_date=None):
@@ -131,7 +126,7 @@ def format_household_member_name(names):
 def format_list(list_items):
     summary_list = ''
 
-    if len(list_items) > 0 and len(list_items[0]) > 0:
+    if list_items and list_items[0]:
         summary_list = '<ul>'
         for item in list_items[0]:
             summary_list += '<li>{}</li>'.format(item)
@@ -142,7 +137,7 @@ def format_list(list_items):
 
 @blueprint.app_template_filter()
 def format_household_summary(names):
-    if len(names) > 0:
+    if names:
         person_list = []
         for first_name, middle_name, last_name in zip(names[0], names[1], names[2]):
             person_list.append(format_household_member_name([first_name, middle_name, last_name]))

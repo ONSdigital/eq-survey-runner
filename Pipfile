@@ -12,7 +12,7 @@ verify_ssl = true
 "mock" = "==1.0.1"
 "pytest-cov" = "==2.3.0"
 "jsonschema" = "==2.5.1"
-"pylint" = "==1.6.4"
+"pylint" = "==1.7.4"
 "flask-debugtoolbar" = "==0.10.0"
 "pylint-mccabe" = "==0.1.3"
 "pylint-quotes" = "==0.1.6"

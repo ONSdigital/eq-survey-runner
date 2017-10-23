@@ -9,8 +9,7 @@ def ensure_min(value, minimum):
     if value < minimum:
         logger.warning('value below minimum', value=value, minimum=minimum)
         return minimum
-    else:
-        return value
+    return value
 
 
 def parse_mode(string):

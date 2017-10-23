@@ -30,6 +30,7 @@ def get_form_for_location(block_json, location, answer_store, error_messages, di
         data = deserialise_composition_answers(answers)
 
         return generate_household_composition_form(block_json, data, error_messages), None
+
     elif location.block_id in ['relationships', 'household-relationships']:
 
         answers = answer_store.filter_by_location(location)
@@ -41,24 +42,24 @@ def get_form_for_location(block_json, location, answer_store, error_messages, di
         form = generate_relationship_form(block_json, len(choices), data, error_messages)
 
         return form, {'relation_instances': choices}
-    else:
-        mapped_answers = answer_store.map(
-            group_id=location.group_id,
-            group_instance=location.group_instance,
-            block_id=location.block_id,
-        )
 
-        # Form generation expects post like data, so cast answers to strings
-        for answer_id, mapped_answer in mapped_answers.items():
-            if isinstance(mapped_answer, list):
-                for index, element in enumerate(mapped_answer):
-                    mapped_answers[answer_id][index] = str(element)
-            else:
-                mapped_answers[answer_id] = str(mapped_answer)
+    mapped_answers = answer_store.map(
+        group_id=location.group_id,
+        group_instance=location.group_instance,
+        block_id=location.block_id,
+    )
 
-        mapped_answers = deserialise_dates(block_json, mapped_answers)
+    # Form generation expects post like data, so cast answers to strings
+    for answer_id, mapped_answer in mapped_answers.items():
+        if isinstance(mapped_answer, list):
+            for index, element in enumerate(mapped_answer):
+                mapped_answers[answer_id][index] = str(element)
+        else:
+            mapped_answers[answer_id] = str(mapped_answer)
 
-        return generate_form(block_json, mapped_answers, error_messages, answer_store), None
+    mapped_answers = deserialise_dates(block_json, mapped_answers)
+
+    return generate_form(block_json, mapped_answers, error_messages, answer_store), None
 
 
 def post_form_for_location(block_json, location, answer_store, request_form, error_messages, disable_mandatory=False):
@@ -77,14 +78,15 @@ def post_form_for_location(block_json, location, answer_store, request_form, err
 
     if location.block_id == 'household-composition':
         return generate_household_composition_form(block_json, request_form, error_messages), None
+
     elif location.block_id in ['relationships', 'household-relationships']:
         choices = build_relationship_choices(answer_store, location.group_instance)
         form = generate_relationship_form(block_json, len(choices), request_form, error_messages)
 
         return form, {'relation_instances': choices}
-    else:
-        data = clear_other_text_field(request_form, SchemaHelper.get_questions_for_block(block_json))
-        return generate_form(block_json, data, error_messages, answer_store), None
+
+    data = clear_other_text_field(request_form, SchemaHelper.get_questions_for_block(block_json))
+    return generate_form(block_json, data, error_messages, answer_store), None
 
 
 def disable_mandatory_answers(block_json):
