@@ -21,7 +21,7 @@ class Question:
     def _build_answers(cls, question_schema, answer_schema, answers):
         summary_answers = []
         answers_iterator = iter(answer_schema)
-        for answer_schema in answers_iterator:
+        for answer_schema in answers_iterator:  # pylint: disable=redefined-argument-from-local
             if 'parent_answer_id' in answer_schema:
                 continue
             if question_schema['type'] == 'RepeatingAnswer':
@@ -61,8 +61,7 @@ class Question:
             return checkbox_answers or None
         elif answer_schema['type'] == 'Radio':
             return cls._build_radio_answer(answer, answer_schema)
-        else:
-            return answer
+        return answer
 
     @classmethod
     def _build_checkbox_answers(cls, answer, answer_schema):

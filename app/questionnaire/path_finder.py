@@ -49,7 +49,7 @@ class PathFinder:
             block = blocks[block_index]['block']
 
             # If routing rules exist then a rule must match (i.e. default goto)
-            if 'routing_rules' in block and len(block['routing_rules']) > 0:
+            if 'routing_rules' in block and block['routing_rules']:
                 original_this_location = copy.copy(this_location)
                 for rule in filter(is_goto_rule, block['routing_rules']):
                     should_goto = evaluate_goto(rule['goto'], self.metadata, self.answer_store, this_location.group_instance)

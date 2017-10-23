@@ -93,7 +93,7 @@ def generate_relationship_form(block_json, number_of_entries, data, error_messag
         def map_errors(self):
             ordered_errors = []
 
-            if len(self.errors) > 0:
+            if self.errors:
                 for answer_id, error_list in self.errors.items():
                     for errors in error_list:
                         for error in errors:

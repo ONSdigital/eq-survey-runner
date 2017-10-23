@@ -39,7 +39,7 @@ def _build_respondent_meta(metadata):
 def _build_survey_meta(metadata):
     return {
         'return_by': to_date(metadata['return_by']),
-        'start_date':  to_date(metadata['ref_p_start_date']),
+        'start_date': to_date(metadata['ref_p_start_date']),
         'end_date': to_date(metadata['ref_p_end_date']),
         'employment_date': to_date(metadata['employment_date']),
         'region_code': json_and_html_safe(metadata['region_code']) if 'region_code' in metadata else None,

@@ -40,7 +40,7 @@ class Navigation(object):
 
         for section in navigation_block['sections']:
             non_skipped_groups = self._get_non_skipped_groups(section)
-            if len(non_skipped_groups) == 0:
+            if not non_skipped_groups:
                 continue
 
             first_group_id = non_skipped_groups[0]
@@ -111,7 +111,7 @@ class Navigation(object):
 
     def _can_reach_summary_confirmation(self, group_id, block_id):
         if self.routing_path and Location(group_id, 0, block_id) in self.routing_path and \
-                len(self.completed_blocks) > 0 and set(self.routing_path[:-1]).issubset(self.completed_blocks):
+                self.completed_blocks and set(self.routing_path[:-1]).issubset(self.completed_blocks):
             return True
 
         return False

@@ -16,8 +16,7 @@ DEFAULT_LANGUAGE_CODE = 'en'
 def load_schema_from_metadata(metadata):
     if metadata.get('survey_url'):
         return load_schema_from_url(metadata['survey_url'], metadata.get('language_code'))
-    else:
-        return load_schema_from_params(metadata['eq_id'], metadata['form_type'], metadata.get('language_code'))
+    return load_schema_from_params(metadata['eq_id'], metadata['form_type'], metadata.get('language_code'))
 
 
 @cache.memoize()

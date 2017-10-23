@@ -211,10 +211,8 @@ def _encode_value(value):
     if isinstance(value, str):
         if value == '':
             return None
-        else:
-            return value
-    else:
-        return str(value)
+        return value
+    return str(value)
 
 
 def convert_feedback(message, name, email, url, metadata, survey_id):
