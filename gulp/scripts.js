@@ -100,7 +100,7 @@ export function lint() {
   // either the tests or app code fail to throw lint errors
   // (depending on the order they appear in the array).
   // As a work around they're split into two distinct steps
-  gulp.src(['gulp/**/*.js', 'tests/new_functional/**/*.js'])
+  gulp.src(['gulp/**/*.js', 'tests/functional/**/*.js'])
     .pipe(plumber())
     .pipe(eslint())
     .pipe(eslint.results(results => results.warningCount ? gutil.log('eslint warning') : gutil.noop()))

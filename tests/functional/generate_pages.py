@@ -1,228 +1,229 @@
-import datetime
+#!/usr/bin/env python
+
+import argparse
 import json
 import logging
 import os
-import sys
 import re
+from string import Template
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
+parser = argparse.ArgumentParser(description = 'Generate a bag of DOM selectors, organised by page, to make writing webdriver tests easier')
+parser.add_argument('SCHEMA', type=argparse.FileType('r'),
+                    help='The path to the schema file you want to generate pages for.')
 
-SPEC_PAGE_HEADER = r"""import {startQuestionnaire} from '../helpers'
+parser.add_argument('OUT_DIRECTORY', help='The path to the directory where the pages should be written.')
 
-"""
+parser.add_argument('-s', '--spec_file', help='The file where the template spec should be written.')
 
-SPEC_PAGE_IMPORT = r"""import {pageName} from '../pages/{pageDir}{pageFile}'
-"""
+parser.add_argument('-r', '--require_path', default='..',
+                    help='The relative path from a page file to the directory containing the base/parent page classes. Defaults to ".."')
 
-SPEC_EXAMPLE_TEST = r"""
+
+SPEC_PAGE_HEADER = "const helpers = require('../helpers');\n\n"
+
+SPEC_PAGE_IMPORT = Template(r"""const ${pageName}Page = require('../pages/${pageDir}/${pageFile}');
+""")
+
+SPEC_EXAMPLE_TEST = Template(r"""
 describe('Example Test', function() {
 
   it('Given..., When..., Then...', function() {
-    startQuestionnaire('{schema}')
-  })
+    return helpers.openQuestionnaire('${schema}').then(() => {
+        return browser    
+    });
+  });
 
-})
+});
 
-"""
+""")
 
-HEADER = r"""// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+HEADER = Template(r"""// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+const $basePage = require('$relativeRequirePath/$basePageFile');
 
-import {basePage} from '../{basePageFile}'
+""")
 
-"""
+CLASS_NAME = Template(r"""class ${pageName}Page extends $basePage {
 
-CLASS_NAME = r"""class {pageName}Page extends {basePage} {
+""")
 
-"""
+ANSWER_LABEL_GETTER = Template(r"""  ${answerName}Label() { return '#label-${answerId}'; }
 
-ANSWER_SETTER = r"""  set{answerName}(value) {
-    browser.setValue('[name="{answerId}"]', value)
-    return this
+""")
+
+ANSWER_GETTER = Template(r"""  ${answerName}() {
+    return '#${answerId}';
   }
 
-"""
+""")
 
-ANSWER_GETTER = r"""  get{answerName}(value) {
-    return browser.element('[name="{answerId}"]').getValue()
+HOUSEHOLD_ANSWER_GETTER = Template(r"""  ${answerName}(index = 0) {
+    return '#household-' + index + '-${answerId}';
   }
 
-"""
-
-ANSWER_LABEL_GETTER = r"""  get{answerName}Label() {
-    return browser.element('#label-{answerId}')
-  }
-
-"""
-
-ANSWER_ELEMENT_GETTER = r"""  get{answerName}Element() {
-    return browser.element('[name="{answerId}"]')
-  }
-
-"""
-
-DROP_DOWN_SETTER = r"""  set{answerName}(value) {
-    browser.selectByValue('[name="{answerId}"]', value)
-    return this
-  }
-
-"""
-
-CHECKBOX_RADIO_CLICKER = r"""  click{optionName}() {
-    browser.element('[id="{optionId}"]').click()
-    return this
-  }
-
-"""
-
-CHECKBOX_RADIO_IS_SELECTED = r"""  {optionName}IsSelected() {
-    return browser.element('[id="{optionId}"]').isSelected()
-  }
-
-"""
-
-MULTIPLE_CHOICE_OTHER = r"""  set{answerName}(value) {
-    browser.setValue('[id="{answerId}"]', value)
-    return this
-  }
-
-"""
-
-RELATIONSHIP_DROPDOWN_SETTER = r"""  set{optionName}(instance = 0) {
-    browser.selectByValue('[name="{answerId}-' + instance + '"]', '{optionValue}')
-    return this
-  }
-
-"""
-
-REPEATING_ANSWER_SETTER = r"""  set{answerName}(value, index = 0) {
-    var field = 'household-' + index + '-{answerId}'
-    browser.setValue('[name="' + field + '"]', value)
-    return this
-  }
-
-"""
-
-REPEATING_ANSWER_GETTER = r"""  get{answerName}(index) {
-    var field = 'household-' + index + '-{answerId}'
-    browser.element('[name="' + field + '"]').getValue()
-    return this
-  }
-
-"""
+""")
 
 REPEATING_ANSWER_ADD_REMOVE = r"""  addPerson() {
-    browser.click('button[name="action[add_answer]"]')
-    return this
+    return 'button[name="action[add_answer]"]';
   }
 
   removePerson(index) {
-    browser.click('button[value="' + index + '"]')
-    browser.waitUntil(() => {
-      return !browser.isVisible('button[value="' + index + '"]')
-    }, 5000, 'Person not removed')
-    return this
+    return 'button[value="' + index + '"]';
+    // Have to check whether it's visible in test code
   }
 
 """
 
-CONSTRUCTOR = r"""  constructor() {
-    super('{block_id}')
+SUMMARY_ANSWER_GETTER = Template(r"""  ${answerName}() { return '#${answerId}-answer'; }
+
+""")
+
+
+SUMMARY_ANSWER_EDIT_GETTER = Template(r"""  ${answerName}Edit() { return '[data-qa="${answerId}-edit"]'; }
+
+""")
+
+CONSTRUCTOR = Template(r"""  constructor() {
+    super('${block_id}');
   }
 
-"""
+""")
 
-FOOTER = r"""}
+FOOTER = Template(r"""}
+module.exports = new ${pageName}Page();
+""")
 
-export default new {pageName}Page()
-"""
 
-
-def generate_camel_case_from_id(id_str):
+def generate_pascal_case_from_id(id_str):
     parts = re.sub('[^0-9a-zA-Z]+', '-', id_str).split('-')
     name = ''.join([p.title() for p in parts])
     return name
 
+def camel_case(s):
+    return s[0].lower() + s[1:]
 
-def process_options(answer_id, options, template_setter, template_getter, page_spec):
+
+def process_options(answer_id, options, page_spec, base_prefix):
     for index, option in enumerate(options):
-        option_name = generate_camel_case_from_id(answer_id) + generate_camel_case_from_id(option['value'])
+        if option['value'][0].isalpha():
+            prefix = base_prefix
+        else:
+            prefix = base_prefix + 'Answer'
+
+        option_name = camel_case(prefix + generate_pascal_case_from_id(option['value']))
         option_id = "{name}-{index}".format(name=answer_id, index=index)
-        page_spec.write(template_setter.replace("{optionName}", option_name).replace("{optionId}", option_id))
-        page_spec.write(template_getter.replace("{optionName}", option_name).replace("{optionId}", option_id))
+
+        option_context = {
+            'answerName': option_name,
+            'answerId': option_id
+        }
+
+        page_spec.write(ANSWER_GETTER.substitute(option_context))
+        page_spec.write(ANSWER_LABEL_GETTER.substitute(option_context))
+
+        # Add a selector for an option which exposes another input, e.g.
+        # an 'Other' option which exposes a text input for the user to fill in
         if 'child_answer_id' in option:
-            option_other_id = option['child_answer_id']
-            page_spec.write(MULTIPLE_CHOICE_OTHER.replace("{answerName}", option_name + "Text").replace("{answerId}", option_other_id))
+            option_context = {
+                'answerId': option['child_answer_id'],
+                'answerName': prefix + option_name + 'Text'
+            }
+
+            page_spec.write(ANSWER_GETTER.substitute(option_context))
 
 
-def process_relationship_options(answer_id, options, template, page_spec):
-    for index, option in enumerate(options):
-        option_name = generate_camel_case_from_id(option['value'])
-        option_index = "{index}".format(index=index)
-        template_with_index = template.replace("{optionIndex}", option_index)
-        template_with_answer_id = template_with_index.replace("{answerId}", answer_id)
-        template_with_option_value = template_with_answer_id.replace("{optionValue}", option['value'])
-        template_with_option_name = template_with_option_value.replace("{optionName}", generate_camel_case_from_id(answer_id) + option_name)
-        page_spec.write(template_with_option_name)
+def process_answer(question_type, answer, page_spec, long_names, page_name):
 
-
-def process_answer(question_type, answer, page_spec):
-    answer_name = generate_camel_case_from_id(answer['id'])
+    # If there's only one answer on the page shortcut the name space to improve
+    # the quality of life of spec authors
+    answer_name = generate_pascal_case_from_id(answer['id']) if long_names else 'answer'
+    answer_name = answer_name.replace(page_name, '')
+    answer_name = answer_name.replace('Answer', '')
+    prefix = camel_case(answer_name) if len(answer_name) > 0 and long_names else ''
 
     if 'parent_answer_id' in answer:
         logger.debug("\t\tSkipping Child Answer: %s", answer['id'])
         return
-    elif answer['type'] == 'Radio' or answer['type'] == 'Checkbox':
-        process_options(answer['id'], answer['options'], CHECKBOX_RADIO_CLICKER, CHECKBOX_RADIO_IS_SELECTED, page_spec)
-    elif answer['type'] == 'Relationship':
-        process_relationship_options(answer['id'], answer['options'], RELATIONSHIP_DROPDOWN_SETTER, page_spec)
-    elif answer['type'] == 'Date':
-        page_spec.write(_write_date_answer(answer_name, answer['id']))
 
-    elif answer['type'] == 'MonthYearDate':
-        page_spec.write(_write_month_year_date_answer(answer_name, answer['id']))
+    elif answer['type'] in ('Radio', 'Checkbox'):
+        process_options(answer['id'], answer['options'], page_spec, prefix)
 
-    elif answer['type'] in ['TextField', 'Integer', 'PositiveInteger', 'TextArea', 'Currency', 'Percentage']:
-        if question_type == 'RepeatingAnswer':
-            page_spec.write(REPEATING_ANSWER_SETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
-            page_spec.write(REPEATING_ANSWER_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
+    elif answer['type'] in ('Date'):
+        page_spec.write(_write_date_answer(answer_name, answer['id'], prefix))
+
+    elif answer['type'] in ('MonthYearDate'):
+        page_spec.write(_write_month_year_date_answer(answer_name, answer['id'], prefix))
+
+    elif answer['type'] in ('TextField', 'Number', 'TextArea', 'Currency', 'Percentage', 'Relationship', 'Unit'):
+
+        answer_context = {
+            'answerName': camel_case(answer_name),
+            'answerId': answer['id']
+        }
+
+        if question_type in ['RepeatingAnswer']:
+            page_spec.write(HOUSEHOLD_ANSWER_GETTER.substitute(answer_context))
         else:
-            page_spec.write(ANSWER_SETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
-            page_spec.write(ANSWER_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
-            page_spec.write(ANSWER_LABEL_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
-            page_spec.write(ANSWER_ELEMENT_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
+            page_spec.write(ANSWER_GETTER.substitute(answer_context))
+            page_spec.write(ANSWER_LABEL_GETTER.substitute(answer_context))
 
     else:
-        raise Exception('Answer type [%s] not configured' % answer['type'])
+        raise Exception('Answer type {} not configured'.format(answer['type']))
 
 
-def process_question(question, page_spec):
+def process_question(question, page_spec, num_questions, page_name):
     logger.debug("\t\tprocessing question: %s", question['title'])
 
     question_type = question['type']
     if question_type == 'RepeatingAnswer':
         page_spec.write(REPEATING_ANSWER_ADD_REMOVE)
+
+    long_names = long_names_required(question, num_questions)
+
     for answer in question['answers']:
-        process_answer(question_type, answer, page_spec)
+        process_answer(question_type, answer, page_spec, long_names, page_name)
+
+def process_summary(schema_data, page_spec):
+    for group in schema_data['groups']:
+        for block in group['blocks']:
+            for question in block.get('questions', []):
+                for answer in question['answers']:
+                    answer_name = generate_pascal_case_from_id(answer['id'])
+                    answer_context = {
+                        'answerName': camel_case(answer_name),
+                        'answerId': answer['id']
+                    }
+                    page_spec.write(SUMMARY_ANSWER_GETTER.substitute(answer_context))
+                    page_spec.write(SUMMARY_ANSWER_EDIT_GETTER.substitute(answer_context))
 
 
-def _write_date_answer(answer_name, answerId):
+def long_names_required(question, num_questions):
+    if num_questions > 1:
+        return True
+    else:
+        num_answers = len(question['answers'])
+        if num_answers == 2 and 'other' in question['answers'][1]['id']:
+            num_answers = 1
+
+        if num_answers > 1:
+            return True
+
+    return False
+
+def _write_date_answer(answer_name, answerId, prefix):
+
     return \
-        ANSWER_SETTER.replace("{answerName}", answer_name + 'Day').replace("{answerId}", answerId + '-day') + \
-        ANSWER_GETTER.replace("{answerName}", answer_name + 'Day').replace("{answerId}", answerId + '-day') + \
-        DROP_DOWN_SETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answerId + '-month') + \
-        ANSWER_GETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answerId + '-month') + \
-        ANSWER_SETTER.replace("{answerName}", answer_name + 'Year').replace("{answerId}", answerId + '-year') + \
-        ANSWER_GETTER.replace("{answerName}", answer_name + 'Year').replace("{answerId}", answerId + '-year')
+        ANSWER_GETTER.substitute({'answerName': prefix + 'day', 'answerId': answerId + '-day'}) + \
+        ANSWER_GETTER.substitute({'answerName': prefix + 'month', 'answerId': answerId + '-month'}) + \
+        ANSWER_GETTER.substitute({'answerName': prefix + 'year', 'answerId': answerId + '-year'})
 
 
-def _write_month_year_date_answer(answer_name, answerId):
+def _write_month_year_date_answer(answer_name, answerId, prefix):
     return \
-        DROP_DOWN_SETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answerId + '-month') + \
-        ANSWER_GETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answerId + '-month') + \
-        ANSWER_SETTER.replace("{answerName}", answer_name + 'Year').replace("{answerId}", answerId + '-year') + \
-        ANSWER_GETTER.replace("{answerName}", answer_name + 'Year').replace("{answerId}", answerId + '-year')
+        ANSWER_GETTER.substitute({'answerName': prefix + 'Month', 'answerId': answerId + '-month'}) + \
+        ANSWER_GETTER.substitute({'answerName': prefix + 'answerYear', 'answerId': answerId + '-year'})
 
 
 def find_kv(block, key, values):
@@ -234,7 +235,7 @@ def find_kv(block, key, values):
     return False
 
 
-def process_block(block, dir_out, spec_out=None):
+def process_block(block, dir_out, schema_data, spec_file, relative_require = '..'):
     logger.debug("Processing Block: %s", block['id'])
 
     page_filename = block['id'] + '.page.js'
@@ -243,67 +244,69 @@ def process_block(block, dir_out, spec_out=None):
     logger.info("creating %s...", page_path)
 
     with open(page_path, 'w') as page_spec:
-        multiple_choice_check = find_kv(block, 'type', ['Radio', 'Checkbox', 'Relationship'])
+        page_name = generate_pascal_case_from_id(block['id'])
 
-        page_name = generate_camel_case_from_id(block['id'])
+        base_page = 'QuestionPage'
+        base_page_file = 'question.page'
 
-        header = HEADER
-        header = header.replace("{basePage}", "QuestionPage" if not multiple_choice_check else "MultipleChoiceWithOtherPage")
-        header = header.replace("{basePageFile}", "question.page" if not multiple_choice_check else "multiple-choice.page")
+        block_context = {
+            'pageName': page_name,
+            'basePage': base_page,
+            'basePageFile': base_page_file,
+            'pageDir': dir_out.split('pages/')[1],
+            'pageFile': page_filename,
+            'block_id': block['id'],
+            'relativeRequirePath': relative_require
+        }
 
-        page_spec.write(header)
+        page_spec.write(HEADER.substitute(block_context))
+        page_spec.write(CLASS_NAME.substitute(block_context))
+        page_spec.write(CONSTRUCTOR.substitute(block_context))
 
-        class_name = CLASS_NAME
-        class_name = class_name.replace("{pageName}", page_name)
-        class_name = class_name.replace("{basePage}", "QuestionPage" if not multiple_choice_check else "MultipleChoiceWithOtherPage")
-        class_name = class_name.replace("{basePageFile}", "question.page" if not multiple_choice_check else "multiple-choice.page")
+        if block['type'] == 'Summary':
+            process_summary(schema_data, page_spec)
+        else:
+            num_questions = len(block.get('questions', []))
 
-        page_spec.write(class_name)
-
-        page_spec.write(CONSTRUCTOR.replace("{block_id}", block['id']))
-
-        for question in block.get('questions', []):
-            process_question(question, page_spec)
-
-        page_spec.write(FOOTER.replace("{pageName}", page_name))
-
-        if spec_out:
-            with open(spec_out, 'a') as template_spec:
-                header = SPEC_PAGE_IMPORT
-                header = header.replace("{pageDir}", dir_out.split('pages/')[1])
-                header = header.replace("{pageName}", page_name)
-                header = header.replace("{pageFile}", page_filename)
-                template_spec.write(header)
+            for question in block.get('questions', []):
+                process_question(question, page_spec, num_questions, page_name)
 
 
-def process_schema(in_schema, out_dir, spec_out=None):
+        page_spec.write(FOOTER.substitute(block_context))
 
-    json_data = open(in_schema).read()
-    data = json.loads(json_data)
+        if spec_file:
+            with open(spec_file, 'a') as template_spec:
+                template_spec.write(SPEC_PAGE_IMPORT.substitute(block_context))
+
+
+def process_schema(in_schema, out_dir, spec_file, require_path='..'):
+
+    data = json.loads(in_schema.read())
+
+    try:
+        os.stat(out_dir)
+    except:
+        os.mkdir(out_dir)
 
     for group in data['groups']:
         for block in group['blocks']:
-            process_block(block, out_dir, spec_out)
+            process_block(block, out_dir, data, spec_file, require_path)
 
 
 if __name__ == '__main__':
-    if len(sys.argv) < 3:
-        print("Usage: {} <schema.json> </outdir/> <spec_out>".format(sys.argv[0]))
-        print("Example: {} ./data/census_household.json ./tests/functional/pages/surveys/census/household/ ./tests/functional/spec/census-test.spec.js".format(sys.argv[0]))
-        exit(1)
+    args = parser.parse_args()
 
-    schema_in = sys.argv[1]
-    dir_out = sys.argv[2]
+    spec_file = args.spec_file
 
-    if len(sys.argv) == 4:
-        spec_out = sys.argv[3]
-
-        with open(spec_out, 'w') as template_spec:
+    if spec_file:
+        with open(spec_file, 'w') as template_spec:
             template_spec.write(SPEC_PAGE_HEADER)
+            template_spec.close()
 
-        process_schema(schema_in, dir_out, spec_out)
+            process_schema(args.SCHEMA, args.OUT_DIRECTORY, spec_file, args.require_path)
 
-        with open(spec_out, 'a') as template_spec:
-            template_spec.write(SPEC_EXAMPLE_TEST.replace("{schema}", schema_in.split('/').pop()))
+            with open(spec_file, 'a') as template_spec:
+                schema_name = { 'schema': args.SCHEMA.name.split('/').pop() }
+                template_spec.write(SPEC_EXAMPLE_TEST.substitute(schema_name))
     else:
-        process_schema(schema_in, dir_out)
+        process_schema(args.SCHEMA, args.OUT_DIRECTORY, spec_file, args.require_path)
