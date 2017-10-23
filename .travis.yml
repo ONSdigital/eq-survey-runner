@@ -23,7 +23,7 @@ before_install:
     - pyenv rehash
     - pyenv global $(cat .python-version)
     - pip install -U pip pipenv wheel
-    - pipenv install --dev
+    - pipenv install --dev --deploy
     - pipenv check
 cache:
     - yarn
