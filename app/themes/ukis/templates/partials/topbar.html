@@ -1,0 +1,13 @@
+<div class="bar {{'bar--hero' if is_intro}}" role="banner">
+  <div class="bar__inner container">
+
+    {% if is_intro %}
+      <h1 class="bar__title jupiter">{{ survey_title }}</h1>
+      {% if legal_basis == 'StatisticsOfTradeAct' %}
+        <h2 class="venus">Notice is given under section 1 of the Statistics of Trade Act 1947</h2>
+      {% endif %}
+    {% else %}
+      <div class="bar__title venus">{{ survey_title }}</div>
+    {% endif %}
+  </div>
+</div>

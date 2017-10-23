@@ -1,13 +1,12 @@
 {% extends 'introduction.html' %}
 
-{% set legal_text = "Your response to this survey is of great value to government, whether or not you carry out innovation activities" %}
-
 {% block header %}
   {% include 'partials/header.html' %}
-  {% with is_hero = true %}
+  {% with is_intro = true %}
     {% include theme('partials/topbar.html') %}
   {% endwith %}
 {% endblock %}
+
 
 {% block business_details %}
   <div class="u-mb-m">
@@ -17,16 +16,44 @@
     {% endif %}
   </div>
 
-  {{super()}}
+  <div class="u-mt-s">
+    <h2 class="saturn col-10@l">Your response to this survey is of great value to government, whether or not you carry out innovation activities</h2>
+  </div>
+
+  <div class="grid grid--flex grid--bordered@s u-mb-s">
+    <div class="grid__col col-6@s">
+        <dl class="dl u-pr-s">
+            <dt class="dl__title mercury">Business name</dt>
+            <dd class="dl__data mars">{{ meta.respondent.name}}</dd>
+            {% if meta.respondent.trading_as %}
+              <dt class="dl__title mercury">Trading as</dt>
+              <dd class="dl__data mars">{{ meta.respondent.trading_as }}</dd>
+            {% endif %}
+            <dt id="details-changed-title" class="dl__title mercury">Change in details</dt>
+            <dd class="dl__data mars">{{helpers.telephone_number('details-changed-title')}} or email {{helpers.email_address('details-changed-title', subject="Change of details reference " + meta.respondent.respondent_id)}} if there have been any changes to your business name, address or structure</dd>
+        </dl>
+    </div>
+    <div class="grid__col col-6@s">
+        <dl class="dl">
+            <dt class="dl__title mercury">PERIOD</dt>
+            <dd class="dl__data mars">
+                <span>{{ format_start_end_date(meta.survey.start_date, meta.survey.end_date)}}</span>
+            </dd>
+            <dt class="dl__title mercury">PLEASE SUBMIT BY</dt>
+            <dd class="dl__data mars">{{ meta.survey.return_by|format_date}}</dd>
+        </dl>
+    </div>
+  </div>
 
 {% endblock business_details %}
 
 
 {% block intro_content %}
+<div class="grid__col col-7@l">
     <div id="basis-for-completion" class="u-mb-s">
-        <h2 class="saturn">Basis for completion</h2>
+        <h2 class="saturn col-10@l">Basis for completion</h2>
         <ul>
-            <li>Please complete this voluntary questionnaire for <strong>{{ meta.respondent.address.name }}</strong>.</li>
+            <li>Please complete this voluntary questionnaire for <strong>{{ meta.respondent.name }}</strong>.</li>
             <li>If this business is part of an enterprise group, please answer all questions for this business in the UK
                 only.
             </li>
@@ -39,10 +66,10 @@
             <ul>
                 <li>Innovation, for the purpose of this survey, is defined as <strong>new</strong> or <strong>significantly
                     improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all
-                    goods or services that {{ meta.respondent.address.name }} has introduced, regardless of their origin.
+                    goods or services that {{ meta.respondent.name }} has introduced, regardless of their origin.
                 </li>
-                <li>These innovations may be new to {{ meta.respondent.address.name }} or new to the market</li>
-                <li>Investments for future innovation and changes that {{ meta.respondent.address.name }} has introduced at a <strong>strategic</strong>
+                <li>These innovations may be new to {{ meta.respondent.name }} or new to the market</li>
+                <li>Investments for future innovation and changes that {{ meta.respondent.name }} has introduced at a <strong>strategic</strong>
                     level (in organisation and practices) are also covered
                 </li>
             </ul>
@@ -62,6 +89,9 @@
         <p class="mars qa-intro-description">
             <strong>If actual figures are not available, please provide informed estimates.</strong>
         </p>
+        <div class="lock u-mt-l u-mb-s u-mb-m@s">
+            <div class="venus lock__text">All information you provide is strictly confidential</div>
+        </div>
     </div>
 
 {% block start_survey %}
@@ -70,5 +100,6 @@
 <h2 class="neptune">Aim of this survey</h2>
 <p>The aim of the UK Innovation Survey (UKIS) is to collect data from businesses about various aspects of their innovation related activities to enable measurement of the extent, types and trends in innovation.</p>
 <p>The UKIS data provides a major source of evidence to inform government policy for promoting innovation activities among businesses to boost economic growth. The data collected also serves as an important contributor to the Community Innovation Survey conducted across Europe, which is used for international benchmarking and comparison purposes. We are interested in responses from both businesses conducting innovation and businesses not currently engaged in innovation as this can help to inform our wider understanding of the constraining factors.</p>
+</div>
 {% endblock intro_content %}
 

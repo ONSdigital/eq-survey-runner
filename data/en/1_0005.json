@@ -46,14 +46,13 @@
                 "id": "introduction",
                 "primary_content": [{
                     "id": "get-started",
-                    "title": "Get started",
                     "content": [{
-                            "description": "On average it takes ten minutes to complete this survey."
-                        },
-                        {
-                            "description": "You can provide informed estimates if actual figures aren't available."
-                        }
-                    ]
+                        "list": [
+                            "On average it takes 10 minutes to complete this survey.",
+                            "You can provide informed estimates if actual figures aren't available.",
+                            "We will treat your data securely and confidentially."
+                        ]
+                    }]
                 }],
                 "preview_content": {
                     "id": "preview",
@@ -189,7 +188,6 @@
         {
             "blocks": [{
                     "id": "pay-pattern-frequency",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "pay-pattern-frequency-answer",
@@ -237,7 +235,6 @@
                     "type": "Questionnaire",
                     "id": "pay-pattern-frequency-confirmation",
                     "title": "Pay Pattern",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "id": "pay-pattern-frequency-confirmation-question",
                         "title": "Employees are paid in the following patterns:",
@@ -495,7 +492,6 @@
                 },
                 {
                     "id": "weekly-pay-significant-changes-paid-employees",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-paid-employees-answer",
@@ -552,7 +548,6 @@
                 },
                 {
                     "id": "weekly-pay-significant-changes-redundancies",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-redundancies-answer",
@@ -578,7 +573,6 @@
                 },
                 {
                     "id": "weekly-pay-significant-changes-temp-employees",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-temp-employees-answer",
@@ -608,7 +602,6 @@
                 },
                 {
                     "id": "weekly-pay-significant-changes-gross-pay",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-gross-pay-answer",
@@ -666,7 +659,6 @@
                 },
                 {
                     "id": "weekly-pay-significant-changes-overtime",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-overtime-answer",
@@ -696,7 +688,6 @@
                 },
                 {
                     "id": "weekly-pay-significant-changes-pay-rates",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-pay-rates-answer",
@@ -743,7 +734,6 @@
                 },
                 {
                     "id": "weekly-pay-significant-changes-pay-rates-increase",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                                 "id": "weekly-pay-significant-changes-pay-rates-increase-percent-increase-answer",
@@ -780,7 +770,6 @@
                 },
                 {
                     "id": "weekly-pay-significant-changes-industrial-action",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-industrial-action-answer",
@@ -806,7 +795,6 @@
                 },
                 {
                     "id": "weekly-pay-significant-changes-other",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-other-answer",
@@ -832,7 +820,6 @@
                 },
                 {
                     "id": "weekly-pay-significant-changes-other-specify",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "weekly-pay-significant-changes-other-specify-answer",
@@ -1031,7 +1018,6 @@
                 },
                 {
                     "id": "fortnightly-pay-significant-changes-paid-employees",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-paid-employees-answer",
@@ -1088,7 +1074,6 @@
                 },
                 {
                     "id": "fortnightly-pay-significant-changes-redundancies",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-redundancies-answer",
@@ -1114,7 +1099,6 @@
                 },
                 {
                     "id": "fortnightly-pay-significant-changes-temp-employees",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-temp-employees-answer",
@@ -1144,7 +1128,6 @@
                 },
                 {
                     "id": "fortnightly-pay-significant-changes-gross-pay",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-gross-pay-answer",
@@ -1202,7 +1185,6 @@
                 },
                 {
                     "id": "fortnightly-pay-significant-changes-overtime",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-overtime-answer",
@@ -1232,7 +1214,6 @@
                 },
                 {
                     "id": "fortnightly-pay-significant-changes-pay-rates",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-pay-rates-answer",
@@ -1279,7 +1260,6 @@
                 },
                 {
                     "id": "fortnightly-pay-significant-changes-pay-rates-increase",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                                 "id": "fortnightly-pay-significant-changes-pay-rates-increase-percent-increase-answer",
@@ -1316,7 +1296,6 @@
                 },
                 {
                     "id": "fortnightly-pay-significant-changes-industrial-action",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-industrial-action-answer",
@@ -1342,7 +1321,6 @@
                 },
                 {
                     "id": "fortnightly-pay-significant-changes-other",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-other-answer",
@@ -1368,7 +1346,6 @@
                 },
                 {
                     "id": "fortnightly-pay-significant-changes-other-specify",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "fortnightly-pay-significant-changes-other-specify-answer",
@@ -1423,7 +1400,6 @@
                 },
                 {
                     "id": "calendar-monthly-pay-paid-employees",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-paid-employees-answer",
@@ -1459,7 +1435,6 @@
                 },
                 {
                     "id": "calendar-monthly-pay-gross-pay",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "guidance": {
@@ -1518,7 +1493,6 @@
                 },
                 {
                     "id": "calendar-monthly-pay-breakdown",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                                 "id": "calendar-monthly-pay-breakdown-arrears-answer",
@@ -1560,7 +1534,6 @@
                 },
                 {
                     "id": "calendar-monthly-pay-significant-changes-paid-employees",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-paid-employees-answer",
@@ -1617,7 +1590,6 @@
                 },
                 {
                     "id": "calendar-monthly-pay-significant-changes-redundancies",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-redundancies-answer",
@@ -1643,7 +1615,6 @@
                 },
                 {
                     "id": "calendar-monthly-pay-significant-changes-temp-employees",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-temp-employees-answer",
@@ -1673,7 +1644,6 @@
                 },
                 {
                     "id": "calendar-monthly-pay-significant-changes-gross-pay",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-gross-pay-answer",
@@ -1731,7 +1701,6 @@
                 },
                 {
                     "id": "calendar-monthly-pay-significant-changes-overtime",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-overtime-answer",
@@ -1761,7 +1730,6 @@
                 },
                 {
                     "id": "calendar-monthly-pay-significant-changes-pay-rates",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-pay-rates-answer",
@@ -1808,7 +1776,6 @@
                 },
                 {
                     "id": "calendar-monthly-pay-significant-changes-pay-rates-increase",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                                 "id": "calendar-monthly-pay-significant-changes-pay-rates-increase-percent-increase-answer",
@@ -1845,7 +1812,6 @@
                 },
                 {
                     "id": "calendar-monthly-pay-significant-changes-industrial-action",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-industrial-action-answer",
@@ -1871,7 +1837,6 @@
                 },
                 {
                     "id": "calendar-monthly-pay-significant-changes-other",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-other-answer",
@@ -1897,7 +1862,6 @@
                 },
                 {
                     "id": "calendar-monthly-pay-significant-changes-other-specify",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "calendar-monthly-pay-significant-changes-other-specify-answer",
@@ -1952,7 +1916,6 @@
                 },
                 {
                     "id": "four-weekly-pay-paid-employees",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-paid-employees-answer",
@@ -1988,7 +1951,6 @@
                 },
                 {
                     "id": "four-weekly-pay-gross-pay",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "guidance": {
@@ -2046,7 +2008,6 @@
                 },
                 {
                     "id": "four-weekly-pay-breakdown",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                                 "id": "four-weekly-pay-breakdown-arrears-answer",
@@ -2088,7 +2049,6 @@
                 },
                 {
                     "id": "four-weekly-pay-significant-changes-paid-employees",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-paid-employees-answer",
@@ -2145,7 +2105,6 @@
                 },
                 {
                     "id": "four-weekly-pay-significant-changes-redundancies",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-redundancies-answer",
@@ -2171,7 +2130,6 @@
                 },
                 {
                     "id": "four-weekly-pay-significant-changes-temp-employees",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-temp-employees-answer",
@@ -2201,7 +2159,6 @@
                 },
                 {
                     "id": "four-weekly-pay-significant-changes-gross-pay",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-gross-pay-answer",
@@ -2259,7 +2216,6 @@
                 },
                 {
                     "id": "four-weekly-pay-significant-changes-overtime",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-overtime-answer",
@@ -2289,7 +2245,6 @@
                 },
                 {
                     "id": "four-weekly-pay-significant-changes-pay-rates",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-pay-rates-answer",
@@ -2336,7 +2291,6 @@
                 },
                 {
                     "id": "four-weekly-pay-significant-changes-pay-rates-increase",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                                 "id": "four-weekly-pay-significant-changes-pay-rates-increase-percent-increase-answer",
@@ -2373,7 +2327,6 @@
                 },
                 {
                     "id": "four-weekly-pay-significant-changes-industrial-action",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-industrial-action-answer",
@@ -2399,7 +2352,6 @@
                 },
                 {
                     "id": "four-weekly-pay-significant-changes-other",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-other-answer",
@@ -2425,7 +2377,6 @@
                 },
                 {
                     "id": "four-weekly-pay-significant-changes-other-specify",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "four-weekly-pay-significant-changes-other-specify-answer",
@@ -2480,7 +2431,6 @@
                 },
                 {
                     "id": "five-weekly-pay-paid-employees",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-paid-employees-answer",
@@ -2516,7 +2466,6 @@
                 },
                 {
                     "id": "five-weekly-pay-gross-pay",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "guidance": {
@@ -2575,7 +2524,6 @@
                 },
                 {
                     "id": "five-weekly-pay-breakdown",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                                 "id": "five-weekly-pay-breakdown-arrears-answer",
@@ -2617,7 +2565,6 @@
                 },
                 {
                     "id": "five-weekly-pay-significant-changes-paid-employees",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-paid-employees-answer",
@@ -2674,7 +2621,6 @@
                 },
                 {
                     "id": "five-weekly-pay-significant-changes-redundancies",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-redundancies-answer",
@@ -2700,7 +2646,6 @@
                 },
                 {
                     "id": "five-weekly-pay-significant-changes-temp-employees",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-temp-employees-answer",
@@ -2730,7 +2675,6 @@
                 },
                 {
                     "id": "five-weekly-pay-significant-changes-gross-pay",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-gross-pay-answer",
@@ -2788,7 +2732,6 @@
                 },
                 {
                     "id": "five-weekly-pay-significant-changes-overtime",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-overtime-answer",
@@ -2818,7 +2761,6 @@
                 },
                 {
                     "id": "five-weekly-pay-significant-changes-pay-rates",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-pay-rates-answer",
@@ -2865,7 +2807,6 @@
                 },
                 {
                     "id": "five-weekly-pay-significant-changes-pay-rates-increase",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                                 "id": "five-weekly-pay-significant-changes-pay-rates-increase-percent-increase-answer",
@@ -2902,7 +2843,6 @@
                 },
                 {
                     "id": "five-weekly-pay-significant-changes-industrial-action",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-industrial-action-answer",
@@ -2928,7 +2868,6 @@
                 },
                 {
                     "id": "five-weekly-pay-significant-changes-other",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-other-answer",
@@ -2954,7 +2893,6 @@
                 },
                 {
                     "id": "five-weekly-pay-significant-changes-other-specify",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "five-weekly-pay-significant-changes-other-specify-answer",
@@ -3009,7 +2947,6 @@
                 },
                 {
                     "id": "general-comments",
-                    "description": "<p>{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}</p>",
                     "questions": [{
                         "answers": [{
                             "id": "general-comments-answer",
@@ -3048,5 +2985,8 @@
     "schema_version": "0.0.1",
     "survey_id": "134",
     "theme": "default",
-    "title": "Monthly Wages and Salaries Survey"
+    "title": "Monthly Wages and Salaries Survey",
+    "variables": {
+        "period": "{{ format_start_end_date(exercise.start_date, exercise.end_date) }}"
+    }
 }

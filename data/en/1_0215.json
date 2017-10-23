@@ -7,6 +7,9 @@
     "description": "MCI Description",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
+    "variables": {
+        "period": "{{ format_conditional_date(answers.period_from, exercise.start_date) }} to {{ format_conditional_date(answers.period_to, exercise.end_date) }}"
+    },
     "groups": [{
         "blocks": [{
                 "type": "Introduction",
@@ -14,17 +17,14 @@
 
                 "primary_content": [{
                     "id": "get-started",
-                    "title": "Get started",
                     "content": [{
-                            "description": "On average it takes 15 minutes to complete this survey once you’ve collected the information."
-                        },
-                        {
-                            "description": "Data should relate to all sites in England, Scotland and Wales. You can provide informed estimates if actual figures aren't available."
-                        },
-                        {
-                            "description": "All information you provide is strictly confidential."
-                        }
-                    ]
+                        "list": [
+                            "On average it takes 15 minutes to complete this survey once you’ve collected the information.",
+                            "Data should relate to all sites in England, Scotland and Wales.",
+                            "You can provide informed estimates if actual figures aren't available.",
+                            "We will treat your data securely and confidentially."
+                        ]
+                    }]
                 }],
                 "preview_content": {
                     "id": "preview",

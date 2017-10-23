@@ -49,8 +49,8 @@ class TestMetadataContext(SurveyRunnerTestCase):
         self.assertIsNotNone(respondent)
 
         self.assertEqual(self.jwt['ru_ref'], respondent['respondent_id'])
-        self.assertEqual(self.jwt['ru_name'], respondent['address']['name'])
-        self.assertEqual(self.jwt['trad_as'], respondent['address']['trading_as'])
+        self.assertEqual(self.jwt['ru_name'], respondent['name'])
+        self.assertEqual(self.jwt['trad_as'], respondent['trading_as'])
 
     def test_defend_against_XSS_attack(self):
         jwt = self.jwt.copy()
@@ -66,8 +66,8 @@ class TestMetadataContext(SurveyRunnerTestCase):
 
         respondent = render_data['respondent']
         self.assertEqual(escaped_bad_characters, respondent['respondent_id'])
-        self.assertEqual(escaped_bad_characters, respondent['address']['name'])
-        self.assertEqual(escaped_bad_characters, respondent['address']['trading_as'])
+        self.assertEqual(escaped_bad_characters, respondent['name'])
+        self.assertEqual(escaped_bad_characters, respondent['trading_as'])
 
         survey = render_data['survey']
         self.assertEqual(escaped_bad_characters, survey['region_code'])

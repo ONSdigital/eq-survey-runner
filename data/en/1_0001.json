@@ -4690,5 +4690,8 @@
     "survey_id": "144",
     "theme": "ukis",
     "legal_basis": "Voluntary",
-    "title": "UK Innovation Survey"
+    "title": "UK Innovation Survey",
+    "variables": {
+        "period": "{{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}"
+    }
 }

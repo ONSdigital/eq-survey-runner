@@ -3,91 +3,77 @@
 {% import 'macros/helpers.html' as helpers %}
 
 {% block header %}
-  {% include 'partials/header2.html' %}
-  {% with is_hero = true %}
-    {% include theme('partials/topbar.html') %}
-  {% endwith %}
+    {% include 'partials/header2.html' %}
+    {% include 'partials/topbar-introduction.html' %}
 {% endblock %}
 
 {% block subheader %}
-{% include theme('partials/feedback_call_to_action.html') %}
+    {% include theme('partials/feedback_call_to_action.html') %}
 
-{{super()}}
+    {{super()}}
 {% endblock subheader %}
 
 {% set form = content.form %}
-
-{%- if legal_basis == 'StatisticsOfTradeAct' -%}
-  {% set legal_text = "Your response is legally required" %}
-{%- endif -%}
 
 {% block page_title %}{{survey_title}}{% endblock %}
 
 {% block main %}
 
-  {% include theme('partials/feedback/expandable_inline.html') %}
+    {% include theme('partials/feedback/expandable_inline.html') %}
 
-  {% block business_details %}
+    {% block business_details %}
 
-    <div class="u-mt-s">
+        <div class="grid">
+            <div class="grid__col col-7@m">
 
-      {%- if legal_text -%}
-        <h2 class="saturn col-10@l">{{legal_text}}</h2>
-      {%- endif -%}
+                <h2 class="saturn">You are completing this for
+                    <span>{{ meta.respondent.name}}</span>
+                    {% if meta.respondent.trading_as %}
+                        <span class="trading_as">(trading as&nbsp;<span class="trad_as">{{meta.respondent.trading_as }}</span>)</span>
+                    {% endif %}
+                </h2>
 
-      <div class="grid grid--flex grid--bordered@s u-mb-s">
-        <div class="grid__col col-6@s">
-          <dl class="dl u-pr-s">
-            <dt class="dl__title mercury">Business name</dt>
-            <dd class="dl__data mars">{{ meta.respondent.address.name}}</dd>
-            {% if meta.respondent.address.trading_as %}
-              <dt class="dl__title mercury">Trading as</dt>
-              <dd class="dl__data mars">{{ meta.respondent.address.trading_as }}</dd>
+                <p class="mars">If the company details or structure have changed contact us on {{ helpers.telephone_number() }}
+                    or email {{ helpers.email_address('details-changed-title', subject="Change of details reference " + meta.respondent.respondent_id) }}.
+                </p>
+
+            </div>
+        </div>
+    {% endblock business_details %}
+
+
+    {% block intro_content %}
+        <div class="grid">
+            <div class="grid__col col-7@m">
+                
+            {% if content.block.primary_content %}
+                {% for intro in content.block.primary_content %}
+                    {% include 'partials/introduction/basic.html' %}
+                {% endfor %}
             {% endif %}
-            <dt id="details-changed-title" class="dl__title mercury">Change in details</dt>
-            <dd class="dl__data mars">{{helpers.telephone_number('details-changed-title')}} or email {{helpers.email_address('details-changed-title', subject="Change of details reference " + meta.respondent.respondent_id)}} if there have been any changes to your business name, address or structure</dd>
-          </dl>
+
+            {%- if legal_basis == 'StatisticsOfTradeAct' -%}
+                <h2 class="neptune u-mb-xs">Your response is legally required</h2>
+                <p class="mars u-mb-m">Notice is given under section 1 of the Statistics of Trade Act 1947.</p>
+            {%- endif -%}
+
+            {% block start_survey %}
+                {% include 'partials/introduction/start-survey.html' %}
+            {% endblock start_survey %}
+
+            {% if content.block.preview_content %}
+                {% set intro = content.block.preview_content %}
+                {% include 'partials/introduction/preview.html' %}
+            {% endif %}
+
+            {% if content.block.secondary_content %}
+                {% for intro in content.block.secondary_content %}
+                    {% include 'partials/introduction/basic.html' %}
+                {% endfor %}
+            {% endif %}
+
+            </div>
         </div>
-        <div class="grid__col col-6@s">
-          <dl class="dl">
-            <dt class="dl__title mercury">PERIOD</dt>
-            <dd class="dl__data mars">
-              <span>{{ format_start_end_date(meta.survey.start_date, meta.survey.end_date)}}</span>
-            </dd>
-            <dt class="dl__title mercury">PLEASE SUBMIT BY</dt>
-            <dd class="dl__data mars">{{ meta.survey.return_by|format_date}}</dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-  {% endblock business_details %}
-    <div class="grid">
-        <div class="grid__col col-7@l">
-            {% block intro_content %}
+    {% endblock intro_content %}
 
-                {% if content.block.primary_content %}
-                    {% for intro in content.block.primary_content %}
-                        {% include 'partials/introduction/basic.html' %}
-                    {% endfor %}
-                {% endif %}
-
-                {% block start_survey %}
-                    {% include 'partials/introduction/start-survey.html' %}
-                {% endblock start_survey %}
-
-                {% if content.block.preview_content %}
-                    {% set intro = content.block.preview_content %}
-                    {% include 'partials/introduction/preview.html' %}
-                {% endif %}
-
-                {% if content.block.secondary_content %}
-                    {% for intro in content.block.secondary_content %}
-                        {% include 'partials/introduction/basic.html' %}
-                    {% endfor %}
-                {% endif %}
-
-            {% endblock intro_content %}
-
-        </div>
-  </div>
 {% endblock %}
