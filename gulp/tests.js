@@ -59,17 +59,14 @@ export function functionalTests(done) {
     // need to be updated
     webdriverOpts.suite = yargs.argv.suite
 
-    // core suite is currently split between old and new
-    if (webdriverOpts.suite.includes('core')) {
-      gutil.log('Running split core suite')
+    // suite is currently split between old and new
+    gutil.log('Running split suite')
 
-      return _runFunctionalTests(
-        paths.test.newWdioConf,
-        webdriverOpts,
-        () => { _runFunctionalTests(paths.test.wdioConf, webdriverOpts, done) }
-      )
-    }
-    return _runFunctionalTests(paths.test.wdioConf, webdriverOpts)
+    return _runFunctionalTests(
+      paths.test.newWdioConf,
+      webdriverOpts,
+      () => { _runFunctionalTests(paths.test.wdioConf, webdriverOpts, done) }
+    )
   } else {
     // Run *all* the tests in one go
     return _runFunctionalTests(

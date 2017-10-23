@@ -72,7 +72,7 @@ describe('Census Household', function () {
         // who-lives-here
           .click(PermanentOrFamilyHome.yes())
           .click(PermanentOrFamilyHome.submit())
-          .setValue(HouseholdComposition.firstName(0), 'John')
+          .setValue(HouseholdComposition.firstName(), 'John')
           .click(HouseholdComposition.submit())
           .click(EveryoneAtAddressConfirmation.yes())
           .click(EveryoneAtAddressConfirmation.submit())
@@ -170,7 +170,7 @@ describe('Census Household', function () {
         return browser
           .click(PermanentOrFamilyHome.yes())
           .click(PermanentOrFamilyHome.submit())
-          .setValue(HouseholdComposition.firstName(0), person)
+          .setValue(HouseholdComposition.firstName(), person)
           .click(HouseholdComposition.submit())
           .click(EveryoneAtAddressConfirmation.yes())
           .click(EveryoneAtAddressConfirmation.submit())
@@ -287,7 +287,7 @@ describe('Census Household', function () {
     });
 
     it('Given a census household survey, when a user submits the household composition page with errors, adding a new person should not duplicate those errors', function() {
-      return helpers.startCensusQuestionnaire('census_household.json', false, 'GB-WLS')
+      return helpers.startCensusQuestionnaire('census_household.json')
         .then(() => {
           return browser
             .click(PermanentOrFamilyHome.yes())

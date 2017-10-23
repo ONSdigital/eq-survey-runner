@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const landingPage = require('./pages/landing.page');
+const genericPage = require('./pages/surveys/generic.page');
 const generateToken = require('./jwt_helper');
 
 const getUri = uri => browser.options.baseUrl + uri;
@@ -82,11 +83,11 @@ function isViewSectionsVisible() {
 }
 
 function navigationLink(linkName) {
-    return 'a=' + linkName
+    return 'a=' + linkName;
 }
 
 function isSectionComplete(linkName) {
-    return isSectionCompleteBind.bind(null, linkName)
+    return isSectionCompleteBind.bind(null, linkName);
 }
 
 function isSectionCompleteBind(linkName) {
@@ -95,11 +96,22 @@ function isSectionCompleteBind(linkName) {
     .getAttribute('data-qa')
     .then(function (data_qa_string) {
       if (data_qa_string === 'complete') {
-        return true
+        return true;
       }
-      return false
+      return false;
     });
 }
+
+function pressSubmit(numberOfTimes) {
+    let chain = browser;
+    for (var i = 0; i < numberOfTimes; i++) {
+      chain = chain.then(() => {
+        return browser
+          .click(genericPage.submit());
+      });
+    }
+    return chain;
+ }
 
 module.exports = {
   landingPage,
@@ -117,5 +129,6 @@ module.exports = {
   closeMobileNavigation,
   isViewSectionsVisible,
   navigationLink,
-  isSectionComplete
+  isSectionComplete,
+  pressSubmit
 }
