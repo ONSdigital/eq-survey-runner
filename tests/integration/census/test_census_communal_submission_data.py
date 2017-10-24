@@ -135,7 +135,7 @@ class TestCensusCommunalSubmissionData(IntegrationTestCase):
         # We are in the questionnaire
         self.assertInPage('Establishment')
         self.assertInPage('How would you describe your establishment?')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
 
         # When I submit an answer
         self.post(post_data={'establishment-type-answer': ['Hotel']})

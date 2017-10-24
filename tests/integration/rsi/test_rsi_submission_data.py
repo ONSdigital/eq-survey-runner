@@ -16,7 +16,7 @@ class TestRsiSubmissionData(IntegrationTestCase):
         # We are in the Questionnaire
         self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
         self.assertInPage('What are the dates of the period that you will be reporting for?')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
 
         # When I submit an answer
         form_data = {
@@ -92,7 +92,7 @@ class TestRsiSubmissionData(IntegrationTestCase):
         # We are in the Questionnaire
         self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
         self.assertInPage('What are the dates of the period that you will be reporting for?')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
 
         # When I submit an answer
         form_data = {
