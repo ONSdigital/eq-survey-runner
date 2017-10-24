@@ -1,9 +1,0 @@
-{
-    "application": "surveyrunner",
-    "identifier": "mwss",
-    "name": "MWSS 2017",
-    "author": "alexbransbyshaples",
-    "description": "Theme for the MWSS survey",
-    "license": "MIT/X11",
-    "version": "1.0.0"
-}

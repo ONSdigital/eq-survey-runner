@@ -5,6 +5,7 @@ from flask import Blueprint, g, redirect, request, url_for, current_app
 from flask_login import current_user, login_required
 from flask_themes2 import render_theme_template
 from sdc.crypto.encrypter import encrypt
+from flask_wtf import FlaskForm
 
 from structlog import get_logger
 
@@ -84,12 +85,12 @@ def get_block(routing_path, eq_id, form_type, collection_id, group_id, group_ins
     if not _is_valid_group(group_id) or not _is_valid_location(current_location):
         return _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type)
 
-    block = _render_schema(routing_path, current_location)
+    block = _get_block_json(current_location)
 
     if _is_skipping_to_the_end(routing_path, block, current_location):
         return _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type)
 
-    return _render_block(routing_path, block, current_location)
+    return _render_page(routing_path, block, current_location)
 
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=['POST'])
@@ -101,7 +102,7 @@ def post_block(routing_path, eq_id, form_type, collection_id, group_id, group_in
     if not _is_valid_group(group_id) or not _is_valid_location(current_location):
         return _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type)
 
-    block = _render_schema(routing_path, current_location)
+    block = _get_block_json(current_location)
     form = _generate_wtf_form(request.form, block, current_location)
 
     if 'action[save_sign_out]' in request.form:
@@ -116,7 +117,7 @@ def post_block(routing_path, eq_id, form_type, collection_id, group_id, group_in
 
         return redirect(_next_location_url(next_location))
 
-    return _render_block(routing_path, block, current_location, post_form=form)
+    return _render_page(routing_path, block, current_location, post_form=form)
 
 
 @questionnaire_blueprint.route('<group_id>/0/household-composition', methods=['POST'])
@@ -128,24 +129,27 @@ def post_household_composition(routing_path, **kwargs):
     if _household_answers_changed(answer_store):
         _remove_repeating_on_household_answers(answer_store, group_id)
 
-    error_messages = SchemaHelper.get_messages(g.schema_json)
-
     disable_mandatory = any(x in request.form for x in ['action[add_answer]', 'action[remove_answer]', 'action[save_sign_out]'])
 
     current_location = Location(group_id, 0, 'household-composition')
-    block = _render_schema(routing_path, current_location)
-    form, _ = post_form_for_location(block, current_location, answer_store, request.form, error_messages, disable_mandatory=disable_mandatory)
+
+    error_messages = SchemaHelper.get_messages(g.schema_json)
+
+    block = _get_block_json(current_location)
+
+    form, _ = post_form_for_location(block, current_location, answer_store, request.form,
+                                     error_messages, disable_mandatory=disable_mandatory)
 
     if 'action[add_answer]' in request.form:
         form.household.append_entry()
 
-        return _render_block(routing_path, block, current_location, post_form=form)
+        return _render_page(routing_path, block, current_location, post_form=form)
 
     if 'action[remove_answer]' in request.form:
         index_to_remove = int(request.form.get('action[remove_answer]'))
         form.remove_person(index_to_remove)
 
-        return _render_block(routing_path, block, current_location, post_form=form)
+        return _render_page(routing_path, block, current_location, post_form=form)
 
     if 'action[save_sign_out]' in request.form:
         response = _save_sign_out(routing_path, current_location, form)
@@ -162,7 +166,7 @@ def post_household_composition(routing_path, **kwargs):
 
         return redirect(next_location.url(metadata))
 
-    return _render_block(routing_path, block, current_location, form)
+    return _render_page(routing_path, block, current_location, post_form=form)
 
 
 @questionnaire_blueprint.route('thank-you', methods=['GET'])
@@ -198,12 +202,9 @@ def post_everyone_at_address_confirmation(eq_id, form_type, collection_id, group
     return post_block(eq_id, form_type, collection_id, group_id, group_instance, 'permanent-or-family-home')  # pylint: disable=no-value-for-parameter
 
 
-def _render_block(full_routing_path, block, current_location, post_form=None):
+def _render_page(full_routing_path, block, current_location, post_form=None):
 
-    if post_form is None:
-        context = _get_context(full_routing_path, block, current_location, get_answer_store(current_user))
-    else:
-        context = {'form': post_form, 'block': block}
+    context = _get_context(full_routing_path, block, current_location, post_form)
 
     return _build_template(
         current_location,
@@ -314,7 +315,9 @@ def is_survey_completed(full_routing_path):
 
 def _save_sign_out(routing_path, this_location, form):
     questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-    block = _render_schema(routing_path, this_location)
+
+    block = _get_block_json(this_location)
+
     if form.validate():
         _update_questionnaire_store(this_location, form)
 
@@ -326,7 +329,7 @@ def _save_sign_out(routing_path, this_location, form):
 
         return redirect(url_for('session.get_sign_out'))
 
-    return _render_block(routing_path, block, this_location, post_form=form)
+    return _render_page(routing_path, block, this_location, post_form=form)
 
 
 def _household_answers_changed(answer_store):
@@ -497,40 +500,51 @@ def _redirect_to_location(collection_id, eq_id, form_type, location):
                             group_instance=location.group_instance, block_id=location.block_id))
 
 
-def _get_context(full_routing_path, block, current_location, answer_store):
+def _get_context(full_routing_path, block, current_location, form):
+    metadata = get_metadata(current_user)
+    answer_store = get_answer_store(current_user)
+    schema_context = _get_schema_context(full_routing_path, current_location, metadata, answer_store)
 
-    error_messages = SchemaHelper.get_messages(g.schema_json)
-    form, template_params = get_form_for_location(block, current_location, answer_store, error_messages)
-
-    content = {'form': form, 'block': block}
-    if template_params:
-        content.update(template_params)
+    variables = g.schema_json.get('variables')
+    if variables:
+        variables = renderer.render(variables, **schema_context)
 
     if block['type'] == 'Summary':
-        metadata = get_metadata(current_user)
-        aliases = SchemaHelper.get_aliases(g.schema_json)
-        schema_context = build_schema_context(metadata=metadata,
-                                              aliases=aliases,
-                                              answer_store=answer_store,
-                                              routing_path=full_routing_path)
         rendered_schema_json = renderer.render(g.schema_json, **schema_context)
-        content.update({'summary': build_summary_rendering_context(rendered_schema_json, answer_store, metadata)})
+        form = form or FlaskForm()
+        summary_rendered_context = build_summary_rendering_context(rendered_schema_json, answer_store, metadata)
+        context = {'form': form, 'summary': summary_rendered_context, 'variables': variables}
+        return context
 
-    return content
+    block = renderer.render(block, **schema_context)
+    context = {'block': block, 'variables': variables}
+
+    if not form:
+        error_messages = SchemaHelper.get_messages(g.schema_json)
+        form, template_params = get_form_for_location(block, current_location, answer_store, error_messages)
+        if template_params:
+            context.update(template_params)
+
+    context['form'] = form
+
+    return context
 
 
-def _render_schema(full_routing_path, current_location):
+def _get_block_json(current_location):
     metadata = get_metadata(current_user)
     answer_store = get_answer_store(current_user)
     block_json = SchemaHelper.get_block_for_location(g.schema_json, current_location)
-    block_json = _evaluate_skip_conditions(block_json, current_location, answer_store, metadata)
+    return _evaluate_skip_conditions(block_json, current_location, answer_store, metadata)
+
+
+def _get_schema_context(full_routing_path, current_location, metadata, answer_store):
     aliases = SchemaHelper.get_aliases(g.schema_json)
-    block_context = build_schema_context(metadata=metadata,
-                                         aliases=aliases,
-                                         answer_store=answer_store,
-                                         group_instance=current_location.group_instance,
-                                         routing_path=full_routing_path)
-    return renderer.render(block_json, **block_context)
+
+    return build_schema_context(metadata=metadata,
+                                aliases=aliases,
+                                answer_store=answer_store,
+                                group_instance=current_location.group_instance,
+                                routing_path=full_routing_path)
 
 
 def _get_front_end_navigation(answer_store, current_location, metadata, routing_path=None):

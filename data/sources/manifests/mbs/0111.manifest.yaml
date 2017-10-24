@@ -19,3 +19,5 @@ schema_version: 0.0.1
 survey_id: '023'
 theme: default
 title: Monthly Business Survey
+variables:
+  period: "{{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}"

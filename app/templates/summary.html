@@ -4,13 +4,15 @@
 
 {% block page_title -%}{{_("Summary")}} - {{survey_title}}{% endblock -%}
 
-{% set form = content.form %}
 {% set not_answered = 'No answer provided' %}
 
 {% block sidebar %}
   {% if navigation %}
     {% include theme('partials/navigation.html') %}
   {% endif %}
+{% endblock %}
+
+{% block form_content %}
 {% endblock %}
 
 {% block main -%}

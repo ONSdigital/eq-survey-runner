@@ -295,6 +295,14 @@
         "StatisticsOfTradeAct"
       ]
     },
+    "variables": {
+      "type": "object",
+      "properties": {
+        "period": {
+          "type": "string"
+        }
+      }
+    },
     "navigation": {
       "type": "object",
       "description": "Used in conjunction with routing to take user through a survey. ",

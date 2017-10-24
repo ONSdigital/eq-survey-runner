@@ -28,10 +28,8 @@ def _build_respondent_meta(metadata):
     respondent_meta = {
         'tx_id': convert_tx_id(metadata['tx_id']),
         'respondent_id': json_and_html_safe(respondent_id),
-        'address': {
-            'name': json_and_html_safe(name),
-            'trading_as': json_and_html_safe(trading_as),
-        },
+        'name': json_and_html_safe(name),
+        'trading_as': json_and_html_safe(trading_as),
     }
     return respondent_meta
 

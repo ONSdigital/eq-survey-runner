@@ -73,7 +73,7 @@ def with_legal_basis(func):
 
 
 def render_template(template, **kwargs):
-    theme = g.schema_json.get('theme', None)
+    theme = g.schema_json.get('theme')
     template = '{}.html'.format(template).lower()
 
     return render_theme_template(

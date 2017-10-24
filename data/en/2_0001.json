@@ -7,17 +7,14 @@
                 "id": "introduction",
                 "primary_content": [{
                     "id": "get-started",
-                    "title": "Get started",
                     "content": [{
-                            "description": "On average it takes 10 minutes to complete this survey once you’ve collected the information."
-                        },
-                        {
-                            "description": "Data should relate to all sites in England, Scotland and Wales. You can provide informed estimates if actual figures aren't available."
-                        },
-                        {
-                            "description": "All information you provide is strictly confidential. "
-                        }
-                    ]
+                        "list": [
+                            "On average it takes 10 minutes to complete this survey once you’ve collected the information.",
+                            "Data should relate to all sites in England, Scotland and Wales.",
+                            "You can provide informed estimates if actual figures aren't available.",
+                            "We will treat your data securely and confidentially."
+                        ]
+                    }]
                 }],
                 "secondary_content": [{
                     "id": "preview",
@@ -136,5 +133,8 @@
     "schema_version": "0.0.1",
     "survey_id": "139",
     "theme": "default",
-    "title": "Quarterly Business Survey"
+    "title": "Quarterly Business Survey",
+    "variables": {
+        "period": "{{ format_start_end_date(exercise.start_date, exercise.end_date) }}"
+    }
 }

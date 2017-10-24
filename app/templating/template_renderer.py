@@ -6,7 +6,8 @@ import re
 from jinja2 import Environment
 
 from app.jinja_filters import format_date, format_household_member_name, format_currency, format_number,\
-    get_currency_symbol, format_household_summary, format_str_as_date, format_conditional_date, format_list
+    get_currency_symbol, format_household_summary, format_str_as_date, format_conditional_date, format_list,\
+    format_start_end_date
 
 
 class TemplateRenderer:
@@ -22,6 +23,7 @@ class TemplateRenderer:
         self.environment.filters['format_currency'] = format_currency
         self.environment.filters['format_number'] = format_number
         self.environment.filters['get_currency_symbol'] = get_currency_symbol
+        self.environment.globals['format_start_end_date'] = format_start_end_date
 
     def render(self, renderable, **context):
         """
