@@ -17,7 +17,7 @@ class TestSubmissionWithErrors(IntegrationTestCase):
         # We are in the Questionnaire
         self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
         self.assertInPage('What are the dates of the sales period you are reporting for?')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
 
         form_data = {
             # Start Date

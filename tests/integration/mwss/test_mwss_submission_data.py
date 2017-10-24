@@ -142,7 +142,7 @@ class TestMwssSubmissionData(IntegrationTestCase):
         # We are in the Questionnaire
         self.assertInPage('>Monthly Wages and Salaries Survey</')
         self.assertInPage('Please indicate how frequently employees are paid:')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
 
         # When I submit an answer
         form_data = {'pay-pattern-frequency-answer': ['Weekly', 'Fortnightly',

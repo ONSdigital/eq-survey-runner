@@ -221,7 +221,7 @@ class TestUkisSubmissionData(IntegrationTestCase):
         # We are in General Information section
 
         self.assertInPage('General Information')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
         self.post(post_data={'additional-comments-answer': 'Downstream data coverage test'})
         self.post(post_data={'general-information-hours-answer': '50',
                              'how-long-minutes-answer': '23'})
@@ -232,7 +232,7 @@ class TestUkisSubmissionData(IntegrationTestCase):
         # We are in Employees and Skills section
 
         self.assertInPage('Employees and Skills')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
         self.post(post_data={'employees-2014-answer': '100'})
         self.post(post_data={'employees-2016-answer': '120'})
         self.post(post_data={'employees-qualifications-2016-science-answer': '90',
@@ -253,7 +253,7 @@ class TestUkisSubmissionData(IntegrationTestCase):
         # We are in Turnover and Exports section
 
         self.assertInPage('Turnover and Exports')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
         self.post(post_data={'turnover-2014-answer': '3500'})
         self.post(post_data={'turnover-2016-answer': '4500'})
         self.post(post_data={'exports-2016-answer': '5500'})
@@ -268,7 +268,7 @@ class TestUkisSubmissionData(IntegrationTestCase):
         # We are in Public Financial Support for Innovation section
 
         self.assertInPage('Public Financial Support for Innovation')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
         self.post(post_data={'public-financial-support-authorities-answer': 'Yes',
                              'public-financial-support-central-government-answer': 'No',
                              'public-financial-support-eu-answer': 'Yes'})
@@ -284,7 +284,7 @@ class TestUkisSubmissionData(IntegrationTestCase):
         # We are in Co-operation on Innovation section
 
         self.assertInPage('Co-operation on Innovation')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
         form_data = {'years-internal-investment-r-d-answer': ['UK Regional',
                                                               'UK National',
                                                               'European Countries',
@@ -331,7 +331,7 @@ class TestUkisSubmissionData(IntegrationTestCase):
         # We are in Information Needed for Innovation section
 
         self.assertInPage('Information Needed for Innovation')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
         self.post(post_data={'importances-information-innovation-answer': 'High'})
         self.post(post_data={'importances-information-suppliers-answer': 'Medium'})
         self.post(post_data={'importances-information-client-answer': 'Low'})
@@ -353,7 +353,7 @@ class TestUkisSubmissionData(IntegrationTestCase):
     def factors_affecting_innovation_section(self):
         # We are in Factors Affecting Innovation section
         self.assertInPage('Factors Affecting Innovation')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
         self.post(post_data={'factors-affecting-increasing-range-answer': 'High'})
         self.post(post_data={'factors-affecting-new-markets-answer': 'Medium'})
         self.post(post_data={'factors-affecting-market-share-answer': 'Low'})
@@ -376,7 +376,7 @@ class TestUkisSubmissionData(IntegrationTestCase):
         # We are in Constraints on Innovation section
 
         self.assertInPage('Constraints on Innovation')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
         self.post(post_data={'constraints-innovation-activities-abandoned-answser': 'Yes',
                              'constraints-innovation-activities-scaled-back-answser': 'No',
                              'constraints-innovation-activities-ongoing-2016-answser': 'Yes'})
@@ -404,7 +404,7 @@ class TestUkisSubmissionData(IntegrationTestCase):
         # We are in Process Innovation section
 
         self.assertInPage('Process Innovation')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
         self.post(post_data={'process-improved-answer': 'Yes'})
         form_data = {'developed-processes-answer': ['This business or enterprise group',
                                                     'This business with other businesses or organisations',
@@ -423,7 +423,7 @@ class TestUkisSubmissionData(IntegrationTestCase):
         # We are in Goods and Services Innovation section
 
         self.assertInPage('Goods and Services Innovation')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
         self.post(post_data={'introducing-significantly-improved-goods-answer': 'Yes'})
         form_data = {'gentity-developed-these-goods-answer': ['This business or enterprise group',
                                                               'This business with other businesses or organisations',
@@ -452,7 +452,7 @@ class TestUkisSubmissionData(IntegrationTestCase):
         # We are in Innovation Investment section
 
         self.assertInPage('Innovation Investment')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
         self.post(post_data={'internal-investment-r-d-answer': 'Yes'})
         form_data = {'years-internal-investment-r-d-answer': ['2014',
                                                               '2015',
@@ -492,7 +492,7 @@ class TestUkisSubmissionData(IntegrationTestCase):
         # We are in Business Strategy and Practices section
 
         self.assertInPage('Business Strategy and Practices')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
         self.post(post_data={'business-changes-business-practices-answer': 'Yes',
                              'business-changes-organising-answer': 'No',
                              'business-changes-external-relationships-answer': 'Yes',
@@ -510,7 +510,7 @@ class TestUkisSubmissionData(IntegrationTestCase):
 
         self.assertInPage('>UK Innovation Survey</')
         self.assertInPage('General Business Information')
-        self.assertInPage('>Save and continue<')
+        self.assertInPage('>Continue<')
 
         # In General Business Information section
         form_data = {'geographic-markets-answer': ['UK regional within approximately 100 miles of this business',
