@@ -46,8 +46,8 @@ const paths = {
     input: appPath + '/js/**/*.js',
     karmaConf: 'tests/karma/karma.conf.js',
     karmaSpec: 'tests/karma/spec/**/*.js',
-    wdioConf: 'tests/new_functional/wdio.conf.js',
-    wdioSpec: 'tests/new_functional/spec',
+    wdioConf: 'tests/functional/wdio.conf.js',
+    wdioSpec: 'tests/functional/spec',
     coverage: 'tests/karma/coverage/',
     results: 'tests/karma/results/',
     errorShots: 'tests/errorShots'

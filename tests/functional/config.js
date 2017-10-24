@@ -1,6 +1,7 @@
-import {paths} from '../../gulp/paths'
-import {chrome, firefox, chromeHeadless} from './capabilities'
-import {argv} from 'yargs'
+const paths = require('./paths');
+const capabilities = require('./capabilities');
+const argv = require('yargs');
+const chaiAsPromised = require('chai-as-promised');
 
 let config = {
   services: ['selenium-standalone'],
@@ -8,7 +9,6 @@ let config = {
   logLevel: 'error',
   coloredLogs: true,
   bail: 1,
-  screenshotPath: paths.test.errorShots,
   baseUrl: process.env.BASEURL,
   waitforTimeout: 2000,
   updateJob: true,
@@ -21,36 +21,28 @@ let config = {
       `${paths.test.wdioSpec}/census/*.spec.js`
     ],
     ukis: [
-      `${paths.test.wdioSpec}/ukis/*.spec.js`
+      `${paths.test.wdioSpec}/ukis/**/*.spec.js`
     ]
   },
-  sync: true,
+  sync: false,
   connectionRetryTimeout: 5000,
   connectionRetryCount: 3,
-  capabilities: [chrome],
+  capabilities: [capabilities.chrome],
   framework: 'mocha',
   reporters: ['spec'],
   mochaOpts: {
     ui: 'bdd',
-    compilers: ['js:babel-core/register'],
     timeout: 12000000
+  },
+  before: function(capabilities, specs) {
+    // Allow chaining of browser promises with chai assertions
+    chaiAsPromised.transferPromiseness = browser.transferPromiseness;
   },
   afterTest: function(test) {
     // Dump page source on failure to help with debugging tests
-    if (!test.passed) {
-      console.log('\'' + test.title + '\' failed. Dumping page source for url \'%s\'', browser.url().value)
-      console.log(browser.getSource())
-    }
-  }
-}
 
-const sauceLabsConfig = {
-  services: ['sauce'],
-  sauceConnect: true,
-  user: process.env.SAUCE_USERNAME,
-  key: process.env.SAUCE_ACCESS_KEY,
-  capabilities: [firefox]
-}
+  }
+};
 
 const browserStackConfig = {
   services: ['browserstack'],
@@ -59,24 +51,44 @@ const browserStackConfig = {
   browserstackLocal: true
 }
 
-const chromeHeadlessConfig = {
-  capabilities: [chromeHeadless]
-}
+const phantomjsConfig = Object.assign(
+  {},
+  config,
+  {
+    services: ['phantomjs'],
+    waitforTimeout: 3000,
+    capabilities: [capabilities.phantomjs],
+    maxInstances: 4,
+    phantomjsOpts: {
+      ignoreSslErrors: true
+    },
+    before: function() {
+      chaiAsPromised.transferPromiseness = browser.transferPromiseness;
+      browser.setViewportSize({
+        width: 1280,
+        height: 1024
+      });
+    }
+  }
+);
+
+const chromeHeadlessConfig = Object.assign(
+  {},
+  config,
+  {
+    capabilities: [capabilities.chromeHeadless]
+  }
+);
 
 if (process.env.TRAVIS === 'true') {
-  config = {
-    ...config,
-    ...chromeHeadlessConfig,
-    logLevel: 'silent'
-  }
+  config = chromeHeadlessConfig;
+
 } else {
-  if (argv.sauce) {
-    config = Object.assign(config, sauceLabsConfig)
-  } else if (argv.browserstack) {
-    config = Object.assign(config, browserStackConfig)
+  if (argv.browserstack) {
+    config = Object.assign(config, browserStackConfig);
   } else if (argv.headless) {
-    config = Object.assign(config, chromeHeadlessConfig)
+    config = Object.assign(config, phantomjsConfig);
   }
 }
 
-export default config
+module.exports = config;

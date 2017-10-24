@@ -5,82 +5,88 @@ const defaultCapabilities = {
   'public': true,
   'maxInstances': 1,
   'browserstack.local': true
-}
+};
 
-export const chrome = {
-  browserName: 'chrome',
-  browser_version: '48.0',
-  os: 'OS X',
-  os_version: 'Yosemite',
-  ...defaultCapabilities
-}
+const chrome = Object.assign({
+  browserName: 'chrome'
+}, defaultCapabilities);
 
-export const chromeHeadless = {
-  browserName: 'chrome',
-  browser_version: '48.0',
-  os: 'OS X',
-  os_version: 'Yosemite',
-  chromeOptions: {
-    args: ['--headless', '--window-size=1024,1158', '--no-sandbox']
+const chromeNoJS = Object.assign(
+  {
+    name: 'Chrome (No JavaScript)',
+    chromeOptions: {
+      prefs: {'profile.managed_default_content_settings.javascript': 2}
+    }
   },
-  ...defaultCapabilities
-}
+  chrome
+);
 
-export const chromeNoJS = {
-  ...chrome,
-  name: 'Chrome (No JavaScript)',
-  chromeOptions: {
-    prefs: {'profile.managed_default_content_settings.javascript': 2}
+const chromeHeadless = Object.assign(
+  {},
+  chrome,
+  {
+    name: 'Chrome Headless',
+    chromeOptions: {
+      args: ['--headless', '--window-size=1024,1158', '--no-sandbox']
+    }
   }
-}
+);
 
-export const phantomjs = {
+const phantomjs = {
   name: 'PhantomJS',
   browserName: 'phantomjs'
-}
+};
 
-export const firefox = {
-  browserName: 'firefox',
-  version: '43.0',
-  os: 'OS X',
-  ...defaultCapabilities
-}
+const firefox = Object.assign(
+  {
+    browserName: 'firefox',
+    version: '43.0',
+    platform: 'OS X 10.11'
+  }, defaultCapabilities);
 
-export const edge = {
-  browserName: 'microsoftedge',
-  os: 'Windows',
-  os_version: '10',
-  ...defaultCapabilities
-}
+const edge = Object.assign(
+  {
+    browserName: 'microsoftedge',
+    platform: 'Windows 10'
+  }, defaultCapabilities);
 
-export const ie11 = {
-  browserName: 'internet explorer',
-  version: '11.0',
-  os: 'Windows',
-  os_version: '7',
-  ...defaultCapabilities
-}
+const ie11 = Object.assign(
+  {
+    browserName: 'internet explorer',
+    version: '11.0',
+    platform: 'Windows 7'
+  }, defaultCapabilities);
 
-export const ie10 = {
-  browserName: 'internet explorer',
-  version: '10.0',
-  os: 'Windows',
-  os_version: '7',
-  ...defaultCapabilities
-}
+const ie10 = Object.assign(
+  {
+    browserName: 'internet explorer',
+    version: '10.0',
+    platform: 'Windows 7'
+  }, defaultCapabilities);
 
-export const ie9 = {
-  browserName: 'internet explorer',
-  version: '9.0',
-  os: 'Windows',
-  os_version: '7',
-  ...defaultCapabilities
-}
+const ie9 = Object.assign(
+  {
+    browserName: 'internet explorer',
+    version: '9.0',
+    platform: 'Windows 7'
+  }, defaultCapabilities);
 
-export const ie8 = {
-  browserName: 'internet explorer',
-  version: '8.0',
-  os: 'Windows',
-  os_version: 'XP',
-  ...defaultCapabilities
-}
+const ie8 = Object.assign(
+  {
+    browserName: 'internet explorer',
+    version: '8.0',
+    platform: 'Windows XP'
+  }, defaultCapabilities);
+
+module.exports = {
+  chrome,
+  chromeNoJS,
+  chromeHeadless,
+  phantomjs,
+  firefox,
+  edge,
+  ie11,
+  ie10,
+  ie9,
+  ie8
+};

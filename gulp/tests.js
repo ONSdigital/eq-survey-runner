@@ -38,43 +38,16 @@ export function unitTests(done, watch) {
 export function functionalTests(done) {
   let webdriverOpts = {}
 
-  // Execute a single spec
   if (yargs.argv.spec) {
-    try {
-      let path = `${paths.test.newWdioSpec}/${yargs.argv.spec}.spec.js`
-      fs.accessSync(path)
-      gutil.log(`Found spec in ${paths.test.newWdioSpec}`)
-      webdriverOpts.spec = path
-
-      return _runFunctionalTests(paths.test.newWdioConf, webdriverOpts, done)
-    } catch (e) {
-      gutil.log(`Will try to load spec from ${paths.test.wdioSpec}`)
-      webdriverOpts.spec = `${paths.test.wdioSpec}/${yargs.argv.spec}.spec.js`
-      return _runFunctionalTests(paths.test.wdioConf, webdriverOpts, done)
-    }
+    let path = `${paths.test.wdioSpec}/${yargs.argv.spec}.spec.js`
+    fs.accessSync(path)
+    webdriverOpts.spec = path
   } else if (yargs.argv.suite) {
     // Run a suite
-
-    // As suites are moved across to use the new page generator this logic will
-    // need to be updated
     webdriverOpts.suite = yargs.argv.suite
-
-    // suite is currently split between old and new
-    gutil.log('Running split suite')
-
-    return _runFunctionalTests(
-      paths.test.newWdioConf,
-      webdriverOpts,
-      () => { _runFunctionalTests(paths.test.wdioConf, webdriverOpts, done) }
-    )
-  } else {
-    // Run *all* the tests in one go
-    return _runFunctionalTests(
-      paths.test.wdioConf,
-      {},
-      () => { _runFunctionalTests(paths.test.newWdioConf, {}, done) }
-    )
   }
+
+  return _runFunctionalTests(paths.test.wdioConf, webdriverOpts, done)
 }
 
 function _runFunctionalTests(conf, options, finish) {

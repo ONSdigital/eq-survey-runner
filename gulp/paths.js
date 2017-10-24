@@ -47,9 +47,7 @@ export const paths = {
     karmaConf: 'tests/karma/karma.conf.js',
     karmaSpec: 'tests/karma/spec/**/*.js',
     wdioConf: 'tests/functional/wdio.conf.js',
-    newWdioConf: 'tests/new_functional/wdio.conf.js',
     wdioSpec: 'tests/functional/spec',
-    newWdioSpec: 'tests/new_functional/spec',
     coverage: 'tests/karma/coverage/',
     results: 'tests/karma/results/',
     errorShots: 'tests/errorShots'
