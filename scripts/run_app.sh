@@ -1,11 +1,5 @@
 #!/bin/bash
 
-if [ -n "$VIRTUAL_ENV" ]; then
-  echo "Already in virtual environment $VIRTUAL_ENV"
-else
-  echo "You need to be in a virtual environment please!"
-fi
-
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 
