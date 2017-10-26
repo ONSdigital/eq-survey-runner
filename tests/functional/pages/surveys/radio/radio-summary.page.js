@@ -10,10 +10,13 @@ class RadioSummaryPage extends QuestionPage {
     return '#other-answer-mandatory-answer';
   }
 
-  answer() {
+  answer_mandatory() {
     return '#radio-mandatory-answer-answer';
   }
 
+  answer_optional() {
+    return '#radio-non-mandatory-answer-answer';
+  }
 }
 
 module.exports = new RadioSummaryPage();
