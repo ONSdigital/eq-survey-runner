@@ -7,7 +7,7 @@ describe('Radio button with an option', function() {
 
 var radio_schema = 'test_radio.json';
 
-it('Given an MANDATORY option is available, when the user clicks the MANDATORY option then they should be taken to the next page', function() {
+it('Given an mandatory option is available, when the user clicks the mandatory option then they should be taken to the next page', function() {
     return helpers.openQuestionnaire(radio_schema).then(() => {
       return browser
         // Nothing should be selected by default
@@ -17,24 +17,23 @@ it('Given an MANDATORY option is available, when the user clicks the MANDATORY o
         .isSelected(RadioMandatoryPage.sausage()).should.eventually.be.false
         .isSelected(RadioMandatoryPage.other()).should.eventually.be.false
 
-        // choose Bacon option
+        // Choose Bacon option
         .click(RadioMandatoryPage.bacon())
         .isSelected(RadioMandatoryPage.bacon()).should.eventually.be.true
 
-        // When I go to the summary
+        // Submit answers given on mandatory page
         .click(RadioMandatoryPage.submit())
 
-         // skipping non-mandatory page
+         // Skipping non-mandatory page
         .click(RadioNonMandatoryPage.submit())
 
-        // Then my answer is shown
+        // Then my answer is shown on the summary
         .getUrl().should.eventually.contain(SummaryPage.pageName)
         .getText(SummaryPage.answer_mandatory()).should.eventually.contain('Bacon');
     });
   });
 
-
-it('Given an OPTIONAL option is available, when the user clicks a OPTIONAL value then they should be taken to the next page', function() {
+it('Given an optional option is available, when the user clicks a optional value then they should be taken to the next page', function() {
     return helpers.openQuestionnaire(radio_schema).then(() => {
       return browser
          // Nothing should be selected by default
@@ -44,11 +43,11 @@ it('Given an OPTIONAL option is available, when the user clicks a OPTIONAL value
         .isSelected(RadioMandatoryPage.sausage()).should.eventually.be.false
         .isSelected(RadioMandatoryPage.other()).should.eventually.be.false
 
-        // choose Bacon option
+        // Choose Bacon option
         .click(RadioMandatoryPage.bacon())
         .isSelected(RadioMandatoryPage.bacon()).should.eventually.be.true
 
-        // When I summit that page
+        // Submit answers given on mandatory page
         .click(RadioMandatoryPage.submit())
 
         // Nothing should be selected by default
@@ -58,20 +57,19 @@ it('Given an OPTIONAL option is available, when the user clicks a OPTIONAL value
         .isSelected(RadioNonMandatoryPage.tea()).should.eventually.be.false
         .isSelected(RadioNonMandatoryPage.other()).should.eventually.be.false
 
-        // choose Coffee option
+        // Choose Coffee option
         .click(RadioNonMandatoryPage.coffee())
         .isSelected(RadioNonMandatoryPage.coffee()).should.eventually.be.true
 
-        // When I go to the summary
+        // Submit answers given on non-mandatory page
         .click(RadioNonMandatoryPage.submit())
 
-        // Then my answer is shown
+        // Then my answers are shown on the summary page
         .getUrl().should.eventually.contain(SummaryPage.pageName)
         .getText(SummaryPage.answer_mandatory()).should.eventually.contain('Bacon')
         .getText(SummaryPage.answer_optional()).should.eventually.contain('Coffee');
     });
   });
-
 
 it('Given options are available, when values are entered these answers are displayed on the summary page', function() {
   return helpers.openQuestionnaire(radio_schema).then(() => {
@@ -79,30 +77,29 @@ it('Given options are available, when values are entered these answers are displ
      // None should not be selected by default
      .isSelected(RadioMandatoryPage.none()).should.eventually.be.false
 
-     // choose none option
+     // Choose none option
      .click(RadioMandatoryPage.none())
      .isSelected(RadioMandatoryPage.none()).should.eventually.be.true
 
-     // When I submit that page
+     // Submit answers given on mandatory page
      .click(RadioMandatoryPage.submit())
 
-     // None option should be selected by default
+     // None option should not be selected by default
      .isSelected(RadioNonMandatoryPage.coffee()).should.eventually.be.false
 
-     // choose None option
+     // Choose None option
      .click(RadioNonMandatoryPage.coffee())
      .isSelected(RadioNonMandatoryPage.coffee()).should.eventually.be.true
 
-     // When I go to the summary
+     // Submit answers given on non-mandatory page
      .click(RadioNonMandatoryPage.submit())
 
-     // Then the answers selected are displayed on the summary screen content
+     // Then the answers are shown on the summary page
      .getUrl().should.eventually.contain(SummaryPage.pageName)
-      .getText(SummaryPage.answer_mandatory()).should.eventually.contain('None')
+     .getText(SummaryPage.answer_mandatory()).should.eventually.contain('None')
      .getText(SummaryPage.answer_optional()).should.eventually.contain('Coffee');
     });
   });
-
 
 it('Given when I update my answers the content on the summary page is updated', function() {
   return helpers.openQuestionnaire(radio_schema).then(() => {
@@ -114,89 +111,125 @@ it('Given when I update my answers the content on the summary page is updated', 
       .isSelected(RadioMandatoryPage.sausage()).should.eventually.be.false
       .isSelected(RadioMandatoryPage.other()).should.eventually.be.false
 
-      // choose Eggs first
+      // Choose Eggs first
       .click(RadioMandatoryPage.eggs())
       .isSelected(RadioMandatoryPage.eggs()).should.eventually.be.true
+
+      // Submit answers given on mandatory page
       .click(RadioMandatoryPage.submit())
 
-      // skipping non-mandatory page
+      // Skipping non-mandatory page
       .click(RadioNonMandatoryPage.submit())
 
        // Then my answer is shown
       .getText(SummaryPage.answer_mandatory()).should.eventually.contain('Eggs')
 
-       // When I return to the screen
+       // When I return to the previous screen
       .click(SummaryPage.previous())
 
-      // click non mandatory
+      // Click non-mandatory option
       .click(RadioNonMandatoryPage.tea())
       .isSelected(RadioNonMandatoryPage.tea()).should.eventually.be.true
 
-      // When I go to the summary
+      // Submit answers given on non-mandatory page
       .click(RadioNonMandatoryPage.submit())
 
-      // Then the answers selected are displayed on the summary screen content
+      // Then the answers are shown on the summary page and updated to include non-mandatory answer
       .getUrl().should.eventually.contain(SummaryPage.pageName)
       .getText(SummaryPage.answer_mandatory()).should.eventually.contain('Eggs')
       .getText(SummaryPage.answer_optional()).should.eventually.contain('Tea');
     });
   });
 
-
 it('Given the "other" option is available, when I clicks the "other" option then the other input should be visible', function() {
      return helpers.openQuestionnaire(radio_schema).then(() => {
       return browser
-        .getText(RadioMandatoryPage.otherLabel()).should.eventually.contain('An answer is required.')
+        // When I click on the other option
         .click(RadioMandatoryPage.other())
+
+        // Then the text box field should be displayed when other option has been selected
         .isVisible(RadioMandatoryPage.otherText()).should.eventually.be.true;
     });
   });
 
-
 it('Given I enter a value into the other input field, when I submit the page that value should be displayed on the summary.', function() {
     return helpers.openQuestionnaire(radio_schema).then(() => {
       return browser
+        // When I click on the other option and set its value
         .click(RadioMandatoryPage.other())
         .setValue(RadioMandatoryPage.otherText(), 'Hello')
+
+        // Submit answers given on mandatory page
         .click(RadioMandatoryPage.submit())
+
+         // Skipping non-mandatory page
         .click(RadioNonMandatoryPage.submit())
+
+        // Then the answer on the summary page should contain the value from the other option text field
         .getText(SummaryPage.answer_mandatory()).should.eventually.contain('Hello');
     });
     });
 
-
 it('Given an "other" text field is optional on the non mandatory page, then this value will allow me to move onto the summary.', function() {
     return helpers.openQuestionnaire(radio_schema).then(() => {
       return browser
+        // When I click on the other option and set its value
         .click(RadioMandatoryPage.other())
         .setValue(RadioMandatoryPage.otherText(), 'Hello')
+
+        // Submit answers given on mandatory page
         .click(RadioMandatoryPage.submit())
+
+        // Select other option on non-mandatory page without entering any value
         .click(RadioNonMandatoryPage.other())
+
+         // Submit answers given on non-mandatory page
         .click(RadioNonMandatoryPage.submit())
+
+        // Then the non-mandatory answer on the summary page should be displayed
         .getText(SummaryPage.answer_mandatory()).should.eventually.contain('Hello')
         .getText(SummaryPage.answer_optional()).should.eventually.contain('No answer provided');
     });
     });
-
 
 it('Given an "other" text field is optional on the non mandatory page, then I submit this value and return to remove the "other" this will be displayed on the summary page', function() {
     return helpers.openQuestionnaire(radio_schema).then(() => {
       return browser
+        // When I click on the other option and set its value
         .click(RadioMandatoryPage.other())
         .setValue(RadioMandatoryPage.otherText(), 'Hello')
+
+        // Submit answers given on mandatory page
         .click(RadioMandatoryPage.submit())
+
+        // Click non-mandatory option
         .click(RadioNonMandatoryPage.other())
+        .setValue(RadioNonMandatoryPage.otherText(), 'World')
+
+        // Submit answers given on non-mandatory page
         .click(RadioNonMandatoryPage.submit())
+
+        // Return to previous non-mandatory page
+        .click(SummaryPage.previous())
+
+        // Remove text in other field and submit this answer
+        .click(RadioNonMandatoryPage.other())
+        .setValue(RadioNonMandatoryPage.otherText(), '')
+        .click(RadioNonMandatoryPage.submit())
+
+        // Then the answers on the summary page should be displayed
         .getText(SummaryPage.answer_mandatory()).should.eventually.contain('Hello')
         .getText(SummaryPage.answer_optional()).should.eventually.contain('No answer provided');
     });
     });
 
-
 it('Given no option is selected on the mandatory page and error is thrown ', function() {
     return helpers.openQuestionnaire(radio_schema).then(() => {
       return browser
+        // Submit no answers given on mandatory page
         .click(RadioMandatoryPage.submit())
+
+        // Error thrown is present on screen
         .isVisible(RadioMandatoryPage.error()).should.eventually.be.true;
     });
     });
