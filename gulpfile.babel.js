@@ -55,8 +55,14 @@ gulp.task('clean:test', () => {
 
 gulp.task('test:scripts', [
   'test:scripts:unit',
-  'test:scripts:functional:sauce'
+  'test:scripts:functional:sauce',
+  'tests:scripts:functional:components'
 ])
+
+gulp.task('tests:scripts:functional:components', done => {
+  process.env.BASEURL = getEnv()
+  functionalTests(done)
+})
 
 gulp.task('test:scripts:functional', done => {
   process.env.BASEURL = getEnv()
@@ -171,7 +177,7 @@ gulp.task('watch', [
 ])
 
 // Run unit tests
-gulp.task('test', ['default', 'test:scripts'])
+gulp.task('test', ['default', 'test:scripts', 'components'])
 // Run unit tests
 gulp.task('lint', ['lint:styles', 'lint:scripts', 'lint:json'])
 

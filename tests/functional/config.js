@@ -17,11 +17,11 @@ let config = {
     core: [
       `${paths.test.wdioSpec}/*.spec.js`
     ],
-    components: [
-      `${paths.test.wdioSpec}/components/*.spec.js`
-    ],
     census: [
       `${paths.test.wdioSpec}/census/*.spec.js`
+    ],
+    components: [
+      `${paths.test.wdioSpec}/components/*.spec.js`
     ],
     ukis: [
       `${paths.test.wdioSpec}/ukis/*.spec.js`
