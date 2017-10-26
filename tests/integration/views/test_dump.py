@@ -16,7 +16,7 @@ class TestDumpAnswers(IntegrationTestCase):
     def test_dump_answers_authenticated_missing_role(self):
         # Given I am an authenticated user who has launched a survey
         # but does not have the 'dumper' role in my metadata
-        self.launchSurvey('test', 'radio')
+        self.launchSurvey('test', 'radio_mandatory_with_mandatory_other')
 
         # When I attempt to dump the answer store
         self.get('/dump/answers')
@@ -30,7 +30,7 @@ class TestDumpAnswers(IntegrationTestCase):
     def test_dump_answers_authenticated_with_role_no_answers(self):
         # Given I am an authenticated user who has launched a survey
         # and does have the 'dumper' role in my metadata
-        self.launchSurvey('test', 'radio', roles=['dumper'])
+        self.launchSurvey('test', 'radio_mandatory_with_mandatory_other', roles=['dumper'])
 
         # When I haven't submitted any answers
         # And I attempt to dump the answer store
@@ -48,10 +48,10 @@ class TestDumpAnswers(IntegrationTestCase):
     def test_dump_answers_authenticated_with_role_with_answers(self):
         # Given I am an authenticated user who has launched a survey
         # and does have the 'dumper' role in my metadata
-        self.launchSurvey('test', 'radio', roles=['dumper'])
+        self.launchSurvey('test', 'radio_mandatory_with_mandatory_other', roles=['dumper'])
 
         # When I submit an answer
-        self.post(post_data={'radio-mandatory-answer': 'Bacon'})
+        self.post(post_data={'radio-mandatory-answer': 'Toast'})
 
         # And I attempt to dump the answer store
         self.get('/dump/answers')
@@ -71,7 +71,7 @@ class TestDumpAnswers(IntegrationTestCase):
                     'answer_id': 'other-answer-mandatory'
                 },
                 {
-                    'value': 'Bacon',
+                    'value': 'Toast',
                     'answer_instance': 0,
                     'block_id': 'radio-mandatory',
                     'group_instance': 0,
@@ -102,7 +102,7 @@ class TestDumpSubmission(IntegrationTestCase):
     def test_dump_submission_authenticated_missing_role(self):
         # Given I am an authenticated user who has launched a survey
         # but does not have the 'dumper' role in my metadata
-        self.launchSurvey('test', 'radio')
+        self.launchSurvey('test', 'radio_mandatory_with_mandatory_other')
 
         # When I attempt to dump the submission payload
         self.get('/dump/submission')
@@ -116,7 +116,7 @@ class TestDumpSubmission(IntegrationTestCase):
     def test_dump_submission_authenticated_with_role_no_answers(self):
         # Given I am an authenticated user who has launched a survey
         # and does have the 'dumper' role in my metadata
-        self.launchSurvey('test', 'radio', roles=['dumper'])
+        self.launchSurvey('test', 'radio_mandatory_with_mandatory_other', roles=['dumper'])
 
         # When I haven't submitted any answers
         # And I attempt to dump the submission payload
@@ -130,7 +130,7 @@ class TestDumpSubmission(IntegrationTestCase):
         # tx_id and submitted_at are dynamic; so copy them over
         expected = {
             'submission': {
-                'version': '0.0.1',
+                'version': '0.0.2',
                 'survey_id': '0',
                 'flushed': False,
                 'origin': 'uk.gov.ons.edc.eq',
@@ -140,9 +140,9 @@ class TestDumpSubmission(IntegrationTestCase):
                 'collection': {
                     'period': '201604',
                     'exercise_sid': '789',
-                    'instrument_id': 'radio'
+                    'instrument_id': 'radio_mandatory_with_mandatory_other'
                 },
-                'data': {},
+                'data': [],
                 'metadata': {
                     'ref_period_end_date': '2016-04-30',
                     'ref_period_start_date': '2016-04-01',
@@ -159,10 +159,10 @@ class TestDumpSubmission(IntegrationTestCase):
     def test_dump_submission_authenticated_with_role_with_answers(self):
         # Given I am an authenticated user who has launched a survey
         # and does have the 'dumper' role in my metadata
-        self.launchSurvey('test', 'radio', roles=['dumper'])
+        self.launchSurvey('test', 'radio_mandatory', roles=['dumper'])
 
         # When I submit an answer
-        self.post(post_data={'radio-mandatory-answer': 'Bacon'})
+        self.post(post_data={'radio-mandatory-answer': 'Coffee'})
 
         # And I attempt to dump the submission payload
         self.get('/dump/submission')
@@ -176,7 +176,7 @@ class TestDumpSubmission(IntegrationTestCase):
         # tx_id and submitted_at are dynamic; so copy them over
         expected = {
             'submission': {
-                'version': '0.0.1',
+                'version': '0.0.2',
                 'survey_id': '0',
                 'flushed': False,
                 'origin': 'uk.gov.ons.edc.eq',
@@ -186,11 +186,18 @@ class TestDumpSubmission(IntegrationTestCase):
                 'collection': {
                     'period': '201604',
                     'exercise_sid': '789',
-                    'instrument_id': 'radio'
+                    'instrument_id': 'radio_mandatory'
                 },
-                'data': {
-                    '20': 'Bacon'
-                },
+                'data': [
+                    {
+                        'answer_id': 'radio-mandatory-answer',
+                        'answer_instance': 0,
+                        'block_id': 'radio-mandatory',
+                        'group_id': 'radio',
+                        'group_instance': 0,
+                        'value': 'Coffee'
+                    },
+                ],
                 'metadata': {
                     'ref_period_end_date': '2016-04-30',
                     'ref_period_start_date': '2016-04-01',
@@ -199,7 +206,6 @@ class TestDumpSubmission(IntegrationTestCase):
                 }
             }
         }
-
         # Enable full dictionary diffs on test failure
         self.maxDiff = None
         self.assertDictEqual(actual, expected)

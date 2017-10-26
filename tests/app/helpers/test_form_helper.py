@@ -352,7 +352,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_for_radio_other_not_selected(self):
         with self.test_request_context():
-            survey = load_schema_file('test_radio.json')
+            survey = load_schema_file('test_radio_mandatory_with_mandatory_other.json')
 
             block_json = SchemaHelper.get_block(survey, 'radio-mandatory')
             location = Location('radio', 0, 'radio-mandatory')
@@ -387,7 +387,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_for_radio_other_selected(self):
         with self.test_request_context():
-            survey = load_schema_file('test_radio.json')
+            survey = load_schema_file('test_radio_mandatory_with_mandatory_other.json')
 
             block_json = SchemaHelper.get_block(survey, 'radio-mandatory')
             location = Location('radio', 0, 'radio-mandatory')

@@ -29,9 +29,7 @@ const CountryOfBirth = require('../pages/surveys/census/household/country-of-bir
 const Carer = require('../pages/surveys/census/household/carer.page');
 const NationalIdentity = require('../pages/surveys/census/household/national-identity.page');
 const EthnicGroup = require('../pages/surveys/census/household/ethnic-group.page');
-const WhiteEthnicGroup = require('../pages/surveys/census/household/white-ethnic-group.page');
 const AsianEthnicGroup = require('../pages/surveys/census/household/asian-ethnic-group.page');
-const BlackEthnicGroup = require('../pages/surveys/census/household/black-ethnic-group.page');
 const UnderstandWelsh = require('../pages/surveys/census/household/understand-welsh.page');
 const Language = require('../pages/surveys/census/household/language.page');
 const Religion = require('../pages/surveys/census/household/religion.page');
@@ -64,7 +62,6 @@ const VisitorCompleted = require('../pages/surveys/census/household/visitor-comp
 const VisitorsCompleted = require('../pages/surveys/census/household/visitors-completed.page');
 const Confirmation = require('../pages/confirmation.page');
 const ThankYou = require('../pages/thank-you.page');
-
 
 describe('Census Household', function () {
 

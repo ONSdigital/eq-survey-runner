@@ -1,0 +1,42 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "0",
+    "title": "Radio Mandatory",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "groups": [{
+        "id": "radio",
+        "title": "Radio Mandatory",
+        "blocks": [{
+                "type": "Questionnaire",
+                "id": "radio-mandatory",
+                "questions": [{
+                    "type": "General",
+                    "id": "radio-mandatory-question",
+                    "title": "What do you prefer for breakfast?",
+                    "answers": [{
+                        "type": "Radio",
+                        "id": "radio-mandatory-answer",
+                        "mandatory": true,
+                        "options": [{
+                                "label": "Coffee",
+                                "value": "Coffee"
+                            },
+                            {
+                                "label": "Tea",
+                                "value": "Tea"
+                            }
+                        ]
+                    }]
+
+                }]
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
+            }
+        ]
+    }]
+}
