@@ -17,113 +17,113 @@ class TestCensusCommunalSubmissionData(IntegrationTestCase):
     def get_expected_submission_data():
         expected_downstream_data = [
             {
-                "value": "Hotel",
-                "group_id": "communal-establishment",
-                "answer_id": "establishment-type-answer",
-                "block_id": "establishment-type",
-                "answer_instance": 0,
-                "group_instance": 0
+                'value': 'Hotel',
+                'group_id': 'communal-establishment',
+                'answer_id': 'establishment-type-answer',
+                'block_id': 'establishment-type',
+                'answer_instance': 0,
+                'group_instance': 0
             },
             {
-                "value": "",
-                "group_id": "communal-establishment",
-                "answer_id": "establishment-type-answer-other",
-                "block_id": "establishment-type",
-                "answer_instance": 0,
-                "group_instance": 0
+                'value': '',
+                'group_id': 'communal-establishment',
+                'answer_id': 'establishment-type-answer-other',
+                'block_id': 'establishment-type',
+                'answer_instance': 0,
+                'group_instance': 0
             },
             {
-                "value": 20,
-                "group_id": "communal-establishment",
-                "answer_id": "bed-spaces-answer",
-                "block_id": "bed-spaces",
-                "answer_instance": 0,
-                "group_instance": 0
+                'value': 20,
+                'group_id': 'communal-establishment',
+                'answer_id': 'bed-spaces-answer',
+                'block_id': 'bed-spaces',
+                'answer_instance': 0,
+                'group_instance': 0
             },
             {
-                "value": "Yes",
-                "group_id": "communal-establishment",
-                "answer_id": "usual-residents-answer",
-                "block_id": "usual-residents",
-                "answer_instance": 0,
-                "group_instance": 0
+                'value': 'Yes',
+                'group_id': 'communal-establishment',
+                'answer_id': 'usual-residents-answer',
+                'block_id': 'usual-residents',
+                'answer_instance': 0,
+                'group_instance': 0
             },
             {
-                "value": 99,
-                "group_id": "communal-establishment",
-                "answer_id": "usual-residents-number-answer",
-                "block_id": "usual-residents-number",
-                "answer_instance": 0,
-                "group_instance": 0
+                'value': 99,
+                'group_id': 'communal-establishment',
+                'answer_id': 'usual-residents-number-answer',
+                'block_id': 'usual-residents-number',
+                'answer_instance': 0,
+                'group_instance': 0
             },
             {
-                "value": [
-                    "Family Members",
-                    "Paying Guests",
-                    "Staff",
-                    "Other"
+                'value': [
+                    'Family Members',
+                    'Paying Guests',
+                    'Staff',
+                    'Other'
                 ],
-                "group_id": "communal-establishment",
-                "answer_id": "describe-residents-answer",
-                "block_id": "describe-residents",
-                "answer_instance": 0,
-                "group_instance": 0
+                'group_id': 'communal-establishment',
+                'answer_id': 'describe-residents-answer',
+                'block_id': 'describe-residents',
+                'answer_instance': 0,
+                'group_instance': 0
             },
             {
-                "value": "Sports visitors",
-                "group_id": "communal-establishment",
-                "answer_id": "describe-residents-answer-other",
-                "block_id": "describe-residents",
-                "answer_instance": 0,
-                "group_instance": 0
+                'value': 'Sports visitors',
+                'group_id': 'communal-establishment',
+                'answer_id': 'describe-residents-answer-other',
+                'block_id': 'describe-residents',
+                'answer_instance': 0,
+                'group_instance': 0
             },
             {
-                "value": "Online",
-                "group_id": "communal-establishment",
-                "answer_id": "completion-preference-individual-answer",
-                "block_id": "completion-preference-individual",
-                "answer_instance": 0,
-                "group_instance": 0
+                'value': 'Online',
+                'group_id': 'communal-establishment',
+                'answer_id': 'completion-preference-individual-answer',
+                'block_id': 'completion-preference-individual',
+                'answer_instance': 0,
+                'group_instance': 0
             },
             {
-                "value": "Online",
-                "group_id": "communal-establishment",
-                "answer_id": "completion-preference-establishment-answer",
-                "block_id": "completion-preference-establishment",
-                "answer_instance": 0,
-                "group_instance": 0
+                'value': 'Online',
+                'group_id': 'communal-establishment',
+                'answer_id': 'completion-preference-establishment-answer',
+                'block_id': 'completion-preference-establishment',
+                'answer_instance': 0,
+                'group_instance': 0
             },
             {
-                "value": "Yes",
-                "group_id": "communal-establishment",
-                "answer_id": "further-contact-answer",
-                "block_id": "further-contact",
-                "answer_instance": 0,
-                "group_instance": 0
+                'value': 'Yes',
+                'group_id': 'communal-establishment',
+                'answer_id': 'further-contact-answer',
+                'block_id': 'further-contact',
+                'answer_instance': 0,
+                'group_instance': 0
             },
             {
-                "value": "0123456789",
-                "group_id": "communal-establishment",
-                "answer_id": "contact-details-answer-phone",
-                "block_id": "contact-details",
-                "answer_instance": 0,
-                "group_instance": 0
+                'value': '0123456789',
+                'group_id': 'communal-establishment',
+                'answer_id': 'contact-details-answer-phone',
+                'block_id': 'contact-details',
+                'answer_instance': 0,
+                'group_instance': 0
             },
             {
-                "value": "danny.boje@gmail.com",
-                "group_id": "communal-establishment",
-                "answer_id": "contact-details-answer-email",
-                "block_id": "contact-details",
-                "answer_instance": 0,
-                "group_instance": 0
+                'value': 'danny.boje@gmail.com',
+                'group_id': 'communal-establishment',
+                'answer_id': 'contact-details-answer-email',
+                'block_id': 'contact-details',
+                'answer_instance': 0,
+                'group_instance': 0
             },
             {
-                "value": "Danny",
-                "group_id": "communal-establishment",
-                "answer_id": "contact-details-answer-name",
-                "block_id": "contact-details",
-                "answer_instance": 0,
-                "group_instance": 0
+                'value': 'Danny',
+                'group_id': 'communal-establishment',
+                'answer_id': 'contact-details-answer-name',
+                'block_id': 'contact-details',
+                'answer_instance': 0,
+                'group_instance': 0
             }
         ]
 
