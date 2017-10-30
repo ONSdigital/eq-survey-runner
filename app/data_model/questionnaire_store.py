@@ -35,7 +35,7 @@ class QuestionnaireStore:
     def delete(self):
         self._storage.delete()
         self.metadata = {}
-        self.answer_store.answers = []
+        self.answer_store.clear()
         self.completed_blocks = []
 
     def add_or_update(self):

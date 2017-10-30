@@ -135,12 +135,12 @@ def _get_checkbox_answer_data(answer_store, checkboxes_with_qcode, value):
             if 'child_answer_id' in option:
                 filtered = answer_store.filter(answer_id=option['child_answer_id'])
 
-                if len(filtered) > 1:
+                if filtered.count() > 1:
                     raise Exception('Multiple answers found for {}'.format(option['child_answer_id']))
 
                 # if the user has selected 'other' we need to find the value it refers to.
                 # when non-mandatory, the other box value can be empty, in this case we just use its value
-                checkbox_answer_data[option['q_code']] = filtered[0]['value'] if len(filtered) > 1 else option['value']
+                checkbox_answer_data[option['q_code']] = option['value']
             else:
                 checkbox_answer_data[option['q_code']] = user_answer
 

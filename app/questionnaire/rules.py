@@ -60,7 +60,7 @@ def evaluate_repeat(repeat_rule, answer_store):
     }
     if 'answer_id' in repeat_rule and 'type' in repeat_rule:
         repeat_index = repeat_rule['answer_id']
-        filtered = answer_store.filter(answer_id=repeat_index)
+        filtered = list(answer_store.filter(answer_id=repeat_index))
         repeat_function = repeat_functions[repeat_rule['type']]
         no_of_repeats = repeat_function(filtered)
 
@@ -114,9 +114,10 @@ def evaluate_when_rules(when_rules, metadata, answer_store, group_instance):
             answer_index = when_rule['id']
             filtered = answer_store.filter(answer_id=answer_index, group_instance=group_instance)
 
-            if len(filtered) > 1:
-                raise Exception('Multiple answers ({:d}) found evaluating when rule for answer ({})'.format(len(filtered), answer_index))
-            answer = filtered[0]['value'] if len(filtered) == 1 else None
+            if filtered.count() > 1:
+                raise Exception('Multiple answers ({:d}) found evaluating when rule for answer ({})'
+                                .format(filtered.count(), answer_index))
+            answer = filtered[0]['value'] if filtered.count() == 1 else None
             if not evaluate_rule(when_rule, answer):
                 return False
 

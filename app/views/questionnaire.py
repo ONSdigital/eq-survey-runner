@@ -339,16 +339,17 @@ def _household_answers_changed(answer_store):
     remove = [k for k in stripped_form if 'action[' in k]
     for k in remove:
         del stripped_form[k]
-    if len(household_answers) != len(stripped_form):
+    if household_answers.count() != len(stripped_form):
         return True
     for answer in request.form:
         answer_id, answer_index = extract_answer_id_and_instance(answer)
 
-        stored_answer = next(
-            (d for d in household_answers if d['answer_id'] == answer_id and
-             d['answer_instance'] == answer_index),
-            None,
-        )
+        try:
+            stored_answer = household_answers.filter(
+                answer_id=answer_id,
+                answer_instance=answer_index)[0]
+        except IndexError:
+            stored_answer = None
 
         if stored_answer and (stored_answer['value'] or '') != request.form[answer]:
             return True

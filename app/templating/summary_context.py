@@ -1,5 +1,4 @@
 from flask import url_for
-from jinja2 import escape
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.path_finder import PathFinder
 from app.templating.summary.group import Group
@@ -17,14 +16,9 @@ def build_summary_rendering_context(schema_json, answer_store, metadata):
     path = navigator.get_full_routing_path()
     groups = []
 
-    answers_map = answer_store.map()
-    for answer_id, value in answers_map.items():
-        if isinstance(value, str):
-            answers_map[answer_id] = escape(value)
-
     for group in schema_json['groups']:
         if SchemaHelper.group_has_questions(group) \
                 and group['id'] in [location.group_id for location in path]:
-            groups.extend([Group(group, answers_map, path, answer_store, metadata, url_for)])
+            groups.extend([Group(group, path, answer_store, metadata, url_for)])
 
     return groups

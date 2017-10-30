@@ -45,8 +45,12 @@ class TestSummaryContext(AppContextTestCase):
         self.assertEqual(len(context), 1)
 
     def test_summary_context_html_encodes_answers(self):
-        answer_store = AnswerStore()
-        answer_store.map = MagicMock(return_value={'choose-your-side-answer': """<>"'&"""})
+        answer_store = AnswerStore([{
+            'answer_id': 'choose-your-side-answer',
+            'block_id': '',
+            'value': """<>"'&""",
+            'answer_instance': 0,
+        }])
 
         routing_path = [Location(
             block_id='choose-your-side-block',

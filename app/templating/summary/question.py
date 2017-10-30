@@ -1,70 +1,71 @@
 import collections
 
-from app.data_model.answer_store import iterate_over_instance_ids
 from app.templating.summary.answer import Answer
 from app.questionnaire.rules import evaluate_skip_conditions
 
 
 class Question:
 
-    def __init__(self, question_schema, answers_map, answer_store, metadata):
+    def __init__(self, question_schema, answer_store, metadata):
         self.id = question_schema['id']
         self.type = question_schema['type']
         self.skip_conditions = question_schema.get('skip_conditions')
         answer_schema = question_schema['answers']
         self.title = question_schema['title'] or answer_schema[0]['label']
         self.number = question_schema.get('number', None)
-        self.answers = self._build_answers(question_schema, answer_schema, answers_map)
+        self._answer_store = answer_store
+        self._answer_schemas = iter(answer_schema)
+        self.answers = self._build_answers(question_schema)
         self.is_skipped = evaluate_skip_conditions(self.skip_conditions, metadata, answer_store)
 
-    @classmethod
-    def _build_answers(cls, question_schema, answer_schema, answers):
+    def _get_answers(self, answer_id):
+        return self._answer_store.filter(answer_id=answer_id).escaped().values()
+
+    def _get_answer(self, answer_id):
+        try:
+            return self._get_answers(answer_id)[0]
+        except IndexError:
+            return None
+
+    def _build_answers(self, question_schema):
         summary_answers = []
-        answers_iterator = iter(answer_schema)
-        for answer_schema in answers_iterator:  # pylint: disable=redefined-argument-from-local
+        for answer_schema in self._answer_schemas:
             if 'parent_answer_id' in answer_schema:
                 continue
             if question_schema['type'] == 'RepeatingAnswer':
-                for answer_id, answer_index in iterate_over_instance_ids(answers.keys()):
-                    if answer_schema['id'] == answer_id:
-                        key = answer_id if answer_index == 0 else '_'.join([answer_id, str(answer_index)])
-                        answer = cls._build_answer(question_schema, answer_schema, answers, answers_iterator, key)
-                        summary_answers.append(Answer(answer_schema, answer))
+                for answer_value in self._get_answers(answer_schema['id']):
+                    answer = self._build_answer(question_schema, answer_schema, answer_value)
+                    summary_answers.append(Answer(answer_schema, answer))
             else:
-                answer = cls._build_answer(question_schema, answer_schema, answers, answers_iterator)
-                child_answer_value = cls._find_other_value_in_answers(answer_schema, answer, answers)
+                answer_value = self._get_answer(answer_schema['id'])
+                answer = self._build_answer(question_schema, answer_schema, answer_value)
+                child_answer_value = self._find_other_value_in_answers(answer_schema, answer)
                 summary_answers.append(Answer(answer_schema, answer, child_answer_value))
-
         return summary_answers
 
-    @classmethod
-    def _find_other_value_in_answers(cls, answer_schema, answer, answers):
+    def _find_other_value_in_answers(self, answer_schema, answer):
         if answer is not None and 'options' in answer_schema:
             options = answer_schema['options']
             for option in options:
                 if option['label'] in [a[0] for a in answer] or option['label'] == answer:
-                    for child_answer in answers:
-                        if 'child_answer_id' in option and child_answer == option['child_answer_id']:
-                            return answers[child_answer]
+                    if 'child_answer_id' in option:
+                        return self._get_answer(option['child_answer_id'])
         return None
 
-    @classmethod
-    def _build_answer(cls, question_schema, answer_schema, answers, answers_iterator, answer_id=None):
-        answer = answers.get(answer_schema['id'] if answer_id is None else answer_id)
-
-        if answer is None:
+    def _build_answer(self, question_schema, answer_schema, answer_value=None):
+        if answer_value is None:
             return None
         elif question_schema['type'] == 'DateRange':
-            return cls._build_data_range_answer(answer, answers, answers_iterator)
+            return self._build_date_range_answer(answer_value)
         elif answer_schema['type'] == 'Checkbox':
-            checkbox_answers = cls._build_checkbox_answers(answer, answer_schema)
+            checkbox_answers = self._build_checkbox_answers(answer_value, answer_schema)
             return checkbox_answers or None
         elif answer_schema['type'] == 'Radio':
-            return cls._build_radio_answer(answer, answer_schema)
-        return answer
+            return self._build_radio_answer(answer_value, answer_schema)
+        return answer_value
 
-    @classmethod
-    def _build_checkbox_answers(cls, answer, answer_schema):
+    @staticmethod
+    def _build_checkbox_answers(answer, answer_schema):
         multiple_answers = []
         CheckboxSummaryAnswer = collections.namedtuple('CheckboxSummaryAnswer', 'label should_display_other')
         for option in answer_schema['options']:
@@ -77,10 +78,9 @@ class Question:
                     multiple_answers.append(CheckboxSummaryAnswer(label=option['label'], should_display_other=False))
         return multiple_answers
 
-    @staticmethod
-    def _build_data_range_answer(answer, answers, answers_iterator):
-        next_answer = next(answers_iterator)
-        to_date = answers[next_answer['id']]
+    def _build_date_range_answer(self, answer):
+        next_answer = next(self._answer_schemas)
+        to_date = self._get_answer(next_answer['id'])
         return {
             'from': answer,
             'to': to_date,

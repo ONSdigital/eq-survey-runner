@@ -3,12 +3,12 @@ from app.templating.summary.question import Question
 
 class Block:
 
-    def __init__(self, block_schema, answers_map, group_id, answer_store, metadata, url_for):
+    def __init__(self, block_schema, group_id, answer_store, metadata, url_for):
         self.id = block_schema['id']
         self.title = block_schema.get('title')
         self.number = block_schema.get('number')
         self.link = self._build_link(block_schema, group_id, metadata, url_for)
-        self.questions = self._build_questions(block_schema, answers_map, answer_store, metadata)
+        self.questions = self._build_questions(block_schema, answer_store, metadata)
 
     @staticmethod
     def _build_link(block_schema, group_id, metadata, url_for):
@@ -23,10 +23,10 @@ class Block:
         return link
 
     @staticmethod
-    def _build_questions(block_schema, answers_map, answer_store, metadata):
+    def _build_questions(block_schema, answer_store, metadata):
         questions = []
         for question_schema in block_schema.get('questions', []):
-            question = Question(question_schema, answers_map, answer_store, metadata)
+            question = Question(question_schema, answer_store, metadata)
             if not question.is_skipped:
                 questions.append(question)
         return questions
