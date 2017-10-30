@@ -1,6 +1,6 @@
 {% set block = content.block %}
 
-<block class="block" id="{{current_location.block_id}}">
+<div class="block" id="{{current_location.block_id}}">
   {% if block['number'] %}
     {% if block['title'] %}
       <p class="block__title neptune" data-qa="block-title">Section {{block['number']}}: {{block['title']}}</p>
@@ -20,4 +20,4 @@
       {% include theme('partials/question.html') %}
     {% endif %}
   {% endfor %}
-</block>
+</div>
