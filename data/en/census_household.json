@@ -781,7 +781,7 @@
                     "title": "Household and Accommodation",
                     "questions": [{
                         "id": "number-of-vehicles-question",
-                        "title": "In total, how many cars or vans are owned, or available for use, by members of this household?",
+                        "title": "How many cars or vans are owned, or available for use, by members of this household?",
                         "guidance": {
                             "content": [{
                                 "description": "Include any company cars or vans available for private use"
@@ -790,7 +790,7 @@
                         "type": "General",
                         "answers": [{
                             "id": "number-of-vehicles-answer",
-                            "label": "Number of vehicles",
+                            "label": "Number of cars or vans",
                             "mandatory": false,
                             "type": "Number"
                         }]
