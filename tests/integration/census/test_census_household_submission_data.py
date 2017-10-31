@@ -508,14 +508,6 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             },
             {
                 "group_instance": 0,
-                "answer_id": "volunteering-answer",
-                "block_id": "volunteering",
-                "group_id": "household-member",
-                "answer_instance": 0,
-                "value": "No"
-            },
-            {
-                "group_instance": 0,
                 "answer_id": "employment-type-answer",
                 "block_id": "employment-type",
                 "group_id": "household-member",
@@ -992,9 +984,6 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             {
                 'qualifications-england-answer': ['Masters Degree',
                                                   'Postgraduate Certificate / Diploma']
-            },
-            {
-                'volunteering-answer': ['No']
             },
             {
                 'employment-type-answer': ['none of the above?']

@@ -25,7 +25,7 @@ describe('Census Household', function () {
           .click(DetailsCorrect.submit())
           .click(Over16.yes())
           .then(() => {
-            return helpers.pressSubmit(21);
+            return helpers.pressSubmit(20);
           })
           .then(() => {
           return browser
@@ -50,7 +50,7 @@ describe('Census Household', function () {
           .click(DetailsCorrect.submit())
           .click(Over16.yes())
           .then(() => {
-            return helpers.pressSubmit(21);
+            return helpers.pressSubmit(20);
           })
           .then(() => {
           return browser
@@ -77,7 +77,7 @@ describe('Census Household', function () {
           .click(DetailsCorrect.submit())
           .click(Over16.yes())
           .then(() => {
-            return helpers.pressSubmit(21);
+            return helpers.pressSubmit(20);
           })
           .then(() => {
           return browser
