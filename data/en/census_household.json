@@ -37,7 +37,6 @@
             "blocks": [{
                     "type": "Questionnaire",
                     "id": "permanent-or-family-home",
-                    "title": "Who lives here?",
                     "questions": [{
                         "id": "permanent-or-family-home-question",
                         "title": "Does anyone live here as their permanent or family home?",
@@ -101,7 +100,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "else-permanent-or-family-home",
-                    "title": "Who lives here?",
                     "questions": [{
                         "id": "else-permanent-or-family-home-question",
                         "title": "Can you confirm no one lives here as their permanent or family home?",
@@ -159,7 +157,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "household-composition",
-                    "title": "Who lives here?",
                     "questions": [{
                         "id": "household-composition-question",
                         "title": "List the names of everyone  who lives here.",
@@ -234,7 +231,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "everyone-at-address-confirmation",
-                    "title": "Who lives here?",
                     "description": "<h2 class='neptune'>Your household includes:</h2> {{ [answers.first_name, answers.middle_names, answers.last_name]|format_household_summary }}",
                     "questions": [{
                         "id": "everyone-at-address-confirmation-question",
@@ -289,7 +285,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "overnight-visitors",
-                    "title": "Who lives here?",
                     "questions": [{
                         "id": "overnight-visitors-question",
                         "title": "How many visitors are staying overnight here on 9th April 2017?",
@@ -328,7 +323,6 @@
             "blocks": [{
                 "type": "Questionnaire",
                 "id": "household-relationships",
-                "title": "Who lives here?",
                 "questions": [{
                     "id": "household-relationships-question",
                     "title": "How is {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }} related to the people below?",
@@ -427,7 +421,6 @@
             "blocks": [{
                     "type": "Questionnaire",
                     "id": "type-of-accommodation",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "type-of-accommodation-question",
                         "title": "What type of accommodation is this?",
@@ -481,7 +474,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "type-of-house",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "type-of-house-question",
                         "title": "Is your house or bungalow:",
@@ -514,7 +506,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "type-of-flat",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "type-of-flat-question",
                         "title": "Is your flat, maisonette or apartment:",
@@ -542,7 +533,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "self-contained-accommodation",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "self-contained-accommodation-question",
                         "title": "Is this household’s accommodation self-contained?",
@@ -571,7 +561,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "number-of-bedrooms",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "number-of-bedrooms-question",
                         "title": "How many bedrooms are available for use only by this household?",
@@ -592,7 +581,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "central-heating",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "central-heating-question",
                         "title": "What type of central heating does this accommodation have?",
@@ -659,7 +647,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "own-or-rent",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "own-or-rent-question",
                         "title": "Does your household own or rent this accommodation?",
@@ -738,7 +725,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "landlord",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "landlord-question",
                         "title": "Who is your landlord?",
@@ -778,7 +764,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "number-of-vehicles",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "number-of-vehicles-question",
                         "title": "How many cars or vans are owned, or available for use, by members of this household?",
@@ -822,7 +807,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "details-correct",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "details-correct-question",
                         "title": "Is the name {{ [answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name }} correct, including any middle name(s)?",
@@ -862,7 +846,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "correct-name",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "correct-name-question",
                         "title": "What is your correct name?",
@@ -891,7 +874,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "over-16",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "over-16-question",
                         "title": "Are you aged 16 or over?",
@@ -931,7 +913,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "private-response",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "private-response-question",
                         "title": "Do you want to request a personal form?",
@@ -990,7 +971,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "sex",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "sex-question",
                         "title": "What is your sex?",
@@ -1014,7 +994,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "date-of-birth",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "date-of-birth-question",
                         "title": "What is your date of birth?",
@@ -1030,7 +1009,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "marital-status",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "marital-status-question",
                         "title": "On 9 April 2017, what is your legal marital or same-sex civil partnership status?",
@@ -1096,7 +1074,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "another-address",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "another-address-question",
                         "title": "Do you stay at another address for more than 30 days a year?",
@@ -1199,7 +1176,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "other-address",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "other-address-question",
                         "title": "Enter details of the other UK address where you stay more than 30 days a year",
@@ -1240,7 +1216,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "address-type",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "address-type-question",
                         "title": "What is that address?",
@@ -1293,7 +1268,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "in-education",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "in-education-question",
                         "title": "Are you a schoolchild or student in full-time education?",
@@ -1357,7 +1331,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "term-time-location",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "term-time-location-question",
                         "title": "During term time, do you live:",
@@ -1397,7 +1370,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "country-of-birth",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                             "id": "country-of-birth-england-question",
                             "title": "What is your country of birth?",
@@ -1591,7 +1563,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "arrive-in-uk",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "arrive-in-uk-question",
                         "title": "If you were not born in the United Kingdom, when did you most recently arrive to live here?",
@@ -1611,7 +1582,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "length-of-stay",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "length-of-stay-question",
                         "title": "Including the time you have already spent here, how long do you intend to stay in the United Kingdom?",
@@ -1646,7 +1616,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "carer",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "carer-question",
                         "title": "Do you look after, or give any help or support to family members, friends, neighbours or others because of either:",
@@ -1684,7 +1653,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "national-identity",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                             "id": "national-identity-england-question",
                             "title": "How would you describe your national identity?",
@@ -1828,7 +1796,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "ethnic-group",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                             "id": "ethnic-group-england-question",
                             "title": "What is your ethnic group?",
@@ -2080,7 +2047,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "white-ethnic-group",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                             "id": "white-ethnic-group-england-question",
                             "title": "Which one best describes your White ethnic group or background?",
@@ -2226,7 +2192,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "mixed-ethnic-group",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "mixed-ethnic-group-question",
                         "title": "Which one best describes your Mixed / multiple ethnic group or background?",
@@ -2310,7 +2275,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "asian-ethnic-group",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "asian-ethnic-group-question",
                         "title": "Which one best describes your Asian / Asian British ethnic group or background?",
@@ -2398,7 +2362,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "black-ethnic-group",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "black-ethnic-group-question",
                         "title": "Which one best describes your Black / African / Caribbean / Black British ethnic group or background?",
@@ -2478,7 +2441,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "other-ethnic-group",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "other-ethnic-group-question",
                         "title": "Which one best describes your Other ethnic group or background?",
@@ -2554,7 +2516,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "sexual-identity",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "sexual-identity-question",
                         "title": "Which of the following options best describes how you think of yourself?",
@@ -2639,7 +2600,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "understand-welsh",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "understand-welsh-question",
                         "title": "Can you understand, speak, read or write Welsh",
@@ -2676,7 +2636,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "language",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                             "id": "language-england-question",
                             "title": "What is your main language?",
@@ -2780,7 +2739,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "english",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "english-question",
                         "title": "How well can you speak English?",
@@ -2812,7 +2770,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "religion",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                             "id": "religion-question",
                             "title": "What is your religion?",
@@ -2938,7 +2895,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "past-usual-address",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "past-usual-address-question",
                         "title": "One year ago, what was your usual address?",
@@ -3013,7 +2969,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "last-year-address",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "last-year-address-question",
                         "title": "Enter details of your address one year ago",
@@ -3054,7 +3009,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "passports",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "passports-question",
                         "title": "What passports do you hold?",
@@ -3103,7 +3057,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "other-passports",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "other-passports-question",
                         "title": "Please specify other passports held",
@@ -3119,7 +3072,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "disability",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "disability-question",
                         "title": "Are your day-to-day activities limited because of a health problem or disability which has lasted, or is expected to last, at least 12 months?",
@@ -3168,7 +3120,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "qualifications",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                             "id": "qualifications-england-question",
                             "title": "Thinking of any studies, exams or qualifications, which of the following do you have?",
@@ -3340,7 +3291,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "employment-type",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "employment-type-question",
                         "title": "Last week were you:",
@@ -3456,7 +3406,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "jobseeker",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "jobseeker-question",
                         "title": "Were you actively looking for any kind of paid work during the last four weeks?",
@@ -3480,7 +3429,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "job-availability",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "job-availability-question",
                         "title": "If a job had been available last week, could you have started it within two weeks?",
@@ -3504,7 +3452,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "job-pending",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "job-pending-question",
                         "title": "Last week, were you waiting to start a job already obtained?",
@@ -3528,7 +3475,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "occupation",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "occupation-question",
                         "title": "Last week, were you:",
@@ -3565,7 +3511,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "ever-worked",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "ever-worked-question",
                         "title": "Have you ever worked?",
@@ -3631,7 +3576,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "main-job",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "main-job-question",
                         "title": "In your main job, are (were) you:",
@@ -3778,7 +3722,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "job-title",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "job-title-question",
                         "title": "What is (was) your full and specific job title?",
@@ -3813,7 +3756,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "job-description",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "job-description-question",
                         "title": "Briefly describe what you do (did) in your main job.",
@@ -3840,7 +3782,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "employers-business",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "employers-business-question",
                         "title": "At your workplace what is (was) the main activity of your employer or business?",
@@ -3882,7 +3823,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "main-job-type",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "main-job-type-question",
                         "title": "In your main job are (were) you:",
@@ -3927,7 +3867,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "business-name",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "business-name-question",
                         "title": "In your main job, what is (was) the name of the organisation or business you work (worked) for?",
@@ -3985,7 +3924,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "visitor-name",
-                    "title": "Visitor {{group_instance + 1}}",
                     "questions": [{
                         "id": "visitor-name-question",
                         "title": "What is the name of visitor {{group_instance + 1}}?",
@@ -4008,7 +3946,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "visitor-sex",
-                    "title": "Visitor {{group_instance + 1}}",
                     "questions": [{
                         "id": "visitor-sex-question",
                         "title": "What is this person’s sex?",
@@ -4032,7 +3969,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "visitor-date-of-birth",
-                    "title": "Visitor {{group_instance + 1}}",
                     "questions": [{
                         "id": "visitor-date-of-birth-question",
                         "title": "What is this person’s date of birth?",
@@ -4048,7 +3984,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "visitor-uk-resident",
-                    "title": "Visitor {{group_instance + 1}}",
                     "questions": [{
                         "id": "visitor-uk-resident-question",
                         "title": "Does this person usually live in the United Kingdom?",
@@ -4097,7 +4032,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "visitor-address",
-                    "title": "Visitor {{group_instance + 1}}",
                     "questions": [{
                         "id": "visitor-address-question",
                         "title": "Enter details of this person’s usual UK address",
