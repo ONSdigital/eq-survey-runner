@@ -37,7 +37,7 @@
             "blocks": [{
                     "type": "Questionnaire",
                     "id": "permanent-or-family-home",
-                    "title": "Who lives here?",
+                    "title": "",
                     "questions": [{
                         "id": "permanent-or-family-home-question",
                         "title": "Does anyone live here as their permanent or family home?",
@@ -101,7 +101,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "else-permanent-or-family-home",
-                    "title": "Who lives here?",
                     "questions": [{
                         "id": "else-permanent-or-family-home-question",
                         "title": "Can you confirm no one lives here as their permanent or family home?",
@@ -159,7 +158,7 @@
                 {
                     "type": "Questionnaire",
                     "id": "household-composition",
-                    "title": "Who lives here?",
+                    "title": "",
                     "questions": [{
                         "id": "household-composition-question",
                         "title": "List the names of everyone  who lives here.",
@@ -234,7 +233,7 @@
                 {
                     "type": "Questionnaire",
                     "id": "everyone-at-address-confirmation",
-                    "title": "Who lives here?",
+                    "title": "",
                     "description": "<h2 class='neptune'>Your household includes:</h2> {{ [answers.first_name, answers.middle_names, answers.last_name]|format_household_summary }}",
                     "questions": [{
                         "id": "everyone-at-address-confirmation-question",
@@ -289,7 +288,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "overnight-visitors",
-                    "title": "Who lives here?",
                     "questions": [{
                         "id": "overnight-visitors-question",
                         "title": "How many visitors are staying overnight here on 9th April 2017?",
@@ -328,7 +326,6 @@
             "blocks": [{
                 "type": "Questionnaire",
                 "id": "household-relationships",
-                "title": "Who lives here?",
                 "questions": [{
                     "id": "household-relationships-question",
                     "title": "How is {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }} related to the people below?",
@@ -427,7 +424,6 @@
             "blocks": [{
                     "type": "Questionnaire",
                     "id": "type-of-accommodation",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "type-of-accommodation-question",
                         "title": "What type of accommodation is this?",
@@ -481,7 +477,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "type-of-house",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "type-of-house-question",
                         "title": "Is your house or bungalow:",
@@ -514,7 +509,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "type-of-flat",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "type-of-flat-question",
                         "title": "Is your flat, maisonette or apartment:",
@@ -542,7 +536,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "self-contained-accommodation",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "self-contained-accommodation-question",
                         "title": "Is this household’s accommodation self-contained?",
@@ -571,7 +564,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "number-of-bedrooms",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "number-of-bedrooms-question",
                         "title": "How many bedrooms are available for use only by this household?",
@@ -592,7 +584,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "central-heating",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "central-heating-question",
                         "title": "What type of central heating does this accommodation have?",
@@ -659,7 +650,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "own-or-rent",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "own-or-rent-question",
                         "title": "Does your household own or rent this accommodation?",
@@ -738,7 +728,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "landlord",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "landlord-question",
                         "title": "Who is your landlord?",
@@ -778,7 +767,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "number-of-vehicles",
-                    "title": "Household and Accommodation",
                     "questions": [{
                         "id": "number-of-vehicles-question",
                         "title": "How many cars or vans are owned, or available for use, by members of this household?",
@@ -891,7 +879,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "over-16",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "over-16-question",
                         "title": "Are you aged 16 or over?",
@@ -931,7 +918,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "private-response",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "private-response-question",
                         "title": "Do you want to request a personal form?",
@@ -990,7 +976,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "sex",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "sex-question",
                         "title": "What is your sex?",
@@ -1014,7 +999,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "date-of-birth",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "date-of-birth-question",
                         "title": "What is your date of birth?",
@@ -1030,7 +1014,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "marital-status",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "marital-status-question",
                         "title": "On 9 April 2017, what is your legal marital or same-sex civil partnership status?",
@@ -1096,7 +1079,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "another-address",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "another-address-question",
                         "title": "Do you stay at another address for more than 30 days a year?",
@@ -1199,7 +1181,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "other-address",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "other-address-question",
                         "title": "Enter details of the other UK address where you stay more than 30 days a year",
@@ -1240,7 +1221,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "address-type",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "address-type-question",
                         "title": "What is that address?",
@@ -1293,7 +1273,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "in-education",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "in-education-question",
                         "title": "Are you a schoolchild or student in full-time education?",
@@ -1357,7 +1336,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "term-time-location",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "term-time-location-question",
                         "title": "During term time, do you live:",
@@ -1397,7 +1375,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "country-of-birth",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                             "id": "country-of-birth-england-question",
                             "title": "What is your country of birth?",
@@ -1591,7 +1568,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "arrive-in-uk",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "arrive-in-uk-question",
                         "title": "If you were not born in the United Kingdom, when did you most recently arrive to live here?",
@@ -1611,7 +1587,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "length-of-stay",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "length-of-stay-question",
                         "title": "Including the time you have already spent here, how long do you intend to stay in the United Kingdom?",
@@ -1646,7 +1621,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "carer",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                         "id": "carer-question",
                         "title": "Do you look after, or give any help or support to family members, friends, neighbours or others because of either:",
@@ -1684,7 +1658,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "national-identity",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                             "id": "national-identity-england-question",
                             "title": "How would you describe your national identity?",
@@ -1828,7 +1801,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "ethnic-group",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
                             "id": "ethnic-group-england-question",
                             "title": "What is your ethnic group?",
@@ -3700,6 +3672,120 @@
                 },
                 {
                     "type": "Questionnaire",
+                    "id": "hours-worked",
+                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
+                    "description": "",
+                    "questions": [{
+                        "title": "In your main job, how many hours a week do you usually work?",
+                        "id": "hours-worked-question",
+                        "type": "General",
+                        "answers": [{
+                            "id": "hours-worked-answer",
+                            "mandatory": true,
+                            "guidance": {
+                                "show_guidance": "Show further guidance",
+                                "hide_guidance": "Hide further guidance",
+                                "content": [{
+                                    "description": "Include paid and unpaid overtime"
+                                }]
+                            },
+                            "options": [{
+                                    "label": "15 or less",
+                                    "value": "15 or less"
+                                },
+                                {
+                                    "label": "16 - 30",
+                                    "value": "16 - 30"
+                                },
+                                {
+                                    "label": "31 - 48",
+                                    "value": "31 - 48"
+                                },
+                                {
+                                    "label": "49 or more",
+                                    "value": "49 or more "
+                                }
+                            ],
+                            "type": "Radio"
+                        }]
+                    }]
+                },
+                {
+                    "type": "Questionnaire",
+                    "id": "work-travel",
+                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
+                    "description": "",
+                    "questions": [{
+                        "title": "How do you usually travel to work?",
+                        "id": "work-travel-question",
+                        "type": "General",
+                        "answers": [{
+                            "id": "work-travel-answer",
+                            "mandatory": true,
+                            "guidance": {
+                                "show_guidance": "Show further guidance",
+                                "hide_guidance": "Hide further guidance",
+                                "content": [{
+                                        "description": "Select the option for the longest part, in distance, of your journey"
+                                    },
+                                    {
+                                        "description": "For example, you travel by bus and by car. Your bus journey is 5 miles, and the train journey is 8 miles. You should select train as your answer"
+                                    }
+                                ]
+                            },
+                            "options": [{
+                                    "label": "Work mainly at or from home",
+                                    "value": "Work mainly at or from home"
+                                },
+                                {
+                                    "label": "Underground, metro, light rail or tram",
+                                    "value": "Underground, metro, light rail or tram"
+                                },
+                                {
+                                    "label": "Train",
+                                    "value": "Train"
+                                },
+                                {
+                                    "label": "Bus, minibus or coach",
+                                    "value": "Bus, minibus or coach "
+                                },
+                                {
+                                    "label": "Taxi",
+                                    "value": "Taxi "
+                                },
+                                {
+                                    "label": "Motorcycle, scooter or moped",
+                                    "value": "Motorcycle, scooter or moped"
+                                },
+                                {
+                                    "label": "Driving a car or van",
+                                    "value": "Driving a car or van"
+                                },
+                                {
+                                    "label": "Passenger in a car or van",
+                                    "value": "Passenger in a car or van"
+                                },
+                                {
+                                    "label": "Bicycle",
+                                    "value": "Bicycle"
+                                },
+                                {
+                                    "label": "On foot",
+                                    "value": "On foot"
+                                },
+                                {
+                                    "label": "Other",
+                                    "value": "Other"
+                                }
+                            ],
+                            "type": "Radio"
+                        }]
+                    }]
+                },
+
+
+                {
+                    "type": "Questionnaire",
                     "id": "job-title",
                     "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{
@@ -3908,7 +3994,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "visitor-name",
-                    "title": "Visitor {{group_instance + 1}}",
                     "questions": [{
                         "id": "visitor-name-question",
                         "title": "What is the name of visitor {{group_instance + 1}}?",
@@ -3931,7 +4016,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "visitor-sex",
-                    "title": "Visitor {{group_instance + 1}}",
                     "questions": [{
                         "id": "visitor-sex-question",
                         "title": "What is this person’s sex?",
@@ -3955,7 +4039,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "visitor-date-of-birth",
-                    "title": "Visitor {{group_instance + 1}}",
                     "questions": [{
                         "id": "visitor-date-of-birth-question",
                         "title": "What is this person’s date of birth?",
@@ -3971,7 +4054,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "visitor-uk-resident",
-                    "title": "Visitor {{group_instance + 1}}",
                     "questions": [{
                         "id": "visitor-uk-resident-question",
                         "title": "Does this person usually live in the United Kingdom?",
@@ -4020,7 +4102,6 @@
                 {
                     "type": "Questionnaire",
                     "id": "visitor-address",
-                    "title": "Visitor {{group_instance + 1}}",
                     "questions": [{
                         "id": "visitor-address-question",
                         "title": "Enter details of this person’s usual UK address",
