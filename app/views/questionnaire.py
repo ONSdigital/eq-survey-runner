@@ -1,5 +1,6 @@
 import re
 from collections import defaultdict
+import simplejson as json
 
 from flask import Blueprint, g, redirect, request, url_for, current_app
 from flask_login import current_user, login_required
@@ -258,12 +259,12 @@ def submit_answers(routing_path, eq_id, form_type, collection_id):
     answer_store = get_answer_store(current_user)
 
     if is_completed:
-        message = convert_answers(
+        message = json.dumps(convert_answers(
             metadata,
             g.schema_json,
             answer_store,
             routing_path,
-        )
+        ))
 
         encrypted_message = encrypt(message, current_app.eq['key_store'], KEY_PURPOSE_SUBMISSION)
         sent = current_app.eq['submitter'].send_message(

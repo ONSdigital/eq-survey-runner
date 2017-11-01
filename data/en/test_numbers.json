@@ -20,7 +20,8 @@
                                 "label": "Minimum Value",
                                 "mandatory": true,
                                 "options": [],
-                                "type": "Number"
+                                "type": "Number",
+                                "decimal_places": 2
                             },
                             {
                                 "id": "set-maximum",
@@ -29,7 +30,8 @@
                                 "label": "Maximum Value",
                                 "mandatory": true,
                                 "options": [],
-                                "type": "Number"
+                                "type": "Number",
+                                "decimal_places": 2
                             }
                         ],
                         "description": "",
@@ -51,6 +53,7 @@
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Number",
+                                "decimal_places": 2,
                                 "max_value": {
                                     "answer_id": "set-maximum"
                                 },
@@ -94,12 +97,18 @@
                             {
                                 "id": "test-decimal",
                                 "description": "",
-                                "label": "Decimal test to 2 decimal places",
+                                "label": "Decimal test to 2 decimal places between {{answers.min_value|format_number}} to {{answers.max_value|format_number}}",
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Currency",
                                 "currency": "GBP",
-                                "decimal_places": 2
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "set-maximum"
+                                },
+                                "min_value": {
+                                    "answer_id": "set-minimum"
+                                }
                             }
                         ],
                         "description": "",

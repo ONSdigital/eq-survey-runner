@@ -36,9 +36,9 @@ class TestMwssSubmissionData(IntegrationTestCase):
                 "data": {
                     "40": "50",
                     "50": "20",
-                    "60": "10",
+                    "60": "20",
                     "70": "20",
-                    "80": "30",
+                    "80": "10",
                     "100": "50.58",
                     "110": "01/04/2016",
                     "120": "20%",
@@ -163,9 +163,9 @@ class TestMwssSubmissionData(IntegrationTestCase):
         self.post(post_data={'weekly-pay-paid-employees-answer': '50'})
         self.post(post_data={'weekly-pay-gross-pay-answer': '20'})
 
-        self.post(post_data={'weekly-pay-breakdown-holiday-answer': '10',
+        self.post(post_data={'weekly-pay-breakdown-holiday-answer': '20',
                              'weekly-pay-breakdown-arrears-answer': '20',
-                             'weekly-pay-breakdown-prp-answer': '30'})
+                             'weekly-pay-breakdown-prp-answer': '10'})
 
         self.post(post_data={'weekly-pay-significant-changes-paid-employees-answer': ['Yes']})
         self.post(post_data={'weekly-pay-significant-changes-redundancies-answer': ['Yes']})

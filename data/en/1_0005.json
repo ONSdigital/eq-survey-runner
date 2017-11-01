@@ -433,7 +433,15 @@
                                 "q_code": "60",
                                 "type": "Currency",
                                 "currency": "GBP",
-                                "decimal_places": 2
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "weekly-pay-gross-pay-answer"
+                                },
+                                "validation": {
+                                    "messages": {
+                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                    }
+                                }
                             },
                             {
                                 "id": "weekly-pay-breakdown-arrears-answer",
@@ -442,7 +450,15 @@
                                 "q_code": "70",
                                 "type": "Currency",
                                 "currency": "GBP",
-                                "decimal_places": 2
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "weekly-pay-gross-pay-answer"
+                                },
+                                "validation": {
+                                    "messages": {
+                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                    }
+                                }
                             },
                             {
                                 "guidance": {
@@ -480,7 +496,15 @@
                                 "q_code": "80",
                                 "type": "Currency",
                                 "currency": "GBP",
-                                "decimal_places": 2
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "weekly-pay-gross-pay-answer"
+                                },
+                                "validation": {
+                                    "messages": {
+                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                    }
+                                }
                             }
                         ],
                         "id": "weekly-pay-breakdown-question",
@@ -976,7 +1000,15 @@
                                 "q_code": "60f",
                                 "type": "Currency",
                                 "currency": "GBP",
-                                "decimal_places": 2
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "fortnightly-pay-gross-pay-answer"
+                                },
+                                "validation": {
+                                    "messages": {
+                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                    }
+                                }
                             },
                             {
                                 "id": "fortnightly-pay-breakdown-arrears-answer",
@@ -985,7 +1017,15 @@
                                 "q_code": "70f",
                                 "type": "Currency",
                                 "currency": "GBP",
-                                "decimal_places": 2
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "fortnightly-pay-gross-pay-answer"
+                                },
+                                "validation": {
+                                    "messages": {
+                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                    }
+                                }
                             },
                             {
                                 "guidance": {
@@ -1006,7 +1046,15 @@
                                 "q_code": "80f",
                                 "type": "Currency",
                                 "currency": "GBP",
-                                "decimal_places": 2
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "fortnightly-pay-gross-pay-answer"
+                                },
+                                "validation": {
+                                    "messages": {
+                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                    }
+                                }
                             }
                         ],
                         "id": "fortnightly-pay-breakdown-question",
@@ -1501,7 +1549,15 @@
                                 "q_code": "171",
                                 "type": "Currency",
                                 "currency": "GBP",
-                                "decimal_places": 2
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "calendar-monthly-pay-gross-pay-answer"
+                                },
+                                "validation": {
+                                    "messages": {
+                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                    }
+                                }
                             },
                             {
                                 "guidance": {
@@ -1522,7 +1578,15 @@
                                 "q_code": "181",
                                 "type": "Currency",
                                 "currency": "GBP",
-                                "decimal_places": 2
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "calendar-monthly-pay-gross-pay-answer"
+                                },
+                                "validation": {
+                                    "messages": {
+                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                    }
+                                }
                             }
                         ],
                         "id": "calendar-monthly-pay-breakdown-question",
@@ -2016,7 +2080,15 @@
                                 "q_code": "172",
                                 "type": "Currency",
                                 "currency": "GBP",
-                                "decimal_places": 2
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "four-weekly-pay-gross-pay-answer"
+                                },
+                                "validation": {
+                                    "messages": {
+                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                    }
+                                }
                             },
                             {
                                 "guidance": {
@@ -2037,7 +2109,15 @@
                                 "q_code": "182",
                                 "type": "Currency",
                                 "currency": "GBP",
-                                "decimal_places": 2
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "four-weekly-pay-gross-pay-answer"
+                                },
+                                "validation": {
+                                    "messages": {
+                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                    }
+                                }
                             }
                         ],
                         "id": "four-weekly-pay-breakdown-question",
@@ -2532,7 +2612,15 @@
                                 "q_code": "173",
                                 "type": "Currency",
                                 "currency": "GBP",
-                                "decimal_places": 2
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "five-weekly-pay-gross-pay-answer"
+                                },
+                                "validation": {
+                                    "messages": {
+                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                    }
+                                }
                             },
                             {
                                 "guidance": {
@@ -2553,7 +2641,15 @@
                                 "q_code": "183",
                                 "type": "Currency",
                                 "currency": "GBP",
-                                "decimal_places": 2
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "five-weekly-pay-gross-pay-answer"
+                                },
+                                "validation": {
+                                    "messages": {
+                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                    }
+                                }
                             }
                         ],
                         "id": "five-weekly-pay-breakdown-question",

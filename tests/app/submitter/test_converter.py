@@ -176,7 +176,7 @@ class TestConverter(SurveyRunnerTestCase):
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
             with patch('app.submitter.converter.logger') as patched_logger:
-                answer_object = convert_answers_to_data(AnswerStore(user_answer), questionnaire, routing_path)
+                answer_object = (convert_answers_to_data(AnswerStore(user_answer), questionnaire, routing_path))
                 self.assertEqual(patched_logger.error.call_count, 2)
                 self.assertEqual(answer_object['002'], '2016-03-30')
                 self.assertEqual(len(answer_object), 1)
