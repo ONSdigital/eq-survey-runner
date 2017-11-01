@@ -3339,43 +3339,6 @@
                 },
                 {
                     "type": "Questionnaire",
-                    "id": "volunteering",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
-                    "questions": [{
-                        "id": "volunteering-question",
-                        "title": "Thinking of the last 12 months, have you taken part in any volunteering for any groups, clubs or organisations?",
-                        "guidance": {
-                            "content": [{
-                                "description": "<strong>Exclude</strong> any Court ordered activities"
-                            }]
-                        },
-                        "type": "General",
-                        "answers": [{
-                            "id": "volunteering-answer",
-                            "mandatory": false,
-                            "options": [{
-                                    "label": "No",
-                                    "value": "No"
-                                },
-                                {
-                                    "label": "Yes, at least once a week",
-                                    "value": "Yes, at least once a week"
-                                },
-                                {
-                                    "label": "Yes, less than once a week but at least once a month",
-                                    "value": "Yes, less than once a week but at least once a month"
-                                },
-                                {
-                                    "label": "Yes, less often",
-                                    "value": "Yes, less often"
-                                }
-                            ],
-                            "type": "Radio"
-                        }]
-                    }]
-                },
-                {
-                    "type": "Questionnaire",
                     "id": "employment-type",
                     "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{

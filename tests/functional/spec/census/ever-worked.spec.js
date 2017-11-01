@@ -23,7 +23,7 @@ describe('Census Household', function () {
           .click(DetailsCorrect.submit())
           .click(Over16.yes())
           .then(() => {
-            return helpers.pressSubmit(26);
+            return helpers.pressSubmit(25);
           })
           .then(() => {
           return browser

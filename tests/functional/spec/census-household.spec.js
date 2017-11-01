@@ -37,7 +37,6 @@ const PastUsualAddress = require('../pages/surveys/census/household/past-usual-a
 const Passports = require('../pages/surveys/census/household/passports.page');
 const Disability = require('../pages/surveys/census/household/disability.page');
 const Qualifications = require('../pages/surveys/census/household/qualifications.page');
-const Volunteering = require('../pages/surveys/census/household/volunteering.page');
 const EmploymentType = require('../pages/surveys/census/household/employment-type.page');
 const Jobseeker = require('../pages/surveys/census/household/jobseeker.page');
 const JobAvailability = require('../pages/surveys/census/household/job-availability.page');
@@ -129,8 +128,6 @@ describe('Census Household', function () {
           .click(Disability.submit())
           .click(Qualifications.welshUndergraduateDegree())
           .click(Qualifications.submit())
-          .click(Volunteering.no())
-          .click(Volunteering.submit())
           .click(EmploymentType.workingAsAnEmployee())
           .click(EmploymentType.onAGovernmentSponsoredTrainingScheme())
           .click(EmploymentType.submit())
@@ -246,9 +243,6 @@ describe('Census Household', function () {
           .getText(Qualifications.displayedName()).should.eventually.contain(person)
           .click(Qualifications.welshUndergraduateDegree())
           .click(Qualifications.submit())
-          .getText(Volunteering.displayedName()).should.eventually.contain(person)
-          .click(Volunteering.no())
-          .click(Volunteering.submit())
           .getText(EmploymentType.displayedName()).should.eventually.contain(person)
           .click(EmploymentType.noneOfTheAbove())
           .click(EmploymentType.submit())
