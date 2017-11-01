@@ -74,7 +74,7 @@ var radio_schema = 'test_radio.json';
 
          .getUrl().should.eventually.contain(SummaryPage.pageName)
          .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Bacon')
-         .getText(SummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('Coffee')
+         .getText(SummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('Coffee');
         });
 
 
@@ -92,7 +92,7 @@ var radio_schema = 'test_radio.json';
          .click(RadioNonMandatoryPage.submit())
 
          .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Eggs')
-         .getText(SummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('Tea')
+         .getText(SummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('Tea');
          });
 
       it('When I select the other option the text field should be viewable', function() {
