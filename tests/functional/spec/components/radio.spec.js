@@ -78,7 +78,7 @@ var radio_schema = 'test_radio.json';
         });
 
 
-      it('When I submit data and then go back and update an answer the content on thr summary screen should be correct', function() {
+      it('When I submit data and then go back and update an answer the content on the summary screen should be correct', function() {
          return browser
          .click(RadioMandatoryPage.eggs())
          .click(RadioMandatoryPage.submit())
