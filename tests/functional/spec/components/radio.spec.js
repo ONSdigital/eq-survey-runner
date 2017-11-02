@@ -54,7 +54,7 @@ var radio_schema = 'test_radio.json';
     describe('Mandatory', function() {
       beforeEach('load the survey', function() {
         return helpers.openQuestionnaire(radio_schema).then(() => {
-            return browser
+            return browser;
               });
             });
 
