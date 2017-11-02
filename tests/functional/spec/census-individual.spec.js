@@ -27,8 +27,11 @@ const JobDescriptionPage = require('../pages/surveys/census/individual/job-descr
 const EmployersBusinessPage = require('../pages/surveys/census/individual/employers-business.page.js');
 const MainJobTypePage = require('../pages/surveys/census/individual/main-job-type.page.js');
 const BusinessNamePage = require('../pages/surveys/census/individual/business-name.page.js');
+const WorkPage = require('../pages/surveys/census/individual/hours-worked.page.js');
+const TravelPage = require('../pages/surveys/census/individual/work-travel.page.js');
 const ConfirmationPage = require('../pages/surveys/census/individual/confirmation.page.js');
 const ThankYou = require('../pages/thank-you.page');
+
 
 describe('Example Test', function() {
 
@@ -104,6 +107,12 @@ describe('Example Test', function() {
 
           .setValue(JobDescriptionPage.answer(),"Coding wizardry")
           .click(JobDescriptionPage.submit())
+
+          .click(WorkPage.answer3148())
+          .click(WorkPage.submit())
+
+          .click(TravelPage.train())
+          .click(TravelPage.submit())
 
           .setValue(EmployersBusinessPage.answer(),"Codezilla")
           .click(EmployersBusinessPage.submit())
@@ -196,6 +205,12 @@ describe('Example Test', function() {
 
           .setValue(JobDescriptionPage.answer(),"Coding wizardry")
           .click(JobDescriptionPage.submit())
+
+          .click(WorkPage.answer3148())
+          .click(WorkPage.submit())
+
+          .click(TravelPage.train())
+          .click(TravelPage.submit())
 
           .setValue(EmployersBusinessPage.answer(),"Codezilla")
           .click(EmployersBusinessPage.submit())
