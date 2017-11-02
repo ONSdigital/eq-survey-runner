@@ -3663,6 +3663,120 @@
                 },
                 {
                     "type": "Questionnaire",
+                    "id": "hours-worked",
+                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
+                    "description": "",
+                    "questions": [{
+                        "title": "In your main job, how many hours a week do you usually work?",
+                        "id": "hours-worked-question",
+                        "type": "General",
+                        "answers": [{
+                            "id": "hours-worked-answer",
+                            "mandatory": true,
+                            "guidance": {
+                                "show_guidance": "Show further guidance",
+                                "hide_guidance": "Hide further guidance",
+                                "content": [{
+                                    "description": "Include paid and unpaid overtime"
+                                }]
+                            },
+                            "options": [{
+                                    "label": "15 or less",
+                                    "value": "15 or less"
+                                },
+                                {
+                                    "label": "16 - 30",
+                                    "value": "16 - 30"
+                                },
+                                {
+                                    "label": "31 - 48",
+                                    "value": "31 - 48"
+                                },
+                                {
+                                    "label": "49 or more",
+                                    "value": "49 or more "
+                                }
+                            ],
+                            "type": "Radio"
+                        }]
+                    }]
+                },
+                {
+                    "type": "Questionnaire",
+                    "id": "work-travel",
+                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
+                    "description": "",
+                    "questions": [{
+                        "title": "How do you usually travel to work?",
+                        "id": "work-travel-question",
+                        "type": "General",
+                        "answers": [{
+                            "id": "work-travel-answer",
+                            "mandatory": true,
+                            "guidance": {
+                                "show_guidance": "Show further guidance",
+                                "hide_guidance": "Hide further guidance",
+                                "content": [{
+                                        "description": "Select the option for the longest part, in distance, of your journey"
+                                    },
+                                    {
+                                        "description": "For example, you travel by bus and by car. Your bus journey is 5 miles, and the car journey is 8 miles. You should select car as your answer"
+                                    }
+                                ]
+                            },
+                            "options": [{
+                                    "label": "Work mainly at or from home",
+                                    "value": "Work mainly at or from home"
+                                },
+                                {
+                                    "label": "Underground, metro, light rail or tram",
+                                    "value": "Underground, metro, light rail or tram"
+                                },
+                                {
+                                    "label": "Train",
+                                    "value": "Train"
+                                },
+                                {
+                                    "label": "Bus, minibus or coach",
+                                    "value": "Bus, minibus or coach "
+                                },
+                                {
+                                    "label": "Taxi",
+                                    "value": "Taxi "
+                                },
+                                {
+                                    "label": "Motorcycle, scooter or moped",
+                                    "value": "Motorcycle, scooter or moped"
+                                },
+                                {
+                                    "label": "Driving a car or van",
+                                    "value": "Driving a car or van"
+                                },
+                                {
+                                    "label": "Passenger in a car or van",
+                                    "value": "Passenger in a car or van"
+                                },
+                                {
+                                    "label": "Bicycle",
+                                    "value": "Bicycle"
+                                },
+                                {
+                                    "label": "On foot",
+                                    "value": "On foot"
+                                },
+                                {
+                                    "label": "Other",
+                                    "value": "Other"
+                                }
+                            ],
+                            "type": "Radio"
+                        }]
+                    }]
+                },
+
+
+                {
+                    "type": "Questionnaire",
                     "id": "job-title",
                     "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "questions": [{

@@ -49,6 +49,8 @@ const JobDescription = require('../pages/surveys/census/household/job-descriptio
 const EmployersBusiness = require('../pages/surveys/census/household/employers-business.page');
 const MainJobType = require('../pages/surveys/census/household/main-job-type.page');
 const BusinessName = require('../pages/surveys/census/household/business-name.page');
+const WorkPage = require('../pages/surveys/census/household/hours-worked.page.js');
+const TravelPage = require('../pages/surveys/census/household/work-travel.page.js');
 const HouseholdMemberCompleted = require('../pages/surveys/census/household/household-member-completed.page');
 const VisitorBegin = require('../pages/surveys/census/household/visitor-begin.page');
 const VisitorName = require('../pages/surveys/census/household/visitor-name.page');
@@ -133,6 +135,10 @@ describe('Census Household', function () {
           .click(EmploymentType.submit())
           .click(MainJob.anEmployee())
           .click(MainJob.submit())
+          .click(WorkPage.answer3148())
+          .click(WorkPage.submit())
+          .click(TravelPage.train())
+          .click(TravelPage.submit())
           .setValue(JobTitle.answer(), 'Dev')
           .click(JobTitle.submit())
           .setValue(JobDescription.answer(), 'writing lots of code')
@@ -258,6 +264,10 @@ describe('Census Household', function () {
           .click(EverWorked.submit())
           .click(MainJob.anEmployee())
           .click(MainJob.submit())
+          .click(WorkPage.answer3148())
+          .click(WorkPage.submit())
+          .click(TravelPage.train())
+          .click(TravelPage.submit())
           .setValue(JobTitle.answer(), 'Dev')
           .click(JobTitle.submit())
           .setValue(JobDescription.answer(), 'writing lots of code')
