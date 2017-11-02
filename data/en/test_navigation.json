@@ -5,7 +5,7 @@
     "survey_id": "999",
     "title": "Home Insurance",
     "description": "Home Insurance",
-    "theme": "census",
+    "theme": "default",
     "legal_basis": "Voluntary",
     "navigation": {
         "visible": true,
