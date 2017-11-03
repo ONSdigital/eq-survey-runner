@@ -51,8 +51,8 @@ var radio_schema = 'test_radio.json';
 
     describe('Mandatory', function() {
       beforeEach('load the survey', function() {
-        return helpers.openQuestionnaire(radio_schema)
-            return browser;
+        return helpers.openQuestionnaire(radio_schema);
+            return browser
             });
 
       it('When I submit without choosing an option that I should get an error', function() {
@@ -69,7 +69,7 @@ var radio_schema = 'test_radio.json';
          .click(RadioNonMandatoryPage.submit())
 
          .getUrl().should.eventually.contain(SummaryPage.pageName)
-         .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Bacon')
+         .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Bacon');
         });
 
 
