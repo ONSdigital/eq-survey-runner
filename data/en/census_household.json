@@ -3615,22 +3615,20 @@
                 {
                     "type": "Questionnaire",
                     "id": "hours-worked",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "description": "",
                     "questions": [{
                         "title": "In your main job, how many hours a week do you usually work?",
+                        "guidance": {
+                            "content": [{
+                                "description": "Include paid and unpaid overtime"
+                            }]
+                        },
                         "id": "hours-worked-question",
                         "type": "General",
                         "answers": [{
                             "id": "hours-worked-answer",
-                            "mandatory": true,
-                            "guidance": {
-                                "show_guidance": "Show further guidance",
-                                "hide_guidance": "Hide further guidance",
-                                "content": [{
-                                    "description": "Include paid and unpaid overtime"
-                                }]
-                            },
+                            "mandatory": false,
+
                             "options": [{
                                     "label": "15 or less",
                                     "value": "15 or less"
@@ -3655,26 +3653,23 @@
                 {
                     "type": "Questionnaire",
                     "id": "work-travel",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "description": "",
                     "questions": [{
                         "title": "How do you usually travel to work?",
+                        "guidance": {
+                            "content": [{
+                                    "description": "Select the option for the longest part, in distance, of your journey"
+                                },
+                                {
+                                    "description": "For example, you travel by bus and by car. Your bus journey is 5 miles, and the car journey is 8 miles. You should select car as your answer"
+                                }
+                            ]
+                        },
                         "id": "work-travel-question",
                         "type": "General",
                         "answers": [{
                             "id": "work-travel-answer",
-                            "mandatory": true,
-                            "guidance": {
-                                "show_guidance": "Show further guidance",
-                                "hide_guidance": "Hide further guidance",
-                                "content": [{
-                                        "description": "Select the option for the longest part, in distance, of your journey"
-                                    },
-                                    {
-                                        "description": "For example, you travel by bus and by car. Your bus journey is 5 miles, and the car journey is 8 miles. You should select car as your answer"
-                                    }
-                                ]
-                            },
+                            "mandatory": false,
                             "options": [{
                                     "label": "Work mainly at or from home",
                                     "value": "Work mainly at or from home"
