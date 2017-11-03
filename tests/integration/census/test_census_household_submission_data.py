@@ -416,22 +416,6 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             },
             {
                 'group_instance': 0,
-                'answer_id': 'religion-welsh-answer-other',
-                'block_id': 'religion',
-                'group_id': 'household-member',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'religion-welsh-answer',
-                'block_id': 'religion',
-                'group_id': 'household-member',
-                'answer_instance': 0,
-                'value': []
-            },
-            {
-                'group_instance': 0,
                 'answer_id': 'religion-answer',
                 'block_id': 'religion',
                 'group_id': 'household-member',
@@ -981,11 +965,12 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             },
             {
                 'religion-answer': ['No religion',
-                                    'Buddhist',
-                                    'Hindu',
-                                    'Jewish',
-                                    'Muslim',
-                                    'Sikh',
+                                    'Christianity',
+                                    'Buddhism',
+                                    'Hinduism',
+                                    'Judaism',
+                                    'Islam',
+                                    'Sikhism',
                                     'Other'],
                 'religion-answer-other': 'Ind'
             },
