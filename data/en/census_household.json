@@ -2772,7 +2772,7 @@
                     "id": "religion",
                     "questions": [{
                         "id": "religion-question",
-                        "title": "What is {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }} religion?",
+                            "title": "What is your religion?",
                         "description": "This question is voluntary",
                         "type": "General",
                         "answers": [{
@@ -2783,28 +2783,28 @@
                                         "value": "No religion"
                                     },
                                     {
-                                        "label": "Christianity",
-                                        "value": "Christianity"
+                                            "label": "Christian (Including Church of England, Catholic, Protestant and all other Christian denominations)",
+                                            "value": "Christian (Including Church of England, Catholic, Protestant and all other Christian denominations)"
                                     },
                                     {
-                                        "label": "Buddhism",
-                                        "value": "Buddhism"
+                                            "label": "Buddhist",
+                                            "value": "Buddhist"
                                     },
                                     {
-                                        "label": "Hinduism",
-                                        "value": "Hinduism"
+                                            "label": "Hindu",
+                                            "value": "Hindu"
                                     },
                                     {
-                                        "label": "Judaism",
-                                        "value": "Judaism"
+                                            "label": "Jewish",
+                                            "value": "Jewish"
                                     },
                                     {
-                                        "label": "Islam",
-                                        "value": "Islam"
+                                            "label": "Muslim",
+                                            "value": "Muslim"
                                     },
                                     {
-                                        "label": "Sikhism",
-                                        "value": "Sikhism"
+                                            "label": "Sikh",
+                                            "value": "Sikh"
                                     },
                                     {
                                         "label": "Any other religion (please specify)",
@@ -2829,7 +2829,68 @@
                                 "value": "GB-WLS"
                             }]
                         }]
+                        },
+                        {
+                            "id": "religion-welsh-question",
+                            "title": "What is your religion?",
+                            "description": "This question is voluntary",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "religion-welsh-answer",
+                                    "mandatory": false,
+                                    "options": [{
+                                            "label": "No religion",
+                                            "value": "No religion"
+                                        },
+                                        {
+                                            "label": "Christian (all denominations)",
+                                            "value": "Christian (all denominations)"
+                                        },
+                                        {
+                                            "label": "Buddhist",
+                                            "value": "Buddhist"
+                                        },
+                                        {
+                                            "label": "Hindu",
+                                            "value": "Hindu"
+                                        },
+                                        {
+                                            "label": "Jewish",
+                                            "value": "Jewish"
+                                        },
+                                        {
+                                            "label": "Muslim",
+                                            "value": "Muslim"
+                                        },
+                                        {
+                                            "label": "Sikh",
+                                            "value": "Sikh"
+                                        },
+                                        {
+                                            "label": "Any other religion (please specify)",
+                                            "value": "Other",
+                                            "child_answer_id": "religion-welsh-answer-other"
+                                        }
+                                    ],
+                                    "type": "Checkbox"
+                                },
+                                {
+                                    "id": "religion-welsh-answer-other",
+                                    "parent_answer_id": "religion-welsh-answer",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify"
+                                }
+                            ],
+                            "skip_conditions": [{
+                                "when": [{
+                                    "meta": "region_code",
+                                    "condition": "not equals",
+                                    "value": "GB-WLS"
                     }]
+                            }]
+                        }
+                    ]
                 },
                 {
                     "type": "Questionnaire",
