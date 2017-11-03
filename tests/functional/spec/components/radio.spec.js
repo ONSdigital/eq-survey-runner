@@ -29,7 +29,6 @@ var radio_schema = 'test_radio.json';
               .click(RadioNonMandatoryPage.other())
               .click(RadioNonMandatoryPage.submit())
 
-              .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('None')
               .getText(SummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('No answer provided');
 
             });
@@ -40,13 +39,12 @@ var radio_schema = 'test_radio.json';
           .setValue(RadioNonMandatoryPage.otherText(), 'Hello')
           .click(RadioNonMandatoryPage.submit())
 
+          .getText(SummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('Hello')
           .click(SummaryPage.previous())
 
-          .click(RadioNonMandatoryPage.other())
           .setValue(RadioNonMandatoryPage.otherText(), '')
           .click(RadioNonMandatoryPage.submit())
 
-          .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('None')
           .getText(SummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('No answer provided');
           });
     });
@@ -69,12 +67,10 @@ var radio_schema = 'test_radio.json';
          .click(RadioMandatoryPage.bacon())
          .click(RadioMandatoryPage.submit())
 
-         .click(RadioNonMandatoryPage.coffee())
          .click(RadioNonMandatoryPage.submit())
 
          .getUrl().should.eventually.contain(SummaryPage.pageName)
          .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Bacon')
-         .getText(SummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('Coffee');
         });
 
 
@@ -83,16 +79,14 @@ var radio_schema = 'test_radio.json';
          .click(RadioMandatoryPage.eggs())
          .click(RadioMandatoryPage.submit())
 
-         .click(RadioNonMandatoryPage.none())
-         .click(RadioNonMandatoryPage.submit())
-
-         .click(SummaryPage.previous())
-
-         .click(RadioNonMandatoryPage.tea())
          .click(RadioNonMandatoryPage.submit())
 
          .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Eggs')
-         .getText(SummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('Tea');
+         .click(SummaryPage.previous())
+
+         .click(RadioNonMandatoryPage.submit())
+
+         .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Eggs')
          });
 
       it('When I select the other option the text field should be viewable', function() {
@@ -106,19 +100,12 @@ var radio_schema = 'test_radio.json';
          return browser
           .click(RadioMandatoryPage.other())
           .setValue(RadioMandatoryPage.otherText(), 'Hello')
-
           .click(RadioMandatoryPage.submit())
+
           .click(RadioNonMandatoryPage.submit())
-
-          .click(SummaryPage.previous())
-
-          .click(RadioNonMandatoryPage.other())
-          .setValue(RadioNonMandatoryPage.otherText(), 'World')
-          .click(RadioNonMandatoryPage.submit())
-
 
           .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Hello')
-          .getText(SummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('World');
+
          });
     });
 });
