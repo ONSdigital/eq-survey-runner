@@ -43,7 +43,7 @@
                             "id": "block3",
                             "when": [{
                                 "id": "passports-answer",
-                                "condition": "equals",
+                                "condition": "contains",
                                 "value": "United Kingdom"
                             }]
                         }

@@ -17,7 +17,7 @@ class TestNavigation(AppContextTestCase):
             'form_type': 'some_form'
         }
 
-        navigation = Navigation(survey, AnswerStore(), metadata)
+        navigation = Navigation(survey, AnswerStore(), metadata, [], [])
 
         user_navigation = [
             {
@@ -78,7 +78,11 @@ class TestNavigation(AppContextTestCase):
             Location('property-details', 0, 'insurance-address')
         ]
 
-        navigation = Navigation(survey, answer_store, metadata, completed_blocks=completed_blocks)
+        routing_path = [
+            Location('property-details', 0, 'insurance-type')
+        ]
+
+        navigation = Navigation(survey, answer_store, metadata, completed_blocks, routing_path)
 
         user_navigation = [
             {
@@ -137,7 +141,15 @@ class TestNavigation(AppContextTestCase):
             Location('repeating-group', 1, 'repeating-block-2')
         ]
 
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks=completed_blocks)
+        routing_path = [
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('repeating-group', 0, 'repeating-block-1'),
+            Location('repeating-group', 0, 'repeating-block-2'),
+            Location('repeating-group', 1, 'repeating-block-1'),
+            Location('repeating-group', 1, 'repeating-block-2')
+        ]
+
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, routing_path)
 
         navigation.answer_store.answers = [
             {
@@ -281,7 +293,12 @@ class TestNavigation(AppContextTestCase):
         answer_store.add(answer_2)
         answer_store.add(answer_3)
 
-        navigation = Navigation(survey, answer_store, metadata, completed_blocks)
+        routing_path = [
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('extra-cover', 0, 'extra-cover-block')
+        ]
+
+        navigation = Navigation(survey, answer_store, metadata, completed_blocks, routing_path)
 
         user_navigation = [
             {
@@ -397,14 +414,21 @@ class TestNavigation(AppContextTestCase):
             answer_instance=0
         )
 
-
         answer_store.add(answer_1)
         answer_store.add(answer_2)
         answer_store.add(answer_3)
         answer_store.add(answer_4)
         answer_store.add(answer_5)
 
-        navigation = Navigation(survey, answer_store, metadata, completed_blocks=completed_blocks)
+        routing_path = [
+            Location('extra-cover', 0, 'extra-cover-block'),
+            Location('extra-cover-items-group', 0, 'extra-cover-items'),
+            Location('extra-cover-items-group', 0, 'extra-cover-items-radio'),
+            Location('extra-cover-items-group', 1, 'extra-cover-items'),
+            Location('extra-cover-items-group', 1, 'extra-cover-items-radio')
+        ]
+
+        navigation = Navigation(survey, answer_store, metadata, completed_blocks, routing_path)
 
         user_navigation = [
             {
@@ -497,7 +521,11 @@ class TestNavigation(AppContextTestCase):
         answer_store.add(answer_3)
         answer_store.add(answer_4)
 
-        navigation = Navigation(survey, answer_store, metadata, completed_blocks=completed_blocks)
+        routing_path = [
+            Location('multiple-questions-group', 0, 'household-composition')
+        ]
+
+        navigation = Navigation(survey, answer_store, metadata, completed_blocks, routing_path)
 
         user_navigation = [
             {
@@ -570,7 +598,7 @@ class TestNavigation(AppContextTestCase):
 
         answer_store.add(answer_1)
 
-        navigation = Navigation(survey, answer_store, metadata, completed_blocks=completed_blocks)
+        navigation = Navigation(survey, answer_store, metadata, completed_blocks, [])
         user_navigation = navigation.build_navigation('property-details', 0)
         link_names = [d['link_name'] for d in user_navigation]
         self.assertNotIn('Property Interstitial', link_names)
@@ -599,7 +627,7 @@ class TestNavigation(AppContextTestCase):
 
         answer_store.add(answer_1)
 
-        navigation = Navigation(survey, answer_store, metadata, completed_blocks=completed_blocks)
+        navigation = Navigation(survey, answer_store, metadata, completed_blocks, [])
 
         user_navigation = navigation.build_navigation('property-details', 0)
         link_names = [d['link_name'] for d in user_navigation]
@@ -628,7 +656,7 @@ class TestNavigation(AppContextTestCase):
         )
 
         answer_store.add(answer_1)
-        navigation = Navigation(survey, answer_store, metadata, completed_blocks=completed_blocks)
+        navigation = Navigation(survey, answer_store, metadata, completed_blocks, [])
 
         user_navigation = navigation.build_navigation('property-details', 0)
         link_names = [d['link_name'] for d in user_navigation]
@@ -655,7 +683,7 @@ class TestNavigation(AppContextTestCase):
         survey['navigation'] = {'visible': False}
         completed_blocks = []
         metadata = {}
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, [])
 
         # When
         nav_menu = navigation.build_navigation('group-1', 'group-instance-1')
@@ -669,7 +697,7 @@ class TestNavigation(AppContextTestCase):
         del survey['navigation']
         completed_blocks = []
         metadata = {}
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, [])
 
         # When
         nav_menu = navigation.build_navigation('group-1', 'group-instance-1')
@@ -687,7 +715,7 @@ class TestNavigation(AppContextTestCase):
             'collection_exercise_sid': '999',
             'form_type': 'some_form'
         }
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, [])
 
         # When
         nav_menu = navigation.build_navigation('group-1', 'group-instance-1')
@@ -703,7 +731,7 @@ class TestNavigation(AppContextTestCase):
             'form_type': 'some_form'
         }
 
-        navigation = Navigation(survey, AnswerStore(), metadata)
+        navigation = Navigation(survey, AnswerStore(), metadata, [], [])
 
         confirmation_link = {
             'link_name': 'Summary',
@@ -731,7 +759,7 @@ class TestNavigation(AppContextTestCase):
             Location('multiple-questions-group', 0, 'household-composition'),
         ]
 
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, [])
 
         confirmation_link = {
             'link_name': 'Summary',
@@ -827,7 +855,7 @@ class TestNavigation(AppContextTestCase):
             Location('extra-cover-items-group', 0, 'extra-cover-items'),
         ]
 
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, [])
 
         confirmation_link = {
             'link_name': 'Submit answers',
@@ -849,7 +877,7 @@ class TestNavigation(AppContextTestCase):
             'form_type': 'some_form'
         }
 
-        navigation = Navigation(survey, AnswerStore(), metadata)
+        navigation = Navigation(survey, AnswerStore(), metadata, [], [])
 
         confirmation_link = {
             'link_name': 'Submit answers',
@@ -879,7 +907,7 @@ class TestNavigation(AppContextTestCase):
             Location('multiple-questions-group', 0, 'household-composition'),
         ]
 
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, [])
 
         confirmation_link = {
             'link_name': 'Submit answers',
@@ -975,7 +1003,7 @@ class TestNavigation(AppContextTestCase):
             Location('extra-cover-items-group', 0, 'extra-cover-items'),
         ]
 
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, [])
 
         confirmation_link = {
             'link_name': 'Summary',

@@ -1,7 +1,7 @@
 FROM python:3.4
 
-RUN pip install -U pipenv==8.2.7 \
-  && pip install -U awscli==1.11.174
+RUN pip install pipenv==8.2.7 \
+  && pip install awscli==1.11.174
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
