@@ -51,7 +51,7 @@ var radio_schema = 'test_radio.json';
 
     describe('Mandatory', function() {
       beforeEach('load the survey', function() {
-        return helpers.openQuestionnaire(radio_schema);
+        return helpers.openQuestionnaire(radio_schema)
             return browser;
             });
 
@@ -85,7 +85,7 @@ var radio_schema = 'test_radio.json';
 
          .click(RadioNonMandatoryPage.submit())
 
-         .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Eggs')
+         .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Eggs');
          });
 
       it('When I select the other option the text field should be viewable', function() {
@@ -103,7 +103,7 @@ var radio_schema = 'test_radio.json';
 
           .click(RadioNonMandatoryPage.submit())
 
-          .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Hello')
+          .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Hello');
 
          });
     });
