@@ -2771,64 +2771,64 @@
                     "type": "Questionnaire",
                     "id": "religion",
                     "questions": [{
-                        "id": "religion-question",
+                            "id": "religion-question",
                             "title": "What is your religion?",
-                        "description": "This question is voluntary",
-                        "type": "General",
-                        "answers": [{
-                                "id": "religion-answer",
-                                "mandatory": false,
-                                "options": [{
-                                        "label": "No religion",
-                                        "value": "No religion"
-                                    },
-                                    {
+                            "description": "This question is voluntary",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "religion-answer",
+                                    "mandatory": false,
+                                    "options": [{
+                                            "label": "No religion",
+                                            "value": "No religion"
+                                        },
+                                        {
                                             "label": "Christian (Including Church of England, Catholic, Protestant and all other Christian denominations)",
                                             "value": "Christian (Including Church of England, Catholic, Protestant and all other Christian denominations)"
-                                    },
-                                    {
+                                        },
+                                        {
                                             "label": "Buddhist",
                                             "value": "Buddhist"
-                                    },
-                                    {
+                                        },
+                                        {
                                             "label": "Hindu",
                                             "value": "Hindu"
-                                    },
-                                    {
+                                        },
+                                        {
                                             "label": "Jewish",
                                             "value": "Jewish"
-                                    },
-                                    {
+                                        },
+                                        {
                                             "label": "Muslim",
                                             "value": "Muslim"
-                                    },
-                                    {
+                                        },
+                                        {
                                             "label": "Sikh",
                                             "value": "Sikh"
-                                    },
-                                    {
-                                        "label": "Any other religion (please specify)",
-                                        "value": "Other",
-                                        "child_answer_id": "religion-answer-other"
-                                    }
-                                ],
-                                "type": "Checkbox"
-                            },
-                            {
-                                "id": "religion-answer-other",
-                                "parent_answer_id": "religion-answer",
-                                "type": "TextField",
-                                "mandatory": false,
-                                "label": "Please specify"
-                            }
-                        ],
-                        "skip_conditions": [{
-                            "when": [{
-                                "meta": "region_code",
-                                "condition": "equals",
-                                "value": "GB-WLS"
+                                        },
+                                        {
+                                            "label": "Any other religion (please specify)",
+                                            "value": "Other",
+                                            "child_answer_id": "religion-answer-other"
+                                        }
+                                    ],
+                                    "type": "Checkbox"
+                                },
+                                {
+                                    "id": "religion-answer-other",
+                                    "parent_answer_id": "religion-answer",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify"
+                                }
+                            ],
+                            "skip_conditions": [{
+                                "when": [{
+                                    "meta": "region_code",
+                                    "condition": "equals",
+                                    "value": "GB-WLS"
+                                }]
                             }]
-                        }]
                         },
                         {
                             "id": "religion-welsh-question",
@@ -2887,7 +2887,7 @@
                                     "meta": "region_code",
                                     "condition": "not equals",
                                     "value": "GB-WLS"
-                    }]
+                                }]
                             }]
                         }
                     ]
