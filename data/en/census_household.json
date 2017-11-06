@@ -1157,22 +1157,21 @@
                     "id": "another-address",
                     "questions": [{
                         "id": "another-address-question",
-                        "title": "Do you stay at another address for more than 30 days a year?",
+                        "title": "Does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> stay at another address for more than 30 days a year?",
                         "type": "General",
+                        "guidance": {
+                            "content": [{
+                                "title": "Include:",
+                                "list": [
+                                    "Another parent’s address, an armed forces base, a holiday home, or term-time address.",
+                                    "The days you stay at the address do not have to be in a row. They can be at any time during the year."
+                                ],
+                                "description": ""
+                            }]
+                        },
                         "answers": [{
                                 "id": "another-address-answer",
                                 "mandatory": false,
-                                "guidance": {
-                                    "show_guidance": "Show further guidance",
-                                    "hide_guidance": "Hide further guidance",
-                                    "content": [{
-                                            "description": "Examples might include another parent’s address, an armed forces base, a holiday home, or term-time address."
-                                        },
-                                        {
-                                            "description": "The days you stay at the address do not have to be in a row. They can be at any time during the year."
-                                        }
-                                    ]
-                                },
                                 "options": [{
                                         "label": "No",
                                         "value": "No"
@@ -1665,7 +1664,7 @@
                     "id": "length-of-stay",
                     "questions": [{
                         "id": "length-of-stay-question",
-                        "title": "Including the time you have already spent here, how long does <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}</em> intend to stay in the United Kingdom?",
+                        "title": "Including the time you have already spent here, how long does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> intend to stay in the United Kingdom?",
                         "description": "If you arrived in the United Kingdom before May 2016, please select ‘12 months or more’",
                         "type": "General",
                         "answers": [{
