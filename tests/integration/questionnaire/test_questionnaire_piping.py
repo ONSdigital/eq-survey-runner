@@ -6,6 +6,7 @@ class TestQuestionnairePiping(IntegrationTestCase):
     def test_given_quotes_in_answer_when_piped_into_page_then_html_escaped_quotes_on_page(self):
         # Given
         self.launchSurvey('census', 'household')
+        self.post({'address-line-1': '44 hill side'})
         self.post({'permanent-or-family-home-answer': 'Yes'})
 
         # When
@@ -19,6 +20,7 @@ class TestQuestionnairePiping(IntegrationTestCase):
     def test_given_backslash_in_answer_when_piped_into_page_then_backslash_on_page(self):
         # Given
         self.launchSurvey('census', 'household')
+        self.post({'address-line-1': '44 hill side'})
         self.post({'permanent-or-family-home-answer': 'Yes'})
 
         # When
