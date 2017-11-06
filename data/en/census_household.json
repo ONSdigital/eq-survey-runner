@@ -1597,18 +1597,12 @@
                     "id": "length-of-stay",
                     "questions": [{
                         "id": "length-of-stay-question",
-                        "title": "Including the time you have already spent here, how long do you intend to stay in the United Kingdom?",
+                        "title": "Including the time you have already spent here, how long does <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}</em> intend to stay in the United Kingdom?",
+                        "description": "If you arrived in the United Kingdom before May 2016, please select ‘12 months or more’",
                         "type": "General",
                         "answers": [{
                             "id": "length-of-stay-answer",
                             "mandatory": false,
-                            "guidance": {
-                                "show_guidance": "Show further guidance",
-                                "hide_guidance": "Hide further guidance",
-                                "content": [{
-                                    "description": "If you arrived in the United Kingdom before May 2016, please select ‘12 months or more’"
-                                }]
-                            },
                             "options": [{
                                     "label": "Less than 6 months",
                                     "value": "Less than 6 months"
