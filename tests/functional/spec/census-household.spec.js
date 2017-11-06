@@ -120,7 +120,6 @@ describe('Census Household', function () {
           .click(UnderstandWelsh.submit())
           .click(Language.welshEnglishOrWelsh())
           .click(Language.submit())
-          .click(Religion.welshNoReligion())
           .click(Religion.submit())
           .click(PastUsualAddress.thisAddress())
           .click(Passports.submit())
