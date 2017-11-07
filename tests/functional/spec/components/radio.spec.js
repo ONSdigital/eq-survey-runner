@@ -81,10 +81,13 @@ var radio_schema = 'test_radio.json';
 
          .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Eggs')
          .click(SummaryPage.previous())
-
+         .click(RadioNonMandatoryPage.previous())
+         .click(RadioMandatoryPage.bacon())
+         .click(RadioMandatoryPage.submit())
          .click(RadioNonMandatoryPage.submit())
 
-         .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Eggs');
+          .getUrl().should.eventually.contain(SummaryPage.pageName)
+         .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Bacon');
          });
 
       it('When I select the other option the text field should be viewable', function() {
