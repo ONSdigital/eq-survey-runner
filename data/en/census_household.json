@@ -1578,7 +1578,12 @@
                     "id": "arrive-in-uk",
                     "questions": [{
                         "id": "arrive-in-uk-question",
-                        "title": "If you were not born in the United Kingdom, when did you most recently arrive to live here?",
+                        "title": "When did {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }} most recently arrive to live in the United Kingdom?",
+                        "validation": {
+                            "messages": {
+                                "INVALID_DATE_RANGE": "Enter a 'period to' date later than then your birth date."
+                            }
+                        },
                         "guidance": {
                             "content": [{
                                 "description": "Exclude short visits away from the UK"
