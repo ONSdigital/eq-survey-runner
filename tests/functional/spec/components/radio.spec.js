@@ -64,7 +64,7 @@ var radio_schema = 'test_radio.json';
           return browser
             .click(RadioMandatoryPage.other())
             .click(RadioMandatoryPage.submit())
-            
+
             .isVisible(RadioMandatoryPage.error()).should.eventually.be.true;
           });
 
