@@ -5,15 +5,20 @@ import simplejson as json
 
 class QuestionnaireStore:
 
-    def __init__(self, storage):
+    LATEST_VERSION = 1
+
+    def __init__(self, storage, version=LATEST_VERSION):
         self._storage = storage
+        self.version = version
         self.metadata = {}
         self.answer_store = AnswerStore()
         self.completed_blocks = []
 
-        raw_data = self._storage.get_user_data()
+        raw_data, version = self._storage.get_user_data()
         if raw_data:
             self._deserialise(raw_data)
+        if version is not None:
+            self.version = version
 
     def _deserialise(self, data):
         json_data = json.loads(data, use_decimal=True)
@@ -40,7 +45,7 @@ class QuestionnaireStore:
 
     def add_or_update(self):
         data = self._serialise()
-        self._storage.add_or_update(data=data)
+        self._storage.add_or_update(data=data, version=self.version)
 
     def _encode_questionnaire_store(self, o):
         if hasattr(o, 'to_dict'):

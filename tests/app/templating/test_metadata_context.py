@@ -17,13 +17,13 @@ class TestMetadataContext(SurveyRunnerTestCase):
             'collection_exercise_sid': 'test-sid',
             'eq_id': '2',
             'period_id': '3',
-            'period_str': '2016-01-01',
-            'ref_p_start_date': '2016-02-02',
-            'ref_p_end_date': '2016-03-03',
+            'period_str': '2016-01-14',
+            'ref_p_start_date': '2016-02-22',
+            'ref_p_end_date': '2016-03-30',
             'ru_ref': '178324',
             'ru_name': 'Apple',
             'trad_as': 'Apple',
-            'return_by': '2016-07-07',
+            'return_by': '2016-07-17',
             'transaction_id': '4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f'
         }
 
@@ -38,9 +38,9 @@ class TestMetadataContext(SurveyRunnerTestCase):
         survey_data = render_data['survey']
         self.assertIsNotNone(survey_data)
 
-        self.assertEqual('7 July 2016', survey_data['return_by'].strftime('%-d %B %Y'))
-        self.assertEqual('2 February 2016', survey_data['start_date'].strftime('%-d %B %Y'))
-        self.assertEqual('3 March 2016', survey_data['end_date'].strftime('%-d %B %Y'))
+        self.assertEqual('2016-07-17', survey_data['return_by'])
+        self.assertEqual('2016-02-22', survey_data['start_date'])
+        self.assertEqual('2016-03-30', survey_data['end_date'])
         self.assertIsNone(survey_data['employment_date'])
         self.assertIsNone(survey_data['region_code'])
         self.assertEqual(self.jwt['period_str'], survey_data['period_str'])

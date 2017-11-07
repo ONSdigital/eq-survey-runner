@@ -104,10 +104,20 @@ def convert_answers_to_data(answer_store, questionnaire_json, routing_path):
 
                     answer_data = _get_answer_data(data, answer_schema['q_code'], value)
                     if answer_data is not None:
-                        data[answer_schema['q_code']] = answer_data
+                        data[answer_schema['q_code']] = _format_downstream_answer(answer_schema['type'], answer['value'], answer_data)
                 else:
                     data.update(_get_checkbox_answer_data(answer_store, answer_schema, value))
     return data
+
+
+def _format_downstream_answer(answer_type, answer_value, answer_data):
+    if answer_type == 'Date':
+        return datetime.strptime(answer_value, '%Y-%m-%d').strftime('%d/%m/%Y')
+
+    if answer_type == 'MonthYearDate':
+        return datetime.strptime(answer_value, '%Y-%m').strftime('%m/%Y')
+
+    return answer_data
 
 
 def _get_answer_data(original_data, item_code, value):

@@ -203,3 +203,9 @@ class SchemaHelper(object):  # pylint: disable=too-many-public-methods
                 return True
 
         return False
+
+    @staticmethod
+    def get_answer_schema_for_answer_id(survey_json, block_id, answer_id):
+        block_json = SchemaHelper.get_block(survey_json, block_id)
+        answer_schema_list = SchemaHelper.get_answers_by_id_for_block(block_json)
+        return answer_schema_list[answer_id]

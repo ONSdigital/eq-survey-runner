@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, request, session
+from flask import Blueprint, redirect, request, session, g
 from flask_login import current_user, login_required
 from sdc.crypto.exceptions import InvalidTokenException
 
@@ -65,14 +65,14 @@ def login():
         logger.error('missing eq id or form type in jwt')
         raise NotFound
 
+    g.schema_json = load_schema_from_metadata(metadata)
+
     store_session(metadata)
 
-    json = load_schema_from_metadata(metadata)
+    session['theme'] = g.schema_json['theme']
+    session['survey_title'] = g.schema_json['title']
 
-    session['theme'] = json['theme']
-    session['survey_title'] = json['title']
-
-    navigator = PathFinder(json, get_answer_store(current_user), metadata)
+    navigator = PathFinder(g.schema_json, get_answer_store(current_user), metadata)
     current_location = navigator.get_latest_location(get_completed_blocks(current_user))
 
     return redirect(current_location.url(metadata))

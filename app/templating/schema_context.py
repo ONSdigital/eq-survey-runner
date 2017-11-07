@@ -1,7 +1,6 @@
 from jinja2 import escape
 
 from app.questionnaire.location import Location
-from app.utilities.date_utils import to_date
 
 
 def build_schema_context(metadata, aliases, answer_store, routing_path, group_instance=0):
@@ -54,11 +53,11 @@ def _is_answer_in_routing_path(routing_path, answer):
 
 def _build_exercise(metadata):
     return {
-        'start_date': to_date(metadata['ref_p_start_date']),
-        'end_date': to_date(metadata['ref_p_end_date']),
+        'start_date': metadata['ref_p_start_date'],
+        'end_date': metadata['ref_p_end_date'],
         'period_str': json_and_html_safe(metadata['period_str']),
-        'employment_date': to_date(metadata['employment_date']),
-        'return_by': to_date(metadata['return_by']),
+        'employment_date': metadata['employment_date'],
+        'return_by': metadata['return_by'],
         'region_code': json_and_html_safe(metadata['region_code']),
     }
 

@@ -3095,6 +3095,6 @@
     "theme": "default",
     "title": "Monthly Wages and Salaries Survey",
     "variables": {
-        "period": "{{ format_start_end_date(exercise.start_date, exercise.end_date) }}"
+        "period": "{{ format_date_range(exercise.start_date, exercise.end_date) }}"
     }
 }

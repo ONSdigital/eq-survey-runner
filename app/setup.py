@@ -5,6 +5,7 @@ import sys
 from datetime import timedelta
 from uuid import uuid4
 
+import sqlalchemy
 import yaml
 from flask import Flask
 from flask import url_for
@@ -23,7 +24,7 @@ from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 
 from app.authentication.session_storage import SessionStorage
 from app.authentication.user_id_generator import UserIDGenerator
-from app.data_model.models import db
+from app.data_model.models import db, QuestionnaireState
 
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.new_relic import setup_newrelic
@@ -168,6 +169,19 @@ def setup_database(application):
     with application.app_context():
         db.init_app(application)
         db.create_all()
+
+        check_database()
+
+
+def check_database():
+    md = sqlalchemy.MetaData()
+    table = sqlalchemy.Table(QuestionnaireState.__tablename__,
+                             md,
+                             autoload=True,
+                             autoload_with=db.engine)
+
+    if 'version' not in table.c:
+        raise Exception('Database patch "pr-1347-apply.sql" has not been run')
 
 
 def setup_profiling(application):

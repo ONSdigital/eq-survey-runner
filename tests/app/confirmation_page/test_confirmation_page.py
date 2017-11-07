@@ -17,7 +17,7 @@ class TestConfirmationPage(unittest.TestCase):
         answer_store.add(answer)
 
         survey = load_schema_file("0_rogue_one.json")
-        navigator = PathFinder(survey, answer_store)
+        navigator = PathFinder(survey, answer_store, {})
         next_location = navigator.get_next_location(Location('rogue-one', 0, 'film-takings'))
 
         self.assertEqual('summary', next_location.block_id)

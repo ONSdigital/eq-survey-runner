@@ -1,7 +1,6 @@
 import copy
 from structlog import get_logger
 
-from app.data_model.answer_store import AnswerStore
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
 from app.questionnaire.rules import evaluate_goto, evaluate_repeat, evaluate_skip_conditions, is_goto_rule
@@ -11,9 +10,9 @@ logger = get_logger()
 
 class PathFinder:
 
-    def __init__(self, survey_json, answer_store=None, metadata=None):
-        self.answer_store = answer_store or AnswerStore()
-        self.metadata = metadata or {}
+    def __init__(self, survey_json, answer_store, metadata):
+        self.answer_store = answer_store
+        self.metadata = metadata
         self.survey_json = survey_json
         self._answer_store_hash = self.answer_store.get_hash()
         self._full_routing_path = None

@@ -1,13 +1,12 @@
 # coding: utf-8
 
-from datetime import datetime
 from unittest import TestCase
 
 from mock import Mock
 
 from app.jinja_filters import format_date, format_conditional_date, format_currency, get_currency_symbol, \
-    format_multilined_string, format_percentage, format_start_end_date, format_household_member_name, \
-    format_str_as_date, format_str_as_date_range, format_str_as_month_year_date, format_number_to_alphabetic_letter, \
+    format_multilined_string, format_percentage, format_date_range, format_household_member_name, \
+    format_month_year_date, format_number_to_alphabetic_letter, \
     format_unit, format_currency_for_input, format_number, format_unordered_list, format_household_member_name_possessive, \
     concatenated_list
 
@@ -110,7 +109,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
 
     def test_format_date(self):
         # Given
-        date = datetime.strptime('01/01/17', '%d/%m/%y')
+        date = '2017-01-01'
 
         # When
         format_value = format_date(date)
@@ -121,7 +120,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         # Given       no test for integers this check was removed from jinja_filters
 
         invalid_input = [('1', None),
-                         ('1/1/1', None)]
+                         ('1-1-1', None)]
 
         # When
         for nonsense in invalid_input:
@@ -130,7 +129,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
             with self.assertRaises(Exception) as exception:
                 format_conditional_date(date1, date2)
         # Then
-            self.assertIn("does not match format '%d/%m/%Y'", str(exception.exception))
+            self.assertIn("does not match format '%Y-%m-%d'", str(exception.exception))
 
     def test_format_conditional_date_not_set(self):
         # Given
@@ -145,71 +144,49 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
     def test_format_conditional_date(self):
         # Given
 
-        datelist = [('12/01/2016', '12/02/2016', '12 January 2016'),
-                    ('23/12/2017', None, '23 December 2017'),
-                    (datetime(2019, 5, 12), None, '12 May 2019'),
-                    (None, datetime(2017, 6, 22), '22 June 2017'),
-                    ('12/08/2017', datetime(2017, 9, 10), '12 August 2017'),
-                    (datetime(2018, 4, 7), '12/3/2018', '7 April 2018'),
-                    (None, datetime(2017, 10, 12), '12 October 2017'),
-                    (datetime(2019, 10, 12), datetime(2017, 9, 12), '12 October 2019')]
+        datelist = [('2016-01-12', '2016-02-12', '12 January 2016'),
+                    ('2017-12-23', None, '23 December 2017'),
+                    (None, '2017-12-24', '24 December 2017')]
 
         # When
         for triple in datelist:
             date1 = triple[0]
             date2 = triple[1]
+
             format_value = format_conditional_date(date1, date2)
 
             # Then
             self.assertEqual(format_value, "<span class='date'>{date}</span>".format(date=triple[2]))
 
-    def test_format_start_end_date(self):
+    def test_format_date_range(self):
         # Given
-        start_date = datetime.strptime('01/01/17', '%d/%m/%y')
-        end_date = datetime.strptime('31/01/17', '%d/%m/%y')
+        start_date = '2017-01-01'
+        end_date = '2017-01-31'
 
         # When
-        format_value = format_start_end_date(start_date, end_date)
+        format_value = format_date_range(start_date, end_date)
 
         # Then
         self.assertEqual(format_value, "<span class='date'>1 January 2017</span> to <span class='date'>31 January 2017</span>")
 
-    def test_format_start_end_date_missing_end_date(self):
+    def test_format_date_range_missing_end_date(self):
         # Given
-        start_date = datetime.strptime('01/01/17', '%d/%m/%y')
+        start_date = '2017-01-01'
 
         # When
-        format_value = format_start_end_date(start_date)
+        format_value = format_date_range(start_date)
 
         # Then
         self.assertEqual(format_value, "<span class='date'>1 January 2017</span>")
 
-    def test_format_str_as_date_range(self):
+    def test_format_month_year_date(self):
         # Given
-        date_range = {'from': '01/01/2017',
-                      'to': '01/01/2018'}
-        # When
-        format_value = format_str_as_date_range(date_range)
-
-        self.assertEqual(format_value, "<span class='date'>1 January 2017</span> to <span class='date'>1 January 2018</span>")
-
-    def test_format_str_as_month_year_date(self):
-        # Given
-        month_year_date = '3/2018'
+        month_year_date = '2018-03'
 
         # When
-        format_value = format_str_as_month_year_date(month_year_date)
+        format_value = format_month_year_date(month_year_date)
 
-        self.assertEqual(format_value, 'March 2018')
-
-    def test_format_str_as_date(self):
-        # Given
-        date = '02/03/2017'
-
-        # When
-        format_value = format_str_as_date(date)
-
-        self.assertEqual(format_value, "<span class='date'>2 March 2017</span>")
+        self.assertEqual(format_value, "<span class='date'>March 2018</span>")
 
     def test_format_household_member_name(self):
         # Given

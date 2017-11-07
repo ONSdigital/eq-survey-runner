@@ -405,7 +405,40 @@ class TestConverter(SurveyRunnerTestCase):
 
             questionnaire = {
                 'survey_id': '021',
-                'data_version': '0.0.2'
+                'data_version': '0.0.2',
+                'groups': [
+                    {
+                        'id': 'personal details',
+                        'blocks': [
+                            {
+                                'id': 'about you',
+                                'questions': [{
+                                    'id': 'crisps-question',
+                                    'answers': [
+                                        {
+                                            'id': 'name',
+                                            'type': 'TextField'
+                                        }
+                                    ]
+                                }]
+                            }]
+                    },
+                    {
+                        'id': 'household',
+                        'blocks': [
+                            {
+                                'id': 'where you live',
+                                'questions': [{
+                                    'id': 'crisps-question',
+                                    'answers': [
+                                        {
+                                            'id': 'address',
+                                            'type': 'TextField'
+                                        }
+                                    ]
+                                }]
+                            }]
+                    }]
             }
 
             # When
@@ -418,16 +451,19 @@ class TestConverter(SurveyRunnerTestCase):
             self.assertEqual(answer_object['data'][0]['block_id'], 'about you')
             self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
             self.assertEqual(answer_object['data'][0]['value'], 'Joe Bloggs')
+
             self.assertEqual(answer_object['data'][1]['group_id'], 'personal details')
             self.assertEqual(answer_object['data'][1]['group_instance'], 0)
             self.assertEqual(answer_object['data'][1]['block_id'], 'about you')
             self.assertEqual(answer_object['data'][1]['answer_instance'], 1)
             self.assertEqual(answer_object['data'][1]['value'], 'Fred Bloggs')
+
             self.assertEqual(answer_object['data'][2]['group_id'], 'household')
             self.assertEqual(answer_object['data'][2]['group_instance'], 0)
             self.assertEqual(answer_object['data'][2]['block_id'], 'where you live')
             self.assertEqual(answer_object['data'][2]['answer_instance'], 0)
             self.assertEqual(answer_object['data'][2]['value'], '62 Somewhere')
+
             self.assertEqual(answer_object['data'][3]['group_id'], 'household')
             self.assertEqual(answer_object['data'][3]['group_instance'], 1)
             self.assertEqual(answer_object['data'][3]['block_id'], 'where you live')
@@ -438,11 +474,40 @@ class TestConverter(SurveyRunnerTestCase):
         with self.application.test_request_context():
             routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
             answers = [
-                create_answer('name', ['Ready salted', 'Sweet chilli'], group_id='favourite-food', block_id='crisps')]
+                create_answer('crisps-answer', ['Ready salted', 'Sweet chilli'], group_id='favourite-food', block_id='crisps')]
 
             questionnaire = {
                 'survey_id': '021',
-                'data_version': '0.0.2'
+                'data_version': '0.0.2',
+                'groups': [{
+                    'id': 'favourite-food',
+                    'blocks': [{
+                        'id': 'crisps',
+                        'questions': [{
+                            'id': 'crisps-question',
+                            'answers': [
+                                {
+                                    'id': 'crisps-answer',
+                                    'type': 'Checkbox',
+                                    'options': [
+                                        {
+                                            'label': 'Ready salted',
+                                            'value': 'Ready salted'
+                                        },
+                                        {
+                                            'label': 'Sweet chilli',
+                                            'value': 'Sweet chilli'
+                                        },
+                                        {
+                                            'label': 'Cheese and onion',
+                                            'value': 'Cheese and onion'
+                                        }
+                                    ]
+                                }
+                            ]
+                        }]
+                    }]
+                }]
             }
 
             # When

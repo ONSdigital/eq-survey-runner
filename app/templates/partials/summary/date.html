@@ -1,5 +1,5 @@
 {% if question.type == 'DateRange' %}
-    {{answer.value|format_str_as_date_range}}
+    {{format_date_range(answer.value.from, answer.value.to)}}
 {% else %}
-    {{answer.value|format_str_as_date}}
+    {{answer.value|format_date}}
 {% endif %}

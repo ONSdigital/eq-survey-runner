@@ -50,7 +50,7 @@ class TestCensusIndividualSubmissionData(IntegrationTestCase):
             {
                 'group_instance': 0,
                 'group_id': 'household-member',
-                'value': '12/05/1988',
+                'value': '1988-05-12',
                 'block_id': 'date-of-birth',
                 'answer_instance': 0,
                 'answer_id': 'date-of-birth-answer'

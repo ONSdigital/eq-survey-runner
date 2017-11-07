@@ -37,7 +37,7 @@
         <dl class="dl">
             <dt class="dl__title mercury">PERIOD</dt>
             <dd class="dl__data mars">
-                <span>{{ format_start_end_date(meta.survey.start_date, meta.survey.end_date)}}</span>
+                <span>{{ format_date_range(meta.survey.start_date, meta.survey.end_date)}}</span>
             </dd>
             <dt class="dl__title mercury">PLEASE SUBMIT BY</dt>
             <dd class="dl__data mars">{{ meta.survey.return_by|format_date}}</dd>

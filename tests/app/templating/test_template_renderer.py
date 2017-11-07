@@ -1,7 +1,6 @@
 # coding: utf-8
 
 import unittest
-from datetime import datetime
 
 from app.templating.template_renderer import TemplateRenderer
 
@@ -17,7 +16,7 @@ class TestTemplateRenderer(unittest.TestCase):
 
     def test_render_date(self):
         date = '{{date|format_date}}'
-        context = {'date': datetime.strptime('01/01/2017', '%d/%m/%Y')}
+        context = {'date': '2017-01-01'}
 
         rendered = TemplateRenderer().render(date, **context)
 
@@ -140,7 +139,7 @@ class TestTemplateRenderer(unittest.TestCase):
         self.assertEqual(safe_content, 'How is … related to the people below?')
 
     def test_should_replace_jinja_template_variable_containing_function(self):
-        content = 'Is {{ format_start_end_date(meta.survey.start_date, meta.survey.end_date)}} correct?'
+        content = 'Is {{ format_date_range(meta.survey.start_date, meta.survey.end_date)}} correct?'
 
         safe_content = TemplateRenderer.safe_content(content)
 
