@@ -8,7 +8,7 @@ from mock import Mock
 from app.jinja_filters import format_date, format_conditional_date, format_currency, get_currency_symbol, \
      format_multilined_string, format_percentage, format_start_end_date, format_household_member_name, \
      format_str_as_date, format_str_as_date_range, format_str_as_month_year_date, format_number_to_alphabetic_letter, \
-     format_unit, format_currency_for_input, format_number, format_list
+     format_unit, format_currency_for_input, format_number, format_list, format_household_member_name_possessive
 
 
 class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
@@ -292,6 +292,24 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         format_value = format_household_member_name(name)
 
         self.assertEqual(format_value, 'John Doe')
+
+    def test_format_household_member_name_possessive(self):
+        # Given
+        name = ['John', 'Doe']
+
+        # When
+        format_value = format_household_member_name_possessive(name)
+
+        self.assertEqual(format_value, "John Doe's")
+
+    def test_format_household_member_name_possessive_trailing_s(self):
+        # Given
+        name = ['John', 'Does']
+
+        # When
+        format_value = format_household_member_name_possessive(name)
+
+        self.assertEqual(format_value, "John Does'")
 
     def test_format_percentage(self):
         self.assertEqual(format_percentage('100'), '100%')
