@@ -60,6 +60,14 @@ var radio_schema = 'test_radio.json';
             .isVisible(RadioMandatoryPage.error()).should.eventually.be.true;
         });
 
+    it('When I submit without choosing an option that I should get an error', function() {
+          return browser
+            .click(RadioMandatoryPage.other())
+            .click(RadioMandatoryPage.submit())
+            
+            .isVisible(RadioMandatoryPage.error()).should.eventually.be.true;
+          });
+
       it('When I submit data it should be persisted and displayed on the summary page', function() {
          return browser
          .click(RadioMandatoryPage.bacon())
@@ -70,7 +78,6 @@ var radio_schema = 'test_radio.json';
          .getUrl().should.eventually.contain(SummaryPage.pageName)
          .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Bacon');
         });
-
 
       it('When I submit data and then go back and update an answer the content on the summary screen should be correct', function() {
          return browser
@@ -86,7 +93,7 @@ var radio_schema = 'test_radio.json';
          .click(RadioMandatoryPage.submit())
          .click(RadioNonMandatoryPage.submit())
 
-          .getUrl().should.eventually.contain(SummaryPage.pageName)
+         .getUrl().should.eventually.contain(SummaryPage.pageName)
          .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Bacon');
          });
 
@@ -95,7 +102,6 @@ var radio_schema = 'test_radio.json';
           .click(RadioMandatoryPage.other())
           .isVisible(RadioMandatoryPage.otherText()).should.eventually.be.true;
          });
-
 
       it('When I select the other option the data entered should be displayed on the summary page', function() {
          return browser
