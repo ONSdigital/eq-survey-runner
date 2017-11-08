@@ -1,7 +1,7 @@
 const helpers = require('../../helpers');
 const RadioMandatoryPage = require('../../pages/surveys/radio/radio-mandatory.page');
 const RadioNonMandatoryPage = require('../../pages/surveys/radio/radio-non-mandatory.page');
-const SummaryPage = require('../../pages/surveys/radio/summary.page');
+const RadioSummaryPage = require('../../pages/surveys/radio/summary.page');
 
 describe('Component: Radio', function() {
 
@@ -20,7 +20,7 @@ var radio_schema = 'test_radio.json';
           it('When I submit without choosing an option that I should be able to go on to the next page', function() {
              return browser
                .click(RadioNonMandatoryPage.submit())
-               .getUrl().should.eventually.contain(SummaryPage.pageName);
+               .getUrl().should.eventually.contain(RadioSummaryPage.pageName);
             });
 
          it('When I select an optional option field and not enter any text I should still be able to move on', function() {
@@ -29,7 +29,7 @@ var radio_schema = 'test_radio.json';
               .click(RadioNonMandatoryPage.other())
               .click(RadioNonMandatoryPage.submit())
 
-              .getText(SummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('No answer provided');
+              .getText(RadioSummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('No answer provided');
 
             });
 
@@ -39,13 +39,13 @@ var radio_schema = 'test_radio.json';
           .setValue(RadioNonMandatoryPage.otherText(), 'Hello')
           .click(RadioNonMandatoryPage.submit())
 
-          .getText(SummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('Hello')
-          .click(SummaryPage.previous())
+          .getText(RadioSummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('Hello')
+          .click(RadioSummaryPage.previous())
 
           .setValue(RadioNonMandatoryPage.otherText(), '')
           .click(RadioNonMandatoryPage.submit())
 
-          .getText(SummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('No answer provided');
+          .getText(RadioSummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('No answer provided');
           });
     });
 
@@ -75,8 +75,8 @@ var radio_schema = 'test_radio.json';
 
          .click(RadioNonMandatoryPage.submit())
 
-         .getUrl().should.eventually.contain(SummaryPage.pageName)
-         .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Bacon');
+         .getUrl().should.eventually.contain(RadioSummaryPage.pageName)
+         .getText(RadioSummaryPage.radioMandatoryAnswer()).should.eventually.contain('Bacon');
         });
 
       it('When I submit data and then go back and update an answer the content on the summary screen should be correct', function() {
@@ -86,15 +86,15 @@ var radio_schema = 'test_radio.json';
 
          .click(RadioNonMandatoryPage.submit())
 
-         .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Eggs')
-         .click(SummaryPage.previous())
+         .getText(RadioSummaryPage.radioMandatoryAnswer()).should.eventually.contain('Eggs')
+         .click(RadioSummaryPage.previous())
          .click(RadioNonMandatoryPage.previous())
          .click(RadioMandatoryPage.bacon())
          .click(RadioMandatoryPage.submit())
          .click(RadioNonMandatoryPage.submit())
 
-         .getUrl().should.eventually.contain(SummaryPage.pageName)
-         .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Bacon');
+         .getUrl().should.eventually.contain(RadioSummaryPage.pageName)
+         .getText(RadioSummaryPage.radioMandatoryAnswer()).should.eventually.contain('Bacon');
          });
 
       it('When I select the other option the text field should be viewable', function() {
@@ -111,7 +111,7 @@ var radio_schema = 'test_radio.json';
 
           .click(RadioNonMandatoryPage.submit())
 
-          .getText(SummaryPage.radioMandatoryAnswer()).should.eventually.contain('Hello');
+          .getText(RadioSummaryPage.radioMandatoryAnswer()).should.eventually.contain('Hello');
 
          });
     });
