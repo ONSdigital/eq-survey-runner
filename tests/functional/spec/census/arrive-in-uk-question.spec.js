@@ -1,5 +1,6 @@
 const helpers = require('../../helpers');
 
+const WhatIsYourAddress = require('../../pages/surveys/census/household/what-is-your-address.page');
 const PermanentOrFamilyHome = require('../../pages/surveys/census/household/permanent-or-family-home.page');
 const HouseholdComposition = require('../../pages/surveys/census/household/household-composition.page');
 const HouseholdMemberBegin = require('../../pages/surveys/census/household/household-member-begin.page');
@@ -16,6 +17,8 @@ describe('Census Household', function () {
     return helpers.startCensusQuestionnaire('census_household.json', false)
       .then(() => {
         return browser
+          .setValue(WhatIsYourAddress.addressLine1(), '44 hill side')
+          .click(WhatIsYourAddress.submit())
           .click(PermanentOrFamilyHome.yes())
           .click(PermanentOrFamilyHome.submit())
           .setValue(HouseholdComposition.firstName(), 'John')

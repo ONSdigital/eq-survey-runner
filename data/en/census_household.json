@@ -32,6 +32,74 @@
         ]
     },
     "groups": [{
+            "id": "what-is-your-address-group",
+            "title": "What is your address?",
+            "blocks": [{
+                "type": "Questionnaire",
+                "id": "what-is-your-address",
+                "questions": [{
+                    "id": "what-is-your-address-question",
+                    "title": "What is your address?",
+                    "type": "General",
+                    "answers": [{
+                            "id": "building",
+                            "label": "Building",
+                            "mandatory": false,
+                            "type": "TextField"
+                        },
+                        {
+                            "id": "address-line-1",
+                            "label": "Address Line 1",
+                            "mandatory": true,
+                            "type": "TextField",
+                            "alias": "address_line_1",
+                            "validation": {
+                                "messages": {
+                                    "MANDATORY_TEXTFIELD": "Enter an address to continue"
+                                }
+                            }
+                        },
+                        {
+                            "id": "address-line-2",
+                            "label": "Address Line 2",
+                            "mandatory": false,
+                            "type": "TextField"
+                        },
+                        {
+                            "id": "address-line-3",
+                            "label": "Address Line 3",
+                            "mandatory": false,
+                            "type": "TextField"
+                        },
+                        {
+                            "id": "town-city",
+                            "label": "Town/City",
+                            "mandatory": false,
+                            "type": "TextField"
+                        },
+                        {
+                            "id": "county",
+                            "label": "County",
+                            "mandatory": false,
+                            "type": "TextField"
+                        },
+                        {
+                            "id": "postcode",
+                            "label": "Postcode",
+                            "mandatory": false,
+                            "type": "TextField"
+                        },
+                        {
+                            "id": "country",
+                            "label": "Country",
+                            "mandatory": false,
+                            "type": "TextField"
+                        }
+                    ]
+                }]
+            }]
+        },
+        {
             "id": "who-lives-here",
             "title": "Who lives here?",
             "blocks": [{
@@ -1597,18 +1665,12 @@
                     "id": "length-of-stay",
                     "questions": [{
                         "id": "length-of-stay-question",
-                        "title": "Including the time you have already spent here, how long do you intend to stay in the United Kingdom?",
+                        "title": "Including the time you have already spent here, how long does <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}</em> intend to stay in the United Kingdom?",
+                        "description": "If you arrived in the United Kingdom before May 2016, please select ‘12 months or more’",
                         "type": "General",
                         "answers": [{
                             "id": "length-of-stay-answer",
                             "mandatory": false,
-                            "guidance": {
-                                "show_guidance": "Show further guidance",
-                                "hide_guidance": "Hide further guidance",
-                                "content": [{
-                                    "description": "If you arrived in the United Kingdom before May 2016, please select ‘12 months or more’"
-                                }]
-                            },
                             "options": [{
                                     "label": "Less than 6 months",
                                     "value": "Less than 6 months"
