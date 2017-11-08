@@ -119,7 +119,7 @@ def format_str_as_date(value):
 
 @blueprint.app_template_filter()
 def format_household_member_name(names):
-    return ' '.join(map(lambda name: name.strip(), filter(None, names)))
+    return concatenated_list(list_items=names, delimiter=' ')
 
 
 @blueprint.app_template_filter()
@@ -133,7 +133,7 @@ def format_household_member_name_possessive(names):
 
 
 @blueprint.app_template_filter()
-def format_list(list_items):
+def format_unordered_list(list_items):
     summary_list = ''
 
     if list_items and list_items[0]:
@@ -146,13 +146,18 @@ def format_list(list_items):
 
 
 @blueprint.app_template_filter()
+def concatenated_list(list_items, delimiter=', '):
+    return delimiter.join(map(lambda item: item.strip(), filter(None, list_items)))
+
+
+@blueprint.app_template_filter()
 def format_household_summary(names):
     if names:
         person_list = []
         for first_name, middle_name, last_name in zip(names[0], names[1], names[2]):
             person_list.append(format_household_member_name([first_name, middle_name, last_name]))
 
-        return format_list([person_list])
+        return format_unordered_list([person_list])
     return ''
 
 

@@ -238,7 +238,7 @@
                     "questions": [{
                         "id": "pay-pattern-frequency-confirmation-question",
                         "title": "Employees are paid in the following patterns:",
-                        "description": "{{ answers.pay_pattern|format_list }}",
+                        "description": "{{ answers.pay_pattern|format_unordered_list }}",
                         "type": "General",
                         "answers": [{
                             "id": "pay-pattern-frequency-confirmation-answer",
