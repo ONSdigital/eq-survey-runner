@@ -1646,7 +1646,7 @@
                     "id": "arrive-in-uk",
                     "questions": [{
                         "id": "arrive-in-uk-question",
-                        "title": "When did {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }} most recently arrive to live in the United Kingdom?",
+                        "title": "When did <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> most recently arrive to live in the United Kingdom?",
                         "guidance": {
                             "content": [{
                                 "description": "Exclude short visits away from the UK"
