@@ -38,6 +38,7 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
         self.launchSurvey('census', 'household')
 
         # When we complete the who lives here section and the other questions needed to build the path.
+        self.post({'address-line-1': '44 hill side'})
         self.post({'permanent-or-family-home-answer': 'Yes'})
 
         post_data = {

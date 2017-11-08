@@ -14,6 +14,7 @@ class TestQuestionnaireRemoveRepeatAnswers(IntegrationTestCase):
             self.launchSurvey('census', 'household')
 
             # When
+            self.post({'address-line-1': '44 hill side'})
             self.post({'permanent-or-family-home-answer': 'No'})
 
             # Then
@@ -28,6 +29,7 @@ class TestQuestionnaireRemoveRepeatAnswers(IntegrationTestCase):
             self.launchSurvey('census', 'household')
 
             # When
+            self.post({'address-line-1': '44 hill side'})
             self.post({'permanent-or-family-home-answer': 'Yes'})
 
             # Then
@@ -42,6 +44,7 @@ class TestQuestionnaireRemoveRepeatAnswers(IntegrationTestCase):
             self.launchSurvey('census', 'household')
 
             # When
+            self.post({'address-line-1': '44 hill side'})
             self.post({'permanent-or-family-home-answer': 'No'})
 
             # Then
