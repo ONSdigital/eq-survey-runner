@@ -163,7 +163,6 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
             # Then
             self.assertEqual(format_value, "<span class='date'>{date}</span>".format(date=triple[2]))
 
-
     def test_format_start_end_date(self):
         # Given
         start_date = datetime.strptime('01/01/17', '%d/%m/%y')
@@ -300,7 +299,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         # When
         format_value = format_household_member_name_possessive(name)
 
-        self.assertEqual(format_value, "John Doe's")
+        self.assertEqual(format_value, 'John Doe\u2019s')
 
     def test_format_household_member_name_possessive_trailing_s(self):
         # Given
@@ -309,7 +308,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         # When
         format_value = format_household_member_name_possessive(name)
 
-        self.assertEqual(format_value, "John Does'")
+        self.assertEqual(format_value, 'John Does\u2019')
 
     def test_format_percentage(self):
         self.assertEqual(format_percentage('100'), '100%')
