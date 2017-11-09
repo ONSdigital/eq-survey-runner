@@ -47,31 +47,36 @@
                             "id": "address-line-3",
                             "label": "Address Line 3",
                             "mandatory": false,
-                            "type": "TextField"
+                            "type": "TextField",
+                            "alias": "address_line_3"
                         },
                         {
                             "id": "town-city",
                             "label": "Town/City",
                             "mandatory": false,
-                            "type": "TextField"
+                            "type": "TextField",
+                            "alias": "address_town_city"
                         },
                         {
                             "id": "county",
                             "label": "County",
                             "mandatory": false,
-                            "type": "TextField"
+                            "type": "TextField",
+                            "alias": "address_county"
                         },
                         {
                             "id": "postcode",
                             "label": "Postcode",
                             "mandatory": false,
-                            "type": "TextField"
+                            "type": "TextField",
+                            "alias": "address_postcode"
                         },
                         {
                             "id": "country",
                             "label": "Country",
                             "mandatory": false,
-                            "type": "TextField"
+                            "type": "TextField",
+                            "alias": "address_country"
                         }
                     ]
                 }]
@@ -117,19 +122,19 @@
                 "id": "term-time-location",
                 "questions": [{
                     "id": "term-time-location-question",
-                    "title": "During term time, does <em>{{[answers.first_name, answers.last_name] | format_household_name}}</em> live at <em>{{[answers.address_line_1] | format_household_name}}</em>",
+                    "title": "During term time, where does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> live at <em>{{answers.address_line_1}}</em>",
                     "type": "General",
                     "answers": [{
                         "id": "term-time-location-answer",
                         "type": "Radio",
                         "mandatory": false,
                         "options": [{
-                                "label": "here, at this address",
-                                "value": "here, at this address"
+                                "label": "at {{[answers.address_building, answers.address_line_1, answers.address_line_2, answers.address_line_3, answers.address_town_city, answers.address_county, answers.address_postcode, answers.address_country]}}",
+                                "value": "at your address"
                             },
                             {
                                 "label": "at another address",
-                                "value": "at another address"
+                                "value": "at another address",
                             }
                         ]
                     }]
