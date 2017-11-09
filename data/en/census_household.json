@@ -107,7 +107,7 @@
                     "id": "permanent-or-family-home",
                     "questions": [{
                         "id": "permanent-or-family-home-question",
-                        "title": "Does anyone live here as their permanent or family home?",
+                        "title": "Does anyone live at <em>{{answers.address_line_1}}</em> as their permanent or family home?",
                         "guidance": {
                             "content": [{
                                 "title": "Include",
