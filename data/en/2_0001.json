@@ -133,8 +133,5 @@
     "schema_version": "0.0.1",
     "survey_id": "139",
     "theme": "default",
-    "title": "Quarterly Business Survey",
-    "variables": {
-        "period": "{{ format_start_end_date(exercise.start_date, exercise.end_date) }}"
-    }
+    "title": "Quarterly Business Survey"
 }
