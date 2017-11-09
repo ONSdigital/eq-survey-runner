@@ -78,11 +78,11 @@
             },
             {
                 "type": "Questionnaire",
-                "id": "what-is-your-name",
+                "id": "household-composition",
                 "questions": [{
                     "id": "what-is-your-name-question",
                     "title": "What is your name?",
-                    "type": "General",
+                    "type": "RepeatingAnswer",
                     "answers": [{
                             "alias": "first_name",
                             "id": "first-name",
@@ -91,7 +91,7 @@
                             "type": "TextField",
                             "validation": {
                                 "messages": {
-                                    "MANDATORY_TEXTFIELD": "Please enter a first name"
+                                    "MANDATORY_TEXTFIELD": "Please enter a first name?"
                                 }
                             }
                         },
