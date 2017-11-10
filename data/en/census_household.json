@@ -227,7 +227,7 @@
                     "id": "household-composition",
                     "questions": [{
                         "id": "household-composition-question",
-                        "title": "List the names of everyone  who lives here.",
+                        "title": "Enter the first, middle and surnames of everyone who lives at <em>{{answers.address_line_1}}</em>",
                         "guidance": {
                             "content": [{
                                 "title": "Include",
@@ -235,7 +235,8 @@
                                     "Yourself, if this is your permanent or family home",
                                     "Family members including partners, children and babies born on or before 9 April 2017",
                                     "Students and, or school children who live away from home during term time",
-                                    "Housemates tenants or lodgers"
+                                    "Housemates tenants or lodgers",
+                                    "Household members who have requested a personal form"
                                 ]
                             }]
                         },
