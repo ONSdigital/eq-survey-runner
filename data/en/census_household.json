@@ -718,7 +718,7 @@
                     "id": "own-or-rent",
                     "questions": [{
                         "id": "own-or-rent-question",
-                        "title": "Does your household own or rent this accommodation?",
+                        "title": "Does your household own or rent <em>{{answers.address_line_1}}</em>?",
                         "type": "General",
                         "answers": [{
                             "id": "own-or-rent-answer",
