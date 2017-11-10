@@ -2712,7 +2712,7 @@
                     "id": "understand-welsh",
                     "questions": [{
                         "id": "understand-welsh-question",
-                        "title": "Can you understand, speak, read or write Welsh",
+                        "title": "Can <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}</em> understand, speak, read or write Welsh",
                         "description": "Select all that apply",
                         "type": "General",
                         "answers": [{
@@ -2748,7 +2748,7 @@
                     "id": "language",
                     "questions": [{
                             "id": "language-england-question",
-                            "title": "What is your main language?",
+                            "title": "What is <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> main language?",
                             "type": "General",
                             "answers": [{
                                     "id": "language-england-answer",
@@ -2758,7 +2758,7 @@
                                             "value": "English"
                                         },
                                         {
-                                            "label": "Other (please specify)",
+                                            "label": "Other",
                                             "value": "Other",
                                             "description": "Including British Sign Language",
                                             "child_answer_id": "language-england-answer-other"
@@ -2784,7 +2784,7 @@
                         },
                         {
                             "id": "language-welsh-question",
-                            "title": "What is your main language?",
+                            "title": "What is <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> main language?",
                             "type": "General",
                             "answers": [{
                                     "id": "language-welsh-answer",
@@ -2794,7 +2794,7 @@
                                             "value": "English or Welsh"
                                         },
                                         {
-                                            "label": "Other (please specify)",
+                                            "label": "Other",
                                             "value": "Other",
                                             "description": "Including British Sign Language",
                                             "child_answer_id": "language-welsh-answer-other"
@@ -2851,7 +2851,7 @@
                     "id": "english",
                     "questions": [{
                         "id": "english-question",
-                        "title": "How well can you speak English?",
+                        "title": "How well can <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}</em> speak English?",
                         "type": "General",
                         "answers": [{
                             "id": "english-answer",
