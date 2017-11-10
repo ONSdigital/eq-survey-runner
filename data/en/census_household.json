@@ -492,7 +492,7 @@
                     "id": "type-of-accommodation",
                     "questions": [{
                         "id": "type-of-accommodation-question",
-                        "title": "What type of accommodation is this?",
+                        "title": "What type of accommodation is <em>{{answers.address_line_1}}</em>?",
                         "type": "General",
                         "answers": [{
                             "id": "type-of-accommodation-answer",
