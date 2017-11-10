@@ -194,14 +194,6 @@ def _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type):
     return _redirect_to_location(collection_id, eq_id, form_type, latest_location)
 
 
-@questionnaire_blueprint.route('<group_id>/<int:group_instance>/permanent-or-family-home', methods=['POST'])
-@login_required
-def post_everyone_at_address_confirmation(eq_id, form_type, collection_id, group_id, group_instance):
-    if request.form.get('permanent-or-family-home-answer') == 'No':
-        _remove_repeating_on_household_answers(get_answer_store(current_user), group_id)
-    return post_block(eq_id, form_type, collection_id, group_id, group_instance, 'permanent-or-family-home')  # pylint: disable=no-value-for-parameter
-
-
 def _render_page(full_routing_path, block, current_location, post_form=None):
 
     context = _get_context(full_routing_path, block, current_location, post_form)

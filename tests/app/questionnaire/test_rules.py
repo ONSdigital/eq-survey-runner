@@ -1,6 +1,7 @@
 from unittest import TestCase
 
 from app.data_model.answer_store import AnswerStore, Answer
+from app.questionnaire.location import Location
 from app.questionnaire.rules import evaluate_rule, evaluate_goto, evaluate_repeat, evaluate_skip_conditions, \
     evaluate_when_rules
 
@@ -377,8 +378,10 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         answer_store = AnswerStore()
         answer_store.add(Answer(answer_id='my_answer', value='3'))
 
+        current_path = [Location(None, 0, None)]
+
         # When
-        number_of_repeats = evaluate_repeat(repeat, answer_store)
+        number_of_repeats = evaluate_repeat(repeat, answer_store, current_path)
 
         self.assertEqual(number_of_repeats, 3)
 
@@ -392,8 +395,10 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         answer_store.add(Answer(answer_id='my_answer', value='3'))
         answer_store.add(Answer(answer_id='my_answer', value='4', answer_instance=1))
 
+        current_path = [Location(None, 0, None)]
+
         # When
-        number_of_repeats = evaluate_repeat(repeat, answer_store)
+        number_of_repeats = evaluate_repeat(repeat, answer_store, current_path)
 
         self.assertEqual(number_of_repeats, 2)
 
@@ -407,8 +412,10 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         answer_store.add(Answer(answer_id='my_answer', value='3'))
         answer_store.add(Answer(answer_id='my_answer', value='4', answer_instance=1))
 
+        current_path = [Location(None, 0, None)]
+
         # When
-        number_of_repeats = evaluate_repeat(repeat, answer_store)
+        number_of_repeats = evaluate_repeat(repeat, answer_store, current_path)
 
         self.assertEqual(number_of_repeats, 1)
 
@@ -422,8 +429,10 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         for i in range(27):
             answer_store.add(Answer(answer_id='my_answer', value='3', answer_instance=i))
 
+        current_path = [Location(None, 0, None)]
+
         # When
-        number_of_repeats = evaluate_repeat(repeat, answer_store)
+        number_of_repeats = evaluate_repeat(repeat, answer_store, current_path)
 
         self.assertEqual(number_of_repeats, 24)
 

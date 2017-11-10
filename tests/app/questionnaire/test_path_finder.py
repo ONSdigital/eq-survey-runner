@@ -300,7 +300,8 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey, answer_store=answers)
 
-        self.assertEqual(path_finder.get_previous_location(current_location=current_location), expected_previous_location)
+        self.assertEqual(path_finder.get_previous_location(current_location=current_location),
+                         expected_previous_location)
 
     def test_next_location_goto_summary(self):
         survey = load_schema_file('0_star_wars.json')
@@ -589,7 +590,8 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey, answer_store=answers)
 
-        self.assertEqual(expected_previous_location, path_finder.get_previous_location(current_location=current_location))
+        self.assertEqual(expected_previous_location,
+                         path_finder.get_previous_location(current_location=current_location))
 
     def test_repeating_groups_next_location(self):
         survey = load_schema_file('test_repeating_household.json')
@@ -936,19 +938,25 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         self.assertEqual(path_finder.get_routing_path('should-skip-group'), expected_route)
 
     def test_build_path_with_invalid_location(self):
-        path_finder = PathFinder(survey_json={})
-
-        blocks = [
-            {
-                'group_id': 'first-valid-group-id',
-                'group_instance': 0,
-                'block': {'id': 'first-valid-block-id', 'type': 'questionnaire'}
-            }, {
-                'group_id': 'second-valid-group-id',
-                'group_instance': 0,
-                'block': {'id': 'second-valid-block-id', 'type': 'questionnaire'}
-            }
-        ]
+        path_finder = PathFinder(survey_json={
+            'groups': [
+                {
+                    'id': 'first-valid-group-id',
+                    'blocks': [
+                        {
+                            'id': 'first-valid-block-id',
+                            'type': 'questionnaire'
+                        }
+                    ]
+                },
+                {
+                    'id': 'second-valid-group-id',
+                    'blocks': [{
+                        'id': 'second-valid-block-id',
+                        'type': 'questionnaire'
+                    }]
+                }]
+        })
 
         invalid_group_location = Location(
             group_instance=0,
@@ -956,7 +964,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
             block_id='first-valid-block-id'
         )
 
-        self.assertEqual([], path_finder.build_path(blocks, invalid_group_location))
+        self.assertEqual([], path_finder.build_path(invalid_group_location))
 
         invalid_block_location = Location(
             group_instance=0,
@@ -964,7 +972,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
             block_id='this-block-id-doesnt-exist-in-the-list-of-blocks'
         )
 
-        self.assertEqual([], path_finder.build_path(blocks, invalid_block_location))
+        self.assertEqual([], path_finder.build_path(invalid_block_location))
 
     def test_given_no_completed_blocks_when_get_latest_location_then_go_to_first_block(self):
         # Given no completed blocks
@@ -1016,7 +1024,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         location = Location('which-group', 0, 'which-group-block')
 
-        path = path_finder.build_path(path_finder.get_blocks(), location)
+        path = path_finder.build_path(location)
 
         # Then it should route me straight to Group2 and not Group1
         self.assertNotIn(Location('group1', 0, 'group1-block'), path)

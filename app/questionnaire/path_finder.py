@@ -25,7 +25,7 @@ class PathFinder:
                      b['group_instance'] == location.group_instance),
                     None)
 
-    def build_path(self, blocks, this_location):
+    def build_path(self, this_location):
         """
         Visits all the blocks from a location forwards and returns path
         taken given a list of answers.
@@ -34,59 +34,98 @@ class PathFinder:
         :param this_location: The location to visit, represented as a dict
         :return: A list of locations followed through the survey
         """
+        blocks = []
         path = []
         block_index = 0
-        blocks_len = len(blocks)
 
+        for group in SchemaHelper.get_groups(self.survey_json):
+
+            if 'skip_conditions' in group:
+                if evaluate_skip_conditions(group['skip_conditions'], self.metadata, self.answer_store):
+                    continue
+
+            no_of_repeats = self._calculate_no_of_repeats(group, path)
+
+            for i in range(0, no_of_repeats):
+                for block in group['blocks']:
+                    if 'skip_conditions' in block:
+                        if evaluate_skip_conditions(block['skip_conditions'], self.metadata, self.answer_store):
+                            continue
+
+                    blocks.append({
+                        'group_id': group['id'],
+                        'group_instance': i,
+                        'block': block,
+                    })
+
+            path, block_index = self._build_path_within_group(blocks, block_index, this_location, path)
+
+        return path
+
+    def _build_path_within_group(self, blocks, block_index, this_location, path):
         # Keep going unless we've hit the last block
-        while block_index < blocks_len:
+        # for block_identifier in blocks:
+        while block_index < len(blocks):
+            prev_block_index = block_index
             block_index = PathFinder._block_index_for_location(blocks, this_location)
             if block_index is None:
-                logger.error('block index is none (invalid location)', **this_location.__dict__)
-                return path
+                return path, prev_block_index
 
-            path.append(this_location)
+            if this_location not in path:
+                path.append(this_location)
+
             block = blocks[block_index]['block']
 
             # If routing rules exist then a rule must match (i.e. default goto)
             if 'routing_rules' in block and block['routing_rules']:
-                original_this_location = copy.copy(this_location)
-                for rule in filter(is_goto_rule, block['routing_rules']):
-                    should_goto = evaluate_goto(rule['goto'], self.metadata, self.answer_store, this_location.group_instance)
+                this_location = self._evaluate_routing_rules(this_location, blocks, block, block_index, path)
 
-                    if should_goto:
-                        next_location = copy.copy(this_location)
+                if this_location:
+                    continue
 
-                        if 'group' in rule['goto']:
-                            next_location.group_id = rule['goto']['group']
-                            next_location.block_id = SchemaHelper.get_first_block_id_for_group(self.survey_json, rule['goto']['group'])
-                        else:
-                            next_location.block_id = rule['goto']['id']
-
-                        next_block_index = PathFinder._block_index_for_location(blocks, next_location)
-                        next_precedes_current = next_block_index is not None and next_block_index < block_index
-
-                        if next_precedes_current:
-                            self._remove_rule_answers(rule['goto'])
-
-                        this_location = next_location
-                        break
-
-                # If we haven't changed location based on routing rules then we can't progress any further
-                if this_location == original_this_location:
-                    break
+                return path, block_index
 
             # No routing rules, so if this isn't the last block, step forward a block
             elif block_index < len(blocks) - 1:
                 this_location = Location(blocks[block_index + 1]['group_id'],
                                          blocks[block_index + 1]['group_instance'],
                                          blocks[block_index + 1]['block']['id'])
+                continue
 
-            # If we've reached last block stop evaluating the path
-            else:
-                break
+            return path, block_index
 
-        return path
+    def _calculate_no_of_repeats(self, group, path):
+        repeating_rule = SchemaHelper.get_repeat_rule(group)
+
+        if repeating_rule:
+            return evaluate_repeat(repeating_rule, self.answer_store, path)
+
+        return 1
+
+    def _evaluate_routing_rules(self, this_location, blocks, block, block_index, path):
+        for rule in filter(is_goto_rule, block['routing_rules']):
+            should_goto = evaluate_goto(rule['goto'], self.metadata, self.answer_store, this_location.group_instance)
+
+            if should_goto:
+                return self._follow_routing_rule(this_location, rule, blocks, block_index, path)
+
+    def _follow_routing_rule(self, this_location, rule, blocks, block_index, path):
+        next_location = copy.copy(this_location)
+
+        if 'group' in rule['goto']:
+            next_location.group_id = rule['goto']['group']
+            next_location.block_id = SchemaHelper.get_first_block_id_for_group(self.survey_json, rule['goto']['group'])
+        else:
+            next_location.block_id = rule['goto']['id']
+
+        next_block_index = PathFinder._block_index_for_location(blocks, next_location)
+        next_precedes_current = next_block_index is not None and next_block_index < block_index
+
+        if next_precedes_current:
+            self._remove_rule_answers(rule['goto'])
+            path.append(next_location)
+
+        return next_location
 
     def _remove_rule_answers(self, goto_rule):
         # We're jumping backwards, so need to delete all answers from which
@@ -108,11 +147,6 @@ class PathFinder:
             if location.group_id == group_id and location.group_instance == group_instance:
                 return self._full_routing_path[i:]
 
-        first_block_in_group = SchemaHelper.get_first_block_id_for_group(self.survey_json, group_id)
-        location = Location(group_id, group_instance, first_block_in_group)
-
-        return self.build_path(self.get_blocks(), location)
-
     def get_full_routing_path(self):
         """
         Returns a list of the block ids visited based on answers provided
@@ -128,44 +162,14 @@ class PathFinder:
         location = Location(group_id, 0, first_block_in_group)
 
         self._answer_store_hash = latest_answer_store_hash
-        self._full_routing_path = self.build_path(self.get_blocks(), location)
+        self._full_routing_path = self.build_path(location)
 
         return self._full_routing_path
-
-    def get_blocks(self):
-        blocks = []
-
-        for group in SchemaHelper.get_groups(self.survey_json):
-            if 'skip_conditions' in group:
-                skip = evaluate_skip_conditions(group['skip_conditions'], self.metadata, self.answer_store)
-                if skip:
-                    continue
-
-            no_of_repeats = 1
-            repeating_rule = SchemaHelper.get_repeat_rule(group)
-
-            if repeating_rule:
-                no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store)
-
-            for i in range(0, no_of_repeats):
-                for block in group['blocks']:
-                    if 'skip_conditions' in block:
-                        skip = evaluate_skip_conditions(block['skip_conditions'], self.metadata, self.answer_store)
-                        if skip:
-                            continue
-
-                    blocks.append({
-                        'group_id': group['id'],
-                        'group_instance': i,
-                        'block': block,
-                    })
-        return blocks
 
     @staticmethod
     def _get_current_location_index(path, current_location):
         if current_location in path:
             return path.index(current_location)
-        return None
 
     def get_next_location(self, current_location):
         """
@@ -179,7 +183,6 @@ class PathFinder:
 
         if current_location_index is not None and current_location_index < len(routing_path) - 1:
             return routing_path[current_location_index + 1]
-        return None
 
     def get_previous_location(self, current_location):
         """
@@ -202,7 +205,6 @@ class PathFinder:
 
         if current_location_index is not None and current_location_index != 0:
             return routing_path[current_location_index - 1]
-        return None
 
     def get_latest_location(self, completed_blocks, routing_path=None):
         """
