@@ -257,14 +257,6 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             },
             {
                 'group_instance': 0,
-                'answer_id': 'sex-answer-other',
-                'block_id': 'sex',
-                'group_id': 'household-member',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 0,
                 'answer_id': 'date-of-birth-answer',
                 'block_id': 'date-of-birth',
                 'group_id': 'household-member',

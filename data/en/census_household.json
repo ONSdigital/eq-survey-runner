@@ -1044,32 +1044,19 @@
                         "title": "What is {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }} gender?",
                         "type": "General",
                         "answers": [{
-                                "id": "sex-answer",
-                                "mandatory": false,
-                                "options": [{
-                                        "label": "Male",
-                                        "value": "Male"
-                                    },
-                                    {
-                                        "label": "Female",
-                                        "value": "Female"
-                                    },
-                                    {
-                                        "label": "Any other gender identity",
-                                        "value": "Other",
-                                        "child_answer_id": "sex-answer-other"
-                                    }
-                                ],
-                                "type": "Radio"
-                            },
-                            {
-                                "id": "sex-answer-other",
-                                "parent_answer_id": "sex-answer",
-                                "type": "TextField",
-                                "mandatory": false,
-                                "label": "please specify"
-                            }
-                        ]
+                            "id": "sex-answer",
+                            "mandatory": false,
+                            "options": [{
+                                    "label": "Male",
+                                    "value": "Male"
+                                },
+                                {
+                                    "label": "Female",
+                                    "value": "Female"
+                                }
+                            ],
+                            "type": "Radio"
+                        }]
                     }]
                 },
                 {
