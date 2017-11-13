@@ -604,12 +604,8 @@
                     "id": "self-contained-accommodation",
                     "questions": [{
                         "id": "self-contained-accommodation-question",
-                        "title": "Is this household’s accommodation self-contained?",
-                        "guidance": {
-                            "content": [{
-                                "description": "This means that all the rooms, including the kitchen, bathroom and toilet, are behind a door that only this household can use"
-                            }]
-                        },
+                        "title": "Is the accommodation of <em>{{answers.address_line_1}}</em> self-contained?",
+                        "description": "This means that all the rooms, including the kitchen, bathroom and toilet, are behind a door that only this household can use",
                         "type": "General",
                         "answers": [{
                             "id": "self-contained-accommodation-answer",
