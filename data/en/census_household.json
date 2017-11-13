@@ -1042,7 +1042,7 @@
                     "id": "sex",
                     "questions": [{
                         "id": "sex-question",
-                        "title": "Which of the following options describes how best <em>{{[answers.first_name[group_instance]] | format_household_name_possessive}}</em> thinks of themselves?",
+                        "title": "Which of the following options describes how best <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> thinks of themselves?",
                         "type": "General",
                         "answers": [{
                             "id": "sex-answer",
