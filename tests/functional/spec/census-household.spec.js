@@ -96,7 +96,7 @@ describe('Census Household', function () {
           .click(Over16.submit())
           .click(PrivateResponse.noIDoNotWantToRequestAPersonalForm())
           .click(PrivateResponse.submit())
-          .click(Sex.male())
+          .click(Sex.heterosexualOrStraight())
           .click(Sex.submit())
           .setValue(DateOfBirth.day(), 2)
           .selectByValue(DateOfBirth.month(), 4)

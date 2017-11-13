@@ -1042,18 +1042,30 @@
                     "id": "sex",
                     "questions": [{
                         "id": "sex-question",
-                        "title": "What is {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }} gender?",
+                        "title": "Which of the following options describes how best <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> thinks of themselves?",
                         "type": "General",
                         "answers": [{
                             "id": "sex-answer",
                             "mandatory": false,
                             "options": [{
-                                    "label": "Male",
-                                    "value": "Male"
+                                    "label": "Heterosexual or Straight",
+                                    "value": "Heterosexual or Straight"
                                 },
                                 {
-                                    "label": "Female",
-                                    "value": "Female"
+                                    "label": "Gay or Lesbian",
+                                    "value": "Gay or Lesbian"
+                                },
+                                {
+                                    "label": "Bisexual",
+                                    "value": "Bisexual"
+                                },
+                                {
+                                    "label": "Other",
+                                    "value": "Other"
+                                },
+                                {
+                                    "label": "Prefer not to say",
+                                    "value": "Prefer not to say"
                                 }
                             ],
                             "type": "Radio"
