@@ -632,7 +632,7 @@
                     "id": "number-of-bedrooms",
                     "questions": [{
                         "id": "number-of-bedrooms-question",
-                        "title": "How many bedrooms are available for use only by this household?",
+                        "title": "How many bedrooms are at <em>{{answers.address_line_1}}</em>?",
                         "guidance": {
                             "content": [{
                                 "description": "Include all rooms built or converted for use as bedrooms, even if they’re not currently used as bedrooms"
