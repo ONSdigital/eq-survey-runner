@@ -58,14 +58,8 @@
                     "title": "What is your address?",
                     "type": "General",
                     "answers": [{
-                            "id": "building",
-                            "label": "Building",
-                            "mandatory": false,
-                            "type": "TextField"
-                        },
-                        {
                             "id": "address-line-1",
-                            "label": "Address Line 1",
+                            "label": "Address Line 1 (Including your house name or number)",
                             "mandatory": true,
                             "type": "TextField",
                             "alias": "address_line_1",
