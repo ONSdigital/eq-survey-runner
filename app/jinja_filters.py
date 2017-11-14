@@ -146,6 +146,12 @@ def format_list(list_items):
 
 
 @blueprint.app_template_filter()
+def format_address_list(list_items):
+    list_items = [item.strip() for item in list_items if item != Markup('')]
+    return ', '.join(list_items)
+
+
+@blueprint.app_template_filter()
 def format_household_summary(names):
     if names:
         person_list = []

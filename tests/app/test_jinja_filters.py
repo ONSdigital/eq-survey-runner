@@ -6,9 +6,10 @@ from unittest import TestCase
 from mock import Mock
 
 from app.jinja_filters import format_date, format_conditional_date, format_currency, get_currency_symbol, \
-     format_multilined_string, format_percentage, format_start_end_date, format_household_member_name, \
-     format_str_as_date, format_str_as_date_range, format_str_as_month_year_date, format_number_to_alphabetic_letter, \
-     format_unit, format_currency_for_input, format_number, format_list, format_household_member_name_possessive
+    format_multilined_string, format_percentage, format_start_end_date, format_household_member_name, \
+    format_str_as_date, format_str_as_date_range, format_str_as_month_year_date, format_number_to_alphabetic_letter, \
+    format_unit, format_currency_for_input, format_number, format_list, format_household_member_name_possessive, \
+    format_address_list
 
 
 class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
@@ -157,12 +158,10 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         for triple in datelist:
             date1 = triple[0]
             date2 = triple[1]
-            #dates = (date1, date2)
             format_value = format_conditional_date(date1, date2)
 
             # Then
             self.assertEqual(format_value, "<span class='date'>{date}</span>".format(date=triple[2]))
-
 
     def test_format_start_end_date(self):
         # Given
@@ -310,6 +309,24 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         format_value = format_household_member_name_possessive(name)
 
         self.assertEqual(format_value, "John Does'")
+
+    def test_format_address_list(self):
+        # Given
+        list_items = ['1 The ONS', 'Newport', 'NP108XG']
+
+        # When
+        format_value = format_address_list(list_items)
+
+        self.assertEqual(format_value, '1 The ONS, Newport, NP108XG')
+
+    def test_format_address_list_trim_white_spaces_and_trailing_commas(self):
+        # Given
+        list_items = ['', '1 The ONS  ', 'Newport  ', '  NP108XG', '']
+
+        # When
+        format_value = format_address_list(list_items)
+
+        self.assertEqual(format_value, '1 The ONS, Newport, NP108XG')
 
     def test_format_percentage(self):
         self.assertEqual(format_percentage('100'), '100%')

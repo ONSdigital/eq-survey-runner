@@ -129,12 +129,12 @@
                         "type": "Radio",
                         "mandatory": false,
                         "options": [{
-                                "label": "at {{[answers.address_building, answers.address_line_1, answers.address_line_2, answers.address_line_3, answers.address_town_city, answers.address_county, answers.address_postcode, answers.address_country]}}",
+                                "label": "{{[answers.address_building, answers.address_line_1, answers.address_line_2, answers.address_line_3, answers.address_town_city, answers.address_county, answers.address_postcode, answers.address_country] | format_address_list}}",
                                 "value": "at your address"
                             },
                             {
                                 "label": "at another address",
-                                "value": "at another address",
+                                "value": "at another address"
                             }
                         ]
                     }]
