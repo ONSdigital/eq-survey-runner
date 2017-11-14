@@ -253,7 +253,7 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'block_id': 'sex',
                 'group_id': 'household-member',
                 'answer_instance': 0,
-                'value': 'Male'
+                'value': 'Heterosexual or Straight'
             },
             {
                 'group_instance': 0,
@@ -974,7 +974,7 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'private-response-answer': ['No, I do not want to request a personal form']
             },
             {
-                'sex-answer': ['Male']
+                'sex-answer': ['Heterosexual or Straight']
             },
             {
                 'date-of-birth-answer-day': '12',
