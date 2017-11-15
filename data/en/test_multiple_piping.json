@@ -122,7 +122,7 @@
                 "id": "term-time-location",
                 "questions": [{
                     "id": "term-time-location-question",
-                    "title": "During term time, where does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> live at <em>{{answers.address_line_1}}</em>",
+                    "title": "During term time, does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> live at <em>{{answers.address_line_1}}</em>",
                     "type": "General",
                     "answers": [{
                         "id": "term-time-location-answer",
