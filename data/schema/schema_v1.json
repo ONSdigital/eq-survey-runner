@@ -543,7 +543,11 @@
                                   "child_answer_id": {
                                     "type": "string",
                                     "description": "The id of an answer that should be treated as a child of this one, for example a text field answer can be the child of a radio option. The id must be of an answer in this list of answers."
-                                  }
+                                  },
+                                  "description": {
+                                    "type": "string",
+                                    "description": "Descriptive text that appears below the option label"
+                                  },
                                 },
                                 "required": [
                                   "label",
