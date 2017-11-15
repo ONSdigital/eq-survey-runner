@@ -97,7 +97,7 @@ class Navigation(object):
     def _build_repeating_navigation(self, repeating_rule, section, current_group_id, current_group_instance):
         group = SchemaHelper.get_group(self.survey_json, section['group_order'][0])
         first_location = Location(group['id'], 0, group['blocks'][0]['id'])
-        no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store)
+        no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store, self.routing_path)
 
         repeating_nav = []
 
