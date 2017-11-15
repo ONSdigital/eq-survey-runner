@@ -4,9 +4,9 @@ from tests.integration.integration_test_case import IntegrationTestCase
 # pylint: disable=too-many-lines
 class TestCensusHouseholdSubmissionData(IntegrationTestCase):
 
+
     def test_census_household_data_matches_census_individual(self):
         self.complete_survey('census', 'household')
-
         # Only verifying 'data'
         actual_downstream_data = self.dumpSubmission()['submission']['data']
         expected_downstream_data = self.get_expected_submission_data()
@@ -198,14 +198,14 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'block_id': 'central-heating',
                 'group_id': 'household-and-accommodation',
                 'answer_instance': 0,
-                'value': [
-                    'No central heating',
-                    'Gas',
-                    'Electric (including storage heaters)',
-                    'Oil',
-                    'Solid fuel (for example wood, coal)',
-                    'Other central heating'
-                ]
+                'value': ['Gas',
+                          'Electric (include storage heaters)',
+                          'Oil',
+                          'Solid fuel (for example wood, coal)',
+                          'Renewable (for example solar panels)',
+                          'Other central heating',
+                          'No central heating'
+                         ]
             },
             {
                 'group_instance': 0,
@@ -254,14 +254,6 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Male'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'sex-answer-other',
-                'block_id': 'sex',
-                'group_id': 'household-member',
-                'answer_instance': 0,
-                'value': ''
             },
             {
                 'group_instance': 0,
@@ -488,33 +480,17 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             },
             {
                 'group_instance': 0,
-                'answer_id': 'religion-welsh-answer-other',
-                'block_id': 'religion',
-                'group_id': 'household-member',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'religion-welsh-answer',
-                'block_id': 'religion',
-                'group_id': 'household-member',
-                'answer_instance': 0,
-                'value': []
-            },
-            {
-                'group_instance': 0,
                 'answer_id': 'religion-answer',
                 'block_id': 'religion',
                 'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': [
                     'No religion',
-                    'Buddhist',
-                    'Hindu',
-                    'Jewish',
-                    'Muslim',
-                    'Sikh',
+                    'Buddhism',
+                    'Hinduism',
+                    'Judaism',
+                    'Islam',
+                    'Sikhism',
                     'Other'
                 ]
             },
@@ -1053,11 +1029,11 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             },
             {
                 'religion-answer': ['No religion',
-                                    'Buddhist',
-                                    'Hindu',
-                                    'Jewish',
-                                    'Muslim',
-                                    'Sikh',
+                                    'Buddhism',
+                                    'Hinduism',
+                                    'Judaism',
+                                    'Islam',
+                                    'Sikhism',
                                     'Other'],
                 'religion-answer-other': 'Ind'
             },
@@ -1168,12 +1144,14 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'number-of-bedrooms-answer': '2'
             },
             {
-                'central-heating-answer': ['No central heating',
-                                           'Gas',
-                                           'Electric (including storage heaters)',
+                'central-heating-answer': ['Gas',
+                                           'Electric (include storage heaters)',
                                            'Oil',
                                            'Solid fuel (for example wood, coal)',
-                                           'Other central heating']
+                                           'Renewable (for example solar panels)',
+                                           'Other central heating',
+                                           'No central heating'
+                                          ]
             },
             {
                 'own-or-rent-answer': ['Owns outright']

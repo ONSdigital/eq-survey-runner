@@ -299,7 +299,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         # When
         format_value = format_household_member_name_possessive(name)
 
-        self.assertEqual(format_value, "John Doe's")
+        self.assertEqual(format_value, 'John Doe\u2019s')
 
     def test_format_household_member_name_possessive_trailing_s(self):
         # Given
@@ -308,7 +308,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         # When
         format_value = format_household_member_name_possessive(name)
 
-        self.assertEqual(format_value, "John Does'")
+        self.assertEqual(format_value, 'John Does\u2019')
 
     def test_format_list(self):
         # Given

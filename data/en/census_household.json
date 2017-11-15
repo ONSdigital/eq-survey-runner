@@ -107,7 +107,7 @@
                     "id": "permanent-or-family-home",
                     "questions": [{
                         "id": "permanent-or-family-home-question",
-                        "title": "Does anyone live here as their permanent or family home?",
+                        "title": "Does anyone live at <em>{{answers.address_line_1}}</em> as their permanent or family home?",
                         "guidance": {
                             "content": [{
                                 "title": "Include",
@@ -227,7 +227,7 @@
                     "id": "household-composition",
                     "questions": [{
                         "id": "household-composition-question",
-                        "title": "List the names of everyone  who lives here.",
+                        "title": "Enter the first, middle and surnames of everyone who lives at <em>{{answers.address_line_1}}</em>",
                         "guidance": {
                             "content": [{
                                 "title": "Include",
@@ -235,7 +235,8 @@
                                     "Yourself, if this is your permanent or family home",
                                     "Family members including partners, children and babies born on or before 9 April 2017",
                                     "Students and, or school children who live away from home during term time",
-                                    "Housemates tenants or lodgers"
+                                    "Housemates tenants or lodgers",
+                                    "Household members who have requested a personal form"
                                 ]
                             }]
                         },
@@ -355,7 +356,7 @@
                     "id": "overnight-visitors",
                     "questions": [{
                         "id": "overnight-visitors-question",
-                        "title": "How many visitors are staying overnight here on 9th April 2017?",
+                        "title": "How many visitors are staying overnight at <em>{{answers.address_line_1}}</em> on 9th April 2017?",
                         "guidance": {
                             "content": [{
                                 "title": "Include",
@@ -491,7 +492,7 @@
                     "id": "type-of-accommodation",
                     "questions": [{
                         "id": "type-of-accommodation-question",
-                        "title": "What type of accommodation is this?",
+                        "title": "What type of accommodation is <em>{{answers.address_line_1}}</em>?",
                         "type": "General",
                         "answers": [{
                             "id": "type-of-accommodation-answer",
@@ -603,12 +604,8 @@
                     "id": "self-contained-accommodation",
                     "questions": [{
                         "id": "self-contained-accommodation-question",
-                        "title": "Is this household’s accommodation self-contained?",
-                        "guidance": {
-                            "content": [{
-                                "description": "This means that all the rooms, including the kitchen, bathroom and toilet, are behind a door that only this household can use"
-                            }]
-                        },
+                        "title": "Is the accommodation of <em>{{answers.address_line_1}}</em> self-contained?",
+                        "description": "This means that all the rooms, including the kitchen, bathroom and toilet, are behind a door that only this household can use",
                         "type": "General",
                         "answers": [{
                             "id": "self-contained-accommodation-answer",
@@ -631,7 +628,7 @@
                     "id": "number-of-bedrooms",
                     "questions": [{
                         "id": "number-of-bedrooms-question",
-                        "title": "How many bedrooms are available for use only by this household?",
+                        "title": "How many bedrooms are at <em>{{answers.address_line_1}}</em>?",
                         "guidance": {
                             "content": [{
                                 "description": "Include all rooms built or converted for use as bedrooms, even if they’re not currently used as bedrooms"
@@ -651,23 +648,19 @@
                     "id": "central-heating",
                     "questions": [{
                         "id": "central-heating-question",
-                        "title": "What type of central heating does this accommodation have?",
+                        "title": "What type of central heating does <em>{{answers.address_line_1}}</em> have?",
                         "description": "<p>Central heating is a central system that generates heat for multiple rooms.</p><p>Select all that apply, whether or not you use it.</p>",
                         "type": "General",
                         "answers": [{
                             "id": "central-heating-answer",
                             "mandatory": false,
                             "options": [{
-                                    "label": "No central heating",
-                                    "value": "No central heating"
-                                },
-                                {
                                     "label": "Gas",
                                     "value": "Gas"
                                 },
                                 {
-                                    "label": "Electric (including storage heaters)",
-                                    "value": "Electric (including storage heaters)"
+                                    "label": "Electric (include storage heaters)",
+                                    "value": "Electric (include storage heaters)"
                                 },
                                 {
                                     "label": "Oil",
@@ -678,8 +671,16 @@
                                     "value": "Solid fuel (for example wood, coal)"
                                 },
                                 {
+                                    "label": "Renewable (for example solar panels)",
+                                    "value": "Renewable (for example solar panels)"
+                                },
+                                {
                                     "label": "Other central heating",
                                     "value": "Other central heating"
+                                },
+                                {
+                                    "label": "No central heating",
+                                    "value": "No central heating"
                                 }
                             ],
                             "type": "Checkbox"
@@ -717,7 +718,7 @@
                     "id": "own-or-rent",
                     "questions": [{
                         "id": "own-or-rent-question",
-                        "title": "Does your household own or rent this accommodation?",
+                        "title": "Does your household own or rent <em>{{answers.address_line_1}}</em>?",
                         "type": "General",
                         "answers": [{
                             "id": "own-or-rent-answer",
@@ -1044,32 +1045,19 @@
                         "title": "What is {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }} gender?",
                         "type": "General",
                         "answers": [{
-                                "id": "sex-answer",
-                                "mandatory": false,
-                                "options": [{
-                                        "label": "Male",
-                                        "value": "Male"
-                                    },
-                                    {
-                                        "label": "Female",
-                                        "value": "Female"
-                                    },
-                                    {
-                                        "label": "Any other gender identity",
-                                        "value": "Other",
-                                        "child_answer_id": "sex-answer-other"
-                                    }
-                                ],
-                                "type": "Radio"
-                            },
-                            {
-                                "id": "sex-answer-other",
-                                "parent_answer_id": "sex-answer",
-                                "type": "TextField",
-                                "mandatory": false,
-                                "label": "please specify"
-                            }
-                        ]
+                            "id": "sex-answer",
+                            "mandatory": false,
+                            "options": [{
+                                    "label": "Male",
+                                    "value": "Male"
+                                },
+                                {
+                                    "label": "Female",
+                                    "value": "Female"
+                                }
+                            ],
+                            "type": "Radio"
+                        }]
                     }]
                 },
                 {
@@ -1157,22 +1145,21 @@
                     "id": "another-address",
                     "questions": [{
                         "id": "another-address-question",
-                        "title": "Do you stay at another address for more than 30 days a year?",
+                        "title": "Does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> stay at another address for more than 30 days a year?",
                         "type": "General",
+                        "guidance": {
+                            "content": [{
+                                "title": "Include:",
+                                "list": [
+                                    "Another parent’s address, an armed forces base, a holiday home, or term-time address.",
+                                    "The days you stay at the address do not have to be in a row. They can be at any time during the year."
+                                ],
+                                "description": ""
+                            }]
+                        },
                         "answers": [{
                                 "id": "another-address-answer",
                                 "mandatory": false,
-                                "guidance": {
-                                    "show_guidance": "Show further guidance",
-                                    "hide_guidance": "Hide further guidance",
-                                    "content": [{
-                                            "description": "Examples might include another parent’s address, an armed forces base, a holiday home, or term-time address."
-                                        },
-                                        {
-                                            "description": "The days you stay at the address do not have to be in a row. They can be at any time during the year."
-                                        }
-                                    ]
-                                },
                                 "options": [{
                                         "label": "No",
                                         "value": "No"
@@ -1665,7 +1652,7 @@
                     "id": "length-of-stay",
                     "questions": [{
                         "id": "length-of-stay-question",
-                        "title": "Including the time you have already spent here, how long does <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}</em> intend to stay in the United Kingdom?",
+                        "title": "Including the time already spent here, how long does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> intend to stay in the United Kingdom?",
                         "description": "If you arrived in the United Kingdom before May 2016, please select ‘12 months or more’",
                         "type": "General",
                         "answers": [{
@@ -1682,6 +1669,41 @@
                                 {
                                     "label": "12 months or more",
                                     "value": "12 months or more"
+                                }
+                            ],
+                            "type": "Radio"
+                        }]
+                    }]
+                },
+                {
+                    "type": "Questionnaire",
+                    "id": "health",
+                    "questions": [{
+                        "id": "health-question",
+                        "title": "How is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> health in general?",
+                        "type": "General",
+                        "answers": [{
+                            "id": "health-answer",
+                            "mandatory": false,
+                            "options": [{
+                                    "label": "Very good",
+                                    "value": "Very good"
+                                },
+                                {
+                                    "label": "Good",
+                                    "value": "Good"
+                                },
+                                {
+                                    "label": "Fair",
+                                    "value": "Fair"
+                                },
+                                {
+                                    "label": "Bad",
+                                    "value": "Bad"
+                                },
+                                {
+                                    "label": "Very bad",
+                                    "value": "Very bad"
                                 }
                             ],
                             "type": "Radio"
@@ -1873,7 +1895,7 @@
                     "id": "ethnic-group",
                     "questions": [{
                             "id": "ethnic-group-england-question",
-                            "title": "What is your ethnic group?",
+                            "title": "What is <em> {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }} </em> ethnic group?",
                             "type": "General",
                             "answers": [{
                                 "id": "ethnic-group-england-answer",
@@ -1895,22 +1917,22 @@
                                 "options": [{
                                         "label": "White",
                                         "value": "White",
-                                        "description": "Including English / Welsh / Scottish / Northern Irish / British, Irish, Gypsy or Irish Traveller or any other White background"
+                                        "description": "Including English, Welsh, Scottish, Northern Irish, British, Irish, Gypsy, Irish Traveller or any other White background"
                                     },
                                     {
-                                        "label": "Mixed / multiple ethnic groups",
-                                        "value": "Mixed / multiple ethnic groups",
-                                        "description": "Including White and Black Caribbean, White and Black African,  White and Asian or any other Mixed/multiple ethnic background"
+                                        "label": "Mixed or multiple ethnic groups",
+                                        "value": "Mixed or multiple ethnic groups",
+                                        "description": "Including White and Black Caribbean, White and Black African, White and Asian or any other Mixed or multiple ethnic background"
                                     },
                                     {
-                                        "label": "Asian / Asian British",
-                                        "value": "Asian / Asian British",
+                                        "label": "Asian or Asian British",
+                                        "value": "Asian or Asian British",
                                         "description": "Including Indian, Pakistani, Bangladeshi, Chinese or any other Asian background"
                                     },
                                     {
-                                        "label": "Black / African / Caribbean / Black British",
-                                        "value": "Black / African / Caribbean / Black British",
-                                        "description": "Including African, Caribbean or any other Black / African / Caribbean background"
+                                        "label": "Black, African, Caribbean or Black British",
+                                        "value": "Black, African, Caribbean or Black British",
+                                        "description": "Including African, Caribbean or any other Black, African or Caribbean background"
                                     },
                                     {
                                         "label": "Other ethnic group",
@@ -1952,22 +1974,22 @@
                                 "options": [{
                                         "label": "White",
                                         "value": "White",
-                                        "description": "Including Welsh / English / Scottish / Northern Irish / British, Irish, Gypsy or Irish Traveller or any other White background"
+                                        "description": "Including Welsh, English, Scottish, Northern Irish, British, Irish, Gypsy, Irish Traveller or any other White background"
                                     },
                                     {
-                                        "label": "Mixed / multiple ethnic groups",
-                                        "value": "Mixed / multiple ethnic groups",
-                                        "description": "Including White and Black Caribbean, White and Black African,  White and Asian or any other Mixed/multiple ethnic background"
+                                        "label": "Mixed or multiple ethnic groups",
+                                        "value": "Mixed or multiple ethnic groups",
+                                        "description": "Including White and Black Caribbean, White and Black African, White and Asian or any other Mixed or multiple ethnic background"
                                     },
                                     {
-                                        "label": "Asian / Asian British",
-                                        "value": "Asian / Asian British",
+                                        "label": "Asian or Asian British",
+                                        "value": "Asian or Asian British",
                                         "description": "Including Indian, Pakistani, Bangladeshi, Chinese or any other Asian background"
                                     },
                                     {
-                                        "label": "Black / African / Caribbean / Black British",
-                                        "value": "Black / African / Caribbean / Black British",
-                                        "description": "Including African, Caribbean or any other Black / African / Caribbean background"
+                                        "label": "Black, African, Caribbean or Black British",
+                                        "value": "Black, African, Caribbean or Black British",
+                                        "description": "Including African, Caribbean or any other Black, African or Caribbean background"
                                     },
                                     {
                                         "label": "Other ethnic group",
@@ -2002,7 +2024,7 @@
                                 "when": [{
                                     "id": "ethnic-group-england-answer",
                                     "condition": "equals",
-                                    "value": "Mixed / multiple ethnic groups"
+                                    "value": "Mixed or multiple ethnic groups"
                                 }]
                             }
                         },
@@ -2012,7 +2034,7 @@
                                 "when": [{
                                     "id": "ethnic-group-england-answer",
                                     "condition": "equals",
-                                    "value": "Asian / Asian British"
+                                    "value": "Asian or Asian British"
                                 }]
                             }
                         },
@@ -2022,7 +2044,7 @@
                                 "when": [{
                                     "id": "ethnic-group-england-answer",
                                     "condition": "equals",
-                                    "value": "Black / African / Caribbean / Black British"
+                                    "value": "Black, African, Caribbean or Black British"
                                 }]
                             }
                         },
@@ -2052,7 +2074,7 @@
                                 "when": [{
                                     "id": "ethnic-group-wales-answer",
                                     "condition": "equals",
-                                    "value": "Mixed / multiple ethnic groups"
+                                    "value": "Mixed or multiple ethnic groups"
                                 }]
                             }
                         },
@@ -2062,7 +2084,7 @@
                                 "when": [{
                                     "id": "ethnic-group-wales-answer",
                                     "condition": "equals",
-                                    "value": "Asian / Asian British"
+                                    "value": "Asian or Asian British"
                                 }]
                             }
                         },
@@ -2072,7 +2094,7 @@
                                 "when": [{
                                     "id": "ethnic-group-wales-answer",
                                     "condition": "equals",
-                                    "value": "Black / African / Caribbean / Black British"
+                                    "value": "Black, African, Caribbean or Black British"
                                 }]
                             }
                         },
@@ -2141,8 +2163,8 @@
                                     },
                                     "mandatory": false,
                                     "options": [{
-                                            "label": "English / Welsh / Scottish / Northern Irish / British",
-                                            "value": "English / Welsh / Scottish / Northern Irish / British"
+                                            "label": "English, Welsh, Scottish, Northern Irish or British",
+                                            "value": "English, Welsh, Scottish, Northern Irish or British"
                                         },
                                         {
                                             "label": "Irish",
@@ -2195,8 +2217,8 @@
                                     },
                                     "mandatory": false,
                                     "options": [{
-                                            "label": "Welsh / English / Scottish / Northern Irish / British",
-                                            "value": "Welsh / English / Scottish / Northern Irish / British"
+                                            "label": "Welsh, English, Scottish, Northern Irish or British",
+                                            "value": "Welsh, English, Scottish, Northern Irish or British"
                                         },
                                         {
                                             "label": "Irish",
@@ -2269,7 +2291,7 @@
                     "id": "mixed-ethnic-group",
                     "questions": [{
                         "id": "mixed-ethnic-group-question",
-                        "title": "Which one best describes your Mixed / multiple ethnic group or background?",
+                        "title": "Which one best describes your Mixed, multiple ethnic group or background?",
                         "type": "General",
                         "answers": [{
                                 "id": "mixed-ethnic-group-answer",
@@ -2298,7 +2320,7 @@
                                         "value": "White and Asian"
                                     },
                                     {
-                                        "label": "Any other Mixed / multiple ethnic background (please specify)",
+                                        "label": "Any other Mixed or multiple ethnic background (please specify)",
                                         "value": "Other",
                                         "child_answer_id": "mixed-ethnic-group-answer-other"
                                     }
@@ -2310,7 +2332,7 @@
                                 "parent_answer_id": "mixed-ethnic-group-answer",
                                 "type": "TextField",
                                 "mandatory": false,
-                                "label": "Please specify other Mixed / multiple ethnic background"
+                                "label": "Please specify other Mixed or multiple ethnic background"
                             }
                         ]
                     }],
@@ -2352,7 +2374,7 @@
                     "id": "asian-ethnic-group",
                     "questions": [{
                         "id": "asian-ethnic-group-question",
-                        "title": "Which one best describes your Asian / Asian British ethnic group or background?",
+                        "title": "Which one best describes your Asian, Asian British ethnic group or background?",
                         "type": "General",
                         "answers": [{
                                 "id": "asian-ethnic-group-answer",
@@ -2439,7 +2461,7 @@
                     "id": "black-ethnic-group",
                     "questions": [{
                         "id": "black-ethnic-group-question",
-                        "title": "Which one best describes your Black / African / Caribbean / Black British ethnic group or background?",
+                        "title": "Which one best describes your Black, African, Caribbean, Black British ethnic group or background?",
                         "type": "General",
                         "answers": [{
                                 "id": "black-ethnic-group-answer",
@@ -2464,7 +2486,7 @@
                                         "value": "Caribbean"
                                     },
                                     {
-                                        "label": "Any other Black / African / Caribbean background (please specify)",
+                                        "label": "Any other Black, African or Caribbean background (please specify)",
                                         "value": "Other",
                                         "child_answer_id": "black-ethnic-group-answer-other"
                                     }
@@ -2476,7 +2498,7 @@
                                 "parent_answer_id": "black-ethnic-group-answer",
                                 "type": "TextField",
                                 "mandatory": false,
-                                "label": "Please specify other Black / African / Caribbean background"
+                                "label": "Please specify other Black, African or Caribbean background"
                             }
                         ]
                     }],
@@ -2678,7 +2700,7 @@
                     "id": "understand-welsh",
                     "questions": [{
                         "id": "understand-welsh-question",
-                        "title": "Can you understand, speak, read or write Welsh",
+                        "title": "Can <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}</em> understand, speak, read or write Welsh",
                         "description": "Select all that apply",
                         "type": "General",
                         "answers": [{
@@ -2714,7 +2736,7 @@
                     "id": "language",
                     "questions": [{
                             "id": "language-england-question",
-                            "title": "What is your main language?",
+                            "title": "What is <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> main language?",
                             "type": "General",
                             "answers": [{
                                     "id": "language-england-answer",
@@ -2724,7 +2746,7 @@
                                             "value": "English"
                                         },
                                         {
-                                            "label": "Other (please specify)",
+                                            "label": "Other",
                                             "value": "Other",
                                             "description": "Including British Sign Language",
                                             "child_answer_id": "language-england-answer-other"
@@ -2750,7 +2772,7 @@
                         },
                         {
                             "id": "language-welsh-question",
-                            "title": "What is your main language?",
+                            "title": "What is <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> main language?",
                             "type": "General",
                             "answers": [{
                                     "id": "language-welsh-answer",
@@ -2760,7 +2782,7 @@
                                             "value": "English or Welsh"
                                         },
                                         {
-                                            "label": "Other (please specify)",
+                                            "label": "Other",
                                             "value": "Other",
                                             "description": "Including British Sign Language",
                                             "child_answer_id": "language-welsh-answer-other"
@@ -2817,7 +2839,7 @@
                     "id": "english",
                     "questions": [{
                         "id": "english-question",
-                        "title": "How well can you speak English?",
+                        "title": "How well can <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}</em> speak English?",
                         "type": "General",
                         "answers": [{
                             "id": "english-answer",
@@ -2847,126 +2869,58 @@
                     "type": "Questionnaire",
                     "id": "religion",
                     "questions": [{
-                            "id": "religion-question",
-                            "title": "What is your religion?",
-                            "description": "This question is voluntary",
-                            "type": "General",
-                            "answers": [{
-                                    "id": "religion-answer",
-                                    "mandatory": false,
-                                    "options": [{
-                                            "label": "No religion",
-                                            "value": "No religion"
-                                        },
-                                        {
-                                            "label": "Christian (Including Church of England, Catholic, Protestant and all other Christian denominations)",
-                                            "value": "Christian (Including Church of England, Catholic, Protestant and all other Christian denominations)"
-                                        },
-                                        {
-                                            "label": "Buddhist",
-                                            "value": "Buddhist"
-                                        },
-                                        {
-                                            "label": "Hindu",
-                                            "value": "Hindu"
-                                        },
-                                        {
-                                            "label": "Jewish",
-                                            "value": "Jewish"
-                                        },
-                                        {
-                                            "label": "Muslim",
-                                            "value": "Muslim"
-                                        },
-                                        {
-                                            "label": "Sikh",
-                                            "value": "Sikh"
-                                        },
-                                        {
-                                            "label": "Any other religion (please specify)",
-                                            "value": "Other",
-                                            "child_answer_id": "religion-answer-other"
-                                        }
-                                    ],
-                                    "type": "Checkbox"
-                                },
-                                {
-                                    "id": "religion-answer-other",
-                                    "parent_answer_id": "religion-answer",
-                                    "type": "TextField",
-                                    "mandatory": false,
-                                    "label": "Please specify"
-                                }
-                            ],
-                            "skip_conditions": [{
-                                "when": [{
-                                    "meta": "region_code",
-                                    "condition": "equals",
-                                    "value": "GB-WLS"
-                                }]
-                            }]
-                        },
-                        {
-                            "id": "religion-welsh-question",
-                            "title": "What is your religion?",
-                            "description": "This question is voluntary",
-                            "type": "General",
-                            "answers": [{
-                                    "id": "religion-welsh-answer",
-                                    "mandatory": false,
-                                    "options": [{
-                                            "label": "No religion",
-                                            "value": "No religion"
-                                        },
-                                        {
-                                            "label": "Christian (all denominations)",
-                                            "value": "Christian (all denominations)"
-                                        },
-                                        {
-                                            "label": "Buddhist",
-                                            "value": "Buddhist"
-                                        },
-                                        {
-                                            "label": "Hindu",
-                                            "value": "Hindu"
-                                        },
-                                        {
-                                            "label": "Jewish",
-                                            "value": "Jewish"
-                                        },
-                                        {
-                                            "label": "Muslim",
-                                            "value": "Muslim"
-                                        },
-                                        {
-                                            "label": "Sikh",
-                                            "value": "Sikh"
-                                        },
-                                        {
-                                            "label": "Any other religion (please specify)",
-                                            "value": "Other",
-                                            "child_answer_id": "religion-welsh-answer-other"
-                                        }
-                                    ],
-                                    "type": "Checkbox"
-                                },
-                                {
-                                    "id": "religion-welsh-answer-other",
-                                    "parent_answer_id": "religion-welsh-answer",
-                                    "type": "TextField",
-                                    "mandatory": false,
-                                    "label": "Please specify"
-                                }
-                            ],
-                            "skip_conditions": [{
-                                "when": [{
-                                    "meta": "region_code",
-                                    "condition": "not equals",
-                                    "value": "GB-WLS"
-                                }]
-                            }]
-                        }
-                    ]
+                        "id": "religion-question",
+                        "title": "What is <em> {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }} </em> religion?",
+                        "description": "This question is voluntary",
+                        "type": "General",
+                        "answers": [{
+                                "id": "religion-answer",
+                                "mandatory": false,
+                                "options": [{
+                                        "label": "No religion",
+                                        "value": "No religion"
+                                    },
+                                    {
+                                        "label": "Christianity",
+                                        "value": "Christianity"
+                                    },
+                                    {
+                                        "label": "Buddhism",
+                                        "value": "Buddhism"
+                                    },
+                                    {
+                                        "label": "Hinduism",
+                                        "value": "Hinduism"
+                                    },
+                                    {
+                                        "label": "Judaism",
+                                        "value": "Judaism"
+                                    },
+                                    {
+                                        "label": "Islam",
+                                        "value": "Islam"
+                                    },
+                                    {
+                                        "label": "Sikhism",
+                                        "value": "Sikhism"
+                                    },
+                                    {
+                                        "label": "Any other religion ",
+                                        "value": "Other",
+                                        "child_answer_id": "religion-answer-other"
+                                    }
+                                ],
+                                "type": "Checkbox"
+                            },
+                            {
+                                "id": "religion-answer-other",
+                                "parent_answer_id": "religion-answer",
+                                "type": "TextField",
+                                "mandatory": false,
+                                "label": "Please specify other religion"
+                            }
+                        ]
+                    }]
                 },
                 {
                     "type": "Questionnaire",
@@ -3684,22 +3638,20 @@
                 {
                     "type": "Questionnaire",
                     "id": "hours-worked",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "description": "",
                     "questions": [{
                         "title": "In your main job, how many hours a week do you usually work?",
+                        "guidance": {
+                            "content": [{
+                                "description": "Include paid and unpaid overtime"
+                            }]
+                        },
                         "id": "hours-worked-question",
                         "type": "General",
                         "answers": [{
                             "id": "hours-worked-answer",
-                            "mandatory": true,
-                            "guidance": {
-                                "show_guidance": "Show further guidance",
-                                "hide_guidance": "Hide further guidance",
-                                "content": [{
-                                    "description": "Include paid and unpaid overtime"
-                                }]
-                            },
+                            "mandatory": false,
+
                             "options": [{
                                     "label": "15 or less",
                                     "value": "15 or less"
@@ -3724,26 +3676,23 @@
                 {
                     "type": "Questionnaire",
                     "id": "work-travel",
-                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "description": "",
                     "questions": [{
                         "title": "How do you usually travel to work?",
+                        "guidance": {
+                            "content": [{
+                                    "description": "Select the option for the longest part, in distance, of your journey"
+                                },
+                                {
+                                    "description": "For example, you travel by bus and by car. Your bus journey is 5 miles, and the car journey is 8 miles. You should select car as your answer"
+                                }
+                            ]
+                        },
                         "id": "work-travel-question",
                         "type": "General",
                         "answers": [{
                             "id": "work-travel-answer",
-                            "mandatory": true,
-                            "guidance": {
-                                "show_guidance": "Show further guidance",
-                                "hide_guidance": "Hide further guidance",
-                                "content": [{
-                                        "description": "Select the option for the longest part, in distance, of your journey"
-                                    },
-                                    {
-                                        "description": "For example, you travel by bus and by car. Your bus journey is 5 miles, and the car journey is 8 miles. You should select car as your answer"
-                                    }
-                                ]
-                            },
+                            "mandatory": false,
                             "options": [{
                                     "label": "Work mainly at or from home",
                                     "value": "Work mainly at or from home"

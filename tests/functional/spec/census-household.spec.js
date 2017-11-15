@@ -12,7 +12,6 @@ const SelfContainedAccommodation = require('../pages/surveys/census/household/se
 const NumberOfBedrooms = require('../pages/surveys/census/household/number-of-bedrooms.page');
 const CentralHeating = require('../pages/surveys/census/household/central-heating.page');
 const OwnOrRent = require('../pages/surveys/census/household/own-or-rent.page');
-const Landlord = require('../pages/surveys/census/household/landlord.page');
 const NumberOfVehicles = require('../pages/surveys/census/household/number-of-vehicles.page');
 const HouseholdAndAccommodationCompleted = require('../pages/surveys/census/household/household-and-accommodation-completed.page');
 const HouseholdMemberBegin = require('../pages/surveys/census/household/household-member-begin.page');
@@ -123,7 +122,7 @@ describe('Census Household', function () {
           .click(UnderstandWelsh.submit())
           .click(Language.welshEnglishOrWelsh())
           .click(Language.submit())
-          .click(Religion.welshNoReligion())
+          .click(Religion.noReligion())
           .click(Religion.submit())
           .click(PastUsualAddress.thisAddress())
           .click(Passports.submit())
