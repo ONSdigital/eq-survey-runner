@@ -11,23 +11,39 @@
         "visible": true,
         "sections": [{
                 "title": "Who lives here?",
-                "group_order": ["who-lives-here", "who-lives-here-relationship", "who-lives-here-interstitial"]
+                "group_order": [
+                    "who-lives-here",
+                    "who-lives-here-relationship",
+                    "who-lives-here-interstitial"
+                ]
             },
             {
                 "title": "Household and Accommodation",
-                "group_order": ["household-and-accommodation"]
+                "group_order": [
+                    "household-and-accommodation"
+                ]
             },
             {
-                "title_from_answers": ["first-name", "last-name"],
-                "group_order": ["household-member"]
+                "title_from_answers": [
+                    "first-name",
+                    "last-name"
+                ],
+                "group_order": [
+                    "household-member"
+                ]
             },
             {
                 "title": "Visitors",
-                "group_order": ["visitors", "visitors-interstitial"]
+                "group_order": [
+                    "visitors",
+                    "visitors-interstitial"
+                ]
             },
             {
                 "title": "Submit answers",
-                "group_order": ["questionnaire-completed"]
+                "group_order": [
+                    "questionnaire-completed"
+                ]
             }
         ]
     },
@@ -1169,7 +1185,7 @@
                                         "value": "Yes, an address within the UK"
                                     },
                                     {
-                                        "label": "Yes, an address outside the UK (please specify)",
+                                        "label": "Yes, an address outside the UK",
                                         "value": "Other",
                                         "child_answer_id": "another-address-answer-other"
                                     }
@@ -1896,24 +1912,11 @@
                     "questions": [{
                             "id": "ethnic-group-england-question",
                             "title": "What is <em> {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }} </em> ethnic group?",
+                            "description": "It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself.<br /><br />If you don’t feel the options apply to you, select ‘Other ethnic group’. You will then be able to write in the ethnic group you prefer to identify as at the next question.",
                             "type": "General",
                             "answers": [{
                                 "id": "ethnic-group-england-answer",
                                 "mandatory": false,
-                                "guidance": {
-                                    "show_guidance": "Show further guidance",
-                                    "hide_guidance": "Hide further guidance",
-                                    "content": [{
-                                            "description": "It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself."
-                                        },
-                                        {
-                                            "description": "Please select the answer you think is most appropriate."
-                                        },
-                                        {
-                                            "description": "If you don’t feel the options apply to you, select ‘Other ethnic group’. You will then be able to write in the ethnic group you prefer to identify as at the next question."
-                                        }
-                                    ]
-                                },
                                 "options": [{
                                         "label": "White",
                                         "value": "White",
@@ -1953,24 +1956,11 @@
                         {
                             "id": "ethnic-group-wales-question",
                             "title": "What is your ethnic group?",
+                            "description": "It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself, If you don’t feel the options apply to you, select ‘Other ethnic group’. You will then be able to write in the ethnic group you prefer to identify as at the next question.",
                             "type": "General",
                             "answers": [{
                                 "id": "ethnic-group-wales-answer",
                                 "mandatory": false,
-                                "guidance": {
-                                    "show_guidance": "Show further guidance",
-                                    "hide_guidance": "Hide further guidance",
-                                    "content": [{
-                                            "description": "It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself."
-                                        },
-                                        {
-                                            "description": "Please select the answer you think is most appropriate."
-                                        },
-                                        {
-                                            "description": "If you don’t feel the options apply to you, select ‘Other ethnic group’. You will then be able to write in the ethnic group you prefer to identify as at the next question."
-                                        }
-                                    ]
-                                },
                                 "options": [{
                                         "label": "White",
                                         "value": "White",
@@ -2510,7 +2500,6 @@
                                         "condition": "equals",
                                         "value": "Yes"
                                     },
-
                                     {
                                         "meta": "variant_flags.sexual_identity",
                                         "condition": "equals",
@@ -3651,7 +3640,6 @@
                         "answers": [{
                             "id": "hours-worked-answer",
                             "mandatory": false,
-
                             "options": [{
                                     "label": "15 or less",
                                     "value": "15 or less"
@@ -3742,8 +3730,6 @@
                         }]
                     }]
                 },
-
-
                 {
                     "type": "Questionnaire",
                     "id": "job-title",
