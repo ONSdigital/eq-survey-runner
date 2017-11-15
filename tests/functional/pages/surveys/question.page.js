@@ -6,7 +6,7 @@ class QuestionPage extends BasePage {
     super(pageName);
     this.questions = [];
   }
-  questionText() { return 'h1[class="question__title saturn"]'; }
+  questionText() { return '.question__title'; }
 
   alert() { return '[data-qa="error-body"]';  }
 

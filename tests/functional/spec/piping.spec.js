@@ -9,7 +9,7 @@ describe('Multiple piping into question and answer', function() {
 
     var piping_schema = 'test_multiple_piping.json';
 
-  it('Given I enter values into multiple address fields, when i navigate to term-time-location question, I should see all values separated  by commas and spaces', function() {
+  it('Given into multiple address fields, when i navigate to term-time-location question, I should see all values separated  by commas and spaces', function() {
     return helpers.openQuestionnaire(piping_schema).then(() => {
       return browser
         .setValue(PipingAddressPage.addressLine1(), '1 The ONS')
@@ -20,7 +20,7 @@ describe('Multiple piping into question and answer', function() {
         .setValue(PipingPersonPage.firstName(), 'Fireman')
         .setValue(PipingPersonPage.lastName(), 'Sam')
         .click(PipingPersonPage.submit())
-        .getText(MultiplePipingPage.atYourAddress()).should.eventually.contain('1 The ONS, Newport, NP10 8XG, Wales');
+        .getText(MultiplePipingPage.atYourAddressLabel()).should.eventually.contain('1 The ONS, Newport, NP10 8XG, Wales');
     });
   });
 
