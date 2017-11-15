@@ -8,7 +8,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
     def setUp(self):
         super().setUp()
         self.launchSurvey('test', 'household_question')
-        self.assertInPage('<li>Household questions.</li>')
+        self.assertInPage('Welcome to the Census Test.')
         self.post(action='start_questionnaire')
 
     def test_add_answer(self):

@@ -9,23 +9,34 @@
 
 {% block main %}
 <div>
-  <h2 class="saturn">The Census needs to include everyone.</h2>
-  <p class="mars">This questionnaire contains two parts: </p>
-  <ul>
-    <li>Household questions.</li>
-    <li>Individual questions.</li>
-  </ul>
+  <h2 class="saturn">Welcome to the Census Test.</h2>
+  <p class="mars">Include everyone living and staying overnight in your household. </p>
+<p> Fill it in as soon as possible, but answer it about 27 March 2021.</p>
+<p> The information helps councils and the government plan and fund
+services in your community - services like GPs, hospitals, schools and
+public transport. </p>
+<p>Everyone must be included on a Census form. </p>
+ 
   <div class="panel panel--info panel--spacious panel--simple u-mb-l">
-    <h3 class="neptune">The householder should complete the household questions.</h3>
-    <p class="mars">The individual questions must be completed for every person who usually lives in this household. The householder can complete the survey on behalf of the individuals who usually live in their household or ask them to answer independently.</p>
-    <p>If any member of this household aged 16 or over wishes to complete their own questionnaire a separate form can be requested here.</p>
+    <h3 class="neptune">Start or continue to fill in the Census</h3>
+    <h4 class="venus"> Enter your 20 digit unique access code </h4>
+    <p class="mars">You can find your unique access code on your invitation letter.</p>
+    <input id="access-code" class="input input--text " value="" data-qa="input-text" name="access-code">
+    <a href="http://www.ons.gov.uk/census/help" target="_blank" >{{_('Help finding your access code')}}</a>
   </div>
   <form action="" class="form" role="form" method="POST" autocomplete="off" novalidate>
     {{ form.csrf_token }}
     <button class="btn btn--lg qa-btn-get-started" type="submit" name="action[start_questionnaire]">Start survey</button>
   </form>
-  <div class="lock u-mb-s u-mb-m@s">
-    <div class="venus lock__text">Your personal information is protected by law and will be kept confidential for at least 100 years.</div>
+ <!-- <div class="lock u-mb-s u-mb-m@s"> -->
+    <div class="venus lock__text"><p>Important: Your response is legally required</p></div>
+
+    <p class="mars">You could be fined if you do not participate or if you supply false information. </p>
+    <p>Your personal information is protected by law. Census information is kept confidential for 100 years.</p>
+    <p>Census information helps government check that services are fair to everyone. This is called equality monitoring.</p>
+  
+    <a href="http://www.ons.gov.uk/census/help" target="_blank" >{{_('Need help? More information about the Census')}}</a>
   </div>
+  
 </div>
 {% endblock main %}

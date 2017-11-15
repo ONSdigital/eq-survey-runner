@@ -36,7 +36,7 @@ const ThankYou = require('../pages/thank-you.page');
 describe('Example Test', function() {
 
   it('Given Respondent Home has identified the respondent should have the Individual Questionnaire without the sexual id question, When I complete the EQ, Then I should not be asked the sexual id question', function() {
-    return helpers.startCensusQuestionnaire('census_individual.json').then(() => {
+    return helpers.openCensusQuestionnaire('census_individual.json').then(() => {
         return browser
           .setValue(CorrectNamePage.firstName(),"John")
           .setValue(CorrectNamePage.lastName(),"Smith")
@@ -130,7 +130,7 @@ describe('Example Test', function() {
   });
 
   it('Given Respondent Home has identified the respondent should have the Individual Questionnaire in welsh, When I enter valid data, Then I should complete the questionnaire', function() {
-    return helpers.startCensusQuestionnaire('census_individual.json', false, 'GB-WLS', 'cy').then(() => {
+    return helpers.openCensusQuestionnaire('census_individual.json', false, 'GB-WLS', 'cy').then(() => {
         return browser
           .setValue(CorrectNamePage.firstName(),"John")
           .setValue(CorrectNamePage.lastName(),"Smith")
@@ -228,7 +228,7 @@ describe('Example Test', function() {
   });
 
   it('Given Respondent Home has identified the respondent should have the Individual Questionnaire without the sexual id question, When I complete the EQ, Then I should not be asked the sexual id question', function() {
-    return helpers.startCensusQuestionnaire('census_individual.json', true).then(() => {
+    return helpers.openCensusQuestionnaire('census_individual.json', true).then(() => {
         return browser
           .setValue(CorrectNamePage.firstName(),"John")
           .setValue(CorrectNamePage.lastName(),"Smith")
@@ -276,7 +276,7 @@ describe('Example Test', function() {
   });
 
   it('Given the census theme is selected, when I click the "help and support" button, then the help should be visible', function() {
-    return helpers.startCensusQuestionnaire('census_individual.json', true).then(() => {
+    return helpers.openCensusQuestionnaire('census_individual.json', true).then(() => {
         return browser
           .click('.js-help-btn')
           .pause(5000)

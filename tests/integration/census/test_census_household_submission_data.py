@@ -871,6 +871,8 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
         variant_flags = {'sexual_identity': 'false'}
         self.launchSurvey(eq_id, form_type_id, region_code='GB-ENG', variant_flags=variant_flags, roles=['dumper'])
 
+        self.post(action='start_questionnaire')
+
         self.complete_who_lives_here_section()
 
         self.complete_household_and_accommodation_section()

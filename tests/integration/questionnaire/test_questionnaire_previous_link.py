@@ -36,6 +36,7 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
 
         # Given the census questionnaire.
         self.launchSurvey('census', 'household')
+        self.post(action='start_questionnaire')
 
         # When we complete the who lives here section and the other questions needed to build the path.
         self.post({'address-line-1': '44 hill side'})
