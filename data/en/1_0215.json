@@ -280,7 +280,6 @@
                     "id": "reporting-period-question",
                     "answers": [{
                             "mandatory": true,
-                            "options": [],
                             "label": "From",
                             "id": "period-from",
                             "alias": "period_from",
@@ -289,7 +288,6 @@
                         },
                         {
                             "mandatory": true,
-                            "options": [],
                             "label": "To",
                             "id": "period-to",
                             "alias": "period_to",
@@ -332,7 +330,6 @@
                         "alias": "total_turnover",
                         "label": "Total retail turnover",
                         "mandatory": true,
-                        "options": [],
                         "q_code": "20",
                         "type": "Currency",
                         "currency": "GBP",
@@ -369,7 +366,6 @@
                         "id": "total-sales-food",
                         "label": "Food",
                         "mandatory": false,
-                        "options": [],
                         "q_code": "22",
                         "type": "Currency",
                         "currency": "GBP",
@@ -399,7 +395,6 @@
                         "id": "total-sales-alcohol",
                         "label": "Alcohol, confectionery and tobacco",
                         "mandatory": false,
-                        "options": [],
                         "q_code": "23",
                         "type": "Currency",
                         "currency": "GBP",
@@ -431,7 +426,6 @@
                         "id": "total-sales-clothing",
                         "label": "Clothing and footwear",
                         "mandatory": false,
-                        "options": [],
                         "q_code": "24",
                         "type": "Currency",
                         "currency": "GBP",
@@ -478,7 +472,6 @@
                         "id": "total-sales-household-goods",
                         "label": "Household goods",
                         "mandatory": false,
-                        "options": [],
                         "q_code": "25",
                         "type": "Currency",
                         "currency": "GBP",
@@ -536,7 +529,6 @@
                         "id": "total-sales-other-goods",
                         "label": "Other goods",
                         "mandatory": false,
-                        "options": [],
                         "q_code": "26",
                         "type": "Currency",
                         "currency": "GBP",
@@ -564,7 +556,6 @@
                         "id": "internet-sales",
                         "label": "Internet sales",
                         "mandatory": false,
-                        "options": [],
                         "q_code": "21",
                         "type": "Currency",
                         "currency": "GBP",
@@ -603,7 +594,6 @@
                         "id": "total-sales-automotive-fuel",
                         "label": "Automotive fuel",
                         "mandatory": false,
-                        "options": [],
                         "q_code": "27",
                         "type": "Currency",
                         "currency": "GBP",
@@ -758,7 +748,6 @@
                         "id": "change-comment",
                         "label": "Comments",
                         "mandatory": true,
-                        "options": [],
                         "q_code": "146",
                         "type": "TextArea"
                     }],
@@ -798,7 +787,6 @@
                         "alias": "employee_count",
                         "label": "Total number of employees",
                         "mandatory": true,
-                        "options": [],
                         "q_code": "50",
                         "type": "Number"
                     }],
@@ -837,7 +825,6 @@
                             "id": "number-male-employees-over-30-hours",
                             "label": "Number of male employees working more than 30 hours per week",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "51",
                             "type": "Number"
                         },
@@ -845,7 +832,6 @@
                             "id": "number-male-employees-under-30-hours",
                             "label": "Number of male employees working 30 hours or less per week",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "52",
                             "type": "Number"
                         },
@@ -854,7 +840,6 @@
                             "id": "number-female-employees-over-30-hours",
                             "label": "Number of female employees working more than 30 hours per week",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "53",
                             "type": "Number"
                         },
@@ -862,7 +847,6 @@
                             "id": "number-female-employees-under-30-hours",
                             "label": "Number of female employees working 30 hours or less per week",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "54",
                             "type": "Number"
                         }

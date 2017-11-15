@@ -26,7 +26,6 @@
                         "id": "answer",
                         "label": "What is the thing?",
                         "mandatory": false,
-                        "options": [],
                         "q_code": "0",
                         "type": "TextField"
                     }],

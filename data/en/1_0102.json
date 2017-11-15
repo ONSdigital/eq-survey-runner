@@ -130,7 +130,6 @@
                             "type": "Date",
                             "id": "period-from",
                             "q_code": "11",
-                            "options": [],
                             "mandatory": true,
                             "alias": "period_from"
                         },
@@ -139,7 +138,6 @@
                             "type": "Date",
                             "id": "period-to",
                             "q_code": "12",
-                            "options": [],
                             "mandatory": true,
                             "alias": "period_to"
                         }
@@ -179,7 +177,6 @@
                         "alias": "total_turnover",
                         "label": "Total retail turnover",
                         "mandatory": true,
-                        "options": [],
                         "q_code": "20",
                         "type": "Currency",
                         "currency": "GBP",
@@ -208,7 +205,6 @@
                         "id": "internet-sales-answer",
                         "label": "Internet sales",
                         "mandatory": true,
-                        "options": [],
                         "q_code": "21",
                         "type": "Currency",
                         "currency": "GBP",
@@ -355,7 +351,6 @@
                         "id": "change-comment",
                         "label": "Comments",
                         "mandatory": true,
-                        "options": [],
                         "q_code": "146",
                         "type": "TextArea"
                     }],

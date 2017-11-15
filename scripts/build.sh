@@ -14,6 +14,9 @@ if [ ! -s "static" ]; then
 
   echo "Compiling translated schemas"
   "${DIR}"/translate_schemas.sh
+
+  echo "Testing schemas"
+  "${DIR}"/test_schemas.sh data/en
 fi
 
 printf $(git rev-parse HEAD) > .application-version

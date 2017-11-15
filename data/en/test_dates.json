@@ -17,7 +17,6 @@
                                 "id": "date-range-from",
                                 "label": "Period from",
                                 "mandatory": true,
-                                "options": [],
                                 "q_code": "11",
                                 "type": "Date"
                             },
@@ -25,7 +24,6 @@
                                 "id": "date-range-to",
                                 "label": "Period to",
                                 "mandatory": true,
-                                "options": [],
                                 "q_code": "12",
                                 "type": "Date"
                             }
@@ -40,7 +38,6 @@
                             "id": "month-year-answer",
                             "label": "Date",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "11",
                             "type": "MonthYearDate"
                         }],
@@ -54,7 +51,6 @@
                             "id": "single-date-answer",
                             "label": "Date",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "11",
                             "type": "Date"
                         }],
@@ -68,7 +64,6 @@
                             "id": "non-mandatory-date-answer",
                             "label": "Date",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "17",
                             "type": "Date"
                         }],

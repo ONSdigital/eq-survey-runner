@@ -4,7 +4,6 @@ questions:
   - id: turnover-answer-4-0
     label: Total turnover excluding VAT
     mandatory: true
-    options: []
     q_code: '40'
     type: Currency
     currency: "GBP"

@@ -22,6 +22,9 @@ fi
 if [ "$EQ_RUN_LOCAL_LINT" = True ]; then
     echo "Running Local Lint Tests"
     ./scripts/run_lint.sh
+
+    echo "Testing schemas"
+    ./scripts/test_schemas.sh data/en
 fi
 
 if [ "$EQ_RUN_LOCAL_TESTS" = True ]; then

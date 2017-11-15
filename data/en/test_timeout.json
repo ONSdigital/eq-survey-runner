@@ -21,7 +21,6 @@
                         "id": "timeout-answer",
                         "label": "Does the timeout appear?",
                         "mandatory": false,
-                        "options": [],
                         "q_code": "0",
                         "type": "TextField"
                     }],

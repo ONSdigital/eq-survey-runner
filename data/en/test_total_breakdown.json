@@ -18,7 +18,6 @@
                             "id": "percentage-1",
                             "label": "Percentage 1",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "0810",
                             "type": "Percentage",
                             "max_value": {
@@ -30,7 +29,6 @@
                             "id": "percentage-2",
                             "label": "Percentage 2",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "0820",
                             "type": "Percentage",
                             "max_value": {
@@ -42,7 +40,6 @@
                             "id": "percentage-3",
                             "label": "Percentage 3",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "0830",
                             "type": "Percentage",
                             "max_value": {
@@ -54,7 +51,6 @@
                             "id": "percentage-4",
                             "label": "Percentage 4",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "0840",
                             "type": "Percentage",
                             "max_value": {
@@ -67,7 +63,6 @@
                             "id": "total-percentage",
                             "label": "Total",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "10002",
                             "type": "Percentage",
                             "max_value": {

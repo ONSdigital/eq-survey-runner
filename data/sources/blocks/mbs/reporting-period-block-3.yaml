@@ -4,14 +4,12 @@ questions:
   - id: reporting-period-answer-3-0
     label: From
     mandatory: true
-    options: []
     q_code: '11'
     type: Date
     alias: period_from
   - id: reporting-period-answer-3-1
     label: To
     mandatory: true
-    options: []
     q_code: '12'
     type: Date
     alias: period_to

@@ -4,7 +4,6 @@ questions:
   - id: comments-answer-74
     label: Comments
     mandatory: false
-    options: []
     type: TextArea
   description: ''
   id: comments-question-74

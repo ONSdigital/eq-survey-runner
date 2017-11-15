@@ -5,7 +5,6 @@ questions:
     id: e-commerce-answer-71
     label: ''
     mandatory: true
-    options: []
     q_code: '258'
     type: Percentage
     max_value:

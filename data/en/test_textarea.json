@@ -22,7 +22,6 @@
                         "id": "answer",
                         "label": "Enter your comments",
                         "mandatory": false,
-                        "options": [],
                         "q_code": "0",
                         "type": "TextArea",
                         "max_length": 20,
@@ -32,13 +31,11 @@
                             }
                         }
                     }],
-                    "description": "",
                     "id": "question",
                     "title": "",
                     "type": "General"
                 }],
-                "title": "Textarea Test",
-                "routing_rules": []
+                "title": "Textarea Test"
             },
             {
                 "type": "Summary",

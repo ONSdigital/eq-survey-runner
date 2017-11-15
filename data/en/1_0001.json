@@ -416,7 +416,6 @@
                             "id": "expenditure-internal-investment-r-d-answer",
                             "label": "Total internal Research and Development",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "1410",
                             "type": "Currency",
                             "currency": "GBP"
@@ -503,7 +502,6 @@
                             "id": "amount-acquisition-internal-investment-r-d-answer",
                             "label": "Total acquisition of Research and Development",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "1420",
                             "type": "Currency",
                             "currency": "GBP"
@@ -619,7 +617,6 @@
                             "id": "amount-acquisition-advanced-machinery-answer",
                             "label": "Total acquisition of advanced machinery, equipment and software",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "1430",
                             "type": "Currency",
                             "currency": "GBP"
@@ -706,7 +703,6 @@
                             "id": "expenditure-existing-2016-answer",
                             "label": "Total acquisition of existing knowledge",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "1440",
                             "type": "Currency",
                             "currency": "GBP"
@@ -793,7 +789,6 @@
                             "id": "expenditure-training-innovative-2016-answer",
                             "label": "Total training for innovative activities",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "1450",
                             "type": "Currency",
                             "currency": "GBP"
@@ -880,7 +875,6 @@
                             "id": "expenditure-design-2016-answer",
                             "label": "Total training for all forms of design",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "1460",
                             "type": "Currency",
                             "currency": "GBP"
@@ -1001,7 +995,6 @@
                             "id": "expenditure-introduction-innovations-2016-answer",
                             "label": "Total market introduction of innovations",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "1470",
                             "type": "Currency",
                             "currency": "GBP"
@@ -1327,7 +1320,6 @@
                                 "id": "percentage-turnover-2016-market-new-answer",
                                 "label": "New to the market in 2014-2016",
                                 "mandatory": false,
-                                "options": [],
                                 "q_code": "0810",
                                 "type": "Percentage",
                                 "max_value": {
@@ -1344,7 +1336,6 @@
                                 "id": "percentage-turnover-2016-business-new-answer",
                                 "label": "Only new to this business in 2014-2016",
                                 "mandatory": false,
-                                "options": [],
                                 "q_code": "0820",
                                 "type": "Percentage",
                                 "max_value": {
@@ -1361,7 +1352,6 @@
                                 "id": "percentage-turnover-2016-improvement-answer",
                                 "label": "Significantly improved in 2014-2016",
                                 "mandatory": false,
-                                "options": [],
                                 "q_code": "0830",
                                 "type": "Percentage",
                                 "max_value": {
@@ -1378,7 +1368,6 @@
                                 "id": "percentage-turnover-2016-modified-answer",
                                 "label": "Unchanged or only marginally modified",
                                 "mandatory": false,
-                                "options": [],
                                 "q_code": "0840",
                                 "type": "Percentage",
                                 "max_value": {
@@ -1396,7 +1385,6 @@
                                 "id": "percentage-turnover-2016-total-answer",
                                 "label": "Total Turnover",
                                 "mandatory": false,
-                                "options": [],
                                 "q_code": "10002",
                                 "type": "Percentage",
                                 "max_value": {
@@ -4315,7 +4303,6 @@
                             "id": "turnover-2014-answer",
                             "label": "Total turnover for 2014, excluding VAT",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "2410",
                             "type": "Currency",
                             "currency": "GBP"
@@ -4339,7 +4326,6 @@
                             "id": "turnover-2016-answer",
                             "label": "Total turnover for 2016, excluding VAT",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "2420",
                             "type": "Currency",
                             "currency": "GBP"
@@ -4363,7 +4349,6 @@
                             "id": "exports-2016-answer",
                             "label": "Total value of exports for 2016",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "2440",
                             "type": "Currency",
                             "currency": "GBP"
@@ -4399,7 +4384,6 @@
                             "id": "employees-2014-answer",
                             "label": "Total number of employees for 2014",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "2510",
                             "type": "Number"
                         }],
@@ -4422,7 +4406,6 @@
                             "id": "employees-2016-answer",
                             "label": "Total number of employees for 2016",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "2520",
                             "type": "Number"
                         }],
@@ -4445,7 +4428,6 @@
                                 "id": "employees-qualifications-2016-science-answer",
                                 "label": "Science or engineering subjects",
                                 "mandatory": false,
-                                "options": [],
                                 "q_code": "2610",
                                 "type": "Percentage",
                                 "max_value": {
@@ -4462,7 +4444,6 @@
                                 "id": "employees-qualifications-other-2016-answer",
                                 "label": "Other subjects",
                                 "mandatory": false,
-                                "options": [],
                                 "q_code": "2620",
                                 "type": "Percentage",
                                 "max_value": {
@@ -4566,7 +4547,6 @@
                             "id": "additional-comments-answer",
                             "label": "Comments",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "2700",
                             "type": "TextArea"
                         }],
@@ -4589,7 +4569,6 @@
                                 "id": "general-information-hours-answer",
                                 "label": "Hours",
                                 "mandatory": false,
-                                "options": [],
                                 "q_code": "2801",
                                 "type": "Number"
                             },
@@ -4598,7 +4577,6 @@
                                 "id": "how-long-minutes-answer",
                                 "label": "Minutes",
                                 "mandatory": false,
-                                "options": [],
                                 "q_code": "2800",
                                 "type": "Number"
                             }

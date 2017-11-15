@@ -85,7 +85,6 @@
                             "id": "response-yes-number-of-cups",
                             "label": "Number of cups",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "2",
                             "type": "Number"
                         }]
@@ -110,7 +109,6 @@
                             "id": "response-no-number-of-cups",
                             "label": "Number of cups",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "2",
                             "type": "Number"
                         }]

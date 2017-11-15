@@ -5,7 +5,6 @@ questions:
     id: e-commerce-answer-66-0
     label: Percentage of sales to private customers (B2C)?
     mandatory: true
-    options: []
     q_code: '348'
     type: Percentage
     max_value:
@@ -14,7 +13,6 @@ questions:
     id: e-commerce-answer-66-1
     label: Percentage of sales to other businesses (B2B) and sales to public authorities (B2G)?
     mandatory: true
-    options: []
     q_code: '349'
     type: Percentage
     max_value:

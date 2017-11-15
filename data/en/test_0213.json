@@ -41,7 +41,6 @@
                                 "id": "period-from",
                                 "label": "Period from",
                                 "mandatory": true,
-                                "options": [],
                                 "q_code": "11",
                                 "type": "Date"
                             },
@@ -49,7 +48,6 @@
                                 "id": "period-to",
                                 "label": "Period to",
                                 "mandatory": true,
-                                "options": [],
                                 "q_code": "12",
                                 "type": "Date"
                             }
@@ -92,7 +90,6 @@
                             "id": "total-sales-food",
                             "label": "What was the value of the business's total sales of food?",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "22",
                             "type": "Currency",
                             "currency": "GBP",
@@ -119,7 +116,6 @@
                             "id": "total-sales-alcohol",
                             "label": "What was the value of the business's total sales of alcohol, confectionery and tobacco?",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "23",
                             "type": "Currency",
                             "currency": "GBP",
@@ -149,7 +145,6 @@
                             "id": "total-sales-clothing",
                             "label": "What was the value of the business's total sales of clothing and footwear?",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "24",
                             "type": "Currency",
                             "currency": "GBP",
@@ -188,7 +183,6 @@
                             "id": "total-sales-household-goods",
                             "label": "What was the value of the business's total sales of household goods?",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "25",
                             "type": "Currency",
                             "currency": "GBP",
@@ -237,7 +231,6 @@
                             "id": "total-sales-other-goods",
                             "label": "What was the value of the business\u2019s total sales of other goods?",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "26",
                             "type": "Currency",
                             "currency": "GBP",
@@ -275,7 +268,6 @@
                             "id": "total-retail-turnover",
                             "label": "What was the value of the business\u2019s total retail turnover?",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "20",
                             "type": "Currency",
                             "currency": "GBP",
@@ -301,7 +293,6 @@
                             "id": "internet-sales",
                             "label": "Of your total retail turnover, how much were from internet sales?",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "21",
                             "type": "Currency",
                             "currency": "GBP",
@@ -316,7 +307,6 @@
                             "id": "reason-for-change",
                             "label": "Comments",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "146",
                             "type": "TextArea"
                         }],
@@ -357,7 +347,6 @@
                             "id": "number-male-employees-over-30-hours",
                             "label": "What was the number of male employees working more than 30 hours per week?",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "51",
                             "type": "Number"
                         }],
@@ -370,7 +359,6 @@
                             "id": "number-male-employees-under-30-hours",
                             "label": "What was the number of male employees working 30 hours or less per week?",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "52",
                             "type": "Number"
                         }],
@@ -383,7 +371,6 @@
                             "id": "number-female-employees-over-30-hours",
                             "label": "What was the number of female employees working more than 30 hours per week?",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "53",
                             "type": "Number"
                         }],
@@ -396,7 +383,6 @@
                             "id": "number-female-employees-under-30-hours",
                             "label": "What was the number of female employees working 30 hours or less per week?",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "54",
                             "type": "Number"
                         }],
@@ -409,7 +395,6 @@
                             "id": "total-number-employees",
                             "label": "What was the total number of employees?",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "50",
                             "type": "Number"
                         }],
