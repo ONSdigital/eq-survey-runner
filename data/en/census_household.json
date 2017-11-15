@@ -648,23 +648,19 @@
                     "id": "central-heating",
                     "questions": [{
                         "id": "central-heating-question",
-                        "title": "What type of central heating does this accommodation have?",
+                        "title": "What type of central heating does <em>{{answers.address_line_1}}</em> have?",
                         "description": "<p>Central heating is a central system that generates heat for multiple rooms.</p><p>Select all that apply, whether or not you use it.</p>",
                         "type": "General",
                         "answers": [{
                             "id": "central-heating-answer",
                             "mandatory": false,
                             "options": [{
-                                    "label": "No central heating",
-                                    "value": "No central heating"
-                                },
-                                {
                                     "label": "Gas",
                                     "value": "Gas"
                                 },
                                 {
-                                    "label": "Electric (including storage heaters)",
-                                    "value": "Electric (including storage heaters)"
+                                    "label": "Electric (include storage heaters)",
+                                    "value": "Electric (include storage heaters)"
                                 },
                                 {
                                     "label": "Oil",
@@ -675,8 +671,16 @@
                                     "value": "Solid fuel (for example wood, coal)"
                                 },
                                 {
+                                    "label": "Renewable (for example solar panels)",
+                                    "value": "Renewable (for example solar panels)"
+                                },
+                                {
                                     "label": "Other central heating",
                                     "value": "Other central heating"
+                                },
+                                {
+                                    "label": "No central heating",
+                                    "value": "No central heating"
                                 }
                             ],
                             "type": "Checkbox"
