@@ -3,10 +3,9 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 # pylint: disable=too-many-lines
 class TestCensusHouseholdSubmissionData(IntegrationTestCase):
-
-
     def test_census_household_data_matches_census_individual(self):
         self.complete_survey('census', 'household')
+
         # Only verifying 'data'
         actual_downstream_data = self.dumpSubmission()['submission']['data']
         expected_downstream_data = self.get_expected_submission_data()

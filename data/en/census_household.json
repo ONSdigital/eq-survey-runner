@@ -2605,8 +2605,7 @@
                     "id": "sexual-identity",
                     "questions": [{
                         "id": "sexual-identity-question",
-                        "title": "Which of the following options best describes how you think of yourself?",
-                        "description": "This question is voluntary",
+                        "title": "Which of the following options best describes how <em>{{[answers.first_name[group_instance]] | format_household_name }}</em> thinks of themselves?",
                         "type": "General",
                         "answers": [{
                                 "id": "sexual-identity-answer",
@@ -2651,10 +2650,15 @@
                                         "value": "Bisexual"
                                     },
                                     {
-                                        "label": "Other (please specify)",
+                                        "label": "Other",
                                         "value": "Other",
                                         "child_answer_id": "sexual-identity-answer-other"
+                                    },
+                                    {
+                                        "label": "Prefer not to say",
+                                        "value": "Prefer not to say"
                                     }
+
                                 ],
                                 "type": "Checkbox"
                             },
