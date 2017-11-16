@@ -16,14 +16,6 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
     def get_expected_submission_data():
         expected_downstream_data = [
             {
-                'answer_id': 'building',
-                'answer_instance': 0,
-                'block_id': 'what-is-your-address',
-                'group_id': 'what-is-your-address-group',
-                'group_instance': 0,
-                'value': 'the shard'
-            },
-            {
                 'answer_id': 'address-line-1',
                 'answer_instance': 0,
                 'block_id': 'what-is-your-address',
@@ -1179,7 +1171,6 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
         self.post(action='add_answer')
         post_data = [
             {
-                'building': 'the shard',
                 'address-line-1': '44 hill side',
                 'address-line-2': 'cimla',
                 'county': 'west glamorgan',
