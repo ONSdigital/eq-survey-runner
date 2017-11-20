@@ -7,11 +7,17 @@ const getUri = uri => browser.options.baseUrl + uri;
 
 const getRandomString = length => _.sampleSize('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', length).join('');
 
-const startCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-ENG', language = 'en') => {
+const openCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-ENG', language = 'en') => {
   return generateToken(schema, getRandomString(10), getRandomString(10), null, null, region, language, sexualIdentity)
     .then(function(token) {
       return browser.url('/session?token=' + token);
     });
+};
+
+const startCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-ENG', language = 'en') => {
+  return openCensusQuestionnaire(schema, sexualIdentity, region, language).then(() => {
+      return browser.click(landingPage.getStarted());
+  });
 };
 
 function openQuestionnaire(schema, userId = getRandomString(10), collectionId = getRandomString(10), periodId = '201605', periodStr = 'May 2016') {
@@ -117,6 +123,7 @@ module.exports = {
   landingPage,
   getUri,
   getRandomString,
+  openCensusQuestionnaire,
   startCensusQuestionnaire,
   openQuestionnaire,
   startQuestionnaire,
@@ -131,4 +138,5 @@ module.exports = {
   navigationLink,
   isSectionComplete,
   pressSubmit
+
 }
