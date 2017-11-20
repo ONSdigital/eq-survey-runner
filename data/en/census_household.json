@@ -1725,12 +1725,23 @@
                     "id": "carer",
                     "questions": [{
                         "id": "carer-question",
-                        "title": "Do you look after, or give any help or support to family members, friends, neighbours or others because of either:",
-                        "description": "<div><ul><li>Long-term physical or mental ill-health/disability?</li><li>Problems related to old age?</li></ul></div>",
+                        "title": "Does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> look after, or give any help or support to family members, friends, neighbours or others?",
+                        "description": "",
                         "guidance": {
                             "content": [{
-                                "description": "<strong>Exclude</strong> anything you do as part of your paid employment"
-                            }]
+                                    "title": "Include",
+                                    "list": [
+                                        "Long-term physical or mental ill-health/disability",
+                                        "Problems related to old age"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "anything you do as part of your paid employment"
+                                    ]
+                                }
+                            ]
                         },
                         "type": "General",
                         "answers": [{
