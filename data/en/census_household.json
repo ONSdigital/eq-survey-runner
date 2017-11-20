@@ -1057,7 +1057,7 @@
                     "id": "sex",
                     "questions": [{
                         "id": "sex-question",
-                        "title": "What is {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }} gender?",
+                        "title": "What is {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }} sex?",
                         "type": "General",
                         "answers": [{
                             "id": "sex-answer",
