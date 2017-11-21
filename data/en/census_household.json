@@ -1080,7 +1080,7 @@
                     "id": "date-of-birth",
                     "questions": [{
                         "id": "date-of-birth-question",
-                        "title": "What is your date of birth?",
+                        "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> date of birth?",
                         "description": "For example 20 March 1980",
                         "type": "General",
                         "answers": [{
@@ -1095,25 +1095,12 @@
                     "id": "marital-status",
                     "questions": [{
                         "id": "marital-status-question",
-                        "title": "On 9 April 2017, what is your legal marital or same-sex civil partnership status?",
+                        "title": "On 9 April 2017, what is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> legal marital or same-sex civil partnership status?",
+                        "description": "If you were married (or formed a registered same-sex partnership) abroad, and this enables you to be recognised as married or civil partnered in the UK, complete the question reflecting that legal partnership.",
                         "type": "General",
                         "answers": [{
                             "id": "marital-status-answer",
                             "mandatory": false,
-                            "guidance": {
-                                "show_guidance": "Show further guidance",
-                                "hide_guidance": "Hide further guidance",
-                                "content": [{
-                                        "description": "Please answer according to your status on 9 April 2017."
-                                    },
-                                    {
-                                        "description": "Please answer this question for children, even though they may not be old enough to marry or form a same-sex civil partnership."
-                                    },
-                                    {
-                                        "description": "If you were married (or formed a registered same-sex partnership) abroad, and this enables you to be recognised as married or civil partnered in the UK, complete the question reflecting that legal partnership."
-                                    }
-                                ]
-                            },
                             "options": [{
                                     "label": "Never married and never registered a same-sex civil partnership",
                                     "value": "Never married and never registered a same-sex civil partnership"
@@ -1261,7 +1248,7 @@
                     "id": "other-address",
                     "questions": [{
                         "id": "other-address-question",
-                        "title": "Enter details of the other UK address where you stay more than 30 days a year",
+                        "title": "Enter details of the other UK address where <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> stay more than 30 days a year",
                         "type": "General",
                         "answers": [{
                                 "id": "other-address-answer-building",
@@ -1353,35 +1340,11 @@
                     "id": "in-education",
                     "questions": [{
                         "id": "in-education-question",
-                        "title": "Are you a schoolchild or student in full-time education?",
+                        "title": "Is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> in full-time education?",
                         "type": "General",
                         "answers": [{
                             "id": "in-education-answer",
                             "mandatory": false,
-                            "guidance": {
-                                "show_guidance": "Show further guidance",
-                                "hide_guidance": "Hide further guidance",
-                                "content": [{
-                                        "description": "The following are considered to be in full-time education:"
-                                    },
-                                    {
-                                        "description": "Under 16s"
-                                    },
-                                    {
-                                        "description": "16-18s if they attend more than 12 hours a week of study on a course up to and including A level standard"
-                                    },
-                                    {
-                                        "description": "Anyone on a course at a higher standard than A level if they are studying at a UK institution, on a course which:"
-                                    },
-                                    {
-                                        "list": [
-                                            "lasts for at least 1 academic year",
-                                            "involves at least 24 weeks per year, and",
-                                            "involves at least 21 hours of term-time study, classes or work experience per week (including unstructured study)"
-                                        ]
-                                    }
-                                ]
-                            },
                             "options": [{
                                     "label": "Yes",
                                     "value": "Yes"
@@ -1416,18 +1379,18 @@
                     "id": "term-time-location",
                     "questions": [{
                         "id": "term-time-location-question",
-                        "title": "During term time, do you live:",
+                        "title": "During term time, does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> live at <em>{{answers.address_line_1}}</em> ?",
                         "type": "General",
                         "answers": [{
                             "id": "term-time-location-answer",
                             "mandatory": false,
                             "options": [{
-                                    "label": "here, at this address",
-                                    "value": "here, at this address"
+                                    "label": "Yes",
+                                    "value": "Yes"
                                 },
                                 {
-                                    "label": "at another address",
-                                    "value": "at another address"
+                                    "label": "No",
+                                    "value": "No"
                                 }
                             ],
                             "type": "Radio"
@@ -1439,7 +1402,7 @@
                                 "when": [{
                                     "id": "term-time-location-answer",
                                     "condition": "equals",
-                                    "value": "at another address"
+                                    "value": "No"
                                 }]
                             }
                         },
@@ -1455,7 +1418,7 @@
                     "id": "country-of-birth",
                     "questions": [{
                             "id": "country-of-birth-england-question",
-                            "title": "What is <em> {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }} </em> country of birth?",
+                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> country of birth?",
                             "type": "General",
                             "answers": [{
                                     "id": "country-of-birth-england-answer",
@@ -1778,29 +1741,12 @@
                     "id": "national-identity",
                     "questions": [{
                             "id": "national-identity-england-question",
-                            "title": "How would you describe your national identity?",
+                            "title": "How would you describe <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> national identity?",
                             "type": "General",
                             "answers": [{
                                     "id": "national-identity-england-answer",
                                     "label": "Select all that apply",
                                     "mandatory": false,
-                                    "guidance": {
-                                        "show_guidance": "Show further guidance",
-                                        "hide_guidance": "Hide further guidance",
-                                        "content": [{
-                                                "description": "You can choose more than one national identity."
-                                            },
-                                            {
-                                                "description": "It is for you to choose your national identity or identities. For example this could be about the country or countries where you feel you belong, or think of as home."
-                                            },
-                                            {
-                                                "description": "It is not dependent on your ethnic group or legal nationality (citizenship)."
-                                            },
-                                            {
-                                                "description": "Select all that apply. If your national identity isn’t listed, select ‘Other’ and enter the national identity."
-                                            }
-                                        ]
-                                    },
                                     "options": [{
                                             "label": "English",
                                             "value": "English"
@@ -1822,7 +1768,7 @@
                                             "value": "British"
                                         },
                                         {
-                                            "label": "Other (please specify)",
+                                            "label": "Other",
                                             "value": "Other",
                                             "child_answer_id": "national-identity-england-answer-other"
                                         }
@@ -1847,29 +1793,12 @@
                         },
                         {
                             "id": "national-identity-wales-question",
-                            "title": "How would you describe your national identity?",
+                            "title": "How would you describe <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> national identity?",
                             "type": "General",
                             "answers": [{
                                     "id": "national-identity-wales-answer",
                                     "label": "Select all that apply",
                                     "mandatory": false,
-                                    "guidance": {
-                                        "show_guidance": "Show further guidance",
-                                        "hide_guidance": "Hide further guidance",
-                                        "content": [{
-                                                "description": "You can choose more than one national identity."
-                                            },
-                                            {
-                                                "description": "It is for you to choose your national identity or identities. For example this could be about the country or countries where you feel you belong, or think of as home."
-                                            },
-                                            {
-                                                "description": "It is not dependent on your ethnic group or legal nationality (citizenship)."
-                                            },
-                                            {
-                                                "description": "Select all that apply. If your national identity isn’t listed, select ‘Other’ and enter the national identity."
-                                            }
-                                        ]
-                                    },
                                     "options": [{
                                             "label": "Welsh",
                                             "value": "Welsh"
@@ -1891,7 +1820,7 @@
                                             "value": "British"
                                         },
                                         {
-                                            "label": "Other (please specify)",
+                                            "label": "Other",
                                             "value": "Other",
                                             "child_answer_id": "national-identity-wales-answer-other"
                                         }
@@ -1921,7 +1850,7 @@
                     "id": "ethnic-group",
                     "questions": [{
                             "id": "ethnic-group-england-question",
-                            "title": "What is <em> {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }} </em> ethnic group?",
+                            "title": "What is <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> ethnic group?",
                             "description": "It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself.<br /><br />If you don’t feel the options apply to you, select ‘Other ethnic group’. You will then be able to write in the ethnic group you prefer to identify as at the next question.",
                             "type": "General",
                             "answers": [{
@@ -2146,21 +2075,10 @@
                     "id": "white-ethnic-group",
                     "questions": [{
                             "id": "white-ethnic-group-england-question",
-                            "title": "Which one best describes your White ethnic group or background?",
+                            "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> White ethnic group or background?",
                             "type": "General",
                             "answers": [{
                                     "id": "white-ethnic-group-england-answer",
-                                    "guidance": {
-                                        "show_guidance": "Show further guidance",
-                                        "hide_guidance": "Hide further guidance",
-                                        "content": [{
-                                                "description": "The options are based on the answer to the previous question. Please select the answer you think is most appropriate."
-                                            },
-                                            {
-                                                "description": "If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group."
-                                            }
-                                        ]
-                                    },
                                     "mandatory": false,
                                     "options": [{
                                             "label": "English, Welsh, Scottish, Northern Irish or British",
@@ -2175,7 +2093,7 @@
                                             "value": "Gypsy or Irish Traveller"
                                         },
                                         {
-                                            "label": "Any other White background (please specify)",
+                                            "label": "Any other White background",
                                             "value": "Other",
                                             "child_answer_id": "white-ethnic-group-england-answer-other"
                                         }
@@ -2200,21 +2118,10 @@
                         },
                         {
                             "id": "white-ethnic-group-wales-question",
-                            "title": "Which one best describes your White ethnic group or background?",
+                            "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> White ethnic group or background?",
                             "type": "General",
                             "answers": [{
                                     "id": "white-ethnic-group-wales-answer",
-                                    "guidance": {
-                                        "show_guidance": "Show further guidance",
-                                        "hide_guidance": "Hide further guidance",
-                                        "content": [{
-                                                "description": "The options are based on the answer to the previous question. Please select the answer you think is most appropriate."
-                                            },
-                                            {
-                                                "description": "If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group."
-                                            }
-                                        ]
-                                    },
                                     "mandatory": false,
                                     "options": [{
                                             "label": "Welsh, English, Scottish, Northern Irish or British",
@@ -2229,7 +2136,7 @@
                                             "value": "Gypsy or Irish Traveller"
                                         },
                                         {
-                                            "label": "Any other White background (please specify)",
+                                            "label": "Any other White background",
                                             "value": "Other",
                                             "child_answer_id": "white-ethnic-group-wales-question-other"
                                         }
@@ -2291,21 +2198,10 @@
                     "id": "mixed-ethnic-group",
                     "questions": [{
                         "id": "mixed-ethnic-group-question",
-                        "title": "Which one best describes your Mixed, multiple ethnic group or background?",
+                        "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> Mixed, multiple ethnic group or background?",
                         "type": "General",
                         "answers": [{
                                 "id": "mixed-ethnic-group-answer",
-                                "guidance": {
-                                    "show_guidance": "Show further guidance",
-                                    "hide_guidance": "Hide further guidance",
-                                    "content": [{
-                                            "description": "The options are based on the answer to the previous question. Please select the answer you think is most appropriate."
-                                        },
-                                        {
-                                            "description": "If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group."
-                                        }
-                                    ]
-                                },
                                 "mandatory": false,
                                 "options": [{
                                         "label": "White and Black Caribbean",
@@ -2320,7 +2216,7 @@
                                         "value": "White and Asian"
                                     },
                                     {
-                                        "label": "Any other Mixed or multiple ethnic background (please specify)",
+                                        "label": "Any other Mixed or multiple ethnic background",
                                         "value": "Other",
                                         "child_answer_id": "mixed-ethnic-group-answer-other"
                                     }
@@ -2374,22 +2270,11 @@
                     "id": "asian-ethnic-group",
                     "questions": [{
                         "id": "asian-ethnic-group-question",
-                        "title": "Which one best describes your Asian, Asian British ethnic group or background?",
+                        "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> Asian, Asian British ethnic group or background?",
                         "type": "General",
                         "answers": [{
                                 "id": "asian-ethnic-group-answer",
                                 "mandatory": false,
-                                "guidance": {
-                                    "show_guidance": "Show further guidance",
-                                    "hide_guidance": "Hide further guidance",
-                                    "content": [{
-                                            "description": "The options are based on the answer to the previous question. Please select the answer you think is most appropriate."
-                                        },
-                                        {
-                                            "description": "If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group."
-                                        }
-                                    ]
-                                },
                                 "options": [{
                                         "label": "Indian",
                                         "value": "Indian"
@@ -2407,7 +2292,7 @@
                                         "value": "Chinese"
                                     },
                                     {
-                                        "label": "Any other Asian background (please specify)",
+                                        "label": "Any other Asian background",
                                         "value": "Other",
                                         "child_answer_id": "asian-ethnic-group-answer-other"
                                     }
@@ -2461,7 +2346,7 @@
                     "id": "black-ethnic-group",
                     "questions": [{
                         "id": "black-ethnic-group-question",
-                        "title": "Which one best describes your Black, African, Caribbean, Black British ethnic group or background?",
+                        "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> Black, African, Caribbean, Black British ethnic group or background?",
                         "type": "General",
                         "answers": [{
                                 "id": "black-ethnic-group-answer",
@@ -2540,28 +2425,17 @@
                     "id": "other-ethnic-group",
                     "questions": [{
                         "id": "other-ethnic-group-question",
-                        "title": "Which one best describes your Other ethnic group or background?",
+                        "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> Other ethnic group or background?",
                         "type": "General",
                         "answers": [{
                                 "id": "other-ethnic-group-answer",
                                 "mandatory": false,
-                                "guidance": {
-                                    "show_guidance": "Show further guidance",
-                                    "hide_guidance": "Hide further guidance",
-                                    "content": [{
-                                            "description": "The options are based on the answer to the previous question. Please select the answer you think is most appropriate."
-                                        },
-                                        {
-                                            "description": "If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group."
-                                        }
-                                    ]
-                                },
                                 "options": [{
                                         "label": "Arab",
                                         "value": "Arab"
                                     },
                                     {
-                                        "label": "Any other ethnic group (please specify)",
+                                        "label": "Any other ethnic group",
                                         "value": "Other",
                                         "child_answer_id": "other-ethnic-group-answer-other"
                                     }
@@ -2873,7 +2747,7 @@
                     "id": "religion",
                     "questions": [{
                         "id": "religion-question",
-                        "title": "What is <em> {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }} </em> religion?",
+                        "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> religion?",
                         "description": "This question is voluntary",
                         "type": "General",
                         "answers": [{
@@ -3107,7 +2981,7 @@
                     "id": "disability",
                     "questions": [{
                         "id": "disability-question",
-                        "title": "Are your day-to-day activities limited because of a health problem or disability which has lasted, or is expected to last, at least 12 months?",
+                        "title": "Are <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> day-to-day activities limited because of a health problem or disability which has lasted, or is expected to last, at least 12 months?",
                         "guidance": {
                             "content": [{
                                 "description": "<strong>Include</strong> Problems related to old age"
@@ -3155,7 +3029,7 @@
                     "id": "qualifications",
                     "questions": [{
                             "id": "qualifications-england-question",
-                            "title": "Thinking of any studies, exams or qualifications, which of the following do you have?",
+                            "title": "Thinking of any studies, exams or qualifications, which of the following does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> have?",
                             "description": "Select every option that applies (whether UK or foreign equivalent) if you have any of the qualifications listed",
                             "type": "General",
                             "answers": [{
@@ -3238,7 +3112,7 @@
                         },
                         {
                             "id": "qualifications-welsh-question",
-                            "title": "Thinking of any studies, exams or qualifications, which of the following do you have?",
+                            "title": "Thinking of any studies, exams or qualifications, which of the following does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> have?",
                             "description": "Select every option that applies (whether UK or foreign equivalent) if you have any of the qualifications listed",
                             "type": "General",
                             "answers": [{
@@ -3326,8 +3200,7 @@
                     "id": "employment-type",
                     "questions": [{
                         "id": "employment-type-question",
-                        "title": "Last week were you:",
-                        "description": "Select all that apply",
+                        "title": "Which of the following best describes what <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> was doing last week?",
                         "guidance": {
                             "content": [{
                                 "description": "<strong>Include</strong> any paid work, including casual or temporary work, even if only for one hour"
@@ -3338,35 +3211,36 @@
                             "id": "employment-type-answer",
                             "mandatory": false,
                             "options": [{
-                                    "label": "working as an employee?",
-                                    "value": "working as an employee?"
+                                    "label": "working as an employee",
+                                    "value": "working as an employee"
                                 },
                                 {
-                                    "label": "on a government sponsored training scheme?",
-                                    "value": "on a government sponsored training scheme?"
+                                    "label": "on a government sponsored training scheme",
+                                    "value": "on a government sponsored training scheme"
                                 },
                                 {
-                                    "label": "self-employed or freelance?",
-                                    "value": "self-employed or freelance?"
+                                    "label": "self-employed or freelance",
+                                    "value": "self-employed or freelance"
                                 },
                                 {
-                                    "label": "working paid or unpaid for you own or your family’s business?",
-                                    "value": "working paid or unpaid for you own or your family’s business?"
+                                    "label": "working paid or unpaid for you own or your family’s business",
+                                    "value": "working paid or unpaid for you own or your family’s business"
                                 },
                                 {
-                                    "label": "away from work ill, on maternity leave, on holiday or temporarily laid off?",
-                                    "value": "away from work ill, on maternity leave, on holiday or temporarily laid off?"
+                                    "label": "away from work ill, on maternity leave, on holiday or temporarily laid off",
+                                    "value": "away from work ill, on maternity leave, on holiday or temporarily laid off"
                                 },
                                 {
-                                    "label": "doing any other kind of paid work?",
-                                    "value": "doing any other kind of paid work?"
+                                    "label": "doing any other kind of paid work",
+                                    "value": "doing any other kind of paid work"
                                 },
                                 {
-                                    "label": "none of the above?",
-                                    "value": "none of the above?"
+                                    "label": "none of the above",
+                                    "value": "none of the above"
                                 }
                             ],
-                            "type": "Checkbox"
+                            "type": "Checkbox",
+                            "label": "Select all that apply"
                         }]
                     }],
                     "routing_rules": [{
@@ -3375,7 +3249,7 @@
                                 "when": [{
                                     "id": "employment-type-answer",
                                     "condition": "contains",
-                                    "value": "working as an employee?"
+                                    "value": "working as an employee"
                                 }]
                             }
                         },
@@ -3385,7 +3259,7 @@
                                 "when": [{
                                     "id": "employment-type-answer",
                                     "condition": "contains",
-                                    "value": "on a government sponsored training scheme?"
+                                    "value": "on a government sponsored training scheme"
                                 }]
                             }
                         },
@@ -3395,7 +3269,7 @@
                                 "when": [{
                                     "id": "employment-type-answer",
                                     "condition": "contains",
-                                    "value": "self-employed or freelance?"
+                                    "value": "self-employed or freelance"
                                 }]
                             }
                         },
@@ -3405,7 +3279,7 @@
                                 "when": [{
                                     "id": "employment-type-answer",
                                     "condition": "contains",
-                                    "value": "working paid or unpaid for you own or your family’s business?"
+                                    "value": "working paid or unpaid for you own or your family’s business"
                                 }]
                             }
                         },
@@ -3415,7 +3289,7 @@
                                 "when": [{
                                     "id": "employment-type-answer",
                                     "condition": "contains",
-                                    "value": "away from work ill, on maternity leave, on holiday or temporarily laid off?"
+                                    "value": "away from work ill, on maternity leave, on holiday or temporarily laid off"
                                 }]
                             }
                         },
@@ -3425,7 +3299,7 @@
                                 "when": [{
                                     "id": "employment-type-answer",
                                     "condition": "contains",
-                                    "value": "doing any other kind of paid work?"
+                                    "value": "doing any other kind of paid work"
                                 }]
                             }
                         },
@@ -3441,7 +3315,7 @@
                     "id": "jobseeker",
                     "questions": [{
                         "id": "jobseeker-question",
-                        "title": "Were you actively looking for any kind of paid work during the last four weeks?",
+                        "title": "Was <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> actively looking for any kind of paid work during the last four weeks?",
                         "type": "General",
                         "answers": [{
                             "id": "jobseeker-answer",
@@ -3464,7 +3338,7 @@
                     "id": "job-availability",
                     "questions": [{
                         "id": "job-availability-question",
-                        "title": "If a job had been available last week, could you have started it within two weeks?",
+                        "title": "If a job had been offered to <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> last week, could they have started it within 2 weeks?",
                         "type": "General",
                         "answers": [{
                             "id": "job-availability-answer",
@@ -3487,7 +3361,7 @@
                     "id": "job-pending",
                     "questions": [{
                         "id": "job-pending-question",
-                        "title": "Last week, were you waiting to start a job already obtained?",
+                        "title": "Last week, was <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> waiting to start a job already accepted?",
                         "type": "General",
                         "answers": [{
                             "id": "job-pending-answer",
@@ -3510,27 +3384,27 @@
                     "id": "occupation",
                     "questions": [{
                         "id": "occupation-question",
-                        "title": "Last week, were you:",
+                        "title": "Which of the following best describes what <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> was doing last week?",
                         "description": "Select all that apply",
                         "type": "General",
                         "answers": [{
                             "id": "occupation-answer",
                             "mandatory": false,
                             "options": [{
-                                    "label": "retired (whether receiving a pension or not)?",
-                                    "value": "retired (whether receiving a pension or not)?"
+                                    "label": "retired (whether receiving a pension or not)",
+                                    "value": "retired (whether receiving a pension or not)"
                                 },
                                 {
-                                    "label": "a student?",
-                                    "value": "a student?"
+                                    "label": "a student",
+                                    "value": "a student"
                                 },
                                 {
-                                    "label": "looking after home or family?",
-                                    "value": "looking after home or family?"
+                                    "label": "looking after home or family",
+                                    "value": "looking after home or family"
                                 },
                                 {
-                                    "label": "long-term sick or disabled?",
-                                    "value": "long-term sick or disabled?"
+                                    "label": "long-term sick or disabled",
+                                    "value": "long-term sick or disabled"
                                 },
                                 {
                                     "label": "other",
@@ -3546,28 +3420,20 @@
                     "id": "ever-worked",
                     "questions": [{
                         "id": "ever-worked-question",
-                        "title": "Have you ever worked?",
+                        "title": "Has <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> ever worked?",
                         "type": "General",
+                        "guidance": {
+                            "content": [{
+                                "title": "Include:",
+                                "list": [
+                                    "work outside of the United Kingdom.",
+                                    "even if you are now retired."
+                                ]
+                            }]
+                        },
                         "answers": [{
                             "id": "ever-worked-answer",
                             "mandatory": false,
-                            "guidance": {
-                                "show_guidance": "Show further guidance",
-                                "hide_guidance": "Hide further guidance",
-                                "content": [{
-                                        "description": "If you had a full-time or part-time job in the past select ‘Yes’"
-                                    },
-                                    {
-                                        "description": "This includes work outside of the United Kingdom."
-                                    },
-                                    {
-                                        "description": "Please provide an answer even if you are retired."
-                                    },
-                                    {
-                                        "description": "If you have never worked, or only ever worked in voluntary/unpaid jobs, select ‘No’."
-                                    }
-                                ]
-                            },
                             "options": [{
                                     "label": "Yes",
                                     "value": "Yes"
@@ -3611,7 +3477,7 @@
                     "id": "main-job",
                     "questions": [{
                         "id": "main-job-question",
-                        "title": "In your main job, are (were) you:",
+                        "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> employment status?",
                         "guidance": {
                             "content": [{
                                 "description": "<p>If you are not working answer the remaining questions about your last main job.</p><p>Your main job is the job which you usually work (worked) the most hours</p>"
@@ -3622,16 +3488,16 @@
                             "id": "main-job-answer",
                             "mandatory": false,
                             "options": [{
-                                    "label": "an employee?",
-                                    "value": "an employee?"
+                                    "label": "an employee",
+                                    "value": "an employee"
                                 },
                                 {
-                                    "label": "self-employed or freelance without employees?",
-                                    "value": "self-employed or freelance without employees?"
+                                    "label": "self-employed or freelance without employees",
+                                    "value": "self-employed or freelance without employees"
                                 },
                                 {
-                                    "label": "self-employed with employees?",
-                                    "value": "self-employed with employees?"
+                                    "label": "self-employed with employees",
+                                    "value": "self-employed with employees"
                                 }
                             ],
                             "type": "Radio"
@@ -3643,7 +3509,7 @@
                     "id": "hours-worked",
                     "description": "",
                     "questions": [{
-                        "title": "In your main job, how many hours a week do you usually work?",
+                        "title": "In <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> main job, how many hours a week do they usually work?",
                         "guidance": {
                             "content": [{
                                 "description": "Include paid and unpaid overtime"
@@ -3680,7 +3546,7 @@
                     "id": "work-travel",
                     "description": "",
                     "questions": [{
-                        "title": "How do you usually travel to work?",
+                        "title": "How does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> usually travel to work?",
                         "guidance": {
                             "content": [{
                                     "description": "Select the option for the longest part, in distance, of your journey"
@@ -3749,31 +3615,13 @@
                     "id": "job-title",
                     "questions": [{
                         "id": "job-title-question",
-                        "title": "What is (was) your full and specific job title?",
-                        "guidance": {
-                            "content": [{
-                                "description": "<p>For example, <b>primary school teacher, car mechanic, district nurse, structural engineer</b></p><p>Do not state your grade or pay band</p>"
-                            }]
-                        },
+                        "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> full job title?",
+                        "description": "<p>For example, <b>primary school teacher, car mechanic, district nurse, structural engineer</b></p><p>Do not state your grade or pay band</p><p>Please enter your job title in the space provided.</p><p>Do not state your grade or pay band.</p><p>If you are not sure of your job title please give the best information you can.</p>",
                         "type": "General",
                         "answers": [{
                             "id": "job-title-answer",
                             "label": "Job title",
                             "mandatory": false,
-                            "guidance": {
-                                "show_guidance": "Show further guidance",
-                                "hide_guidance": "Hide further guidance",
-                                "content": [{
-                                        "description": "Please enter your job title in the space provided."
-                                    },
-                                    {
-                                        "description": "Do not state your grade or pay band."
-                                    },
-                                    {
-                                        "description": "If you are not sure of your job title please give the best information you can."
-                                    }
-                                ]
-                            },
                             "type": "TextField"
                         }]
                     }]
@@ -3783,64 +3631,12 @@
                     "id": "job-description",
                     "questions": [{
                         "id": "job-description-question",
-                        "title": "Briefly describe what you do (did) in your main job.",
+                        "title": "What <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> does in their main job?",
                         "type": "General",
                         "answers": [{
                             "id": "job-description-answer",
                             "label": "Description",
                             "mandatory": false,
-                            "guidance": {
-                                "show_guidance": "Show further guidance",
-                                "hide_guidance": "Hide further guidance",
-                                "content": [{
-                                        "description": "Please enter a brief description of what you do or did in your main job. Your main job is the job in which you usually work (or worked) the most hours."
-                                    },
-                                    {
-                                        "description": "Please give the best information you can even if you’re not sure or can’t remember all the details."
-                                    }
-                                ]
-                            },
-                            "type": "TextArea"
-                        }]
-                    }]
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "employers-business",
-                    "questions": [{
-                        "id": "employers-business-question",
-                        "title": "At your workplace what is (was) the main activity of your employer or business?",
-                        "guidance": {
-                            "content": [{
-                                "list": [
-                                    "For example, <b>primary education, repairing cars, contract catering, computer servicing</b>",
-                                    "If you are (were) a civil servant, write <b>government</b>",
-                                    "If you are (were) a local government officer, write <b>local government</b> and give the name of the department within the local authority"
-                                ]
-                            }]
-                        },
-                        "type": "General",
-                        "answers": [{
-                            "id": "employers-business-answer",
-                            "label": "Description",
-                            "mandatory": false,
-                            "guidance": {
-                                "show_guidance": "Show further guidance",
-                                "hide_guidance": "Hide further guidance",
-                                "content": [{
-                                        "description": "Enter the main activity of your employer or business."
-                                    },
-                                    {
-                                        "description": "Another way of describing main activity is the industry that your employer or business works in."
-                                    },
-                                    {
-                                        "description": "If you are not sure of the main activity of your employer or business please give the best information you can."
-                                    },
-                                    {
-                                        "description": "If you are employed through an agency please enter the main activity of the business you are working for, not the agency."
-                                    }
-                                ]
-                            },
                             "type": "TextArea"
                         }]
                     }]
@@ -3850,7 +3646,7 @@
                     "id": "main-job-type",
                     "questions": [{
                         "id": "main-job-type-question",
-                        "title": "In your main job are (were) you:",
+                        "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> employment status?",
                         "type": "General",
                         "answers": [{
                             "id": "main-job-type-answer",
@@ -3894,32 +3690,31 @@
                     "id": "business-name",
                     "questions": [{
                         "id": "business-name-question",
-                        "title": "In your main job, what is (was) the name of the organisation or business you work (worked) for?",
-                        "guidance": {
-                            "content": [{
-                                "description": "If you were self-employed in your own organisation or business, enter the name"
-                            }]
-                        },
+                        "title": "What is the name of the organisation of business that <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> work for?",
+                        "description": "<p>If you were self-employed in your own organisation or business, enter the name</p><p>This question is asking for the name of the organisation or business that you work (or worked) for in your main job.</p><p>If you can’t remember the name of the organisation, please give the best information you can.</p><p>If you are employed through an agency please enter the name of the business you are working for, not the agency.</p>",
                         "type": "General",
                         "answers": [{
                             "id": "business-name-answer",
                             "label": "Organisation or business name",
                             "mandatory": false,
-                            "guidance": {
-                                "show_guidance": "Show further guidance",
-                                "hide_guidance": "Hide further guidance",
-                                "content": [{
-                                        "description": "This question is asking for the name of the organisation or business that you work (or worked) for in your main job."
-                                    },
-                                    {
-                                        "description": "If you can’t remember the name of the organisation, please give the best information you can."
-                                    },
-                                    {
-                                        "description": "If you are employed through an agency please enter the name of the business you are working for, not the agency."
-                                    }
-                                ]
-                            },
-                            "type": "TextField"
+                            "type": "TextField",
+                            "alias": "company_name"
+                        }]
+                    }]
+                },
+                {
+                    "type": "Questionnaire",
+                    "id": "employers-business",
+                    "questions": [{
+                        "id": "employers-business-question",
+                        "title": "What is the main activity of <em>{{answers.company_name}}</em>?",
+                        "description": "<p>Enter the main activity of your employer or business.</p><p>Another way of describing main activity is the industry that your employer or business works in.</p><p>If you are not sure of the main activity of your employer or business please give the best information you can.</p><p>If you are employed through an agency please enter the main activity of the business you are working for, not the agency.</p><p>For example, <b>primary education, repairing cars, contract catering, computer servicing</b></p>",
+                        "type": "General",
+                        "answers": [{
+                            "id": "employers-business-answer",
+                            "label": "Description",
+                            "mandatory": false,
+                            "type": "TextArea"
                         }]
                     }]
                 },

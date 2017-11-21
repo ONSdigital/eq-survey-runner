@@ -348,7 +348,7 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'block_id': 'term-time-location',
                 'group_id': 'household-member',
                 'answer_instance': 0,
-                'value': 'here, at this address'
+                'value': 'Yes'
             },
             {
                 'group_instance': 0,
@@ -553,7 +553,7 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': [
-                    'none of the above?'
+                    'none of the above'
                 ]
             },
             {
@@ -587,8 +587,8 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': [
-                    'a student?',
-                    'long-term sick or disabled?'
+                    'a student',
+                    'long-term sick or disabled'
                 ]
             },
             {
@@ -605,7 +605,7 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'block_id': 'main-job',
                 'group_id': 'household-member',
                 'answer_instance': 0,
-                'value': 'an employee?'
+                'value': 'an employee'
             },
             {
                 'group_instance': 0,
@@ -993,7 +993,7 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'in-education-answer': ['Yes']
             },
             {
-                'term-time-location-answer': ['here, at this address']
+                'term-time-location-answer': ['Yes']
             },
             {
                 'country-of-birth-england-answer': ['England']
@@ -1044,7 +1044,7 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                                                   'Postgraduate Certificate / Diploma']
             },
             {
-                'employment-type-answer': ['none of the above?']
+                'employment-type-answer': ['none of the above']
             },
             {
                 'jobseeker-answer': ['Yes']
@@ -1056,14 +1056,14 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'job-pending-answer': ['Yes']
             },
             {
-                'occupation-answer': ['a student?',
-                                      'long-term sick or disabled?']
+                'occupation-answer': ['a student',
+                                      'long-term sick or disabled']
             },
             {
                 'ever-worked-answer': ['Yes']
             },
             {
-                'main-job-answer': ['an employee?']
+                'main-job-answer': ['an employee']
             },
             {
                 'hours-worked-answer': ['31 - 48']
@@ -1078,13 +1078,13 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'job-description-answer': 'Development'
             },
             {
-                'employers-business-answer': 'Civil Servant'
-            },
-            {
                 'main-job-type-answer': ['Employed by an organisation or business']
             },
             {
                 'business-name-answer': 'ONS'
+            },
+            {
+                'employers-business-answer': 'Civil Servant'
             }
         ]
         for post in post_data:
