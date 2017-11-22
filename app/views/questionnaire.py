@@ -83,7 +83,7 @@ def save_questionnaire_store(func):
 def get_block(routing_path, eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=unused-argument,too-many-locals
     current_location = Location(group_id, group_instance, block_id)
 
-    if not _is_valid_group(group_id) or not _is_valid_location(current_location):
+    if not _is_valid_group(group_id) or not _is_valid_location(routing_path, current_location):
         return _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type)
 
     block = _get_block_json(current_location)
@@ -100,7 +100,7 @@ def get_block(routing_path, eq_id, form_type, collection_id, group_id, group_ins
 def post_block(routing_path, eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=too-many-locals
     current_location = Location(group_id, group_instance, block_id)
 
-    if not _is_valid_group(group_id) or not _is_valid_location(current_location):
+    if not _is_valid_group(group_id) or not _is_valid_location(routing_path, current_location):
         return _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type)
 
     block = _get_block_json(current_location)
@@ -206,11 +206,8 @@ def _render_page(full_routing_path, block, current_location, post_form=None):
         routing_path=full_routing_path)
 
 
-def _is_valid_location(location):
-    return location in path_finder.get_routing_path(
-        location.group_id,
-        location.group_instance,
-    )
+def _is_valid_location(routing_path, location):
+    return location in routing_path
 
 
 def _is_valid_group(group_id):

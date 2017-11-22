@@ -73,6 +73,15 @@ class SchemaHelper(object):  # pylint: disable=too-many-public-methods
     def get_skip_condition(group):
         return group.get('skip_conditions')
 
+    @staticmethod
+    def get_sections(survey_json):
+        navigation = survey_json.get('navigation')
+
+        if navigation:
+            return navigation.get('sections')
+
+        return None
+
     @classmethod
     def get_group(cls, survey_json, group_id):
         return next(g for g in cls.get_groups(survey_json) if g['id'] == group_id)

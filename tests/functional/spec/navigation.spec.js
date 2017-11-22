@@ -15,6 +15,7 @@ const SecurityCodeInterstitialPage = require('../pages/surveys/navigation/securi
 const SkipInterstitialPage = require('../pages/surveys/navigation/skip-interstitial.page.js');
 const SkipPaymentPage = require('../pages/surveys/navigation/skip-payment.page.js');
 const SummaryPage = require('../pages/surveys/navigation/summary.page.js');
+const GenericPage = require('../pages/surveys/generic.page.js');
 
 const CoffeePage = require('../pages/surveys/navigation/completeness/coffee.page.js');
 const ResponseYesPage = require('../pages/surveys/navigation/completeness/response-yes.page.js');
@@ -148,6 +149,15 @@ describe('Navigation', function() {
         .setValue(ExtraCoverBlockPage.answer(), '0')
         .click(ExtraCoverBlockPage.submit())
         .isVisible(helpers.navigationLink('Extra Cover Items')).should.eventually.be.false;
+      });
+  });
+
+  it('Given I have a section that can not be reached from the start of the survey, When I click on the navigation link,' +
+    ' Then the first block of that section should be displayed', function() {
+    return helpers.openQuestionnaire('test_navigation_routing.json').then(() => {
+      return browser
+        .click(helpers.navigationLink('Group 2'))
+        .getText(GenericPage.displayedName()).should.eventually.contain('Did you want Group 2');
       });
   });
 
