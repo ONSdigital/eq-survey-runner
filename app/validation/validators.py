@@ -3,7 +3,7 @@ from datetime import datetime
 
 from babel import numbers
 
-from app.jinja_filters import format_number
+from app.jinja_filters import format_number, format_currency
 from app.settings import DEFAULT_LOCALE
 from app.validation.error_messages import error_messages
 
@@ -68,24 +68,30 @@ class NumberRange(object):
         The maximum value of the number. If not provided, maximum value
         will not be checked.
     """
-    def __init__(self, minimum=None, maximum=None, messages=None):
+    def __init__(self, minimum=None, maximum=None, messages=None, currency=None):
         self.minimum = minimum
         self.maximum = maximum
         if not messages:
             messages = error_messages
         self.messages = messages
+        self.currency = currency
 
     def __call__(self, form, field):
         data = field.data
         error_message = None
         if data is not None:
             if self.minimum is not None and data < self.minimum:
-                error_message = self.messages['NUMBER_TOO_SMALL'] % dict(min=format_number(self.minimum))
+                error_message = self.messages['NUMBER_TOO_SMALL'] % dict(min=self.format_min_max(self.minimum))
             elif self.maximum is not None and data > self.maximum:
-                error_message = self.messages['NUMBER_TOO_LARGE'] % dict(max=format_number(self.maximum))
+                error_message = self.messages['NUMBER_TOO_LARGE'] % dict(max=self.format_min_max(self.maximum))
 
             if error_message:
                 raise validators.ValidationError(error_message)
+
+    def format_min_max(self, value):
+        if self.currency:
+            return format_currency(value, self.currency)
+        return format_number(value)
 
 
 class DecimalPlaces(object):

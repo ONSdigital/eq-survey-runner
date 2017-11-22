@@ -193,7 +193,7 @@ def get_number_field(answer, label, guidance, error_messages, answer_store):
 
     validate_with = mandatory_or_optional + [
         NumberCheck(answer_errors['INVALID_NUMBER']),
-        NumberRange(minimum=min_value, maximum=max_value, messages=answer_errors),
+        NumberRange(minimum=min_value, maximum=max_value, messages=answer_errors, currency=answer.get('currency')),
         DecimalPlaces(max_decimals=max_decimals, messages=answer_errors),
     ]
 

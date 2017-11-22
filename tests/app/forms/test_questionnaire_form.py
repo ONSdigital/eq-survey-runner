@@ -165,20 +165,20 @@ class TestQuestionnaireForm(AppContextTestCase):
             self.assertTrue(self._error_exists("radio-mandatory-answer", error_messages['MANDATORY_TEXTFIELD'], mapped_errors))
             self.assertFalse(self._error_exists("other-answer-mandatory", error_messages['MANDATORY_TEXTFIELD'], mapped_errors))
 
-    def test_answer_errors_are_mapped(self):
+    def test_answer_errors_are_interpolated(self):
         with self.test_request_context():
             survey = load_schema_file("test_0112.json")
 
-            block_json = SchemaHelper.get_block(survey, "total-retail-turnover")
+            block_json = SchemaHelper.get_block(survey, "number-of-employees")
             error_messages = SchemaHelper.get_messages(survey)
 
             form = generate_form(block_json, {
-                'total-retail-turnover-answer': "-1"
+                'total-number-employees': "-1"
             }, error_messages, AnswerStore())
 
             form.validate()
-            answer_errors = form.answer_errors('total-retail-turnover-answer')
-            self.assertIn(error_messages["NUMBER_TOO_SMALL"] % dict(min=0), answer_errors)
+            answer_errors = form.answer_errors('total-number-employees')
+            self.assertIn(error_messages["NUMBER_TOO_SMALL"] % dict(min='0'), answer_errors)
 
     def test_option_has_other(self):
         with self.test_request_context():

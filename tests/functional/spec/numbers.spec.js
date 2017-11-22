@@ -34,11 +34,13 @@ describe('NumericRange', function() {
           .setValue(TestMinMax.testMin(), '0')
           .setValue(TestMinMax.testMax(), '12345')
           .setValue(TestMinMax.testPercent(), '101')
+          .setValue(TestMinMax.testDecimal(), '5.4')
           .click(TestMinMax.submit())
           .getText(TestMinMax.errorNumber(1)).should.eventually.contain("Enter a number more than or equal to 10.")
           .getText(TestMinMax.errorNumber(2)).should.eventually.contain("Enter a number more than or equal to 123.")
           .getText(TestMinMax.errorNumber(3)).should.eventually.contain("Enter a number less than or equal to 1,234.")
-          .getText(TestMinMax.errorNumber(4)).should.eventually.contain("Enter a number less than or equal to 100.");
+          .getText(TestMinMax.errorNumber(4)).should.eventually.contain("Enter a number less than or equal to 100.")
+          .getText(TestMinMax.errorNumber(5)).should.eventually.contain("Enter a number more than or equal to £10.00.");
       });
   });
 
@@ -49,10 +51,10 @@ describe('NumericRange', function() {
           .setValue(SetMinMax.setMinimum(), '10')
           .setValue(SetMinMax.setMaximum(), '20')
           .click(SetMinMax.submit())
-          .setValue(TestMinMax.testRange(), '12.3')
-          .setValue(TestMinMax.testDecimal(), '1.234')
+          .setValue(TestMinMax.testRange(), '12.344')
+          .setValue(TestMinMax.testDecimal(), '11.234')
           .click(TestMinMax.submit())
-          .getText(TestMinMax.errorNumber(1)).should.eventually.contain("Enter a whole number.")
+          .getText(TestMinMax.errorNumber(1)).should.eventually.contain("Enter a number rounded to 2 decimal places.")
           .getText(TestMinMax.errorNumber(2)).should.eventually.contain("Enter a number rounded to 2 decimal places.");
       });
   });

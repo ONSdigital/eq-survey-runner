@@ -1,6 +1,5 @@
 from collections import OrderedDict
 from datetime import datetime, timezone
-
 from structlog import get_logger
 
 from app.helpers.schema_helper import SchemaHelper

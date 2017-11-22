@@ -1,6 +1,6 @@
-import json
 import os
 import requests
+import simplejson as json
 
 from structlog import get_logger
 from werkzeug.exceptions import NotFound
@@ -42,7 +42,7 @@ def load_schema_file(schema_file, language_code=None):
 
     try:
         with open(schema_path, encoding='utf8') as json_data:
-            return json.load(json_data)
+            return json.load(json_data, use_decimal=True)
 
     except FileNotFoundError as e:
         logger.error('no schema file exists', filename=schema_path)
