@@ -1648,10 +1648,10 @@
                     "id": "arrive-in-uk",
                     "questions": [{
                         "id": "arrive-in-uk-question",
-                        "title": "If you were not born in the United Kingdom, when did you most recently arrive to live here?",
+                        "title": "When did <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> most recently arrive to live in the United Kingdom?",
                         "guidance": {
                             "content": [{
-                                "description": "Exclude short visits away from the UK"
+                                "description": "<strong>Exclude</strong> <br /> <br />short visits away from the UK"
                             }]
                         },
                         "type": "General",
