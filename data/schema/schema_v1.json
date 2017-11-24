@@ -575,6 +575,10 @@
                                 "answer_id": {
                                   "type": "string",
                                   "description": "The id of an answer from which to obtain the max_value"
+                                },
+                                "exclusive": {
+                                  "type": "boolean",
+                                  "description": "Whether validation is exclusive of value or not"
                                 }
                               },
                               "oneOf": [
@@ -600,6 +604,10 @@
                                 "answer_id": {
                                   "type": "string",
                                   "description": "The id of an answer from which to obtain the min_value"
+                                },
+                                "exclusive": {
+                                  "type": "boolean",
+                                  "description": "Whether validation is exclusive of value or not"
                                 }
                               },
                               "oneOf": [

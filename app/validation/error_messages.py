@@ -8,6 +8,8 @@ error_messages = {
     'MANDATORY_DATE': 'Enter a date to continue.',
     'NUMBER_TOO_SMALL': 'Enter a number more than or equal to %(min)s.',
     'NUMBER_TOO_LARGE': 'Enter a number less than or equal to %(max)s.',
+    'NUMBER_TOO_SMALL_EXCLUSIVE': 'Enter a number more than %(min)s.',
+    'NUMBER_TOO_LARGE_EXCLUSIVE': 'Enter a number less than %(max)s.',
     'INVALID_NUMBER': 'Enter a number.',
     'INVALID_INTEGER': 'Enter a whole number.',
     'INVALID_DECIMAL': 'Enter a number rounded to %(max)d decimal places.',

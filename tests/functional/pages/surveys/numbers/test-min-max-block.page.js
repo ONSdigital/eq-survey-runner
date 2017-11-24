@@ -13,6 +13,13 @@ class TestMinMaxBlockPage extends QuestionPage {
 
   testRangeLabel() { return '#label-test-range'; }
 
+  testRangeExclusive() {
+    return '#test-range-exclusive';
+  }
+
+  testRangeLabelExclusive() { return '#label-test-range-exclusive'; }
+
+
   testMin() {
     return '#test-min';
   }
@@ -24,6 +31,19 @@ class TestMinMaxBlockPage extends QuestionPage {
   }
 
   testMaxLabel() { return '#label-test-max'; }
+
+  testMinExclusive() {
+    return '#test-min-exclusive';
+  }
+
+  testMinLabelExclusive() { return '#label-test-min-exclusive'; }
+
+  testMaxExclusive() {
+    return '#test-max-exclusive';
+  }
+
+  testMaxLabelExclusive() { return '#label-test-max-exclusive'; }
+
 
   testPercent() {
     return '#test-percent';

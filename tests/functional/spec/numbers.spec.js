@@ -31,16 +31,22 @@ describe('NumericRange', function() {
           .setValue(SetMinMax.setMaximum(), '20')
           .click(SetMinMax.submit())
           .setValue(TestMinMax.testRange(), '9')
+          .setValue(TestMinMax.testRangeExclusive(), '10')
           .setValue(TestMinMax.testMin(), '0')
           .setValue(TestMinMax.testMax(), '12345')
+          .setValue(TestMinMax.testMinExclusive(), '123')
+          .setValue(TestMinMax.testMaxExclusive(), '1234')
           .setValue(TestMinMax.testPercent(), '101')
           .setValue(TestMinMax.testDecimal(), '5.4')
           .click(TestMinMax.submit())
           .getText(TestMinMax.errorNumber(1)).should.eventually.contain("Enter a number more than or equal to 10.")
-          .getText(TestMinMax.errorNumber(2)).should.eventually.contain("Enter a number more than or equal to 123.")
-          .getText(TestMinMax.errorNumber(3)).should.eventually.contain("Enter a number less than or equal to 1,234.")
-          .getText(TestMinMax.errorNumber(4)).should.eventually.contain("Enter a number less than or equal to 100.")
-          .getText(TestMinMax.errorNumber(5)).should.eventually.contain("Enter a number more than or equal to £10.00.");
+          .getText(TestMinMax.errorNumber(2)).should.eventually.contain("Enter a number more than 10.")
+          .getText(TestMinMax.errorNumber(3)).should.eventually.contain("Enter a number more than or equal to 123.")
+          .getText(TestMinMax.errorNumber(4)).should.eventually.contain("Enter a number less than or equal to 1,234.")
+          .getText(TestMinMax.errorNumber(5)).should.eventually.contain("Enter a number more than 123.")
+          .getText(TestMinMax.errorNumber(6)).should.eventually.contain("Enter a number less than 1,234.")
+          .getText(TestMinMax.errorNumber(7)).should.eventually.contain("Enter a number less than or equal to 100.")
+          .getText(TestMinMax.errorNumber(8)).should.eventually.contain("Enter a number more than or equal to £10.00.");
       });
   });
 
