@@ -141,6 +141,13 @@
         "NUMBER_TOO_LARGE": {
           "type": "string"
         },
+        "NUMBER_TOO_SMALL_EXCLUSIVE": {
+          "type": "string"
+        },
+        "NUMBER_TOO_LARGE_EXCLUSIVE": {
+          "type": "string"
+        },
+
         "INVALID_NUMBER": {
           "type": "string"
         },

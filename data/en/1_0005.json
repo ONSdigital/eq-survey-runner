@@ -435,11 +435,12 @@
                                 "currency": "GBP",
                                 "decimal_places": 2,
                                 "max_value": {
-                                    "answer_id": "weekly-pay-gross-pay-answer"
+                                    "answer_id": "weekly-pay-gross-pay-answer",
+                                    "exclusive": true
                                 },
                                 "validation": {
                                     "messages": {
-                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
                                     }
                                 }
                             },
@@ -452,11 +453,12 @@
                                 "currency": "GBP",
                                 "decimal_places": 2,
                                 "max_value": {
-                                    "answer_id": "weekly-pay-gross-pay-answer"
+                                    "answer_id": "weekly-pay-gross-pay-answer",
+                                    "exclusive": true
                                 },
                                 "validation": {
                                     "messages": {
-                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
                                     }
                                 }
                             },
@@ -1002,11 +1004,12 @@
                                 "currency": "GBP",
                                 "decimal_places": 2,
                                 "max_value": {
-                                    "answer_id": "fortnightly-pay-gross-pay-answer"
+                                    "answer_id": "fortnightly-pay-gross-pay-answer",
+                                    "exclusive": true
                                 },
                                 "validation": {
                                     "messages": {
-                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
                                     }
                                 }
                             },
@@ -1019,11 +1022,12 @@
                                 "currency": "GBP",
                                 "decimal_places": 2,
                                 "max_value": {
-                                    "answer_id": "fortnightly-pay-gross-pay-answer"
+                                    "answer_id": "fortnightly-pay-gross-pay-answer",
+                                    "exclusive": true
                                 },
                                 "validation": {
                                     "messages": {
-                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
                                     }
                                 }
                             },
@@ -1551,11 +1555,12 @@
                                 "currency": "GBP",
                                 "decimal_places": 2,
                                 "max_value": {
-                                    "answer_id": "calendar-monthly-pay-gross-pay-answer"
+                                    "answer_id": "calendar-monthly-pay-gross-pay-answer",
+                                    "exclusive": true
                                 },
                                 "validation": {
                                     "messages": {
-                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
                                     }
                                 }
                             },
@@ -1580,11 +1585,12 @@
                                 "currency": "GBP",
                                 "decimal_places": 2,
                                 "max_value": {
-                                    "answer_id": "calendar-monthly-pay-gross-pay-answer"
+                                    "answer_id": "calendar-monthly-pay-gross-pay-answer",
+                                    "exclusive": true
                                 },
                                 "validation": {
                                     "messages": {
-                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
                                     }
                                 }
                             }
@@ -2082,11 +2088,12 @@
                                 "currency": "GBP",
                                 "decimal_places": 2,
                                 "max_value": {
-                                    "answer_id": "four-weekly-pay-gross-pay-answer"
+                                    "answer_id": "four-weekly-pay-gross-pay-answer",
+                                    "exclusive": true
                                 },
                                 "validation": {
                                     "messages": {
-                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
                                     }
                                 }
                             },
@@ -2111,11 +2118,12 @@
                                 "currency": "GBP",
                                 "decimal_places": 2,
                                 "max_value": {
-                                    "answer_id": "four-weekly-pay-gross-pay-answer"
+                                    "answer_id": "four-weekly-pay-gross-pay-answer",
+                                    "exclusive": true
                                 },
                                 "validation": {
                                     "messages": {
-                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
                                     }
                                 }
                             }
@@ -2614,11 +2622,12 @@
                                 "currency": "GBP",
                                 "decimal_places": 2,
                                 "max_value": {
-                                    "answer_id": "five-weekly-pay-gross-pay-answer"
+                                    "answer_id": "five-weekly-pay-gross-pay-answer",
+                                    "exclusive": true
                                 },
                                 "validation": {
                                     "messages": {
-                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
                                     }
                                 }
                             },
@@ -2643,11 +2652,12 @@
                                 "currency": "GBP",
                                 "decimal_places": 2,
                                 "max_value": {
-                                    "answer_id": "five-weekly-pay-gross-pay-answer"
+                                    "answer_id": "five-weekly-pay-gross-pay-answer",
+                                    "exclusive": true
                                 },
                                 "validation": {
                                     "messages": {
-                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
+                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
                                     }
                                 }
                             }
