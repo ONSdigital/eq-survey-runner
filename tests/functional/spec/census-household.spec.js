@@ -145,12 +145,12 @@ describe('Census Household', function () {
           .click(JobTitle.submit())
           .setValue(JobDescription.answer(), 'writing lots of code')
           .click(JobDescription.submit())
-          .setValue(EmployersBusiness.answer(), 'something statistical')
-          .click(EmployersBusiness.submit())
           .click(MainJobType.employedByAnOrganisationOrBusiness())
           .click(MainJobType.submit())
           .setValue(BusinessName.answer(), 'ONS')
           .click(BusinessName.submit())
+          .setValue(EmployersBusiness.answer(), 'something statistical')
+          .click(EmployersBusiness.submit())
           .click(HouseholdMemberCompleted.submit());
 
       })
