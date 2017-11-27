@@ -1,0 +1,144 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "0",
+    "title": "Routing Group",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "navigation": {
+        "visible": true,
+        "sections": [{
+                "title": "Group 1",
+                "group_order": ["group1"]
+            },
+            {
+                "title": "Group 2",
+                "group_order": ["group2"]
+            }
+        ]
+    },
+    "groups": [{
+            "id": "group1",
+            "title": "Select next question",
+            "blocks": [{
+                    "type": "Questionnaire",
+                    "id": "group1-block",
+                    "description": "",
+                    "title": "Where do you want to go?",
+                    "questions": [{
+                        "description": "",
+                        "id": "which-question",
+                        "title": "Select which question you want next",
+                        "type": "General",
+                        "answers": [{
+                            "id": "which-question-answer",
+                            "label": "Choose next question",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "Question 1",
+                                    "value": "question1"
+                                },
+                                {
+                                    "label": "Question 2",
+                                    "value": "question2"
+                                }
+                            ],
+                            "type": "Radio",
+                            "validation": {
+                                "messages": {}
+                            }
+                        }]
+                    }],
+                    "routing_rules": [{
+                            "goto": {
+                                "id": "question1",
+                                "when": [{
+                                    "id": "which-question-answer",
+                                    "condition": "equals",
+                                    "value": "question1"
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "question2",
+                                "when": [{
+                                    "id": "which-question-answer",
+                                    "condition": "equals",
+                                    "value": "question2"
+                                }]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "Questionnaire",
+                    "id": "question1",
+                    "description": "",
+                    "title": "Question 1",
+                    "questions": [{
+                        "description": "",
+                        "id": "question1-question",
+                        "title": "Question 1",
+                        "type": "General",
+                        "answers": [{
+                            "id": "question1-answer",
+                            "mandatory": false,
+                            "type": "TextField"
+                        }]
+                    }]
+                },
+                {
+                    "type": "Questionnaire",
+                    "id": "question2",
+                    "description": "",
+                    "title": "Question 2",
+                    "questions": [{
+                        "description": "",
+                        "id": "question2-question",
+                        "title": "Question 2",
+                        "type": "General",
+                        "answers": [{
+                            "id": "question2-answer",
+                            "mandatory": false,
+                            "type": "TextField"
+                        }]
+                    }]
+                }
+            ]
+        },
+        {
+            "id": "group2",
+            "title": "This is Group 2",
+            "blocks": [{
+                "type": "Questionnaire",
+                "id": "group2-block",
+                "routing_rules": [],
+                "description": "",
+                "title": "Did you want Group 2?",
+                "questions": [{
+                    "description": "",
+                    "id": "group2-question",
+                    "title": "Did you want Group 2?",
+                    "type": "General",
+                    "answers": [{
+                        "id": "group2-answer",
+                        "label": "Why did you choose Group 2?",
+                        "mandatory": true,
+                        "options": [],
+                        "type": "TextArea"
+                    }]
+                }]
+            }]
+        },
+        {
+            "blocks": [{
+                "type": "Summary",
+                "id": "summary"
+            }],
+            "id": "summary-group",
+            "title": "Summary"
+        }
+    ]
+}

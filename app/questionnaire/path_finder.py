@@ -58,9 +58,22 @@ class PathFinder:
                         'block': block,
                     })
 
+            if self._is_first_group_in_section(group['id']):
+                this_location = Location(group['id'], 0, group['blocks'][0]['id'])
+
             path, block_index = self._build_path_within_group(blocks, block_index, this_location, path)
 
         return path
+
+    def _is_first_group_in_section(self, group_id):
+        sections = SchemaHelper.get_sections(self.survey_json)
+
+        if sections:
+            for section in sections:
+                if group_id in section['group_order'] and section['group_order'][0] == group_id:
+                    return True
+
+        return False
 
     def _build_path_within_group(self, blocks, block_index, this_location, path):
         # Keep going unless we've hit the last block
