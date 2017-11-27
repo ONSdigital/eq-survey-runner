@@ -509,3 +509,93 @@ class TestNumberRangeValidator(unittest.TestCase):
 
         self.assertEqual(str(ite.exception),
                          'answer: set-maximum-cat value: cat for answer id: test-range is not a valid number')
+
+    def test_manual_min_exclusive(self):
+        answer = { 'min_value': {
+                        "value": 10,
+                        "exclusive": True
+                    },
+                   'label': 'Min Test',
+                   'guidance': '',
+                   'options': [],
+                   'mandatory': False,
+                   'validation':
+                      {'messages':
+                           {
+                            'INVALID_NUMBER': 'Please only enter whole numbers into the field.',
+                            'NUMBER_TOO_SMALL_EXCLUSIVE': 'The minimum value allowed is 10. Please correct your answer.'
+                           }
+                      },
+                   'description': '',
+                   'id': 'test-range',
+                   'type': 'Currency'
+                  }
+        label = answer['label']
+        error_messages = answer['validation']['messages']
+
+        integer_field = get_number_field(answer, label, '', error_messages, self.store)
+
+        self.assertTrue(integer_field.field_class == CustomIntegerField)
+
+        for validator in integer_field.kwargs['validators']:
+            if isinstance(validator, NumberRange):
+                test_validator = validator
+
+        mock_form = Mock()
+        integer_field.data = 10
+
+        with self.assertRaises(ValidationError) as ite:
+            test_validator(mock_form, integer_field)
+
+        self.assertEqual(str(ite.exception), error_messages['NUMBER_TOO_SMALL_EXCLUSIVE'])
+
+        try:
+            integer_field.data = 11
+            test_validator(mock_form, integer_field)
+        except ValidationError:
+            self.fail("Valid integer raised ValidationError")
+
+    def test_manual_max_exclusive(self):
+        answer = { 'max_value': {
+                        "value": 20,
+                        "exclusive": True
+                    },
+                   'label': 'Max Test',
+                   'guidance': '',
+                   'options': [],
+                   'mandatory': False,
+                   'validation':
+                      {'messages':
+                           {
+                            'INVALID_NUMBER': 'Please only enter whole numbers into the field.',
+                            'NUMBER_TOO_LARGE_EXCLUSIVE': 'The maximum value allowed is 20. Please correct your answer.'
+                           }
+                      },
+                   'description': '',
+                   'id': 'test-range',
+                   'type': 'Currency'
+                  }
+        label = answer['label']
+        error_messages = answer['validation']['messages']
+
+        integer_field = get_number_field(answer, label, '', error_messages, self.store)
+
+        self.assertTrue(integer_field.field_class == CustomIntegerField)
+
+        for validator in integer_field.kwargs['validators']:
+            if isinstance(validator, NumberRange):
+                test_validator = validator
+
+        mock_form = Mock()
+        integer_field.data = 20
+
+        with self.assertRaises(ValidationError) as ite:
+            test_validator(mock_form, integer_field)
+
+        self.assertEqual(str(ite.exception), error_messages['NUMBER_TOO_LARGE_EXCLUSIVE'])
+
+        try:
+            integer_field.data = 19
+            test_validator(mock_form, integer_field)
+        except ValidationError:
+            self.fail("Valid integer raised ValidationError")

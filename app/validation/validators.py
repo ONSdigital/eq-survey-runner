@@ -68,25 +68,49 @@ class NumberRange(object):
         The maximum value of the number. If not provided, maximum value
         will not be checked.
     """
-    def __init__(self, minimum=None, maximum=None, messages=None, currency=None):
+    def __init__(self, minimum=None, minimum_exclusive=False,
+                 maximum=None, maximum_exclusive=False,
+                 messages=None, currency=None):
         self.minimum = minimum
         self.maximum = maximum
+        self.minimum_exclusive = minimum_exclusive
+        self.maximum_exclusive = maximum_exclusive
         if not messages:
             messages = error_messages
         self.messages = messages
         self.currency = currency
 
     def __call__(self, form, field):
-        data = field.data
+        value = field.data
         error_message = None
-        if data is not None:
-            if self.minimum is not None and data < self.minimum:
-                error_message = self.messages['NUMBER_TOO_SMALL'] % dict(min=self.format_min_max(self.minimum))
-            elif self.maximum is not None and data > self.maximum:
-                error_message = self.messages['NUMBER_TOO_LARGE'] % dict(max=self.format_min_max(self.maximum))
+        if value is not None:
+            if self.minimum is not None:
+                error_message = self.validate_minimum(value)
+            if error_message is None and self.maximum is not None:
+                error_message = self.validate_maximum(value)
 
             if error_message:
                 raise validators.ValidationError(error_message)
+
+    def validate_minimum(self, value):
+        if self.minimum_exclusive:
+            if value <= self.minimum:
+                return self.messages['NUMBER_TOO_SMALL_EXCLUSIVE'] % dict(min=self.format_min_max(self.minimum))
+        else:
+            if value < self.minimum:
+                return self.messages['NUMBER_TOO_SMALL'] % dict(min=self.format_min_max(self.minimum))
+
+        return None
+
+    def validate_maximum(self, value):
+        if self.maximum_exclusive:
+            if value >= self.maximum:
+                return self.messages['NUMBER_TOO_LARGE_EXCLUSIVE'] % dict(max=self.format_min_max(self.maximum))
+        else:
+            if value > self.maximum:
+                return self.messages['NUMBER_TOO_LARGE'] % dict(max=self.format_min_max(self.maximum))
+
+        return None
 
     def format_min_max(self, value):
         if self.currency:

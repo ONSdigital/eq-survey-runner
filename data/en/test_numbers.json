@@ -19,7 +19,6 @@
                                 "description": "",
                                 "label": "Minimum Value",
                                 "mandatory": true,
-                                "options": [],
                                 "type": "Number",
                                 "decimal_places": 2
                             },
@@ -29,7 +28,6 @@
                                 "description": "",
                                 "label": "Maximum Value",
                                 "mandatory": true,
-                                "options": [],
                                 "type": "Number",
                                 "decimal_places": 2
                             }
@@ -49,9 +47,8 @@
                         "answers": [{
                                 "id": "test-range",
                                 "description": "",
-                                "label": "Range Test {{answers.min_value|format_number}} to {{answers.max_value|format_number}}",
+                                "label": "Range Test ({{answers.min_value|format_number}} to {{answers.max_value|format_number}})",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Number",
                                 "decimal_places": 2,
                                 "max_value": {
@@ -62,11 +59,26 @@
                                 }
                             },
                             {
+                                "id": "test-range-exclusive",
+                                "description": "",
+                                "label": "Range Exclusive Test ({{answers.min_value|format_number}} to {{answers.max_value|format_number}} Exclusive)",
+                                "mandatory": false,
+                                "type": "Number",
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "set-maximum",
+                                    "exclusive": true
+                                },
+                                "min_value": {
+                                    "answer_id": "set-minimum",
+                                    "exclusive": true
+                                }
+                            },
+                            {
                                 "id": "test-min",
                                 "description": "",
                                 "label": "Min Test (123 to 9,999,999,999)",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Number",
                                 "min_value": {
                                     "value": 123
@@ -77,10 +89,31 @@
                                 "description": "",
                                 "label": "Max Test (0 to 1,234)",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Number",
                                 "max_value": {
                                     "value": 1234
+                                }
+                            },
+                            {
+                                "id": "test-min-exclusive",
+                                "description": "",
+                                "label": "Min Exclusive Test (124 to 9,999,999,999 - 123 Exclusive)",
+                                "mandatory": false,
+                                "type": "Number",
+                                "min_value": {
+                                    "value": 123,
+                                    "exclusive": true
+                                }
+                            },
+                            {
+                                "id": "test-max-exclusive",
+                                "description": "",
+                                "label": "Max Exclusive Test (0 to 1,233 - 1,234 Exclusive)",
+                                "mandatory": false,
+                                "type": "Number",
+                                "max_value": {
+                                    "value": 1234,
+                                    "exclusive": true
                                 }
                             },
                             {
@@ -88,7 +121,6 @@
                                 "description": "",
                                 "label": "Percent Test (0 to 100)",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Percentage",
                                 "max_value": {
                                     "value": 100
@@ -99,7 +131,6 @@
                                 "description": "",
                                 "label": "Decimal test to 2 decimal places between {{answers.min_value|format_number}} to {{answers.max_value|format_number}}",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Currency",
                                 "currency": "GBP",
                                 "decimal_places": 2,

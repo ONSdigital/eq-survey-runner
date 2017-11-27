@@ -173,14 +173,14 @@ def get_number_field(answer, label, guidance, error_messages, answer_store):
         raise Exception('decimal_places: {} > system maximum: {} for answer id: {}'
                         .format(max_decimals, MAX_DECIMAL_PLACES, answer['id']))
 
-    min_value = get_schema_defined_limit(answer['id'], answer.get('min_value'), answer_store)
+    min_value, minimum_exclusive = get_schema_defined_limit(answer['id'], answer.get('min_value'), answer_store)
     if min_value is None:
         min_value = 0
     if min_value < MIN_NUMBER:
         raise Exception('min_value: {} < system minimum: {} for answer id: {}'
                         .format(min_value, MIN_NUMBER, answer['id']))
 
-    max_value = get_schema_defined_limit(answer['id'], answer.get('max_value'), answer_store)
+    max_value, maximum_exclusive = get_schema_defined_limit(answer['id'], answer.get('max_value'), answer_store)
     if max_value is None:
         max_value = MAX_NUMBER
 
@@ -193,7 +193,9 @@ def get_number_field(answer, label, guidance, error_messages, answer_store):
 
     validate_with = mandatory_or_optional + [
         NumberCheck(answer_errors['INVALID_NUMBER']),
-        NumberRange(minimum=min_value, maximum=max_value, messages=answer_errors, currency=answer.get('currency')),
+        NumberRange(minimum=min_value, minimum_exclusive=minimum_exclusive,
+                    maximum=max_value, maximum_exclusive=maximum_exclusive,
+                    messages=answer_errors, currency=answer.get('currency')),
         DecimalPlaces(max_decimals=max_decimals, messages=answer_errors),
     ]
 
@@ -211,7 +213,6 @@ def get_number_field(answer, label, guidance, error_messages, answer_store):
 
 
 def get_schema_defined_limit(answer_id, definition, answer_store):
-    value = None
     if definition:
         if 'value' in definition:
             value = definition['value']
@@ -223,4 +224,8 @@ def get_schema_defined_limit(answer_id, definition, answer_store):
                 raise Exception('answer: {} value: {} for answer id: {} is not a valid number'
                                 .format(answer_list[0].get('answer_id'), value, answer_id))
 
-    return value
+        exclusive = definition.get('exclusive', False)
+
+        return value, exclusive
+
+    return None, False
