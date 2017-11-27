@@ -28,7 +28,7 @@ class TestRepeatingRelationship(IntegrationTestCase):
         # Then
         last_relationship_page = 'questionnaire/census/household/789/who-lives-here-relationship/23/household-relationships'
         self.get(url=last_relationship_page)
-        self.assertInPage('How is Joe_23 related to the people below')
+        self.assertInPage('How is <em>Joe_23</em> related to the people below')
         self.post(url=last_relationship_page)
         self.assertInUrl('who-lives-here-completed')
 
