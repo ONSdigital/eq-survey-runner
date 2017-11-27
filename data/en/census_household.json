@@ -127,10 +127,10 @@
                             "content": [{
                                 "title": "Include",
                                 "list": [
-                                    "Yourself, if this is your permanent or family home",
-                                    "Family members including partners, children and babies born on or before 9 April 2017",
-                                    "Students and, or school children who live away from home during term time",
-                                    "Housemates tenants or lodgers"
+                                    "yourself, if this is your permanent or family home",
+                                    "family members including partners, children and babies born on or before 9 April 2017",
+                                    "students and, or school children who live away from home during term time",
+                                    "housemates tenants or lodgers"
                                 ]
                             }]
                         },
@@ -190,12 +190,12 @@
                             "content": [{
                                 "title": "This could be:",
                                 "list": [
-                                    "People who usually live outside the UK who are staying in the UK for <b>three months or more</b>",
-                                    "People who work away from home within the UK if this is their permanent or family home",
-                                    "Members of the Armed Forces if this is their permanent or family home",
-                                    "People who are temporarily outside the UK for <b>less than 12 months</b>",
-                                    "People staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends",
-                                    "Other people who usually live here, including anyone temporarily away from home "
+                                    "people who usually live outside the UK who are staying in the UK for <b>three months or more</b>",
+                                    "people who work away from home within the UK if this is their permanent or family home",
+                                    "members of the Armed Forces if this is their permanent or family home",
+                                    "people who are temporarily outside the UK for <b>less than 12 months</b>",
+                                    "people staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends",
+                                    "other people who usually live here, including anyone temporarily away from home "
                                 ]
                             }]
                         },
@@ -242,7 +242,7 @@
                     "id": "household-composition",
                     "questions": [{
                         "id": "household-composition-question",
-                        "title": "Enter the first, middle and surnames of everyone who lives at <em>{{answers.address_line_1}}</em>",
+                        "title": "What are the names of everyone who live at <em>{{answers.address_line_1}}</em>?",
                         "guidance": {
                             "content": [{
                                 "title": "Include",
@@ -298,11 +298,11 @@
                                         {
                                             "title": "Include",
                                             "list": [
-                                                "People who usually live outside the UK who are staying in the UK for <strong>three months or more</strong>",
-                                                "People who work away from home within the UK  if this is their permanent or family home",
-                                                "Members of the Armed Forces if this is their permanent or family home",
-                                                "People who are temporarily outside the UK for <strong>less than 12 months</strong>",
-                                                "People staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends"
+                                                "people who usually live outside the UK who are staying in the UK for <strong>three months or more</strong>",
+                                                "people who work away from home within the UK  if this is their permanent or family home",
+                                                "members of the Armed Forces if this is their permanent or family home",
+                                                "people who are temporarily outside the UK for <strong>less than 12 months</strong>",
+                                                "people staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends"
                                             ]
                                         }
                                     ]
@@ -324,12 +324,12 @@
                             "content": [{
                                 "title": "Include",
                                 "list": [
-                                    "People who usually live outside the UK who are staying in the UK for <b>three months or more</b>",
-                                    "People who work away from home within the UK  if this is their permanent or family home",
-                                    "Members of the Armed Forces if this is their permanent or family home",
-                                    "People who are temporarily outside the UK for <b>less than 12 months</b>",
-                                    "People staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends",
-                                    "Other people who usually live here, including anyone temporarily away from home"
+                                    "people who usually live outside the UK who are staying in the UK for <b>three months or more</b>",
+                                    "people who work away from home within the UK  if this is their permanent or family home",
+                                    "members of the Armed Forces if this is their permanent or family home",
+                                    "people who are temporarily outside the UK for <b>less than 12 months</b>",
+                                    "people staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends",
+                                    "other people who usually live here, including anyone temporarily away from home"
                                 ]
                             }]
                         },
@@ -376,10 +376,10 @@
                             "content": [{
                                 "title": "Include",
                                 "list": [
-                                    "People who usually live somewhere else in the UK. For example, boy or girl friends, relatives",
-                                    "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere",
-                                    "People who usually live outside the UK who are visiting the UK for less than three months",
-                                    "People here on holiday"
+                                    "people who usually live somewhere else in the UK. For example, friends or relatives",
+                                    "people staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere",
+                                    "people who usually live outside the UK who are visiting the UK for less than three months",
+                                    "people here on holiday"
                                 ]
                             }]
                         },
@@ -409,27 +409,13 @@
                 "id": "household-relationships",
                 "questions": [{
                     "id": "household-relationships-question",
-                    "title": "How is {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }} related to the people below?",
-                    "description": "If members are not related, select the ‘unrelated’ option",
+                    "title": "How is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> related to the people below?",
+                    "description": "If members are not related, select the ‘unrelated’ option.</br>If you are the parents of adopted children, select the ‘Mother or father’ option to show your relationship to them.</br>If you have foster children living with you, select the ‘Unrelated’ option.</br>Include half-brothers and half-sisters in the ‘Step-brother or step-sister’ category.</br>Same-sex civil partner is used to describe the relationship between two people who have legally registered a civil partnership.</br>If none of the options fully reflects your relationship, please select the one which you feel best describes your situation.",
                     "type": "Relationship",
                     "answers": [{
                         "id": "household-relationships-answer",
                         "label": "%(current_person)s is %(other_person)s",
                         "mandatory": false,
-                        "guidance": {
-                            "show_guidance": "Show further guidance",
-                            "hide_guidance": "Hide further guidance",
-                            "content": [{
-                                "list": [
-                                    "Select the relationships between members of your household",
-                                    "If you are the parents of adopted children, select the ‘Mother or father’ option to show your relationship to them.",
-                                    "If you have foster children living with you, select the ‘Unrelated’ option.",
-                                    "Include half-brothers and half-sisters in the ‘Step-brother or step-sister’ category.",
-                                    "Same-sex civil partner is used to describe the relationship between two people who have legally registered a civil partnership.",
-                                    "If none of the options fully reflects your relationship, please select the one which you feel best describes your situation."
-                                ]
-                            }]
-                        },
                         "options": [{
                                 "label": "Husband or wife",
                                 "value": "Husband or wife"
@@ -738,23 +724,6 @@
                         "answers": [{
                             "id": "own-or-rent-answer",
                             "mandatory": false,
-                            "guidance": {
-                                "show_guidance": "Show further guidance",
-                                "hide_guidance": "Hide further guidance",
-                                "content": [{
-                                        "description": "‘Owns outright’ means you own without a mortgage or loan, even if you pay a small amount of money to the lender for them to look after the deeds."
-                                    },
-                                    {
-                                        "description": "‘Part owns and part rents’ means you own part of your accommodation and also pay rent for part of it. You can part own with or without a mortgage or loan."
-                                    },
-                                    {
-                                        "description": "If your rent is paid by housing benefit, select ‘Rents (with or without housing benefit)’."
-                                    },
-                                    {
-                                        "description": "If you do not pay rent, but contribute to household expenses, you live rent free."
-                                    }
-                                ]
-                            },
                             "options": [{
                                     "label": "Owns outright",
                                     "value": "Owns outright"
@@ -1057,7 +1026,7 @@
                     "id": "sex",
                     "questions": [{
                         "id": "sex-question",
-                        "title": "What is {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }} sex?",
+                        "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> sex?",
                         "type": "General",
                         "answers": [{
                             "id": "sex-answer",
@@ -1153,8 +1122,8 @@
                             "content": [{
                                 "title": "Include:",
                                 "list": [
-                                    "Another parent’s address, an armed forces base, a holiday home, or term-time address.",
-                                    "The days you stay at the address do not have to be in a row. They can be at any time during the year."
+                                    "another parent’s address, an armed forces base, a holiday home, or term-time address.",
+                                    "the days you stay at the address do not have to be in a row. They can be at any time during the year."
                                 ],
                                 "description": ""
                             }]
@@ -1183,7 +1152,7 @@
                                 "parent_answer_id": "another-address-answer",
                                 "type": "TextField",
                                 "mandatory": false,
-                                "label": "Please enter country"
+                                "label": "Please specify a country"
                             }
                         ]
                     }],
@@ -1418,7 +1387,7 @@
                     "id": "country-of-birth",
                     "questions": [{
                             "id": "country-of-birth-england-question",
-                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> country of birth?",
+                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> country of birth?",
                             "type": "General",
                             "answers": [{
                                     "id": "country-of-birth-england-answer",
@@ -1444,7 +1413,7 @@
                                             "value": "Republic of Ireland"
                                         },
                                         {
-                                            "label": "Elsewhere (please specify)",
+                                            "label": "Elsewhere",
                                             "value": "Other",
                                             "child_answer_id": "country-of-birth-england-answer-other"
                                         }
@@ -1456,7 +1425,7 @@
                                     "parent_answer_id": "country-of-birth-england-answer",
                                     "type": "TextField",
                                     "mandatory": false,
-                                    "label": "Enter current name of country"
+                                    "label": "Please specify current name of country"
                                 }
                             ],
                             "skip_conditions": [{
@@ -1469,7 +1438,7 @@
                         },
                         {
                             "id": "country-of-birth-wales-question",
-                            "title": "What is your country of birth?",
+                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> country of birth?",
                             "type": "General",
                             "answers": [{
                                     "id": "country-of-birth-wales-answer",
@@ -1495,7 +1464,7 @@
                                             "value": "Republic of Ireland"
                                         },
                                         {
-                                            "label": "Elsewhere (please specify)",
+                                            "label": "Elsewhere",
                                             "value": "Other",
                                             "child_answer_id": "country-of-birth-wales-answer-other"
                                         }
@@ -1507,7 +1476,7 @@
                                     "parent_answer_id": "country-of-birth-wales-answer",
                                     "type": "TextField",
                                     "mandatory": false,
-                                    "label": "Enter current name of country"
+                                    "label": "Please specify current name of country"
                                 }
                             ],
                             "skip_conditions": [{
@@ -1611,7 +1580,7 @@
                     "id": "arrive-in-uk",
                     "questions": [{
                         "id": "arrive-in-uk-question",
-                        "title": "If you were not born in the United Kingdom, when did you most recently arrive to live here?",
+                        "title": "If you were not born in the United Kingdom, when did <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> most recently arrive to live here?",
                         "guidance": {
                             "content": [{
                                 "description": "Exclude short visits away from the UK"
@@ -1631,18 +1600,13 @@
                     "questions": [{
                         "id": "length-of-stay-question",
                         "title": "Including the time already spent here, how long does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> intend to stay in the United Kingdom?",
-                        "description": "If you arrived in the United Kingdom before May 2016, please select ‘12 months or more’",
                         "type": "General",
                         "answers": [{
                             "id": "length-of-stay-answer",
                             "mandatory": false,
                             "options": [{
-                                    "label": "Less than 6 months",
-                                    "value": "Less than 6 months"
-                                },
-                                {
-                                    "label": "6 months or more but less than 12 months",
-                                    "value": "6 months or more but less than 12 months"
+                                    "label": "Less than 12 months",
+                                    "value": "Less than 12 months"
                                 },
                                 {
                                     "label": "12 months or more",
@@ -1699,8 +1663,8 @@
                             "content": [{
                                     "title": "Include",
                                     "list": [
-                                        "Long-term physical or mental ill-health/disability",
-                                        "Problems related to old age"
+                                        "long-term physical or mental ill-health/disability",
+                                        "problems related to old age"
                                     ]
                                 },
                                 {
@@ -1850,8 +1814,8 @@
                     "id": "ethnic-group",
                     "questions": [{
                             "id": "ethnic-group-england-question",
-                            "title": "What is <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> ethnic group?",
-                            "description": "It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself.<br /><br />If you don’t feel the options apply to you, select ‘Other ethnic group’. You will then be able to write in the ethnic group you prefer to identify as at the next question.",
+                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> ethnic group?",
+                            "description": "It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself.",
                             "type": "General",
                             "answers": [{
                                 "id": "ethnic-group-england-answer",
@@ -1894,8 +1858,8 @@
                         },
                         {
                             "id": "ethnic-group-wales-question",
-                            "title": "What is your ethnic group?",
-                            "description": "It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself, If you don’t feel the options apply to you, select ‘Other ethnic group’. You will then be able to write in the ethnic group you prefer to identify as at the next question.",
+                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> ethnic group?",
+                            "description": "It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself.",
                             "type": "General",
                             "answers": [{
                                 "id": "ethnic-group-wales-answer",
@@ -2351,17 +2315,6 @@
                         "answers": [{
                                 "id": "black-ethnic-group-answer",
                                 "mandatory": false,
-                                "guidance": {
-                                    "show_guidance": "Show further guidance",
-                                    "hide_guidance": "Hide further guidance",
-                                    "content": [{
-                                            "description": "The options are based on the answer to the previous question. Please select the answer you think is most appropriate."
-                                        },
-                                        {
-                                            "description": "If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group."
-                                        }
-                                    ]
-                                },
                                 "options": [{
                                         "label": "African",
                                         "value": "African"
@@ -2371,7 +2324,7 @@
                                         "value": "Caribbean"
                                     },
                                     {
-                                        "label": "Any other Black, African or Caribbean background (please specify)",
+                                        "label": "Any other Black, African or Caribbean background",
                                         "value": "Other",
                                         "child_answer_id": "black-ethnic-group-answer-other"
                                     }
@@ -2489,38 +2442,11 @@
                     "id": "sexual-identity",
                     "questions": [{
                         "id": "sexual-identity-question",
-                        "title": "Which of the following options best describes how <em>{{[answers.first_name[group_instance]] | format_household_name }}</em> thinks of themselves?",
+                        "title": "Which of the following options best describes how <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> thinks of themselves?",
                         "type": "General",
                         "answers": [{
                                 "id": "sexual-identity-answer",
                                 "mandatory": false,
-                                "guidance": {
-                                    "show_guidance": "Show further guidance",
-                                    "hide_guidance": "Hide further guidance",
-                                    "content": [{
-                                            "description": "It is for you to decide how to choose your answer."
-                                        },
-                                        {
-                                            "description": "If you are unsure of the meaning of any words used, the following might help:"
-                                        },
-                                        {
-                                            "list": [
-                                                "‘Heterosexual or Straight’ means that a person is, for example, attracted to people of the opposite sex/gender",
-                                                "‘Gay or Lesbian’ means that a person is, for example, attracted to people of the same sex/gender",
-                                                "‘Bisexual’ means that a person is, for example, attracted to people of both sexes/any gender"
-                                            ]
-                                        },
-                                        {
-                                            "title": "Identity not listed"
-                                        },
-                                        {
-                                            "description": "If none of the first three answer options apply to you, please select ‘Other’ and enter your preferred answer."
-                                        },
-                                        {
-                                            "description": "This question is voluntary; you can leave it blank if you prefer."
-                                        }
-                                    ]
-                                },
                                 "options": [{
                                         "label": "Heterosexual or Straight",
                                         "value": "Heterosexual or Straight"
@@ -2577,7 +2503,7 @@
                     "id": "understand-welsh",
                     "questions": [{
                         "id": "understand-welsh-question",
-                        "title": "Can <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}</em> understand, speak, read or write Welsh",
+                        "title": "Can <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> understand, speak, read or write Welsh",
                         "description": "Select all that apply",
                         "type": "General",
                         "answers": [{
@@ -2613,7 +2539,7 @@
                     "id": "language",
                     "questions": [{
                             "id": "language-england-question",
-                            "title": "What is <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> main language?",
+                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> main language?",
                             "type": "General",
                             "answers": [{
                                     "id": "language-england-answer",
@@ -2649,7 +2575,7 @@
                         },
                         {
                             "id": "language-welsh-question",
-                            "title": "What is <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> main language?",
+                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> main language?",
                             "type": "General",
                             "answers": [{
                                     "id": "language-welsh-answer",
@@ -2716,7 +2642,7 @@
                     "id": "english",
                     "questions": [{
                         "id": "english-question",
-                        "title": "How well can <em>{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}</em> speak English?",
+                        "title": "How well can <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> speak English?",
                         "type": "General",
                         "answers": [{
                             "id": "english-answer",
@@ -2747,7 +2673,7 @@
                     "id": "religion",
                     "questions": [{
                         "id": "religion-question",
-                        "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> religion?",
+                        "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> religion?",
                         "description": "This question is voluntary",
                         "type": "General",
                         "answers": [{
@@ -2782,7 +2708,7 @@
                                         "value": "Sikhism"
                                     },
                                     {
-                                        "label": "Any other religion ",
+                                        "label": "Any other religion",
                                         "value": "Other",
                                         "child_answer_id": "religion-answer-other"
                                     }
@@ -2830,7 +2756,7 @@
                                         "value": "Another address in the UK"
                                     },
                                     {
-                                        "label": "An address outside the UK (please specify)",
+                                        "label": "An address outside the UK",
                                         "value": "Other",
                                         "child_answer_id": "past-usual-address-answer-other"
                                     }
@@ -2984,7 +2910,7 @@
                         "title": "Are <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> day-to-day activities limited because of a health problem or disability which has lasted, or is expected to last, at least 12 months?",
                         "guidance": {
                             "content": [{
-                                "description": "<strong>Include</strong> Problems related to old age"
+                                "description": "<strong>Include</strong> problems related to old age"
                             }]
                         },
                         "type": "General",
@@ -3547,15 +3473,7 @@
                     "description": "",
                     "questions": [{
                         "title": "How does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> usually travel to work?",
-                        "guidance": {
-                            "content": [{
-                                    "description": "Select the option for the longest part, in distance, of your journey"
-                                },
-                                {
-                                    "description": "For example, you travel by bus and by car. Your bus journey is 5 miles, and the car journey is 8 miles. You should select car as your answer"
-                                }
-                            ]
-                        },
+                        "description": "Select the option for the longest part, in distance, of your journey. For example, you travel by bus and by car. Your bus journey is 5 miles, and the car journey is 8 miles. You should select car as your answer.",
                         "id": "work-travel-question",
                         "type": "General",
                         "answers": [{
@@ -3938,9 +3856,9 @@
                         "content": [{
                             "title": "Please note:",
                             "list": [
-                                "By submitting your responses, you are declaring that you have completed to the best of your knowledge and belief.",
-                                "If you do not submit, your responses will be automatically submitted when the Census 2017 Test closes.",
-                                "After submission you will have an opportunity to provide feedback on your experience."
+                                "by submitting your responses, you are declaring that you have completed to the best of your knowledge and belief.",
+                                "if you do not submit, your responses will be automatically submitted when the Census 2017 Test closes.",
+                                "after submission you will have an opportunity to provide feedback on your experience."
                             ]
                         }]
                     }
