@@ -42,8 +42,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
     def _setUpApp(self):
         setting_overrides = {
-            'EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER': 'sqlite',
-            'EQ_SERVER_SIDE_STORAGE_DATABASE_NAME': ''
+            'SQLALCHEMY_DATABASE_URI': 'sqlite://'
         }
         self._application = create_app(setting_overrides)
 

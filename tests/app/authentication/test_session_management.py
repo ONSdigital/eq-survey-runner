@@ -1,46 +1,32 @@
-import unittest
 from datetime import timedelta
 
-from flask import Flask
-
-from app.setup import Database
 from app.authentication.session_storage import SessionStorage
+from tests.app.app_context_test_case import AppContextTestCase
 
 
-class BaseSessionManagerTest(unittest.TestCase):
+class BaseSessionManagerTest(AppContextTestCase):
     def setUp(self):
-        application = Flask(__name__)
-        application.config['TESTING'] = True
-        application.secret_key = 'you will not guess'
-        application.permanent_session_lifetime = timedelta(seconds=1)
-        self.application = application
-        # Use an in memory database
-        self.database = Database(driver='sqlite',
-                                 database_name='',
-                                 setup_attempts=1,
-                                 setup_retry_delay=0)
-        self.session_manager = SessionStorage(self.database)
+        super().setUp()
+        self._app.permanent_session_lifetime = timedelta(seconds=1)
+        self.session_manager = SessionStorage()
 
     def test_has_token_empty(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             self.assertIsNone(self.session_manager.get_user_id())
 
     def test_has_token(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             self.session_manager.store_user_id('test')
             self.assertIsNotNone(self.session_manager.get_user_id())
 
     def test_remove_token(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             self.session_manager.store_user_id('test')
             self.assertIsNotNone(self.session_manager.get_user_id())
             self.session_manager.delete_session_from_db()
             self.assertIsNone(self.session_manager.get_user_id())
 
     def test_remove_user_ik(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             self.session_manager.remove_user_ik()
             self.assertIsNone(self.session_manager.get_user_ik())
-
-if __name__ == '__main__':
-    unittest.main()

@@ -20,12 +20,8 @@ if [ -z "$EQ_RABBITMQ_HOST_SECONDARY" ]; then
   export EQ_RABBITMQ_HOST_SECONDARY="localhost"
 fi
 
-if [ -z "$EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER" ]; then
-  export EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER="sqlite"
-fi
-
-if [ -z "$EQ_SERVER_SIDE_STORAGE_DATABASE_NAME" ]; then
-  export EQ_SERVER_SIDE_STORAGE_DATABASE_NAME="//tmp/questionnaire.db"
+if [ -z "$SQLALCHEMY_DATABASE_URI" ]; then
+  export SQLALCHEMY_DATABASE_URI="sqlite:////tmp/questionnaire.db"
 fi
 
 export FLASK_DEBUG=1

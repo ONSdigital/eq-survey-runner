@@ -1,4 +1,4 @@
-from flask import Blueprint, current_app, redirect, request, session
+from flask import Blueprint, redirect, request, session
 from flask_login import current_user, login_required
 from sdc.crypto.exceptions import InvalidTokenException
 
@@ -7,7 +7,7 @@ from werkzeug.exceptions import NotFound, Unauthorized
 from structlog import get_logger
 
 from app.authentication.authenticator import store_session, decrypt_token
-from app.authentication.jti_claim_storage import JtiTokenUsed, JtiClaimStorage
+from app.authentication.jti_claim_storage import JtiTokenUsed, use_jti_claim
 from app.globals import get_answer_store, get_completed_blocks
 from app.questionnaire.path_finder import PathFinder
 from app.storage.metadata_parser import parse_metadata
@@ -47,8 +47,7 @@ def login():
 
     jti_claim = decrypted_token.get('jti')
     try:
-        jti_claim_storage = JtiClaimStorage(current_app.eq['database'])
-        jti_claim_storage.use_jti_claim(jti_claim)
+        use_jti_claim(jti_claim)
     except JtiTokenUsed as e:
         raise Unauthorized from e
     except (TypeError, ValueError) as e:
