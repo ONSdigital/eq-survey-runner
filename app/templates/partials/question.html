@@ -10,7 +10,7 @@
 
 {% set question_titles %}
   {%- if question_title -%}
-    <h1 class="question__title saturn">
+    <h1 class="question__title saturn" data-qa="question-title">
       {%- if question_number -%}
         <span class="question__number">{{question_number}}. </span>
       {% endif %}
