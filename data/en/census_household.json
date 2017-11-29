@@ -117,7 +117,24 @@
         {
             "id": "who-lives-here",
             "title": "Who lives here?",
-            "blocks": [{
+          "blocks": [{
+                    "type": "Section-Introduction",
+                    "id": "who-lives-here-section",
+                    "title": "People who live in the household",
+                    "description": "In this section, we’re going to ask you about the people that live at <em>{{answers.address_line_1}}</em>.",
+                    "preview_content": {
+                      "id": "preview",
+                      "title": "Information you need",
+                      "content": [
+                        {
+                          "list": [
+                            "Names of the people living in household and how they are related ",
+                            "The number of visitors staying in the household on <date>"
+                          ]
+                        }]
+                    }
+                },
+                {
                     "type": "Questionnaire",
                     "id": "permanent-or-family-home",
                     "questions": [{
