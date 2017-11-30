@@ -11,4 +11,10 @@
 {% if block['description'] %}
   <p class="mars">{{block['description']|safe}}</p>
 {% endif %}
+{% if content.block.preview_content %}
+    {% set intro = content.block.preview_content %}
+    {% include 'partials/introduction/preview-section.html' %}
+{% endif %}
 {% endblock form_content %}
+
+

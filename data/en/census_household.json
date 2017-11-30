@@ -13,8 +13,7 @@
                 "title": "Who lives here?",
                 "group_order": [
                     "who-lives-here",
-                    "who-lives-here-relationship",
-                    "who-lives-here-interstitial"
+                    "who-lives-here-relationship"
                 ]
             },
             {
@@ -117,20 +116,19 @@
         {
             "id": "who-lives-here",
             "title": "Who lives here?",
-          "blocks": [{
-                    "type": "Section-Introduction",
+            "blocks": [{
+                    "type": "Interstitial",
                     "id": "who-lives-here-section",
                     "title": "People who live in the household",
                     "description": "In this section, we’re going to ask you about the people that live at <em>{{answers.address_line_1}}</em>.",
                     "preview_content": {
-                      "id": "preview",
-                      "title": "Information you need",
-                      "content": [
-                        {
-                          "list": [
-                            "Names of the people living in household and how they are related ",
-                            "The number of visitors staying in the household on <date>"
-                          ]
+                        "id": "preview",
+                        "title": "Information you need",
+                        "content": [{
+                            "list": [
+                                "Names of the people living in household and how they are related",
+                                "The number of visitors staying in the household on 29 November 2017"
+                            ]
                         }]
                     }
                 },
@@ -492,20 +490,26 @@
             }]
         },
         {
-            "id": "who-lives-here-interstitial",
-            "title": "Who lives here?",
-            "hide_in_navigation": true,
-            "blocks": [{
-                "id": "who-lives-here-completed",
-                "title": "You have successfully completed the ‘Who lives here?’ section",
-                "description": "In the next section we are going to ask you about the household and accommodation you live in.",
-                "type": "Interstitial"
-            }]
-        },
-        {
             "id": "household-and-accommodation",
             "title": "Household and Accommodation",
             "blocks": [{
+                    "type": "Interstitial",
+                    "id": "household-and-accommodation-section",
+                    "title": "Household and accommodation",
+                    "description": "In this section, we’re going to ask you about the household and accommodation you live in.",
+                    "preview_content": {
+                        "id": "preview",
+                        "title": "Information you need",
+                        "content": [{
+                            "list": [
+                                "Type of property, and if it’s owned or rented",
+                                "Type of landlord, if the property is rented",
+                                "Number of cars or vans"
+                            ]
+                        }]
+                    }
+                },
+                {
                     "type": "Questionnaire",
                     "id": "type-of-accommodation",
                     "questions": [{
@@ -850,12 +854,6 @@
                             "type": "Number"
                         }]
                     }]
-                },
-                {
-                    "id": "household-and-accommodation-completed",
-                    "title": "You have successfully completed the ‘Household and Accommodation’ section",
-                    "description": "",
-                    "type": "Interstitial"
                 }
             ]
         },
@@ -869,17 +867,31 @@
                 }
             }],
             "blocks": [{
-                    "id": "household-member-begin",
-                    "title": "The next section covers individual questions for {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
-                    "description": "",
-                    "type": "Interstitial"
+                    "type": "Interstitial",
+                    "id": "household-member-begin-section",
+                    "title": "Information about {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}",
+                    "description": "In this section, we’re going to ask you questions about <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em>.",
+                    "preview_content": {
+                        "id": "preview",
+                        "title": "Information you need",
+                        "content": [{
+                            "list": [
+                                "Personal details such as date of birth, country of birth, religion etc.",
+                                "Education and qualifications",
+                                "Employment and travel to work",
+                                "Second or holiday homes",
+                                "Unpaid care, health and well-being",
+                                "Languages"
+                            ]
+                        }]
+                    }
                 },
                 {
                     "type": "Questionnaire",
                     "id": "details-correct",
                     "questions": [{
                         "id": "details-correct-question",
-                        "title": "Is the name {{ [answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name }} correct, including any middle name(s)?",
+                        "title": "Is the name {{[answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name}} correct, including any middle name(s)?",
                         "type": "General",
                         "answers": [{
                             "id": "details-correct-answer",
@@ -3652,12 +3664,6 @@
                             "type": "TextArea"
                         }]
                     }]
-                },
-                {
-                    "id": "household-member-completed",
-                    "title": "There are no more questions for {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
-                    "description": "",
-                    "type": "Interstitial"
                 }
             ]
         },
@@ -3671,10 +3677,22 @@
                 }
             }],
             "blocks": [{
-                    "id": "visitor-begin",
-                    "title": "The next section covers questions for Visitor {{group_instance + 1}}",
-                    "description": "",
-                    "type": "Interstitial"
+                    "type": "Interstitial",
+                    "id": "visitors-begin-section",
+                    "title": "Visitors",
+                    "description": "In this section, we’re going to ask you about any visitors that were staying overnight at <em>{{answers.address_line_1}}</em> on 29 November 2017.",
+                    "preview_content": {
+                        "id": "preview",
+                        "title": "Information you need",
+                        "content": [{
+                            "list": [
+                                "Name of visitor",
+                                "Gender of visitor",
+                                "Date of birth of visitor",
+                                "Address of visitor"
+                            ]
+                        }]
+                    }
                 },
                 {
                     "type": "Questionnaire",

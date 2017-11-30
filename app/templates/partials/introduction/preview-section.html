@@ -1,0 +1,16 @@
+<h3 class="neptune">{{ intro.title }}</h3>
+<div class="accordion__introduction">
+{% for content in intro.content %}
+<p class="mars qa-intro-description">
+    {{ content.description }}
+</p>
+{% if content.list %}
+<ul>
+    {% for li in content.list %}
+    <li>{{ li }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endfor %}
+</div>
+
