@@ -13,7 +13,8 @@
                 "title": "Who lives here?",
                 "group_order": [
                     "who-lives-here",
-                    "who-lives-here-relationship"
+                    "who-lives-here-relationship",
+                    "who-lives-here-interstitial"
                 ]
             },
             {
@@ -122,7 +123,7 @@
                     "title": "People who live in the household",
                     "description": "In this section, we’re going to ask you about the people that live at <em>{{answers.address_line_1}}</em>.",
                     "preview_content": {
-                        "id": "preview",
+                        "id": "who-lives-here-preview",
                         "title": "Information you need",
                         "content": [{
                             "list": [
@@ -490,6 +491,17 @@
             }]
         },
         {
+            "id": "who-lives-here-interstitial",
+            "title": "Who lives here?",
+            "hide_in_navigation": true,
+            "blocks": [{
+                "id": "who-lives-here-completed",
+                "title": "You have successfully completed the ‘Who lives here?’ section",
+                "description": "In the next section we are going to ask you about the household and accommodation you live in.",
+                "type": "Interstitial"
+            }]
+        },
+        {
             "id": "household-and-accommodation",
             "title": "Household and Accommodation",
             "blocks": [{
@@ -498,7 +510,7 @@
                     "title": "Household and accommodation",
                     "description": "In this section, we’re going to ask you about the household and accommodation you live in.",
                     "preview_content": {
-                        "id": "preview",
+                        "id": "household-and-accommodation-preview",
                         "title": "Information you need",
                         "content": [{
                             "list": [
@@ -854,6 +866,12 @@
                             "type": "Number"
                         }]
                     }]
+                },
+                {
+                    "id": "household-and-accommodation-completed",
+                    "title": "You have successfully completed the ‘Household and Accommodation’ section",
+                    "description": "",
+                    "type": "Interstitial"
                 }
             ]
         },
@@ -872,7 +890,7 @@
                     "title": "Information about {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}",
                     "description": "In this section, we’re going to ask you questions about <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em>.",
                     "preview_content": {
-                        "id": "preview",
+                        "id": "household-member-begin-preview",
                         "title": "Information you need",
                         "content": [{
                             "list": [
@@ -891,7 +909,7 @@
                     "id": "details-correct",
                     "questions": [{
                         "id": "details-correct-question",
-                        "title": "Is the name {{[answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name}} correct, including any middle name(s)?",
+                        "title": "Is the name {{ [answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name }} correct, including any middle name(s)?",
                         "type": "General",
                         "answers": [{
                             "id": "details-correct-answer",
@@ -3664,6 +3682,12 @@
                             "type": "TextArea"
                         }]
                     }]
+                },
+                {
+                    "id": "household-member-completed",
+                    "title": "There are no more questions for {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
+                    "description": "",
+                    "type": "Interstitial"
                 }
             ]
         },
@@ -3682,7 +3706,7 @@
                     "title": "Visitors",
                     "description": "In this section, we’re going to ask you about any visitors that were staying overnight at <em>{{answers.address_line_1}}</em> on 29 November 2017.",
                     "preview_content": {
-                        "id": "preview",
+                        "id": "visitor-begin-preview",
                         "title": "Information you need",
                         "content": [{
                             "list": [
