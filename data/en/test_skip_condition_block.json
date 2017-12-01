@@ -55,7 +55,6 @@
                             "id": "should-skip-answer",
                             "label": "Why didn't you skip the block?",
                             "mandatory": true,
-                            "options": [],
                             "type": "TextArea"
                         }]
                     }],

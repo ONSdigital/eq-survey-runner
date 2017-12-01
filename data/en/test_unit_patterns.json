@@ -18,7 +18,6 @@
                                 "description": "",
                                 "label": "Centimetres",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Unit",
                                 "unit": "length-centimeter"
                             },
@@ -27,7 +26,6 @@
                                 "description": "",
                                 "label": "Metres",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Unit",
                                 "unit": "length-meter"
                             },
@@ -36,7 +34,6 @@
                                 "description": "",
                                 "label": "Kilometres",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Unit",
                                 "unit": "length-kilometer"
                             },
@@ -45,7 +42,6 @@
                                 "description": "",
                                 "label": "Miles",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Unit",
                                 "unit": "length-mile"
                             }
@@ -67,7 +63,6 @@
                                 "description": "",
                                 "label": "Centimetres Square",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Unit",
                                 "unit": "area-square-centimeter"
                             },
@@ -76,7 +71,6 @@
                                 "description": "",
                                 "label": "Metres Square",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Unit",
                                 "unit": "area-square-meter"
                             },
@@ -85,7 +79,6 @@
                                 "description": "",
                                 "label": "Kilometres Square",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Unit",
                                 "unit": "area-square-kilometer"
                             },
@@ -94,7 +87,6 @@
                                 "description": "",
                                 "label": "Miles Square",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Unit",
                                 "unit": "area-square-mile"
                             },
@@ -103,7 +95,6 @@
                                 "description": "",
                                 "label": "Acres",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Unit",
                                 "unit": "area-acre"
                             },
@@ -112,7 +103,6 @@
                                 "description": "",
                                 "label": "Hectares",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Unit",
                                 "unit": "area-hectare"
                             }
@@ -134,7 +124,6 @@
                                 "description": "",
                                 "label": "Cubic Centimetres",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Unit",
                                 "unit": "volume-cubic-centimeter"
                             },
@@ -143,7 +132,6 @@
                                 "description": "",
                                 "label": "Cubic Metres",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Unit",
                                 "unit": "volume-cubic-meter"
                             },
@@ -152,7 +140,6 @@
                                 "description": "",
                                 "label": "Litres",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Unit",
                                 "unit": "volume-liter"
                             },
@@ -161,7 +148,6 @@
                                 "description": "",
                                 "label": "Hectolitres",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Unit",
                                 "unit": "volume-hectoliter"
                             },
@@ -170,7 +156,6 @@
                                 "description": "",
                                 "label": "Megalitres",
                                 "mandatory": false,
-                                "options": [],
                                 "type": "Unit",
                                 "unit": "volume-megaliter"
                             }

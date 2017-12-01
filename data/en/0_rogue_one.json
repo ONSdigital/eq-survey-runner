@@ -211,7 +211,6 @@
                     "questions": [{
                         "answers": [{
                             "id": "orson-krennic-like-this-page-answer",
-                            "label": "",
                             "mandatory": true,
                             "options": [{
                                     "label": "Yes",
@@ -223,12 +222,8 @@
                                 }
                             ],
                             "q_code": "5",
-                            "type": "Radio",
-                            "validation": {
-                                "messages": {}
-                            }
+                            "type": "Radio"
                         }],
-                        "description": "",
                         "id": "orson-krennic-like-this-page-question",
                         "title": "Do you like this page?",
                         "type": "General"
@@ -250,7 +245,6 @@
                             "id": "film-takings-answer",
                             "label": "",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "2",
                             "type": "Currency",
                             "currency": "GBP",

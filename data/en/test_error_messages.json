@@ -18,7 +18,6 @@
                             "description": "",
                             "label": "Number Test",
                             "mandatory": false,
-                            "options": [],
                             "type": "Number"
                         },
                         {
@@ -26,7 +25,6 @@
                             "description": "",
                             "label": "Percent Test (0 to 100)",
                             "mandatory": false,
-                            "options": [],
                             "type": "Percentage",
                             "max_value": {
                                 "value": 100
@@ -37,7 +35,6 @@
                             "description": "",
                             "label": "Currency test to 2 decimal places",
                             "mandatory": false,
-                            "options": [],
                             "type": "Currency",
                             "currency": "GBP",
                             "decimal_places": 2

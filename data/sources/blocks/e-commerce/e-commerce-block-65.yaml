@@ -6,7 +6,6 @@ questions:
     alias: answer-65
     label: ''
     mandatory: true
-    options: []
     q_code: '235'
     type: Percentage
     max_value:

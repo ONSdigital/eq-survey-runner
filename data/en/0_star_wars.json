@@ -109,7 +109,6 @@
                 "questions": [{
                         "answers": [{
                             "id": "light-side-pick-character-answer",
-                            "label": "",
                             "mandatory": true,
                             "options": [{
                                     "label": "Dan Skywalker",
@@ -139,7 +138,6 @@
                     {
                         "answers": [{
                             "id": "light-side-pick-ship-answer",
-                            "label": "",
                             "mandatory": true,
                             "options": [{
                                     "label": "Yes",
@@ -189,7 +187,6 @@
                 "questions": [{
                         "answers": [{
                             "id": "dark-side-pick-character-answer",
-                            "label": "",
                             "mandatory": true,
                             "options": [{
                                     "label": "Darth Vadan",
@@ -219,7 +216,6 @@
                     {
                         "answers": [{
                             "id": "dark-side-pick-ship-answer",
-                            "label": "",
                             "mandatory": true,
                             "options": [{
                                     "label": "Yes",
@@ -312,11 +308,9 @@
             {
                 "type": "Questionnaire",
                 "id": "dark-side-ship-type",
-                "description": "",
                 "questions": [{
                     "answers": [{
                         "id": "dark-side-ship-type-answer",
-                        "label": "",
                         "mandatory": true,
                         "options": [{
                                 "label": "TIE Fighter",
@@ -330,7 +324,6 @@
                         "q_code": "22",
                         "type": "Radio"
                     }],
-                    "description": "",
                     "id": "dark-side-ship-type-question",
                     "title": "Which ship do you want?",
                     "type": "General"
@@ -351,11 +344,9 @@
                             "id": "death-star-plans-answer",
                             "label": "Which species stole the plans to the second Death Star?",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "0",
                             "type": "TextField"
                         }],
-                        "description": "",
                         "id": "death-star-plans-question",
                         "title": "",
                         "type": "General"
@@ -366,7 +357,6 @@
                             "id": "chewies-age-answer",
                             "label": "How old is Chewy?",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "1",
                             "type": "Number",
                             "validation": {
@@ -387,7 +377,6 @@
                             "id": "death-star-cost-answer",
                             "label": "How many Octillions do Nasa reckon it would cost to build a death star?",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "2",
                             "type": "Currency",
                             "currency": "GBP",
@@ -408,7 +397,6 @@
                             "id": "lightsaber-cost-answer",
                             "label": "How hot is a lightsaber in degrees C?",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "3",
                             "type": "Number",
                             "validation": {
@@ -426,7 +414,6 @@
                     {
                         "answers": [{
                             "id": "tie-fighter-sound-answer",
-                            "label": "",
                             "mandatory": true,
                             "options": [{
                                     "label": "Lion",
@@ -456,7 +443,6 @@
                     {
                         "answers": [{
                             "id": "darth-vader-quotes-answer",
-                            "label": "",
                             "mandatory": false,
                             "options": [{
                                     "label": "I've been waiting for you, Obi-Wan",
@@ -486,7 +472,6 @@
                     {
                         "answers": [{
                             "id": "green-lightsaber-answer",
-                            "label": "",
                             "mandatory": true,
                             "options": [{
                                     "label": "Luke Skywalker",
@@ -525,7 +510,6 @@
                     {
                         "answers": [{
                             "id": "opening-crawler-answer",
-                            "label": "",
                             "mandatory": false,
                             "options": [{
                                     "label": "Luke Skywalker",
@@ -565,7 +549,6 @@
                                 "id": "empire-strikes-back-from-answer",
                                 "label": "Period from",
                                 "mandatory": true,
-                                "options": [],
                                 "q_code": "81",
                                 "type": "Date"
                             },
@@ -573,7 +556,6 @@
                                 "id": "empire-strikes-back-to-answer",
                                 "label": "Period to",
                                 "mandatory": true,
-                                "options": [],
                                 "q_code": "82",
                                 "type": "Date"
                             }
@@ -595,7 +577,6 @@
                             "id": "jar-jar-binks-answer",
                             "label": "What was the total number of Ewoks?",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "9",
                             "type": "Number",
                             "validation": {
@@ -615,7 +596,6 @@
                             "id": "rebel-alliance-answer",
                             "label": "What else did the Bothan spies steal for the Rebel Alliance?",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "0",
                             "type": "TextField"
                         }],
@@ -636,7 +616,6 @@
                             "id": "chewbacca-medal-answer",
                             "label": "Why doesn't Chewbacca receive a medal at the end of A New Hope?",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "10",
                             "type": "TextArea"
                         }],
@@ -648,7 +627,6 @@
                     {
                         "answers": [{
                             "id": "confirm-chewbacca-age-answer",
-                            "label": "",
                             "mandatory": true,
                             "options": [{
                                     "label": "Yes, Really!",
@@ -670,7 +648,6 @@
                     {
                         "answers": [{
                             "id": "star-wars-prequel-answer",
-                            "label": "",
                             "mandatory": false,
                             "options": [{
                                     "label": "Awesome, I love them all",
@@ -701,7 +678,6 @@
                             "id": "jar-jar-binks-planet-answer",
                             "label": "What is the name of Jar Jar Binks' home planet?",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "45",
                             "type": "TextField"
                         }],
@@ -720,7 +696,6 @@
                     {
                         "answers": [{
                             "id": "favourite-film-answer",
-                            "label": "",
                             "mandatory": false,
                             "options": [{
                                     "label": "Episode I -The Phantom Menance",

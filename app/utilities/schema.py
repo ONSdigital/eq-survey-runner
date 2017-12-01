@@ -65,10 +65,6 @@ def load_schema_from_url(survey_url, language_code):
     return json.loads(schema_response)
 
 
-def get_schema_definition_path(schema_dir=DEFAULT_SCHEMA_DIR):
-    return os.path.join(schema_dir, 'schema/schema_v1.json')
-
-
 def get_schema_path(schema_dir=DEFAULT_SCHEMA_DIR, language_code=DEFAULT_LANGUAGE_CODE):
     return os.path.join(schema_dir, language_code)
 

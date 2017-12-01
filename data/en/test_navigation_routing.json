@@ -114,7 +114,6 @@
             "blocks": [{
                 "type": "Questionnaire",
                 "id": "group2-block",
-                "routing_rules": [],
                 "description": "",
                 "title": "Did you want Group 2?",
                 "questions": [{
@@ -126,7 +125,6 @@
                         "id": "group2-answer",
                         "label": "Why did you choose Group 2?",
                         "mandatory": true,
-                        "options": [],
                         "type": "TextArea"
                     }]
                 }]

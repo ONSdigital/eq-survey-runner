@@ -41,7 +41,6 @@
                             "id": "breakfast-answer",
                             "label": "What is your favourite breakfast food",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "0",
                             "type": "TextField"
                         }],

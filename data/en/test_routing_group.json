@@ -79,7 +79,6 @@
                         "id": "group1-answer",
                         "label": "Why did you choose Group 1?",
                         "mandatory": true,
-                        "options": [],
                         "type": "TextArea"
                     }]
                 }]
@@ -103,7 +102,6 @@
                         "id": "group2-answer",
                         "label": "Why did you choose Group 2?",
                         "mandatory": true,
-                        "options": [],
                         "type": "TextArea"
                     }]
                 }]

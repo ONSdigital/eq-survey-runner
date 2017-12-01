@@ -22,7 +22,6 @@
                         "id": "answer",
                         "label": "What is your name?",
                         "mandatory": false,
-                        "options": [],
                         "q_code": "0",
                         "type": "TextField"
                     }],

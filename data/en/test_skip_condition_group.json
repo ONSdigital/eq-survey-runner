@@ -66,7 +66,6 @@
                         "id": "should-skip-answer",
                         "label": "Why didn't you skip the group?",
                         "mandatory": true,
-                        "options": [],
                         "type": "TextArea"
                     }]
                 }]
@@ -90,7 +89,6 @@
                             "id": "last-group-answer",
                             "label": "This group is required as a skipped group can't be the last group",
                             "mandatory": true,
-                            "options": [],
                             "type": "TextField"
                         }]
                     }]

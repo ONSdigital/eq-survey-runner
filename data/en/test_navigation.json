@@ -91,7 +91,6 @@
                             "id": "insurance-address-answer",
                             "label": "",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "2",
                             "type": "TextArea"
                         }],
@@ -311,7 +310,6 @@
                         "id": "extra-cover-answer",
                         "label": "",
                         "mandatory": true,
-                        "options": [],
                         "q_code": "7",
                         "type": "Number",
                         "validation": {
@@ -444,7 +442,6 @@
                             "id": "credit-card-answer",
                             "label": "",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "11",
                             "type": "Number"
                         }],
@@ -464,7 +461,6 @@
                             "id": "expiry-date-answer",
                             "label": "",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "12",
                             "type": "TextField"
                         }],
@@ -484,7 +480,6 @@
                             "id": "security-code-answer",
                             "label": "",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "13",
                             "type": "TextField"
                         }],
@@ -550,8 +545,7 @@
         {
             "blocks": [{
                 "type": "Summary",
-                "id": "summary",
-                "title": "Summary"
+                "id": "summary"
             }],
             "id": "summary-group",
             "title": "Summary"

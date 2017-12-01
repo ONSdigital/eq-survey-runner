@@ -71,7 +71,6 @@
                             "description": "",
                             "label": "Currency Test",
                             "mandatory": false,
-                            "options": [],
                             "type": "Currency",
                             "currency": "GBP"
                         },
@@ -80,7 +79,6 @@
                             "description": "",
                             "label": "Kilometres Square",
                             "mandatory": false,
-                            "options": [],
                             "type": "Unit",
                             "unit": "area-square-kilometer"
                         },
@@ -89,7 +87,6 @@
                             "description": "",
                             "label": "Decimal test to 2 decimal places",
                             "mandatory": false,
-                            "options": [],
                             "type": "Number",
                             "decimal_places": 2
                         }

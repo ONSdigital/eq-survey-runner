@@ -38,7 +38,6 @@
                             "id": "period-from",
                             "label": "Period from",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "11",
                             "type": "Date"
                         },
@@ -46,7 +45,6 @@
                             "id": "period-to",
                             "label": "Period to",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "12",
                             "type": "Date"
                         }
@@ -66,7 +64,6 @@
                         "id": "total-retail-turnover-answer",
                         "label": "Total retail turnover",
                         "mandatory": true,
-                        "options": [],
                         "q_code": "20",
                         "type": "Currency",
                         "currency": "GBP",
@@ -107,7 +104,6 @@
                         "id": "internet-sales-answer",
                         "label": "Internet sales",
                         "mandatory": true,
-                        "options": [],
                         "q_code": "21",
                         "type": "Currency",
                         "currency": "GBP",
@@ -162,7 +158,6 @@
                         "id": "changes-in-retail-turnover-answer",
                         "label": "Comments",
                         "mandatory": false,
-                        "options": [],
                         "q_code": "146",
                         "type": "TextArea"
                     }],
@@ -193,7 +188,6 @@
                             "id": "male-employees-over-30-hours",
                             "label": "Male employees working more than 30 hours per week",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "51",
                             "type": "Number"
                         },
@@ -201,7 +195,6 @@
                             "id": "male-employees-under-30-hours",
                             "label": "Male employees working 30 hours or less per week",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "52",
                             "type": "Number"
                         },
@@ -209,7 +202,6 @@
                             "id": "female-employees-over-30-hours",
                             "label": "Female employees working more than 30 hours per week",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "53",
                             "type": "Number"
                         },
@@ -217,7 +209,6 @@
                             "id": "female-employees-under-30-hours",
                             "label": "Female employees working 30 hours or less per week",
                             "mandatory": false,
-                            "options": [],
                             "q_code": "54",
                             "type": "Number"
                         },
@@ -225,7 +216,6 @@
                             "id": "total-number-employees",
                             "label": "Total number of employees",
                             "mandatory": true,
-                            "options": [],
                             "q_code": "50",
                             "type": "Number"
                         }
@@ -265,7 +255,6 @@
                         "id": "changes-in-employees-answer",
                         "label": "Comments",
                         "mandatory": false,
-                        "options": [],
                         "q_code": "147",
                         "type": "TextArea"
                     }],
