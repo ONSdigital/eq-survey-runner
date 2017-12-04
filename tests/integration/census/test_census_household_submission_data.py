@@ -216,14 +216,6 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             },
             {
                 'group_instance': 0,
-                'answer_id': 'details-correct-answer',
-                'block_id': 'details-correct',
-                'group_id': 'household-member',
-                'answer_instance': 0,
-                'value': 'Yes, this is my full name'
-            },
-            {
-                'group_instance': 0,
                 'answer_id': 'over-16-answer',
                 'block_id': 'over-16',
                 'group_id': 'household-member',
@@ -662,14 +654,6 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'ONS'
-            },
-            {
-                'group_instance': 1,
-                'answer_id': 'details-correct-answer',
-                'block_id': 'details-correct',
-                'group_id': 'household-member',
-                'answer_instance': 0,
-                'value': 'Yes, this is my full name'
             },
             {
                 'group_instance': 1,
