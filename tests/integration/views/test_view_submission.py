@@ -2,6 +2,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 from mock import Mock
 from flask import current_app
 
+
 class TestViewSubmission(IntegrationTestCase):
 
     def setUp(self):
