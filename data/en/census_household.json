@@ -122,10 +122,9 @@
                     "id": "who-lives-here-section",
                     "title": "People who live in the household",
                     "description": "In this section, we’re going to ask you about the people that live at <em>{{answers.address_line_1}}</em>.",
-                    "preview_content": {
-                        "id": "who-lives-here-preview",
-                        "title": "Information you need",
+                    "guidance": {
                         "content": [{
+                            "title": "Information you need",
                             "list": [
                                 "Names of the people living in household and how they are related",
                                 "The number of visitors staying in the household on 29 November 2017"
@@ -509,10 +508,9 @@
                     "id": "household-and-accommodation-section",
                     "title": "Household and accommodation",
                     "description": "In this section, we’re going to ask you about the household and accommodation you live in.",
-                    "preview_content": {
-                        "id": "household-and-accommodation-preview",
-                        "title": "Information you need",
+                    "guidance": {
                         "content": [{
+                            "title": "Information you need",
                             "list": [
                                 "Type of property, and if it’s owned or rented",
                                 "Type of landlord, if the property is rented",
@@ -889,10 +887,9 @@
                     "id": "household-member-begin-section",
                     "title": "Information about {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}",
                     "description": "In this section, we’re going to ask you questions about <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em>.",
-                    "preview_content": {
-                        "id": "household-member-begin-preview",
-                        "title": "Information you need",
+                    "guidance": {
                         "content": [{
+                            "title": "Information you need",
                             "list": [
                                 "Personal details such as date of birth, country of birth, religion etc.",
                                 "Education and qualifications",
@@ -3705,10 +3702,9 @@
                     "id": "visitors-begin-section",
                     "title": "Visitors",
                     "description": "In this section, we’re going to ask you about any visitors that were staying overnight at <em>{{answers.address_line_1}}</em> on 29 November 2017.",
-                    "preview_content": {
-                        "id": "visitor-begin-preview",
-                        "title": "Information you need",
+                    "guidance": {
                         "content": [{
+                            "title": "Information you need",
                             "list": [
                                 "Name of visitor",
                                 "Gender of visitor",
