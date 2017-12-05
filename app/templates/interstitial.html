@@ -11,4 +11,21 @@
 {% if block['description'] %}
   <p class="mars">{{block['description']|safe}}</p>
 {% endif %}
+
+{% for item in block.content %}
+  {%- if item.title -%}
+    <h3 class="neptune">{{item.title}}</h3>
+  {% endif %}
+  {%- if item.description -%}
+    <p>{{item.description}}</p>
+  {% endif %}
+  {%- if item.list -%}
+    <ul class="mars">
+      {%- for list_item in item.list -%}
+        <li>{{list_item}}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endfor %}
+
 {% endblock form_content %}
