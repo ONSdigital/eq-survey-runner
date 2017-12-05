@@ -19,7 +19,8 @@ class TestEmptyRadioBoxes(StarWarsTestCase):
         # We stay on the current page
         self.assertInPage('Star Wars Quiz')
         self.assertInPage('May the force be with you young EQ developer')
-        self.assertInPage('This page has 1 errors')
+        self.assertInPage('This page has an error')
+        self.assertInPage('This <strong>must be corrected</strong> to continue.')
         self.assertInPage('Select an answer to continue.')
 
         # We submit the form

@@ -41,4 +41,18 @@ class TestPageErrors(StarWarsTestCase):
 
         # Then errors exists on page
         self.assertStatusOK()
-        self.assertInPage('This page has 1 errors')
+        self.assertInPage('This page has an error')
+        self.assertInPage('This <strong>must be corrected</strong> to continue.')
+
+    def test_mutliple_validation_errors(self):
+        # Given on the page with two mandatory fields
+        self.launchSurvey('test', 'numbers')
+        self.post(action='start_questionnaire')
+
+        # When submitted without answering
+        self.post()
+
+        # Then errors exists on page
+        self.assertStatusOK()
+        self.assertInPage('This page has 2 errors')
+        self.assertInPage('These <strong>must be corrected</strong> to continue.')

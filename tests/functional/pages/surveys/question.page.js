@@ -12,6 +12,8 @@ class QuestionPage extends BasePage {
 
   error() { return '.js-inpagelink'; }
 
+  errorHeader() { return '#main > div.panel.panel--error.u-mb-s > div.panel__header > h1'; }
+
   errorNumber(number = 1) { return 'ul > li:nth-child(' + number + ') > a'; }
 
   previous() { return 'a[id="top-previous"]'; }
