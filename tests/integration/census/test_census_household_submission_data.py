@@ -216,14 +216,6 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             },
             {
                 'group_instance': 0,
-                'answer_id': 'details-correct-answer',
-                'block_id': 'details-correct',
-                'group_id': 'household-member',
-                'answer_instance': 0,
-                'value': 'Yes, this is my full name'
-            },
-            {
-                'group_instance': 0,
                 'answer_id': 'over-16-answer',
                 'block_id': 'over-16',
                 'group_id': 'household-member',
@@ -665,14 +657,6 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             },
             {
                 'group_instance': 1,
-                'answer_id': 'details-correct-answer',
-                'block_id': 'details-correct',
-                'group_id': 'household-member',
-                'answer_instance': 0,
-                'value': 'Yes, this is my full name'
-            },
-            {
-                'group_instance': 1,
                 'answer_id': 'over-16-answer',
                 'block_id': 'over-16',
                 'group_id': 'household-member',
@@ -919,7 +903,7 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
         self.assertInPage('You have completed all questions for Visitor 1')
         self.post(action='save_continue')
 
-        self.assertInPage('The next section covers questions for Visitor 2')
+        self.assertInPage('Visitors')
         self.post(action='save_continue')
 
     def complete_visitors_section_visitor_2(self):
@@ -956,6 +940,7 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
 
     def complete_individual_section_person_1(self):
         # Start of Individual section questions for Person 1
+        self.post(action='save_continue')
         post_data = [
             {
                 'details-correct-answer': ['Yes, this is my full name']
@@ -1093,11 +1078,12 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
         # Completed Individual section questions for person 1
         self.assertInPage('There are no more questions for Danny Boje')
         self.post(action='save_continue')
-        self.assertInPage('The next section covers individual questions for Anjali Yo')
+        self.assertInPage('Information about Anjali Yo')
         self.post(action='save_continue')
 
     def complete_individual_section_person_2(self):
         # Start of Individual section questions for Person 2
+        self.post(action='save_continue')
         post_data = [
             {
                 'details-correct-answer': ['Yes, this is my full name']
@@ -1118,11 +1104,12 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
         # Completed Individual section
         self.assertInPage('There are no more questions for Anjali Yo')
         self.post(action='save_continue')
-        self.assertInPage('The next section covers questions for Visitor 1')
+        self.assertInPage('Visitors')
         self.post(action='save_continue')
 
     def complete_household_and_accommodation_section(self):
         # Start of Household and Accommodation section
+        self.post(action='save_continue')
         post_data = [
             {
                 'type-of-accommodation-answer': ['Whole house or bungalow']
@@ -1159,7 +1146,7 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
         # Completed Household and Accommodation section
         self.assertInPage('You have successfully completed the ‘Household and Accommodation’ section')
         self.post(action='save_continue')
-        self.assertInPage('The next section covers individual questions for Danny Boje')
+        self.assertInPage('Information about Danny Boje')
         self.post(action='save_continue')
 
     def complete_who_lives_here_section(self):
@@ -1179,7 +1166,15 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'country': 'wales',
                 'postcode': 'cf336gn',
                 'town-city': 'neath'
-            },
+            }
+        ]
+
+        for post in post_data:
+            self.post(post_data=post)
+
+        self.post(action='save_continue')
+
+        post_data = [
             {
                 'permanent-or-family-home-answer': ['Yes']
             },

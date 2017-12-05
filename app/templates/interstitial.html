@@ -11,4 +11,14 @@
 {% if block['description'] %}
   <p class="mars">{{block['description']|safe}}</p>
 {% endif %}
+
+{% if block.guidance.content %}
+    {% set guidance_content = {
+      "content": block.guidance.content
+    } %}
+    {% include 'partials/guidance.html' %}
+{% endif %}
+
 {% endblock form_content %}
+
+

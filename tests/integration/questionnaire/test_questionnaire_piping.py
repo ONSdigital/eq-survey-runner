@@ -8,6 +8,7 @@ class TestQuestionnairePiping(IntegrationTestCase):
         self.launchSurvey('census', 'household')
         self.post(action='start_questionnaire')
         self.post({'address-line-1': '44 hill side'})
+        self.post(action='save_continue')
         self.post({'permanent-or-family-home-answer': 'Yes'})
 
         # When
@@ -23,6 +24,7 @@ class TestQuestionnairePiping(IntegrationTestCase):
         self.launchSurvey('census', 'household')
         self.post(action='start_questionnaire')
         self.post({'address-line-1': '44 hill side'})
+        self.post(action='save_continue')
         self.post({'permanent-or-family-home-answer': 'Yes'})
 
         # When

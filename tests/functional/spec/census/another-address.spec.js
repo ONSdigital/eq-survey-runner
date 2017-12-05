@@ -1,6 +1,7 @@
 const helpers = require('../../helpers');
 
 const WhatIsYourAddress = require('../../pages/surveys/census/household/what-is-your-address.page');
+const WhoLivesHereSection = require('../../pages/surveys/census/household/who-lives-here-section.page');
 const PermanentOrFamilyHome = require('../../pages/surveys/census/household/permanent-or-family-home.page');
 const HouseholdComposition = require('../../pages/surveys/census/household/household-composition.page');
 const HouseholdMemberBegin = require('../../pages/surveys/census/household/household-member-begin.page');
@@ -24,6 +25,7 @@ describe('Census Household', function () {
         return browser
           .setValue(WhatIsYourAddress.addressLine1(), '44 hill side')
           .click(WhatIsYourAddress.submit())
+          .click(WhoLivesHereSection.submit())
           .click(PermanentOrFamilyHome.yes())
           .click(PermanentOrFamilyHome.submit())
           .setValue(HouseholdComposition.firstName(), 'John')
@@ -63,6 +65,7 @@ describe('Census Household', function () {
         return browser
           .setValue(WhatIsYourAddress.addressLine1(), '44 hill side')
           .click(WhatIsYourAddress.submit())
+          .click(WhoLivesHereSection.submit())
           .click(PermanentOrFamilyHome.yes())
           .click(PermanentOrFamilyHome.submit())
           .setValue(HouseholdComposition.firstName(), 'John')
@@ -98,6 +101,7 @@ describe('Census Household', function () {
         return browser
           .setValue(WhatIsYourAddress.addressLine1(), '44 hill side')
           .click(WhatIsYourAddress.submit())
+          .click(WhoLivesHereSection.submit())
           .click(PermanentOrFamilyHome.yes())
           .click(PermanentOrFamilyHome.submit())
           .setValue(HouseholdComposition.firstName(), 'John')
