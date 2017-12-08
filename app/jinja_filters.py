@@ -67,8 +67,13 @@ def format_multilined_string(context, value):
 
 
 @blueprint.app_template_filter()
-def format_date(value):
-    return "<span class='date'>{date}</span>".format(date=value.strftime('%-d %B %Y'))
+def format_date(value, date_format='%-d %B %Y'):
+    return "<span class='date'>{date}</span>".format(date=datetime.strptime(value, '%Y-%m-%d').strftime(date_format))
+
+
+@blueprint.app_template_filter()
+def format_month_year_date(value, date_format='%B %Y'):
+    return "<span class='date'>{date}</span>".format(date=datetime.strptime(value, '%Y-%m').strftime(date_format))
 
 
 @blueprint.app_template_filter()
@@ -88,33 +93,14 @@ def format_conditional_date(date1=None, date2=None):
     if date is None:
         raise Exception('No valid dates passed to format_conditional_dates filter')
 
-    if isinstance(date, datetime):
-        return format_date(date)
-    return format_date(datetime.strptime(date, '%d/%m/%Y'))
+    return format_date(date)
 
 
-def format_start_end_date(start_date, end_date=None):
+def format_date_range(start_date, end_date=None):
     if end_date:
         return '{from_date} to {to_date}'.format(from_date=format_date(start_date),
                                                  to_date=format_date(end_date))
     return format_date(start_date)
-
-
-@blueprint.app_template_filter()
-def format_str_as_date_range(value):
-    from_date = format_str_as_date(value['from'])
-    to_date = format_str_as_date(value['to'])
-    return '{from_date} to {to_date}'.format(from_date=from_date, to_date=to_date)
-
-
-@blueprint.app_template_filter()
-def format_str_as_month_year_date(value):
-    return datetime.strptime(value, '%m/%Y').strftime('%B %Y')
-
-
-@blueprint.app_template_filter()
-def format_str_as_date(value):
-    return format_date(datetime.strptime(value, '%d/%m/%Y'))
 
 
 @blueprint.app_template_filter()
@@ -170,7 +156,7 @@ def format_number_to_alphabetic_letter(number):
 
 @blueprint.app_context_processor
 def start_end_date_check():
-    return dict(format_start_end_date=format_start_end_date)
+    return dict(format_date_range=format_date_range)
 
 
 @blueprint.app_context_processor

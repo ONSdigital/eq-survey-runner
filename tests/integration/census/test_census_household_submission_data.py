@@ -252,7 +252,7 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'block_id': 'date-of-birth',
                 'group_id': 'household-member',
                 'answer_instance': 0,
-                'value': '12/05/1988'
+                'value': '1988-05-12'
             },
             {
                 'group_instance': 0,
@@ -717,7 +717,7 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'block_id': 'visitor-date-of-birth',
                 'group_id': 'visitors',
                 'answer_instance': 0,
-                'value': '04/11/2016'
+                'value': '2016-11-04'
             },
             {
                 'group_instance': 0,
@@ -805,7 +805,7 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'block_id': 'visitor-date-of-birth',
                 'group_id': 'visitors',
                 'answer_instance': 0,
-                'value': '17/10/1985'
+                'value': '1985-10-17'
             },
             {
                 'group_instance': 1,

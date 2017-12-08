@@ -69,7 +69,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
                 }
             ]
         }
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='my_answer', value='Yes'))
 
         self.assertTrue(evaluate_goto(goto, {}, answer_store, 0))
@@ -86,7 +86,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
                 }
             ]
         }
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='my_answer', value='No'))
 
         self.assertFalse(evaluate_goto(goto_rule, {}, answer_store, 0))
@@ -103,7 +103,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
                 }
             ]
         }
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='my_answers', value=['answer1', 'answer2', 'answer3']))
 
         self.assertTrue(evaluate_goto(goto, {}, answer_store, 0))
@@ -120,7 +120,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
                 }
             ]
         }
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='my_answers', value=['answer2', 'answer3']))
 
         self.assertTrue(evaluate_goto(goto, {}, answer_store, 0))
@@ -147,7 +147,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
                 ]
             }
         ]
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='this', value='value'))
 
         # When
@@ -178,7 +178,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
                 ]
             }
         ]
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='that', value='other value'))
 
         self.assertTrue(evaluate_skip_conditions(skip_conditions, {}, answer_store))
@@ -205,7 +205,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
                 ]
             }
         ]
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='this', value='value'))
         answer_store.add(Answer(answer_id='that', value='other value'))
 
@@ -237,7 +237,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
                 ]
             }
         ]
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='this', value='not correct'))
         answer_store.add(Answer(answer_id='that', value='not correct'))
 
@@ -252,7 +252,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         skip_conditions = None
 
         # When
-        condition = evaluate_skip_conditions(skip_conditions, {}, AnswerStore())
+        condition = evaluate_skip_conditions(skip_conditions, {}, AnswerStore({}))
 
         # Then
         self.assertFalse(condition)
@@ -266,7 +266,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
                 }
             ]
         }
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
 
         self.assertTrue(evaluate_when_rules(when, {}, answer_store, 0))
 
@@ -287,7 +287,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
                 }
             ]
         }
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='my_answer', value='Yes'))
         answer_store.add(Answer(answer_id='my_other_answer', value='2'))
 
@@ -310,7 +310,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
                 }
             ]
         }
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='my_answer', value='No'))
 
         self.assertFalse(evaluate_goto(goto_rule, {}, answer_store, 0))
@@ -332,7 +332,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
                 }
             ]
         }
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='my_answer', value='Yes'))
         metadata = {'sexual_identity': True}
 
@@ -359,7 +359,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
                 }
             ]
         }
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='my_answer', value='Yes'))
         metadata = {'sexual_identity': True}
 
@@ -375,7 +375,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
             'answer_id': 'my_answer',
             'type': 'answer_value'
         }
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='my_answer', value='3'))
 
         current_path = [Location(None, 0, None)]
@@ -391,7 +391,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
             'answer_id': 'my_answer',
             'type': 'answer_count'
         }
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='my_answer', value='3'))
         answer_store.add(Answer(answer_id='my_answer', value='4', answer_instance=1))
 
@@ -408,7 +408,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
             'answer_id': 'my_answer',
             'type': 'answer_count_minus_one'
         }
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='my_answer', value='3'))
         answer_store.add(Answer(answer_id='my_answer', value='4', answer_instance=1))
 
@@ -425,7 +425,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
             'answer_id': 'my_answer',
             'type': 'answer_count_minus_one'
         }
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         for i in range(27):
             answer_store.add(Answer(answer_id='my_answer', value='3', answer_instance=i))
 
@@ -450,7 +450,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
             group_instance=0,
             value=20,
         )
-        answer_store = AnswerStore()
+        answer_store = AnswerStore({})
         answer_store.add(answer_1)
         answer_store.add(answer_2)
 

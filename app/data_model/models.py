@@ -12,13 +12,17 @@ class QuestionnaireState(db.Model):
     __tablename__ = 'questionnaire_state'
     user_id = db.Column('userid', db.String, primary_key=True)
     state = db.Column('questionnaire_data', db.String)
+    version = db.Column('version', db.Integer)
+    created_at = db.Column('created_at', db.Integer, default=datetime.datetime.utcnow)
+    updated_at = db.Column('updated_at', db.Integer, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
-    def __init__(self, user_id, state):
+    def __init__(self, user_id, state, version):
         self.user_id = user_id
         self.state = state
+        self.version = version
 
     def __repr__(self):
-        return "<QuestionnaireState('%s','%s')>" % (self.user_id, self._state)
+        return "<QuestionnaireState('%s','%s', '%s')>" % (self.user_id, self.state, self.version)
 
 
 # pylint: disable=maybe-no-member

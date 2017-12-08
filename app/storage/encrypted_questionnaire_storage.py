@@ -24,16 +24,17 @@ class EncryptedQuestionnaireStorage:
         self._user_id = user_id
         self._cek = self._generate_key(user_id, user_ik, pepper)
 
-    def add_or_update(self, data):
+    def add_or_update(self, data, version):
         encrypted_data = self._encrypt_data(data)
         encrypted_data_json = json.dumps({'data': encrypted_data})
         questionnaire_state = self._find_questionnaire_state()
         if questionnaire_state:
             logger.debug('updating questionnaire data', user_id=self._user_id)
             questionnaire_state.state = encrypted_data_json
+            questionnaire_state.version = version
         else:
             logger.debug('creating questionnaire data', user_id=self._user_id)
-            questionnaire_state = QuestionnaireState(self._user_id, encrypted_data_json)
+            questionnaire_state = QuestionnaireState(self._user_id, encrypted_data_json, version)
 
         # session has a add function but it is wrapped in a session_scope which confuses pylint
         # pylint: disable=maybe-no-member
@@ -41,15 +42,16 @@ class EncryptedQuestionnaireStorage:
         db.session.commit()
 
     def get_user_data(self):
-        data = None
         questionnaire_state = self._find_questionnaire_state()
         if questionnaire_state:
             data = json.loads(questionnaire_state.state)
+            version = questionnaire_state.version or 0
 
-        if data and 'data' in data:
-            decrypted_data = self._decrypt_data(data['data'])
-            return decrypted_data
-        return None
+            if 'data' in data:
+                decrypted_data = self._decrypt_data(data['data'])
+                return decrypted_data, version
+
+        return None, None
 
     def delete(self):
         logger.debug('deleting users data', user_id=self._user_id)

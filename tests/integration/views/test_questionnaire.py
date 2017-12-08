@@ -25,7 +25,7 @@ class TestQuestionnaire(IntegrationTestCase):
             'ANSWERS': [],
             'COMPLETED_BLOCKS': []
         }
-        storage.get_user_data = Mock(return_value=json.dumps(data))
+        storage.get_user_data = Mock(return_value=(json.dumps(data), QuestionnaireStore.LATEST_VERSION))
 
         self.question_store = QuestionnaireStore(storage)
 
@@ -78,7 +78,7 @@ class TestQuestionnaire(IntegrationTestCase):
             'block_id': 'date-block',
             'answer_id': 'single-date-answer',
             'answer_instance': 0,
-            'value': '12/03/2016',
+            'value': '2016-03-12',
         }, self.question_store.answer_store.answers)
 
         self.assertIn({
@@ -87,7 +87,7 @@ class TestQuestionnaire(IntegrationTestCase):
             'block_id': 'date-block',
             'answer_id': 'month-year-answer',
             'answer_instance': 0,
-            'value': '11/2014',
+            'value': '2014-11',
         }, self.question_store.answer_store.answers)
 
     def test_update_questionnaire_store_with_empty_day_month_year_date(self):

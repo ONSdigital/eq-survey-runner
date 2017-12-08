@@ -430,14 +430,17 @@ def _format_answer_value(answer_value):
     is_day_month_year = 'day' in answer_value and 'month' in answer_value and 'year' in answer_value
     is_month_year = 'day' not in answer_value and 'year' in answer_value and 'month' in answer_value
 
-    if is_day_month_year and answer_value['day'] and answer_value['month']:
-        formatted_answer_value = '{:02d}/{:02d}/{}'.format(
-            int(answer_value['day']),
+    if is_day_month_year:
+        formatted_answer_value = '{:04d}-{:02d}-{:02d}'.format(
+            int(answer_value['year']),
             int(answer_value['month']),
-            answer_value['year'],
+            int(answer_value['day'])
         )
-    elif is_month_year and answer_value['month']:
-        formatted_answer_value = '{:02d}/{}'.format(int(answer_value['month']), answer_value['year'])
+    elif is_month_year:
+        formatted_answer_value = '{:04d}-{:02d}'.format(
+            int(answer_value['year']),
+            int(answer_value['month'])
+        )
     return formatted_answer_value
 
 

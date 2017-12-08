@@ -1,6 +1,10 @@
 import re
+
+from datetime import datetime
 from jinja2 import escape
 import simplejson as json
+
+from app.helpers.schema_helper import SchemaHelper
 
 
 class Answer(object):
@@ -164,7 +168,7 @@ class AnswerStore(object):
             if isinstance(answer['value'], str):
                 answer['value'] = escape(answer['value'])
             escaped.append(answer)
-        return self.__class__(escaped)
+        return self.__class__(existing_answers=escaped)
 
     def filter_by_location(self, location):
         """
@@ -210,7 +214,7 @@ class AnswerStore(object):
                 filtered.append(answer)
                 if limit and len(filtered) == self.EQ_MAX_NUM_REPEATS:
                     break
-        return self.__class__(filtered)
+        return self.__class__(existing_answers=filtered)
 
     def clear(self):
         """
@@ -246,6 +250,22 @@ class AnswerStore(object):
         :return: Return a unique hash value
         """
         return hash(json.dumps(self.answers, sort_keys=True))
+
+    def upgrade(self, current_version, schema_json):
+
+        # Upgrade from version 0 to version 1
+        if current_version == 0:
+            # Update Date formats
+            for answer in self.answers:
+                answer_schema = SchemaHelper.get_answer_schema_for_answer_id(schema_json, answer['block_id'], answer['answer_id'])
+
+                if answer_schema['type'] == 'Date':
+                    answer['value'] = datetime.strptime(answer['value'], '%d/%m/%Y').strftime('%Y-%m-%d')
+                    continue
+
+                if answer_schema['type'] == 'MonthYearDate':
+                    answer['value'] = datetime.strptime(answer['value'], '%m/%Y').strftime('%Y-%m')
+                    continue
 
 
 def number_else_string(text):

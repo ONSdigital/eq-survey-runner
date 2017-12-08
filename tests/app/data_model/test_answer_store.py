@@ -363,3 +363,79 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         self.assertEqual(self.store.count(), 2)
         self.assertEqual(self.store.filter(answer_id='2').count(), 1)
         self.assertEqual(self.store.filter().count(), 2)
+
+    def tests_upgrade_reformats_date(self):
+        questionnaire = {
+            'survey_id': '021',
+            'data_version': '0.0.2',
+            'groups': [{
+                'id': 'group1',
+                'blocks': [{
+                    'id': 'block1',
+                    'questions': [{
+                        'id': 'question1',
+                        'answers': [
+                            {
+                                'id': 'answer1',
+                                'type': 'Date'
+                            }
+                        ]
+                    }]
+                }]
+            }]
+        }
+
+        answers = [
+            {
+                'block_id': 'block1',
+                'answer_id': 'answer1',
+                'answer_instance': 0,
+                'group_id': 'group1',
+                'group_instance': 0,
+                'value': '25/12/2017'
+            }
+        ]
+
+        self.store = AnswerStore(existing_answers=answers)
+
+        self.store.upgrade(current_version=0, schema_json=questionnaire)
+
+        self.assertEqual(self.store.answers[0]['value'], '2017-12-25')
+
+    def tests_upgrade_reformats_month_year_date(self):
+        questionnaire = {
+            'survey_id': '021',
+            'data_version': '0.0.2',
+            'groups': [{
+                'id': 'group1',
+                'blocks': [{
+                    'id': 'block1',
+                    'questions': [{
+                        'id': 'question1',
+                        'answers': [
+                            {
+                                'id': 'answer1',
+                                'type': 'MonthYearDate'
+                            }
+                        ]
+                    }]
+                }]
+            }]
+        }
+
+        answers = [
+            {
+                'block_id': 'block1',
+                'answer_id': 'answer1',
+                'answer_instance': 0,
+                'group_id': 'group1',
+                'group_instance': 0,
+                'value': '12/2017'
+            }
+        ]
+
+        self.store = AnswerStore(existing_answers=answers)
+
+        self.store.upgrade(current_version=0, schema_json=questionnaire)
+
+        self.assertEqual(self.store.answers[0]['value'], '2017-12')

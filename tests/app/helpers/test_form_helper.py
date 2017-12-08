@@ -67,14 +67,14 @@ class TestFormHelper(AppContextTestCase):
                     'group_id': 'rsi',
                     'group_instance': 0,
                     'block_id': 'reporting-period',
-                    'value': '01/05/2015',
+                    'value': '2015-05-01',
                     'answer_instance': 0,
                 }, {
                     'answer_id': 'period-to',
                     'group_id': 'rsi',
                     'group_instance': 0,
                     'block_id': 'reporting-period',
-                    'value': '01/09/2017',
+                    'value': '2017-09-01',
                     'answer_instance': 0,
                 }
             ]), error_messages)
@@ -110,7 +110,7 @@ class TestFormHelper(AppContextTestCase):
                     'group_id': 'dates',
                     'group_instance': 0,
                     'block_id': 'date-block',
-                    'value': '05/2015',
+                    'value': '2015-05-01',
                     'answer_instance': 0,
                 }
             ]), error_messages)
@@ -157,7 +157,7 @@ class TestFormHelper(AppContextTestCase):
             location = SchemaHelper.get_first_location(survey)
             error_messages = SchemaHelper.get_messages(survey)
 
-            form, _ = post_form_for_location(block_json, location, AnswerStore(), {
+            form, _ = post_form_for_location(block_json, location, AnswerStore(survey), {
                 'period-from-day': '1',
                 'period-from-month': '05',
                 'period-from-year': '2015',
@@ -194,7 +194,7 @@ class TestFormHelper(AppContextTestCase):
             location = SchemaHelper.get_first_location(survey)
             error_messages = SchemaHelper.get_messages(survey)
 
-            form, _ = post_form_for_location(block_json, location, AnswerStore(), {
+            form, _ = post_form_for_location(block_json, location, AnswerStore(survey), {
             }, error_messages, disable_mandatory=True)
 
             self.assertTrue(hasattr(form, 'period-from'))
@@ -233,7 +233,7 @@ class TestFormHelper(AppContextTestCase):
             location = Location('who-lives-here', 0, 'household-composition')
             error_messages = SchemaHelper.get_messages(survey)
 
-            form, _ = post_form_for_location(block_json, location, AnswerStore(), {
+            form, _ = post_form_for_location(block_json, location, AnswerStore(survey), {
                 'household-0-first-name': 'Joe',
                 'household-0-last-name': '',
                 'household-1-first-name': 'Bob',
@@ -423,7 +423,7 @@ class TestFormHelper(AppContextTestCase):
 class TestGetMappedAnswers(unittest.TestCase):
 
     def setUp(self):
-        self.store = AnswerStore()
+        self.store = AnswerStore(None)
 
     def tearDown(self):
         self.store.clear()

@@ -108,21 +108,21 @@ def deserialise_dates(block_json, mapped_answers):
 
     for date_answer_id in date_answer_ids:
         if date_answer_id in mapped_answers:
-            substrings = mapped_answers[date_answer_id].split('/')
+            substrings = mapped_answers[date_answer_id].split('-')
 
+            del mapped_answers[date_answer_id]
             if len(substrings) == 3:
-                del mapped_answers[date_answer_id]
                 mapped_answers.update({
-                    '{answer_id}-day'.format(answer_id=date_answer_id): substrings[0],
+                    '{answer_id}-year'.format(answer_id=date_answer_id): substrings[0],
                     '{answer_id}-month'.format(answer_id=date_answer_id): substrings[1].lstrip('0'),
-                    '{answer_id}-year'.format(answer_id=date_answer_id): substrings[2],
+                    '{answer_id}-day'.format(answer_id=date_answer_id): substrings[2],
                 })
-            elif len(substrings) == 2:
-                del mapped_answers[date_answer_id]
+            if len(substrings) == 2:
                 mapped_answers.update({
-                    '{answer_id}-month'.format(answer_id=date_answer_id): substrings[0].lstrip('0'),
-                    '{answer_id}-year'.format(answer_id=date_answer_id): substrings[1],
+                    '{answer_id}-year'.format(answer_id=date_answer_id): substrings[0],
+                    '{answer_id}-month'.format(answer_id=date_answer_id): substrings[1].lstrip('0'),
                 })
+
     return mapped_answers
 
 
