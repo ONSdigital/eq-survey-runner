@@ -12,8 +12,7 @@ class AppContextTestCase(unittest.TestCase):
 
     def setUp(self):
         setting_overrides = {
-            'EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER': 'sqlite',
-            'EQ_SERVER_SIDE_STORAGE_DATABASE_NAME': '',
+            'SQLALCHEMY_DATABASE_URI': 'sqlite://',
             'LOGIN_DISABLED': self.LOGIN_DISABLED
         }
 

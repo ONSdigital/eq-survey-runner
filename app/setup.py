@@ -23,7 +23,7 @@ from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 
 from app.authentication.session_storage import SessionStorage
 from app.authentication.user_id_generator import UserIDGenerator
-from app.data_model.database import Database
+from app.data_model.models import db
 
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.new_relic import setup_newrelic
@@ -41,6 +41,7 @@ SECURE_HEADERS = {
 }
 
 cache = Cache()
+
 logger = get_logger()
 
 
@@ -78,6 +79,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     if application.config['EQ_NEW_RELIC_ENABLED']:
         setup_newrelic()
 
+    setup_database(application)
+
     if application.config['EQ_RABBITMQ_ENABLED']:
         application.eq['submitter'] = RabbitMQSubmitter(
             host=application.config['EQ_RABBITMQ_HOST'],
@@ -90,18 +93,7 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     else:
         application.eq['submitter'] = LogSubmitter()
 
-    application.eq['database'] = Database(
-        driver=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER'],
-        host=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_HOST'],
-        port=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_PORT'],
-        database_name=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_NAME'],
-        username=application.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_DATABASE_USERNAME'),
-        password=application.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_DATABASE_PASSWORD'),
-    )
-
-    application.eq['session_storage'] = SessionStorage(
-        application.eq['database'],
-    )
+    application.eq['session_storage'] = SessionStorage()
 
     application.eq['id_generator'] = UserIDGenerator(
         application.config['EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS'],
@@ -155,11 +147,27 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     def override_url_for():  # pylint: disable=unused-variable
         return dict(url_for=versioned_url_for)
 
-    @application.teardown_appcontext
-    def shutdown_session(exception=None):  # pylint: disable=unused-variable,unused-argument
-        application.eq['database'].remove()
-
     return application
+
+
+def setup_database(application):
+    application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    driver = application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER']
+
+    if not application.config['SQLALCHEMY_DATABASE_URI']:
+        application.config[
+            'SQLALCHEMY_DATABASE_URI'] = '{driver}://{username}:{password}@{host}:{port}/{name}'\
+            .format(driver=driver,
+                    username=application.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_DATABASE_USERNAME'),
+                    password=application.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_DATABASE_PASSWORD'),
+                    host=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_HOST'],
+                    port=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_PORT'],
+                    name=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_NAME'])
+
+    with application.app_context():
+        db.init_app(application)
+        db.create_all()
 
 
 def setup_profiling(application):

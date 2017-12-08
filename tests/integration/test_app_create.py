@@ -13,8 +13,7 @@ from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
 class TestCreateApp(unittest.TestCase):
     def setUp(self):
         self._setting_overrides = {
-            'EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER': 'sqlite',
-            'EQ_SERVER_SIDE_STORAGE_DATABASE_NAME': ''
+            'SQLALCHEMY_DATABASE_URI': 'sqlite:////tmp/questionnaire.db'
         }
 
     def test_returns_application(self):
@@ -77,13 +76,6 @@ class TestCreateApp(unittest.TestCase):
     # it happens.
     def test_adds_blueprints(self):
         self.assertGreater(len(create_app(self._setting_overrides).blueprints), 0)
-
-    def test_removes_db_session_on_teardown(self):
-        with patch('app.setup.Database.remove') as remove:
-            application = create_app(self._setting_overrides)
-            application.test_client().get('/')
-
-            self.assertEqual(remove.call_count, 1)
 
     def test_versioned_url_for_with_version(self):
         settings.EQ_APPLICATION_VERSION = 'abc123'

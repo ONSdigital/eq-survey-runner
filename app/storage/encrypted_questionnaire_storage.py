@@ -5,24 +5,22 @@ from jwcrypto import jwe, jwk
 from jwcrypto.common import base64url_encode, base64url_decode
 from structlog import get_logger
 
+from app.data_model.models import QuestionnaireState, db
 from app.utilities.strings import to_bytes
 from app.utilities.strings import to_str
-
-from app.data_model.database import QuestionnaireState
 
 logger = get_logger()
 
 
 class EncryptedQuestionnaireStorage:
 
-    def __init__(self, database, user_id, user_ik, pepper):
+    def __init__(self, user_id, user_ik, pepper):
         if user_id is None:
             raise ValueError('User id must be set')
         if user_ik is None:
             raise ValueError('User ik must be set')
         if pepper is None:
             raise ValueError('Pepper must be set')
-        self._database = database
         self._user_id = user_id
         self._cek = self._generate_key(user_id, user_ik, pepper)
 
@@ -38,7 +36,9 @@ class EncryptedQuestionnaireStorage:
             questionnaire_state = QuestionnaireState(self._user_id, encrypted_data_json)
 
         # session has a add function but it is wrapped in a session_scope which confuses pylint
-        self._database.add(questionnaire_state)
+        # pylint: disable=maybe-no-member
+        db.session.add(questionnaire_state)
+        db.session.commit()
 
     def get_user_data(self):
         data = None
@@ -56,7 +56,9 @@ class EncryptedQuestionnaireStorage:
         questionnaire_state = self._find_questionnaire_state()
         if questionnaire_state:
             # session has a delete function but it is wrapped in a session_scope which confuses pylint
-            self._database.delete(questionnaire_state)
+            # pylint: disable=maybe-no-member
+            db.session.delete(questionnaire_state)
+            db.session.commit()
 
     @staticmethod
     def _generate_key(user_id, user_ik, pepper):

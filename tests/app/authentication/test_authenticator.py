@@ -4,7 +4,7 @@ from datetime import timedelta
 from flask import Flask
 from mock import patch, Mock, MagicMock
 
-from app.setup import Database, SessionStorage
+from app.setup import SessionStorage
 from app.authentication.authenticator import load_user, request_load_user, user_loader
 
 
@@ -16,12 +16,7 @@ class TestAuthenticator(unittest.TestCase): # pylint: disable=too-many-public-me
         application.secret_key = 'you will not guess'
         application.permanent_session_lifetime = timedelta(seconds=1)
         self.application = application
-        # Use an in memory database
-        self.database = Database(driver='sqlite',
-                                 database_name='',
-                                 setup_attempts=1,
-                                 setup_retry_delay=0)
-        self.session_storage = Mock(SessionStorage(self.database))
+        self.session_storage = Mock(SessionStorage())
 
         application.eq = {'session_storage': self.session_storage}
 
