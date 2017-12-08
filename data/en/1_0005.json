@@ -47,6 +47,8 @@
                 "primary_content": [{
                     "id": "get-started",
                     "content": [{
+                        "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Important notice for December period</h2><p>We understand that many UK businesses have ‘holiday shutdowns’ in December. If this applies to your business, please share your weekly wage figures from a more representative week.</p></div></div>"
+                    }, {
                         "list": [
                             "On average it takes 10 minutes to complete this survey.",
                             "You can provide informed estimates if actual figures aren't available.",
@@ -326,7 +328,7 @@
             "blocks": [{
                     "id": "weekly-pay-introduction",
                     "title": "Weekly Pay",
-                    "description": "<p>The next section covers Weekly pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable)</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
+                    "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Important notice for December period</h2><p>We understand that many UK businesses have ‘holiday shutdowns’ in December. If this applies to your business, please share your weekly wage figures from a more representative week.</p></div></div><br/><p>The next section covers Weekly pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable)</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
                     "type": "Interstitial"
                 },
                 {
@@ -895,7 +897,7 @@
             "blocks": [{
                     "id": "fortnightly-pay-introduction",
                     "title": "Fortnightly Pay",
-                    "description": "<p>The next section covers Fortnightly Pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
+                    "description": "<div class=\"panel panel--simple panel--info\"><div class=\"panel__body\"><h2 class=\"venus\">Important notice for December period</h2><p>We understand that many UK businesses have ‘holiday shutdowns’ in December. If this applies to your business, please share your weekly wage figures from a more representative week.</p></div></div><br/><p>The next section covers Fortnightly Pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
                     "type": "Interstitial"
                 },
                 {
