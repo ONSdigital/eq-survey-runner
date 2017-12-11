@@ -13,8 +13,8 @@ class QuestionnaireState(db.Model):
     user_id = db.Column('userid', db.String, primary_key=True)
     state = db.Column('questionnaire_data', db.String)
     version = db.Column('version', db.Integer)
-    created_at = db.Column('created_at', db.Integer, default=datetime.datetime.utcnow)
-    updated_at = db.Column('updated_at', db.Integer, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+    created_at = db.Column('created_at', db.DateTime, default=datetime.datetime.utcnow)
+    updated_at = db.Column('updated_at', db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
     def __init__(self, user_id, state, version):
         self.user_id = user_id
