@@ -1,11 +1,12 @@
 const helpers = require('../../helpers');
 
 const WhatIsYourAddress = require('../../pages/surveys/census/household/what-is-your-address.page');
+const WhoLivesHereSection = require('../../pages/surveys/census/household/who-lives-here-section.page');
 const PermanentOrFamilyHome = require('../../pages/surveys/census/household/permanent-or-family-home.page');
 const HouseholdComposition = require('../../pages/surveys/census/household/household-composition.page');
 const EveryoneAtAddressConfirmation = require('../../pages/surveys/census/household/everyone-at-address-confirmation.page');
 const OvernightVisitors = require('../../pages/surveys/census/household/overnight-visitors.page');
-const VisitorBegin = require('../../pages/surveys/census/household/visitor-begin.page');
+const VisitorBegin = require('../../pages/surveys/census/household/visitor-begin-section.page');
 const VisitorName = require('../../pages/surveys/census/household/visitor-name.page');
 const VisitorSex = require('../../pages/surveys/census/household/visitor-sex.page');
 const VisitorDateOfBirth = require('../../pages/surveys/census/household/visitor-date-of-birth.page');
@@ -22,6 +23,7 @@ describe('Census Household', function () {
         return browser
           .setValue(WhatIsYourAddress.addressLine1(), '44 hill side')
           .click(WhatIsYourAddress.submit())
+          .click(WhoLivesHereSection.submit())
           .click(PermanentOrFamilyHome.yes())
           .click(PermanentOrFamilyHome.submit())
           .setValue(HouseholdComposition.firstName(), 'John')
@@ -49,7 +51,7 @@ describe('Census Household', function () {
           .setValue(VisitorAddress.postcode(), 'AB123CD')
           .click(VisitorAddress.submit())
           .click(VisitorCompleted.submit())
-          .getUrl().should.eventually.contain(VisitorBegin.pageName);
+          .getUrl().should.eventually.contain(VisitorName.pageName);
       });
   });
 
@@ -60,6 +62,7 @@ describe('Census Household', function () {
         return browser
           .setValue(WhatIsYourAddress.addressLine1(), '44 hill side')
           .click(WhatIsYourAddress.submit())
+          .click(WhoLivesHereSection.submit())
           .click(PermanentOrFamilyHome.yes())
           .click(PermanentOrFamilyHome.submit())
           .setValue(HouseholdComposition.firstName(), 'John')

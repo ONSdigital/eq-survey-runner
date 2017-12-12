@@ -1,11 +1,13 @@
 const helpers = require('../helpers');
 
 const WhatIsYourAddress = require('../pages/surveys/census/household/what-is-your-address.page');
+const WhoLivesHereSection = require('../pages/surveys/census/household/who-lives-here-section.page');
 const PermanentOrFamilyHome = require('../pages/surveys/census/household/permanent-or-family-home.page');
 const HouseholdComposition = require('../pages/surveys/census/household/household-composition.page');
 const EveryoneAtAddressConfirmation = require('../pages/surveys/census/household/everyone-at-address-confirmation.page');
 const OvernightVisitors = require('../pages/surveys/census/household/overnight-visitors.page');
 const WhoLivesHereCompleted = require('../pages/surveys/census/household/who-lives-here-completed.page');
+const HouseholdAndAccommodationSection = require('../pages/surveys/census/household/household-and-accommodation-section.page');
 const TypeOfAccommodation = require('../pages/surveys/census/household/type-of-accommodation.page');
 const TypeOfHouse = require('../pages/surveys/census/household/type-of-house.page');
 const SelfContainedAccommodation = require('../pages/surveys/census/household/self-contained-accommodation.page');
@@ -14,7 +16,7 @@ const CentralHeating = require('../pages/surveys/census/household/central-heatin
 const OwnOrRent = require('../pages/surveys/census/household/own-or-rent.page');
 const NumberOfVehicles = require('../pages/surveys/census/household/number-of-vehicles.page');
 const HouseholdAndAccommodationCompleted = require('../pages/surveys/census/household/household-and-accommodation-completed.page');
-const HouseholdMemberBegin = require('../pages/surveys/census/household/household-member-begin.page');
+const HouseholdMemberBegin = require('../pages/surveys/census/household/household-member-begin-section.page');
 const DetailsCorrect = require('../pages/surveys/census/household/details-correct.page');
 const Over16 = require('../pages/surveys/census/household/over-16.page');
 const PrivateResponse = require('../pages/surveys/census/household/private-response.page');
@@ -52,7 +54,7 @@ const BusinessName = require('../pages/surveys/census/household/business-name.pa
 const WorkPage = require('../pages/surveys/census/household/hours-worked.page.js');
 const TravelPage = require('../pages/surveys/census/household/work-travel.page.js');
 const HouseholdMemberCompleted = require('../pages/surveys/census/household/household-member-completed.page');
-const VisitorBegin = require('../pages/surveys/census/household/visitor-begin.page');
+const VisitorBegin = require('../pages/surveys/census/household/visitor-begin-section.page');
 const VisitorName = require('../pages/surveys/census/household/visitor-name.page');
 const VisitorSex = require('../pages/surveys/census/household/visitor-sex.page');
 const VisitorDateOfBirth = require('../pages/surveys/census/household/visitor-date-of-birth.page');
@@ -73,6 +75,7 @@ describe('Census Household', function () {
         // who-lives-here
           .setValue(WhatIsYourAddress.addressLine1(), '44 hill side')
           .click(WhatIsYourAddress.submit())
+          .click(WhoLivesHereSection.submit())
           .click(PermanentOrFamilyHome.yes())
           .click(PermanentOrFamilyHome.submit())
           .setValue(HouseholdComposition.firstName(), 'John')
@@ -171,6 +174,7 @@ describe('Census Household', function () {
           return browser
             .setValue(WhatIsYourAddress.addressLine1(), '44 hill side')
             .click(WhatIsYourAddress.submit())
+            .click(WhoLivesHereSection.submit())
             .click(PermanentOrFamilyHome.yes())
             .click(PermanentOrFamilyHome.submit())
             .click(HouseholdComposition.submit())
@@ -182,6 +186,7 @@ describe('Census Household', function () {
 
 function completeHouseholdAndAccommodation() {
   return browser
+    .click(HouseholdAndAccommodationSection.submit())
     .click(TypeOfAccommodation.wholeHouseOrBungalow())
     .click(TypeOfAccommodation.submit())
     .click(TypeOfHouse.semiDetached())

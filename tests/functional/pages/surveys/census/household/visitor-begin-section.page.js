@@ -1,11 +1,11 @@
 // >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
 const QuestionPage = require('../../question.page');
 
-class VisitorBeginPage extends QuestionPage {
+class VisitorBeginSectionPage extends QuestionPage {
 
   constructor() {
-    super('visitor-begin');
+    super('visitor-begin-section');
   }
 
 }
-module.exports = new VisitorBeginPage();
+module.exports = new VisitorBeginSectionPage();

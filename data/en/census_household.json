@@ -35,6 +35,7 @@
             {
                 "title": "Visitors",
                 "group_order": [
+                    "visitors-begin",
                     "visitors",
                     "visitors-interstitial"
                 ]
@@ -118,6 +119,19 @@
             "id": "who-lives-here",
             "title": "Who lives here?",
             "blocks": [{
+                    "type": "Interstitial",
+                    "id": "who-lives-here-section",
+                    "title": "People who live in the household",
+                    "description": "In this section, we’re going to ask you about the people that live at <em>{{answers.address_line_1}}</em>.",
+                    "content": [{
+                        "title": "Information you need",
+                        "list": [
+                            "Names of the people living in household and how they are related",
+                            "The number of visitors staying in the household on 29 November 2017"
+                        ]
+                    }]
+                },
+                {
                     "type": "Questionnaire",
                     "id": "permanent-or-family-home",
                     "questions": [{
@@ -489,6 +503,20 @@
             "id": "household-and-accommodation",
             "title": "Household and Accommodation",
             "blocks": [{
+                    "type": "Interstitial",
+                    "id": "household-and-accommodation-section",
+                    "title": "Household and accommodation",
+                    "description": "In this section, we’re going to ask you about the household and accommodation you live in.",
+                    "content": [{
+                        "title": "Information you need",
+                        "list": [
+                            "Type of property, and if it’s owned or rented",
+                            "Type of landlord, if the property is rented",
+                            "Number of cars or vans"
+                        ]
+                    }]
+                },
+                {
                     "type": "Questionnaire",
                     "id": "type-of-accommodation",
                     "questions": [{
@@ -852,10 +880,21 @@
                 }
             }],
             "blocks": [{
-                    "id": "household-member-begin",
-                    "title": "The next section covers individual questions for {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
-                    "description": "",
-                    "type": "Interstitial"
+                    "type": "Interstitial",
+                    "id": "household-member-begin-section",
+                    "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}",
+                    "description": "In this section, we’re going to ask you questions about <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em>.",
+                    "content": [{
+                        "title": "Information you need",
+                        "list": [
+                            "Personal details such as date of birth, country of birth, religion etc.",
+                            "Education and qualifications",
+                            "Employment and travel to work",
+                            "Second or holiday homes",
+                            "Unpaid care, health and well-being",
+                            "Languages"
+                        ]
+                    }]
                 },
                 {
                     "type": "Questionnaire",
@@ -3645,6 +3684,39 @@
             ]
         },
         {
+            "id": "visitors-begin",
+            "title": "VisitorsBegin",
+            "skip_conditions": [{
+                    "when": [{
+                        "id": "overnight-visitors-answer",
+                        "condition": "equals",
+                        "value": "0"
+                    }]
+                },
+                {
+                    "when": [{
+                        "id": "overnight-visitors-answer",
+                        "condition": "not set"
+                    }]
+                }
+            ],
+            "blocks": [{
+                "type": "Interstitial",
+                "id": "visitor-begin-section",
+                "title": "Visitors",
+                "description": "In this section, we’re going to ask you about any visitors that were staying overnight at <em>{{answers.address_line_1}}</em> on 29 November 2017.",
+                "content": [{
+                    "title": "Information you need",
+                    "list": [
+                        "Name of visitor",
+                        "Gender of visitor",
+                        "Date of birth of visitor",
+                        "Address of visitor"
+                    ]
+                }]
+            }]
+        },
+        {
             "id": "visitors",
             "title": "Visitors",
             "routing_rules": [{
@@ -3654,12 +3726,6 @@
                 }
             }],
             "blocks": [{
-                    "id": "visitor-begin",
-                    "title": "The next section covers questions for Visitor {{group_instance + 1}}",
-                    "description": "",
-                    "type": "Interstitial"
-                },
-                {
                     "type": "Questionnaire",
                     "id": "visitor-name",
                     "questions": [{
