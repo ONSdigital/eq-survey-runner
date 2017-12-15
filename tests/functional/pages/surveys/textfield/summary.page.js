@@ -7,5 +7,9 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
+  answer() { return '#answer-answer'; }
+
+  answerEdit() { return '[data-qa="answer-edit"]'; }
+
 }
 module.exports = new SummaryPage();

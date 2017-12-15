@@ -36,6 +36,18 @@ describe('Textarea', function() {
 
   });
 
+  it('Given a text entered in textarea , When user submits and revisits the textarea, Then the textarea must contain the text entered previously', function() {
+    return helpers.openQuestionnaire(textarea_schema)
+      .then(() => {
+        return browser
+          .setValue(TextareaBlock.answer(), "'Twenty><&Five'")
+          .click(TextareaBlock.submit())
+          .getText(TextareaSummary.answer()).should.eventually.contain("'Twenty><&Five'")
+          .click(TextareaSummary.answerEdit())
+          .getValue(TextareaBlock.answer()).should.eventually.contain("'Twenty><&Five'");
+      });
+  });
+
   it('Displays the number of characters remaining', function() {
     return helpers.openQuestionnaire(textarea_schema)
       .then(() => {
