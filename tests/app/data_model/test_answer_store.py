@@ -439,3 +439,64 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         self.store.upgrade(current_version=0, schema_json=questionnaire)
 
         self.assertEqual(self.store.answers[0]['value'], '2017-12')
+
+    def tests_upgrade_when_answer_no_longer_in_schema_does_not_reformat(self):
+        questionnaire = {
+            'survey_id': '021',
+            'data_version': '0.0.2',
+            'groups': [{
+                'id': 'group1',
+                'blocks': [{
+                    'id': 'block1',
+                    'questions': [{
+                        'id': 'question1',
+                        'answers': [
+                        ]
+                    }]
+                }]
+            }]
+        }
+
+        answers = [
+            {
+                'block_id': 'block1',
+                'answer_id': 'answer1',
+                'answer_instance': 0,
+                'group_id': 'group1',
+                'group_instance': 0,
+                'value': '12/2017'
+            }
+        ]
+
+        self.store = AnswerStore(existing_answers=answers)
+
+        self.store.upgrade(current_version=0, schema_json=questionnaire)
+
+        self.assertEqual(self.store.answers[0]['value'], '12/2017')
+
+    def tests_upgrade_when_block_no_longer_in_schema_does_not_reformat(self):
+        questionnaire = {
+            'survey_id': '021',
+            'data_version': '0.0.2',
+            'groups': [{
+                'id': 'group1',
+                'blocks': []
+            }]
+        }
+
+        answers = [
+            {
+                'block_id': 'block1',
+                'answer_id': 'answer1',
+                'answer_instance': 0,
+                'group_id': 'group1',
+                'group_instance': 0,
+                'value': '12/2017'
+            }
+        ]
+
+        self.store = AnswerStore(existing_answers=answers)
+
+        self.store.upgrade(current_version=0, schema_json=questionnaire)
+
+        self.assertEqual(self.store.answers[0]['value'], '12/2017')

@@ -88,7 +88,7 @@ class SchemaHelper(object):  # pylint: disable=too-many-public-methods
 
     @classmethod
     def get_block(cls, survey_json, block_id):
-        return next(b for b in cls.get_blocks(survey_json) if b['id'] == block_id)
+        return next((b for b in cls.get_blocks(survey_json) if b['id'] == block_id), None)
 
     @classmethod
     def get_group_ids(cls, survey_json):
@@ -207,5 +207,9 @@ class SchemaHelper(object):  # pylint: disable=too-many-public-methods
     @staticmethod
     def get_answer_schema_for_answer_id(survey_json, block_id, answer_id):
         block_json = SchemaHelper.get_block(survey_json, block_id)
-        answer_schema_list = SchemaHelper.get_answers_by_id_for_block(block_json)
-        return answer_schema_list[answer_id]
+        if block_json:
+            answer_schema_list = SchemaHelper.get_answers_by_id_for_block(block_json)
+            if answer_id in answer_schema_list:
+                return answer_schema_list[answer_id]
+
+        return None
