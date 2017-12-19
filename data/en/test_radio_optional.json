@@ -1,0 +1,41 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "0",
+    "title": "Radio Optional",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "groups": [{
+        "id": "radio",
+        "title": "Radio Optional",
+        "blocks": [{
+                "type": "Questionnaire",
+                "id": "radio-non-mandatory",
+                "questions": [{
+                    "type": "General",
+                    "id": "radio-non-mandatory-question",
+                    "title": "What is you favourite breakfast beverage?",
+                    "answers": [{
+                        "type": "Radio",
+                        "id": "radio-non-mandatory-answer",
+                        "mandatory": false,
+                        "options": [{
+                                "label": "Coffee",
+                                "value": "Coffee"
+                            },
+                            {
+                                "label": "Tea",
+                                "value": "Tea"
+                            }
+                        ]
+                    }]
+                }]
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
+            }
+        ]
+    }]
+}

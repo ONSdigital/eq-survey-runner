@@ -1,0 +1,57 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "0",
+    "title": "Radio Mandatory with Mandatory Other Overridden Error",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "groups": [{
+        "id": "radio",
+        "title": "Radio Mandatory with Mandatory Other Overridden Error",
+        "blocks": [{
+                "type": "Questionnaire",
+                "id": "radio-mandatory",
+                "questions": [{
+                    "type": "General",
+                    "id": "radio-mandatory-question",
+                    "title": "What is you favourite breakfast item?",
+                    "answers": [{
+                            "type": "Radio",
+                            "id": "radio-mandatory-answer",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "Toast",
+                                    "value": "Toast"
+                                },
+                                {
+                                    "label": "Other",
+                                    "description": "An answer is required.",
+                                    "value": "Other",
+                                    "child_answer_id": "other-answer-mandatory"
+                                }
+                            ]
+                        },
+                        {
+                            "parent_answer_id": "radio-mandatory-answer",
+                            "alias": "othervalue",
+                            "mandatory": true,
+                            "id": "other-answer-mandatory",
+                            "label": "Please specify other",
+                            "type": "TextField",
+                            "validation": {
+                                "messages": {
+                                    "MANDATORY_TEXTFIELD": "Test error message is overridden"
+                                }
+                            }
+                        }
+                    ]
+                }]
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
+            }
+        ]
+    }]
+}

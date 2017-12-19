@@ -135,7 +135,7 @@ class TestQuestionnaireForm(AppContextTestCase):
 
     def test_answer_with_child_inherits_mandatory_from_parent(self):
         with self.test_request_context():
-            survey = load_schema_file("test_radio.json")
+            survey = load_schema_file("test_radio_mandatory_with_mandatory_other.json")
 
             block_json = SchemaHelper.get_block(survey, "radio-mandatory")
             error_messages = SchemaHelper.get_messages(survey)
@@ -150,7 +150,7 @@ class TestQuestionnaireForm(AppContextTestCase):
 
     def test_answer_with_child_errors_are_correctly_mapped(self):
         with self.test_request_context():
-            survey = load_schema_file("test_radio.json")
+            survey = load_schema_file("test_radio_mandatory_with_mandatory_other.json")
 
             block_json = SchemaHelper.get_block(survey, 'radio-mandatory')
             error_messages = SchemaHelper.get_messages(survey)

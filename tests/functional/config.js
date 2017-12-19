@@ -20,8 +20,11 @@ let config = {
     census: [
       `${paths.test.wdioSpec}/census/*.spec.js`
     ],
+    components: [
+      `${paths.test.wdioSpec}/components/*.spec.js`
+    ],
     ukis: [
-      `${paths.test.wdioSpec}/ukis/**/*.spec.js`
+      `${paths.test.wdioSpec}/ukis/*.spec.js`
     ]
   },
   sync: false,
