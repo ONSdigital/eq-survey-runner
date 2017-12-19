@@ -18,12 +18,12 @@ class TestRenderPercentageWidget(IntegrationTestCase):
     def test_entering_value_less_than_zero_displays_error(self):
         self.post({'answer': '-50'})
         self.assertStatusOK()
-        self.assertInPage('Enter a number more than or equal to 0')
+        self.assertInPage('Enter an answer more than or equal to 0')
 
     def test_entering_value_greater_than_one_hundred_displays_error(self):
         self.post({'answer': '150'})
         self.assertStatusOK()
-        self.assertInPage('Enter a number less than or equal to 100')
+        self.assertInPage('Enter an answer less than or equal to 100')
 
     def test_entering_float_displays_error(self):
         self.post({'answer': '0.5'})

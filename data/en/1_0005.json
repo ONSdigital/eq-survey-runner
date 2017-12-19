@@ -397,7 +397,16 @@
                             "type": "Currency",
                             "currency": "GBP",
                             "decimal_places": 2,
-                            "alias": "weekly_total_gross"
+                            "alias": "weekly_total_gross",
+                            "min_value": {
+                                "value": 0,
+                                "exclusive": true
+                            },
+                            "validation": {
+                                "messages": {
+                                    "MANDATORY_NUMBER": "Enter an answer to continue."
+                                }
+                            }
                         }],
                         "guidance": {
                             "content": [{
@@ -439,11 +448,6 @@
                                 "max_value": {
                                     "answer_id": "weekly-pay-gross-pay-answer",
                                     "exclusive": true
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
-                                    }
                                 }
                             },
                             {
@@ -457,11 +461,6 @@
                                 "max_value": {
                                     "answer_id": "weekly-pay-gross-pay-answer",
                                     "exclusive": true
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
-                                    }
                                 }
                             },
                             {
@@ -503,11 +502,6 @@
                                 "decimal_places": 2,
                                 "max_value": {
                                     "answer_id": "weekly-pay-gross-pay-answer"
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
-                                    }
                                 }
                             }
                         ],
@@ -966,7 +960,16 @@
                             "type": "Currency",
                             "alias": "fortnightly_total_gross",
                             "currency": "GBP",
-                            "decimal_places": 2
+                            "decimal_places": 2,
+                            "min_value": {
+                                "value": 0,
+                                "exclusive": true
+                            },
+                            "validation": {
+                                "messages": {
+                                    "MANDATORY_NUMBER": "Enter an answer to continue."
+                                }
+                            }
                         }],
                         "guidance": {
                             "content": [{
@@ -1008,11 +1011,6 @@
                                 "max_value": {
                                     "answer_id": "fortnightly-pay-gross-pay-answer",
                                     "exclusive": true
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
-                                    }
                                 }
                             },
                             {
@@ -1026,11 +1024,6 @@
                                 "max_value": {
                                     "answer_id": "fortnightly-pay-gross-pay-answer",
                                     "exclusive": true
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
-                                    }
                                 }
                             },
                             {
@@ -1055,11 +1048,6 @@
                                 "decimal_places": 2,
                                 "max_value": {
                                     "answer_id": "fortnightly-pay-gross-pay-answer"
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE": "Enter an amount less than or equal to %(max)s."
-                                    }
                                 }
                             }
                         ],
@@ -1518,7 +1506,16 @@
                             "type": "Currency",
                             "alias": "monthly_total_gross",
                             "currency": "GBP",
-                            "decimal_places": 2
+                            "decimal_places": 2,
+                            "min_value": {
+                                "value": 0,
+                                "exclusive": true
+                            },
+                            "validation": {
+                                "messages": {
+                                    "MANDATORY_NUMBER": "Enter an answer to continue."
+                                }
+                            }
                         }],
                         "guidance": {
                             "content": [{
@@ -1559,11 +1556,6 @@
                                 "max_value": {
                                     "answer_id": "calendar-monthly-pay-gross-pay-answer",
                                     "exclusive": true
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
-                                    }
                                 }
                             },
                             {
@@ -1589,11 +1581,6 @@
                                 "max_value": {
                                     "answer_id": "calendar-monthly-pay-gross-pay-answer",
                                     "exclusive": true
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
-                                    }
                                 }
                             }
                         ],
@@ -2051,7 +2038,16 @@
                             "type": "Currency",
                             "alias": "four_weekly_total_gross",
                             "currency": "GBP",
-                            "decimal_places": 2
+                            "decimal_places": 2,
+                            "min_value": {
+                                "value": 0,
+                                "exclusive": true
+                            },
+                            "validation": {
+                                "messages": {
+                                    "MANDATORY_NUMBER": "Enter an answer to continue."
+                                }
+                            }
                         }],
                         "guidance": {
                             "content": [{
@@ -2092,11 +2088,6 @@
                                 "max_value": {
                                     "answer_id": "four-weekly-pay-gross-pay-answer",
                                     "exclusive": true
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
-                                    }
                                 }
                             },
                             {
@@ -2122,11 +2113,6 @@
                                 "max_value": {
                                     "answer_id": "four-weekly-pay-gross-pay-answer",
                                     "exclusive": true
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
-                                    }
                                 }
                             }
                         ],
@@ -2585,7 +2571,16 @@
                             "type": "Currency",
                             "alias": "five_weekly_total_gross",
                             "currency": "GBP",
-                            "decimal_places": 2
+                            "decimal_places": 2,
+                            "min_value": {
+                                "value": 0,
+                                "exclusive": true
+                            },
+                            "validation": {
+                                "messages": {
+                                    "MANDATORY_NUMBER": "Enter an answer to continue."
+                                }
+                            }
                         }],
                         "guidance": {
                             "content": [{
@@ -2626,11 +2621,6 @@
                                 "max_value": {
                                     "answer_id": "five-weekly-pay-gross-pay-answer",
                                     "exclusive": true
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
-                                    }
                                 }
                             },
                             {
@@ -2656,11 +2646,6 @@
                                 "max_value": {
                                     "answer_id": "five-weekly-pay-gross-pay-answer",
                                     "exclusive": true
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "NUMBER_TOO_LARGE_EXCLUSIVE": "Enter an amount less than %(max)s."
-                                    }
                                 }
                             }
                         ],
