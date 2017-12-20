@@ -137,28 +137,10 @@
                     "questions": [{
                         "id": "permanent-or-family-home-question",
                         "title": "Does anyone live at <em>{{answers.address_line_1}}</em> as their permanent or family home?",
-                        "guidance": {
-                            "content": [{
-                                "title": "Include",
-                                "list": [
-                                    "yourself, if this is your permanent or family home",
-                                    "family members including partners, children and babies born on or before 9 April 2017",
-                                    "students and, or school children who live away from home during term time",
-                                    "housemates tenants or lodgers"
-                                ]
-                            }]
-                        },
                         "type": "General",
                         "answers": [{
                             "id": "permanent-or-family-home-answer",
                             "mandatory": true,
-                            "guidance": {
-                                "show_guidance": "Show further guidance",
-                                "hide_guidance": "Hide further guidance",
-                                "content": [{
-                                    "description": "For most people, their permanent home will be the address where they spend the most time."
-                                }]
-                            },
                             "options": [{
                                     "label": "Yes",
                                     "value": "Yes"
@@ -200,19 +182,6 @@
                     "questions": [{
                         "id": "else-permanent-or-family-home-question",
                         "title": "Can you confirm no one lives here as their permanent or family home?",
-                        "guidance": {
-                            "content": [{
-                                "title": "This could be:",
-                                "list": [
-                                    "people who usually live outside the UK who are staying in the UK for <b>three months or more</b>",
-                                    "people who work away from home within the UK if this is their permanent or family home",
-                                    "members of the Armed Forces if this is their permanent or family home",
-                                    "people who are temporarily outside the UK for <b>less than 12 months</b>",
-                                    "people staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends",
-                                    "other people who usually live here, including anyone temporarily away from home "
-                                ]
-                            }]
-                        },
                         "type": "General",
                         "answers": [{
                             "id": "else-permanent-or-family-home-answer",
@@ -257,18 +226,6 @@
                     "questions": [{
                         "id": "household-composition-question",
                         "title": "What are the names of everyone who live at <em>{{answers.address_line_1}}</em>?",
-                        "guidance": {
-                            "content": [{
-                                "title": "Include",
-                                "list": [
-                                    "Yourself, if this is your permanent or family home",
-                                    "Family members including partners, children and babies born on or before 9 April 2017",
-                                    "Students and, or school children who live away from home during term time",
-                                    "Housemates tenants or lodgers",
-                                    "Household members who have requested a personal form"
-                                ]
-                            }]
-                        },
                         "type": "RepeatingAnswer",
                         "answers": [{
                                 "alias": "first_name",
@@ -294,33 +251,6 @@
                                 "id": "last-name",
                                 "label": "Last name",
                                 "mandatory": false,
-                                "guidance": {
-                                    "show_guidance": "Show further guidance",
-                                    "hide_guidance": "Hide further guidance",
-                                    "content": [{
-                                            "description": "Enter the current first, middle and last names of all the people who usually live here."
-                                        },
-                                        {
-                                            "description": "If you have not yet named your newborn, please enter ‘Baby’ for their first name and then enter their last name (surname)."
-                                        },
-                                        {
-                                            "description": "Please also include household members who have requested a personal form."
-                                        },
-                                        {
-                                            "description": "Please also include the names of people staying with you temporarily who don’t have a usual address in the UK. This is so that we make sure we count everyone."
-                                        },
-                                        {
-                                            "title": "Include",
-                                            "list": [
-                                                "people who usually live outside the UK who are staying in the UK for <strong>three months or more</strong>",
-                                                "people who work away from home within the UK  if this is their permanent or family home",
-                                                "members of the Armed Forces if this is their permanent or family home",
-                                                "people who are temporarily outside the UK for <strong>less than 12 months</strong>",
-                                                "people staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends"
-                                            ]
-                                        }
-                                    ]
-                                },
                                 "type": "TextField"
                             }
                         ]
@@ -333,20 +263,6 @@
                     "questions": [{
                         "id": "everyone-at-address-confirmation-question",
                         "title": "Is this everyone for whom this is their permanent or family home?",
-                        "description": "Please note that you will need to ensure that everyone is included because you will be unable to make changes later",
-                        "guidance": {
-                            "content": [{
-                                "title": "Include",
-                                "list": [
-                                    "people who usually live outside the UK who are staying in the UK for <b>three months or more</b>",
-                                    "people who work away from home within the UK  if this is their permanent or family home",
-                                    "members of the Armed Forces if this is their permanent or family home",
-                                    "people who are temporarily outside the UK for <b>less than 12 months</b>",
-                                    "people staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends",
-                                    "other people who usually live here, including anyone temporarily away from home"
-                                ]
-                            }]
-                        },
                         "type": "General",
                         "answers": [{
                             "id": "everyone-at-address-confirmation-answer",
@@ -386,17 +302,6 @@
                     "questions": [{
                         "id": "overnight-visitors-question",
                         "title": "How many visitors are staying overnight at <em>{{answers.address_line_1}}</em> on 9th April 2017?",
-                        "guidance": {
-                            "content": [{
-                                "title": "Include",
-                                "list": [
-                                    "people who usually live somewhere else in the UK. For example, friends or relatives",
-                                    "people staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere",
-                                    "people who usually live outside the UK who are visiting the UK for less than three months",
-                                    "people here on holiday"
-                                ]
-                            }]
-                        },
                         "type": "General",
                         "answers": [{
                             "id": "overnight-visitors-answer",
@@ -424,7 +329,6 @@
                 "questions": [{
                     "id": "household-relationships-question",
                     "title": "How is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> related to the people below?",
-                    "description": "If members are not related, select the ‘unrelated’ option.</br>If you are the parents of adopted children, select the ‘Mother or father’ option to show your relationship to them.</br>If you have foster children living with you, select the ‘Unrelated’ option.</br>Include half-brothers and half-sisters in the ‘Step-brother or step-sister’ category.</br>Same-sex civil partner is used to describe the relationship between two people who have legally registered a civil partnership.</br>If none of the options fully reflects your relationship, please select the one which you feel best describes your situation.",
                     "type": "Relationship",
                     "answers": [{
                         "id": "household-relationships-answer",
@@ -634,7 +538,6 @@
                     "questions": [{
                         "id": "self-contained-accommodation-question",
                         "title": "Is the accommodation of <em>{{answers.address_line_1}}</em> self-contained?",
-                        "description": "This means that all the rooms, including the kitchen, bathroom and toilet, are behind a door that only this household can use",
                         "type": "General",
                         "answers": [{
                             "id": "self-contained-accommodation-answer",
@@ -658,11 +561,6 @@
                     "questions": [{
                         "id": "number-of-bedrooms-question",
                         "title": "How many bedrooms are at <em>{{answers.address_line_1}}</em>?",
-                        "guidance": {
-                            "content": [{
-                                "description": "Include all rooms built or converted for use as bedrooms, even if they’re not currently used as bedrooms"
-                            }]
-                        },
                         "type": "General",
                         "answers": [{
                             "id": "number-of-bedrooms-answer",
@@ -678,7 +576,6 @@
                     "questions": [{
                         "id": "central-heating-question",
                         "title": "What type of central heating does <em>{{answers.address_line_1}}</em> have?",
-                        "description": "<p>Central heating is a central system that generates heat for multiple rooms.</p><p>Select all that apply, whether or not you use it.</p>",
                         "type": "General",
                         "answers": [{
                             "id": "central-heating-answer",
@@ -848,11 +745,6 @@
                     "questions": [{
                         "id": "number-of-vehicles-question",
                         "title": "How many cars or vans are owned, or available for use, by members of this household?",
-                        "guidance": {
-                            "content": [{
-                                "description": "Include any company cars or vans available for private use"
-                            }]
-                        },
                         "type": "General",
                         "answers": [{
                             "id": "number-of-vehicles-answer",
@@ -907,11 +799,11 @@
                             "id": "details-correct-answer",
                             "mandatory": false,
                             "options": [{
-                                    "label": "Yes, this is my full name",
+                                    "label": "Yes",
                                     "value": "Yes, this is my full name"
                                 },
                                 {
-                                    "label": "No, I need to change my name",
+                                    "label": "No",
                                     "value": "No, I need to change my name"
                                 }
                             ],
@@ -1008,18 +900,10 @@
                     "questions": [{
                         "id": "private-response-question",
                         "title": "Do you want to request a personal form?",
-                        "description": "Anyone aged 16 or over who would like to keep their answers private can request a personal and confidential form.",
                         "type": "General",
                         "answers": [{
                             "id": "private-response-answer",
                             "mandatory": false,
-                            "guidance": {
-                                "show_guidance": "Show further guidance",
-                                "hide_guidance": "Hide further guidance",
-                                "content": [{
-                                    "description": "If you request a personal or confidential form we will send you a unique access code that will allow you to complete the individual questions for yourself. No-one else will be able to see the answers you provide."
-                                }]
-                            },
                             "options": [{
                                     "label": "No, I do not want to request a personal form",
                                     "value": "No, I do not want to request a personal form"
@@ -1104,7 +988,6 @@
                     "questions": [{
                         "id": "marital-status-question",
                         "title": "On 9 April 2017, what is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> legal marital or same-sex civil partnership status?",
-                        "description": "If you were married (or formed a registered same-sex partnership) abroad, and this enables you to be recognised as married or civil partnered in the UK, complete the question reflecting that legal partnership.",
                         "type": "General",
                         "answers": [{
                             "id": "marital-status-answer",
@@ -1157,16 +1040,6 @@
                         "id": "another-address-question",
                         "title": "Does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> stay at another address for more than 30 days a year?",
                         "type": "General",
-                        "guidance": {
-                            "content": [{
-                                "title": "Include:",
-                                "list": [
-                                    "another parent’s address, an armed forces base, a holiday home, or term-time address.",
-                                    "the days you stay at the address do not have to be in a row. They can be at any time during the year."
-                                ],
-                                "description": ""
-                            }]
-                        },
                         "answers": [{
                                 "id": "another-address-answer",
                                 "mandatory": false,
@@ -1620,11 +1493,6 @@
                     "questions": [{
                         "id": "arrive-in-uk-question",
                         "title": "If you were not born in the United Kingdom, when did <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> most recently arrive to live here?",
-                        "guidance": {
-                            "content": [{
-                                "description": "Exclude short visits away from the UK"
-                            }]
-                        },
                         "type": "General",
                         "answers": [{
                             "id": "arrive-in-uk-answer",
@@ -1854,7 +1722,6 @@
                     "questions": [{
                             "id": "ethnic-group-england-question",
                             "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> ethnic group?",
-                            "description": "It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself.",
                             "type": "General",
                             "answers": [{
                                 "id": "ethnic-group-england-answer",
@@ -1898,7 +1765,6 @@
                         {
                             "id": "ethnic-group-wales-question",
                             "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> ethnic group?",
-                            "description": "It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself.",
                             "type": "General",
                             "answers": [{
                                 "id": "ethnic-group-wales-answer",
@@ -2770,18 +2636,10 @@
                     "questions": [{
                         "id": "past-usual-address-question",
                         "title": "One year ago, what was your usual address?",
-                        "description": "If you had no usual address one year ago, state the address where you were staying",
                         "type": "General",
                         "answers": [{
                                 "id": "past-usual-address-answer",
                                 "mandatory": false,
-                                "guidance": {
-                                    "show_guidance": "Show further guidance",
-                                    "hide_guidance": "Hide further guidance",
-                                    "content": [{
-                                        "description": "In most cases your usual address will be the permanent or family home that you were living in."
-                                    }]
-                                },
                                 "options": [{
                                         "label": "This address",
                                         "value": "This address"
@@ -2947,11 +2805,6 @@
                     "questions": [{
                         "id": "disability-question",
                         "title": "Are <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> day-to-day activities limited because of a health problem or disability which has lasted, or is expected to last, at least 12 months?",
-                        "guidance": {
-                            "content": [{
-                                "description": "<strong>Include</strong> problems related to old age"
-                            }]
-                        },
                         "type": "General",
                         "answers": [{
                             "id": "disability-answer",
@@ -2995,7 +2848,6 @@
                     "questions": [{
                             "id": "qualifications-england-question",
                             "title": "Thinking of any studies, exams or qualifications, which of the following does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> have?",
-                            "description": "Select every option that applies (whether UK or foreign equivalent) if you have any of the qualifications listed",
                             "type": "General",
                             "answers": [{
                                 "id": "qualifications-england-answer",
@@ -3078,7 +2930,6 @@
                         {
                             "id": "qualifications-welsh-question",
                             "title": "Thinking of any studies, exams or qualifications, which of the following does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> have?",
-                            "description": "Select every option that applies (whether UK or foreign equivalent) if you have any of the qualifications listed",
                             "type": "General",
                             "answers": [{
                                 "id": "qualifications-welsh-answer",
@@ -3166,11 +3017,6 @@
                     "questions": [{
                         "id": "employment-type-question",
                         "title": "Which of the following best describes what <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> was doing last week?",
-                        "guidance": {
-                            "content": [{
-                                "description": "<strong>Include</strong> any paid work, including casual or temporary work, even if only for one hour"
-                            }]
-                        },
                         "type": "General",
                         "answers": [{
                             "id": "employment-type-answer",
@@ -3387,15 +3233,6 @@
                         "id": "ever-worked-question",
                         "title": "Has <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> ever worked?",
                         "type": "General",
-                        "guidance": {
-                            "content": [{
-                                "title": "Include:",
-                                "list": [
-                                    "work outside of the United Kingdom.",
-                                    "even if you are now retired."
-                                ]
-                            }]
-                        },
                         "answers": [{
                             "id": "ever-worked-answer",
                             "mandatory": false,
@@ -3443,11 +3280,6 @@
                     "questions": [{
                         "id": "main-job-question",
                         "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> employment status?",
-                        "guidance": {
-                            "content": [{
-                                "description": "<p>If you are not working answer the remaining questions about your last main job.</p><p>Your main job is the job which you usually work (worked) the most hours</p>"
-                            }]
-                        },
                         "type": "General",
                         "answers": [{
                             "id": "main-job-answer",
@@ -3475,11 +3307,6 @@
                     "description": "",
                     "questions": [{
                         "title": "In <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> main job, how many hours a week do they usually work?",
-                        "guidance": {
-                            "content": [{
-                                "description": "Include paid and unpaid overtime"
-                            }]
-                        },
                         "id": "hours-worked-question",
                         "type": "General",
                         "answers": [{
@@ -3512,7 +3339,6 @@
                     "description": "",
                     "questions": [{
                         "title": "How does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> usually travel to work?",
-                        "description": "Select the option for the longest part, in distance, of your journey. For example, you travel by bus and by car. Your bus journey is 5 miles, and the car journey is 8 miles. You should select car as your answer.",
                         "id": "work-travel-question",
                         "type": "General",
                         "answers": [{
@@ -3573,7 +3399,6 @@
                     "questions": [{
                         "id": "job-title-question",
                         "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> full job title?",
-                        "description": "<p>For example, <b>primary school teacher, car mechanic, district nurse, structural engineer</b></p><p>Do not state your grade or pay band</p><p>Please enter your job title in the space provided.</p><p>Do not state your grade or pay band.</p><p>If you are not sure of your job title please give the best information you can.</p>",
                         "type": "General",
                         "answers": [{
                             "id": "job-title-answer",
@@ -3648,7 +3473,6 @@
                     "questions": [{
                         "id": "business-name-question",
                         "title": "What is the name of the organisation of business that <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> work for?",
-                        "description": "<p>If you were self-employed in your own organisation or business, enter the name</p><p>This question is asking for the name of the organisation or business that you work (or worked) for in your main job.</p><p>If you can’t remember the name of the organisation, please give the best information you can.</p><p>If you are employed through an agency please enter the name of the business you are working for, not the agency.</p>",
                         "type": "General",
                         "answers": [{
                             "id": "business-name-answer",
@@ -3665,7 +3489,6 @@
                     "questions": [{
                         "id": "employers-business-question",
                         "title": "What is the main activity of <em>{{answers.company_name}}</em>?",
-                        "description": "<p>Enter the main activity of your employer or business.</p><p>Another way of describing main activity is the industry that your employer or business works in.</p><p>If you are not sure of the main activity of your employer or business please give the best information you can.</p><p>If you are employed through an agency please enter the main activity of the business you are working for, not the agency.</p><p>For example, <b>primary education, repairing cars, contract catering, computer servicing</b></p>",
                         "type": "General",
                         "answers": [{
                             "id": "employers-business-answer",
