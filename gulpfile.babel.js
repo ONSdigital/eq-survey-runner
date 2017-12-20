@@ -6,7 +6,7 @@ import prettify from 'gulp-jsbeautifier'
 import diff from 'gulp-diff'
 
 import { paths } from './gulp/paths'
-import { copyScripts, bundle, lint as lintScripts } from './gulp/scripts'
+import { copyScripts, bundle, lint as lintScripts, lintFunctionalTests } from './gulp/scripts'
 import { unitTests, functionalTests } from './gulp/tests'
 import { sprite, images } from './gulp/images'
 import { styles, lint as lintStyles } from './gulp/styles'
@@ -117,6 +117,11 @@ gulp.task('lint:scripts', () => {
   lintScripts()
 })
 
+
+gulp.task('lint:tests', () => {
+  lintFunctionalTests()
+})
+
 // Generate SVG sprites
 gulp.task('build:sprite', () => {
   sprite()
@@ -144,6 +149,7 @@ gulp.task('compile', [
   'clean:dist',
   'lint:scripts',
   'lint:styles',
+  'lint:tests',
   'build:sprite',
   'bundle:scripts',
   'copy:scripts',
@@ -173,7 +179,7 @@ gulp.task('watch', [
 // Run unit tests
 gulp.task('test', ['default', 'test:scripts'])
 // Run unit tests
-gulp.task('lint', ['lint:styles', 'lint:scripts', 'lint:json'])
+gulp.task('lint', ['lint:styles', 'lint:scripts', 'lint:json', 'lint:tests'])
 
 gulp.task('lint:json', () => {
   gulp

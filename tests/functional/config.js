@@ -52,7 +52,7 @@ const browserStackConfig = {
   user: process.env.BROWSERSTACK_USER,
   key: process.env.BROWSERSTACK_ACCESS_KEY,
   browserstackLocal: true
-}
+};
 
 const phantomjsConfig = Object.assign(
   {},

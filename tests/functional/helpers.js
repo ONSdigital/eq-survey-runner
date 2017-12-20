@@ -138,5 +138,4 @@ module.exports = {
   navigationLink,
   isSectionComplete,
   pressSubmit
-
-}
+};
