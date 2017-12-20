@@ -259,13 +259,14 @@ class AnswerStore(object):
             for answer in self.answers:
                 answer_schema = SchemaHelper.get_answer_schema_for_answer_id(schema_json, answer['block_id'], answer['answer_id'])
 
-                if answer_schema['type'] == 'Date':
-                    answer['value'] = datetime.strptime(answer['value'], '%d/%m/%Y').strftime('%Y-%m-%d')
-                    continue
+                if answer_schema:
+                    if answer_schema['type'] == 'Date':
+                        answer['value'] = datetime.strptime(answer['value'], '%d/%m/%Y').strftime('%Y-%m-%d')
+                        continue
 
-                if answer_schema['type'] == 'MonthYearDate':
-                    answer['value'] = datetime.strptime(answer['value'], '%m/%Y').strftime('%Y-%m')
-                    continue
+                    if answer_schema['type'] == 'MonthYearDate':
+                        answer['value'] = datetime.strptime(answer['value'], '%m/%Y').strftime('%Y-%m')
+                        continue
 
 
 def number_else_string(text):
