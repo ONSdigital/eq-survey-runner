@@ -11,5 +11,7 @@ class TextareaSummaryPage extends QuestionPage {
     return '#answer-answer ';
   }
 
+  answerEdit() { return '[data-qa="answer-edit"]'; }
+
 }
 module.exports = new TextareaSummaryPage();

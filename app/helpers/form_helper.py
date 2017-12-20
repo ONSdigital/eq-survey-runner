@@ -161,7 +161,7 @@ def get_mapped_answers(answer_store, group_id=None, block_id=None, answer_id=Non
     :return:
     """
     result = {}
-    for answer in answer_store.filter(group_id, block_id, answer_id, group_instance, answer_instance).escaped():
+    for answer in answer_store.filter(group_id, block_id, answer_id, group_instance, answer_instance):
         answer_id = answer['answer_id']
         answer_id += '_' + str(answer['answer_instance']) if answer['answer_instance'] > 0 else ''
 
