@@ -6,7 +6,7 @@ const jose = require('node-jose');
 const JWK = jose.JWK;
 const JWE = jose.JWE;
 
-const crypto = require('crypto')
+const crypto = require('crypto');
 
 const signingKey = './tests/functional/sdc-user-authentication-signing-rrm-private-key.pem';
 const encryptionKey = './tests/functional/sdc-user-authentication-encryption-sr-public-key.pem';
