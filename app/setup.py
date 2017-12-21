@@ -64,8 +64,12 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     application.eq = {}
 
-    secrets = yaml.safe_load(open(application.config['EQ_SECRETS_FILE']))
-    keys = yaml.safe_load(open(application.config['EQ_KEYS_FILE']))
+    with open(application.config['EQ_SECRETS_FILE']) as secrets_file:
+        secrets = yaml.safe_load(secrets_file)
+
+    with open(application.config['EQ_KEYS_FILE']) as keys_file:
+        keys = yaml.safe_load(keys_file)
+
     validate_required_secrets(secrets)
     validate_required_keys(keys, KEY_PURPOSE_SUBMISSION)
     application.eq['secret_store'] = SecretStore(secrets)
