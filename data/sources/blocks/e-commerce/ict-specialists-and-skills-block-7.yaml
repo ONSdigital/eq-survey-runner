@@ -20,10 +20,10 @@ title: ICT Specialists and Skills
 type: Questionnaire
 routing_rules:
 - goto:
-    id: ict-specialists-and-skills-block-9
+    block: ict-specialists-and-skills-block-9
     when:
     - condition: equals
       id: ict-specialists-and-skills-answer-7
       value: 'No'
 - goto:
-    id: ict-specialists-and-skills-block-8
+    block: ict-specialists-and-skills-block-8

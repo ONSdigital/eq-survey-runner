@@ -36,10 +36,10 @@ title: Use of 3D printing
 type: Questionnaire
 routing_rules:
 - goto:
-    id: invoicing-block-59
+    block: invoicing-block-59
     when:
     - condition: equals
       id: use-of-3d-printing-answer-55
       value: 'No'
 - goto:
-    id: use-of-3d-printing-block-56
+    block: use-of-3d-printing-block-56

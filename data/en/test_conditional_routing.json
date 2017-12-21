@@ -39,7 +39,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "response-yes",
+                            "block": "response-yes",
                             "when": [{
                                 "id": "conditional-routing-answer",
                                 "condition": "equals",
@@ -49,7 +49,7 @@
                     },
                     {
                         "goto": {
-                            "id": "response-no",
+                            "block": "response-no",
                             "when": [{
                                 "id": "conditional-routing-answer",
                                 "condition": "equals",
@@ -79,7 +79,7 @@
                 }],
                 "routing_rules": [{
                     "goto": {
-                        "id": "summary"
+                        "block": "summary"
                     }
                 }]
             },

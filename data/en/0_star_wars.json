@@ -67,7 +67,7 @@
                 "title": "Choose your side",
                 "routing_rules": [{
                         "goto": {
-                            "id": "light-side-pick-character-ship",
+                            "block": "light-side-pick-character-ship",
                             "when": [{
                                 "id": "choose-your-side-answer",
                                 "condition": "equals",
@@ -77,7 +77,7 @@
                     },
                     {
                         "goto": {
-                            "id": "dark-side-pick-character-ship",
+                            "block": "dark-side-pick-character-ship",
                             "when": [{
                                 "id": "choose-your-side-answer",
                                 "condition": "equals",
@@ -87,7 +87,7 @@
                     },
                     {
                         "goto": {
-                            "id": "summary",
+                            "block": "summary",
                             "when": [{
                                 "id": "choose-your-side-answer",
                                 "condition": "equals",
@@ -97,7 +97,7 @@
                     },
                     {
                         "goto": {
-                            "id": "light-side-pick-character-ship"
+                            "block": "light-side-pick-character-ship"
                         }
                     }
                 ]
@@ -160,7 +160,7 @@
                 "title": "",
                 "routing_rules": [{
                         "goto": {
-                            "id": "light-side-ship-type",
+                            "block": "light-side-ship-type",
                             "when": [{
                                 "id": "light-side-pick-ship-answer",
                                 "condition": "equals",
@@ -170,7 +170,7 @@
                     },
                     {
                         "goto": {
-                            "id": "star-wars-trivia",
+                            "block": "star-wars-trivia",
                             "when": [{
                                 "id": "light-side-pick-ship-answer",
                                 "condition": "equals",
@@ -242,7 +242,7 @@
                 "title": "",
                 "routing_rules": [{
                         "goto": {
-                            "id": "dark-side-ship-type",
+                            "block": "dark-side-ship-type",
                             "when": [{
                                 "id": "dark-side-pick-ship-answer",
                                 "condition": "equals",
@@ -252,7 +252,7 @@
                     },
                     {
                         "goto": {
-                            "id": "star-wars-trivia",
+                            "block": "star-wars-trivia",
                             "when": [{
                                 "id": "dark-side-pick-ship-answer",
                                 "condition": "equals",
@@ -262,7 +262,7 @@
                     },
                     {
                         "goto": {
-                            "id": "light-side-ship-type",
+                            "block": "light-side-ship-type",
                             "when": [{
                                 "id": "dark-side-pick-ship-answer",
                                 "condition": "equals",
@@ -300,7 +300,7 @@
                 }],
                 "routing_rules": [{
                     "goto": {
-                        "id": "star-wars-trivia"
+                        "block": "star-wars-trivia"
                     }
                 }],
                 "title": ""
@@ -330,7 +330,7 @@
                 }],
                 "routing_rules": [{
                     "goto": {
-                        "id": "star-wars-trivia"
+                        "block": "star-wars-trivia"
                     }
                 }],
                 "title": ""

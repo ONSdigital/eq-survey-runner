@@ -26,7 +26,7 @@
                 "title": "Number Routing Equals",
                 "routing_rules": [{
                         "goto": {
-                            "id": "correct-answer",
+                            "block": "correct-answer",
                             "when": [{
                                 "id": "answer",
                                 "condition": "equals",
@@ -36,7 +36,7 @@
                     },
                     {
                         "goto": {
-                            "id": "incorrect-answer"
+                            "block": "incorrect-answer"
                         }
                     }
                 ]
@@ -48,7 +48,7 @@
                 "description": "You were asked to enter <em>123</em> but you actually entered <em>{{answers.answer}}</em>.",
                 "routing_rules": [{
                     "goto": {
-                        "id": "summary"
+                        "block": "summary"
                     }
                 }]
             },

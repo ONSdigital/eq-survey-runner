@@ -53,7 +53,7 @@
                     "title": "Who do you want to know more about?",
                     "routing_rules": [{
                             "goto": {
-                                "id": "jyn-erso-like-this-page",
+                                "block": "jyn-erso-like-this-page",
                                 "when": [{
                                     "id": "character-answer",
                                     "condition": "equals",
@@ -63,7 +63,7 @@
                         },
                         {
                             "goto": {
-                                "id": "cassian-andor-like-this-page",
+                                "block": "cassian-andor-like-this-page",
                                 "when": [{
                                     "id": "character-answer",
                                     "condition": "equals",
@@ -73,7 +73,7 @@
                         },
                         {
                             "goto": {
-                                "id": "bodhi-rook-like-this-page",
+                                "block": "bodhi-rook-like-this-page",
                                 "when": [{
                                     "id": "character-answer",
                                     "condition": "equals",
@@ -83,7 +83,7 @@
                         },
                         {
                             "goto": {
-                                "id": "orson-krennic-like-this-page",
+                                "block": "orson-krennic-like-this-page",
                                 "when": [{
                                     "id": "character-answer",
                                     "condition": "equals",
@@ -125,8 +125,7 @@
                     "title": "{{answers.character}}",
                     "routing_rules": [{
                         "goto": {
-                            "location": "block",
-                            "id": "film-takings"
+                            "block": "film-takings"
                         }
                     }]
                 },
@@ -162,8 +161,7 @@
                     "title": "{{answers.character}}",
                     "routing_rules": [{
                         "goto": {
-                            "location": "block",
-                            "id": "film-takings"
+                            "block": "film-takings"
                         }
                     }]
                 },
@@ -199,8 +197,7 @@
                     "title": "{{answers.character}}",
                     "routing_rules": [{
                         "goto": {
-                            "location": "block",
-                            "id": "film-takings"
+                            "block": "film-takings"
                         }
                     }]
                 },
@@ -231,8 +228,7 @@
                     "title": "{{answers.character}}",
                     "routing_rules": [{
                         "goto": {
-                            "location": "block",
-                            "id": "film-takings"
+                            "block": "film-takings"
                         }
                     }]
                 },

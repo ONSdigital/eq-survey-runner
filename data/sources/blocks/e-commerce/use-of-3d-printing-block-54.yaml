@@ -35,10 +35,10 @@ title: Use of 3D printing
 type: Questionnaire
 routing_rules:
 - goto:
-    id: use-of-3d-printing-block-56
+    block: use-of-3d-printing-block-56
     when:
     - condition: equals
       id: use-of-3d-printing-answer-54
       value: 'Yes'
 - goto:
-    id: use-of-3d-printing-block-55
+    block: use-of-3d-printing-block-55

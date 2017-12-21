@@ -36,10 +36,10 @@ title: e-Commerce
 type: Questionnaire
 routing_rules:
 - goto:
-    id: e-commerce-block-70
+    block: e-commerce-block-70
     when:
     - condition: equals
       id: e-commerce-answer-67
       value: 'No'
 - goto:
-    id: e-commerce-block-68
+    block: e-commerce-block-68

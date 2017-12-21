@@ -161,7 +161,7 @@ def get_metadata_value(metadata, keys):
 
 
 def is_goto_rule(rule):
-    return any(key in rule.get('goto', {}) for key in ('when', 'id', 'group'))
+    return any(key in rule.get('goto', {}) for key in ('when', 'block', 'group'))
 
 
 def _contains_in_dict(metadata, keys):

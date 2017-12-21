@@ -42,12 +42,12 @@ title: Use of cloud computing services
 type: Questionnaire
 routing_rules:
 - goto:
-    id: use-of-3d-printing-block-53
+    block: use-of-3d-printing-block-53
     when:
     - condition: equals
       id: use-of-cloud-computing-services-answer-43
       value: 'No'
 - goto:
-    id: use-of-cloud-computing-services-block-44
+    block: use-of-cloud-computing-services-block-44
 
 

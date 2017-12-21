@@ -52,7 +52,7 @@
                     }],
                     "routing_rules": [{
                             "goto": {
-                                "id": "question1",
+                                "block": "question1",
                                 "when": [{
                                     "id": "which-question-answer",
                                     "condition": "equals",
@@ -62,7 +62,7 @@
                         },
                         {
                             "goto": {
-                                "id": "question2",
+                                "block": "question2",
                                 "when": [{
                                     "id": "which-question-answer",
                                     "condition": "equals",

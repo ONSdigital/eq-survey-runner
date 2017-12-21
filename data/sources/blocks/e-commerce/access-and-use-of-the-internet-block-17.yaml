@@ -20,11 +20,11 @@ title: Access and Use of the Internet
 type: Questionnaire
 routing_rules:
 - goto:
-    id: use-of-3d-printing-block-42
+    block: use-of-3d-printing-block-42
     when:
     - condition: equals
       id: access-and-use-of-the-internet-answer-17
       value: 'No'
 - goto:
-    id: access-and-use-of-the-internet-block-18
+    block: access-and-use-of-the-internet-block-18
 

@@ -68,7 +68,7 @@
                     }],
                     "routing_rules": [{
                             "goto": {
-                                "id": "age-block",
+                                "block": "age-block",
                                 "when": [{
                                     "id": "conditional-answer",
                                     "condition": "equals",
@@ -78,7 +78,7 @@
                         },
                         {
                             "goto": {
-                                "id": "shoe-size-block",
+                                "block": "shoe-size-block",
                                 "when": [{
                                     "id": "conditional-answer",
                                     "condition": "equals",
