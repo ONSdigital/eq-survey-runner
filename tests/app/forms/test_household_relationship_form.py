@@ -2,7 +2,6 @@ from app.forms.household_relationship_form import build_relationship_choices, de
     serialise_relationship_answers, generate_relationship_form
 from app.data_model.answer_store import AnswerStore, Answer
 from app.utilities.schema import load_schema_from_params
-from app.questionnaire.location import Location
 
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -118,31 +117,24 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
             self.assertTrue(self._error_exists(answer['id'], message, mapped_errors))
 
     def test_serialise_relationship_answers(self):
-        location = Location('household-relationships', 0, 'relationships')
 
         field_data = ['Husband or Wife', 'Son or daughter', 'Unrelated']
 
-        actual_answers = serialise_relationship_answers(location, 'who-is-related', field_data)
+        actual_answers = serialise_relationship_answers('who-is-related', field_data)
 
         expected_answers = [
             {
-                'group_id': 'household-relationships',
                 'group_instance': 0,
-                'block_id': 'relationships',
                 'answer_id': 'who-is-related',
                 'answer_instance': 0,
                 'value': 'Husband or Wife'
             }, {
-                'group_id': 'household-relationships',
                 'group_instance': 0,
-                'block_id': 'relationships',
                 'answer_id': 'who-is-related',
                 'answer_instance': 1,
                 'value': 'Son or daughter'
             }, {
-                'group_id': 'household-relationships',
                 'group_instance': 0,
-                'block_id': 'relationships',
                 'answer_id': 'who-is-related',
                 'answer_instance': 2,
                 'value': 'Unrelated'
@@ -162,23 +154,17 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
 
         serialised_answers = [
             {
-                'group_id': 'household-relationships',
                 'group_instance': 0,
-                'block_id': 'relationships',
                 'answer_id': 'who-is-related',
                 'answer_instance': 0,
                 'value': 'Husband or Wife'
             }, {
-                'group_id': 'household-relationships',
                 'group_instance': 0,
-                'block_id': 'relationships',
                 'answer_id': 'who-is-related',
                 'answer_instance': 1,
                 'value': 'Son or daughter'
             }, {
-                'group_id': 'household-relationships',
                 'group_instance': 0,
-                'block_id': 'relationships',
                 'answer_id': 'who-is-related',
                 'answer_instance': 2,
                 'value': 'Unrelated'
@@ -194,17 +180,13 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
 
         for i in range(0, 50):
             answer_store.add(Answer(
-                block_id='household-composition',
                 answer_id='first-name',
                 answer_instance=i,
-                group_id='5',
                 value='Joe' + str(i),
             ))
             answer_store.add(Answer(
-                block_id='household-composition',
                 answer_id='last-name',
                 answer_instance=i,
-                group_id='5',
                 value='Bloggs' + str(i),
             ))
 

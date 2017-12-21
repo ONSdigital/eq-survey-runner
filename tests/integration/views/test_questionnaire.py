@@ -48,9 +48,7 @@ class TestQuestionnaire(IntegrationTestCase):
         self.assertEqual(self.question_store.completed_blocks, [location])
 
         self.assertIn({
-            'group_id': 'rsi',
             'group_instance': 0,
-            'block_id': 'total-retail-turnover',
             'answer_id': 'total-retail-turnover-answer',
             'answer_instance': 0,
             'value': '1000',
@@ -73,18 +71,14 @@ class TestQuestionnaire(IntegrationTestCase):
         self.assertEqual(self.question_store.completed_blocks, [location])
 
         self.assertIn({
-            'group_id': 'dates',
             'group_instance': 0,
-            'block_id': 'date-block',
             'answer_id': 'single-date-answer',
             'answer_instance': 0,
             'value': '2016-03-12',
         }, self.question_store.answer_store.answers)
 
         self.assertIn({
-            'group_id': 'dates',
             'group_instance': 0,
-            'block_id': 'date-block',
             'answer_id': 'month-year-answer',
             'answer_instance': 0,
             'value': '2014-11',
@@ -127,44 +121,32 @@ class TestQuestionnaire(IntegrationTestCase):
 
         answers = [
             Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='first-name',
                 answer_instance=0,
                 value='Joe'
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='middle-names',
                 answer_instance=0,
                 value=''
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='last-name',
                 answer_instance=0,
                 value='Bloggs'
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='first-name',
                 answer_instance=1,
                 value='Bob'
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='middle-names',
                 answer_instance=1,
                 value=''
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='last-name',
                 answer_instance=1,
                 value='Seymour'
@@ -184,44 +166,32 @@ class TestQuestionnaire(IntegrationTestCase):
 
         answers = [
             Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='first-name',
                 answer_instance=0,
                 value=''
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='middle-names',
                 answer_instance=0,
                 value=''
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='last-name',
                 answer_instance=0,
                 value=''
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='first-name',
                 answer_instance=1,
                 value=''
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='middle-names',
                 answer_instance=1,
                 value=''
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='last-name',
                 answer_instance=1,
                 value=''
@@ -231,7 +201,7 @@ class TestQuestionnaire(IntegrationTestCase):
         for answer in answers:
             self.question_store.answer_store.add_or_update(answer)
 
-        remove_empty_household_members_from_answer_store(self.question_store.answer_store, 'who-lives-here')
+        remove_empty_household_members_from_answer_store(self.question_store.answer_store)
 
         for answer in answers:
             self.assertIsNone(self.question_store.answer_store.find(answer))
@@ -241,23 +211,17 @@ class TestQuestionnaire(IntegrationTestCase):
 
         answered = [
             Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='first-name',
                 answer_instance=0,
                 value='Joe'
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='middle-names',
                 answer_instance=0,
                 value=''
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='last-name',
                 answer_instance=0,
                 value='Bloggs'
@@ -266,23 +230,17 @@ class TestQuestionnaire(IntegrationTestCase):
 
         unanswered = [
             Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='first-name',
                 answer_instance=1,
                 value=''
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='middle-names',
                 answer_instance=1,
                 value=''
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='last-name',
                 answer_instance=1,
                 value=''
@@ -296,7 +254,7 @@ class TestQuestionnaire(IntegrationTestCase):
         for answer in answers:
             self.question_store.answer_store.add_or_update(answer)
 
-        remove_empty_household_members_from_answer_store(self.question_store.answer_store, 'who-lives-here')
+        remove_empty_household_members_from_answer_store(self.question_store.answer_store)
 
         for answer in answered:
             self.assertIsNotNone(self.question_store.answer_store.find(answer))
@@ -309,23 +267,17 @@ class TestQuestionnaire(IntegrationTestCase):
 
         answered = [
             Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='first-name',
                 answer_instance=0,
                 value='Joe'
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='middle-names',
                 answer_instance=0,
                 value=''
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='last-name',
                 answer_instance=0,
                 value='Bloggs'
@@ -334,44 +286,32 @@ class TestQuestionnaire(IntegrationTestCase):
 
         partially_answered = [
             Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='first-name',
                 answer_instance=1,
                 value=''
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='middle-names',
                 answer_instance=1,
                 value=''
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='last-name',
                 answer_instance=1,
                 value='Last name only'
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='first-name',
                 answer_instance=2,
                 value='First name only'
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='middle-names',
                 answer_instance=2,
                 value=''
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='last-name',
                 answer_instance=2,
                 value=''
@@ -385,7 +325,7 @@ class TestQuestionnaire(IntegrationTestCase):
         for answer in answers:
             self.question_store.answer_store.add_or_update(answer)
 
-        remove_empty_household_members_from_answer_store(self.question_store.answer_store, 'who-lives-here')
+        remove_empty_household_members_from_answer_store(self.question_store.answer_store)
 
         for answer in answered:
             self.assertIsNotNone(self.question_store.answer_store.find(answer))
@@ -398,23 +338,17 @@ class TestQuestionnaire(IntegrationTestCase):
 
         unanswered = [
             Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='first-name',
                 answer_instance=0,
                 value=''
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='middle-names',
                 answer_instance=0,
                 value='should not be saved'
             ), Answer(
-                group_id='who-lives-here',
                 group_instance=0,
-                block_id='household-composition',
                 answer_id='last-name',
                 answer_instance=0,
                 value=''
@@ -424,7 +358,7 @@ class TestQuestionnaire(IntegrationTestCase):
         for answer in unanswered:
             self.question_store.answer_store.add_or_update(answer)
 
-        remove_empty_household_members_from_answer_store(self.question_store.answer_store, 'who-lives-here')
+        remove_empty_household_members_from_answer_store(self.question_store.answer_store)
 
         for answer in unanswered:
             self.assertIsNone(self.question_store.answer_store.find(answer))

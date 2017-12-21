@@ -1,35 +1,33 @@
 from jinja2 import escape
 
-from app.questionnaire.location import Location
 
-
-def build_schema_context(metadata, aliases, answer_store, routing_path, group_instance=0):
+def build_schema_context(metadata, aliases, answer_store, answer_ids_on_path, group_instance=0):
     """
     Build questionnaire schema context containing exercise and answers
     :param metadata: user metadata
     :param aliases: alias mapping of friendly names to answer ids
     :param answer_store: all the answers for the given questionnaire
-    :param routing_path:
+    :param answer_ids_on_path: a list of the answer ids on the routing path
     :param group_instance: The group instance Id passed into the url route
     :return: questionnaire schema context
     """
     return {
         'exercise': _build_exercise(metadata),
         'respondent': _build_respondent(metadata),
-        'answers': _map_alias_to_answers(aliases, answer_store, routing_path),
+        'answers': _map_alias_to_answers(aliases, answer_store, answer_ids_on_path),
         'group_instance': group_instance,
     }
 
 
-def _map_alias_to_answers(aliases, answer_store, routing_path):
+def _map_alias_to_answers(aliases, answer_store, answer_ids_on_path):
     values = {}
     for alias, answer_info in aliases.items():
         matching_answers = []
 
-        answers = answer_store.filter(answer_id=answer_info['answer_id'], limit=True)
+        answers = answer_store.filter(answer_ids=[answer_info['answer_id']], limit=True)
 
         for answer in answers:
-            if _is_answer_in_routing_path(routing_path, answer):
+            if answer['answer_id'] in answer_ids_on_path:
                 safe_answer = json_and_html_safe(answer['value'])
                 matching_answers.append(safe_answer)
 
@@ -43,12 +41,6 @@ def _map_alias_to_answers(aliases, answer_store, routing_path):
             values[alias] = ''
 
     return values
-
-
-def _is_answer_in_routing_path(routing_path, answer):
-    location = Location(answer['group_id'], answer['group_instance'], answer['block_id'])
-
-    return location in routing_path
 
 
 def _build_exercise(metadata):

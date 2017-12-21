@@ -27,15 +27,16 @@ def get_form_for_location(schema, block_json, location, answer_store, disable_ma
         block_json = disable_mandatory_answers(block_json)
 
     if location.block_id == 'household-composition':
-        answers = answer_store.filter_by_location(location)
+        answer_ids = schema.get_answer_ids_for_block(location.block_id)
+        answers = answer_store.filter(answer_ids, location.group_instance)
 
         data = deserialise_composition_answers(answers)
 
         return generate_household_composition_form(schema, block_json, data), None
 
     elif location.block_id in ['relationships', 'household-relationships']:
-
-        answers = answer_store.filter_by_location(location)
+        answer_ids = schema.get_answer_ids_for_block(location.block_id)
+        answers = answer_store.filter(answer_ids, location.group_instance)
 
         data = deserialise_relationship_answers(answers)
 
@@ -46,8 +47,8 @@ def get_form_for_location(schema, block_json, location, answer_store, disable_ma
         return form, {'relation_instances': choices}
 
     mapped_answers = get_mapped_answers(
+        schema,
         answer_store,
-        group_id=location.group_id,
         group_instance=location.group_instance,
         block_id=location.block_id,
     )
@@ -148,7 +149,7 @@ def clear_other_text_field(data, questions_for_block):
     return form_data
 
 
-def get_mapped_answers(answer_store, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None):
+def get_mapped_answers(schema, answer_store, block_id, group_instance):
     """
     Maps the answers in an answer store to a dictionary of key, value answers. Keys include instance
     id's when the instance id is non zero.
@@ -160,8 +161,11 @@ def get_mapped_answers(answer_store, group_id=None, block_id=None, answer_id=Non
     :param group_instance:
     :return:
     """
+    answer_ids = schema.get_answer_ids_for_block(block_id)
+
     result = {}
-    for answer in answer_store.filter(group_id, block_id, answer_id, group_instance, answer_instance):
+    for answer in answer_store.filter(answer_ids=answer_ids,
+                                      group_instance=group_instance):
         answer_id = answer['answer_id']
         answer_id += '_' + str(answer['answer_instance']) if answer['answer_instance'] > 0 else ''
 

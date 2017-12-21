@@ -117,7 +117,8 @@ class PathFinder:
         repeating_rule = self.schema.get_repeat_rule(group)
 
         if repeating_rule:
-            return evaluate_repeat(repeating_rule, self.answer_store, path)
+            answer_ids_on_path = self.get_answer_ids_on_routing_path(self.schema, path)
+            return evaluate_repeat(repeating_rule, self.answer_store, answer_ids_on_path)
 
         return 1
 
@@ -152,7 +153,7 @@ class PathFinder:
         if 'when' in goto_rule.keys():
             for condition in goto_rule['when']:
                 if 'meta' not in condition.keys():
-                    self.answer_store.remove(answer_id=condition['id'],
+                    self.answer_store.remove(answer_ids=[condition['id']],
                                              answer_instance=0,)
 
     def get_routing_path(self, group_id, group_instance=0):
@@ -240,6 +241,14 @@ class PathFinder:
                 latest_location = routing_path[-1]
 
         return latest_location
+
+    @staticmethod
+    def get_answer_ids_on_routing_path(schema, path):
+        answer_ids_on_path = []
+        for location in path:
+            answer_ids_on_path.extend(schema.get_answers_by_id_for_block(location.block_id))
+
+        return answer_ids_on_path
 
     @staticmethod
     def _relationship_previous_location(current_group_instance):

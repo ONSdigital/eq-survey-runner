@@ -57,7 +57,7 @@ def convert_answers(metadata, schema, answer_store, routing_path, flushed=False)
         'metadata': _build_metadata(metadata),
     }
     if schema.json['data_version'] == '0.0.2':
-        payload['data'] = convert_answers_to_census_data(answer_store, routing_path)
+        payload['data'] = convert_answers_to_census_data(answer_store, schema, routing_path)
     elif schema.json['data_version'] == '0.0.1':
         payload['data'] = convert_answers_to_data(answer_store, schema, routing_path)
     else:
@@ -81,15 +81,12 @@ def convert_answers_to_data(answer_store, schema, routing_path):
     """
     data = OrderedDict()
     for location in routing_path:
-        answers_in_block = answer_store.filter_by_location(location)
+        answer_ids = schema.get_answer_ids_for_block(location.block_id)
+        answers_in_block = answer_store.filter(answer_ids, location.group_instance)
         answer_schema_list = schema.get_answers_by_id_for_block(location.block_id)
 
         for answer in answers_in_block:
-            try:
-                answer_schema = answer_schema_list[answer['answer_id']]
-            except KeyError:
-                logger.error('No matching answer schema found in the store')
-                continue
+            answer_schema = answer_schema_list[answer['answer_id']]
 
             value = answer['value']
 
@@ -139,7 +136,7 @@ def _get_checkbox_answer_data(answer_store, checkboxes_with_qcode, value):
 
         if option:
             if 'child_answer_id' in option:
-                filtered = answer_store.filter(answer_id=option['child_answer_id'])
+                filtered = answer_store.filter(answer_ids=[option['child_answer_id']])
 
                 if filtered.count() > 1:
                     raise Exception('Multiple answers found for {}'.format(option['child_answer_id']))
@@ -153,7 +150,7 @@ def _get_checkbox_answer_data(answer_store, checkboxes_with_qcode, value):
     return checkbox_answer_data
 
 
-def convert_answers_to_census_data(answer_store, routing_path):
+def convert_answers_to_census_data(answer_store, schema, routing_path):
     """
     Convert answers into the data format below
     'data': [
@@ -188,7 +185,8 @@ def convert_answers_to_census_data(answer_store, routing_path):
     """
     data = []
     for location in routing_path:
-        answers_in_block = answer_store.filter_by_location(location)
+        answer_ids = schema.get_answer_ids_for_block(location.block_id)
+        answers_in_block = answer_store.filter(answer_ids, location.group_instance)
         data.extend(answers_in_block)
     return data
 

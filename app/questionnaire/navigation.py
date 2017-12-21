@@ -4,6 +4,7 @@ from collections import defaultdict
 from structlog import get_logger
 
 from app.questionnaire.location import Location
+from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.rules import evaluate_repeat, evaluate_skip_conditions
 
 logger = get_logger()
@@ -98,7 +99,8 @@ class Navigation(object):
     def _build_repeating_navigation(self, repeating_rule, section, current_group_id, current_group_instance):
         group = self.schema.get_group(section['group_order'][0])
         first_location = Location(group['id'], 0, group['blocks'][0]['id'])
-        no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store, self.routing_path)
+        answer_ids_on_path = PathFinder.get_answer_ids_on_routing_path(self.schema, self.routing_path)
+        no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store, answer_ids_on_path)
 
         repeating_nav = []
 
@@ -190,7 +192,7 @@ class Navigation(object):
         link_names = defaultdict(list)
 
         for answer_id in label_answer_ids:
-            for answer in self.answer_store.filter(answer_id=answer_id).escaped():
+            for answer in self.answer_store.filter(answer_ids=[answer_id]).escaped():
                 if answer['value']:
                     link_names[answer['answer_instance']].append(answer['value'])
 
