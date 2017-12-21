@@ -46,31 +46,31 @@ class TestRsiSubmissionData(IntegrationTestCase):
         actual = self.dumpSubmission()
 
         expected = {
-            "submission": {
-                "version": "0.0.1",
-                "submitted_at": actual['submission']['submitted_at'],
-                "tx_id": actual['submission']['tx_id'],
-                "type": "uk.gov.ons.edc.eq:surveyresponse",
-                "collection": {
-                    "instrument_id": "0102",
-                    "period": "201604",
-                    "exercise_sid": "789"
+            'submission': {
+                'version': '0.0.1',
+                'submitted_at': actual['submission']['submitted_at'],
+                'tx_id': actual['submission']['tx_id'],
+                'type': 'uk.gov.ons.edc.eq:surveyresponse',
+                'collection': {
+                    'instrument_id': '0102',
+                    'period': '201604',
+                    'exercise_sid': '789'
                 },
-                "survey_id": "023",
-                "flushed": False,
-                "origin": "uk.gov.ons.edc.eq",
-                "metadata": {
-                    "ref_period_end_date": "2016-04-30",
-                    "ref_period_start_date": "2016-04-01",
-                    "user_id": "integration-test",
-                    "ru_ref": "123456789012A"
+                'survey_id': '023',
+                'flushed': False,
+                'origin': 'uk.gov.ons.edc.eq',
+                'metadata': {
+                    'ref_period_end_date': '2016-04-30',
+                    'ref_period_start_date': '2016-04-01',
+                    'user_id': 'integration-test',
+                    'ru_ref': '123456789012A'
                 },
-                "data": {
-                    "11": "01/04/2016",
-                    "12": "30/04/2016",
-                    "20": "100",
-                    "21": "50",
-                    "146": "Down streams data test"
+                'data': {
+                    '11': '01/04/2016',
+                    '12': '30/04/2016',
+                    '20': '100',
+                    '21': '50',
+                    '146': 'Down streams data test'
                 }
             }
         }
@@ -134,38 +134,38 @@ class TestRsiSubmissionData(IntegrationTestCase):
         actual = self.dumpSubmission()
 
         expected = {
-            "submission": {
-                "type": "uk.gov.ons.edc.eq:surveyresponse",
-                "submitted_at": actual['submission']['submitted_at'],
-                "version": "0.0.1",
-                "survey_id": "023",
-                "flushed": False,
-                "data": {
-                    "11": "01/04/2016",
-                    "12": "30/04/2016",
-                    "20": "100",
-                    "21": "50",
-                    "50": "5",
-                    "51": "1",
-                    "52": "2",
-                    "53": "3",
-                    "54": "4",
-                    "146": "Down streams data test",
-                    "147": "change in number of employees"
+            'submission': {
+                'type': 'uk.gov.ons.edc.eq:surveyresponse',
+                'submitted_at': actual['submission']['submitted_at'],
+                'version': '0.0.1',
+                'survey_id': '023',
+                'flushed': False,
+                'data': {
+                    '11': '01/04/2016',
+                    '12': '30/04/2016',
+                    '20': '100',
+                    '21': '50',
+                    '50': '5',
+                    '51': '1',
+                    '52': '2',
+                    '53': '3',
+                    '54': '4',
+                    '146': 'Down streams data test',
+                    '147': 'change in number of employees'
                 },
-                "collection": {
-                    "exercise_sid": "789",
-                    "instrument_id": "0112",
-                    "period": "201604"
+                'collection': {
+                    'exercise_sid': '789',
+                    'instrument_id': '0112',
+                    'period': '201604'
                 },
-                "origin": "uk.gov.ons.edc.eq",
-                "metadata": {
-                    "ref_period_end_date": "2016-04-30",
-                    "ref_period_start_date": "2016-04-01",
-                    "ru_ref": "123456789012A",
-                    "user_id": "integration-test"
+                'origin': 'uk.gov.ons.edc.eq',
+                'metadata': {
+                    'ref_period_end_date': '2016-04-30',
+                    'ref_period_start_date': '2016-04-01',
+                    'ru_ref': '123456789012A',
+                    'user_id': 'integration-test'
                 },
-                "tx_id": actual['submission']['tx_id']
+                'tx_id': actual['submission']['tx_id']
             }
         }
 

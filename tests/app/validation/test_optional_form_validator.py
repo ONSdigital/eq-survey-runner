@@ -69,7 +69,7 @@ class TestOptionalFormValidator(unittest.TestCase):
         try:
             validator(mock_form, mock_field)
         except StopValidation:
-            self.fail("Date that needs checking raised StopValidation")
+            self.fail('Date that needs checking raised StopValidation')
 
     def test_month_year_optional_missing_year(self):
 
@@ -90,4 +90,4 @@ class TestOptionalFormValidator(unittest.TestCase):
         try:
             validator(mock_form, mock_field)
         except StopValidation:
-            self.fail("Date that needs checking raised StopValidation")
+            self.fail('Date that needs checking raised StopValidation')

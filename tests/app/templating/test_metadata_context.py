@@ -8,6 +8,7 @@ STRING_PROPERTIES = 'user_id', 'form_type', 'collection_exercise_sid',\
 
 DATE_PROPERTIES = 'ref_p_start_date', 'ref_p_end_date', 'return_by'
 
+
 class TestMetadataContext(SurveyRunnerTestCase):
     def setUp(self):
         super().setUp()

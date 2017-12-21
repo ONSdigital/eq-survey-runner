@@ -11,7 +11,7 @@ class TestLogin(IntegrationTestCase):
 
     def test_login_with_no_token_should_be_unauthorized(self):
         # Given
-        token = ""
+        token = ''
 
         # When
         self.get('/session?token=' + token)
@@ -21,7 +21,7 @@ class TestLogin(IntegrationTestCase):
 
     def test_login_with_invalid_token_should_be_forbidden(self):
         # Given
-        token = "123"
+        token = '123'
 
         # When
         self.get('/session?token=' + token)
@@ -97,7 +97,7 @@ class TestLogin(IntegrationTestCase):
 
     def test_login_token_with_survey_url_should_redirect_to_survey(self):
 
-        survey_url = "http://eq-survey-register/my-test-schema"
+        survey_url = 'http://eq-survey-register/my-test-schema'
 
         # Given
         token = self.token_generator.create_token_with_survey_url('textarea', 'test', survey_url)
@@ -111,7 +111,7 @@ class TestLogin(IntegrationTestCase):
 
     def test_login_token_with_incorrect_survey_url_results_in_404(self):
 
-        survey_url = "http://eq-survey-register/my-test-schema-not-found"
+        survey_url = 'http://eq-survey-register/my-test-schema-not-found'
 
         # Given
         token = self.token_generator.create_token_with_survey_url('textarea', 'test', survey_url)
@@ -126,9 +126,9 @@ class TestLogin(IntegrationTestCase):
     @staticmethod
     @urlmatch(netloc=r'eq-survey-register', path=r'\/my-test-schema')
     def survey_url_mock(_url, _request):
-        schema_path = get_schema_file_path("1_0205.json")
+        schema_path = get_schema_file_path('1_0205.json')
 
-        with open(schema_path, encoding="utf8") as json_data:
+        with open(schema_path, encoding='utf8') as json_data:
             return json_data.read()
 
     @staticmethod

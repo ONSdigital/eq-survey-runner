@@ -9,7 +9,7 @@ class TestQuestionnaireInterstitial(IntegrationTestCase):
         self.launchSurvey('test', 'interstitial_page')
         self.post(action='start_questionnaire')
         self.post({'favourite-breakfast': 'Cereal'})
-        self.assertInPage("Continue", "The content of the interstitual page does not contain Continue as the button text")
+        self.assertInPage('Continue', 'The content of the interstitual page does not contain Continue as the button text')
 
     def test_interstitial_page_can_continue_and_submit(self):
         self.launchSurvey('test', 'interstitial_page')

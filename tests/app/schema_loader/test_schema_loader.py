@@ -1,5 +1,4 @@
 from app.utilities.schema import load_schema_from_params
-
 from tests.app.app_context_test_case import AppContextTestCase
 
 

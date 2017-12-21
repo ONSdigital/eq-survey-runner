@@ -8,7 +8,7 @@ class TestRenderPercentageWidget(IntegrationTestCase):
         self.launchSurvey('test', 'percentage')
 
     def test_percentage_widget_has_icon(self):
-        self.assertRegexPage('span.+input\-type\_\_type.+\%\<\/span\>')
+        self.assertRegexPage(r'span.+input\-type\_\_type.+\%\<\/span\>')
 
     def test_entering_invalid_number_displays_error(self):
         self.post({'answer': 'not a percentage'})
@@ -34,7 +34,7 @@ class TestRenderPercentageWidget(IntegrationTestCase):
         self.post({'answer': '50'})
         self.assertStatusOK()
         self.assertInUrl('summary')
-        self.assertRegexPage('summary\_\_answer-text.+\>50\%\<\/div\>')
+        self.assertRegexPage(r'summary\_\_answer-text.+\>50\%\<\/div\>')
 
     def test_description_label_is_rendered(self):
         self.assertInPage('Enter percentage of growth')

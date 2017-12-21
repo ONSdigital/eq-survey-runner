@@ -24,8 +24,8 @@ class TestMaxTextAreaField(unittest.TestCase):
 
         try:
             integer_field.process_formdata(['NonInteger'])
-        except:
-            self.fail("Exceptions should not thrown by CustomIntegerField")
+        except IndexError:
+            self.fail('Exceptions should not thrown by CustomIntegerField')
 
     def test_decimal_field(self):
         decimal_field = CustomDecimalField(_form=self.mock_form, _name='aName')
@@ -33,5 +33,5 @@ class TestMaxTextAreaField(unittest.TestCase):
 
         try:
             decimal_field.process_formdata(['NonDecimal'])
-        except:
-            self.fail("Exception should not be thrown by CustomDecimalField")
+        except IndexError:
+            self.fail('Exception should not be thrown by CustomDecimalField')

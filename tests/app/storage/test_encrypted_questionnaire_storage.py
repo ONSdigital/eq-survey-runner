@@ -81,5 +81,6 @@ class TestEncryptedQuestionnaireStorage(AppContextTestCase):
         self.storage.delete()
         self.assertEqual((None, None), self.storage.get_user_data())  # pylint: disable=protected-access
 
+
 if __name__ == '__main__':
     unittest.main()

@@ -31,8 +31,8 @@ class Feedback(IntegrationTestCase):
     def test_correct_feeback_link_in_page(self):
         soup = self.getHtmlSoup()
         links = soup.find_all('a')
-        feedbackLinks = [link['href'] for link in links if FEEDBACK_FORM_URL in link['href']]
-        self.assertGreaterEqual(len(feedbackLinks), 1)
+        feedback_links = [link['href'] for link in links if FEEDBACK_FORM_URL in link['href']]
+        self.assertGreaterEqual(len(feedback_links), 1)
 
     def test_get_feedback_page(self):
         self.get(FEEDBACK_FORM_URL)

@@ -122,5 +122,6 @@ class TestUserIDGenerator(unittest.TestCase):
         with self.assertRaises(ValueError):
             UserIDGenerator(self._iterations, '', None)
 
+
 if __name__ == '__main__':
     unittest.main()

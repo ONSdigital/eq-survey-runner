@@ -393,5 +393,6 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             parse_metadata(jwt)
         self.assertIn('incorrect data in token', ite.exception.value)
 
+
 if __name__ == '__main__':
     unittest.main()

@@ -1,4 +1,3 @@
-import unittest
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -43,7 +42,7 @@ class TestQuestionnairePageTitles(IntegrationTestCase):
         # When submit
         self.post(action=None)
         # Then
-        self.assertEqualPageTitle('We\'ve received your answers - Final confirmation to submit')
+        self.assertEqualPageTitle("We\'ve received your answers - Final confirmation to submit")
 
     def test_should_have_survey_in_page_title_when_sign_out(self):
         # Given

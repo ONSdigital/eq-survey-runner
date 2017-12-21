@@ -73,4 +73,4 @@ class TestDateRangeValidator(unittest.TestCase):
         try:
             validator(mock_form, period_from, period_to)
         except ValidationError:
-            self.fail("Valid date raised ValidationError")
+            self.fail('Valid date raised ValidationError')

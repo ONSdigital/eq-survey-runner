@@ -48,18 +48,22 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
         self._key_store = KeyStore({
             'keys': {
-                EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID: {'purpose': KEY_PURPOSE_AUTHENTICATION,
-                                                             'type': 'private',
-                                                             'value': get_file_contents('third-party/sdc-rrm-authentication-signing-private-v1.pem')},
-                SR_USER_AUTHENTICATION_PUBLIC_KEY_KID: {'purpose': KEY_PURPOSE_AUTHENTICATION,
-                                                        'type': 'public',
-                                                        'value': get_file_contents('third-party/sdc-sr-authentication-encryption-public-v1.pem')},
-                EQ_SUBMISSION_SDX_PRIVATE_KEY: {'purpose': KEY_PURPOSE_SUBMISSION,
-                                                'type': 'private',
-                                                'value': get_file_contents('third-party/sdc-sdx-submission-encryption-private-v1.pem')},
-                EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY: {'purpose': KEY_PURPOSE_SUBMISSION,
-                                                       'type': 'public',
-                                                       'value': get_file_contents('sdc-sr-submission-signing-private-v1.pem')},
+                EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID: {
+                    'purpose': KEY_PURPOSE_AUTHENTICATION,
+                    'type': 'private',
+                    'value': get_file_contents('third-party/sdc-rrm-authentication-signing-private-v1.pem')},
+                SR_USER_AUTHENTICATION_PUBLIC_KEY_KID: {
+                    'purpose': KEY_PURPOSE_AUTHENTICATION,
+                    'type': 'public',
+                    'value': get_file_contents('third-party/sdc-sr-authentication-encryption-public-v1.pem')},
+                EQ_SUBMISSION_SDX_PRIVATE_KEY: {
+                    'purpose': KEY_PURPOSE_SUBMISSION,
+                    'type': 'private',
+                    'value': get_file_contents('third-party/sdc-sdx-submission-encryption-private-v1.pem')},
+                EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY: {
+                    'purpose': KEY_PURPOSE_SUBMISSION,
+                    'type': 'public',
+                    'value': get_file_contents('sdc-sr-submission-signing-private-v1.pem')},
             }
         })
 
@@ -192,7 +196,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         self.assertRegex(text=self.getResponseData(), expected_regex=regex, msg=message)
 
     def assertEqualPageTitle(self, title):
-        self.assertEqual(self.getHtmlSoup().title.string, title)   # pylint: disable=no-member
+        self.assertEqual(self.getHtmlSoup().title.string, title)  # pylint: disable=no-member
 
     def assertStatusOK(self):
         self.assertStatusCode(200)
