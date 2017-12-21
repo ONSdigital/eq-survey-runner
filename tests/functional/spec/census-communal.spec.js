@@ -67,7 +67,7 @@ describe('Example Test', function() {
   });
 
 
-  it('Given Respondent Home has identified the respondent should have the Communal Establishment Questionnaire, When I complete the EQ with 0 bed spaces, Then i should be routed to further contact', function() {
+  it('Given Respondent Home has identified the respondent should have the Communal Establishment Questionnaire, When I complete the EQ with 2 bed spaces, Then i should be routed to UsualResidentsPage', function() {
     return helpers.openQuestionnaire('census_communal.json').then(() => {
         return browser
           .click(EstablishmentTypePage.hotel())

@@ -17,20 +17,25 @@ def evaluate_rule(when, answer_value):
     match_value = when['value'] if 'value' in when else None
     condition = when['condition']
 
-    answer_to_test = str(answer_value) if condition in ['equals', 'not equals'] and not isinstance(answer_value, bool) else answer_value
+    result = False
 
     # Evaluate the condition on the routing rule
-    if condition == 'equals' and match_value == answer_to_test:
-        return True
-    elif condition == 'not equals' and match_value != answer_to_test:
-        return True
-    elif condition == 'contains' and isinstance(answer_to_test, list) and match_value in answer_to_test:
-        return True
-    elif condition == 'not contains' and isinstance(answer_to_test, list) and match_value not in answer_to_test:
-        return True
+    if condition == 'equals' and match_value == answer_value:
+        result = True
+    elif condition == 'not equals' and match_value != answer_value:
+        result = True
+    elif condition == 'contains' and isinstance(answer_value, list) and match_value in answer_value:
+        result = True
+    elif condition == 'not contains' and isinstance(answer_value, list) and match_value not in answer_value:
+        result = True
     elif condition == 'not set':
-        return answer_to_test is None
-    return False
+        result = answer_value is None
+    elif condition == 'greater than' and isinstance(answer_value, int) and answer_value > match_value:
+        result = True
+    elif condition == 'less than' and isinstance(answer_value, int) and answer_value < match_value:
+        result = True
+
+    return result
 
 
 def evaluate_goto(goto_rule, metadata, answer_store, group_instance):

@@ -1,0 +1,69 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "001",
+    "title": "Test Routing Number Greater Than",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "description": "A test survey for routing based on a number greater than",
+    "groups": [{
+        "blocks": [{
+                "type": "Questionnaire",
+                "id": "number-question",
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "answer",
+                        "mandatory": true,
+                        "alias": "answer",
+                        "type": "Number"
+                    }],
+                    "id": "question",
+                    "title": "Enter the number greater than 123",
+                    "type": "General"
+                }],
+                "title": "Number Routing Greater Than",
+                "routing_rules": [{
+                        "goto": {
+                            "id": "correct-answer",
+                            "when": [{
+                                "id": "answer",
+                                "condition": "greater than",
+                                "value": 123
+                            }]
+                        }
+                    },
+                    {
+                        "goto": {
+                            "id": "incorrect-answer"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "Interstitial",
+                "id": "incorrect-answer",
+                "title": "You entered a number that was not greater than 123",
+                "description": "You were asked to enter a number greater than <em>123</em> but you entered <em>{{answers.answer}}</em>.",
+                "routing_rules": [{
+                    "goto": {
+                        "id": "summary"
+                    }
+                }]
+            },
+            {
+                "type": "Interstitial",
+                "id": "correct-answer",
+                "title": "You entered a number greater than 123",
+                "description": "You were asked to enter a number greater than <em>123</em> and you entered <em>{{answers.answer}}</em>."
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
+            }
+        ],
+        "id": "group",
+        "title": ""
+    }]
+}
