@@ -4,8 +4,6 @@ from datetime import datetime
 from jinja2 import escape
 import simplejson as json
 
-from app.helpers.schema_helper import SchemaHelper
-
 
 class Answer(object):
     def __init__(self, group_id=None, block_id=None, answer_id=None, value=None, group_instance=0, answer_instance=0, location=None):
@@ -251,13 +249,13 @@ class AnswerStore(object):
         """
         return hash(json.dumps(self.answers, sort_keys=True))
 
-    def upgrade(self, current_version, schema_json):
+    def upgrade(self, current_version, schema):
 
         # Upgrade from version 0 to version 1
         if current_version == 0:
             # Update Date formats
             for answer in self.answers:
-                answer_schema = SchemaHelper.get_answer_schema_for_answer_id(schema_json, answer['block_id'], answer['answer_id'])
+                answer_schema = schema.get_answer_schema_for_answer_id(answer['block_id'], answer['answer_id'])
 
                 if answer_schema:
                     if answer_schema['type'] == 'Date':

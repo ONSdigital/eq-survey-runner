@@ -13,12 +13,12 @@ logger = get_logger()
 def with_session_timeout(func):
     def session_wrapper(*args, **kwargs):
         session_timeout = current_app.config['EQ_SESSION_TIMEOUT_SECONDS']
-        schema_session_timeout = g.schema_json.get('session_timeout_in_seconds')
+        schema_session_timeout = g.schema.json.get('session_timeout_in_seconds')
         if schema_session_timeout is not None and \
            schema_session_timeout < current_app.config['EQ_SESSION_TIMEOUT_SECONDS']:
             session_timeout = schema_session_timeout
 
-        session_timeout_prompt = g.schema_json.get('session_prompt_in_seconds') or \
+        session_timeout_prompt = g.schema.json.get('session_prompt_in_seconds') or \
             current_app.config['EQ_SESSION_TIMEOUT_PROMPT_SECONDS']
 
         return func(
@@ -67,19 +67,19 @@ def with_questionnaire_url_prefix(func):
 
 def with_legal_basis(func):
     def legal_basis_wrapper(*args, **kwargs):
-        return func(*args, legal_basis=g.schema_json['legal_basis'], **kwargs)
+        return func(*args, legal_basis=g.schema.json['legal_basis'], **kwargs)
 
     return legal_basis_wrapper
 
 
 def render_template(template, **kwargs):
-    theme = g.schema_json.get('theme')
+    theme = g.schema.json.get('theme')
     template = '{}.html'.format(template).lower()
 
     return render_theme_template(
         theme,
         template,
-        survey_title=TemplateRenderer.safe_content(g.schema_json['title']),
-        survey_id=g.schema_json['survey_id'],
+        survey_title=TemplateRenderer.safe_content(g.schema.json['title']),
+        survey_id=g.schema.json['survey_id'],
         **kwargs
     )

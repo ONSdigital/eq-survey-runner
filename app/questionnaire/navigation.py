@@ -3,7 +3,6 @@ from collections import defaultdict
 
 from structlog import get_logger
 
-from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
 from app.questionnaire.rules import evaluate_repeat, evaluate_skip_conditions
 
@@ -15,8 +14,8 @@ class Navigation(object):
     Reads navigation config from the schema and returns collections of dicts that describe
     completion status of each group
     """
-    def __init__(self, survey_json, answer_store, metadata, completed_blocks, routing_path):
-        self.survey_json = survey_json
+    def __init__(self, schema, answer_store, metadata, completed_blocks, routing_path):
+        self.schema = schema
         self.metadata = metadata
         self.answer_store = answer_store
         self.completed_blocks = completed_blocks
@@ -31,9 +30,11 @@ class Navigation(object):
         :return:
         """
 
-        navigation_block = self.survey_json.get('navigation')
+        navigation_block = self.schema.json.get('navigation')
         if navigation_block is None or navigation_block.get('visible', True) is False:
             return None
+
+        summary_or_confirmation_blocks = self.schema.get_summary_and_confirmation_blocks()
 
         navigation = []
 
@@ -43,14 +44,14 @@ class Navigation(object):
                 continue
 
             first_group_id = non_skipped_groups[0]
-            first_block_id = SchemaHelper.get_first_block_id_for_group(self.survey_json, first_group_id)
+            first_block_id = self.schema.get_first_block_id_for_group(first_group_id)
 
-            if SchemaHelper.is_summary_or_confirmation(SchemaHelper.get_block(self.survey_json, first_block_id)) \
+            if first_block_id in summary_or_confirmation_blocks \
                     and self._can_reach_summary_confirmation(first_group_id, first_block_id) is False:
                 continue
 
-            repeating_rule = SchemaHelper.get_repeat_rule(
-                SchemaHelper.get_group(self.survey_json, first_group_id))
+            repeating_rule = self.schema.get_repeat_rule(
+                self.schema.get_group(first_group_id))
             if repeating_rule:
                 navigation.extend(self._build_repeating_navigation(repeating_rule, section, current_group_id,
                                                                    current_group_instance))
@@ -69,8 +70,8 @@ class Navigation(object):
         return non_skipped_groups
 
     def _should_skip_group(self, group_id):
-        group = SchemaHelper.get_group(self.survey_json, group_id)
-        skip_conditions = SchemaHelper.get_skip_condition(group)
+        group = self.schema.get_group(group_id)
+        skip_conditions = group.get('skip_conditions')
 
         if skip_conditions:
             return evaluate_skip_conditions(skip_conditions, self.metadata, self.answer_store)
@@ -95,7 +96,7 @@ class Navigation(object):
         return self._generate_item(section['title'], is_completed, first_location, is_highlighted)
 
     def _build_repeating_navigation(self, repeating_rule, section, current_group_id, current_group_instance):
-        group = SchemaHelper.get_group(self.survey_json, section['group_order'][0])
+        group = self.schema.get_group(section['group_order'][0])
         first_location = Location(group['id'], 0, group['blocks'][0]['id'])
         no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store, self.routing_path)
 

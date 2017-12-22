@@ -4,7 +4,6 @@ from wtforms import FieldList, Form, FormField
 
 from app.data_model.answer_store import Answer
 from app.forms.fields import get_string_field
-from app.helpers.schema_helper import SchemaHelper
 
 from werkzeug.datastructures import MultiDict
 
@@ -12,16 +11,16 @@ from werkzeug.datastructures import MultiDict
 logger = get_logger()
 
 
-def get_name_form(block_json, error_messages):
+def get_name_form(schema, block_json):
     class NameForm(Form):
         pass
 
-    for question in SchemaHelper.get_questions_for_block(block_json):
+    for question in schema.get_questions_for_block(block_json):
         for answer in question['answers']:
             guidance = answer.get('guidance', '')
             label = answer.get('label') or question.get('title')
 
-            field = get_string_field(answer, label, guidance, error_messages)
+            field = get_string_field(answer, label, guidance, schema.error_messages)
 
             setattr(NameForm, answer['id'], field)
 
@@ -64,10 +63,10 @@ def map_field_errors(errors, index):
     return ordered_errors
 
 
-def generate_household_composition_form(block_json, data, error_messages):
+def generate_household_composition_form(schema, block_json, data):
     class HouseHoldCompositionForm(FlaskForm):
         question_errors = {}
-        household = FieldList(FormField(get_name_form(block_json, error_messages)), min_entries=1)
+        household = FieldList(FormField(get_name_form(schema, block_json)), min_entries=1)
 
         def map_errors(self):
             ordered_errors = []

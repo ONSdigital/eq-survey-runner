@@ -1,6 +1,7 @@
 import unittest
 
 from app.data_model.answer_store import Answer, AnswerStore
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.location import Location
 
 
@@ -398,7 +399,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.store = AnswerStore(existing_answers=answers)
 
-        self.store.upgrade(current_version=0, schema_json=questionnaire)
+        self.store.upgrade(current_version=0, schema=QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.answers[0]['value'], '2017-12-25')
 
@@ -436,7 +437,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.store = AnswerStore(existing_answers=answers)
 
-        self.store.upgrade(current_version=0, schema_json=questionnaire)
+        self.store.upgrade(current_version=0, schema=QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.answers[0]['value'], '2017-12')
 
@@ -470,7 +471,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.store = AnswerStore(existing_answers=answers)
 
-        self.store.upgrade(current_version=0, schema_json=questionnaire)
+        self.store.upgrade(current_version=0, schema=QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.answers[0]['value'], '12/2017')
 
@@ -497,6 +498,6 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.store = AnswerStore(existing_answers=answers)
 
-        self.store.upgrade(current_version=0, schema_json=questionnaire)
+        self.store.upgrade(current_version=0, schema=QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.answers[0]['value'], '12/2017')

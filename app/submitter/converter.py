@@ -2,8 +2,6 @@ from collections import OrderedDict
 from datetime import datetime, timezone
 from structlog import get_logger
 
-from app.helpers.schema_helper import SchemaHelper
-
 logger = get_logger()
 
 
@@ -16,11 +14,11 @@ class DataVersionError(Exception):
         return 'Data version {} not supported'.format(self.version)
 
 
-def convert_answers(metadata, questionnaire_json, answer_store, routing_path, flushed=False):
+def convert_answers(metadata, schema, answer_store, routing_path, flushed=False):
     """
     Create the JSON answer format for down stream processing
     :param metadata: metadata for the questionnaire
-    :param questionnaire_json: the questionnaire json
+    :param schema: QuestionnaireSchema class with populated schema json
     :param answer_store: the users answers
     :param routing_path: the path followed by the user when answering the questionnaire
     :param flushed: True when system submits the users answers, False when user submits there own answers
@@ -45,12 +43,12 @@ def convert_answers(metadata, questionnaire_json, answer_store, routing_path, fl
         'data': {}
       }
     """
-    survey_id = questionnaire_json['survey_id']
+    survey_id = schema.json['survey_id']
     submitted_at = datetime.now(timezone.utc)
     payload = {
         'tx_id': metadata['tx_id'],
         'type': 'uk.gov.ons.edc.eq:surveyresponse',
-        'version': questionnaire_json['data_version'],
+        'version': schema.json['data_version'],
         'origin': 'uk.gov.ons.edc.eq',
         'survey_id': survey_id,
         'flushed': flushed,
@@ -58,18 +56,18 @@ def convert_answers(metadata, questionnaire_json, answer_store, routing_path, fl
         'collection': _build_collection(metadata),
         'metadata': _build_metadata(metadata),
     }
-    if questionnaire_json['data_version'] == '0.0.2':
+    if schema.json['data_version'] == '0.0.2':
         payload['data'] = convert_answers_to_census_data(answer_store, routing_path)
-    elif questionnaire_json['data_version'] == '0.0.1':
-        payload['data'] = convert_answers_to_data(answer_store, questionnaire_json, routing_path)
+    elif schema.json['data_version'] == '0.0.1':
+        payload['data'] = convert_answers_to_data(answer_store, schema, routing_path)
     else:
-        raise DataVersionError(questionnaire_json['data_version'])
+        raise DataVersionError(schema.json['data_version'])
 
     logger.debug('converted answer ready for submission')
     return payload
 
 
-def convert_answers_to_data(answer_store, questionnaire_json, routing_path):
+def convert_answers_to_data(answer_store, schema, routing_path):
     """
     Convert answers into the data format below
     'data': {
@@ -77,15 +75,14 @@ def convert_answers_to_data(answer_store, questionnaire_json, routing_path):
           '002': '30-03-2016'
         }
     :param answer_store: questionnaire answers
-    :param questionnaire_json: The survey json
+    :param schema: QuestionnaireSchema class with popuated schema json
     :param routing_path: the path followed in the questionnaire
     :return: data in a formatted form
     """
     data = OrderedDict()
     for location in routing_path:
         answers_in_block = answer_store.filter_by_location(location)
-        block_json = SchemaHelper.get_block(questionnaire_json, location.block_id)
-        answer_schema_list = SchemaHelper.get_answers_by_id_for_block(block_json)
+        answer_schema_list = schema.get_answers_by_id_for_block(location.block_id)
 
         for answer in answers_in_block:
             try:

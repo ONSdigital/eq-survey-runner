@@ -1,9 +1,8 @@
 import unittest
 
 from app.helpers.form_helper import get_mapped_answers, get_form_for_location, post_form_for_location
-from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
-from app.utilities.schema import load_schema_file
+from app.utilities.schema import load_schema_from_params
 from app.data_model.answer_store import AnswerStore, Answer
 from app.validation.validators import DateRequired, OptionalForm
 
@@ -16,13 +15,14 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_for_block_location(self):
         with self.test_request_context():
-            survey = load_schema_file('test_0102.json')
+            schema = load_schema_from_params('test', '0102')
 
-            block_json = SchemaHelper.get_block(survey, 'reporting-period')
-            location = SchemaHelper.get_first_location(survey)
-            error_messages = SchemaHelper.get_messages(survey)
+            block_json = schema.get_block('reporting-period')
+            location = Location(group_id='rsi',
+                                group_instance=0,
+                                block_id='introduction')
 
-            form, _ = get_form_for_location(block_json, location, AnswerStore(), error_messages)
+            form, _ = get_form_for_location(schema, block_json, location, AnswerStore())
 
             self.assertTrue(hasattr(form, 'period-to'))
             self.assertTrue(hasattr(form, 'period-from'))
@@ -35,14 +35,15 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_and_disable_mandatory_answers(self):
         with self.test_request_context():
-            survey = load_schema_file('test_0102.json')
+            schema = load_schema_from_params('test', '0102')
 
-            block_json = SchemaHelper.get_block(survey, 'reporting-period')
-            location = SchemaHelper.get_first_location(survey)
-            error_messages = SchemaHelper.get_messages(survey)
+            block_json = schema.get_block('reporting-period')
+            location = Location(group_id='rsi',
+                                group_instance=0,
+                                block_id='introduction')
 
-            form, _ = get_form_for_location(block_json, location,
-                                            AnswerStore(), error_messages, disable_mandatory=True)
+            form, _ = get_form_for_location(schema, block_json, location,
+                                            AnswerStore(), disable_mandatory=True)
 
             self.assertTrue(hasattr(form, 'period-from'))
             self.assertTrue(hasattr(form, 'period-to'))
@@ -55,13 +56,13 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_deserialises_dates(self):
         with self.test_request_context():
-            survey = load_schema_file('test_0102.json')
+            schema = load_schema_from_params('test', '0102')
 
-            block_json = SchemaHelper.get_block(survey, 'reporting-period')
+            block_json = schema.get_block('reporting-period')
             location = Location('rsi', 0, 'reporting-period')
-            error_messages = SchemaHelper.get_messages(survey)
+            error_messages = schema.error_messages
 
-            form, _ = get_form_for_location(block_json, location, AnswerStore([
+            form, _ = get_form_for_location(schema, block_json, location, AnswerStore([
                 {
                     'answer_id': 'period-from',
                     'group_id': 'rsi',
@@ -98,13 +99,15 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_deserialises_month_year_dates(self):
         with self.test_request_context():
-            survey = load_schema_file('test_dates.json')
+            schema = load_schema_from_params('test', 'dates')
 
-            block_json = SchemaHelper.get_block(survey, 'date-block')
-            location = SchemaHelper.get_first_location(survey)
-            error_messages = SchemaHelper.get_messages(survey)
+            block_json = schema.get_block('date-block')
+            location = Location(group_id='dates',
+                                group_instance=0,
+                                block_id='date-block')
+            error_messages = schema.error_messages
 
-            form, _ = get_form_for_location(block_json, location, AnswerStore([
+            form, _ = get_form_for_location(schema, block_json, location, AnswerStore([
                 {
                     'answer_id': 'month-year-answer',
                     'group_id': 'dates',
@@ -126,13 +129,16 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_deserialises_lists(self):
         with self.test_request_context():
-            survey = load_schema_file('test_checkbox.json')
+            schema = load_schema_from_params('test', 'checkbox')
 
-            block_json = SchemaHelper.get_block(survey, 'mandatory-checkbox')
-            location = SchemaHelper.get_first_location(survey)
-            error_messages = SchemaHelper.get_messages(survey)
+            block_json = schema.get_block('mandatory-checkbox')
+            location = Location(group_id='checkboxes',
+                                group_instance=0,
+                                block_id='mandatory-checkbox')
 
-            form, _ = get_form_for_location(block_json, location, AnswerStore([
+            error_messages = schema.error_messages
+
+            form, _ = get_form_for_location(schema, block_json, location, AnswerStore([
                 {
                     'answer_id': 'mandatory-checkbox-answer',
                     'group_id': 'checkboxes',
@@ -151,20 +157,21 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_for_block_location(self):
         with self.test_request_context():
-            survey = load_schema_file('test_0102.json')
+            schema = load_schema_from_params('test', '0102')
 
-            block_json = SchemaHelper.get_block(survey, 'reporting-period')
-            location = SchemaHelper.get_first_location(survey)
-            error_messages = SchemaHelper.get_messages(survey)
+            block_json = schema.get_block('reporting-period')
+            location = Location(group_id='rsi',
+                                group_instance=0,
+                                block_id='introduction')
 
-            form, _ = post_form_for_location(block_json, location, AnswerStore(survey), {
+            form, _ = post_form_for_location(schema, block_json, location, AnswerStore(), {
                 'period-from-day': '1',
                 'period-from-month': '05',
                 'period-from-year': '2015',
                 'period-to-day': '1',
                 'period-to-month': '09',
                 'period-to-year': '2017',
-            }, error_messages)
+            })
 
             self.assertTrue(hasattr(form, 'period-to'))
             self.assertTrue(hasattr(form, 'period-from'))
@@ -188,14 +195,15 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_and_disable_mandatory(self):
         with self.test_request_context():
-            survey = load_schema_file('test_0102.json')
+            schema = load_schema_from_params('test', '0102')
 
-            block_json = SchemaHelper.get_block(survey, 'reporting-period')
-            location = SchemaHelper.get_first_location(survey)
-            error_messages = SchemaHelper.get_messages(survey)
+            block_json = schema.get_block('reporting-period')
+            location = Location(group_id='rsi',
+                                group_instance=0,
+                                block_id='introduction')
 
-            form, _ = post_form_for_location(block_json, location, AnswerStore(survey), {
-            }, error_messages, disable_mandatory=True)
+            form, _ = post_form_for_location(schema, block_json, location, AnswerStore(), {
+            }, disable_mandatory=True)
 
             self.assertTrue(hasattr(form, 'period-from'))
             self.assertTrue(hasattr(form, 'period-to'))
@@ -208,13 +216,13 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_for_household_composition(self):
         with self.test_request_context():
-            survey = load_schema_file('census_household.json')
+            schema = load_schema_from_params('census', 'household')
 
-            block_json = SchemaHelper.get_block(survey, 'household-composition')
+            block_json = schema.get_block('household-composition')
             location = Location('who-lives-here', 0, 'household-composition')
-            error_messages = SchemaHelper.get_messages(survey)
+            error_messages = schema.error_messages
 
-            form, _ = get_form_for_location(block_json, location, AnswerStore(), error_messages)
+            form, _ = get_form_for_location(schema, block_json, location, AnswerStore(), error_messages)
 
             self.assertTrue(hasattr(form, 'household'))
             self.assertEqual(len(form.household.entries), 1)
@@ -227,18 +235,17 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_for_household_composition(self):
         with self.test_request_context():
-            survey = load_schema_file('census_household.json')
+            schema = load_schema_from_params('census', 'household')
 
-            block_json = SchemaHelper.get_block(survey, 'household-composition')
+            block_json = schema.get_block('household-composition')
             location = Location('who-lives-here', 0, 'household-composition')
-            error_messages = SchemaHelper.get_messages(survey)
 
-            form, _ = post_form_for_location(block_json, location, AnswerStore(survey), {
+            form, _ = post_form_for_location(schema, block_json, location, AnswerStore(), {
                 'household-0-first-name': 'Joe',
                 'household-0-last-name': '',
                 'household-1-first-name': 'Bob',
                 'household-1-last-name': 'Seymour',
-            }, error_messages)
+            })
 
             self.assertEqual(len(form.household.entries), 2)
             self.assertEqual(form.household.entries[0].data, {
@@ -254,11 +261,11 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_for_household_relationship(self):
         with self.test_request_context():
-            survey = load_schema_file('census_household.json')
+            schema = load_schema_from_params('census', 'household')
 
-            block_json = SchemaHelper.get_block(survey, 'household-relationships')
+            block_json = schema.get_block('household-relationships')
             location = Location('who-lives-here-relationship', 0, 'household-relationships')
-            error_messages = SchemaHelper.get_messages(survey)
+            error_messages = schema.error_messages
 
             answer_store = AnswerStore([
                 {
@@ -291,9 +298,9 @@ class TestFormHelper(AppContextTestCase):
                     'answer_instance': 1,
                 }
             ])
-            form, _ = get_form_for_location(block_json, location, answer_store, error_messages)
+            form, _ = get_form_for_location(schema, block_json, location, answer_store, error_messages)
 
-            answer = SchemaHelper.get_first_answer_for_block(block_json)
+            answer = schema.get_answers_for_block('household-relationships')[0]
 
             self.assertTrue(hasattr(form, answer['id']))
 
@@ -304,11 +311,10 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_for_household_relationship(self):
         with self.test_request_context():
-            survey = load_schema_file('census_household.json')
+            schema = load_schema_from_params('census', 'household')
 
-            block_json = SchemaHelper.get_block(survey, 'household-relationships')
+            block_json = schema.get_block('household-relationships')
             location = Location('who-lives-here-relationship', 0, 'household-relationships')
-            error_messages = SchemaHelper.get_messages(survey)
 
             answer_store = AnswerStore([
                 {
@@ -334,11 +340,11 @@ class TestFormHelper(AppContextTestCase):
                 }
             ])
 
-            answer = SchemaHelper.get_first_answer_for_block(block_json)
+            answer = schema.get_answers_for_block('household-relationships')[0]
 
-            form, _ = post_form_for_location(block_json, location, answer_store, MultiDict({
+            form, _ = post_form_for_location(schema, block_json, location, answer_store, MultiDict({
                 '{answer_id}-0'.format(answer_id=answer['id']): '3'
-            }), error_messages)
+            }))
 
             self.assertTrue(hasattr(form, answer['id']))
 
@@ -352,11 +358,10 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_for_radio_other_not_selected(self):
         with self.test_request_context():
-            survey = load_schema_file('test_radio_mandatory_with_mandatory_other.json')
+            schema = load_schema_from_params('test', 'radio_mandatory_with_mandatory_other')
 
-            block_json = SchemaHelper.get_block(survey, 'radio-mandatory')
+            block_json = schema.get_block('radio-mandatory')
             location = Location('radio', 0, 'radio-mandatory')
-            error_messages = SchemaHelper.get_messages(survey)
 
             answer_store = AnswerStore([
                 {
@@ -373,25 +378,22 @@ class TestFormHelper(AppContextTestCase):
                 }
             ])
 
-            answer = SchemaHelper.get_first_answer_for_block(block_json)
-
-            form, _ = post_form_for_location(block_json, location, answer_store, MultiDict({
-                '{answer_id}'.format(answer_id=answer['id']): 'Bacon',
+            form, _ = post_form_for_location(schema, block_json, location, answer_store, MultiDict({
+                'radio-mandatory-answer': 'Bacon',
                 'other-answer-mandatory': 'Old other text'
-            }), error_messages)
+            }))
 
-            self.assertTrue(hasattr(form, answer['id']))
+            self.assertTrue(hasattr(form, 'radio-mandatory-answer'))
 
             other_text_field = getattr(form, 'other-answer-mandatory')
             self.assertEqual(other_text_field.data, '')
 
     def test_post_form_for_radio_other_selected(self):
         with self.test_request_context():
-            survey = load_schema_file('test_radio_mandatory_with_mandatory_other.json')
+            schema = load_schema_from_params('test', 'radio_mandatory_with_mandatory_other')
 
-            block_json = SchemaHelper.get_block(survey, 'radio-mandatory')
+            block_json = schema.get_block('radio-mandatory')
             location = Location('radio', 0, 'radio-mandatory')
-            error_messages = SchemaHelper.get_messages(survey)
 
             answer_store = AnswerStore([
                 {
@@ -408,13 +410,13 @@ class TestFormHelper(AppContextTestCase):
                 }
             ])
 
-            radio_answer = SchemaHelper.get_first_answer_for_block(block_json)
+            radio_answer = schema.get_answers_for_block('radio-mandatory')[0]
             text_answer = 'other-answer-mandatory'
 
-            form, _ = post_form_for_location(block_json, location, answer_store, MultiDict({
+            form, _ = post_form_for_location(schema, block_json, location, answer_store, MultiDict({
                 '{answer_id}'.format(answer_id=radio_answer['id']): 'Other',
                 '{answer_id}'.format(answer_id=text_answer): 'Other text field value',
-            }), error_messages)
+            }))
 
             other_text_field = getattr(form, 'other-answer-mandatory')
             self.assertEqual(other_text_field.data, 'Other text field value')

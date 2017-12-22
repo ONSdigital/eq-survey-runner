@@ -1,7 +1,6 @@
 import copy
 from structlog import get_logger
 
-from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
 from app.questionnaire.rules import evaluate_goto, evaluate_repeat, evaluate_skip_conditions, is_goto_rule
 
@@ -10,10 +9,10 @@ logger = get_logger()
 
 class PathFinder:
 
-    def __init__(self, survey_json, answer_store, metadata):
+    def __init__(self, schema, answer_store, metadata):
         self.answer_store = answer_store
         self.metadata = metadata
-        self.survey_json = survey_json
+        self.schema = schema
         self._answer_store_hash = self.answer_store.get_hash()
         self._full_routing_path = None
 
@@ -24,7 +23,7 @@ class PathFinder:
                      b['group_instance'] == location.group_instance),
                     None)
 
-    def build_path(self, this_location):
+    def build_path(self):
         """
         Visits all the blocks from a location forwards and returns path
         taken given a list of answers.
@@ -33,11 +32,18 @@ class PathFinder:
         :param this_location: The location to visit, represented as a dict
         :return: A list of locations followed through the survey
         """
+        this_location = None
+
         blocks = []
         path = []
         block_index = 0
+        first_groups = self._get_first_group_in_section()
 
-        for group in SchemaHelper.get_groups(self.survey_json):
+        for group in self.schema.get_groups():
+
+            if not this_location:
+                first_block_in_group = self.schema.get_first_block_id_for_group(group['id'])
+                this_location = Location(group['id'], 0, first_block_in_group)
 
             if 'skip_conditions' in group:
                 if evaluate_skip_conditions(group['skip_conditions'], self.metadata, self.answer_store):
@@ -57,22 +63,23 @@ class PathFinder:
                         'block': block,
                     })
 
-            if self._is_first_group_in_section(group['id']):
+            if group['id'] in first_groups:
                 this_location = Location(group['id'], 0, group['blocks'][0]['id'])
 
             path, block_index = self._build_path_within_group(blocks, block_index, this_location, path)
 
         return path
 
-    def _is_first_group_in_section(self, group_id):
-        sections = SchemaHelper.get_sections(self.survey_json)
+    def _get_first_group_in_section(self):
+        first_groups = []
+        sections = self.schema.get_sections()
 
         if sections:
             for section in sections:
-                if group_id in section['group_order'] and section['group_order'][0] == group_id:
-                    return True
+                first_groups.append(section['group_order'][0])
+                continue
 
-        return False
+        return first_groups
 
     def _build_path_within_group(self, blocks, block_index, this_location, path):
         # Keep going unless we've hit the last block
@@ -107,7 +114,7 @@ class PathFinder:
             return path, block_index
 
     def _calculate_no_of_repeats(self, group, path):
-        repeating_rule = SchemaHelper.get_repeat_rule(group)
+        repeating_rule = self.schema.get_repeat_rule(group)
 
         if repeating_rule:
             return evaluate_repeat(repeating_rule, self.answer_store, path)
@@ -126,7 +133,7 @@ class PathFinder:
 
         if 'group' in rule['goto']:
             next_location.group_id = rule['goto']['group']
-            next_location.block_id = SchemaHelper.get_first_block_id_for_group(self.survey_json, rule['goto']['group'])
+            next_location.block_id = self.schema.get_first_block_id_for_group(rule['goto']['group'])
         else:
             next_location.block_id = rule['goto']['block']
 
@@ -169,12 +176,8 @@ class PathFinder:
                 self._answer_store_hash == latest_answer_store_hash:
             return self._full_routing_path
 
-        group_id = SchemaHelper.get_first_group_id(self.survey_json)
-        first_block_in_group = SchemaHelper.get_first_block_id_for_group(self.survey_json, group_id)
-        location = Location(group_id, 0, first_block_in_group)
-
         self._answer_store_hash = latest_answer_store_hash
-        self._full_routing_path = self.build_path(location)
+        self._full_routing_path = self.build_path()
 
         return self._full_routing_path
 
@@ -207,9 +210,9 @@ class PathFinder:
         if current_location.group_id == 'who-lives-here-relationship':
             return self._relationship_previous_location(current_location.group_instance)
 
-        is_first_block_for_group = SchemaHelper.is_first_block_id_for_group(self.survey_json, current_location.group_id, current_location.block_id)
+        first_block_for_group = self.schema.get_first_block_id_for_group(current_location.group_id)
 
-        if is_first_block_for_group:
+        if first_block_for_group == current_location.block_id:
             return None
 
         routing_path = self.get_routing_path(current_location.group_id, current_location.group_instance)

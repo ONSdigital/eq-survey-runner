@@ -14,7 +14,6 @@ from structlog import get_logger
 from app.data_model.answer_store import Answer
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store, get_session_store
 from app.helpers.form_helper import get_form_for_location, post_form_for_location
-from app.helpers.schema_helper import SchemaHelper
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required
 from app.helpers import template_helper
 from app.questionnaire.location import Location
@@ -66,7 +65,7 @@ def before_questionnaire_request():
                        session_form_type=metadata['form_type'],
                        session_collection_id=metadata['collection_exercise_sid'])
 
-    g.schema_json = load_schema_from_metadata(metadata)
+    g.schema = load_schema_from_metadata(metadata)
 
 
 @post_submission_blueprint.before_request
@@ -117,7 +116,7 @@ def save_questionnaire_store(func):
 def get_block(routing_path, eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=unused-argument,too-many-locals
     current_location = Location(group_id, group_instance, block_id)
 
-    if not _is_valid_group(group_id) or not _is_valid_location(routing_path, current_location):
+    if not _is_valid_location(routing_path, current_location):
         return _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type)
 
     block = _get_block_json(current_location)
@@ -134,7 +133,7 @@ def get_block(routing_path, eq_id, form_type, collection_id, group_id, group_ins
 def post_block(routing_path, eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=too-many-locals
     current_location = Location(group_id, group_instance, block_id)
 
-    if not _is_valid_group(group_id) or not _is_valid_location(routing_path, current_location):
+    if not _is_valid_location(routing_path, current_location):
         return _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type)
 
     block = _get_block_json(current_location)
@@ -168,12 +167,10 @@ def post_household_composition(routing_path, **kwargs):
 
     current_location = Location(group_id, 0, 'household-composition')
 
-    error_messages = SchemaHelper.get_messages(g.schema_json)
-
     block = _get_block_json(current_location)
 
-    form, _ = post_form_for_location(block, current_location, answer_store, request.form,
-                                     error_messages, disable_mandatory=disable_mandatory)
+    form, _ = post_form_for_location(g.schema, block, current_location, answer_store, request.form,
+                                     disable_mandatory=disable_mandatory)
 
     if 'action[add_answer]' in request.form:
         form.household.append_entry()
@@ -212,16 +209,16 @@ def get_thank_you(eq_id, form_type):  # pylint: disable=unused-argument
     if session_data.submitted_time:
         schema = load_schema_from_params(session_data.eq_id, session_data.form_type)
         metadata_context = build_metadata_context_for_survey_completed(vars(session_data))
-        thank_you_template = render_theme_template(schema['theme'],
+        thank_you_template = render_theme_template(schema.json['theme'],
                                                    template_name='thank-you.html',
                                                    meta=metadata_context,
                                                    analytics_ua_id=current_app.config['EQ_UA_ID'],
-                                                   survey_id=schema['survey_id'],
-                                                   survey_title=TemplateRenderer.safe_content(schema['title']))
+                                                   survey_id=schema.json['survey_id'],
+                                                   survey_title=TemplateRenderer.safe_content(schema.json['title']))
         return thank_you_template
 
     metadata = get_metadata(current_user)
-    g.schema_json = load_schema_from_metadata(metadata)
+    g.schema = load_schema_from_metadata(metadata)
     routing_path = path_finder.get_full_routing_path()
     collection_id = metadata['collection_exercise_sid']
     return _redirect_to_latest_location(routing_path, collection_id, metadata.get('eq_id'), metadata.get('form_type'))
@@ -248,20 +245,15 @@ def _is_valid_location(routing_path, location):
     return location in routing_path
 
 
-def _is_valid_group(group_id):
-    return group_id in SchemaHelper.get_group_ids(g.schema_json)
-
-
 def _generate_wtf_form(form, block, location):
-    error_messages = SchemaHelper.get_messages(g.schema_json)
     disable_mandatory = 'action[save_sign_out]' in form
 
     wtf_form, _ = post_form_for_location(
+        g.schema,
         block,
         location,
         get_answer_store(current_user),
         request.form,
-        error_messages,
         disable_mandatory)
 
     return wtf_form
@@ -296,7 +288,7 @@ def submit_answers(routing_path, eq_id, form_type):
     if is_completed:
         message = json.dumps(convert_answers(
             metadata,
-            g.schema_json,
+            g.schema,
             answer_store,
             routing_path,
         ))
@@ -389,8 +381,8 @@ def _remove_repeating_on_household_answers(answer_store, group_id):
         current_user.user_ik,
     )
 
-    for answer in SchemaHelper.get_answers_that_repeat_in_block(g.schema_json, 'household-composition'):
-        groups_to_delete = SchemaHelper.get_groups_that_repeat_with_answer_id(g.schema_json, answer['id'])
+    for answer in g.schema.get_answers_that_repeat_in_block('household-composition'):
+        groups_to_delete = g.schema.get_groups_that_repeat_with_answer_id(answer['id'])
         for group in groups_to_delete:
             answer_store.remove(group_id=group['id'])
             questionnaire_store.completed_blocks[:] = [b for b in questionnaire_store.completed_blocks if
@@ -426,7 +418,7 @@ def _update_questionnaire_store(current_location, form):
 @save_questionnaire_store
 def update_questionnaire_store_with_form_data(questionnaire_store, location, answer_dict):
 
-    survey_answer_ids = SchemaHelper.get_answer_ids_for_location(g.schema_json, location)
+    survey_answer_ids = g.schema.get_answer_ids_for_block(location.block_id)
 
     for answer_id, answer_value in answer_dict.items():
         if answer_id in survey_answer_ids or location.block_id == 'household-composition':
@@ -482,7 +474,7 @@ def _format_answer_value(answer_value):
 @save_questionnaire_store
 def update_questionnaire_store_with_answer_data(questionnaire_store, location, answers):
 
-    survey_answer_ids = SchemaHelper.get_answer_ids_for_location(g.schema_json, location)
+    survey_answer_ids = g.schema.get_answer_ids_for_block(location.block_id)
 
     for answer in [a for a in answers if a.answer_id in survey_answer_ids]:
         questionnaire_store.answer_store.add_or_update(answer)
@@ -499,7 +491,7 @@ def _check_same_survey(url_eq_id, url_form_type, url_collection_id, session_eq_i
 
 
 def _evaluate_skip_conditions(block_json, location, answer_store, metadata):
-    for question in SchemaHelper.get_questions_for_block(block_json):
+    for question in g.schema.get_questions_for_block(block_json):
         if 'skip_conditions' in question:
             skip_question = evaluate_skip_conditions(question['skip_conditions'], metadata, answer_store, location.group_instance)
             question['skipped'] = skip_question
@@ -533,14 +525,14 @@ def _get_context(full_routing_path, block, current_location, form):
     answer_store = get_answer_store(current_user)
     schema_context = _get_schema_context(full_routing_path, current_location, metadata, answer_store)
 
-    variables = g.schema_json.get('variables')
+    variables = g.schema.json.get('variables')
     if variables:
         variables = renderer.render(variables, **schema_context)
 
     if block['type'] == 'Summary':
-        rendered_schema_json = renderer.render(g.schema_json, **schema_context)
+        rendered_schema_json = renderer.render(g.schema.json, **schema_context)
         form = form or FlaskForm()
-        summary_rendered_context = build_summary_rendering_context(rendered_schema_json, answer_store, metadata)
+        summary_rendered_context = build_summary_rendering_context(g.schema, rendered_schema_json, answer_store, metadata)
         context = {'form': form, 'summary': summary_rendered_context, 'variables': variables}
         return context
 
@@ -548,8 +540,7 @@ def _get_context(full_routing_path, block, current_location, form):
     context = {'block': block, 'variables': variables}
 
     if not form:
-        error_messages = SchemaHelper.get_messages(g.schema_json)
-        form, template_params = get_form_for_location(block, current_location, answer_store, error_messages)
+        form, template_params = get_form_for_location(g.schema, block, current_location, answer_store)
         if template_params:
             context.update(template_params)
 
@@ -561,12 +552,12 @@ def _get_context(full_routing_path, block, current_location, form):
 def _get_block_json(current_location):
     metadata = get_metadata(current_user)
     answer_store = get_answer_store(current_user)
-    block_json = SchemaHelper.get_block_for_location(g.schema_json, current_location)
+    block_json = g.schema.get_block(current_location.block_id)
     return _evaluate_skip_conditions(block_json, current_location, answer_store, metadata)
 
 
 def _get_schema_context(full_routing_path, current_location, metadata, answer_store):
-    aliases = SchemaHelper.get_aliases(g.schema_json)
+    aliases = g.schema.aliases
 
     return build_schema_context(metadata=metadata,
                                 aliases=aliases,
@@ -577,24 +568,24 @@ def _get_schema_context(full_routing_path, current_location, metadata, answer_st
 
 def _get_front_end_navigation(answer_store, current_location, metadata, routing_path=None):
     completed_blocks = get_completed_blocks(current_user)
-    navigation = Navigation(g.schema_json, answer_store, metadata, completed_blocks, routing_path)
-    block_json = SchemaHelper.get_block_for_location(g.schema_json, current_location)
+    navigation = Navigation(g.schema, answer_store, metadata, completed_blocks, routing_path)
+    block_json = g.schema.get_block(current_location.block_id)
     if block_json is not None and block_json['type'] in ('Questionnaire', 'Interstitial', 'Confirmation', 'Summary'):
         return navigation.build_navigation(current_location.group_id, current_location.group_instance)
 
     return None
 
 
-def get_page_title_for_location(schema_json, current_location):
-    block = SchemaHelper.get_block_for_location(schema_json, current_location)
+def get_page_title_for_location(schema, current_location):
+    block = schema.get_block(current_location.block_id)
     if block['type'] == 'Interstitial':
-        group = SchemaHelper.get_group(schema_json, current_location.group_id)
-        page_title = '{group_title} - {survey_title}'.format(group_title=group['title'], survey_title=schema_json['title'])
+        group = schema.get_group(current_location.group_id)
+        page_title = '{group_title} - {survey_title}'.format(group_title=group['title'], survey_title=schema.json['title'])
     elif block['type'] == 'Questionnaire':
-        first_question = next(SchemaHelper.get_questions_for_block(block))
-        page_title = '{question_title} - {survey_title}'.format(question_title=first_question['title'], survey_title=schema_json['title'])
+        first_question = next(schema.get_questions_for_block(block))
+        page_title = '{question_title} - {survey_title}'.format(question_title=first_question['title'], survey_title=schema.json['title'])
     else:
-        page_title = schema_json['title']
+        page_title = schema.json['title']
 
     return TemplateRenderer.safe_content(page_title)
 
@@ -615,7 +606,7 @@ def _build_template(current_location, context, template, routing_path=None):
 @template_helper.with_analytics
 @template_helper.with_legal_basis
 def _render_template(context, current_location, template, front_end_navigation, previous_url, **kwargs):
-    page_title = get_page_title_for_location(g.schema_json, current_location)
+    page_title = get_page_title_for_location(g.schema, current_location)
 
     return template_helper.render_template(
         template,

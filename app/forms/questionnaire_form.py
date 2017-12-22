@@ -5,7 +5,6 @@ from wtforms import validators
 from flask_wtf import FlaskForm
 
 from app.forms.fields import get_field
-from app.helpers.schema_helper import SchemaHelper
 from app.validation.validators import DateRangeCheck
 
 from werkzeug.datastructures import MultiDict
@@ -15,7 +14,8 @@ logger = logging.getLogger(__name__)
 
 class QuestionnaireForm(FlaskForm):
 
-    def __init__(self, block_json, formdata=None, **kwargs):
+    def __init__(self, schema, block_json, formdata=None, **kwargs):
+        self.schema = schema
         self.block_json = block_json
         self.question_errors = {}
         self.options_with_children = {}
@@ -54,7 +54,7 @@ class QuestionnaireForm(FlaskForm):
     def map_errors(self):
         ordered_errors = []
 
-        question_json_list = SchemaHelper.get_questions_for_block(self.block_json)
+        question_json_list = self.schema.get_questions_for_block(self.block_json)
 
         for question_json in question_json_list:
             if question_json['id'] in self.question_errors:
@@ -77,7 +77,7 @@ class QuestionnaireForm(FlaskForm):
 
     def option_has_other(self, answer_id, option_index):
         if not self.options_with_children:
-            self.options_with_children = SchemaHelper.get_parent_options_for_block(self.block_json)
+            self.options_with_children = self.schema.get_parent_options_for_block(self.block_json['id'])
 
         if answer_id in self.options_with_children and self.options_with_children[answer_id]['index'] == option_index:
             return True
@@ -85,7 +85,7 @@ class QuestionnaireForm(FlaskForm):
 
     def get_other_answer(self, answer_id, option_index):
         if not self.options_with_children:
-            self.options_with_children = SchemaHelper.get_parent_options_for_block(self.block_json)
+            self.options_with_children = self.schema.get_parent_options_for_block(self.block_json['id'])
 
         if answer_id in self.options_with_children and self.options_with_children[answer_id]['index'] == option_index:
             return getattr(self, self.options_with_children[answer_id]['child_answer_id'])
@@ -131,23 +131,23 @@ def map_child_option_errors(errors, answer_json):
     return child_errors
 
 
-def generate_form(block_json, data, error_messages, answer_store):
+def generate_form(schema, block_json, data, answer_store):
     answer_fields = {}
 
     class DynamicForm(QuestionnaireForm):
         date_ranges = []
 
-    for question in SchemaHelper.get_questions_for_block(block_json):
+    for question in schema.get_questions_for_block(block_json):
         if question['type'] == 'DateRange':
             DynamicForm.date_ranges += [(question['id'], question['answers'][0]['id'], question['answers'][1]['id'])]
-        answer_fields.update(get_answer_fields(question, data, error_messages, answer_store))
+        answer_fields.update(get_answer_fields(question, data, schema.error_messages, answer_store))
 
     for answer_id, field in answer_fields.items():
         setattr(DynamicForm, answer_id, field)
 
     if data:
-        form = DynamicForm(block_json, MultiDict(data))
+        form = DynamicForm(schema, block_json, MultiDict(data))
     else:
-        form = DynamicForm(block_json)
+        form = DynamicForm(schema, block_json)
 
     return form
