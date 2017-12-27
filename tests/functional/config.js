@@ -25,9 +25,6 @@ let config = {
     ],
     features: [
       `${paths.test.wdioSpec}/features/**/*.spec.js`
-    ],
-    ukis: [
-      `${paths.test.wdioSpec}/ukis/*.spec.js`
     ]
   },
   sync: false,
