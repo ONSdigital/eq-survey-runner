@@ -21,24 +21,20 @@ class QuestionnaireState(db.Model):
         self.state = state
         self.version = version
 
-    def __repr__(self):
-        return "<QuestionnaireState('%s','%s', '%s')>" % (self.user_id, self.state, self.version)
-
 
 # pylint: disable=maybe-no-member
 class EQSession(db.Model):
     __tablename__ = 'eq_session'
     eq_session_id = db.Column('eq_session_id', db.String, primary_key=True)
     user_id = db.Column('user_id', db.String, primary_key=True)
-    timestamp = db.Column('timestamp', db.DateTime)
+    session_data = db.Column('session_data', db.String)
+    created_at = db.Column('created_at', db.DateTime, default=datetime.datetime.utcnow)
+    updated_at = db.Column('updated_at', db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
-    def __init__(self, eq_session_id, user_id):
+    def __init__(self, eq_session_id, user_id, session_data):
         self.eq_session_id = eq_session_id
         self.user_id = user_id
-        self.timestamp = datetime.datetime.now()
-
-    def __repr__(self):
-        return "<EQSession('%s', '%s', '%s')>" % (self.eq_session_id, self.user_id, self.timestamp)
+        self.session_data = session_data
 
 
 # pylint: disable=maybe-no-member
@@ -50,6 +46,3 @@ class UsedJtiClaim(db.Model):
     def __init__(self, jti_claim):
         self.jti_claim = jti_claim
         self.used_at = datetime.datetime.now()
-
-    def __repr__(self):
-        return "<UsedJtiClaim('%s', '%s')>" % (self.jti_claim, self.used_at)
