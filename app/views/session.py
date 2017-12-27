@@ -1,5 +1,5 @@
 from flask import Blueprint, redirect, request, session, g
-from flask_login import current_user, login_required
+from flask_login import current_user, login_required, logout_user
 from sdc.crypto.exceptions import InvalidTokenException
 
 from werkzeug.exceptions import NotFound, Unauthorized
@@ -12,7 +12,6 @@ from app.globals import get_answer_store, get_completed_blocks
 from app.questionnaire.path_finder import PathFinder
 from app.storage.metadata_parser import parse_metadata
 from app.utilities.schema import load_schema_from_metadata
-from app.helpers.session_helper import remove_survey_session_data
 from app.views.errors import render_template
 
 logger = get_logger()
@@ -87,21 +86,20 @@ def get_timeout_continue():
 @session_blueprint.route('/expire-session', methods=['POST'])
 @login_required
 def post_expire_session():
-    remove_survey_session_data()
+    logout_user()
     return get_session_expired()
 
 
 @session_blueprint.route('/session-expired', methods=['GET'])
 def get_session_expired():
-    if current_user.is_active:
-        remove_survey_session_data()
+
+    logout_user()
 
     return render_template('session-expired.html')
 
 
 @session_blueprint.route('/signed-out', methods=['GET'])
 def get_sign_out():
-    if current_user.is_active:
-        remove_survey_session_data()
+    logout_user()
 
     return render_template('signed-out.html')

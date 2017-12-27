@@ -22,9 +22,8 @@ from app import settings
 from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 
-from app.authentication.session_storage import SessionStorage
 from app.authentication.user_id_generator import UserIDGenerator
-from app.data_model.models import db, QuestionnaireState
+from app.data_model.models import db, QuestionnaireState, EQSession
 
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.new_relic import setup_newrelic
@@ -97,8 +96,6 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     else:
         application.eq['submitter'] = LogSubmitter()
-
-    application.eq['session_storage'] = SessionStorage()
 
     application.eq['id_generator'] = UserIDGenerator(
         application.config['EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS'],
@@ -187,6 +184,14 @@ def check_database():
     if 'version' not in table.c:
         raise Exception('Database patch "pr-1347-apply.sql" has not been run')
 
+    session_table = sqlalchemy.Table(EQSession.__tablename__,
+                                     md,
+                                     autoload=True,
+                                     autoload_with=db.engine)
+
+    if 'session_data' not in session_table.c:
+        raise Exception('Database patch "pr-1391-apply.sql" has not been run')
+
 
 def setup_profiling(application):
     # Setup profiling
@@ -238,6 +243,10 @@ def add_blueprints(application):
     from app.views.questionnaire import questionnaire_blueprint
     application.register_blueprint(questionnaire_blueprint)
     questionnaire_blueprint.config = application.config.copy()
+
+    from app.views.questionnaire import post_submission_blueprint
+    application.register_blueprint(post_submission_blueprint)
+    post_submission_blueprint.config = application.config.copy()
 
     from app.views.feedback import feedback_blueprint
     application.register_blueprint(feedback_blueprint)

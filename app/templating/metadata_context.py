@@ -54,6 +54,5 @@ def build_metadata_context_for_survey_completed(survey_completed_metadata):
         },
         'respondent': {
             'tx_id': convert_tx_id(survey_completed_metadata['tx_id']),
-            'respondent_id': survey_completed_metadata['ru_ref'],
         },
     }

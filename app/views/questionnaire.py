@@ -1,9 +1,10 @@
 import re
 from collections import defaultdict
+from datetime import datetime
 import simplejson as json
 
 from flask import Blueprint, g, redirect, request, url_for, current_app
-from flask_login import current_user, login_required
+from flask_login import current_user, login_required, logout_user
 from flask_themes2 import render_theme_template
 from sdc.crypto.encrypter import encrypt
 from flask_wtf import FlaskForm
@@ -11,11 +12,10 @@ from flask_wtf import FlaskForm
 from structlog import get_logger
 
 from app.data_model.answer_store import Answer
-from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
+from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store, get_session_store
 from app.helpers.form_helper import get_form_for_location, post_form_for_location
 from app.helpers.schema_helper import SchemaHelper
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required
-from app.helpers.session_helper import remove_survey_session_data
 from app.helpers import template_helper
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
@@ -31,6 +31,7 @@ from app.templating.template_renderer import renderer, TemplateRenderer
 
 from app.utilities.schema import load_schema_from_metadata, load_schema_from_params
 from app.views.errors import MultipleSurveyError
+from app.authentication.no_token_exception import NoTokenException
 
 END_BLOCKS = 'Summary', 'Confirmation'
 
@@ -40,21 +41,26 @@ questionnaire_blueprint = Blueprint(name='questionnaire',
                                     import_name=__name__,
                                     url_prefix='/questionnaire/<eq_id>/<form_type>/<collection_id>/')
 
+post_submission_blueprint = Blueprint(name='post_submission',
+                                      import_name=__name__,
+                                      url_prefix='/questionnaire')
+
 
 @questionnaire_blueprint.before_request
 def before_request():
     metadata = get_metadata(current_user)
-    if metadata:
-        logger.bind(tx_id=metadata['tx_id'])
+    if not metadata:
+        raise NoTokenException(401)
+
+    logger.bind(tx_id=metadata['tx_id'])
 
     values = request.view_args
     logger.bind(eq_id=values['eq_id'], form_type=values['form_type'],
                 ce_id=values['collection_id'])
     logger.info('questionnaire request', method=request.method, url_path=request.full_path)
 
-    if metadata:
-        g.schema_json = load_schema_from_metadata(metadata)
-        _check_same_survey(values['eq_id'], values['form_type'], values['collection_id'])
+    g.schema_json = load_schema_from_metadata(metadata)
+    _check_same_survey(values['eq_id'], values['form_type'], values['collection_id'])
 
 
 @questionnaire_blueprint.after_request
@@ -114,7 +120,7 @@ def post_block(routing_path, eq_id, form_type, collection_id, group_id, group_in
         next_location = path_finder.get_next_location(current_location=current_location)
 
         if _is_end_of_questionnaire(block, next_location):
-            return submit_answers(routing_path, eq_id, form_type, collection_id)
+            return submit_answers(routing_path)
 
         return redirect(_next_location_url(next_location))
 
@@ -170,13 +176,14 @@ def post_household_composition(routing_path, **kwargs):
     return _render_page(routing_path, block, current_location, post_form=form)
 
 
-@questionnaire_blueprint.route('thank-you', methods=['GET'])
-def get_thank_you(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
-    survey_completed_metadata = current_app.eq['session_storage'].get_survey_completed_metadata()
-    schema = load_schema_from_params(eq_id, form_type)
+@post_submission_blueprint.route('/thank-you', methods=['GET'])
+@login_required
+def get_thank_you():
+    session_data = get_session_store().session_data
 
-    if survey_completed_metadata:
-        metadata_context = build_metadata_context_for_survey_completed(survey_completed_metadata)
+    if session_data.submitted_time:
+        schema = load_schema_from_params(session_data.eq_id, session_data.form_type)
+        metadata_context = build_metadata_context_for_survey_completed(vars(session_data))
         thank_you_template = render_theme_template(schema['theme'],
                                                    template_name='thank-you.html',
                                                    meta=metadata_context,
@@ -185,8 +192,11 @@ def get_thank_you(eq_id, form_type, collection_id):  # pylint: disable=unused-ar
                                                    survey_title=TemplateRenderer.safe_content(schema['title']))
         return thank_you_template
 
+    metadata = get_metadata(current_user)
+    g.schema_json = load_schema_from_metadata(metadata)
     routing_path = path_finder.get_full_routing_path()
-    return _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type)
+    collection_id = metadata['collection_exercise_sid']
+    return _redirect_to_latest_location(routing_path, collection_id, metadata.get('eq_id'), metadata.get('form_type'))
 
 
 def _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type):
@@ -250,7 +260,7 @@ def _is_skipping_to_the_end(routing_path, block, current_location):
         block['type'] in END_BLOCKS
 
 
-def submit_answers(routing_path, eq_id, form_type, collection_id):
+def submit_answers(routing_path):
     is_completed, invalid_location = is_survey_completed(routing_path)
     metadata = get_metadata(current_user)
     answer_store = get_answer_store(current_user)
@@ -273,19 +283,13 @@ def submit_answers(routing_path, eq_id, form_type, collection_id):
         if not sent:
             raise SubmissionFailedException()
 
-        current_app.eq['session_storage'].store_survey_completed_metadata(
-            metadata['tx_id'],
-            metadata['period_str'],
-            metadata['ru_ref'])
-
         get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
-        remove_survey_session_data()
 
-        return redirect(url_for(
-            '.get_thank_you',
-            eq_id=eq_id,
-            form_type=form_type,
-            collection_id=collection_id))
+        session_store = get_session_store()
+        session_store.session_data.submitted_time = datetime.utcnow().isoformat()
+        session_store.save()
+
+        return redirect(url_for('post_submission.get_thank_you'))
     else:
         return redirect(invalid_location.url(metadata))
 
@@ -315,7 +319,7 @@ def _save_sign_out(routing_path, this_location, form):
             questionnaire_store.completed_blocks.remove(this_location)
             questionnaire_store.add_or_update()
 
-        remove_survey_session_data()
+        logout_user()
 
         return redirect(url_for('session.get_sign_out'))
 
@@ -489,7 +493,7 @@ def extract_answer_id_and_instance(answer_instance_id):
 
 
 def _redirect_to_location(collection_id, eq_id, form_type, location):
-    return redirect(url_for('.get_block', eq_id=eq_id, form_type=form_type, collection_id=collection_id,
+    return redirect(url_for('questionnaire.get_block', eq_id=eq_id, form_type=form_type, collection_id=collection_id,
                             group_id=location.group_id,
                             group_instance=location.group_instance, block_id=location.block_id))
 

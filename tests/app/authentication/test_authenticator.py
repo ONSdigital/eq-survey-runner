@@ -1,31 +1,31 @@
-import unittest
-from datetime import timedelta
+from flask import session
+from mock import patch
 
-from flask import Flask
-from mock import patch, Mock, MagicMock
-
-from app.setup import SessionStorage
+from app.data_model.session_data import SessionData
+from app.settings import USER_IK
 from app.authentication.authenticator import load_user, request_load_user, user_loader
+from app.data_model.session_store import SessionStore
+from tests.app.app_context_test_case import AppContextTestCase
 
 
-class TestAuthenticator(unittest.TestCase): # pylint: disable=too-many-public-methods
+class TestAuthenticator(AppContextTestCase): # pylint: disable=too-many-public-methods
 
     def setUp(self):
-        application = Flask(__name__)
-        application.config['TESTING'] = True
-        application.secret_key = 'you will not guess'
-        application.permanent_session_lifetime = timedelta(seconds=1)
-        self.application = application
-        self.session_storage = Mock(SessionStorage())
-
-        application.eq = {'session_storage': self.session_storage}
+        super().setUp()
+        self.session_data = SessionData(
+            tx_id='tx_id',
+            eq_id='eq_id',
+            form_type='form_type',
+            period_str='period_str'
+        )
+        self.session_store = SessionStore('eq_session_id')
 
     def test_check_session_with_user_id_in_session(self):
-        with self.application.test_request_context():
-            with patch('app.authentication.authenticator.get_questionnaire_store', return_value=MagicMock()):
+        with self.test_request_context('/status'):
+            with patch('app.authentication.authenticator.get_session_store', return_value=self.session_store):
                 # Given
-                self.session_storage.get_user_id = Mock(return_value='user_id')
-                self.session_storage.get_user_ik = Mock(return_value='user_ik')
+                self.session_store.create('eq_session_id', 'user_id', self.session_data)
+                session[USER_IK] = 'user_ik'
 
                 # When
                 user = load_user()
@@ -35,22 +35,20 @@ class TestAuthenticator(unittest.TestCase): # pylint: disable=too-many-public-me
                 self.assertEqual(user.user_ik, 'user_ik')
 
     def test_check_session_with_no_user_id_in_session(self):
-        with self.application.test_request_context():
-            # Given
-            self.session_storage.get_user_id = Mock(return_value=None)
+        with self.test_request_context('/status'):
+            with patch('app.authentication.authenticator.get_session_store', return_value=None):
+                # When
+                user = load_user()
 
-            # When
-            user = load_user()
-
-            # Then
-            self.assertIsNone(user)
+                # Then
+                self.assertIsNone(user)
 
     def test_load_user(self):
-        with self.application.test_request_context():
-            with patch('app.authentication.authenticator.get_questionnaire_store', return_value=MagicMock()):
+        with self.test_request_context('/status'):
+            with patch('app.authentication.authenticator.get_session_store', return_value=self.session_store):
                 # Given
-                self.session_storage.get_user_id = Mock(return_value='user_id')
-                self.session_storage.get_user_ik = Mock(return_value='user_ik')
+                self.session_store.create('eq_session_id', 'user_id', self.session_data)
+                session[USER_IK] = 'user_ik'
 
                 # When
                 user = user_loader(None)
@@ -60,11 +58,11 @@ class TestAuthenticator(unittest.TestCase): # pylint: disable=too-many-public-me
                 self.assertEqual(user.user_ik, 'user_ik')
 
     def test_request_load_user(self):
-        with self.application.test_request_context():
-            with patch('app.authentication.authenticator.get_questionnaire_store', return_value=MagicMock()):
+        with self.test_request_context('/status'):
+            with patch('app.authentication.authenticator.get_session_store', return_value=self.session_store):
                 # Given
-                self.session_storage.get_user_id = Mock(return_value='user_id')
-                self.session_storage.get_user_ik = Mock(return_value='user_ik')
+                self.session_store.create('eq_session_id', 'user_id', self.session_data)
+                session[USER_IK] = 'user_ik'
 
                 # When
                 user = request_load_user(None)
@@ -72,3 +70,22 @@ class TestAuthenticator(unittest.TestCase): # pylint: disable=too-many-public-me
                 # Then
                 self.assertEqual(user.user_id, 'user_id')
                 self.assertEqual(user.user_ik, 'user_ik')
+
+    def test_load_user_with_no_session_data_updates_session_from_metadata(self):
+        with self.test_request_context('/status'):
+            with patch('app.authentication.authenticator.get_session_store', return_value=self.session_store):
+                self.session_store.create('eq_session_id', 'user_id', self.session_data)
+                session[USER_IK] = 'user_ik'
+
+                self.session_store.session_data = None
+                self.assertEqual(self.session_store.session_data, None)
+
+                metadata = {
+                    'tx_id': 'tx_id',
+                    'eq_id': 'eq_id',
+                    'form_type': 'form_type',
+                    'period_str': 'period_str',
+                }
+                with patch('app.authentication.authenticator.get_metadata', return_value=metadata):
+                    load_user()
+                    self.assertEqual(self.session_store.session_data.tx_id, self.session_data.tx_id)
