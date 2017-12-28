@@ -27,7 +27,7 @@ yarn test_unit_no_watch
 display_result $? 4 "Front end unit tests"
 
 if [ -z "$EQ_FUNCTIONAL_TEST_SUITES" ]; then
-    export EQ_FUNCTIONAL_TEST_SUITES="core,components,features,census,ukis"
+    export EQ_FUNCTIONAL_TEST_SUITES="core,components,features,census"
 fi
 
 if [ -z "$EQ_FUNCTIONAL_TEST_ENV" ]; then
