@@ -11,6 +11,7 @@ from flask import Flask
 from flask import url_for
 from flask_caching import Cache
 from flask_babel import Babel
+from flask_login import user_logged_out
 from flask_themes2 import Themes
 from flask_wtf.csrf import CSRFProtect
 
@@ -19,7 +20,7 @@ from structlog import get_logger
 from sdc.crypto.key_store import validate_required_keys, KeyStore
 
 from app import settings
-from app.authentication.authenticator import login_manager
+from app.authentication.authenticator import login_manager, when_user_logged_out
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 
 from app.authentication.user_id_generator import UserIDGenerator
@@ -116,6 +117,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     login_manager.init_app(application)
 
     add_safe_health_check(application)
+
+    setup_signals(application)
 
     if application.config['EQ_DEV_MODE']:
         start_dev_mode(application)
@@ -290,6 +293,10 @@ def setup_secure_cookies(application):
 def setup_babel(application):
     application.babel = Babel(application)
     application.jinja_env.add_extension('jinja2.ext.i18n')
+
+
+def setup_signals(application):
+    user_logged_out.connect(when_user_logged_out, application)
 
 
 def add_safe_health_check(application):
