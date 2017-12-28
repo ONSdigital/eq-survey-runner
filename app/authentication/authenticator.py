@@ -32,7 +32,7 @@ def request_load_user(request):  # pylint: disable=unused-argument
     return load_user()
 
 
-def when_user_logged_out(sender_app, user):  # pylint: disable=unused-argument
+def when_user_logged_out():
     logger.debug('log out user')
     session_store = get_session_store()
     if session_store:

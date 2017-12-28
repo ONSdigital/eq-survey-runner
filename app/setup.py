@@ -151,8 +151,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
         return dict(url_for=versioned_url_for)
 
     @user_logged_out.connect_via(application)
-    def when_user_logged_out_handler(sender_app, user):  # pylint: disable=unused-variable
-        when_user_logged_out(sender_app, user)
+    def when_user_logged_out_handler(sender_app, user):  # pylint: disable=unused-variable,unused-argument
+        when_user_logged_out()
 
     return application
 
