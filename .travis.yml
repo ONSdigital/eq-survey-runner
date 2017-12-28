@@ -29,7 +29,8 @@ cache:
     - yarn
     - pip
     - directories:
-        - /home/travis/.pyenv/versions/
+        - /opt/python/
+        - /home/travis/.local/share/
 script:
     - set -e
     - yarn compile
