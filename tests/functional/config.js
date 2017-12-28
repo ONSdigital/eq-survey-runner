@@ -23,6 +23,9 @@ let config = {
     components: [
       `${paths.test.wdioSpec}/components/*.spec.js`
     ],
+    features: [
+      `${paths.test.wdioSpec}/features/**/*.spec.js`
+    ],
     ukis: [
       `${paths.test.wdioSpec}/ukis/*.spec.js`
     ]

@@ -57,6 +57,44 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         self.assertFalse(evaluate_rule(when, ''))
         self.assertFalse(evaluate_rule(when, 'some text'))
 
+    def test_evaluate_rule_equals_with_number(self):
+        when = {
+            'value': 0,
+            'condition': 'equals'
+        }
+
+        self.assertFalse(evaluate_rule(when, 2))
+        self.assertTrue(evaluate_rule(when, 0))
+
+    def test_evaluate_rule_not_equals_with_number(self):
+        when = {
+            'value': 0,
+            'condition': 'not equals'
+        }
+
+        self.assertTrue(evaluate_rule(when, 2))
+        self.assertFalse(evaluate_rule(when, 0))
+
+    def test_evaluate_rule_greater_than_with_number(self):
+        when = {
+            'value': 5,
+            'condition': 'greater than'
+        }
+
+        self.assertTrue(evaluate_rule(when, 7))
+        self.assertFalse(evaluate_rule(when, 5))
+        self.assertFalse(evaluate_rule(when, 3))
+
+    def test_evaluate_rule_less_than_with_number(self):
+        when = {
+            'value': 5,
+            'condition': 'less than'
+        }
+
+        self.assertTrue(evaluate_rule(when, 3))
+        self.assertFalse(evaluate_rule(when, 5))
+        self.assertFalse(evaluate_rule(when, 7))
+
     def test_go_to_next_question_for_answer(self):
         # Given
         goto = {
