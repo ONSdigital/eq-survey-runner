@@ -1,8 +1,7 @@
 from uuid import uuid4
 
-from blinker import ANY
 from flask import session as cookie_session, current_app
-from flask_login import LoginManager, user_logged_out
+from flask_login import LoginManager
 from sdc.crypto.exceptions import InvalidTokenException
 from sdc.crypto.decrypter import decrypt
 from structlog import get_logger
@@ -33,7 +32,6 @@ def request_load_user(request):  # pylint: disable=unused-argument
     return load_user()
 
 
-@user_logged_out.connect_via(ANY)
 def when_user_logged_out(sender_app, user):  # pylint: disable=unused-argument
     logger.debug('log out user')
     session_store = get_session_store()
