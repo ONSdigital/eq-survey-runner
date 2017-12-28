@@ -118,6 +118,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     add_safe_health_check(application)
 
+    setup_signals(application)
+
     if application.config['EQ_DEV_MODE']:
         start_dev_mode(application)
 
@@ -149,10 +151,6 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     @application.context_processor
     def override_url_for():  # pylint: disable=unused-variable
         return dict(url_for=versioned_url_for)
-
-    @user_logged_out.connect_via(application)
-    def when_user_logged_out_handler(sender_app, user):  # pylint: disable=unused-variable,unused-argument
-        when_user_logged_out()
 
     return application
 
@@ -295,6 +293,10 @@ def setup_secure_cookies(application):
 def setup_babel(application):
     application.babel = Babel(application)
     application.jinja_env.add_extension('jinja2.ext.i18n')
+
+
+def setup_signals(application):
+    user_logged_out.connect(when_user_logged_out, application)
 
 
 def add_safe_health_check(application):
