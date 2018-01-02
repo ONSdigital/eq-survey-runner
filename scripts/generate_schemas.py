@@ -86,10 +86,10 @@ if __name__ == '__main__':
                 manifest = safe_load(manifest_file)
 
             if 'schema_filename' not in manifest:
-                print(
+                print(  # noqa: T001,T101
                     "WARNING - No 'schema_filename' found in {}, skipping to the next one."
                     .format(path),
-                )  # noqa: T003
+                )
                 continue
 
             schema = generate_schema(manifest, merged_blocks)
