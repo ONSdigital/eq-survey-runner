@@ -202,7 +202,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "in-education",
+                            "block": "in-education",
                             "when": [{
                                 "id": "another-address-answer",
                                 "condition": "equals",
@@ -212,7 +212,7 @@
                     },
                     {
                         "goto": {
-                            "id": "other-address",
+                            "block": "other-address",
                             "when": [{
                                 "id": "another-address-answer",
                                 "condition": "equals",
@@ -222,7 +222,7 @@
                     },
                     {
                         "goto": {
-                            "id": "address-type",
+                            "block": "address-type",
                             "when": [{
                                 "id": "another-address-answer",
                                 "condition": "equals",
@@ -232,7 +232,7 @@
                     },
                     {
                         "goto": {
-                            "id": "in-education",
+                            "block": "in-education",
                             "when": [{
                                 "id": "another-address-answer",
                                 "condition": "not set"
@@ -241,7 +241,7 @@
                     },
                     {
                         "goto": {
-                            "id": "address-type",
+                            "block": "address-type",
                             "when": [{
                                 "id": "another-address-answer",
                                 "condition": "not equals",
@@ -251,7 +251,7 @@
                     },
                     {
                         "goto": {
-                            "id": "in-education"
+                            "block": "in-education"
                         }
                     }
                 ]
@@ -399,7 +399,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "term-time-location",
+                            "block": "term-time-location",
                             "when": [{
                                 "id": "in-education-answer",
                                 "condition": "equals",
@@ -409,7 +409,7 @@
                     },
                     {
                         "goto": {
-                            "id": "country-of-birth"
+                            "block": "country-of-birth"
                         }
                     }
                 ]
@@ -439,7 +439,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "confirmation",
+                            "block": "confirmation",
                             "when": [{
                                 "id": "term-time-location-answer",
                                 "condition": "equals",
@@ -449,7 +449,7 @@
                     },
                     {
                         "goto": {
-                            "id": "country-of-birth"
+                            "block": "country-of-birth"
                         }
                     }
                 ]
@@ -563,7 +563,7 @@
                 ],
                 "routing_rules": [{
                         "goto": {
-                            "id": "carer",
+                            "block": "carer",
                             "when": [{
                                 "id": "country-of-birth-england-answer",
                                 "condition": "equals",
@@ -573,7 +573,7 @@
                     },
                     {
                         "goto": {
-                            "id": "carer",
+                            "block": "carer",
                             "when": [{
                                 "id": "country-of-birth-england-answer",
                                 "condition": "equals",
@@ -583,7 +583,7 @@
                     },
                     {
                         "goto": {
-                            "id": "carer",
+                            "block": "carer",
                             "when": [{
                                 "id": "country-of-birth-england-answer",
                                 "condition": "equals",
@@ -593,7 +593,7 @@
                     },
                     {
                         "goto": {
-                            "id": "carer",
+                            "block": "carer",
                             "when": [{
                                 "id": "country-of-birth-england-answer",
                                 "condition": "equals",
@@ -603,7 +603,7 @@
                     },
                     {
                         "goto": {
-                            "id": "carer",
+                            "block": "carer",
                             "when": [{
                                 "id": "country-of-birth-wales-answer",
                                 "condition": "equals",
@@ -613,7 +613,7 @@
                     },
                     {
                         "goto": {
-                            "id": "carer",
+                            "block": "carer",
                             "when": [{
                                 "id": "country-of-birth-wales-answer",
                                 "condition": "equals",
@@ -623,7 +623,7 @@
                     },
                     {
                         "goto": {
-                            "id": "carer",
+                            "block": "carer",
                             "when": [{
                                 "id": "country-of-birth-wales-answer",
                                 "condition": "equals",
@@ -633,7 +633,7 @@
                     },
                     {
                         "goto": {
-                            "id": "carer",
+                            "block": "carer",
                             "when": [{
                                 "id": "country-of-birth-wales-answer",
                                 "condition": "equals",
@@ -643,7 +643,7 @@
                     },
                     {
                         "goto": {
-                            "id": "arrive-in-uk"
+                            "block": "arrive-in-uk"
                         }
                     }
                 ]
@@ -1006,7 +1006,7 @@
                 ],
                 "routing_rules": [{
                         "goto": {
-                            "id": "white-ethnic-group",
+                            "block": "white-ethnic-group",
                             "when": [{
                                 "id": "ethnic-group-england-answer",
                                 "condition": "equals",
@@ -1016,7 +1016,7 @@
                     },
                     {
                         "goto": {
-                            "id": "mixed-ethnic-group",
+                            "block": "mixed-ethnic-group",
                             "when": [{
                                 "id": "ethnic-group-england-answer",
                                 "condition": "equals",
@@ -1026,7 +1026,7 @@
                     },
                     {
                         "goto": {
-                            "id": "asian-ethnic-group",
+                            "block": "asian-ethnic-group",
                             "when": [{
                                 "id": "ethnic-group-england-answer",
                                 "condition": "equals",
@@ -1036,7 +1036,7 @@
                     },
                     {
                         "goto": {
-                            "id": "black-ethnic-group",
+                            "block": "black-ethnic-group",
                             "when": [{
                                 "id": "ethnic-group-england-answer",
                                 "condition": "equals",
@@ -1046,7 +1046,7 @@
                     },
                     {
                         "goto": {
-                            "id": "other-ethnic-group",
+                            "block": "other-ethnic-group",
                             "when": [{
                                 "id": "ethnic-group-england-answer",
                                 "condition": "equals",
@@ -1056,7 +1056,7 @@
                     },
                     {
                         "goto": {
-                            "id": "white-ethnic-group",
+                            "block": "white-ethnic-group",
                             "when": [{
                                 "id": "ethnic-group-wales-answer",
                                 "condition": "equals",
@@ -1066,7 +1066,7 @@
                     },
                     {
                         "goto": {
-                            "id": "mixed-ethnic-group",
+                            "block": "mixed-ethnic-group",
                             "when": [{
                                 "id": "ethnic-group-wales-answer",
                                 "condition": "equals",
@@ -1076,7 +1076,7 @@
                     },
                     {
                         "goto": {
-                            "id": "asian-ethnic-group",
+                            "block": "asian-ethnic-group",
                             "when": [{
                                 "id": "ethnic-group-wales-answer",
                                 "condition": "equals",
@@ -1086,7 +1086,7 @@
                     },
                     {
                         "goto": {
-                            "id": "black-ethnic-group",
+                            "block": "black-ethnic-group",
                             "when": [{
                                 "id": "ethnic-group-wales-answer",
                                 "condition": "equals",
@@ -1096,7 +1096,7 @@
                     },
                     {
                         "goto": {
-                            "id": "other-ethnic-group",
+                            "block": "other-ethnic-group",
                             "when": [{
                                 "id": "ethnic-group-wales-answer",
                                 "condition": "equals",
@@ -1106,7 +1106,7 @@
                     },
                     {
                         "goto": {
-                            "id": "sexual-identity",
+                            "block": "sexual-identity",
                             "when": [{
                                 "meta": "variant_flags.sexual_identity",
                                 "condition": "equals",
@@ -1116,7 +1116,7 @@
                     },
                     {
                         "goto": {
-                            "id": "understand-welsh",
+                            "block": "understand-welsh",
                             "when": [{
                                 "meta": "region_code",
                                 "condition": "equals",
@@ -1126,7 +1126,7 @@
                     },
                     {
                         "goto": {
-                            "id": "language"
+                            "block": "language"
                         }
                     }
                 ]
@@ -1246,7 +1246,7 @@
                 ],
                 "routing_rules": [{
                         "goto": {
-                            "id": "sexual-identity",
+                            "block": "sexual-identity",
                             "when": [{
                                 "meta": "variant_flags.sexual_identity",
                                 "condition": "equals",
@@ -1256,7 +1256,7 @@
                     },
                     {
                         "goto": {
-                            "id": "understand-welsh",
+                            "block": "understand-welsh",
                             "when": [{
                                 "meta": "region_code",
                                 "condition": "equals",
@@ -1266,7 +1266,7 @@
                     },
                     {
                         "goto": {
-                            "id": "language"
+                            "block": "language"
                         }
                     }
                 ]
@@ -1324,7 +1324,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "sexual-identity",
+                            "block": "sexual-identity",
                             "when": [{
                                 "meta": "variant_flags.sexual_identity",
                                 "condition": "equals",
@@ -1334,7 +1334,7 @@
                     },
                     {
                         "goto": {
-                            "id": "understand-welsh",
+                            "block": "understand-welsh",
                             "when": [{
                                 "meta": "region_code",
                                 "condition": "equals",
@@ -1344,7 +1344,7 @@
                     },
                     {
                         "goto": {
-                            "id": "language"
+                            "block": "language"
                         }
                     }
                 ]
@@ -1406,7 +1406,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "sexual-identity",
+                            "block": "sexual-identity",
                             "when": [{
                                 "meta": "variant_flags.sexual_identity",
                                 "condition": "equals",
@@ -1416,7 +1416,7 @@
                     },
                     {
                         "goto": {
-                            "id": "understand-welsh",
+                            "block": "understand-welsh",
                             "when": [{
                                 "meta": "region_code",
                                 "condition": "equals",
@@ -1426,7 +1426,7 @@
                     },
                     {
                         "goto": {
-                            "id": "language"
+                            "block": "language"
                         }
                     }
                 ]
@@ -1480,7 +1480,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "sexual-identity",
+                            "block": "sexual-identity",
                             "when": [{
                                 "meta": "variant_flags.sexual_identity",
                                 "condition": "equals",
@@ -1490,7 +1490,7 @@
                     },
                     {
                         "goto": {
-                            "id": "understand-welsh",
+                            "block": "understand-welsh",
                             "when": [{
                                 "meta": "region_code",
                                 "condition": "equals",
@@ -1500,7 +1500,7 @@
                     },
                     {
                         "goto": {
-                            "id": "language"
+                            "block": "language"
                         }
                     }
                 ]
@@ -1550,7 +1550,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "sexual-identity",
+                            "block": "sexual-identity",
                             "when": [{
                                 "meta": "variant_flags.sexual_identity",
                                 "condition": "equals",
@@ -1560,7 +1560,7 @@
                     },
                     {
                         "goto": {
-                            "id": "understand-welsh",
+                            "block": "understand-welsh",
                             "when": [{
                                 "meta": "region_code",
                                 "condition": "equals",
@@ -1570,7 +1570,7 @@
                     },
                     {
                         "goto": {
-                            "id": "language"
+                            "block": "language"
                         }
                     }
                 ]
@@ -1645,7 +1645,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "understand-welsh",
+                            "block": "understand-welsh",
                             "when": [{
                                 "meta": "region_code",
                                 "condition": "equals",
@@ -1655,7 +1655,7 @@
                     },
                     {
                         "goto": {
-                            "id": "language"
+                            "block": "language"
                         }
                     }
                 ]
@@ -1776,7 +1776,7 @@
                 ],
                 "routing_rules": [{
                         "goto": {
-                            "id": "religion",
+                            "block": "religion",
                             "when": [{
                                 "id": "language-england-answer",
                                 "condition": "equals",
@@ -1786,7 +1786,7 @@
                     },
                     {
                         "goto": {
-                            "id": "religion",
+                            "block": "religion",
                             "when": [{
                                 "id": "language-welsh-answer",
                                 "condition": "equals",
@@ -1796,7 +1796,7 @@
                     },
                     {
                         "goto": {
-                            "id": "english"
+                            "block": "english"
                         }
                     }
                 ]
@@ -2009,7 +2009,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "last-year-address",
+                            "block": "last-year-address",
                             "when": [{
                                 "id": "past-usual-address-answer",
                                 "condition": "equals",
@@ -2019,7 +2019,7 @@
                     },
                     {
                         "goto": {
-                            "id": "last-year-address",
+                            "block": "last-year-address",
                             "when": [{
                                 "id": "past-usual-address-answer",
                                 "condition": "equals",
@@ -2029,7 +2029,7 @@
                     },
                     {
                         "goto": {
-                            "id": "passports"
+                            "block": "passports"
                         }
                     }
                 ]
@@ -2109,7 +2109,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "other-passports",
+                            "block": "other-passports",
                             "when": [{
                                 "id": "passports-answer",
                                 "condition": "contains",
@@ -2119,7 +2119,7 @@
                     },
                     {
                         "goto": {
-                            "id": "disability"
+                            "block": "disability"
                         }
                     }
                 ]
@@ -2174,7 +2174,7 @@
                 }],
                 "routing_rules": [{
                     "goto": {
-                        "id": "qualifications"
+                        "block": "qualifications"
                     }
                 }]
             },
@@ -2438,7 +2438,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "main-job",
+                            "block": "main-job",
                             "when": [{
                                 "id": "employment-type-answer",
                                 "condition": "contains",
@@ -2448,7 +2448,7 @@
                     },
                     {
                         "goto": {
-                            "id": "main-job",
+                            "block": "main-job",
                             "when": [{
                                 "id": "employment-type-answer",
                                 "condition": "contains",
@@ -2458,7 +2458,7 @@
                     },
                     {
                         "goto": {
-                            "id": "main-job",
+                            "block": "main-job",
                             "when": [{
                                 "id": "employment-type-answer",
                                 "condition": "contains",
@@ -2468,7 +2468,7 @@
                     },
                     {
                         "goto": {
-                            "id": "main-job",
+                            "block": "main-job",
                             "when": [{
                                 "id": "employment-type-answer",
                                 "condition": "contains",
@@ -2478,7 +2478,7 @@
                     },
                     {
                         "goto": {
-                            "id": "main-job",
+                            "block": "main-job",
                             "when": [{
                                 "id": "employment-type-answer",
                                 "condition": "contains",
@@ -2488,7 +2488,7 @@
                     },
                     {
                         "goto": {
-                            "id": "main-job",
+                            "block": "main-job",
                             "when": [{
                                 "id": "employment-type-answer",
                                 "condition": "contains",
@@ -2498,7 +2498,7 @@
                     },
                     {
                         "goto": {
-                            "id": "jobseeker"
+                            "block": "jobseeker"
                         }
                     }
                 ]
@@ -2654,7 +2654,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "confirmation",
+                            "block": "confirmation",
                             "when": [{
                                 "id": "ever-worked-answer",
                                 "condition": "equals",
@@ -2664,7 +2664,7 @@
                     },
                     {
                         "goto": {
-                            "id": "confirmation",
+                            "block": "confirmation",
                             "when": [{
                                 "id": "ever-worked-answer",
                                 "condition": "not set"
@@ -2673,7 +2673,7 @@
                     },
                     {
                         "goto": {
-                            "id": "main-job"
+                            "block": "main-job"
                         }
                     }
                 ]
@@ -2957,7 +2957,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "confirmation",
+                            "block": "confirmation",
                             "when": [{
                                 "id": "main-job-type-answer",
                                 "condition": "equals",
@@ -2967,7 +2967,7 @@
                     },
                     {
                         "goto": {
-                            "id": "business-name"
+                            "block": "business-name"
                         }
                     }
                 ]

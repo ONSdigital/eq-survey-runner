@@ -101,7 +101,7 @@
                 "description": "<h2 class='neptune'>Your household includes:</h2> {{ [answers.first_name, answers.middle_names, answers.last_name]|format_household_summary }}",
                 "routing_rules": [{
                         "goto": {
-                            "id": "household-composition",
+                            "block": "household-composition",
                             "when": [{
                                 "id": "household-composition-add-another",
                                 "condition": "equals",
@@ -111,7 +111,7 @@
                     },
                     {
                         "goto": {
-                            "id": "summary",
+                            "block": "summary",
                             "when": [{
                                 "id": "household-composition-add-another",
                                 "condition": "equals",

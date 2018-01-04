@@ -32,10 +32,10 @@ title: Access and Use of the Internet
 type: Questionnaire
 routing_rules:
 - goto:
-    id: access-and-use-of-the-internet-block-21
+    block: access-and-use-of-the-internet-block-21
     when:
     - condition: equals
       id: access-and-use-of-the-internet-answer-19
       value: 'No'
 - goto:
-    id: access-and-use-of-the-internet-block-20
+    block: access-and-use-of-the-internet-block-20

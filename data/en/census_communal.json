@@ -73,7 +73,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "further-contact",
+                            "block": "further-contact",
                             "when": [{
                                 "id": "bed-spaces-answer",
                                 "condition": "equals",
@@ -83,7 +83,7 @@
                     },
                     {
                         "goto": {
-                            "id": "usual-residents"
+                            "block": "usual-residents"
                         }
                     }
                 ]
@@ -126,7 +126,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "completion-preference-establishment",
+                            "block": "completion-preference-establishment",
                             "when": [{
                                 "id": "usual-residents-answer",
                                 "condition": "equals",
@@ -136,7 +136,7 @@
                     },
                     {
                         "goto": {
-                            "id": "usual-residents-number"
+                            "block": "usual-residents-number"
                         }
                     }
                 ]
@@ -229,7 +229,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "completion-preference-establishment",
+                            "block": "completion-preference-establishment",
                             "when": [{
                                 "id": "completion-preference-individual-answer",
                                 "condition": "equals",
@@ -239,7 +239,7 @@
                     },
                     {
                         "goto": {
-                            "id": "completion-preference-establishment",
+                            "block": "completion-preference-establishment",
                             "when": [{
                                 "id": "completion-preference-individual-answer",
                                 "condition": "equals",
@@ -249,7 +249,7 @@
                     },
                     {
                         "goto": {
-                            "id": "why-paper-individual"
+                            "block": "why-paper-individual"
                         }
                     }
                 ]
@@ -326,7 +326,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "further-contact",
+                            "block": "further-contact",
                             "when": [{
                                 "id": "completion-preference-establishment-answer",
                                 "condition": "equals",
@@ -336,7 +336,7 @@
                     },
                     {
                         "goto": {
-                            "id": "why-paper-establishment"
+                            "block": "why-paper-establishment"
                         }
                     }
                 ]
@@ -404,7 +404,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "confirmation",
+                            "block": "confirmation",
                             "when": [{
                                 "id": "further-contact-answer",
                                 "condition": "equals",
@@ -414,7 +414,7 @@
                     },
                     {
                         "goto": {
-                            "id": "contact-details"
+                            "block": "contact-details"
                         }
                     }
                 ]

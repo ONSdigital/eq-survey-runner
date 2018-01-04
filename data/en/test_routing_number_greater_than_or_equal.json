@@ -26,7 +26,7 @@
                 "title": "Number Routing Greater Than or Equal",
                 "routing_rules": [{
                         "goto": {
-                            "id": "correct-answer",
+                            "block": "correct-answer",
                             "when": [{
                                 "id": "answer",
                                 "condition": "greater than",
@@ -36,7 +36,7 @@
                     },
                     {
                         "goto": {
-                            "id": "correct-answer",
+                            "block": "correct-answer",
                             "when": [{
                                 "id": "answer",
                                 "condition": "equals",
@@ -46,7 +46,7 @@
                     },
                     {
                         "goto": {
-                            "id": "incorrect-answer"
+                            "block": "incorrect-answer"
                         }
                     }
                 ]
@@ -58,7 +58,7 @@
                 "description": "You were asked to enter a number greater than or equal to <em>123</em> but you entered <em>{{answers.answer}}</em>.",
                 "routing_rules": [{
                     "goto": {
-                        "id": "summary"
+                        "block": "summary"
                     }
                 }]
             },

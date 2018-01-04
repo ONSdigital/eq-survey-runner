@@ -27,7 +27,7 @@
                 }],
                 "routing_rules": [{
                         "goto": {
-                            "id": "block3",
+                            "block": "block3",
                             "when": [{
                                 "meta": "variant_flags.flag_1",
                                 "condition": "equals",
@@ -37,7 +37,7 @@
                     },
                     {
                         "goto": {
-                            "id": "block2"
+                            "block": "block2"
                         }
                     }
                 ]

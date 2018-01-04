@@ -51,7 +51,7 @@
                     }],
                     "routing_rules": [{
                             "goto": {
-                                "id": "response-yes",
+                                "block": "response-yes",
                                 "when": [{
                                     "id": "coffee-answer",
                                     "condition": "equals",
@@ -61,7 +61,7 @@
                         },
                         {
                             "goto": {
-                                "id": "response-no",
+                                "block": "response-no",
                                 "when": [{
                                     "id": "coffee-answer",
                                     "condition": "equals",

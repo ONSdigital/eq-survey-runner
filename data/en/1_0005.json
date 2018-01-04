@@ -260,7 +260,7 @@
                     }],
                     "routing_rules": [{
                             "goto": {
-                                "id": "pay-pattern-frequency",
+                                "block": "pay-pattern-frequency",
                                 "when": [{
                                     "id": "pay-pattern-frequency-confirmation-answer",
                                     "condition": "equals",
@@ -554,7 +554,7 @@
                     "type": "Questionnaire",
                     "routing_rules": [{
                             "goto": {
-                                "id": "weekly-pay-significant-changes-redundancies",
+                                "block": "weekly-pay-significant-changes-redundancies",
                                 "when": [{
                                     "id": "weekly-pay-significant-changes-paid-employees-answer",
                                     "condition": "equals",
@@ -564,7 +564,7 @@
                         },
                         {
                             "goto": {
-                                "id": "weekly-pay-significant-changes-gross-pay",
+                                "block": "weekly-pay-significant-changes-gross-pay",
                                 "when": [{
                                     "id": "weekly-pay-significant-changes-paid-employees-answer",
                                     "condition": "equals",
@@ -665,7 +665,7 @@
                     "type": "Questionnaire",
                     "routing_rules": [{
                             "goto": {
-                                "id": "weekly-pay-significant-changes-overtime",
+                                "block": "weekly-pay-significant-changes-overtime",
                                 "when": [{
                                     "id": "weekly-pay-significant-changes-gross-pay-answer",
                                     "condition": "equals",
@@ -675,7 +675,7 @@
                         },
                         {
                             "goto": {
-                                "id": "weekly-pay-significant-changes-other",
+                                "block": "weekly-pay-significant-changes-other",
                                 "when": [{
                                     "id": "weekly-pay-significant-changes-gross-pay-answer",
                                     "condition": "equals",
@@ -740,7 +740,7 @@
                     "type": "Questionnaire",
                     "routing_rules": [{
                             "goto": {
-                                "id": "weekly-pay-significant-changes-pay-rates-increase",
+                                "block": "weekly-pay-significant-changes-pay-rates-increase",
                                 "when": [{
                                     "id": "weekly-pay-significant-changes-pay-rates-answer",
                                     "condition": "equals",
@@ -750,7 +750,7 @@
                         },
                         {
                             "goto": {
-                                "id": "weekly-pay-significant-changes-industrial-action",
+                                "block": "weekly-pay-significant-changes-industrial-action",
                                 "when": [{
                                     "id": "weekly-pay-significant-changes-pay-rates-answer",
                                     "condition": "equals",
@@ -1106,7 +1106,7 @@
                     "type": "Questionnaire",
                     "routing_rules": [{
                             "goto": {
-                                "id": "fortnightly-pay-significant-changes-redundancies",
+                                "block": "fortnightly-pay-significant-changes-redundancies",
                                 "when": [{
                                     "id": "fortnightly-pay-significant-changes-paid-employees-answer",
                                     "condition": "equals",
@@ -1116,7 +1116,7 @@
                         },
                         {
                             "goto": {
-                                "id": "fortnightly-pay-significant-changes-gross-pay",
+                                "block": "fortnightly-pay-significant-changes-gross-pay",
                                 "when": [{
                                     "id": "fortnightly-pay-significant-changes-paid-employees-answer",
                                     "condition": "equals",
@@ -1217,7 +1217,7 @@
                     "type": "Questionnaire",
                     "routing_rules": [{
                             "goto": {
-                                "id": "fortnightly-pay-significant-changes-overtime",
+                                "block": "fortnightly-pay-significant-changes-overtime",
                                 "when": [{
                                     "id": "fortnightly-pay-significant-changes-gross-pay-answer",
                                     "condition": "equals",
@@ -1227,7 +1227,7 @@
                         },
                         {
                             "goto": {
-                                "id": "fortnightly-pay-significant-changes-other",
+                                "block": "fortnightly-pay-significant-changes-other",
                                 "when": [{
                                     "id": "fortnightly-pay-significant-changes-gross-pay-answer",
                                     "condition": "equals",
@@ -1292,7 +1292,7 @@
                     "type": "Questionnaire",
                     "routing_rules": [{
                             "goto": {
-                                "id": "fortnightly-pay-significant-changes-pay-rates-increase",
+                                "block": "fortnightly-pay-significant-changes-pay-rates-increase",
                                 "when": [{
                                     "id": "fortnightly-pay-significant-changes-pay-rates-answer",
                                     "condition": "equals",
@@ -1302,7 +1302,7 @@
                         },
                         {
                             "goto": {
-                                "id": "fortnightly-pay-significant-changes-industrial-action",
+                                "block": "fortnightly-pay-significant-changes-industrial-action",
                                 "when": [{
                                     "id": "fortnightly-pay-significant-changes-pay-rates-answer",
                                     "condition": "equals",
@@ -1640,7 +1640,7 @@
                     "type": "Questionnaire",
                     "routing_rules": [{
                             "goto": {
-                                "id": "calendar-monthly-pay-significant-changes-redundancies",
+                                "block": "calendar-monthly-pay-significant-changes-redundancies",
                                 "when": [{
                                     "id": "calendar-monthly-pay-significant-changes-paid-employees-answer",
                                     "condition": "equals",
@@ -1650,7 +1650,7 @@
                         },
                         {
                             "goto": {
-                                "id": "calendar-monthly-pay-significant-changes-gross-pay",
+                                "block": "calendar-monthly-pay-significant-changes-gross-pay",
                                 "when": [{
                                     "id": "calendar-monthly-pay-significant-changes-paid-employees-answer",
                                     "condition": "equals",
@@ -1751,7 +1751,7 @@
                     "type": "Questionnaire",
                     "routing_rules": [{
                             "goto": {
-                                "id": "calendar-monthly-pay-significant-changes-overtime",
+                                "block": "calendar-monthly-pay-significant-changes-overtime",
                                 "when": [{
                                     "id": "calendar-monthly-pay-significant-changes-gross-pay-answer",
                                     "condition": "equals",
@@ -1761,7 +1761,7 @@
                         },
                         {
                             "goto": {
-                                "id": "calendar-monthly-pay-significant-changes-other",
+                                "block": "calendar-monthly-pay-significant-changes-other",
                                 "when": [{
                                     "id": "calendar-monthly-pay-significant-changes-gross-pay-answer",
                                     "condition": "equals",
@@ -1826,7 +1826,7 @@
                     "type": "Questionnaire",
                     "routing_rules": [{
                             "goto": {
-                                "id": "calendar-monthly-pay-significant-changes-pay-rates-increase",
+                                "block": "calendar-monthly-pay-significant-changes-pay-rates-increase",
                                 "when": [{
                                     "id": "calendar-monthly-pay-significant-changes-pay-rates-answer",
                                     "condition": "equals",
@@ -1836,7 +1836,7 @@
                         },
                         {
                             "goto": {
-                                "id": "calendar-monthly-pay-significant-changes-industrial-action",
+                                "block": "calendar-monthly-pay-significant-changes-industrial-action",
                                 "when": [{
                                     "id": "calendar-monthly-pay-significant-changes-pay-rates-answer",
                                     "condition": "equals",
@@ -2173,7 +2173,7 @@
                     "type": "Questionnaire",
                     "routing_rules": [{
                             "goto": {
-                                "id": "four-weekly-pay-significant-changes-redundancies",
+                                "block": "four-weekly-pay-significant-changes-redundancies",
                                 "when": [{
                                     "id": "four-weekly-pay-significant-changes-paid-employees-answer",
                                     "condition": "equals",
@@ -2183,7 +2183,7 @@
                         },
                         {
                             "goto": {
-                                "id": "four-weekly-pay-significant-changes-gross-pay",
+                                "block": "four-weekly-pay-significant-changes-gross-pay",
                                 "when": [{
                                     "id": "four-weekly-pay-significant-changes-paid-employees-answer",
                                     "condition": "equals",
@@ -2284,7 +2284,7 @@
                     "type": "Questionnaire",
                     "routing_rules": [{
                             "goto": {
-                                "id": "four-weekly-pay-significant-changes-overtime",
+                                "block": "four-weekly-pay-significant-changes-overtime",
                                 "when": [{
                                     "id": "four-weekly-pay-significant-changes-gross-pay-answer",
                                     "condition": "equals",
@@ -2294,7 +2294,7 @@
                         },
                         {
                             "goto": {
-                                "id": "four-weekly-pay-significant-changes-other",
+                                "block": "four-weekly-pay-significant-changes-other",
                                 "when": [{
                                     "id": "four-weekly-pay-significant-changes-gross-pay-answer",
                                     "condition": "equals",
@@ -2359,7 +2359,7 @@
                     "type": "Questionnaire",
                     "routing_rules": [{
                             "goto": {
-                                "id": "four-weekly-pay-significant-changes-pay-rates-increase",
+                                "block": "four-weekly-pay-significant-changes-pay-rates-increase",
                                 "when": [{
                                     "id": "four-weekly-pay-significant-changes-pay-rates-answer",
                                     "condition": "equals",
@@ -2369,7 +2369,7 @@
                         },
                         {
                             "goto": {
-                                "id": "four-weekly-pay-significant-changes-industrial-action",
+                                "block": "four-weekly-pay-significant-changes-industrial-action",
                                 "when": [{
                                     "id": "four-weekly-pay-significant-changes-pay-rates-answer",
                                     "condition": "equals",
@@ -2707,7 +2707,7 @@
                     "type": "Questionnaire",
                     "routing_rules": [{
                             "goto": {
-                                "id": "five-weekly-pay-significant-changes-redundancies",
+                                "block": "five-weekly-pay-significant-changes-redundancies",
                                 "when": [{
                                     "id": "five-weekly-pay-significant-changes-paid-employees-answer",
                                     "condition": "equals",
@@ -2717,7 +2717,7 @@
                         },
                         {
                             "goto": {
-                                "id": "five-weekly-pay-significant-changes-gross-pay",
+                                "block": "five-weekly-pay-significant-changes-gross-pay",
                                 "when": [{
                                     "id": "five-weekly-pay-significant-changes-paid-employees-answer",
                                     "condition": "equals",
@@ -2818,7 +2818,7 @@
                     "type": "Questionnaire",
                     "routing_rules": [{
                             "goto": {
-                                "id": "five-weekly-pay-significant-changes-overtime",
+                                "block": "five-weekly-pay-significant-changes-overtime",
                                 "when": [{
                                     "id": "five-weekly-pay-significant-changes-gross-pay-answer",
                                     "condition": "equals",
@@ -2828,7 +2828,7 @@
                         },
                         {
                             "goto": {
-                                "id": "five-weekly-pay-significant-changes-other",
+                                "block": "five-weekly-pay-significant-changes-other",
                                 "when": [{
                                     "id": "five-weekly-pay-significant-changes-gross-pay-answer",
                                     "condition": "equals",
@@ -2893,7 +2893,7 @@
                     "type": "Questionnaire",
                     "routing_rules": [{
                             "goto": {
-                                "id": "five-weekly-pay-significant-changes-pay-rates-increase",
+                                "block": "five-weekly-pay-significant-changes-pay-rates-increase",
                                 "when": [{
                                     "id": "five-weekly-pay-significant-changes-pay-rates-answer",
                                     "condition": "equals",
@@ -2903,7 +2903,7 @@
                         },
                         {
                             "goto": {
-                                "id": "five-weekly-pay-significant-changes-industrial-action",
+                                "block": "five-weekly-pay-significant-changes-industrial-action",
                                 "when": [{
                                     "id": "five-weekly-pay-significant-changes-pay-rates-answer",
                                     "condition": "equals",

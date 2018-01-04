@@ -34,10 +34,10 @@ title: Changes in total turnover
 type: Questionnaire
 routing_rules:
 - goto:
-    id: changes-in-total-turnover-block-6
+    block: changes-in-total-turnover-block-6
     when:
     - condition: equals
       id: changes-in-total-turnover-answer-5
       value: 'Yes'
 - goto:
-    id: summary
+    block: summary

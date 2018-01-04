@@ -40,10 +40,10 @@ title: Use of computers
 type: Questionnaire
 routing_rules:
 - goto:
-    id: comments-block-4
+    block: comments-block-4
     when:
     - condition: equals
       id: use-of-computers-answer-2
       value: 'No'
 - goto:
-    id: use-of-computers-block-3
+    block: use-of-computers-block-3

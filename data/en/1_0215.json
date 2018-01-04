@@ -241,12 +241,12 @@
                                 "condition": "equals",
                                 "id": "reporting-period-choice-answer"
                             }],
-                            "id": "total-retail-turnover-block"
+                            "block": "total-retail-turnover-block"
                         }
                     },
                     {
                         "goto": {
-                            "id": "reporting-period"
+                            "block": "reporting-period"
                         }
                     }
                 ],
@@ -609,7 +609,7 @@
                 "id": "significant-change",
                 "routing_rules": [{
                         "goto": {
-                            "id": "reason-for-change",
+                            "block": "reason-for-change",
                             "when": [{
                                 "id": "significant-change-established-answer",
                                 "condition": "equals",
@@ -619,7 +619,7 @@
                     },
                     {
                         "goto": {
-                            "id": "total-employees"
+                            "block": "total-employees"
                         }
                     }
                 ],

@@ -20,10 +20,10 @@ title: Reporting period
 type: Questionnaire
 routing_rules:
 - goto:
-    id: turnover-block-4
+    block: turnover-block-4
     when:
     - condition: equals
       id: reporting-period-answer-2
       value: 'Yes'
 - goto:
-    id: reporting-period-block-3
+    block: reporting-period-block-3

@@ -26,7 +26,7 @@
                 "title": "Number Routing Not Equals",
                 "routing_rules": [{
                         "goto": {
-                            "id": "correct-answer",
+                            "block": "correct-answer",
                             "when": [{
                                 "id": "answer",
                                 "condition": "not equals",
@@ -36,7 +36,7 @@
                     },
                     {
                         "goto": {
-                            "id": "incorrect-answer"
+                            "block": "incorrect-answer"
                         }
                     }
                 ]
@@ -48,7 +48,7 @@
                 "description": "You were asked not to enter <em>123</em> but you entered <em>{{answers.answer}}</em>.",
                 "routing_rules": [{
                     "goto": {
-                        "id": "summary"
+                        "block": "summary"
                     }
                 }]
             },
