@@ -2,7 +2,7 @@ const helpers = require('../helpers');
 const BreakfastPage = require('../pages/surveys/confirmation_page/breakfast.page.js');
 const ConfirmationPage = require('../pages/surveys/confirmation_page/confirmation.page.js');
 
-describe('Example Test', function() {
+describe('Confirmation Page', function() {
 
   it('Given I successfully complete a questionnaire, when I submit the page, then I should be prompted for confirmation to submit.', function() {
     return helpers.startQuestionnaire('test_final_confirmation.json').then(() => {

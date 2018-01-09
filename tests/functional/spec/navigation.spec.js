@@ -126,11 +126,7 @@ describe('Navigation', function() {
         .click(helpers.navigationLink('Household Composition'))
         .click(HouseholdCompositionPage.removePerson())
         // Wait until page refresh
-        .waitUntil(function () {
-          return browser.elements(HouseholdCompositionPage.removePerson()).then(function (e) {
-            return e.value.length === 0;
-          });
-        }, 2000, 'Person not removed in time')
+        .waitForExist(HouseholdCompositionPage.removePerson(), 2000, true)
         .click(HouseholdCompositionPage.submit())
         .isVisible(helpers.navigationLink('Test User')).should.eventually.be.true
         .isVisible(helpers.navigationLink('Another User')).should.eventually.be.false;

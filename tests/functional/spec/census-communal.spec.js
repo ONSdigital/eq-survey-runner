@@ -14,7 +14,7 @@ const ContactDetailsPage = require('../pages/surveys/census/communal/contact-det
 const ConfirmationPage = require('../pages/surveys/census/communal/confirmation.page.js');
 const ThankYou = require('../pages/thank-you.page');
 
-describe('Example Test', function() {
+describe('Census Communal', function() {
 
   it('Given Respondent Home has identified the respondent should have the Communal Establishment Questionnaire, When I complete the EQ, Then i should be able to successfully submit', function() {
     return helpers.openQuestionnaire('census_communal.json').then(() => {

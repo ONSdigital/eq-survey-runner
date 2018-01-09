@@ -6,7 +6,7 @@ const AgeBlockPage = require('../pages/surveys/repeating_groups/age-block.page.j
 const ShoeSizeBlockPage = require('../pages/surveys/repeating_groups/shoe-size-block.page.js');
 const SummaryPage = require('../pages/surveys/repeating_groups/summary.page.js');
 
-describe('Example Test', function() {
+describe('Repeating Groups', function() {
 
 
   it('Given a group of questions will repeat three times, when I complete the three groups of questions, then I should see a summary page of the questions.', function() {

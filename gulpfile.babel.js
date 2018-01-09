@@ -7,7 +7,7 @@ import diff from 'gulp-diff'
 
 import { paths } from './gulp/paths'
 import { copyScripts, bundle, lint as lintScripts, lintFunctionalTests } from './gulp/scripts'
-import { unitTests, functionalTests } from './gulp/tests'
+import { unitTests } from './gulp/tests'
 import { sprite, images } from './gulp/images'
 import { styles, lint as lintStyles } from './gulp/styles'
 import browserSync from './gulp/bs'
@@ -54,24 +54,8 @@ gulp.task('clean:test', () => {
 })
 
 gulp.task('test:scripts', [
-  'test:scripts:unit',
-  'test:scripts:functional:sauce'
+  'test:scripts:unit'
 ])
-
-gulp.task('test:scripts:functional', done => {
-  process.env.BASEURL = getEnv()
-  functionalTests(done)
-})
-
-gulp.task('test:scripts:functional:sauce', done => {
-  process.env.BASEURL = getEnv()
-  functionalTests(done)
-})
-
-gulp.task('test:scripts:functional:headless', done => {
-  process.env.BASEURL = getEnv()
-  functionalTests(done)
-})
 
 gulp.task('test:scripts:unit', done => {
   unitTests(done, false)

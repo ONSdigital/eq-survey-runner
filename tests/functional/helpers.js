@@ -109,8 +109,10 @@ function isSectionCompleteBind(linkName) {
 }
 
 function pressSubmit(numberOfTimes) {
-    let chain = browser;
-    for (var i = 0; i < numberOfTimes; i++) {
+    let chain = browser
+          .click(genericPage.submit());
+
+    for (var i = 0; i < (numberOfTimes -1); i++) {
       chain = chain.then(() => {
         return browser
           .click(genericPage.submit());
