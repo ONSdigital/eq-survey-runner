@@ -175,7 +175,7 @@
                                         "lighting and minor electrical supplies",
                                         "records, compact discs, audio and video tapes",
                                         "musical instruments and goods",
-                                        "decorators\u2019 and DIY supplies",
+                                        "decorators’ and DIY supplies",
                                         "lawn-mowers",
                                         "hardware",
                                         "china, glassware and cutlery",
@@ -216,7 +216,7 @@
                                             "jewellery",
                                             "silverware and plate, clocks and watches",
                                             "household cleaning products and kitchen paper products",
-                                            "pets, pets\u2019 requisites and pet foods",
+                                            "pets, pets’ requisites and pet foods",
                                             "cut flowers, plants, seeds and other garden sundries",
                                             "other new and second hand goods",
                                             "Mobile phones"
@@ -234,7 +234,7 @@
                                 ]
                             },
                             "id": "total-sales-other-goods",
-                            "label": "What was the value of the business\u2019s total sales of other goods?",
+                            "label": "What was the value of the business’s total sales of other goods?",
                             "mandatory": false,
                             "q_code": "26",
                             "type": "Currency",
@@ -272,7 +272,7 @@
                                 ]
                             },
                             "id": "total-retail-turnover",
-                            "label": "What was the value of the business\u2019s total retail turnover?",
+                            "label": "What was the value of the business’s total retail turnover?",
                             "mandatory": true,
                             "q_code": "20",
                             "type": "Currency",
