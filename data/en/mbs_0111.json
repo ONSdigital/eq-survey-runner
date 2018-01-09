@@ -1,0 +1,321 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "variables": {
+        "period": "{{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}"
+    },
+    "schema_version": "0.0.1",
+    "survey_id": "023",
+    "theme": "default",
+    "data_version": "0.0.1",
+    "groups": [{
+        "blocks": [{
+                "type": "Introduction",
+                "id": "introduction",
+                "primary_content": [{
+                        "type": "Basic",
+                        "id": "use-of-information",
+                        "content": [{
+                            "list": [
+                                "Please complete this statutory Question for {{respondent.trad_as_or_ru_name}}, for period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
+                                "Data should relate to all sites in England, Scotland and Wales.",
+                                "We will treat your data securely and confidentially."
+                            ]
+                        }]
+                    },
+                    {
+                        "type": "Basic",
+                        "id": "information-to-provide",
+                        "title": "You will be asked to provide information for the business, including:",
+                        "content": [{
+                            "list": [
+                                "Value of total turnover",
+                                "Changes in turnover"
+                            ]
+                        }]
+                    }
+                ]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "reporting-period-block-2",
+                "title": "Reporting period",
+                "questions": [{
+                    "type": "General",
+                    "id": "reporting-period-question-2",
+                    "title": "Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?",
+                    "answers": [{
+                        "type": "Radio",
+                        "id": "reporting-period-answer-2",
+                        "label": "",
+                        "mandatory": true,
+                        "options": [{
+                                "label": "Yes",
+                                "value": "Yes"
+                            },
+                            {
+                                "label": "No",
+                                "value": "No"
+                            }
+                        ],
+                        "q_code": "d12",
+                        "description": ""
+                    }],
+                    "description": ""
+                }],
+                "routing_rules": [{
+                        "goto": {
+                            "when": [{
+                                "id": "reporting-period-answer-2",
+                                "value": "Yes",
+                                "condition": "equals"
+                            }],
+                            "block": "turnover-block-4"
+                        }
+                    },
+                    {
+                        "goto": {
+                            "block": "reporting-period-block-3"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "reporting-period-block-3",
+                "title": "Reporting period",
+                "questions": [{
+                    "type": "DateRange",
+                    "id": "reporting-period-question-3",
+                    "title": "What are the dates of the period that you will be reporting for?",
+                    "answers": [{
+                            "type": "Date",
+                            "id": "reporting-period-answer-3-0",
+                            "label": "From",
+                            "mandatory": true,
+                            "q_code": "11",
+                            "alias": "period_from"
+                        },
+                        {
+                            "type": "Date",
+                            "id": "reporting-period-answer-3-1",
+                            "label": "To",
+                            "mandatory": true,
+                            "q_code": "12",
+                            "alias": "period_to"
+                        }
+                    ],
+                    "description": ""
+                }]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "turnover-block-4",
+                "title": "Turnover",
+                "questions": [{
+                    "type": "General",
+                    "guidance": {
+                        "content": [{
+                                "list": [
+                                    "Commission",
+                                    "Costs incurred and passed on to customers",
+                                    "Sales of goods purchased for resale",
+                                    "Payment for work in progress",
+                                    "Income from sub-contracted activities",
+                                    "Revenue earned from other parts of the business not named  (please supply at fair value)"
+                                ],
+                                "title": "Include:",
+                                "description": ""
+                            },
+                            {
+                                "list": [
+                                    "VAT",
+                                    "Gains on sales of fixed capital assets",
+                                    "Grants and subsidies",
+                                    "Insurance claims",
+                                    "Interest received"
+                                ],
+                                "title": "Exclude:",
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total turnover</em>, excluding VAT?",
+                    "answers": [{
+                        "type": "Currency",
+                        "id": "turnover-answer-4-0",
+                        "label": "Total turnover excluding VAT",
+                        "currency": "GBP",
+                        "mandatory": true,
+                        "q_code": "40"
+                    }],
+                    "id": "turnover-question-4",
+                    "description": "<p>If you do not have a figure to report for this survey period, please enter zero.</p><p>If you are unable to calculate a figure, please provide a careful estimate.</p>"
+                }]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "changes-in-total-turnover-block-5",
+                "title": "Changes in total turnover",
+                "questions": [{
+                    "type": "General",
+                    "guidance": {
+                        "content": [{
+                            "list": [
+                                "special events (e.g sporting events)",
+                                "weather",
+                                "calendar events (e.g. Christmas, Easter, Bank Holiday)",
+                                "prices",
+                                "currency effects (appreciation or depreciation)"
+                            ],
+                            "title": "Include:",
+                            "description": ""
+                        }]
+                    },
+                    "title": "Did any significant changes occur to the total turnover for {{respondent.trad_as_or_ru_name}}?",
+                    "answers": [{
+                        "type": "Radio",
+                        "id": "changes-in-total-turnover-answer-5",
+                        "label": "",
+                        "mandatory": true,
+                        "options": [{
+                                "label": "Yes",
+                                "value": "Yes"
+                            },
+                            {
+                                "label": "No",
+                                "value": "No"
+                            }
+                        ],
+                        "q_code": "146a",
+                        "description": ""
+                    }],
+                    "id": "changes-in-total-turnover-question-5",
+                    "description": "<p>Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>"
+                }],
+                "routing_rules": [{
+                        "goto": {
+                            "when": [{
+                                "id": "changes-in-total-turnover-answer-5",
+                                "value": "Yes",
+                                "condition": "equals"
+                            }],
+                            "block": "changes-in-total-turnover-block-6"
+                        }
+                    },
+                    {
+                        "goto": {
+                            "block": "summary"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "changes-in-total-turnover-block-6",
+                "title": "Changes in total turnover",
+                "questions": [{
+                    "type": "General",
+                    "id": "changes-in-total-turnover-question-6",
+                    "title": "Please indicate the reasons for any changes in the total retail turnover for {{respondent.trad_as_or_ru_name}}",
+                    "answers": [{
+                        "type": "Checkbox",
+                        "id": "changes-in-total-turnover-answer-6-0",
+                        "label": "Select all that apply",
+                        "mandatory": true,
+                        "options": [{
+                                "label": "Special events (e.g.  sporting events)",
+                                "q_code": "146b",
+                                "value": "Special events (e.g.  sporting events)"
+                            },
+                            {
+                                "label": "Calendar events (e.g.  Christmas, Easter, Bank Holiday",
+                                "q_code": "146c",
+                                "value": "Calendar events (e.g.  Christmas, Easter, Bank Holiday"
+                            },
+                            {
+                                "label": "Weather",
+                                "q_code": "146d",
+                                "value": "Weather"
+                            },
+                            {
+                                "label": "Prices",
+                                "q_code": "146e",
+                                "value": "Prices"
+                            },
+                            {
+                                "label": "Currency effects (appreciation or depreciation)",
+                                "q_code": "146f",
+                                "value": "Currency effects (appreciation or depreciation)"
+                            },
+                            {
+                                "label": "Other",
+                                "q_code": "146g",
+                                "value": "Other"
+                            }
+                        ],
+                        "description": ""
+                    }],
+                    "description": ""
+                }]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "changes-in-total-turnover-block-7",
+                "title": "Changes in total turnover",
+                "questions": [{
+                    "type": "General",
+                    "id": "changes-in-total-turnover-question-7",
+                    "title": "Please describe the changes in total turnover for {{respondent.trad_as_or_ru_name}} in more detail",
+                    "answers": [{
+                        "guidance": {
+                            "hide_guidance": "Hide examples of commentary on changes to total turnover",
+                            "show_guidance": "Show examples of commentary on changes to total turnover",
+                            "content": [{
+                                    "list": [],
+                                    "title": "‘Special Events e.g (sporting events)’",
+                                    "description": "\"This is the month before the Euro 2016 (football) championships and we recorded an increase in orders for manufactured food products.\""
+                                },
+                                {
+                                    "list": [],
+                                    "title": "‘Weather’",
+                                    "description": "\"Bad weather caused a flood at one of our manufacturing sites, this reduced the amount of manufacturing we could undertake and affected sales.\""
+                                },
+                                {
+                                    "list": [],
+                                    "title": "‘Calendar events e.g. Christmas, Easter, Bank Holiday.’",
+                                    "description": "\"We closed the business for two weeks over the Christmas period. This has led to a reduction in total sales this month.\""
+                                },
+                                {
+                                    "list": [],
+                                    "title": "‘Prices’",
+                                    "description": "\"We have increased the prices of our products/ services. We do this every January, hence our sales figures appear higher.\""
+                                },
+                                {
+                                    "list": [],
+                                    "title": "‘Currency Effects (appreciation or depreciation)’",
+                                    "description": "\"The depreciation of sterling in June 2016 resulted in more online sales from overseas.\""
+                                }
+                            ]
+                        },
+                        "type": "TextArea",
+                        "mandatory": true,
+                        "label": "Comments",
+                        "id": "changes-in-total-turnover-answer-7-0",
+                        "q_code": "146",
+                        "description": ""
+                    }],
+                    "description": "<p>We rely on your commentary to ‘tell the story’ behind changes in figures.  By commenting here it will reduce the need for us to call you.</p>"
+                }]
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
+            }
+        ],
+        "id": "mci",
+        "title": ""
+    }],
+    "title": "Monthly Business Survey",
+    "legal_basis": "StatisticsOfTradeAct",
+    "description": "MBS Description"
+}

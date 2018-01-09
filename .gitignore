@@ -82,7 +82,4 @@ data/cy
 keys.yml
 secrets.yml
 
-data/en/e_commerce.json
-data/en/mbs_0111.json
-
 requirements.txt

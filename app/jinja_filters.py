@@ -113,9 +113,9 @@ def format_household_member_name_possessive(names):
     name = format_household_member_name(names)
     last_char = name[-1:]
     if last_char.lower() == 's':
-        return name + '\u2019'
+        return name + '’'
 
-    return name + '\u2019s'
+    return name + '’s'
 
 
 @blueprint.app_template_filter()
