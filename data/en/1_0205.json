@@ -292,7 +292,7 @@
                     }],
                     "description": "",
                     "id": "total-turnover-question",
-                    "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}\u2019s <em>total retail turnover</em>?",
+                    "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total retail turnover</em>?",
                     "type": "General"
                 }],
                 "title": "Retail Turnover"
@@ -343,7 +343,7 @@
                             "list": [
                                 "alcoholic drink",
                                 "chocolate and sugar confectionery",
-                                "tobacco and smokers\u2019 requisites"
+                                "tobacco and smokers’ requisites"
                             ]
                         }]
                     },
@@ -414,7 +414,7 @@
                                     "lighting and minor electrical supplies",
                                     "records, compact discs, audio and video tapes",
                                     "musical instruments and goods",
-                                    "decorators\u2019 and DIY supplies",
+                                    "decorators’ and DIY supplies",
                                     "lawn-mowers",
                                     "hardware",
                                     "china, glassware and cutlery",
@@ -459,7 +459,7 @@
                                         "jewellery",
                                         "silverware and plate, clocks and watches",
                                         "household cleaning products and kitchen paper products",
-                                        "pets, pets\u2019 requisites and pet foods",
+                                        "pets, pets’ requisites and pet foods",
                                         "cut flowers, plants, seeds and other garden sundries",
                                         "other new and second hand goods",
                                         "Mobile phones"
@@ -604,7 +604,7 @@
                         "q_code": "146a",
                         "type": "Radio"
                     }],
-                    "description": "Please note: what constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}\u2019s figures from the previous reporting period and the same reporting period last year.<br><br>This information will help us to validate your data and should reduce the need to query any figures with you.",
+                    "description": "Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year.<br><br>This information will help us to validate your data and should reduce the need to query any figures with you.",
                     "id": "significant-change-question",
                     "title": "Did any significant changes occur to the total retail turnover for {{respondent.trad_as_or_ru_name}}?",
                     "type": "General"
@@ -678,16 +678,16 @@
                                     "description": "Examples of commentary:"
                                 },
                                 {
-                                    "title": "\u2018In-store promotion\u2019",
-                                    "description": "\u201COffer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.\u201D"
+                                    "title": "‘In-store promotion’",
+                                    "description": "“Offer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.”"
                                 },
                                 {
-                                    "title": "\u2018Special events (for example, sporting events)\u2019",
-                                    "description": "\u201CThis was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.\u201D"
+                                    "title": "‘Special events (for example, sporting events)’",
+                                    "description": "“This was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.”"
                                 },
                                 {
-                                    "title": "\u2018Weather\u2019",
-                                    "description": "\u201CThe bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.\u201D"
+                                    "title": "‘Weather’",
+                                    "description": "“The bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.”"
                                 }
                             ]
                         },
@@ -697,7 +697,7 @@
                         "q_code": "146",
                         "type": "TextArea"
                     }],
-                    "description": "We rely on your commentary to \u2018tell the story\u2019 behind changes in figures. By commenting here it will reduce the need for us to call you.",
+                    "description": "We rely on your commentary to ‘tell the story’ behind changes in figures. By commenting here it will reduce the need for us to call you.",
                     "id": "change-comment-question",
                     "title": "Please describe the changes in total retail turnover for {{respondent.trad_as_or_ru_name}} in more detail",
                     "type": "General"
