@@ -2,7 +2,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestQbsSubmissionData(IntegrationTestCase):
-
     def test_submission_data_2_0001(self):
         self.submission_data('2', '0001')
 
@@ -46,7 +45,7 @@ class TestQbsSubmissionData(IntegrationTestCase):
                     'exercise_sid': '789',
                     'period': '201604',
                     'instrument_id': '0001'
-                    },
+                },
                 'survey_id': '139',
                 'flushed': False,
                 'tx_id': actual['submission']['tx_id'],

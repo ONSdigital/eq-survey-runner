@@ -13,7 +13,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
     def setUp(self):
         super().setUp()
 
-        survey = load_schema_file("census_household.json")
+        survey = load_schema_file('census_household.json')
         self.block_json = SchemaHelper.get_block(survey, 'household-composition')
         self.error_messages = SchemaHelper.get_messages(survey)
 
@@ -41,7 +41,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
 
             form.validate()
 
-            message = "Please enter a name or remove the person to continue"
+            message = 'Please enter a name or remove the person to continue'
 
             self.assertTrue(self._error_exists('household-0-first-name', message, form.map_errors()))
 
@@ -51,7 +51,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
 
             form.validate()
 
-            message = "Please enter a name or remove the person to continue"
+            message = 'Please enter a name or remove the person to continue'
 
             self.assertIn(message, form.answer_errors('household-0-first-name'))
 
@@ -85,7 +85,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
 
             form.validate()
 
-            message = "Please enter a name or remove the person to continue"
+            message = 'Please enter a name or remove the person to continue'
 
             self.assertIn(message, form.answer_errors('household-0-first-name'))
 
@@ -254,7 +254,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
                 }
             ]
 
-            for i, answer in enumerate(answers):
+            for _i, answer in enumerate(answers):
                 self.assertIn(answer.__dict__, expected_answers)
 
     def test_deserialise_answers(self):

@@ -84,10 +84,10 @@ class TestHouseholdQuestion(IntegrationTestCase):
             'household-0-first-name': 'John',
             'household-1-first-name': 'Jane',
             'household-2-first-name': 'Joe',
-            },
-            action='remove_answer',
-            action_value='1'  # Remove Jane.
-        )
+        },
+                  action='remove_answer',
+                  action_value='1'  # Remove Jane.
+                 )
 
         self.assertNotInPage('first-name_1')
 

@@ -8,7 +8,7 @@ from app.helpers.schema_helper import SchemaHelper
 class TestDateForm(unittest.TestCase):
 
     def test_generate_date_form_creates_empty_form(self):
-        survey = load_schema_file("test_dates.json")
+        survey = load_schema_file('test_dates.json')
         block_json = SchemaHelper.get_block(survey, 'date-block')
         error_messages = SchemaHelper.get_messages(survey)
 
@@ -21,7 +21,7 @@ class TestDateForm(unittest.TestCase):
         self.assertTrue(hasattr(form, 'year'))
 
     def test_generate_month_year_date_form_creates_empty_form(self):
-        survey = load_schema_file("test_dates.json")
+        survey = load_schema_file('test_dates.json')
         block_json = SchemaHelper.get_block(survey, 'date-block')
         error_messages = SchemaHelper.get_messages(survey)
 

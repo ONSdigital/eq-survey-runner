@@ -53,7 +53,7 @@ class TestDateRequiredValidator(unittest.TestCase):
         try:
             validator(mock_form, mock_field)
         except StopValidation:
-            self.fail("Valid date raised StopValidation")
+            self.fail('Valid date raised StopValidation')
 
     def test_valid_month_year(self):
 
@@ -68,4 +68,4 @@ class TestDateRequiredValidator(unittest.TestCase):
         try:
             validator(mock_form, mock_field)
         except StopValidation:
-            self.fail("Valid date raised StopValidation")
+            self.fail('Valid date raised StopValidation')

@@ -4,8 +4,8 @@ from tests.integration.integration_test_case import IntegrationTestCase
 with open('tests/fixtures/blns.json') as blns:
     NAUGHTY_STRINGS = json.load(blns)
 
-class TestTextArea(IntegrationTestCase):
 
+class TestTextArea(IntegrationTestCase):
 
     def test_empty_submission(self):
         self.launchSurvey('test', 'textarea')
@@ -15,7 +15,6 @@ class TestTextArea(IntegrationTestCase):
 
         self.post(action=None)
         self.assertInUrl('thank-you')
-
 
     def test_too_many_characters(self):
         self.launchSurvey('test', 'textarea')

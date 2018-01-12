@@ -32,4 +32,3 @@ class TestRepeatingRelationship(IntegrationTestCase):
         self.assertInPage('How is <em>Joe_23</em> related to the people below')
         self.post(url=last_relationship_page)
         self.assertInUrl('who-lives-here-completed')
-

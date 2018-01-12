@@ -26,8 +26,8 @@ class TestMonthYearValidator(unittest.TestCase):
         validator = MonthYearCheck()
 
         mock_form = Mock()
-        mock_form.month.data = ""
-        mock_form.year.data = ""
+        mock_form.month.data = ''
+        mock_form.year.data = ''
 
         mock_field = Mock()
 
@@ -40,8 +40,8 @@ class TestMonthYearValidator(unittest.TestCase):
         validator = MonthYearCheck()
 
         mock_form = Mock()
-        mock_form.month.data = ""
-        mock_form.year.data = "2017"
+        mock_form.month.data = ''
+        mock_form.year.data = '2017'
 
         mock_field = Mock()
 
@@ -54,8 +54,8 @@ class TestMonthYearValidator(unittest.TestCase):
         validator = MonthYearCheck()
 
         mock_form = Mock()
-        mock_form.month.data = "12"
-        mock_form.year.data = ""
+        mock_form.month.data = '12'
+        mock_form.year.data = ''
 
         mock_field = Mock()
 
@@ -68,8 +68,8 @@ class TestMonthYearValidator(unittest.TestCase):
         validator = MonthYearCheck()
 
         mock_form = Mock()
-        mock_form.month.data = "13"
-        mock_form.year.data = "2017"
+        mock_form.month.data = '13'
+        mock_form.year.data = '2017'
 
         mock_field = Mock()
 
@@ -82,8 +82,8 @@ class TestMonthYearValidator(unittest.TestCase):
         validator = MonthYearCheck()
 
         mock_form = Mock()
-        mock_form.month.data = "12"
-        mock_form.year.data = "17"
+        mock_form.month.data = '12'
+        mock_form.year.data = '17'
 
         mock_field = Mock()
 
@@ -96,12 +96,12 @@ class TestMonthYearValidator(unittest.TestCase):
         validator = MonthYearCheck()
 
         mock_form = Mock()
-        mock_form.month.data = "01"
-        mock_form.year.data = "2017"
+        mock_form.month.data = '01'
+        mock_form.year.data = '2017'
 
         mock_field = Mock()
 
         try:
             validator(mock_form, mock_field)
         except ValidationError:
-            self.fail("Valid date raised ValidationError")
+            self.fail('Valid date raised ValidationError')

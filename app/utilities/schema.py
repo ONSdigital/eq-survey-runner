@@ -5,6 +5,7 @@ import simplejson as json
 from structlog import get_logger
 from werkzeug.exceptions import NotFound
 
+
 from app.setup import cache
 
 logger = get_logger()

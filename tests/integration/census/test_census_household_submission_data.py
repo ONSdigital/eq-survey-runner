@@ -189,14 +189,15 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'block_id': 'central-heating',
                 'group_id': 'household-and-accommodation',
                 'answer_instance': 0,
-                'value': ['Gas',
-                          'Electric (include storage heaters)',
-                          'Oil',
-                          'Solid fuel (for example wood, coal)',
-                          'Renewable (for example solar panels)',
-                          'Other central heating',
-                          'No central heating'
-                         ]
+                'value': [
+                    'Gas',
+                    'Electric (include storage heaters)',
+                    'Oil',
+                    'Solid fuel (for example wood, coal)',
+                    'Renewable (for example solar panels)',
+                    'Other central heating',
+                    'No central heating'
+                ]
             },
             {
                 'group_instance': 0,
@@ -1121,14 +1122,15 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
                 'number-of-bedrooms-answer': '2'
             },
             {
-                'central-heating-answer': ['Gas',
-                                           'Electric (include storage heaters)',
-                                           'Oil',
-                                           'Solid fuel (for example wood, coal)',
-                                           'Renewable (for example solar panels)',
-                                           'Other central heating',
-                                           'No central heating'
-                                          ]
+                'central-heating-answer': [
+                    'Gas',
+                    'Electric (include storage heaters)',
+                    'Oil',
+                    'Solid fuel (for example wood, coal)',
+                    'Renewable (for example solar panels)',
+                    'Other central heating',
+                    'No central heating'
+                ]
             },
             {
                 'own-or-rent-answer': ['Owns outright']

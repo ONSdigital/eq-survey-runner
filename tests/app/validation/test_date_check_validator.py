@@ -150,15 +150,15 @@ class TestDateCheckValidator(unittest.TestCase):
         # 2016 WAS a leap year
         mock_form = Mock()
         mock_form.day.data = '29'
-        mock_form.month.data = "02"
-        mock_form.year.data = "2016"
+        mock_form.month.data = '02'
+        mock_form.year.data = '2016'
 
         mock_field = Mock()
 
         try:
             validator(mock_form, mock_field)
         except StopValidation:
-            self.fail("Valid date raised StopValidation")
+            self.fail('Valid date raised StopValidation')
 
     def test_date_type_validator_valid_dates(self):
 
@@ -166,36 +166,36 @@ class TestDateCheckValidator(unittest.TestCase):
 
         mock_form = Mock()
         mock_form.day.data = '01'
-        mock_form.month.data = "01"
-        mock_form.year.data = "2016"
+        mock_form.month.data = '01'
+        mock_form.year.data = '2016'
 
         mock_field = Mock()
 
         try:
             validator(mock_form, mock_field)
         except StopValidation:
-            self.fail("Valid date raised StopValidation")
+            self.fail('Valid date raised StopValidation')
 
         mock_form = Mock()
         mock_form.day.data = '1'
-        mock_form.month.data = "12"
-        mock_form.year.data = "2016"
+        mock_form.month.data = '12'
+        mock_form.year.data = '2016'
 
         mock_field = Mock()
 
         try:
             validator(mock_form, mock_field)
         except StopValidation:
-            self.fail("Valid date raised StopValidation")
+            self.fail('Valid date raised StopValidation')
 
         mock_form = Mock()
         mock_form.day.data = '01'
-        mock_form.month.data = "03"
-        mock_form.year.data = "2016"
+        mock_form.month.data = '03'
+        mock_form.year.data = '2016'
 
         mock_field = Mock()
 
         try:
             validator(mock_form, mock_field)
         except StopValidation:
-            self.fail("Valid date raised StopValidation")
+            self.fail('Valid date raised StopValidation')

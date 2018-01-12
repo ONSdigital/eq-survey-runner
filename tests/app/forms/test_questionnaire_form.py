@@ -15,9 +15,9 @@ class TestQuestionnaireForm(AppContextTestCase):
 
     def test_form_ids_match_block_answer_ids(self):
         with self.test_request_context():
-            survey = load_schema_file("test_0102.json")
+            survey = load_schema_file('test_0102.json')
 
-            block_json = SchemaHelper.get_block(survey, "reporting-period")
+            block_json = SchemaHelper.get_block(survey, 'reporting-period')
             error_messages = SchemaHelper.get_messages(survey)
 
             form = generate_form(block_json, {}, error_messages, AnswerStore())
@@ -27,9 +27,9 @@ class TestQuestionnaireForm(AppContextTestCase):
 
     def test_form_date_range_populates_data(self):
         with self.test_request_context():
-            survey = load_schema_file("test_0102.json")
+            survey = load_schema_file('test_0102.json')
 
-            block_json = SchemaHelper.get_block(survey, "reporting-period")
+            block_json = SchemaHelper.get_block(survey, 'reporting-period')
             error_messages = SchemaHelper.get_messages(survey)
 
             data = {
@@ -52,9 +52,9 @@ class TestQuestionnaireForm(AppContextTestCase):
 
     def test_date_range_matching_dates_raises_question_error(self):
         with self.test_request_context():
-            survey = load_schema_file("test_0102.json")
+            survey = load_schema_file('test_0102.json')
 
-            block_json = SchemaHelper.get_block(survey, "reporting-period")
+            block_json = SchemaHelper.get_block(survey, 'reporting-period')
             error_messages = SchemaHelper.get_messages(survey)
 
             data = {
@@ -75,13 +75,13 @@ class TestQuestionnaireForm(AppContextTestCase):
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
-            self.assertEqual(form.question_errors['reporting-period-question'], error_messages["INVALID_DATE_RANGE"])
+            self.assertEqual(form.question_errors['reporting-period-question'], error_messages['INVALID_DATE_RANGE'])
 
     def test_date_range_to_precedes_from_raises_question_error(self):
         with self.test_request_context():
-            survey = load_schema_file("test_0102.json")
+            survey = load_schema_file('test_0102.json')
 
-            block_json = SchemaHelper.get_block(survey, "reporting-period")
+            block_json = SchemaHelper.get_block(survey, 'reporting-period')
             error_messages = SchemaHelper.get_messages(survey)
 
             data = {
@@ -106,9 +106,9 @@ class TestQuestionnaireForm(AppContextTestCase):
 
     def test_form_errors_are_correctly_mapped(self):
         with self.test_request_context():
-            survey = load_schema_file("test_0112.json")
+            survey = load_schema_file('test_0112.json')
 
-            block_json = SchemaHelper.get_block(survey, "total-retail-turnover")
+            block_json = SchemaHelper.get_block(survey, 'total-retail-turnover')
             error_messages = SchemaHelper.get_messages(survey)
 
             form = generate_form(block_json, {}, error_messages, AnswerStore())
@@ -116,13 +116,13 @@ class TestQuestionnaireForm(AppContextTestCase):
             form.validate()
             mapped_errors = form.map_errors()
 
-            self.assertTrue(self._error_exists('total-retail-turnover-answer', error_messages["MANDATORY_NUMBER"], mapped_errors))
+            self.assertTrue(self._error_exists('total-retail-turnover-answer', error_messages['MANDATORY_NUMBER'], mapped_errors))
 
     def test_form_subfield_errors_are_correctly_mapped(self):
         with self.test_request_context():
-            survey = load_schema_file("test_0102.json")
+            survey = load_schema_file('test_0102.json')
 
-            block_json = SchemaHelper.get_block(survey, "reporting-period")
+            block_json = SchemaHelper.get_block(survey, 'reporting-period')
             error_messages = SchemaHelper.get_messages(survey)
 
             form = generate_form(block_json, {}, error_messages, AnswerStore())
@@ -130,14 +130,14 @@ class TestQuestionnaireForm(AppContextTestCase):
             form.validate()
             mapped_errors = form.map_errors()
 
-            self.assertTrue(self._error_exists('period-to', error_messages["MANDATORY_DATE"], mapped_errors))
-            self.assertTrue(self._error_exists('period-from', error_messages["MANDATORY_DATE"], mapped_errors))
+            self.assertTrue(self._error_exists('period-to', error_messages['MANDATORY_DATE'], mapped_errors))
+            self.assertTrue(self._error_exists('period-from', error_messages['MANDATORY_DATE'], mapped_errors))
 
     def test_answer_with_child_inherits_mandatory_from_parent(self):
         with self.test_request_context():
-            survey = load_schema_file("test_radio_mandatory_with_mandatory_other.json")
+            survey = load_schema_file('test_radio_mandatory_with_mandatory_other.json')
 
-            block_json = SchemaHelper.get_block(survey, "radio-mandatory")
+            block_json = SchemaHelper.get_block(survey, 'radio-mandatory')
             error_messages = SchemaHelper.get_messages(survey)
 
             form = generate_form(block_json, {
@@ -150,7 +150,7 @@ class TestQuestionnaireForm(AppContextTestCase):
 
     def test_answer_with_child_errors_are_correctly_mapped(self):
         with self.test_request_context():
-            survey = load_schema_file("test_radio_mandatory_with_mandatory_other.json")
+            survey = load_schema_file('test_radio_mandatory_with_mandatory_other.json')
 
             block_json = SchemaHelper.get_block(survey, 'radio-mandatory')
             error_messages = SchemaHelper.get_messages(survey)
@@ -162,59 +162,59 @@ class TestQuestionnaireForm(AppContextTestCase):
             form.validate()
             mapped_errors = form.map_errors()
 
-            self.assertTrue(self._error_exists("radio-mandatory-answer", error_messages['MANDATORY_TEXTFIELD'], mapped_errors))
-            self.assertFalse(self._error_exists("other-answer-mandatory", error_messages['MANDATORY_TEXTFIELD'], mapped_errors))
+            self.assertTrue(self._error_exists('radio-mandatory-answer', error_messages['MANDATORY_TEXTFIELD'], mapped_errors))
+            self.assertFalse(self._error_exists('other-answer-mandatory', error_messages['MANDATORY_TEXTFIELD'], mapped_errors))
 
     def test_answer_errors_are_interpolated(self):
         with self.test_request_context():
-            survey = load_schema_file("test_0112.json")
+            survey = load_schema_file('test_0112.json')
 
-            block_json = SchemaHelper.get_block(survey, "number-of-employees")
+            block_json = SchemaHelper.get_block(survey, 'number-of-employees')
             error_messages = SchemaHelper.get_messages(survey)
 
             form = generate_form(block_json, {
-                'total-number-employees': "-1"
+                'total-number-employees': '-1'
             }, error_messages, AnswerStore())
 
             form.validate()
             answer_errors = form.answer_errors('total-number-employees')
-            self.assertIn(error_messages["NUMBER_TOO_SMALL"] % dict(min='0'), answer_errors)
+            self.assertIn(error_messages['NUMBER_TOO_SMALL'] % dict(min='0'), answer_errors)
 
     def test_option_has_other(self):
         with self.test_request_context():
-            survey = load_schema_file("test_checkbox.json")
-            block_json = SchemaHelper.get_block(survey, "mandatory-checkbox")
+            survey = load_schema_file('test_checkbox.json')
+            block_json = SchemaHelper.get_block(survey, 'mandatory-checkbox')
             error_messages = SchemaHelper.get_messages(survey)
 
             form = generate_form(block_json, {}, error_messages, AnswerStore())
 
-            self.assertFalse(form.option_has_other("mandatory-checkbox-answer", 1))
-            self.assertTrue(form.option_has_other("mandatory-checkbox-answer", 6))
+            self.assertFalse(form.option_has_other('mandatory-checkbox-answer', 1))
+            self.assertTrue(form.option_has_other('mandatory-checkbox-answer', 6))
 
     def test_get_other_answer(self):
         with self.test_request_context():
-            survey = load_schema_file("test_checkbox.json")
-            block_json = SchemaHelper.get_block(survey, "mandatory-checkbox")
+            survey = load_schema_file('test_checkbox.json')
+            block_json = SchemaHelper.get_block(survey, 'mandatory-checkbox')
             error_messages = SchemaHelper.get_messages(survey)
 
             form = generate_form(block_json, {
-                "other-answer-mandatory": "Some data"
+                'other-answer-mandatory': 'Some data'
             }, error_messages, AnswerStore())
 
-            field = form.get_other_answer("mandatory-checkbox-answer", 6)
+            field = form.get_other_answer('mandatory-checkbox-answer', 6)
 
-            self.assertEqual("Some data", field.data)
+            self.assertEqual('Some data', field.data)
 
     def test_get_other_answer_invalid(self):
         with self.test_request_context():
-            survey = load_schema_file("test_checkbox.json")
-            block_json = SchemaHelper.get_block(survey, "mandatory-checkbox")
+            survey = load_schema_file('test_checkbox.json')
+            block_json = SchemaHelper.get_block(survey, 'mandatory-checkbox')
             error_messages = SchemaHelper.get_messages(survey)
 
             form = generate_form(block_json, {
-                "other-answer-mandatory": "Some data"
+                'other-answer-mandatory': 'Some data'
             }, error_messages, AnswerStore())
 
-            field = form.get_other_answer("mandatory-checkbox-answer", 4)
+            field = form.get_other_answer('mandatory-checkbox-answer', 4)
 
             self.assertEqual(None, field)

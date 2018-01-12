@@ -46,7 +46,7 @@ class TestCreateApp(unittest.TestCase):
 
     # localisation may not be used but is currently attached...
     def test_adds_i18n_to_application(self):
-        self.assertIsInstance(create_app(self._setting_overrides).babel, Babel) # pylint: disable=no-member
+        self.assertIsInstance(create_app(self._setting_overrides).babel, Babel)  # pylint: disable=no-member
 
     def test_adds_logging_of_request_ids(self):
         with patch('app.setup.logger') as logger:
@@ -59,7 +59,6 @@ class TestCreateApp(unittest.TestCase):
             _, kwargs = logger.new.call_args
             self.assertTrue(UUID(kwargs['request_id'], version=4))
 
-
     def test_enforces_secure_headers(self):
         client = create_app(self._setting_overrides).test_client()
         headers = client.get('/').headers
@@ -69,7 +68,6 @@ class TestCreateApp(unittest.TestCase):
         self.assertEqual('DENY', headers['X-Frame-Options'])
         self.assertEqual('1; mode=block', headers['X-Xss-Protection'])
         self.assertEqual('nosniff', headers['X-Content-Type-Options'])
-
 
     # Indirectly covered by higher level integration
     # tests, keeping to highlight that create_app is where
@@ -124,7 +122,6 @@ class TestCreateApp(unittest.TestCase):
         # Flasks application factories pattern so that
         # cross test config bleed isn't possible
         settings.EQ_MINIMIZE_ASSETS = False
-
 
     def test_versioned_url_for_regular_assets(self):
         settings.EQ_MINIMIZE_ASSETS = False

@@ -1,5 +1,5 @@
-from app import settings
-from app.forms.household_relationship_form import build_relationship_choices, deserialise_relationship_answers, serialise_relationship_answers, generate_relationship_form
+from app.forms.household_relationship_form import build_relationship_choices, deserialise_relationship_answers, \
+    serialise_relationship_answers, generate_relationship_form
 from app.data_model.answer_store import AnswerStore, Answer
 from app.utilities.schema import load_schema_file
 from app.helpers.schema_helper import SchemaHelper
@@ -9,7 +9,6 @@ from tests.app.app_context_test_case import AppContextTestCase
 
 
 class TestHouseholdRelationshipForm(AppContextTestCase):
-
     @staticmethod
     def _error_exists(answer_id, msg, mapped_errors):
         return any(a_id == answer_id and msg in ordered_errors for a_id, ordered_errors in mapped_errors)
@@ -69,7 +68,7 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
 
     def test_generate_relationship_form_creates_empty_form(self):
         with self.test_request_context():
-            survey = load_schema_file("test_relationship_household.json")
+            survey = load_schema_file('test_relationship_household.json')
             block_json = SchemaHelper.get_block(survey, 'relationships')
             error_messages = SchemaHelper.get_messages(survey)
 
@@ -82,7 +81,7 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
 
     def test_generate_relationship_form_creates_form_from_data(self):
         with self.test_request_context():
-            survey = load_schema_file("test_relationship_household.json")
+            survey = load_schema_file('test_relationship_household.json')
             block_json = SchemaHelper.get_block(survey, 'relationships')
             error_messages = SchemaHelper.get_messages(survey)
 
@@ -101,7 +100,7 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
 
     def test_generate_relationship_form_errors_are_correctly_mapped(self):
         with self.test_request_context():
-            survey = load_schema_file("test_relationship_household.json")
+            survey = load_schema_file('test_relationship_household.json')
             block_json = SchemaHelper.get_block(survey, 'relationships')
             error_messages = SchemaHelper.get_messages(survey)
 
@@ -118,12 +117,12 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
             form.validate()
             mapped_errors = form.map_errors()
 
-            message = "Not a valid choice"
+            message = 'Not a valid choice'
 
             self.assertTrue(self._error_exists(answer['id'], message, mapped_errors))
 
     def test_serialise_relationship_answers(self):
-        location = Location("household-relationships", 0, "relationships")
+        location = Location('household-relationships', 0, 'relationships')
 
         field_data = ['Husband or Wife', 'Son or daughter', 'Unrelated']
 
@@ -131,26 +130,26 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
 
         expected_answers = [
             {
-                'group_id':"household-relationships",
+                'group_id': 'household-relationships',
                 'group_instance': 0,
                 'block_id': 'relationships',
                 'answer_id': 'who-is-related',
                 'answer_instance': 0,
                 'value': 'Husband or Wife'
             }, {
-                'group_id':"household-relationships",
+                'group_id': 'household-relationships',
                 'group_instance': 0,
                 'block_id': 'relationships',
                 'answer_id': 'who-is-related',
                 'answer_instance': 1,
                 'value': 'Son or daughter'
             }, {
-                'group_id': "household-relationships",
+                'group_id': 'household-relationships',
                 'group_instance': 0,
                 'block_id': 'relationships',
                 'answer_id': 'who-is-related',
                 'answer_instance': 2,
-                'value':'Unrelated'
+                'value': 'Unrelated'
             }
         ]
 
@@ -167,51 +166,51 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
 
         serialised_answers = [
             {
-                'group_id':"household-relationships",
+                'group_id': 'household-relationships',
                 'group_instance': 0,
                 'block_id': 'relationships',
                 'answer_id': 'who-is-related',
                 'answer_instance': 0,
                 'value': 'Husband or Wife'
             }, {
-                'group_id':"household-relationships",
+                'group_id': 'household-relationships',
                 'group_instance': 0,
                 'block_id': 'relationships',
                 'answer_id': 'who-is-related',
                 'answer_instance': 1,
                 'value': 'Son or daughter'
             }, {
-                'group_id': "household-relationships",
+                'group_id': 'household-relationships',
                 'group_instance': 0,
                 'block_id': 'relationships',
                 'answer_id': 'who-is-related',
                 'answer_instance': 2,
-                'value':'Unrelated'
+                'value': 'Unrelated'
             }
         ]
 
         deserialised_form_data = deserialise_relationship_answers(serialised_answers)
 
-        self.assertEquals(expected_form_data, deserialised_form_data)
+        self.assertEqual(expected_form_data, deserialised_form_data)
 
     def test_build_relationship_choices_limited(self):
         answer_store = AnswerStore()
 
         for i in range(0, 50):
             answer_store.add(Answer(
-                 block_id="household-composition",
-                 answer_id="first-name",
-                 answer_instance=i,
-                 group_id="5",
-                 value="Joe" + str(i),
-             ))
+                block_id='household-composition',
+                answer_id='first-name',
+                answer_instance=i,
+                group_id='5',
+                value='Joe' + str(i),
+            ))
             answer_store.add(Answer(
-                 block_id="household-composition",
-                 answer_id="last-name",
-                 answer_instance=i,
-                 group_id="5",
-                 value="Bloggs" + str(i),
-             ))
+                block_id='household-composition',
+                answer_id='last-name',
+                answer_instance=i,
+                group_id='5',
+                value='Bloggs' + str(i),
+            ))
 
         choices = build_relationship_choices(answer_store, 0)
 

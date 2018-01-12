@@ -17,7 +17,6 @@ from tests.integration.integration_test_case import EQ_USER_AUTHENTICATION_RRM_P
 
 
 class FlaskClientAuthenticationTestCase(AppContextTestCase):
-
     def setUp(self):
         logging.basicConfig(level=logging.DEBUG)
 
@@ -35,7 +34,6 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
         self.assertEqual(403, response.status_code)
 
     def test_fully_encrypted(self):
-
         key_store = KeyStore({
             'keys': {
                 SR_USER_AUTHENTICATION_PUBLIC_KEY_KID: {'purpose': KEY_PURPOSE_AUTHENTICATION,
@@ -74,6 +72,7 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
             'ru_name': 'Test',
             'return_by': '2016-09-09'
         }
+
 
 if __name__ == '__main__':
     unittest.main()

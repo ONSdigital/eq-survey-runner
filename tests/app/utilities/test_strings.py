@@ -29,5 +29,6 @@ class TestStrings(unittest.TestCase):
         s = strings.to_str(None)
         self.assertEqual(s, None)
 
+
 if __name__ == '__main__':
     unittest.main()

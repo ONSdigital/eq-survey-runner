@@ -52,7 +52,7 @@ class TestEmptySubmissionFails(StarWarsTestCase):
         self.assertRegexPage('(?s)Which 3 have wielded a green lightsaber?.*?Luke Skywalker')
         self.assertRegexPage('(?s)Which 3 have wielded a green lightsaber?.*?Qui-Gon Jinn')
         self.assertRegexPage('(?s)Which 3 appear in any of the opening crawlers?')
-        self.assertRegexPage("(?s)When was The Empire Strikes Back released?.*?<span class='date'>28 May 1983</span> " \
+        self.assertRegexPage("(?s)When was The Empire Strikes Back released?.*?<span class='date'>28 May 1983</span> "
                              "to <span class='date'>29 May 1983</span>")
         self.assertRegexPage('(?s)What was the total number of Ewoks?.*?')
         self.assertRegexPage("(?s)Why doesn't Chewbacca receive a medal at the end of A New Hope?.*?"
