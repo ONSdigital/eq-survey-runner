@@ -45,7 +45,7 @@
     },
     "groups": [{
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "insurance-type",
                     "description": "",
                     "questions": [{
@@ -77,7 +77,7 @@
                     "title": "Property Details"
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "insurance-address",
                     "description": "",
                     "questions": [{
@@ -114,7 +114,7 @@
         },
         {
             "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "house-type",
                 "description": "",
                 "questions": [{
@@ -164,7 +164,7 @@
         },
         {
             "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "household-composition",
                 "questions": [{
                     "description": "",
@@ -187,7 +187,7 @@
         },
         {
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "repeating-block-1",
                     "title": "{{answers.person_full_name[group_instance]}}",
                     "description": "",
@@ -215,7 +215,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "repeating-block-2",
                     "title": "{{answers.person_full_name[group_instance]}}",
                     "description": "",
@@ -262,7 +262,7 @@
         },
         {
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "extra-cover-block",
                     "description": "",
                     "questions": [{
@@ -305,7 +305,7 @@
         },
         {
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "credit-card",
                     "description": "",
                     "questions": [{
@@ -324,7 +324,7 @@
                     "title": "Payment Details"
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "expiry-date",
                     "description": "",
                     "questions": [{
@@ -343,7 +343,7 @@
                     "title": "Payment Details"
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "security-code",
                     "description": "",
                     "questions": [{
@@ -388,7 +388,7 @@
                 }
             }],
             "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "extra-cover-items",
                 "title": "Extra Cover {{group_instance + 1}}",
                 "questions": [{

@@ -6,7 +6,7 @@
     "title": "Percentage Field Demo",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "description": "A questionnaire to test percentage input type",
+    "description": "A Question to test percentage input type",
     "navigation": {
         "visible": true,
         "sections": [{
@@ -21,7 +21,7 @@
     },
     "groups": [{
             "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "block",
                 "description": "",
                 "questions": [{

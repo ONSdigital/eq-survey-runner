@@ -6,7 +6,7 @@
     "title": "Question Guidance Test",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "description": "A questionnaire to test question guidance content",
+    "description": "A Question to test question guidance content",
     "groups": [{
         "id": "group",
         "title": "",
@@ -17,7 +17,7 @@
                 "description": ""
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "block-test-guidance-title",
                 "title": "Section: Test guidance title",
                 "description": "",
@@ -51,7 +51,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "block-test-guidance-description",
                 "title": "Section: Test guidance descriptions",
                 "description": "",
@@ -87,7 +87,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "block-test-guidance-lists",
                 "title": "Section: Test guidance lists",
                 "description": "",
@@ -125,7 +125,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "block-test-guidance-content-description",
                 "title": "Section: Test show guidance content description",
                 "description": "",
@@ -155,7 +155,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "block-test-guidance-content-title",
                 "title": "Section: Test show guidance content title",
                 "description": "",
@@ -185,7 +185,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "block-test-guidance-content-list",
                 "title": "Section: Test show guidance content list",
                 "description": "",
@@ -219,7 +219,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "block-test-guidance-all",
                 "title": "Section: Test guidance all",
                 "description": "",

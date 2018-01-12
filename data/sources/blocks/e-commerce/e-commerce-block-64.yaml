@@ -44,7 +44,7 @@ questions:
     \ for goods or services via a website or \u2018app\u2019?"
   type: General
 title: e-Commerce
-type: Questionnaire
+type: Question
 routing_rules:
 - goto:
     block: e-commerce-block-70

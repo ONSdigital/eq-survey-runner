@@ -14,7 +14,7 @@
                 "title": "Introduction"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "household-composition",
                 "questions": [{
                     "id": "household-composition-question",
@@ -121,7 +121,7 @@
                     }
                 ],
                 "id": "household-summary",
-                "type": "Questionnaire"
+                "type": "Question"
             },
             {
                 "type": "Summary",

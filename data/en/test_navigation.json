@@ -51,7 +51,7 @@
     },
     "groups": [{
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "insurance-type",
                     "description": "",
                     "questions": [{
@@ -83,7 +83,7 @@
                     "title": "Property Details"
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "insurance-address",
                     "description": "",
                     "questions": [{
@@ -107,7 +107,7 @@
         },
         {
             "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "house-type",
                 "skip_conditions": [{
                         "when": [{
@@ -181,7 +181,7 @@
         },
         {
             "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "household-composition",
                 "questions": [{
                     "id": "household-composition-question",
@@ -227,7 +227,7 @@
         },
         {
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "repeating-block-1",
                     "title": "{{answers.first_name[group_instance]}} {{answers.last_name[group_instance]}}",
                     "description": "",
@@ -255,7 +255,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "repeating-block-2",
                     "title": "{{answers.first_name[group_instance]}} {{answers.last_name[group_instance]}}",
                     "description": "",
@@ -302,7 +302,7 @@
         },
         {
             "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "extra-cover-block",
                 "description": "",
                 "questions": [{
@@ -339,7 +339,7 @@
                 }
             }],
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "extra-cover-items",
                     "title": "Extra Cover {{group_instance + 1}}",
                     "questions": [{
@@ -357,7 +357,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "extra-cover-items-radio",
                     "title": "Continue to next",
                     "description": "",
@@ -390,7 +390,7 @@
             "id": "skip-payment-group",
             "title": "Are you ready for payment?",
             "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "skip-payment",
                 "title": "Skip Payent",
                 "description": "",
@@ -434,7 +434,7 @@
                 }
             ],
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "credit-card",
                     "description": "",
                     "questions": [{
@@ -453,7 +453,7 @@
                     "title": "Payment Details"
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "expiry-date",
                     "description": "",
                     "questions": [{
@@ -472,7 +472,7 @@
                     "title": "Payment Details"
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "security-code",
                     "description": "",
                     "questions": [{
@@ -491,7 +491,7 @@
                     "title": "Payment Details"
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "skip-interstitial",
                     "title": "Skip Interstitial",
                     "description": "",

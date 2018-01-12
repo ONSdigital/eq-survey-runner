@@ -16,4 +16,4 @@ questions:
   title: "Does {{respondent.trad_as}}\u2019s website have <em>personalised content for regular/repeat visitors</em>?"
   type: General
 title: Access and Use of the Internet
-type: Questionnaire
+type: Question

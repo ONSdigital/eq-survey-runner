@@ -36,7 +36,7 @@
                     "title": "Introduction"
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "household-composition",
                     "questions": [{
                         "id": "household-composition-question",
@@ -77,7 +77,7 @@
         },
         {
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "repeating-block-1",
                     "title": "{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "description": "This question is for {{ [answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name }}",
@@ -96,7 +96,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "repeating-block-2",
                     "title": "{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                     "description": "",

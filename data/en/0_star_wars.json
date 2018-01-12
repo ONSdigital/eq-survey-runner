@@ -6,7 +6,7 @@
     "title": "Star Wars",
     "theme": "starwars",
     "legal_basis": "Voluntary",
-    "description": "Kitchen sink test for the Star Wars questionnaire",
+    "description": "Kitchen sink test for the Star Wars Question",
     "groups": [{
         "blocks": [{
                 "type": "Introduction",
@@ -26,7 +26,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "choose-your-side-block",
                 "description": "",
                 "questions": [{
@@ -103,7 +103,7 @@
                 ]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "light-side-pick-character-ship",
                 "description": "",
                 "questions": [{
@@ -181,7 +181,7 @@
                 ]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "dark-side-pick-character-ship",
                 "description": "",
                 "questions": [{
@@ -273,7 +273,7 @@
                 ]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "light-side-ship-type",
                 "description": "",
                 "questions": [{
@@ -306,7 +306,7 @@
                 "title": ""
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "dark-side-ship-type",
                 "questions": [{
                     "answers": [{
@@ -336,7 +336,7 @@
                 "title": ""
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "star-wars-trivia",
                 "description": "May the force be with you young EQ developer<br/><br/>",
                 "questions": [{
@@ -569,7 +569,7 @@
                 "title": "Star Wars Quiz"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "star-wars-trivia-part-2",
                 "description": "If you didn't pick the right employment date for Return of the Jedi its your fault if this question makes no sense",
                 "questions": [{
@@ -670,7 +670,7 @@
                 "title": "On {{exercise.employment_date|format_date}} how many were employed?"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "star-wars-trivia-part-3",
                 "description": "",
                 "questions": [{

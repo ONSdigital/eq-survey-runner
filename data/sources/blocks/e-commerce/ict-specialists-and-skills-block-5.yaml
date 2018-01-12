@@ -35,4 +35,4 @@ questions:
   title: Does {{respondent.trad_as}} employ ICT or IT specialists?
   type: General
 title: ICT Specialists and Skills
-type: Questionnaire
+type: Question

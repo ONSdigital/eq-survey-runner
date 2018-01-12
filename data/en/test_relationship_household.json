@@ -11,7 +11,7 @@
             "id": "multiple-questions-group",
             "title": "",
             "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "household-composition",
                 "title": "Household",
                 "questions": [{
@@ -57,7 +57,7 @@
                 }
             }],
             "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "relationships",
                 "title": "Who lives here?",
                 "description": "",

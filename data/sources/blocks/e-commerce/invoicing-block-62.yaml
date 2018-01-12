@@ -23,4 +23,4 @@ questions:
   title: In 2017, did {{respondent.trad_as}} issue/send <em>only paper invoices</em>?
   type: General
 title: Invoicing
-type: Questionnaire
+type: Question

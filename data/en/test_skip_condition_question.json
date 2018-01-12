@@ -10,7 +10,7 @@
         "id": "do-you-want-to-skip-group",
         "title": "Do you want to skip the next block?",
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "do-you-want-to-skip",
                 "routing_rules": [],
                 "description": "",
@@ -60,7 +60,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "should-skip",
                 "routing_rules": [],
                 "description": "",

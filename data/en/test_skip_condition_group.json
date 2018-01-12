@@ -10,7 +10,7 @@
             "id": "do-you-want-to-skip-group",
             "title": "Do you want to skip the next group?",
             "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "do-you-want-to-skip",
                 "routing_rules": [],
                 "description": "",
@@ -52,7 +52,7 @@
                 }]
             }],
             "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "should-skip",
                 "routing_rules": [],
                 "description": "",
@@ -75,7 +75,7 @@
             "id": "last-group",
             "title": "This group is required as a skipped group can't be the last group",
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "last-group-block",
                     "routing_rules": [],
                     "description": "",

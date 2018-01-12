@@ -9,7 +9,7 @@
     "legal_basis": "StatisticsOfTradeAct",
     "groups": [{
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "date-block",
                 "description": "",
                 "questions": [{
@@ -38,7 +38,7 @@
                 "title": "Date Examples"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "date-value-test",
                 "description": "A test to see if dates are correctly passed",
                 "questions": [{

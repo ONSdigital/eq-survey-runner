@@ -6,12 +6,12 @@
     "title": "Multiple piping test survey",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "description": "A questionnaire to test multiple piping into a question and answer",
+    "description": "A Question to test multiple piping into a question and answer",
     "groups": [{
         "id": "what-is-your-address-group",
         "title": "What is your address?",
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "what-is-your-address",
                 "questions": [{
                     "id": "what-is-your-address-question",
@@ -82,7 +82,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "textfield",
                 "questions": [{
                     "id": "textfield-question",
@@ -111,7 +111,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "piping-question",
                 "questions": [{
                     "id": "multiple-piping-question",

@@ -8,12 +8,12 @@
     "title": "Timeout test",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "description": "A questionnaire to test the time out functionality",
+    "description": "A Question to test the time out functionality",
     "groups": [{
         "id": "timeout-group",
         "title": "Timeout",
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "timeout-block",
                 "title": "Timeout",
                 "questions": [{

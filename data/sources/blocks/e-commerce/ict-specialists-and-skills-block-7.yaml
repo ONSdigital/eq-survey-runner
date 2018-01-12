@@ -17,7 +17,7 @@ questions:
     specialists?
   type: General
 title: ICT Specialists and Skills
-type: Questionnaire
+type: Question
 routing_rules:
 - goto:
     block: ict-specialists-and-skills-block-9

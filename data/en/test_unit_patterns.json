@@ -9,7 +9,7 @@
     "legal_basis": "StatisticsOfTradeAct",
     "groups": [{
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "set-length-units-block",
                     "description": "",
                     "questions": [{
@@ -54,7 +54,7 @@
                     "title": "Length Units"
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "set-area-units-block",
                     "description": "",
                     "questions": [{
@@ -115,7 +115,7 @@
                     "title": "Area Units"
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "set-volume-units-block",
                     "description": "",
                     "questions": [{

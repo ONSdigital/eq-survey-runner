@@ -13,7 +13,7 @@
                     "id": "introduction"
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "block-1",
                     "description": "",
                     "questions": [{
@@ -94,7 +94,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "jyn-erso-like-this-page",
                     "description": "Putting behind a checkered past by lending her skills to a greater cause, Jyn is impetuous, defiant, and eager to bring the battle to the Empire. Used to operating alone, she finds higher purpose by taking on a desperate mission for the Rebel Alliance.",
                     "questions": [{
@@ -130,7 +130,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "cassian-andor-like-this-page",
                     "description": "An accomplished Rebel Alliance Intelligence Officer with combat field experience, Captain Andor commands respect from his Rebel troops with his ability to keep a cool head under fire and complete his missions with minimal resources",
                     "questions": [{
@@ -166,7 +166,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "bodhi-rook-like-this-page",
                     "description": "A former Imperial pilot, Bodhi has strong piloting and technical skills to use as the pilot of the Rebel squad. Ever practical, but highly anxious, Rook must gather his courage to bring the battle to the Empire.",
                     "questions": [{
@@ -202,7 +202,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "orson-krennic-like-this-page",
                     "description": "An Imperial Military Director who is obsessed with the completion of the long-delayed Death Star project. A cruel but brilliant man, Krennic has staked his reputation on the delivery of the functional battle station to the Emperor.",
                     "questions": [{
@@ -233,7 +233,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "film-takings",
                     "description": "",
                     "questions": [{

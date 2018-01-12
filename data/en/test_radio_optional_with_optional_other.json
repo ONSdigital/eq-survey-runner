@@ -10,7 +10,7 @@
         "id": "radio",
         "title": "Radio Optional with Optional Other",
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "radio-non-mandatory",
                 "questions": [{
                     "type": "General",

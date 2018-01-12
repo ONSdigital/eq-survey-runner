@@ -29,7 +29,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "reporting-period",
                 "description": "",
                 "questions": [{
@@ -56,7 +56,7 @@
                 "title": "Reporting period"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "total-retail-turnover",
                 "description": "",
                 "questions": [{
@@ -97,7 +97,7 @@
                 "title": "Retail turnover"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "internet-sales",
                 "description": "",
                 "questions": [{
@@ -126,7 +126,7 @@
                 "title": "Internet sales"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "changes-in-retail-turnover",
                 "description": "",
                 "questions": [{

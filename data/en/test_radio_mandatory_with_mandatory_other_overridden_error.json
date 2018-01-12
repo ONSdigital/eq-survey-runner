@@ -10,7 +10,7 @@
         "id": "radio",
         "title": "Radio Mandatory with Mandatory Other Overridden Error",
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "radio-mandatory",
                 "questions": [{
                     "type": "General",

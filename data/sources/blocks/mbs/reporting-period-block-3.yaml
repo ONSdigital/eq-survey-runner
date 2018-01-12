@@ -18,4 +18,4 @@ questions:
   title: What are the dates of the period that you will be reporting for?
   type: DateRange
 title: Reporting period
-type: Questionnaire
+type: Question

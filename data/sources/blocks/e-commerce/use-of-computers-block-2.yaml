@@ -37,7 +37,7 @@ questions:
     \ tablets, and other portable devices such as smartphones?"
   type: General
 title: Use of computers
-type: Questionnaire
+type: Question
 routing_rules:
 - goto:
     block: comments-block-4

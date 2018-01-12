@@ -16,4 +16,4 @@ questions:
   title: "Does {{respondent.trad_as}}\u2019s website have <em>description of goods or services, price lists</em>?"
   type: General
 title: Access and Use of the Internet
-type: Questionnaire
+type: Question

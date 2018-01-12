@@ -33,7 +33,7 @@ questions:
     services provided by other businesses?
   type: General
 title: Use of 3D printing
-type: Questionnaire
+type: Question
 routing_rules:
 - goto:
     block: invoicing-block-59

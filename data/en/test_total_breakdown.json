@@ -9,7 +9,7 @@
     "description": "A survey that tests the totalling of percentage input fields",
     "groups": [{
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "block",
                 "description": "",
                 "questions": [{

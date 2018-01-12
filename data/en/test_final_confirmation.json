@@ -6,7 +6,7 @@
     "title": "Final confirmation to submit",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "description": "A questionnaire to demo final confirmation to submit.",
+    "description": "A Question to demo final confirmation to submit.",
     "navigation": {
         "visible": true,
         "sections": [{
@@ -32,7 +32,7 @@
                     "description": ""
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "breakfast",
                     "description": "",
                     "title": "What is your favourite breakfast food",
