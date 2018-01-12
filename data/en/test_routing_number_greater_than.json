@@ -9,7 +9,7 @@
     "description": "A test survey for routing based on a number greater than",
     "groups": [{
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "number-question",
                 "description": "",
                 "questions": [{

@@ -54,4 +54,4 @@ questions:
     UBL, XML</em>?'
   type: General
 title: Invoicing
-type: Questionnaire
+type: Question

@@ -45,7 +45,7 @@ questions:
     for goods or services via EDI type messages? '
   type: General
 title: 'e-Commerce '
-type: Questionnaire
+type: Question
 routing_rules:
 - goto:
     block: e-commerce-block-72

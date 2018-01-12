@@ -17,7 +17,7 @@ questions:
     adverts on search engines, on social media, on other websites?
   type: General
 title: Access and Use of the Internet
-type: Questionnaire
+type: Question
 routing_rules:
 - goto:
     block: access-and-use-of-the-internet-block-38

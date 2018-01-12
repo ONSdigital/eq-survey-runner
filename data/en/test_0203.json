@@ -34,7 +34,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "reporting-period",
                 "description": "",
                 "questions": [{

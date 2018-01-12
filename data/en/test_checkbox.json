@@ -6,7 +6,7 @@
     "title": "Other input fields",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "description": "A questionnaire to demo checkbox field Other input.",
+    "description": "A Question to demo checkbox field Other input.",
     "messages": {
         "NUMBER_TOO_LARGE": "Number is too large",
         "NUMBER_TOO_SMALL": "Number cannot be less than zero",
@@ -14,7 +14,7 @@
     },
     "groups": [{
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "mandatory-checkbox",
                 "description": "",
                 "questions": [{
@@ -82,7 +82,7 @@
                 "routing_rules": []
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "non-mandatory-checkbox",
                 "description": "",
                 "questions": [{

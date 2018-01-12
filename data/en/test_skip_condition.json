@@ -6,11 +6,11 @@
     "title": "Test skip condition",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "description": "A questionnaire to test skip condition.",
+    "description": "A Question to test skip condition.",
     "messages": {},
     "groups": [{
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "food-block",
                 "description": "",
                 "questions": [{
@@ -39,7 +39,7 @@
                 "routing_rules": []
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "drink-block",
                 "description": "",
                 "questions": [{

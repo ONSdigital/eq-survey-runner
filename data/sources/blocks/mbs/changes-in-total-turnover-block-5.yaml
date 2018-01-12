@@ -31,7 +31,7 @@ questions:
   title: Did any significant changes occur to the total turnover for {{respondent.trad_as_or_ru_name}}?
   type: General
 title: Changes in total turnover
-type: Questionnaire
+type: Question
 routing_rules:
 - goto:
     block: changes-in-total-turnover-block-6

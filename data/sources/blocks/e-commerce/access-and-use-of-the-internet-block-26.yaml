@@ -23,7 +23,7 @@ questions:
   title: Does {{respondent.trad_as}} have a website, either its own or third party?
   type: General
 title: Access and Use of the Internet
-type: Questionnaire
+type: Question
 routing_rules:
 - goto:
     block: access-and-use-of-the-internet-block-33

@@ -197,7 +197,7 @@
                     "guidance": {
                         "content": [{
                             "list": [
-                                "You will not be able to access or change your answers on submitting the questionnaire",
+                                "You will not be able to access or change your answers on submitting the Question",
                                 "If you wish to review your answers please select the relevant completed sections"
                             ]
                         }]

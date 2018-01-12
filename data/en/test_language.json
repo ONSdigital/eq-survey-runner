@@ -6,7 +6,7 @@
     "title": "English Language Survey",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "description": "A questionnaire to demonstrate english language",
+    "description": "A Question to demonstrate english language",
     "groups": [{
         "id": "english-group",
         "title": "",

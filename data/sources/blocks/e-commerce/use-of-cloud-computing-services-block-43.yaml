@@ -39,7 +39,7 @@ questions:
     internet?
   type: General
 title: Use of cloud computing services
-type: Questionnaire
+type: Question
 routing_rules:
 - goto:
     block: use-of-3d-printing-block-53

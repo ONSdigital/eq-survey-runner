@@ -9,5 +9,5 @@ questions:
   id: comments-question-74
   title: In the box below please add any comments that you would like to make
   type: General
-type: Questionnaire
+type: Question
 

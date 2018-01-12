@@ -17,7 +17,7 @@ questions:
   title: Does {{respondent.trad_as}} have internet access?
   type: General
 title: Access and Use of the Internet
-type: Questionnaire
+type: Question
 routing_rules:
 - goto:
     block: use-of-3d-printing-block-42

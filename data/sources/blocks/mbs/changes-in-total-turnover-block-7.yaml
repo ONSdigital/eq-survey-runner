@@ -39,4 +39,4 @@ questions:
   title: Please describe the changes in total turnover for {{respondent.trad_as_or_ru_name}} in more detail
   type: General
 title: Changes in total turnover
-type: Questionnaire
+type: Question

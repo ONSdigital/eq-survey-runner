@@ -17,7 +17,7 @@ questions:
   title: Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?
   type: General
 title: Reporting period
-type: Questionnaire
+type: Question
 routing_rules:
 - goto:
     block: turnover-block-4

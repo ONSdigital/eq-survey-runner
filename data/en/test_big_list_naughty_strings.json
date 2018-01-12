@@ -2,7 +2,7 @@
     "mime_type": "application/json/ons/eq",
     "groups": [{
         "blocks": [{
-            "type": "Questionnaire",
+            "type": "Question",
             "description": "Test schema for known bad text combinations.",
             "routing_rules": [],
             "questions": [{
@@ -3065,7 +3065,7 @@
         "id": "textarea-group"
     }],
     "title": "Other input fields",
-    "description": "A questionnaire to test textareas.",
+    "description": "A Question to test textareas.",
     "data_version": "0.0.1",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",

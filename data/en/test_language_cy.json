@@ -6,7 +6,7 @@
     "title": "Welsh Language Survey",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "description": "A questionnaire to demonstrate welsh language",
+    "description": "A Question to demonstrate welsh language",
     "groups": [{
         "id": "welsh-group",
         "title": "",

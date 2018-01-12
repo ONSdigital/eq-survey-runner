@@ -31,4 +31,4 @@ questions:
   title: During 2017, did {{respondent.trad_as}} use 3D printing for <em>goods to be used in {{respondent.trad_as}} production process excluding prototypes or models?</em>
   type: General
 title: Use of 3D printing
-type: Questionnaire
+type: Question

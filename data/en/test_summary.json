@@ -6,10 +6,10 @@
     "title": "Other input fields",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "description": "A questionnaire to demo radio field Other input.",
+    "description": "A Question to demo radio field Other input.",
     "groups": [{
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "radio",
                 "description": "",
                 "questions": [{
@@ -62,7 +62,7 @@
                 "routing_rules": []
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "test-number-block",
                 "description": "",
                 "questions": [{

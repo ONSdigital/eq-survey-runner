@@ -31,7 +31,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "reporting-period",
                 "questions": [{
                     "answers": [{
@@ -57,7 +57,7 @@
                 "title": "Reporting period"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "total-retail-turnover",
                 "questions": [{
                     "answers": [{
@@ -97,7 +97,7 @@
                 "title": "Retail turnover"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "internet-sales",
                 "questions": [{
                     "answers": [{
@@ -125,7 +125,7 @@
                 "title": "Internet sales"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "changes-in-retail-turnover",
                 "questions": [{
                     "answers": [{
@@ -181,7 +181,7 @@
                 "title": "Changes in total retail turnover"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "number-of-employees",
                 "questions": [{
                     "answers": [{
@@ -248,7 +248,7 @@
                 "title": "Employees"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "changes-in-employees",
                 "questions": [{
                     "answers": [{

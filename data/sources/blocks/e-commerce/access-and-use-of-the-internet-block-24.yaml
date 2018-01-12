@@ -21,4 +21,4 @@ questions:
     - description: For example spreadsheets, word documents, presentations etc.
   type: General
 title: Access and Use of the Internet
-type: Questionnaire
+type: Question

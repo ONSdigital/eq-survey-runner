@@ -6,12 +6,12 @@
     "title": "Markup test",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "description": "A questionnaire to test rendering of markup in questionnaires",
+    "description": "A Question to test rendering of markup in Questions",
     "groups": [{
         "id": "markup-group",
         "title": "Markup",
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "emphasis-block",
                 "title": "Emphasis",
                 "questions": [{

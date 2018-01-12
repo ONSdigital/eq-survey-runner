@@ -209,7 +209,7 @@
                     }]
                 }],
                 "id": "reporting-period-choice",
-                "type": "Questionnaire"
+                "type": "Question"
             },
             {
                 "title": "Reporting period",
@@ -236,10 +236,10 @@
                     ]
                 }],
                 "id": "reporting-period",
-                "type": "Questionnaire"
+                "type": "Question"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "total-retail-turnover-block",
                 "questions": [{
                     "guidance": {
@@ -281,7 +281,7 @@
                 "title": "Retail Turnover"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "food-sales",
                 "questions": [{
                     "guidance": {
@@ -318,7 +318,7 @@
                 "title": "Retail turnover"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "alcohol-sales",
                 "questions": [{
                     "guidance": {
@@ -348,7 +348,7 @@
                 "title": "Retail turnover"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "clothing-sales",
                 "questions": [{
                     "guidance": {
@@ -380,7 +380,7 @@
                 "title": "Retail turnover"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "household-goods-sales",
                 "questions": [{
                     "answers": [{
@@ -424,7 +424,7 @@
                 "title": "Retail turnover"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "other-goods-sales",
                 "questions": [{
                     "answers": [{
@@ -478,7 +478,7 @@
                 "title": "Retail turnover"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "total-internet-sales",
                 "questions": [{
                     "guidance": {
@@ -560,10 +560,10 @@
                     "type": "General"
                 }],
                 "title": "Changes in total retail turnover",
-                "type": "Questionnaire"
+                "type": "Question"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "reason-for-change",
                 "questions": [{
                     "answers": [{
@@ -618,7 +618,7 @@
                 "title": "Changes in total retail turnover"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "change-comment-block",
                 "questions": [{
                     "answers": [{

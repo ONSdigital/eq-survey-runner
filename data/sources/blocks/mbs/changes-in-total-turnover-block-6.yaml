@@ -31,4 +31,4 @@ questions:
     for {{respondent.trad_as_or_ru_name}}
   type: General
 title: Changes in total turnover
-type: Questionnaire
+type: Question

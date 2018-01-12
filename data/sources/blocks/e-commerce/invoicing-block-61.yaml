@@ -36,4 +36,4 @@ questions:
     \ automated processing, for example, emails, PDF email attachments, images in TIF, JPEG or other formats</em>?"
   type: General
 title: Invoicing
-type: Questionnaire
+type: Question
