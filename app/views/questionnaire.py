@@ -43,11 +43,11 @@ questionnaire_blueprint = Blueprint(name='questionnaire',
 
 post_submission_blueprint = Blueprint(name='post_submission',
                                       import_name=__name__,
-                                      url_prefix='/questionnaire')
+                                      url_prefix='/questionnaire/<eq_id>/<form_type>/')
 
 
 @questionnaire_blueprint.before_request
-def before_request():
+def before_questionnaire_request():
     metadata = get_metadata(current_user)
     if not metadata:
         raise NoTokenException(401)
@@ -59,8 +59,36 @@ def before_request():
                 ce_id=values['collection_id'])
     logger.info('questionnaire request', method=request.method, url_path=request.full_path)
 
+    _check_same_survey(url_eq_id=values['eq_id'],
+                       url_form_type=values['form_type'],
+                       url_collection_id=values['collection_id'],
+                       session_eq_id=metadata['eq_id'],
+                       session_form_type=metadata['form_type'],
+                       session_collection_id=metadata['collection_exercise_sid'])
+
     g.schema_json = load_schema_from_metadata(metadata)
-    _check_same_survey(values['eq_id'], values['form_type'], values['collection_id'])
+
+
+@post_submission_blueprint.before_request
+def before_post_submission_request():
+    session = get_session_store()
+    if not session or not session.session_data:
+        raise NoTokenException(401)
+
+    session_data = session.session_data
+
+    logger.bind(tx_id=session_data.tx_id)
+
+    values = request.view_args
+    logger.bind(eq_id=values['eq_id'], form_type=values['form_type'])
+    logger.info('questionnaire request', method=request.method, url_path=request.full_path)
+
+    _check_same_survey(url_eq_id=values['eq_id'],
+                       url_form_type=values['form_type'],
+                       url_collection_id='',
+                       session_eq_id=session_data.eq_id,
+                       session_form_type=session_data.form_type,
+                       session_collection_id='')
 
 
 @questionnaire_blueprint.after_request
@@ -120,7 +148,7 @@ def post_block(routing_path, eq_id, form_type, collection_id, group_id, group_in
         next_location = path_finder.get_next_location(current_location=current_location)
 
         if _is_end_of_questionnaire(block, next_location):
-            return submit_answers(routing_path)
+            return submit_answers(routing_path, eq_id, form_type)
 
         return redirect(_next_location_url(next_location))
 
@@ -176,9 +204,9 @@ def post_household_composition(routing_path, **kwargs):
     return _render_page(routing_path, block, current_location, post_form=form)
 
 
-@post_submission_blueprint.route('/thank-you', methods=['GET'])
+@post_submission_blueprint.route('thank-you', methods=['GET'])
 @login_required
-def get_thank_you():
+def get_thank_you(eq_id, form_type):  # pylint: disable=unused-argument
     session_data = get_session_store().session_data
 
     if session_data.submitted_time:
@@ -260,7 +288,7 @@ def _is_skipping_to_the_end(routing_path, block, current_location):
         block['type'] in END_BLOCKS
 
 
-def submit_answers(routing_path):
+def submit_answers(routing_path, eq_id, form_type):
     is_completed, invalid_location = is_survey_completed(routing_path)
     metadata = get_metadata(current_user)
     answer_store = get_answer_store(current_user)
@@ -289,7 +317,10 @@ def submit_answers(routing_path):
         session_store.session_data.submitted_time = datetime.utcnow().isoformat()
         session_store.save()
 
-        return redirect(url_for('post_submission.get_thank_you'))
+        return redirect(url_for(
+            'post_submission.get_thank_you',
+            eq_id=eq_id,
+            form_type=form_type))
     else:
         return redirect(invalid_location.url(metadata))
 
@@ -460,11 +491,10 @@ def update_questionnaire_store_with_answer_data(questionnaire_store, location, a
         questionnaire_store.completed_blocks.append(location)
 
 
-def _check_same_survey(eq_id, form_type, collection_id):
-    metadata = get_metadata(current_user)
-    current_survey = eq_id + form_type + collection_id
-    metadata_survey = metadata['eq_id'] + metadata['form_type'] + metadata['collection_exercise_sid']
-    if current_survey != metadata_survey:
+def _check_same_survey(url_eq_id, url_form_type, url_collection_id, session_eq_id, session_form_type, session_collection_id):
+    if url_eq_id != session_eq_id \
+        or url_form_type != session_form_type \
+            or url_collection_id != session_collection_id:
         raise MultipleSurveyError
 
 

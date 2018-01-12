@@ -42,7 +42,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self.post({'answer': '99'})
 
         # When we request the thank you page (without submitting the survey)
-        self.get('questionnaire/thank-you')
+        self.get('questionnaire/test/percentage/thank-you')
 
         # Then the answers are not deleted
         self.get('/dump/answers')
@@ -54,7 +54,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self.launchSurvey('test', 'percentage', roles=['dumper'])
 
         # When we request the thank you page (without submitting the survey)
-        self.get('/questionnaire/thank-you')
+        self.get('questionnaire/test/percentage/thank-you')
 
         # Then we should be redirected back to the latest location
         self.assertInUrl('group/0/block')
@@ -92,10 +92,10 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self.post(action=None)
 
         # When we try to get the thank-you page
-        self.get('questionnaire/thank-you')
+        self.get('questionnaire/test/percentage/thank-you')
 
         # Then we get the thank-you page
-        self.assertInUrl('questionnaire/thank-you')
+        self.assertInUrl('questionnaire/test/percentage/thank-you')
 
     def test_when_survey_submitted_re_submitting_returns_unauthorised(self):
         # Given we have submitted the test_percentage survey
@@ -111,7 +111,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
 
     def test_when_no_session_thank_you_returns_unauthorised(self):
         # When we try to request the thank-you page with no session
-        self.get(url='/questionnaire/thank-you')
+        self.get(url='/questionnaire/test/percentage/thank-you')
 
         # Then we get the unauthorised page
         self.assertStatusUnauthorised()
