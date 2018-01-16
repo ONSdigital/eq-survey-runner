@@ -5,20 +5,6 @@
 
 set -e
 
-if [ "$EQ_RUN_DOCKER_UP" = True ]; then
-    echo "Running Docker compose"
-    docker-compose --version
-    docker-compose up -d
-fi
-
-if [ "$EQ_RUN_DOCKER_TESTS" = True ]; then
-    echo "Running Docker unit tests"
-    docker --version
-    docker build -t onsdigital/eq-survey-runner .
-    docker build -t onsdigital/eq-survey-runner-unit-tests -f Dockerfile.test .
-    docker run onsdigital/eq-survey-runner-unit-tests
-fi
-
 if [ "$EQ_RUN_LOCAL_LINT" = True ]; then
     echo "Running Local Lint Tests"
     ./scripts/run_lint.sh
@@ -38,6 +24,13 @@ if [ "$EQ_RUN_LOCAL" = True ]; then
     ./scripts/run_app.sh
 fi
 
+if [ "$EQ_RUN_DOCKER_UP" = True ]; then
+    echo "Running Docker compose"
+    ./scripts/build.sh
+    docker-compose --version
+    docker-compose build
+    docker-compose up -d
+fi
 
 if [ "$EQ_RUN_FUNCTIONAL_TESTS" = True ]; then
     echo "Running Functional tests"
