@@ -3,7 +3,6 @@ from wtforms import FieldList, SelectField
 
 from app.forms.fields import build_choices, get_mandatory_validator
 from app.data_model.answer_store import Answer
-from app.helpers.schema_helper import SchemaHelper
 from app.jinja_filters import format_household_member_name
 
 from werkzeug.datastructures import MultiDict
@@ -83,9 +82,9 @@ def deserialise_relationship_answers(answers):
     return relationships
 
 
-def generate_relationship_form(block_json, number_of_entries, data, error_messages):
+def generate_relationship_form(schema, block_json, number_of_entries, data):
 
-    answer = SchemaHelper.get_first_answer_for_block(block_json)
+    answer = schema.get_answers_for_block(block_json['id'])[0]
 
     class HouseHoldRelationshipForm(FlaskForm):
         question_errors = {}
@@ -121,7 +120,7 @@ def generate_relationship_form(block_json, number_of_entries, data, error_messag
         description=answer.get('label'),
         choices=choices,
         default='',
-        validators=get_mandatory_validator(answer, error_messages, 'MANDATORY_TEXTFIELD'),
+        validators=get_mandatory_validator(answer, schema.error_messages, 'MANDATORY_TEXTFIELD'),
     ), min_entries=number_of_entries)
 
     setattr(HouseHoldRelationshipForm, answer['id'], field)

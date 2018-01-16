@@ -1,8 +1,8 @@
 from collections import OrderedDict
+
 from werkzeug.datastructures import MultiDict
 
 from app.data_model.answer_store import natural_order
-from app.helpers.schema_helper import SchemaHelper
 from app.forms.household_composition_form import generate_household_composition_form, deserialise_composition_answers
 from app.forms.household_relationship_form import build_relationship_choices, deserialise_relationship_answers, generate_relationship_form
 from app.forms.questionnaire_form import generate_form
@@ -12,7 +12,7 @@ from structlog import get_logger
 logger = get_logger()
 
 
-def get_form_for_location(block_json, location, answer_store, error_messages, disable_mandatory=False):
+def get_form_for_location(schema, block_json, location, answer_store, disable_mandatory=False):
     """
     Returns the form necessary for the location given a get request, plus any template arguments
 
@@ -31,7 +31,7 @@ def get_form_for_location(block_json, location, answer_store, error_messages, di
 
         data = deserialise_composition_answers(answers)
 
-        return generate_household_composition_form(block_json, data, error_messages), None
+        return generate_household_composition_form(schema, block_json, data), None
 
     elif location.block_id in ['relationships', 'household-relationships']:
 
@@ -41,7 +41,7 @@ def get_form_for_location(block_json, location, answer_store, error_messages, di
 
         choices = build_relationship_choices(answer_store, location.group_instance)
 
-        form = generate_relationship_form(block_json, len(choices), data, error_messages)
+        form = generate_relationship_form(schema, block_json, len(choices), data)
 
         return form, {'relation_instances': choices}
 
@@ -60,12 +60,12 @@ def get_form_for_location(block_json, location, answer_store, error_messages, di
         else:
             mapped_answers[answer_id] = str(mapped_answer)
 
-    mapped_answers = deserialise_dates(block_json, mapped_answers)
+    mapped_answers = deserialise_dates(schema, location.block_id, mapped_answers)
 
-    return generate_form(block_json, mapped_answers, error_messages, answer_store), None
+    return generate_form(schema, block_json, mapped_answers, answer_store), None
 
 
-def post_form_for_location(block_json, location, answer_store, request_form, error_messages, disable_mandatory=False):
+def post_form_for_location(schema, block_json, location, answer_store, request_form, disable_mandatory=False):
     """
     Returns the form necessary for the location given a post request, plus any template arguments
 
@@ -80,16 +80,16 @@ def post_form_for_location(block_json, location, answer_store, request_form, err
         block_json = disable_mandatory_answers(block_json)
 
     if location.block_id == 'household-composition':
-        return generate_household_composition_form(block_json, request_form, error_messages), None
+        return generate_household_composition_form(schema, block_json, request_form), None
 
     elif location.block_id in ['relationships', 'household-relationships']:
         choices = build_relationship_choices(answer_store, location.group_instance)
-        form = generate_relationship_form(block_json, len(choices), request_form, error_messages)
+        form = generate_relationship_form(schema, block_json, len(choices), request_form)
 
         return form, {'relation_instances': choices}
 
-    data = clear_other_text_field(request_form, SchemaHelper.get_questions_for_block(block_json))
-    return generate_form(block_json, data, error_messages, answer_store), None
+    data = clear_other_text_field(request_form, schema.get_questions_for_block(block_json))
+    return generate_form(schema, block_json, data, answer_store), None
 
 
 def disable_mandatory_answers(block_json):
@@ -100,8 +100,8 @@ def disable_mandatory_answers(block_json):
     return block_json
 
 
-def deserialise_dates(block_json, mapped_answers):
-    answer_json_list = SchemaHelper.get_answers_for_block(block_json)
+def deserialise_dates(schema, block_id, mapped_answers):
+    answer_json_list = schema.get_answers_for_block(block_id)
 
     # Deserialise all dates from the store
     date_answer_ids = [a['id'] for a in answer_json_list if a['type'] == 'Date' or a['type'] == 'MonthYearDate']

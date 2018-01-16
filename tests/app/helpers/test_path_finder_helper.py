@@ -1,8 +1,9 @@
 from unittest.mock import patch
 from flask import g
-from tests.app.app_context_test_case import AppContextTestCase
 
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.helpers.path_finder_helper import path_finder
+from tests.app.app_context_test_case import AppContextTestCase
 
 
 @patch('app.helpers.path_finder_helper.PathFinder')
@@ -13,7 +14,7 @@ class TestPathFinderHelper(AppContextTestCase):
     LOGIN_DISABLED = True
 
     def test_path_finder_instantiated_once(self, mock_path_finder, _, __):
-        g.schema_json = {}
+        g.schema = QuestionnaireSchema({})
 
         # Werkzeug LocalProxy only instantiates an object on
         # attribute access. We use an example of a fake

@@ -5,7 +5,7 @@ import simplejson as json
 from app.data_model.answer_store import Answer
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.questionnaire.location import Location
-from app.utilities.schema import load_schema_file
+from app.utilities.schema import load_schema_from_params
 from app.views.questionnaire import update_questionnaire_store_with_answer_data, \
     update_questionnaire_store_with_form_data, remove_empty_household_members_from_answer_store, \
     get_page_title_for_location
@@ -34,7 +34,7 @@ class TestQuestionnaire(IntegrationTestCase):
 
     def test_update_questionnaire_store_with_form_data(self):
 
-        g.schema_json = load_schema_file('test_0112.json')
+        g.schema = load_schema_from_params('test', '0112')
 
         location = Location('rsi', 0, 'total-retail-turnover')
 
@@ -58,7 +58,7 @@ class TestQuestionnaire(IntegrationTestCase):
 
     def test_update_questionnaire_store_with_date_form_data(self):
 
-        g.schema_json = load_schema_file('test_dates.json')
+        g.schema = load_schema_from_params('test', 'dates')
 
         location = Location('dates', 0, 'date-block')
 
@@ -92,7 +92,7 @@ class TestQuestionnaire(IntegrationTestCase):
 
     def test_update_questionnaire_store_with_empty_day_month_year_date(self):
 
-        g.schema_json = load_schema_file('test_dates.json')
+        g.schema = load_schema_from_params('test', 'dates')
 
         location = Location('dates', 0, 'date-block')
 
@@ -107,7 +107,7 @@ class TestQuestionnaire(IntegrationTestCase):
 
     def test_update_questionnaire_store_with_empty_month_year_date(self):
 
-        g.schema_json = load_schema_file('test_dates.json')
+        g.schema = load_schema_from_params('test', 'dates')
 
         location = Location('dates', 0, 'date-block')
 
@@ -121,7 +121,7 @@ class TestQuestionnaire(IntegrationTestCase):
         self.assertEqual([], self.question_store.answer_store.answers)
 
     def test_update_questionnaire_store_with_answer_data(self):
-        g.schema_json = load_schema_file('census_household.json')
+        g.schema = load_schema_from_params('census', 'household')
 
         location = Location('who-lives-here', 0, 'household-composition')
 
@@ -180,7 +180,7 @@ class TestQuestionnaire(IntegrationTestCase):
             self.assertIn(answer.__dict__, self.question_store.answer_store.answers)
 
     def test_remove_empty_household_members_from_answer_store(self):
-        g.schema_json = load_schema_file('census_household.json')
+        g.schema = load_schema_from_params('census', 'household')
 
         answers = [
             Answer(
@@ -237,7 +237,7 @@ class TestQuestionnaire(IntegrationTestCase):
             self.assertIsNone(self.question_store.answer_store.find(answer))
 
     def test_remove_empty_household_members_values_entered_are_stored(self):
-        g.schema_json = load_schema_file('census_household.json')
+        g.schema = load_schema_from_params('census', 'household')
 
         answered = [
             Answer(
@@ -305,7 +305,7 @@ class TestQuestionnaire(IntegrationTestCase):
             self.assertIsNone(self.question_store.answer_store.find(answer))
 
     def test_remove_empty_household_members_partial_answers_are_stored(self):
-        g.schema_json = load_schema_file('census_household.json')
+        g.schema = load_schema_from_params('census', 'household')
 
         answered = [
             Answer(
@@ -394,7 +394,7 @@ class TestQuestionnaire(IntegrationTestCase):
             self.assertIsNotNone(self.question_store.answer_store.find(answer))
 
     def test_remove_empty_household_members_middle_name_only_not_stored(self):
-        g.schema_json = load_schema_file('census_household.json')
+        g.schema = load_schema_from_params('census', 'household')
 
         unanswered = [
             Answer(
@@ -431,40 +431,40 @@ class TestQuestionnaire(IntegrationTestCase):
 
     def test_given_introduction_page_when_get_page_title_then_defaults_to_survey_title(self):
         # Given
-        g.schema_json = load_schema_file('test_final_confirmation.json')
+        schema = load_schema_from_params('test', 'final_confirmation')
 
         # When
-        page_title = get_page_title_for_location(g.schema_json, Location('final-confirmation', 0, 'introduction'))
+        page_title = get_page_title_for_location(schema, Location('final-confirmation', 0, 'introduction'))
 
         # Then
         self.assertEqual(page_title, 'Final confirmation to submit')
 
     def test_given_interstitial_page_when_get_page_title_then_group_title_and_survey_title(self):
         # Given
-        g.schema_json = load_schema_file('test_interstitial_page.json')
+        schema = load_schema_from_params('test', 'interstitial_page')
 
         # When
-        page_title = get_page_title_for_location(g.schema_json, Location('favourite-foods', 0, 'breakfast-interstitial'))
+        page_title = get_page_title_for_location(schema, Location('favourite-foods', 0, 'breakfast-interstitial'))
 
         # Then
         self.assertEqual(page_title, 'Favourite food - Interstitial Pages')
 
     def test_given_questionnaire_page_when_get_page_title_then_question_title_and_survey_title(self):
         # Given
-        g.schema_json = load_schema_file('test_final_confirmation.json')
+        schema = load_schema_from_params('test', 'final_confirmation')
 
         # When
-        page_title = get_page_title_for_location(g.schema_json, Location('final-confirmation', 0, 'breakfast'))
+        page_title = get_page_title_for_location(schema, Location('final-confirmation', 0, 'breakfast'))
 
         # Then
         self.assertEqual(page_title, 'What is your favourite breakfast food - Final confirmation to submit')
 
     def test_given_jinja_variable_question_title_when_get_page_title_then_replace_with_ellipsis(self):
         # Given
-        g.schema_json = load_schema_file('census_household.json')
+        schema = load_schema_from_params('census', 'household')
 
         # When
-        page_title = get_page_title_for_location(g.schema_json, Location('who-lives-here-relationship', 0, 'household-relationships'))
+        page_title = get_page_title_for_location(schema, Location('who-lives-here-relationship', 0, 'household-relationships'))
 
         # Then
         self.assertEqual(page_title, 'How is … related to the people below? - 2017 Census Test')

@@ -15,7 +15,7 @@ def get_path_finder():
     if finder is None:
         metadata = get_metadata(current_user)
         answer_store = get_answer_store(current_user)
-        finder = PathFinder(g.schema_json, answer_store, metadata)
+        finder = PathFinder(g.schema, answer_store, metadata)
         g.path_finder = finder
 
     return finder

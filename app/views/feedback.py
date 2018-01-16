@@ -34,7 +34,7 @@ def before_request():
     metadata = get_metadata(current_user)
     if metadata:
         logger.bind(tx_id=metadata['tx_id'])
-        g.schema_json = load_schema_from_metadata(metadata)
+        g.schema = load_schema_from_metadata(metadata)
 
 
 @feedback_blueprint.route('', methods=['GET'])
@@ -59,7 +59,7 @@ def send_feedback():
             escape(request.form.get('email')),
             request.referrer or '',
             metadata,
-            g.schema_json['survey_id'],
+            g.schema.json['survey_id'],
         )
 
         encrypted_message = encrypt(message, current_app.eq['key_store'], key_purpose=KEY_PURPOSE_SUBMISSION)

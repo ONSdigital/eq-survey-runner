@@ -64,14 +64,14 @@ def login():
         logger.error('missing eq id or form type in jwt')
         raise NotFound
 
-    g.schema_json = load_schema_from_metadata(metadata)
+    g.schema = load_schema_from_metadata(metadata)
 
     store_session(metadata)
 
-    session['theme'] = g.schema_json['theme']
-    session['survey_title'] = g.schema_json['title']
+    session['theme'] = g.schema.json['theme']
+    session['survey_title'] = g.schema.json['title']
 
-    navigator = PathFinder(g.schema_json, get_answer_store(current_user), metadata)
+    navigator = PathFinder(g.schema, get_answer_store(current_user), metadata)
     current_location = navigator.get_latest_location(get_completed_blocks(current_user))
 
     return redirect(current_location.url(metadata))

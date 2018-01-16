@@ -3,7 +3,7 @@ from mock import MagicMock, Mock, patch
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.location import Location
 from app.templating.summary_context import build_summary_rendering_context
-from app.utilities.schema import load_schema_file
+from app.utilities.schema import load_schema_from_params
 
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -27,7 +27,7 @@ class TestSummaryContext(AppContextTestCase):
 
     def setUp(self):
         super().setUp()
-        self.schema_json = load_schema_file('{}_{}.json'.format('0', 'star_wars'))
+        self.schema = load_schema_from_params('0', 'star_wars')
 
     def test_build_summary_rendering_context(self):
         answer_store = MagicMock()
@@ -40,7 +40,7 @@ class TestSummaryContext(AppContextTestCase):
         navigator.get_full_routing_path = Mock(return_value=routing_path)
 
         with patch('app.templating.summary_context.PathFinder', return_value=navigator):
-            context = build_summary_rendering_context(self.schema_json, answer_store, self.metadata)
+            context = build_summary_rendering_context(self.schema, self.schema.json, answer_store, self.metadata)
 
         self.assertEqual(len(context), 1)
 
@@ -61,7 +61,7 @@ class TestSummaryContext(AppContextTestCase):
         navigator.get_full_routing_path = Mock(return_value=routing_path)
 
         with patch('app.templating.summary_context.PathFinder', return_value=navigator):
-            context = build_summary_rendering_context(self.schema_json, answer_store, self.metadata)
+            context = build_summary_rendering_context(self.schema, self.schema.json, answer_store, self.metadata)
 
         answer = context[0].blocks[0].questions[0].answers[0]
         self.assertEqual(answer.value, '&lt;&gt;&#34;&#39;&amp;')

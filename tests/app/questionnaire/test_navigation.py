@@ -1,7 +1,7 @@
 from app.data_model.answer_store import AnswerStore, Answer
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
-from app.utilities.schema import load_schema_file
+from app.utilities.schema import load_schema_from_params
 
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -10,14 +10,14 @@ from tests.app.app_context_test_case import AppContextTestCase
 class TestNavigation(AppContextTestCase):
 
     def test_navigation_no_blocks_completed(self):
-        survey = load_schema_file('test_navigation.json')
+        schema = load_schema_from_params('test', 'navigation')
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
             'form_type': 'some_form'
         }
 
-        navigation = Navigation(survey, AnswerStore(), metadata, [], [])
+        navigation = Navigation(schema, AnswerStore(), metadata, [], [])
 
         user_navigation = [
             {
@@ -53,7 +53,7 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_non_repeating_block_completed(self):
-        survey = load_schema_file('test_navigation.json')
+        schema = load_schema_from_params('test', 'navigation')
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -82,7 +82,7 @@ class TestNavigation(AppContextTestCase):
             Location('property-details', 0, 'insurance-type')
         ]
 
-        navigation = Navigation(survey, answer_store, metadata, completed_blocks, routing_path)
+        navigation = Navigation(schema, answer_store, metadata, completed_blocks, routing_path)
 
         user_navigation = [
             {
@@ -126,7 +126,7 @@ class TestNavigation(AppContextTestCase):
 
     def test_navigation_repeating_household_and_hidden_household_groups_completed(self):
 
-        survey = load_schema_file('test_navigation.json')
+        schema = load_schema_from_params('test', 'navigation')
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -149,7 +149,7 @@ class TestNavigation(AppContextTestCase):
             Location('repeating-group', 1, 'repeating-block-2')
         ]
 
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, routing_path)
+        navigation = Navigation(schema, AnswerStore(), metadata, completed_blocks, routing_path)
 
         navigation.answer_store.answers = [
             {
@@ -250,7 +250,7 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_navigation_repeating_group_extra_answered_not_completed(self):
-        survey = load_schema_file('test_navigation.json')
+        schema = load_schema_from_params('test', 'navigation')
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -298,7 +298,7 @@ class TestNavigation(AppContextTestCase):
             Location('extra-cover', 0, 'extra-cover-block')
         ]
 
-        navigation = Navigation(survey, answer_store, metadata, completed_blocks, routing_path)
+        navigation = Navigation(schema, answer_store, metadata, completed_blocks, routing_path)
 
         user_navigation = [
             {
@@ -355,7 +355,7 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_navigation_repeating_group_extra_answered_completed(self):
-        survey = load_schema_file('test_navigation.json')
+        schema = load_schema_from_params('test', 'navigation')
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -428,7 +428,7 @@ class TestNavigation(AppContextTestCase):
             Location('extra-cover-items-group', 1, 'extra-cover-items-radio')
         ]
 
-        navigation = Navigation(survey, answer_store, metadata, completed_blocks, routing_path)
+        navigation = Navigation(schema, answer_store, metadata, completed_blocks, routing_path)
 
         user_navigation = [
             {
@@ -470,7 +470,7 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_navigation_repeating_group_link_name_format(self):
-        survey = load_schema_file('test_navigation.json')
+        schema = load_schema_from_params('test', 'navigation')
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -525,7 +525,7 @@ class TestNavigation(AppContextTestCase):
             Location('multiple-questions-group', 0, 'household-composition')
         ]
 
-        navigation = Navigation(survey, answer_store, metadata, completed_blocks, routing_path)
+        navigation = Navigation(schema, answer_store, metadata, completed_blocks, routing_path)
 
         user_navigation = [
             {
@@ -575,7 +575,7 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_navigation_skip_condition_hide_group(self):
-        survey = load_schema_file('test_navigation.json')
+        schema = load_schema_from_params('test', 'navigation')
 
         metadata = {
             'eq_id': '1',
@@ -598,13 +598,13 @@ class TestNavigation(AppContextTestCase):
 
         answer_store.add(answer_1)
 
-        navigation = Navigation(survey, answer_store, metadata, completed_blocks, [])
+        navigation = Navigation(schema, answer_store, metadata, completed_blocks, [])
         user_navigation = navigation.build_navigation('property-details', 0)
         link_names = [d['link_name'] for d in user_navigation]
         self.assertNotIn('Property Interstitial', link_names)
 
     def test_navigation_skip_condition_show_group(self):
-        survey = load_schema_file('test_navigation.json')
+        schema = load_schema_from_params('test', 'navigation')
 
         metadata = {
             'eq_id': '1',
@@ -627,14 +627,14 @@ class TestNavigation(AppContextTestCase):
 
         answer_store.add(answer_1)
 
-        navigation = Navigation(survey, answer_store, metadata, completed_blocks, [])
+        navigation = Navigation(schema, answer_store, metadata, completed_blocks, [])
 
         user_navigation = navigation.build_navigation('property-details', 0)
         link_names = [d['link_name'] for d in user_navigation]
         self.assertIn('Property Interstitial', link_names)
 
     def test_navigation_skip_condition_change_answer(self):
-        survey = load_schema_file('test_navigation.json')
+        schema = load_schema_from_params('test', 'navigation')
 
         metadata = {
             'eq_id': '1',
@@ -656,7 +656,7 @@ class TestNavigation(AppContextTestCase):
         )
 
         answer_store.add(answer_1)
-        navigation = Navigation(survey, answer_store, metadata, completed_blocks, [])
+        navigation = Navigation(schema, answer_store, metadata, completed_blocks, [])
 
         user_navigation = navigation.build_navigation('property-details', 0)
         link_names = [d['link_name'] for d in user_navigation]
@@ -679,11 +679,11 @@ class TestNavigation(AppContextTestCase):
 
     def test_build_navigation_returns_none_when_schema_navigation_is_false(self):
         # Given
-        survey = load_schema_file('test_navigation.json')
-        survey['navigation'] = {'visible': False}
+        schema = load_schema_from_params('test', 'navigation')
+        schema.json['navigation'] = {'visible': False}
         completed_blocks = []
         metadata = {}
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, [])
+        navigation = Navigation(schema, AnswerStore(), metadata, completed_blocks, [])
 
         # When
         nav_menu = navigation.build_navigation('group-1', 'group-instance-1')
@@ -693,11 +693,11 @@ class TestNavigation(AppContextTestCase):
 
     def test_build_navigation_returns_none_when_no_schema_navigation_property(self):
         # Given
-        survey = load_schema_file('test_navigation.json')
-        del survey['navigation']
+        schema = load_schema_from_params('test', 'navigation')
+        del schema.json['navigation']
         completed_blocks = []
         metadata = {}
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, [])
+        navigation = Navigation(schema, AnswerStore(), metadata, completed_blocks, [])
 
         # When
         nav_menu = navigation.build_navigation('group-1', 'group-instance-1')
@@ -707,15 +707,15 @@ class TestNavigation(AppContextTestCase):
 
     def test_build_navigation_returns_navigation_when_schema_navigation_is_true(self):
         # Given
-        survey = load_schema_file('test_navigation.json')
-        survey['navigation'] = {'visible': True, 'sections': [{'title': 'Nav', 'group_order': ['property-details']}]}
+        schema = load_schema_from_params('test', 'navigation')
+        schema.json['navigation'] = {'visible': True, 'sections': [{'title': 'Nav', 'group_order': ['property-details']}]}
         completed_blocks = []
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
             'form_type': 'some_form'
         }
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, [])
+        navigation = Navigation(schema, AnswerStore(), metadata, completed_blocks, [])
 
         # When
         nav_menu = navigation.build_navigation('group-1', 'group-instance-1')
@@ -724,14 +724,14 @@ class TestNavigation(AppContextTestCase):
         self.assertIsNotNone(nav_menu)
 
     def test_build_navigation_summary_link_hidden_when_no_sections_completed(self):
-        survey = load_schema_file('test_navigation.json')
+        schema = load_schema_from_params('test', 'navigation')
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
             'form_type': 'some_form'
         }
 
-        navigation = Navigation(survey, AnswerStore(), metadata, [], [])
+        navigation = Navigation(schema, AnswerStore(), metadata, [], [])
 
         confirmation_link = {
             'link_name': 'Summary',
@@ -744,7 +744,7 @@ class TestNavigation(AppContextTestCase):
         self.assertNotIn(confirmation_link, navigation.build_navigation('property-details', 0))
 
     def test_build_navigation_summary_link_hidden_when_not_all_sections_completed(self):
-        survey = load_schema_file('test_navigation.json')
+        schema = load_schema_from_params('test', 'navigation')
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -759,7 +759,7 @@ class TestNavigation(AppContextTestCase):
             Location('multiple-questions-group', 0, 'household-composition'),
         ]
 
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, [])
+        navigation = Navigation(schema, AnswerStore(), metadata, completed_blocks, [])
 
         confirmation_link = {
             'link_name': 'Summary',
@@ -774,7 +774,7 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_summary_link_visible_when_all_sections_complete(self):
-        survey = load_schema_file('test_navigation.json')
+        schema = load_schema_from_params('test', 'navigation')
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -816,7 +816,7 @@ class TestNavigation(AppContextTestCase):
             Location('summary-group', 0, 'summary'),
         ]
 
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, routing_path)
+        navigation = Navigation(schema, AnswerStore(), metadata, completed_blocks, routing_path)
 
         confirmation_link = {
             'link_name': 'Summary',
@@ -831,7 +831,7 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 5)
 
     def test_build_navigation_submit_answers_link_not_visible_for_survey_with_summary(self):
-        survey = load_schema_file('test_navigation.json')
+        schema = load_schema_from_params('test', 'navigation')
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -855,7 +855,7 @@ class TestNavigation(AppContextTestCase):
             Location('extra-cover-items-group', 0, 'extra-cover-items'),
         ]
 
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, [])
+        navigation = Navigation(schema, AnswerStore(), metadata, completed_blocks, [])
 
         confirmation_link = {
             'link_name': 'Submit answers',
@@ -870,14 +870,14 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_submit_answers_link_hidden_when_no_sections_completed(self):
-        survey = load_schema_file('test_navigation_confirmation.json')
+        schema = load_schema_from_params('test', 'navigation_confirmation')
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
             'form_type': 'some_form'
         }
 
-        navigation = Navigation(survey, AnswerStore(), metadata, [], [])
+        navigation = Navigation(schema, AnswerStore(), metadata, [], [])
 
         confirmation_link = {
             'link_name': 'Submit answers',
@@ -892,7 +892,7 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_submit_answers_link_hidden_when_not_all_sections_completed(self):
-        survey = load_schema_file('test_navigation_confirmation.json')
+        schema = load_schema_from_params('test', 'navigation_confirmation')
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -907,7 +907,7 @@ class TestNavigation(AppContextTestCase):
             Location('multiple-questions-group', 0, 'household-composition'),
         ]
 
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, [])
+        navigation = Navigation(schema, AnswerStore(), metadata, completed_blocks, [])
 
         confirmation_link = {
             'link_name': 'Submit answers',
@@ -922,7 +922,7 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_submit_answers_link_visible_when_all_sections_complete(self):
-        survey = load_schema_file('test_navigation_confirmation.json')
+        schema = load_schema_from_params('test', 'navigation_confirmation')
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -964,7 +964,7 @@ class TestNavigation(AppContextTestCase):
             Location('confirmation-group', 0, 'confirmation'),
         ]
 
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, routing_path)
+        navigation = Navigation(schema, AnswerStore(), metadata, completed_blocks, routing_path)
 
         confirmation_link = {
             'link_name': 'Submit answers',
@@ -979,7 +979,7 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 5)
 
     def test_build_navigation_summary_link_not_visible_for_survey_with_confirmation(self):
-        survey = load_schema_file('test_navigation_confirmation.json')
+        schema = load_schema_from_params('test', 'navigation_confirmation')
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -1003,7 +1003,7 @@ class TestNavigation(AppContextTestCase):
             Location('extra-cover-items-group', 0, 'extra-cover-items'),
         ]
 
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, [])
+        navigation = Navigation(schema, AnswerStore(), metadata, completed_blocks, [])
 
         confirmation_link = {
             'link_name': 'Summary',
@@ -1016,18 +1016,18 @@ class TestNavigation(AppContextTestCase):
         self.assertNotIn(confirmation_link, navigation.build_navigation('property-details', 0))
 
     def test_build_navigation_summary_link_not_visible_when_hidden_group_not_completed(self):
-        survey = load_schema_file('test_navigation.json')
+        schema = load_schema_from_params('test', 'navigation')
 
         # Payment details group not displayed in navigation
-        survey['navigation'] = {'sections': [{'title': 'Property Details', 'group_order': ['property-details',
-                                                                                           'property-interstitial-group',
-                                                                                           'house-details',
-                                                                                           'multiple-questions-group',
-                                                                                           'repeating-group',
-                                                                                           'extra-cover',
-                                                                                           'extra-cover-items-group',
-                                                                                           'skip-payment-group',
-                                                                                           'payment-details']}]}
+        schema.json['navigation'] = {'sections': [{'title': 'Property Details', 'group_order': ['property-details',
+                                                                                                'property-interstitial-group',
+                                                                                                'house-details',
+                                                                                                'multiple-questions-group',
+                                                                                                'repeating-group',
+                                                                                                'extra-cover',
+                                                                                                'extra-cover-items-group',
+                                                                                                'skip-payment-group',
+                                                                                                'payment-details']}]}
 
         metadata = {
             'eq_id': '1',
@@ -1067,7 +1067,7 @@ class TestNavigation(AppContextTestCase):
             Location('confirmation-group', 0, 'confirmation'),
         ]
 
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, routing_path)
+        navigation = Navigation(schema, AnswerStore(), metadata, completed_blocks, routing_path)
 
         confirmation_link = {
             'link_name': 'Summary',
@@ -1082,7 +1082,7 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 1)
 
     def test_build_navigation_submit_answers_link_not_visible_when_no_completed_blocks(self):
-        survey = load_schema_file('test_navigation.json')
+        schema = load_schema_from_params('test', 'navigation')
 
         metadata = {
             'eq_id': '1',
@@ -1093,7 +1093,7 @@ class TestNavigation(AppContextTestCase):
         completed_blocks = []
         routing_path = []
 
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, routing_path)
+        navigation = Navigation(schema, AnswerStore(), metadata, completed_blocks, routing_path)
 
         confirmation_link = {
             'link_name': 'Summary',
@@ -1108,7 +1108,7 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_summary_link_hidden_when_not_on_routing_path(self):
-        survey = load_schema_file('test_navigation.json')
+        schema = load_schema_from_params('test', 'navigation')
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -1149,7 +1149,7 @@ class TestNavigation(AppContextTestCase):
             Location('extra-cover-items-group', 0, 'extra-cover-items'),
         ]
 
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, routing_path)
+        navigation = Navigation(schema, AnswerStore(), metadata, completed_blocks, routing_path)
 
         confirmation_link = {
             'link_name': 'Summary',

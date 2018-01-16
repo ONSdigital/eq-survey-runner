@@ -1,17 +1,16 @@
-import unittest
-
 import pytest
 
 from app.data_model.answer_store import Answer, AnswerStore
 from app.questionnaire.location import Location
 from app.questionnaire.path_finder import PathFinder
-from app.utilities.schema import load_schema_file
+from app.utilities.schema import load_schema_from_params
+from tests.app.app_context_test_case import AppContextTestCase
 
 
-class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-methods, too-many-lines
+class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-methods, too-many-lines
 
     def test_next_block(self):
-        survey = load_schema_file('test_0102.json')
+        schema = load_schema_from_params('test', '0102')
 
         current_location = Location(
             block_id='total-retail-turnover',
@@ -25,11 +24,11 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
             group_instance=0
         )
 
-        path_finder = PathFinder(survey, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={})
         self.assertEqual(path_finder.get_next_location(current_location=current_location), next_location)
 
     def test_previous_block(self):
-        survey = load_schema_file('test_0102.json')
+        schema = load_schema_from_params('test', '0102')
 
         current_location = Location(
             block_id='internet-sales',
@@ -43,29 +42,29 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
             group_instance=0
         )
 
-        path_finder = PathFinder(survey, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={})
         self.assertEqual(path_finder.get_previous_location(current_location=current_location), previous_location)
 
     def test_introduction_in_path_when_in_schema(self):
-        survey = load_schema_file('test_0102.json')
+        schema = load_schema_from_params('test', '0102')
 
-        path_finder = PathFinder(survey, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={})
 
         blocks = [b.block_id for b in path_finder.get_full_routing_path()]
 
         self.assertIn('introduction', blocks)
 
     def test_introduction_not_in_path_when_not_in_schema(self):
-        survey = load_schema_file('census_individual.json')
+        schema = load_schema_from_params('census', 'individual')
 
-        path_finder = PathFinder(survey, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={})
 
         blocks = [b.block_id for b in path_finder.get_full_routing_path()]
 
         self.assertNotIn('introduction', blocks)
 
     def test_next_with_conditional_path(self):
-        survey = load_schema_file('0_star_wars.json')
+        schema = load_schema_from_params('0', 'star_wars')
 
         expected_path = [
             Location('star-wars', 0, 'choose-your-side-block'),
@@ -96,7 +95,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         current_location = expected_path[1]
         expected_next_location = expected_path[2]
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
         actual_next_block = path_finder.get_next_location(current_location=current_location)
 
         self.assertEqual(actual_next_block, expected_next_location)
@@ -109,7 +108,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         self.assertEqual(actual_next_block, expected_next_location)
 
     def test_routing_basic_path(self):
-        survey = load_schema_file('test_0112.json')
+        schema = load_schema_from_params('test', '0112')
 
         expected_path = [
             Location('rsi', 0, 'introduction'),
@@ -122,13 +121,13 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
             Location('rsi', 0, 'summary')
         ]
 
-        path_finder = PathFinder(survey, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={})
         routing_path = path_finder.get_full_routing_path()
 
         self.assertEqual(routing_path, expected_path)
 
     def test_routing_basic_and_conditional_path(self):
-        survey = load_schema_file('0_star_wars.json')
+        schema = load_schema_from_params('0', 'star_wars')
 
         expected_path = [
             Location('star-wars', 0, 'introduction'),
@@ -158,15 +157,15 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         answers.add(answer_1)
         answers.add(answer_2)
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
         routing_path = path_finder.get_full_routing_path()
 
         self.assertEqual(routing_path, expected_path)
 
     def test_get_next_location_introduction(self):
-        survey = load_schema_file('0_star_wars.json')
+        schema = load_schema_from_params('0', 'star_wars')
 
-        path_finder = PathFinder(survey, AnswerStore(), {})
+        path_finder = PathFinder(schema, AnswerStore(), {})
 
         introduction = Location('star-wars', 0, 'introduction')
 
@@ -175,7 +174,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         self.assertEqual('choose-your-side-block', next_location.block_id)
 
     def test_get_next_location_summary(self):
-        survey = load_schema_file('0_star_wars.json')
+        schema = load_schema_from_params('0', 'star_wars')
 
         answer_1 = Answer(
             group_id='star-wars',
@@ -194,7 +193,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         answers.add(answer_1)
         answers.add(answer_2)
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
 
         current_location = Location('star-wars', 0, 'star-wars-trivia-part-2')
 
@@ -213,9 +212,9 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         self.assertEqual(expected_next_location, next_location)
 
     def test_get_previous_location_introduction(self):
-        survey = load_schema_file('0_star_wars.json')
+        schema = load_schema_from_params('0', 'star_wars')
 
-        path_finder = PathFinder(survey, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={})
 
         first_location = Location('star-wars', 0, 'choose-your-side-block')
 
@@ -224,7 +223,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         self.assertEqual('introduction', previous_location.block_id)
 
     def test_previous_with_conditional_path(self):
-        survey = load_schema_file('0_star_wars.json')
+        schema = load_schema_from_params('0', 'star_wars')
 
         expected_path = [
             Location('star-wars', 0, 'choose-your-side-block'),
@@ -255,7 +254,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         current_location = expected_path[3]
         expected_previous_location = expected_path[2]
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
         actual_previous_block = path_finder.get_previous_location(current_location=current_location)
 
         self.assertEqual(actual_previous_block, expected_previous_location)
@@ -268,7 +267,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         self.assertEqual(actual_previous_block, expected_previous_location)
 
     def test_previous_with_conditional_path_alternative(self):
-        survey = load_schema_file('0_star_wars.json')
+        schema = load_schema_from_params('0', 'star_wars')
 
         expected_path = [
             Location('star-wars', 0, 'choose-your-side-block'),
@@ -298,13 +297,13 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         answers.add(answer_1)
         answers.add(answer_2)
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
 
         self.assertEqual(path_finder.get_previous_location(current_location=current_location),
                          expected_previous_location)
 
     def test_next_location_goto_summary(self):
-        survey = load_schema_file('0_star_wars.json')
+        schema = load_schema_from_params('0', 'star_wars')
 
         expected_path = [
             Location('star-wars', 0, 'introduction'),
@@ -321,7 +320,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         )
         answers = AnswerStore()
         answers.add(answer)
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
 
         current_location = expected_path[1]
         expected_next_location = expected_path[2]
@@ -331,7 +330,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         self.assertEqual(next_location, expected_next_location)
 
     def test_next_location_empty_routing_rules(self):
-        survey = load_schema_file('test_checkbox.json')
+        schema = load_schema_from_params('test', 'checkbox')
 
         expected_path = [
             Location('checkboxes', 0, 'introduction'),
@@ -357,7 +356,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         answers.add(answer_1)
         answers.add(answer_2)
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
 
         current_location = expected_path[1]
         expected_next_location = expected_path[2]
@@ -367,7 +366,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         self.assertEqual(next_location, expected_next_location)
 
     def test_interstitial_post_blocks(self):
-        survey = load_schema_file('0_star_wars.json')
+        schema = load_schema_from_params('0', 'star_wars')
 
         answer = Answer(
             group_id='star-wars',
@@ -379,15 +378,15 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         answers = AnswerStore()
         answers.add(answer)
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
 
         self.assertFalse(Location('star-wars', 0, 'summary') in path_finder.get_full_routing_path())
 
     def test_repeating_groups(self):
-        survey = load_schema_file('test_repeating_household.json')
+        schema = load_schema_from_params('test', 'repeating_household')
 
         # Default is to count answers, so switch to using value
-        survey['groups'][-2]['routing_rules'][0]['repeat']['type'] = 'answer_value'
+        schema.json['groups'][-2]['routing_rules'][0]['repeat']['type'] = 'answer_value'
 
         expected_path = [
             Location('multiple-questions-group', 0, 'introduction'),
@@ -409,15 +408,15 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         answers = AnswerStore()
         answers.add(answer)
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
 
         self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
     def test_should_not_show_block_for_zero_repeats(self):
-        survey = load_schema_file('test_repeating_household.json')
+        schema = load_schema_from_params('test', 'repeating_household')
 
         # Default is to count answers, so switch to using value
-        survey['groups'][-2]['routing_rules'][0]['repeat']['type'] = 'answer_value'
+        schema.json['groups'][-2]['routing_rules'][0]['repeat']['type'] = 'answer_value'
 
         expected_path = [
             Location('multiple-questions-group', 0, 'introduction'),
@@ -435,12 +434,12 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         answers = AnswerStore()
         answers.add(answer)
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
 
         self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
     def test_repeating_groups_no_of_answers(self):
-        survey = load_schema_file('test_repeating_household.json')
+        schema = load_schema_from_params('test', 'repeating_household')
 
         expected_path = [
             Location('multiple-questions-group', 0, 'introduction'),
@@ -487,15 +486,15 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         answers.add(answer_2)
         answers.add(answer_3)
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
 
         self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
     def test_repeating_groups_no_of_answers_minus_one(self):
-        survey = load_schema_file('test_repeating_household.json')
+        schema = load_schema_from_params('test', 'repeating_household')
 
         # Default is to count answers, so switch to using value
-        survey['groups'][-2]['routing_rules'][0]['repeat']['type'] = 'answer_count_minus_one'
+        schema.json['groups'][-2]['routing_rules'][0]['repeat']['type'] = 'answer_count_minus_one'
 
         expected_path = [
             Location('multiple-questions-group', 0, 'introduction'),
@@ -528,32 +527,32 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         answers.add(answer)
         answers.add(answer_2)
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
 
         self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
     def test_repeating_groups_previous_location_first_instance(self):
-        survey = load_schema_file('census_household.json')
+        schema = load_schema_from_params('census', 'household')
 
         expected_path = [
             Location('who-lives-here', 0, 'overnight-visitors'),
             Location('who-lives-here-relationship', 0, 'household-relationships'),
         ]
-        path_finder = PathFinder(survey, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={})
         self.assertEqual(path_finder.get_previous_location(current_location=expected_path[1]), expected_path[0])
 
     def test_repeating_groups_previous_location_second_instance(self):
-        survey = load_schema_file('census_household.json')
+        schema = load_schema_from_params('census', 'household')
 
         expected_path = [
             Location('who-lives-here-relationship', 0, 'household-relationships'),
             Location('who-lives-here-relationship', 1, 'household-relationships'),
         ]
-        path_finder = PathFinder(survey, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={})
         self.assertEqual(path_finder.get_previous_location(current_location=expected_path[1]), expected_path[0])
 
     def test_repeating_groups_previous_location(self):
-        survey = load_schema_file('test_repeating_household.json')
+        schema = load_schema_from_params('test', 'repeating_household')
 
         expected_path = [
             Location('multiple-questions-group', 0, 'household-composition'),
@@ -588,13 +587,13 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         answers.add(answer)
         answers.add(answer_2)
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
 
         self.assertEqual(expected_previous_location,
                          path_finder.get_previous_location(current_location=current_location))
 
     def test_repeating_groups_next_location(self):
-        survey = load_schema_file('test_repeating_household.json')
+        schema = load_schema_from_params('test', 'repeating_household')
 
         expected_path = [
             Location('multiple-questions-group', 0, 'household-composition'),
@@ -626,14 +625,14 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         answers.add(answer)
         answers.add(answer_2)
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
 
         summary_location = Location('summary-group', 0, 'summary')
 
         self.assertEqual(summary_location, path_finder.get_next_location(current_location=current_location))
 
     def test_repeating_groups_conditional_location_path(self):
-        survey = load_schema_file('test_repeating_and_conditional_routing.json')
+        schema = load_schema_from_params('test', 'repeating_and_conditional_routing')
 
         expected_path = [
             Location('repeat-value-group', 0, 'introduction'),
@@ -674,12 +673,12 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         answers.add(answer_2)
         answers.add(answer_3)
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
 
         self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
     def test_excessive_repeating_groups_conditional_location_path(self):
-        survey = load_schema_file('test_repeating_and_conditional_routing.json')
+        schema = load_schema_from_params('test', 'repeating_and_conditional_routing')
 
         answers = AnswerStore()
 
@@ -699,12 +698,12 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
                 value='Shoe Size Only'
             ))
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
 
         self.assertEqual('summary', path_finder.get_full_routing_path().pop().block_id)
 
     def test_next_with_conditional_path_based_on_metadata(self):
-        survey = load_schema_file('test_metadata_routing.json')
+        schema = load_schema_from_params('test', 'metadata_routing')
 
         expected_path = [
             Location('group1', 0, 'block1'),
@@ -721,12 +720,12 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
             }
         }
 
-        path_finder = PathFinder(survey, AnswerStore(), metadata=metadata)
+        path_finder = PathFinder(schema, AnswerStore(), metadata=metadata)
 
         self.assertEqual(expected_next_location, path_finder.get_next_location(current_location=current_location))
 
     def test_next_with_conditional_path_when_value_not_in_metadata(self):
-        survey = load_schema_file('test_metadata_routing.json')
+        schema = load_schema_from_params('test', 'metadata_routing')
 
         expected_path = [
             Location('group1', 0, 'block1'),
@@ -742,12 +741,12 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
             }
         }
 
-        path_finder = PathFinder(survey, AnswerStore(), metadata=metadata)
+        path_finder = PathFinder(schema, AnswerStore(), metadata=metadata)
 
         self.assertEqual(expected_next_location, path_finder.get_next_location(current_location=current_location))
 
     def test_routing_backwards_loops_to_previous_block(self):
-        survey = load_schema_file('test_household_question.json')
+        schema = load_schema_from_params('test', 'household_question')
 
         expected_path = [
             Location('multiple-questions-group', 0, 'introduction'),
@@ -793,12 +792,12 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         answers.add(answer_2)
         answers.add(answer_3)
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
 
         self.assertEqual(expected_next_location, path_finder.get_next_location(current_location=current_location))
 
     def test_routing_backwards_continues_to_summary_when_complete(self):
-        survey = load_schema_file('test_household_question.json')
+        schema = load_schema_from_params('test', 'household_question')
 
         expected_path = [
             Location('multiple-questions-group', 0, 'introduction'),
@@ -844,20 +843,20 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         answers.add(answer_2)
         answers.add(answer_3)
 
-        path_finder = PathFinder(survey, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={})
 
         self.assertEqual(expected_next_location, path_finder.get_next_location(current_location=current_location))
 
     def test_get_next_location_should_skip_block(self):
         # Given
-        survey = load_schema_file('test_skip_condition_block.json')
+        schema = load_schema_from_params('test', 'skip_condition_block')
         current_location = Location('do-you-want-to-skip-group', 0, 'do-you-want-to-skip')
         answer_store = AnswerStore()
         answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip',
                                 answer_id='do-you-want-to-skip-answer', value='Yes'))
 
         # When
-        path_finder = PathFinder(survey, answer_store=answer_store, metadata={})
+        path_finder = PathFinder(schema, answer_store=answer_store, metadata={})
 
         # Then
         expected_next_location = Location('summary-group', 0, 'summary')
@@ -866,14 +865,14 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
     def test_get_next_location_should_skip_group(self):
         # Given
-        survey = load_schema_file('test_skip_condition_group.json')
+        schema = load_schema_from_params('test', 'skip_condition_group')
         current_location = Location('do-you-want-to-skip-group', 0, 'do-you-want-to-skip')
         answer_store = AnswerStore()
         answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip',
                                 answer_id='do-you-want-to-skip-answer', value='Yes'))
 
         # When
-        path_finder = PathFinder(survey, answer_store=answer_store, metadata={})
+        path_finder = PathFinder(schema, answer_store=answer_store, metadata={})
 
         # Then
         expected_next_location = Location('last-group', 0, 'last-group-block')
@@ -882,14 +881,14 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
     def test_get_next_location_should_not_skip_group(self):
         # Given
-        survey = load_schema_file('test_skip_condition_group.json')
+        schema = load_schema_from_params('test', 'skip_condition_group')
         current_location = Location('do-you-want-to-skip-group', 0, 'do-you-want-to-skip')
         answer_store = AnswerStore()
         answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip',
                                 answer_id='do-you-want-to-skip-answer', value='No'))
 
         # When
-        path_finder = PathFinder(survey, answer_store=answer_store, metadata={})
+        path_finder = PathFinder(schema, answer_store=answer_store, metadata={})
 
         # Then
         expected_location = Location('should-skip-group', 0, 'should-skip')
@@ -898,12 +897,12 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
     def test_get_next_location_should_not_skip_when_no_answers(self):
         # Given
-        survey = load_schema_file('test_skip_condition_group.json')
+        schema = load_schema_from_params('test', 'skip_condition_group')
         current_location = Location('do-you-want-to-skip-group', 0, 'do-you-want-to-skip')
         answer_store = AnswerStore()
 
         # When
-        path_finder = PathFinder(survey, answer_store=answer_store, metadata={})
+        path_finder = PathFinder(schema, answer_store=answer_store, metadata={})
 
         # Then
         expected_location = Location('should-skip-group', 0, 'should-skip')
@@ -912,13 +911,13 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
     def test_get_routing_path_when_first_block_in_group_skipped(self):
         # Given
-        survey = load_schema_file('test_skip_condition_group.json')
+        schema = load_schema_from_params('test', 'skip_condition_group')
         answer_store = AnswerStore()
         answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip',
                                 answer_id='do-you-want-to-skip-answer', value='Yes'))
 
         # When
-        path_finder = PathFinder(survey, answer_store=answer_store, metadata={})
+        path_finder = PathFinder(schema, answer_store=answer_store, metadata={})
 
         # Then
         expected_route = [
@@ -937,48 +936,10 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         pytest.xfail(reason='Known bug when skipping last group due to summary bundled into it')
         self.assertEqual(path_finder.get_routing_path('should-skip-group'), expected_route)
 
-    def test_build_path_with_invalid_location(self):
-        schema = {
-            'groups': [
-                {
-                    'id': 'first-valid-group-id',
-                    'blocks': [
-                        {
-                            'id': 'first-valid-block-id',
-                            'type': 'questionnaire'
-                        }
-                    ]
-                },
-                {
-                    'id': 'second-valid-group-id',
-                    'blocks': [{
-                        'id': 'second-valid-block-id',
-                        'type': 'questionnaire'
-                    }]
-                }]
-        }
-        path_finder = PathFinder(survey_json=schema, answer_store=AnswerStore(), metadata={})
-
-        invalid_group_location = Location(
-            group_instance=0,
-            group_id='this-group-id-doesnt-exist-in-the-list-of-blocks',
-            block_id='first-valid-block-id'
-        )
-
-        self.assertEqual([], path_finder.build_path(invalid_group_location))
-
-        invalid_block_location = Location(
-            group_instance=0,
-            group_id='second-valid-group-id',
-            block_id='this-block-id-doesnt-exist-in-the-list-of-blocks'
-        )
-
-        self.assertEqual([], path_finder.build_path(invalid_block_location))
-
     def test_given_no_completed_blocks_when_get_latest_location_then_go_to_first_block(self):
         # Given no completed blocks
-        survey = load_schema_file('test_repeating_household.json')
-        path_finder = PathFinder(survey, AnswerStore(), metadata={})
+        schema = load_schema_from_params('test', 'repeating_household')
+        path_finder = PathFinder(schema, AnswerStore(), metadata={})
         completed_block = []
 
         # When go latest location
@@ -989,8 +950,8 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
     def test_given_some_completed_blocks_when_get_latest_location_then_go_to_next_uncompleted_block(self):
         # Given no completed blocks
-        survey = load_schema_file('test_repeating_household.json')
-        path_finder = PathFinder(survey, AnswerStore(), metadata={})
+        schema = load_schema_from_params('test', 'repeating_household')
+        path_finder = PathFinder(schema, AnswerStore(), metadata={})
         completed_block = [Location('multiple-questions-group', 0, 'introduction')]
 
         # When go latest location
@@ -1001,8 +962,8 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
     def test_given_completed_all_the_blocks_when_get_latest_location_then_go_to_last_block(self):
         # Given no completed blocks
-        survey = load_schema_file('test_textarea.json')
-        path_finder = PathFinder(survey, AnswerStore(), metadata={})
+        schema = load_schema_from_params('test', 'textarea')
+        path_finder = PathFinder(schema, AnswerStore(), metadata={})
         completed_block = [Location('textarea-group', 0, 'textarea-block'),
                            Location('textarea-group', 0, 'textarea-summary')]
 
@@ -1014,18 +975,16 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
     def test_build_path_with_group_routing(self):
         # Given i have answered the routing question
-        survey = load_schema_file('test_routing_group.json')
+        schema = load_schema_from_params('test', 'routing_group')
 
         answer_store = AnswerStore()
         answer_store.add(Answer(group_id='which-group', block_id='which-group-block',
                                 answer_id='which-group-answer', value='group2'))
 
         # When i build the path
-        path_finder = PathFinder(survey, answer_store=answer_store, metadata={})
+        path_finder = PathFinder(schema, answer_store=answer_store, metadata={})
 
-        location = Location('which-group', 0, 'which-group-block')
-
-        path = path_finder.build_path(location)
+        path = path_finder.build_path()
 
         # Then it should route me straight to Group2 and not Group1
         self.assertNotIn(Location('group1', 0, 'group1-block'), path)

@@ -5,13 +5,14 @@ import dateutil.parser
 from mock import patch
 
 from app.data_model.answer_store import AnswerStore
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.location import Location
 from app.storage.metadata_parser import parse_metadata
 from app.submitter.converter import convert_answers, DataVersionError, convert_answers_to_data
-from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
+from tests.app.app_context_test_case import AppContextTestCase
 
 
-class TestConverter(SurveyRunnerTestCase):
+class TestConverter(AppContextTestCase):
     def setUp(self):
         super().setUp()
         self.metadata = parse_metadata({
@@ -29,7 +30,7 @@ class TestConverter(SurveyRunnerTestCase):
         })
 
     def test_convert_answers_flushed_flag_default_is_false(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             user_answer = [create_answer('GHI', 0)]
 
             questionnaire = {
@@ -37,12 +38,12 @@ class TestConverter(SurveyRunnerTestCase):
                 'data_version': '0.0.2'
             }
 
-            answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), {})
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {})
 
             self.assertFalse(answer_object['flushed'])
 
     def test_ref_period_end_date_is_not_in_output(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             user_answer = [create_answer('GHI', 0)]
 
             questionnaire = {
@@ -50,15 +51,15 @@ class TestConverter(SurveyRunnerTestCase):
                 'data_version': '0.0.2'
             }
             self.metadata['ref_p_end_date'] = None
-            answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), {})
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {})
             self.assertFalse('ref_period_end_date' in answer_object['metadata'])
 
             del self.metadata['ref_p_end_date']
-            answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), {})
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {})
             self.assertFalse('ref_period_end_date' in answer_object['metadata'])
 
     def test_ref_period_start_and_end_date_is_in_output(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             user_answer = [create_answer('GHI', 0)]
 
             questionnaire = {
@@ -66,12 +67,12 @@ class TestConverter(SurveyRunnerTestCase):
                 'data_version': '0.0.2'
             }
 
-            answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), {})
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {})
             self.assertEqual(answer_object['metadata']['ref_period_start_date'], '2016-02-02')
             self.assertEqual(answer_object['metadata']['ref_period_end_date'], '2016-03-03')
 
     def test_convert_answers_flushed_flag_overriden_to_true(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             user_answer = [create_answer('GHI', 0)]
 
             questionnaire = {
@@ -79,12 +80,12 @@ class TestConverter(SurveyRunnerTestCase):
                 'data_version': '0.0.2'
             }
 
-            answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), {}, flushed=True)
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {}, flushed=True)
 
             self.assertTrue(answer_object['flushed'])
 
     def test_convert_answers(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             user_answer = [create_answer('ABC', '2016-01-01', group_id='group-1', block_id='block-1'),
                            create_answer('DEF', '2016-03-30', group_id='group-1', block_id='block-1')]
 
@@ -119,7 +120,7 @@ class TestConverter(SurveyRunnerTestCase):
             }
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
-            answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             self.assertEqual(answer_object['type'], 'uk.gov.ons.edc.eq:surveyresponse')
             self.assertEqual(answer_object['version'], '0.0.1')
@@ -134,7 +135,7 @@ class TestConverter(SurveyRunnerTestCase):
             self.assertEqual(answer_object['data']['002'], '2016-03-30')
 
     def test_convert_answers_to_data_with_key_error(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             user_answer = [create_answer('ABC', '2016-01-01', group_id='group-1', block_id='block-1'),
                            create_answer('DEF', '2016-03-30', group_id='group-1', block_id='block-1'),
                            create_answer('GHI', '2016-05-30', group_id='group-1', block_id='block-1')]
@@ -176,13 +177,13 @@ class TestConverter(SurveyRunnerTestCase):
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
             with patch('app.submitter.converter.logger') as patched_logger:
-                answer_object = (convert_answers_to_data(AnswerStore(user_answer), questionnaire, routing_path))
+                answer_object = (convert_answers_to_data(AnswerStore(user_answer), QuestionnaireSchema(questionnaire), routing_path))
                 self.assertEqual(patched_logger.error.call_count, 2)
                 self.assertEqual(answer_object['002'], '2016-03-30')
                 self.assertEqual(len(answer_object), 1)
 
     def test_submitted_at_should_be_set_in_payload(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             user_answer = [create_answer('GHI', 0)]
 
             questionnaire = {
@@ -190,13 +191,13 @@ class TestConverter(SurveyRunnerTestCase):
                 'data_version': '0.0.2'
             }
 
-            answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), {})
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {})
 
             self.assertLess(datetime.now(timezone.utc) - dateutil.parser.parse(answer_object['submitted_at']),
                             timedelta(seconds=5))
 
     def test_answer_with_zero(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             user_answer = [create_answer('GHI', 0, group_id='group-1', block_id='block-1')]
 
             questionnaire = {
@@ -226,13 +227,13 @@ class TestConverter(SurveyRunnerTestCase):
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
 
-            answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Check the converter correctly
             self.assertEqual('0', answer_object['data']['003'])
 
     def test_answer_with_float(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             user_answer = [create_answer('GHI', 10.02, group_id='group-1', block_id='block-1')]
 
             questionnaire = {
@@ -262,13 +263,13 @@ class TestConverter(SurveyRunnerTestCase):
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
 
-            answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Check the converter correctly
             self.assertEqual('10.02', answer_object['data']['003'])
 
     def test_answer_with_string(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             user_answer = [create_answer('GHI', 'String test + !', group_id='group-1', block_id='block-1')]
 
             questionnaire = {
@@ -298,13 +299,13 @@ class TestConverter(SurveyRunnerTestCase):
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
 
-            answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Check the converter correctly
             self.assertEqual('String test + !', answer_object['data']['003'])
 
     def test_answer_with_multiple_instances(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             user_answer = [create_answer('GHI', 0, group_id='group-1', block_id='block-1'),
                            create_answer('GHI', value=1, answer_instance=1, group_id='group-1', block_id='block-1'),
                            create_answer('GHI', value=2, answer_instance=2, group_id='group-1', block_id='block-1')]
@@ -336,13 +337,13 @@ class TestConverter(SurveyRunnerTestCase):
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
 
-            answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Check the converter correctly
             self.assertEqual(answer_object['data']['003'], ['0', '1', '2'])
 
     def test_get_checkbox_answer_with_duplicate_child_answer_ids(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
             answers = [create_answer('crisps-answer', [
                 'Ready salted',
@@ -388,11 +389,11 @@ class TestConverter(SurveyRunnerTestCase):
             }
 
         with self.assertRaises(Exception) as err:
-            convert_answers(self.metadata, questionnaire, AnswerStore(answers), routing_path)
+            convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
         self.assertEqual('Multiple answers found for {}'.format('other-answer-mandatory'), str(err.exception))
 
     def test_convert_census_answers(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             routing_path = [Location(group_id='personal details', group_instance=0, block_id='about you'),
                             Location(group_id='household', group_instance=0, block_id='where you live'),
                             Location(group_id='household', group_instance=1, block_id='where you live')]
@@ -442,7 +443,7 @@ class TestConverter(SurveyRunnerTestCase):
             }
 
             # When
-            answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(answers), routing_path)
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 4)
@@ -471,7 +472,7 @@ class TestConverter(SurveyRunnerTestCase):
             self.assertEqual(answer_object['data'][3]['value'], '63 Somewhere')
 
     def test_convert_census_answers_multiple_answers(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
             answers = [
                 create_answer('crisps-answer', ['Ready salted', 'Sweet chilli'], group_id='favourite-food', block_id='crisps')]
@@ -511,7 +512,7 @@ class TestConverter(SurveyRunnerTestCase):
             }
 
             # When
-            answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(answers), routing_path)
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -522,19 +523,19 @@ class TestConverter(SurveyRunnerTestCase):
             self.assertEqual(answer_object['data'][0]['value'], ['Ready salted', 'Sweet chilli'])
 
     def test_converter_raises_runtime_error_for_unsupported_version(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             questionnaire = {
                 'survey_id': '021',
                 'data_version': '-0.0.1'
             }
 
             with self.assertRaises(DataVersionError) as err:
-                convert_answers(self.metadata, questionnaire, AnswerStore(), {})
+                convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(), {})
 
             self.assertEqual(str(err.exception), 'Data version -0.0.1 not supported')
 
     def test_converter_checkboxes_with_q_codes(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
             answers = [create_answer('crisps-answer', [
                 'Ready salted',
@@ -597,7 +598,7 @@ class TestConverter(SurveyRunnerTestCase):
             }
 
             # When
-            answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(answers), routing_path)
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 2)
@@ -605,7 +606,7 @@ class TestConverter(SurveyRunnerTestCase):
             self.assertEqual(answer_object['data']['2'], 'Sweet chilli')
 
     def test_converter_checkboxes_with_q_codes_and_other_value(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
             answers = [create_answer('crisps-answer', [
                 'Ready salted',
@@ -670,7 +671,7 @@ class TestConverter(SurveyRunnerTestCase):
             }
 
             # When
-            answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(answers), routing_path)
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 2)
@@ -678,7 +679,7 @@ class TestConverter(SurveyRunnerTestCase):
             self.assertEqual(answer_object['data']['4'], 'Other')
 
     def test_converter_q_codes_for_empty_strings(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
             answers = [create_answer('crisps-answer', '', group_id='favourite-food', block_id='crisps')]
             answers += [
@@ -717,7 +718,7 @@ class TestConverter(SurveyRunnerTestCase):
             }
 
             # When
-            answer_object = convert_answers(self.metadata, questionnaire, AnswerStore(answers), routing_path)
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
