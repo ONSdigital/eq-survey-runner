@@ -6,7 +6,7 @@ env:
   global:
     - EQ_RUN_LOCAL_LINT=True
     - EQ_RUN_LOCAL_TESTS=True
-    - EQ_RUN_LOCAL=True
+    - EQ_RUN_DOCKER_UP=True
     - EQ_RUN_FUNCTIONAL_TESTS=True
     - EQ_RUN_FUNCTIONAL_TESTS_HEADLESS=True
     # Codacy
