@@ -14,7 +14,7 @@
                     "title": "Introduction"
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "no-of-repeats",
                     "title": "No of Repeats",
                     "description": "",
@@ -38,7 +38,7 @@
         },
         {
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "repeated-block",
                     "title": "Conditional Section",
                     "description": "",
@@ -89,7 +89,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "age-block",
                     "title": "",
                     "description": "",
@@ -108,7 +108,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "shoe-size-block",
                     "title": "",
                     "description": "",

@@ -9,7 +9,7 @@
     "legal_basis": "StatisticsOfTradeAct",
     "groups": [{
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "date-block",
                 "description": "",
                 "questions": [{

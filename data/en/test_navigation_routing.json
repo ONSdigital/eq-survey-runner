@@ -22,7 +22,7 @@
             "id": "group1",
             "title": "Select next question",
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "group1-block",
                     "description": "",
                     "title": "Where do you want to go?",
@@ -73,7 +73,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "question1",
                     "description": "",
                     "title": "Question 1",
@@ -90,7 +90,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "question2",
                     "description": "",
                     "title": "Question 2",
@@ -112,7 +112,7 @@
             "id": "group2",
             "title": "This is Group 2",
             "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "group2-block",
                 "description": "",
                 "title": "Did you want Group 2?",

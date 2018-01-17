@@ -14,7 +14,7 @@
     },
     "groups": [{
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "block",
                 "description": "",
                 "questions": [{

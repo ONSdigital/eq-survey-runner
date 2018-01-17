@@ -14,7 +14,7 @@ class Group:
 
         for block in group_schema['blocks']:
             if block['id'] in [location.block_id for location in path] and \
-                    block['type'] == 'Questionnaire':
+                    block['type'] == 'Question':
                 blocks.extend([Block(block, group_schema['id'], answer_store, metadata, url_for)])
 
         return blocks
