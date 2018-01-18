@@ -71,7 +71,7 @@ class QuestionnaireSchema(object):
 
     def group_has_questions(self, group_id):
         for block in self.get_group(group_id)['blocks']:
-            if block['type'] == 'Questionnaire':
+            if block['type'] == 'Question':
                 return True
 
         return False

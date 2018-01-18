@@ -570,7 +570,7 @@ def _get_front_end_navigation(answer_store, current_location, metadata, routing_
     completed_blocks = get_completed_blocks(current_user)
     navigation = Navigation(g.schema, answer_store, metadata, completed_blocks, routing_path)
     block_json = g.schema.get_block(current_location.block_id)
-    if block_json is not None and block_json['type'] in ('Questionnaire', 'Interstitial', 'Confirmation', 'Summary'):
+    if block_json is not None and block_json['type'] in ('Question', 'Interstitial', 'Confirmation', 'Summary'):
         return navigation.build_navigation(current_location.group_id, current_location.group_instance)
 
     return None
@@ -581,7 +581,7 @@ def get_page_title_for_location(schema, current_location):
     if block['type'] == 'Interstitial':
         group = schema.get_group(current_location.group_id)
         page_title = '{group_title} - {survey_title}'.format(group_title=group['title'], survey_title=schema.json['title'])
-    elif block['type'] == 'Questionnaire':
+    elif block['type'] == 'Question':
         first_question = next(schema.get_questions_for_block(block))
         page_title = '{question_title} - {survey_title}'.format(question_title=first_question['title'], survey_title=schema.json['title'])
     else:

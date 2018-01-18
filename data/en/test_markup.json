@@ -11,7 +11,7 @@
         "id": "markup-group",
         "title": "Markup",
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "emphasis-block",
                 "title": "Emphasis",
                 "questions": [{

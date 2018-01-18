@@ -20,7 +20,7 @@
                 "description": ""
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "breakfast-block",
                 "description": "",
                 "questions": [{
@@ -46,7 +46,7 @@
                 "type": "Interstitial"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "lunch-block",
                 "description": "",
                 "questions": [{

@@ -9,7 +9,7 @@
     "legal_basis": "StatisticsOfTradeAct",
     "groups": [{
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "conditional-routing-block",
                 "title": "Conditional Routing Test",
                 "description": "",
@@ -60,7 +60,7 @@
                 ]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "response-yes",
                 "title": "Yes, I do drink coffee",
                 "description": "",
@@ -84,7 +84,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "response-no",
                 "title": "No, I prefer tea",
                 "description": "",

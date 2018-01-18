@@ -32,7 +32,7 @@
                     "description": ""
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "breakfast",
                     "description": "",
                     "title": "What is your favourite breakfast food",

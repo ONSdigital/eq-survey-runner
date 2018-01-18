@@ -101,7 +101,7 @@
                     "id": "reporting-period-choice-question",
                     "title": "Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?"
                 }],
-                "type": "Questionnaire",
+                "type": "Question",
                 "title": "Reporting period",
                 "id": "reporting-period-choice",
                 "routing_rules": [{
@@ -122,7 +122,7 @@
                 ]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "questions": [{
                     "type": "DateRange",
                     "answers": [{
@@ -149,7 +149,7 @@
                 "title": "Reporting period"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "total-retail-turnover-block",
                 "questions": [{
                     "guidance": {
@@ -189,7 +189,7 @@
                 "title": "Retail Turnover"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "total-internet-sales",
                 "questions": [{
                     "guidance": {
@@ -268,10 +268,10 @@
                     "type": "General"
                 }],
                 "title": "Changes in total retail turnover",
-                "type": "Questionnaire"
+                "type": "Question"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "reason-for-change",
                 "questions": [{
                     "answers": [{
@@ -324,7 +324,7 @@
                 "title": "Changes in total retail turnover"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "change-comment-block",
                 "questions": [{
                     "answers": [{

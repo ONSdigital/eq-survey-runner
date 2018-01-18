@@ -89,7 +89,6 @@ class TestQuestionnaireSchema(AppContextTestCase):
             }]
         }
 
-
         with self.assertRaises(Exception)as err:
             QuestionnaireSchema(survey_json)
 
@@ -101,7 +100,7 @@ class TestQuestionnaireSchema(AppContextTestCase):
                 'blocks': [
                     {
                         'id': 'questionnaire-block',
-                        'type': 'Questionnaire'
+                        'type': 'Question'
                     },
                     {
                         'id': 'summary-block',
@@ -134,7 +133,7 @@ class TestQuestionnaireSchema(AppContextTestCase):
                     },
                     {
                         'id': 'question',
-                        'type': 'Questionnaire'
+                        'type': 'Question'
                     }
                 ]
             }]

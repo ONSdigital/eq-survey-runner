@@ -9,7 +9,7 @@
     "legal_basis": "StatisticsOfTradeAct",
     "groups": [{
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "set-min-max-block",
                     "description": "",
                     "questions": [{
@@ -40,7 +40,7 @@
                     "title": ""
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "test-min-max-block",
                     "description": "",
                     "questions": [{

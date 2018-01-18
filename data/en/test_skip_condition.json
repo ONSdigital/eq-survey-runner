@@ -10,7 +10,7 @@
     "messages": {},
     "groups": [{
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "food-block",
                 "description": "",
                 "questions": [{
@@ -39,7 +39,7 @@
                 "routing_rules": []
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "drink-block",
                 "description": "",
                 "questions": [{

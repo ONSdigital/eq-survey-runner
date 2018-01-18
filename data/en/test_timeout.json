@@ -13,7 +13,7 @@
         "id": "timeout-group",
         "title": "Timeout",
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "timeout-block",
                 "title": "Timeout",
                 "questions": [{

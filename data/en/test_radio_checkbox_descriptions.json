@@ -11,7 +11,7 @@
         "id": "radio-checkbox-descriptio",
         "title": "Did this business make major changes in the following areas?",
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "checkbox-block",
                 "title": "Did this business make major changes in the following areas?",
 
@@ -54,7 +54,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "radio-block",
                 "description": "",
                 "questions": [{

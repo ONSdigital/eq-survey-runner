@@ -6,7 +6,7 @@
     "data_version": "0.0.2",
     "groups": [{
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-computers-block-2",
                     "title": "Use of computers",
                     "questions": [{
@@ -75,7 +75,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-computers-block-3",
                     "title": "Use of computers",
                     "questions": [{
@@ -146,7 +146,7 @@
         },
         {
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "ict-specialists-and-skills-block-5",
                     "title": "ICT Specialists and Skills",
                     "questions": [{
@@ -201,7 +201,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "ict-specialists-and-skills-block-6",
                     "title": "ICT Specialists and Skills",
                     "questions": [{
@@ -233,7 +233,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "ict-specialists-and-skills-block-7",
                     "title": "ICT Specialists and Skills",
                     "questions": [{
@@ -276,7 +276,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "ict-specialists-and-skills-block-8",
                     "title": "ICT Specialists and Skills",
                     "questions": [{
@@ -303,7 +303,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "ict-specialists-and-skills-block-9",
                     "title": "ICT Specialists and Skills",
                     "questions": [{
@@ -341,7 +341,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "ict-specialists-and-skills-block-10",
                     "title": "ICT Specialists and Skills",
                     "questions": [{
@@ -379,7 +379,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "ict-specialists-and-skills-block-11",
                     "title": "ICT Specialists and Skills",
                     "questions": [{
@@ -438,7 +438,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "block-12",
                     "title": "",
                     "questions": [{
@@ -488,7 +488,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "ict-specialists-and-skills-block-13",
                     "title": "ICT Specialists and Skills",
                     "questions": [{
@@ -526,7 +526,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "ict-specialists-and-skills-block-14",
                     "title": "ICT Specialists and Skills",
                     "questions": [{
@@ -574,7 +574,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "ict-specialists-and-skills-block-15",
                     "title": "ICT Specialists and Skills",
                     "questions": [{
@@ -645,7 +645,7 @@
         },
         {
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-17",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -689,7 +689,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-18",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -737,7 +737,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-19",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -794,7 +794,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-20",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -846,7 +846,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-21",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -906,7 +906,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-22",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -928,7 +928,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-23",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -951,11 +951,10 @@
                             ],
                             "description": ""
                         }],
-                        "description": ""
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-24",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -987,7 +986,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-25",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1029,7 +1028,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-26",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1082,7 +1081,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-27",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1114,7 +1113,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-28",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1141,7 +1140,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-29",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1168,7 +1167,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-30",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1195,7 +1194,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-31",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1222,7 +1221,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-32",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1249,7 +1248,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-33",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1292,7 +1291,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-34",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1320,7 +1319,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-35",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1348,7 +1347,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-36",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1376,7 +1375,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-37",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1404,7 +1403,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-38",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1445,7 +1444,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-39",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1482,7 +1481,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-40",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1519,7 +1518,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "access-and-use-of-the-internet-block-41",
                     "title": "Access and Use of the Internet",
                     "questions": [{
@@ -1615,7 +1614,7 @@
         },
         {
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-cloud-computing-services-block-43",
                     "title": "Use of cloud computing services",
                     "questions": [{
@@ -1689,7 +1688,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-cloud-computing-services-block-44",
                     "title": "Use of cloud computing services",
                     "questions": [{
@@ -1745,7 +1744,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-cloud-computing-services-block-45",
                     "title": "Use of cloud computing services",
                     "questions": [{
@@ -1801,7 +1800,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-cloud-computing-services-block-46",
                     "title": "Use of cloud computing services",
                     "questions": [{
@@ -1850,7 +1849,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-cloud-computing-services-block-47",
                     "title": "Use of cloud computing services",
                     "questions": [{
@@ -1899,7 +1898,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-cloud-computing-services-block-48",
                     "title": "Use of cloud computing services",
                     "questions": [{
@@ -1948,7 +1947,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-cloud-computing-services-block-49",
                     "title": "Use of cloud computing services",
                     "questions": [{
@@ -2001,7 +2000,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-cloud-computing-services-block-50",
                     "title": "Use of cloud computing services",
                     "questions": [{
@@ -2055,7 +2054,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-cloud-computing-services-block-51",
                     "title": "Use of cloud computing services",
                     "questions": [{
@@ -2104,7 +2103,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-cloud-computing-services-block-52",
                     "title": "Use of cloud computing services",
                     "questions": [{
@@ -2191,7 +2190,7 @@
         },
         {
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-3d-printing-block-54",
                     "title": "Use of 3D printing",
                     "questions": [{
@@ -2251,7 +2250,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-3d-printing-block-55",
                     "title": "Use of 3D printing",
                     "questions": [{
@@ -2312,7 +2311,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-3d-printing-block-56",
                     "title": "Use of 3D printing",
                     "questions": [{
@@ -2351,7 +2350,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-3d-printing-block-57",
                     "title": "Use of 3D printing",
                     "questions": [{
@@ -2393,7 +2392,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "use-of-3d-printing-block-58",
                     "title": "Use of 3D printing",
                     "questions": [{
@@ -2460,7 +2459,7 @@
         },
         {
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "invoicing-block-60",
                     "title": "Invoicing",
                     "questions": [{
@@ -2523,7 +2522,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "invoicing-block-61",
                     "title": "Invoicing",
                     "questions": [{
@@ -2574,7 +2573,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "invoicing-block-62",
                     "title": "Invoicing",
                     "questions": [{
@@ -2635,7 +2634,7 @@
         },
         {
             "blocks": [{
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "e-commerce-block-64",
                     "title": "e-Commerce",
                     "questions": [{
@@ -2709,7 +2708,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "e-commerce-block-65",
                     "title": "e-Commerce",
                     "questions": [{
@@ -2741,7 +2740,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "e-commerce-block-66",
                     "title": "e-Commerce",
                     "questions": [{
@@ -2775,7 +2774,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "e-commerce-block-67",
                     "title": "e-Commerce",
                     "questions": [{
@@ -2837,7 +2836,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "e-commerce-block-68",
                     "title": "e-Commerce",
                     "questions": [{
@@ -2888,7 +2887,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "e-commerce-block-69",
                     "title": "e-Commerce",
                     "questions": [{
@@ -2922,7 +2921,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "e-commerce-block-70",
                     "title": "e-Commerce ",
                     "questions": [{
@@ -2997,7 +2996,7 @@
                     ]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "e-commerce-block-71",
                     "title": "e-Commerce",
                     "questions": [{
@@ -3036,7 +3035,7 @@
                     }]
                 },
                 {
-                    "type": "Questionnaire",
+                    "type": "Question",
                     "id": "e-commerce-block-72",
                     "title": "e-Commerce",
                     "questions": [{
@@ -3114,7 +3113,7 @@
         },
         {
             "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "comments-block-74",
                 "questions": [{
                     "type": "General",

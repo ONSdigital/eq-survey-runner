@@ -161,7 +161,7 @@
                     }]
                 }],
                 "id": "reporting-period-choice",
-                "type": "Questionnaire"
+                "type": "Question"
             },
             {
                 "title": "Reporting period",
@@ -188,10 +188,10 @@
                     ]
                 }],
                 "id": "reporting-period",
-                "type": "Questionnaire"
+                "type": "Question"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "total-retail-turnover-block",
                 "questions": [{
                     "guidance": {
@@ -231,7 +231,7 @@
                 "title": "Retail Turnover"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "total-internet-sales",
                 "questions": [{
                     "guidance": {
@@ -260,7 +260,7 @@
             },
             {
                 "id": "significant-change",
-                "type": "Questionnaire",
+                "type": "Question",
                 "questions": [{
                     "guidance": {
                         "content": [{
@@ -297,7 +297,7 @@
                 "title": "Changes in total retail turnover"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "reason-for-change",
                 "skip_conditions": [{
                     "when": [{
@@ -357,7 +357,7 @@
                 "title": "Changes in total retail turnover"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "change-comment-block",
                 "skip_conditions": [{
                     "when": [{
@@ -402,7 +402,7 @@
                 "title": "Changes in total retail turnover"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "total-employees",
                 "questions": [{
                     "guidance": {
@@ -441,7 +441,7 @@
                 "title": "Employees"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "employees-breakdown",
                 "questions": [{
                     "guidance": {
@@ -500,7 +500,7 @@
                 "title": "Employees"
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "changes-in-employees",
                 "questions": [{
                     "answers": [{

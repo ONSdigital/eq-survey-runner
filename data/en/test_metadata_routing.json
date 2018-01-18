@@ -11,7 +11,7 @@
         "id": "group1",
         "title": "Group 1",
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "block1",
                 "title": "Question 1",
                 "questions": [{
@@ -43,7 +43,7 @@
                 ]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "block2",
                 "title": "Question 2",
                 "questions": [{
@@ -59,7 +59,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "block3",
                 "title": "Question 3",
                 "questions": [{

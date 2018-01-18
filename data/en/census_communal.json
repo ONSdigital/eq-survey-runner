@@ -11,7 +11,7 @@
         "id": "communal-establishment",
         "title": "Communal Establishment",
         "blocks": [{
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "establishment-type",
                 "title": "Establishment",
                 "questions": [{
@@ -56,7 +56,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "bed-spaces",
                 "title": "Establishment",
                 "questions": [{
@@ -89,7 +89,7 @@
                 ]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "usual-residents",
                 "title": "Usual Residents",
                 "questions": [{
@@ -142,7 +142,7 @@
                 ]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "usual-residents-number",
                 "title": "Usual Residents",
                 "questions": [{
@@ -158,7 +158,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "describe-residents",
                 "title": "Usual Residents",
                 "questions": [{
@@ -200,7 +200,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "completion-preference-individual",
                 "title": "Completion Preferences",
                 "questions": [{
@@ -255,7 +255,7 @@
                 ]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "why-paper-individual",
                 "title": "Completion Preferences",
                 "questions": [{
@@ -301,7 +301,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "completion-preference-establishment",
                 "title": "Completion Preferences",
                 "questions": [{
@@ -342,7 +342,7 @@
                 ]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "why-paper-establishment",
                 "title": "Completion Preferences",
                 "questions": [{
@@ -380,7 +380,7 @@
                 }]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "further-contact",
                 "title": "Further Contact",
                 "questions": [{
@@ -420,7 +420,7 @@
                 ]
             },
             {
-                "type": "Questionnaire",
+                "type": "Question",
                 "id": "contact-details",
                 "title": "Further Contact",
                 "questions": [{
