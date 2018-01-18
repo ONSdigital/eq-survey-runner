@@ -13,7 +13,7 @@ describe('Error Messages', function() {
           .click(TestErrorsPage.submit())
           .getText(TestErrorsPage.errorHeader()).should.eventually.contain('This page has 3 errors')
           .getText(TestErrorsPage.errorNumber(1)).should.eventually.contain('Enter a number.')
-          .getText(TestErrorsPage.errorNumber(2)).should.eventually.contain('Enter a number less than or equal to 100.')
+          .getText(TestErrorsPage.errorNumber(2)).should.eventually.contain('Enter an answer less than or equal to 100.')
           .getText(TestErrorsPage.errorNumber(3)).should.eventually.contain('Enter a number rounded to 2 decimal places.');
     });
   });
@@ -38,7 +38,7 @@ describe('Error Messages', function() {
           .click(TestErrorsPage.submit())
 
           .getText(TestErrorsPage.checkError('number')).should.eventually.contain('Enter a number.')
-          .getText(TestErrorsPage.checkError('percent')).should.eventually.contain('Enter a number less than or equal to 100.')
+          .getText(TestErrorsPage.checkError('percent')).should.eventually.contain('Enter an answer less than or equal to 100.')
           .getText(TestErrorsPage.checkError('currency')).should.eventually.contain('Enter a number rounded to 2 decimal places.');
     });
   });
