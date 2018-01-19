@@ -208,7 +208,10 @@
                         "q_code": "21",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "decimal_places": 2,
+                        "max_value": {
+                            "answer_id": "total-retail-turnover-answer"
+                        }
                     }],
                     "id": "internet-sales-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",

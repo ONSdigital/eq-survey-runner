@@ -250,7 +250,10 @@
                         "q_code": "21",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "decimal_places": 2,
+                        "max_value": {
+                            "answer_id": "total-retail-turnover-answer"
+                        }
                     }],
                     "id": "internet-sales-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
@@ -469,28 +472,40 @@
                             "label": "Number of male employees working more than 30 hours per week",
                             "mandatory": false,
                             "q_code": "51",
-                            "type": "Number"
+                            "type": "Number",
+                            "max_value": {
+                                "answer_id": "total-number-employees"
+                            }
                         },
                         {
                             "id": "male-employees-under-30-hours",
                             "label": "Number of male employees working 30 hours or less per week",
                             "mandatory": false,
                             "q_code": "52",
-                            "type": "Number"
+                            "type": "Number",
+                            "max_value": {
+                                "answer_id": "total-number-employees"
+                            }
                         },
                         {
                             "id": "female-employees-over-30-hours",
                             "label": "Number of female employees working more than 30 hours per week",
                             "mandatory": false,
                             "q_code": "53",
-                            "type": "Number"
+                            "type": "Number",
+                            "max_value": {
+                                "answer_id": "total-number-employees"
+                            }
                         },
                         {
                             "id": "female-employees-under-30-hours",
                             "label": "Number of female employees working 30 hours or less per week",
                             "mandatory": false,
                             "q_code": "54",
-                            "type": "Number"
+                            "type": "Number",
+                            "max_value": {
+                                "answer_id": "total-number-employees"
+                            }
                         }
                     ],
                     "id": "employee-breakdown-questions",

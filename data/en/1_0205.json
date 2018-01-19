@@ -325,7 +325,10 @@
                         "q_code": "22",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "decimal_places": 2,
+                        "max_value": {
+                            "answer_id": "total-retail-turnover"
+                        }
                     }],
                     "id": "total-sales-food-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>food</em> sales?",
@@ -354,7 +357,10 @@
                         "q_code": "23",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "decimal_places": 2,
+                        "max_value": {
+                            "answer_id": "total-retail-turnover"
+                        }
                     }],
                     "description": "",
                     "id": "total-sales-alcohol-question",
@@ -386,7 +392,10 @@
                         "q_code": "24",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "decimal_places": 2,
+                        "max_value": {
+                            "answer_id": "total-retail-turnover"
+                        }
                     }],
                     "id": "total-sales-clothing-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>clothing and footwear</em> sales?",
@@ -429,7 +438,10 @@
                         "q_code": "25",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "decimal_places": 2,
+                        "max_value": {
+                            "answer_id": "total-retail-turnover"
+                        }
                     }],
                     "id": "total-sales-household-goods-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of sales for <em>household goods</em>?",
@@ -484,7 +496,10 @@
                         "q_code": "26",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "decimal_places": 2,
+                        "max_value": {
+                            "answer_id": "total-retail-turnover"
+                        }
                     }],
                     "id": "total-sales-other-goods-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>other</em> sales?",
@@ -512,7 +527,10 @@
                         "q_code": "21",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "decimal_places": 2,
+                        "max_value": {
+                            "answer_id": "total-retail-turnover"
+                        }
                     }],
                     "id": "internet-sales-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
