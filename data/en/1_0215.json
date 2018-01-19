@@ -369,7 +369,10 @@
                         "q_code": "22",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "decimal_places": 2,
+                        "max_value": {
+                            "answer_id": "total-retail-turnover"
+                        }
                     }],
                     "id": "total-sales-food-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>food</em> sales?",
@@ -398,7 +401,10 @@
                         "q_code": "23",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "decimal_places": 2,
+                        "max_value": {
+                            "answer_id": "total-retail-turnover"
+                        }
                     }],
                     "id": "total-sales-alcohol-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>alcohol, confectionery and tobacco</em> sales?",
@@ -429,7 +435,10 @@
                         "q_code": "24",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "decimal_places": 2,
+                        "max_value": {
+                            "answer_id": "total-retail-turnover"
+                        }
                     }],
                     "id": "total-sales-clothing-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>clothing and footwear</em> sales?",
@@ -475,7 +484,10 @@
                         "q_code": "25",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "decimal_places": 2,
+                        "max_value": {
+                            "answer_id": "total-retail-turnover"
+                        }
                     }],
                     "id": "total-sales-household-goods-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of sales for <em>household goods</em>?",
@@ -532,7 +544,10 @@
                         "q_code": "26",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "decimal_places": 2,
+                        "max_value": {
+                            "answer_id": "total-retail-turnover"
+                        }
                     }],
                     "id": "total-sales-other-goods-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>other</em> sales?",
@@ -559,7 +574,10 @@
                         "q_code": "21",
                         "type": "Currency",
                         "currency": "GBP",
-                        "decimal_places": 2
+                        "decimal_places": 2,
+                        "max_value": {
+                            "answer_id": "total-retail-turnover"
+                        }
                     }],
                     "id": "internet-sales-question",
                     "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
@@ -826,14 +844,20 @@
                             "label": "Number of male employees working more than 30 hours per week",
                             "mandatory": false,
                             "q_code": "51",
-                            "type": "Number"
+                            "type": "Number",
+                            "max_value": {
+                                "answer_id": "total-number-employees"
+                            }
                         },
                         {
                             "id": "number-male-employees-under-30-hours",
                             "label": "Number of male employees working 30 hours or less per week",
                             "mandatory": false,
                             "q_code": "52",
-                            "type": "Number"
+                            "type": "Number",
+                            "max_value": {
+                                "answer_id": "total-number-employees"
+                            }
                         },
                         {
 
@@ -841,14 +865,20 @@
                             "label": "Number of female employees working more than 30 hours per week",
                             "mandatory": false,
                             "q_code": "53",
-                            "type": "Number"
+                            "type": "Number",
+                            "max_value": {
+                                "answer_id": "total-number-employees"
+                            }
                         },
                         {
                             "id": "number-female-employees-under-30-hours",
                             "label": "Number of female employees working 30 hours or less per week",
                             "mandatory": false,
                             "q_code": "54",
-                            "type": "Number"
+                            "type": "Number",
+                            "max_value": {
+                                "answer_id": "total-number-employees"
+                            }
                         }
                     ],
                     "id": "employee-breakdown-questions",
