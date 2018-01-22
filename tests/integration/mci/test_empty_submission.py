@@ -37,7 +37,7 @@ class TestEmptySubmission(IntegrationTestCase):
         # We submit the form without data
         self.post(form_data)
         self.assertInPage('Enter a date to continue.')
-        self.assertInPage('Enter an answer, even if it is 0.')
+        self.assertInPage('Enter an answer to continue.')
 
         # We try to access the submission page without correction
         self.get(mci_test_urls.MCI_0205_SUMMARY)

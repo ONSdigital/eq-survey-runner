@@ -399,11 +399,6 @@
                             "min_value": {
                                 "value": 0,
                                 "exclusive": true
-                            },
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY_NUMBER": "Enter an answer to continue."
-                                }
                             }
                         }],
                         "guidance": {
@@ -962,11 +957,6 @@
                             "min_value": {
                                 "value": 0,
                                 "exclusive": true
-                            },
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY_NUMBER": "Enter an answer to continue."
-                                }
                             }
                         }],
                         "guidance": {
@@ -1508,11 +1498,6 @@
                             "min_value": {
                                 "value": 0,
                                 "exclusive": true
-                            },
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY_NUMBER": "Enter an answer to continue."
-                                }
                             }
                         }],
                         "guidance": {
@@ -2040,11 +2025,6 @@
                             "min_value": {
                                 "value": 0,
                                 "exclusive": true
-                            },
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY_NUMBER": "Enter an answer to continue."
-                                }
                             }
                         }],
                         "guidance": {
@@ -2573,11 +2553,6 @@
                             "min_value": {
                                 "value": 0,
                                 "exclusive": true
-                            },
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY_NUMBER": "Enter an answer to continue."
-                                }
                             }
                         }],
                         "guidance": {

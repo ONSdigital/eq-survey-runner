@@ -62,5 +62,5 @@ class TestClearError(IntegrationTestCase):
         self.post(form_data)
 
         # Check the page content again
-        self.assertInPage('Enter an answer, even if it is 0.')
+        self.assertInPage('Enter an answer to continue.')
         self.assertNotInPage(error_messages['INVALID_DATE_RANGE'])

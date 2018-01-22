@@ -30,7 +30,7 @@ class TestDarkSidePath(StarWarsTestCase):
         self.post(form_data)
 
         # Test error messages
-        self.assertInPage('Enter an answer, even if it is 0.')
+        self.assertInPage('Enter an answer to continue.')
 
     def test_date_range_validation(self):
         self.launchSurvey()

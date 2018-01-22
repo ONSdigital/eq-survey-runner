@@ -1,7 +1,7 @@
 # Set up default error and warning messages
 error_messages = {
     'MANDATORY_TEXTFIELD': 'Enter an answer to continue.',
-    'MANDATORY_NUMBER': 'Enter an answer, even if it is 0.',
+    'MANDATORY_NUMBER': 'Enter an answer to continue.',
     'MANDATORY_TEXTAREA': 'Enter an answer to continue.',
     'MANDATORY_RADIO': 'Select an answer to continue.',
     'MANDATORY_CHECKBOX': 'Select all that apply to continue.',
