@@ -724,8 +724,6 @@
                         ],
                         "type": "Checkbox"
                     }],
-
-                    "description": "Select all that apply",
                     "id": "reason-for-change-question",
                     "title": "Please indicate the reasons for any changes in the total retail turnover for {{respondent.trad_as_or_ru_name}}",
                     "type": "General"

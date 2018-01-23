@@ -164,7 +164,6 @@
                 "questions": [{
                     "id": "describe-residents-question",
                     "title": "How would you describe your usual residents?",
-                    "description": "Select all that apply",
                     "type": "General",
                     "answers": [{
                             "id": "describe-residents-answer",
@@ -261,7 +260,6 @@
                 "questions": [{
                     "id": "why-paper-individual-question",
                     "title": "Why do you think they would choose to do it on paper?",
-                    "description": "Select all that apply",
                     "type": "General",
                     "answers": [{
                             "id": "why-paper-individual-answer",
@@ -348,7 +346,6 @@
                 "questions": [{
                     "id": "why-paper-establishment-question",
                     "title": "Why would you choose to do it on paper?",
-                    "description": "Select all that apply",
                     "type": "General",
                     "answers": [{
                             "id": "why-paper-establishment-answer",

@@ -191,7 +191,6 @@
                     "questions": [{
                         "answers": [{
                             "id": "pay-pattern-frequency-answer",
-                            "label": "Please select all that apply",
                             "alias": "pay_pattern",
                             "mandatory": true,
                             "options": [{
