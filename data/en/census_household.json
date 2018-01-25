@@ -11,40 +11,23 @@
         "visible": true,
         "sections": [{
                 "title": "Who lives here?",
-                "group_order": [
-                    "who-lives-here",
-                    "who-lives-here-relationship",
-                    "who-lives-here-interstitial"
-                ]
+                "group_order": ["who-lives-here", "who-lives-here-relationship", "who-lives-here-interstitial"]
             },
             {
                 "title": "Household and Accommodation",
-                "group_order": [
-                    "household-and-accommodation"
-                ]
+                "group_order": ["household-and-accommodation"]
             },
             {
-                "title_from_answers": [
-                    "first-name",
-                    "last-name"
-                ],
-                "group_order": [
-                    "household-member"
-                ]
+                "title_from_answers": ["first-name", "last-name"],
+                "group_order": ["household-member"]
             },
             {
                 "title": "Visitors",
-                "group_order": [
-                    "visitors-begin",
-                    "visitors",
-                    "visitors-interstitial"
-                ]
+                "group_order": ["visitors-begin", "visitors", "visitors-interstitial"]
             },
             {
                 "title": "Submit answers",
-                "group_order": [
-                    "questionnaire-completed"
-                ]
+                "group_order": ["questionnaire-completed"]
             }
         ]
     },
@@ -509,11 +492,7 @@
                     "description": "In this section, we’re going to ask you about the household and accommodation you live in.",
                     "content": [{
                         "title": "Information you need",
-                        "list": [
-                            "Type of property, and if it’s owned or rented",
-                            "Type of landlord, if the property is rented",
-                            "Number of cars or vans"
-                        ]
+                        "list": ["Type of property, and if it’s owned or rented", "Type of landlord, if the property is rented", "Number of cars or vans"]
                     }]
                 },
                 {
@@ -1701,16 +1680,11 @@
                         "guidance": {
                             "content": [{
                                     "title": "Include",
-                                    "list": [
-                                        "long-term physical or mental ill-health/disability",
-                                        "problems related to old age"
-                                    ]
+                                    "list": ["long-term physical or mental ill-health/disability", "problems related to old age"]
                                 },
                                 {
                                     "title": "Exclude",
-                                    "list": [
-                                        "anything you do as part of your paid employment"
-                                    ]
+                                    "list": ["anything you do as part of your paid employment"]
                                 }
                             ]
                         },
@@ -1748,7 +1722,6 @@
                             "type": "General",
                             "answers": [{
                                     "id": "national-identity-england-answer",
-                                    "label": "Select all that apply",
                                     "mandatory": false,
                                     "options": [{
                                             "label": "English",
@@ -1800,7 +1773,6 @@
                             "type": "General",
                             "answers": [{
                                     "id": "national-identity-wales-answer",
-                                    "label": "Select all that apply",
                                     "mandatory": false,
                                     "options": [{
                                             "label": "Welsh",
@@ -2507,7 +2479,6 @@
                                         "label": "Prefer not to say",
                                         "value": "Prefer not to say"
                                     }
-
                                 ],
                                 "type": "Checkbox"
                             },
@@ -2543,7 +2514,6 @@
                     "questions": [{
                         "id": "understand-welsh-question",
                         "title": "Can <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> understand, speak, read or write Welsh",
-                        "description": "Select all that apply",
                         "type": "General",
                         "answers": [{
                             "id": "understand-welsh-answer",
@@ -2884,7 +2854,6 @@
                     "questions": [{
                         "id": "passports-question",
                         "title": "What passports do you hold?",
-                        "description": "Select all that apply",
                         "type": "General",
                         "answers": [{
                             "id": "passports-answer",
@@ -3204,8 +3173,7 @@
                                     "value": "none of the above"
                                 }
                             ],
-                            "type": "Checkbox",
-                            "label": "Select all that apply"
+                            "type": "Checkbox"
                         }]
                     }],
                     "routing_rules": [{
@@ -3350,7 +3318,6 @@
                     "questions": [{
                         "id": "occupation-question",
                         "title": "Which of the following best describes what <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> was doing last week?",
-                        "description": "Select all that apply",
                         "type": "General",
                         "answers": [{
                             "id": "occupation-answer",
@@ -3390,10 +3357,7 @@
                         "guidance": {
                             "content": [{
                                 "title": "Include:",
-                                "list": [
-                                    "work outside of the United Kingdom.",
-                                    "even if you are now retired."
-                                ]
+                                "list": ["work outside of the United Kingdom.", "even if you are now retired."]
                             }]
                         },
                         "answers": [{
@@ -3707,12 +3671,7 @@
                 "description": "In this section, we’re going to ask you about any visitors that were staying overnight at <em>{{answers.address_line_1}}</em> on 29 November 2017.",
                 "content": [{
                     "title": "Information you need",
-                    "list": [
-                        "Name of visitor",
-                        "Gender of visitor",
-                        "Date of birth of visitor",
-                        "Address of visitor"
-                    ]
+                    "list": ["Name of visitor", "Gender of visitor", "Date of birth of visitor", "Address of visitor"]
                 }]
             }]
         },

@@ -47,7 +47,6 @@
                             "messages": {}
                         }
                     }],
-                    "description": "Select all that apply",
                     "id": "checkbox-question",
                     "title": "Did this business make major changes in the following areas?",
                     "type": "General"

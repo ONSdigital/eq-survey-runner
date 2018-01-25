@@ -10,6 +10,10 @@
     {%- endif -%}
   </legend>
 
+  {% if widget_type == "checkbox" %}
+    <div class="field__label mars">Select all that apply:</div>
+  {% endif %}
+
   {% for option in form[answer.id] %}
     {% set input = {
       "class": "input input--" ~ widget_type ~ " js-focusable",
@@ -26,7 +30,8 @@
       "for": option.id,
       "id": "label-" ~ option.id
     } %}
-
+    
+    
     <div class="field__item js-focusable-box">
       <input {{input|xmlattr}}>
       <label {{label|xmlattr}}>

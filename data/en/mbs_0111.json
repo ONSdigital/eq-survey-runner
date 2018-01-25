@@ -220,7 +220,6 @@
                     "answers": [{
                         "type": "Checkbox",
                         "id": "changes-in-total-turnover-answer-6-0",
-                        "label": "Select all that apply",
                         "mandatory": true,
                         "options": [{
                                 "label": "Special events (e.g.  sporting events)",

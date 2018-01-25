@@ -751,7 +751,6 @@
                         "type": "General",
                         "answers": [{
                                 "id": "national-identity-england-answer",
-                                "label": "Select all that apply",
                                 "mandatory": false,
                                 "guidance": {
                                     "show_guidance": "Show further guidance",
@@ -820,7 +819,6 @@
                         "type": "General",
                         "answers": [{
                                 "id": "national-identity-wales-answer",
-                                "label": "Select all that apply",
                                 "mandatory": false,
                                 "guidance": {
                                     "show_guidance": "Show further guidance",
@@ -1667,7 +1665,6 @@
                 "questions": [{
                     "id": "understand-welsh-question",
                     "title": "Can you understand, speak, read or write Welsh?",
-                    "description": "Select all that apply",
                     "type": "General",
                     "answers": [{
                         "id": "understand-welsh-answer",
@@ -2082,7 +2079,6 @@
                 "questions": [{
                     "id": "passports-question",
                     "title": "What passports do you hold?",
-                    "description": "Select all that apply",
                     "type": "General",
                     "answers": [{
                         "id": "passports-answer",
@@ -2394,7 +2390,6 @@
                 "questions": [{
                     "id": "employment-type-question",
                     "title": "Last week were you:",
-                    "description": "Select all that apply",
                     "guidance": {
                         "content": [{
                             "description": "<strong>Include</strong> any paid work, including casual or temporary work, even if only for one hour"
@@ -2582,7 +2577,6 @@
                 "questions": [{
                     "id": "occupation-question",
                     "title": "Last week, were you:",
-                    "description": "Select all that apply",
                     "type": "General",
                     "answers": [{
                         "id": "occupation-answer",

@@ -33,42 +33,43 @@
                         "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
                     }],
                     "questions": [{
-                        "question": "Total retail turnover",
-                        "content": [{
-                            "description": "Include:",
-                            "list": [
-                                "VAT",
-                                "internet sales",
-                                "retail sales from outlets in Great Britain to customers abroad"
+                            "question": "Total retail turnover",
+                            "content": [{
+                                    "description": "Include:",
+                                    "list": ["VAT", "internet sales", "retail sales from outlets in Great Britain to customers abroad"]
+                                },
+                                {
+                                    "description": "Exclude:",
+                                    "list": [
+                                        "revenue from mobile phone network commission and top-up",
+                                        "sales from catering facilities used by customers",
+                                        "lottery sales and commission from lottery sales",
+                                        "sales of car accessories and motor vehicles",
+                                        "NHS receipts"
+                                    ]
+                                }
                             ]
-                        }, {
-                            "description": "Exclude:",
-                            "list": [
-                                "revenue from mobile phone network commission and top-up",
-                                "sales from catering facilities used by customers",
-                                "lottery sales and commission from lottery sales",
-                                "sales of car accessories and motor vehicles",
-                                "NHS receipts"
-                            ]
-                        }]
-                    }, {
-                        "question": "Internet sales",
-                        "content": [{
-                            "description": "Include: VAT"
-                        }]
-                    }, {
-                        "question": "Significant changes to the total retail turnover",
-                        "content": [{
-                            "description": "Include:",
-                            "list": [
-                                "in-store / online promotions",
-                                "special events (e.g.  sporting events)",
-                                "calendar events (e.g.  Christmas, Easter, Bank Holiday)",
-                                "weather",
-                                "store closures/openings"
-                            ]
-                        }]
-                    }]
+                        },
+                        {
+                            "question": "Internet sales",
+                            "content": [{
+                                "description": "Include: VAT"
+                            }]
+                        },
+                        {
+                            "question": "Significant changes to the total retail turnover",
+                            "content": [{
+                                "description": "Include:",
+                                "list": [
+                                    "in-store / online promotions",
+                                    "special events (e.g.  sporting events)",
+                                    "calendar events (e.g.  Christmas, Easter, Bank Holiday)",
+                                    "weather",
+                                    "store closures/openings"
+                                ]
+                            }]
+                        }
+                    ]
                 },
                 "secondary_content": [{
                     "id": "how-we-use-your-data",
@@ -155,10 +156,7 @@
                     "guidance": {
                         "content": [{
                                 "title": "Include",
-                                "list": [
-                                    "VAT",
-                                    "internet sales"
-                                ]
+                                "list": ["VAT", "internet sales"]
                             },
                             {
                                 "title": "Exclude",
@@ -195,10 +193,7 @@
                     "guidance": {
                         "content": [{
                             "title": "Include",
-                            "list": [
-                                "VAT",
-                                "sales from orders received over the internet, irrespective of the payment or delivery method"
-                            ]
+                            "list": ["VAT", "sales from orders received over the internet, irrespective of the payment or delivery method"]
                         }]
                     },
                     "answers": [{
@@ -318,8 +313,6 @@
                         ],
                         "type": "Checkbox"
                     }],
-
-                    "description": "Select all that apply",
                     "id": "reason-for-change-question",
                     "title": "Please indicate the reasons for any changes in the total retail turnover for {{respondent.trad_as_or_ru_name}}",
                     "type": "General"
