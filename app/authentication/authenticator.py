@@ -89,7 +89,9 @@ def _create_session_data_from_metadata(metadata):
         tx_id=metadata.get('tx_id'),
         eq_id=metadata.get('eq_id'),
         form_type=metadata.get('form_type'),
-        period_str=metadata.get('period_str')
+        period_str=metadata.get('period_str'),
+        ru_name=metadata.get('ru_name'),
+        ru_ref=metadata.get('ru_ref')
     )
     return session_data
 
@@ -115,7 +117,7 @@ def store_session(metadata):
     cookie_session[EQ_SESSION_ID] = eq_session_id
 
     session_data = _create_session_data_from_metadata(metadata)
-    create_session_store(eq_session_id, user_id, session_data)
+    create_session_store(eq_session_id, user_id, user_ik, session_data)
 
     questionnaire_store = get_questionnaire_store(user_id, user_ik)
     questionnaire_store.metadata = metadata

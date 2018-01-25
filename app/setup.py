@@ -24,12 +24,17 @@ from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 
 from app.authentication.user_id_generator import UserIDGenerator
 from app.data_model.models import db, QuestionnaireState, EQSession
+from app.data_model.submitted_responses import SubmittedResponses
 
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.new_relic import setup_newrelic
 from app.secrets import SecretStore, validate_required_secrets
 
 from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
+
+import boto3
+from botocore.config import Config
+
 
 SECURE_HEADERS = {
     'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -84,6 +89,9 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
         setup_newrelic()
 
     setup_database(application)
+
+    if application.config['EQ_DYNAMODB_ENABLED']:
+        setup_dynamodb(application)
 
     if application.config['EQ_RABBITMQ_ENABLED']:
         application.eq['submitter'] = RabbitMQSubmitter(
@@ -172,6 +180,14 @@ def setup_database(application):
         db.create_all()
 
         check_database()
+
+
+def setup_dynamodb(application):
+    config = Config(retries={'max_attempts': 1})  # Number of additional connection attempts
+    dynamodb = boto3.resource('dynamodb', endpoint_url=application.config['EQ_DYNAMODB_ENDPOINT'], config=config)
+    table_name = application.config['EQ_SUBMITTED_RESPONSES_TABLE_NAME']
+
+    application.eq['submitted_responses'] = SubmittedResponses(dynamodb.Table(table_name))
 
 
 def check_database():

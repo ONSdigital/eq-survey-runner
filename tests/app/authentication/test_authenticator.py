@@ -16,9 +16,11 @@ class TestAuthenticator(AppContextTestCase): # pylint: disable=too-many-public-m
             tx_id='tx_id',
             eq_id='eq_id',
             form_type='form_type',
-            period_str='period_str'
+            period_str='period_str',
+            ru_name='ru_name',
+            ru_ref='ru_ref',
         )
-        self.session_store = SessionStore('eq_session_id')
+        self.session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
     def test_check_session_with_user_id_in_session(self):
         with self.test_request_context('/status'):

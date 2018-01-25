@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
 
@@ -25,7 +25,7 @@ services:
       - eq-env
 
   eq-survey-register:
-    image: onsdigital/eq-survey-register:simple-rest-api
+    image: onsdigital/eq-survey-register:latest
     restart: always
     networks:
       - eq-env
@@ -44,10 +44,15 @@ services:
       EQ_RABBITMQ_HOST_SECONDARY: rabbit
       EQ_SECRETS_FILE: docker-secrets.yml
       EQ_KEYS_FILE: docker-keys.yml
+      EQ_SUBMITTED_RESPONSES_TABLE_NAME: dev-submitted-responses
+      EQ_DYNAMODB_ENDPOINT: http://eq-docker-dynamodb:8000
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID:-dummy}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:-dummy}"
     restart: always
     depends_on:
       - db
       - rabbit
+      - eq-docker-dynamodb
     networks:
       - eq-env
     ports:
@@ -65,6 +70,15 @@ services:
       - eq-env
     ports:
       - "8000:8000"
+
+
+  eq-docker-dynamodb:
+    image: onsdigital/eq-docker-dynamodb:latest
+    restart: always
+    networks:
+      - eq-env
+    ports:
+      - "6060:8000"
 
 
 networks:

@@ -9,7 +9,7 @@ from ua_parser import user_agent_parser
 
 from app.authentication.no_token_exception import NoTokenException
 from app.globals import get_metadata
-from app.libs.utils import convert_tx_id
+from app.libs.utils import convert_tx_id_for_boxes
 from app.submitter.submission_failed import SubmissionFailedException
 from app.templating.template_renderer import TemplateRenderer
 
@@ -91,7 +91,7 @@ def get_tx_id():
     tx_id = None
     metadata = get_metadata(current_user)
     if metadata:
-        tx_id = convert_tx_id(metadata['tx_id'])
+        tx_id = convert_tx_id_for_boxes(metadata['tx_id'])
     return tx_id
 
 

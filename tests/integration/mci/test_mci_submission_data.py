@@ -44,8 +44,8 @@ class TestMciSubmissionData(IntegrationTestCase):
         # There are no validation errors (we're on the summary screen)
         self.assertInUrl('summary')
         self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
-        self.assertInPage('>Your responses<')
-        self.assertInPage('Please check your responses carefully before submitting')
+        self.assertInPage('>Your answers<')
+        self.assertInPage('Please check your answers carefully before submitting')
         self.assertInPage('>Submit answers<')
 
         actual = self.dumpSubmission()

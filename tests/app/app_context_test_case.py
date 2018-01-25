@@ -13,10 +13,11 @@ class AppContextTestCase(unittest.TestCase):
     def setUp(self):
         setting_overrides = {
             'SQLALCHEMY_DATABASE_URI': 'sqlite://',
-            'LOGIN_DISABLED': self.LOGIN_DISABLED
+            'LOGIN_DISABLED': self.LOGIN_DISABLED,
+            'EQ_DYNAMODB_ENABLED': False
         }
-
         self._app = create_app(setting_overrides)
+
         self._app.config['SERVER_NAME'] = 'test'
         self._app_context = self._app.app_context()
         self._app_context.push()

@@ -52,8 +52,8 @@ class TestInvalidDateNumber(IntegrationTestCase):
         self.assertInUrl(mci_test_urls.MCI_0205_SUMMARY)
 
         # We are on the review answers page
-        self.assertInPage('>Your responses<')
-        self.assertInPage('Please check your responses carefully before submitting')
+        self.assertInPage('>Your answers<')
+        self.assertInPage('Please check your answers carefully before submitting')
         self.assertInPage('>Submit answers<')
 
         # We submit our answers

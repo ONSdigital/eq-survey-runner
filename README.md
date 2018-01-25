@@ -75,6 +75,13 @@ Note, you will also need to run an upstream tool (eg, https://github.com/ONSDigi
 docker run -it -p 8000:8000 onsdigital/go-launch-a-survey:latest
 ```
 
+If you wish to view submitted data you will also need to run an additional upstream tool (eg, https://github.com/ONSDigital/eq-docker-dynamodb) to launch a dynamoDB container.
+ 
+```
+docker run -it -p 6060:8000 onsdigital/eq-docker-dynamodb:latest
+```
+
+
 This will generate a JWT for you to log into the application.
 
 ---

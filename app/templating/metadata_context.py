@@ -47,12 +47,15 @@ def _build_survey_meta(metadata):
     }
 
 
-def build_metadata_context_for_survey_completed(survey_completed_metadata):
+def build_metadata_context_for_survey_completed(session_data):
     return {
         'survey': {
-            'period_str': survey_completed_metadata['period_str'],
+            'period_str': session_data.period_str,
+            'submitted_time': session_data.submitted_time
         },
         'respondent': {
-            'tx_id': convert_tx_id(survey_completed_metadata['tx_id']),
+            'tx_id': convert_tx_id(session_data.tx_id),
+            'ru_name': session_data.ru_name,
+            'ru_ref': session_data.ru_ref,
         },
     }

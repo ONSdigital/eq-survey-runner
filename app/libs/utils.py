@@ -2,6 +2,11 @@ import uuid
 
 
 def convert_tx_id(tx_id):
+    # converts the guid tx_id to string of 16 characters with a dash between every 4 characters
+    return (tx_id[:4] + '-' + tx_id[4:])[:19]
+
+
+def convert_tx_id_for_boxes(tx_id):
     # converts the guid tx_id to string of 16 characters with a space between every 4 characters
     tx_id = uuid.UUID(tx_id)
     tx_id = tx_id.hex

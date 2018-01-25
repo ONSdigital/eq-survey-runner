@@ -51,6 +51,8 @@ sdc-cryptography = "*"
 structlog = "*"
 ua-parser = "*"
 blinker = "*"
+"boto3" = "*"
+"humanize" = "*"
 
 
 [requires]
