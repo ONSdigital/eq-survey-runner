@@ -6,9 +6,9 @@ import json
 from bs4 import BeautifulSoup
 
 from sdc.crypto.key_store import KeyStore
-
 from app.keys import KEY_PURPOSE_AUTHENTICATION, KEY_PURPOSE_SUBMISSION
 from app.setup import create_app
+from mock import patch, Mock
 
 from tests.integration.create_token import TokenGenerator
 
@@ -38,13 +38,30 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         self.last_csrf_token = None
 
         # Perform setup steps
-        self._setUpApp()
+        self._set_up_app()
 
-    def _setUpApp(self):
+    def SetUpWithDynamoDB(self):
+        # Cache for requests
+        self.last_url = None
+        self.last_response = None
+        self.last_csrf_token = None
+
+        # Perform setup steps
+        self._set_up_app(True)
+
+    def _set_up_app(self, enable_dynamo_db=False):
         setting_overrides = {
-            'SQLALCHEMY_DATABASE_URI': 'sqlite://'
+            'SQLALCHEMY_DATABASE_URI': 'sqlite://',
+            'EQ_DYNAMODB_ENABLED': enable_dynamo_db
         }
-        self._application = create_app(setting_overrides)
+        if enable_dynamo_db:
+            setting_overrides.update({'EQ_DYNAMODB_ENDPOINT': 'http://localhost:6060',
+                                      'EQ_SUBMITTED_RESPONSES_TABLE_NAME': 'dev-submitted-responses'})
+
+            with patch('boto3.resource', return_value=Mock()):
+                self._application = create_app(setting_overrides)
+        else:
+            self._application = create_app(setting_overrides)
 
         self._key_store = KeyStore({
             'keys': {

@@ -43,12 +43,97 @@
   }
 }
 
+@mixin icon-bg-image ($name) {
+  background-image: url("https://cdn.ons.gov.uk/sdc/#{$cdn-version}/img/icons/icons--#{$name}.svg");
+}
+
+@mixin create-btn-icon-modifier ($defaultIconName, $hoverIconName, $focusIconName, $width) {
+  .btn__icon--#{$defaultIconName} {
+    width: $width;
+    @include icon-bg-image($defaultIconName);
+
+    &::before {
+      @include icon-bg-image($hoverIconName);
+    }
+
+    &::after {
+      @include icon-bg-image($focusIconName);
+    }
+  }
+}
+
 .btn {
   @include btn($color-primary, $color-white);
+
+  .btn__icon {
+    position: relative;
+    vertical-align: middle;
+    content: " ";
+    display: inline-block;
+    background-repeat: no-repeat;
+
+    &::after,
+    &::before {
+      width: inherit;
+      height: inherit;
+      content: " ";
+      vertical-align: inherit;
+      display: inherit;
+      background-repeat: inherit;
+      background-position: 0 0;
+      background-size: auto;
+      transition: opacity 0.3s ease-out;
+    }
+
+    &::before {
+      opacity: 0;
+    }
+
+    &::after {
+      position: absolute;
+      left: 0;
+      opacity: 0;
+    }
+  }
+
+  &:hover .btn__icon {
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &:focus .btn__icon {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  @include create-btn-icon-modifier(print-link, print-hover, print-focus, 1.3em);
+  // ...
 }
 
 .btn--secondary {
   @include btn($color-secondary, $color-white);
+}
+
+.btn--tertiary {
+  @include btn($color-white, $color-tertiary, $color-tertiary-dark);
+  padding: 0.3rem;
+  background-color: $color-white;
+  font-weight: 600;
+
+  &:hover {
+    background-color: $color-white;
+  }
+
+  &:focus {
+    color: $color-white;
+    background-color: $color-tertiary;
+  }
+
+  .btn__icon {
+    height: 1.4em;
+  }
 }
 
 .btn--neutral {
@@ -68,27 +153,30 @@
 }
 
 .btn--loader {
-  transition: all 300ms ease-out;
+  transition: color 300ms ease-out;
   position: relative;
-  &::before {
-    transition: all 300ms ease-out;
-    display: inline-block;
-    vertical-align: middle;
+  &::after {
+    display: block;
     content: "";
-    width: 1.2em;
-    height: 1.2em;
+    width: 2rem;
+    height: 2rem;
     opacity: 0;
-    margin-right: 0.5em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
     background-image: url("/s/img/loader.svg");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 1.5rem;
+    transition: opacity 300ms ease-out 200ms;
     pointer-events: none;
-    margin-left: -1.8em;
-    margin-top: -0.2em;
   }
   &.is-loading {
-    &::before {
+    color: transparent;
+    &::after {
       opacity: 1;
     }
   }

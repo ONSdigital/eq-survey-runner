@@ -77,6 +77,11 @@ def format_month_year_date(value, date_format='%B %Y'):
 
 
 @blueprint.app_template_filter()
+def format_datetime(value, date_format='%d %B %Y at %H:%M'):
+    return "<span class='date'>{date}</span>".format(date=datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f').strftime(date_format))
+
+
+@blueprint.app_template_filter()
 def format_conditional_date(date1=None, date2=None):
     """
     This function format_conditional_date accepts two dates, a user submitted date and a metadata date

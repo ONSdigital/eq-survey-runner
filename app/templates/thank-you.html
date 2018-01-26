@@ -6,25 +6,41 @@
 
 <div class="u-mb-s">
     <h1 class="saturn">Submission Successful</h1>
-    <p>Thank you for submitting the {{ survey_title }}, your responses have been successfully received.</p>
 </div>
 
-<div class="panel panel--simple panel--success panel--spacious">
-    <p class="mars">Transaction ID (Please quote this reference for any support queries)</p>
-    {% if meta.respondent %}
-    <ul class="list list--boxes">
-        {%for id_part in meta.respondent.tx_id%}<li class="list__item">{{id_part}}</li>{% endfor %}
-    </ul>
+<div class="u-mb-s">
+    <div class="panel panel--simple panel--success panel--spacious">
+        <p class="mars">Your answers were submitted for <b>{{meta.respondent.ru_name}}</b> on {{meta.survey.submitted_time|format_datetime}}</p>
+        <p class="mars">Transaction ID: <b>{{meta.respondent.tx_id}}</b></p>
+    </div>
+</div>
+
+<div class="u-mb-s">
+    <p>Your answers will be processed in the next few weeks.
+        We may contact you to query your answers via phone or secure message.</p>
+</div>
+
+{% block view_submission %}
+{% if is_view_submitted_response_enabled %}
+    <div class="u-mb-s">
+    {% if view_submission_url %}
+        <p class="u-mb-m@s mars" data-qa="view-submission"><a href={{view_submission_url}}>View and print a copy of your answers</a></p>
+        <p class="u-mb-s mars">Your answers will only be available for <b>{{view_submission_duration}}</b> to keep them secure.</p>
+    {% else %}
+        <div class="panel panel--simple panel--info" data-qa="view-submission-expired">
+            <div class="panel__body">
+                <p>You are no longer able to view and print your answers.</p>
+                <p>The link expires to maintain the security of your information.</p>
+            </div>
+        </div>
     {% endif %}
-    <p class="u-mb-no mars">You may wish to save or print this page for your records.</p>
-</div>
+    </div>
+{% endif %}
+{% endblock %}
 
-{{answer_guidance}}
-
-<div class="u-mt-s">
+<div class="u-mb-s">
     <div class="mars">For more information on how we use this data.</div>
     <p class="u-mb-m@s mars"><a href="https://www.ons.gov.uk/surveys">https://www.ons.gov.uk/surveys</a></p>
-    <p class="mars">It is now safe to close this window.</p>
 </div>
 
 {% endblock %}

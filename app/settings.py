@@ -65,6 +65,11 @@ EQ_SERVER_SIDE_STORAGE_DATABASE_NAME = os.getenv('EQ_SERVER_SIDE_STORAGE_DATABAS
 EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS = ensure_min(os.getenv('EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS', 10000),
                                                        1000)
 
+EQ_DYNAMODB_ENABLED = parse_mode(os.getenv('EQ_DYNAMODB_ENABLED', 'True'))
+if EQ_DYNAMODB_ENABLED:
+    EQ_DYNAMODB_ENDPOINT = os.getenv('EQ_DYNAMODB_ENDPOINT')
+    EQ_SUBMITTED_RESPONSES_TABLE_NAME = get_env_or_fail('EQ_SUBMITTED_RESPONSES_TABLE_NAME')
+
 RESPONDENT_ACCOUNT_URL = os.getenv('RESPONDENT_ACCOUNT_URL', 'https://survey.ons.gov.uk/')
 
 EQ_DEV_MODE = parse_mode(os.getenv('EQ_DEV_MODE', 'False'))

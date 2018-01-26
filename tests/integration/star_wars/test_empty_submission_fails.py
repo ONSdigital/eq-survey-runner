@@ -42,7 +42,7 @@ class TestEmptySubmissionFails(StarWarsTestCase):
 
         # We are on the review answers page
         self.assertInPage('>Star Wars</')
-        self.assertInPage('>Your responses<')
+        self.assertInPage('>Your answers<')
         self.assertRegexPage('(?s)How old is Chewy?.*?234')
         self.assertRegexPage('(?s)How many Octillions do Nasa reckon it would cost to build a death star?.*?£40')
         self.assertRegexPage('(?s)How hot is a lightsaber in degrees C?.*?1,370')
@@ -57,7 +57,7 @@ class TestEmptySubmissionFails(StarWarsTestCase):
         self.assertRegexPage('(?s)What was the total number of Ewoks?.*?')
         self.assertRegexPage("(?s)Why doesn't Chewbacca receive a medal at the end of A New Hope?.*?"
                              'Wookiees don’t place value in material rewards and refused the medal initially')
-        self.assertInPage('>Please check your responses carefully before submitting.<')
+        self.assertInPage('>Please check your answers carefully before submitting.<')
         self.assertInPage('>Submit answers<')
 
         # Submit answers

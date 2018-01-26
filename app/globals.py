@@ -1,6 +1,6 @@
 from flask import g, current_app, session as cookie_session
 from structlog import get_logger
-from app.settings import EQ_SESSION_ID
+from app.settings import EQ_SESSION_ID, USER_IK
 
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.data_model.session_store import SessionStore
@@ -21,21 +21,23 @@ def get_questionnaire_store(user_id, user_ik):
 
 
 def get_session_store():
-    if EQ_SESSION_ID not in cookie_session:
+    if USER_IK not in cookie_session or EQ_SESSION_ID not in cookie_session:
         return None
 
     # Sets up a single SessionStore instance per request.
     store = g.get('_session_store')
 
     if store is None:
-        store = g._session_store = SessionStore(cookie_session[EQ_SESSION_ID])
+        pepper = current_app.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
+        store = g._session_store = SessionStore(cookie_session[USER_IK], pepper, cookie_session[EQ_SESSION_ID])
 
     return store
 
 
-def create_session_store(eq_session_id, user_id, session_data):
+def create_session_store(eq_session_id, user_id, user_ik, session_data):
     # pylint: disable=W0212
-    g._session_store = SessionStore().create(eq_session_id, user_id, session_data).save()
+    pepper = current_app.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
+    g._session_store = SessionStore(user_ik, pepper).create(eq_session_id, user_id, session_data).save()
 
 
 def get_metadata(user):

@@ -13,7 +13,8 @@ from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
 class TestCreateApp(unittest.TestCase):
     def setUp(self):
         self._setting_overrides = {
-            'SQLALCHEMY_DATABASE_URI': 'sqlite:////tmp/questionnaire.db'
+            'SQLALCHEMY_DATABASE_URI': 'sqlite:////tmp/questionnaire.db',
+            'EQ_DYNAMODB_ENABLED': False
         }
 
     def test_returns_application(self):

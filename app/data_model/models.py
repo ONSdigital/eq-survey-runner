@@ -31,10 +31,10 @@ class EQSession(db.Model):
     created_at = db.Column('created_at', db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column('updated_at', db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
-    def __init__(self, eq_session_id, user_id, session_data):
+    def __init__(self, eq_session_id, user_id):
         self.eq_session_id = eq_session_id
         self.user_id = user_id
-        self.session_data = session_data
+        self.session_data = None
 
 
 # pylint: disable=maybe-no-member

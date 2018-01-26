@@ -1,7 +1,8 @@
 import re
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timedelta
 import simplejson as json
+import humanize as humanize
 
 from flask import Blueprint, g, redirect, request, url_for, current_app
 from flask_login import current_user, login_required, logout_user
@@ -11,16 +12,19 @@ from flask_wtf import FlaskForm
 
 from structlog import get_logger
 
-from app.data_model.answer_store import Answer
-from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store, get_session_store
+from app.globals import get_session_store
+from app.data_model.answer_store import Answer, AnswerStore
+from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
 from app.helpers.form_helper import get_form_for_location, post_form_for_location
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required
 from app.helpers import template_helper
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
+from app.questionnaire.path_finder import PathFinder
 
 from app.questionnaire.rules import evaluate_skip_conditions
 from app.keys import KEY_PURPOSE_SUBMISSION
+from app.storage.storage_encryption import StorageEncryption
 from app.submitter.converter import convert_answers
 from app.submitter.submission_failed import SubmissionFailedException
 from app.templating.metadata_context import build_metadata_context_for_survey_completed
@@ -208,20 +212,70 @@ def get_thank_you(eq_id, form_type):  # pylint: disable=unused-argument
 
     if session_data.submitted_time:
         schema = load_schema_from_params(session_data.eq_id, session_data.form_type)
-        metadata_context = build_metadata_context_for_survey_completed(vars(session_data))
-        thank_you_template = render_theme_template(schema.json['theme'],
-                                                   template_name='thank-you.html',
-                                                   meta=metadata_context,
-                                                   analytics_ua_id=current_app.config['EQ_UA_ID'],
-                                                   survey_id=schema.json['survey_id'],
-                                                   survey_title=TemplateRenderer.safe_content(schema.json['title']))
-        return thank_you_template
+        metadata_context = build_metadata_context_for_survey_completed(session_data)
+
+        view_submission_url = None
+        view_submission_duration = 0
+        if _is_submission_viewable(schema.json, session_data.submitted_time):
+            view_submission_url = url_for('.get_view_submission', eq_id=eq_id, form_type=form_type)
+            view_submission_duration = humanize.naturaldelta(timedelta(seconds=schema.json['view_submitted_response']['duration']))
+
+        return render_theme_template(schema.json['theme'],
+                                     template_name='thank-you.html',
+                                     meta=metadata_context,
+                                     analytics_ua_id=current_app.config['EQ_UA_ID'],
+                                     survey_id=schema.json['survey_id'],
+                                     survey_title=TemplateRenderer.safe_content(schema.json['title']),
+                                     is_view_submitted_response_enabled=is_view_submitted_response_enabled(schema.json),
+                                     view_submission_url=view_submission_url,
+                                     view_submission_duration=view_submission_duration)
 
     metadata = get_metadata(current_user)
     g.schema = load_schema_from_metadata(metadata)
     routing_path = path_finder.get_full_routing_path()
     collection_id = metadata['collection_exercise_sid']
     return _redirect_to_latest_location(routing_path, collection_id, metadata.get('eq_id'), metadata.get('form_type'))
+
+
+@post_submission_blueprint.route('view-submission', methods=['GET'])
+@login_required
+def get_view_submission(eq_id, form_type):  # pylint: disable=unused-argument
+
+    session_data = get_session_store().session_data
+    g.schema = load_schema_from_params(session_data.eq_id, session_data.form_type)
+
+    if _is_submission_viewable(g.schema.json, session_data.submitted_time):
+        submitted_data = current_app.eq['submitted_responses'].get_item(session_data.tx_id)
+
+        if submitted_data:
+
+            metadata_context = build_metadata_context_for_survey_completed(session_data)
+
+            pepper = current_app.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
+            encrypter = StorageEncryption(current_user.user_id, current_user.user_ik, pepper)
+
+            submitted_data = json.loads(encrypter.decrypt_data(submitted_data['data']))
+            answer_store = AnswerStore(existing_answers=submitted_data.get('answers'))
+
+            metadata = submitted_data.get('metadata')
+
+            routing_path = PathFinder(g.schema, answer_store, metadata).get_full_routing_path()
+
+            schema_context = _get_schema_context(routing_path, 0, metadata, answer_store)
+            rendered_schema = renderer.render(g.schema.json, **schema_context)
+            summary_rendered_context = {'summary': build_summary_rendering_context(g.schema, rendered_schema, answer_store, metadata),
+                                        'variables': None,
+                                        'answers_are_editable': False}
+
+            return render_theme_template(g.schema.json['theme'],
+                                         template_name='view-submission.html',
+                                         meta=metadata_context,
+                                         analytics_ua_id=current_app.config['EQ_UA_ID'],
+                                         survey_id=g.schema.json['survey_id'],
+                                         survey_title=TemplateRenderer.safe_content(g.schema.json['title']),
+                                         content=summary_rendered_context)
+
+    return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
 
 
 def _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type):
@@ -303,18 +357,64 @@ def submit_answers(routing_path, eq_id, form_type):
         if not sent:
             raise SubmissionFailedException()
 
+        submitted_time = datetime.utcnow()
+
+        _store_submitted_time_in_session(submitted_time)
+
+        if is_view_submitted_response_enabled(g.schema.json):
+            _store_viewable_submission(answer_store.answers, metadata, submitted_time)
+
         get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
 
-        session_store = get_session_store()
-        session_store.session_data.submitted_time = datetime.utcnow().isoformat()
-        session_store.save()
-
-        return redirect(url_for(
-            'post_submission.get_thank_you',
-            eq_id=eq_id,
-            form_type=form_type))
+        return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
     else:
         return redirect(invalid_location.url(metadata))
+
+
+def _store_submitted_time_in_session(submitted_time):
+    session_store = get_session_store()
+    session_data = session_store.session_data
+    session_data.submitted_time = submitted_time.isoformat()
+    session_store.save()
+
+
+def _store_viewable_submission(answers, metadata, submitted_time):
+    pepper = current_app.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
+    encrypter = StorageEncryption(current_user.user_id, current_user.user_ik, pepper)
+    encrypted_data = encrypter.encrypt_data(
+        {
+            'answers': answers,
+            'metadata': metadata
+        }
+    )
+
+    valid_until = submitted_time + timedelta(seconds=g.schema.json['view_submitted_response']['duration'])
+
+    item = {
+        'tx_id': metadata['tx_id'],
+        'data': encrypted_data,
+        'valid_until': valid_until
+    }
+
+    current_app.eq['submitted_responses'].put_item(item)
+
+
+def is_view_submitted_response_enabled(schema):
+    if 'submitted_responses' in current_app.eq:
+        view_submitted_response = schema.get('view_submitted_response')
+        if view_submitted_response:
+            return view_submitted_response['enabled']
+
+    return False
+
+
+def _is_submission_viewable(schema, submitted_time):
+    if is_view_submitted_response_enabled(schema):
+        submitted_time = datetime.strptime(submitted_time, '%Y-%m-%dT%H:%M:%S.%f')
+        submission_valid_until = submitted_time + timedelta(seconds=schema['view_submitted_response']['duration'])
+        return submission_valid_until > datetime.utcnow()
+
+    return False
 
 
 def is_survey_completed(full_routing_path):
@@ -523,7 +623,7 @@ def _redirect_to_location(collection_id, eq_id, form_type, location):
 def _get_context(full_routing_path, block, current_location, form):
     metadata = get_metadata(current_user)
     answer_store = get_answer_store(current_user)
-    schema_context = _get_schema_context(full_routing_path, current_location, metadata, answer_store)
+    schema_context = _get_schema_context(full_routing_path, current_location.group_instance, metadata, answer_store)
 
     variables = g.schema.json.get('variables')
     if variables:
@@ -533,7 +633,11 @@ def _get_context(full_routing_path, block, current_location, form):
         rendered_schema_json = renderer.render(g.schema.json, **schema_context)
         form = form or FlaskForm()
         summary_rendered_context = build_summary_rendering_context(g.schema, rendered_schema_json, answer_store, metadata)
-        context = {'form': form, 'summary': summary_rendered_context, 'variables': variables}
+        context = {'form': form,
+                   'summary': summary_rendered_context,
+                   'variables': variables,
+                   'is_view_submission_response_enabled': is_view_submitted_response_enabled(g.schema.json),
+                   'answers_are_editable': True}
         return context
 
     block = renderer.render(block, **schema_context)
@@ -556,13 +660,13 @@ def _get_block_json(current_location):
     return _evaluate_skip_conditions(block_json, current_location, answer_store, metadata)
 
 
-def _get_schema_context(full_routing_path, current_location, metadata, answer_store):
+def _get_schema_context(full_routing_path, group_instance, metadata, answer_store):
     aliases = g.schema.aliases
 
     return build_schema_context(metadata=metadata,
                                 aliases=aliases,
                                 answer_store=answer_store,
-                                group_instance=current_location.group_instance,
+                                group_instance=group_instance,
                                 routing_path=full_routing_path)
 
 

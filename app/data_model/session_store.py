@@ -1,6 +1,8 @@
+import re
 from structlog import get_logger
 from app.data_model.models import EQSession, db
 from app.data_model.session_data import SessionData
+from app.storage.storage_encryption import StorageEncryption
 import simplejson as json
 
 logger = get_logger()
@@ -8,11 +10,13 @@ logger = get_logger()
 
 class SessionStore:
 
-    def __init__(self, eq_session_id=None):
+    def __init__(self, user_ik, pepper, eq_session_id=None):
         self.eq_session_id = eq_session_id
         self.user_id = None
+        self.user_ik = user_ik
         self.session_data = None
         self._eq_session = None
+        self.pepper = pepper
 
         if eq_session_id:
             self._load()
@@ -24,7 +28,7 @@ class SessionStore:
         self.eq_session_id = eq_session_id
         self.user_id = user_id
         self.session_data = session_data
-        self._eq_session = EQSession(self.eq_session_id, self.user_id, json.dumps(vars(self.session_data)))
+        self._eq_session = EQSession(self.eq_session_id, self.user_id)
 
         return self
 
@@ -33,7 +37,8 @@ class SessionStore:
         save session
         """
         if self._eq_session:
-            self._eq_session.session_data = json.dumps(vars(self.session_data))
+            self._eq_session.session_data = \
+                StorageEncryption(self.user_id, self.user_ik, self.pepper).encrypt_data(vars(self.session_data))
 
             # pylint: disable=maybe-no-member
             db.session.add(self._eq_session)
@@ -69,8 +74,13 @@ class SessionStore:
 
         if self._eq_session:
             self.user_id = self._eq_session.user_id
+
             if self._eq_session.session_data:
-                self.session_data = json.loads(self._eq_session.session_data, object_hook=lambda d: SessionData(**d))
+                session_data = self._eq_session.session_data
+                if self._is_session_data_encrypted(session_data):
+                    session_data = StorageEncryption(self.user_id, self.user_ik, self.pepper).decrypt_data(session_data)
+
+                self.session_data = json.loads(session_data, object_hook=lambda d: SessionData(**d))
 
             logger.debug('found matching eq_session for eq_session_id in database',
                          session_id=self._eq_session.eq_session_id,
@@ -79,3 +89,9 @@ class SessionStore:
             logger.debug('eq_session_id not found in database', eq_session_id=self.eq_session_id)
 
         return self._eq_session
+
+    @staticmethod
+    def _is_session_data_encrypted(session_data):
+        # pylint: disable=anomalous-backslash-in-string
+        encrypted_token_regex = '^[\w\-]+?\.([\w\-]+)?\.[\w\-]+\.[\w\-]+\.[\w\-]+?$'
+        return bool(re.match(encrypted_token_regex, session_data))

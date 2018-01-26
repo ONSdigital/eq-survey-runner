@@ -10,12 +10,14 @@ class SessionStoreTest(AppContextTestCase):
     def setUp(self):
         super().setUp()
         self._app.permanent_session_lifetime = timedelta(seconds=1)
-        self.session_store = SessionStore()
+        self.session_store = SessionStore('user_ik', 'pepper')
         self.session_data = SessionData(
             tx_id='tx_id',
             eq_id='eq_id',
             form_type='form_type',
-            period_str='period_str'
+            period_str='period_str',
+            ru_name='ru_name',
+            ru_ref='ru_ref'
         )
 
     def test_no_session(self):
@@ -33,7 +35,7 @@ class SessionStoreTest(AppContextTestCase):
     def test_save(self):
         with self._app.test_request_context():
             self.session_store.create('eq_session_id', 'test', self.session_data).save()
-            session_store = SessionStore('eq_session_id')
+            session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
             self.assertEqual(session_store.session_data.tx_id, 'tx_id')
 
     def test_delete(self):
@@ -50,7 +52,7 @@ class SessionStoreTest(AppContextTestCase):
             self.session_store.session_data.submitted_time = current_time
             self.session_store.save()
 
-            session_store = SessionStore('eq_session_id')
+            session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
             self.assertEqual(session_store.session_data.submitted_time, current_time)
 
     def test_should_not_delete_when_no_session(self):

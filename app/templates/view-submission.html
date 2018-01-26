@@ -1,0 +1,23 @@
+{% extends theme('layouts/_twocol.html') %}
+{% import 'macros/helpers.html' as helpers %}
+
+{% block page_title -%}{{_("Submission")}} - {{survey_title}}{% endblock -%}
+
+{% block main -%}
+
+<div>
+  <h1 class="saturn">Submitted answers</h1>
+</div>
+
+<div class="u-mb-s">
+    <div class="panel panel--simple panel--success panel--spacious">
+        <p class="mars">Your answers were submitted for <b>{{meta.respondent.ru_name}}</b> on {{meta.survey.submitted_time|format_datetime}}</p>
+        <p class="mars">Transaction ID: <b>{{meta.respondent.tx_id}}</b></p>
+    </div>
+</div>
+
+<button class="btn btn--tertiary print__hidden u-no-js-hide" onclick="window.print()">Print this page <span class="btn__icon btn__icon--print-link"></span></button>
+
+{% include theme('partials/summary/summary.html') %}
+
+{% endblock -%}
