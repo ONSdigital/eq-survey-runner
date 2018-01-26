@@ -20,27 +20,23 @@
         We may contact you to query your answers via phone or secure message.</p>
 </div>
 
-{% block view_submission %}
-{% if is_view_submitted_response_enabled %}
-    <div class="u-mb-s">
-    {% if view_submission_url %}
-        <p class="u-mb-m@s mars" data-qa="view-submission"><a href={{view_submission_url}}>View and print a copy of your answers</a></p>
-        <p class="u-mb-s mars">Your answers will only be available for <b>{{view_submission_duration}}</b> to keep them secure.</p>
-    {% else %}
+  {% block view_submission %}
+    {% if is_view_submitted_response_enabled %}
+
+      {% if view_submission_url %}
+        <div class="u-mb-s mars">
+          <p data-qa="view-submission"><a href={{view_submission_url}}>View and print a copy of your answers</a></p>
+          <p>Your answers will only be available for <b>{{view_submission_duration}}</b> to keep them secure.</p>
+        </div>
+      {% else %}
         <div class="panel panel--simple panel--info" data-qa="view-submission-expired">
             <div class="panel__body">
                 <p>You are no longer able to view and print your answers.</p>
                 <p>The link expires to maintain the security of your information.</p>
             </div>
         </div>
+      {% endif %}
     {% endif %}
-    </div>
-{% endif %}
-{% endblock %}
-
-<div class="u-mb-s">
-    <div class="mars">For more information on how we use this data.</div>
-    <p class="u-mb-m@s mars"><a href="https://www.ons.gov.uk/surveys">https://www.ons.gov.uk/surveys</a></p>
-</div>
+  {% endblock %}
 
 {% endblock %}
