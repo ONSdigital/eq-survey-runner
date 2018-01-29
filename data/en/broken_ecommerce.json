@@ -33,7 +33,7 @@
                             "type": "Radio",
                             "label": "",
                             "mandatory": true,
-                            "q_code": "010",
+                            "q_code": "@",
                             "guidance": {
                                 "hide_guidance": "Hide EPOS Definition",
                                 "show_guidance": "Show EPOS Definition",
