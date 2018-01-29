@@ -62,6 +62,8 @@ class Question:
             return checkbox_answers or None
         elif answer_schema['type'] == 'Radio':
             return self._build_radio_answer(answer_value, answer_schema)
+        elif answer_schema['type'] == 'Dropdown':
+            return self._build_dropdown_answer(answer_value, answer_schema)
         return answer_value
 
     @staticmethod
@@ -93,4 +95,10 @@ class Question:
             if option['value'].lower() == 'other' and answer != option['value']:
                 return answer if answer else option['label']
             elif answer == option['value']:
+                return option['label']
+
+    @staticmethod
+    def _build_dropdown_answer(answer, answer_schema):
+        for option in answer_schema['options']:
+            if answer == option['value']:
                 return option['label']

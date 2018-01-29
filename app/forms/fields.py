@@ -29,6 +29,7 @@ def get_field(answer, label, error_messages, answer_store):
             'MonthYearDate': get_month_year_field,
             'TextArea': get_text_area_field,
             'TextField': get_string_field,
+            'Dropdown': get_dropdown_field,
         }[answer['type']](answer, label, guidance, error_messages)
 
     if field is None:
@@ -138,6 +139,18 @@ def _coerce_str_unless_none(value):
     :return: str(value) or None if value is None
     """
     return str(value) if value is not None else None
+
+
+def get_dropdown_field(answer, label, guidance, error_messages):
+    validate_with = get_mandatory_validator(answer, error_messages, 'MANDATORY_DROPDOWN')
+
+    return SelectField(
+        label=label,
+        description=guidance,
+        choices=[('', 'Select an answer')] + build_choices(answer['options']),
+        default='',
+        validators=validate_with,
+    )
 
 
 def get_select_field(answer, label, guidance, error_messages):

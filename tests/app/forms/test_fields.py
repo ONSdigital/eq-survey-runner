@@ -200,6 +200,40 @@ class TestFields(unittest.TestCase):
         self.assertEqual(unbound_field.kwargs['description'], radio_json['guidance'])
         self.assertEqual(unbound_field.kwargs['choices'], expected_choices)
 
+    def test_dropdown_field(self):
+        dropdown_json = {
+            'type': 'Dropdown',
+            'id': 'dropdown-mandatory-with-label-answer',
+            'mandatory': True,
+            'label': 'Please choose an option',
+            'description': 'This is a mandatory dropdown, therefore you must select a value!.',
+            'options': [
+                {
+                    'label': 'Liverpool',
+                    'value': 'Liverpool'
+                },
+                {
+                    'label': 'Chelsea',
+                    'value': 'Chelsea'
+                },
+                {
+                    'label': 'Rugby is better!',
+                    'value': 'Rugby is better!'
+                }
+            ]
+        }
+
+        unbound_field = get_field(dropdown_json, dropdown_json['label'], error_messages, self.answer_store)
+
+        expected_choices = [('', 'Select an answer')] + \
+                           [(option['label'], option['value']) for option in dropdown_json['options']]
+
+        self.assertTrue(unbound_field.field_class == SelectField)
+        self.assertEqual(unbound_field.kwargs['label'], dropdown_json['label'])
+        self.assertEqual(unbound_field.kwargs['description'], '')
+        self.assertEqual(unbound_field.kwargs['default'], '')
+        self.assertEqual(unbound_field.kwargs['choices'], expected_choices)
+
     def test__coerce_str_unless_none(self):
         # pylint: disable=protected-access
         self.assertEqual(_coerce_str_unless_none(1), '1')

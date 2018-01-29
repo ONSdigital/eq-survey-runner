@@ -6,12 +6,10 @@
 
 {% if label.text %}
 <label {{attr|xmlattr}}>
-  <div class="label__inner">
     {{label.text}}
     {% if label.description %}
       <br />
       <span class="label__description pluto">{{label.description}}</span>
     {% endif %}
-  </div>
 </label>
 {% endif %}
