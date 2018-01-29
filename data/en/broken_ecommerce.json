@@ -6,7 +6,7 @@
     "data_version": "0.0.2",
     "groups": [{
             "blocks": [{
-                    "type": "Question",
+                    "type": "Questionnaire",
                     "id": "use-of-computers-block-2",
                     "title": "Use of computers",
                     "questions": [{
