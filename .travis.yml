@@ -19,6 +19,7 @@ before_install:
     - pip install -U pip pipenv wheel
     - pipenv install --dev --deploy
     - pipenv check
+    - cat data/en/broken_ecommerce.json
 cache:
     - yarn
     - pip
