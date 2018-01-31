@@ -58,6 +58,7 @@ Upgrade pip and install dependencies:
 
 ```
 brew install pyenv
+pyenv install
 pip install --upgrade pip setuptools pipenv
 pipenv install --dev
 ```
@@ -94,6 +95,12 @@ Install yarn with:
 
 ```
 npm install yarn --global
+```
+
+Fetch npm dependencies (Note that this overrides the python version defined in `.python-version`):
+
+```
+PYENV_VERSION=system yarn
 ```
 
 Compile the project with
