@@ -7,6 +7,10 @@
     "description": "MCI Description",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
+    "view_submitted_response": {
+        "enabled": true,
+        "duration": 900
+    },
     "groups": [{
         "blocks": [{
                 "type": "Introduction",
