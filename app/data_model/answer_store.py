@@ -6,22 +6,10 @@ import simplejson as json
 
 
 class Answer(object):
-    def __init__(self, group_id=None, block_id=None, answer_id=None, value=None, group_instance=0, answer_instance=0, location=None):
-        valid = (group_id or answer_id or block_id or value) is not None
+    def __init__(self, answer_id, value, group_instance=0, answer_instance=0):
+        if answer_id is None or value is None:
+            raise ValueError("Both 'answer_id' and 'value' must be set for Answer")
 
-        if location:
-            assert not (group_id or group_instance or block_id), \
-                'Expected either a location object or one or more of group_id, group_instance, block_id params'
-
-            group_id = location.group_id
-            group_instance = location.group_instance
-            block_id = location.block_id
-
-        if not valid:
-            raise ValueError("At least one of 'answer_id', 'group_id', 'block_id' or 'value' must be set for Answer")
-
-        self.group_id = group_id
-        self.block_id = block_id
         self.answer_id = answer_id
         self.group_instance = group_instance
         self.answer_instance = answer_instance
@@ -35,9 +23,7 @@ class Answer(object):
         :param answer: An answer to compare
         :return: True if both answers match, otherwise False.
         """
-        return self.group_id == answer.group_id and \
-            self.block_id == answer.block_id and \
-            self.answer_id == answer.answer_id and \
+        return self.answer_id == answer.answer_id and \
             self.group_instance == answer.group_instance and \
             self.answer_instance == answer.answer_instance
 
@@ -50,10 +36,8 @@ class Answer(object):
         """
 
         return self.matches(Answer(
-            answer_dict['group_id'],
-            answer_dict['block_id'],
             answer_dict['answer_id'],
-            '',
+            answer_dict['value'],
             answer_dict['group_instance'],
             answer_dict['answer_instance'],
         ))
@@ -168,25 +152,13 @@ class AnswerStore(object):
             escaped.append(answer)
         return self.__class__(existing_answers=escaped)
 
-    def filter_by_location(self, location):
-        """
-        Find all answers in the answer store for a given location
-
-        :param location: The location to filter results by
-        return: Return a list of answers which match the location
-        """
-        return self.filter(group_id=location.group_id, block_id=location.block_id, group_instance=location.
-                           group_instance)
-
-    def filter(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None,
+    def filter(self, answer_ids, group_instance=None, answer_instance=None,
                limit=None):
         """
         Find all answers in the answer store for a given set of filter parameter matches.
         If no filter parameters are passed it returns a copy of the instance.
 
-        :param answer_id: The answer id to filter results by
-        :param block_id: The block id to filter results by
-        :param group_id: The group id to filter results by
+        :param answer_ids: The answer ids to filter results by
         :param answer_instance: The answer instance to filter results by
         :param group_instance: The group instance to filter results by
         :param limit: True | False Limit the number of answers returned
@@ -195,16 +167,14 @@ class AnswerStore(object):
         filtered = []
 
         filter_vars = {
-            'answer_id': answer_id,
-            'block_id': block_id,
-            'group_id': group_id,
+            'answer_id': answer_ids,
             'answer_instance': answer_instance,
             'group_instance': group_instance,
         }
 
         for answer in self.answers:
             matches = all(
-                answer[key] == value
+                answer[key] in value if isinstance(value, list) else answer[key] == value
                 for key, value in filter_vars.items()
                 if value is not None
             )
@@ -220,26 +190,16 @@ class AnswerStore(object):
         """
         self.answers.clear()
 
-    def remove(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None):
+    def remove(self, answer_ids=None, group_instance=None, answer_instance=None):
         """
         Removes answer(s) *in place* from the answer store.
 
-        :param answer_id: The answer id to filter results to remove
-        :param block_id: The block id to filter results to remove
-        :param group_id: The group id to filter results to remove
+        :param answer_ids: The answer ids to filter results to remove
         :param answer_instance: The answer instance to filter results to remove
         :param group_instance: The group instance to filter results to remove
         """
-        for answer in self.filter(group_id, block_id, answer_id, group_instance, answer_instance):
+        for answer in self.filter(answer_ids, group_instance, answer_instance):
             self.answers.remove(answer)
-
-    def remove_by_location(self, location):
-        """
-        Removes answer(s) from the answer store based on Location
-
-        :param location: The location to filter results
-        """
-        self.remove(group_id=location.group_id, block_id=location.block_id, group_instance=location.group_instance)
 
     def get_hash(self):
         """
@@ -255,7 +215,7 @@ class AnswerStore(object):
         if current_version == 0:
             # Update Date formats
             for answer in self.answers:
-                answer_schema = schema.get_answer_schema_for_answer_id(answer['block_id'], answer['answer_id'])
+                answer_schema = schema.get_answer_schema_for_answer_id(answer['answer_id'])
 
                 if answer_schema:
                     if answer_schema['type'] == 'Date':

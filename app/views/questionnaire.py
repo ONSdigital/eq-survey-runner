@@ -165,7 +165,7 @@ def post_household_composition(routing_path, **kwargs):
     group_id = kwargs['group_id']
     answer_store = get_answer_store(current_user)
     if _household_answers_changed(answer_store):
-        _remove_repeating_on_household_answers(answer_store, group_id)
+        _remove_repeating_on_household_answers(answer_store)
 
     disable_mandatory = any(x in request.form for x in ['action[add_answer]', 'action[remove_answer]', 'action[save_sign_out]'])
 
@@ -189,13 +189,13 @@ def post_household_composition(routing_path, **kwargs):
 
     if 'action[save_sign_out]' in request.form:
         response = _save_sign_out(routing_path, current_location, form)
-        remove_empty_household_members_from_answer_store(answer_store, group_id)
+        remove_empty_household_members_from_answer_store(answer_store)
 
         return response
 
     if form.validate():
         questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-        update_questionnaire_store_with_answer_data(questionnaire_store, current_location, form.serialise(current_location))
+        update_questionnaire_store_with_answer_data(questionnaire_store, current_location, form.serialise())
 
         metadata = get_metadata(current_user)
         next_location = path_finder.get_next_location(current_location=current_location)
@@ -450,7 +450,8 @@ def _save_sign_out(routing_path, this_location, form):
 
 
 def _household_answers_changed(answer_store):
-    household_answers = answer_store.filter(block_id='household-composition')
+    answer_ids = g.schema.get_answer_ids_for_block('household-composition')
+    household_answers = answer_store.filter(answer_ids)
     stripped_form = request.form.copy()
     del stripped_form['csrf_token']
     remove = [k for k in stripped_form if 'action[' in k]
@@ -463,7 +464,7 @@ def _household_answers_changed(answer_store):
 
         try:
             stored_answer = household_answers.filter(
-                answer_id=answer_id,
+                answer_ids=[answer_id],
                 answer_instance=answer_index)[0]
         except IndexError:
             stored_answer = None
@@ -474,8 +475,9 @@ def _household_answers_changed(answer_store):
     return False
 
 
-def _remove_repeating_on_household_answers(answer_store, group_id):
-    answer_store.remove(group_id=group_id, block_id='household-composition')
+def _remove_repeating_on_household_answers(answer_store):
+    answer_ids = g.schema.get_answer_ids_for_block('household-composition')
+    answer_store.remove(answer_ids=answer_ids)
     questionnaire_store = get_questionnaire_store(
         current_user.user_id,
         current_user.user_ik,
@@ -484,13 +486,15 @@ def _remove_repeating_on_household_answers(answer_store, group_id):
     for answer in g.schema.get_answers_that_repeat_in_block('household-composition'):
         groups_to_delete = g.schema.get_groups_that_repeat_with_answer_id(answer['id'])
         for group in groups_to_delete:
-            answer_store.remove(group_id=group['id'])
+            answer_ids = g.schema.get_answer_ids_for_group(group['id'])
+            answer_store.remove(answer_ids=answer_ids)
             questionnaire_store.completed_blocks[:] = [b for b in questionnaire_store.completed_blocks if
                                                        b.group_id != group['id']]
 
 
-def remove_empty_household_members_from_answer_store(answer_store, group_id):
-    household_answers = answer_store.filter(group_id=group_id, block_id='household-composition')
+def remove_empty_household_members_from_answer_store(answer_store):
+    answer_ids = g.schema.get_answer_ids_for_block('household-composition')
+    household_answers = answer_store.filter(answer_ids=answer_ids)
     household_member_name = defaultdict(list)
     for household_answer in household_answers:
         if household_answer['answer_id'] == 'first-name' or household_answer['answer_id'] == 'last-name':
@@ -503,14 +507,14 @@ def remove_empty_household_members_from_answer_store(answer_store, group_id):
             to_be_removed.append(k)
 
     for instance_to_remove in to_be_removed:
-        answer_store.remove(group_id=group_id, block_id='household-composition', answer_instance=instance_to_remove)
+        answer_store.remove(answer_ids=answer_ids, answer_instance=instance_to_remove)
 
 
 def _update_questionnaire_store(current_location, form):
     questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
     if current_location.block_id in ['relationships', 'household-relationships']:
         update_questionnaire_store_with_answer_data(questionnaire_store, current_location,
-                                                    form.serialise(current_location))
+                                                    form.serialise())
     else:
         update_questionnaire_store_with_form_data(questionnaire_store, current_location, form.data)
 
@@ -531,9 +535,9 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
                 else:
                     formatted_answer_value = _format_answer_value(answer_value)
                     if formatted_answer_value:
-                        answer = Answer(answer_id=answer_id, value=formatted_answer_value, location=location)
+                        answer = Answer(answer_id=answer_id, value=formatted_answer_value, group_instance=location.group_instance)
             elif answer_value is not None:
-                answer = Answer(answer_id=answer_id, value=answer_value, location=location)
+                answer = Answer(answer_id=answer_id, value=answer_value, group_instance=location.group_instance)
             else:
                 _remove_answer_from_questionnaire_store(answer_id, questionnaire_store)
 
@@ -545,7 +549,7 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
 
 
 def _remove_answer_from_questionnaire_store(answer_id, questionnaire_store):
-    questionnaire_store.answer_store.remove(answer_id=answer_id, answer_instance=0)
+    questionnaire_store.answer_store.remove(answer_ids=[answer_id], answer_instance=0)
 
 
 def answer_value_empty(answer_value_dict):
@@ -662,12 +666,13 @@ def _get_block_json(current_location):
 
 def _get_schema_context(full_routing_path, group_instance, metadata, answer_store):
     aliases = g.schema.aliases
+    answer_ids_on_path = PathFinder.get_answer_ids_on_routing_path(g.schema, full_routing_path)
 
     return build_schema_context(metadata=metadata,
                                 aliases=aliases,
                                 answer_store=answer_store,
                                 group_instance=group_instance,
-                                routing_path=full_routing_path)
+                                answer_ids_on_path=answer_ids_on_path)
 
 
 def _get_front_end_navigation(answer_store, current_location, metadata, routing_path=None):

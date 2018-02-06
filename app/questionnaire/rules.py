@@ -1,7 +1,5 @@
 import logging
 
-from app.questionnaire.location import Location
-
 MAX_REPEATS = 25
 
 logger = logging.getLogger(__name__)
@@ -52,7 +50,7 @@ def evaluate_goto(goto_rule, metadata, answer_store, group_instance):
     return True
 
 
-def evaluate_repeat(repeat_rule, answer_store, current_path):
+def evaluate_repeat(repeat_rule, answer_store, answer_ids_on_path):
     """
     Returns the number of times repetition should occur based on answers
     :param repeat_rule:
@@ -68,28 +66,19 @@ def evaluate_repeat(repeat_rule, answer_store, current_path):
     if 'answer_id' in repeat_rule and 'type' in repeat_rule:
         repeat_index = repeat_rule['answer_id']
 
-        filtered = list(answer_store.filter(answer_id=repeat_index))
-        # Are Filtered answers in the routing path
-        answers_in_path = _remove_answers_not_in_path(current_path, filtered)
+        answers = []
+        # Only use answers that are on the routing path
+        if repeat_index in answer_ids_on_path:
+            answers = list(answer_store.filter(answer_ids=[repeat_index]))
 
         repeat_function = repeat_functions[repeat_rule['type']]
-        no_of_repeats = repeat_function(answers_in_path)
+        no_of_repeats = repeat_function(answers)
 
         if no_of_repeats > MAX_REPEATS:
             logger.warning('Excessive number of repeats found [%s] capping at [%s]', no_of_repeats, MAX_REPEATS)
             no_of_repeats = MAX_REPEATS
 
         return no_of_repeats
-
-
-def _remove_answers_not_in_path(path, answers):
-    filtered_answers = []
-
-    for answer in answers:
-        if Location(answer['group_id'], answer['group_instance'], answer['block_id']) in path:
-            filtered_answers.append(answer)
-
-    return filtered_answers
 
 
 def _get_answer_value(filtered_answers):
@@ -133,7 +122,7 @@ def evaluate_when_rules(when_rules, metadata, answer_store, group_instance):
     for when_rule in when_rules:
         if 'id' in when_rule:
             answer_index = when_rule['id']
-            filtered = answer_store.filter(answer_id=answer_index, group_instance=group_instance)
+            filtered = answer_store.filter(answer_ids=[answer_index], group_instance=group_instance)
 
             if filtered.count() > 1:
                 raise Exception('Multiple answers ({:d}) found evaluating when rule for answer ({})'

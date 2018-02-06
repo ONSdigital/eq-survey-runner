@@ -75,15 +75,11 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ]
 
         answer_1 = Answer(
-            group_id='star-wars',
-            block_id='choose-your-side-block',
             answer_id='choose-your-side-answer',
             value='Light Side'
         )
 
         answer_2 = Answer(
-            group_id='star-wars',
-            block_id='light-side-pick-character-ship',
             answer_id='light-side-pick-ship-answer',
             value='No'
         )
@@ -141,14 +137,10 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ]
 
         answer_1 = Answer(
-            group_id='star-wars',
-            block_id='choose-your-side-block',
             answer_id='choose-your-side-answer',
             value='Dark Side'
         )
         answer_2 = Answer(
-            group_id='star-wars',
-            block_id='dark-side-pick-character-ship',
             answer_id='dark-side-pick-ship-answer',
             value='Can I be a pain and have a goodies ship',
         )
@@ -177,14 +169,10 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         schema = load_schema_from_params('0', 'star_wars')
 
         answer_1 = Answer(
-            group_id='star-wars',
-            block_id='choose-your-side-block',
             answer_id='choose-your-side-answer',
             value='Light Side'
         )
         answer_2 = Answer(
-            group_id='star-wars',
-            block_id='light-side-pick-character-ship',
             answer_id='light-side-pick-ship-answer',
             value='No',
         )
@@ -235,14 +223,10 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ]
 
         answer_1 = Answer(
-            group_id='star-wars',
-            block_id='choose-your-side-block',
             answer_id='choose-your-side-answer',
             value='Dark Side'
         )
         answer_2 = Answer(
-            group_id='star-wars',
-            block_id='dark-side-pick-character-ship',
             answer_id='dark-side-pick-ship-answer',
             value='Can I be a pain and have a goodies ship',
         )
@@ -281,14 +265,10 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         expected_previous_location = expected_path[1]
 
         answer_1 = Answer(
-            group_id='star-wars',
-            block_id='choose-your-side-block',
             answer_id='choose-your-side-answer',
             value='Light Side'
         )
         answer_2 = Answer(
-            group_id='star-wars',
-            block_id='light-side-pick-character-ship',
             answer_id='light-side-pick-ship-answer',
             value='No',
         )
@@ -312,9 +292,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ]
 
         answer = Answer(
-            group_id='star-wars',
             group_instance=0,
-            block_id='choose-your-side-block',
             answer_id='choose-your-side-answer',
             value='I prefer Star Trek',
         )
@@ -340,14 +318,10 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ]
 
         answer_1 = Answer(
-            group_id='checkboxes',
-            block_id='mandatory-checkbox',
             answer_id='mandatory-checkbox-answer',
             value='Cheese',
         )
         answer_2 = Answer(
-            group_id='checkboxes',
-            block_id='non-mandatory-checkbox',
             answer_id='non-mandatory-checkbox-answer',
             value='deep pan',
         )
@@ -369,8 +343,6 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         schema = load_schema_from_params('0', 'star_wars')
 
         answer = Answer(
-            group_id='star-wars',
-            block_id='choose-your-side-block',
             answer_id='choose-your-side-answer',
             value='Light Side'
         )
@@ -399,10 +371,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ]
 
         answer = Answer(
-            group_id='multiple-questions-group',
             group_instance=0,
             answer_id='first-name',
-            block_id='household-composition',
             value='2'
         )
         answers = AnswerStore()
@@ -425,10 +395,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ]
 
         answer = Answer(
-            group_id='multiple-questions-group',
             group_instance=0,
             answer_id='first-name',
-            block_id='household-composition',
             value='0'
         )
         answers = AnswerStore()
@@ -454,29 +422,23 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ]
 
         answer = Answer(
-            group_id='multiple-questions-group',
             group_instance=0,
             answer_instance=0,
             answer_id='first-name',
-            block_id='household-composition',
             value='Joe Bloggs'
         )
 
         answer_2 = Answer(
-            group_id='multiple-questions-group',
             group_instance=0,
             answer_instance=1,
             answer_id='first-name',
-            block_id='household-composition',
             value='Sophie Bloggs'
         )
 
         answer_3 = Answer(
-            group_id='multiple-questions-group',
             group_instance=0,
             answer_instance=2,
             answer_id='first-name',
-            block_id='household-composition',
             value='Gregg Bloggs'
         )
 
@@ -505,20 +467,16 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ]
 
         answer = Answer(
-            group_id='multiple-questions-group',
             group_instance=0,
             answer_instance=0,
             answer_id='first-name',
-            block_id='household-composition',
             value='Joe Bloggs'
         )
 
         answer_2 = Answer(
-            group_id='multiple-questions-group',
             group_instance=0,
             answer_instance=1,
             answer_id='first-name',
-            block_id='household-composition',
             value='Sophie Bloggs'
         )
 
@@ -563,18 +521,14 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ]
 
         answer = Answer(
-            group_id='multiple-questions-group',
             answer_instance=0,
             answer_id='first-name',
-            block_id='household-composition',
             value='Joe Bloggs'
         )
 
         answer_2 = Answer(
-            group_id='multiple-questions-group',
             answer_instance=1,
             answer_id='first-name',
-            block_id='household-composition',
             value='Sophie Bloggs'
         )
 
@@ -604,18 +558,14 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ]
 
         answer = Answer(
-            group_id='multiple-questions-group',
             answer_instance=0,
             answer_id='first-name',
-            block_id='household-composition',
             value='Joe Bloggs'
         )
 
         answer_2 = Answer(
-            group_id='multiple-questions-group',
             answer_instance=1,
             answer_id='first-name',
-            block_id='household-composition',
             value='Sophie Bloggs'
         )
 
@@ -646,24 +596,18 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ]
 
         answer_1 = Answer(
-            group_id='repeat-value-group',
-            block_id='no-of-repeats',
             answer_id='no-of-repeats-answer',
             value='2'
         )
 
         answer_2 = Answer(
-            group_id='repeated-group',
             group_instance=0,
-            block_id='repeated-block',
             answer_id='conditional-answer',
             value='Age and Shoe Size'
         )
 
         answer_3 = Answer(
-            group_id='repeated-group',
             group_instance=1,
-            block_id='repeated-block',
             answer_id='conditional-answer',
             value='Shoe Size Only'
         )
@@ -683,17 +627,13 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers = AnswerStore()
 
         answers.add(Answer(
-            group_id='repeat-value-group',
-            block_id='no-of-repeats',
             answer_id='no-of-repeats-answer',
             value='10000'
         ))
 
         for i in range(50):
             answers.add(Answer(
-                group_id='repeated-group',
                 group_instance=i,
-                block_id='repeated-block',
                 answer_id='conditional-answer',
                 value='Shoe Size Only'
             ))
@@ -762,27 +702,21 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers = AnswerStore()
 
         answer_1 = Answer(
-            group_id='multiple-questions-group',
             group_instance=0,
-            block_id='household-composition',
             answer_id='household-full-name',
             answer_instance=0,
             value='Joe Bloggs'
         )
 
         answer_2 = Answer(
-            group_id='multiple-questions-group',
             group_instance=0,
-            block_id='household-composition',
             answer_id='household-full-name',
             answer_instance=1,
             value='Sophie Bloggs'
         )
 
         answer_3 = Answer(
-            group_id='multiple-questions-group',
             group_instance=0,
-            block_id='household-summary',
             answer_id='household-composition-add-another',
             answer_instance=0,
             value='No'
@@ -813,27 +747,21 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers = AnswerStore()
 
         answer_1 = Answer(
-            group_id='multiple-questions-group',
             group_instance=0,
-            block_id='household-composition',
             answer_id='household-full-name',
             answer_instance=0,
             value='Joe Bloggs'
         )
 
         answer_2 = Answer(
-            group_id='multiple-questions-group',
             group_instance=0,
-            block_id='household-composition',
             answer_id='household-full-name',
             answer_instance=1,
             value='Sophie Bloggs'
         )
 
         answer_3 = Answer(
-            group_id='multiple-questions-group',
             group_instance=0,
-            block_id='household-summary',
             answer_id='household-composition-add-another',
             answer_instance=0,
             value='Yes'
@@ -852,8 +780,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         schema = load_schema_from_params('test', 'skip_condition_block')
         current_location = Location('do-you-want-to-skip-group', 0, 'do-you-want-to-skip')
         answer_store = AnswerStore()
-        answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip',
-                                answer_id='do-you-want-to-skip-answer', value='Yes'))
+        answer_store.add(Answer(answer_id='do-you-want-to-skip-answer',
+                                value='Yes'))
 
         # When
         path_finder = PathFinder(schema, answer_store=answer_store, metadata={})
@@ -868,8 +796,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         schema = load_schema_from_params('test', 'skip_condition_group')
         current_location = Location('do-you-want-to-skip-group', 0, 'do-you-want-to-skip')
         answer_store = AnswerStore()
-        answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip',
-                                answer_id='do-you-want-to-skip-answer', value='Yes'))
+        answer_store.add(Answer(answer_id='do-you-want-to-skip-answer',
+                                value='Yes'))
 
         # When
         path_finder = PathFinder(schema, answer_store=answer_store, metadata={})
@@ -884,8 +812,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         schema = load_schema_from_params('test', 'skip_condition_group')
         current_location = Location('do-you-want-to-skip-group', 0, 'do-you-want-to-skip')
         answer_store = AnswerStore()
-        answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip',
-                                answer_id='do-you-want-to-skip-answer', value='No'))
+        answer_store.add(Answer(answer_id='do-you-want-to-skip-answer',
+                                value='No'))
 
         # When
         path_finder = PathFinder(schema, answer_store=answer_store, metadata={})
@@ -913,8 +841,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         # Given
         schema = load_schema_from_params('test', 'skip_condition_group')
         answer_store = AnswerStore()
-        answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip',
-                                answer_id='do-you-want-to-skip-answer', value='Yes'))
+        answer_store.add(Answer(answer_id='do-you-want-to-skip-answer',
+                                value='Yes'))
 
         # When
         path_finder = PathFinder(schema, answer_store=answer_store, metadata={})
@@ -978,8 +906,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         schema = load_schema_from_params('test', 'routing_group')
 
         answer_store = AnswerStore()
-        answer_store.add(Answer(group_id='which-group', block_id='which-group-block',
-                                answer_id='which-group-answer', value='group2'))
+        answer_store.add(Answer(answer_id='which-group-answer',
+                                value='group2'))
 
         # When i build the path
         path_finder = PathFinder(schema, answer_store=answer_store, metadata={})

@@ -2,31 +2,26 @@ import unittest
 
 from app.data_model.answer_store import Answer, AnswerStore
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
-from app.questionnaire.location import Location
 
 
 class TestAnswer(unittest.TestCase):
     def test_raises_error_on_invalid(self):
 
         with self.assertRaises(ValueError) as ite:
-            Answer()
+            Answer(None, None)
 
-        self.assertIn("At least one of 'answer_id', 'group_id', 'block_id' or 'value' must be set for Answer", str(ite.exception))
+        self.assertIn("Both 'answer_id' and 'value' must be set for Answer", str(ite.exception))
 
     def test_matches_answer(self):
         answer_1 = Answer(
-            block_id='3',
             answer_id='4',
             answer_instance=1,
-            group_id='5',
             group_instance=1,
             value=25,
         )
         answer_2 = Answer(
-            block_id='3',
             answer_id='4',
             answer_instance=1,
-            group_id='5',
             group_instance=1,
             value=65,
         )
@@ -35,18 +30,14 @@ class TestAnswer(unittest.TestCase):
 
     def test_matches_answer_dict(self):
         answer_1 = Answer(
-            block_id='3',
             answer_id='4',
             answer_instance=1,
-            group_id='5',
             group_instance=1,
             value=25,
         )
         answer_2 = {
-            'block_id': '3',
             'answer_id': '4',
             'answer_instance': 1,
-            'group_id': '5',
             'group_instance': 1,
             'value': 25,
         }
@@ -63,10 +54,8 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
     def test_adds_answer(self):
         answer = Answer(
-            block_id='3',
             answer_id='4',
             answer_instance=1,
-            group_id='5',
             group_instance=1,
             value=25,
         )
@@ -79,10 +68,8 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         with self.assertRaises(TypeError) as ite:
             self.store.add({
-                'block_id': '3',
                 'answer_id': '4',
                 'answer_instance': 1,
-                'group_id': '5',
                 'group_instance': 1,
                 'value': 25,
             })
@@ -91,10 +78,8 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
     def test_raises_error_on_add_existing(self):
         answer_1 = Answer(
-            block_id='3',
             answer_id='4',
             answer_instance=1,
-            group_id='5',
             group_instance=1,
             value=25,
         )
@@ -107,10 +92,8 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
     def test_raises_error_on_update_nonexisting(self):
         answer_1 = Answer(
-            block_id='3',
             answer_id='4',
             answer_instance=1,
-            group_id='5',
             group_instance=1,
             value=25,
         )
@@ -122,10 +105,8 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
     def test_add_inserts_instances(self):
         answer_1 = Answer(
-            block_id='3',
             answer_id='4',
             answer_instance=1,
-            group_id='5',
             group_instance=1,
             value=25,
         )
@@ -143,18 +124,14 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
     def test_updates_answer(self):
         answer_1 = Answer(
-            block_id='3',
             answer_id='4',
             answer_instance=1,
-            group_id='5',
             group_instance=1,
             value=25,
         )
         answer_2 = Answer(
-            block_id='3',
             answer_id='4',
             answer_instance=1,
-            group_id='5',
             group_instance=1,
             value=65,
         )
@@ -165,10 +142,8 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         self.assertEqual(len(self.store.answers), 1)
 
         store_match = self.store.filter(
-            block_id='3',
-            answer_id='4',
+            answer_ids=['4'],
             answer_instance=1,
-            group_id='5',
             group_instance=1,
         )
 
@@ -177,18 +152,14 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
     def test_filters_answers(self):
 
         answer_1 = Answer(
-            block_id='1',
             answer_id='2',
             answer_instance=1,
-            group_id='5',
             group_instance=1,
             value=25,
         )
         answer_2 = Answer(
-            block_id='1',
             answer_id='5',
             answer_instance=1,
-            group_id='6',
             group_instance=1,
             value=65,
         )
@@ -196,42 +167,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         self.store.add(answer_1)
         self.store.add(answer_2)
 
-        filtered = self.store.filter(block_id='1')
-
-        self.assertEqual(len(filtered.answers), 2)
-
-        filtered = self.store.filter(answer_id='5')
-
-        self.assertEqual(len(filtered.answers), 1)
-
-        filtered = self.store.filter(group_id='6')
-
-        self.assertEqual(len(filtered.answers), 1)
-
-    def test_filters_answers_by_location(self):
-        answer_1 = Answer(
-            block_id='1',
-            answer_id='2',
-            answer_instance=1,
-            group_id='5',
-            group_instance=1,
-            value=25,
-        )
-        answer_2 = Answer(
-            block_id='1',
-            answer_id='5',
-            answer_instance=1,
-            group_id='6',
-            group_instance=1,
-            value=65,
-        )
-
-        self.store.add(answer_1)
-        self.store.add(answer_2)
-
-        location = Location('6', 1, '1')
-
-        filtered = self.store.filter_by_location(location)
+        filtered = self.store.filter(answer_ids=['5'])
 
         self.assertEqual(len(filtered.answers), 1)
 
@@ -239,34 +175,28 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         for i in range(1, 50):
             self.store.add(Answer(
-                block_id='1',
                 answer_id='2',
                 answer_instance=i,
-                group_id='5',
                 group_instance=1,
                 value=25,
             ))
 
-        filtered = self.store.filter(limit=True)
+        filtered = self.store.filter(answer_ids=['2'], limit=True)
 
         self.assertEqual(len(filtered.answers), 25)
 
     def test_escaped(self):
 
         self.store.add(Answer(
-            block_id='1',
             answer_id='1',
             answer_instance=0,
-            group_id='5',
             group_instance=1,
             value=25,
         ))
 
         self.store.add(Answer(
-            block_id='1',
             answer_id='2',
             answer_instance=0,
-            group_id='5',
             group_instance=1,
             value="'Twenty Five'",
         ))
@@ -284,24 +214,20 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
     def test_filter_answers_does_not_escapes_values(self):
 
         self.store.add(Answer(
-            block_id='1',
             answer_id='1',
             answer_instance=0,
-            group_id='5',
             group_instance=1,
             value=25,
         ))
 
         self.store.add(Answer(
-            block_id='1',
             answer_id='2',
             answer_instance=0,
-            group_id='5',
             group_instance=1,
             value="'Twenty Five'",
         ))
 
-        filtered = self.store.filter()
+        filtered = self.store.filter(['1', '2'])
 
         self.assertEqual(len(filtered.answers), 2)
         self.assertEqual(filtered[0]['value'], 25)
@@ -310,24 +236,20 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
     def test_filter_chaining_escaped(self):
 
         self.store.add(Answer(
-            block_id='1',
             answer_id='1',
             answer_instance=0,
-            group_id='5',
             group_instance=1,
             value=25,
         ))
 
         self.store.add(Answer(
-            block_id='1',
             answer_id='2',
             answer_instance=0,
-            group_id='5',
             group_instance=1,
             value="'Twenty Five'",
         ))
 
-        escaped = self.store.filter(answer_id='2').escaped()
+        escaped = self.store.filter(answer_ids=['2']).escaped()
 
         self.assertEqual(len(escaped.answers), 1)
         self.assertEqual(escaped[0]['value'], '&#39;Twenty Five&#39;')
@@ -336,7 +258,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         self.assertEqual(self.store[0]['value'], 25)
         self.assertEqual(self.store[1]['value'], "'Twenty Five'")
 
-        values = self.store.filter(answer_id='2').escaped().values()
+        values = self.store.filter(answer_ids=['2']).escaped().values()
 
         self.assertEqual(len(values), 1)
         self.assertEqual(values[0], '&#39;Twenty Five&#39;')
@@ -344,26 +266,22 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
     def test_filter_chaining_count(self):
 
         self.store.add(Answer(
-            block_id='1',
             answer_id='1',
             answer_instance=0,
-            group_id='5',
             group_instance=1,
             value=25,
         ))
 
         self.store.add(Answer(
-            block_id='1',
             answer_id='2',
             answer_instance=0,
-            group_id='5',
             group_instance=1,
             value="'Twenty Five'",
         ))
 
         self.assertEqual(self.store.count(), 2)
-        self.assertEqual(self.store.filter(answer_id='2').count(), 1)
-        self.assertEqual(self.store.filter().count(), 2)
+        self.assertEqual(self.store.filter(answer_ids=['2']).count(), 1)
+        self.assertEqual(self.store.filter(answer_ids=['1', '2']).count(), 2)
 
     def tests_upgrade_reformats_date(self):
         questionnaire = {
@@ -388,10 +306,8 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         answers = [
             {
-                'block_id': 'block1',
                 'answer_id': 'answer1',
                 'answer_instance': 0,
-                'group_id': 'group1',
                 'group_instance': 0,
                 'value': '25/12/2017'
             }
@@ -426,10 +342,8 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         answers = [
             {
-                'block_id': 'block1',
                 'answer_id': 'answer1',
                 'answer_instance': 0,
-                'group_id': 'group1',
                 'group_instance': 0,
                 'value': '12/2017'
             }
@@ -460,10 +374,8 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         answers = [
             {
-                'block_id': 'block1',
                 'answer_id': 'answer1',
                 'answer_instance': 0,
-                'group_id': 'group1',
                 'group_instance': 0,
                 'value': '12/2017'
             }
@@ -487,10 +399,8 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         answers = [
             {
-                'block_id': 'block1',
                 'answer_id': 'answer1',
                 'answer_instance': 0,
-                'group_id': 'group1',
                 'group_instance': 0,
                 'value': '12/2017'
             }
@@ -501,3 +411,19 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         self.store.upgrade(current_version=0, schema=QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.answers[0]['value'], '12/2017')
+
+    def test_remove_all_answers(self):
+        answer_1 = Answer(
+            answer_id='answer1',
+            value=10,
+        )
+        answer_2 = Answer(
+            answer_id='answer2',
+            value=20,
+        )
+
+        self.store.add(answer_1)
+        self.store.add(answer_2)
+
+        self.store.remove()
+        self.assertEqual(len(self.store.answers), 0)

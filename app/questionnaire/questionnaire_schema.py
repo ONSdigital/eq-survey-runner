@@ -7,6 +7,7 @@ class QuestionnaireSchema(object):
         self.json = questionnaire_json
         self._groups_by_id = self._get_groups_by_id()
         self._blocks_by_id = self._get_blocks_by_id()
+        self._answers_by_id = self._get_answers_by_id()
         self.error_messages = self._get_error_messages()
         self.aliases = self._get_aliases()
 
@@ -24,6 +25,15 @@ class QuestionnaireSchema(object):
                 blocks[block.get('id')] = block
 
         return blocks
+
+    def _get_answers_by_id(self):
+        answers = {}
+        for block in self.get_blocks():
+            for question in self.get_questions_for_block(block):
+                for answer in question['answers']:
+                    answers[answer['id']] = answer
+
+        return answers
 
     def _get_error_messages(self):
         messages = error_messages.copy()
@@ -81,6 +91,14 @@ class QuestionnaireSchema(object):
         if group:
             return group['blocks'][0]['id']
 
+    def get_answer_ids_for_group(self, group_id):
+        answer_ids = []
+        group = self.get_group(group_id)
+        for block in group['blocks']:
+            answer_ids.extend(self.get_answer_ids_for_block(block['id']))
+
+        return answer_ids
+
     def get_blocks(self):
         for group in self.get_groups():
             for block in group['blocks']:
@@ -88,6 +106,9 @@ class QuestionnaireSchema(object):
 
     def get_block(self, block_id):
         return self._blocks_by_id.get(block_id)
+
+    def get_answer_schema_for_answer_id(self, answer_id):
+        return self._answers_by_id.get(answer_id)
 
     def get_answers_by_id_for_block(self, block_id):
         answers = {}
@@ -101,11 +122,6 @@ class QuestionnaireSchema(object):
 
     def get_answer_ids_for_block(self, block_id):
         return list(self.get_answers_by_id_for_block(block_id).keys())
-
-    def get_answer_schema_for_answer_id(self, block_id, answer_id):
-        answer_schema_list = self.get_answers_by_id_for_block(block_id)
-        if answer_id in answer_schema_list:
-            return answer_schema_list[answer_id]
 
     def get_answers_for_block(self, block_id):
         return list(self.get_answers_by_id_for_block(block_id).values())

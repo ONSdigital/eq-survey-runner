@@ -19,7 +19,7 @@ class Question:
         self.is_skipped = evaluate_skip_conditions(self.skip_conditions, metadata, answer_store)
 
     def _get_answers(self, answer_id):
-        return self._answer_store.filter(answer_id=answer_id).escaped().values()
+        return self._answer_store.filter(answer_ids=[answer_id]).escaped().values()
 
     def _get_answer(self, answer_id):
         try:

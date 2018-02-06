@@ -64,18 +64,15 @@ class TestDumpAnswers(IntegrationTestCase):
         expected = {
             'answers': [
                 {
-                    'value': '', 'answer_instance': 0,
-                    'block_id': 'radio-mandatory',
+                    'value': '',
+                    'answer_instance': 0,
                     'group_instance': 0,
-                    'group_id': 'radio',
                     'answer_id': 'other-answer-mandatory'
                 },
                 {
                     'value': 'Toast',
                     'answer_instance': 0,
-                    'block_id': 'radio-mandatory',
                     'group_instance': 0,
-                    'group_id': 'radio',
                     'answer_id': 'radio-mandatory-answer'
                 }
             ]
@@ -192,8 +189,6 @@ class TestDumpSubmission(IntegrationTestCase):
                     {
                         'answer_id': 'radio-mandatory-answer',
                         'answer_instance': 0,
-                        'block_id': 'radio-mandatory',
-                        'group_id': 'radio',
                         'group_instance': 0,
                         'value': 'Coffee'
                     },

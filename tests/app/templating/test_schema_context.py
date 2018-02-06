@@ -34,7 +34,9 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         }
         answers = []
 
-        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
+        answer_ids_on_path = []
+
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), answer_ids_on_path)
 
         self.assertTrue('exercise' in schema_context)
         self.assertTrue('answers' in schema_context)
@@ -48,7 +50,9 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         }
         answers = []
 
-        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
+        answer_ids_on_path = []
+
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), answer_ids_on_path)
 
         exercise = schema_context['exercise']
         self.assertEqual('2016-10-13', exercise['start_date'])
@@ -74,7 +78,9 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
             'value': 'Joe Bloggs',
         }]
 
-        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
+        answer_ids_on_path = ['answer_id']
+
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), answer_ids_on_path)
 
         context_answers = schema_context['answers']
         self.assertEqual(len(context_answers), 1)
@@ -114,7 +120,9 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
             }
         ]
 
-        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
+        answer_ids_on_path = ['full_name_answer']
+
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), answer_ids_on_path)
 
         context_answers = schema_context['answers']
         self.assertIsInstance(context_answers['_full_name'], list)
@@ -137,7 +145,9 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
             'value': 'Person One',
         }]
 
-        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
+        answer_ids_on_path = ['full_name_answer']
+
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), answer_ids_on_path)
 
         context_answers = schema_context['answers']
         self.assertEqual(len(answers), 1)
@@ -152,7 +162,9 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         }
         answers = []
 
-        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
+        answer_ids_on_path = []
+
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), answer_ids_on_path)
 
         context_answers = schema_context['answers']
         self.assertEqual(len(context_answers), 1)
@@ -174,7 +186,9 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
             'value': 'Some Value',
         }]
 
-        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
+        answer_ids_on_path = ['answer_id']
+
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), answer_ids_on_path)
 
         context_answers = schema_context['answers']
         self.assertIsInstance(context_answers['repeating_answer_alias'], list)
@@ -195,7 +209,9 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
             'value': 'Some Value',
         }]
 
-        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
+        answer_ids_on_path = ['answer_id']
+
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), answer_ids_on_path)
 
         context_answers = schema_context['answers']
         self.assertIsInstance(context_answers['non_repeating_answer_alias'], str)
@@ -217,13 +233,16 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
             'value': 'Some Value',
         } for instance in range(26)]
 
-        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
+        answer_ids_on_path = ['answer_id']
+
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), answer_ids_on_path)
 
         context_answers = schema_context['answers']
         self.assertEqual(len(context_answers['repeating_answer_alias']), 25)
 
     def test_respondent_display_name_is_trading_as_when_trading_as_supplied(self):
-        schema_context = build_schema_context(self.metadata, {}, self.answer_store, self.routing_path)
+        answer_ids_on_path = []
+        schema_context = build_schema_context(self.metadata, {}, self.answer_store, answer_ids_on_path)
 
         self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], self.metadata['trad_as'])
 
@@ -231,7 +250,9 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         metadata = self.metadata.copy()
         metadata['trad_as'] = None
 
-        schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
+        answer_ids_on_path = []
+
+        schema_context = build_schema_context(metadata, {}, self.answer_store, answer_ids_on_path)
 
         self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], metadata['ru_name'])
 
@@ -239,7 +260,9 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         metadata = self.metadata.copy()
         metadata['trad_as'] = ''
 
-        schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
+        answer_ids_on_path = []
+
+        schema_context = build_schema_context(metadata, {}, self.answer_store, answer_ids_on_path)
 
         self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], metadata['ru_name'])
 
@@ -248,8 +271,10 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         metadata = self.metadata.copy()
         metadata['trad_as'] = '\"trading name\"'
 
+        answer_ids_on_path = []
+
         # When
-        schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
+        schema_context = build_schema_context(metadata, {}, self.answer_store, answer_ids_on_path)
 
         # Then
         self.assertEqual(schema_context['respondent']['trad_as'], r'&#34;trading name&#34;')
@@ -259,8 +284,10 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         metadata = self.metadata.copy()
         metadata['trad_as'] = '\\trading name\\'
 
+        answer_ids_on_path = []
+
         # When
-        schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
+        schema_context = build_schema_context(metadata, {}, self.answer_store, answer_ids_on_path)
 
         # Then
         self.assertEqual(schema_context['respondent']['trad_as'], r'\\trading name\\')
@@ -270,8 +297,10 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         metadata = self.metadata.copy()
         metadata['ru_name'] = '\"ru name\"'
 
+        answer_ids_on_path = []
+
         # When
-        schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
+        schema_context = build_schema_context(metadata, {}, self.answer_store, answer_ids_on_path)
 
         # Then
         self.assertEqual(schema_context['respondent']['ru_name'], r'&#34;ru name&#34;')
@@ -281,8 +310,10 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         metadata = self.metadata.copy()
         metadata['ru_name'] = '\\ru name\\'
 
+        answer_ids_on_path = []
+
         # When
-        schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
+        schema_context = build_schema_context(metadata, {}, self.answer_store, answer_ids_on_path)
 
         # Then
         self.assertEqual(schema_context['respondent']['ru_name'], r'\\ru name\\')
@@ -293,8 +324,10 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         metadata['ru_name'] = '\"ru_name\"'
         metadata['trad_as'] = None
 
+        answer_ids_on_path = []
+
         # When
-        schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
+        schema_context = build_schema_context(metadata, {}, self.answer_store, answer_ids_on_path)
 
         # Then
         self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], r'&#34;ru_name&#34;')
@@ -304,8 +337,10 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         metadata = self.metadata.copy()
         metadata['trad_as'] = '\\trading name\\'
 
+        answer_ids_on_path = []
+
         # When
-        schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
+        schema_context = build_schema_context(metadata, {}, self.answer_store, answer_ids_on_path)
 
         # Then
         self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], r'\\trading name\\')
@@ -326,7 +361,9 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
             'value': '"',
         }]
 
-        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
+        answer_ids_on_path = ['answer_id']
+
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), answer_ids_on_path)
 
         context_answers = schema_context['answers']
         self.assertEqual(len(context_answers), 1)
@@ -348,7 +385,9 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
             'value': '\\',
         }]
 
-        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
+        answer_ids_on_path = ['answer_id']
+
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), answer_ids_on_path)
 
         context_answers = schema_context['answers']
         self.assertEqual(len(context_answers), 1)
@@ -384,7 +423,9 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
             }
         ]
 
-        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
+        answer_ids_on_path = ['first_name']
+
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), answer_ids_on_path)
 
         context_answers = schema_context['answers']
         self.assertEqual(len(context_answers), 2)

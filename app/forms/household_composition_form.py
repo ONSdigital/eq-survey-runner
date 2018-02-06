@@ -27,12 +27,11 @@ def get_name_form(schema, block_json):
     return NameForm
 
 
-def serialise_composition_answers(location, data):
+def serialise_composition_answers(data):
     answers = []
     for index, person_data in enumerate(data):
         for answer_id in person_data.keys():
             answer = Answer(
-                location=location,
                 answer_id=answer_id,
                 answer_instance=index,
                 value=person_data[answer_id],
@@ -89,12 +88,12 @@ def generate_household_composition_form(schema, block_json, data):
             for field in popped[1:]:
                 self.household.append_entry(field.data)
 
-        def serialise(self, location):
+        def serialise(self):
             """
             Returns a list of answers representing the form data
             :param location: The location to associate the form data with
             :return:
             """
-            return serialise_composition_answers(location, self.household.data)
+            return serialise_composition_answers(self.household.data)
 
     return HouseHoldCompositionForm(MultiDict(data))

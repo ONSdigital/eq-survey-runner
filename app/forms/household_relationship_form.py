@@ -16,9 +16,9 @@ def build_relationship_choices(answer_store, group_instance):  # pylint: disable
     :param group_instance: The instance of the group being iterated over
     :return:
     """
-    household_first_name_answers = answer_store.filter(block_id='household-composition', answer_id='first-name',
+    household_first_name_answers = answer_store.filter(answer_ids=['first-name'],
                                                        limit=True)
-    household_last_name_answers = answer_store.filter(block_id='household-composition', answer_id='last-name',
+    household_last_name_answers = answer_store.filter(answer_ids=['last-name'],
                                                       limit=True)
 
     first_names = []
@@ -56,11 +56,10 @@ def build_relationship_choices(answer_store, group_instance):  # pylint: disable
     return choices
 
 
-def serialise_relationship_answers(location, answer_id, listfield_data):
+def serialise_relationship_answers(answer_id, listfield_data):
     answers = []
     for index, listfield_value in enumerate(listfield_data):
         answer = Answer(
-            location=location,
             answer_id=answer_id,
             answer_instance=index,
             value=listfield_value,
@@ -103,7 +102,7 @@ def generate_relationship_form(schema, block_json, number_of_entries, data):
         def answer_errors(self, input_id):
             return [error[1] for error in self.map_errors() if input_id == error[0]]
 
-        def serialise(self, location):
+        def serialise(self):
             """
             Returns a list of answers representing the form data
             :param location: The location to associate the form data with
@@ -111,7 +110,7 @@ def generate_relationship_form(schema, block_json, number_of_entries, data):
             """
             list_field = getattr(self, answer['id'])
 
-            return serialise_relationship_answers(location, answer['id'], list_field.data)
+            return serialise_relationship_answers(answer['id'], list_field.data)
 
     choices = [('', 'Select relationship')] + build_choices(answer['options'])
 

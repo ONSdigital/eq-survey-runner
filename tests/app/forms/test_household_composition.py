@@ -3,7 +3,6 @@ from wtforms import validators
 from app.forms.household_composition_form import generate_household_composition_form, deserialise_composition_answers
 from app.validation.validators import ResponseRequired
 from app.utilities.schema import load_schema_from_params
-from app.questionnaire.location import Location
 
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -39,7 +38,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
 
             form.validate()
 
-            message = "Please enter a name or remove the person to continue"
+            message = 'Please enter a name or remove the person to continue'
 
             self.assertTrue(self._error_exists('household-0-first-name', message, form.map_errors()))
 
@@ -49,7 +48,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
 
             form.validate()
 
-            message = "Please enter a name or remove the person to continue"
+            message = 'Please enter a name or remove the person to continue'
 
             self.assertIn(message, form.answer_errors('household-0-first-name'))
 
@@ -83,7 +82,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
 
             form.validate()
 
-            message = "Please enter a name or remove the person to continue"
+            message = 'Please enter a name or remove the person to continue'
 
             self.assertIn(message, form.answer_errors('household-0-first-name'))
 
@@ -202,101 +201,75 @@ class TestHouseholdCompositionForm(AppContextTestCase):
                 'household-1-last-name': 'Seymour',
             })
 
-            location = Location('who-lives-here', 0, 'household-composition')
-
-            answers = form.serialise(location)
+            answers = form.serialise()
 
             expected_answers = [
                 {
-                    'group_id': 'who-lives-here',
                     'group_instance': 0,
-                    'block_id': 'household-composition',
                     'answer_id': 'first-name',
                     'answer_instance': 0,
                     'value': 'Joe'
                 }, {
-                    'group_id': 'who-lives-here',
                     'group_instance': 0,
-                    'block_id': 'household-composition',
                     'answer_id': 'middle-names',
                     'answer_instance': 0,
                     'value': ''
                 }, {
-                    'group_id': 'who-lives-here',
                     'group_instance': 0,
-                    'block_id': 'household-composition',
                     'answer_id': 'last-name',
                     'answer_instance': 0,
                     'value': 'Bloggs'
                 }, {
-                    'group_id': 'who-lives-here',
                     'group_instance': 0,
-                    'block_id': 'household-composition',
                     'answer_id': 'first-name',
                     'answer_instance': 1,
                     'value': 'Bob'
                 }, {
-                    'group_id': 'who-lives-here',
                     'group_instance': 0,
-                    'block_id': 'household-composition',
                     'answer_id': 'middle-names',
                     'answer_instance': 1,
                     'value': ''
                 }, {
-                    'group_id': 'who-lives-here',
                     'group_instance': 0,
-                    'block_id': 'household-composition',
                     'answer_id': 'last-name',
                     'answer_instance': 1,
                     'value': 'Seymour'
                 }
             ]
 
-            for i, answer in enumerate(answers):
+            for _, answer in enumerate(answers):
                 self.assertIn(answer.__dict__, expected_answers)
 
     def test_deserialise_answers(self):
 
         serialised_answers = [
             {
-                'group_id': 'who-lives-here',
                 'group_instance': 0,
-                'block_id': 'household-composition',
                 'answer_id': 'first-name',
                 'answer_instance': 0,
                 'value': 'Joe'
             }, {
-                'group_id': 'who-lives-here',
                 'group_instance': 0,
-                'block_id': 'household-composition',
                 'answer_id': 'middle-names',
                 'answer_instance': 0,
                 'value': ''
             }, {
-                'group_id': 'who-lives-here',
                 'group_instance': 0,
-                'block_id': 'household-composition',
                 'answer_id': 'last-name',
                 'answer_instance': 0,
                 'value': 'Bloggs'
             }, {
-                'group_id': 'who-lives-here',
                 'group_instance': 0,
-                'block_id': 'household-composition',
                 'answer_id': 'first-name',
                 'answer_instance': 1,
                 'value': 'Bob'
             }, {
-                'group_id': 'who-lives-here',
                 'group_instance': 0,
-                'block_id': 'household-composition',
                 'answer_id': 'middle-names',
                 'answer_instance': 1,
                 'value': ''
             }, {
-                'group_id': 'who-lives-here',
                 'group_instance': 0,
-                'block_id': 'household-composition',
                 'answer_id': 'last-name',
                 'answer_instance': 1,
                 'value': 'Seymour'

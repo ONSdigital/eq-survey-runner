@@ -2,6 +2,8 @@ from unittest import TestCase
 
 from app.data_model.answer_store import AnswerStore, Answer
 from app.questionnaire.location import Location
+from app.questionnaire.path_finder import PathFinder
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.rules import evaluate_rule, evaluate_goto, evaluate_repeat, evaluate_skip_conditions, \
     evaluate_when_rules
 
@@ -408,6 +410,32 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         self.assertFalse(goto)
 
     def test_should_repeat_for_answer_answer_value(self):
+        questionnaire = {
+            'survey_id': '021',
+            'data_version': '0.0.1',
+            'groups': [
+                {
+                    'id': 'group-1',
+                    'blocks': [
+                        {
+                            'id': 'block-1',
+                            'questions': [{
+                                'id': 'question-2',
+                                'answers': [
+                                    {
+                                        'id': 'my_answer',
+                                        'type': 'TextField'
+                                    }
+                                ]
+                            }]
+                        }
+                    ]
+                }
+            ]
+        }
+
+        schema = QuestionnaireSchema(questionnaire)
+
         # Given
         repeat = {
             'answer_id': 'my_answer',
@@ -416,14 +444,41 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='my_answer', value='3'))
 
-        current_path = [Location(None, 0, None)]
+        current_path = [Location('group-1', 0, 'block-1')]
 
         # When
-        number_of_repeats = evaluate_repeat(repeat, answer_store, current_path)
+        answer_on_path = PathFinder.get_answer_ids_on_routing_path(schema, current_path)
+        number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 3)
 
     def test_should_repeat_for_answer_answer_count(self):
+        questionnaire = {
+            'survey_id': '021',
+            'data_version': '0.0.1',
+            'groups': [
+                {
+                    'id': 'group-1',
+                    'blocks': [
+                        {
+                            'id': 'block-1',
+                            'questions': [{
+                                'id': 'question-2',
+                                'answers': [
+                                    {
+                                        'id': 'my_answer',
+                                        'type': 'TextField'
+                                    }
+                                ]
+                            }]
+                        }
+                    ]
+                }
+            ]
+        }
+
+        schema = QuestionnaireSchema(questionnaire)
+
         # Given
         repeat = {
             'answer_id': 'my_answer',
@@ -433,14 +488,41 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         answer_store.add(Answer(answer_id='my_answer', value='3'))
         answer_store.add(Answer(answer_id='my_answer', value='4', answer_instance=1))
 
-        current_path = [Location(None, 0, None)]
+        current_path = [Location('group-1', 0, 'block-1')]
 
         # When
-        number_of_repeats = evaluate_repeat(repeat, answer_store, current_path)
+        answer_on_path = PathFinder.get_answer_ids_on_routing_path(schema, current_path)
+        number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 2)
 
     def test_should_repeat_for_answer_answer_count_minus_one(self):
+        questionnaire = {
+            'survey_id': '021',
+            'data_version': '0.0.1',
+            'groups': [
+                {
+                    'id': 'group-1',
+                    'blocks': [
+                        {
+                            'id': 'block-1',
+                            'questions': [{
+                                'id': 'question-2',
+                                'answers': [
+                                    {
+                                        'id': 'my_answer',
+                                        'type': 'TextField'
+                                    }
+                                ]
+                            }]
+                        }
+                    ]
+                }
+            ]
+        }
+
+        schema = QuestionnaireSchema(questionnaire)
+
         # Given
         repeat = {
             'answer_id': 'my_answer',
@@ -450,14 +532,41 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         answer_store.add(Answer(answer_id='my_answer', value='3'))
         answer_store.add(Answer(answer_id='my_answer', value='4', answer_instance=1))
 
-        current_path = [Location(None, 0, None)]
+        current_path = [Location('group-1', 0, 'block-1')]
 
         # When
-        number_of_repeats = evaluate_repeat(repeat, answer_store, current_path)
+        answer_on_path = PathFinder.get_answer_ids_on_routing_path(schema, current_path)
+        number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 1)
 
     def test_should_minus_one_from_maximum_repeats(self):
+        questionnaire = {
+            'survey_id': '021',
+            'data_version': '0.0.1',
+            'groups': [
+                {
+                    'id': 'group-1',
+                    'blocks': [
+                        {
+                            'id': 'block-1',
+                            'questions': [{
+                                'id': 'question-2',
+                                'answers': [
+                                    {
+                                        'id': 'my_answer',
+                                        'type': 'TextField'
+                                    }
+                                ]
+                            }]
+                        }
+                    ]
+                }
+            ]
+        }
+
+        schema = QuestionnaireSchema(questionnaire)
+
         # Given
         repeat = {
             'answer_id': 'my_answer',
@@ -467,10 +576,11 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         for i in range(27):
             answer_store.add(Answer(answer_id='my_answer', value='3', answer_instance=i))
 
-        current_path = [Location(None, 0, None)]
+        current_path = [Location('group-1', 0, 'block-1')]
 
         # When
-        number_of_repeats = evaluate_repeat(repeat, answer_store, current_path)
+        answer_on_path = PathFinder.get_answer_ids_on_routing_path(schema, current_path)
+        number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 24)
 

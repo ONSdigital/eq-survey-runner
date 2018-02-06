@@ -2,8 +2,6 @@ from datetime import datetime, timedelta, timezone
 
 import dateutil.parser
 
-from mock import patch
-
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.location import Location
@@ -176,11 +174,9 @@ class TestConverter(AppContextTestCase):
             }
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
-            with patch('app.submitter.converter.logger') as patched_logger:
-                answer_object = (convert_answers_to_data(AnswerStore(user_answer), QuestionnaireSchema(questionnaire), routing_path))
-                self.assertEqual(patched_logger.error.call_count, 2)
-                self.assertEqual(answer_object['002'], '2016-03-30')
-                self.assertEqual(len(answer_object), 1)
+            answer_object = (convert_answers_to_data(AnswerStore(user_answer), QuestionnaireSchema(questionnaire), routing_path))
+            self.assertEqual(answer_object['002'], '2016-03-30')
+            self.assertEqual(len(answer_object), 1)
 
     def test_submitted_at_should_be_set_in_payload(self):
         with self._app.test_request_context():

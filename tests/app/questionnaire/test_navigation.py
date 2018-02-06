@@ -65,8 +65,6 @@ class TestNavigation(AppContextTestCase):
         answer_1 = Answer(
             value='Contents',
             group_instance=0,
-            block_id='insurance-type',
-            group_id='property-details',
             answer_instance=0,
             answer_id='insurance-type-answer'
         )
@@ -157,48 +155,36 @@ class TestNavigation(AppContextTestCase):
                 'answer_instance': 0,
                 'answer_id': 'first-name',
                 'value': 'Jim',
-                'group_id': 'multiple-questions-group',
-                'block_id': 'household-composition'
             },
             {
                 'group_instance': 0,
                 'answer_instance': 1,
                 'answer_id': 'first-name',
                 'value': 'Ben',
-                'group_id': 'multiple-questions-group',
-                'block_id': 'household-composition'
             },
             {
                 'group_instance': 0,
                 'answer_instance': 0,
                 'answer_id': 'what-is-your-age',
                 'value': None,
-                'group_id': 'repeating-group',
-                'block_id': 'repeating-block-1'
             },
             {
                 'group_instance': 0,
                 'answer_instance': 0,
                 'answer_id': 'what-is-your-shoe-size',
                 'value': None,
-                'group_id': 'repeating-group',
-                'block_id': 'repeating-block-2'
             },
             {
                 'group_instance': 1,
                 'answer_instance': 0,
                 'answer_id': 'what-is-your-age',
                 'value': None,
-                'group_id': 'repeating-group',
-                'block_id': 'repeating-block-1'
             },
             {
                 'group_instance': 1,
                 'answer_instance': 0,
                 'answer_id': 'what-is-your-shoe-size',
                 'value': None,
-                'group_id': 'repeating-group',
-                'block_id': 'repeating-block-2'
             }
         ]
 
@@ -266,25 +252,19 @@ class TestNavigation(AppContextTestCase):
 
         answer_1 = Answer(
             answer_instance=0,
-            group_id='multiple-questions-group',
             answer_id='first-name',
-            block_id='household-composition',
             group_instance=0,
             value='Person1'
         )
         answer_2 = Answer(
             answer_instance=1,
-            group_id='multiple-questions-group',
             answer_id='first-name',
-            block_id='household-composition',
             group_instance=0,
             value='Person2'
         )
         answer_3 = Answer(
             answer_instance=1,
-            group_id='extra-cover',
             answer_id='extra-cover-answer',
-            block_id='extra-cover-block',
             group_instance=0,
             value=2
         )
@@ -375,8 +355,6 @@ class TestNavigation(AppContextTestCase):
         answer_1 = Answer(
             value=2,
             group_instance=0,
-            group_id='extra-cover',
-            block_id='extra-cover-block',
             answer_id='extra-cover-answer',
             answer_instance=0
 
@@ -384,32 +362,24 @@ class TestNavigation(AppContextTestCase):
         answer_2 = Answer(
             value='1',
             group_instance=0,
-            group_id='extra-cover-items-group',
-            block_id='extra-cover-items',
             answer_id='extra-cover-items-answer',
             answer_instance=0
         )
         answer_3 = Answer(
             value='Yes',
             group_instance=0,
-            group_id='extra-cover-items-group',
-            block_id='extra-cover-items-radio',
             answer_id='extra-cover-items-radio-answer',
             answer_instance=0
         )
         answer_4 = Answer(
             value='2',
             group_instance=1,
-            group_id='extra-cover-items-group',
-            block_id='extra-cover-items',
             answer_id='extra-cover-items-answer',
             answer_instance=0
         )
         answer_5 = Answer(
             value='Yes',
             group_instance=1,
-            group_id='extra-cover-items-group',
-            block_id='extra-cover-items-radio',
             answer_id='extra-cover-items-radio-answer',
             answer_instance=0
         )
@@ -484,34 +454,26 @@ class TestNavigation(AppContextTestCase):
         answer_store = AnswerStore()
 
         answer_1 = Answer(
-            block_id='household-composition',
             answer_instance=0,
             answer_id='first-name',
-            group_id='multiple-questions-group',
             group_instance=0,
             value='Joe'
         )
         answer_2 = Answer(
-            block_id='household-composition',
             answer_instance=0,
             answer_id='last-name',
-            group_id='multiple-questions-group',
             group_instance=0,
             value='Bloggs'
         )
         answer_3 = Answer(
-            block_id='household-composition',
             answer_instance=1,
             answer_id='first-name',
-            group_id='multiple-questions-group',
             group_instance=0,
             value='Jane'
         )
         answer_4 = Answer(
-            block_id='household-composition',
             answer_instance=1,
             answer_id='last-name',
-            group_id='multiple-questions-group',
             group_instance=0,
             value='Doe'
         )
@@ -590,8 +552,6 @@ class TestNavigation(AppContextTestCase):
         answer_1 = Answer(
             value='Buildings',
             group_instance=0,
-            block_id='insurance-type',
-            group_id='property-details',
             answer_instance=0,
             answer_id='insurance-type-answer'
         )
@@ -619,8 +579,6 @@ class TestNavigation(AppContextTestCase):
         answer_1 = Answer(
             value='Contents',
             group_instance=0,
-            block_id='insurance-type',
-            group_id='property-details',
             answer_instance=0,
             answer_id='insurance-type-answer'
         )
@@ -649,8 +607,6 @@ class TestNavigation(AppContextTestCase):
         answer_1 = Answer(
             value='Contents',
             group_instance=0,
-            block_id='insurance-type',
-            group_id='property-details',
             answer_instance=0,
             answer_id='insurance-type-answer'
         )
@@ -665,8 +621,6 @@ class TestNavigation(AppContextTestCase):
         change_answer = Answer(
             value='Buildings',
             group_instance=0,
-            block_id='insurance-type',
-            group_id='property-details',
             answer_instance=0,
             answer_id='insurance-type-answer'
         )

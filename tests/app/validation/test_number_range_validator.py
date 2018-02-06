@@ -19,26 +19,20 @@ class TestNumberRangeValidator(unittest.TestCase):
         self.store = AnswerStore()
 
         answer1 = Answer(
-            block_id='3',
             answer_id='set-minimum',
             answer_instance=1,
-            group_id='5',
             group_instance=1,
             value=10,
         )
         answer2 = Answer(
-            block_id='3',
             answer_id='set-maximum',
             answer_instance=1,
-            group_id='5',
             group_instance=1,
             value=20,
         )
         answer3 = Answer(
-            block_id='3',
             answer_id='set-maximum-cat',
             answer_instance=1,
-            group_id='5',
             group_instance=1,
             value='cat',
         )

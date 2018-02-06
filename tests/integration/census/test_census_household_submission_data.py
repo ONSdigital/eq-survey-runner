@@ -18,176 +18,132 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             {
                 'answer_id': 'address-line-1',
                 'answer_instance': 0,
-                'block_id': 'what-is-your-address',
-                'group_id': 'what-is-your-address-group',
                 'group_instance': 0,
                 'value': '44 hill side'
             },
             {
                 'answer_id': 'address-line-2',
                 'answer_instance': 0,
-                'block_id': 'what-is-your-address',
-                'group_id': 'what-is-your-address-group',
                 'group_instance': 0,
                 'value': 'cimla'
             },
             {
                 'answer_id': 'county',
                 'answer_instance': 0,
-                'block_id': 'what-is-your-address',
-                'group_id': 'what-is-your-address-group',
                 'group_instance': 0,
                 'value': 'west glamorgan'
             },
             {
                 'answer_id': 'country',
                 'answer_instance': 0,
-                'block_id': 'what-is-your-address',
-                'group_id': 'what-is-your-address-group',
                 'group_instance': 0,
                 'value': 'wales'
             },
             {
                 'answer_id': 'postcode',
                 'answer_instance': 0,
-                'block_id': 'what-is-your-address',
-                'group_id': 'what-is-your-address-group',
                 'group_instance': 0,
                 'value': 'cf336gn'
             },
             {
                 'answer_id': 'address-line-3',
                 'answer_instance': 0,
-                'block_id': 'what-is-your-address',
-                'group_id': 'what-is-your-address-group',
                 'group_instance': 0,
                 'value': ''
             },
             {
                 'answer_id': 'town-city',
                 'answer_instance': 0,
-                'block_id': 'what-is-your-address',
-                'group_id': 'what-is-your-address-group',
                 'group_instance': 0,
                 'value': 'neath'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'permanent-or-family-home-answer',
-                'block_id': 'permanent-or-family-home',
-                'group_id': 'who-lives-here',
                 'answer_instance': 0,
                 'value': 'Yes'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'middle-names',
-                'block_id': 'household-composition',
-                'group_id': 'who-lives-here',
                 'answer_instance': 0,
                 'value': 'K'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'first-name',
-                'block_id': 'household-composition',
-                'group_id': 'who-lives-here',
                 'answer_instance': 0,
                 'value': 'Danny'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'last-name',
-                'block_id': 'household-composition',
-                'group_id': 'who-lives-here',
                 'answer_instance': 0,
                 'value': 'Boje'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'middle-names',
-                'block_id': 'household-composition',
-                'group_id': 'who-lives-here',
                 'answer_instance': 1,
                 'value': 'K'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'first-name',
-                'block_id': 'household-composition',
-                'group_id': 'who-lives-here',
                 'answer_instance': 1,
                 'value': 'Anjali'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'last-name',
-                'block_id': 'household-composition',
-                'group_id': 'who-lives-here',
                 'answer_instance': 1,
                 'value': 'Yo'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'everyone-at-address-confirmation-answer',
-                'block_id': 'everyone-at-address-confirmation',
-                'group_id': 'who-lives-here',
                 'answer_instance': 0,
                 'value': 'Yes'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'overnight-visitors-answer',
-                'block_id': 'overnight-visitors',
-                'group_id': 'who-lives-here',
                 'answer_instance': 0,
                 'value': 2
             },
             {
                 'group_instance': 0,
                 'answer_id': 'household-relationships-answer',
-                'block_id': 'household-relationships',
-                'group_id': 'who-lives-here-relationship',
                 'answer_instance': 0,
                 'value': 'Husband or wife'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'type-of-accommodation-answer',
-                'block_id': 'type-of-accommodation',
-                'group_id': 'household-and-accommodation',
                 'answer_instance': 0,
                 'value': 'Whole house or bungalow'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'type-of-house-answer',
-                'block_id': 'type-of-house',
-                'group_id': 'household-and-accommodation',
                 'answer_instance': 0,
                 'value': 'Detached'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'self-contained-accommodation-answer',
-                'block_id': 'self-contained-accommodation',
-                'group_id': 'household-and-accommodation',
                 'answer_instance': 0,
                 'value': 'No'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'number-of-bedrooms-answer',
-                'block_id': 'number-of-bedrooms',
-                'group_id': 'household-and-accommodation',
                 'answer_instance': 0,
                 'value': 2
             },
             {
                 'group_instance': 0,
                 'answer_id': 'central-heating-answer',
-                'block_id': 'central-heating',
-                'group_id': 'household-and-accommodation',
                 'answer_instance': 0,
                 'value': [
                     'Gas',
@@ -202,184 +158,138 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             {
                 'group_instance': 0,
                 'answer_id': 'own-or-rent-answer',
-                'block_id': 'own-or-rent',
-                'group_id': 'household-and-accommodation',
                 'answer_instance': 0,
                 'value': 'Owns outright'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'number-of-vehicles-answer',
-                'block_id': 'number-of-vehicles',
-                'group_id': 'household-and-accommodation',
                 'answer_instance': 0,
                 'value': 2
             },
             {
                 'group_instance': 0,
                 'answer_id': 'over-16-answer',
-                'block_id': 'over-16',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Yes'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'private-response-answer',
-                'block_id': 'private-response',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'No, I do not want to request a personal form'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'sex-answer',
-                'block_id': 'sex',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Male'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'date-of-birth-answer',
-                'block_id': 'date-of-birth',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': '1988-05-12'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'marital-status-answer',
-                'block_id': 'marital-status',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'In a registered same-sex civil partnership'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'another-address-answer',
-                'block_id': 'another-address',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Yes, an address within the UK'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'another-address-answer-other',
-                'block_id': 'another-address',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': ''
             },
             {
                 'group_instance': 0,
                 'answer_id': 'other-address-answer-building',
-                'block_id': 'other-address',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': '12'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'other-address-answer-street',
-                'block_id': 'other-address',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': ''
             },
             {
                 'group_instance': 0,
                 'answer_id': 'other-address-answer-city',
-                'block_id': 'other-address',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Newport'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'other-address-answer-county',
-                'block_id': 'other-address',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': ''
             },
             {
                 'group_instance': 0,
                 'answer_id': 'other-address-answer-postcode',
-                'block_id': 'other-address',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'NP10 8XG'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'address-type-answer',
-                'block_id': 'address-type',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Other'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'address-type-answer-other',
-                'block_id': 'address-type',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Friends Home'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'in-education-answer',
-                'block_id': 'in-education',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Yes'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'term-time-location-answer',
-                'block_id': 'term-time-location',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Yes'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'country-of-birth-england-answer-other',
-                'block_id': 'country-of-birth',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': ''
             },
             {
                 'group_instance': 0,
                 'answer_id': 'country-of-birth-england-answer',
-                'block_id': 'country-of-birth',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'England'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'country-of-birth-wales-answer-other',
-                'block_id': 'country-of-birth',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': ''
             },
             {
                 'group_instance': 0,
                 'answer_id': 'carer-answer',
-                'block_id': 'carer',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Yes, 1 -19 hours a week'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'national-identity-england-answer',
-                'block_id': 'national-identity',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': [
                     'English',
@@ -393,80 +303,60 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             {
                 'group_instance': 0,
                 'answer_id': 'national-identity-wales-answer',
-                'block_id': 'national-identity',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': []
             },
             {
                 'group_instance': 0,
                 'answer_id': 'national-identity-wales-answer-other',
-                'block_id': 'national-identity',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': ''
             },
             {
                 'group_instance': 0,
                 'answer_id': 'national-identity-england-answer-other',
-                'block_id': 'national-identity',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Ind'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'ethnic-group-england-answer',
-                'block_id': 'ethnic-group',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Other ethnic group'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'other-ethnic-group-answer',
-                'block_id': 'other-ethnic-group',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Other'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'other-ethnic-group-answer-other',
-                'block_id': 'other-ethnic-group',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Telugu'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'language-england-answer-other',
-                'block_id': 'language',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': ''
             },
             {
                 'group_instance': 0,
                 'answer_id': 'language-england-answer',
-                'block_id': 'language',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'English'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'language-welsh-answer-other',
-                'block_id': 'language',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': ''
             },
             {
                 'group_instance': 0,
                 'answer_id': 'religion-answer',
-                'block_id': 'religion',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': [
                     'No religion',
@@ -481,32 +371,24 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             {
                 'group_instance': 0,
                 'answer_id': 'religion-answer-other',
-                'block_id': 'religion',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Ind'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'past-usual-address-answer',
-                'block_id': 'past-usual-address',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'This address'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'past-usual-address-answer-other',
-                'block_id': 'past-usual-address',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': ''
             },
             {
                 'group_instance': 0,
                 'answer_id': 'passports-answer',
-                'block_id': 'passports',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': [
                     'United Kingdom'
@@ -515,24 +397,18 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             {
                 'group_instance': 0,
                 'answer_id': 'disability-answer',
-                'block_id': 'disability',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Yes, limited a lot'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'qualifications-welsh-answer',
-                'block_id': 'qualifications',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': []
             },
             {
                 'group_instance': 0,
                 'answer_id': 'qualifications-england-answer',
-                'block_id': 'qualifications',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': [
                     'Masters Degree',
@@ -542,8 +418,6 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             {
                 'group_instance': 0,
                 'answer_id': 'employment-type-answer',
-                'block_id': 'employment-type',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': [
                     'none of the above'
@@ -552,32 +426,24 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             {
                 'group_instance': 0,
                 'answer_id': 'jobseeker-answer',
-                'block_id': 'jobseeker',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Yes'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'job-availability-answer',
-                'block_id': 'job-availability',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Yes'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'job-pending-answer',
-                'block_id': 'job-pending',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Yes'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'occupation-answer',
-                'block_id': 'occupation',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': [
                     'a student',
@@ -587,264 +453,198 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             {
                 'group_instance': 0,
                 'answer_id': 'ever-worked-answer',
-                'block_id': 'ever-worked',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Yes'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'main-job-answer',
-                'block_id': 'main-job',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'an employee'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'hours-worked-answer',
-                'block_id': 'hours-worked',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': '31 - 48'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'work-travel-answer',
-                'block_id': 'work-travel',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Train'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'job-title-answer',
-                'block_id': 'job-title',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Software Engineer'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'job-description-answer',
-                'block_id': 'job-description',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Development'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'employers-business-answer',
-                'block_id': 'employers-business',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Civil Servant'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'main-job-type-answer',
-                'block_id': 'main-job-type',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Employed by an organisation or business'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'business-name-answer',
-                'block_id': 'business-name',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'ONS'
             },
             {
                 'group_instance': 1,
                 'answer_id': 'over-16-answer',
-                'block_id': 'over-16',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Yes'
             },
             {
                 'group_instance': 1,
                 'answer_id': 'private-response-answer',
-                'block_id': 'private-response',
-                'group_id': 'household-member',
                 'answer_instance': 0,
                 'value': 'Yes, I want to request a personal form'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'visitor-first-name',
-                'block_id': 'visitor-name',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': 'Diya'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'visitor-last-name',
-                'block_id': 'visitor-name',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': 'K'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'visitor-sex-answer',
-                'block_id': 'visitor-sex',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': 'Female'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'visitor-date-of-birth-answer',
-                'block_id': 'visitor-date-of-birth',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': '2016-11-04'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'visitor-uk-resident-answer-other',
-                'block_id': 'visitor-uk-resident',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': ''
             },
             {
                 'group_instance': 0,
                 'answer_id': 'visitor-uk-resident-answer',
-                'block_id': 'visitor-uk-resident',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': 'Yes, usually lives in the United Kingdom'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'visitor-address-answer-postcode',
-                'block_id': 'visitor-address',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': '530003'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'visitor-address-answer-street',
-                'block_id': 'visitor-address',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': ''
             },
             {
                 'group_instance': 0,
                 'answer_id': 'visitor-address-answer-building',
-                'block_id': 'visitor-address',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': '309'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'visitor-address-answer-city',
-                'block_id': 'visitor-address',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': 'Vizag'
             },
             {
                 'group_instance': 0,
                 'answer_id': 'visitor-address-answer-county',
-                'block_id': 'visitor-address',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': ''
             },
             {
                 'group_instance': 1,
                 'answer_id': 'visitor-first-name',
-                'block_id': 'visitor-name',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': 'Niki'
             },
             {
                 'group_instance': 1,
                 'answer_id': 'visitor-last-name',
-                'block_id': 'visitor-name',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': 'K'
             },
             {
                 'group_instance': 1,
                 'answer_id': 'visitor-sex-answer',
-                'block_id': 'visitor-sex',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': 'Male'
             },
             {
                 'group_instance': 1,
                 'answer_id': 'visitor-date-of-birth-answer',
-                'block_id': 'visitor-date-of-birth',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': '1985-10-17'
             },
             {
                 'group_instance': 1,
                 'answer_id': 'visitor-uk-resident-answer-other',
-                'block_id': 'visitor-uk-resident',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': ''
             },
             {
                 'group_instance': 1,
                 'answer_id': 'visitor-uk-resident-answer',
-                'block_id': 'visitor-uk-resident',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': 'Yes, usually lives in the United Kingdom'
             },
             {
                 'group_instance': 1,
                 'answer_id': 'visitor-address-answer-postcode',
-                'block_id': 'visitor-address',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': '12345'
             },
             {
                 'group_instance': 1,
                 'answer_id': 'visitor-address-answer-street',
-                'block_id': 'visitor-address',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': ''
             },
             {
                 'group_instance': 1,
                 'answer_id': 'visitor-address-answer-building',
-                'block_id': 'visitor-address',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': '1009'
             },
             {
                 'group_instance': 1,
                 'answer_id': 'visitor-address-answer-city',
-                'block_id': 'visitor-address',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': 'Detroit'
             },
             {
                 'group_instance': 1,
                 'answer_id': 'visitor-address-answer-county',
-                'block_id': 'visitor-address',
-                'group_id': 'visitors',
                 'answer_instance': 0,
                 'value': ''
             }
