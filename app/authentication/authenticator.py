@@ -10,7 +10,7 @@ from structlog import get_logger
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.user import User
 from app.data_model.session_data import SessionData
-from app.globals import get_questionnaire_store, get_metadata, get_session_store, create_session_store
+from app.globals import get_questionnaire_store, get_session_store, create_session_store
 from app.keys import KEY_PURPOSE_AUTHENTICATION
 from app.storage.metadata_parser import is_valid_metadata
 from app.settings import EQ_SESSION_ID, USER_IK
@@ -54,10 +54,6 @@ def load_user():
         user_ik = cookie_session.get(USER_IK)
         user = User(user_id, user_ik)
 
-        # This will only happen if an old session exists
-        if not session_store.session_data:
-            _add_session_data_to_session(session_store, user)
-
         if session_store.session_data.tx_id:
             logger.bind(tx_id=session_store.session_data.tx_id)
 
@@ -66,18 +62,6 @@ def load_user():
     else:
         logger.info('session does not exist')
         return None
-
-
-def _add_session_data_to_session(session_store, user):
-    """
-    Adds session data from metadata to the users session
-    :param session_store: the current session
-    :param user: the authenticated user
-    """
-    metadata = get_metadata(user)
-    session_data = _create_session_data_from_metadata(metadata)
-    session_store.session_data = session_data
-    session_store.save()
 
 
 def _create_session_data_from_metadata(metadata):

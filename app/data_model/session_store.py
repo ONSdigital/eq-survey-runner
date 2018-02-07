@@ -1,4 +1,3 @@
-import re
 from structlog import get_logger
 from app.data_model.models import EQSession, db
 from app.data_model.session_data import SessionData
@@ -76,9 +75,9 @@ class SessionStore:
             self.user_id = self._eq_session.user_id
 
             if self._eq_session.session_data:
-                session_data = self._eq_session.session_data
-                if self._is_session_data_encrypted(session_data):
-                    session_data = StorageEncryption(self.user_id, self.user_ik, self.pepper).decrypt_data(session_data)
+                encrypted_session_data = self._eq_session.session_data
+                session_data = StorageEncryption(self.user_id, self.user_ik, self.pepper)\
+                    .decrypt_data(encrypted_session_data)
 
                 self.session_data = json.loads(session_data, object_hook=lambda d: SessionData(**d))
 
@@ -89,9 +88,3 @@ class SessionStore:
             logger.debug('eq_session_id not found in database', eq_session_id=self.eq_session_id)
 
         return self._eq_session
-
-    @staticmethod
-    def _is_session_data_encrypted(session_data):
-        # pylint: disable=anomalous-backslash-in-string
-        encrypted_token_regex = '^[\w\-]+?\.([\w\-]+)?\.[\w\-]+\.[\w\-]+\.[\w\-]+?$'
-        return bool(re.match(encrypted_token_regex, session_data))

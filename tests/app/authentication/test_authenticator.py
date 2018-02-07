@@ -72,22 +72,3 @@ class TestAuthenticator(AppContextTestCase): # pylint: disable=too-many-public-m
                 # Then
                 self.assertEqual(user.user_id, 'user_id')
                 self.assertEqual(user.user_ik, 'user_ik')
-
-    def test_load_user_with_no_session_data_updates_session_from_metadata(self):
-        with self.test_request_context('/status'):
-            with patch('app.authentication.authenticator.get_session_store', return_value=self.session_store):
-                self.session_store.create('eq_session_id', 'user_id', self.session_data)
-                session[USER_IK] = 'user_ik'
-
-                self.session_store.session_data = None
-                self.assertEqual(self.session_store.session_data, None)
-
-                metadata = {
-                    'tx_id': 'tx_id',
-                    'eq_id': 'eq_id',
-                    'form_type': 'form_type',
-                    'period_str': 'period_str',
-                }
-                with patch('app.authentication.authenticator.get_metadata', return_value=metadata):
-                    load_user()
-                    self.assertEqual(self.session_store.session_data.tx_id, self.session_data.tx_id)
