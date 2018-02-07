@@ -535,9 +535,17 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
                 else:
                     formatted_answer_value = _format_answer_value(answer_value)
                     if formatted_answer_value:
-                        answer = Answer(answer_id=answer_id, value=formatted_answer_value, group_instance=location.group_instance)
+                        answer = Answer(answer_id=answer_id,
+                                        value=formatted_answer_value,
+                                        group_instance=location.group_instance,
+                                        group_id=location.group_id,
+                                        block_id=location.block_id)
             elif answer_value is not None:
-                answer = Answer(answer_id=answer_id, value=answer_value, group_instance=location.group_instance)
+                answer = Answer(answer_id=answer_id,
+                                value=answer_value,
+                                group_instance=location.group_instance,
+                                group_id=location.group_id,
+                                block_id=location.block_id)
             else:
                 _remove_answer_from_questionnaire_store(answer_id, questionnaire_store)
 

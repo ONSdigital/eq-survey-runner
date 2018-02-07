@@ -6,9 +6,12 @@ import simplejson as json
 
 
 class Answer(object):
-    def __init__(self, answer_id, value, group_instance=0, answer_instance=0):
+    def __init__(self, answer_id, value, group_instance=0, answer_instance=0, group_id=None, block_id=None):
         if answer_id is None or value is None:
             raise ValueError("Both 'answer_id' and 'value' must be set for Answer")
+
+        self.group_id = group_id
+        self.block_id = block_id
 
         self.answer_id = answer_id
         self.group_instance = group_instance
