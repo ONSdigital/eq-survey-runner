@@ -10,6 +10,10 @@
     "variables": {
         "period": "{{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}"
     },
+    "view_submitted_response": {
+        "enabled": true,
+        "duration": 900
+    },
     "groups": [{
         "blocks": [{
                 "type": "Introduction",

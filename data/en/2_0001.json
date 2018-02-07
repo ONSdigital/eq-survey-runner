@@ -1,6 +1,10 @@
 {
     "data_version": "0.0.1",
     "description": "Quarterly Business Survey",
+    "view_submitted_response": {
+        "enabled": true,
+        "duration": 900
+    },
     "groups": [{
         "blocks": [{
                 "type": "Introduction",
