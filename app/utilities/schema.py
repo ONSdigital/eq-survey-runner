@@ -20,6 +20,10 @@ def load_schema_from_metadata(metadata):
     return load_schema_from_params(metadata['eq_id'], metadata['form_type'], metadata.get('language_code'))
 
 
+def load_schema_from_session_data(session_data):
+    return load_schema_from_metadata(vars(session_data))
+
+
 @cache.memoize()
 def load_schema_from_params(eq_id, form_type, language_code=DEFAULT_LANGUAGE_CODE):
     return QuestionnaireSchema(_load_schema_file('{}_{}.json'.format(eq_id, form_type), language_code))
