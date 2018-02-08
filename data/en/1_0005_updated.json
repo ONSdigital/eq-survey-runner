@@ -1598,7 +1598,7 @@
                 },
                 {
                     "id": "four-weekly-pay-significant-changes-options",
-                    "title": "Calendar Monthly Pay",
+                    "title": "Four Weekly Pay",
                     "type": "Question",
                     "questions": [{
                         "answers": [{
