@@ -67,13 +67,17 @@ class TestDumpAnswers(IntegrationTestCase):
                     'value': '',
                     'answer_instance': 0,
                     'group_instance': 0,
-                    'answer_id': 'other-answer-mandatory'
+                    'answer_id': 'other-answer-mandatory',
+                    'block_id': 'radio-mandatory',
+                    'group_id': 'radio',
                 },
                 {
                     'value': 'Toast',
                     'answer_instance': 0,
                     'group_instance': 0,
-                    'answer_id': 'radio-mandatory-answer'
+                    'answer_id': 'radio-mandatory-answer',
+                    'block_id': 'radio-mandatory',
+                    'group_id': 'radio',
                 }
             ]
         }
@@ -190,7 +194,9 @@ class TestDumpSubmission(IntegrationTestCase):
                         'answer_id': 'radio-mandatory-answer',
                         'answer_instance': 0,
                         'group_instance': 0,
-                        'value': 'Coffee'
+                        'value': 'Coffee',
+                        'block_id': 'radio-mandatory',
+                        'group_id': 'radio'
                     },
                 ],
                 'metadata': {
