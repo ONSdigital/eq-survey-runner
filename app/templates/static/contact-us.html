@@ -1,7 +1,7 @@
 {% extends 'layouts/_twocol.html' %}
 {% import 'macros/helpers.html' as helpers %}
 
-{% set survey_title  = 'About ONS' %}
+{% set survey_title  = 'ONS Business Surveys' %}
 
 <header class="page__header">
     {% block header %}
@@ -15,72 +15,72 @@
 
 <div class="page">
     <div class="page__content">
-            <div class="grid grid--reverse">
-                <div class="grid__col col-4@m">
-                </div>
-                <div class="grid__col col-7@m pull-1@m">
-                    <main role="main" id="main" class="page__main">
-                        {% block content %}
-                    </br>
-                        <div class="'group" id="rsi">
+        <div class="grid grid--reverse">
+            <div class="grid__col col-4@m">
+            </div>
+            <div class="grid__col col-7@m pull-1@m">
+                <main role="main" id="main" class="page__main">
+                    {% block content %}
+                    <br>
+                    <div class="'group" id="rsi">
                         <div class="block" id>
-                        <section class="section id">
-                        <h1 class="section__title saturn">
-                            Contact us
-                        </h1>
-                        <div class="question">
-                            <h2 class="question__title neptune">
-                                Email
-                            </h2>
-                            <div class="question__description mars">
-                                <p>{{helpers.email_address()}}</p>
-                            </div>
-                            <h2 class="question__title neptune">
-                                Telephone
-                            </h2>
-                            <div class="question__description mars">
-                                <p>{{helpers.telephone_number()}}</p>
-                            </div>
-                            <div class="question__description mars">
-                                <p>Opening hours:</p>
-                                <p>Monday to Thursday 8:30am – 5:00pm</p>
-                                <p>Friday 8:30am - 4:30pm</p>
-                            </div>
-                            <h2 class="question__title neptune">
-                                Post
-                            </h2>
-                            <div class="question__description mars">
-                                <p>
-                                Office for National Statistics
-                                <br>
-                                Government Buildings
-                                <br>
-                                Cardiff Road
-                                <br>
-                                    Newport
-                                    <br>
-                                    South Wales
-                                <br>
-                                    NP10 8XG
-                                </p>
-                            </div>
+                            <section class="section id">
+                                <h1 class="section__title saturn">
+                                    Contact us
+                                </h1>
+                                <div class="question">
+                                    <h2 class="question__title neptune">
+                                        Telephone
+                                    </h2>
+                                    <div class="question__description mars">
+                                        <p>{{helpers.telephone_number()}}</p>
+                                    </div>
+                                    {% if session %}
+                                    <p>
+                                        Please quote the reference <b>{{session.ru_ref}}</b> when contacting ONS about this survey.
+                                    </p>
+                                    <p>
+                                        Your Survey ID is <b>{{survey_id}}</b>.
+                                    </p>
+                                    {% endif %}
+                                    <div class="question__description mars">
+                                        <h3 class="question__title venus">Opening hours:</h3>
+                                        <p>
+                                            Monday to Thursday 8:30am – 5:00pm<br>
+                                            Friday 8:30am - 4:30pm
+                                        </p>
+                                    </div>
+                                    <p>This office is closed during public holidays</p>
+                                    <h2 class="question__title neptune">
+                                        Email
+                                    </h2>
+                                    <div class="question__description mars">
+                                        <p>{{helpers.email_address(subject="{{ru_ref}}")}}</p>
+                                    </div>
+                                    <h2 class="question__title neptune">
+                                        Post
+                                    </h2>
+                                    <div class="question__description mars">
+                                        <p>
+                                            Office for National Statistics<br>
+                                            Government Buildings<br>
+                                            Cardiff Road<br>
+                                            Newport<br>
+                                            South Wales<br>
+                                            NP10 8XG
+                                        </p>
+                                    </div>
+                                </div>
+                            </section>
                         </div>
-                        </section>
-                        </div>
-                        </div>
-                    </main>
-                    {% endblock %}
-                </div>
+                    </div>
+                </main>
+                {% endblock %}
             </div>
         </div>
     </div>
-
+</div>
 
 {% block footer %}
 {% include 'partials/footer2.html' %}
 {% endblock %}
-
-
-
-
-
