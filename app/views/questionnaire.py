@@ -32,7 +32,7 @@ from app.templating.schema_context import build_schema_context
 from app.templating.summary_context import build_summary_rendering_context
 from app.templating.template_renderer import renderer, TemplateRenderer
 
-from app.utilities.schema import load_schema_from_metadata, load_schema_from_params
+from app.utilities.schema import load_schema_from_metadata, load_schema_from_session_data
 from app.views.errors import MultipleSurveyError
 from app.authentication.no_token_exception import NoTokenException
 
@@ -211,7 +211,7 @@ def get_thank_you(eq_id, form_type):  # pylint: disable=unused-argument
     session_data = get_session_store().session_data
 
     if session_data.submitted_time:
-        schema = load_schema_from_params(session_data.eq_id, session_data.form_type)
+        schema = load_schema_from_session_data(session_data)
         metadata_context = build_metadata_context_for_survey_completed(session_data)
 
         view_submission_url = None
@@ -242,7 +242,7 @@ def get_thank_you(eq_id, form_type):  # pylint: disable=unused-argument
 def get_view_submission(eq_id, form_type):  # pylint: disable=unused-argument
 
     session_data = get_session_store().session_data
-    g.schema = load_schema_from_params(session_data.eq_id, session_data.form_type)
+    g.schema = load_schema_from_session_data(session_data)
 
     if _is_submission_viewable(g.schema.json, session_data.submitted_time):
         submitted_data = current_app.eq['submitted_responses'].get_item(session_data.tx_id)

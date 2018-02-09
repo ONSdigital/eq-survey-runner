@@ -8,7 +8,7 @@ with open('data/en/1_0205.json') as json_data:
 
 
 class TestStatic(IntegrationTestCase):
-    @mock.patch('app.utilities.schema.load_schema_from_params')
+    @mock.patch('app.utilities.schema.load_schema_from_session_data')
     def test_contact(self, mock_contact):
         mock_contact.return_value = data
         self.launchSurvey('test', '0205')

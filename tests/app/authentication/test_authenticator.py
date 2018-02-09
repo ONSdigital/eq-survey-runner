@@ -17,6 +17,8 @@ class TestAuthenticator(AppContextTestCase): # pylint: disable=too-many-public-m
             eq_id='eq_id',
             form_type='form_type',
             period_str='period_str',
+            language_code=None,
+            survey_url=None,
             ru_name='ru_name',
             ru_ref='ru_ref',
         )

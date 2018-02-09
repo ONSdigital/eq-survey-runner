@@ -74,6 +74,8 @@ def _create_session_data_from_metadata(metadata):
         eq_id=metadata.get('eq_id'),
         form_type=metadata.get('form_type'),
         period_str=metadata.get('period_str'),
+        language_code=metadata.get('language_code'),
+        survey_url=metadata.get('survey_url'),
         ru_name=metadata.get('ru_name'),
         ru_ref=metadata.get('ru_ref')
     )
