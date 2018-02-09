@@ -17,6 +17,8 @@ if [ "$result" != "{}" ] && [ "$result" != "" ]; then
 echo "---Schema Failed Validation---"
 echo "Error: [$result]"
 exit=1
+else
+echo "ok: [$result]"
 fi
 done
 
