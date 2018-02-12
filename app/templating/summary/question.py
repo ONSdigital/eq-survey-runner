@@ -69,13 +69,14 @@ class Question:
         multiple_answers = []
         CheckboxSummaryAnswer = collections.namedtuple('CheckboxSummaryAnswer', 'label should_display_other')
         for option in answer_schema['options']:
-            if option['label'] in answer:
+            if option['value'] in answer:
                 if option['value'].lower() == 'other':
                     summary_option_display_value = option['label']
                     multiple_answers.append(CheckboxSummaryAnswer(label=summary_option_display_value,
                                                                   should_display_other=True))
                 else:
-                    multiple_answers.append(CheckboxSummaryAnswer(label=option['label'], should_display_other=False))
+                    multiple_answers.append(CheckboxSummaryAnswer(label=option['label'],
+                                                                  should_display_other=False))
         return multiple_answers
 
     def _build_date_range_answer(self, answer):

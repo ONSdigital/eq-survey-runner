@@ -166,7 +166,7 @@ class TestQuestion(TestCase):
         answer_store = AnswerStore([{
             'answer_id': 'answer_1',
             'block_id': '',
-            'value': ['Other option label', ''],
+            'value': ['other', ''],
             'answer_instance': 0,
         }])
         metadata = mock.MagicMock()
