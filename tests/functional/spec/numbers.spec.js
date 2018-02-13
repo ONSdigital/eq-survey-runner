@@ -12,7 +12,7 @@ describe('NumericRange', function() {
       .then(() => {
         return browser
           .setValue(SetMinMax.setMinimum(), '10')
-          .setValue(SetMinMax.setMaximum(), '20')
+          .setValue(SetMinMax.setMaximum(), '1020')
           .click(SetMinMax.submit())
           .setValue(TestMinMax.testRange(), '10')
           .setValue(TestMinMax.testMin(), '123')
@@ -28,14 +28,14 @@ describe('NumericRange', function() {
       .then(() => {
         return browser
           .setValue(SetMinMax.setMinimum(), '10')
-          .setValue(SetMinMax.setMaximum(), '20')
+          .setValue(SetMinMax.setMaximum(), '1020')
           .click(SetMinMax.submit())
           .setValue(TestMinMax.testRange(), '9')
           .setValue(TestMinMax.testRangeExclusive(), '10')
           .setValue(TestMinMax.testMin(), '0')
           .setValue(TestMinMax.testMax(), '12345')
           .setValue(TestMinMax.testMinExclusive(), '123')
-          .setValue(TestMinMax.testMaxExclusive(), '1234')
+          .setValue(TestMinMax.testMaxExclusive(), '12345')
           .setValue(TestMinMax.testPercent(), '101')
           .setValue(TestMinMax.testDecimal(), '5.4')
           .click(TestMinMax.submit())
@@ -55,7 +55,7 @@ describe('NumericRange', function() {
       .then(() => {
         return browser
           .setValue(SetMinMax.setMinimum(), '10')
-          .setValue(SetMinMax.setMaximum(), '20')
+          .setValue(SetMinMax.setMaximum(), '1020')
           .click(SetMinMax.submit())
           .setValue(TestMinMax.testRange(), '12.344')
           .setValue(TestMinMax.testDecimal(), '11.234')
