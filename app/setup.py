@@ -163,6 +163,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 def setup_database(application):
     application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+    application.config['SQLALCHEMY_POOL_RECYCLE'] = 60
+
     driver = application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER']
 
     if not application.config['SQLALCHEMY_DATABASE_URI']:
