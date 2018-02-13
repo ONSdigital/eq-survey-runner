@@ -12,7 +12,7 @@ describe('SaveSignOut', function() {
       .then(() => {
         return browser
           .setValue(SetMinMax.setMinimum(), '10')
-          .setValue(SetMinMax.setMaximum(), '20')
+          .setValue(SetMinMax.setMaximum(), '1020')
           .click(SetMinMax.submit())
           .click(TestMinMax.saveSignOut())
           .getUrl().should.eventually.contain('signed-out')
@@ -28,7 +28,7 @@ describe('SaveSignOut', function() {
           .getUrl().should.eventually.contain(TestMinMax.pageName)
           .setValue(TestMinMax.testRange(), '10')
           .setValue(TestMinMax.testMin(), '123')
-          .setValue(TestMinMax.testMax(), '456')
+          .setValue(TestMinMax.testMax(), '1000')
           .setValue(TestMinMax.testPercent(), '100')
           .click(TestMinMax.submit())
           .getUrl().should.eventually.contain(SummaryPage.pageName)
