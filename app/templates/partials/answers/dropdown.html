@@ -1,0 +1,12 @@
+{% set select = form[answer['id']] %}
+
+<div class="field field--select">
+    {% set label = {
+        "for": answer.id,
+        "text": answer.label,
+        "description": answer.description if answer.description
+    } %}
+
+    {% include 'partials/forms/label.html' %}
+    {% include 'partials/forms/select.html' %}
+</div>

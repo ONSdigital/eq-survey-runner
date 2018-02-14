@@ -4,6 +4,7 @@ error_messages = {
     'MANDATORY_NUMBER': 'Enter an answer to continue.',
     'MANDATORY_TEXTAREA': 'Enter an answer to continue.',
     'MANDATORY_RADIO': 'Select an answer to continue.',
+    'MANDATORY_DROPDOWN': 'Select an answer to continue.',
     'MANDATORY_CHECKBOX': 'Select all that apply to continue.',
     'MANDATORY_DATE': 'Enter a date to continue.',
     'NUMBER_TOO_SMALL': 'Enter an answer more than or equal to %(min)s.',
