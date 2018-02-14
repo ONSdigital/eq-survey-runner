@@ -29,6 +29,7 @@ from app.data_model.submitted_responses import SubmittedResponses
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.new_relic import setup_newrelic
 from app.secrets import SecretStore, validate_required_secrets
+from app.talisman import Talisman
 
 from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
 
@@ -36,13 +37,15 @@ import boto3
 from botocore.config import Config
 
 
-SECURE_HEADERS = {
+CACHE_HEADERS = {
     'Cache-Control': 'no-cache, no-store, must-revalidate',
     'Pragma': 'no-cache',
-    'Strict-Transport-Security': 'max-age=31536000; includeSubdomains',
-    'X-Frame-Options': 'DENY',
-    'X-Xss-Protection': '1; mode=block',
-    'X-Content-Type-Options': 'nosniff',
+}
+
+CSP_POLICY = {
+    'default-src': ["'self'", ],
+    'script-src': ["'self'", 'https://www.google-analytics.com', ],
+    'img-src': ["'self'", 'data:', 'https://www.google-analytics.com', ]
 }
 
 cache = Cache()
@@ -113,6 +116,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     setup_secure_cookies(application)
 
+    setup_secure_headers(application)
+
     setup_babel(application)
 
     application.wsgi_app = AWSReverseProxied(application.wsgi_app)
@@ -148,7 +153,7 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     @application.after_request
     def apply_caching(response):  # pylint: disable=unused-variable
-        for k, v in SECURE_HEADERS.items():
+        for k, v in CACHE_HEADERS.items():
             response.headers[k] = v
 
         return response
@@ -158,6 +163,18 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
         return dict(url_for=versioned_url_for)
 
     return application
+
+
+def setup_secure_headers(application):
+    Talisman(
+        application,
+        content_security_policy=CSP_POLICY,
+        content_security_policy_nonce_in=['script-src'],
+        session_cookie_secure=application.config['EQ_ENABLE_SECURE_SESSION_COOKIE'],
+        force_https=False,  # this is handled at the firewall
+        strict_transport_security=True,
+        strict_transport_security_max_age=31536000,
+        frame_options='DENY')
 
 
 def setup_database(application):
@@ -240,9 +257,6 @@ def configure_flask_logging(application):
 
 
 def start_dev_mode(application):
-    # In dev mode, so don't use secure_session_cookies
-    application.config['SESSION_COOKIE_SECURE'] = False
-
     if application.config['EQ_ENABLE_FLASK_DEBUG_TOOLBAR']:
         application.config['DEBUG_TB_PROFILER_ENABLED'] = True
         application.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
@@ -302,7 +316,6 @@ def setup_secure_cookies(application):
     application.secret_key = application.eq['secret_store'].get_secret_by_name('EQ_SECRET_KEY')
     application.permanent_session_lifetime = timedelta(seconds=session_timeout + grace_period)
     application.session_interface = SHA256SecureCookieSessionInterface()
-    application.config['SESSION_COOKIE_SECURE'] = True
 
 
 def setup_babel(application):

@@ -2,7 +2,7 @@ import unittest
 from uuid import UUID
 from mock import patch
 
-from flask import Flask
+from flask import Flask, request
 from flask_babel import Babel
 
 from app import settings
@@ -42,7 +42,9 @@ class TestCreateApp(unittest.TestCase):
         self.assertTrue(application.secret_key)
         self.assertTrue(application.permanent_session_lifetime)
         self.assertTrue(application.session_interface)
-        # All tests run in dev mode which sets SESSION_COOKIE_SECURE to false
+
+        # This is derived from EQ_ENABLE_SECURE_SESSION_COOKIE which is false
+        # when running tests
         self.assertFalse(application.config['SESSION_COOKIE_SECURE'])
 
     # localisation may not be used but is currently attached...
@@ -61,14 +63,28 @@ class TestCreateApp(unittest.TestCase):
             self.assertTrue(UUID(kwargs['request_id'], version=4))
 
     def test_enforces_secure_headers(self):
-        client = create_app(self._setting_overrides).test_client()
-        headers = client.get('/').headers
-        self.assertEqual('no-cache, no-store, must-revalidate', headers['Cache-Control'])
-        self.assertEqual('no-cache', headers['Pragma'])
-        self.assertEqual('max-age=31536000; includeSubdomains', headers['Strict-Transport-Security'])
-        self.assertEqual('DENY', headers['X-Frame-Options'])
-        self.assertEqual('1; mode=block', headers['X-Xss-Protection'])
-        self.assertEqual('nosniff', headers['X-Content-Type-Options'])
+        with create_app(self._setting_overrides).test_client() as client:
+            headers = client.get(
+                '/',
+                headers={'X-Forwarded-Proto': 'https'} # set protocal so that talisman sets HSTS headers
+            ).headers
+
+            self.assertEqual('no-cache, no-store, must-revalidate', headers['Cache-Control'])
+            self.assertEqual('no-cache', headers['Pragma'])
+            self.assertEqual('max-age=31536000; includeSubDomains', headers['Strict-Transport-Security'])
+            self.assertEqual('DENY', headers['X-Frame-Options'])
+            self.assertEqual('1; mode=block', headers['X-Xss-Protection'])
+            self.assertEqual('nosniff', headers['X-Content-Type-Options'])
+
+            csp_policy_parts = headers['Content-Security-Policy'].split('; ')
+            self.assertIn("default-src 'self'", csp_policy_parts)
+            self.assertIn(
+                "script-src 'self' https://www.google-analytics.com 'nonce-{}'".format(
+                    request.csp_nonce),
+                csp_policy_parts
+            )
+            self.assertIn(
+                "img-src 'self' data: https://www.google-analytics.com", csp_policy_parts)
 
     # Indirectly covered by higher level integration
     # tests, keeping to highlight that create_app is where

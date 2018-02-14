@@ -75,6 +75,7 @@ RESPONDENT_ACCOUNT_URL = os.getenv('RESPONDENT_ACCOUNT_URL', 'https://survey.ons
 EQ_DEV_MODE = parse_mode(os.getenv('EQ_DEV_MODE', 'False'))
 EQ_ENABLE_CACHE = parse_mode(os.getenv('EQ_ENABLE_CACHE', 'True'))
 EQ_ENABLE_FLASK_DEBUG_TOOLBAR = parse_mode(os.getenv('EQ_ENABLE_FLASK_DEBUG_TOOLBAR', 'False'))
+EQ_ENABLE_SECURE_SESSION_COOKIE = parse_mode(os.getenv('EQ_ENABLE_SECURE_SESSION_COOKIE', 'True'))
 
 EQ_JWT_LEEWAY_IN_SECONDS = 120
 DEFAULT_LOCALE = 'en_GB'
