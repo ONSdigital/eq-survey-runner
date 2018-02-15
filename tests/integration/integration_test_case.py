@@ -92,7 +92,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
         self._client = self._application.test_client()
 
-    def launchSurvey(self, eq_id='test', form_type_id='radio', **payload_kwargs):
+    def launchSurvey(self, eq_id='test', form_type_id='dates', **payload_kwargs):
         """
         Launch a survey as an authenticated user and follow re-directs
         :param eq_id: The id of the survey to launch e.g. 'census', 'test' etc.

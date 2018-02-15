@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, request, session, g
+from flask import Blueprint, redirect, request, g, session as cookie_session
 from flask_login import current_user, login_required, logout_user
 from sdc.crypto.exceptions import InvalidTokenException
 
@@ -10,6 +10,7 @@ from app.authentication.authenticator import store_session, decrypt_token
 from app.authentication.jti_claim_storage import JtiTokenUsed, use_jti_claim
 from app.globals import get_answer_store, get_completed_blocks
 from app.questionnaire.path_finder import PathFinder
+from app.settings import ACCOUNT_URL
 from app.storage.metadata_parser import parse_metadata
 from app.utilities.schema import load_schema_from_metadata
 from app.views.errors import render_template
@@ -39,8 +40,8 @@ def login():
     :return: a 302 redirect to the next location for the user
     """
     # logging in again clears any session state
-    if session:
-        session.clear()
+    if cookie_session:
+        cookie_session.clear()
 
     decrypted_token = decrypt_token(request.args.get('token'))
 
@@ -68,8 +69,11 @@ def login():
 
     store_session(metadata)
 
-    session['theme'] = g.schema.json['theme']
-    session['survey_title'] = g.schema.json['title']
+    cookie_session['theme'] = g.schema.json['theme']
+    cookie_session['survey_title'] = g.schema.json['title']
+
+    if 'account_service_url' in metadata and metadata.get('account_service_url'):
+        cookie_session[ACCOUNT_URL] = metadata.get('account_service_url')
 
     navigator = PathFinder(g.schema, get_answer_store(current_user), metadata)
     current_location = navigator.get_latest_location(get_completed_blocks(current_user))

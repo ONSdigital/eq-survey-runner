@@ -1,6 +1,19 @@
 class SessionData(object):
 
-    def __init__(self, tx_id, eq_id, form_type, period_str, language_code, survey_url, ru_name, ru_ref, submitted_time=None, **_):
+    def __init__(self,
+                 tx_id,
+                 eq_id,
+                 form_type,
+                 period_str,
+                 language_code,
+                 survey_url,
+                 ru_name,
+                 ru_ref,
+                 case_id=None,
+                 case_ref=None,
+                 account_service_url=None,
+                 submitted_time=None,
+                 **_):
         self.tx_id = tx_id
         self.eq_id = eq_id
         self.form_type = form_type
@@ -10,3 +23,6 @@ class SessionData(object):
         self.ru_name = ru_name
         self.ru_ref = ru_ref
         self.submitted_time = submitted_time
+        self.case_id = case_id
+        self.case_ref = case_ref
+        self.account_service_url = account_service_url

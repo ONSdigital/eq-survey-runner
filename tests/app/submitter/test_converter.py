@@ -10,7 +10,7 @@ from app.submitter.converter import convert_answers, DataVersionError, convert_a
 from tests.app.app_context_test_case import AppContextTestCase
 
 
-class TestConverter(AppContextTestCase):
+class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-methods
     def setUp(self):
         super().setUp()
         self.metadata = parse_metadata({
@@ -24,7 +24,9 @@ class TestConverter(AppContextTestCase):
             'ref_p_end_date': '2016-03-03',
             'ru_ref': '432423423423',
             'ru_name': 'Apple',
-            'return_by': '2016-07-07'
+            'return_by': '2016-07-07',
+            'case_id': '1234567890',
+            'case_ref': '1000000000000001'
         })
 
     def test_convert_answers_flushed_flag_default_is_false(self):
@@ -191,6 +193,30 @@ class TestConverter(AppContextTestCase):
 
             self.assertLess(datetime.now(timezone.utc) - dateutil.parser.parse(answer_object['submitted_at']),
                             timedelta(seconds=5))
+
+    def test_case_id_should_be_set_in_payload(self):
+        with self._app.test_request_context():
+
+            questionnaire = {
+                'survey_id': '021',
+                'data_version': '0.0.2'
+            }
+
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(), {})
+
+            self.assertEqual(answer_object['case_id'], self.metadata['case_id'])
+
+    def test_case_ref_should_be_set_in_payload(self):
+        with self._app.test_request_context():
+
+            questionnaire = {
+                'survey_id': '021',
+                'data_version': '0.0.2'
+            }
+
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(), {})
+
+            self.assertEqual(answer_object['case_ref'], self.metadata['case_ref'])
 
     def test_answer_with_zero(self):
         with self._app.test_request_context():
