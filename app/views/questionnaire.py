@@ -409,7 +409,7 @@ def is_view_submitted_response_enabled(schema):
 
 
 def _is_submission_viewable(schema, submitted_time):
-    if is_view_submitted_response_enabled(schema):
+    if is_view_submitted_response_enabled(schema) and submitted_time:
         submitted_time = datetime.strptime(submitted_time, '%Y-%m-%dT%H:%M:%S.%f')
         submission_valid_until = submitted_time + timedelta(seconds=schema['view_submitted_response']['duration'])
         return submission_valid_until > datetime.utcnow()

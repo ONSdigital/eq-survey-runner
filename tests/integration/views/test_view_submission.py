@@ -70,7 +70,6 @@ class TestViewSubmission(IntegrationTestCase):
         self.assertInPage('345')
         self.assertInPage('67.89')
 
-
     def test_try_view_submission_when_not_available(self):
         self.launchSurvey('test', 'currency')
 
@@ -104,3 +103,15 @@ class TestViewSubmission(IntegrationTestCase):
 
         # check we're redirected back to thank you page
         self.assertInUrl('thank-you')
+
+    def test_try_view_submission_early(self):
+        self.launchSurvey('test', 'view_submitted_response')
+
+        # check we're on first page
+        self.assertInPage('What is your favourite breakfast food')
+
+        # try to get the view-submission page
+        self.get('questionnaire/test/view_submitted_response/view-submission')
+
+        # check we're redirected back to first page
+        self.assertInPage('What is your favourite breakfast food')
