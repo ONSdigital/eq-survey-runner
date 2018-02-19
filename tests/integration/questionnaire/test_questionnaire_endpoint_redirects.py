@@ -34,7 +34,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self.post(url=mci_test_urls.MCI_0205_SUMMARY)
 
         # Then
-        self.assertInUrl(mci_test_urls.MCI_0205_INTRODUCTION)
+        self.assertInUrl(mci_test_urls.MCI_0205_BLOCK1)
 
     def test_given_not_complete_questionnaire_when_get_thank_you_then_data_not_deleted(self):
         # Given we start a survey

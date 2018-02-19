@@ -197,6 +197,26 @@ def get_answer_store_value(answer_index, answer_store, group_instance):
     return filtered[0]['value'] if filtered.count() == 1 else None
 
 
+def get_number_of_repeats(group, schema, routing_path, answer_store):
+    repeating_rule = schema.get_repeat_rule(group)
+
+    if repeating_rule:
+        answer_ids_on_path = get_answer_ids_on_routing_path(
+            schema, routing_path)
+        return evaluate_repeat(repeating_rule, answer_store, answer_ids_on_path)
+
+    return 1
+
+
+def get_answer_ids_on_routing_path(schema, path):
+    answer_ids_on_path = []
+    for location in path:
+        answer_ids_on_path.extend(
+            schema.get_answers_by_id_for_block(location.block_id))
+
+    return answer_ids_on_path
+
+
 def get_metadata_value(metadata, keys):
     if not _contains_in_dict(metadata, keys):
         return None

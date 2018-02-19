@@ -11,16 +11,18 @@ from sdc.crypto.encrypter import encrypt
 
 from structlog import get_logger
 
-from app.globals import get_session_store, is_dynamodb_enabled
+from app.globals import get_session_store, is_dynamodb_enabled, get_completeness
 from app.data_model.answer_store import Answer, AnswerStore
 from app.data_model import submitted_responses
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
 from app.helpers.form_helper import post_form_for_location
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required
 from app.helpers import template_helper
+
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
 from app.questionnaire.path_finder import PathFinder
+from app.questionnaire.rules import get_answer_ids_on_routing_path
 
 from app.questionnaire.rules import evaluate_skip_conditions
 from app.keys import KEY_PURPOSE_SUBMISSION
@@ -122,12 +124,12 @@ def get_block(routing_path, eq_id, form_type, collection_id, group_id, group_ins
     current_location = Location(group_id, group_instance, block_id)
 
     if not _is_valid_location(routing_path, current_location):
-        return _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type)
+        return _redirect_to_latest_location(collection_id, eq_id, form_type)
 
     block = _get_block_json(current_location)
 
-    if _is_skipping_to_the_end(routing_path, block, current_location):
-        return _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type)
+    if _is_skipping_to_the_end(block, current_location):
+        return _redirect_to_latest_location(collection_id, eq_id, form_type)
 
     return _render_page(routing_path, block, current_location)
 
@@ -139,7 +141,7 @@ def post_block(routing_path, eq_id, form_type, collection_id, group_id, group_in
     current_location = Location(group_id, group_instance, block_id)
 
     if not _is_valid_location(routing_path, current_location):
-        return _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type)
+        return _redirect_to_latest_location(collection_id, eq_id, form_type)
 
     block = _get_block_json(current_location)
     form = _generate_wtf_form(request.form, block, current_location)
@@ -233,9 +235,8 @@ def get_thank_you(eq_id, form_type):  # pylint: disable=unused-argument
 
     metadata = get_metadata(current_user)
     g.schema = load_schema_from_metadata(metadata)
-    routing_path = path_finder.get_full_routing_path()
     collection_id = metadata['collection_exercise_sid']
-    return _redirect_to_latest_location(routing_path, collection_id, metadata.get('eq_id'), metadata.get('form_type'))
+    return _redirect_to_latest_location(collection_id, metadata.get('eq_id'), metadata.get('form_type'))
 
 
 @post_submission_blueprint.route('view-submission', methods=['GET'])
@@ -286,9 +287,9 @@ def get_view_submission(eq_id, form_type):  # pylint: disable=unused-argument
     return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
 
 
-def _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type):
-    latest_location = path_finder.get_latest_location(get_completed_blocks(current_user),
-                                                      routing_path=routing_path)
+def _redirect_to_latest_location(collection_id, eq_id, form_type):
+    latest_location = get_completeness(current_user).get_latest_location()
+
     return _redirect_to_location(collection_id, eq_id, form_type, latest_location)
 
 
@@ -330,27 +331,31 @@ def _next_location_url(location):
 
 
 def _is_end_of_questionnaire(block, next_location):
-
-    return next_location is None and \
-        block['type'] in END_BLOCKS
-
-
-def _is_skipping_to_the_end(routing_path, block, current_location):
-    latest_location = path_finder.get_latest_location(
-        get_completed_blocks(current_user),
-        routing_path=routing_path,
+    return (
+        block['type'] in END_BLOCKS and
+        next_location is None
     )
 
-    return current_location != latest_location and \
+
+def _is_skipping_to_the_end(block, current_location):
+    latest_location = get_completeness(current_user).get_first_incomplete_location_in_survey()
+
+    return (
+        latest_location and
+        current_location != latest_location and
         block['type'] in END_BLOCKS
+    )
 
 
 def submit_answers(routing_path, eq_id, form_type):
-    is_completed, invalid_location = is_survey_completed(routing_path)
     metadata = get_metadata(current_user)
     answer_store = get_answer_store(current_user)
 
-    if is_completed:
+    invalid_location = get_completeness(current_user).get_first_incomplete_location_in_survey()
+
+    if invalid_location:
+        return redirect(invalid_location.url(metadata))
+    else:
         message = json.dumps(convert_answers(
             metadata,
             g.schema,
@@ -378,8 +383,6 @@ def submit_answers(routing_path, eq_id, form_type):
         get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
 
         return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
-    else:
-        return redirect(invalid_location.url(metadata))
 
 
 def _store_submitted_time_in_session(submitted_time):
@@ -426,19 +429,6 @@ def _is_submission_viewable(schema, submitted_time):
         return submission_valid_until > datetime.utcnow()
 
     return False
-
-
-def is_survey_completed(full_routing_path):
-    completed_blocks = get_completed_blocks(current_user)
-
-    for location in full_routing_path:
-        if location.block_id in ['thank-you', 'summary', 'confirmation']:
-            continue
-
-        if location not in completed_blocks:
-            return False, location
-
-    return True, None
 
 
 def _save_sign_out(routing_path, this_location, form):
@@ -685,7 +675,7 @@ def _get_block_json(current_location):
 
 def _get_schema_context(full_routing_path, group_instance, metadata, answer_store):
     aliases = g.schema.aliases
-    answer_ids_on_path = PathFinder.get_answer_ids_on_routing_path(g.schema, full_routing_path)
+    answer_ids_on_path = get_answer_ids_on_routing_path(g.schema, full_routing_path)
 
     return build_schema_context(metadata=metadata,
                                 aliases=aliases,
@@ -696,7 +686,8 @@ def _get_schema_context(full_routing_path, group_instance, metadata, answer_stor
 
 def _get_front_end_navigation(answer_store, current_location, metadata, routing_path=None):
     completed_blocks = get_completed_blocks(current_user)
-    navigation = Navigation(g.schema, answer_store, metadata, completed_blocks, routing_path)
+    navigation = Navigation(g.schema, answer_store, metadata, completed_blocks,
+                            routing_path, get_completeness(current_user))
     block_json = g.schema.get_block(current_location.block_id)
     if block_json['type'] != 'Introduction':
         return navigation.build_navigation(current_location.group_id, current_location.group_instance)

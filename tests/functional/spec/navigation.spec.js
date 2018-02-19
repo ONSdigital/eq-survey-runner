@@ -200,7 +200,6 @@ describe('Navigation', function() {
     .click(SecurityCodePage.submit())
     .click(SkipInterstitialPage.no())
     .click(SkipInterstitialPage.submit())
-    .then(helpers.isSectionComplete('Payment Details')).should.eventually.be.false
     .click(SecurityCodeInterstitialPage.submit())
     .then(helpers.isSectionComplete('Payment Details')).should.eventually.be.true;
   }

@@ -873,43 +873,6 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         pytest.xfail(reason='Known bug when skipping last group due to summary bundled into it')
         self.assertEqual(path_finder.get_routing_path('should-skip-group'), expected_route)
 
-    def test_given_no_completed_blocks_when_get_latest_location_then_go_to_first_block(self):
-        # Given no completed blocks
-        schema = load_schema_from_params('test', 'repeating_household')
-        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
-        completed_block = []
-
-        # When go latest location
-        latest_location = path_finder.get_latest_location(completed_block)
-
-        # Then go to the first block
-        self.assertEqual(Location('multiple-questions-group', 0, 'introduction'), latest_location)
-
-    def test_given_some_completed_blocks_when_get_latest_location_then_go_to_next_uncompleted_block(self):
-        # Given no completed blocks
-        schema = load_schema_from_params('test', 'repeating_household')
-        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
-        completed_block = [Location('multiple-questions-group', 0, 'introduction')]
-
-        # When go latest location
-        latest_location = path_finder.get_latest_location(completed_block)
-
-        # Then go to the first block
-        self.assertEqual(Location('multiple-questions-group', 0, 'household-composition'), latest_location)
-
-    def test_given_completed_all_the_blocks_when_get_latest_location_then_go_to_last_block(self):
-        # Given no completed blocks
-        schema = load_schema_from_params('test', 'textarea')
-        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
-        completed_block = [Location('textarea-group', 0, 'textarea-block'),
-                           Location('textarea-group', 0, 'textarea-summary')]
-
-        # When go latest location
-        latest_location = path_finder.get_latest_location(completed_block)
-
-        # Then go to the first block
-        self.assertEqual(Location('textarea-group', 0, 'textarea-summary'), latest_location)
-
     def test_build_path_with_group_routing(self):
         # Given i have answered the routing question
         schema = load_schema_from_params('test', 'routing_group')
