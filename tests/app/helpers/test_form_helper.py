@@ -426,35 +426,38 @@ class TestGetMappedAnswers(unittest.TestCase):
 
     def test_maps_and_filters_answers(self):
         questionnaire = {
-            'groups': [
-                {
-                    'id': 'group1',
-                    'blocks': [
-                        {
-                            'id': 'block1',
-                            'questions': [{
-                                'id': 'question1',
-                                'answers': [
-                                    {
-                                        'id': 'answer1',
-                                        'type': 'TextArea'
-                                    }
-                                ]
+            'sections': [{
+                'id': 'section1',
+                'groups': [
+                    {
+                        'id': 'group1',
+                        'blocks': [
+                            {
+                                'id': 'block1',
+                                'questions': [{
+                                    'id': 'question1',
+                                    'answers': [
+                                        {
+                                            'id': 'answer1',
+                                            'type': 'TextArea'
+                                        }
+                                    ]
+                                }]
+                            },
+                            {
+                                'id': 'block2',
+                                'questions': [{
+                                    'id': 'question2',
+                                    'answers': [
+                                        {
+                                            'id': 'answer2',
+                                            'type': 'TextArea'
+                                        }
+                                    ]
+                                }]
                             }]
-                        },
-                        {
-                            'id': 'block2',
-                            'questions': [{
-                                'id': 'question2',
-                                'answers': [
-                                    {
-                                        'id': 'answer2',
-                                        'type': 'TextArea'
-                                    }
-                                ]
-                            }]
-                        }]
-                }]
+                    }]
+            }]
         }
         schema = QuestionnaireSchema(questionnaire)
 
@@ -483,18 +486,21 @@ class TestGetMappedAnswers(unittest.TestCase):
     def test_returns_ordered_map(self):
 
         questionnaire = {
-            'groups': [{
-                'id': 'group1',
-                'blocks': [{
-                    'id': 'block1',
-                    'questions': [{
-                        'id': 'question1',
-                        'answers': [
-                            {
-                                'id': 'answer1',
-                                'type': 'TextArea'
-                            }
-                        ]
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'blocks': [{
+                        'id': 'block1',
+                        'questions': [{
+                            'id': 'question1',
+                            'answers': [
+                                {
+                                    'id': 'answer1',
+                                    'type': 'TextArea'
+                                }
+                            ]
+                        }]
                     }]
                 }]
             }]

@@ -7,171 +7,174 @@
     "description": "Test Description",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "groups": [{
-            "blocks": [{
-                    "type": "Question",
-                    "id": "set-min-max-block",
-                    "description": "",
-                    "questions": [{
-                        "answers": [{
-                                "id": "set-minimum",
-                                "alias": "min_value",
-                                "description": "",
-                                "label": "Minimum Value",
-                                "mandatory": true,
-                                "type": "Number",
-                                "decimal_places": 2,
-                                "min_value": {
-                                    "value": 0
-                                },
-                                "max_value": {
-                                    "value": 1000
-                                }
-                            },
-                            {
-                                "id": "set-maximum",
-                                "alias": "max_value",
-                                "description": "",
-                                "label": "Maximum Value",
-                                "mandatory": true,
-                                "type": "Number",
-                                "decimal_places": 2,
-                                "min_value": {
-                                    "value": 1001
-                                },
-                                "max_value": {
-                                    "value": 10000
-                                }
-                            }
-                        ],
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+                "blocks": [{
+                        "type": "Question",
+                        "id": "set-min-max-block",
                         "description": "",
-                        "id": "set-min-question",
-                        "title": "Please set the minimum and maximum used for future questions",
-                        "type": "General"
-                    }],
-                    "title": ""
-                },
-                {
-                    "type": "Question",
-                    "id": "test-min-max-block",
-                    "description": "",
-                    "questions": [{
-                        "answers": [{
-                                "id": "test-range",
-                                "description": "",
-                                "label": "Range Test ({{answers.min_value|format_number}} to {{answers.max_value|format_number}})",
-                                "mandatory": false,
-                                "type": "Number",
-                                "decimal_places": 2,
-                                "max_value": {
-                                    "answer_id": "set-maximum"
+                        "questions": [{
+                            "answers": [{
+                                    "id": "set-minimum",
+                                    "alias": "min_value",
+                                    "description": "",
+                                    "label": "Minimum Value",
+                                    "mandatory": true,
+                                    "type": "Number",
+                                    "decimal_places": 2,
+                                    "min_value": {
+                                        "value": 0
+                                    },
+                                    "max_value": {
+                                        "value": 1000
+                                    }
                                 },
-                                "min_value": {
-                                    "answer_id": "set-minimum"
+                                {
+                                    "id": "set-maximum",
+                                    "alias": "max_value",
+                                    "description": "",
+                                    "label": "Maximum Value",
+                                    "mandatory": true,
+                                    "type": "Number",
+                                    "decimal_places": 2,
+                                    "min_value": {
+                                        "value": 1001
+                                    },
+                                    "max_value": {
+                                        "value": 10000
+                                    }
                                 }
-                            },
-                            {
-                                "id": "test-range-exclusive",
-                                "description": "",
-                                "label": "Range Exclusive Test ({{answers.min_value|format_number}} to {{answers.max_value|format_number}} Exclusive)",
-                                "mandatory": false,
-                                "type": "Number",
-                                "decimal_places": 2,
-                                "max_value": {
-                                    "answer_id": "set-maximum",
-                                    "exclusive": true
-                                },
-                                "min_value": {
-                                    "answer_id": "set-minimum",
-                                    "exclusive": true
-                                }
-                            },
-                            {
-                                "id": "test-min",
-                                "description": "",
-                                "label": "Min Test (123 to 9,999,999,999)",
-                                "mandatory": false,
-                                "type": "Number",
-                                "min_value": {
-                                    "value": 123
-                                }
-                            },
-                            {
-                                "id": "test-max",
-                                "description": "",
-                                "label": "Max Test (0 to 1,234)",
-                                "mandatory": false,
-                                "type": "Number",
-                                "max_value": {
-                                    "value": 1234
-                                }
-                            },
-                            {
-                                "id": "test-min-exclusive",
-                                "description": "",
-                                "label": "Min Exclusive Test (124 to 9,999,999,999 - 123 Exclusive)",
-                                "mandatory": false,
-                                "type": "Number",
-                                "min_value": {
-                                    "value": 123,
-                                    "exclusive": true
-                                }
-                            },
-                            {
-                                "id": "test-max-exclusive",
-                                "description": "",
-                                "label": "Max Exclusive Test (0 to 1,233 - 1,234 Exclusive)",
-                                "mandatory": false,
-                                "type": "Number",
-                                "max_value": {
-                                    "value": 1234,
-                                    "exclusive": true
-                                }
-                            },
-                            {
-                                "id": "test-percent",
-                                "description": "",
-                                "label": "Percent Test (0 to 100)",
-                                "mandatory": false,
-                                "type": "Percentage",
-                                "max_value": {
-                                    "value": 100
-                                }
-                            },
-                            {
-                                "id": "test-decimal",
-                                "description": "",
-                                "label": "Decimal test to 2 decimal places between {{answers.min_value|format_number}} to {{answers.max_value|format_number}}",
-                                "mandatory": false,
-                                "type": "Currency",
-                                "currency": "GBP",
-                                "decimal_places": 2,
-                                "max_value": {
-                                    "answer_id": "set-maximum"
-                                },
-                                "min_value": {
-                                    "answer_id": "set-minimum"
-                                }
-                            }
-                        ],
+                            ],
+                            "description": "",
+                            "id": "set-min-question",
+                            "title": "Please set the minimum and maximum used for future questions",
+                            "type": "General"
+                        }],
+                        "title": ""
+                    },
+                    {
+                        "type": "Question",
+                        "id": "test-min-max-block",
                         "description": "",
-                        "id": "test-min-max-range-question",
-                        "title": "Please enter test values (none mandatory)",
-                        "type": "General"
-                    }],
-                    "title": ""
-                }
-            ],
-            "id": "test",
-            "title": ""
-        },
-        {
-            "blocks": [{
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "summary-group",
-            "title": "Summary"
-        }
-    ]
+                        "questions": [{
+                            "answers": [{
+                                    "id": "test-range",
+                                    "description": "",
+                                    "label": "Range Test ({{answers.min_value|format_number}} to {{answers.max_value|format_number}})",
+                                    "mandatory": false,
+                                    "type": "Number",
+                                    "decimal_places": 2,
+                                    "max_value": {
+                                        "answer_id": "set-maximum"
+                                    },
+                                    "min_value": {
+                                        "answer_id": "set-minimum"
+                                    }
+                                },
+                                {
+                                    "id": "test-range-exclusive",
+                                    "description": "",
+                                    "label": "Range Exclusive Test ({{answers.min_value|format_number}} to {{answers.max_value|format_number}} Exclusive)",
+                                    "mandatory": false,
+                                    "type": "Number",
+                                    "decimal_places": 2,
+                                    "max_value": {
+                                        "answer_id": "set-maximum",
+                                        "exclusive": true
+                                    },
+                                    "min_value": {
+                                        "answer_id": "set-minimum",
+                                        "exclusive": true
+                                    }
+                                },
+                                {
+                                    "id": "test-min",
+                                    "description": "",
+                                    "label": "Min Test (123 to 9,999,999,999)",
+                                    "mandatory": false,
+                                    "type": "Number",
+                                    "min_value": {
+                                        "value": 123
+                                    }
+                                },
+                                {
+                                    "id": "test-max",
+                                    "description": "",
+                                    "label": "Max Test (0 to 1,234)",
+                                    "mandatory": false,
+                                    "type": "Number",
+                                    "max_value": {
+                                        "value": 1234
+                                    }
+                                },
+                                {
+                                    "id": "test-min-exclusive",
+                                    "description": "",
+                                    "label": "Min Exclusive Test (124 to 9,999,999,999 - 123 Exclusive)",
+                                    "mandatory": false,
+                                    "type": "Number",
+                                    "min_value": {
+                                        "value": 123,
+                                        "exclusive": true
+                                    }
+                                },
+                                {
+                                    "id": "test-max-exclusive",
+                                    "description": "",
+                                    "label": "Max Exclusive Test (0 to 1,233 - 1,234 Exclusive)",
+                                    "mandatory": false,
+                                    "type": "Number",
+                                    "max_value": {
+                                        "value": 1234,
+                                        "exclusive": true
+                                    }
+                                },
+                                {
+                                    "id": "test-percent",
+                                    "description": "",
+                                    "label": "Percent Test (0 to 100)",
+                                    "mandatory": false,
+                                    "type": "Percentage",
+                                    "max_value": {
+                                        "value": 100
+                                    }
+                                },
+                                {
+                                    "id": "test-decimal",
+                                    "description": "",
+                                    "label": "Decimal test to 2 decimal places between {{answers.min_value|format_number}} to {{answers.max_value|format_number}}",
+                                    "mandatory": false,
+                                    "type": "Currency",
+                                    "currency": "GBP",
+                                    "decimal_places": 2,
+                                    "max_value": {
+                                        "answer_id": "set-maximum"
+                                    },
+                                    "min_value": {
+                                        "answer_id": "set-minimum"
+                                    }
+                                }
+                            ],
+                            "description": "",
+                            "id": "test-min-max-range-question",
+                            "title": "Please enter test values (none mandatory)",
+                            "type": "General"
+                        }],
+                        "title": ""
+                    }
+                ],
+                "id": "test",
+                "title": ""
+            },
+            {
+                "blocks": [{
+                    "type": "Summary",
+                    "id": "summary"
+                }],
+                "id": "summary-group",
+                "title": "Summary"
+            }
+        ]
+    }]
 }

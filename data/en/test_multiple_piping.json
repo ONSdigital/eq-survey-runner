@@ -7,137 +7,140 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to test multiple piping into a question and answer",
-    "groups": [{
-        "id": "what-is-your-address-group",
-        "title": "What is your address?",
-        "blocks": [{
-                "type": "Question",
-                "id": "what-is-your-address",
-                "questions": [{
-                    "id": "what-is-your-address-question",
-                    "title": "What is your address?",
-                    "type": "General",
-                    "answers": [{
-                            "id": "building",
-                            "label": "Building",
-                            "mandatory": false,
-                            "type": "TextField",
-                            "alias": "address_building"
-                        },
-                        {
-                            "id": "address-line-1",
-                            "label": "Address Line 1",
-                            "mandatory": true,
-                            "type": "TextField",
-                            "alias": "address_line_1",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY_TEXTFIELD": "Enter an address to continue"
-                                }
-                            }
-                        },
-                        {
-                            "id": "address-line-2",
-                            "label": "Address Line 2",
-                            "mandatory": false,
-                            "type": "TextField",
-                            "alias": "address_line_2"
-                        },
-                        {
-                            "id": "address-line-3",
-                            "label": "Address Line 3",
-                            "mandatory": false,
-                            "type": "TextField",
-                            "alias": "address_line_3"
-                        },
-                        {
-                            "id": "town-city",
-                            "label": "Town/City",
-                            "mandatory": false,
-                            "type": "TextField",
-                            "alias": "address_town_city"
-                        },
-                        {
-                            "id": "county",
-                            "label": "County",
-                            "mandatory": false,
-                            "type": "TextField",
-                            "alias": "address_county"
-                        },
-                        {
-                            "id": "postcode",
-                            "label": "Postcode",
-                            "mandatory": false,
-                            "type": "TextField",
-                            "alias": "address_postcode"
-                        },
-                        {
-                            "id": "country",
-                            "label": "Country",
-                            "mandatory": false,
-                            "type": "TextField",
-                            "alias": "address_country"
-                        }
-                    ]
-                }]
-            },
-            {
-                "type": "Question",
-                "id": "textfield",
-                "questions": [{
-                    "id": "textfield-question",
-                    "title": "Enter text below",
-                    "type": "General",
-                    "answers": [{
-                            "alias": "first_text",
-                            "id": "first-text",
-                            "label": "Enter Name 1",
-                            "mandatory": true,
-                            "type": "TextField",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY_TEXTFIELD": "Please enter text?"
-                                }
-                            }
-                        },
-                        {
-                            "alias": "second_text",
-                            "id": "second-text",
-                            "label": "Enter Name 2",
-                            "mandatory": false,
-                            "type": "TextField"
-                        }
-                    ]
-                }]
-            },
-            {
-                "type": "Question",
-                "id": "piping-question",
-                "questions": [{
-                    "id": "multiple-piping-question",
-                    "title": "Does <em>{{[answers.first_text, answers.second_text] | format_household_name}}</em> live at <em>{{answers.address_line_1}}</em>",
-                    "type": "General",
-                    "answers": [{
-                        "id": "multiple-piping-answer",
-                        "type": "Radio",
-                        "mandatory": false,
-                        "options": [{
-                                "label": "{{[answers.address_building, answers.address_line_1, answers.address_line_2, answers.address_line_3, answers.address_town_city, answers.address_county, answers.address_postcode, answers.address_country] | concatenated_list}}",
-                                "value": "at your address"
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "id": "what-is-your-address-group",
+            "title": "What is your address?",
+            "blocks": [{
+                    "type": "Question",
+                    "id": "what-is-your-address",
+                    "questions": [{
+                        "id": "what-is-your-address-question",
+                        "title": "What is your address?",
+                        "type": "General",
+                        "answers": [{
+                                "id": "building",
+                                "label": "Building",
+                                "mandatory": false,
+                                "type": "TextField",
+                                "alias": "address_building"
                             },
                             {
-                                "label": "at another address",
-                                "value": "at another address"
+                                "id": "address-line-1",
+                                "label": "Address Line 1",
+                                "mandatory": true,
+                                "type": "TextField",
+                                "alias": "address_line_1",
+                                "validation": {
+                                    "messages": {
+                                        "MANDATORY_TEXTFIELD": "Enter an address to continue"
+                                    }
+                                }
+                            },
+                            {
+                                "id": "address-line-2",
+                                "label": "Address Line 2",
+                                "mandatory": false,
+                                "type": "TextField",
+                                "alias": "address_line_2"
+                            },
+                            {
+                                "id": "address-line-3",
+                                "label": "Address Line 3",
+                                "mandatory": false,
+                                "type": "TextField",
+                                "alias": "address_line_3"
+                            },
+                            {
+                                "id": "town-city",
+                                "label": "Town/City",
+                                "mandatory": false,
+                                "type": "TextField",
+                                "alias": "address_town_city"
+                            },
+                            {
+                                "id": "county",
+                                "label": "County",
+                                "mandatory": false,
+                                "type": "TextField",
+                                "alias": "address_county"
+                            },
+                            {
+                                "id": "postcode",
+                                "label": "Postcode",
+                                "mandatory": false,
+                                "type": "TextField",
+                                "alias": "address_postcode"
+                            },
+                            {
+                                "id": "country",
+                                "label": "Country",
+                                "mandatory": false,
+                                "type": "TextField",
+                                "alias": "address_country"
                             }
                         ]
                     }]
-                }]
+                },
+                {
+                    "type": "Question",
+                    "id": "textfield",
+                    "questions": [{
+                        "id": "textfield-question",
+                        "title": "Enter text below",
+                        "type": "General",
+                        "answers": [{
+                                "alias": "first_text",
+                                "id": "first-text",
+                                "label": "Enter Name 1",
+                                "mandatory": true,
+                                "type": "TextField",
+                                "validation": {
+                                    "messages": {
+                                        "MANDATORY_TEXTFIELD": "Please enter text?"
+                                    }
+                                }
+                            },
+                            {
+                                "alias": "second_text",
+                                "id": "second-text",
+                                "label": "Enter Name 2",
+                                "mandatory": false,
+                                "type": "TextField"
+                            }
+                        ]
+                    }]
+                },
+                {
+                    "type": "Question",
+                    "id": "piping-question",
+                    "questions": [{
+                        "id": "multiple-piping-question",
+                        "title": "Does <em>{{[answers.first_text, answers.second_text] | format_household_name}}</em> live at <em>{{answers.address_line_1}}</em>",
+                        "type": "General",
+                        "answers": [{
+                            "id": "multiple-piping-answer",
+                            "type": "Radio",
+                            "mandatory": false,
+                            "options": [{
+                                    "label": "{{[answers.address_building, answers.address_line_1, answers.address_line_2, answers.address_line_3, answers.address_town_city, answers.address_county, answers.address_postcode, answers.address_country] | concatenated_list}}",
+                                    "value": "at your address"
+                                },
+                                {
+                                    "label": "at another address",
+                                    "value": "at another address"
+                                }
+                            ]
+                        }]
+                    }]
 
-            },
-            {
-                "type": "Summary",
-                "id": "summary"
-            }
-        ]
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ]
+        }]
     }]
 }

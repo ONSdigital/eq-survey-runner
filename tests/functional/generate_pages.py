@@ -191,17 +191,18 @@ def process_question(question, page_spec, num_questions, page_name):
 
 
 def process_summary(schema_data, page_spec):
-    for group in schema_data['groups']:
-        for block in group['blocks']:
-            for question in block.get('questions', []):
-                for answer in question['answers']:
-                    answer_name = generate_pascal_case_from_id(answer['id'])
-                    answer_context = {
-                        'answerName': camel_case(answer_name),
-                        'answerId': answer['id']
-                    }
-                    page_spec.write(SUMMARY_ANSWER_GETTER.substitute(answer_context))
-                    page_spec.write(SUMMARY_ANSWER_EDIT_GETTER.substitute(answer_context))
+    for section in schema_data['sections']:
+        for group in section['groups']:
+            for block in group['blocks']:
+                for question in block.get('questions', []):
+                    for answer in question['answers']:
+                        answer_name = generate_pascal_case_from_id(answer['id'])
+                        answer_context = {
+                            'answerName': camel_case(answer_name),
+                            'answerId': answer['id']
+                        }
+                        page_spec.write(SUMMARY_ANSWER_GETTER.substitute(answer_context))
+                        page_spec.write(SUMMARY_ANSWER_EDIT_GETTER.substitute(answer_context))
 
 
 def long_names_required(question, num_questions):
@@ -293,9 +294,10 @@ def process_schema(in_schema, out_dir, spec_file, require_path='..'):
     except IndexError:
         os.mkdir(out_dir)
 
-    for group in data['groups']:
-        for block in group['blocks']:
-            process_block(block, out_dir, data, spec_file, require_path)
+    for section in data['sections']:
+        for group in section['groups']:
+            for block in group['blocks']:
+                process_block(block, out_dir, data, spec_file, require_path)
 
 
 if __name__ == '__main__':

@@ -413,25 +413,28 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         questionnaire = {
             'survey_id': '021',
             'data_version': '0.0.1',
-            'groups': [
-                {
-                    'id': 'group-1',
-                    'blocks': [
-                        {
-                            'id': 'block-1',
-                            'questions': [{
-                                'id': 'question-2',
-                                'answers': [
-                                    {
-                                        'id': 'my_answer',
-                                        'type': 'TextField'
-                                    }
-                                ]
-                            }]
-                        }
-                    ]
-                }
-            ]
+            'sections': [{
+                'id': 'section1',
+                'groups': [
+                    {
+                        'id': 'group-1',
+                        'blocks': [
+                            {
+                                'id': 'block-1',
+                                'questions': [{
+                                    'id': 'question-2',
+                                    'answers': [
+                                        {
+                                            'id': 'my_answer',
+                                            'type': 'TextField'
+                                        }
+                                    ]
+                                }]
+                            }
+                        ]
+                    }
+                ]
+            }]
         }
 
         schema = QuestionnaireSchema(questionnaire)
@@ -456,25 +459,28 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         questionnaire = {
             'survey_id': '021',
             'data_version': '0.0.1',
-            'groups': [
-                {
-                    'id': 'group-1',
-                    'blocks': [
-                        {
-                            'id': 'block-1',
-                            'questions': [{
-                                'id': 'question-2',
-                                'answers': [
-                                    {
-                                        'id': 'my_answer',
-                                        'type': 'TextField'
-                                    }
-                                ]
-                            }]
-                        }
-                    ]
-                }
-            ]
+            'sections': [{
+                'id': 'section1',
+                'groups': [
+                    {
+                        'id': 'group-1',
+                        'blocks': [
+                            {
+                                'id': 'block-1',
+                                'questions': [{
+                                    'id': 'question-2',
+                                    'answers': [
+                                        {
+                                            'id': 'my_answer',
+                                            'type': 'TextField'
+                                        }
+                                    ]
+                                }]
+                            }
+                        ]
+                    }
+                ]
+            }]
         }
 
         schema = QuestionnaireSchema(questionnaire)
@@ -500,25 +506,28 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         questionnaire = {
             'survey_id': '021',
             'data_version': '0.0.1',
-            'groups': [
-                {
-                    'id': 'group-1',
-                    'blocks': [
-                        {
-                            'id': 'block-1',
-                            'questions': [{
-                                'id': 'question-2',
-                                'answers': [
-                                    {
-                                        'id': 'my_answer',
-                                        'type': 'TextField'
-                                    }
-                                ]
-                            }]
-                        }
-                    ]
-                }
-            ]
+            'sections': [{
+                'id': 'section1',
+                'groups': [
+                    {
+                        'id': 'group-1',
+                        'blocks': [
+                            {
+                                'id': 'block-1',
+                                'questions': [{
+                                    'id': 'question-2',
+                                    'answers': [
+                                        {
+                                            'id': 'my_answer',
+                                            'type': 'TextField'
+                                        }
+                                    ]
+                                }]
+                            }
+                        ]
+                    }
+                ]
+            }]
         }
 
         schema = QuestionnaireSchema(questionnaire)
@@ -544,25 +553,28 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         questionnaire = {
             'survey_id': '021',
             'data_version': '0.0.1',
-            'groups': [
-                {
-                    'id': 'group-1',
-                    'blocks': [
-                        {
-                            'id': 'block-1',
-                            'questions': [{
-                                'id': 'question-2',
-                                'answers': [
-                                    {
-                                        'id': 'my_answer',
-                                        'type': 'TextField'
-                                    }
-                                ]
-                            }]
-                        }
-                    ]
-                }
-            ]
+            'sections': [{
+                'id': 'section1',
+                'groups': [
+                    {
+                        'id': 'group-1',
+                        'blocks': [
+                            {
+                                'id': 'block-1',
+                                'questions': [{
+                                    'id': 'question-2',
+                                    'answers': [
+                                        {
+                                            'id': 'my_answer',
+                                            'type': 'TextField'
+                                        }
+                                    ]
+                                }]
+                            }
+                        ]
+                    }
+                ]
+            }]
         }
 
         schema = QuestionnaireSchema(questionnaire)

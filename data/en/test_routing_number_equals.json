@@ -7,63 +7,66 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A test survey for routing based on an number equals",
-    "groups": [{
-        "blocks": [{
-                "type": "Question",
-                "id": "number-question",
-                "description": "",
-                "questions": [{
-                    "answers": [{
-                        "id": "answer",
-                        "mandatory": true,
-                        "alias": "answer",
-                        "type": "Number"
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "blocks": [{
+                    "type": "Question",
+                    "id": "number-question",
+                    "description": "",
+                    "questions": [{
+                        "answers": [{
+                            "id": "answer",
+                            "mandatory": true,
+                            "alias": "answer",
+                            "type": "Number"
+                        }],
+                        "id": "question",
+                        "title": "Enter the number 123",
+                        "type": "General"
                     }],
-                    "id": "question",
-                    "title": "Enter the number 123",
-                    "type": "General"
-                }],
-                "title": "Number Routing Equals",
-                "routing_rules": [{
-                        "goto": {
-                            "block": "correct-answer",
-                            "when": [{
-                                "id": "answer",
-                                "condition": "equals",
-                                "value": 123
-                            }]
+                    "title": "Number Routing Equals",
+                    "routing_rules": [{
+                            "goto": {
+                                "block": "correct-answer",
+                                "when": [{
+                                    "id": "answer",
+                                    "condition": "equals",
+                                    "value": 123
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "incorrect-answer"
+                            }
                         }
-                    },
-                    {
+                    ]
+                },
+                {
+                    "type": "Interstitial",
+                    "id": "incorrect-answer",
+                    "title": "You did not enter 123",
+                    "description": "You were asked to enter <em>123</em> but you actually entered <em>{{answers.answer}}</em>.",
+                    "routing_rules": [{
                         "goto": {
-                            "block": "incorrect-answer"
+                            "block": "summary"
                         }
-                    }
-                ]
-            },
-            {
-                "type": "Interstitial",
-                "id": "incorrect-answer",
-                "title": "You did not enter 123",
-                "description": "You were asked to enter <em>123</em> but you actually entered <em>{{answers.answer}}</em>.",
-                "routing_rules": [{
-                    "goto": {
-                        "block": "summary"
-                    }
-                }]
-            },
-            {
-                "type": "Interstitial",
-                "id": "correct-answer",
-                "title": "You entered 123",
-                "description": "You were asked to enter <em>123</em> and you entered <em>{{answers.answer}}</em>."
-            },
-            {
-                "type": "Summary",
-                "id": "summary"
-            }
-        ],
-        "id": "group",
-        "title": ""
+                    }]
+                },
+                {
+                    "type": "Interstitial",
+                    "id": "correct-answer",
+                    "title": "You entered 123",
+                    "description": "You were asked to enter <em>123</em> and you entered <em>{{answers.answer}}</em>."
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ],
+            "id": "group",
+            "title": ""
+        }]
     }]
 }

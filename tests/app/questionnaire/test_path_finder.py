@@ -358,7 +358,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         schema = load_schema_from_params('test', 'repeating_household')
 
         # Default is to count answers, so switch to using value
-        schema.json['groups'][-2]['routing_rules'][0]['repeat']['type'] = 'answer_value'
+        schema.json['sections'][-2]['groups'][0]['routing_rules'][0]['repeat']['type'] = 'answer_value'
 
         expected_path = [
             Location('multiple-questions-group', 0, 'introduction'),
@@ -386,7 +386,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         schema = load_schema_from_params('test', 'repeating_household')
 
         # Default is to count answers, so switch to using value
-        schema.json['groups'][-2]['routing_rules'][0]['repeat']['type'] = 'answer_value'
+        schema.json['sections'][-2]['groups'][0]['routing_rules'][0]['repeat']['type'] = 'answer_value'
 
         expected_path = [
             Location('multiple-questions-group', 0, 'introduction'),
@@ -401,9 +401,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         )
         answers = AnswerStore()
         answers.add(answer)
-
         path_finder = PathFinder(schema, answer_store=answers, metadata={})
-
         self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
     def test_repeating_groups_no_of_answers(self):
@@ -456,7 +454,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         schema = load_schema_from_params('test', 'repeating_household')
 
         # Default is to count answers, so switch to using value
-        schema.json['groups'][-2]['routing_rules'][0]['repeat']['type'] = 'answer_count_minus_one'
+        schema.json['sections'][-2]['groups'][0]['routing_rules'][0]['repeat']['type'] = 'answer_count_minus_one'
 
         expected_path = [
             Location('multiple-questions-group', 0, 'introduction'),

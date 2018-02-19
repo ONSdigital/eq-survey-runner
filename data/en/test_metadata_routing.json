@@ -7,77 +7,80 @@
     "description": "Census England Household Schema",
     "theme": "census",
     "legal_basis": "Voluntary",
-    "groups": [{
-        "id": "group1",
-        "title": "Group 1",
-        "blocks": [{
-                "type": "Question",
-                "id": "block1",
-                "title": "Question 1",
-                "questions": [{
-                    "id": "block1-question",
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "id": "group1",
+            "title": "Group 1",
+            "blocks": [{
+                    "type": "Question",
+                    "id": "block1",
                     "title": "Question 1",
-                    "type": "General",
-                    "answers": [{
-                        "id": "block1-answer",
-                        "mandatory": false,
-                        "q_code": "20",
-                        "type": "TextField"
-                    }]
-                }],
-                "routing_rules": [{
-                        "goto": {
-                            "block": "block3",
-                            "when": [{
-                                "meta": "variant_flags.flag_1",
-                                "condition": "equals",
-                                "value": true
-                            }]
+                    "questions": [{
+                        "id": "block1-question",
+                        "title": "Question 1",
+                        "type": "General",
+                        "answers": [{
+                            "id": "block1-answer",
+                            "mandatory": false,
+                            "q_code": "20",
+                            "type": "TextField"
+                        }]
+                    }],
+                    "routing_rules": [{
+                            "goto": {
+                                "block": "block3",
+                                "when": [{
+                                    "meta": "variant_flags.flag_1",
+                                    "condition": "equals",
+                                    "value": true
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "block2"
+                            }
                         }
-                    },
-                    {
-                        "goto": {
-                            "block": "block2"
-                        }
-                    }
-                ]
-            },
-            {
-                "type": "Question",
-                "id": "block2",
-                "title": "Question 2",
-                "questions": [{
-                    "id": "block2-question",
+                    ]
+                },
+                {
+                    "type": "Question",
+                    "id": "block2",
                     "title": "Question 2",
-                    "type": "General",
-                    "answers": [{
-                        "id": "block2-answer",
-                        "mandatory": false,
-                        "q_code": "20",
-                        "type": "TextField"
+                    "questions": [{
+                        "id": "block2-question",
+                        "title": "Question 2",
+                        "type": "General",
+                        "answers": [{
+                            "id": "block2-answer",
+                            "mandatory": false,
+                            "q_code": "20",
+                            "type": "TextField"
+                        }]
                     }]
-                }]
-            },
-            {
-                "type": "Question",
-                "id": "block3",
-                "title": "Question 3",
-                "questions": [{
-                    "id": "block3-question",
+                },
+                {
+                    "type": "Question",
+                    "id": "block3",
                     "title": "Question 3",
-                    "type": "General",
-                    "answers": [{
-                        "id": "block3-answer",
-                        "mandatory": false,
-                        "q_code": "20",
-                        "type": "TextField"
+                    "questions": [{
+                        "id": "block3-question",
+                        "title": "Question 3",
+                        "type": "General",
+                        "answers": [{
+                            "id": "block3-answer",
+                            "mandatory": false,
+                            "q_code": "20",
+                            "type": "TextField"
+                        }]
                     }]
-                }]
-            },
-            {
-                "type": "Summary",
-                "id": "summary"
-            }
-        ]
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ]
+        }]
     }]
 }

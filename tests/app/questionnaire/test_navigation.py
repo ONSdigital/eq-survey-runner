@@ -662,7 +662,7 @@ class TestNavigation(AppContextTestCase):
     def test_build_navigation_returns_navigation_when_schema_navigation_is_true(self):
         # Given
         schema = load_schema_from_params('test', 'navigation')
-        schema.json['navigation'] = {'visible': True, 'sections': [{'title': 'Nav', 'group_order': ['property-details']}]}
+        schema.json['navigation'] = {'visible': True}
         completed_blocks = []
         metadata = {
             'eq_id': '1',
@@ -927,7 +927,6 @@ class TestNavigation(AppContextTestCase):
             'completed': False,
             'link_url': Location('confirmation-group', 0, 'confirmation').url(metadata)
         }
-
         navigation_links = navigation.build_navigation('property-details', 0)
         self.assertIn(confirmation_link, navigation_links)
         self.assertEqual(len(navigation_links), 5)
@@ -973,15 +972,9 @@ class TestNavigation(AppContextTestCase):
         schema = load_schema_from_params('test', 'navigation')
 
         # Payment details group not displayed in navigation
-        schema.json['navigation'] = {'sections': [{'title': 'Property Details', 'group_order': ['property-details',
-                                                                                                'property-interstitial-group',
-                                                                                                'house-details',
-                                                                                                'multiple-questions-group',
-                                                                                                'repeating-group',
-                                                                                                'extra-cover',
-                                                                                                'extra-cover-items-group',
-                                                                                                'skip-payment-group',
-                                                                                                'payment-details']}]}
+        payment_details_section = schema.json['sections'][7]
+        payment_details_group = payment_details_section['groups'][1]
+        payment_details_group['hide_in_navigation'] = True
 
         metadata = {
             'eq_id': '1',
@@ -1033,7 +1026,7 @@ class TestNavigation(AppContextTestCase):
 
         navigation_links = navigation.build_navigation('property-details', 0)
         self.assertNotIn(confirmation_link, navigation_links)
-        self.assertEqual(len(navigation_links), 1)
+        self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_submit_answers_link_not_visible_when_no_completed_blocks(self):
         schema = load_schema_from_params('test', 'navigation')

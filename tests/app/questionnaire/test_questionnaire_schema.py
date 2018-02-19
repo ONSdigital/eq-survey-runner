@@ -5,24 +5,19 @@ from tests.app.app_context_test_case import AppContextTestCase
 
 # pylint: disable=too-many-public-methods
 class TestQuestionnaireSchema(AppContextTestCase):
+    def test_get_sections(self):
+        schema = load_schema_from_params('test', 'repeating_household')
+        self.assertEqual(len(schema.sections), 3)
+
+    def test_get_section(self):
+        schema = load_schema_from_params('test', 'repeating_household')
+        section = schema.get_section('group-1-section')
+
+        self.assertEqual(section['title'], 'Group 1')
 
     def test_get_blocks(self):
         schema = load_schema_from_params('test', 'repeating_household')
-        blocks = [b for b in schema.get_blocks()]
-
-        self.assertEqual(len(blocks), 5)
-
-    def test_get_groups(self):
-        schema = load_schema_from_params('test', 'repeating_household')
-        groups = [group for group in schema.get_groups()]
-
-        self.assertEqual(len(groups), 3)
-
-    def test_get_group(self):
-        schema = load_schema_from_params('test', 'repeating_household')
-        group = schema.get_group('repeating-group')
-
-        self.assertEqual(group['title'], 'Group 2')
+        self.assertEqual(len(schema.blocks), 5)
 
     def test_get_block(self):
         schema = load_schema_from_params('test', 'repeating_household')
@@ -30,9 +25,39 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
         self.assertEqual(block['title'], 'Household')
 
+    def test_get_groups(self):
+        schema = load_schema_from_params('test', 'repeating_household')
+        self.assertEqual(len(schema.groups), 3)
+
+    def test_get_group(self):
+        schema = load_schema_from_params('test', 'repeating_household')
+        group = schema.get_group('repeating-group')
+
+        self.assertEqual(group['title'], 'Group 2')
+
+    def test_get_questions(self):
+        schema = load_schema_from_params('test', 'repeating_household')
+        self.assertEqual(len(schema.questions), 3)
+
+    def test_get_question(self):
+        schema = load_schema_from_params('test', 'repeating_household')
+        question = schema.get_question('household-composition-question')
+
+        self.assertEqual(question['title'], 'Who usually lives here?')
+
+    def test_get_answers(self):
+        schema = load_schema_from_params('test', 'repeating_household')
+        self.assertEqual(len(schema.answers), 5)
+
+    def test_get_answer(self):
+        schema = load_schema_from_params('test', 'repeating_household')
+        answer = schema.get_answer('first-name')
+
+        self.assertEqual(answer['label'], 'First Name')
+
     def test_get_repeating_rule(self):
         schema = load_schema_from_params('test', 'repeating_household')
-        groups = [group for group in schema.get_groups()]
+        groups = [group for group in schema.groups]
         rule = schema.get_repeat_rule(groups[1])
 
         self.assertEqual(
@@ -69,21 +94,27 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_get_duplicate_aliases(self):
         survey_json = {
-            'groups': [{
-                'blocks': [{
-                    'questions': [{
-                        'answers': [
-                            {
-                                'id': '1',
-                                'alias': 'alias_name',
-                                'type': 'Checkbox'
-                            },
-                            {
-                                'id': '2',
-                                'alias': 'alias_name',
-                                'type': 'Checkbox'
-                            }
-                        ]
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'blocks': [{
+                        'id': 'block1',
+                        'questions': [{
+                            'id': 'question1',
+                            'answers': [
+                                {
+                                    'id': '1',
+                                    'alias': 'alias_name',
+                                    'type': 'Checkbox'
+                                },
+                                {
+                                    'id': '2',
+                                    'alias': 'alias_name',
+                                    'type': 'Checkbox'
+                                }
+                            ]
+                        }]
                     }]
                 }]
             }]
@@ -96,21 +127,25 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_get_summary_and_confirmation_blocks_returns_only_summary(self):
         survey_json = {
-            'groups': [{
-                'blocks': [
-                    {
-                        'id': 'questionnaire-block',
-                        'type': 'Question'
-                    },
-                    {
-                        'id': 'summary-block',
-                        'type': 'Summary'
-                    },
-                    {
-                        'id': 'confirmation-block',
-                        'type': 'Confirmation'
-                    }
-                ]
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'blocks': [
+                        {
+                            'id': 'questionnaire-block',
+                            'type': 'Question'
+                        },
+                        {
+                            'id': 'summary-block',
+                            'type': 'Summary'
+                        },
+                        {
+                            'id': 'confirmation-block',
+                            'type': 'Confirmation'
+                        }
+                    ]
+                }]
             }]
         }
 
@@ -124,18 +159,21 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_group_has_questions_returns_true_when_group_has_questionnaire_blocks(self):
         survey_json = {
-            'groups': [{
-                'id': 'question-group',
-                'blocks': [
-                    {
-                        'id': 'introduction',
-                        'type': 'Introduction'
-                    },
-                    {
-                        'id': 'question',
-                        'type': 'Question'
-                    }
-                ]
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'question-group',
+                    'blocks': [
+                        {
+                            'id': 'introduction',
+                            'type': 'Introduction'
+                        },
+                        {
+                            'id': 'question',
+                            'type': 'Question'
+                        }
+                    ]
+                }]
             }]
         }
 
@@ -147,14 +185,17 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_group_has_questions_returns_false_when_group_doesnt_have_questionnaire_blocks(self):
         survey_json = {
-            'groups': [{
-                'id': 'non-question-group',
-                'blocks': [
-                    {
-                        'id': 'summary-block',
-                        'type': 'Summary'
-                    }
-                ]
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'non-question-group',
+                    'blocks': [
+                        {
+                            'id': 'summary-block',
+                            'type': 'Summary'
+                        }
+                    ]
+                }]
             }]
         }
 
