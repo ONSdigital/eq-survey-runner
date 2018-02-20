@@ -56,6 +56,11 @@ def convert_answers(metadata, schema, answer_store, routing_path, flushed=False)
         'collection': _build_collection(metadata),
         'metadata': _build_metadata(metadata),
     }
+    if 'case_id' in metadata and metadata['case_id']:
+        payload['case_id'] = metadata['case_id']
+    if 'case_ref' in metadata and metadata['case_ref']:
+        payload['case_ref'] = metadata['case_ref']
+
     if schema.json['data_version'] == '0.0.2':
         payload['data'] = convert_answers_to_census_data(answer_store, schema, routing_path)
     elif schema.json['data_version'] == '0.0.1':

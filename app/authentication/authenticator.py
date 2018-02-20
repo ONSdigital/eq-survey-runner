@@ -15,7 +15,6 @@ from app.keys import KEY_PURPOSE_AUTHENTICATION
 from app.storage.metadata_parser import is_valid_metadata
 from app.settings import EQ_SESSION_ID, USER_IK
 
-
 logger = get_logger()
 
 login_manager = LoginManager()
@@ -77,7 +76,10 @@ def _create_session_data_from_metadata(metadata):
         language_code=metadata.get('language_code'),
         survey_url=metadata.get('survey_url'),
         ru_name=metadata.get('ru_name'),
-        ru_ref=metadata.get('ru_ref')
+        ru_ref=metadata.get('ru_ref'),
+        case_id=metadata.get('case_id'),
+        case_ref=metadata.get('case_ref'),
+        account_service_url=metadata.get('account_service_url')
     )
     return session_data
 

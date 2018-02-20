@@ -23,7 +23,10 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_ref': '2016-04-04',
             'ru_name': 'Apple',
             'return_by': '2016-07-07',
-            'tx_id': '4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f'
+            'tx_id': '4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f',
+            'case_id': '1234567890',
+            'case_ref': '1000000000000001',
+            'account_service_url': 'https://ras.ons.gov.uk'
         }
         with self.application.test_request_context():
             self.metadata = parse_metadata(self.jwt)
@@ -63,6 +66,18 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
     def test_ru_ref(self):
         with self.application.test_request_context():
             self.assertEqual(self.jwt.get('ref_p_end_date'), self.metadata['ref_p_end_date'])
+
+    def test_case_id(self):
+        with self.application.test_request_context():
+            self.assertEqual(self.jwt.get('case_id'), self.metadata['case_id'])
+
+    def test_case_ref(self):
+        with self.application.test_request_context():
+            self.assertEqual(self.jwt.get('case_ref'), self.metadata['case_ref'])
+
+    def test_account_service_url(self):
+        with self.application.test_request_context():
+            self.assertEqual(self.jwt.get('account_service_url'), self.metadata['account_service_url'])
 
     def test_is_valid(self):
         with self.application.test_request_context():

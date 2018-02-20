@@ -61,6 +61,9 @@ metadata_fields = {
     'tx_id': MetadataField(mandatory=False, validator=uuid_4_parser, generator=id_generator),
     'variant_flags': MetadataField(mandatory=False),
     'roles': MetadataField(mandatory=False),
+    'case_id': MetadataField(mandatory=False),
+    'case_ref': MetadataField(mandatory=False),
+    'account_service_url': MetadataField(mandatory=False),
 }
 
 

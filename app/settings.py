@@ -84,3 +84,4 @@ SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
 
 USER_IK = 'user_ik'
 EQ_SESSION_ID = 'eq-session-id'
+ACCOUNT_URL = 'account_url'
