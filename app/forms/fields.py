@@ -2,12 +2,11 @@ from decimal import Decimal
 
 from wtforms import FormField, SelectField, SelectMultipleField, StringField
 from wtforms import validators
+from structlog import get_logger
 
 from app.forms.custom_fields import MaxTextAreaField, CustomIntegerField, CustomDecimalField
 from app.forms.date_form import get_date_form, get_month_year_form
 from app.validation.validators import NumberCheck, NumberRange, ResponseRequired, DecimalPlaces
-from structlog import get_logger
-
 
 MAX_LENGTH = 2000
 MAX_NUMBER = 9999999999

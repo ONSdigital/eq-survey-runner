@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import Mock
+from wtforms.validators import StopValidation
 
 from app.validation.validators import OptionalForm
-from wtforms.validators import StopValidation
 
 
 class TestOptionalFormValidator(unittest.TestCase):

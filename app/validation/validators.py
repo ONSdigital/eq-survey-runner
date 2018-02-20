@@ -1,16 +1,13 @@
 from decimal import Decimal, InvalidOperation
 from datetime import datetime
-
 from babel import numbers
+from wtforms import validators
+from wtforms.compat import string_types
+from structlog import get_logger
 
 from app.jinja_filters import format_number, format_currency
 from app.settings import DEFAULT_LOCALE
 from app.validation.error_messages import error_messages
-
-from wtforms import validators
-from wtforms.compat import string_types
-
-from structlog import get_logger
 
 logger = get_logger()
 

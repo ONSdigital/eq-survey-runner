@@ -35,9 +35,9 @@ class TestTextArea(IntegrationTestCase):
         self.launchSurvey('test', 'big_list_naughty_strings')
 
         answers = {}
-        for i in range(0, len(NAUGHTY_STRINGS)):
-            k = 'answer{}'.format(i)
-            answers[k] = NAUGHTY_STRINGS[i]
+        for counter, value in enumerate(NAUGHTY_STRINGS):
+            key = 'answer{}'.format(counter)
+            answers[key] = value
 
         self.post(answers)
         self.assertInUrl('summary')

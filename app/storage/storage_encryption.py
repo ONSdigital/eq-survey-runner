@@ -3,10 +3,10 @@ import hashlib
 from jwcrypto import jwe, jwk
 from jwcrypto.common import base64url_encode, base64url_decode
 from structlog import get_logger
+import simplejson as json
 
 from app.utilities.strings import to_bytes
 from app.utilities.strings import to_str
-import simplejson as json
 
 logger = get_logger()
 

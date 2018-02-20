@@ -4,6 +4,7 @@ from flask_wtf import FlaskForm
 from sdc.crypto.encrypter import encrypt
 from wtforms import StringField, TextAreaField
 from wtforms.validators import InputRequired
+from structlog import get_logger
 
 from app.helpers import template_helper
 from app.keys import KEY_PURPOSE_SUBMISSION
@@ -11,8 +12,6 @@ from app.submitter.submission_failed import SubmissionFailedException
 from app.globals import get_metadata
 from app.submitter.converter import convert_feedback
 from app.utilities.schema import load_schema_from_metadata
-
-from structlog import get_logger
 
 logger = get_logger()
 

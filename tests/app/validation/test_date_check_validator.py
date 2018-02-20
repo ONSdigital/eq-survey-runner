@@ -1,9 +1,9 @@
 import unittest
 from unittest.mock import Mock
+from wtforms.validators import StopValidation
 
 from app.validation.error_messages import error_messages
 from app.validation.validators import DateCheck
-from wtforms.validators import StopValidation
 
 
 class TestDateCheckValidator(unittest.TestCase):

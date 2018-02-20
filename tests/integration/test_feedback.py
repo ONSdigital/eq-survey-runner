@@ -2,10 +2,10 @@ import json
 from jsonschema import SchemaError, ValidationError, validate
 from mock import patch
 from sdc.crypto.decrypter import decrypt
+from structlog import getLogger
 
 from tests.integration.integration_test_case import IntegrationTestCase
 from app.keys import KEY_PURPOSE_SUBMISSION
-from structlog import getLogger
 
 
 logger = getLogger()

@@ -1,6 +1,7 @@
+import simplejson as json
+
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.location import Location
-import simplejson as json
 
 
 class QuestionnaireStore:

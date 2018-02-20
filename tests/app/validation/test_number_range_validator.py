@@ -1,12 +1,12 @@
 import unittest
 from unittest.mock import Mock
+from wtforms.validators import ValidationError
 
 from app.jinja_filters import format_number
 from app.validation.error_messages import error_messages
 from app.validation.validators import NumberRange
 from app.forms.fields import get_number_field, CustomIntegerField
 from app.data_model.answer_store import Answer, AnswerStore
-from wtforms.validators import ValidationError
 
 
 # pylint: disable=no-member

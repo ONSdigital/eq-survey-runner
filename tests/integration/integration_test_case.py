@@ -4,11 +4,11 @@ import unittest
 import json
 
 from bs4 import BeautifulSoup
+from mock import patch, Mock
 
 from sdc.crypto.key_store import KeyStore
 from app.keys import KEY_PURPOSE_AUTHENTICATION, KEY_PURPOSE_SUBMISSION
 from app.setup import create_app
-from mock import patch, Mock
 
 from tests.integration.create_token import TokenGenerator
 

@@ -1,12 +1,10 @@
 from structlog import get_logger
 from flask_wtf import FlaskForm
 from wtforms import FieldList, Form, FormField
+from werkzeug.datastructures import MultiDict
 
 from app.data_model.answer_store import Answer
 from app.forms.fields import get_string_field
-
-from werkzeug.datastructures import MultiDict
-
 
 logger = get_logger()
 

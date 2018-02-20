@@ -1,11 +1,11 @@
 from flask import current_app, g
 from flask_login import current_user
 from flask_themes2 import render_theme_template
+from structlog import get_logger
 
 from app.globals import get_metadata
 from app.templating.metadata_context import build_metadata_context
 from app.templating.template_renderer import TemplateRenderer
-from structlog import get_logger
 
 logger = get_logger()
 
