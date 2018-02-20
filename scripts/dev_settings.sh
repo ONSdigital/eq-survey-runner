@@ -8,6 +8,10 @@ if [ -z "$EQ_DEVELOPER_LOGGING" ]; then
     export EQ_DEVELOPER_LOGGING=True
 fi
 
+if [ -z "$EQ_ENABLE_SECURE_SESSION_COOKIE" ]; then
+    export EQ_ENABLE_SECURE_SESSION_COOKIE=False
+fi
+
 if [ -z "$EQ_RABBITMQ_ENABLED" ]; then
   export EQ_RABBITMQ_ENABLED=False
 fi
