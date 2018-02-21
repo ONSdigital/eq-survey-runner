@@ -1,11 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import FieldList, SelectField
+from werkzeug.datastructures import MultiDict
 
 from app.forms.fields import build_choices, get_mandatory_validator
 from app.data_model.answer_store import Answer
 from app.jinja_filters import format_household_member_name
-
-from werkzeug.datastructures import MultiDict
 
 
 def build_relationship_choices(answer_store, group_instance):  # pylint: disable=too-many-locals

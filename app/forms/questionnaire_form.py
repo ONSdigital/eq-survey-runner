@@ -1,13 +1,11 @@
 import logging
 
 from wtforms import validators
-
 from flask_wtf import FlaskForm
+from werkzeug.datastructures import MultiDict
 
 from app.forms.fields import get_field
 from app.validation.validators import DateRangeCheck
-
-from werkzeug.datastructures import MultiDict
 
 logger = logging.getLogger(__name__)
 

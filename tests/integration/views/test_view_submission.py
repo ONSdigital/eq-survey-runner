@@ -1,6 +1,6 @@
-from tests.integration.integration_test_case import IntegrationTestCase
-from mock import Mock
 from flask import current_app
+from mock import Mock
+from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestViewSubmission(IntegrationTestCase):

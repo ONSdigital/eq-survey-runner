@@ -1,9 +1,9 @@
 import unittest
 from unittest.mock import Mock
+from wtforms.validators import ValidationError
 
 from app.validation.error_messages import error_messages
 from app.validation.validators import DateRangeCheck
-from wtforms.validators import ValidationError
 
 
 class TestDateRangeValidator(unittest.TestCase):

@@ -1,10 +1,9 @@
 from flask import Blueprint, current_app
 from flask_themes2 import render_theme_template
+from structlog import get_logger
 
 from app.globals import get_session_store
 from app.utilities.schema import load_schema_from_session_data
-
-from structlog import get_logger
 
 logger = get_logger()
 

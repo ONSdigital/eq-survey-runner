@@ -7,11 +7,10 @@ from datetime import datetime
 
 import flask
 
-from app.settings import DEFAULT_LOCALE
-
 from jinja2 import Markup, escape, evalcontextfilter
-
 from babel import units, numbers
+
+from app.settings import DEFAULT_LOCALE
 
 blueprint = flask.Blueprint('filters', __name__)
 

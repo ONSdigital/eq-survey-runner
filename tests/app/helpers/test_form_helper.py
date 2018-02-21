@@ -1,4 +1,6 @@
 import unittest
+from werkzeug.datastructures import MultiDict
+from tests.app.app_context_test_case import AppContextTestCase
 
 from app.helpers.form_helper import get_mapped_answers, get_form_for_location, post_form_for_location
 from app.questionnaire.location import Location
@@ -6,10 +8,6 @@ from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.utilities.schema import load_schema_from_params
 from app.data_model.answer_store import AnswerStore, Answer
 from app.validation.validators import DateRequired, OptionalForm
-
-from werkzeug.datastructures import MultiDict
-
-from tests.app.app_context_test_case import AppContextTestCase
 
 
 class TestFormHelper(AppContextTestCase):

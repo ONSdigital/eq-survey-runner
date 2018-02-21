@@ -5,6 +5,9 @@ import sys
 from datetime import timedelta
 from uuid import uuid4
 
+import boto3
+from botocore.config import Config
+
 import sqlalchemy
 import yaml
 from flask import Flask
@@ -32,9 +35,6 @@ from app.secrets import SecretStore, validate_required_secrets
 from app.talisman import Talisman
 
 from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
-
-import boto3
-from botocore.config import Config
 
 
 CACHE_HEADERS = {
