@@ -41,6 +41,9 @@
 
   {% if invalid %}
 
+    {{question_titles}}
+    {{question_description}}
+    {{question_guidance}}
     {% include theme('partials/questions/errors.html') %}
 
   {% else %}
