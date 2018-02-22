@@ -84,7 +84,7 @@ class TestCreateApp(unittest.TestCase):
                 csp_policy_parts
             )
             self.assertIn(
-                "img-src 'self' data: https://www.google-analytics.com", csp_policy_parts)
+                "img-src 'self' data: https://www.google-analytics.com https://cdn.ons.gov.uk", csp_policy_parts)
 
     # Indirectly covered by higher level integration
     # tests, keeping to highlight that create_app is where

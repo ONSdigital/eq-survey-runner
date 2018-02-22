@@ -45,7 +45,7 @@ CACHE_HEADERS = {
 CSP_POLICY = {
     'default-src': ["'self'", ],
     'script-src': ["'self'", 'https://www.google-analytics.com', ],
-    'img-src': ["'self'", 'data:', 'https://www.google-analytics.com', ]
+    'img-src': ["'self'", 'data:', 'https://www.google-analytics.com', 'https://cdn.ons.gov.uk']
 }
 
 cache = Cache()
