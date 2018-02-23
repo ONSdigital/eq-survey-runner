@@ -24,6 +24,7 @@ class MultipleSurveyError(Exception):
 
 
 @errors_blueprint.app_errorhandler(401)
+@errors_blueprint.app_errorhandler(CSRFError)
 @errors_blueprint.app_errorhandler(NoTokenException)
 def unauthorized(error=None):
     log_exception(error, 401)
@@ -46,12 +47,6 @@ def service_unavailable(error=None):
 def multiple_survey_error(error=None):
     log_exception(error, 200)
     return render_template('multiple_survey.html')
-
-
-@errors_blueprint.app_errorhandler(CSRFError)
-def csrf_exception(error):
-    log_exception(error, error.code)
-    return render_template('csrf_exception.html'), error.code
 
 
 @errors_blueprint.app_errorhandler(Exception)

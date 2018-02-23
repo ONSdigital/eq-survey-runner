@@ -84,7 +84,7 @@ class Feedback(IntegrationTestCase):
         }
 
         self.post(url='/feedback', post_data=post_data, action='send_feedback')
-        self.assertStatusCode(400)
+        self.assertStatusCode(401)
 
     def test_post_html_encodes_user_input(self):
         post_data = {
