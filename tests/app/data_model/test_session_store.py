@@ -1,10 +1,10 @@
 from datetime import timedelta, datetime
+
 from mock import patch
 
 from app.data_model.session_store import SessionStore
 from app.data_model.session_data import SessionData
 from tests.app.app_context_test_case import AppContextTestCase
-from tests.app.data_model.TestSessionData import TestSessionData
 
 
 class SessionStoreTest(AppContextTestCase):
@@ -69,7 +69,7 @@ class SessionStoreTest(AppContextTestCase):
                 self.assertFalse(delete.called)
 
     def test_session_store_ignores_new_values_in_session_data(self):
-        new_session_data = TestSessionData(
+        session_data = SessionData(
             tx_id='tx_id',
             eq_id='eq_id',
             form_type='form_type',
@@ -77,19 +77,20 @@ class SessionStoreTest(AppContextTestCase):
             language_code=None,
             survey_url=None,
             ru_name='ru_name',
-            ru_ref='ru_ref',
-            additional_value='some cool new value you do not know about yet'
+            ru_ref='ru_ref'
         )
 
+        session_data.additional_value = 'some cool new value you do not know about yet'
+
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', new_session_data).save()
+            self.session_store.create('eq_session_id', 'test', session_data).save()
 
             session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
             self.assertFalse(hasattr(session_store.session_data, 'additional_value'))
 
     def test_session_store_ignores_multiple_new_values_in_session_data(self):
-        new_session_data = TestSessionData(
+        session_data = SessionData(
             tx_id='tx_id',
             eq_id='eq_id',
             form_type='form_type',
@@ -97,13 +98,14 @@ class SessionStoreTest(AppContextTestCase):
             language_code=None,
             survey_url=None,
             ru_name='ru_name',
-            ru_ref='ru_ref',
-            additional_value='some cool new value you do not know about yet',
-            second_additional_value='some other not so cool value'
+            ru_ref='ru_ref'
         )
 
+        session_data.additional_value = 'some cool new value you do not know about yet'
+        session_data.second_additional_value = 'some other not so cool value'
+
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', new_session_data).save()
+            self.session_store.create('eq_session_id', 'test', session_data).save()
 
             session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
