@@ -33,20 +33,25 @@ class Feedback {
 
       this.callToAction = callToAction
       this.open = open
-      this.registerOpen(this.open)
-
+      if (this.open) {
+        this.registerOpen(this.open)
+      }
       this.thanks = thanks
 
       this.cancel = cancel
-      this.registerCancel(this.cancel)
+      if (this.cancel) {
+        this.registerCancel(this.cancel)
+      }
     }
   }
 
   registerForm(element) {
-    element.setAttribute(attrHidden, 'true')
+    if (element) {
+      element.setAttribute(attrHidden, 'true')
 
-    const elSubmit = element.querySelector(classSubmit)
-    this.registerSubmit(elSubmit)
+      const elSubmit = element.querySelector(classSubmit)
+      this.registerSubmit(elSubmit)
+    }
   }
 
   registerSubmit(element) {
