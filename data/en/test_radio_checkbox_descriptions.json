@@ -7,97 +7,100 @@
     "description": "",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "groups": [{
-        "id": "radio-checkbox-descriptio",
-        "title": "Did this business make major changes in the following areas?",
-        "blocks": [{
-                "type": "Question",
-                "id": "checkbox-block",
-                "title": "Did this business make major changes in the following areas?",
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "id": "radio-checkbox-descriptio",
+            "title": "Did this business make major changes in the following areas?",
+            "blocks": [{
+                    "type": "Question",
+                    "id": "checkbox-block",
+                    "title": "Did this business make major changes in the following areas?",
 
-                "description": "<p>Include all <strong>new</strong> and <strong>significantly improved</strong> forms of organisation, business structures or practices aimed at raising internal efficiency or the effectiveness of approaching markets and customers.</p>",
-                "questions": [{
-                    "answers": [{
-                        "id": "checkbox-answer",
-                        "label": "Did this business make major changes in the following areas?",
-                        "mandatory": true,
-                        "options": [{
-                                "label": "New business practices for organising procedures",
-                                "value": "New business practices for organising procedures",
-                                "description": "For example supply chain management, business re-engineering, knowledge management, lean production, quality management"
-                            },
-                            {
-                                "label": "New methods of organising work responsibilities and decision making",
-                                "value": "New methods of organising work responsibilities and decision making",
-                                "description": "For example first use of a new system of employee responsibilities, team work, decentralisation, integration or de-integration of departments, education / training systems"
-                            },
-                            {
-                                "label": "New methods of organising external relationships with other firms or public institutions",
-                                "value": "New methods of organising external relationships with other firms or public institutions",
-                                "description": "For example first use of alliances, partnerships, outsourcing or sub-contracting"
-                            },
-                            {
-                                "label": "Implementation of changes to marketing concepts or strategies",
-                                "value": "Implementation of changes to marketing concepts or strategies"
+                    "description": "<p>Include all <strong>new</strong> and <strong>significantly improved</strong> forms of organisation, business structures or practices aimed at raising internal efficiency or the effectiveness of approaching markets and customers.</p>",
+                    "questions": [{
+                        "answers": [{
+                            "id": "checkbox-answer",
+                            "label": "Did this business make major changes in the following areas?",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "New business practices for organising procedures",
+                                    "value": "New business practices for organising procedures",
+                                    "description": "For example supply chain management, business re-engineering, knowledge management, lean production, quality management"
+                                },
+                                {
+                                    "label": "New methods of organising work responsibilities and decision making",
+                                    "value": "New methods of organising work responsibilities and decision making",
+                                    "description": "For example first use of a new system of employee responsibilities, team work, decentralisation, integration or de-integration of departments, education / training systems"
+                                },
+                                {
+                                    "label": "New methods of organising external relationships with other firms or public institutions",
+                                    "value": "New methods of organising external relationships with other firms or public institutions",
+                                    "description": "For example first use of alliances, partnerships, outsourcing or sub-contracting"
+                                },
+                                {
+                                    "label": "Implementation of changes to marketing concepts or strategies",
+                                    "value": "Implementation of changes to marketing concepts or strategies"
+                                }
+                            ],
+                            "q_code": "10",
+                            "type": "Checkbox",
+                            "validation": {
+                                "messages": {}
                             }
-                        ],
-                        "q_code": "10",
-                        "type": "Checkbox",
-                        "validation": {
-                            "messages": {}
-                        }
-                    }],
-                    "id": "checkbox-question",
-                    "title": "Did this business make major changes in the following areas?",
-                    "type": "General"
-                }]
-            },
-            {
-                "type": "Question",
-                "id": "radio-block",
-                "description": "",
-                "questions": [{
-                    "answers": [{
-                        "id": "radio-answer",
-                        "label": "Did this business make major changes in the following areas?",
-                        "mandatory": true,
-                        "options": [{
-                                "label": "New business practices for organising procedures",
-                                "value": "New business practices for organising procedures",
-                                "description": "For example supply chain management, business re-engineering, knowledge management, lean production, quality management"
-                            },
-                            {
-                                "label": "New methods of organising work responsibilities and decision making",
-                                "value": "New methods of organising work responsibilities and decision making",
-                                "description": "For example first use of a new system of employee responsibilities, team work, decentralisation, integration or de-integration of departments, education / training systems"
-                            },
-                            {
-                                "label": "New methods of organising external relationships with other firms or public institutions",
-                                "value": "New methods of organising external relationships with other firms or public institutions",
-                                "description": "For example first use of alliances, partnerships, outsourcing or sub-contracting"
-                            },
-                            {
-                                "label": "Implementation of changes to marketing concepts or strategies",
-                                "value": "Implementation of changes to marketing concepts or strategies"
-                            }
-                        ],
-                        "q_code": "20",
-                        "type": "Radio",
-                        "validation": {
-                            "messages": {}
-                        }
-                    }],
+                        }],
+                        "id": "checkbox-question",
+                        "title": "Did this business make major changes in the following areas?",
+                        "type": "General"
+                    }]
+                },
+                {
+                    "type": "Question",
+                    "id": "radio-block",
                     "description": "",
-                    "id": "radio-question",
-                    "title": "Did this business make major changes in the following areas?",
-                    "type": "General"
-                }],
-                "title": "Business Strategy and Practices Part Two"
-            },
-            {
-                "type": "Summary",
-                "id": "summary"
-            }
-        ]
+                    "questions": [{
+                        "answers": [{
+                            "id": "radio-answer",
+                            "label": "Did this business make major changes in the following areas?",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "New business practices for organising procedures",
+                                    "value": "New business practices for organising procedures",
+                                    "description": "For example supply chain management, business re-engineering, knowledge management, lean production, quality management"
+                                },
+                                {
+                                    "label": "New methods of organising work responsibilities and decision making",
+                                    "value": "New methods of organising work responsibilities and decision making",
+                                    "description": "For example first use of a new system of employee responsibilities, team work, decentralisation, integration or de-integration of departments, education / training systems"
+                                },
+                                {
+                                    "label": "New methods of organising external relationships with other firms or public institutions",
+                                    "value": "New methods of organising external relationships with other firms or public institutions",
+                                    "description": "For example first use of alliances, partnerships, outsourcing or sub-contracting"
+                                },
+                                {
+                                    "label": "Implementation of changes to marketing concepts or strategies",
+                                    "value": "Implementation of changes to marketing concepts or strategies"
+                                }
+                            ],
+                            "q_code": "20",
+                            "type": "Radio",
+                            "validation": {
+                                "messages": {}
+                            }
+                        }],
+                        "description": "",
+                        "id": "radio-question",
+                        "title": "Did this business make major changes in the following areas?",
+                        "type": "General"
+                    }],
+                    "title": "Business Strategy and Practices Part Two"
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ]
+        }]
     }]
 }

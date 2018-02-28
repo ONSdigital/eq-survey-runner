@@ -5,132 +5,135 @@
         "enabled": true,
         "duration": 900
     },
-    "groups": [{
-        "blocks": [{
-                "type": "Introduction",
-                "id": "introduction",
-                "primary_content": [{
-                    "id": "get-started",
-                    "content": [{
-                        "list": [
-                            "On average it takes 10 minutes to complete this survey once you’ve collected the information.",
-                            "Data should relate to all sites in England, Scotland and Wales.",
-                            "You can provide informed estimates if actual figures aren't available.",
-                            "We will treat your data securely and confidentially."
-                        ]
-                    }]
-                }],
-                "secondary_content": [{
-                    "id": "preview",
-                    "title": "Information you need",
-                    "content": [{
-                        "list": [
-                            "Total number of employees",
-                            "Male employees working more than 30 hours per week",
-                            "Male employees working 30 hours or less per week",
-                            "Female employees working more than 30 hours per week",
-                            "Female employees working 30 hours or less per week"
-                        ]
-                    }, {
-                        "title": "Include:",
-                        "list": [
-                            "all workers paid directly from this business’s payroll(s)",
-                            "those temporarily absent but still being paid, for example on maternity leave"
-                        ]
-                    }, {
-                        "title": "Exclude:",
-                        "list": [
-                            "agency workers paid directly from the agency payroll",
-                            "voluntary workers",
-                            "former employees only receiving a pension",
-                            "self-employed workers",
-                            "working owners who are not paid via PAYE"
-                        ]
-                    }]
-                }, {
-                    "title": "How we use your data",
-                    "content": [{
-                        "list": [
-                            "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
-                            "The information you provide contributes to the Labour Market Statistics."
-                        ]
-                    }]
-                }]
-            },
-            {
-                "id": "number-of-employees",
-                "questions": [{
-                    "answers": [{
-                            "id": "number-of-employees-male-more-30-hours",
-                            "label": "Number of male employees working more than 30 hours per week",
-                            "mandatory": false,
-                            "q_code": "51",
-                            "type": "Number"
-                        },
-                        {
-                            "id": "number-of-employees-male-less-30-hours",
-                            "label": "Number of male employees working 30 hours or less per week",
-                            "mandatory": false,
-                            "q_code": "52",
-                            "type": "Number"
-                        },
-                        {
-                            "id": "number-of-employees-female-more-30-hours",
-                            "label": "Number of female employees working more than 30 hours per week",
-                            "mandatory": false,
-                            "q_code": "53",
-                            "type": "Number"
-                        },
-                        {
-                            "id": "number-of-employees-female-less-30-hours",
-                            "label": "Number of female employees working 30 hours or less per week",
-                            "mandatory": false,
-                            "q_code": "54",
-                            "type": "Number"
-                        },
-                        {
-                            "id": "number-of-employees-total",
-                            "label": "Total number of employees",
-                            "mandatory": true,
-                            "q_code": "50",
-                            "type": "Number"
-                        }
-                    ],
-                    "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
-                    "guidance": {
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "blocks": [{
+                    "type": "Introduction",
+                    "id": "introduction",
+                    "primary_content": [{
+                        "id": "get-started",
                         "content": [{
-                                "title": "Include",
-                                "list": [
-                                    "all workers paid directly from this business’s payroll(s)",
-                                    "those temporarily absent but still being paid, for example on maternity leave"
-                                ]
+                            "list": [
+                                "On average it takes 10 minutes to complete this survey once you’ve collected the information.",
+                                "Data should relate to all sites in England, Scotland and Wales.",
+                                "You can provide informed estimates if actual figures aren't available.",
+                                "We will treat your data securely and confidentially."
+                            ]
+                        }]
+                    }],
+                    "secondary_content": [{
+                        "id": "preview",
+                        "title": "Information you need",
+                        "content": [{
+                            "list": [
+                                "Total number of employees",
+                                "Male employees working more than 30 hours per week",
+                                "Male employees working 30 hours or less per week",
+                                "Female employees working more than 30 hours per week",
+                                "Female employees working 30 hours or less per week"
+                            ]
+                        }, {
+                            "title": "Include:",
+                            "list": [
+                                "all workers paid directly from this business’s payroll(s)",
+                                "those temporarily absent but still being paid, for example on maternity leave"
+                            ]
+                        }, {
+                            "title": "Exclude:",
+                            "list": [
+                                "agency workers paid directly from the agency payroll",
+                                "voluntary workers",
+                                "former employees only receiving a pension",
+                                "self-employed workers",
+                                "working owners who are not paid via PAYE"
+                            ]
+                        }]
+                    }, {
+                        "title": "How we use your data",
+                        "content": [{
+                            "list": [
+                                "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
+                                "The information you provide contributes to the Labour Market Statistics."
+                            ]
+                        }]
+                    }]
+                },
+                {
+                    "id": "number-of-employees",
+                    "questions": [{
+                        "answers": [{
+                                "id": "number-of-employees-male-more-30-hours",
+                                "label": "Number of male employees working more than 30 hours per week",
+                                "mandatory": false,
+                                "q_code": "51",
+                                "type": "Number"
                             },
                             {
-                                "title": "Exclude:",
-                                "list": [
-                                    "agency workers paid directly from the agency payroll",
-                                    "voluntary workers",
-                                    "former employees only receiving a pension",
-                                    "self-employed workers",
-                                    "working owners who are not paid via PAYE"
-                                ]
+                                "id": "number-of-employees-male-less-30-hours",
+                                "label": "Number of male employees working 30 hours or less per week",
+                                "mandatory": false,
+                                "q_code": "52",
+                                "type": "Number"
+                            },
+                            {
+                                "id": "number-of-employees-female-more-30-hours",
+                                "label": "Number of female employees working more than 30 hours per week",
+                                "mandatory": false,
+                                "q_code": "53",
+                                "type": "Number"
+                            },
+                            {
+                                "id": "number-of-employees-female-less-30-hours",
+                                "label": "Number of female employees working 30 hours or less per week",
+                                "mandatory": false,
+                                "q_code": "54",
+                                "type": "Number"
+                            },
+                            {
+                                "id": "number-of-employees-total",
+                                "label": "Total number of employees",
+                                "mandatory": true,
+                                "q_code": "50",
+                                "type": "Number"
                             }
-                        ]
-                    },
-                    "id": "number-of-employees-question",
-                    "title": "On {{exercise.start_date|format_date}} what was the number of employees for {{respondent.trad_as_or_ru_name}}?",
-                    "type": "General"
-                }],
-                "title": "Quarterly Business Survey",
-                "type": "Question"
-            },
-            {
-                "type": "Summary",
-                "id": "summary"
-            }
-        ],
-        "id": "qbs",
-        "title": "Quarterly Business Survey"
+                        ],
+                        "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
+                        "guidance": {
+                            "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "all workers paid directly from this business’s payroll(s)",
+                                        "those temporarily absent but still being paid, for example on maternity leave"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude:",
+                                    "list": [
+                                        "agency workers paid directly from the agency payroll",
+                                        "voluntary workers",
+                                        "former employees only receiving a pension",
+                                        "self-employed workers",
+                                        "working owners who are not paid via PAYE"
+                                    ]
+                                }
+                            ]
+                        },
+                        "id": "number-of-employees-question",
+                        "title": "On {{exercise.start_date|format_date}} what was the number of employees for {{respondent.trad_as_or_ru_name}}?",
+                        "type": "General"
+                    }],
+                    "title": "Quarterly Business Survey",
+                    "type": "Question"
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ],
+            "id": "qbs",
+            "title": "Quarterly Business Survey"
+        }]
     }],
     "legal_basis": "StatisticsOfTradeAct",
     "mime_type": "application/json/ons/eq",

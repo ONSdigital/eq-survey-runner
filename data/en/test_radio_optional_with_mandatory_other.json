@@ -6,47 +6,50 @@
     "title": "Radio Optional with Mandatory Other",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "groups": [{
-        "id": "radio",
-        "title": "Radio Optional with Mandatory Other",
-        "blocks": [{
-                "type": "Question",
-                "id": "radio-non-mandatory",
-                "questions": [{
-                    "type": "General",
-                    "id": "radio-non-mandatory-question",
-                    "title": "What is you favourite breakfast item?",
-                    "answers": [{
-                            "type": "Radio",
-                            "id": "radio-non-mandatory-answer",
-                            "mandatory": true,
-                            "options": [{
-                                    "label": "Toast",
-                                    "value": "Toast"
-                                },
-                                {
-                                    "label": "Other",
-                                    "description": "This is mandatory.",
-                                    "value": "Other",
-                                    "child_answer_id": "other-answer-non-mandatory"
-                                }
-                            ]
-                        },
-                        {
-                            "parent_answer_id": "radio-non-mandatory-answer",
-                            "mandatory": false,
-                            "id": "other-answer-non-mandatory",
-                            "label": "Please specify other",
-                            "type": "TextField"
-                        }
-                    ]
-                }]
-            },
-            {
-                "type": "Summary",
-                "id": "summary"
-            }
-        ]
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "id": "radio",
+            "title": "Radio Optional with Mandatory Other",
+            "blocks": [{
+                    "type": "Question",
+                    "id": "radio-non-mandatory",
+                    "questions": [{
+                        "type": "General",
+                        "id": "radio-non-mandatory-question",
+                        "title": "What is you favourite breakfast item?",
+                        "answers": [{
+                                "type": "Radio",
+                                "id": "radio-non-mandatory-answer",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Toast",
+                                        "value": "Toast"
+                                    },
+                                    {
+                                        "label": "Other",
+                                        "description": "This is mandatory.",
+                                        "value": "Other",
+                                        "child_answer_id": "other-answer-non-mandatory"
+                                    }
+                                ]
+                            },
+                            {
+                                "parent_answer_id": "radio-non-mandatory-answer",
+                                "mandatory": false,
+                                "id": "other-answer-non-mandatory",
+                                "label": "Please specify other",
+                                "type": "TextField"
+                            }
+                        ]
+                    }]
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ]
 
+        }]
     }]
 }

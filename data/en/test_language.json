@@ -7,19 +7,22 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to demonstrate english language",
-    "groups": [{
-        "id": "english-group",
-        "title": "",
-        "blocks": [{
-                "type": "Interstitial",
-                "id": "english-block",
-                "title": "English language schema",
-                "questions": []
-            },
-            {
-                "type": "Summary",
-                "id": "summary"
-            }
-        ]
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "id": "english-group",
+            "title": "",
+            "blocks": [{
+                    "type": "Interstitial",
+                    "id": "english-block",
+                    "title": "English language schema",
+                    "questions": []
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ]
+        }]
     }]
 }

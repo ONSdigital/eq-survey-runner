@@ -7,80 +7,83 @@
     "description": "A test schema for different date formats",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "groups": [{
-        "blocks": [{
-                "type": "Question",
-                "id": "date-block",
-                "description": "",
-                "questions": [{
-                        "answers": [{
-                                "id": "date-range-from",
-                                "label": "Period from",
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "blocks": [{
+                    "type": "Question",
+                    "id": "date-block",
+                    "description": "",
+                    "questions": [{
+                            "answers": [{
+                                    "id": "date-range-from",
+                                    "label": "Period from",
+                                    "mandatory": true,
+                                    "q_code": "11",
+                                    "type": "Date"
+                                },
+                                {
+                                    "id": "date-range-to",
+                                    "label": "Period to",
+                                    "mandatory": true,
+                                    "q_code": "12",
+                                    "type": "Date"
+                                }
+                            ],
+                            "description": "",
+                            "id": "date-range-question",
+                            "title": "Date range",
+                            "type": "DateRange"
+                        },
+                        {
+                            "answers": [{
+                                "id": "month-year-answer",
+                                "label": "Date",
+                                "mandatory": true,
+                                "q_code": "11",
+                                "type": "MonthYearDate"
+                            }],
+                            "description": "",
+                            "id": "month-year-question",
+                            "title": "Date with month and year",
+                            "type": "General"
+                        },
+                        {
+                            "answers": [{
+                                "id": "single-date-answer",
+                                "label": "Date",
                                 "mandatory": true,
                                 "q_code": "11",
                                 "type": "Date"
-                            },
-                            {
-                                "id": "date-range-to",
-                                "label": "Period to",
-                                "mandatory": true,
-                                "q_code": "12",
+                            }],
+                            "description": "",
+                            "id": "single-date-question",
+                            "title": "Single date type",
+                            "type": "General"
+                        },
+                        {
+                            "answers": [{
+                                "id": "non-mandatory-date-answer",
+                                "label": "Date",
+                                "mandatory": false,
+                                "q_code": "17",
                                 "type": "Date"
-                            }
-                        ],
-                        "description": "",
-                        "id": "date-range-question",
-                        "title": "Date range",
-                        "type": "DateRange"
-                    },
-                    {
-                        "answers": [{
-                            "id": "month-year-answer",
-                            "label": "Date",
-                            "mandatory": true,
-                            "q_code": "11",
-                            "type": "MonthYearDate"
-                        }],
-                        "description": "",
-                        "id": "month-year-question",
-                        "title": "Date with month and year",
-                        "type": "General"
-                    },
-                    {
-                        "answers": [{
-                            "id": "single-date-answer",
-                            "label": "Date",
-                            "mandatory": true,
-                            "q_code": "11",
-                            "type": "Date"
-                        }],
-                        "description": "",
-                        "id": "single-date-question",
-                        "title": "Single date type",
-                        "type": "General"
-                    },
-                    {
-                        "answers": [{
-                            "id": "non-mandatory-date-answer",
-                            "label": "Date",
-                            "mandatory": false,
-                            "q_code": "17",
-                            "type": "Date"
-                        }],
-                        "description": "",
-                        "id": "non-mandatory-date-question",
-                        "title": "Non Mandatory",
-                        "type": "General"
-                    }
-                ],
-                "title": "Date Examples"
-            },
-            {
-                "type": "Summary",
-                "id": "summary"
-            }
-        ],
-        "id": "dates",
-        "title": ""
+                            }],
+                            "description": "",
+                            "id": "non-mandatory-date-question",
+                            "title": "Non Mandatory",
+                            "type": "General"
+                        }
+                    ],
+                    "title": "Date Examples"
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ],
+            "id": "dates",
+            "title": ""
+        }]
     }]
 }

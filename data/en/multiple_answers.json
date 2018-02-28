@@ -7,39 +7,42 @@
     "description": "A survey containing questions which have more than one answer",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "groups": [{
-        "blocks": [{
-                "type": "Question",
-                "id": "personal-details-block",
-                "questions": [{
-                    "answers": [{
-                            "id": "first-name-answer",
-                            "label": "What is your first name",
-                            "mandatory": false,
-                            "q_code": "1",
-                            "type": "TextField"
-                        },
-                        {
-                            "id": "surname-answer",
-                            "label": "What is your surname",
-                            "mandatory": false,
-                            "q_code": "2",
-                            "type": "TextField"
-                        }
-                    ],
-                    "description": "",
-                    "id": "personal-details-question",
-                    "title": "Tell me about yourself",
-                    "type": "General"
-                }],
-                "title": "Multiple questions"
-            },
-            {
-                "type": "Summary",
-                "id": "summary"
-            }
-        ],
-        "id": "multiple-questions-group",
-        "title": ""
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "blocks": [{
+                    "type": "Question",
+                    "id": "personal-details-block",
+                    "questions": [{
+                        "answers": [{
+                                "id": "first-name-answer",
+                                "label": "What is your first name",
+                                "mandatory": false,
+                                "q_code": "1",
+                                "type": "TextField"
+                            },
+                            {
+                                "id": "surname-answer",
+                                "label": "What is your surname",
+                                "mandatory": false,
+                                "q_code": "2",
+                                "type": "TextField"
+                            }
+                        ],
+                        "description": "",
+                        "id": "personal-details-question",
+                        "title": "Tell me about yourself",
+                        "type": "General"
+                    }],
+                    "title": "Multiple questions"
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ],
+            "id": "multiple-questions-group",
+            "title": ""
+        }]
     }]
 }

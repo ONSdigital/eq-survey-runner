@@ -92,31 +92,34 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             questionnaire = {
                 'survey_id': '021',
                 'data_version': '0.0.1',
-                'groups': [
-                    {
-                        'id': 'group-1',
-                        'blocks': [
-                            {
-                                'id': 'block-1',
-                                'questions': [{
-                                    'id': 'question-1',
-                                    'answers': [
-                                        {
-                                            'id': 'ABC',
-                                            'type': 'TextField',
-                                            'q_code': '001'
-                                        },
-                                        {
-                                            'id': 'DEF',
-                                            'type': 'TextField',
-                                            'q_code': '002'
-                                        }
-                                    ]
-                                }]
-                            }
-                        ]
-                    }
-                ]
+                'sections': [{
+                    'id': 'section1',
+                    'groups': [
+                        {
+                            'id': 'group-1',
+                            'blocks': [
+                                {
+                                    'id': 'block-1',
+                                    'questions': [{
+                                        'id': 'question-1',
+                                        'answers': [
+                                            {
+                                                'id': 'ABC',
+                                                'type': 'TextField',
+                                                'q_code': '001'
+                                            },
+                                            {
+                                                'id': 'DEF',
+                                                'type': 'TextField',
+                                                'q_code': '002'
+                                            }
+                                        ]
+                                    }]
+                                }
+                            ]
+                        }
+                    ]
+                }]
             }
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
@@ -143,36 +146,39 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             questionnaire = {
                 'survey_id': '021',
                 'data_version': '0.0.1',
-                'groups': [
-                    {
-                        'id': 'group-1',
-                        'blocks': [
-                            {
-                                'id': 'block-1',
-                                'questions': [{
-                                    'id': 'question-1',
-                                    'answers': [
-                                        {
-                                            'id': 'LMN',
-                                            'type': 'TextField',
-                                            'q_code': '001'
-                                        },
-                                        {
-                                            'id': 'DEF',
-                                            'type': 'TextField',
-                                            'q_code': '002'
-                                        },
-                                        {
-                                            'id': 'JKL',
-                                            'type': 'TextField',
-                                            'q_code': '003'
-                                        },
-                                    ]
-                                }]
-                            }
-                        ]
-                    }
-                ]
+                'sections': [{
+                    'id': 'section1',
+                    'groups': [
+                        {
+                            'id': 'group-1',
+                            'blocks': [
+                                {
+                                    'id': 'block-1',
+                                    'questions': [{
+                                        'id': 'question-1',
+                                        'answers': [
+                                            {
+                                                'id': 'LMN',
+                                                'type': 'TextField',
+                                                'q_code': '001'
+                                            },
+                                            {
+                                                'id': 'DEF',
+                                                'type': 'TextField',
+                                                'q_code': '002'
+                                            },
+                                            {
+                                                'id': 'JKL',
+                                                'type': 'TextField',
+                                                'q_code': '003'
+                                            },
+                                        ]
+                                    }]
+                                }
+                            ]
+                        }
+                    ]
+                }]
             }
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
@@ -225,26 +231,29 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             questionnaire = {
                 'survey_id': '021',
                 'data_version': '0.0.1',
-                'groups': [
-                    {
-                        'id': 'group-1',
-                        'blocks': [
-                            {
-                                'id': 'block-1',
-                                'questions': [{
-                                    'id': 'question-2',
-                                    'answers': [
-                                        {
-                                            'id': 'GHI',
-                                            'type': 'TextField',
-                                            'q_code': '003'
-                                        }
-                                    ]
-                                }]
-                            }
-                        ]
-                    }
-                ]
+                'sections': [{
+                    'id': 'section1',
+                    'groups': [
+                        {
+                            'id': 'group-1',
+                            'blocks': [
+                                {
+                                    'id': 'block-1',
+                                    'questions': [{
+                                        'id': 'question-2',
+                                        'answers': [
+                                            {
+                                                'id': 'GHI',
+                                                'type': 'TextField',
+                                                'q_code': '003'
+                                            }
+                                        ]
+                                    }]
+                                }
+                            ]
+                        }
+                    ]
+                }]
             }
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
@@ -261,26 +270,29 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             questionnaire = {
                 'survey_id': '021',
                 'data_version': '0.0.1',
-                'groups': [
-                    {
-                        'id': 'group-1',
-                        'blocks': [
-                            {
-                                'id': 'block-1',
-                                'questions': [{
-                                    'id': 'question-2',
-                                    'answers': [
-                                        {
-                                            'id': 'GHI',
-                                            'type': 'TextField',
-                                            'q_code': '003'
-                                        }
-                                    ]
-                                }]
-                            }
-                        ]
-                    }
-                ]
+                'sections': [{
+                    'id': 'section1',
+                    'groups': [
+                        {
+                            'id': 'group-1',
+                            'blocks': [
+                                {
+                                    'id': 'block-1',
+                                    'questions': [{
+                                        'id': 'question-2',
+                                        'answers': [
+                                            {
+                                                'id': 'GHI',
+                                                'type': 'TextField',
+                                                'q_code': '003'
+                                            }
+                                        ]
+                                    }]
+                                }
+                            ]
+                        }
+                    ]
+                }]
             }
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
@@ -297,26 +309,29 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             questionnaire = {
                 'survey_id': '021',
                 'data_version': '0.0.1',
-                'groups': [
-                    {
-                        'id': 'group-1',
-                        'blocks': [
-                            {
-                                'id': 'block-1',
-                                'questions': [{
-                                    'id': 'question-2',
-                                    'answers': [
-                                        {
-                                            'id': 'GHI',
-                                            'type': 'TextField',
-                                            'q_code': '003'
-                                        }
-                                    ]
-                                }]
-                            }
-                        ]
-                    }
-                ]
+                'sections': [{
+                    'id': 'section1',
+                    'groups': [
+                        {
+                            'id': 'group-1',
+                            'blocks': [
+                                {
+                                    'id': 'block-1',
+                                    'questions': [{
+                                        'id': 'question-2',
+                                        'answers': [
+                                            {
+                                                'id': 'GHI',
+                                                'type': 'TextField',
+                                                'q_code': '003'
+                                            }
+                                        ]
+                                    }]
+                                }
+                            ]
+                        }
+                    ]
+                }]
             }
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
@@ -335,26 +350,29 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             questionnaire = {
                 'survey_id': '021',
                 'data_version': '0.0.1',
-                'groups': [
-                    {
-                        'id': 'group-1',
-                        'blocks': [
-                            {
-                                'id': 'block-1',
-                                'questions': [{
-                                    'id': 'question-2',
-                                    'answers': [
-                                        {
-                                            'id': 'GHI',
-                                            'type': 'TextField',
-                                            'q_code': '003'
-                                        }
-                                    ]
-                                }]
-                            }
-                        ]
-                    }
-                ]
+                'sections': [{
+                    'id': 'section1',
+                    'groups': [
+                        {
+                            'id': 'group-1',
+                            'blocks': [
+                                {
+                                    'id': 'block-1',
+                                    'questions': [{
+                                        'id': 'question-2',
+                                        'answers': [
+                                            {
+                                                'id': 'GHI',
+                                                'type': 'TextField',
+                                                'q_code': '003'
+                                            }
+                                        ]
+                                    }]
+                                }
+                            ]
+                        }
+                    ]
+                }]
             }
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
@@ -380,8 +398,9 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             questionnaire = {
                 'survey_id': '999',
                 'data_version': '0.0.1',
-                'groups': [
-                    {
+                'sections': [{
+                    'id': 'favourite-food-section',
+                    'groups': [{
                         'id': 'favourite-food',
                         'blocks': [
                             {
@@ -406,8 +425,8 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
                                 }]
                             }
                         ]
-                    }
-                ]
+                    }]
+                }]
             }
 
         with self.assertRaises(Exception) as err:
@@ -429,39 +448,42 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             questionnaire = {
                 'survey_id': '021',
                 'data_version': '0.0.2',
-                'groups': [
-                    {
-                        'id': 'personal details',
-                        'blocks': [
-                            {
-                                'id': 'about you',
-                                'questions': [{
-                                    'id': 'crisps-question',
-                                    'answers': [
-                                        {
-                                            'id': 'name',
-                                            'type': 'TextField'
-                                        }
-                                    ]
+                'sections': [{
+                    'id': 'section1',
+                    'groups': [
+                        {
+                            'id': 'personal details',
+                            'blocks': [
+                                {
+                                    'id': 'about you',
+                                    'questions': [{
+                                        'id': 'crisps-question',
+                                        'answers': [
+                                            {
+                                                'id': 'name',
+                                                'type': 'TextField'
+                                            }
+                                        ]
+                                    }]
                                 }]
-                            }]
-                    },
-                    {
-                        'id': 'household',
-                        'blocks': [
-                            {
-                                'id': 'where you live',
-                                'questions': [{
-                                    'id': 'crisps-question',
-                                    'answers': [
-                                        {
-                                            'id': 'address',
-                                            'type': 'TextField'
-                                        }
-                                    ]
+                        },
+                        {
+                            'id': 'household',
+                            'blocks': [
+                                {
+                                    'id': 'where you live',
+                                    'questions': [{
+                                        'id': 'crisps-question',
+                                        'answers': [
+                                            {
+                                                'id': 'address',
+                                                'type': 'TextField'
+                                            }
+                                        ]
+                                    }]
                                 }]
-                            }]
-                    }]
+                        }]
+                }]
             }
 
             # When
@@ -502,32 +524,35 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             questionnaire = {
                 'survey_id': '021',
                 'data_version': '0.0.2',
-                'groups': [{
-                    'id': 'favourite-food',
-                    'blocks': [{
-                        'id': 'crisps',
-                        'questions': [{
-                            'id': 'crisps-question',
-                            'answers': [
-                                {
-                                    'id': 'crisps-answer',
-                                    'type': 'Checkbox',
-                                    'options': [
-                                        {
-                                            'label': 'Ready salted',
-                                            'value': 'Ready salted'
-                                        },
-                                        {
-                                            'label': 'Sweet chilli',
-                                            'value': 'Sweet chilli'
-                                        },
-                                        {
-                                            'label': 'Cheese and onion',
-                                            'value': 'Cheese and onion'
-                                        }
-                                    ]
-                                }
-                            ]
+                'sections': [{
+                    'id': 'section1',
+                    'groups': [{
+                        'id': 'favourite-food',
+                        'blocks': [{
+                            'id': 'crisps',
+                            'questions': [{
+                                'id': 'crisps-question',
+                                'answers': [
+                                    {
+                                        'id': 'crisps-answer',
+                                        'type': 'Checkbox',
+                                        'options': [
+                                            {
+                                                'label': 'Ready salted',
+                                                'value': 'Ready salted'
+                                            },
+                                            {
+                                                'label': 'Sweet chilli',
+                                                'value': 'Sweet chilli'
+                                            },
+                                            {
+                                                'label': 'Cheese and onion',
+                                                'value': 'Cheese and onion'
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }]
                         }]
                     }]
                 }]
@@ -567,56 +592,59 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             questionnaire = {
                 'survey_id': '999',
                 'data_version': '0.0.1',
-                'groups': [
-                    {
-                        'id': 'favourite-food',
-                        'blocks': [
-                            {
-                                'id': 'crisps',
-                                'questions': [{
-                                    'id': 'crisps-question',
-                                    'answers': [
-                                        {
-                                            'id': 'crisps-answer',
-                                            'type': 'Checkbox',
-                                            'options': [
-                                                {
-                                                    'label': 'Ready salted',
-                                                    'value': 'Ready salted',
-                                                    'q_code': '1'
-                                                },
-                                                {
-                                                    'label': 'Sweet chilli',
-                                                    'value': 'Sweet chilli',
-                                                    'q_code': '2'
-                                                },
-                                                {
-                                                    'label': 'Cheese and onion',
-                                                    'value': 'Cheese and onion',
-                                                    'q_code': '3'
-                                                },
-                                                {
-                                                    'label': 'Other',
-                                                    'q_code': '4',
-                                                    'description': 'Choose any other flavour',
-                                                    'value': 'Other',
-                                                    'child_answer_id': 'other-answer-mandatory'
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            'parent_answer_id': 'crisps-answer',
-                                            'mandatory': True,
-                                            'id': 'other-answer-mandatory',
-                                            'label': 'Please specify other',
-                                            'type': 'TextField'
-                                        }
-                                    ]
-                                }]
-                            }
-                        ]
-                    }
-                ]
+                'sections': [{
+                    'id': 'section1',
+                    'groups': [
+                        {
+                            'id': 'favourite-food',
+                            'blocks': [
+                                {
+                                    'id': 'crisps',
+                                    'questions': [{
+                                        'id': 'crisps-question',
+                                        'answers': [
+                                            {
+                                                'id': 'crisps-answer',
+                                                'type': 'Checkbox',
+                                                'options': [
+                                                    {
+                                                        'label': 'Ready salted',
+                                                        'value': 'Ready salted',
+                                                        'q_code': '1'
+                                                    },
+                                                    {
+                                                        'label': 'Sweet chilli',
+                                                        'value': 'Sweet chilli',
+                                                        'q_code': '2'
+                                                    },
+                                                    {
+                                                        'label': 'Cheese and onion',
+                                                        'value': 'Cheese and onion',
+                                                        'q_code': '3'
+                                                    },
+                                                    {
+                                                        'label': 'Other',
+                                                        'q_code': '4',
+                                                        'description': 'Choose any other flavour',
+                                                        'value': 'Other',
+                                                        'child_answer_id': 'other-answer-mandatory'
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                'parent_answer_id': 'crisps-answer',
+                                                'mandatory': True,
+                                                'id': 'other-answer-mandatory',
+                                                'label': 'Please specify other',
+                                                'type': 'TextField'
+                                            }
+                                        ]
+                                    }]
+                                }
+                            ]
+                        }
+                    ]
+                }]
             }
 
             # When
@@ -640,56 +668,59 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             questionnaire = {
                 'survey_id': '999',
                 'data_version': '0.0.1',
-                'groups': [
-                    {
-                        'id': 'favourite-food',
-                        'blocks': [
-                            {
-                                'id': 'crisps',
-                                'questions': [{
-                                    'id': 'crisps-question',
-                                    'answers': [
-                                        {
-                                            'id': 'crisps-answer',
-                                            'type': 'Checkbox',
-                                            'options': [
-                                                {
-                                                    'label': 'Ready salted',
-                                                    'value': 'Ready salted',
-                                                    'q_code': '1'
-                                                },
-                                                {
-                                                    'label': 'Sweet chilli',
-                                                    'value': 'Sweet chilli',
-                                                    'q_code': '2'
-                                                },
-                                                {
-                                                    'label': 'Cheese and onion',
-                                                    'value': 'Cheese and onion',
-                                                    'q_code': '3'
-                                                },
-                                                {
-                                                    'label': 'Other',
-                                                    'q_code': '4',
-                                                    'description': 'Choose any other flavour',
-                                                    'value': 'Other',
-                                                    'child_answer_id': 'other-answer-mandatory'
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            'parent_answer_id': 'crisps-answer',
-                                            'mandatory': True,
-                                            'id': 'other-answer-mandatory',
-                                            'label': 'Please specify other',
-                                            'type': 'TextField'
-                                        }
-                                    ]
-                                }]
-                            }
-                        ]
-                    }
-                ]
+                'sections': [{
+                    'id': 'section1',
+                    'groups': [
+                        {
+                            'id': 'favourite-food',
+                            'blocks': [
+                                {
+                                    'id': 'crisps',
+                                    'questions': [{
+                                        'id': 'crisps-question',
+                                        'answers': [
+                                            {
+                                                'id': 'crisps-answer',
+                                                'type': 'Checkbox',
+                                                'options': [
+                                                    {
+                                                        'label': 'Ready salted',
+                                                        'value': 'Ready salted',
+                                                        'q_code': '1'
+                                                    },
+                                                    {
+                                                        'label': 'Sweet chilli',
+                                                        'value': 'Sweet chilli',
+                                                        'q_code': '2'
+                                                    },
+                                                    {
+                                                        'label': 'Cheese and onion',
+                                                        'value': 'Cheese and onion',
+                                                        'q_code': '3'
+                                                    },
+                                                    {
+                                                        'label': 'Other',
+                                                        'q_code': '4',
+                                                        'description': 'Choose any other flavour',
+                                                        'value': 'Other',
+                                                        'child_answer_id': 'other-answer-mandatory'
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                'parent_answer_id': 'crisps-answer',
+                                                'mandatory': True,
+                                                'id': 'other-answer-mandatory',
+                                                'label': 'Please specify other',
+                                                'type': 'TextField'
+                                            }
+                                        ]
+                                    }]
+                                }
+                            ]
+                        }
+                    ]
+                }]
             }
 
             # When
@@ -710,33 +741,36 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             questionnaire = {
                 'survey_id': '999',
                 'data_version': '0.0.1',
-                'groups': [
-                    {
-                        'id': 'favourite-food',
-                        'blocks': [
-                            {
-                                'id': 'crisps',
-                                'questions': [{
-                                    'id': 'crisps-question',
-                                    'answers': [
-                                        {
-                                            'id': 'crisps-answer',
-                                            'type': 'TextArea',
-                                            'options': [],
-                                            'q_code': '1'
-                                        },
-                                        {
-                                            'id': 'other-crisps-answer',
-                                            'type': 'TextArea',
-                                            'options': [],
-                                            'q_code': '2'
-                                        }
-                                    ]
-                                }]
-                            }
-                        ]
-                    }
-                ]
+                'sections': [{
+                    'id': 'section1',
+                    'groups': [
+                        {
+                            'id': 'favourite-food',
+                            'blocks': [
+                                {
+                                    'id': 'crisps',
+                                    'questions': [{
+                                        'id': 'crisps-question',
+                                        'answers': [
+                                            {
+                                                'id': 'crisps-answer',
+                                                'type': 'TextArea',
+                                                'options': [],
+                                                'q_code': '1'
+                                            },
+                                            {
+                                                'id': 'other-crisps-answer',
+                                                'type': 'TextArea',
+                                                'options': [],
+                                                'q_code': '2'
+                                            }
+                                        ]
+                                    }]
+                                }
+                            ]
+                        }
+                    ]
+                }]
             }
 
             # When

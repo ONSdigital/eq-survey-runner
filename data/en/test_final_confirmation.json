@@ -8,63 +8,61 @@
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to demo final confirmation to submit.",
     "navigation": {
-        "visible": true,
-        "sections": [{
-                "title": "First group",
-                "group_order": ["final-confirmation"]
-            },
-            {
-                "title": "Submit answers",
-                "group_order": ["confirmation-group"]
-            }
-        ]
+        "visible": true
     },
     "messages": {
         "NUMBER_TOO_LARGE": "Number is too large",
         "NUMBER_TOO_SMALL": "Number cannot be less than zero",
         "INVALID_NUMBER": "Please enter an integer"
     },
-    "groups": [{
-            "blocks": [{
-                    "type": "Introduction",
-                    "id": "introduction",
-                    "title": "Introduction",
-                    "description": ""
-                },
-                {
-                    "type": "Question",
-                    "id": "breakfast",
-                    "description": "",
-                    "title": "What is your favourite breakfast food",
-                    "questions": [{
-                        "answers": [{
-                            "id": "breakfast-answer",
-                            "label": "What is your favourite breakfast food",
-                            "mandatory": false,
-                            "q_code": "0",
-                            "type": "TextField"
-                        }],
+    "sections": [{
+            "id": "first-group",
+            "title": "First group",
+            "groups": [{
+                "blocks": [{
+                        "type": "Introduction",
+                        "id": "introduction",
+                        "title": "Introduction",
+                        "description": ""
+                    },
+                    {
+                        "type": "Question",
+                        "id": "breakfast",
                         "description": "",
-                        "id": "breakfast-question",
                         "title": "What is your favourite breakfast food",
-                        "type": "General"
-                    }],
-                    "routing_rules": []
-                }
-            ],
-            "id": "final-confirmation",
-            "title": "First group"
+                        "questions": [{
+                            "answers": [{
+                                "id": "breakfast-answer",
+                                "label": "What is your favourite breakfast food",
+                                "mandatory": false,
+                                "q_code": "0",
+                                "type": "TextField"
+                            }],
+                            "description": "",
+                            "id": "breakfast-question",
+                            "title": "What is your favourite breakfast food",
+                            "type": "General"
+                        }],
+                        "routing_rules": []
+                    }
+                ],
+                "id": "final-confirmation",
+                "title": "First group"
+            }]
         },
         {
-            "blocks": [{
-                "type": "Confirmation",
-                "id": "confirmation",
-                "title": "Thank you for your answers, do you wish to submit",
-                "questions": []
-
-            }],
-            "id": "confirmation-group",
-            "title": "Submit answers"
+            "id": "submit-answers",
+            "title": "Submit answers",
+            "groups": [{
+                "blocks": [{
+                    "type": "Confirmation",
+                    "id": "confirmation",
+                    "title": "Thank you for your answers, do you wish to submit",
+                    "questions": []
+                }],
+                "id": "confirmation-group",
+                "title": "Submit answers"
+            }]
         }
     ]
 }

@@ -287,18 +287,21 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         questionnaire = {
             'survey_id': '021',
             'data_version': '0.0.2',
-            'groups': [{
-                'id': 'group1',
-                'blocks': [{
-                    'id': 'block1',
-                    'questions': [{
-                        'id': 'question1',
-                        'answers': [
-                            {
-                                'id': 'answer1',
-                                'type': 'Date'
-                            }
-                        ]
+            'sections': [{
+                'id': 'secetion1',
+                'groups': [{
+                    'id': 'group1',
+                    'blocks': [{
+                        'id': 'block1',
+                        'questions': [{
+                            'id': 'question1',
+                            'answers': [
+                                {
+                                    'id': 'answer1',
+                                    'type': 'Date'
+                                }
+                            ]
+                        }]
                     }]
                 }]
             }]
@@ -323,18 +326,21 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         questionnaire = {
             'survey_id': '021',
             'data_version': '0.0.2',
-            'groups': [{
-                'id': 'group1',
-                'blocks': [{
-                    'id': 'block1',
-                    'questions': [{
-                        'id': 'question1',
-                        'answers': [
-                            {
-                                'id': 'answer1',
-                                'type': 'MonthYearDate'
-                            }
-                        ]
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'blocks': [{
+                        'id': 'block1',
+                        'questions': [{
+                            'id': 'question1',
+                            'answers': [
+                                {
+                                    'id': 'answer1',
+                                    'type': 'MonthYearDate'
+                                }
+                            ]
+                        }]
                     }]
                 }]
             }]
@@ -359,14 +365,17 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         questionnaire = {
             'survey_id': '021',
             'data_version': '0.0.2',
-            'groups': [{
-                'id': 'group1',
-                'blocks': [{
-                    'id': 'block1',
-                    'questions': [{
-                        'id': 'question1',
-                        'answers': [
-                        ]
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'blocks': [{
+                        'id': 'block1',
+                        'questions': [{
+                            'id': 'question1',
+                            'answers': [
+                            ]
+                        }]
                     }]
                 }]
             }]
@@ -391,9 +400,12 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         questionnaire = {
             'survey_id': '021',
             'data_version': '0.0.2',
-            'groups': [{
-                'id': 'group1',
-                'blocks': []
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'blocks': []
+                }]
             }]
         }
 

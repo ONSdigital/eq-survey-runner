@@ -8,52 +8,51 @@
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to test percentage input type",
     "navigation": {
-        "visible": true,
-        "sections": [{
-                "title": "Percent Input",
-                "group_order": ["group"]
-            },
-            {
-                "title": "Summary",
-                "group_order": ["summary-group"]
-            }
-        ]
+        "visible": true
     },
-    "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "block",
-                "description": "",
-                "questions": [{
-                    "answers": [{
-                        "description": "Enter percentage of growth",
-                        "id": "answer",
-                        "label": "New to the market 2012-2014",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "Percentage",
-                        "max_value": {
-                            "value": 100
-                        }
-                    }],
+    "sections": [{
+            "id": "percent-input-section",
+            "title": "Percent Input",
+            "groups": [{
+                "blocks": [{
+                    "type": "Question",
+                    "id": "block",
                     "description": "",
-                    "id": "question",
-                    "title": "",
-                    "type": "General"
+                    "questions": [{
+                        "answers": [{
+                            "description": "Enter percentage of growth",
+                            "id": "answer",
+                            "label": "New to the market 2012-2014",
+                            "mandatory": false,
+                            "q_code": "0",
+                            "type": "Percentage",
+                            "max_value": {
+                                "value": 100
+                            }
+                        }],
+                        "description": "",
+                        "id": "question",
+                        "title": "",
+                        "type": "General"
+                    }],
+                    "title": "Percentage Input Test",
+                    "routing_rules": []
                 }],
-                "title": "Percentage Input Test",
-                "routing_rules": []
-            }],
-            "id": "group",
-            "title": ""
+                "id": "group",
+                "title": ""
+            }]
         },
         {
-            "blocks": [{
-                "type": "Summary",
-                "id": "summary"
-            }],
-            "id": "summary-group",
-            "title": "Summary"
+            "id": "summary-section",
+            "title": "Summary",
+            "groups": [{
+                "blocks": [{
+                    "type": "Summary",
+                    "id": "summary"
+                }],
+                "id": "summary-group",
+                "title": "Summary"
+            }]
         }
     ]
 }

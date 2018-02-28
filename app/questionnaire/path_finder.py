@@ -39,8 +39,7 @@ class PathFinder:
         block_index = 0
         first_groups = self._get_first_group_in_section()
 
-        for group in self.schema.get_groups():
-
+        for group in self.schema.groups:
             if not this_location:
                 first_block_in_group = self.schema.get_first_block_id_for_group(group['id'])
                 this_location = Location(group['id'], 0, first_block_in_group)
@@ -51,35 +50,36 @@ class PathFinder:
 
             no_of_repeats = self._calculate_no_of_repeats(group, path)
 
-            for i in range(0, no_of_repeats):
-                for block in group['blocks']:
-                    if 'skip_conditions' in block:
-                        if evaluate_skip_conditions(block['skip_conditions'], self.metadata, self.answer_store):
-                            continue
-
-                    blocks.append({
-                        'group_id': group['id'],
-                        'group_instance': i,
-                        'block': block,
-                    })
+            for instance_idx in range(0, no_of_repeats):
+                group_blocks = self._build_blocks_for_group(group, instance_idx)
+                blocks += group_blocks
 
             if group['id'] in first_groups:
                 this_location = Location(group['id'], 0, group['blocks'][0]['id'])
 
-            path, block_index = self._build_path_within_group(blocks, block_index, this_location, path)
+            if blocks:
+                path, block_index = self._build_path_within_group(blocks, block_index, this_location, path)
 
         return path
 
-    def _get_first_group_in_section(self):
-        first_groups = []
-        sections = self.schema.get_sections()
-
-        if sections:
-            for section in sections:
-                first_groups.append(section['group_order'][0])
+    def _build_blocks_for_group(self, group, instance_idx):
+        for block in group['blocks']:
+            skip_conditions = block.get('skip_conditions')
+            if skip_conditions and evaluate_skip_conditions(
+                    skip_conditions, self.metadata, self.answer_store):
                 continue
 
-        return first_groups
+            yield {
+                'group_id': group['id'],
+                'group_instance': instance_idx,
+                'block': block,
+            }
+
+    def _get_first_group_in_section(self):
+        return [
+            section['groups'][0]['id']
+            for section in self.schema.sections
+        ]
 
     def _build_path_within_group(self, blocks, block_index, this_location, path):
         # Keep going unless we've hit the last block

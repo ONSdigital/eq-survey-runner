@@ -218,7 +218,7 @@ class AnswerStore(object):
         if current_version == 0:
             # Update Date formats
             for answer in self.answers:
-                answer_schema = schema.get_answer_schema_for_answer_id(answer['answer_id'])
+                answer_schema = schema.get_answer(answer['answer_id'])
 
                 if answer_schema:
                     if answer_schema['type'] == 'Date':

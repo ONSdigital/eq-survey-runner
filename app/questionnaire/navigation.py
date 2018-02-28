@@ -30,7 +30,6 @@ class Navigation(object):
         :param current_group_instance:
         :return:
         """
-
         navigation_block = self.schema.json.get('navigation')
         if navigation_block is None or navigation_block.get('visible', True) is False:
             return None
@@ -39,7 +38,7 @@ class Navigation(object):
 
         navigation = []
 
-        for section in navigation_block['sections']:
+        for section in self.schema.sections:
             non_skipped_groups = self._get_non_skipped_groups(section)
             if not non_skipped_groups:
                 continue
@@ -63,15 +62,12 @@ class Navigation(object):
         return navigation
 
     def _get_non_skipped_groups(self, section):
-        non_skipped_groups = []
-        for group_id in section['group_order']:
-            if not self._should_skip_group(group_id):
-                non_skipped_groups.append(group_id)
+        return [
+            group['id'] for group in self._get_visible_groups_for_section(section)
+            if not self._should_skip_group(group)
+        ]
 
-        return non_skipped_groups
-
-    def _should_skip_group(self, group_id):
-        group = self.schema.get_group(group_id)
+    def _should_skip_group(self, group):
         skip_conditions = group.get('skip_conditions')
 
         if skip_conditions:
@@ -91,21 +87,22 @@ class Navigation(object):
         return False
 
     def _build_single_navigation(self, section, current_group_id, first_location):
-        is_highlighted = current_group_id in section['group_order']
+        group_ids = (group['id'] for group in self._get_visible_groups_for_section(section))
+        is_highlighted = current_group_id in group_ids
         is_completed = self._is_completed(section)
 
         return self._generate_item(section['title'], is_completed, first_location, is_highlighted)
 
     def _build_repeating_navigation(self, repeating_rule, section, current_group_id, current_group_instance):
-        group = self.schema.get_group(section['group_order'][0])
-        first_location = Location(group['id'], 0, group['blocks'][0]['id'])
+        first_group = next(self._get_visible_groups_for_section(section))
+        first_location = Location(first_group['id'], 0, first_group['blocks'][0]['id'])
         answer_ids_on_path = PathFinder.get_answer_ids_on_routing_path(self.schema, self.routing_path)
         no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store, answer_ids_on_path)
 
         repeating_nav = []
 
         if repeating_rule['type'] == 'answer_count':
-            is_current_group = group['id'] == current_group_id
+            is_current_group = first_group['id'] == current_group_id
             link_names = self._generate_link_names(section['title_from_answers'])
 
             repeating_nav = self._generate_repeated_items(link_names, first_location, section, no_of_repeats,
@@ -118,7 +115,8 @@ class Navigation(object):
         return repeating_nav
 
     def _build_single_repeating_navigation(self, section, current_group_id, first_location, no_of_repeats):
-        is_highlighted = current_group_id in section['group_order']
+        group_ids = (group['id'] for group in self._get_visible_groups_for_section(section))
+        is_highlighted = current_group_id in group_ids
         is_completed = self._is_completed_single_repeating(no_of_repeats, section)
         return self._generate_item(section['title'], is_completed, first_location, is_highlighted)
 
@@ -138,7 +136,8 @@ class Navigation(object):
         :return:
         """
         contains_group_in_routing_path = False
-        for group_id in section['group_order']:
+        for group in section['groups']:
+            group_id = group['id']
             for location in self.routing_path:
                 if location.group_id == group_id and location.group_instance == group_instance:
                     contains_group_in_routing_path = True
@@ -200,3 +199,10 @@ class Navigation(object):
             link_names[link_name] = ' '.join(link_names[link_name])
 
         return link_names
+
+    @staticmethod
+    def _get_visible_groups_for_section(section):
+        return (
+            group for group in section['groups']
+            if not group.get('hide_in_navigation')
+        )

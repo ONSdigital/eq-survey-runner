@@ -12,33 +12,36 @@
         "NUMBER_TOO_SMALL": "Number cannot be less than zero",
         "INVALID_NUMBER": "Please enter an integer"
     },
-    "groups": [{
-        "blocks": [{
-                "type": "Question",
-                "id": "block",
-                "description": "",
-                "questions": [{
-                    "answers": [{
-                        "id": "answer",
-                        "label": "What is your name?",
-                        "mandatory": false,
-                        "q_code": "0",
-                        "type": "TextField"
-                    }],
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "blocks": [{
+                    "type": "Question",
+                    "id": "block",
                     "description": "",
-                    "id": "question",
-                    "title": "",
-                    "type": "General"
-                }],
-                "title": "Date Test",
-                "routing_rules": []
-            },
-            {
-                "type": "Summary",
-                "id": "summary"
-            }
-        ],
-        "id": "group",
-        "title": ""
+                    "questions": [{
+                        "answers": [{
+                            "id": "answer",
+                            "label": "What is your name?",
+                            "mandatory": false,
+                            "q_code": "0",
+                            "type": "TextField"
+                        }],
+                        "description": "",
+                        "id": "question",
+                        "title": "",
+                        "type": "General"
+                    }],
+                    "title": "Date Test",
+                    "routing_rules": []
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ],
+            "id": "group",
+            "title": ""
+        }]
     }]
 }
