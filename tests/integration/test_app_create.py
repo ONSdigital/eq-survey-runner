@@ -77,14 +77,16 @@ class TestCreateApp(unittest.TestCase):
             self.assertEqual('nosniff', headers['X-Content-Type-Options'])
 
             csp_policy_parts = headers['Content-Security-Policy'].split('; ')
-            self.assertIn("default-src 'self'", csp_policy_parts)
+            self.assertIn("default-src 'self' https://cdn.ons.gov.uk", csp_policy_parts)
             self.assertIn(
-                "script-src 'self' https://www.google-analytics.com 'nonce-{}'".format(
+                "script-src 'self' https://www.google-analytics.com https://cdn.ons.gov.uk 'nonce-{}'".format(
                     request.csp_nonce),
                 csp_policy_parts
             )
             self.assertIn(
                 "img-src 'self' data: https://www.google-analytics.com https://cdn.ons.gov.uk", csp_policy_parts)
+            self.assertIn(
+                "font-src 'self' data: https://cdn.ons.gov.uk", csp_policy_parts)
 
     # Indirectly covered by higher level integration
     # tests, keeping to highlight that create_app is where

@@ -44,7 +44,7 @@
 }
 
 @mixin icon-bg-image ($name) {
-  background-image: url("https://cdn.ons.gov.uk/sdc/#{$cdn-version}/img/icons/icons--#{$name}.svg");
+  background-image: url("#{$cdn-url-root}/img/icons/icons--#{$name}.svg");
 }
 
 @mixin create-btn-icon-modifier ($defaultIconName, $hoverIconName, $focusIconName, $width) {
@@ -167,7 +167,7 @@
     bottom: 0;
     left: 0;
     margin: auto;
-    background-image: url("/s/img/loader.svg");
+    background-image: url("#{$cdn-url-root}/img/loader.svg");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 1.5rem;

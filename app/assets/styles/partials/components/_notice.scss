@@ -9,7 +9,7 @@
     content: " ";
     display: inline-block;
     vertical-align: middle;
-    background: $color-white url("/s/img/icons/icons--info-circle.svg") no-repeat center center;
+    background: $color-white url("#{$cdn-url-root}/img/icons/icons--info-circle.svg") no-repeat center center;
     background-size: 3rem;
     min-width: $size;
     height: $size;

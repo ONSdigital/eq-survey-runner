@@ -1,3 +1,4 @@
+{% set olg_cdn = cdn_url_prefix~"/img/ogl.svg" %}
 <footer class="footer2 page__footer2 print__hidden">
     <div class="footer2-nav container" role="contentinfo">
 
@@ -55,7 +56,7 @@
                     </ul>
                     </br>
                 </div>
-                <div class="dl__data mars"><img src="{{ url_for('static', filename='img/ogl.svg') }}" class="ogl__img"/>
+                <div class="dl__data mars"><img src="{{ olg_cdn }}" class="ogl__img"/>
                     All content is available under
                     the <a class="footer2__link"
                            href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"

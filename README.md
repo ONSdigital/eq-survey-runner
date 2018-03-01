@@ -77,7 +77,7 @@ docker run -it -p 8000:8000 onsdigital/go-launch-a-survey:latest
 ```
 
 If you wish to view submitted data you will also need to run an additional upstream tool (eg, https://github.com/ONSDigital/eq-docker-dynamodb) to launch a dynamoDB container.
- 
+
 ```
 docker run -it -p 6060:8000 onsdigital/eq-docker-dynamodb:latest
 ```
@@ -121,6 +121,13 @@ Command                                    | Task
 `yarn format`                           | Format the json schemas.
 
 ---
+
+###
+Upgrade usage of the pattern library
+(Currently) To make an upgrade to the pattern library you'll need to change the short-hand commit hash in the following files:
+* app/assets/favicons/browserconfig.xml `<square150x150logo src="https://cdn.ons.gov.uk/sdc/[COMMIT HASH HERE]/favicons/mstile-150x150.png"/>`
+* app/assets/styles/partials/vars/_vars.scss.xml `$cdn-url-root: "https://cdn.ons.gov.uk/sdc/[COMMIT HASH HERE]";`
+* app/templates/layouts/base.html `{% set cdn_hash = "[COMMIT HASH HERE]" %}`
 
 ## Functional test options
 
