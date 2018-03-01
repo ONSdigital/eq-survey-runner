@@ -1,0 +1,199 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "001",
+    "title": "Test Routing Date Equals",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "description": "A test survey for routing based on equal dates",
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "blocks": [{
+                    "type": "Question",
+                    "id": "comparison-date-block",
+                    "description": "",
+                    "questions": [{
+                        "answers": [{
+                            "id": "comparison-date-answer",
+                            "alias": "comparison_date_answer",
+                            "label": "",
+                            "mandatory": true,
+                            "q_code": "11",
+                            "type": "Date"
+                        }],
+                        "description": "",
+                        "id": "comparison-date-question",
+                        "title": "",
+                        "type": "General",
+                        "guidance": {
+                            "content": [{
+                                "title": "If you enter 31/03/2018 the following dates will be valid",
+                                "list": [
+                                    "Yesterday 30/03/2018",
+                                    "Today 31/03/2018",
+                                    "Tomorrow 01/04/2018",
+                                    "Last Month 28/02/2018 (28th as no 31st February)",
+                                    "Next Month 30/04/2018 (30th as no 31st April)",
+                                    "Last Year 31/03/2017",
+                                    "Next Year 31/03/2019"
+                                ]
+                            }]
+                        }
+                    }],
+                    "title": "Date To Compare"
+                },
+                {
+                    "type": "Question",
+                    "id": "date-question",
+                    "description": "",
+                    "questions": [{
+                        "answers": [{
+                            "id": "single-date-answer",
+                            "label": "Today",
+                            "mandatory": true,
+                            "type": "Date"
+                        }],
+                        "description": "",
+                        "id": "date-questions",
+                        "title": "Enter {{ answers.comparison_date_answer|format_date }} or offset by one day, month or year in either direction",
+                        "type": "General"
+                    }],
+                    "title": "",
+                    "routing_rules": [{
+                            "goto": {
+                                "block": "correct-answer",
+                                "when": [{
+                                    "id": "single-date-answer",
+                                    "condition": "equals",
+                                    "date_comparison": {
+                                        "id": "comparison-date-answer",
+                                        "offset_by": {
+                                            "days": -1
+                                        }
+                                    }
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "correct-answer",
+                                "when": [{
+                                    "id": "single-date-answer",
+                                    "condition": "equals",
+                                    "date_comparison": {
+                                        "id": "comparison-date-answer"
+                                    }
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "correct-answer",
+                                "when": [{
+                                    "id": "single-date-answer",
+                                    "condition": "equals",
+                                    "date_comparison": {
+                                        "id": "comparison-date-answer",
+                                        "offset_by": {
+                                            "days": 1
+                                        }
+                                    }
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "correct-answer",
+                                "when": [{
+                                    "id": "single-date-answer",
+                                    "condition": "equals",
+                                    "date_comparison": {
+                                        "id": "comparison-date-answer",
+                                        "offset_by": {
+                                            "months": -1
+                                        }
+                                    }
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "correct-answer",
+                                "when": [{
+                                    "id": "single-date-answer",
+                                    "condition": "equals",
+                                    "date_comparison": {
+                                        "id": "comparison-date-answer",
+                                        "offset_by": {
+                                            "months": 1
+                                        }
+                                    }
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "correct-answer",
+                                "when": [{
+                                    "id": "single-date-answer",
+                                    "condition": "equals",
+                                    "date_comparison": {
+                                        "id": "comparison-date-answer",
+                                        "offset_by": {
+                                            "years": -1
+                                        }
+                                    }
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "correct-answer",
+                                "when": [{
+                                    "id": "single-date-answer",
+                                    "condition": "equals",
+                                    "date_comparison": {
+                                        "id": "comparison-date-answer",
+                                        "offset_by": {
+                                            "years": 1
+                                        }
+                                    }
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "incorrect-answer"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "Interstitial",
+                    "id": "incorrect-answer",
+                    "title": "Incorrect Date",
+                    "description": "You entered an incorrect date",
+                    "routing_rules": [{
+                        "goto": {
+                            "block": "summary"
+                        }
+                    }]
+                },
+                {
+                    "type": "Interstitial",
+                    "id": "correct-answer",
+                    "title": "Correct Date",
+                    "description": "You entered a correct date."
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ],
+            "id": "group",
+            "title": ""
+        }]
+    }]
+}

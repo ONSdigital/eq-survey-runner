@@ -1,5 +1,6 @@
 import logging
-
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 MAX_REPEATS = 25
 
 logger = logging.getLogger(__name__)
@@ -34,6 +35,62 @@ def evaluate_rule(when, answer_value):
         result = True
 
     return result
+
+
+def evaluate_date_rule(when, answer_store, group_instance, metadata, answer_value):
+    result = False
+
+    date_comparison = when['date_comparison']
+
+    answer_value = convert_to_datetime(answer_value)
+    match_value = get_date_match_value(date_comparison, answer_store, group_instance, metadata)
+    condition = when.get('condition')
+
+    if not answer_value or not match_value or not condition:
+        return False
+
+    if condition == 'equals' and match_value == answer_value:
+        result = True
+    elif condition == 'not equals' and match_value != answer_value:
+        result = True
+    elif condition == 'greater than' and answer_value > match_value:
+        result = True
+    elif condition == 'less than' and answer_value < match_value:
+        result = True
+
+    return result
+
+
+def get_date_match_value(date_comparison, answer_store, group_instance, metadata):
+    match_value = None
+
+    if 'value' in date_comparison:
+        if date_comparison['value'] == 'now':
+            match_value = datetime.utcnow().strftime('%Y-%m-%d')
+        else:
+            match_value = date_comparison['value']
+    elif 'id' in date_comparison:
+        match_value = get_answer_store_value(date_comparison['id'], answer_store, group_instance)
+    elif 'meta' in date_comparison:
+        match_value = get_metadata_value(metadata, date_comparison['meta'])
+
+    match_value = convert_to_datetime(match_value)
+
+    if 'offset_by' in date_comparison and match_value:
+        offset = date_comparison['offset_by']
+        match_value = match_value + relativedelta(days=offset.get('days', 0),
+                                                  months=offset.get('months', 0),
+                                                  years=offset.get('years', 0))
+
+    return match_value
+
+
+def convert_to_datetime(value):
+    date_format = '%Y-%m-%d'
+    if value and len(value) == 7:
+        date_format = '%Y-%m'
+
+    return datetime.strptime(value, date_format) if value else None
 
 
 def evaluate_goto(goto_rule, metadata, answer_store, group_instance):
@@ -121,22 +178,29 @@ def evaluate_when_rules(when_rules, metadata, answer_store, group_instance):
     """
     for when_rule in when_rules:
         if 'id' in when_rule:
-            answer_index = when_rule['id']
-            filtered = answer_store.filter(answer_ids=[answer_index], group_instance=group_instance)
-
-            if filtered.count() > 1:
-                raise Exception('Multiple answers ({:d}) found evaluating when rule for answer ({})'
-                                .format(filtered.count(), answer_index))
-            answer = filtered[0]['value'] if filtered.count() == 1 else None
-            if not evaluate_rule(when_rule, answer):
-                return False
-
+            value = get_answer_store_value(when_rule['id'], answer_store, group_instance)
         elif 'meta' in when_rule:
-            key = when_rule['meta']
-            value = get_metadata_value(metadata, key)
+            value = get_metadata_value(metadata, when_rule['meta'])
+        else:
+            return True
+
+        if 'date_comparison' in when_rule:
+            if not evaluate_date_rule(when_rule, answer_store, group_instance, metadata, value):
+                return False
+        else:
             if not evaluate_rule(when_rule, value):
                 return False
+
     return True
+
+
+def get_answer_store_value(answer_index, answer_store, group_instance):
+    filtered = answer_store.filter(answer_ids=[answer_index], group_instance=group_instance)
+
+    if filtered.count() > 1:
+        raise Exception('Multiple answers ({:d}) found evaluating when rule for answer ({})'
+                        .format(filtered.count(), answer_index))
+    return filtered[0]['value'] if filtered.count() == 1 else None
 
 
 def get_metadata_value(metadata, keys):
@@ -159,5 +223,5 @@ def _contains_in_dict(metadata, keys):
         if key not in metadata:
             return False
         return _contains_in_dict(metadata[key], rest)
-    else:
-        return keys in metadata
+
+    return keys in metadata

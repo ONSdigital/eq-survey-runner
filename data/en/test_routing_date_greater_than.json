@@ -1,0 +1,75 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "001",
+    "title": "Test Routing Date Greater Than",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "description": "A test survey for routing based on a date greater than",
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "blocks": [{
+                    "type": "Question",
+                    "id": "date-question",
+                    "description": "",
+                    "questions": [{
+                        "answers": [{
+                            "id": "single-date-answer",
+                            "label": "",
+                            "mandatory": true,
+                            "type": "MonthYearDate"
+                        }],
+                        "description": "",
+                        "id": "date-questions",
+                        "title": "Enter a date greater than Return date: {{ exercise.return_by|format_date('%B %Y') }}",
+                        "type": "General"
+                    }],
+                    "title": "",
+                    "routing_rules": [{
+                            "goto": {
+                                "block": "correct-answer",
+                                "when": [{
+                                    "id": "single-date-answer",
+                                    "condition": "greater than",
+                                    "date_comparison": {
+                                        "meta": "return_by"
+                                    }
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "incorrect-answer"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "Interstitial",
+                    "id": "incorrect-answer",
+                    "title": "Incorrect Date",
+                    "description": "You entered a return date earlier than {{ exercise.return_by|format_date('%B %Y') }}.",
+                    "routing_rules": [{
+                        "goto": {
+                            "block": "summary"
+                        }
+                    }]
+                },
+                {
+                    "type": "Interstitial",
+                    "id": "correct-answer",
+                    "title": "Correct Date",
+                    "description": "You entered a return date later than {{ exercise.return_by|format_date('%B %Y') }}."
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ],
+            "id": "group",
+            "title": ""
+        }]
+    }]
+}
