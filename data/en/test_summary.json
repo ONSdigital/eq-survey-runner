@@ -99,14 +99,39 @@
                         "type": "General"
                     }],
                     "title": ""
+                }
+            ],
+            "id": "summary-group",
+            "title": ""
+        },
+        {
+            "blocks": [
+                {
+                    "description": "",
+                    "type": "Question",
+                    "id": "dessert-block",
+                    "questions": [{
+                        "id": "test-dessert-question",
+                        "title": "",
+                        "type": "General",
+                        "answers": [
+                            {
+                                "id": "dessert",
+                                "label": "What is your favourite dessert?",
+                                "mandatory": false,
+                                "q_code": "30",
+                                "type": "TextField"
+                            }
+                        ]
+                    }]
                 },
                 {
                     "type": "Summary",
                     "id": "summary"
                 }
             ],
-            "id": "summary-group",
-            "title": ""
+            "id": "dessert-group",
+            "title": "Dessert"
         }]
     }]
 }

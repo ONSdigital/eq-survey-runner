@@ -27,5 +27,13 @@ class SummaryPage extends QuestionPage {
 
   testDecimalEdit() { return '[data-qa="test-decimal-edit"]'; }
 
+  summaryGroupTitle() { return '#summary-group'; }
+
+  dessert() { return '#dessert-answer'; }
+
+  dessertEdit() { return '[data-qa="dessert-edit"]'; }
+
+  dessertGroupTitle() { return '#dessert-group'; }
+
 }
 module.exports = new SummaryPage();

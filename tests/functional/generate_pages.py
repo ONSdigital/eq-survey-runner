@@ -87,6 +87,10 @@ SUMMARY_ANSWER_EDIT_GETTER = Template(r"""  ${answerName}Edit() { return '[data-
 
 """)
 
+SUMMARY_TITLE_GETTER = Template(r"""  ${group_id_camel}Title() { return '#${group_id}'; }
+
+""")
+
 CONSTRUCTOR = Template(r"""  constructor() {
     super('${block_id}');
   }
@@ -203,6 +207,13 @@ def process_summary(schema_data, page_spec):
                         }
                         page_spec.write(SUMMARY_ANSWER_GETTER.substitute(answer_context))
                         page_spec.write(SUMMARY_ANSWER_EDIT_GETTER.substitute(answer_context))
+
+            group_context = {
+                'group_id_camel': camel_case(generate_pascal_case_from_id(group['id'])),
+                'group_id': group['id']
+            }
+            page_spec.write(
+                SUMMARY_TITLE_GETTER.substitute(group_context))
 
 
 def long_names_required(question, num_questions):

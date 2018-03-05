@@ -2,6 +2,7 @@ const helpers = require('../helpers');
 
 const RadioPage = require('../pages/surveys/summary_screen/radio.page.js');
 const TestNumberPage = require('../pages/surveys/summary_screen/test-number-block.page.js');
+const DessertBlockPage = require('../pages/surveys/summary_screen/dessert-block.page.js');
 const SummaryPage = require('../pages/surveys/summary_screen/summary.page.js');
 
 describe('Summary Screen', function() {
@@ -14,7 +15,9 @@ describe('Summary Screen', function() {
         .getText(SummaryPage.radioAnswer()).should.eventually.contain('Bacon')
         .getText(SummaryPage.testCurrency()).should.eventually.contain('£1,234.00')
         .getText(SummaryPage.squareKilometres()).should.eventually.contain('123,456 km²')
-        .getText(SummaryPage.testDecimal()).should.eventually.contain('123,456.78');
+        .getText(SummaryPage.testDecimal()).should.eventually.contain('123,456.78')
+        .getText(SummaryPage.dessertGroupTitle()).should.eventually.contain('Dessert')
+        .elements(SummaryPage.summaryGroupTitle()).then(result => result.value).should.eventually.be.empty;
       });
   });
 
@@ -48,6 +51,7 @@ describe('Summary Screen', function() {
         .hasFocus(TestNumberPage.squareKilometres())
         .setValue(TestNumberPage.squareKilometres(), '654321')
         .click(TestNumberPage.submit())
+        .click(DessertBlockPage.submit())
         .getText(SummaryPage.squareKilometres()).should.eventually.contain('654,321 km²');
       });
   });
@@ -58,6 +62,7 @@ describe('Summary Screen', function() {
       .click(RadioPage.submit())
       .setValue(TestNumberPage.testCurrency(), '0')
       .click(TestNumberPage.submit())
+      .click(DessertBlockPage.submit())
       .getUrl().should.eventually.contain(SummaryPage.pageName)
       .getText(SummaryPage.testCurrency()).should.eventually.contain('£0.00');
      });
@@ -68,6 +73,7 @@ describe('Summary Screen', function() {
     return browser
       .click(RadioPage.submit())
       .click(TestNumberPage.submit())
+      .click(DessertBlockPage.submit())
       .getUrl().should.eventually.contain(SummaryPage.pageName)
       .getText(SummaryPage.testCurrency()).should.eventually.contain('No answer provided');
      });
@@ -82,6 +88,8 @@ describe('Summary Screen', function() {
       .setValue(TestNumberPage.squareKilometres(), '123456')
       .setValue(TestNumberPage.testDecimal(), '123456.78')
       .click(TestNumberPage.submit())
+      .setValue(DessertBlockPage.answer(), 'Crème Brûlée')
+      .click(DessertBlockPage.submit())
       .getUrl().should.eventually.contain(SummaryPage.pageName);
   }
 
