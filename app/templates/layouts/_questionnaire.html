@@ -4,9 +4,9 @@
 {% block page_title %}{{page_title}}{% endblock %}
 
 {% block subheader %}
-{% include theme('partials/feedback_call_to_action.html') %}
-
-{{super()}}
+    {% include theme('partials/feedback_call_to_action.html') %}
+    {% include theme('partials/feedback/expandable_inline.html') %}
+    {{super()}}
 {% endblock subheader %}
 
 {% set block = content.block %}
@@ -19,8 +19,6 @@
 {% endblock %}
 
 {% block main %}
-
-    {% block inline_feedback %}{% include theme('partials/feedback/expandable_inline.html') %}{% endblock %}
 
     {% block form_errors %}{% endblock %}
 

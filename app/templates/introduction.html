@@ -9,7 +9,7 @@
 
 {% block subheader %}
     {% include theme('partials/feedback_call_to_action.html') %}
-
+    {% include theme('partials/feedback/expandable_inline.html') %}
     {{super()}}
 {% endblock subheader %}
 
@@ -18,8 +18,6 @@
 {% block page_title %}{{survey_title}}{% endblock %}
 
 {% block main %}
-
-    {% include theme('partials/feedback/expandable_inline.html') %}
 
     {% block business_details %}
 
@@ -45,7 +43,7 @@
     {% block intro_content %}
         <div class="grid">
             <div class="grid__col col-7@m">
-                
+
             {% if content.block.primary_content %}
                 {% for intro in content.block.primary_content %}
                     {% include 'partials/introduction/basic.html' %}
