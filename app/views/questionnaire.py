@@ -4,18 +4,17 @@ from datetime import datetime, timedelta
 import simplejson as json
 import humanize as humanize
 
-from flask import Blueprint, g, redirect, request, url_for, current_app
+from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify
 from flask_login import current_user, login_required, logout_user
 from flask_themes2 import render_theme_template
 from sdc.crypto.encrypter import encrypt
-from flask_wtf import FlaskForm
 
 from structlog import get_logger
 
 from app.globals import get_session_store
 from app.data_model.answer_store import Answer, AnswerStore
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
-from app.helpers.form_helper import get_form_for_location, post_form_for_location
+from app.helpers.form_helper import post_form_for_location
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required
 from app.helpers import template_helper
 from app.questionnaire.location import Location
@@ -31,6 +30,7 @@ from app.templating.metadata_context import build_metadata_context_for_survey_co
 from app.templating.schema_context import build_schema_context
 from app.templating.summary_context import build_summary_rendering_context
 from app.templating.template_renderer import renderer, TemplateRenderer
+from app.templating.view_context import build_view_context
 
 from app.utilities.schema import load_schema_from_metadata, load_schema_from_session_data
 from app.views.errors import MultipleSurveyError
@@ -173,8 +173,8 @@ def post_household_composition(routing_path, **kwargs):
 
     block = _get_block_json(current_location)
 
-    form, _ = post_form_for_location(g.schema, block, current_location, answer_store, request.form,
-                                     disable_mandatory=disable_mandatory)
+    form = post_form_for_location(g.schema, block, current_location, answer_store, request.form,
+                                  disable_mandatory=disable_mandatory)
 
     if 'action[add_answer]' in request.form:
         form.household.append_entry()
@@ -263,9 +263,17 @@ def get_view_submission(eq_id, form_type):  # pylint: disable=unused-argument
 
             schema_context = _get_schema_context(routing_path, 0, metadata, answer_store)
             rendered_schema = renderer.render(g.schema.json, **schema_context)
-            summary_rendered_context = {'summary': build_summary_rendering_context(g.schema, rendered_schema, answer_store, metadata),
-                                        'variables': None,
-                                        'answers_are_editable': False}
+            summary_rendered_context = build_summary_rendering_context(g.schema, rendered_schema['sections'], answer_store, metadata)
+
+            context = {
+                'summary': {
+                    'groups': summary_rendered_context,
+                    'answers_are_editable': True,
+                    'is_view_submission_response_enabled': is_view_submitted_response_enabled(g.schema.json),
+                },
+                'variables': None,
+                'answers_are_editable': False
+            }
 
             return render_theme_template(g.schema.json['theme'],
                                          template_name='view-submission.html',
@@ -273,7 +281,7 @@ def get_view_submission(eq_id, form_type):  # pylint: disable=unused-argument
                                          analytics_ua_id=current_app.config['EQ_UA_ID'],
                                          survey_id=g.schema.json['survey_id'],
                                          survey_title=TemplateRenderer.safe_content(g.schema.json['title']),
-                                         content=summary_rendered_context)
+                                         content=context)
 
     return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
 
@@ -287,6 +295,9 @@ def _redirect_to_latest_location(routing_path, collection_id, eq_id, form_type):
 def _render_page(full_routing_path, block, current_location, post_form=None):
 
     context = _get_context(full_routing_path, block, current_location, post_form)
+
+    if request_wants_json():
+        return jsonify(context)
 
     return _build_template(
         current_location,
@@ -302,7 +313,7 @@ def _is_valid_location(routing_path, location):
 def _generate_wtf_form(form, block, location):
     disable_mandatory = 'action[save_sign_out]' in form
 
-    wtf_form, _ = post_form_for_location(
+    wtf_form = post_form_for_location(
         g.schema,
         block,
         location,
@@ -637,32 +648,7 @@ def _get_context(full_routing_path, block, current_location, form):
     answer_store = get_answer_store(current_user)
     schema_context = _get_schema_context(full_routing_path, current_location.group_instance, metadata, answer_store)
 
-    variables = g.schema.json.get('variables')
-    if variables:
-        variables = renderer.render(variables, **schema_context)
-
-    if block['type'] == 'Summary':
-        rendered_schema_json = renderer.render(g.schema.json, **schema_context)
-        form = form or FlaskForm()
-        summary_rendered_context = build_summary_rendering_context(g.schema, rendered_schema_json, answer_store, metadata)
-        context = {'form': form,
-                   'summary': summary_rendered_context,
-                   'variables': variables,
-                   'is_view_submission_response_enabled': is_view_submitted_response_enabled(g.schema.json),
-                   'answers_are_editable': True}
-        return context
-
-    block = renderer.render(block, **schema_context)
-    context = {'block': block, 'variables': variables}
-
-    if not form:
-        form, template_params = get_form_for_location(g.schema, block, current_location, answer_store)
-        if template_params:
-            context.update(template_params)
-
-    context['form'] = form
-
-    return context
+    return build_view_context(metadata, answer_store, schema_context, block, current_location, form)
 
 
 def _get_block_json(current_location):
@@ -734,3 +720,11 @@ def _render_template(context, current_location, template, front_end_navigation, 
         page_title=page_title,
         **kwargs
     )
+
+
+def request_wants_json():
+    best = request.accept_mimetypes \
+        .best_match(['application/json', 'text/html'])
+    return best == 'application/json' and \
+        request.accept_mimetypes[best] > \
+        request.accept_mimetypes['text/html']

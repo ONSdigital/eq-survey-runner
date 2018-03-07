@@ -3,7 +3,7 @@
 <div>
   <div class="summary">
 
-    {% for group in content.summary %}
+    {% for group in content.summary.groups %}
 
       <h2 class="summary__title saturn" id="{{group.id}}">{{group.title}}</h2>
 
@@ -35,7 +35,7 @@
                      {%- endif -%}
                    </div>
 
-                  {% if content.answers_are_editable %}
+                  {% if content.summary.answers_are_editable %}
                     <div class="summary__edit">
                       <a href="{{ block.link }}#{{answer.id}}" class="summary__edit-link" aria-describedby="{{answer.id}} {{answer.id}}-answer" data-qa="{{answer.id}}-edit" {{helpers.track('click', 'Summary', 'Edit click')}}>Edit <span class="u-vh">your answer</span></a>
                     </div>

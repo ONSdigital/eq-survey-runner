@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import FieldList, SelectField
+from wtforms import FieldList, SelectField, Label
+from wtforms.compat import text_type
 from werkzeug.datastructures import MultiDict
 
 from app.forms.fields import build_choices, get_mandatory_validator
@@ -80,7 +81,7 @@ def deserialise_relationship_answers(answers):
     return relationships
 
 
-def generate_relationship_form(schema, block_json, number_of_entries, data):
+def generate_relationship_form(schema, block_json, relationship_choices, data):
 
     answer = schema.get_answers_for_block(block_json['id'])[0]
 
@@ -113,13 +114,16 @@ def generate_relationship_form(schema, block_json, number_of_entries, data):
 
     choices = [('', 'Select relationship')] + build_choices(answer['options'])
 
-    field = FieldList(SelectField(
-        label=answer.get('guidance'),
-        description=answer.get('label'),
+    labels = []
+
+    for choice in relationship_choices:
+        labels.append(answer.get('label') % dict(current_person=choice[0], other_person=choice[1]))
+
+    field = FieldList(RelationshipSelectField(
+        label=labels,
         choices=choices,
-        default='',
         validators=get_mandatory_validator(answer, schema.error_messages, 'MANDATORY_TEXTFIELD'),
-    ), min_entries=number_of_entries)
+    ), min_entries=len(relationship_choices))
 
     setattr(HouseHoldRelationshipForm, answer['id'], field)
 
@@ -129,3 +133,13 @@ def generate_relationship_form(schema, block_json, number_of_entries, data):
         form = HouseHoldRelationshipForm()
 
     return form
+
+
+class RelationshipSelectField(SelectField):
+
+    def __init__(self, label=None, validators=None, choices=None, **kwargs):
+        super(RelationshipSelectField, self).__init__(label, validators, text_type, choices, **kwargs)
+
+        index = int(self.id.rpartition('-')[-1])
+
+        self.label = Label(self.id, self.label.text[index])

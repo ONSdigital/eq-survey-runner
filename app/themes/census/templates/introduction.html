@@ -16,7 +16,7 @@
 services in your community - services like GPs, hospitals, schools and
 public transport. </p>
 <p>Everyone must be included on a Census form. </p>
- 
+
   <div class="panel panel--info panel--spacious panel--simple u-mb-l">
     <h3 class="neptune">Start or continue to fill in the Census</h3>
     <h4 class="venus"> Enter your 20 digit unique access code </h4>
@@ -25,7 +25,7 @@ public transport. </p>
     <a href="http://www.ons.gov.uk/census/help" target="_blank" >{{_('Help finding your access code')}}</a>
   </div>
   <form action="" class="form" role="form" method="POST" autocomplete="off" novalidate>
-    {{ form.csrf_token }}
+    {{ content.csrf_token }}
     <button class="btn btn--lg qa-btn-get-started" type="submit" name="action[start_questionnaire]">Start survey</button>
   </form>
  <!-- <div class="lock u-mb-s u-mb-m@s"> -->
@@ -34,9 +34,9 @@ public transport. </p>
     <p class="mars">You could be fined if you do not participate or if you supply false information. </p>
     <p>Your personal information is protected by law. Census information is kept confidential for 100 years.</p>
     <p>Census information helps government check that services are fair to everyone. This is called equality monitoring.</p>
-  
+
     <a href="http://www.ons.gov.uk/census/help" target="_blank" >{{_('Need help? More information about the Census')}}</a>
   </div>
-  
+
 </div>
 {% endblock main %}

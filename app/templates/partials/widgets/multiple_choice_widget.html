@@ -14,7 +14,7 @@
     <div class="field__label mars">Select all that apply:</div>
   {% endif %}
 
-  {% for option in form[answer.id] %}
+  {% for option in form.fields[answer.id] %}
     {% set input = {
       "class": "input input--" ~ widget_type ~ " js-focusable",
       "type": widget_type,
@@ -22,7 +22,7 @@
       "name": option.name,
       "id": option.id,
       "checked": "checked" if option['checked'],
-      "data-qa": "has-other-option" if form.option_has_other(answer.id, loop.index0)
+      "data-qa": "has-other-option" if answer.id in form.other_answer and form.other_answer[answer.id][loop.index0] != None
     } %}
 
     {% set label = {
@@ -30,8 +30,8 @@
       "for": option.id,
       "id": "label-" ~ option.id
     } %}
-    
-    
+
+
     <div class="field__item js-focusable-box">
       <input {{input|xmlattr}}>
       <label {{label|xmlattr}}>
@@ -42,8 +42,8 @@
         {% endif %}
       </label>
 
-      {% if form.option_has_other(answer.id, loop.index0) %}
-        {% set other_answer = form.get_other_answer(answer.id, loop.index0) %}
+      {% if answer.id in form.other_answer and form.other_answer[answer.id][loop.index0] != None %}
+        {% set other_answer = form.other_answer[answer.id][loop.index0] %}
 
         {% set other_label = {
           "class": "label mercury",
