@@ -28,7 +28,7 @@ until [ "$checks" == 0 ]; do
         (( checks=0 ))
     fi
 
-done  
+done
 
 exit=0
 

@@ -1,0 +1,75 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "001",
+    "title": "Test Routing Date Less Than",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "description": "A test survey for routing based on a Date less than",
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "blocks": [{
+                    "type": "Question",
+                    "id": "date-question",
+                    "description": "",
+                    "questions": [{
+                        "answers": [{
+                            "id": "single-date-answer",
+                            "label": "Today",
+                            "mandatory": true,
+                            "type": "Date"
+                        }],
+                        "description": "",
+                        "id": "date-questions",
+                        "title": "Enter a date less than today",
+                        "type": "General"
+                    }],
+                    "title": "",
+                    "routing_rules": [{
+                            "goto": {
+                                "block": "correct-answer",
+                                "when": [{
+                                    "id": "single-date-answer",
+                                    "condition": "less than",
+                                    "date_comparison": {
+                                        "value": "now"
+                                    }
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "incorrect-answer"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "Interstitial",
+                    "id": "incorrect-answer",
+                    "title": "Incorrect Date",
+                    "description": "You entered a date later than yesterday.",
+                    "routing_rules": [{
+                        "goto": {
+                            "block": "summary"
+                        }
+                    }]
+                },
+                {
+                    "type": "Interstitial",
+                    "id": "correct-answer",
+                    "title": "Correct Date",
+                    "description": "You entered a date older than today."
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ],
+            "id": "group",
+            "title": ""
+        }]
+    }]
+}
