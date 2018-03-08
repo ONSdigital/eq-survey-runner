@@ -5,7 +5,9 @@
 
     {% for group in content.summary.groups %}
 
+      {% if group.title %}
       <h2 class="summary__title saturn" id="{{group.id}}">{{group.title}}</h2>
+      {% endif %}
 
       <div class="summary__block">
 
