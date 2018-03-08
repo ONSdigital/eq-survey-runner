@@ -40,7 +40,10 @@ def before_request():
 @login_required
 def get_form():
     form = FeedbackForm()
-    return _render_template('feedback', form=form)
+    content = {
+        'csrf_token': form.csrf_token
+    }
+    return _render_template('feedback', content=content)
 
 
 @feedback_blueprint.route('', methods=['POST'])

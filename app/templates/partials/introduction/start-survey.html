@@ -1,6 +1,6 @@
 {% set form = content.form %}
 
     <form class="form" method="POST" autocomplete="off" novalidate>
-        {{ form.csrf_token }}
+        {{ content.csrf_token }}
         <button class="btn btn--primary btn--lg qa-btn-get-started" type="submit" name="action[start_questionnaire]">Start survey</button>
     </form>

@@ -65,6 +65,7 @@ class TestViewSubmission(IntegrationTestCase):
         self.assertInPage('Submitted answers')
 
         # check answers are on page
+        self.assertStatusOK()
         self.assertInPage('Bacon')
         self.assertInPage('12')
         self.assertInPage('345')

@@ -12,9 +12,9 @@
       <span class="input-type__type" id="{{answer.id}}-type">{{ get_currency_symbol(answer.currency) }}</span>
 
         {% if form.errors or form.question_errors %}
-            {% set data_input = form.get_data(answer['id']) %}
+            {% set data_input = form.data[answer['id']] %}
          {% else %}
-            {% set data_input = format_currency_for_input(form.get_data(answer['id']), answer.get('decimal_places')) %}
+            {% set data_input = format_currency_for_input(form.data[answer['id']], answer.get('decimal_places')) %}
         {% endif %}
 
         {% set input = {

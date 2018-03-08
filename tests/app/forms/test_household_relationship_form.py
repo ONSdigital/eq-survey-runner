@@ -71,7 +71,9 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
 
             answer = schema.get_answers_for_block('relationships')[0]
 
-            form = generate_relationship_form(schema, block_json, 3, {})
+            relationship_choices = [['a', 'b'], ['c', 'd'], ['e', 'f']]
+
+            form = generate_relationship_form(schema, block_json, relationship_choices, {})
 
             self.assertTrue(hasattr(form, answer['id']))
             self.assertEqual(len(form.data[answer['id']]), 3)
@@ -83,7 +85,9 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
 
             answer = schema.get_answers_for_block('relationships')[0]
 
-            form = generate_relationship_form(schema, block_json, 3, {
+            relationship_choices = [['a', 'b'], ['c', 'd'], ['e', 'f']]
+
+            form = generate_relationship_form(schema, block_json, relationship_choices, {
                 '{answer_id}-0'.format(answer_id=answer['id']): 'Husband or Wife',
                 '{answer_id}-1'.format(answer_id=answer['id']): 'Brother or Sister',
                 '{answer_id}-2'.format(answer_id=answer['id']): 'Relation - other',
@@ -101,9 +105,11 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
 
             answer = schema.get_answers_for_block('relationships')[0]
 
-            generated_form = generate_relationship_form(schema, block_json, 3, None)
+            relationship_choices = [['a', 'b'], ['c', 'd'], ['e', 'f']]
 
-            form = generate_relationship_form(schema, block_json, 3, {
+            generated_form = generate_relationship_form(schema, block_json, relationship_choices, None)
+
+            form = generate_relationship_form(schema, block_json, relationship_choices, {
                 'csrf_token': generated_form.csrf_token.current_token,
                 '{answer_id}-0'.format(answer_id=answer['id']): '1',
                 '{answer_id}-1'.format(answer_id=answer['id']): '3',

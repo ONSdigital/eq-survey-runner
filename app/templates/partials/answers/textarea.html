@@ -6,7 +6,7 @@
 
     {% include 'partials/forms/label.html' %}
 
-    {% set input = form[answer['id']] %}
+    {% set input = form.fields[answer['id']] %}
 
     {% set attr = {
       "class": "input input--textarea js-charlimit-input",
@@ -21,7 +21,7 @@
 
     {% set answer_helper = answer.name ~ "-helper" %}
 
-    <textarea {{attr|xmlattr}}>{{ form.get_data(answer['id']) }}</textarea>
+    <textarea {{attr|xmlattr}}>{{ form.data[answer['id']] }}</textarea>
 
     {% set remainingAttr = {
       "id": answer.id ~ "-remaining",

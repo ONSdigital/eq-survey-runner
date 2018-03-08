@@ -21,7 +21,7 @@ class TestFormHelper(AppContextTestCase):
                                 group_instance=0,
                                 block_id='introduction')
 
-            form, _ = get_form_for_location(schema, block_json, location, AnswerStore())
+            form = get_form_for_location(schema, block_json, location, AnswerStore())
 
             self.assertTrue(hasattr(form, 'period-to'))
             self.assertTrue(hasattr(form, 'period-from'))
@@ -41,8 +41,8 @@ class TestFormHelper(AppContextTestCase):
                                 group_instance=0,
                                 block_id='introduction')
 
-            form, _ = get_form_for_location(schema, block_json, location,
-                                            AnswerStore(), disable_mandatory=True)
+            form = get_form_for_location(schema, block_json, location,
+                                         AnswerStore(), disable_mandatory=True)
 
             self.assertTrue(hasattr(form, 'period-from'))
             self.assertTrue(hasattr(form, 'period-to'))
@@ -60,7 +60,7 @@ class TestFormHelper(AppContextTestCase):
             block_json = schema.get_block('reporting-period')
             location = Location('rsi', 0, 'reporting-period')
 
-            form, _ = get_form_for_location(schema, block_json, location, AnswerStore([
+            form = get_form_for_location(schema, block_json, location, AnswerStore([
                 {
                     'answer_id': 'period-from',
                     'group_instance': 0,
@@ -101,7 +101,7 @@ class TestFormHelper(AppContextTestCase):
                                 block_id='date-block')
             error_messages = schema.error_messages
 
-            form, _ = get_form_for_location(schema, block_json, location, AnswerStore([
+            form = get_form_for_location(schema, block_json, location, AnswerStore([
                 {
                     'answer_id': 'month-year-answer',
                     'group_id': 'dates',
@@ -132,7 +132,7 @@ class TestFormHelper(AppContextTestCase):
 
             error_messages = schema.error_messages
 
-            form, _ = get_form_for_location(schema, block_json, location, AnswerStore([
+            form = get_form_for_location(schema, block_json, location, AnswerStore([
                 {
                     'answer_id': 'mandatory-checkbox-answer',
                     'group_id': 'checkboxes',
@@ -158,7 +158,7 @@ class TestFormHelper(AppContextTestCase):
                                 group_instance=0,
                                 block_id='introduction')
 
-            form, _ = post_form_for_location(schema, block_json, location, AnswerStore(), {
+            form = post_form_for_location(schema, block_json, location, AnswerStore(), {
                 'period-from-day': '1',
                 'period-from-month': '05',
                 'period-from-year': '2015',
@@ -196,7 +196,7 @@ class TestFormHelper(AppContextTestCase):
                                 group_instance=0,
                                 block_id='introduction')
 
-            form, _ = post_form_for_location(schema, block_json, location, AnswerStore(), {
+            form = post_form_for_location(schema, block_json, location, AnswerStore(), {
             }, disable_mandatory=True)
 
             self.assertTrue(hasattr(form, 'period-from'))
@@ -216,7 +216,7 @@ class TestFormHelper(AppContextTestCase):
             location = Location('who-lives-here', 0, 'household-composition')
             error_messages = schema.error_messages
 
-            form, _ = get_form_for_location(schema, block_json, location, AnswerStore(), error_messages)
+            form = get_form_for_location(schema, block_json, location, AnswerStore(), error_messages)
 
             self.assertTrue(hasattr(form, 'household'))
             self.assertEqual(len(form.household.entries), 1)
@@ -234,7 +234,7 @@ class TestFormHelper(AppContextTestCase):
             block_json = schema.get_block('household-composition')
             location = Location('who-lives-here', 0, 'household-composition')
 
-            form, _ = post_form_for_location(schema, block_json, location, AnswerStore(), {
+            form = post_form_for_location(schema, block_json, location, AnswerStore(), {
                 'household-0-first-name': 'Joe',
                 'household-0-last-name': '',
                 'household-1-first-name': 'Bob',
@@ -292,7 +292,7 @@ class TestFormHelper(AppContextTestCase):
                     'answer_instance': 1,
                 }
             ])
-            form, _ = get_form_for_location(schema, block_json, location, answer_store, error_messages)
+            form = get_form_for_location(schema, block_json, location, answer_store, error_messages)
 
             answer = schema.get_answers_for_block('household-relationships')[0]
 
@@ -336,7 +336,7 @@ class TestFormHelper(AppContextTestCase):
 
             answer = schema.get_answers_for_block('household-relationships')[0]
 
-            form, _ = post_form_for_location(schema, block_json, location, answer_store, MultiDict({
+            form = post_form_for_location(schema, block_json, location, answer_store, MultiDict({
                 '{answer_id}-0'.format(answer_id=answer['id']): '3'
             }))
 
@@ -372,7 +372,7 @@ class TestFormHelper(AppContextTestCase):
                 }
             ])
 
-            form, _ = post_form_for_location(schema, block_json, location, answer_store, MultiDict({
+            form = post_form_for_location(schema, block_json, location, answer_store, MultiDict({
                 'radio-mandatory-answer': 'Bacon',
                 'other-answer-mandatory': 'Old other text'
             }))
@@ -407,7 +407,7 @@ class TestFormHelper(AppContextTestCase):
             radio_answer = schema.get_answers_for_block('radio-mandatory')[0]
             text_answer = 'other-answer-mandatory'
 
-            form, _ = post_form_for_location(schema, block_json, location, answer_store, MultiDict({
+            form = post_form_for_location(schema, block_json, location, answer_store, MultiDict({
                 '{answer_id}'.format(answer_id=radio_answer['id']): 'Other',
                 '{answer_id}'.format(answer_id=text_answer): 'Other text field value',
             }))

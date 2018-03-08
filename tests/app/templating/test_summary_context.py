@@ -40,7 +40,7 @@ class TestSummaryContext(AppContextTestCase):
         navigator.get_full_routing_path = Mock(return_value=routing_path)
 
         with patch('app.templating.summary_context.PathFinder', return_value=navigator):
-            context = build_summary_rendering_context(self.schema, self.schema.json, answer_store, self.metadata)
+            context = build_summary_rendering_context(self.schema, self.schema.json['sections'], answer_store, self.metadata)
 
         self.assertEqual(len(context), 1)
 
@@ -61,7 +61,7 @@ class TestSummaryContext(AppContextTestCase):
         navigator.get_full_routing_path = Mock(return_value=routing_path)
 
         with patch('app.templating.summary_context.PathFinder', return_value=navigator):
-            context = build_summary_rendering_context(self.schema, self.schema.json, answer_store, self.metadata)
+            context = build_summary_rendering_context(self.schema, self.schema.json['sections'], answer_store, self.metadata)
 
-        answer = context[0].blocks[0].questions[0].answers[0]
-        self.assertEqual(answer.value, '&lt;&gt;&#34;&#39;&amp;')
+        answer = context[0]['blocks'][0]['questions'][0]['answers'][0]
+        self.assertEqual(answer['value'], '&lt;&gt;&#34;&#39;&amp;')

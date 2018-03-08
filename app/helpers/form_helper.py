@@ -31,7 +31,7 @@ def get_form_for_location(schema, block_json, location, answer_store, disable_ma
 
         data = deserialise_composition_answers(answers)
 
-        return generate_household_composition_form(schema, block_json, data), None
+        return generate_household_composition_form(schema, block_json, data)
 
     elif location.block_id in ['relationships', 'household-relationships']:
         answer_ids = schema.get_answer_ids_for_block(location.block_id)
@@ -39,11 +39,11 @@ def get_form_for_location(schema, block_json, location, answer_store, disable_ma
 
         data = deserialise_relationship_answers(answers)
 
-        choices = build_relationship_choices(answer_store, location.group_instance)
+        relationship_choices = build_relationship_choices(answer_store, location.group_instance)
 
-        form = generate_relationship_form(schema, block_json, len(choices), data)
+        form = generate_relationship_form(schema, block_json, relationship_choices, data)
 
-        return form, {'relation_instances': choices}
+        return form
 
     mapped_answers = get_mapped_answers(
         schema,
@@ -62,7 +62,7 @@ def get_form_for_location(schema, block_json, location, answer_store, disable_ma
 
     mapped_answers = deserialise_dates(schema, location.block_id, mapped_answers)
 
-    return generate_form(schema, block_json, mapped_answers, answer_store), None
+    return generate_form(schema, block_json, mapped_answers, answer_store)
 
 
 def post_form_for_location(schema, block_json, location, answer_store, request_form, disable_mandatory=False):
@@ -80,16 +80,16 @@ def post_form_for_location(schema, block_json, location, answer_store, request_f
         block_json = disable_mandatory_answers(block_json)
 
     if location.block_id == 'household-composition':
-        return generate_household_composition_form(schema, block_json, request_form), None
+        return generate_household_composition_form(schema, block_json, request_form)
 
     elif location.block_id in ['relationships', 'household-relationships']:
-        choices = build_relationship_choices(answer_store, location.group_instance)
-        form = generate_relationship_form(schema, block_json, len(choices), request_form)
+        relationship_choices = build_relationship_choices(answer_store, location.group_instance)
+        form = generate_relationship_form(schema, block_json, relationship_choices, request_form)
 
-        return form, {'relation_instances': choices}
+        return form
 
     data = clear_other_text_field(request_form, schema.get_questions_for_block(block_json))
-    return generate_form(schema, block_json, data, answer_store), None
+    return generate_form(schema, block_json, data, answer_store)
 
 
 def disable_mandatory_answers(block_json):

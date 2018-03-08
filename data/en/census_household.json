@@ -397,7 +397,7 @@
                             "type": "Relationship",
                             "answers": [{
                                 "id": "household-relationships-answer",
-                                "label": "%(current_person)s is %(other_person)s",
+                                "label": "%(current_person)s is %(other_person)s's",
                                 "mandatory": false,
                                 "options": [{
                                         "label": "Husband or wife",

@@ -14,9 +14,8 @@
       {{question_title}}
     </legend>
     <div class="question__answers">
-        {% for current_person, other_person in content.relation_instances %}
-          {% set answer = question.answers[0] %}
-          {% set relation_instance = loop.index0 %}
+        {% set answer = question.answers[0] %}
+        {% for field in form.fields[answer['id']] %}
           {% include 'partials/widgets/relationship_widget.html' %}
         {%- endfor -%}
     </div>
