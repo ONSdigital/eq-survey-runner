@@ -59,7 +59,7 @@ class HouseholdMember extends EventEmitter {
     this.node.querySelector('input').focus()
     this.setIndex(this.index)
     forEach(this.inputs, input => { input.value = '' })
-    window.setTimeout(this.node.classList.remove('is-hidden'), 100)
+    window.setTimeout(() => this.node.classList.remove('is-hidden'), 100)
   }
 
   setIndex(index) {

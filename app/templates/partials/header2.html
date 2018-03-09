@@ -1,8 +1,9 @@
 <div class="container">
-    <div class="header2">
+    <div class="header">
         <div class="logo header__logo">
             {% block logo %}
-            <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Office for National Statistics"
+            {% set logo_cdn = cdn_url_prefix~"/img/logo.svg" %}
+            <img src="{{ logo_cdn }}" alt="Office for National Statistics"
                  class="logo__img"/>
             {% endblock logo %}
         </div>
