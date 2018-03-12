@@ -11,8 +11,9 @@ from sdc.crypto.encrypter import encrypt
 
 from structlog import get_logger
 
-from app.globals import get_session_store
+from app.globals import get_session_store, is_dynamodb_enabled
 from app.data_model.answer_store import Answer, AnswerStore
+from app.data_model import submitted_responses
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
 from app.helpers.form_helper import post_form_for_location
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required
@@ -245,7 +246,7 @@ def get_view_submission(eq_id, form_type):  # pylint: disable=unused-argument
     g.schema = load_schema_from_session_data(session_data)
 
     if _is_submission_viewable(g.schema.json, session_data.submitted_time):
-        submitted_data = current_app.eq['submitted_responses'].get_item(session_data.tx_id)
+        submitted_data = submitted_responses.get_item(session_data.tx_id)
 
         if submitted_data:
 
@@ -406,11 +407,11 @@ def _store_viewable_submission(answers, metadata, submitted_time):
         'valid_until': valid_until
     }
 
-    current_app.eq['submitted_responses'].put_item(item)
+    submitted_responses.put_item(item)
 
 
 def is_view_submitted_response_enabled(schema):
-    if 'submitted_responses' in current_app.eq:
+    if is_dynamodb_enabled():
         view_submitted_response = schema.get('view_submitted_response')
         if view_submitted_response:
             return view_submitted_response['enabled']

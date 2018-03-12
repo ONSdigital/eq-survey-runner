@@ -1,5 +1,8 @@
+import boto3
+from botocore.config import Config
 from flask import g, current_app, session as cookie_session
 from structlog import get_logger
+
 from app.settings import EQ_SESSION_ID, USER_IK
 
 from app.data_model.questionnaire_store import QuestionnaireStore
@@ -62,3 +65,23 @@ def get_answer_store(user):
 def get_completed_blocks(user):
     questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
     return questionnaire_store.completed_blocks
+
+
+def get_dynamodb():
+    if not is_dynamodb_enabled():
+        logger.warn('DynamoDB not enabled')
+        return
+
+    dynamodb = g.get('_dynamodb')
+    if not dynamodb:
+        # Number of additional connection attempts
+        config = Config(retries={'max_attempts': 1})
+
+        dynamodb = g._dynamodb = boto3.resource(
+            'dynamodb', endpoint_url=current_app.config['EQ_DYNAMODB_ENDPOINT'], config=config)
+
+    return dynamodb
+
+
+def is_dynamodb_enabled():
+    return current_app.config['EQ_DYNAMODB_ENABLED']

@@ -1,5 +1,5 @@
-from flask import current_app
-from mock import Mock
+import mock
+
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -7,9 +7,6 @@ class TestViewSubmission(IntegrationTestCase):
 
     def setUp(self):
         super().SetUpWithDynamoDB()
-
-        with self._application.app_context():
-            self.table = current_app.eq['submitted_responses'].table
 
     def test_view_submission(self):
         self.launchSurvey('test', 'view_submitted_response')
@@ -47,18 +44,20 @@ class TestViewSubmission(IntegrationTestCase):
         self.assertInPage('Please check your answers carefully before submitting.')
 
         # Submit answers
-        self.table.put_item = Mock(return_value={'ResponseMetadata': {'HTTPStatusCode': 200}})
-        self.post(action=None)
+        with mock.patch('app.data_model.submitted_responses.put_item',
+                        return_value={'ResponseMetadata': {'HTTPStatusCode': 200}}) as put_item:
+            self.post(action=None)
 
-        item = self.table.put_item.call_args[1]
+            item = put_item.call_args[0][0]
 
         # check we're on the thank you page and view submission link is available
         self.assertInUrl('thank-you')
         self.assertInPage('View and print a copy of your answers')
 
         # go to the view submission page
-        self.table.get_item = Mock(return_value=item)
-        self.get('questionnaire/test/view_submitted_response/view-submission')
+        with mock.patch('app.data_model.submitted_responses.get_item',
+                        return_value=item):
+            self.get('questionnaire/test/view_submitted_response/view-submission')
 
         # check we're on the view submission page
         self.assertInUrl('view-submission')
