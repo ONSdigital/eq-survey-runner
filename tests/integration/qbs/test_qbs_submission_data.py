@@ -17,15 +17,16 @@ class TestQbsSubmissionData(IntegrationTestCase):
 
         # We are in the Questionnaire
         self.assertInPage('>Quarterly Business Survey</')
-        self.assertInPage('On 1 April 2016 what was the number of employees for Integration Tests?')
+        self.assertInPage('what was the number of employees for Integration Tests?')
         self.assertInPage('>Continue<')
 
-        # When I submit an answer
+        # When I submit answers
+        self.post(post_data={'number-of-employees-total': '5'})
+
         self.post(post_data={'number-of-employees-male-more-30-hours': '1',
                              'number-of-employees-male-less-30-hours': '2',
                              'number-of-employees-female-more-30-hours': '3',
-                             'number-of-employees-female-less-30-hours': '4',
-                             'number-of-employees-total': '5'})
+                             'number-of-employees-female-less-30-hours': '4'})
 
         # There are no validation errors (we're on the summary screen)
         self.assertInUrl('summary')
