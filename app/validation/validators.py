@@ -8,6 +8,7 @@ from structlog import get_logger
 from app.jinja_filters import format_number, format_currency
 from app.settings import DEFAULT_LOCALE
 from app.validation.error_messages import error_messages
+from app.questionnaire.rules import convert_to_datetime
 
 logger = get_logger()
 
@@ -219,16 +220,19 @@ class DateRangeCheck(object):
 
     def __call__(self, form, from_field, to_field):
 
-        from_date_str = '{}-{:02d}-{:02d}'.format(int(from_field.year.data or 0),
-                                                  int(from_field.month.data or 0),
-                                                  int(from_field.day.data or 0))
+        from_day = int(from_field.day.data) if 'day' in from_field.data else 1
+        to_day = int(to_field.day.data) if 'day' in to_field.data else 1
 
-        to_date_str = '{}-{:02d}-{:02d}'.format(int(to_field.year.data or 0),
-                                                int(to_field.month.data or 0),
-                                                int(to_field.day.data or 0))
+        from_date_str = '{}-{:02d}-{:02d}'.format(int(from_field.year.data),
+                                                  int(from_field.month.data),
+                                                  from_day)
 
-        from_date = datetime.strptime(from_date_str, '%Y-%m-%d')
-        to_date = datetime.strptime(to_date_str, '%Y-%m-%d')
+        to_date_str = '{}-{:02d}-{:02d}'.format(int(to_field.year.data),
+                                                int(to_field.month.data),
+                                                to_day)
+
+        from_date = convert_to_datetime(from_date_str)
+        to_date = convert_to_datetime(to_date_str)
 
         if from_date == to_date or from_date > to_date:
             raise validators.ValidationError(self.messages['INVALID_DATE_RANGE'])

@@ -1,4 +1,5 @@
 import logging
+import re
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 MAX_REPEATS = 25
@@ -79,9 +80,9 @@ def get_date_match_value(date_comparison, answer_store, group_instance, metadata
 
 
 def convert_to_datetime(value):
-    date_format = '%Y-%m-%d'
-    if value and len(value) == 7:
-        date_format = '%Y-%m'
+    date_format = '%Y-%m'
+    if value and re.match(r'\d{4}-\d{2}-\d{2}', value):
+        date_format = '%Y-%m-%d'
 
     return datetime.strptime(value, date_format) if value else None
 
