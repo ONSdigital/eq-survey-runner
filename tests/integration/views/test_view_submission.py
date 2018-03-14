@@ -71,6 +71,9 @@ class TestViewSubmission(IntegrationTestCase):
         self.assertInPage('345')
         self.assertInPage('67.89')
 
+        # check edit links are not on page
+        self.assertNotInPage('data-ga-action="Edit click"')
+
     def test_try_view_submission_when_not_available(self):
         self.launchSurvey('test', 'currency')
 

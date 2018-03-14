@@ -268,11 +268,10 @@ def get_view_submission(eq_id, form_type):  # pylint: disable=unused-argument
             context = {
                 'summary': {
                     'groups': summary_rendered_context,
-                    'answers_are_editable': True,
+                    'answers_are_editable': False,
                     'is_view_submission_response_enabled': is_view_submitted_response_enabled(g.schema.json),
                 },
-                'variables': None,
-                'answers_are_editable': False
+                'variables': None
             }
 
             return render_theme_template(g.schema.json['theme'],
