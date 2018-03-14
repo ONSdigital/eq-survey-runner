@@ -57,7 +57,11 @@ describe('Date checks', function() {
           .click(DatesPage.submit())
 
           // Then an error message is shown
-          .getText(DatesPage.errorNumber(1)).should.eventually.contain('Enter a \'period to\' date later than the \'period from\' date.');
+          .getText(DatesPage.errorNumber(1)).should.eventually.contain('Enter a \'period to\' date later than the \'period from\' date.')
+
+          // Then clicking error should focus on first input field
+          .click(DatesPage.errorNumber(1))
+          .hasFocus(DatesPage.dateRangeFromday());
     });
   });
 

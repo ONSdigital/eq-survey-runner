@@ -1,5 +1,5 @@
 {% import 'macros/helpers.html' as helpers %}
-<div class="panel panel--simple panel--error" data-qa="error">
+<div class="panel panel--simple panel--error" data-qa="error" id="container-{{question.id}}">
   <div class="panel__header">
     {% if form.question_errors[question.id] is not none %}
     <ul class="list list--bare list--errors">
