@@ -351,7 +351,7 @@
                 {
                     "type": "Question",
                     "title": "Retail Turnover",
-                    "id": "confirm-zero-block",
+                    "id": "confirm-zero-turnover-block",
                     "skip_conditions": [{
                         "when": [{
                             "id": "total-retail-turnover",
@@ -363,7 +363,8 @@
                         "type": "General",
                         "answers": [{
                             "type": "Radio",
-                            "id": "confirm-zero-answer",
+                            "id": "confirm-zero-turnover-answer",
+                            "q_code": "d20",
                             "options": [{
                                     "label": "Yes this is correct",
                                     "value": "Yes"
@@ -375,14 +376,14 @@
                             ],
                             "mandatory": true
                         }],
-                        "id": "confirm-zero-question",
+                        "id": "confirm-zero-turnover-question",
                         "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, the value of the total retail turnover was <em>£0</em>, is this correct?"
                     }],
                     "routing_rules": [{
                             "goto": {
                                 "when": [{
                                     "value": "No",
-                                    "id": "confirm-zero-answer",
+                                    "id": "confirm-zero-turnover-answer",
                                     "condition": "equals"
                                 }],
                                 "block": "total-retail-turnover-block"
@@ -856,9 +857,10 @@
                             "id": "total-number-employees",
                             "alias": "employee_count",
                             "label": "Total number of employees",
-                            "mandatory": true,
+                            "mandatory": false,
                             "q_code": "50",
-                            "type": "Number"
+                            "type": "Number",
+                            "default": 0
                         }],
                         "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                         "id": "total-number-employees-question",
@@ -866,6 +868,54 @@
                         "type": "General"
                     }],
                     "title": "Employees"
+                },
+                {
+                    "type": "Question",
+                    "title": "Employees",
+                    "id": "confirm-zero-employees-block",
+                    "skip_conditions": [{
+                        "when": [{
+                            "id": "total-number-employees",
+                            "condition": "greater than",
+                            "value": 0
+                        }]
+                    }],
+                    "questions": [{
+                        "type": "General",
+                        "answers": [{
+                            "type": "Radio",
+                            "id": "confirm-zero-employees-answer",
+                            "q_code": "d50",
+                            "options": [{
+                                    "label": "Yes this is correct",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No I need to change this",
+                                    "value": "No"
+                                }
+                            ],
+                            "mandatory": true
+                        }],
+                        "id": "confirm-zero-employees-question",
+                        "title": "On {{exercise.employment_date|format_date}}, the number of employees for {{respondent.trad_as_or_ru_name}} was <em>0</em>, is this correct?"
+                    }],
+                    "routing_rules": [{
+                            "goto": {
+                                "when": [{
+                                    "value": "No",
+                                    "id": "confirm-zero-employees-answer",
+                                    "condition": "equals"
+                                }],
+                                "block": "total-employees"
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "summary"
+                            }
+                        }
+                    ]
                 },
                 {
                     "type": "Question",

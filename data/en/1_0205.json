@@ -307,7 +307,7 @@
                 {
                     "type": "Question",
                     "title": "Retail Turnover",
-                    "id": "confirm-zero-block",
+                    "id": "confirm-zero-turnover-block",
                     "skip_conditions": [{
                         "when": [{
                             "id": "total-retail-turnover",
@@ -319,7 +319,8 @@
                         "type": "General",
                         "answers": [{
                             "type": "Radio",
-                            "id": "confirm-zero-answer",
+                            "id": "confirm-zero-turnover-answer",
+                            "q_code": "d20",
                             "options": [{
                                     "label": "Yes this is correct",
                                     "value": "Yes"
@@ -331,14 +332,14 @@
                             ],
                             "mandatory": true
                         }],
-                        "id": "confirm-zero-question",
+                        "id": "confirm-zero-turnover-question",
                         "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, the value of the total retail turnover was <em>£0</em>, is this correct?"
                     }],
                     "routing_rules": [{
                             "goto": {
                                 "when": [{
                                     "value": "No",
-                                    "id": "confirm-zero-answer",
+                                    "id": "confirm-zero-turnover-answer",
                                     "condition": "equals"
                                 }],
                                 "block": "total-retail-turnover-block"

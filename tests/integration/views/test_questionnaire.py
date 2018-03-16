@@ -56,6 +56,31 @@ class TestQuestionnaire(IntegrationTestCase):
             'block_id': 'total-retail-turnover'
         }, self.question_store.answer_store.answers)
 
+    def test_update_questionnaire_store_with_default_value(self):
+
+        g.schema = load_schema_from_params('test', 'default')
+
+        location = Location('group', 0, 'number-question')
+
+        # No answer given so will use schema defined default
+        form_data = {
+            'answer': None
+        }
+
+        with self._application.test_request_context():
+            update_questionnaire_store_with_form_data(self.question_store, location, form_data)
+
+        self.assertEqual(self.question_store.completed_blocks, [location])
+
+        self.assertIn({
+            'group_instance': 0,
+            'answer_id': 'answer',
+            'answer_instance': 0,
+            'value': 0,
+            'group_id': 'group',
+            'block_id': 'number-question'
+        }, self.question_store.answer_store.answers)
+
     def test_update_questionnaire_store_with_date_form_data(self):
 
         g.schema = load_schema_from_params('test', 'dates')
