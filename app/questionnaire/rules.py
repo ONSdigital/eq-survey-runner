@@ -16,9 +16,26 @@ def evaluate_rule(when, answer_value):
     match_value = when['value'] if 'value' in when else None
     condition = when['condition']
 
-    result = False
+    # Evaluate the condition on the routing rule
+    return evaluate_condition(condition, match_value, answer_value)
+
+
+def evaluate_date_rule(when, answer_store, group_instance, metadata, answer_value):
+    date_comparison = when['date_comparison']
+
+    answer_value = convert_to_datetime(answer_value)
+    match_value = get_date_match_value(date_comparison, answer_store, group_instance, metadata)
+    condition = when.get('condition')
+
+    if not answer_value or not match_value or not condition:
+        return False
 
     # Evaluate the condition on the routing rule
+    return evaluate_condition(condition, match_value, answer_value)
+
+
+def evaluate_condition(condition, match_value, answer_value):
+    result = False
     if condition == 'equals' and match_value == answer_value:
         result = True
     elif condition == 'not equals' and match_value != answer_value:
@@ -29,33 +46,9 @@ def evaluate_rule(when, answer_value):
         result = True
     elif condition == 'not set':
         result = answer_value is None
-    elif condition == 'greater than' and isinstance(answer_value, int) and answer_value > match_value:
+    elif condition == 'greater than' and answer_value and answer_value > match_value:
         result = True
-    elif condition == 'less than' and isinstance(answer_value, int) and answer_value < match_value:
-        result = True
-
-    return result
-
-
-def evaluate_date_rule(when, answer_store, group_instance, metadata, answer_value):
-    result = False
-
-    date_comparison = when['date_comparison']
-
-    answer_value = convert_to_datetime(answer_value)
-    match_value = get_date_match_value(date_comparison, answer_store, group_instance, metadata)
-    condition = when.get('condition')
-
-    if not answer_value or not match_value or not condition:
-        return False
-
-    if condition == 'equals' and match_value == answer_value:
-        result = True
-    elif condition == 'not equals' and match_value != answer_value:
-        result = True
-    elif condition == 'greater than' and answer_value > match_value:
-        result = True
-    elif condition == 'less than' and answer_value < match_value:
+    elif condition == 'less than' and answer_value and answer_value < match_value:
         result = True
 
     return result

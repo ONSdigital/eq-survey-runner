@@ -335,17 +335,65 @@
                             "id": "total-retail-turnover",
                             "alias": "total_turnover",
                             "label": "Total retail turnover",
-                            "mandatory": true,
+                            "mandatory": false,
                             "q_code": "20",
                             "type": "Currency",
                             "currency": "GBP",
-                            "decimal_places": 2
+                            "decimal_places": 2,
+                            "default": 0
                         }],
                         "id": "total-turnover-question",
                         "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total retail turnover</em>?",
                         "type": "General"
                     }],
                     "title": "Retail Turnover"
+                },
+                {
+                    "type": "Question",
+                    "title": "Retail Turnover",
+                    "id": "confirm-zero-block",
+                    "skip_conditions": [{
+                        "when": [{
+                            "id": "total-retail-turnover",
+                            "condition": "greater than",
+                            "value": 0
+                        }]
+                    }],
+                    "questions": [{
+                        "type": "General",
+                        "answers": [{
+                            "type": "Radio",
+                            "id": "confirm-zero-answer",
+                            "options": [{
+                                    "label": "Yes this is correct",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No I need to change this",
+                                    "value": "No"
+                                }
+                            ],
+                            "mandatory": true
+                        }],
+                        "id": "confirm-zero-question",
+                        "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, the value of the total retail turnover was <em>£0</em>, is this correct?"
+                    }],
+                    "routing_rules": [{
+                            "goto": {
+                                "when": [{
+                                    "value": "No",
+                                    "id": "confirm-zero-answer",
+                                    "condition": "equals"
+                                }],
+                                "block": "total-retail-turnover-block"
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "automotive-fuel"
+                            }
+                        }
+                    ]
                 },
                 {
                     "type": "Question",

@@ -32,11 +32,17 @@ done
 
 exit=0
 
-echo "---Testing Schemas---"
+if [ $# -eq 0 ]; then
+    file_path="./data/en"
+else
+    file_path="$1"
+fi
+
+echo "--- Testing Schemas in $file_path ---"
 failed=0
 passed=0
 
-for schema in $(find "$1" -name '*.json'); do
+for schema in $(find $file_path -name '*.json'); do
 
     result="$(curl -s -w 'HTTPSTATUS:%{http_code}' -X POST -H "Content-Type: application/json" -d @"$schema" http://localhost:5001/validate | tr -d '\n')"
     result_response="${result//*HTTPSTATUS:/}"

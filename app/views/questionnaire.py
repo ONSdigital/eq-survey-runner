@@ -536,6 +536,11 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
     survey_answer_ids = g.schema.get_answer_ids_for_block(location.block_id)
 
     for answer_id, answer_value in answer_dict.items():
+
+        # If answer is not answered then check for a schema specified default
+        if answer_value is None:
+            answer_value = g.schema.get_answer(answer_id).get('default')
+
         if answer_id in survey_answer_ids or location.block_id == 'household-composition':
             answer = None
 
