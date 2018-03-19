@@ -21,7 +21,7 @@ class TestQbsSubmissionData(IntegrationTestCase):
         self.assertInPage('>Continue<')
 
         # When I submit answers
-        self.post(post_data={'number-of-employees-total': '5'})
+        self.post(post_data={'number-of-employees-total': '10'})
 
         self.post(post_data={'number-of-employees-male-more-30-hours': '1',
                              'number-of-employees-male-less-30-hours': '2',
@@ -51,7 +51,7 @@ class TestQbsSubmissionData(IntegrationTestCase):
                 'flushed': False,
                 'tx_id': actual['submission']['tx_id'],
                 'data': {
-                    '50': '5',
+                    '50': '10',
                     '51': '1',
                     '52': '2',
                     '53': '3',
