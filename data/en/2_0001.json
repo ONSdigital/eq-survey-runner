@@ -23,41 +23,46 @@
                         }]
                     }],
                     "secondary_content": [{
-                        "id": "preview",
-                        "title": "Information you need",
-                        "content": [{
-                            "list": [
-                                "Total number of employees",
-                                "Male employees working more than 30 hours per week",
-                                "Male employees working 30 hours or less per week",
-                                "Female employees working more than 30 hours per week",
-                                "Female employees working 30 hours or less per week"
+                            "id": "preview",
+                            "title": "Information you need",
+                            "content": [{
+                                    "list": [
+                                        "Total number of employees",
+                                        "Male employees working more than 30 hours per week",
+                                        "Male employees working 30 hours or less per week",
+                                        "Female employees working more than 30 hours per week",
+                                        "Female employees working 30 hours or less per week"
+                                    ]
+                                },
+                                {
+                                    "title": "Include:",
+                                    "list": [
+                                        "all workers paid directly from this business’s payroll(s)",
+                                        "those temporarily absent but still being paid, for example on maternity leave"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude:",
+                                    "list": [
+                                        "agency workers paid directly from the agency payroll",
+                                        "voluntary workers",
+                                        "former employees only receiving a pension",
+                                        "self-employed workers",
+                                        "working owners who are not paid via PAYE"
+                                    ]
+                                }
                             ]
-                        }, {
-                            "title": "Include:",
-                            "list": [
-                                "all workers paid directly from this business’s payroll(s)",
-                                "those temporarily absent but still being paid, for example on maternity leave"
-                            ]
-                        }, {
-                            "title": "Exclude:",
-                            "list": [
-                                "agency workers paid directly from the agency payroll",
-                                "voluntary workers",
-                                "former employees only receiving a pension",
-                                "self-employed workers",
-                                "working owners who are not paid via PAYE"
-                            ]
-                        }]
-                    }, {
-                        "title": "How we use your data",
-                        "content": [{
-                            "list": [
-                                "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
-                                "The information you provide contributes to the Labour Market Statistics."
-                            ]
-                        }]
-                    }]
+                        },
+                        {
+                            "title": "How we use your data",
+                            "content": [{
+                                "list": [
+                                    "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
+                                    "The information you provide contributes to the Labour Market Statistics."
+                                ]
+                            }]
+                        }
+                    ]
                 },
                 {
                     "id": "number-of-employees-total-block",
@@ -66,9 +71,10 @@
                             "id": "number-of-employees-total",
                             "alias": "number_of_employees_total",
                             "label": "Total number of employees",
-                            "mandatory": true,
+                            "mandatory": false,
                             "q_code": "50",
-                            "type": "Number"
+                            "type": "Number",
+                            "default": 0
                         }],
                         "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
                         "guidance": {
@@ -97,6 +103,54 @@
                     }],
                     "title": "Quarterly Business Survey",
                     "type": "Question"
+                },
+                {
+                    "type": "Question",
+                    "title": "Employees",
+                    "id": "confirm-zero-employees-block",
+                    "skip_conditions": [{
+                        "when": [{
+                            "id": "number-of-employees-total",
+                            "condition": "greater than",
+                            "value": 0
+                        }]
+                    }],
+                    "questions": [{
+                        "type": "General",
+                        "answers": [{
+                            "type": "Radio",
+                            "id": "confirm-zero-employees-answer",
+                            "q_code": "d50",
+                            "options": [{
+                                    "label": "Yes this is correct",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No I need to change this",
+                                    "value": "No"
+                                }
+                            ],
+                            "mandatory": true
+                        }],
+                        "id": "confirm-zero-employees-question",
+                        "title": "On {{exercise.start_date|format_date}}, the number of employees for {{respondent.trad_as_or_ru_name}} was <em>0</em>, is this correct?"
+                    }],
+                    "routing_rules": [{
+                            "goto": {
+                                "when": [{
+                                    "value": "No",
+                                    "id": "confirm-zero-employees-answer",
+                                    "condition": "equals"
+                                }],
+                                "block": "number-of-employees-total-block"
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "summary"
+                            }
+                        }
+                    ]
                 },
                 {
                     "id": "number-of-employees-split-block",
