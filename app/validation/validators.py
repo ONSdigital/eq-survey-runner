@@ -92,27 +92,24 @@ class NumberRange(object):
     def validate_minimum(self, value):
         if self.minimum_exclusive:
             if value <= self.minimum:
-                return self.messages['NUMBER_TOO_SMALL_EXCLUSIVE'] % dict(min=self.format_min_max(self.minimum))
+                return self.messages['NUMBER_TOO_SMALL_EXCLUSIVE'] % dict(min=format_playback_value(self.minimum,
+                                                                                                    self.currency))
         else:
             if value < self.minimum:
-                return self.messages['NUMBER_TOO_SMALL'] % dict(min=self.format_min_max(self.minimum))
+                return self.messages['NUMBER_TOO_SMALL'] % dict(min=format_playback_value(self.minimum, self.currency))
 
         return None
 
     def validate_maximum(self, value):
         if self.maximum_exclusive:
             if value >= self.maximum:
-                return self.messages['NUMBER_TOO_LARGE_EXCLUSIVE'] % dict(max=self.format_min_max(self.maximum))
+                return self.messages['NUMBER_TOO_LARGE_EXCLUSIVE'] % dict(max=format_playback_value(self.maximum,
+                                                                                                    self.currency))
         else:
             if value > self.maximum:
-                return self.messages['NUMBER_TOO_LARGE'] % dict(max=self.format_min_max(self.maximum))
+                return self.messages['NUMBER_TOO_LARGE'] % dict(max=format_playback_value(self.maximum, self.currency))
 
         return None
-
-    def format_min_max(self, value):
-        if self.currency:
-            return format_currency(value, self.currency)
-        return format_number(value)
 
 
 class DecimalPlaces(object):
@@ -130,7 +127,7 @@ class DecimalPlaces(object):
         self.messages = messages
 
     def __call__(self, form, field):
-        data = field.raw_data[0].replace(numbers.get_group_symbol(DEFAULT_LOCALE), '')
+        data = field.raw_data[0].replace(numbers.get_group_symbol(DEFAULT_LOCALE), '').replace(' ', '')
         decimal_symbol = numbers.get_decimal_symbol(DEFAULT_LOCALE)
         if data and decimal_symbol in data:
             if self.max_decimals == 0:
@@ -235,3 +232,50 @@ class DateRangeCheck(object):
 
         if from_date == to_date or from_date > to_date:
             raise validators.ValidationError(self.messages['INVALID_DATE_RANGE'])
+
+
+class SumCheck(object):
+    def __init__(self, messages=None, currency=None):
+        if messages:
+            self.messages = messages
+        else:
+            self.messages = error_messages
+        self.currency = currency
+
+    def __call__(self, form, conditions, total, target_total):
+        if len(conditions) > 1:
+            try:
+                conditions.remove('equals')
+            except ValueError:
+                raise Exception(
+                    'There are multiple conditions, but equals is not one of them. '
+                    'We only support <= and >=')
+
+            condition = '{} or equals'.format(conditions[0])
+        else:
+            condition = conditions[0]
+
+        is_valid, message = self._is_valid(condition, total, target_total)
+
+        if not is_valid:
+            raise validators.ValidationError(self.messages[message] %
+                                             dict(total=format_playback_value(target_total, self.currency)))
+
+    @staticmethod
+    def _is_valid(condition, total, target_total):
+        if condition == 'equals':
+            return total == target_total, 'TOTAL_SUM_NOT_EQUALS'
+        elif condition == 'less than':
+            return total < target_total, 'TOTAL_SUM_NOT_LESS_THAN'
+        elif condition == 'greater than':
+            return total > target_total, 'TOTAL_SUM_NOT_GREATER_THAN'
+        elif condition == 'greater than or equals':
+            return total >= target_total, 'TOTAL_SUM_NOT_GREATER_THAN_OR_EQUALS'
+        elif condition == 'less than or equals':
+            return total <= target_total, 'TOTAL_SUM_NOT_LESS_THAN_OR_EQUALS'
+
+
+def format_playback_value(value, currency=None):
+    if currency:
+        return format_currency(value, currency)
+    return format_number(value)

@@ -1,7 +1,10 @@
+from decimal import Decimal
+from mock import patch
+
 from app.forms.questionnaire_form import generate_form
 from app.utilities.schema import load_schema_from_params
 from app.validation.validators import ResponseRequired
-from app.data_model.answer_store import AnswerStore
+from app.data_model.answer_store import AnswerStore, Answer
 
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -71,7 +74,8 @@ class TestQuestionnaireForm(AppContextTestCase):
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
-            self.assertEqual(form.question_errors['reporting-period-question'], schema.error_messages['INVALID_DATE_RANGE'])
+            self.assertEqual(form.question_errors['reporting-period-question'], schema.error_messages
+                             ['INVALID_DATE_RANGE'])
 
     def test_date_range_to_precedes_from_raises_question_error(self):
         with self.test_request_context():
@@ -97,7 +101,234 @@ class TestQuestionnaireForm(AppContextTestCase):
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
-            self.assertEqual(form.question_errors['reporting-period-question'], schema.error_messages['INVALID_DATE_RANGE'], AnswerStore())
+            self.assertEqual(form.question_errors['reporting-period-question'], schema.error_messages
+                             ['INVALID_DATE_RANGE'], AnswerStore())
+
+    def test_invalid_calculation_type(self):
+        store = AnswerStore()
+
+        answer_total = Answer(
+            answer_id='total-answer',
+            answer_instance=1,
+            group_instance=1,
+            value=10,
+        )
+
+        store.add(answer_total)
+
+        with self.test_request_context():
+            schema = load_schema_from_params('test', 'sum_equal_validation_against_total')
+
+            block_json = schema.get_block('breakdown-block')
+
+            question_json = {
+                'id': 'breakdown-question',
+                'type': 'Calculated',
+                'calculated': {
+                    'calculated_type': 'subtraction',
+                    'answer_id': 'total-answer',
+                    'answers_to_calculate': [
+                        'breakdown-1',
+                        'breakdown-2'
+                    ],
+                    'conditions': [
+                        'equals'
+                    ]
+                },
+                'answers': [{
+                    'id': 'breakdown-1',
+                    'label': 'Breakdown 1',
+                    'type': 'Number'
+                }, {
+                    'id': 'breakdown-2',
+                    'label': 'Breakdown 2',
+                    'type': 'Number'
+                }]
+            }
+
+            data = {
+                'breakdown-1': '3',
+                'breakdown-2': '5',
+            }
+
+            form = generate_form(schema, block_json, data, store)
+
+            with self.assertRaises(Exception) as ite:
+                with patch('app.questionnaire.questionnaire_schema.QuestionnaireSchema.get_questions_for_block',
+                           return_value=[question_json]):
+                    form.validate()
+            self.assertEqual('Invalid calculation_type: subtraction', str(ite.exception))
+
+    def test_bespoke_message_for_sum_validation(self):
+        store = AnswerStore()
+
+        answer_total = Answer(
+            answer_id='total-answer',
+            answer_instance=1,
+            group_instance=1,
+            value=10,
+        )
+
+        store.add(answer_total)
+
+        with self.test_request_context():
+            schema = load_schema_from_params('test', 'sum_equal_validation_against_total')
+
+            block_json = schema.get_block('breakdown-block')
+
+            question_json = {
+                'id': 'breakdown-question',
+                'type': 'Calculated',
+                'validation': {
+                    'messages': {
+                        'TOTAL_SUM_NOT_EQUALS': 'Test Message'
+                    }
+                },
+                'calculated': {
+                    'calculated_type': 'sum',
+                    'answer_id': 'total-answer',
+                    'answers_to_calculate': [
+                        'breakdown-1',
+                        'breakdown-2'
+                    ],
+                    'conditions': [
+                        'equals'
+                    ]
+                },
+                'answers': [{
+                    'id': 'breakdown-1',
+                    'label': 'Breakdown 1',
+                    'type': 'Number'
+                }, {
+                    'id': 'breakdown-2',
+                    'label': 'Breakdown 2',
+                    'type': 'Number'
+                }]
+            }
+
+            data = {
+                'breakdown-1': '3',
+                'breakdown-2': '5',
+            }
+
+            form = generate_form(schema, block_json, data, store)
+
+            with patch('app.questionnaire.questionnaire_schema.QuestionnaireSchema.get_questions_for_block',
+                       return_value=[question_json]):
+                form.validate()
+                self.assertIn(form.question_errors['breakdown-question'], 'Test Message')
+
+    def test_empty_calculated_field(self):
+        store = AnswerStore()
+
+        answer_total = Answer(
+            answer_id='total-answer',
+            answer_instance=1,
+            group_instance=1,
+            value=10,
+        )
+
+        store.add(answer_total)
+
+        with self.test_request_context():
+            schema = load_schema_from_params('test', 'sum_equal_validation_against_total')
+
+            block_json = schema.get_block('breakdown-block')
+
+            data = {
+                'breakdown-1': '',
+                'breakdown-2': '5',
+                'breakdown-3': '4',
+                'breakdown-4': ''
+            }
+
+            expected_form_data = {
+                'csrf_token': '',
+                'breakdown-1': None,
+                'breakdown-2': Decimal('5'),
+                'breakdown-3': Decimal('4'),
+                'breakdown-4': None
+            }
+            form = generate_form(schema, block_json, data, store)
+
+            form.validate()
+            self.assertEqual(form.data, expected_form_data)
+            self.assertEqual(form.question_errors['breakdown-question'], schema.error_messages['TOTAL_SUM_NOT_EQUALS']
+                             % dict(total='10'), AnswerStore())
+
+    def test_sum_calculated_field(self):
+        store = AnswerStore()
+
+        answer_total = Answer(
+            answer_id='total-answer',
+            answer_instance=1,
+            group_instance=1,
+            value=10,
+        )
+
+        store.add(answer_total)
+
+        with self.test_request_context():
+            schema = load_schema_from_params('test', 'sum_equal_validation_against_total')
+
+            block_json = schema.get_block('breakdown-block')
+
+            data = {
+                'breakdown-1': '',
+                'breakdown-2': '5',
+                'breakdown-3': '4',
+                'breakdown-4': '1'
+            }
+
+            expected_form_data = {
+                'csrf_token': '',
+                'breakdown-1': None,
+                'breakdown-2': Decimal('5'),
+                'breakdown-3': Decimal('4'),
+                'breakdown-4': Decimal('1')
+            }
+            form = generate_form(schema, block_json, data, store)
+
+            form.validate()
+            self.assertEqual(form.data, expected_form_data)
+
+    def test_get_calculation_total_with_no_input(self):
+        store = AnswerStore()
+
+        answer_total = Answer(
+            answer_id='total-answer',
+            answer_instance=1,
+            group_instance=1,
+            value=10,
+        )
+
+        store.add(answer_total)
+
+        with self.test_request_context():
+            schema = load_schema_from_params('test', 'sum_equal_validation_against_total')
+
+            block_json = schema.get_block('breakdown-block')
+
+            data = {
+                'breakdown-1': '',
+                'breakdown-2': '',
+                'breakdown-3': '',
+                'breakdown-4': ''
+            }
+
+            expected_form_data = {
+                'csrf_token': '',
+                'breakdown-1': None,
+                'breakdown-2': None,
+                'breakdown-3': None,
+                'breakdown-4': None
+            }
+            form = generate_form(schema, block_json, data, store)
+
+            form.validate()
+            self.assertEqual(form.data, expected_form_data)
+            self.assertEqual(form.question_errors['breakdown-question'], schema.error_messages['TOTAL_SUM_NOT_EQUALS']
+                             % dict(total='10'), AnswerStore())
 
     def test_form_errors_are_correctly_mapped(self):
         with self.test_request_context():
@@ -110,7 +341,8 @@ class TestQuestionnaireForm(AppContextTestCase):
             form.validate()
             mapped_errors = form.map_errors()
 
-            self.assertTrue(self._error_exists('total-retail-turnover-answer', schema.error_messages['MANDATORY_NUMBER'], mapped_errors))
+            self.assertTrue(self._error_exists('total-retail-turnover-answer', schema.error_messages
+                                               ['MANDATORY_NUMBER'], mapped_errors))
 
     def test_form_subfield_errors_are_correctly_mapped(self):
         with self.test_request_context():
@@ -153,8 +385,10 @@ class TestQuestionnaireForm(AppContextTestCase):
             form.validate()
             mapped_errors = form.map_errors()
 
-            self.assertTrue(self._error_exists('radio-mandatory-answer', schema.error_messages['MANDATORY_TEXTFIELD'], mapped_errors))
-            self.assertFalse(self._error_exists('other-answer-mandatory', schema.error_messages['MANDATORY_TEXTFIELD'], mapped_errors))
+            self.assertTrue(self._error_exists('radio-mandatory-answer', schema.error_messages['MANDATORY_TEXTFIELD'],
+                                               mapped_errors))
+            self.assertFalse(self._error_exists('other-answer-mandatory', schema.error_messages['MANDATORY_TEXTFIELD'],
+                                                mapped_errors))
 
     def test_answer_errors_are_interpolated(self):
         with self.test_request_context():

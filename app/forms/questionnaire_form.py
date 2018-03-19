@@ -1,20 +1,24 @@
 import logging
 
+from decimal import Decimal
+
+import itertools
 from wtforms import validators
 from flask_wtf import FlaskForm
 from werkzeug.datastructures import MultiDict
 
 from app.forms.fields import get_field
-from app.validation.validators import DateRangeCheck
+from app.validation.validators import DateRangeCheck, SumCheck
 
 logger = logging.getLogger(__name__)
 
 
 class QuestionnaireForm(FlaskForm):
 
-    def __init__(self, schema, block_json, formdata=None, **kwargs):
+    def __init__(self, schema, block_json, answer_store, formdata=None, **kwargs):
         self.schema = schema
         self.block_json = block_json
+        self.answer_store = answer_store
         self.question_errors = {}
         self.options_with_children = {}
 
@@ -25,29 +29,87 @@ class QuestionnaireForm(FlaskForm):
 
     def validate(self):
         """
-        Validate this form as usual and check for any form-level date-range validation errors
+        Validate this form as usual and check for any form-level date-range/calculated validation errors
         :return:
         """
-        valid_form = True
         valid_fields = FlaskForm.validate(self)
+        valid_form = True
 
-        for question_id, period_from_id, period_to_id in self.date_ranges:
-            if period_from_id not in self.errors and period_to_id not in self.errors:
-                period_from = getattr(self, period_from_id)
-                period_to = getattr(self, period_to_id)
-                validator = DateRangeCheck()
+        for question in self.schema.get_questions_for_block(self.block_json):
+            if question['type'] == 'DateRange':
+                period_from_id = question['answers'][0]['id']
+                period_to_id = question['answers'][1]['id']
+                if not (
+                        self.answers_all_valid([period_from_id, period_to_id]) and
+                        self._validate_date_range_question(question['id'], period_from_id, period_to_id)):
+                    valid_form = False
+            elif question['type'] == 'Calculated':
+                target_answer = self.schema.get_answer(question['calculated']['answer_id'])
+                target_total = self.answer_store.filter(answer_ids=[target_answer['id']]).values()[0]
+                if not (
+                        self.answers_all_valid(question['calculated']['answers_to_calculate']) and
+                        self._validate_calculated_question(question, target_answer, target_total)):
+                    valid_form = False
 
-                # Check every field on each form has populated data
-                populated = all([f.data for f in period_from] + [f.data for f in period_to])
+        return valid_form and valid_fields
 
-                if populated:
-                    try:
-                        validator(self, period_from, period_to)
-                    except validators.ValidationError as e:
-                        self.question_errors[question_id] = str(e)
-                        valid_form = False
+    def _validate_date_range_question(self, question_id, period_from_id, period_to_id):
+        period_from = getattr(self, period_from_id)
+        period_to = getattr(self, period_to_id)
+        validator = DateRangeCheck()
 
-        return valid_fields and valid_form
+        # Check every field on each form has populated data
+        populated = all(field.data for field in itertools.chain(period_from, period_to))
+
+        if populated:
+            try:
+                validator(self, period_from, period_to)
+            except validators.ValidationError as e:
+                self.question_errors[question_id] = str(e)
+                return False
+
+        return True
+
+    def _validate_calculated_question(self, question, target_answer, target_total):
+        calculated_question = question['calculated']
+        messages = None
+        if 'validation' in question:
+            messages = question['validation'].get('messages')
+
+        validator = SumCheck(messages=messages, currency=target_answer.get('currency'))
+
+        calculation = self._get_calculation_type(calculated_question['calculated_type'])
+
+        formatted_values = self._get_formatted_calculation_values(calculated_question['answers_to_calculate'])
+
+        calculation_total = self._get_calculation_total(calculation, formatted_values)
+
+        # Validate grouped answers meet calculation_type criteria
+        try:
+            validator(self, calculated_question['conditions'], calculation_total, target_total)
+        except validators.ValidationError as e:
+            self.question_errors[question['id']] = str(e)
+            return False
+
+        return True
+
+    @staticmethod
+    def _get_calculation_type(calculation_type):
+        if calculation_type == 'sum':
+            return sum
+        else:
+            error = 'Invalid calculation_type: {}'.format(calculation_type)
+            raise Exception(error)
+
+    def _get_formatted_calculation_values(self, answers_list):
+        return[self.get_data(answer_id).replace(' ', '').replace(',', '') for answer_id in answers_list]
+
+    @staticmethod
+    def _get_calculation_total(calculation, values):
+        return calculation(Decimal(value or 0) for value in values)
+
+    def answers_all_valid(self, answer_id_list):
+        return not set(answer_id_list) & set(self.errors)
 
     def map_errors(self):
         ordered_errors = []
@@ -133,19 +195,15 @@ def generate_form(schema, block_json, data, answer_store):
     answer_fields = {}
 
     class DynamicForm(QuestionnaireForm):
-        date_ranges = []
-
-    for question in schema.get_questions_for_block(block_json):
-        if question['type'] == 'DateRange':
-            DynamicForm.date_ranges += [(question['id'], question['answers'][0]['id'], question['answers'][1]['id'])]
-        answer_fields.update(get_answer_fields(question, data, schema.error_messages, answer_store))
+        for question in schema.get_questions_for_block(block_json):
+            answer_fields.update(get_answer_fields(question, data, schema.error_messages, answer_store))
 
     for answer_id, field in answer_fields.items():
         setattr(DynamicForm, answer_id, field)
 
     if data:
-        form = DynamicForm(schema, block_json, MultiDict(data))
+        form = DynamicForm(schema, block_json, answer_store, MultiDict(data))
     else:
-        form = DynamicForm(schema, block_json)
+        form = DynamicForm(schema, block_json, answer_store)
 
     return form
