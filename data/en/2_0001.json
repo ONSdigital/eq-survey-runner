@@ -154,7 +154,23 @@
                 },
                 {
                     "id": "number-of-employees-split-block",
+                    "title": "Quarterly Business Survey",
+                    "type": "Question",
                     "questions": [{
+                        "calculated": {
+                            "calculated_type": "sum",
+                            "answer_id": "number-of-employees-total",
+                            "answers_to_calculate": [
+                                "number-of-employees-male-more-30-hours",
+                                "number-of-employees-male-less-30-hours",
+                                "number-of-employees-female-more-30-hours",
+                                "number-of-employees-female-less-30-hours"
+                            ],
+                            "conditions": [
+                                "less than",
+                                "equals"
+                            ]
+                        },
                         "answers": [{
                                 "id": "number-of-employees-male-more-30-hours",
                                 "label": "Number of male employees working more than 30 hours per week",
@@ -218,10 +234,8 @@
                         },
                         "id": "number-of-employees-split-question",
                         "title": "Of the <em>{{answers.number_of_employees_total}}</em> total employees employed on {{exercise.start_date|format_date}}, how many male and female employees worked the following hours?",
-                        "type": "General"
-                    }],
-                    "title": "Quarterly Business Survey",
-                    "type": "Question"
+                        "type": "Calculated"
+                    }]
                 },
                 {
                     "type": "Summary",
