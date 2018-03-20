@@ -20,4 +20,4 @@ class TestQuestionnaireInterstitial(IntegrationTestCase):
         self.post({'favourite-lunch': 'Pizza'})
         self.assertInUrl('confirmation')
         self.post(action=None)
-        self.assertInPage('Submission Successful')
+        self.assertInPage('Submission successful')
