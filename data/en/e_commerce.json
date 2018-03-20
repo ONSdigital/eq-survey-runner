@@ -1600,7 +1600,7 @@
                         "type": "Interstitial",
                         "id": "use-of-cloud-computing-services-block-42",
                         "title": "Use of cloud computing services",
-                        "description": "<p>You have completed the previous section.</p><p>This section covers the use of cloud computing.</p> <p><em>Cloud computing</em></br><em>ICT services</em> that are used <em>over the internet</em> to access software, computing power, storage capacity, etc.</br> Cloud computing services must have all of the following characteristics: <ul><li>Are delivered from <em>servers</em> of service providers</li> <li>Can be easily <em>scaled</em> up or down (for example; the number of users or change of storage capacity)</li> <li>Can be used <em>on-demand by the user</em>, at least after the initial set up (without human interaction with the service provider)</li> <li>Are <em>paid</em> for, either by the user, by the capacity used or they are pre-paid</li> </ul>Cloud computing may include connections via Virtual Private Networks (VPN)</p>"
+                        "description": "<p>You have completed the previous section.</p><p>This section covers the use of cloud computing.</p> <p><em>Cloud computing</em><br /><em>ICT services</em> that are used <em>over the internet</em> to access software, computing power, storage capacity, etc.<br /> Cloud computing services must have all of the following characteristics: <ul><li>Are delivered from <em>servers</em> of service providers</li> <li>Can be easily <em>scaled</em> up or down (for example; the number of users or change of storage capacity)</li> <li>Can be used <em>on-demand by the user</em>, at least after the initial set up (without human interaction with the service provider)</li> <li>Are <em>paid</em> for, either by the user, by the capacity used or they are pre-paid</li> </ul>Cloud computing may include connections via Virtual Private Networks (VPN)</p>"
                     }
                 ],
                 "id": "group-3",
@@ -2638,7 +2638,7 @@
                         "type": "Interstitial",
                         "id": "e-commerce-block-63",
                         "title": "e-Commerce",
-                        "description": "<p>You have completed the previous section.</p><p>This section covers E-Commerce.</p> <p>E-Commerce is the sale or purchase of goods or services conducted over computer networks by methods specifically designed for the purpose of receiving or placing of orders. </br>The payment and the delivery of the goods or services do not have to be conducted online. </br>E-Commerce transactions <em>exclude</em> orders made by manually typed emails.</p>"
+                        "description": "<p>You have completed the previous section.</p><p>This section covers E-Commerce.</p> <p>E-Commerce is the sale or purchase of goods or services conducted over computer networks by methods specifically designed for the purpose of receiving or placing of orders.<br />The payment and the delivery of the goods or services do not have to be conducted online.<br />E-Commerce transactions <em>exclude</em> orders made by manually typed emails.</p>"
                     }
                 ],
                 "id": "group-6",
