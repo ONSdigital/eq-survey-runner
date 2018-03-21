@@ -39,19 +39,32 @@ class QuestionnaireForm(FlaskForm):
             if question['type'] == 'DateRange':
                 period_from_id = question['answers'][0]['id']
                 period_to_id = question['answers'][1]['id']
-                if not (
-                        self.answers_all_valid([period_from_id, period_to_id]) and
+                if not (self.answers_all_valid([period_from_id, period_to_id]) and
                         self._validate_date_range_question(question['id'], period_from_id, period_to_id)):
                     valid_form = False
             elif question['type'] == 'Calculated':
-                target_answer = self.schema.get_answer(question['calculated']['answer_id'])
-                target_total = self.answer_store.filter(answer_ids=[target_answer['id']]).values()[0]
-                if not (
-                        self.answers_all_valid(question['calculated']['answers_to_calculate']) and
-                        self._validate_calculated_question(question, target_answer, target_total)):
-                    valid_form = False
+                valid_form = self.validate_calculated_question(question)
 
         return valid_form and valid_fields
+
+    def validate_calculated_question(self, question):
+        for calculation in question['calculations']:
+            target_total, currency = self._get_target_total_and_currency(calculation, question)
+            if (self.answers_all_valid(calculation['answers_to_calculate']) and
+                    self._validate_calculated_question(calculation, question, target_total, currency)):
+                # Remove any previous question errors if it passes this OR before returning True
+                if question['id'] in self.question_errors:
+                    self.question_errors.pop(question['id'])
+                return True
+
+        return False
+
+    def _get_target_total_and_currency(self, calculation, question):
+        if 'value' in calculation:
+            return calculation['value'], question.get('currency')
+
+        target_answer = self.schema.get_answer(calculation['answer_id'])
+        return self.answer_store.filter(answer_ids=[target_answer['id']]).values()[0], target_answer.get('currency')
 
     def _validate_date_range_question(self, question_id, period_from_id, period_to_id):
         period_from = getattr(self, period_from_id)
@@ -70,23 +83,22 @@ class QuestionnaireForm(FlaskForm):
 
         return True
 
-    def _validate_calculated_question(self, question, target_answer, target_total):
-        calculated_question = question['calculated']
+    def _validate_calculated_question(self, calculation, question, target_total, currency):
         messages = None
         if 'validation' in question:
             messages = question['validation'].get('messages')
 
-        validator = SumCheck(messages=messages, currency=target_answer.get('currency'))
+        validator = SumCheck(messages=messages, currency=currency)
 
-        calculation = self._get_calculation_type(calculated_question['calculated_type'])
+        calculation_type = self._get_calculation_type(calculation['calculation_type'])
 
-        formatted_values = self._get_formatted_calculation_values(calculated_question['answers_to_calculate'])
+        formatted_values = self._get_formatted_calculation_values(calculation['answers_to_calculate'])
 
-        calculation_total = self._get_calculation_total(calculation, formatted_values)
+        calculation_total = self._get_calculation_total(calculation_type, formatted_values)
 
         # Validate grouped answers meet calculation_type criteria
         try:
-            validator(self, calculated_question['conditions'], calculation_total, target_total)
+            validator(self, calculation['conditions'], calculation_total, target_total)
         except validators.ValidationError as e:
             self.question_errors[question['id']] = str(e)
             return False
@@ -105,8 +117,8 @@ class QuestionnaireForm(FlaskForm):
         return[self.get_data(answer_id).replace(' ', '').replace(',', '') for answer_id in answers_list]
 
     @staticmethod
-    def _get_calculation_total(calculation, values):
-        return calculation(Decimal(value or 0) for value in values)
+    def _get_calculation_total(calculation_type, values):
+        return calculation_type(Decimal(value or 0) for value in values)
 
     def answers_all_valid(self, answer_id_list):
         return not set(answer_id_list) & set(self.errors)

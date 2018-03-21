@@ -157,20 +157,33 @@
                     "title": "Quarterly Business Survey",
                     "type": "Question",
                     "questions": [{
-                        "calculated": {
-                            "calculated_type": "sum",
-                            "answer_id": "number-of-employees-total",
-                            "answers_to_calculate": [
-                                "number-of-employees-male-more-30-hours",
-                                "number-of-employees-male-less-30-hours",
-                                "number-of-employees-female-more-30-hours",
-                                "number-of-employees-female-less-30-hours"
-                            ],
-                            "conditions": [
-                                "less than",
-                                "equals"
-                            ]
-                        },
+                        "calculations": [{
+                                "calculation_type": "sum",
+                                "value": 0,
+                                "answers_to_calculate": [
+                                    "number-of-employees-male-more-30-hours",
+                                    "number-of-employees-male-less-30-hours",
+                                    "number-of-employees-female-more-30-hours",
+                                    "number-of-employees-female-less-30-hours"
+                                ],
+                                "conditions": [
+                                    "equals"
+                                ]
+                            },
+                            {
+                                "calculation_type": "sum",
+                                "answer_id": "number-of-employees-total",
+                                "answers_to_calculate": [
+                                    "number-of-employees-male-more-30-hours",
+                                    "number-of-employees-male-less-30-hours",
+                                    "number-of-employees-female-more-30-hours",
+                                    "number-of-employees-female-less-30-hours"
+                                ],
+                                "conditions": [
+                                    "equals"
+                                ]
+                            }
+                        ],
                         "answers": [{
                                 "id": "number-of-employees-male-more-30-hours",
                                 "label": "Number of male employees working more than 30 hours per week",

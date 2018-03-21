@@ -3,7 +3,7 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.2",
     "survey_id": "0",
-    "title": "A test schema to validate a sum of answers are Equal to a given total",
+    "title": "Grouped validation against total test survey",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A survey that tests grouped and calculated answers against a total",
@@ -26,7 +26,11 @@
                             "label": "Total",
                             "mandatory": true,
                             "type": "Number",
-                            "decimal_places": 2
+                            "decimal_places": 2,
+                            "min_value": {
+                                "value": 0,
+                                "exclusive": true
+                            }
                         }]
                     }]
                 },
@@ -39,18 +43,32 @@
                         "title": "Breakdown",
                         "type": "Calculated",
                         "calculations": [{
-                            "calculation_type": "sum",
-                            "answer_id": "total-answer",
-                            "answers_to_calculate": [
-                                "breakdown-1",
-                                "breakdown-2",
-                                "breakdown-3",
-                                "breakdown-4"
-                            ],
-                            "conditions": [
-                                "equals"
-                            ]
-                        }],
+                                "calculation_type": "sum",
+                                "value": 0,
+                                "answers_to_calculate": [
+                                    "breakdown-1",
+                                    "breakdown-2",
+                                    "breakdown-3",
+                                    "breakdown-4"
+                                ],
+                                "conditions": [
+                                    "equals"
+                                ]
+                            },
+                            {
+                                "calculation_type": "sum",
+                                "answer_id": "total-answer",
+                                "answers_to_calculate": [
+                                    "breakdown-1",
+                                    "breakdown-2",
+                                    "breakdown-3",
+                                    "breakdown-4"
+                                ],
+                                "conditions": [
+                                    "equals"
+                                ]
+                            }
+                        ],
                         "answers": [{
                                 "id": "breakdown-1",
                                 "label": "Breakdown 1",
