@@ -3,7 +3,7 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.2",
     "survey_id": "0",
-    "title": "Grouped validation against total test survey",
+    "title": "A test schema to validate a sum of answers are Less Than a given total",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A survey that tests grouped and calculated answers against a total",
