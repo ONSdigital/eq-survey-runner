@@ -864,7 +864,7 @@
                             },
                             {
                                 "goto": {
-                                    "block": "fortnightly-pay-significant-changes-gross-pay",
+                                    "group": "calendar-monthly",
                                     "when": [{
                                         "id": "fortnightly-pay-significant-changes-paid-employees-answer",
                                         "condition": "equals",
@@ -1222,7 +1222,7 @@
                             },
                             {
                                 "goto": {
-                                    "block": "Four Weekly Pay",
+                                    "group": "four-weekly-pay",
                                     "when": [{
                                         "id": "calendar-monthly-pay-significant-changes-paid-employees-answer",
                                         "condition": "equals",
@@ -1946,7 +1946,7 @@
                             },
                             {
                                 "goto": {
-                                    "block": "five-weekly-pay-significant-changes-gross-pay",
+                                    "group": "general-comments-group",
                                     "when": [{
                                         "id": "five-weekly-pay-significant-changes-paid-employees-answer",
                                         "condition": "equals",
