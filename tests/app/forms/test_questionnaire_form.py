@@ -124,8 +124,8 @@ class TestQuestionnaireForm(AppContextTestCase):
             question_json = {
                 'id': 'breakdown-question',
                 'type': 'Calculated',
-                'calculated': {
-                    'calculated_type': 'subtraction',
+                'calculations': [{
+                    'calculation_type': 'subtraction',
                     'answer_id': 'total-answer',
                     'answers_to_calculate': [
                         'breakdown-1',
@@ -134,7 +134,7 @@ class TestQuestionnaireForm(AppContextTestCase):
                     'conditions': [
                         'equals'
                     ]
-                },
+                }],
                 'answers': [{
                     'id': 'breakdown-1',
                     'label': 'Breakdown 1',
@@ -184,8 +184,8 @@ class TestQuestionnaireForm(AppContextTestCase):
                         'TOTAL_SUM_NOT_EQUALS': 'Test Message'
                     }
                 },
-                'calculated': {
-                    'calculated_type': 'sum',
+                'calculations': [{
+                    'calculation_type': 'sum',
                     'answer_id': 'total-answer',
                     'answers_to_calculate': [
                         'breakdown-1',
@@ -194,7 +194,7 @@ class TestQuestionnaireForm(AppContextTestCase):
                     'conditions': [
                         'equals'
                     ]
-                },
+                }],
                 'answers': [{
                     'id': 'breakdown-1',
                     'label': 'Breakdown 1',
@@ -329,6 +329,54 @@ class TestQuestionnaireForm(AppContextTestCase):
             self.assertEqual(form.data, expected_form_data)
             self.assertEqual(form.question_errors['breakdown-question'], schema.error_messages['TOTAL_SUM_NOT_EQUALS']
                              % dict(total='10'), AnswerStore())
+
+    def test_multi_calculation(self):
+        store = AnswerStore()
+
+        answer_total = Answer(
+            answer_id='total-answer',
+            answer_instance=1,
+            group_instance=1,
+            value=10,
+        )
+
+        store.add(answer_total)
+
+        with self.test_request_context():
+            schema = load_schema_from_params('test', 'sum_multi_validation_against_total')
+
+            block_json = schema.get_block('breakdown-block')
+
+            data = {
+                'breakdown-1': '',
+                'breakdown-2': '',
+                'breakdown-3': '',
+                'breakdown-4': ''
+            }
+
+            # With no answers question validation should pass
+            form = generate_form(schema, block_json, data, store)
+            form.validate()
+
+            self.assertEqual(len(form.question_errors), 0)
+
+            # With the data equaling the total question validation should pass
+            data['breakdown-1'] = '10'
+
+            form = generate_form(schema, block_json, data, store)
+            form.validate()
+
+            self.assertEqual(len(form.question_errors), 0)
+
+            # With the data not equaling zero or the total, question validation should fail
+            data['breakdown-1'] = '1'
+
+            form = generate_form(schema, block_json, data, store)
+            form.validate()
+
+            self.assertEqual(form.question_errors['breakdown-question'],
+                             schema.error_messages['TOTAL_SUM_NOT_EQUALS'] % dict(total='10'))
+
 
     def test_form_errors_are_correctly_mapped(self):
         with self.test_request_context():
