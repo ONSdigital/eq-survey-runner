@@ -210,8 +210,8 @@
                                         "value": "Yes"
                                     },
                                     {
-                                        "label": "No, I would like to add another pay pattern",
-                                        "value": "No, I would like to add another pay pattern"
+                                        "label": "No, I would like to change the pay patterns",
+                                        "value": "No"
                                     }
                                 ],
                                 "type": "Radio"
@@ -223,7 +223,7 @@
                                     "when": [{
                                         "id": "pay-pattern-frequency-confirmation-answer",
                                         "condition": "equals",
-                                        "value": "No, I would like to add another pay pattern"
+                                        "value": "No"
                                     }]
                                 }
                             },
@@ -335,20 +335,15 @@
                             "answers": [{
                                 "id": "weekly-pay-gross-pay-answer",
                                 "label": "Total gross weekly pay",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "q_code": "50",
                                 "type": "Currency",
                                 "currency": "GBP",
                                 "decimal_places": 2,
                                 "alias": "weekly_total_gross",
+                                "default": 0,
                                 "min_value": {
-                                    "value": 0,
-                                    "exclusive": true
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY_NUMBER": "Enter an answer to continue."
-                                    }
+                                    "value": 0
                                 }
                             }],
                             "guidance": {
@@ -384,6 +379,54 @@
                         }],
                         "title": "Weekly Pay",
                         "type": "Question"
+                    },
+                    {
+                        "type": "Question",
+                        "title": "Weekly Pay",
+                        "id": "confirm-weekly-pay-gross-pay",
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "weekly-pay-gross-pay-answer",
+                                "condition": "greater than",
+                                "value": 0
+                            }]
+                        }],
+                        "questions": [{
+                            "type": "General",
+                            "answers": [{
+                                "type": "Radio",
+                                "id": "confirm-weekly-pay-gross-pay-answer",
+                                "q_code": "d50",
+                                "options": [{
+                                        "label": "Yes this is correct",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No I need to change this",
+                                        "value": "No"
+                                    }
+                                ],
+                                "mandatory": true
+                            }],
+                            "id": "confirm-weekly-pay-gross-pay-question",
+                            "title": "The <em>total gross weekly pay</em> paid to employees in the last week of {{exercise.period_str}} was <em>£0</em>, is this correct?"
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "when": [{
+                                        "value": "No",
+                                        "id": "confirm-weekly-pay-gross-pay-answer",
+                                        "condition": "equals"
+                                    }],
+                                    "block": "weekly-pay-gross-pay"
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "weekly-pay-significant-changes-paid-employees"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "weekly-pay-breakdown",
@@ -662,7 +705,7 @@
                 "blocks": [{
                         "id": "fortnightly-pay-introduction",
                         "title": "Fortnightly Pay",
-                        "description": "<p>This section covers employees who are paid fortnightly. </p><p>You’ll be asked for the:</p><p><ul><li>number of fortnightly paid employees</li><li>holiday pay, pay awards and bonuses paid to fortnightly paid employees</li><li>significant changes to the pay or number of fortnightly paid employees</li>",
+                        "description": "<p>This section covers employees who are paid fortnightly.</p><p>You’ll be asked for the:</p><p><ul><li>number of fortnightly paid employees</li><li>holiday pay, pay awards and bonuses paid to fortnightly paid employees</li><li>significant changes to the pay or number of fortnightly paid employees</li></ul></p>",
                         "type": "Interstitial"
                     },
                     {
@@ -706,20 +749,15 @@
                             "answers": [{
                                 "id": "fortnightly-pay-gross-pay-answer",
                                 "label": "Total gross fortnightly pay",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "q_code": "50f",
                                 "type": "Currency",
                                 "alias": "fortnightly_total_gross",
+                                "default": 0,
                                 "currency": "GBP",
                                 "decimal_places": 2,
                                 "min_value": {
-                                    "value": 0,
-                                    "exclusive": true
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY_NUMBER": "Enter an answer to continue."
-                                    }
+                                    "value": 0
                                 }
                             }],
                             "guidance": {
@@ -755,6 +793,54 @@
                         }],
                         "title": "Fortnightly Pay",
                         "type": "Question"
+                    },
+                    {
+                        "type": "Question",
+                        "title": "Fortnightly Pay",
+                        "id": "confirm-fortnightly-pay-gross-pay",
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "fortnightly-pay-gross-pay-answer",
+                                "condition": "greater than",
+                                "value": 0
+                            }]
+                        }],
+                        "questions": [{
+                            "type": "General",
+                            "answers": [{
+                                "type": "Radio",
+                                "id": "confirm-fortnightly-pay-gross-pay-answer",
+                                "q_code": "d50f",
+                                "options": [{
+                                        "label": "Yes this is correct",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No I need to change this",
+                                        "value": "No"
+                                    }
+                                ],
+                                "mandatory": true
+                            }],
+                            "id": "confirm-fortnightly-pay-gross-pay-question",
+                            "title": "The <em>total gross fortnightly pay</em> paid to employees in the last week of {{exercise.period_str}} was <em>£0</em>, is this correct?"
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "when": [{
+                                        "value": "No",
+                                        "id": "confirm-fortnightly-pay-gross-pay-answer",
+                                        "condition": "equals"
+                                    }],
+                                    "block": "fortnightly-pay-gross-pay"
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "fortnightly-pay-significant-changes-paid-employees"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "fortnightly-pay-breakdown",
@@ -1033,7 +1119,7 @@
                 "blocks": [{
                         "id": "calendar-monthly-pay-introduction",
                         "title": "Calendar Monthly Pay",
-                        "description": "<p>This section covers employees who are paid calendar monthly.</p><p>You’ll be asked for the:</p><p><ul><li>number of calendar monthly paid employees</li><li>holiday pay, pay awards and bonuses paid to calendar monthly paid employees</li><li>significant changes to the pay or number of calendar monthly paid employees</li>",
+                        "description": "<p>This section covers employees who are paid calendar monthly.</p><p>You’ll be asked for the:</p><p><ul><li>number of calendar monthly paid employees</li><li>holiday pay, pay awards and bonuses paid to calendar monthly paid employees</li><li>significant changes to the pay or number of calendar monthly paid employees</li></ul></p>",
                         "type": "Interstitial"
                     },
                     {
@@ -1077,20 +1163,15 @@
                             "answers": [{
                                 "id": "calendar-monthly-pay-gross-pay-answer",
                                 "label": "Total gross calendar monthly pay",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "q_code": "151",
                                 "type": "Currency",
                                 "alias": "monthly_total_gross",
+                                "default": 0,
                                 "currency": "GBP",
                                 "decimal_places": 2,
                                 "min_value": {
-                                    "value": 0,
-                                    "exclusive": true
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY_NUMBER": "Enter an answer to continue."
-                                    }
+                                    "value": 0
                                 }
                             }],
                             "id": "calendar-monthly-pay-gross-pay-question",
@@ -1125,6 +1206,54 @@
                         }],
                         "title": "Calendar Monthly Pay",
                         "type": "Question"
+                    },
+                    {
+                        "type": "Question",
+                        "title": "Calendar Monthly Pay",
+                        "id": "confirm-calendar-monthly-pay-gross-pay",
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "calendar-monthly-pay-gross-pay-answer",
+                                "condition": "greater than",
+                                "value": 0
+                            }]
+                        }],
+                        "questions": [{
+                            "type": "General",
+                            "answers": [{
+                                "type": "Radio",
+                                "id": "confirm-calendar-monthly-pay-gross-pay-answer",
+                                "q_code": "d151",
+                                "options": [{
+                                        "label": "Yes this is correct",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No I need to change this",
+                                        "value": "No"
+                                    }
+                                ],
+                                "mandatory": true
+                            }],
+                            "id": "confirm-calendar-monthly-pay-gross-pay-question",
+                            "title": "The <em>total gross calendar monthly pay</em> paid to employees in the last week of {{exercise.period_str}} was <em>£0</em>, is this correct?"
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "when": [{
+                                        "value": "No",
+                                        "id": "confirm-calendar-monthly-pay-gross-pay-answer",
+                                        "condition": "equals"
+                                    }],
+                                    "block": "calendar-monthly-pay-gross-pay"
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "calendar-monthly-pay-significant-changes-paid-employees"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "calendar-monthly-pay-breakdown",
@@ -1391,7 +1520,7 @@
                 "blocks": [{
                         "id": "four-weekly-pay-introduction",
                         "title": "Four Weekly Pay",
-                        "description": "<p>This section covers employees who are paid four weekly.</p><p>You’ll be asked for the:</p><p><ul><li>number of four weekly paid employees</li><li>holiday pay, pay awards and bonuses paid to four weekly paid employees</li><li>significant changes to the pay or number of four weekly paid employees</li>",
+                        "description": "<p>This section covers employees who are paid four weekly.</p><p>You’ll be asked for the:</p><p><ul><li>number of four weekly paid employees</li><li>holiday pay, pay awards and bonuses paid to four weekly paid employees</li><li>significant changes to the pay or number of four weekly paid employees</li></ul></p>",
                         "type": "Interstitial"
                     },
                     {
@@ -1435,20 +1564,15 @@
                             "answers": [{
                                 "id": "four-weekly-pay-gross-pay-answer",
                                 "label": "Total gross four weekly pay",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "q_code": "152",
                                 "type": "Currency",
                                 "alias": "four_weekly_total_gross",
+                                "default": 0,
                                 "currency": "GBP",
                                 "decimal_places": 2,
                                 "min_value": {
-                                    "value": 0,
-                                    "exclusive": true
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY_NUMBER": "Enter an answer to continue."
-                                    }
+                                    "value": 0
                                 }
                             }],
                             "id": "four-weekly-pay-gross-pay-question",
@@ -1483,6 +1607,54 @@
                         }],
                         "title": "Four Weekly Pay",
                         "type": "Question"
+                    },
+                    {
+                        "type": "Question",
+                        "title": "Four Weekly Pay",
+                        "id": "confirm-four-weekly-pay-gross-pay",
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "four-weekly-pay-gross-pay-answer",
+                                "condition": "greater than",
+                                "value": 0
+                            }]
+                        }],
+                        "questions": [{
+                            "type": "General",
+                            "answers": [{
+                                "type": "Radio",
+                                "id": "confirm-four-weekly-pay-gross-pay-answer",
+                                "q_code": "d152",
+                                "options": [{
+                                        "label": "Yes this is correct",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No I need to change this",
+                                        "value": "No"
+                                    }
+                                ],
+                                "mandatory": true
+                            }],
+                            "id": "confirm-four-weekly-gross-pay-question",
+                            "title": "The <em>total gross four weekly pay</em> paid to employees in the last week of {{exercise.period_str}} was <em>£0</em>, is this correct?"
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "when": [{
+                                        "value": "No",
+                                        "id": "confirm-four-weekly-pay-gross-pay-answer",
+                                        "condition": "equals"
+                                    }],
+                                    "block": "four-weekly-pay-gross-pay"
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "four-weekly-pay-significant-changes-paid-employees"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "four-weekly-pay-breakdown",
@@ -1756,7 +1928,7 @@
                 "blocks": [{
                         "id": "five-weekly-pay-introduction",
                         "title": "Five Weekly Pay",
-                        "description": "<p>This section covers employees who are paid five weekly.</p><p>You’ll be asked for the:</p><p><ul><li>number of five weekly paid employees</li><li>holiday pay, pay awards and bonuses paid to five weekly paid employees</li><li>significant changes to the pay or number of five weekly paid employees</li>",
+                        "description": "<p>This section covers employees who are paid five weekly.</p><p>You’ll be asked for the:</p><p><ul><li>number of five weekly paid employees</li><li>holiday pay, pay awards and bonuses paid to five weekly paid employees</li><li>significant changes to the pay or number of five weekly paid employees</li></ul></p>",
                         "type": "Interstitial"
                     },
                     {
@@ -1800,20 +1972,15 @@
                             "answers": [{
                                 "id": "five-weekly-pay-gross-pay-answer",
                                 "label": "Total gross five weekly pay",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "q_code": "153",
                                 "type": "Currency",
                                 "alias": "five_weekly_total_gross",
+                                "default": 0,
                                 "currency": "GBP",
                                 "decimal_places": 2,
                                 "min_value": {
-                                    "value": 0,
-                                    "exclusive": true
-                                },
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY_NUMBER": "Enter an answer to continue."
-                                    }
+                                    "value": 0
                                 }
                             }],
                             "guidance": {
@@ -1849,6 +2016,54 @@
                         }],
                         "title": "Five Weekly Pay",
                         "type": "Question"
+                    },
+                    {
+                        "type": "Question",
+                        "title": "Five Weekly Pay",
+                        "id": "confirm-five-weekly-pay-gross-pay",
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "five-weekly-pay-gross-pay-answer",
+                                "condition": "greater than",
+                                "value": 0
+                            }]
+                        }],
+                        "questions": [{
+                            "type": "General",
+                            "answers": [{
+                                "type": "Radio",
+                                "id": "confirm-five-weekly-pay-gross-pay-answer",
+                                "q_code": "d153",
+                                "options": [{
+                                        "label": "Yes this is correct",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No I need to change this",
+                                        "value": "No"
+                                    }
+                                ],
+                                "mandatory": true
+                            }],
+                            "id": "confirm-five-weekly-gross-pay-question",
+                            "title": "The <em>total gross five weekly pay</em> paid to employees in the last week of {{exercise.period_str}} was <em>£0</em>, is this correct?"
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "when": [{
+                                        "value": "No",
+                                        "id": "confirm-five-weekly-pay-gross-pay-answer",
+                                        "condition": "equals"
+                                    }],
+                                    "block": "five-weekly-pay-gross-pay"
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "five-weekly-pay-significant-changes-paid-employees"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "five-weekly-pay-breakdown",
