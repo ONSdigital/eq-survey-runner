@@ -20,7 +20,7 @@ def build_view_context(metadata, answer_store, schema_context, block, current_lo
 
         return build_view_context_for_summary(metadata, answer_store, schema_context, variables, form.csrf_token)
 
-    if block['type'] == 'Question':
+    if block['type'] in ('Question', 'ConfirmationQuestion'):
         if not form:
             form = get_form_for_location(g.schema, rendered_block, current_location, answer_store)
 
