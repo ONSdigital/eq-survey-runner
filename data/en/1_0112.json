@@ -238,7 +238,7 @@
                     "title": "Retail Turnover"
                 },
                 {
-                    "type": "Question",
+                    "type": "ConfirmationQuestion",
                     "title": "Retail Turnover",
                     "id": "confirm-zero-turnover-block",
                     "skip_conditions": [{
@@ -498,7 +498,7 @@
                     "title": "Employees"
                 },
                 {
-                    "type": "Question",
+                    "type": "ConfirmationQuestion",
                     "title": "Employees",
                     "id": "confirm-zero-employees-block",
                     "skip_conditions": [{

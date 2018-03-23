@@ -305,7 +305,7 @@
                     "title": "Retail Turnover"
                 },
                 {
-                    "type": "Question",
+                    "type": "ConfirmationQuestion",
                     "title": "Retail Turnover",
                     "id": "confirm-zero-turnover-block",
                     "skip_conditions": [{

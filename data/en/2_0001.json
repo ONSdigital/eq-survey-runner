@@ -105,7 +105,7 @@
                     "type": "Question"
                 },
                 {
-                    "type": "Question",
+                    "type": "ConfirmationQuestion",
                     "title": "Employees",
                     "id": "confirm-zero-employees-block",
                     "skip_conditions": [{

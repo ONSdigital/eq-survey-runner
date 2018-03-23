@@ -381,7 +381,7 @@
                         "type": "Question"
                     },
                     {
-                        "type": "Question",
+                        "type": "ConfirmationQuestion",
                         "title": "Weekly Pay",
                         "id": "confirm-weekly-pay-gross-pay",
                         "skip_conditions": [{
@@ -795,7 +795,7 @@
                         "type": "Question"
                     },
                     {
-                        "type": "Question",
+                        "type": "ConfirmationQuestion",
                         "title": "Fortnightly Pay",
                         "id": "confirm-fortnightly-pay-gross-pay",
                         "skip_conditions": [{
@@ -1208,7 +1208,7 @@
                         "type": "Question"
                     },
                     {
-                        "type": "Question",
+                        "type": "ConfirmationQuestion",
                         "title": "Calendar Monthly Pay",
                         "id": "confirm-calendar-monthly-pay-gross-pay",
                         "skip_conditions": [{
@@ -1609,7 +1609,7 @@
                         "type": "Question"
                     },
                     {
-                        "type": "Question",
+                        "type": "ConfirmationQuestion",
                         "title": "Four Weekly Pay",
                         "id": "confirm-four-weekly-pay-gross-pay",
                         "skip_conditions": [{
@@ -2018,7 +2018,7 @@
                         "type": "Question"
                     },
                     {
-                        "type": "Question",
+                        "type": "ConfirmationQuestion",
                         "title": "Five Weekly Pay",
                         "id": "confirm-five-weekly-pay-gross-pay",
                         "skip_conditions": [{
