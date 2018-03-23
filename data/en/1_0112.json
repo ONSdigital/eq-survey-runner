@@ -549,6 +549,33 @@
                     "type": "Question",
                     "id": "employees-breakdown",
                     "questions": [{
+                        "calculations": [{
+                                "calculation_type": "sum",
+                                "value": 0,
+                                "answers_to_calculate": [
+                                    "male-employees-over-30-hours",
+                                    "male-employees-under-30-hours",
+                                    "female-employees-over-30-hours",
+                                    "female-employees-under-30-hours"
+                                ],
+                                "conditions": [
+                                    "equals"
+                                ]
+                            },
+                            {
+                                "calculation_type": "sum",
+                                "answer_id": "total-number-employees",
+                                "answers_to_calculate": [
+                                    "male-employees-over-30-hours",
+                                    "male-employees-under-30-hours",
+                                    "female-employees-over-30-hours",
+                                    "female-employees-under-30-hours"
+                                ],
+                                "conditions": [
+                                    "equals"
+                                ]
+                            }
+                        ],
                         "guidance": {
                             "content": [{
                                     "title": "Include",
@@ -612,7 +639,7 @@
                         ],
                         "id": "employee-breakdown-questions",
                         "title": "Of the <em>{{answers.employee_count|format_number}}</em> total employees employed on {{exercise.employment_date|format_date}}, please specify the number of:",
-                        "type": "General"
+                        "type": "Calculated"
                     }],
                     "title": "Employees"
                 },
