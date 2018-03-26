@@ -194,7 +194,7 @@
                         "type": "Question"
                     },
                     {
-                        "type": "Question",
+                        "type": "ConfirmationQuestion",
                         "id": "pay-pattern-frequency-confirmation",
                         "title": "Pay Pattern",
                         "questions": [{
