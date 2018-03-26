@@ -5,13 +5,14 @@ import string
 
 from datetime import datetime
 
+from dateutil import relativedelta
 import flask
 
 from jinja2 import Markup, escape, evalcontextfilter
 from babel import units, numbers
 
 from app.settings import DEFAULT_LOCALE
-
+from app.questionnaire.rules import convert_to_datetime
 blueprint = flask.Blueprint('filters', __name__)
 
 
@@ -66,8 +67,12 @@ def format_multilined_string(context, value):
 
 
 @blueprint.app_template_filter()
-def format_date(value, date_format='%-d %B %Y'):
-    return "<span class='date'>{date}</span>".format(date=datetime.strptime(value, '%Y-%m-%d').strftime(date_format))
+def format_date(value):
+    date_format = '%B %Y'
+    if value and re.match(r'\d{4}-\d{2}-\d{2}', value):
+        date_format = '%-d %B %Y'
+
+    return "<span class='date'>{date}</span>".format(date=convert_to_datetime(value).strftime(date_format))
 
 
 @blueprint.app_template_filter()
@@ -98,6 +103,19 @@ def format_conditional_date(date1=None, date2=None):
         raise Exception('No valid dates passed to format_conditional_dates filter')
 
     return format_date(date)
+
+
+@blueprint.app_template_filter()
+def calculate_years_difference(from_str, to_str):
+    if from_str is None or to_str is None:
+        raise Exception('Valid date(s) not passed to calculate_years_difference filter')
+
+    to_date = datetime.now() if to_str == 'now' else convert_to_datetime(to_str)
+    from_date = convert_to_datetime(from_str)
+    difference = relativedelta.relativedelta(to_date, from_date)
+    year_string = '{} year' if difference.years == 1 else '{} years'
+
+    return year_string.format(difference.years)
 
 
 def format_date_range(start_date, end_date=None):

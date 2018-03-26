@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock
+from unittest.mock import MagicMock
 from wtforms.validators import ValidationError
 
 from app.validation.error_messages import error_messages
@@ -16,17 +16,17 @@ class TestDateRangeValidator(unittest.TestCase):
 
         validator = DateRangeCheck()
 
-        period_from = Mock()
+        period_from = MagicMock()
         period_from.day.data = '01'
         period_from.month.data = '01'
         period_from.year.data = '2016'
 
-        period_to = Mock()
+        period_to = MagicMock()
         period_to.day.data = '01'
         period_to.month.data = '01'
         period_to.year.data = '2016'
 
-        mock_form = Mock()
+        mock_form = MagicMock()
 
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, period_from, period_to)
@@ -37,17 +37,17 @@ class TestDateRangeValidator(unittest.TestCase):
 
         validator = DateRangeCheck()
 
-        period_from = Mock()
+        period_from = MagicMock()
         period_from.day.data = '20'
         period_from.month.data = '01'
         period_from.year.data = '2018'
 
-        period_to = Mock()
+        period_to = MagicMock()
         period_to.day.data = '20'
         period_to.month.data = '01'
         period_to.year.data = '2016'
 
-        mock_form = Mock()
+        mock_form = MagicMock()
 
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, period_from, period_to)
@@ -58,17 +58,17 @@ class TestDateRangeValidator(unittest.TestCase):
 
         validator = DateRangeCheck()
 
-        period_from = Mock()
+        period_from = MagicMock()
         period_from.day.data = '01'
         period_from.month.data = '01'
         period_from.year.data = '2016'
 
-        period_to = Mock()
+        period_to = MagicMock()
         period_to.day.data = '01'
         period_to.month.data = '01'
         period_to.year.data = '2017'
 
-        mock_form = Mock()
+        mock_form = MagicMock()
 
         try:
             validator(mock_form, period_from, period_to)

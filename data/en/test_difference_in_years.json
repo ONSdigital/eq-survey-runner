@@ -1,0 +1,85 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "023",
+    "title": "Difference between two dates",
+    "description": "A test schema for calculate age from date",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "id": "dates",
+            "title": "Date Difference",
+            "blocks": [{
+                    "type": "Question",
+                    "id": "age-block",
+                    "title": "Calculate Age",
+                    "questions": [{
+                        "id": "date-pipe-question",
+                        "title": "What is your date of birth?",
+                        "type": "General",
+                        "answers": [{
+                            "alias": "date_dob",
+                            "id": "date-dob",
+                            "label": "For example 20 March 1990",
+                            "mandatory": true,
+                            "type": "Date"
+                        }]
+                    }]
+                },
+                {
+                    "type": "ConfirmationQuestion",
+                    "id": "age-test",
+                    "title": "Confirm Your Age",
+                    "questions": [{
+                        "id": "confirm-dob-question",
+                        "title": "You are {{ calculate_years_difference (answers.date_dob, 'now') }} old. Is this correct?",
+                        "type": "General",
+                        "answers": [{
+                            "id": "date-test-answer",
+                            "label": "Piped dates",
+                            "mandatory": true,
+                            "type": "Radio",
+                            "options": [{
+                                    "label": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No",
+                                    "value": "No"
+                                }
+                            ]
+                        }]
+                    }],
+                    "routing_rules": [{
+                            "goto": {
+                                "block": "age-block",
+                                "when": [{
+                                    "id": "date-test-answer",
+                                    "condition": "equals",
+                                    "value": "No"
+                                }]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "block": "summary",
+                                "when": [{
+                                    "id": "date-test-answer",
+                                    "condition": "equals",
+                                    "value": "Yes"
+                                }]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ]
+        }]
+    }]
+}

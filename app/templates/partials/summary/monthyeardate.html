@@ -1,1 +1,5 @@
-{{answer.value|format_month_year_date}}
+{% if question.type == 'DateRange' %}
+    {{format_date_range(answer.value.from, answer.value.to)}}
+{% else %}
+    {{answer.value|format_month_year_date}}
+{% endif %}

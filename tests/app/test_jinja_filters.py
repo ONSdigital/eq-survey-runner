@@ -2,13 +2,16 @@
 
 from unittest import TestCase
 
+from datetime import datetime
+
+from dateutil.relativedelta import relativedelta
 from mock import Mock
 
 from app.jinja_filters import format_date, format_conditional_date, format_currency, get_currency_symbol, \
     format_multilined_string, format_percentage, format_date_range, format_household_member_name, \
     format_month_year_date, format_number_to_alphabetic_letter, \
     format_unit, format_currency_for_input, format_number, format_unordered_list, format_household_member_name_possessive, \
-    concatenated_list
+    concatenated_list, calculate_years_difference
 
 
 class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
@@ -116,6 +119,16 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
 
         self.assertEqual(format_value, "<span class='date'>1 January 2017</span>")
 
+    def test_format_date_month_year(self):
+        # Given
+        date = '2017-01'
+
+        # When
+        format_value = format_date(date)
+
+        # Then
+        self.assertEqual(format_value, "<span class='date'>January 2017</span>")
+
     def test_format_conditional_date_not_date(self):
         # Given       no test for integers this check was removed from jinja_filters
 
@@ -129,7 +142,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
             with self.assertRaises(Exception) as exception:
                 format_conditional_date(date1, date2)
         # Then
-            self.assertIn("does not match format '%Y-%m-%d'", str(exception.exception))
+            self.assertIn("does not match format '%Y-%m'", str(exception.exception))
 
     def test_format_conditional_date_not_set(self):
         # Given
@@ -157,6 +170,36 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
 
             # Then
             self.assertEqual(format_value, "<span class='date'>{date}</span>".format(date=triple[2]))
+
+    def test_calculate_years_difference(self):
+        # Given
+        ten_years_ago = (datetime.today()+relativedelta(years=-10)).strftime('%Y-%m-%d')
+
+        date_list = [('2017-01-30', '2018-01-30', '1 year'),
+                     ('2015-02-02', '2018-02-01', '2 years'),
+                     ('2016-02-29', '2017-02-28', '1 year'),
+                     ('2016-02-29', '2020-02-28', '3 years'),
+                     (ten_years_ago, 'now', '10 years')]
+
+        for dates in date_list:
+            start_date = dates[0]
+            end_date = dates[1]
+
+            # When
+            calculated_value = calculate_years_difference(start_date, end_date)
+
+            # Then
+            self.assertEqual(calculated_value, dates[2])
+
+    def test_calculate_years_difference_none(self):
+        # Given
+        with self.assertRaises(Exception) as e:
+
+            # When
+            calculate_years_difference(None, '2017-01-17')
+
+        # Then
+        self.assertEqual('Valid date(s) not passed to calculate_years_difference filter', str(e.exception))
 
     def test_format_date_range(self):
         # Given
