@@ -77,6 +77,13 @@ REPEATING_ANSWER_ADD_REMOVE = r"""  addPerson() {
   }
 
 """
+SECTION_SUMMARY_ANSWER_GETTER = Template(r"""  ${answerName}() { return '#${answerId}-answer'; }
+
+""")
+
+SECTION_SUMMARY_ANSWER_EDIT_GETTER = Template(r"""  ${answerName}Edit() { return '[data-qa="${answerId}-edit"]'; }
+
+""")
 
 SUMMARY_ANSWER_GETTER = Template(r"""  ${answerName}() { return '#${answerId}-answer'; }
 
@@ -205,8 +212,12 @@ def process_summary(schema_data, page_spec):
                             'answerName': camel_case(answer_name),
                             'answerId': answer['id']
                         }
-                        page_spec.write(SUMMARY_ANSWER_GETTER.substitute(answer_context))
-                        page_spec.write(SUMMARY_ANSWER_EDIT_GETTER.substitute(answer_context))
+                        if block['type'] == 'SectionSummary':
+                            page_spec.write(SECTION_SUMMARY_ANSWER_GETTER.substitute(answer_context))
+                            page_spec.write(SECTION_SUMMARY_ANSWER_EDIT_GETTER.substitute(answer_context))
+
+                    page_spec.write(SUMMARY_ANSWER_GETTER.substitute(answer_context))
+                    page_spec.write(SUMMARY_ANSWER_EDIT_GETTER.substitute(answer_context))
 
             group_context = {
                 'group_id_camel': camel_case(generate_pascal_case_from_id(group['id'])),
@@ -280,8 +291,7 @@ def process_block(block, dir_out, schema_data, spec_file, relative_require='..')
         page_spec.write(HEADER.substitute(block_context))
         page_spec.write(CLASS_NAME.substitute(block_context))
         page_spec.write(CONSTRUCTOR.substitute(block_context))
-
-        if block['type'] == 'Summary':
+        if block['type'] in ('Summary', 'SectionSummary'):
             process_summary(schema_data, page_spec)
         else:
             num_questions = len(block.get('questions', []))
