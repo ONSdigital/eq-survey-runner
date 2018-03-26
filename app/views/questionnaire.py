@@ -678,7 +678,7 @@ def _get_front_end_navigation(answer_store, current_location, metadata, routing_
     completed_blocks = get_completed_blocks(current_user)
     navigation = Navigation(g.schema, answer_store, metadata, completed_blocks, routing_path)
     block_json = g.schema.get_block(current_location.block_id)
-    if block_json is not None and block_json['type'] in ('Question', 'Interstitial', 'Confirmation', 'Summary'):
+    if block_json['type'] != 'Introduction':
         return navigation.build_navigation(current_location.group_id, current_location.group_instance)
 
     return None

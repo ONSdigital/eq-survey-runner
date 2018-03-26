@@ -8,6 +8,7 @@ def build_summary_rendering_context(schema, sections, answer_store, metadata):
     """
     Build questionnaire summary context containing metadata and content from the answers of the questionnaire
     :param schema: schema of the current questionnaire
+    :param sections: the sections of the current schema
     :param answer_store: all of the answers to the questionnaire
     :param metadata: all of the metadata
     :return: questionnaire summary context

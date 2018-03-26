@@ -18,7 +18,8 @@ def build_view_context(metadata, answer_store, schema_context, block, current_lo
     if block['type'] in ('Summary', 'SectionSummary'):
         form = form or FlaskForm()
 
-        return build_view_context_for_summary(metadata, answer_store, schema_context, variables, form.csrf_token)
+        return build_view_context_for_summary(metadata, answer_store, schema_context, block['type'], variables,
+                                              form.csrf_token, current_location)
 
     if block['type'] in ('Question', 'ConfirmationQuestion'):
         if not form:
@@ -54,6 +55,7 @@ def build_view_context_for_question(current_location, variables, rendered_block,
             'other_answer': {},
             'fields': {}
         }
+
     }
 
     answer_ids = []
@@ -86,17 +88,33 @@ def build_view_context_for_question(current_location, variables, rendered_block,
     return context
 
 
-def build_view_context_for_summary(metadata, answer_store, schema_context, variables, csrf_token):
-    rendered_schema_json = renderer.render(g.schema.json, **schema_context)
-    summary_rendered_context = build_summary_rendering_context(g.schema, rendered_schema_json['sections'],
-                                                               answer_store, metadata)
+def build_view_context_for_summary(metadata, answer_store, schema_context, block_type, variables, csrf_token,
+                                   current_location):
+    section_list = []
+    title = None
+
+    if block_type == 'Summary':
+        section_list = renderer.render(g.schema.json, **schema_context)['sections']
+        title = 'Your answers'
+
+    elif block_type == 'SectionSummary':
+        for section in g.schema.json['sections']:
+            group_ids = (group['id'] for group in section['groups'])
+            if current_location.group_id in group_ids:
+                section_list = [renderer.render(section, **schema_context)]
+                title = section['title']
+                break
+
+    summary_rendering_context = build_summary_rendering_context(g.schema, section_list, answer_store, metadata)
 
     context = {
         'csrf_token': csrf_token,
         'summary': {
-            'groups': summary_rendered_context,
+            'groups': summary_rendering_context,
             'answers_are_editable': True,
             'is_view_submission_response_enabled': is_view_submitted_response_enabled(g.schema.json),
+            'summary_type': block_type,
+            'title': title,
         },
         'variables': variables,
     }

@@ -3,5 +3,10 @@
 {% block page_title %}{{_("Submit answers")}} - {{survey_title}}{% endblock %}
 
 {% block submit_button %}
-  <button class="btn btn--primary btn--lg btn--loader js-btn-submit" data-qa="btn-submit" data-loading-msg="Submitting&hellip;" type="submit">Submit answers</button>
+
+{% if content.summary and content.summary.summary_type == 'SectionSummary' %}
+    <button class="btn btn--primary btn--lg btn--loader js-btn-submit" data-qa="btn-submit">Continue</button>
+{% else  %}
+    <button class="btn btn--primary btn--lg btn--loader js-btn-submit" data-qa="btn-submit" data-loading-msg="Submitting&hellip;" type="submit">Submit answers</button>
+{% endif %}
 {% endblock %}
