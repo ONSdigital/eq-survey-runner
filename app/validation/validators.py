@@ -220,15 +220,15 @@ class DateRangeCheck(object):
 
     def __call__(self, form, from_field, to_field):
 
-        from_day = int(from_field.day.data) if 'day' in from_field.data else 1
-        to_day = int(to_field.day.data) if 'day' in to_field.data else 1
+        from_day = int(from_field.data['day']) if 'day' in from_field.data else 1
+        to_day = int(to_field.data['day']) if 'day' in to_field.data else 1
 
-        from_date_str = '{}-{:02d}-{:02d}'.format(int(from_field.year.data),
-                                                  int(from_field.month.data),
+        from_date_str = '{}-{:02d}-{:02d}'.format(int(from_field.data['year']),
+                                                  int(from_field.data['month']),
                                                   from_day)
 
-        to_date_str = '{}-{:02d}-{:02d}'.format(int(to_field.year.data),
-                                                int(to_field.month.data),
+        to_date_str = '{}-{:02d}-{:02d}'.format(int(to_field.data['year']),
+                                                int(to_field.data['month']),
                                                 to_day)
 
         from_date = convert_to_datetime(from_date_str)
