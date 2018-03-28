@@ -542,34 +542,54 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
             answer_value = g.schema.get_answer(answer_id).get('default')
 
         if answer_id in survey_answer_ids or location.block_id == 'household-composition':
-            answer = None
 
-            # Dates are comprised of 3 string values
             if isinstance(answer_value, dict):
-                if answer_value_empty(answer_value):
-                    _remove_answer_from_questionnaire_store(answer_id, questionnaire_store)
-                else:
-                    formatted_answer_value = _format_answer_value(answer_value)
-                    if formatted_answer_value:
-                        answer = Answer(answer_id=answer_id,
-                                        value=formatted_answer_value,
-                                        group_instance=location.group_instance,
-                                        group_id=location.group_id,
-                                        block_id=location.block_id)
-            elif answer_value is not None:
+                answer_value = _return_date_answer_value(answer_value)
+
+            if answer_value is not None:
                 answer = Answer(answer_id=answer_id,
                                 value=answer_value,
                                 group_instance=location.group_instance,
                                 group_id=location.group_id,
                                 block_id=location.block_id)
+
+                latest_answer_store_hash = questionnaire_store.answer_store.get_hash()
+                questionnaire_store.answer_store.add_or_update(answer)
+                if latest_answer_store_hash != questionnaire_store.answer_store.get_hash():
+                    _remove_dependent_answers_from_completed_blocks(answer_id, questionnaire_store)
             else:
                 _remove_answer_from_questionnaire_store(answer_id, questionnaire_store)
 
-            if answer:
-                questionnaire_store.answer_store.add_or_update(answer)
-
     if location not in questionnaire_store.completed_blocks:
         questionnaire_store.completed_blocks.append(location)
+
+
+def _return_date_answer_value(answer_value):
+    if not answer_value_empty(answer_value):
+        # Dates are comprised of 3 string values
+        formatted_answer_value = _format_answer_value(answer_value)
+        if formatted_answer_value:
+            return formatted_answer_value
+
+    return None
+
+
+def _remove_dependent_answers_from_completed_blocks(answer_id, questionnaire_store):
+    """
+    Gets a list of answers ids that are dependent on the answer_id passed in.
+    Then for each dependent answer it will remove it's block from those completed.
+    This will therefore force the respondent to revisit that block.
+    The dependent answers themselves remain untouched.
+    :param answer_id: the answer that has changed
+    :param questionnaire_store: holds the completed blocks
+    :return: None
+    """
+    dependencies = g.schema.get_answer_dependencies_by_id(answer_id)
+    for dependency in dependencies:
+        group_block = g.schema.get_group_and_block_id_by_answer_id(dependency)
+        location = Location(group_block['group'], 0, group_block['block'])
+        if location in questionnaire_store.completed_blocks:
+            questionnaire_store.completed_blocks.remove(location)
 
 
 def _remove_answer_from_questionnaire_store(answer_id, questionnaire_store):

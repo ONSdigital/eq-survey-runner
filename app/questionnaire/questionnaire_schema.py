@@ -1,5 +1,5 @@
-import collections
 import itertools
+from collections import OrderedDict, defaultdict
 from app.validation.error_messages import error_messages
 
 
@@ -42,6 +42,12 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
 
     def get_answer(self, answer_id):
         return self._answers_by_id.get(answer_id)
+
+    def get_answer_dependencies_by_id(self, answer_id):
+        return self._answer_dependencies.get(answer_id, [])
+
+    def get_group_and_block_id_by_answer_id(self, answer_id):
+        return self._answer_with_block_and_group_ids.get(answer_id)
 
     def get_groups_that_repeat_with_answer_id(self, answer_id):
         for group in self.groups:
@@ -138,9 +144,11 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
         self._answers_by_id = get_nested_schema_objects(self._questions_by_id, 'answers')
         self.error_messages = self._get_error_messages()
         self.aliases = self._get_aliases()
+        self._answer_dependencies = self._get_answer_dependencies()
+        self._answer_with_block_and_group_ids = self._get_answer_block_group_ids()
 
     def _get_sections_by_id(self):
-        return collections.OrderedDict(
+        return OrderedDict(
             (section['id'], section)
             for section in self.json.get('sections', [])
         )
@@ -167,6 +175,42 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
 
         return aliases
 
+    def _get_answer_dependencies(self):
+        dependencies = defaultdict(list)
+        # Answer level dependencies
+        for answer in self.answers:
+            dependency_id = answer['id']
+            if 'min_value' in answer and 'answer_id' in answer['min_value']:
+                answer_id = answer['min_value']['answer_id']
+                dependencies[answer_id].append(dependency_id)
+            if 'max_value' in answer and 'answer_id' in answer['max_value']:
+                answer_id = answer['max_value']['answer_id']
+                dependencies[answer_id].append(dependency_id)
+
+        # Question level dependencies
+        for question in self.questions:
+            for calculation in question.get('calculations', []):
+                answer_id = calculation.get('answer_id')
+                if answer_id:
+                    for dependency_id in calculation['answers_to_calculate']:
+                        dependencies[answer_id].append(dependency_id)
+
+        return dependencies
+
+    def _get_answer_block_group_ids(self):
+        answers_blocks_groups = {}
+        for group in self.groups:
+            for block in group['blocks']:
+                block_group = {
+                    'block': block['id'],
+                    'group': group['id']
+                }
+                answer_ids = self.get_answer_ids_for_block(block['id'])
+                for answer_id in answer_ids:
+                    answers_blocks_groups[answer_id] = block_group
+
+        return answers_blocks_groups
+
 
 def get_nested_schema_objects(parent_object, list_key):
     """
@@ -177,7 +221,7 @@ def get_nested_schema_objects(parent_object, list_key):
         obj.get(list_key, [])
         for obj in parent_object.values()
     )
-    return collections.OrderedDict(
+    return OrderedDict(
         (nested_item['id'], nested_item)
         for nested_item in itertools.chain.from_iterable(lists)
     )
