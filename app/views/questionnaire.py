@@ -223,7 +223,7 @@ def get_thank_you(eq_id, form_type):  # pylint: disable=unused-argument
 
         return render_theme_template(schema.json['theme'],
                                      template_name='thank-you.html',
-                                     meta=metadata_context,
+                                     metadata=metadata_context,
                                      analytics_ua_id=current_app.config['EQ_UA_ID'],
                                      survey_id=schema.json['survey_id'],
                                      survey_title=TemplateRenderer.safe_content(schema.json['title']),
@@ -277,7 +277,7 @@ def get_view_submission(eq_id, form_type):  # pylint: disable=unused-argument
 
             return render_theme_template(g.schema.json['theme'],
                                          template_name='view-submission.html',
-                                         meta=metadata_context,
+                                         metadata=metadata_context,
                                          analytics_ua_id=current_app.config['EQ_UA_ID'],
                                          survey_id=g.schema.json['survey_id'],
                                          survey_title=TemplateRenderer.safe_content(g.schema.json['title']),

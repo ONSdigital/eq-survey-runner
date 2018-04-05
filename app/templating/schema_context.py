@@ -12,8 +12,7 @@ def build_schema_context(metadata, aliases, answer_store, answer_ids_on_path, gr
     :return: questionnaire schema context
     """
     return {
-        'exercise': _build_exercise(metadata),
-        'respondent': _build_respondent(metadata),
+        'metadata': _build_metadata(metadata),
         'answers': _map_alias_to_answers(aliases, answer_store, answer_ids_on_path),
         'group_instance': group_instance,
     }
@@ -43,7 +42,7 @@ def _map_alias_to_answers(aliases, answer_store, answer_ids_on_path):
     return values
 
 
-def _build_exercise(metadata):
+def _build_metadata(metadata):
     return {
         'start_date': metadata['ref_p_start_date'],
         'end_date': metadata.get('ref_p_end_date'),
@@ -51,11 +50,6 @@ def _build_exercise(metadata):
         'employment_date': metadata.get('employment_date'),
         'return_by': metadata.get('return_by'),
         'region_code': json_and_html_safe(metadata.get('region_code')),
-    }
-
-
-def _build_respondent(metadata):
-    return {
         'ru_name': json_and_html_safe(metadata.get('ru_name')),
         'trad_as': json_and_html_safe(metadata.get('trad_as')),
         'trad_as_or_ru_name': json_and_html_safe(metadata.get('trad_as') or metadata.get('ru_name')),
