@@ -41,6 +41,18 @@ describe('Summary Screen', function() {
       });
   });
 
+  it('Given a survey has been completed when a summary page edit link is clicked then it should return to that question then back to summary', function() {
+  return helpers.openQuestionnaire('test_summary.json')
+    .then(completeAllQuestions)
+    .then(() => {
+      return browser
+        .click(SummaryPage.radioAnswerEdit())
+        .click(RadioPage.sausage())
+        .click(RadioPage.submit())
+        .getText(SummaryPage.radioAnswer()).should.eventually.contain('Sausage');
+      });
+  });
+
   it('Given the edit link is used when a question is updated then the summary screen should show the new answer', function() {
   return helpers.openQuestionnaire('test_summary.json')
     .then(completeAllQuestions)
@@ -51,7 +63,6 @@ describe('Summary Screen', function() {
         .hasFocus(TestNumberPage.squareKilometres())
         .setValue(TestNumberPage.squareKilometres(), '654321')
         .click(TestNumberPage.submit())
-        .click(DessertBlockPage.submit())
         .getText(SummaryPage.squareKilometres()).should.eventually.contain('654,321 km²');
       });
   });

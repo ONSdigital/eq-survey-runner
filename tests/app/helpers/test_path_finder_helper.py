@@ -9,11 +9,12 @@ from tests.app.app_context_test_case import AppContextTestCase
 @patch('app.helpers.path_finder_helper.PathFinder')
 @patch('app.helpers.path_finder_helper.get_metadata')
 @patch('app.helpers.path_finder_helper.get_answer_store')
+@patch('app.helpers.path_finder_helper.get_completed_blocks')
 class TestPathFinderHelper(AppContextTestCase):
 
     LOGIN_DISABLED = True
 
-    def test_path_finder_instantiated_once(self, mock_path_finder, _, __):
+    def test_path_finder_instantiated_once(self, mock_path_finder, _, __, ___):
         g.schema = QuestionnaireSchema({})
 
         # Werkzeug LocalProxy only instantiates an object on
