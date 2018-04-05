@@ -32,26 +32,18 @@ class TestMetadataContext(SurveyRunnerTestCase):
         with self.application.test_request_context():
             metadata = parse_metadata(self.jwt, required_metadata={})
 
-        render_data = build_metadata_context(metadata)
+        metadata_context = build_metadata_context(metadata)
 
-        self.assertIsNotNone(render_data)
-
-        survey_data = render_data['survey']
-        self.assertIsNotNone(survey_data)
-
-        self.assertEqual('2016-07-17', survey_data['return_by'])
-        self.assertEqual('2016-02-22', survey_data['start_date'])
-        self.assertEqual('2016-03-30', survey_data['end_date'])
-        self.assertIsNone(survey_data['employment_date'])
-        self.assertIsNone(survey_data['region_code'])
-        self.assertEqual(self.jwt['period_str'], survey_data['period_str'])
-
-        respondent = render_data['respondent']
-        self.assertIsNotNone(respondent)
-
-        self.assertEqual(self.jwt['ru_ref'], respondent['respondent_id'])
-        self.assertEqual(self.jwt['ru_name'], respondent['name'])
-        self.assertEqual(self.jwt['trad_as'], respondent['trading_as'])
+        self.assertIsNotNone(metadata_context)
+        self.assertEqual('2016-07-17', metadata_context['return_by'])
+        self.assertEqual('2016-02-22', metadata_context['start_date'])
+        self.assertEqual('2016-03-30', metadata_context['end_date'])
+        self.assertIsNone(metadata_context['employment_date'])
+        self.assertIsNone(metadata_context['region_code'])
+        self.assertEqual(self.jwt['period_str'], metadata_context['period_str'])
+        self.assertEqual(self.jwt['ru_ref'], metadata_context['respondent_id'])
+        self.assertEqual(self.jwt['ru_name'], metadata_context['name'])
+        self.assertEqual(self.jwt['trad_as'], metadata_context['trading_as'])
 
     def test_defend_against_XSS_attack(self):
         jwt = self.jwt.copy()
@@ -63,16 +55,14 @@ class TestMetadataContext(SurveyRunnerTestCase):
         with self.application.test_request_context():
             metadata = parse_metadata(jwt, required_metadata={})
 
-        render_data = build_metadata_context(metadata)
+        metadata_context = build_metadata_context(metadata)
 
-        respondent = render_data['respondent']
-        self.assertEqual(escaped_bad_characters, respondent['respondent_id'])
-        self.assertEqual(escaped_bad_characters, respondent['name'])
-        self.assertEqual(escaped_bad_characters, respondent['trading_as'])
+        self.assertEqual(escaped_bad_characters, metadata_context['respondent_id'])
+        self.assertEqual(escaped_bad_characters, metadata_context['name'])
+        self.assertEqual(escaped_bad_characters, metadata_context['trading_as'])
 
-        survey = render_data['survey']
-        self.assertEqual(escaped_bad_characters, survey['region_code'])
-        self.assertEqual(escaped_bad_characters, survey['period_str'])
-        self.assertEqual(escaped_bad_characters, survey['eq_id'])
-        self.assertEqual(escaped_bad_characters, survey['collection_id'])
-        self.assertEqual(escaped_bad_characters, survey['form_type'])
+        self.assertEqual(escaped_bad_characters, metadata_context['region_code'])
+        self.assertEqual(escaped_bad_characters, metadata_context['period_str'])
+        self.assertEqual(escaped_bad_characters, metadata_context['eq_id'])
+        self.assertEqual(escaped_bad_characters, metadata_context['collection_id'])
+        self.assertEqual(escaped_bad_characters, metadata_context['form_type'])

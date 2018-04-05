@@ -38,10 +38,10 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
 
         schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), answer_ids_on_path)
 
-        self.assertTrue('exercise' in schema_context)
+        self.assertTrue('metadata' in schema_context)
         self.assertTrue('answers' in schema_context)
 
-    def test_build_exercise(self):
+    def test_build_metadata(self):
         aliases = {
             'first_name': {
                 'answer_id': 'answer_id',
@@ -54,13 +54,13 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
 
         schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), answer_ids_on_path)
 
-        exercise = schema_context['exercise']
-        self.assertEqual('2016-10-13', exercise['start_date'])
-        self.assertEqual('2016-10-14', exercise['end_date'])
-        self.assertEqual('October 2016', exercise['period_str'])
-        self.assertEqual('2016-10-19', exercise['employment_date'])
-        self.assertEqual('2016-10-20', exercise['return_by'])
-        self.assertEqual('GB-GBN', exercise['region_code'])
+        metadata = schema_context['metadata']
+        self.assertEqual('2016-10-13', metadata['start_date'])
+        self.assertEqual('2016-10-14', metadata['end_date'])
+        self.assertEqual('October 2016', metadata['period_str'])
+        self.assertEqual('2016-10-19', metadata['employment_date'])
+        self.assertEqual('2016-10-20', metadata['return_by'])
+        self.assertEqual('GB-GBN', metadata['region_code'])
 
     def test_build_answers(self):
         aliases = {
@@ -240,13 +240,13 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         context_answers = schema_context['answers']
         self.assertEqual(len(context_answers['repeating_answer_alias']), 25)
 
-    def test_respondent_display_name_is_trading_as_when_trading_as_supplied(self):
+    def test_metadata_display_name_is_trading_as_when_trading_as_supplied(self):
         answer_ids_on_path = []
         schema_context = build_schema_context(self.metadata, {}, self.answer_store, answer_ids_on_path)
 
-        self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], self.metadata['trad_as'])
+        self.assertEqual(schema_context['metadata']['trad_as_or_ru_name'], self.metadata['trad_as'])
 
-    def test_respondent_display_name_is_ru_name_as_when_trading_as_not_supplied(self):
+    def test_metadata_display_name_is_ru_name_as_when_trading_as_not_supplied(self):
         metadata = self.metadata.copy()
         metadata['trad_as'] = None
 
@@ -254,9 +254,9 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
 
         schema_context = build_schema_context(metadata, {}, self.answer_store, answer_ids_on_path)
 
-        self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], metadata['ru_name'])
+        self.assertEqual(schema_context['metadata']['trad_as_or_ru_name'], metadata['ru_name'])
 
-    def test_respondent_display_name_is_ru_name_as_when_trading_as_empty(self):
+    def test_metadata_display_name_is_ru_name_as_when_trading_as_empty(self):
         metadata = self.metadata.copy()
         metadata['trad_as'] = ''
 
@@ -264,7 +264,7 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
 
         schema_context = build_schema_context(metadata, {}, self.answer_store, answer_ids_on_path)
 
-        self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], metadata['ru_name'])
+        self.assertEqual(schema_context['metadata']['trad_as_or_ru_name'], metadata['ru_name'])
 
     def test_given_quotes_in_trading_name_when_create_context_then_quotes_are_html_encoded(self):
         # Given
@@ -277,7 +277,7 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         schema_context = build_schema_context(metadata, {}, self.answer_store, answer_ids_on_path)
 
         # Then
-        self.assertEqual(schema_context['respondent']['trad_as'], r'&#34;trading name&#34;')
+        self.assertEqual(schema_context['metadata']['trad_as'], r'&#34;trading name&#34;')
 
     def test_given_backslash_in_trading_name_when_create_context_then_backslash_are_escaped(self):
         # Given
@@ -290,7 +290,7 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         schema_context = build_schema_context(metadata, {}, self.answer_store, answer_ids_on_path)
 
         # Then
-        self.assertEqual(schema_context['respondent']['trad_as'], r'\\trading name\\')
+        self.assertEqual(schema_context['metadata']['trad_as'], r'\\trading name\\')
 
     def test_given_quotes_in_ru_name_when_create_context_then_quotes_are_html_encoded(self):
         # Given
@@ -303,7 +303,7 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         schema_context = build_schema_context(metadata, {}, self.answer_store, answer_ids_on_path)
 
         # Then
-        self.assertEqual(schema_context['respondent']['ru_name'], r'&#34;ru name&#34;')
+        self.assertEqual(schema_context['metadata']['ru_name'], r'&#34;ru name&#34;')
 
     def test_given_backslash_in_ru_name_when_create_context_then_backslash_are_escaped(self):
         # Given
@@ -316,7 +316,7 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         schema_context = build_schema_context(metadata, {}, self.answer_store, answer_ids_on_path)
 
         # Then
-        self.assertEqual(schema_context['respondent']['ru_name'], r'\\ru name\\')
+        self.assertEqual(schema_context['metadata']['ru_name'], r'\\ru name\\')
 
     def test_given_quotes_in_ru_name_or_trading_name_when_create_context_then_quotes_are_html_encoded(self):
         # Given
@@ -330,7 +330,7 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         schema_context = build_schema_context(metadata, {}, self.answer_store, answer_ids_on_path)
 
         # Then
-        self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], r'&#34;ru_name&#34;')
+        self.assertEqual(schema_context['metadata']['trad_as_or_ru_name'], r'&#34;ru_name&#34;')
 
     def test_given_backslash_in_ru_name_or_trading_name_when_create_context_then_backslash_are_escaped(self):
         # Given
@@ -343,7 +343,7 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         schema_context = build_schema_context(metadata, {}, self.answer_store, answer_ids_on_path)
 
         # Then
-        self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], r'\\trading name\\')
+        self.assertEqual(schema_context['metadata']['trad_as_or_ru_name'], r'\\trading name\\')
 
     def test_given_quotes_in_answers_when_create_context_quotes_then_are_html_encoded(self):
         aliases = {

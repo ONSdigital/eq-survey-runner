@@ -4,6 +4,7 @@ from blinker import ANY
 from flask import session as cookie_session, current_app
 from flask_login import LoginManager, user_logged_out
 from sdc.crypto.decrypter import decrypt
+from sdc.crypto.exceptions import InvalidTokenException
 from structlog import get_logger
 
 from app.authentication.no_token_exception import NoTokenException
@@ -118,23 +119,16 @@ def decrypt_token(encrypted_token):
     if not encrypted_token or encrypted_token is None:
         raise NoTokenException('Please provide a token')
 
-    claims = {
-        'eq_id': None,
-        'form_type': None,
-        'user_id': None,
-        'ru_ref': None,
-        'collection_exercise_sid': None,
-        'period_id': None,
-        'ref_p_start_date': None,
-        'exp': None,
-        'iat': None
-    }
+    mandatory_claims = ['eq_id', 'form_type', 'user_id', 'ru_ref', 'collection_exercise_sid', 'period_id', 'ref_p_start_date', 'exp', 'iat']
 
     decrypted_token = decrypt(token=encrypted_token,
                               key_store=current_app.eq['key_store'],
                               key_purpose=KEY_PURPOSE_AUTHENTICATION,
-                              leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'],
-                              check_claims=claims)
+                              leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'])
+
+    for claim in mandatory_claims:
+        if claim not in decrypted_token or not decrypted_token[claim]:
+            raise InvalidTokenException('Missing mandatory values in claims - {}'.format(claim))
 
     logger.debug('token decrypted')
     return decrypted_token

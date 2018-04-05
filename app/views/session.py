@@ -58,7 +58,7 @@ def login():
     language_code = decrypted_token.get('language_code', 'en')
 
     g.schema = load_schema_from_params(eq_id, form_type, language_code)
-    required_metadata = g.schema.json.get('metadata_fields')
+    required_metadata = g.schema.json.get('metadata_fields', {})
 
     metadata = parse_metadata(decrypted_token, required_metadata)
 

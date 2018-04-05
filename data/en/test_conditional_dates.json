@@ -52,7 +52,7 @@
                             "type": "Number"
                         }],
                         "id": "total-retail-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers.date_start_from, exercise.start_date)}} to {{ format_conditional_date (answers.date_end_to, exercise.end_date)}}, what was the value of the business’s total retail turnover?",
+                        "title": "For the period {{ format_conditional_date (answers.date_start_from, metadata.start_date)}} to {{ format_conditional_date (answers.date_end_to, metadata.end_date)}}, what was the value of the business’s total retail turnover?",
                         "type": "General"
                     }],
                     "title": "Conditional Date Validation"
