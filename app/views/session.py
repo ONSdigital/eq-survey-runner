@@ -2,7 +2,7 @@ from flask import Blueprint, redirect, request, g, session as cookie_session
 from flask_login import current_user, login_required, logout_user
 from sdc.crypto.exceptions import InvalidTokenException
 
-from werkzeug.exceptions import NotFound, Unauthorized
+from werkzeug.exceptions import Unauthorized
 
 from structlog import get_logger
 
@@ -12,7 +12,7 @@ from app.globals import get_answer_store, get_completed_blocks
 from app.questionnaire.path_finder import PathFinder
 from app.settings import ACCOUNT_URL
 from app.storage.metadata_parser import parse_metadata
-from app.utilities.schema import load_schema_from_metadata
+from app.utilities.schema import load_schema_from_params
 from app.views.errors import render_template
 
 logger = get_logger()
@@ -53,19 +53,20 @@ def login():
     except (TypeError, ValueError) as e:
         raise InvalidTokenException from e
 
-    metadata = parse_metadata(decrypted_token)
-    eq_id = metadata['eq_id']
-    form_type = metadata['form_type']
+    eq_id = decrypted_token.get('eq_id')
+    form_type = decrypted_token.get('form_type')
+    language_code = decrypted_token.get('language_code', 'en')
+
+    g.schema = load_schema_from_params(eq_id, form_type, language_code)
+    required_metadata = g.schema.json.get('metadata_fields', {})
+
+    metadata = parse_metadata(decrypted_token, required_metadata)
+
     tx_id = metadata['tx_id']
     ru_ref = metadata['ru_ref']
+
     logger.bind(eq_id=eq_id, form_type=form_type, tx_id=tx_id, ru_ref=ru_ref)
     logger.info('decrypted token and parsed metadata')
-
-    if not eq_id or not form_type:
-        logger.error('missing eq id or form type in jwt')
-        raise NotFound
-
-    g.schema = load_schema_from_metadata(metadata)
 
     store_session(metadata)
 

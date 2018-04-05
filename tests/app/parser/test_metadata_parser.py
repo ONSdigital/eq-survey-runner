@@ -29,7 +29,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'account_service_url': 'https://ras.ons.gov.uk'
         }
         with self.application.test_request_context():
-            self.metadata = parse_metadata(self.jwt)
+            self.metadata = self.metadata = parse_metadata(self.jwt, {})
 
     def test_transaction_id(self):
         with self.application.test_request_context():
@@ -81,7 +81,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_is_valid(self):
         with self.application.test_request_context():
-            self.assertTrue(is_valid_metadata(self.jwt))
+            self.assertTrue(is_valid_metadata(self.jwt, {}))
 
     def test_is_valid_fails_missing_user_id(self):
         jwt = {
@@ -97,7 +97,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_name': 'Apple',
             'return_by': '2016-07-07'
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, field = is_valid_metadata(jwt, {})
         self.assertFalse(valid)
         self.assertEqual('user_id', field)
 
@@ -115,7 +115,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_name': 'Apple',
             'return_by': '2016-07-07'
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, field = is_valid_metadata(jwt, {})
         self.assertFalse(valid)
         self.assertEqual('form_type', field)
 
@@ -133,7 +133,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_name': 'Apple',
             'return_by': '2016-07-07'
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, field = is_valid_metadata(jwt, {})
         self.assertFalse(valid)
         self.assertEqual('collection_exercise_sid', field)
 
@@ -151,7 +151,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_name': 'Apple',
             'return_by': '2016-07-07'
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, field = is_valid_metadata(jwt, {})
         self.assertFalse(valid)
         self.assertEqual('eq_id', field)
 
@@ -169,7 +169,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_name': 'Apple',
             'return_by': '2016-07-07'
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, field = is_valid_metadata(jwt, {})
         self.assertFalse(valid)
         self.assertEqual('period_id', field)
 
@@ -187,7 +187,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_name': 'Apple',
             'return_by': '2016-07-07'
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, field = is_valid_metadata(jwt, {})
         self.assertFalse(valid)
         self.assertEqual('period_str', field)
 
@@ -205,7 +205,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_name': 'Apple',
             'return_by': '2016-07-07'
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, field = is_valid_metadata(jwt, {})
         self.assertFalse(valid)
         self.assertEqual('ref_p_start_date', field)
 
@@ -224,10 +224,10 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_name': 'Apple',
             'return_by': '2016-07-07'
         }
-        valid, _ = is_valid_metadata(jwt)
+        valid, _ = is_valid_metadata(jwt, {})
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            parse_metadata(jwt)
+            parse_metadata(jwt, {})
         self.assertIn('incorrect data in token', ite.exception.value)
 
     def test_is_valid_fails_invalid_ref_p_end_date(self):
@@ -245,10 +245,10 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_name': 'Apple',
             'return_by': '2016-07-07'
         }
-        valid, _ = is_valid_metadata(jwt)
+        valid, _ = is_valid_metadata(jwt, {})
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            parse_metadata(jwt)
+            parse_metadata(jwt, {})
         self.assertIn('incorrect data in token', ite.exception.value)
 
     def test_is_valid_fails_invalid_return_by(self):
@@ -266,10 +266,10 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_name': 'Apple',
             'return_by': '2016-09-31'
         }
-        valid, _ = is_valid_metadata(jwt)
+        valid, _ = is_valid_metadata(jwt, {})
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            parse_metadata(jwt)
+            parse_metadata(jwt, {})
         self.assertIn('incorrect data in token', ite.exception.value)
 
     def test_is_valid_succeeds_missing_ref_p_end_date(self):
@@ -286,7 +286,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_name': 'Apple',
             'return_by': '2016-07-07'
         }
-        valid, _ = is_valid_metadata(jwt)
+        valid, _ = is_valid_metadata(jwt, {})
         self.assertTrue(valid)
 
     def test_is_valid_fails_missing_ru_ref(self):
@@ -303,7 +303,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_name': 'Apple',
             'return_by': '2016-07-07'
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, field = is_valid_metadata(jwt, {})
         self.assertFalse(valid)
         self.assertEqual('ru_ref', field)
 
@@ -321,7 +321,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_ref': '2016-04-04',
             'return_by': '2016-07-07'
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, field = is_valid_metadata(jwt, {})
         self.assertFalse(valid)
         self.assertEqual('ru_name', field)
 
@@ -339,7 +339,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_ref': '2016-04-04',
             'ru_name': 'Apple'
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, field = is_valid_metadata(jwt, {})
         self.assertFalse(valid)
         self.assertEqual('return_by', field)
 
@@ -359,7 +359,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_name': 'Apple',
             'return_by': '2016-07-07'
         }
-        valid, _ = is_valid_metadata(jwt)
+        valid, _ = is_valid_metadata(jwt, {})
         self.assertTrue(valid)
 
     def test_invalid_tx_id(self):
@@ -379,10 +379,10 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             # invalid
             'tx_id': '12121'
         }
-        valid, _ = is_valid_metadata(jwt)
+        valid, _ = is_valid_metadata(jwt, {})
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            parse_metadata(jwt)
+            parse_metadata(jwt, {})
         self.assertIn('incorrect data in token', ite.exception.value)
 
     def test_malformed_tx_id(self):
@@ -402,10 +402,10 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             # one character short
             'tx_id': '83a3db82-bea7-403c-a411-6357ff70f2f'
         }
-        valid, _ = is_valid_metadata(jwt)
+        valid, _ = is_valid_metadata(jwt, {})
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            parse_metadata(jwt)
+            parse_metadata(jwt, {})
         self.assertIn('incorrect data in token', ite.exception.value)
 
 

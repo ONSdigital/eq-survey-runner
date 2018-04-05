@@ -7,6 +7,12 @@
         "enabled": true,
         "duration": 900
     },
+    "metadata_fields": {
+        "ref_p_start_date": "date",
+        "ref_p_end_date": "date",
+        "period_str": "string",
+        "trad_as_or_ru_name": "string"
+    },
     "sections": [{
             "id": "introduction-section",
             "title": "Introduction",

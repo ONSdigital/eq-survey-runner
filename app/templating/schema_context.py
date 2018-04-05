@@ -46,23 +46,23 @@ def _map_alias_to_answers(aliases, answer_store, answer_ids_on_path):
 def _build_exercise(metadata):
     return {
         'start_date': metadata['ref_p_start_date'],
-        'end_date': metadata['ref_p_end_date'],
-        'period_str': json_and_html_safe(metadata['period_str']),
-        'employment_date': metadata['employment_date'],
-        'return_by': metadata['return_by'],
-        'region_code': json_and_html_safe(metadata['region_code']),
+        'end_date': metadata.get('ref_p_end_date'),
+        'period_str': json_and_html_safe(metadata.get('period_str')),
+        'employment_date': metadata.get('employment_date'),
+        'return_by': metadata.get('return_by'),
+        'region_code': json_and_html_safe(metadata.get('region_code')),
     }
 
 
 def _build_respondent(metadata):
     return {
-        'ru_name': json_and_html_safe(metadata['ru_name']),
-        'trad_as': json_and_html_safe(metadata['trad_as']),
-        'trad_as_or_ru_name': json_and_html_safe(metadata['trad_as'] or metadata['ru_name']),
+        'ru_name': json_and_html_safe(metadata.get('ru_name')),
+        'trad_as': json_and_html_safe(metadata.get('trad_as')),
+        'trad_as_or_ru_name': json_and_html_safe(metadata.get('trad_as') or metadata.get('ru_name')),
     }
 
 
 def json_and_html_safe(data):
-    if isinstance(data, str):
+    if data and isinstance(data, str):
         return escape(data.replace('\\', r'\\'))
     return data

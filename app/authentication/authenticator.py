@@ -3,7 +3,6 @@ from uuid import uuid4
 from blinker import ANY
 from flask import session as cookie_session, current_app
 from flask_login import LoginManager, user_logged_out
-from sdc.crypto.exceptions import InvalidTokenException
 from sdc.crypto.decrypter import decrypt
 from structlog import get_logger
 
@@ -12,8 +11,9 @@ from app.authentication.user import User
 from app.data_model.session_data import SessionData
 from app.globals import get_questionnaire_store, get_session_store, create_session_store
 from app.keys import KEY_PURPOSE_AUTHENTICATION
-from app.storage.metadata_parser import is_valid_metadata
+
 from app.settings import EQ_SESSION_ID, USER_IK
+
 
 logger = get_logger()
 
@@ -118,14 +118,23 @@ def decrypt_token(encrypted_token):
     if not encrypted_token or encrypted_token is None:
         raise NoTokenException('Please provide a token')
 
+    claims = {
+        'eq_id': None,
+        'form_type': None,
+        'user_id': None,
+        'ru_ref': None,
+        'collection_exercise_sid': None,
+        'period_id': None,
+        'ref_p_start_date': None,
+        'exp': None,
+        'iat': None
+    }
+
     decrypted_token = decrypt(token=encrypted_token,
                               key_store=current_app.eq['key_store'],
                               key_purpose=KEY_PURPOSE_AUTHENTICATION,
-                              leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'])
-
-    valid, field = is_valid_metadata(decrypted_token)
-    if not valid:
-        raise InvalidTokenException('Missing value {}'.format(field))
+                              leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'],
+                              check_claims=claims)
 
     logger.debug('token decrypted')
     return decrypted_token

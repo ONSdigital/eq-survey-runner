@@ -15,14 +15,10 @@ def build_metadata_context(metadata):
 
 
 def _build_respondent_meta(metadata):
-    respondent_id = None
-    name = None
-    trading_as = None
 
-    if metadata:
-        respondent_id = metadata['ru_ref']
-        name = metadata['ru_name']
-        trading_as = metadata['trad_as']
+    respondent_id = metadata.get('ru_ref')
+    name = metadata.get('ru_name')
+    trading_as = metadata.get('trad_as')
 
     respondent_meta = {
         'tx_id': convert_tx_id(metadata['tx_id']),
@@ -35,14 +31,14 @@ def _build_respondent_meta(metadata):
 
 def _build_survey_meta(metadata):
     return {
-        'return_by': metadata['return_by'],
+        'return_by': metadata.get('return_by'),
         'start_date': metadata['ref_p_start_date'],
-        'end_date': metadata['ref_p_end_date'],
-        'employment_date': metadata['employment_date'],
-        'region_code': json_and_html_safe(metadata['region_code']) if 'region_code' in metadata else None,
-        'period_str': json_and_html_safe(metadata['period_str']),
+        'end_date': metadata.get('ref_p_end_date'),
+        'employment_date': metadata.get('employment_date'),
+        'region_code': json_and_html_safe(metadata.get('region_code')),
+        'period_str': json_and_html_safe(metadata.get('period_str')),
         'eq_id': json_and_html_safe(metadata['eq_id']),
-        'collection_id': json_and_html_safe(metadata['collection_exercise_sid']),
+        'collection_id': json_and_html_safe(metadata.get('collection_exercise_sid')),
         'form_type': json_and_html_safe(metadata['form_type']),
     }
 

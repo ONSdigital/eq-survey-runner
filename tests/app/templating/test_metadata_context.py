@@ -30,7 +30,7 @@ class TestMetadataContext(SurveyRunnerTestCase):
 
     def test_build_metadata_context(self):
         with self.application.test_request_context():
-            metadata = parse_metadata(self.jwt)
+            metadata = parse_metadata(self.jwt, required_metadata={})
 
         render_data = build_metadata_context(metadata)
 
@@ -61,7 +61,7 @@ class TestMetadataContext(SurveyRunnerTestCase):
             jwt[key] = '<">\\'
 
         with self.application.test_request_context():
-            metadata = parse_metadata(jwt)
+            metadata = parse_metadata(jwt, required_metadata={})
 
         render_data = build_metadata_context(metadata)
 
