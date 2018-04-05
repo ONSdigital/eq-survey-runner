@@ -18,7 +18,6 @@
                         "answers": [{
                             "id": "answer",
                             "mandatory": true,
-                            "alias": "answer",
                             "type": "Number"
                         }],
                         "id": "question",
@@ -47,7 +46,7 @@
                     "type": "Interstitial",
                     "id": "incorrect-answer",
                     "title": "You did not enter 123",
-                    "description": "You were asked to enter <em>123</em> but you actually entered <em>{{answers.answer}}</em>.",
+                    "description": "You were asked to enter <em>123</em> but you actually entered <em>{{answers['answer']}}</em>.",
                     "routing_rules": [{
                         "goto": {
                             "block": "summary"
@@ -58,7 +57,7 @@
                     "type": "Interstitial",
                     "id": "correct-answer",
                     "title": "You entered 123",
-                    "description": "You were asked to enter <em>123</em> and you entered <em>{{answers.answer}}</em>."
+                    "description": "You were asked to enter <em>123</em> and you entered <em>{{answers['answer']}}</em>."
                 },
                 {
                     "type": "Summary",

@@ -23,7 +23,6 @@
                         "type": "RepeatingAnswer",
                         "answers": [{
                                 "id": "first-name",
-                                "alias": "first_name",
                                 "label": "First Name",
                                 "mandatory": false,
                                 "q_code": "1",
@@ -31,7 +30,6 @@
                             },
                             {
                                 "id": "middle-names",
-                                "alias": "middle_names",
                                 "label": "Middle Names",
                                 "mandatory": false,
                                 "q_code": "1",
@@ -39,7 +37,6 @@
                             },
                             {
                                 "id": "last-name",
-                                "alias": "last_name",
                                 "label": "Last Name",
                                 "mandatory": false,
                                 "q_code": "1",

@@ -376,8 +376,10 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             Location('multiple-questions-group', 0, 'household-composition'),
             Location('repeating-group', 0, 'repeating-block-1'),
             Location('repeating-group', 0, 'repeating-block-2'),
+            Location('repeating-group', 0, 'repeating-block-3'),
             Location('repeating-group', 1, 'repeating-block-1'),
             Location('repeating-group', 1, 'repeating-block-2'),
+            Location('repeating-group', 1, 'repeating-block-3'),
             Location('summary-group', 0, 'summary'),
         ]
 
@@ -423,10 +425,13 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             Location('multiple-questions-group', 0, 'household-composition'),
             Location('repeating-group', 0, 'repeating-block-1'),
             Location('repeating-group', 0, 'repeating-block-2'),
+            Location('repeating-group', 0, 'repeating-block-3'),
             Location('repeating-group', 1, 'repeating-block-1'),
             Location('repeating-group', 1, 'repeating-block-2'),
+            Location('repeating-group', 1, 'repeating-block-3'),
             Location('repeating-group', 2, 'repeating-block-1'),
             Location('repeating-group', 2, 'repeating-block-2'),
+            Location('repeating-group', 2, 'repeating-block-3'),
             Location('summary-group', 0, 'summary'),
         ]
 
@@ -472,6 +477,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             Location('multiple-questions-group', 0, 'household-composition'),
             Location('repeating-group', 0, 'repeating-block-1'),
             Location('repeating-group', 0, 'repeating-block-2'),
+            Location('repeating-group', 0, 'repeating-block-3'),
             Location('summary-group', 0, 'summary'),
         ]
 
@@ -562,8 +568,10 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             Location('multiple-questions-group', 0, 'household-composition'),
             Location('repeating-group', 0, 'repeating-block-1'),
             Location('repeating-group', 0, 'repeating-block-2'),
+            Location('repeating-group', 0, 'repeating-block-3'),
             Location('repeating-group', 1, 'repeating-block-1'),
-            Location('repeating-group', 1, 'repeating-block-2')
+            Location('repeating-group', 1, 'repeating-block-2'),
+            Location('repeating-group', 1, 'repeating-block-3'),
         ]
 
         answer = Answer(

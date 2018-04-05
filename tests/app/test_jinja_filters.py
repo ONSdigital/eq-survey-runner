@@ -5,6 +5,7 @@ from unittest import TestCase
 from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
+from jinja2 import Undefined
 from mock import Mock
 
 from app.jinja_filters import format_date, format_conditional_date, format_currency, get_currency_symbol, \
@@ -29,6 +30,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         self.assertEqual(format_currency_for_input(0), '0')
         self.assertEqual(format_currency_for_input(''), '')
         self.assertEqual(format_currency_for_input(None), '')
+        self.assertEqual(format_currency_for_input(Undefined()), '')
 
     def test_get_currency_symbol(self):
         self.assertEqual(get_currency_symbol('GBP'), '£')
@@ -44,6 +46,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         self.assertEqual(format_currency(0), '£0.00')
         self.assertEqual(format_currency('', ), '')
         self.assertEqual(format_currency(None), '')
+        self.assertEqual(format_currency(Undefined()), '')
 
     def test_format_number(self):
         self.assertEqual(format_number(123), '123')
@@ -55,6 +58,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         self.assertEqual(format_number(0), '0')
         self.assertEqual(format_number(''), '')
         self.assertEqual(format_number(None), '')
+        self.assertEqual(format_number(Undefined()), '')
 
     def test_format_multilined_string_matches_carriage_return(self):
         # Given

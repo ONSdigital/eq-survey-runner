@@ -7,25 +7,11 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  firstName() { return '#first-name-answer'; }
-
-  firstNameEdit() { return '[data-qa="first-name-edit"]'; }
-
-  middleNames() { return '#middle-names-answer'; }
-
-  middleNamesEdit() { return '[data-qa="middle-names-edit"]'; }
-
   lastName() { return '#last-name-answer'; }
 
   lastNameEdit() { return '[data-qa="last-name-edit"]'; }
 
-  householdCompositionAddAnother() { return '#household-composition-add-another-answer'; }
-
-  householdCompositionAddAnotherEdit() { return '[data-qa="household-composition-add-another-edit"]'; }
-
-  whoIsRelated() { return '#who-is-related-answer'; }
-
-  whoIsRelatedEdit() { return '[data-qa="who-is-related-edit"]'; }
+  multipleQuestionsGroupTitle() { return '#multiple-questions-group'; }
 
   whatIsYourAge() { return '#what-is-your-age-answer'; }
 
@@ -34,6 +20,14 @@ class SummaryPage extends QuestionPage {
   whatIsYourShoeSize() { return '#what-is-your-shoe-size-answer'; }
 
   whatIsYourShoeSizeEdit() { return '[data-qa="what-is-your-shoe-size-edit"]'; }
+
+  confirmAnswer() { return '#confirm-answer-answer'; }
+
+  confirmAnswerEdit() { return '[data-qa="confirm-answer-edit"]'; }
+
+  repeatingGroupTitle() { return '#repeating-group'; }
+
+  summaryGroupTitle() { return '#summary-group'; }
 
 }
 module.exports = new SummaryPage();

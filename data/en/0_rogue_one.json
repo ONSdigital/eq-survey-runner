@@ -20,7 +20,6 @@
                         "description": "",
                         "questions": [{
                             "answers": [{
-                                "alias": "character",
                                 "id": "character-answer",
                                 "label": "Who do you want to know more about?",
                                 "mandatory": true,
@@ -124,7 +123,7 @@
                             "title": "Do you like this page?",
                             "type": "General"
                         }],
-                        "title": "{{answers.character}}",
+                        "title": "{{answers['character']}}",
                         "routing_rules": [{
                             "goto": {
                                 "block": "film-takings"
@@ -160,7 +159,7 @@
                             "title": "Do you like this page?",
                             "type": "General"
                         }],
-                        "title": "{{answers.character}}",
+                        "title": "{{answers['character']}}",
                         "routing_rules": [{
                             "goto": {
                                 "block": "film-takings"
@@ -196,7 +195,7 @@
                             "title": "Do you like this page?",
                             "type": "General"
                         }],
-                        "title": "{{answers.character}}",
+                        "title": "{{answers['character']}}",
                         "routing_rules": [{
                             "goto": {
                                 "block": "film-takings"
@@ -227,7 +226,7 @@
                             "title": "Do you like this page?",
                             "type": "General"
                         }],
-                        "title": "{{answers.character}}",
+                        "title": "{{answers['character']}}",
                         "routing_rules": [{
                             "goto": {
                                 "block": "film-takings"

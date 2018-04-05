@@ -20,16 +20,16 @@ DATE_FORMAT = '%-d %B %Y'
 
 @blueprint.app_template_filter()
 def format_number(value):
-    if value is None or value == '':
-        return ''
-    return numbers.format_number(value, locale=DEFAULT_LOCALE)
+    if value or value is 0:
+        return numbers.format_number(value, locale=DEFAULT_LOCALE)
+    return ''
 
 
 @blueprint.app_template_filter()
 def format_currency(value, currency='GBP'):
-    if value is None or value == '':
-        return ''
-    return numbers.format_currency(number=value, currency=currency, locale=DEFAULT_LOCALE)
+    if value or value is 0:
+        return numbers.format_currency(number=value, currency=currency, locale=DEFAULT_LOCALE)
+    return ''
 
 
 @blueprint.app_template_filter()

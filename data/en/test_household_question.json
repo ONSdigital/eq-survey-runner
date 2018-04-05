@@ -35,7 +35,6 @@
                         "type": "RepeatingAnswer",
                         "answers": [{
                                 "id": "first-name",
-                                "alias": "first_name",
                                 "label": "First Name",
                                 "mandatory": true,
                                 "q_code": "1",
@@ -43,7 +42,6 @@
                             },
                             {
                                 "id": "middle-names",
-                                "alias": "middle_names",
                                 "label": "Middle Names",
                                 "mandatory": false,
                                 "q_code": "1",
@@ -51,7 +49,6 @@
                             },
                             {
                                 "id": "last-name",
-                                "alias": "last_name",
                                 "label": "Last Name",
                                 "mandatory": false,
                                 "q_code": "1",
@@ -100,7 +97,7 @@
                         }]
                     }],
                     "title": "Who lives here?",
-                    "description": "<h2 class='neptune'>Your household includes:</h2> {{ [answers.first_name, answers.middle_names, answers.last_name]|format_household_summary }}",
+                    "description": "<h2 class='neptune'>Your household includes:</h2> {{ [answers['first-name'], answers['middle-names'], answers['last-name']]|format_household_summary }}",
                     "routing_rules": [{
                             "goto": {
                                 "block": "household-composition",
