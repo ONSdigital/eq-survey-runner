@@ -721,7 +721,7 @@
                                 "q_code": "40f",
                                 "type": "Number",
                                 "min_value": {
-                                  "value": 1
+                                    "value": 1
                                 }
                             }],
                             "description": "<p>If the last week of the month is affected by holidays please use a more representative week.</p>",
