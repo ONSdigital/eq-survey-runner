@@ -1,15 +1,15 @@
 # coding: utf-8
-
 import re
 import string
 
 from datetime import datetime
+from dateutil import relativedelta, tz
 
-from dateutil import relativedelta
 import flask
 
 from jinja2 import Markup, escape, evalcontextfilter
 from babel import units, numbers
+
 
 from app.settings import DEFAULT_LOCALE
 from app.questionnaire.rules import convert_to_datetime
@@ -82,7 +82,11 @@ def format_month_year_date(value, date_format='%B %Y'):
 
 @blueprint.app_template_filter()
 def format_datetime(value, date_format='%d %B %Y at %H:%M'):
-    return "<span class='date'>{date}</span>".format(date=datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f').strftime(date_format))
+    london = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f').replace(tzinfo=tz.gettz('UTC'))\
+        .astimezone(tz.gettz('Europe/London'))
+    date_time = london.strftime(date_format)
+    timezone = '(GMT+1)' if london.dst() else '(GMT)'
+    return "<span class='date'>{date} {timezone}</span>".format(date=date_time, timezone=timezone)
 
 
 @blueprint.app_template_filter()

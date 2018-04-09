@@ -9,9 +9,9 @@ from mock import Mock
 
 from app.jinja_filters import format_date, format_conditional_date, format_currency, get_currency_symbol, \
     format_multilined_string, format_percentage, format_date_range, format_household_member_name, \
-    format_month_year_date, format_number_to_alphabetic_letter, \
-    format_unit, format_currency_for_input, format_number, format_unordered_list, format_household_member_name_possessive, \
-    concatenated_list, calculate_years_difference
+    format_month_year_date, format_datetime, format_number_to_alphabetic_letter, \
+    format_unit, format_currency_for_input, format_number, format_unordered_list, \
+    format_household_member_name_possessive, concatenated_list, calculate_years_difference
 
 
 class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
@@ -128,6 +128,28 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
 
         # Then
         self.assertEqual(format_value, "<span class='date'>January 2017</span>")
+
+    def test_format_date_time_in_bst(self):
+        # Given
+        date_time = '2018-03-29T11:59:13.528680'
+        date_format = '%d %B %Y at %H:%M'
+
+        # When
+        format_value = format_datetime(date_time, date_format)
+
+        # Then
+        self.assertEqual(format_value, "<span class='date'>29 March 2018 at 12:59 (GMT+1)</span>")
+
+    def test_format_date_time_in_gmt(self):
+        # Given
+        date_time = '2018-10-28T11:59:13.528680'
+        date_format = '%d %B %Y at %H:%M'
+
+        # When
+        format_value = format_datetime(date_time, date_format)
+
+        # Then
+        self.assertEqual(format_value, "<span class='date'>28 October 2018 at 11:59 (GMT)</span>")
 
     def test_format_conditional_date_not_date(self):
         # Given       no test for integers this check was removed from jinja_filters
