@@ -138,7 +138,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         format_value = format_datetime(date_time, date_format)
 
         # Then
-        self.assertEqual(format_value, "<span class='date'>29 March 2018 at 12:59 (GMT+1)</span>")
+        self.assertEqual(format_value, "<span class='date'>29 March 2018 at 12:59</span>")
 
     def test_format_date_time_in_gmt(self):
         # Given
@@ -149,7 +149,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         format_value = format_datetime(date_time, date_format)
 
         # Then
-        self.assertEqual(format_value, "<span class='date'>28 October 2018 at 11:59 (GMT)</span>")
+        self.assertEqual(format_value, "<span class='date'>28 October 2018 at 11:59</span>")
 
     def test_format_conditional_date_not_date(self):
         # Given       no test for integers this check was removed from jinja_filters
