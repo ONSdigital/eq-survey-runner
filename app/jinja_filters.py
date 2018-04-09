@@ -82,11 +82,9 @@ def format_month_year_date(value, date_format='%B %Y'):
 
 @blueprint.app_template_filter()
 def format_datetime(value, date_format='%d %B %Y at %H:%M'):
-    london = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f').replace(tzinfo=tz.gettz('UTC'))\
+    london_date_time = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f').replace(tzinfo=tz.gettz('UTC'))\
         .astimezone(tz.gettz('Europe/London'))
-    date_time = london.strftime(date_format)
-    timezone = '(GMT+1)' if london.dst() else '(GMT)'
-    return "<span class='date'>{date} {timezone}</span>".format(date=date_time, timezone=timezone)
+    return "<span class='date'>{date}</span>".format(date=london_date_time.strftime(date_format))
 
 
 @blueprint.app_template_filter()
