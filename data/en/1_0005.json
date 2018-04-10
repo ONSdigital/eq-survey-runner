@@ -302,7 +302,10 @@
                                 "label": "Total number of weekly paid employees",
                                 "mandatory": true,
                                 "q_code": "40",
-                                "type": "Number"
+                                "type": "Number",
+                                "min_value": {
+                                    "value": 1
+                                }
                             }],
                             "description": "<p>If the last week of the month is affected by holidays please use a more representative week.</p>",
                             "guidance": {
@@ -716,7 +719,10 @@
                                 "label": "Total number of fortnightly paid employees",
                                 "mandatory": true,
                                 "q_code": "40f",
-                                "type": "Number"
+                                "type": "Number",
+                                "min_value": {
+                                    "value": 1
+                                }
                             }],
                             "description": "<p>If the last week of the month is affected by holidays please use a more representative week.</p>",
                             "guidance": {
@@ -1130,7 +1136,10 @@
                                 "label": "Total number of calendar monthly paid employees",
                                 "mandatory": true,
                                 "q_code": "140m",
-                                "type": "Number"
+                                "type": "Number",
+                                "min_value": {
+                                    "value": 1
+                                }
                             }],
                             "description": "<p>If there are two pay days in the same month only give details for one.</p>",
                             "guidance": {
@@ -1236,7 +1245,7 @@
                                 "mandatory": true
                             }],
                             "id": "confirm-calendar-monthly-pay-gross-pay-question",
-                            "title": "The <em>total gross calendar monthly pay</em> paid to employees in the last week of {{exercise.period_str}} was <em>£0</em>, is this correct?"
+                            "title": "The <em>total gross calendar monthly pay</em> paid to employees in {{exercise.period_str}} was <em>£0</em>, is this correct?"
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -1531,7 +1540,10 @@
                                 "label": "Total number of four weekly paid employees",
                                 "mandatory": true,
                                 "q_code": "140w4",
-                                "type": "Number"
+                                "type": "Number",
+                                "min_value": {
+                                    "value": 1
+                                }
                             }],
                             "description": "<p>If there are two pay days in the same month only give details for one.</p>",
                             "guidance": {
@@ -1637,7 +1649,7 @@
                                 "mandatory": true
                             }],
                             "id": "confirm-four-weekly-gross-pay-question",
-                            "title": "The <em>total gross four weekly pay</em> paid to employees in the last week of {{exercise.period_str}} was <em>£0</em>, is this correct?"
+                            "title": "The <em>total gross four weekly pay</em> paid to employees in {{exercise.period_str}} was <em>£0</em>, is this correct?"
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -1939,7 +1951,10 @@
                                 "label": "Total number of five weekly paid employees",
                                 "mandatory": true,
                                 "q_code": "140w5",
-                                "type": "Number"
+                                "type": "Number",
+                                "min_value": {
+                                    "value": 1
+                                }
                             }],
                             "description": "<p>If there are two pay dates in the same month only give details for one.</p>",
                             "guidance": {
@@ -2046,7 +2061,7 @@
                                 "mandatory": true
                             }],
                             "id": "confirm-five-weekly-gross-pay-question",
-                            "title": "The <em>total gross five weekly pay</em> paid to employees in the last week of {{exercise.period_str}} was <em>£0</em>, is this correct?"
+                            "title": "The <em>total gross five weekly pay</em> paid to employees {{exercise.period_str}} was <em>£0</em>, is this correct?"
                         }],
                         "routing_rules": [{
                                 "goto": {
