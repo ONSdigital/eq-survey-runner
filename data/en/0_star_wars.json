@@ -7,6 +7,12 @@
     "theme": "starwars",
     "legal_basis": "Voluntary",
     "description": "Kitchen sink test for the Star Wars questionnaire",
+    "metadata_fields": {
+        "ref_p_end_date": "date",
+        "employment_date": "string",
+        "period_str": "string"
+
+    },
     "sections": [{
         "id": "default-section",
         "groups": [{

@@ -27,18 +27,15 @@ validators = {
 }
 
 mandatory_meta = {
-    'ref_p_start_date': 'date',
-    'tx_id': 'uuid'
+    'tx_id': 'uuid',
 }
 
 
-def parse_metadata(metadata_to_check, required_metadata):
+def parse_metadata(metadata_to_check, schema_metadata):
 
     parsed = metadata_to_check.copy()
 
-    valid, field = _is_valid_metadata(parsed, required_metadata)
-    if not valid:
-        raise InvalidTokenException('Missing value {}'.format(field))
+    required_metadata = _validate_mandatory_schema_metadata(parsed, schema_metadata)
 
     mandatory_meta.update(required_metadata)
 
@@ -61,14 +58,20 @@ def parse_metadata(metadata_to_check, required_metadata):
     return parsed
 
 
-def _is_valid_metadata(metadata, required_metadata):
+def _validate_mandatory_schema_metadata(metadata, schema_metadata):
 
-    for key in required_metadata.keys():
+    default_metadata = {
+        'period_id': 'string',
+        'user_id': 'string'
+    }
 
-        if key not in metadata:
+    default_metadata.update(schema_metadata)
+
+    for key in default_metadata.keys():
+        if key not in metadata or not metadata[key]:
             if key == 'trad_as_or_ru_name':
                 if 'trad_as' in metadata or 'ru_name' in metadata:
                     continue
-            return False, key
+            raise InvalidTokenException('Missing key/value for {}'.format(key))
 
-    return True, ''
+    return default_metadata

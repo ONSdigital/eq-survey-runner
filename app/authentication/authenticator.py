@@ -119,7 +119,7 @@ def decrypt_token(encrypted_token):
     if not encrypted_token or encrypted_token is None:
         raise NoTokenException('Please provide a token')
 
-    mandatory_claims = ['eq_id', 'form_type', 'user_id', 'ru_ref', 'collection_exercise_sid', 'period_id', 'ref_p_start_date', 'exp', 'iat']
+    mandatory_claims = ['eq_id', 'form_type', 'ru_ref', 'collection_exercise_sid', 'exp', 'iat']
 
     decrypted_token = decrypt(token=encrypted_token,
                               key_store=current_app.eq['key_store'],
@@ -128,7 +128,7 @@ def decrypt_token(encrypted_token):
 
     for claim in mandatory_claims:
         if claim not in decrypted_token or not decrypted_token[claim]:
-            raise InvalidTokenException('Missing mandatory values in claims - {}'.format(claim))
+            raise InvalidTokenException('Missing mandatory key/value in claims - {}'.format(claim))
 
     logger.debug('token decrypted')
     return decrypted_token

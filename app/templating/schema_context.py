@@ -44,7 +44,7 @@ def _map_alias_to_answers(aliases, answer_store, answer_ids_on_path):
 
 def _build_metadata(metadata):
     return {
-        'start_date': metadata['ref_p_start_date'],
+        'start_date': metadata.get('ref_p_start_date'),
         'end_date': metadata.get('ref_p_end_date'),
         'period_str': json_and_html_safe(metadata.get('period_str')),
         'employment_date': metadata.get('employment_date'),
