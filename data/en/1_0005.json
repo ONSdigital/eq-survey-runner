@@ -291,7 +291,18 @@
                 "blocks": [{
                         "id": "weekly-pay-introduction",
                         "title": "Weekly Pay",
-                        "description": "<p>This section covers employees who are paid weekly.</p>You’ll be asked for the:<p></p><p><ul><li>number of weekly paid employees</li><li>holiday pay, pay awards and bonuses paid to weekly paid employees</li><li>significant changes to the pay or number of  weekly paid employees</li></ul></p>",
+                        "content": [{
+                                "description": "This section covers employees who are paid weekly."
+                            },
+                            {
+                                "description": "You’ll be asked for the:",
+                                "list": [
+                                    "number of weekly paid employees",
+                                    "holiday pay, pay awards and bonuses paid to weekly paid employees",
+                                    "significant changes to the pay or number of  weekly paid employees"
+                                ]
+                            }
+                        ],
                         "type": "Interstitial"
                     },
                     {
@@ -304,7 +315,7 @@
                                 "q_code": "40",
                                 "type": "Number"
                             }],
-                            "description": "<p>If the last week of the month is affected by holidays please use a more representative week.</p>",
+                            "description": "If the last week of the month is affected by holidays please use a more representative week.",
                             "guidance": {
                                 "content": [{
                                         "title": "Include:",
@@ -505,7 +516,13 @@
                                 "q_code": "90w",
                                 "type": "Radio"
                             }],
-                            "description": "<p>This is your own interpretation of whether there has been a significant change in {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year. </p>",
+
+
+                            "content": {
+                                "description": "This is your own interpretation of whether there has been a significant change in {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month."
+                            },
+
+
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
