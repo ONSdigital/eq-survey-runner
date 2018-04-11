@@ -26,7 +26,7 @@
 
 {% set question_description %}
   {%- if question.description -%}
-    <div class="question__description mars" id="description-{{question.id}}">
+    <div class="question__description mars">
       {{question.description}}
     </div>
   {% endif %}
@@ -35,9 +35,11 @@
 
 {% set question_content %}
   {%- if question.content -%}
+    {% for content in question.content %}
     <div class="question__description mars" id="content-{{question.id}}">
-      {{question.content.description}}
+        {{content.description}}
     </div>
+    {% endfor %}
   {% endif %}
 {% endset %}
 

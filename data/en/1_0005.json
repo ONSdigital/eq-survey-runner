@@ -722,7 +722,17 @@
                 "blocks": [{
                         "id": "fortnightly-pay-introduction",
                         "title": "Fortnightly Pay",
-                        "description": "<p>This section covers employees who are paid fortnightly.</p><p>You’ll be asked for the:</p><p><ul><li>number of fortnightly paid employees</li><li>holiday pay, pay awards and bonuses paid to fortnightly paid employees</li><li>significant changes to the pay or number of fortnightly paid employees</li></ul></p>",
+                        "content": [{
+                            "description": "This section covers employees who are paid fortnightly."
+                        }, {
+                            "description": "You’ll be asked for the:"
+                        }, {
+                            "list": [
+                                "number of fortnightly paid employees",
+                                "holiday pay, pay awards and bonuses paid to fortnightly paid employees",
+                                "significant changes to the pay or number of fortnightly paid employees"
+                            ]
+                        }],
                         "type": "Interstitial"
                     },
                     {
@@ -735,7 +745,7 @@
                                 "q_code": "40f",
                                 "type": "Number"
                             }],
-                            "description": "<p>If the last week of the month is affected by holidays please use a more representative week.</p>",
+                            "description": "If the last week of the month is affected by holidays please use a more representative week.",
                             "guidance": {
                                 "content": [{
                                         "title": "Include:",
@@ -936,7 +946,13 @@
                                 "q_code": "90f",
                                 "type": "Radio"
                             }],
-                            "description": "<p>This is your own interpretation of whether there has been a significant change in  {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year.</p>",
+                            "content": [{
+                                    "description": "This is your own interpretation of whether there has been a significant change in  {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month."
+                                },
+                                {
+                                    "description": "Also consider whether there has been a significant change from the same month in the previous year."
+                                }
+                            ],
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -1136,7 +1152,20 @@
                 "blocks": [{
                         "id": "calendar-monthly-pay-introduction",
                         "title": "Calendar Monthly Pay",
-                        "description": "<p>This section covers employees who are paid calendar monthly.</p><p>You’ll be asked for the:</p><p><ul><li>number of calendar monthly paid employees</li><li>holiday pay, pay awards and bonuses paid to calendar monthly paid employees</li><li>significant changes to the pay or number of calendar monthly paid employees</li></ul></p>",
+                        "content": [{
+                                "description": "This section covers employees who are paid calendar monthly."
+                            },
+                            {
+                                "description": "You’ll be asked for the:"
+                            },
+                            {
+                                "list": [
+                                    "number of calendar monthly paid employees",
+                                    "holiday pay, pay awards and bonuses paid to calendar monthly paid employees",
+                                    "significant changes to the pay or number of calendar monthly paid employees"
+                                ]
+                            }
+                        ],
                         "type": "Interstitial"
                     },
                     {
@@ -1149,7 +1178,7 @@
                                 "q_code": "140m",
                                 "type": "Number"
                             }],
-                            "description": "<p>If there are two pay days in the same month only give details for one.</p>",
+                            "description": "If there are two pay days in the same month only give details for one.",
                             "guidance": {
                                 "content": [{
                                         "title": "Include:",
@@ -1340,7 +1369,13 @@
                             "id": "calendar-monthly-pay-significant-changes-paid-employees-question",
                             "title": "Did any significant changes occur to the <em>total pay or number</em> of <em>calendar monthly</em> paid employees?",
                             "type": "General",
-                            "description": "<p>This is your own interpretation of whether there has been a significant change in  {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year.</p>",
+                            "content": [{
+                                    "description": "This is your own interpretation of whether there has been a significant change in  {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month."
+                                },
+                                {
+                                    "description": "Also consider whether there has been a significant change from the same month in the previous year."
+                                }
+                            ],
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -1537,7 +1572,20 @@
                 "blocks": [{
                         "id": "four-weekly-pay-introduction",
                         "title": "Four Weekly Pay",
-                        "description": "<p>This section covers employees who are paid four weekly.</p><p>You’ll be asked for the:</p><p><ul><li>number of four weekly paid employees</li><li>holiday pay, pay awards and bonuses paid to four weekly paid employees</li><li>significant changes to the pay or number of four weekly paid employees</li></ul></p>",
+                        "content": [{
+                                "description": "This section covers employees who are paid four weekly."
+                            },
+                            {
+                                "description": "You’ll be asked for the:"
+                            },
+                            {
+                                "list": [
+                                    "number of four weekly paid employees",
+                                    "holiday pay, pay awards and bonuses paid to four weekly paid employees",
+                                    "significant changes to the pay or number of four weekly paid employees"
+                                ]
+                            }
+                        ],
                         "type": "Interstitial"
                     },
                     {
@@ -1550,7 +1598,7 @@
                                 "q_code": "140w4",
                                 "type": "Number"
                             }],
-                            "description": "<p>If there are two pay days in the same month only give details for one.</p>",
+                            "description": "If there are two pay days in the same month only give details for one.",
                             "guidance": {
                                 "content": [{
                                         "title": "Include:",
@@ -1741,7 +1789,13 @@
                             "id": "four-weekly-pay-significant-changes-paid-employees-question",
                             "title": "Did any significant changes occur to the <em>total pay or number</em> of <em>four weekly</em> paid employees?",
                             "type": "General",
-                            "description": "<p>This is your own interpretation of whether there has been a significant change in  {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year.</p>",
+                            "content": [{
+                                    "description": "This is your own interpretation of whether there has been a significant change in  {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month."
+                                },
+                                {
+                                    "description": "Also consider whether there has been a significant change from the same month in the previous year."
+                                }
+                            ],
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -1945,7 +1999,20 @@
                 "blocks": [{
                         "id": "five-weekly-pay-introduction",
                         "title": "Five Weekly Pay",
-                        "description": "<p>This section covers employees who are paid five weekly.</p><p>You’ll be asked for the:</p><p><ul><li>number of five weekly paid employees</li><li>holiday pay, pay awards and bonuses paid to five weekly paid employees</li><li>significant changes to the pay or number of five weekly paid employees</li></ul></p>",
+                        "content": [{
+                                "description": "This section covers employees who are paid five weekly monthly."
+                            },
+                            {
+                                "description": "You’ll be asked for the:"
+                            },
+                            {
+                                "list": [
+                                    "number of five weekly paid employees",
+                                    "holiday pay, pay awards and bonuses paid to five weekly paid employees",
+                                    "significant changes to the pay or number of five weekly paid employees"
+                                ]
+                            }
+                        ],
                         "type": "Interstitial"
                     },
                     {
@@ -1958,7 +2025,7 @@
                                 "q_code": "140w5",
                                 "type": "Number"
                             }],
-                            "description": "<p>If there are two pay dates in the same month only give details for one.</p>",
+                            "description": "If there are two pay dates in the same month only give details for one.",
                             "guidance": {
                                 "content": [{
                                         "title": "Include:",
@@ -2150,7 +2217,13 @@
                             "id": "five-weekly-pay-significant-changes-paid-employees-question",
                             "title": "Did any significant changes occur to the <em>total pay or number</em> of <em>five weekly</em> paid employees?",
                             "type": "General",
-                            "description": "<p>This is your own interpretation of whether there has been a significant change in  {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year.</p>",
+                            "content": [{
+                                    "description": "This is your own interpretation of whether there has been a significant change in  {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month."
+                                },
+                                {
+                                    "description": "Also consider whether there has been a significant change from the same month in the previous year."
+                                }
+                            ],
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -2354,7 +2427,7 @@
                 "blocks": [{
                         "id": "general-comments-introduction",
                         "title": "General Comments",
-                        "description": "<p>The next section covers general comments about this survey.</p>",
+                        "description": "The next section covers general comments about this survey.",
                         "type": "Interstitial"
                     },
                     {
