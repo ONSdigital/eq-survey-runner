@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-docker pull onsdigital/eq-schema-validator
-validator="$(docker run -d -p 5001:5000 onsdigital/eq-schema-validator)"
-
-sleep 3
+#docker pull onsdigital/eq-schema-validator
+#validator="$(docker run -d -p 5001:5000 onsdigital/eq-schema-validator)"
+#
+#sleep 3
 
 green="$(tput setaf 2)"
 red="$(tput setaf 1)"
@@ -63,5 +63,5 @@ done
 
 echo -e "\\n${green}$passed Passed${default} - ${red}$failed Failed${default}"
 
-docker rm -f "$validator"
+#docker rm -f "$validator"
 exit "$exit"
