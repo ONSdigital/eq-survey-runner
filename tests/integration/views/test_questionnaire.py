@@ -433,3 +433,105 @@ class TestQuestionnaire(IntegrationTestCase):
 
         # Then
         self.assertEqual(page_title, 'How is … related to the people below? - 2017 Census Test')
+
+    def test_updating_questionnaire_store_removes_completed_block_for_min_dependencies(self):
+
+        g.schema = load_schema_from_params('test', 'dependencies_min_value')
+
+        min_answer_location = Location('group', 0, 'min-block')
+        dependent_location = Location('group', 0, 'dependent-block')
+
+        min_answer_data = {
+            'min-answer': '10',
+        }
+
+        dependent_data = {
+            'dependent-1': '10',
+        }
+
+        with self._application.test_request_context():
+            update_questionnaire_store_with_form_data(self.question_store, min_answer_location, min_answer_data)
+
+        with self._application.test_request_context():
+            update_questionnaire_store_with_form_data(self.question_store, dependent_location, dependent_data)
+
+        self.assertIn(min_answer_location, self.question_store.completed_blocks)
+        self.assertIn(dependent_location, self.question_store.completed_blocks)
+
+        min_answer_data = {
+            'min-answer': '9',
+        }
+
+        with self._application.test_request_context():
+            update_questionnaire_store_with_form_data(self.question_store, min_answer_location, min_answer_data)
+
+        self.assertNotIn(dependent_location, self.question_store.completed_blocks)
+
+    def test_updating_questionnaire_store_removes_completed_block_for_max_dependencies(self):
+
+        g.schema = load_schema_from_params('test', 'dependencies_max_value')
+
+        max_answer_location = Location('group', 0, 'max-block')
+        dependent_location = Location('group', 0, 'dependent-block')
+
+        max_answer_data = {
+            'max-answer': '10',
+        }
+
+        dependent_data = {
+            'dependent-1': '10',
+        }
+
+        with self._application.test_request_context():
+            update_questionnaire_store_with_form_data(self.question_store, max_answer_location, max_answer_data)
+
+        with self._application.test_request_context():
+            update_questionnaire_store_with_form_data(self.question_store, dependent_location, dependent_data)
+
+        self.assertIn(max_answer_location, self.question_store.completed_blocks)
+        self.assertIn(dependent_location, self.question_store.completed_blocks)
+
+        max_answer_data = {
+            'max-answer': '11',
+        }
+
+        with self._application.test_request_context():
+            update_questionnaire_store_with_form_data(self.question_store, max_answer_location, max_answer_data)
+
+        self.assertNotIn(dependent_location, self.question_store.completed_blocks)
+
+    def test_updating_questionnaire_store_removes_completed_block_for_calculation_dependencies(self):
+
+        g.schema = load_schema_from_params('test', 'dependencies_calculation')
+
+        calculation_answer_location = Location('group', 0, 'total-block')
+        dependent_location = Location('group', 0, 'breakdown-block')
+
+        calculation_answer_data = {
+            'total-answer': '100',
+        }
+
+        dependent_data = {
+            'breakdown-1': '10',
+            'breakdown-2': '20',
+            'breakdown-3': '30',
+            'breakdown-4': '40'
+        }
+
+        with self._application.test_request_context():
+            update_questionnaire_store_with_form_data(self.question_store, calculation_answer_location, calculation_answer_data)
+
+        with self._application.test_request_context():
+            update_questionnaire_store_with_form_data(self.question_store, dependent_location, dependent_data)
+
+        self.assertIn(calculation_answer_location, self.question_store.completed_blocks)
+        self.assertIn(dependent_location, self.question_store.completed_blocks)
+
+        calculation_answer_data = {
+            'total-answer': '99',
+        }
+
+        with self._application.test_request_context():
+            update_questionnaire_store_with_form_data(self.question_store, calculation_answer_location, calculation_answer_data)
+
+        self.assertNotIn(dependent_location, self.question_store.completed_blocks)
