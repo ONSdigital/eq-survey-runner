@@ -990,3 +990,27 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         path_finder = PathFinder(schema, answer_store, metadata={}, completed_blocks=completed_blocks)
 
         self.assertEqual(path_finder.get_next_location(current_location=completed_blocks[3]), second_section_location)
+
+    def test_remove_answer_and_block_if_routing_backwards(self):
+        schema = load_schema_from_params('test', 'confirmation_question')
+
+        # All blocks completed
+        completed_blocks = [
+            Location('confirmation-block', 0, 'number-of-employees-total-block'),
+            Location('confirmation-block', 0, 'confirm-zero-employees-block')
+        ]
+
+        answer_store = AnswerStore()
+        number_of_employees_answer = Answer(answer_id='number-of-employees-total', value=0)
+        confirm_zero_answer = Answer(answer_id='confirm-zero-employees-answer', value='No')
+        answer_store.add(number_of_employees_answer)
+        answer_store.add(confirm_zero_answer)
+
+        path_finder = PathFinder(schema, answer_store, metadata={}, completed_blocks=completed_blocks)
+        self.assertEqual(len(path_finder.completed_blocks), 2)
+        self.assertEqual(len(path_finder.answer_store.answers), 2)
+
+        self.assertEqual(path_finder.get_next_location(current_location=completed_blocks[1]), completed_blocks[0])
+
+        self.assertEqual(path_finder.completed_blocks, [completed_blocks[0]])
+        self.assertEqual(len(path_finder.answer_store.answers), 1)
