@@ -45,7 +45,7 @@
                     "questions": [{
                             "id": "reporting-period-question",
                             "title": "What are the dates of the sales period you are reporting for?",
-                            "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
+                            "description": "If possible, this should be for the period {{metadata.start_date|format_date}} to {{metadata.end_date|format_date}}.",
                             "type": "DateRange",
                             "answers": [{
                                     "id": "period-from",

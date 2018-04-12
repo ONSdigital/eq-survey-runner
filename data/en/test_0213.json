@@ -54,7 +54,7 @@
                                     "type": "Date"
                                 }
                             ],
-                            "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
+                            "description": "If possible, this should be for the period {{metadata.start_date|format_date}} to {{metadata.end_date|format_date}}.",
                             "id": "reporting-period-question",
                             "title": "What are the dates of the sales period you are reporting for?",
                             "type": "DateRange"
@@ -406,7 +406,7 @@
                             "type": "General"
                         }
                     ],
-                    "title": "On {{exercise.employment_date|format_date}} what was the number of employees for the business?"
+                    "title": "On {{metadata.employment_date|format_date}} what was the number of employees for the business?"
                 },
                 {
                     "type": "Summary",
