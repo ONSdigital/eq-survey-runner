@@ -36,14 +36,14 @@ class TestMetadataContext(SurveyRunnerTestCase):
 
         self.assertIsNotNone(metadata_context)
         self.assertEqual('2016-07-17', metadata_context['return_by'])
-        self.assertEqual('2016-02-22', metadata_context['ref_p_start_date'])
-        self.assertEqual('2016-03-30', metadata_context['ref_p_end_date'])
+        self.assertEqual('2016-02-22', metadata_context['start_date'])
+        self.assertEqual('2016-03-30', metadata_context['end_date'])
         self.assertIsNone(metadata_context['employment_date'])
         self.assertIsNone(metadata_context['region_code'])
         self.assertEqual(self.jwt['period_str'], metadata_context['period_str'])
-        self.assertEqual(self.jwt['ru_ref'], metadata_context['ru_ref'])
+        self.assertEqual(self.jwt['ru_ref'], metadata_context['respondent_id'])
         self.assertEqual(self.jwt['ru_name'], metadata_context['name'])
-        self.assertEqual(self.jwt['trad_as'], metadata_context['trad_as'])
+        self.assertEqual(self.jwt['trad_as'], metadata_context['trading_as'])
 
     def test_defend_against_XSS_attack(self):
         jwt = self.jwt.copy()
@@ -57,9 +57,9 @@ class TestMetadataContext(SurveyRunnerTestCase):
 
         metadata_context = build_metadata_context(metadata)
 
-        self.assertEqual(escaped_bad_characters, metadata_context['ru_ref'])
+        self.assertEqual(escaped_bad_characters, metadata_context['respondent_id'])
         self.assertEqual(escaped_bad_characters, metadata_context['name'])
-        self.assertEqual(escaped_bad_characters, metadata_context['trad_as'])
+        self.assertEqual(escaped_bad_characters, metadata_context['trading_as'])
 
         self.assertEqual(escaped_bad_characters, metadata_context['region_code'])
         self.assertEqual(escaped_bad_characters, metadata_context['period_str'])

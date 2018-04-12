@@ -55,8 +55,8 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), answer_ids_on_path)
 
         metadata = schema_context['metadata']
-        self.assertEqual('2016-10-13', metadata['ref_p_start_date'])
-        self.assertEqual('2016-10-14', metadata['ref_p_end_date'])
+        self.assertEqual('2016-10-13', metadata['start_date'])
+        self.assertEqual('2016-10-14', metadata['end_date'])
         self.assertEqual('October 2016', metadata['period_str'])
         self.assertEqual('2016-10-19', metadata['employment_date'])
         self.assertEqual('2016-10-20', metadata['return_by'])
@@ -240,13 +240,13 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         context_answers = schema_context['answers']
         self.assertEqual(len(context_answers['repeating_answer_alias']), 25)
 
-    def test_metadata_display_name_is_trad_as_when_trad_as_supplied(self):
+    def test_metadata_display_name_is_trading_as_when_trading_as_supplied(self):
         answer_ids_on_path = []
         schema_context = build_schema_context(self.metadata, {}, self.answer_store, answer_ids_on_path)
 
         self.assertEqual(schema_context['metadata']['trad_as_or_ru_name'], self.metadata['trad_as'])
 
-    def test_metadata_display_name_is_ru_name_as_when_trad_as_not_supplied(self):
+    def test_metadata_display_name_is_ru_name_as_when_trading_as_not_supplied(self):
         metadata = self.metadata.copy()
         metadata['trad_as'] = None
 
@@ -256,7 +256,7 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
 
         self.assertEqual(schema_context['metadata']['trad_as_or_ru_name'], metadata['ru_name'])
 
-    def test_metadata_display_name_is_ru_name_as_when_trad_as_empty(self):
+    def test_metadata_display_name_is_ru_name_as_when_trading_as_empty(self):
         metadata = self.metadata.copy()
         metadata['trad_as'] = ''
 
