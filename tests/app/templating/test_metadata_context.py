@@ -36,8 +36,8 @@ class TestMetadataContext(SurveyRunnerTestCase):
 
         self.assertIsNotNone(metadata_context)
         self.assertEqual('2016-07-17', metadata_context['return_by'])
-        self.assertEqual('2016-02-22', metadata_context['ref_p_start_date'])
-        self.assertEqual('2016-03-30', metadata_context['ref_p_end_date'])
+        self.assertEqual('2016-02-22', metadata_context['start_date'])
+        self.assertEqual('2016-03-30', metadata_context['end_date'])
         self.assertIsNone(metadata_context['employment_date'])
         self.assertIsNone(metadata_context['region_code'])
         self.assertEqual(self.jwt['period_str'], metadata_context['period_str'])

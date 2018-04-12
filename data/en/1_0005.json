@@ -7,14 +7,6 @@
         "enabled": true,
         "duration": 900
     },
-    "required_metadata": {
-        "period_id": "string",
-        "user_id": "string",
-        "ref_p_start_date": "date",
-        "ref_p_end_date": "date",
-        "period_str": "string",
-        "trad_as_or_ru_name": "string"
-    },
     "sections": [{
             "id": "introduction-section",
             "title": "Introduction",
@@ -2410,6 +2402,6 @@
     "theme": "default",
     "title": "Monthly Wages and Salaries Survey",
     "variables": {
-        "period": "{{ format_date_range(metadata.ref_p_start_date, metadata.ref_p_end_date) }}"
+        "period": "{{ format_date_range(metadata.start_date, metadata.end_date) }}"
     }
 }

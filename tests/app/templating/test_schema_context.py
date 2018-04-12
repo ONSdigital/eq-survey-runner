@@ -55,8 +55,8 @@ class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-
         schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), answer_ids_on_path)
 
         metadata = schema_context['metadata']
-        self.assertEqual('2016-10-13', metadata['ref_p_start_date'])
-        self.assertEqual('2016-10-14', metadata['ref_p_end_date'])
+        self.assertEqual('2016-10-13', metadata['start_date'])
+        self.assertEqual('2016-10-14', metadata['end_date'])
         self.assertEqual('October 2016', metadata['period_str'])
         self.assertEqual('2016-10-19', metadata['employment_date'])
         self.assertEqual('2016-10-20', metadata['return_by'])

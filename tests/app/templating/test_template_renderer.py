@@ -139,14 +139,14 @@ class TestTemplateRenderer(unittest.TestCase):
         self.assertEqual(safe_content, 'How is … related to the people below?')
 
     def test_should_replace_jinja_template_variable_containing_function(self):
-        content = 'Is {{ format_date_range(metadata.ref_p_start_date, metadata.end_date)}} correct?'
+        content = 'Is {{ format_date_range(metadata.start_date, metadata.end_date)}} correct?'
 
         safe_content = TemplateRenderer.safe_content(content)
 
         self.assertEqual(safe_content, 'Is … correct?')
 
     def test_should_replace_jinja_template_condtional_dates(self):
-        content = 'Is {{ format_condtional_date(metadata.ref_p_start_date, metadata.end_date)}} correct?'
+        content = 'Is {{ format_condtional_date(metadata.start_date, metadata.end_date)}} correct?'
 
         safe_content = TemplateRenderer.safe_content(content)
 
@@ -174,7 +174,7 @@ class TestTemplateRenderer(unittest.TestCase):
         self.assertEqual(safe_content, ' This string contains some HTML tags?')
 
     def test_should_replace_html_tags_and_jinja_templates_together(self):
-        content = 'Is {{ format_something(metadata.ref_p_start_date|length)}} really <strong>correct</strong>?'
+        content = 'Is {{ format_something(metadata.start_date|length)}} really <strong>correct</strong>?'
 
         safe_content = TemplateRenderer.safe_content(content)
 

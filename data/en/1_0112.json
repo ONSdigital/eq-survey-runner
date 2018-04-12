@@ -148,7 +148,7 @@
                         }
                     ],
                     "questions": [{
-                        "title": "Are you able to report for the period from {{metadata.ref_p_start_date|format_date}} to {{metadata.ref_p_end_date|format_date}}?",
+                        "title": "Are you able to report for the period from {{metadata.start_date|format_date}} to {{metadata.end_date|format_date}}?",
                         "type": "General",
                         "id": "reporting-period-choice-question",
                         "answers": [{
@@ -232,7 +232,7 @@
                             "default": 0
                         }],
                         "id": "total-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers.period_from, metadata.ref_p_start_date)}} to {{ format_conditional_date (answers.period_to, metadata.ref_p_end_date)}}, what was the value of {{metadata.trad_as_or_ru_name}}’s <em>total retail turnover</em>?",
+                        "title": "For the period {{ format_conditional_date (answers.period_from, metadata.start_date)}} to {{ format_conditional_date (answers.period_to, metadata.end_date)}}, what was the value of {{metadata.trad_as_or_ru_name}}’s <em>total retail turnover</em>?",
                         "type": "General"
                     }],
                     "title": "Retail Turnover"
@@ -266,7 +266,7 @@
                             "mandatory": true
                         }],
                         "id": "confirm-zero-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers.period_from, metadata.ref_p_start_date)}} to {{ format_conditional_date (answers.period_to, metadata.ref_p_end_date)}}, the value of the total retail turnover was <em>£0</em>, is this correct?"
+                        "title": "For the period {{ format_conditional_date (answers.period_from, metadata.start_date)}} to {{ format_conditional_date (answers.period_to, metadata.end_date)}}, the value of the total retail turnover was <em>£0</em>, is this correct?"
                     }],
                     "routing_rules": [{
                             "goto": {

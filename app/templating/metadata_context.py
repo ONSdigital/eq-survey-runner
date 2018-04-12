@@ -10,8 +10,8 @@ def build_metadata_context(metadata):
     return {
         'eq_id': json_and_html_safe(metadata['eq_id']),
         'form_type': json_and_html_safe(metadata['form_type']),
-        'ref_p_start_date': metadata.get('ref_p_start_date'),
-        'ref_p_end_date': metadata.get('ref_p_end_date'),
+        'start_date': metadata.get('ref_p_start_date'),
+        'end_date': metadata.get('ref_p_end_date'),
         'employment_date': metadata.get('employment_date'),
         'region_code': json_and_html_safe(metadata.get('region_code')),
         'period_str': json_and_html_safe(metadata.get('period_str')),

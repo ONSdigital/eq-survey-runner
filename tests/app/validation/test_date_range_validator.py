@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock
+from unittest.mock import MagicMock
 from wtforms.validators import ValidationError
 
 from app.validation.error_messages import error_messages
@@ -16,20 +16,17 @@ class TestDateRangeValidator(unittest.TestCase):
 
         validator = DateRangeCheck()
 
-        period_from = Mock()
-        period_from.data = {
-            'day': '03',
-            'month': '01',
-            'year': '2016'
-        }
+        period_from = MagicMock()
+        period_from.day.data = '01'
+        period_from.month.data = '01'
+        period_from.year.data = '2016'
 
-        period_to = Mock()
-        period_to.data = {
-            'day': '03',
-            'month': '01',
-            'year': '2016'
-        }
-        mock_form = Mock()
+        period_to = MagicMock()
+        period_to.day.data = '01'
+        period_to.month.data = '01'
+        period_to.year.data = '2016'
+
+        mock_form = MagicMock()
 
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, period_from, period_to)
@@ -40,88 +37,40 @@ class TestDateRangeValidator(unittest.TestCase):
 
         validator = DateRangeCheck()
 
-        period_from = Mock()
-        period_from.data = {
-            'day': '20',
-            'month': '01',
-            'year': '2018'
-        }
+        period_from = MagicMock()
+        period_from.day.data = '20'
+        period_from.month.data = '01'
+        period_from.year.data = '2018'
 
-        period_to = Mock()
-        period_to.data = {
-            'day': '20',
-            'month': '01',
-            'year': '2016'
-        }
+        period_to = MagicMock()
+        period_to.day.data = '20'
+        period_to.month.data = '01'
+        period_to.year.data = '2016'
 
-        mock_form = Mock()
+        mock_form = MagicMock()
 
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, period_from, period_to)
 
         self.assertEqual(error_messages['INVALID_DATE_RANGE'], str(ite.exception))
 
-    @staticmethod
-    def test_date_range_valid():
+    def test_date_range_valid(self):
 
         validator = DateRangeCheck()
 
-        period_from = Mock()
-        period_from.data = {
-            'day': '01',
-            'month': '01',
-            'year': '2016'
-        }
+        period_from = MagicMock()
+        period_from.day.data = '01'
+        period_from.month.data = '01'
+        period_from.year.data = '2016'
 
-        period_to = Mock()
-        period_to.data = {
-            'day': '05',
-            'month': '01',
-            'year': '2017'
-        }
+        period_to = MagicMock()
+        period_to.day.data = '01'
+        period_to.month.data = '01'
+        period_to.year.data = '2017'
 
-        mock_form = Mock()
-        validator(mock_form, period_from, period_to)
+        mock_form = MagicMock()
 
-    @staticmethod
-    def test_valid_month_year_date_range():
-
-        validator = DateRangeCheck()
-
-        period_from = Mock()
-        period_from.data = {
-            'month': '09',
-            'year': '2016'
-        }
-
-        period_to = Mock()
-        period_to.data = {
-            'month': '01',
-            'year': '2018'
-        }
-
-        mock_form = Mock()
-        validator(mock_form, period_from, period_to)
-
-    def test_invalid_month_year_date_range(self):
-
-        validator = DateRangeCheck()
-
-        period_from = Mock()
-        period_from.data = {
-            'month': '07',
-            'year': '2018'
-        }
-
-        period_to = Mock()
-        period_to.data = {
-            'month': '06',
-            'year': '2018'
-        }
-
-        mock_form = Mock()
-
-        with self.assertRaises(ValidationError) as ite:
+        try:
             validator(mock_form, period_from, period_to)
-
-        self.assertEqual(error_messages['INVALID_DATE_RANGE'], str(ite.exception))
+        except ValidationError:
+            self.fail('Valid date raised ValidationError')
