@@ -475,7 +475,20 @@
                             ],
                             "id": "weekly-pay-breakdown-question",
                             "title": "Of the <em>{{answers.weekly_total_gross|format_currency}}</em> paid to <em>weekly</em> paid employees in the last week of {{exercise.period_str}}, what other amounts were paid? ",
-                            "type": "General",
+                            "type": "Calculated",
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answer_id": "weekly-pay-gross-pay-answer",
+                                "answers_to_calculate": [
+                                    "weekly-pay-breakdown-holiday-answer",
+                                    "weekly-pay-breakdown-arrears-answer",
+                                    "weekly-pay-breakdown-prp-answer"
+                                ],
+                                "conditions": [
+                                    "less than",
+                                    "equals"
+                                ]
+                            }],
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -892,7 +905,20 @@
                             ],
                             "id": "fortnightly-pay-breakdown-question",
                             "title": "Of the <em>{{answers.fortnightly_total_gross|format_currency}}</em> paid to <em>fortnightly</em> paid employees in the last week of {{exercise.period_str}}, what other amounts were paid?",
-                            "type": "General",
+                            "type": "Calculated",
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answer_id": "fortnightly-pay-gross-pay-answer",
+                                "answers_to_calculate": [
+                                    "fortnightly-pay-breakdown-holiday-answer",
+                                    "fortnightly-pay-breakdown-arrears-answer",
+                                    "fortnightly-pay-breakdown-prp-answer"
+                                ],
+                                "conditions": [
+                                    "less than",
+                                    "equals"
+                                ]
+                            }],
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -1296,7 +1322,18 @@
                             ],
                             "id": "calendar-monthly-pay-breakdown-question",
                             "title": "Of the <em>{{answers.monthly_total_gross|format_currency}}</em> paid to <em>calendar monthly</em> paid employees in {{exercise.period_str}}, what other amounts were paid?",
-                            "type": "General",
+                            "type": "Calculated",
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answer_id": "calendar-monthly-pay-gross-pay-answer",
+                                "answers_to_calculate": [
+                                    "calendar-monthly-pay-breakdown-arrears-answer",
+                                    "calendar-monthly-pay-breakdown-prp-answer"
+                                ],
+                                "conditions": [
+                                    "less than"
+                                ]
+                            }],
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -1700,7 +1737,18 @@
                             ],
                             "id": "four-weekly-pay-breakdown-question",
                             "title": "Of the <em>{{answers.four_weekly_total_gross|format_currency}}</em> paid to <em>four weekly</em> paid employees in {{exercise.period_str}}, what other amounts were paid?",
-                            "type": "General",
+                            "type": "Calculated",
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answer_id": "four-weekly-pay-gross-pay-answer",
+                                "answers_to_calculate": [
+                                    "four-weekly-pay-breakdown-arrears-answer",
+                                    "four-weekly-pay-breakdown-prp-answer"
+                                ],
+                                "conditions": [
+                                    "less than"
+                                ]
+                            }],
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -2112,7 +2160,18 @@
                             ],
                             "id": "five-weekly-pay-breakdown-question",
                             "title": "Of the <em>{{answers.five_weekly_total_gross|format_currency}}</em> paid to <em>five weekly paid employees</em> in {{exercise.period_str}}, what other amounts were paid?",
-                            "type": "General",
+                            "type": "Calculated",
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answer_id": "five-weekly-pay-gross-pay-answer",
+                                "answers_to_calculate": [
+                                    "five-weekly-pay-breakdown-arrears-answer",
+                                    "five-weekly-pay-breakdown-prp-answer"
+                                ],
+                                "conditions": [
+                                    "less than"
+                                ]
+                            }],
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
