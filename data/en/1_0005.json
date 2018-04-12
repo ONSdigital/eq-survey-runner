@@ -313,7 +313,10 @@
                                 "label": "Total number of weekly paid employees",
                                 "mandatory": true,
                                 "q_code": "40",
-                                "type": "Number"
+                                "type": "Number",
+                                "min_value": {
+                                    "value": 1
+                                }
                             }],
                             "description": "If the last week of the month is affected by holidays please use a more representative week.",
                             "guidance": {
@@ -483,7 +486,20 @@
                             ],
                             "id": "weekly-pay-breakdown-question",
                             "title": "Of the <em>{{answers.weekly_total_gross|format_currency}}</em> paid to <em>weekly</em> paid employees in the last week of {{exercise.period_str}}, what other amounts were paid? ",
-                            "type": "General",
+                            "type": "Calculated",
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answer_id": "weekly-pay-gross-pay-answer",
+                                "answers_to_calculate": [
+                                    "weekly-pay-breakdown-holiday-answer",
+                                    "weekly-pay-breakdown-arrears-answer",
+                                    "weekly-pay-breakdown-prp-answer"
+                                ],
+                                "conditions": [
+                                    "less than",
+                                    "equals"
+                                ]
+                            }],
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -741,7 +757,10 @@
                                 "label": "Total number of fortnightly paid employees",
                                 "mandatory": true,
                                 "q_code": "40f",
-                                "type": "Number"
+                                "type": "Number",
+                                "min_value": {
+                                    "value": 1
+                                }
                             }],
                             "description": "If the last week of the month is affected by holidays please use a more representative week.",
                             "guidance": {
@@ -911,7 +930,20 @@
                             ],
                             "id": "fortnightly-pay-breakdown-question",
                             "title": "Of the <em>{{answers.fortnightly_total_gross|format_currency}}</em> paid to <em>fortnightly</em> paid employees in the last week of {{exercise.period_str}}, what other amounts were paid?",
-                            "type": "General",
+                            "type": "Calculated",
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answer_id": "fortnightly-pay-gross-pay-answer",
+                                "answers_to_calculate": [
+                                    "fortnightly-pay-breakdown-holiday-answer",
+                                    "fortnightly-pay-breakdown-arrears-answer",
+                                    "fortnightly-pay-breakdown-prp-answer"
+                                ],
+                                "conditions": [
+                                    "less than",
+                                    "equals"
+                                ]
+                            }],
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -1174,7 +1206,10 @@
                                 "label": "Total number of calendar monthly paid employees",
                                 "mandatory": true,
                                 "q_code": "140m",
-                                "type": "Number"
+                                "type": "Number",
+                                "min_value": {
+                                    "value": 1
+                                }
                             }],
                             "description": "If there are two pay days in the same month only give details for one.",
                             "guidance": {
@@ -1280,7 +1315,7 @@
                                 "mandatory": true
                             }],
                             "id": "confirm-calendar-monthly-pay-gross-pay-question",
-                            "title": "The <em>total gross calendar monthly pay</em> paid to employees in the last week of {{exercise.period_str}} was <em>£0</em>, is this correct?"
+                            "title": "The <em>total gross calendar monthly pay</em> paid to employees in {{exercise.period_str}} was <em>£0</em>, is this correct?"
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -1331,7 +1366,18 @@
                             ],
                             "id": "calendar-monthly-pay-breakdown-question",
                             "title": "Of the <em>{{answers.monthly_total_gross|format_currency}}</em> paid to <em>calendar monthly</em> paid employees in {{exercise.period_str}}, what other amounts were paid?",
-                            "type": "General",
+                            "type": "Calculated",
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answer_id": "calendar-monthly-pay-gross-pay-answer",
+                                "answers_to_calculate": [
+                                    "calendar-monthly-pay-breakdown-arrears-answer",
+                                    "calendar-monthly-pay-breakdown-prp-answer"
+                                ],
+                                "conditions": [
+                                    "less than"
+                                ]
+                            }],
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -1594,7 +1640,10 @@
                                 "label": "Total number of four weekly paid employees",
                                 "mandatory": true,
                                 "q_code": "140w4",
-                                "type": "Number"
+                                "type": "Number",
+                                "min_value": {
+                                    "value": 1
+                                }
                             }],
                             "description": "If there are two pay days in the same month only give details for one.",
                             "guidance": {
@@ -1700,7 +1749,7 @@
                                 "mandatory": true
                             }],
                             "id": "confirm-four-weekly-gross-pay-question",
-                            "title": "The <em>total gross four weekly pay</em> paid to employees in the last week of {{exercise.period_str}} was <em>£0</em>, is this correct?"
+                            "title": "The <em>total gross four weekly pay</em> paid to employees in {{exercise.period_str}} was <em>£0</em>, is this correct?"
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -1751,7 +1800,18 @@
                             ],
                             "id": "four-weekly-pay-breakdown-question",
                             "title": "Of the <em>{{answers.four_weekly_total_gross|format_currency}}</em> paid to <em>four weekly</em> paid employees in {{exercise.period_str}}, what other amounts were paid?",
-                            "type": "General",
+                            "type": "Calculated",
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answer_id": "four-weekly-pay-gross-pay-answer",
+                                "answers_to_calculate": [
+                                    "four-weekly-pay-breakdown-arrears-answer",
+                                    "four-weekly-pay-breakdown-prp-answer"
+                                ],
+                                "conditions": [
+                                    "less than"
+                                ]
+                            }],
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -2021,7 +2081,10 @@
                                 "label": "Total number of five weekly paid employees",
                                 "mandatory": true,
                                 "q_code": "140w5",
-                                "type": "Number"
+                                "type": "Number",
+                                "min_value": {
+                                    "value": 1
+                                }
                             }],
                             "description": "If there are two pay dates in the same month only give details for one.",
                             "guidance": {
@@ -2128,7 +2191,7 @@
                                 "mandatory": true
                             }],
                             "id": "confirm-five-weekly-gross-pay-question",
-                            "title": "The <em>total gross five weekly pay</em> paid to employees in the last week of {{exercise.period_str}} was <em>£0</em>, is this correct?"
+                            "title": "The <em>total gross five weekly pay</em> paid to employees {{exercise.period_str}} was <em>£0</em>, is this correct?"
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -2179,7 +2242,18 @@
                             ],
                             "id": "five-weekly-pay-breakdown-question",
                             "title": "Of the <em>{{answers.five_weekly_total_gross|format_currency}}</em> paid to <em>five weekly paid employees</em> in {{exercise.period_str}}, what other amounts were paid?",
-                            "type": "General",
+                            "type": "Calculated",
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "answer_id": "five-weekly-pay-gross-pay-answer",
+                                "answers_to_calculate": [
+                                    "five-weekly-pay-breakdown-arrears-answer",
+                                    "five-weekly-pay-breakdown-prp-answer"
+                                ],
+                                "conditions": [
+                                    "less than"
+                                ]
+                            }],
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
