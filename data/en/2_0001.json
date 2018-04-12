@@ -5,10 +5,6 @@
         "enabled": true,
         "duration": 900
     },
-    "required_metadata": {
-        "period_id": "metadata.",
-        "user_id": "string"
-    },
     "sections": [{
         "id": "default-section",
         "groups": [{
@@ -102,7 +98,7 @@
                             ]
                         },
                         "id": "number-of-employees-total-question",
-                        "title": "On {{metadata.start_date|format_date}}, what was the number of employees for {{metadata.trad_as_or_ru_name}}?",
+                        "title": "On {{exercise.start_date|format_date}}, what was the number of employees for {{respondent.trad_as_or_ru_name}}?",
                         "type": "General"
                     }],
                     "title": "Quarterly Business Survey",
@@ -137,7 +133,7 @@
                             "mandatory": true
                         }],
                         "id": "confirm-zero-employees-question",
-                        "title": "On {{metadata.start_date|format_date}}, the number of employees for {{metadata.trad_as_or_ru_name}} was <em>0</em>, is this correct?"
+                        "title": "On {{exercise.start_date|format_date}}, the number of employees for {{respondent.trad_as_or_ru_name}} was <em>0</em>, is this correct?"
                     }],
                     "routing_rules": [{
                             "goto": {
@@ -250,7 +246,7 @@
                             ]
                         },
                         "id": "number-of-employees-split-question",
-                        "title": "Of the <em>{{answers.number_of_employees_total}}</em> total employees employed on {{metadata.start_date|format_date}}, how many male and female employees worked the following hours?",
+                        "title": "Of the <em>{{answers.number_of_employees_total}}</em> total employees employed on {{exercise.start_date|format_date}}, how many male and female employees worked the following hours?",
                         "type": "Calculated"
                     }]
                 },

@@ -1,0 +1,2881 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "lfs ",
+    "title": "Labour Force Survey (Alpha)",
+    "description": "Labour Force Survey Schema (Alpha)",
+    "theme": "default",
+    "legal_basis": "Voluntary",
+    "eq_id": "1",
+    "form_type": "1",
+    "navigation": {
+        "visible": true
+    },
+    "sections": [{
+            "id": "household-section",
+            "title": "About the household",
+            "groups": [{
+                    "id": "about-household-group",
+                    "title": "About the household",
+                    "blocks": [{
+                            "type": "Interstitial",
+                            "id": "about-household",
+                            "title": "About you and people who live at {{ respondent.ru_name }}",
+                            "description": "In this section, we’re going to ask about you, and the people that live with you.",
+                            "content": [{
+                                "title": "Information you need",
+                                "list": [
+                                    "Names of the people living in your household.",
+                                    "Their gender.",
+                                    "How they are related to you and one another."
+                                ]
+                            }]
+                        },
+                        {
+                            "id": "household-composition",
+                            "type": "Question",
+                            "questions": [{
+                                "id": "household-composition-question",
+                                "title": "What are the names of everyone who lives in the <em>{{ respondent.ru_name }}</em> household?",
+                                "guidance": {
+                                    "content": [{
+                                        "title": "Include",
+                                        "list": [
+                                            "Yourself",
+                                            "Students and, or school children who live away from home during term time",
+                                            "Housemates tenants or lodgers"
+                                        ]
+                                    }]
+                                },
+                                "type": "RepeatingAnswer",
+                                "answers": [{
+                                        "alias": "first_name",
+                                        "id": "first-name",
+                                        "label": "First name",
+                                        "mandatory": true,
+                                        "type": "TextField",
+                                        "validation": {
+                                            "messages": {
+                                                "MANDATORY_TEXTFIELD": "Please enter a name or remove the person to continue"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "alias": "middle_names",
+                                        "id": "middle-names",
+                                        "label": "Middle names",
+                                        "mandatory": false,
+                                        "type": "TextField"
+                                    },
+                                    {
+                                        "alias": "last_name",
+                                        "id": "last-name",
+                                        "label": "Last name",
+                                        "mandatory": true,
+                                        "type": "TextField",
+                                        "validation": {
+                                            "messages": {
+                                                "MANDATORY_TEXTFIELD": "Please enter a name or remove the person to continue"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }]
+                        },
+                        {
+                            "type": "Question",
+                            "id": "everyone-at-address-confirmation",
+                            "description": "<h2 class='neptune'>You have added:</h2> {{ [answers.first_name, answers.middle_names, answers.last_name]|format_household_summary }}",
+                            "questions": [{
+                                "id": "everyone-at-address-confirmation-question",
+                                "title": "Is this everyone who lives at {{ respondent.ru_name }}?",
+                                "description": "Please note that you will need to ensure that everyone is included because you will be unable to make changes later",
+                                "type": "General",
+                                "answers": [{
+                                    "id": "everyone-at-address-confirmation-answer",
+                                    "mandatory": true,
+                                    "options": [{
+                                            "label": "Yes",
+                                            "value": "Yes",
+                                            "description": "This is the main residence of any other adults, children or babies, even if they are away for a continuous period of up to 6 months"
+                                        },
+                                        {
+                                            "label": "No",
+                                            "value": "No",
+                                            "description": "This is not the main residence of any other adults, children or babies"
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                }]
+                            }],
+                            "routing_rules": [{
+                                    "goto": {
+                                        "block": "household-composition",
+                                        "when": [{
+                                            "id": "everyone-at-address-confirmation-answer",
+                                            "condition": "equals",
+                                            "value": "No"
+                                        }]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "group": "who-lives-here-relationship-group"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "who-lives-here-relationship-group",
+                    "title": "Relationships",
+                    "routing_rules": [{
+                        "repeat": {
+                            "type": "answer_count_minus_one",
+                            "answer_id": "first-name"
+                        }
+                    }],
+                    "blocks": [{
+                        "type": "Question",
+                        "id": "household-relationships",
+                        "questions": [{
+                            "id": "household-relationships-question",
+                            "title": "How is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> related to the people below?",
+                            "description": "If members are not related, select the ‘unrelated’ option.</br>If you are the parents of adopted children, select the ‘Mother or father’ option to show your relationship to them.</br>If you have foster children living with you, select the ‘Unrelated’ option.</br>Include half-brothers and half-sisters in the ‘Step-brother or step-sister’ category.</br>Same-sex civil partner is used to describe the relationship between two people who have legally registered a civil partnership.</br>If none of the options fully reflects your relationship, please select the one which you feel best describes your situation.",
+                            "type": "Relationship",
+                            "answers": [{
+                                "id": "household-relationships-answer",
+                                "label": "%(current_person)s is %(other_person)s's",
+                                "mandatory": false,
+                                "type": "Relationship",
+                                "options": [{
+                                        "label": "Husband or wife",
+                                        "value": "Husband or wife"
+                                    },
+                                    {
+                                        "label": "Same-sex civil partner",
+                                        "value": "Same-sex civil partner"
+                                    },
+                                    {
+                                        "label": "Partner",
+                                        "value": "Partner"
+                                    },
+                                    {
+                                        "label": "Grandparent",
+                                        "value": "Grandparent"
+                                    },
+                                    {
+                                        "label": "Mother or father",
+                                        "value": "Mother or father"
+                                    },
+                                    {
+                                        "label": "Step-mother or step-father",
+                                        "value": "Step-mother or step-father"
+                                    },
+                                    {
+                                        "label": "Son or daughter",
+                                        "value": "Son or daughter"
+                                    },
+                                    {
+                                        "label": "Step-child",
+                                        "value": "Step-child"
+                                    },
+                                    {
+                                        "label": "Brother or sister",
+                                        "value": "Brother or sister"
+                                    },
+                                    {
+                                        "label": "Step–brother or step–sister",
+                                        "value": "Step–brother or step–sister"
+                                    },
+                                    {
+                                        "label": "Grandchild",
+                                        "value": "Grandchild"
+                                    },
+                                    {
+                                        "label": "Relation - other",
+                                        "value": "Relation - other"
+                                    },
+                                    {
+                                        "label": "Unrelated (including foster child)",
+                                        "value": "Unrelated (including foster child)"
+                                    }
+                                ]
+                            }]
+                        }]
+                    }]
+                },
+                {
+                    "id": "who-lives-here-completed-group",
+                    "title": "Who lives here?",
+                    "blocks": [{
+                        "id": "who-lives-here-completed",
+                        "title": "You have successfully completed the ‘About the household’ section",
+                        "description": "In the next section we will ask you questions about each household individual.",
+                        "type": "Interstitial"
+                    }]
+                }
+            ]
+        },
+        {
+            "id": "household-members-section",
+            "title_from_answers": [
+                "first-name",
+                "last-name"
+            ],
+            "groups": [{
+                "id": "household-member-group",
+                "title": "Household Member Details",
+                "routing_rules": [{
+                    "repeat": {
+                        "type": "answer_count",
+                        "answer_id": "first-name"
+                    }
+                }],
+                "blocks": [{
+                        "type": "Interstitial",
+                        "id": "household-member-begin",
+                        "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}",
+                        "description": "In this section, we’re going to ask questions about <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em>.",
+                        "content": [{
+                            "title": "Information you need",
+                            "list": [
+                                "Personal details such as date of birth, nationality, country of birth",
+                                "How long <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> has lived in the UK",
+                                "Their national identity, ethnicity and religion"
+                            ]
+                        }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "proxy-check",
+                        "questions": [{
+                            "id": "proxy-check-question",
+                            "title": "Are you {{ [answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name }}, or answering on their behalf?",
+                            "type": "General",
+                            "guidance": {
+                                "content": [{
+                                    "description": "An adult should answer on behalf of anyone aged 15 or younger."
+                                }]
+                            },
+                            "answers": [{
+                                "id": "proxy-check-answer",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "Yes I am {{ answers.first_name[group_instance] }}",
+                                        "value": "no proxy"
+                                    },
+                                    {
+                                        "label": "No, I am answering on <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> behalf",
+                                        "value": "proxy"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "date-of-birth",
+                                    "when": [{
+                                        "id": "proxy-check-answer",
+                                        "condition": "equals",
+                                        "value": "proxy"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "date-of-birth-no-proxy"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "date-of-birth",
+                        "questions": [{
+                            "id": "date-of-birth-question",
+                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> date of birth?",
+                            "description": "For example 20 March 1980",
+                            "type": "General",
+                            "answers": [{
+                                "id": "date-of-birth-answer",
+                                "mandatory": false,
+                                "type": "Date"
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "nationality",
+                                    "when": [{
+                                        "id": "date-of-birth-answer",
+                                        "condition": "greater than",
+                                        "date_comparison": {
+                                            "value": "now",
+                                            "offset_by": {
+                                                "years": -16
+                                            }
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "marital-status"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "marital-status",
+                        "questions": [{
+                            "id": "marital-status-question",
+                            "title": "On {{ exercise.start_date|format_date }}, what is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> legal marital or same-sex civil partnership status?",
+                            "description": "If you were married (or formed a registered same-sex partnership) abroad, and this enables you to be recognised as married or civil partnered in the UK, complete the question reflecting that legal partnership.",
+                            "type": "General",
+                            "answers": [{
+                                "id": "marital-status-answer",
+                                "mandatory": false,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "Never married and never registered a same-sex civil partnership",
+                                        "value": "Never married and never registered a same-sex civil partnership"
+                                    },
+                                    {
+                                        "label": "Married",
+                                        "value": "Married"
+                                    },
+                                    {
+                                        "label": "In a registered same-sex civil partnership",
+                                        "value": "In a registered same-sex civil partnership"
+                                    },
+                                    {
+                                        "label": "Separated, but still legally married",
+                                        "value": "Separated, but still legally married"
+                                    },
+                                    {
+                                        "label": "Separated, but still legally in a same-sex civil partnership",
+                                        "value": "Separated, but still legally in a same-sex civil partnership"
+                                    },
+                                    {
+                                        "label": "Divorced",
+                                        "value": "Divorced"
+                                    },
+                                    {
+                                        "label": "Formerly in a same-sex civil partnership which is now legally dissolved",
+                                        "value": "Formerly in a same-sex civil partnership which is now legally dissolved"
+                                    },
+                                    {
+                                        "label": "Widowed",
+                                        "value": "Widowed"
+                                    },
+                                    {
+                                        "label": "Surviving partner from a same-sex civil partnership",
+                                        "value": "Surviving partner from a same-sex civil partnership"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "nationality",
+                        "questions": [{
+                            "id": "nationality-question",
+                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> nationality?",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "nationality-answer",
+                                    "mandatory": false,
+                                    "type": "Radio",
+                                    "options": [{
+                                            "label": "British",
+                                            "value": "British"
+                                        },
+                                        {
+                                            "label": "Irish",
+                                            "value": "Irish"
+                                        },
+                                        {
+                                            "label": "Indian",
+                                            "value": "Indian"
+                                        },
+                                        {
+                                            "label": "Pakistani",
+                                            "value": "Pakistani"
+                                        },
+                                        {
+                                            "label": "Polish",
+                                            "value": "Polish"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "child_answer_id": "nationality-answer-other"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "nationality-answer-other",
+                                    "parent_answer_id": "nationality-answer",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify nationality"
+                                }
+                            ]
+                        }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "country-of-birth",
+                        "questions": [{
+                            "id": "country-of-birth-question",
+                            "title": "In which country was <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> born?",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "country-of-birth-answer",
+                                    "mandatory": false,
+                                    "type": "Radio",
+                                    "options": [{
+                                            "label": "England",
+                                            "value": "England"
+                                        },
+                                        {
+                                            "label": "Wales",
+                                            "value": "Wales"
+                                        },
+                                        {
+                                            "label": "Scotland",
+                                            "value": "Scotland"
+                                        },
+                                        {
+                                            "label": "Northern Ireland",
+                                            "value": "Northern Ireland"
+                                        },
+                                        {
+                                            "label": "Republic of Ireland",
+                                            "value": "Republic of Ireland"
+                                        },
+                                        {
+                                            "label": "Isle of Man or Channel Islands",
+                                            "value": "Isle of Man or Channel Islands"
+                                        },
+                                        {
+                                            "label": "India",
+                                            "value": "India"
+                                        },
+                                        {
+                                            "label": "Pakistan",
+                                            "value": "Pakistan"
+                                        },
+                                        {
+                                            "label": "Poland",
+                                            "value": "Poland"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "child_answer_id": "country-of-birth-answer-other"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "country-of-birth-answer-other",
+                                    "parent_answer_id": "country-of-birth-answer",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify current name of country"
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "national-identity",
+                                    "when": [{
+                                        "id": "country-of-birth-answer",
+                                        "condition": "equals",
+                                        "value": "England"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "national-identity",
+                                    "when": [{
+                                        "id": "country-of-birth-answer",
+                                        "condition": "equals",
+                                        "value": "Wales"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "national-identity",
+                                    "when": [{
+                                        "id": "country-of-birth-answer",
+                                        "condition": "equals",
+                                        "value": "Scotland"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "national-identity",
+                                    "when": [{
+                                        "id": "country-of-birth-answer",
+                                        "condition": "equals",
+                                        "value": "Northern Ireland"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "arrive-in-uk"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "arrive-in-uk",
+                        "questions": [{
+                            "id": "arrive-in-uk-question",
+                            "title": "In which year did <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> arrive to live here?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude holidays and short visits to the UK."
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "arrive-in-uk-answer",
+                                "alias": "arrived_year",
+                                "mandatory": false,
+                                "type": "MonthYearDate"
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "arrive-date-in-uk-invalid",
+                                    "when": [{
+                                        "id": "arrive-in-uk-answer",
+                                        "condition": "greater than",
+                                        "date_comparison": {
+                                            "value": "now"
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "arrive-date-in-uk-invalid",
+                                    "when": [{
+                                        "id": "arrive-in-uk-answer",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "id": "date-of-birth-answer"
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "continuous-in-uk"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "arrive-date-in-uk-invalid",
+                        "questions": [{
+                            "id": "arrive-date-in-uk-invalid-question",
+                            "title": "Invalid date entered",
+                            "description": "The date <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> arrived in the UK must be after their date of birth.",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Correct either their date of birth or the date they arrived in the UK."
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "arrive-date-in-uk-invalid-answer",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "I&apos;d like to correct their date of birth",
+                                        "value": "change dob"
+                                    },
+                                    {
+                                        "label": "I&apos;d like to correct their date of arrival in the UK",
+                                        "value": "change arrival"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "date-of-birth",
+                                    "when": [{
+                                        "id": "arrive-date-in-uk-invalid-answer",
+                                        "condition": "equals",
+                                        "value": "change dob"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "arrive-in-uk",
+                                    "when": [{
+                                        "id": "arrive-date-in-uk-invalid-answer",
+                                        "condition": "equals",
+                                        "value": "change arrival"
+                                    }]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "continuous-in-uk",
+                        "questions": [{
+                            "id": "continuous-in-uk-question",
+                            "title": "Apart from holidays and short visits abroad, has {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}} lived in the UK continuously since {{answers.arrived_year}}?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "continuous-in-uk-answer",
+                                "mandatory": false,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "national-identity",
+                                    "when": [{
+                                            "id": "continuous-in-uk-answer",
+                                            "condition": "equals",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "id": "date-of-birth-answer",
+                                            "condition": "greater than",
+                                            "date_comparison": {
+                                                "value": "now",
+                                                "offset_by": {
+                                                    "years": -16
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "why-uk",
+                                    "when": [{
+                                            "id": "continuous-in-uk-answer",
+                                            "condition": "equals",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "id": "date-of-birth-answer",
+                                            "condition": "less than",
+                                            "date_comparison": {
+                                                "value": "now",
+                                                "offset_by": {
+                                                    "years": -16
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "camyr2-block",
+                                    "when": [{
+                                        "id": "continuous-in-uk-answer",
+                                        "condition": "equals",
+                                        "value": "No"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "why-uk"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "camyr2-block",
+                        "questions": [{
+                            "id": "camyr2-question",
+                            "title": "In what year did <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> most recently arrive in the United Kingdom?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "first-arrive-in-uk-answer",
+                                "alias": "first_arrived_year",
+                                "mandatory": false,
+                                "type": "MonthYearDate"
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "first-arrive-date-in-uk-invalid",
+                                    "when": [{
+                                        "id": "first-arrive-in-uk-answer",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "id": "date-of-birth-answer"
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "national-identity",
+                                    "when": [{
+                                            "id": "first-arrive-in-uk-answer",
+                                            "condition": "less than",
+                                            "date_comparison": {
+                                                "meta": "return_by",
+                                                "offset_by": {
+                                                    "years": -2
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "id": "date-of-birth-answer",
+                                            "condition": "greater than",
+                                            "date_comparison": {
+                                                "value": "now",
+                                                "offset_by": {
+                                                    "years": -16
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "why-uk",
+                                    "when": [{
+                                            "id": "first-arrive-in-uk-answer",
+                                            "condition": "less than",
+                                            "date_comparison": {
+                                                "meta": "return_by",
+                                                "offset_by": {
+                                                    "years": -2
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "id": "date-of-birth-answer",
+                                            "condition": "less than",
+                                            "date_comparison": {
+                                                "value": "now",
+                                                "offset_by": {
+                                                    "years": -16
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "came-month"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "first-arrive-date-in-uk-invalid",
+                        "questions": [{
+                            "id": "first-arrive-date-in-uk-invalid-question",
+                            "title": "Invalid date entered",
+                            "description": "The date <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> most recently arrived in the UK must be after their date of birth.",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Correct either their date of birth or the date they most recently arrived in the UK."
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "first-arrive-date-in-uk-invalid-answer",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "I&apos;d like to correct their date of birth",
+                                        "value": "change dob"
+                                    },
+                                    {
+                                        "label": "I&apos;d like to correct the date they most recently arrived in the UK",
+                                        "value": "change first arrival"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "date-of-birth",
+                                    "when": [{
+                                        "id": "first-arrive-date-in-uk-invalid-answer",
+                                        "condition": "equals",
+                                        "value": "change dob"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "camyr2-block",
+                                    "when": [{
+                                        "id": "first-arrive-date-in-uk-invalid-answer",
+                                        "condition": "equals",
+                                        "value": "change first arrival"
+                                    }]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "came-month",
+                        "title": "Placeholder for came-month page.  There is no Year-only date field and if a number field is used then date comparisons are not possible; therefore used a MonthYear field and dispensed with  CAME-MONTH page",
+                        "description": "",
+                        "type": "Interstitial"
+                    },
+                    {
+                        "type": "Question",
+                        "id": "why-uk",
+                        "questions": [{
+                            "id": "why-uk-question",
+                            "title": "What was the main reason for you coming to the UK in {{answers.arrived_year}} or {{answers.first_arrived_year}} (need filter to pick max)?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "why-uk-answer",
+                                "mandatory": false,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "For employment",
+                                        "value": "For employment"
+                                    },
+                                    {
+                                        "label": "For study",
+                                        "value": "For study"
+                                    },
+                                    {
+                                        "label": "As a spouse or dependent of a UK citizen or settled person",
+                                        "value": "As a spouse or dependent of a UK citizen or settled person"
+                                    },
+                                    {
+                                        "label": "As a spouse or dependent of someone who is coming to or is already in the UK for work or study reasons",
+                                        "value": "As a spouse or dependent of someone who is coming to or is already in the UK for work or study reasons"
+                                    },
+                                    {
+                                        "label": "To get married or form a civil partnership in the UK with a non-UK citizen",
+                                        "value": "To get married or form a civil partnership in the UK with a non-UK citizen"
+                                    },
+                                    {
+                                        "label": "Seeking asylum",
+                                        "value": "Seeking asylum"
+                                    },
+                                    {
+                                        "label": "As a visitor",
+                                        "value": "As a visitor"
+                                    },
+                                    {
+                                        "label": "Another reason",
+                                        "value": "Another reason"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "national-identity",
+                        "questions": [{
+                                "id": "national-identity-england-question",
+                                "title": "What does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]]|format_household_name}}</em> consider his or her national identity to be?  Please select all that apply.",
+                                "type": "General",
+                                "answers": [{
+                                        "id": "national-identity-england-answer",
+                                        "mandatory": false,
+                                        "type": "Checkbox",
+                                        "options": [{
+                                                "label": "English",
+                                                "value": "English"
+                                            },
+                                            {
+                                                "label": "Welsh",
+                                                "value": "Welsh"
+                                            },
+                                            {
+                                                "label": "Scottish",
+                                                "value": "Scottish"
+                                            },
+                                            {
+                                                "label": "Northern Irish",
+                                                "value": "Northern Irish"
+                                            },
+                                            {
+                                                "label": "British",
+                                                "value": "British"
+                                            },
+                                            {
+                                                "label": "Other",
+                                                "value": "Other",
+                                                "child_answer_id": "national-identity-england-answer-other"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "national-identity-england-answer-other",
+                                        "parent_answer_id": "national-identity-england-answer",
+                                        "type": "TextField",
+                                        "mandatory": false,
+                                        "label": "Please describe your national identity"
+                                    }
+                                ],
+                                "skip_conditions": [{
+                                    "when": [{
+                                        "meta": "region_code",
+                                        "condition": "equals",
+                                        "value": "GB-WLS"
+                                    }]
+                                }]
+                            },
+                            {
+                                "id": "national-identity-wales-question",
+                                "title": "What does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]]|format_household_name}}</em> consider his or her national identity to be?  Please select all that apply.",
+                                "type": "General",
+                                "answers": [{
+                                        "id": "national-identity-wales-answer",
+                                        "mandatory": false,
+                                        "type": "Checkbox",
+                                        "options": [{
+                                                "label": "Welsh",
+                                                "value": "Welsh"
+                                            },
+                                            {
+                                                "label": "English",
+                                                "value": "English"
+                                            },
+                                            {
+                                                "label": "Scottish",
+                                                "value": "Scottish"
+                                            },
+                                            {
+                                                "label": "Northern Irish",
+                                                "value": "Northern Irish"
+                                            },
+                                            {
+                                                "label": "British",
+                                                "value": "British"
+                                            },
+                                            {
+                                                "label": "Other",
+                                                "value": "Other",
+                                                "child_answer_id": "national-identity-wales-answer-other"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "national-identity-wales-answer-other",
+                                        "parent_answer_id": "national-identity-wales-answer",
+                                        "type": "TextField",
+                                        "mandatory": false,
+                                        "label": "Please describe your national identity"
+                                    }
+                                ],
+                                "skip_conditions": [{
+                                    "when": [{
+                                        "meta": "region_code",
+                                        "condition": "not equals",
+                                        "value": "GB-WLS"
+                                    }]
+                                }]
+                            }
+                        ],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "understand-welsh",
+                                    "when": [{
+                                        "meta": "region_code",
+                                        "condition": "equals",
+                                        "value": "GB-WLS"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "ethnic-group"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "understand-welsh",
+                        "questions": [{
+                            "id": "understand-welsh-question",
+                            "title": "Can <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> understand, speak, read or write Welsh.  Please select all that apply",
+                            "type": "General",
+                            "answers": [{
+                                "id": "understand-welsh-answer",
+                                "mandatory": false,
+                                "type": "Checkbox",
+                                "options": [{
+                                        "label": "Understand spoken Welsh",
+                                        "value": "Understand spoken Welsh"
+                                    },
+                                    {
+                                        "label": "Speak Welsh",
+                                        "value": "Speak Welsh"
+                                    },
+                                    {
+                                        "label": "Read Welsh",
+                                        "value": "Read Welsh"
+                                    },
+                                    {
+                                        "label": "Write Welsh",
+                                        "value": "Write Welsh"
+                                    },
+                                    {
+                                        "label": "None of the above",
+                                        "value": "None of the above"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "welsh-frequency",
+                        "questions": [{
+                            "id": "welsh-frequency-question",
+                            "title": "How often does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> speak Welsh?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "welsh-frequency-answer",
+                                "mandatory": false,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "Daily",
+                                        "value": "Daily"
+                                    },
+                                    {
+                                        "label": "Weekly",
+                                        "value": "Weekly"
+                                    },
+                                    {
+                                        "label": "Less often",
+                                        "value": "Less often"
+                                    },
+                                    {
+                                        "label": "Never",
+                                        "value": "Never"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "ethnic-group",
+                        "questions": [{
+                            "id": "ethnic-group-question",
+                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> ethnic group?",
+                            "description": "It is for the individual to choose their ethnic group. For example this could be their family or cultural background, or it could be how they would describe themselves.",
+                            "type": "General",
+                            "answers": [{
+                                "id": "ethnic-group-answer",
+                                "mandatory": false,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "White",
+                                        "value": "White",
+                                        "description": "Including English, Welsh, Scottish, Northern Irish, British, Irish, Gypsy, Irish Traveller or any other White background"
+                                    },
+                                    {
+                                        "label": "Mixed or multiple ethnic groups",
+                                        "value": "Mixed or multiple ethnic groups",
+                                        "description": "Including White and Black Caribbean, White and Black African, White and Asian or any other Mixed or multiple ethnic background"
+                                    },
+                                    {
+                                        "label": "Asian or Asian British",
+                                        "value": "Asian or Asian British",
+                                        "description": "Including Indian, Pakistani, Bangladeshi, Chinese or any other Asian background"
+                                    },
+                                    {
+                                        "label": "Black, African, Caribbean or Black British",
+                                        "value": "Black, African, Caribbean or Black British",
+                                        "description": "Including African, Caribbean or any other Black, African or Caribbean background"
+                                    },
+                                    {
+                                        "label": "Other ethnic group",
+                                        "value": "Other ethnic group",
+                                        "description": "Including Arab or any other ethnic group"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "white-ethnic-group",
+                                    "when": [{
+                                        "id": "ethnic-group-answer",
+                                        "condition": "equals",
+                                        "value": "White"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "mixed-ethnic-group",
+                                    "when": [{
+                                        "id": "ethnic-group-answer",
+                                        "condition": "equals",
+                                        "value": "Mixed or multiple ethnic groups"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "asian-ethnic-group",
+                                    "when": [{
+                                        "id": "ethnic-group-answer",
+                                        "condition": "equals",
+                                        "value": "Asian or Asian British"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "black-ethnic-group",
+                                    "when": [{
+                                        "id": "ethnic-group-answer",
+                                        "condition": "equals",
+                                        "value": "Black, African, Caribbean or Black British"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "other-ethnic-group",
+                                    "when": [{
+                                        "id": "ethnic-group-answer",
+                                        "condition": "equals",
+                                        "value": "Other ethnic group"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "religion",
+                                    "when": [{
+                                        "id": "date-of-birth-answer",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "value": "now",
+                                            "offset_by": {
+                                                "years": -16
+                                            }
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "household-member-completed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "white-ethnic-group",
+                        "questions": [{
+                            "id": "white-ethnic-group-question",
+                            "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> White ethnic group or background?",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "white-ethnic-group-answer",
+                                    "mandatory": false,
+                                    "options": [{
+                                            "label": "English, Welsh, Scottish, Northern Irish or British",
+                                            "value": "English, Welsh, Scottish, Northern Irish or British"
+                                        },
+                                        {
+                                            "label": "Irish",
+                                            "value": "Irish"
+                                        },
+                                        {
+                                            "label": "Gypsy or Irish Traveller",
+                                            "value": "Gypsy or Irish Traveller"
+                                        },
+                                        {
+                                            "label": "Any other White background",
+                                            "value": "Other",
+                                            "child_answer_id": "white-ethnic-group-answer-other"
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                },
+                                {
+                                    "id": "white-ethnic-group-answer-other",
+                                    "parent_answer_id": "white-ethnic-group-answer",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify other White background"
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "religion",
+                                    "when": [{
+                                        "id": "date-of-birth-answer",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "value": "now",
+                                            "offset_by": {
+                                                "years": -16
+                                            }
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "household-member-completed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "mixed-ethnic-group",
+                        "questions": [{
+                            "id": "mixed-ethnic-group-question",
+                            "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> Mixed, multiple ethnic group or background?",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "mixed-ethnic-group-answer",
+                                    "mandatory": false,
+                                    "options": [{
+                                            "label": "White and Black Caribbean",
+                                            "value": "White and Black Caribbean"
+                                        },
+                                        {
+                                            "label": "White and Black African",
+                                            "value": "White and Black African"
+                                        },
+                                        {
+                                            "label": "White and Asian",
+                                            "value": "White and Asian"
+                                        },
+                                        {
+                                            "label": "Any other Mixed or multiple ethnic background",
+                                            "value": "Other",
+                                            "child_answer_id": "mixed-ethnic-group-answer-other"
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                },
+                                {
+                                    "id": "mixed-ethnic-group-answer-other",
+                                    "parent_answer_id": "mixed-ethnic-group-answer",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify other Mixed or multiple ethnic background"
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "religion",
+                                    "when": [{
+                                        "id": "date-of-birth-answer",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "value": "now",
+                                            "offset_by": {
+                                                "years": -16
+                                            }
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "household-member-completed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "asian-ethnic-group",
+                        "questions": [{
+                            "id": "asian-ethnic-group-question",
+                            "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> Asian, Asian British ethnic group or background?",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "asian-ethnic-group-answer",
+                                    "mandatory": false,
+                                    "options": [{
+                                            "label": "Indian",
+                                            "value": "Indian"
+                                        },
+                                        {
+                                            "label": "Pakistani",
+                                            "value": "Pakistani"
+                                        },
+                                        {
+                                            "label": "Bangladeshi",
+                                            "value": "Bangladeshi"
+                                        },
+                                        {
+                                            "label": "Chinese",
+                                            "value": "Chinese"
+                                        },
+                                        {
+                                            "label": "Any other Asian background",
+                                            "value": "Other",
+                                            "child_answer_id": "asian-ethnic-group-answer-other"
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                },
+                                {
+                                    "id": "asian-ethnic-group-answer-other",
+                                    "parent_answer_id": "asian-ethnic-group-answer",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify other Asian background"
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "religion",
+                                    "when": [{
+                                        "id": "date-of-birth-answer",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "value": "now",
+                                            "offset_by": {
+                                                "years": -16
+                                            }
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "household-member-completed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "black-ethnic-group",
+                        "questions": [{
+                            "id": "black-ethnic-group-question",
+                            "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> Black, African, Caribbean, Black British ethnic group or background?",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "black-ethnic-group-answer",
+                                    "mandatory": false,
+                                    "options": [{
+                                            "label": "African",
+                                            "value": "African"
+                                        },
+                                        {
+                                            "label": "Caribbean",
+                                            "value": "Caribbean"
+                                        },
+                                        {
+                                            "label": "Any other Black, African or Caribbean background",
+                                            "value": "Other",
+                                            "child_answer_id": "black-ethnic-group-answer-other"
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                },
+                                {
+                                    "id": "black-ethnic-group-answer-other",
+                                    "parent_answer_id": "black-ethnic-group-answer",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify other Black, African or Caribbean background"
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "religion",
+                                    "when": [{
+                                        "id": "date-of-birth-answer",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "value": "now",
+                                            "offset_by": {
+                                                "years": -16
+                                            }
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "household-member-completed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "other-ethnic-group",
+                        "questions": [{
+                            "id": "other-ethnic-group-question",
+                            "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> Other ethnic group or background?",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "other-ethnic-group-answer",
+                                    "mandatory": false,
+                                    "options": [{
+                                            "label": "Arab",
+                                            "value": "Arab"
+                                        },
+                                        {
+                                            "label": "Any other ethnic group",
+                                            "value": "Other",
+                                            "child_answer_id": "other-ethnic-group-answer-other"
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                },
+                                {
+                                    "id": "other-ethnic-group-answer-other",
+                                    "parent_answer_id": "other-ethnic-group-answer",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify Other ethnic group"
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "religion",
+                                    "when": [{
+                                        "id": "date-of-birth-answer",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "value": "now",
+                                            "offset_by": {
+                                                "years": -16
+                                            }
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "household-member-completed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "religion",
+                        "questions": [{
+                            "id": "religion-question",
+                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> religion?",
+                            "description": "This question is voluntary",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "religion-answer",
+                                    "mandatory": false,
+                                    "type": "Radio",
+                                    "options": [{
+                                            "label": "No religion",
+                                            "value": "No religion"
+                                        },
+                                        {
+                                            "label": "Christianity",
+                                            "value": "Christianity"
+                                        },
+                                        {
+                                            "label": "Buddhism",
+                                            "value": "Buddhism"
+                                        },
+                                        {
+                                            "label": "Hinduism",
+                                            "value": "Hinduism"
+                                        },
+                                        {
+                                            "label": "Judaism",
+                                            "value": "Judaism"
+                                        },
+                                        {
+                                            "label": "Islam",
+                                            "value": "Islam"
+                                        },
+                                        {
+                                            "label": "Sikhism",
+                                            "value": "Sikhism"
+                                        },
+                                        {
+                                            "label": "Any other religion",
+                                            "value": "Other",
+                                            "child_answer_id": "religion-answer-other"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "religion-answer-other",
+                                    "parent_answer_id": "religion-answer",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify other religion"
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                            "goto": {
+                                "block": "household-member-completed"
+                            }
+                        }]
+                    },
+
+                    {
+                        "type": "Question",
+                        "id": "date-of-birth-no-proxy",
+                        "questions": [{
+                            "id": "date-of-birth-question-np",
+                            "title": "What is your date of birth?",
+                            "description": "For example 20 March 1980",
+                            "type": "General",
+                            "answers": [{
+                                "id": "date-of-birth-answer-np",
+                                "mandatory": false,
+                                "type": "Date"
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "nationality-no-proxy",
+                                    "when": [{
+                                        "id": "date-of-birth-answer-np",
+                                        "condition": "greater than",
+                                        "date_comparison": {
+                                            "value": "now",
+                                            "offset_by": {
+                                                "years": -16
+                                            }
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "marital-status-no-proxy"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "marital-status-no-proxy",
+                        "questions": [{
+                            "id": "marital-status-question-np",
+                            "title": "On {{ exercise.start_date|format_date }}, what is your legal marital or same-sex civil partnership status?",
+                            "description": "If you were married (or formed a registered same-sex partnership) abroad, and this enables you to be recognised as married or civil partnered in the UK, complete the question reflecting that legal partnership.",
+                            "type": "General",
+                            "answers": [{
+                                "id": "marital-status-answer-np",
+                                "mandatory": false,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "Never married and never registered a same-sex civil partnership",
+                                        "value": "Never married and never registered a same-sex civil partnership"
+                                    },
+                                    {
+                                        "label": "Married",
+                                        "value": "Married"
+                                    },
+                                    {
+                                        "label": "In a registered same-sex civil partnership",
+                                        "value": "In a registered same-sex civil partnership"
+                                    },
+                                    {
+                                        "label": "Separated, but still legally married",
+                                        "value": "Separated, but still legally married"
+                                    },
+                                    {
+                                        "label": "Separated, but still legally in a same-sex civil partnership",
+                                        "value": "Separated, but still legally in a same-sex civil partnership"
+                                    },
+                                    {
+                                        "label": "Divorced",
+                                        "value": "Divorced"
+                                    },
+                                    {
+                                        "label": "Formerly in a same-sex civil partnership which is now legally dissolved",
+                                        "value": "Formerly in a same-sex civil partnership which is now legally dissolved"
+                                    },
+                                    {
+                                        "label": "Widowed",
+                                        "value": "Widowed"
+                                    },
+                                    {
+                                        "label": "Surviving partner from a same-sex civil partnership",
+                                        "value": "Surviving partner from a same-sex civil partnership"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "nationality-no-proxy",
+                        "questions": [{
+                            "id": "nationality-question-np",
+                            "title": "What is your nationality?",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "nationality-answer-np",
+                                    "mandatory": false,
+                                    "type": "Radio",
+                                    "options": [{
+                                            "label": "British",
+                                            "value": "British"
+                                        },
+                                        {
+                                            "label": "Irish",
+                                            "value": "Irish"
+                                        },
+                                        {
+                                            "label": "Indian",
+                                            "value": "Indian"
+                                        },
+                                        {
+                                            "label": "Pakistani",
+                                            "value": "Pakistani"
+                                        },
+                                        {
+                                            "label": "Polish",
+                                            "value": "Polish"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "child_answer_id": "nationality-answer-other-np"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "nationality-answer-other-np",
+                                    "parent_answer_id": "nationality-answer-np",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify nationality"
+                                }
+                            ]
+                        }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "country-of-birth-no-proxy",
+                        "questions": [{
+                            "id": "country-of-birth-question-np",
+                            "title": "In which country were you born?",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "country-of-birth-answer-np",
+                                    "mandatory": false,
+                                    "type": "Radio",
+                                    "options": [{
+                                            "label": "England",
+                                            "value": "England"
+                                        },
+                                        {
+                                            "label": "Wales",
+                                            "value": "Wales"
+                                        },
+                                        {
+                                            "label": "Scotland",
+                                            "value": "Scotland"
+                                        },
+                                        {
+                                            "label": "Northern Ireland",
+                                            "value": "Northern Ireland"
+                                        },
+                                        {
+                                            "label": "Republic of Ireland",
+                                            "value": "Republic of Ireland"
+                                        },
+                                        {
+                                            "label": "Isle of Man or Channel Islands",
+                                            "value": "Isle of Man or Channel Islands"
+                                        },
+                                        {
+                                            "label": "India",
+                                            "value": "India"
+                                        },
+                                        {
+                                            "label": "Pakistan",
+                                            "value": "Pakistan"
+                                        },
+                                        {
+                                            "label": "Poland",
+                                            "value": "Poland"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "child_answer_id": "country-of-birth-answer-other-np"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "country-of-birth-answer-other-np",
+                                    "parent_answer_id": "country-of-birth-answer-np",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify current name of country"
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "national-identity-no-proxy",
+                                    "when": [{
+                                        "id": "country-of-birth-answer-np",
+                                        "condition": "equals",
+                                        "value": "England"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "national-identity-no-proxy",
+                                    "when": [{
+                                        "id": "country-of-birth-answer-np",
+                                        "condition": "equals",
+                                        "value": "Wales"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "national-identity-no-proxy",
+                                    "when": [{
+                                        "id": "country-of-birth-answer-np",
+                                        "condition": "equals",
+                                        "value": "Scotland"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "national-identity-no-proxy",
+                                    "when": [{
+                                        "id": "country-of-birth-answer-np",
+                                        "condition": "equals",
+                                        "value": "Northern Ireland"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "arrive-in-uk-no-proxy"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "arrive-in-uk-no-proxy",
+                        "questions": [{
+                            "id": "arrive-in-uk-question-np",
+                            "title": "In which year did you arrive to live here?",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Exclude holidays and short visits to the UK."
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "arrive-in-uk-answer-np",
+                                "alias": "arrived_year_np",
+                                "mandatory": false,
+                                "type": "MonthYearDate"
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "arrive-date-in-uk-invalid-no-proxy",
+                                    "when": [{
+                                        "id": "arrive-in-uk-answer-np",
+                                        "condition": "greater than",
+                                        "date_comparison": {
+                                            "value": "now"
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "arrive-date-in-uk-invalid-no-proxy",
+                                    "when": [{
+                                        "id": "arrive-in-uk-answer-np",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "id": "date-of-birth-answer-np"
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "continuous-in-uk-no-proxy"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "arrive-date-in-uk-invalid-no-proxy",
+                        "questions": [{
+                            "id": "arrive-date-in-uk-invalid-question-np",
+                            "title": "Invalid date entered",
+                            "description": "The date you arrived in the UK must be after your date of birth.",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Correct either your date of birth or the date you arrived in the UK."
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "arrive-date-in-uk-invalid-answer-np",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "I&apos;d like to correct my date of birth",
+                                        "value": "change dob"
+                                    },
+                                    {
+                                        "label": "I&apos;d like to correct my date of arrival in the UK",
+                                        "value": "change arrival"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "date-of-birth-no-proxy",
+                                    "when": [{
+                                        "id": "arrive-date-in-uk-invalid-answer-np",
+                                        "condition": "equals",
+                                        "value": "change dob"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "arrive-in-uk-no-proxy",
+                                    "when": [{
+                                        "id": "arrive-date-in-uk-invalid-answer-np",
+                                        "condition": "equals",
+                                        "value": "change arrival"
+                                    }]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "continuous-in-uk-no-proxy",
+                        "questions": [{
+                            "id": "continuous-in-uk-question-np",
+                            "title": "Apart from holidays and short visits abroad, have you lived in the UK continuously since {{answers.arrived_year_np}}?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "continuous-in-uk-answer-np",
+                                "mandatory": false,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "national-identity-no-proxy",
+                                    "when": [{
+                                            "id": "continuous-in-uk-answer-np",
+                                            "condition": "equals",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "id": "date-of-birth-answer-np",
+                                            "condition": "greater than",
+                                            "date_comparison": {
+                                                "value": "now",
+                                                "offset_by": {
+                                                    "years": -16
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "why-uk-no-proxy",
+                                    "when": [{
+                                            "id": "continuous-in-uk-answer-np",
+                                            "condition": "equals",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "id": "date-of-birth-answer-np",
+                                            "condition": "less than",
+                                            "date_comparison": {
+                                                "value": "now",
+                                                "offset_by": {
+                                                    "years": -16
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "camyr2-block-no-proxy",
+                                    "when": [{
+                                        "id": "continuous-in-uk-answer-np",
+                                        "condition": "equals",
+                                        "value": "No"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "why-uk-no-proxy"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "camyr2-block-no-proxy",
+                        "questions": [{
+                            "id": "camyr2-question-np",
+                            "title": "In what year did you most recently arrive in the United Kingdom?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "first-arrive-in-uk-answer-np",
+                                "alias": "first_arrived_year_np",
+                                "mandatory": false,
+                                "type": "MonthYearDate"
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "first-arrive-date-in-uk-invalid-no-proxy",
+                                    "when": [{
+                                        "id": "first-arrive-in-uk-answer-np",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "id": "date-of-birth-answer-np"
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "national-identity-no-proxy",
+                                    "when": [{
+                                            "id": "first-arrive-in-uk-answer-np",
+                                            "condition": "less than",
+                                            "date_comparison": {
+                                                "meta": "return_by",
+                                                "offset_by": {
+                                                    "years": -2
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "id": "date-of-birth-answer-np",
+                                            "condition": "greater than",
+                                            "date_comparison": {
+                                                "value": "now",
+                                                "offset_by": {
+                                                    "years": -16
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "why-uk-no-proxy",
+                                    "when": [{
+                                            "id": "first-arrive-in-uk-answer-np",
+                                            "condition": "less than",
+                                            "date_comparison": {
+                                                "meta": "return_by",
+                                                "offset_by": {
+                                                    "years": -2
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "id": "date-of-birth-answer-np",
+                                            "condition": "less than",
+                                            "date_comparison": {
+                                                "value": "now",
+                                                "offset_by": {
+                                                    "years": -16
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "came-month-no-proxy"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "first-arrive-date-in-uk-invalid-no-proxy",
+                        "questions": [{
+                            "id": "first-arrive-date-in-uk-invalid-question-np",
+                            "title": "Invalid date entered",
+                            "description": "The date you most recently arrived in the UK must be after your date of birth.",
+                            "guidance": {
+                                "content": [{
+                                    "description": "Correct either your date of birth or the date you most recently arrived in the UK."
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "first-arrive-date-in-uk-invalid-answer-np",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "I&apos;d like to correct my date of birth",
+                                        "value": "change dob"
+                                    },
+                                    {
+                                        "label": "I&apos;d like to correct the date of my most recent arrival in the UK",
+                                        "value": "change arrival"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "date-of-birth-no-proxy",
+                                    "when": [{
+                                        "id": "first-arrive-date-in-uk-invalid-answer-np",
+                                        "condition": "equals",
+                                        "value": "change dob"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "camyr2-block-no-proxy",
+                                    "when": [{
+                                        "id": "first-arrive-date-in-uk-invalid-answer-np",
+                                        "condition": "equals",
+                                        "value": "change arrival"
+                                    }]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "came-month-no-proxy",
+                        "title": "Placeholder for came-month page.  There is no Year-only date field and if a number field is used then date comparisons are not possible; therefore used a MonthYear field and dispensed with  CAME-MONTH page",
+                        "description": "",
+                        "type": "Interstitial"
+                    },
+                    {
+                        "type": "Question",
+                        "id": "why-uk-no-proxy",
+                        "questions": [{
+                            "id": "why-uk-question-np",
+                            "title": "What was the main reason for you coming to the UK in {{answers.arrived_year}} or {{answers.first_arrived_year}} (need filter to pick max)?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "why-uk-answer-np",
+                                "mandatory": false,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "For employment",
+                                        "value": "For employment"
+                                    },
+                                    {
+                                        "label": "For study",
+                                        "value": "For study"
+                                    },
+                                    {
+                                        "label": "As a spouse or dependent of a UK citizen or settled person",
+                                        "value": "As a spouse or dependent of a UK citizen or settled person"
+                                    },
+                                    {
+                                        "label": "As a spouse or dependent of someone who is coming to or is already in the UK for work or study reasons",
+                                        "value": "As a spouse or dependent of someone who is coming to or is already in the UK for work or study reasons"
+                                    },
+                                    {
+                                        "label": "To get married or form a civil partnership in the UK with a non-UK citizen",
+                                        "value": "To get married or form a civil partnership in the UK with a non-UK citizen"
+                                    },
+                                    {
+                                        "label": "Seeking asylum",
+                                        "value": "Seeking asylum"
+                                    },
+                                    {
+                                        "label": "As a visitor",
+                                        "value": "As a visitor"
+                                    },
+                                    {
+                                        "label": "Another reason",
+                                        "value": "Another reason"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "national-identity-no-proxy",
+                        "questions": [{
+                                "id": "national-identity-england-question-np",
+                                "title": "What do you consider your national identity to be?  Please select all that apply.",
+                                "type": "General",
+                                "answers": [{
+                                        "id": "national-identity-england-answer-np",
+                                        "mandatory": false,
+                                        "type": "Checkbox",
+                                        "options": [{
+                                                "label": "English",
+                                                "value": "English"
+                                            },
+                                            {
+                                                "label": "Welsh",
+                                                "value": "Welsh"
+                                            },
+                                            {
+                                                "label": "Scottish",
+                                                "value": "Scottish"
+                                            },
+                                            {
+                                                "label": "Northern Irish",
+                                                "value": "Northern Irish"
+                                            },
+                                            {
+                                                "label": "British",
+                                                "value": "British"
+                                            },
+                                            {
+                                                "label": "Other",
+                                                "value": "Other",
+                                                "child_answer_id": "national-identity-england-answer-other-np"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "national-identity-england-answer-other-np",
+                                        "parent_answer_id": "national-identity-england-answer-np",
+                                        "type": "TextField",
+                                        "mandatory": false,
+                                        "label": "Please describe your national identity"
+                                    }
+                                ],
+                                "skip_conditions": [{
+                                    "when": [{
+                                        "meta": "region_code",
+                                        "condition": "equals",
+                                        "value": "GB-WLS"
+                                    }]
+                                }]
+                            },
+                            {
+                                "id": "national-identity-wales-question-no-proxy",
+                                "title": "What do you consider your national identity to be?  Please select all that apply.",
+                                "type": "General",
+                                "answers": [{
+                                        "id": "national-identity-wales-answer-np",
+                                        "mandatory": false,
+                                        "type": "Checkbox",
+                                        "options": [{
+                                                "label": "Welsh",
+                                                "value": "Welsh"
+                                            },
+                                            {
+                                                "label": "English",
+                                                "value": "English"
+                                            },
+                                            {
+                                                "label": "Scottish",
+                                                "value": "Scottish"
+                                            },
+                                            {
+                                                "label": "Northern Irish",
+                                                "value": "Northern Irish"
+                                            },
+                                            {
+                                                "label": "British",
+                                                "value": "British"
+                                            },
+                                            {
+                                                "label": "Other",
+                                                "value": "Other",
+                                                "child_answer_id": "national-identity-wales-answer-other-np"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "national-identity-wales-answer-other-np",
+                                        "parent_answer_id": "national-identity-wales-answer-np",
+                                        "type": "TextField",
+                                        "mandatory": false,
+                                        "label": "Please describe your national identity"
+                                    }
+                                ],
+                                "skip_conditions": [{
+                                    "when": [{
+                                        "meta": "region_code",
+                                        "condition": "not equals",
+                                        "value": "GB-WLS"
+                                    }]
+                                }]
+                            }
+                        ],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "understand-welsh-no-proxy",
+                                    "when": [{
+                                        "meta": "region_code",
+                                        "condition": "equals",
+                                        "value": "GB-WLS"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "ethnic-group-no-proxy"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "understand-welsh-no-proxy",
+                        "questions": [{
+                            "id": "understand-welsh-question-np",
+                            "title": "Can you understand, speak, read or write Welsh.  Please select all that apply",
+                            "type": "General",
+                            "answers": [{
+                                "id": "understand-welsh-answer-np",
+                                "mandatory": false,
+                                "type": "Checkbox",
+                                "options": [{
+                                        "label": "Understand spoken Welsh",
+                                        "value": "Understand spoken Welsh"
+                                    },
+                                    {
+                                        "label": "Speak Welsh",
+                                        "value": "Speak Welsh"
+                                    },
+                                    {
+                                        "label": "Read Welsh",
+                                        "value": "Read Welsh"
+                                    },
+                                    {
+                                        "label": "Write Welsh",
+                                        "value": "Write Welsh"
+                                    },
+                                    {
+                                        "label": "None of the above",
+                                        "value": "None of the above"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "welsh-frequency-no-proxy",
+                        "questions": [{
+                            "id": "welsh-frequency-question-np",
+                            "title": "How often do you speak Welsh?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "welsh-frequency-answer-np",
+                                "mandatory": false,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "Daily",
+                                        "value": "Daily"
+                                    },
+                                    {
+                                        "label": "Weekly",
+                                        "value": "Weekly"
+                                    },
+                                    {
+                                        "label": "Less often",
+                                        "value": "Less often"
+                                    },
+                                    {
+                                        "label": "Never",
+                                        "value": "Never"
+                                    }
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "ethnic-group-no-proxy",
+                        "questions": [{
+                            "id": "ethnic-group-question-np",
+                            "title": "What is your ethnic group?",
+                            "description": "It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself.",
+                            "type": "General",
+                            "answers": [{
+                                "id": "ethnic-group-answer-np",
+                                "mandatory": false,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "White",
+                                        "value": "White",
+                                        "description": "Including English, Welsh, Scottish, Northern Irish, British, Irish, Gypsy, Irish Traveller or any other White background"
+                                    },
+                                    {
+                                        "label": "Mixed or multiple ethnic groups",
+                                        "value": "Mixed or multiple ethnic groups",
+                                        "description": "Including White and Black Caribbean, White and Black African, White and Asian or any other Mixed or multiple ethnic background"
+                                    },
+                                    {
+                                        "label": "Asian or Asian British",
+                                        "value": "Asian or Asian British",
+                                        "description": "Including Indian, Pakistani, Bangladeshi, Chinese or any other Asian background"
+                                    },
+                                    {
+                                        "label": "Black, African, Caribbean or Black British",
+                                        "value": "Black, African, Caribbean or Black British",
+                                        "description": "Including African, Caribbean or any other Black, African or Caribbean background"
+                                    },
+                                    {
+                                        "label": "Other ethnic group",
+                                        "value": "Other ethnic group",
+                                        "description": "Including Arab or any other ethnic group"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "white-ethnic-group-no-proxy",
+                                    "when": [{
+                                        "id": "ethnic-group-answer-np",
+                                        "condition": "equals",
+                                        "value": "White"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "mixed-ethnic-group-no-proxy",
+                                    "when": [{
+                                        "id": "ethnic-group-answer-np",
+                                        "condition": "equals",
+                                        "value": "Mixed or multiple ethnic groups"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "asian-ethnic-group-no-proxy",
+                                    "when": [{
+                                        "id": "ethnic-group-answer-np",
+                                        "condition": "equals",
+                                        "value": "Asian or Asian British"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "black-ethnic-group-no-proxy",
+                                    "when": [{
+                                        "id": "ethnic-group-answer-np",
+                                        "condition": "equals",
+                                        "value": "Black, African, Caribbean or Black British"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "other-ethnic-group-no-proxy",
+                                    "when": [{
+                                        "id": "ethnic-group-answer-np",
+                                        "condition": "equals",
+                                        "value": "Other ethnic group"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "religion-no-proxy",
+                                    "when": [{
+                                        "id": "date-of-birth-answer-np",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "value": "now",
+                                            "offset_by": {
+                                                "years": -16
+                                            }
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "household-member-completed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "white-ethnic-group-no-proxy",
+                        "questions": [{
+                            "id": "white-ethnic-group-question-np",
+                            "title": "Which one best describes your White ethnic group or background?",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "white-ethnic-group-answer-np",
+                                    "mandatory": false,
+                                    "options": [{
+                                            "label": "English, Welsh, Scottish, Northern Irish or British",
+                                            "value": "English, Welsh, Scottish, Northern Irish or British"
+                                        },
+                                        {
+                                            "label": "Irish",
+                                            "value": "Irish"
+                                        },
+                                        {
+                                            "label": "Gypsy or Irish Traveller",
+                                            "value": "Gypsy or Irish Traveller"
+                                        },
+                                        {
+                                            "label": "Any other White background",
+                                            "value": "Other",
+                                            "child_answer_id": "white-ethnic-group-answer-other-np"
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                },
+                                {
+                                    "id": "white-ethnic-group-answer-other-np",
+                                    "parent_answer_id": "white-ethnic-group-answer-np",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify other White background"
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "religion-no-proxy",
+                                    "when": [{
+                                        "id": "date-of-birth-answer-np",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "value": "now",
+                                            "offset_by": {
+                                                "years": -16
+                                            }
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "household-member-completed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "mixed-ethnic-group-no-proxy",
+                        "questions": [{
+                            "id": "mixed-ethnic-group-question-np",
+                            "title": "Which one best describes your Mixed, multiple ethnic group or background?",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "mixed-ethnic-group-answer-np",
+                                    "mandatory": false,
+                                    "options": [{
+                                            "label": "White and Black Caribbean",
+                                            "value": "White and Black Caribbean"
+                                        },
+                                        {
+                                            "label": "White and Black African",
+                                            "value": "White and Black African"
+                                        },
+                                        {
+                                            "label": "White and Asian",
+                                            "value": "White and Asian"
+                                        },
+                                        {
+                                            "label": "Any other Mixed or multiple ethnic background",
+                                            "value": "Other",
+                                            "child_answer_id": "mixed-ethnic-group-answer-other-np"
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                },
+                                {
+                                    "id": "mixed-ethnic-group-answer-other-np",
+                                    "parent_answer_id": "mixed-ethnic-group-answer-np",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify other Mixed or multiple ethnic background"
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "religion-no-proxy",
+                                    "when": [{
+                                        "id": "date-of-birth-answer-np",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "value": "now",
+                                            "offset_by": {
+                                                "years": -16
+                                            }
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "household-member-completed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "asian-ethnic-group-no-proxy",
+                        "questions": [{
+                            "id": "asian-ethnic-group-question-np",
+                            "title": "Which one best describes your Asian, Asian British ethnic group or background?",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "asian-ethnic-group-answer-np",
+                                    "mandatory": false,
+                                    "options": [{
+                                            "label": "Indian",
+                                            "value": "Indian"
+                                        },
+                                        {
+                                            "label": "Pakistani",
+                                            "value": "Pakistani"
+                                        },
+                                        {
+                                            "label": "Bangladeshi",
+                                            "value": "Bangladeshi"
+                                        },
+                                        {
+                                            "label": "Chinese",
+                                            "value": "Chinese"
+                                        },
+                                        {
+                                            "label": "Any other Asian background",
+                                            "value": "Other",
+                                            "child_answer_id": "asian-ethnic-group-answer-other-np"
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                },
+                                {
+                                    "id": "asian-ethnic-group-answer-other-np",
+                                    "parent_answer_id": "asian-ethnic-group-answer-np",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify other Asian background"
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "religion-no-proxy",
+                                    "when": [{
+                                        "id": "date-of-birth-answer-np",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "value": "now",
+                                            "offset_by": {
+                                                "years": -16
+                                            }
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "household-member-completed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "black-ethnic-group-no-proxy",
+                        "questions": [{
+                            "id": "black-ethnic-group-question-np",
+                            "title": "Which one best describes your Black, African, Caribbean, Black British ethnic group or background?",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "black-ethnic-group-answer-np",
+                                    "mandatory": false,
+                                    "options": [{
+                                            "label": "African",
+                                            "value": "African"
+                                        },
+                                        {
+                                            "label": "Caribbean",
+                                            "value": "Caribbean"
+                                        },
+                                        {
+                                            "label": "Any other Black, African or Caribbean background",
+                                            "value": "Other",
+                                            "child_answer_id": "black-ethnic-group-answer-other-np"
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                },
+                                {
+                                    "id": "black-ethnic-group-answer-other-np",
+                                    "parent_answer_id": "black-ethnic-group-answer-np",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify other Black, African or Caribbean background"
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "religion-no-proxy",
+                                    "when": [{
+                                        "id": "date-of-birth-answer-np",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "value": "now",
+                                            "offset_by": {
+                                                "years": -16
+                                            }
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "household-member-completed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "other-ethnic-group-no-proxy",
+                        "questions": [{
+                            "id": "other-ethnic-group-question-np",
+                            "title": "Which one best describes your Other ethnic group or background?",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "other-ethnic-group-answer-np",
+                                    "mandatory": false,
+                                    "options": [{
+                                            "label": "Arab",
+                                            "value": "Arab"
+                                        },
+                                        {
+                                            "label": "Any other ethnic group",
+                                            "value": "Other",
+                                            "child_answer_id": "other-ethnic-group-answer-other-np"
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                },
+                                {
+                                    "id": "other-ethnic-group-answer-other-np",
+                                    "parent_answer_id": "other-ethnic-group-answer-np",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify Other ethnic group"
+                                }
+                            ]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "religion-no-proxy",
+                                    "when": [{
+                                        "id": "date-of-birth-answer-np",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "value": "now",
+                                            "offset_by": {
+                                                "years": -16
+                                            }
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "household-member-completed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "religion-no-proxy",
+                        "questions": [{
+                            "id": "religion-question-np",
+                            "title": "What is your religion?",
+                            "description": "This question is voluntary",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "religion-answer-np",
+                                    "mandatory": false,
+                                    "type": "Radio",
+                                    "options": [{
+                                            "label": "No religion",
+                                            "value": "No religion"
+                                        },
+                                        {
+                                            "label": "Christianity",
+                                            "value": "Christianity"
+                                        },
+                                        {
+                                            "label": "Buddhism",
+                                            "value": "Buddhism"
+                                        },
+                                        {
+                                            "label": "Hinduism",
+                                            "value": "Hinduism"
+                                        },
+                                        {
+                                            "label": "Judaism",
+                                            "value": "Judaism"
+                                        },
+                                        {
+                                            "label": "Islam",
+                                            "value": "Islam"
+                                        },
+                                        {
+                                            "label": "Sikhism",
+                                            "value": "Sikhism"
+                                        },
+                                        {
+                                            "label": "Any other religion",
+                                            "value": "Other",
+                                            "child_answer_id": "religion-answer-other-np"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "religion-answer-other-np",
+                                    "parent_answer_id": "religion-answer-np",
+                                    "type": "TextField",
+                                    "mandatory": false,
+                                    "label": "Please specify other religion"
+                                }
+                            ]
+                        }]
+                    },
+                    {
+                        "id": "household-member-completed",
+                        "title": "There are no more questions for {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}",
+                        "description": "",
+                        "type": "Interstitial"
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "submit-answers",
+            "title": "Submit answers",
+            "groups": [{
+                "id": "questionnaire-completed",
+                "title": "Submit answers",
+                "blocks": [{
+                    "type": "Confirmation",
+                    "id": "confirmation",
+                    "title": "You’re ready to submit your Labour Force Survey answers",
+                    "description": "<p>Thank you for taking part.</p>",
+                    "questions": [{
+                        "answers": [],
+                        "id": "questionnaire-completed-question",
+                        "title": "",
+                        "type": "General",
+                        "guidance": {
+                            "content": [{
+                                "title": "Please note:",
+                                "list": [
+                                    "by submitting your responses, you are declaring that you have completed to the best of your knowledge and belief.",
+                                    "if you do not submit, your responses will be automatically submitted.",
+                                    "after submission you will have an opportunity to provide feedback on your experience."
+                                ]
+                            }]
+                        }
+                    }]
+                }]
+            }]
+        }
+    ]
+}

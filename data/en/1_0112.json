@@ -11,12 +11,6 @@
         "enabled": true,
         "duration": 900
     },
-    "required_metadata": {
-        "ref_p_start_date": "date",
-        "ref_p_end_date": "date",
-        "employment_date": "date",
-        "trad_as_or_ru_name": "string"
-    },
     "sections": [{
         "id": "default-section",
         "groups": [{
@@ -154,7 +148,7 @@
                         }
                     ],
                     "questions": [{
-                        "title": "Are you able to report for the period from {{metadata.start_date|format_date}} to {{metadata.end_date|format_date}}?",
+                        "title": "Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?",
                         "type": "General",
                         "id": "reporting-period-choice-question",
                         "answers": [{
@@ -238,7 +232,7 @@
                             "default": 0
                         }],
                         "id": "total-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers.period_from, metadata.start_date)}} to {{ format_conditional_date (answers.period_to, metadata.end_date)}}, what was the value of {{metadata.trad_as_or_ru_name}}’s <em>total retail turnover</em>?",
+                        "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total retail turnover</em>?",
                         "type": "General"
                     }],
                     "title": "Retail Turnover"
@@ -272,7 +266,7 @@
                             "mandatory": true
                         }],
                         "id": "confirm-zero-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers.period_from, metadata.start_date)}} to {{ format_conditional_date (answers.period_to, metadata.end_date)}}, the value of the total retail turnover was <em>£0</em>, is this correct?"
+                        "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, the value of the total retail turnover was <em>£0</em>, is this correct?"
                     }],
                     "routing_rules": [{
                             "goto": {
@@ -353,9 +347,9 @@
                             "q_code": "146a",
                             "type": "Radio"
                         }],
-                        "description": "Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{metadata.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year.<br><br>This information will help us to validate your data and should reduce the need to query any figures with you.",
+                        "description": "Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year.<br><br>This information will help us to validate your data and should reduce the need to query any figures with you.",
                         "id": "significant-change-question",
-                        "title": "Did any significant changes occur to the total retail turnover for {{metadata.trad_as_or_ru_name}}?",
+                        "title": "Did any significant changes occur to the total retail turnover for {{respondent.trad_as_or_ru_name}}?",
                         "type": "General"
                     }],
                     "title": "Changes in total retail turnover"
@@ -498,7 +492,7 @@
                         }],
                         "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                         "id": "total-number-employees-question",
-                        "title": "On {{metadata.employment_date|format_date}} what was the number of employees for {{respondent.trad_as_or_ru_name}}?",
+                        "title": "On {{exercise.employment_date|format_date}} what was the number of employees for {{respondent.trad_as_or_ru_name}}?",
                         "type": "General"
                     }],
                     "title": "Employees"
@@ -532,7 +526,7 @@
                             "mandatory": true
                         }],
                         "id": "confirm-zero-employees-question",
-                        "title": "On {{metadata.employment_date|format_date}}, the number of employees for {{respondent.trad_as_or_ru_name}} was <em>0</em>, is this correct?"
+                        "title": "On {{exercise.employment_date|format_date}}, the number of employees for {{respondent.trad_as_or_ru_name}} was <em>0</em>, is this correct?"
                     }],
                     "routing_rules": [{
                             "goto": {
@@ -644,7 +638,7 @@
                             }
                         ],
                         "id": "employee-breakdown-questions",
-                        "title": "Of the <em>{{answers.employee_count|format_number}}</em> total employees employed on {{metadata.employment_date|format_date}}, please specify the number of:",
+                        "title": "Of the <em>{{answers.employee_count|format_number}}</em> total employees employed on {{exercise.employment_date|format_date}}, please specify the number of:",
                         "type": "Calculated"
                     }],
                     "title": "Employees"

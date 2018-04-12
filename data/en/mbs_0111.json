@@ -1,7 +1,7 @@
 {
     "mime_type": "application/json/ons/eq",
     "variables": {
-        "period": "{{ format_conditional_date (answers.period_from, metadata.start_date)}} to {{ format_conditional_date (answers.period_to, metadata.end_date)}}"
+        "period": "{{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}"
     },
     "schema_version": "0.0.1",
     "survey_id": "023",
@@ -18,7 +18,7 @@
                             "id": "use-of-information",
                             "content": [{
                                 "list": [
-                                    "Please complete this statutory Question for {{metadata.trad_as_or_ru_name}}, for period {{metadata.start_date|format_date}} to {{metadata.end_date|format_date}}.",
+                                    "Please complete this statutory Question for {{respondent.trad_as_or_ru_name}}, for period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
                                     "Data should relate to all sites in England, Scotland and Wales.",
                                     "We will treat your data securely and confidentially."
                                 ]
@@ -44,7 +44,7 @@
                     "questions": [{
                         "type": "General",
                         "id": "reporting-period-question-2",
-                        "title": "Are you able to report for the period from {{metadata.start_date|format_date}} to {{metadata.end_date|format_date}}?",
+                        "title": "Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?",
                         "answers": [{
                             "type": "Radio",
                             "id": "reporting-period-answer-2",
@@ -141,7 +141,7 @@
                                 }
                             ]
                         },
-                        "title": "For the period {{ format_conditional_date (answers.period_from, metadata.start_date)}} to {{ format_conditional_date (answers.period_to, metadata.end_date)}}, what was the value of {{metadata.trad_as_or_ru_name}}’s <em>total turnover</em>, excluding VAT?",
+                        "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total turnover</em>, excluding VAT?",
                         "answers": [{
                             "type": "Currency",
                             "id": "turnover-answer-4-0",
@@ -173,7 +173,7 @@
                                 "description": ""
                             }]
                         },
-                        "title": "Did any significant changes occur to the total turnover for {{metadata.trad_as_or_ru_name}}?",
+                        "title": "Did any significant changes occur to the total turnover for {{respondent.trad_as_or_ru_name}}?",
                         "answers": [{
                             "type": "Radio",
                             "id": "changes-in-total-turnover-answer-5",
@@ -192,7 +192,7 @@
                             "description": ""
                         }],
                         "id": "changes-in-total-turnover-question-5",
-                        "description": "<p>Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{metadata.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>"
+                        "description": "<p>Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>"
                     }],
                     "routing_rules": [{
                             "goto": {
@@ -218,7 +218,7 @@
                     "questions": [{
                         "type": "General",
                         "id": "changes-in-total-turnover-question-6",
-                        "title": "Please indicate the reasons for any changes in the total retail turnover for {{metadata.trad_as_or_ru_name}}",
+                        "title": "Please indicate the reasons for any changes in the total retail turnover for {{respondent.trad_as_or_ru_name}}",
                         "answers": [{
                             "type": "Checkbox",
                             "id": "changes-in-total-turnover-answer-6-0",
@@ -266,7 +266,7 @@
                     "questions": [{
                         "type": "General",
                         "id": "changes-in-total-turnover-question-7",
-                        "title": "Please describe the changes in total turnover for {{metadata.trad_as_or_ru_name}} in more detail",
+                        "title": "Please describe the changes in total turnover for {{respondent.trad_as_or_ru_name}} in more detail",
                         "answers": [{
                             "guidance": {
                                 "hide_guidance": "Hide examples of commentary on changes to total turnover",

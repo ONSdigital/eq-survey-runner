@@ -158,9 +158,9 @@
                             "content": [{
                                 "title": "Definition of innovation",
                                 "list": [
-                                    "Innovation, for the purpose of this survey, is defined as <strong>new</strong> or <strong>significantly improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all goods or services that {{ metadata.ru_name }} has introduced, regardless of their origin.",
-                                    "These innovations may be new to {{ metadata.ru_name }} or new to the market",
-                                    "Investments for future innovation and changes that {{ metadata.ru_name }} has introduced at a <strong>strategic</strong> level (in organisation and practices) are also covered"
+                                    "Innovation, for the purpose of this survey, is defined as <strong>new</strong> or <strong>significantly improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all goods or services that {{ respondent.ru_name }} has introduced, regardless of their origin.",
+                                    "These innovations may be new to {{ respondent.ru_name }} or new to the market",
+                                    "Investments for future innovation and changes that {{ respondent.ru_name }} has introduced at a <strong>strategic</strong> level (in organisation and practices) are also covered"
                                 ]
                             }]
                         }, {

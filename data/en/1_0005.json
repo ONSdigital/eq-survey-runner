@@ -7,14 +7,6 @@
         "enabled": true,
         "duration": 900
     },
-    "required_metadata": {
-        "period_id": "string",
-        "user_id": "string",
-        "ref_p_start_date": "date",
-        "ref_p_end_date": "date",
-        "period_str": "string",
-        "trad_as_or_ru_name": "string"
-    },
     "sections": [{
             "id": "introduction-section",
             "title": "Introduction",
@@ -310,7 +302,10 @@
                                 "label": "Total number of weekly paid employees",
                                 "mandatory": true,
                                 "q_code": "40",
-                                "type": "Number"
+                                "type": "Number",
+                                "min_value": {
+                                    "value": 1
+                                }
                             }],
                             "description": "<p>If the last week of the month is affected by holidays please use a more representative week.</p>",
                             "guidance": {
@@ -331,7 +326,7 @@
                                 ]
                             },
                             "id": "weekly-pay-paid-employees-question",
-                            "title": "What was the <em>number</em> of <em>weekly paid</em> employees paid in the last week of {{metadata.period_str}}?",
+                            "title": "What was the <em>number</em> of <em>weekly paid</em> employees paid in the last week of {{exercise.period_str}}?",
                             "type": "General"
                         }],
                         "title": "Weekly Pay",
@@ -382,7 +377,7 @@
                                 ]
                             },
                             "id": "weekly-pay-gross-pay-question",
-                            "title": "What was the <em>total gross weekly pay</em> paid to employees in the last week of {{metadata.period_str}}?",
+                            "title": "What was the <em>total gross weekly pay</em> paid to employees in the last week of {{exercise.period_str}}?",
                             "type": "General"
                         }],
                         "title": "Weekly Pay",
@@ -417,7 +412,7 @@
                                 "mandatory": true
                             }],
                             "id": "confirm-weekly-pay-gross-pay-question",
-                            "title": "The <em>total gross weekly pay</em> paid to employees in the last week of {{metadata.period_str}} was <em>£0</em>, is this correct?"
+                            "title": "The <em>total gross weekly pay</em> paid to employees in the last week of {{exercise.period_str}} was <em>£0</em>, is this correct?"
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -479,7 +474,7 @@
                                 }
                             ],
                             "id": "weekly-pay-breakdown-question",
-                            "title": "Of the <em>{{metadata.weekly_total_gross|format_currency}}</em> paid to <em>weekly</em> paid employees in the last week of {{metadata.period_str}}, what other amounts were paid? ",
+                            "title": "Of the <em>{{answers.weekly_total_gross|format_currency}}</em> paid to <em>weekly</em> paid employees in the last week of {{exercise.period_str}}, what other amounts were paid? ",
                             "type": "General",
                             "guidance": {
                                 "content": [{
@@ -513,7 +508,7 @@
                                 "q_code": "90w",
                                 "type": "Radio"
                             }],
-                            "description": "<p>This is your own interpretation of whether there has been a significant change in {{metadata.trad_as_or_ru_name}}{{metadata.trad_as_or_ru_name}}’s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year. </p>",
+                            "description": "<p>This is your own interpretation of whether there has been a significant change in {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year. </p>",
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -724,7 +719,10 @@
                                 "label": "Total number of fortnightly paid employees",
                                 "mandatory": true,
                                 "q_code": "40f",
-                                "type": "Number"
+                                "type": "Number",
+                                "min_value": {
+                                    "value": 1
+                                }
                             }],
                             "description": "<p>If the last week of the month is affected by holidays please use a more representative week.</p>",
                             "guidance": {
@@ -745,7 +743,7 @@
                                 ]
                             },
                             "id": "fortnightly-pay-paid-employees-question",
-                            "title": "What was the <em>number</em> of <em>fortnightly paid</em> employees paid in the last week of {{metadata.period_str}}?",
+                            "title": "What was the <em>number</em> of <em>fortnightly paid</em> employees paid in the last week of {{exercise.period_str}}?",
                             "type": "General"
                         }],
                         "title": "Fortnightly Pay",
@@ -796,7 +794,7 @@
                                 ]
                             },
                             "id": "fortnightly-pay-gross-pay-question",
-                            "title": "What was the <em>total gross fortnightly pay</em> paid to employees in the last week of {{metadata.period_str}}?",
+                            "title": "What was the <em>total gross fortnightly pay</em> paid to employees in the last week of {{exercise.period_str}}?",
                             "type": "General"
                         }],
                         "title": "Fortnightly Pay",
@@ -831,7 +829,7 @@
                                 "mandatory": true
                             }],
                             "id": "confirm-fortnightly-pay-gross-pay-question",
-                            "title": "The <em>total gross fortnightly pay</em> paid to employees in the last week of {{metadata.period_str}} was <em>£0</em>, is this correct?"
+                            "title": "The <em>total gross fortnightly pay</em> paid to employees in the last week of {{exercise.period_str}} was <em>£0</em>, is this correct?"
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -893,7 +891,7 @@
                                 }
                             ],
                             "id": "fortnightly-pay-breakdown-question",
-                            "title": "Of the <em>{{answers.fortnightly_total_gross|format_currency}}</em> paid to <em>fortnightly</em> paid employees in the last week of {{metadata.period_str}}, what other amounts were paid?",
+                            "title": "Of the <em>{{answers.fortnightly_total_gross|format_currency}}</em> paid to <em>fortnightly</em> paid employees in the last week of {{exercise.period_str}}, what other amounts were paid?",
                             "type": "General",
                             "guidance": {
                                 "content": [{
@@ -927,7 +925,7 @@
                                 "q_code": "90f",
                                 "type": "Radio"
                             }],
-                            "description": "<p>This is your own interpretation of whether there has been a significant change in  {{metadata.trad_as_or_ru_name}}’s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year.</p>",
+                            "description": "<p>This is your own interpretation of whether there has been a significant change in  {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year.</p>",
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -1138,7 +1136,10 @@
                                 "label": "Total number of calendar monthly paid employees",
                                 "mandatory": true,
                                 "q_code": "140m",
-                                "type": "Number"
+                                "type": "Number",
+                                "min_value": {
+                                    "value": 1
+                                }
                             }],
                             "description": "<p>If there are two pay days in the same month only give details for one.</p>",
                             "guidance": {
@@ -1159,7 +1160,7 @@
                                 ]
                             },
                             "id": "calendar-monthly-pay-paid-employees-question",
-                            "title": "What was the <em>number</em> of <em>calendar monthly</em> paid employees paid in {{metadata.period_str}}?",
+                            "title": "What was the <em>number</em> of <em>calendar monthly</em> paid employees paid in {{exercise.period_str}}?",
                             "type": "General"
                         }],
                         "title": "Calendar Monthly Pay",
@@ -1183,7 +1184,7 @@
                                 }
                             }],
                             "id": "calendar-monthly-pay-gross-pay-question",
-                            "title": "What was the <em>total gross calendar monthly pay</em> paid to employees in {{metadata.period_str}}?",
+                            "title": "What was the <em>total gross calendar monthly pay</em> paid to employees in {{exercise.period_str}}?",
                             "type": "General",
                             "guidance": {
                                 "content": [{
@@ -1244,7 +1245,7 @@
                                 "mandatory": true
                             }],
                             "id": "confirm-calendar-monthly-pay-gross-pay-question",
-                            "title": "The <em>total gross calendar monthly pay</em> paid to employees in the last week of {{metadata.period_str}} was <em>£0</em>, is this correct?"
+                            "title": "The <em>total gross calendar monthly pay</em> paid to employees in {{exercise.period_str}} was <em>£0</em>, is this correct?"
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -1294,7 +1295,7 @@
                                 }
                             ],
                             "id": "calendar-monthly-pay-breakdown-question",
-                            "title": "Of the <em>{{answers.monthly_total_gross|format_currency}}</em> paid to <em>calendar monthly</em> paid employees in {{metadata.period_str}}, what other amounts were paid?",
+                            "title": "Of the <em>{{answers.monthly_total_gross|format_currency}}</em> paid to <em>calendar monthly</em> paid employees in {{exercise.period_str}}, what other amounts were paid?",
                             "type": "General",
                             "guidance": {
                                 "content": [{
@@ -1331,7 +1332,7 @@
                             "id": "calendar-monthly-pay-significant-changes-paid-employees-question",
                             "title": "Did any significant changes occur to the <em>total pay or number</em> of <em>calendar monthly</em> paid employees?",
                             "type": "General",
-                            "description": "<p>This is your own interpretation of whether there has been a significant change in  {{metadata.trad_as_or_ru_name}}’s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year.</p>",
+                            "description": "<p>This is your own interpretation of whether there has been a significant change in  {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year.</p>",
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -1539,7 +1540,10 @@
                                 "label": "Total number of four weekly paid employees",
                                 "mandatory": true,
                                 "q_code": "140w4",
-                                "type": "Number"
+                                "type": "Number",
+                                "min_value": {
+                                    "value": 1
+                                }
                             }],
                             "description": "<p>If there are two pay days in the same month only give details for one.</p>",
                             "guidance": {
@@ -1560,7 +1564,7 @@
                                 ]
                             },
                             "id": "four-weekly-pay-paid-employees-question",
-                            "title": "What was the <em>number</em> of <em>four weekly</em> paid employees paid in {{metadata.period_str}}?",
+                            "title": "What was the <em>number</em> of <em>four weekly</em> paid employees paid in {{exercise.period_str}}?",
                             "type": "General"
                         }],
                         "title": "Four Weekly Pay",
@@ -1584,7 +1588,7 @@
                                 }
                             }],
                             "id": "four-weekly-pay-gross-pay-question",
-                            "title": "What was the <em>total gross four weekly pay</em> paid to employees in {{metadata.period_str}}?",
+                            "title": "What was the <em>total gross four weekly pay</em> paid to employees in {{exercise.period_str}}?",
                             "type": "General",
                             "guidance": {
                                 "content": [{
@@ -1645,7 +1649,7 @@
                                 "mandatory": true
                             }],
                             "id": "confirm-four-weekly-gross-pay-question",
-                            "title": "The <em>total gross four weekly pay</em> paid to employees in the last week of {{metadata.period_str}} was <em>£0</em>, is this correct?"
+                            "title": "The <em>total gross four weekly pay</em> paid to employees in {{exercise.period_str}} was <em>£0</em>, is this correct?"
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -1695,7 +1699,7 @@
                                 }
                             ],
                             "id": "four-weekly-pay-breakdown-question",
-                            "title": "Of the <em>{{answers.four_weekly_total_gross|format_currency}}</em> paid to <em>four weekly</em> paid employees in {{metadata.period_str}}, what other amounts were paid?",
+                            "title": "Of the <em>{{answers.four_weekly_total_gross|format_currency}}</em> paid to <em>four weekly</em> paid employees in {{exercise.period_str}}, what other amounts were paid?",
                             "type": "General",
                             "guidance": {
                                 "content": [{
@@ -1732,7 +1736,7 @@
                             "id": "four-weekly-pay-significant-changes-paid-employees-question",
                             "title": "Did any significant changes occur to the <em>total pay or number</em> of <em>four weekly</em> paid employees?",
                             "type": "General",
-                            "description": "<p>This is your own interpretation of whether there has been a significant change in  {{metadata.trad_as_or_ru_name}}’s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year.</p>",
+                            "description": "<p>This is your own interpretation of whether there has been a significant change in  {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year.</p>",
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -1947,7 +1951,10 @@
                                 "label": "Total number of five weekly paid employees",
                                 "mandatory": true,
                                 "q_code": "140w5",
-                                "type": "Number"
+                                "type": "Number",
+                                "min_value": {
+                                    "value": 1
+                                }
                             }],
                             "description": "<p>If there are two pay dates in the same month only give details for one.</p>",
                             "guidance": {
@@ -1968,7 +1975,7 @@
                                 ]
                             },
                             "id": "five-weekly-pay-paid-employees-question",
-                            "title": "What was the <em>number</em> of <em>five weekly</em> paid employees paid in {{metadata.period_str}}?",
+                            "title": "What was the <em>number</em> of <em>five weekly</em> paid employees paid in {{exercise.period_str}}?",
                             "type": "General"
                         }],
                         "title": "Five Weekly Pay",
@@ -2019,7 +2026,7 @@
                                 ]
                             },
                             "id": "five-weekly-pay-gross-pay-question",
-                            "title": "What was the <em>total gross five weekly pay</em> paid to employees in {{metadata.period_str}}?",
+                            "title": "What was the <em>total gross five weekly pay</em> paid to employees in {{exercise.period_str}}?",
                             "type": "General"
                         }],
                         "title": "Five Weekly Pay",
@@ -2054,7 +2061,7 @@
                                 "mandatory": true
                             }],
                             "id": "confirm-five-weekly-gross-pay-question",
-                            "title": "The <em>total gross five weekly pay</em> paid to employees in the last week of {{metadata.period_str}} was <em>£0</em>, is this correct?"
+                            "title": "The <em>total gross five weekly pay</em> paid to employees {{exercise.period_str}} was <em>£0</em>, is this correct?"
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -2104,7 +2111,7 @@
                                 }
                             ],
                             "id": "five-weekly-pay-breakdown-question",
-                            "title": "Of the <em>{{answers.five_weekly_total_gross|format_currency}}</em> paid to <em>five weekly paid employees</em> in {{metadata.period_str}}, what other amounts were paid?",
+                            "title": "Of the <em>{{answers.five_weekly_total_gross|format_currency}}</em> paid to <em>five weekly paid employees</em> in {{exercise.period_str}}, what other amounts were paid?",
                             "type": "General",
                             "guidance": {
                                 "content": [{
@@ -2141,7 +2148,7 @@
                             "id": "five-weekly-pay-significant-changes-paid-employees-question",
                             "title": "Did any significant changes occur to the <em>total pay or number</em> of <em>five weekly</em> paid employees?",
                             "type": "General",
-                            "description": "<p>This is your own interpretation of whether there has been a significant change in  {{metadata.trad_as_or_ru_name}}’s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year.</p>",
+                            "description": "<p>This is your own interpretation of whether there has been a significant change in  {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year.</p>",
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -2395,6 +2402,6 @@
     "theme": "default",
     "title": "Monthly Wages and Salaries Survey",
     "variables": {
-        "period": "{{ format_date_range(metadata.start_date, metadata.end_date) }}"
+        "period": "{{ format_date_range(exercise.start_date, exercise.end_date) }}"
     }
 }
