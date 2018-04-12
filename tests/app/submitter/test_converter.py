@@ -27,7 +27,7 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             'return_by': '2016-07-07',
             'case_id': '1234567890',
             'case_ref': '1000000000000001'
-        }, required_metadata={})
+        }, schema_metadata={})
 
     def test_convert_answers_flushed_flag_default_is_false(self):
         with self._app.test_request_context():

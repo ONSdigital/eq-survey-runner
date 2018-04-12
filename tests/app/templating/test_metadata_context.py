@@ -30,7 +30,7 @@ class TestMetadataContext(SurveyRunnerTestCase):
 
     def test_build_metadata_context(self):
         with self.application.test_request_context():
-            metadata = parse_metadata(self.jwt, required_metadata={})
+            metadata = parse_metadata(self.jwt, {})
 
         metadata_context = build_metadata_context(metadata)
 
@@ -41,9 +41,9 @@ class TestMetadataContext(SurveyRunnerTestCase):
         self.assertIsNone(metadata_context['employment_date'])
         self.assertIsNone(metadata_context['region_code'])
         self.assertEqual(self.jwt['period_str'], metadata_context['period_str'])
-        self.assertEqual(self.jwt['ru_ref'], metadata_context['respondent_id'])
-        self.assertEqual(self.jwt['ru_name'], metadata_context['name'])
-        self.assertEqual(self.jwt['trad_as'], metadata_context['trading_as'])
+        self.assertEqual(self.jwt['ru_ref'], metadata_context['ru_ref'])
+        self.assertEqual(self.jwt['ru_name'], metadata_context['ru_name'])
+        self.assertEqual(self.jwt['trad_as'], metadata_context['trad_as'])
 
     def test_defend_against_XSS_attack(self):
         jwt = self.jwt.copy()
@@ -53,13 +53,13 @@ class TestMetadataContext(SurveyRunnerTestCase):
             jwt[key] = '<">\\'
 
         with self.application.test_request_context():
-            metadata = parse_metadata(jwt, required_metadata={})
+            metadata = parse_metadata(jwt, {})
 
         metadata_context = build_metadata_context(metadata)
 
-        self.assertEqual(escaped_bad_characters, metadata_context['respondent_id'])
-        self.assertEqual(escaped_bad_characters, metadata_context['name'])
-        self.assertEqual(escaped_bad_characters, metadata_context['trading_as'])
+        self.assertEqual(escaped_bad_characters, metadata_context['ru_ref'])
+        self.assertEqual(escaped_bad_characters, metadata_context['ru_name'])
+        self.assertEqual(escaped_bad_characters, metadata_context['trad_as'])
 
         self.assertEqual(escaped_bad_characters, metadata_context['region_code'])
         self.assertEqual(escaped_bad_characters, metadata_context['period_str'])

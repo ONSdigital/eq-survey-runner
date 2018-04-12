@@ -18,9 +18,9 @@ def build_metadata_context(metadata):
         'return_by': metadata.get('return_by'),
         'collection_id': json_and_html_safe(metadata.get('collection_exercise_sid')),
         'tx_id': convert_tx_id(metadata['tx_id']),
-        'respondent_id': json_and_html_safe(metadata.get('ru_ref')),
-        'name': json_and_html_safe(metadata.get('ru_name')),
-        'trading_as': json_and_html_safe(metadata.get('trad_as'))
+        'ru_ref': json_and_html_safe(metadata.get('ru_ref')),
+        'ru_name': json_and_html_safe(metadata.get('ru_name')),
+        'trad_as': json_and_html_safe(metadata.get('trad_as'))
     }
 
 
