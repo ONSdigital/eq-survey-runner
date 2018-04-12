@@ -100,7 +100,7 @@ describe('Feature: Sum of grouped answers validation against total', function() 
          .setValue(BreakdownAnswerPage.breakdown3(), '3')
          .setValue(BreakdownAnswerPage.breakdown4(), '3')
          .click(BreakdownAnswerPage.submit())
-         .getText(BreakdownAnswerPage.errorNumber(1)).should.eventually.contain('Enter answers that are less than £12.00');
+         .getText(BreakdownAnswerPage.errorNumber(1)).should.eventually.contain('Enter answers that add up to less than £12.00');
        });
      });
 
@@ -114,7 +114,7 @@ describe('Feature: Sum of grouped answers validation against total', function() 
          .setValue(BreakdownAnswerPage.breakdown3(), '3')
          .setValue(BreakdownAnswerPage.breakdown4(), '3')
          .click(BreakdownAnswerPage.submit())
-         .getText(BreakdownAnswerPage.errorNumber(1)).should.eventually.contain('Enter answers that are less than £5.00');
+         .getText(BreakdownAnswerPage.errorNumber(1)).should.eventually.contain('Enter answers that add up to less than £5.00');
        });
      });
    });
