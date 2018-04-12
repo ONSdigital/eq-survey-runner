@@ -60,18 +60,11 @@ def parse_metadata(metadata_to_check, schema_metadata):
 
 def _validate_mandatory_schema_metadata(metadata, schema_metadata):
 
-    default_metadata = {
-        'period_id': 'string',
-        'user_id': 'string'
-    }
-
-    default_metadata.update(schema_metadata)
-
-    for key in default_metadata.keys():
+    for key in schema_metadata.keys():
         if key not in metadata or not metadata[key]:
             if key == 'trad_as_or_ru_name':
                 if 'trad_as' in metadata or 'ru_name' in metadata:
                     continue
             raise InvalidTokenException('Missing key/value for {}'.format(key))
 
-    return default_metadata
+    return schema_metadata

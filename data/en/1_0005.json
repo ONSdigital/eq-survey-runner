@@ -8,6 +8,8 @@
         "duration": 900
     },
     "required_metadata": {
+        "period_id": "string",
+        "user_id": "string",
         "ref_p_start_date": "date",
         "ref_p_end_date": "date",
         "period_str": "string",
@@ -477,7 +479,7 @@
                                 }
                             ],
                             "id": "weekly-pay-breakdown-question",
-                            "title": "Of the <em>{{answers.weekly_total_gross|format_currency}}</em> paid to <em>weekly</em> paid employees in the last week of {{metadata.period_str}}, what other amounts were paid? ",
+                            "title": "Of the <em>{{metadata.weekly_total_gross|format_currency}}</em> paid to <em>weekly</em> paid employees in the last week of {{metadata.period_str}}, what other amounts were paid? ",
                             "type": "General",
                             "guidance": {
                                 "content": [{
