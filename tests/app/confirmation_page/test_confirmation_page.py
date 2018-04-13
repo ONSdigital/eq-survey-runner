@@ -16,7 +16,7 @@ class TestConfirmationPage(AppContextTestCase):
         answer_store.add(answer)
 
         schema = load_schema_from_params('0', 'rogue_one')
-        navigator = PathFinder(schema, answer_store, {})
+        navigator = PathFinder(schema, answer_store, {}, [])
         next_location = navigator.get_next_location(Location('rogue-one', 0, 'film-takings'))
 
         self.assertEqual('summary', next_location.block_id)

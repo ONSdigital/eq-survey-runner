@@ -75,8 +75,9 @@ def login():
     if 'account_service_url' in metadata and metadata.get('account_service_url'):
         cookie_session[ACCOUNT_URL] = metadata.get('account_service_url')
 
-    navigator = PathFinder(g.schema, get_answer_store(current_user), metadata)
-    current_location = navigator.get_latest_location(get_completed_blocks(current_user))
+    completed_blocks = get_completed_blocks(current_user)
+    navigator = PathFinder(g.schema, get_answer_store(current_user), metadata, completed_blocks)
+    current_location = navigator.get_latest_location(completed_blocks)
 
     return redirect(current_location.url(metadata))
 

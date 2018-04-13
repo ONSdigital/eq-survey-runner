@@ -13,7 +13,7 @@ def build_summary_rendering_context(schema, sections, answer_store, metadata):
     :param metadata: all of the metadata
     :return: questionnaire summary context
     """
-    navigator = PathFinder(schema, answer_store, metadata)
+    navigator = PathFinder(schema, answer_store, metadata, [])
     path = navigator.get_full_routing_path()
     groups = []
 

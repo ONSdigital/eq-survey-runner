@@ -24,7 +24,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             group_instance=0
         )
 
-        path_finder = PathFinder(schema, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
         self.assertEqual(path_finder.get_next_location(current_location=current_location), next_location)
 
     def test_previous_block(self):
@@ -42,13 +42,13 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             group_instance=0
         )
 
-        path_finder = PathFinder(schema, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
         self.assertEqual(path_finder.get_previous_location(current_location=current_location), previous_location)
 
     def test_introduction_in_path_when_in_schema(self):
         schema = load_schema_from_params('test', '0102')
 
-        path_finder = PathFinder(schema, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
 
         blocks = [b.block_id for b in path_finder.get_full_routing_path()]
 
@@ -57,7 +57,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
     def test_introduction_not_in_path_when_not_in_schema(self):
         schema = load_schema_from_params('census', 'individual')
 
-        path_finder = PathFinder(schema, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
 
         blocks = [b.block_id for b in path_finder.get_full_routing_path()]
 
@@ -91,13 +91,24 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         current_location = expected_path[1]
         expected_next_location = expected_path[2]
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        completed_blocks = [
+            expected_path[0],
+            expected_path[1]
+        ]
+
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=completed_blocks)
         actual_next_block = path_finder.get_next_location(current_location=current_location)
 
         self.assertEqual(actual_next_block, expected_next_location)
 
         current_location = expected_path[2]
         expected_next_location = expected_path[3]
+
+        path_finder.completed_blocks = [
+            expected_path[0],
+            expected_path[1],
+            expected_path[2]
+        ]
 
         actual_next_block = path_finder.get_next_location(current_location=current_location)
 
@@ -117,7 +128,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             Location('rsi', 0, 'summary')
         ]
 
-        path_finder = PathFinder(schema, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
         routing_path = path_finder.get_full_routing_path()
 
         self.assertEqual(routing_path, expected_path)
@@ -149,7 +160,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers.add(answer_1)
         answers.add(answer_2)
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
         routing_path = path_finder.get_full_routing_path()
 
         self.assertEqual(routing_path, expected_path)
@@ -157,9 +168,9 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
     def test_get_next_location_introduction(self):
         schema = load_schema_from_params('0', 'star_wars')
 
-        path_finder = PathFinder(schema, AnswerStore(), {})
-
         introduction = Location('star-wars', 0, 'introduction')
+
+        path_finder = PathFinder(schema, AnswerStore(), {}, [introduction])
 
         next_location = path_finder.get_next_location(current_location=introduction)
 
@@ -181,7 +192,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers.add(answer_1)
         answers.add(answer_2)
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
         current_location = Location('star-wars', 0, 'star-wars-trivia-part-2')
 
@@ -202,7 +213,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
     def test_get_previous_location_introduction(self):
         schema = load_schema_from_params('0', 'star_wars')
 
-        path_finder = PathFinder(schema, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
 
         first_location = Location('star-wars', 0, 'choose-your-side-block')
 
@@ -238,7 +249,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         current_location = expected_path[3]
         expected_previous_location = expected_path[2]
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
         actual_previous_block = path_finder.get_previous_location(current_location=current_location)
 
         self.assertEqual(actual_previous_block, expected_previous_location)
@@ -277,7 +288,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers.add(answer_1)
         answers.add(answer_2)
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
         self.assertEqual(path_finder.get_previous_location(current_location=current_location),
                          expected_previous_location)
@@ -298,7 +309,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         )
         answers = AnswerStore()
         answers.add(answer)
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
         current_location = expected_path[1]
         expected_next_location = expected_path[2]
@@ -330,7 +341,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers.add(answer_1)
         answers.add(answer_2)
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
         current_location = expected_path[1]
         expected_next_location = expected_path[2]
@@ -350,7 +361,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers = AnswerStore()
         answers.add(answer)
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
         self.assertFalse(Location('star-wars', 0, 'summary') in path_finder.get_full_routing_path())
 
@@ -378,7 +389,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers = AnswerStore()
         answers.add(answer)
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
         self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
@@ -401,7 +412,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         )
         answers = AnswerStore()
         answers.add(answer)
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
         self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
     def test_repeating_groups_no_of_answers(self):
@@ -446,7 +457,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers.add(answer_2)
         answers.add(answer_3)
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
         self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
@@ -483,7 +494,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers.add(answer)
         answers.add(answer_2)
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
         self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
@@ -494,7 +505,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             Location('who-lives-here', 0, 'overnight-visitors'),
             Location('who-lives-here-relationship', 0, 'household-relationships'),
         ]
-        path_finder = PathFinder(schema, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
         self.assertEqual(path_finder.get_previous_location(current_location=expected_path[1]), expected_path[0])
 
     def test_repeating_groups_previous_location_second_instance(self):
@@ -504,7 +515,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             Location('who-lives-here-relationship', 0, 'household-relationships'),
             Location('who-lives-here-relationship', 1, 'household-relationships'),
         ]
-        path_finder = PathFinder(schema, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
         self.assertEqual(path_finder.get_previous_location(current_location=expected_path[1]), expected_path[0])
 
     def test_repeating_groups_previous_location(self):
@@ -539,7 +550,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers.add(answer)
         answers.add(answer_2)
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
         self.assertEqual(expected_previous_location,
                          path_finder.get_previous_location(current_location=current_location))
@@ -573,7 +584,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers.add(answer)
         answers.add(answer_2)
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
         summary_location = Location('summary-group', 0, 'summary')
 
@@ -615,7 +626,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers.add(answer_2)
         answers.add(answer_3)
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
         self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
@@ -636,7 +647,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
                 value='Shoe Size Only'
             ))
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
         self.assertEqual('summary', path_finder.get_full_routing_path().pop().block_id)
 
@@ -658,7 +669,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             }
         }
 
-        path_finder = PathFinder(schema, AnswerStore(), metadata=metadata)
+        path_finder = PathFinder(schema, AnswerStore(), metadata=metadata, completed_blocks=[])
 
         self.assertEqual(expected_next_location, path_finder.get_next_location(current_location=current_location))
 
@@ -679,7 +690,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             }
         }
 
-        path_finder = PathFinder(schema, AnswerStore(), metadata=metadata)
+        path_finder = PathFinder(schema, AnswerStore(), metadata=metadata, completed_blocks=[])
 
         self.assertEqual(expected_next_location, path_finder.get_next_location(current_location=current_location))
 
@@ -724,7 +735,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers.add(answer_2)
         answers.add(answer_3)
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
         self.assertEqual(expected_next_location, path_finder.get_next_location(current_location=current_location))
 
@@ -769,7 +780,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers.add(answer_2)
         answers.add(answer_3)
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={})
+        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
         self.assertEqual(expected_next_location, path_finder.get_next_location(current_location=current_location))
 
@@ -782,7 +793,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
                                 value='Yes'))
 
         # When
-        path_finder = PathFinder(schema, answer_store=answer_store, metadata={})
+        path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
 
         # Then
         expected_next_location = Location('summary-group', 0, 'summary')
@@ -798,7 +809,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
                                 value='Yes'))
 
         # When
-        path_finder = PathFinder(schema, answer_store=answer_store, metadata={})
+        path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
 
         # Then
         expected_next_location = Location('last-group', 0, 'last-group-block')
@@ -814,7 +825,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
                                 value='No'))
 
         # When
-        path_finder = PathFinder(schema, answer_store=answer_store, metadata={})
+        path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
 
         # Then
         expected_location = Location('should-skip-group', 0, 'should-skip')
@@ -828,7 +839,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answer_store = AnswerStore()
 
         # When
-        path_finder = PathFinder(schema, answer_store=answer_store, metadata={})
+        path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
 
         # Then
         expected_location = Location('should-skip-group', 0, 'should-skip')
@@ -843,7 +854,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
                                 value='Yes'))
 
         # When
-        path_finder = PathFinder(schema, answer_store=answer_store, metadata={})
+        path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
 
         # Then
         expected_route = [
@@ -865,7 +876,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
     def test_given_no_completed_blocks_when_get_latest_location_then_go_to_first_block(self):
         # Given no completed blocks
         schema = load_schema_from_params('test', 'repeating_household')
-        path_finder = PathFinder(schema, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
         completed_block = []
 
         # When go latest location
@@ -877,7 +888,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
     def test_given_some_completed_blocks_when_get_latest_location_then_go_to_next_uncompleted_block(self):
         # Given no completed blocks
         schema = load_schema_from_params('test', 'repeating_household')
-        path_finder = PathFinder(schema, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
         completed_block = [Location('multiple-questions-group', 0, 'introduction')]
 
         # When go latest location
@@ -889,7 +900,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
     def test_given_completed_all_the_blocks_when_get_latest_location_then_go_to_last_block(self):
         # Given no completed blocks
         schema = load_schema_from_params('test', 'textarea')
-        path_finder = PathFinder(schema, AnswerStore(), metadata={})
+        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
         completed_block = [Location('textarea-group', 0, 'textarea-block'),
                            Location('textarea-group', 0, 'textarea-summary')]
 
@@ -908,10 +919,74 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
                                 value='group2'))
 
         # When i build the path
-        path_finder = PathFinder(schema, answer_store=answer_store, metadata={})
+        path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
 
         path = path_finder.build_path()
 
         # Then it should route me straight to Group2 and not Group1
         self.assertNotIn(Location('group1', 0, 'group1-block'), path)
         self.assertIn(Location('group2', 0, 'group2-block'), path)
+
+    def test_return_to_summary_if_complete(self):
+        schema = load_schema_from_params('test', 'summary')
+
+        # All blocks completed
+        completed_blocks = [
+            Location('summary-group', 0, 'radio'),
+            Location('summary-group', 0, 'test-number-block'),
+            Location('dessert-group', 0, 'dessert-block')
+        ]
+
+        answer_store = AnswerStore()
+        answer_store.add(Answer(answer_id='radio-answer', value='Bacon'))
+        answer_store.add(Answer(answer_id='test-currency', value='123'))
+        answer_store.add(Answer(answer_id='dessert', value='Cake'))
+
+        summary_location = Location('dessert-group', 0, 'summary')
+
+        path_finder = PathFinder(schema, answer_store, metadata={}, completed_blocks=completed_blocks)
+
+        self.assertEqual(path_finder.get_next_location(current_location=completed_blocks[0]), summary_location)
+
+    def test_return_to_section_summary_if_section_complete(self):
+        schema = load_schema_from_params('test', 'section_summary')
+
+        # All blocks completed
+        completed_blocks = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('address-length', 0, 'address-duration')
+        ]
+
+        answer_store = AnswerStore()
+        answer_store.add(Answer(answer_id='insurance-type-answer', value='Contents'))
+        answer_store.add(Answer(answer_id='insurance-address-answer', value='123 Test Road'))
+        answer_store.add(Answer(answer_id='address-duration-answer', value='No'))
+
+        summary_location = Location('address-length', 0, 'property-details-summary')
+
+        path_finder = PathFinder(schema, answer_store, metadata={}, completed_blocks=completed_blocks)
+
+        self.assertEqual(path_finder.get_next_location(current_location=completed_blocks[0]), summary_location)
+
+    def test_go_to_next_section_after_section_summary(self):
+        schema = load_schema_from_params('test', 'section_summary')
+
+        # All blocks completed
+        completed_blocks = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('address-length', 0, 'address-duration'),
+            Location('address-length', 0, 'property-details-summary')
+        ]
+
+        answer_store = AnswerStore()
+        answer_store.add(Answer(answer_id='insurance-type-answer', value='Both'))
+        answer_store.add(Answer(answer_id='insurance-address-answer', value='123 Test Road'))
+        answer_store.add(Answer(answer_id='address-duration-answer', value='No'))
+
+        second_section_location = Location('house-details', 0, 'house-type')
+
+        path_finder = PathFinder(schema, answer_store, metadata={}, completed_blocks=completed_blocks)
+
+        self.assertEqual(path_finder.get_next_location(current_location=completed_blocks[3]), second_section_location)

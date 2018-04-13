@@ -1,6 +1,5 @@
 import copy
 from structlog import get_logger
-
 from app.questionnaire.location import Location
 from app.questionnaire.rules import evaluate_goto, evaluate_repeat, evaluate_skip_conditions, is_goto_rule
 
@@ -9,10 +8,11 @@ logger = get_logger()
 
 class PathFinder:
 
-    def __init__(self, schema, answer_store, metadata):
+    def __init__(self, schema, answer_store, metadata, completed_blocks):
         self.answer_store = answer_store
         self.metadata = metadata
         self.schema = schema
+        self.completed_blocks = completed_blocks
         self._answer_store_hash = self.answer_store.get_hash()
         self._full_routing_path = None
 
@@ -190,6 +190,7 @@ class PathFinder:
     def get_next_location(self, current_location):
         """
         Returns the next 'location' to visit given a set of user answers
+        If Summary or SectionSummary is available then next location will be those.
         :param current_location:
         :return: The next location as a dict
         """
@@ -198,7 +199,46 @@ class PathFinder:
         current_location_index = PathFinder._get_current_location_index(routing_path, current_location)
 
         if current_location_index is not None and current_location_index < len(routing_path) - 1:
+            if self._is_survey_completed(routing_path):
+                return routing_path[-1]     # Go to Summary location
+
+            section_summary_location = self._get_valid_section_summary(current_location.block_id, routing_path)
+            if section_summary_location:
+                return section_summary_location     # Go to SectionSummary location
+
             return routing_path[current_location_index + 1]
+
+    def _is_survey_completed(self, routing_path):
+        # Check all blocks on routing path are complete
+        for location in routing_path[:-1]:  # Don't evaluate end block (Summary or Confirmation)
+            if location not in self.completed_blocks:
+                return False
+
+        return True
+
+    def _get_valid_section_summary(self, current_block_id, routing_path):
+        """
+        Check only the section you are on and that all blocks in that section are complete
+        If the section has a summary section then pass that back as the next location
+        The SectionSummary block itself does not need to be completed
+        :param current_block_id: Id of block you're routing from
+        :param routing_path: routing path
+        :return: location or None
+        """
+        current_section = self.schema.get_section_and_group_id_by_block_id(current_block_id)['section']
+
+        if self.schema.get_block(current_block_id)['type'] in ['Summary', 'SectionSummary']:
+            return None
+
+        for location in routing_path:
+            location_section = self.schema.get_section_and_group_id_by_block_id(location.block_id)['section']
+            if location_section == current_section:
+                block_type = self.schema.get_block(location.block_id)['type']
+                if block_type == 'SectionSummary':
+                    return location
+
+                if location not in self.completed_blocks:
+                    return None
 
     def get_previous_location(self, current_location):
         """
