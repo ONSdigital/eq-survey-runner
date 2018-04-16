@@ -23,7 +23,7 @@
                         }],
                         "description": "",
                         "id": "date-questions",
-                        "title": "Enter a date less than today",
+                        "title": "Enter a date less than {{ get_current_date() }}",
                         "type": "General"
                     }],
                     "title": "",
@@ -61,7 +61,7 @@
                     "type": "Interstitial",
                     "id": "correct-answer",
                     "title": "Correct Date",
-                    "description": "You entered a date older than today."
+                    "description": "You entered a date older than {{ get_current_date() }}."
                 },
                 {
                     "type": "Summary",

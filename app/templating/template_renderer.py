@@ -7,7 +7,8 @@ from jinja2 import Environment
 
 from app.jinja_filters import format_date, format_household_member_name, format_currency, format_number,\
     get_currency_symbol, format_household_summary, format_conditional_date, format_unordered_list, \
-    format_date_range, format_household_member_name_possessive, concatenated_list, calculate_years_difference
+    format_date_range, format_household_member_name_possessive, concatenated_list, calculate_years_difference, \
+    get_current_date
 
 
 class TemplateRenderer:
@@ -26,6 +27,7 @@ class TemplateRenderer:
         self.environment.globals['format_date_range'] = format_date_range
         self.environment.filters['concatenated_list'] = concatenated_list
         self.environment.globals['calculate_years_difference'] = calculate_years_difference
+        self.environment.globals['get_current_date'] = get_current_date
 
     def render(self, renderable, **context):
         """
