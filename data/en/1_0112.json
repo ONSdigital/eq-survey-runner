@@ -13,7 +13,11 @@
     },
     "required_metadata": {
         "user_id": "string",
-        "period_id": "string"
+        "period_id": "string",
+        "ref_p_start_date": "date",
+        "ref_p_end_date": "date",
+        "employment_date": "date",
+        "trad_as_or_ru_name": "string"
     },
     "sections": [{
         "id": "default-section",

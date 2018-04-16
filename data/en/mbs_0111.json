@@ -9,7 +9,10 @@
     "data_version": "0.0.1",
     "required_metadata": {
         "user_id": "string",
-        "period_id": "string"
+        "period_id": "string",
+        "ref_p_start_date": "date",
+        "ref_p_end_date": "date",
+        "trad_as_or_ru_name": "string"
     },
     "sections": [{
         "id": "default-section",

@@ -3,7 +3,8 @@
     "description": "UK Innovation Survey",
     "required_metadata": {
         "user_id": "string",
-        "period_id": "string"
+        "period_id": "string",
+        "ru_name": "string"
     },
     "sections": [{
         "id": "default-section",
