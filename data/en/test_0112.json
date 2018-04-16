@@ -51,7 +51,7 @@
                                 "type": "Date"
                             }
                         ],
-                        "description": "If possible, this should be for the period {{metadata.ref_p_start_date|format_date}} to {{metadata.ref_p_end_date|format_date}}.",
+                        "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
                         "id": "reporting-period-question",
                         "title": "What are the dates of the period that you will be reporting for?",
                         "type": "DateRange"
@@ -223,7 +223,7 @@
                             }
                         ],
                         "id": "number-of-employees-question",
-                        "title": "On {{metadata.employment_date|format_date}} what was the number of employees?",
+                        "title": "On {{exercise.employment_date|format_date}} what was the number of employees?",
                         "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                         "guidance": {
                             "content": [{

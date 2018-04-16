@@ -28,7 +28,7 @@
                             "default": 0
                         }],
                         "id": "number-of-employees-total-question",
-                        "title": "How many employees work at {{metadata.trad_as_or_ru_name}}?",
+                        "title": "How many employees work at {{respondent.trad_as_or_ru_name}}?",
                         "type": "General"
                     }],
                     "type": "Question"
@@ -61,7 +61,7 @@
                             "mandatory": true
                         }],
                         "id": "confirm-zero-employees-question",
-                        "title": "The current number of employees for {{metadata.trad_as_or_ru_name}} is <em>0</em>, is this correct?"
+                        "title": "The current number of employees for {{respondent.trad_as_or_ru_name}} is <em>0</em>, is this correct?"
                     }],
                     "routing_rules": [{
                             "goto": {

@@ -260,7 +260,7 @@ def get_view_submission(eq_id, form_type):  # pylint: disable=unused-argument
 
             metadata = submitted_data.get('metadata')
 
-            routing_path = PathFinder(g.schema, answer_store, metadata).get_full_routing_path()
+            routing_path = PathFinder(g.schema, answer_store, metadata, []).get_full_routing_path()
 
             schema_context = _get_schema_context(routing_path, 0, metadata, answer_store)
             rendered_schema = renderer.render(g.schema.json, **schema_context)

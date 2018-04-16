@@ -21,7 +21,7 @@
                     "blocks": [{
                             "type": "Interstitial",
                             "id": "about-household",
-                            "title": "About you and people who live at {{ metadata.ru_name }}",
+                            "title": "About you and people who live at {{ respondent.ru_name }}",
                             "description": "In this section, we’re going to ask about you, and the people that live with you.",
                             "content": [{
                                 "title": "Information you need",
@@ -37,7 +37,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "household-composition-question",
-                                "title": "What are the names of everyone who lives in the <em>{{ metadata.ru_name }}</em> household?",
+                                "title": "What are the names of everyone who lives in the <em>{{ respondent.ru_name }}</em> household?",
                                 "guidance": {
                                     "content": [{
                                         "title": "Include",
@@ -89,7 +89,7 @@
                             "description": "<h2 class='neptune'>You have added:</h2> {{ [answers.first_name, answers.middle_names, answers.last_name]|format_household_summary }}",
                             "questions": [{
                                 "id": "everyone-at-address-confirmation-question",
-                                "title": "Is this everyone who lives at {{ metadata.ru_name }}?",
+                                "title": "Is this everyone who lives at {{ respondent.ru_name }}?",
                                 "description": "Please note that you will need to ensure that everyone is included because you will be unable to make changes later",
                                 "type": "General",
                                 "answers": [{
@@ -333,7 +333,7 @@
                         "id": "marital-status",
                         "questions": [{
                             "id": "marital-status-question",
-                            "title": "On {{ metadata.start_date|format_date }}, what is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> legal marital or same-sex civil partnership status?",
+                            "title": "On {{ exercise.start_date|format_date }}, what is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> legal marital or same-sex civil partnership status?",
                             "description": "If you were married (or formed a registered same-sex partnership) abroad, and this enables you to be recognised as married or civil partnered in the UK, complete the question reflecting that legal partnership.",
                             "type": "General",
                             "answers": [{
@@ -1609,7 +1609,7 @@
                         "id": "marital-status-no-proxy",
                         "questions": [{
                             "id": "marital-status-question-np",
-                            "title": "On {{ metadata.start_date|format_date }}, what is your legal marital or same-sex civil partnership status?",
+                            "title": "On {{ exercise.start_date|format_date }}, what is your legal marital or same-sex civil partnership status?",
                             "description": "If you were married (or formed a registered same-sex partnership) abroad, and this enables you to be recognised as married or civil partnered in the UK, complete the question reflecting that legal partnership.",
                             "type": "General",
                             "answers": [{
