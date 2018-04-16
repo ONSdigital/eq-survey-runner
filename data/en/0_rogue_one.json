@@ -7,7 +7,7 @@
     "description": "Test with a confirmation page instead of a summary",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "required_metadata": {
+  "required_metadata": {
         "user_id": "string",
         "period_id": "string"
     },
