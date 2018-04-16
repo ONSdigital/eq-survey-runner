@@ -918,7 +918,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         completed_blocks = [
             Location('property-details', 0, 'insurance-type'),
             Location('property-details', 0, 'insurance-address'),
-            Location('address-length', 0, 'address-duration')
+            Location('address-length', 0, 'address-duration'),
         ]
 
         answer_store = AnswerStore()
@@ -926,7 +926,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answer_store.add(Answer(answer_id='insurance-address-answer', value='123 Test Road'))
         answer_store.add(Answer(answer_id='address-duration-answer', value='No'))
 
-        summary_location = Location('address-length', 0, 'property-details-summary')
+        summary_location = Location('property-details-summary-group', 0, 'property-details-summary')
 
         path_finder = PathFinder(schema, answer_store, metadata={}, completed_blocks=completed_blocks)
 
@@ -940,7 +940,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             Location('property-details', 0, 'insurance-type'),
             Location('property-details', 0, 'insurance-address'),
             Location('address-length', 0, 'address-duration'),
-            Location('address-length', 0, 'property-details-summary')
+            Location('property-details-summary-group', 0, 'property-details-summary')
         ]
 
         answer_store = AnswerStore()

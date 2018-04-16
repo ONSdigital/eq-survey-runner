@@ -92,14 +92,25 @@
                                         }
                                     ]
                                 }]
+                            }],
+                            "skip_conditions": [{
+                                "when": [{
+                                    "id": "insurance-type-answer",
+                                    "condition": "equals",
+                                    "value": "Both"
+                                }]
                             }]
-                        },
-                        {
-                            "id": "property-details-summary",
-                            "type": "SectionSummary"
                         }
                     ]
 
+                },
+                {
+                    "id": "property-details-summary-group",
+                    "title": "Property Details Summary",
+                    "blocks": [{
+                            "id": "property-details-summary",
+                            "type": "SectionSummary"
+                    }]
                 }
 
             ]
@@ -111,19 +122,18 @@
                 "id": "house-details",
                 "title": "House Details",
                 "skip_conditions": [{
-                        "when": [{
-                            "id": "insurance-type-answer",
-                            "condition": "equals",
-                            "value": "Contents"
-                        }]
-                    },
-                    {
-                        "when": [{
-                            "id": "insurance-type-answer",
-                            "condition": "not set"
-                        }]
-                    }
-                ],
+                    "when": [{
+                        "id": "insurance-type-answer",
+                        "condition": "equals",
+                        "value": "Contents"
+                    }]
+                },
+                {
+                    "when": [{
+                        "id": "insurance-type-answer",
+                        "condition": "not set"
+                    }]
+                }],
                 "blocks": [{
                         "id": "house-type",
                         "title": "House Details",
@@ -152,13 +162,30 @@
                                 ]
                             }]
                         }]
-                    },
-                    {
-                        "id": "household-details-summary",
-                        "type": "SectionSummary"
                     }
 
                 ]
+            },
+            {
+                "id": "household-details-summary-group",
+                "title": "Household Details Summary",
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "insurance-type-answer",
+                        "condition": "equals",
+                        "value": "Contents"
+                    }]
+                },
+                {
+                    "when": [{
+                        "id": "insurance-type-answer",
+                        "condition": "not set"
+                    }]
+                }],
+                "blocks": [{
+                        "id": "household-details-summary",
+                        "type": "SectionSummary"
+                }]
             }]
         },
         {
@@ -215,12 +242,12 @@
             "id": "summary-section",
             "title": "Summary",
             "groups": [{
+                "id": "summary-group",
+                "title": "Summary",
                 "blocks": [{
                     "id": "summary",
                     "type": "Summary"
-                }],
-                "id": "summary-group",
-                "title": "Summary"
+                }]
             }]
         }
     ]
