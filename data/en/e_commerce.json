@@ -647,7 +647,8 @@
                         "title": "Access and Use of the Internet",
                         "content": [{
                             "description": "You have completed the previous section."
-                        }, {
+                        },
+                        {
                             "description": "This section covers your business’ access to and use of the internet."
                         }]
 
@@ -1644,7 +1645,7 @@
                                     "Are <em>paid</em> for, either by the user, by the capacity used or they are pre-paid"
                                 ]
                             }, {
-                                "description": "Cloud computing may include connections via Virtual Private Networks (VPN)}"
+                                "description": "Cloud computing may include connections via Virtual Private Networks (VPN)"
                             }
                         ]
                     }

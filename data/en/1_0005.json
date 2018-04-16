@@ -299,7 +299,7 @@
                                 "list": [
                                     "number of weekly paid employees",
                                     "holiday pay, pay awards and bonuses paid to weekly paid employees",
-                                    "significant changes to the pay or number of  weekly paid employees"
+                                    "significant changes to the pay or number of weekly paid employees"
                                 ]
                             }
                         ],
@@ -977,7 +977,7 @@
                                 "type": "Radio"
                             }],
                             "content": [{
-                                    "description": "This is your own interpretation of whether there has been a significant change in  {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month."
+                                    "description": "This is your own interpretation of whether there has been a significant change in {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month."
                                 },
                                 {
                                     "description": "Also consider whether there has been a significant change from the same month in the previous year."
@@ -1848,7 +1848,7 @@
                             "title": "Did any significant changes occur to the <em>total pay or number</em> of <em>four weekly</em> paid employees?",
                             "type": "General",
                             "content": [{
-                                    "description": "This is your own interpretation of whether there has been a significant change in  {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month."
+                                    "description": "This is your own interpretation of whether there has been a significant change in {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month."
                                 },
                                 {
                                     "description": "Also consider whether there has been a significant change from the same month in the previous year."
@@ -2058,7 +2058,7 @@
                         "id": "five-weekly-pay-introduction",
                         "title": "Five Weekly Pay",
                         "content": [{
-                                "description": "This section covers employees who are paid five weekly monthly."
+                                "description": "This section covers employees who are paid five weekly."
                             },
                             {
                                 "description": "You’ll be asked for the:"
@@ -2290,7 +2290,7 @@
                             "title": "Did any significant changes occur to the <em>total pay or number</em> of <em>five weekly</em> paid employees?",
                             "type": "General",
                             "content": [{
-                                    "description": "This is your own interpretation of whether there has been a significant change in  {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month."
+                                    "description": "This is your own interpretation of whether there has been a significant change in {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month."
                                 },
                                 {
                                     "description": "Also consider whether there has been a significant change from the same month in the previous year."
