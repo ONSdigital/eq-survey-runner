@@ -11,6 +11,10 @@
         "enabled": true,
         "duration": 5
     },
+    "required_metadata": {
+        "user_id": "string",
+        "period_id": "string"
+    },
     "sections": [{
         "id": "default-section",
         "groups": [{

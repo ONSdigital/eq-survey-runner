@@ -6,6 +6,10 @@
     "title": "Skip group",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
+    "required_metadata": {
+        "user_id": "string",
+        "period_id": "string"
+    },
     "sections": [{
         "id": "default-section",
         "groups": [{

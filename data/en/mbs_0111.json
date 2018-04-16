@@ -7,6 +7,10 @@
     "survey_id": "023",
     "theme": "default",
     "data_version": "0.0.1",
+    "required_metadata": {
+        "user_id": "string",
+        "period_id": "string"
+    },
     "sections": [{
         "id": "default-section",
         "groups": [{

@@ -9,6 +9,10 @@
     "navigation": {
         "visible": true
     },
+    "required_metadata": {
+        "user_id": "string",
+        "period_id": "string"
+    },
     "sections": [{
             "id": "group-1-section",
             "title": "Group 1",

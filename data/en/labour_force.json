@@ -12,6 +12,10 @@
     "navigation": {
         "visible": true
     },
+    "required_metadata": {
+        "user_id": "string",
+        "period_id": "string"
+    },
     "sections": [{
             "id": "household-section",
             "title": "About the household",
