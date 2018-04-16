@@ -115,12 +115,12 @@ def store_session(metadata):
 
 
 def decrypt_token(encrypted_token):
-    logger.debug('decrypting token')
-    if not encrypted_token or encrypted_token is None:
+    if not encrypted_token:
         raise NoTokenException('Please provide a token')
 
     mandatory_claims = ['eq_id', 'form_type', 'ru_ref', 'collection_exercise_sid', 'exp', 'iat']
 
+    logger.debug('decrypting token')
     decrypted_token = decrypt(token=encrypted_token,
                               key_store=current_app.eq['key_store'],
                               key_purpose=KEY_PURPOSE_AUTHENTICATION,
