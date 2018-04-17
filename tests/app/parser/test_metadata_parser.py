@@ -96,12 +96,8 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'collection_exercise_sid': 'test-sid',
             'eq_id': '2',
             'period_id': '3',
-            'period_str': '2016-01-01',
-            'ref_p_start_date': '2016-02-02',
-            'ref_p_end_date': '2016-03-03',
             'ru_ref': '2016-04-04',
-            'ru_name': 'Apple',
-            'return_by': '2016-07-07'
+
         }
 
         with self.assertRaises(InvalidTokenException) as ite:
@@ -116,11 +112,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'form_type': 'a',
             'eq_id': '2',
             'period_str': '2016-01-01',
-            'ref_p_start_date': '2016-02-02',
-            'ref_p_end_date': '2016-03-03',
             'ru_ref': '2016-04-04',
-            'ru_name': 'Apple',
-            'return_by': '2016-07-07'
         }
 
         with self.assertRaises(InvalidTokenException) as ite:
@@ -132,14 +124,11 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
         jwt = {
             'jti': str(uuid.uuid4()),
             'user_id': '1',
+            'form_type': 'a',
             'collection_exercise_sid': 'test-sid',
             'eq_id': '2',
             'period_id': '3',
-            'period_str': '2016-01-01',
-            'ref_p_start_date': '2016-02-02',
-            'ref_p_end_date': '2016-03-03',
             'ru_ref': '2016-04-04',
-            'ru_name': 'Apple',
         }
 
         self.required_schema_metadata.update({
@@ -159,12 +148,8 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'collection_exercise_sid': 'test-sid',
             'eq_id': '2',
             'period_id': '3',
-            'period_str': '2016-01-01',
             'ref_p_start_date': '2016-13-31',
-            'ref_p_end_date': '2016-03-03',
             'ru_ref': '2016-04-04',
-            'ru_name': 'Apple',
-            'return_by': '2016-07-07'
         }
 
         self.required_schema_metadata.update({
@@ -184,12 +169,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'collection_exercise_sid': 'test-sid',
             'eq_id': '2',
             'period_id': '3',
-            'period_str': '2016-01-01',
-            'ref_p_start_date': '2016-02-02',
-            'ref_p_end_date': '2016-03-03',
             'ru_ref': '2016-04-04',
-            'ru_name': 'Apple',
-            'return_by': '2016-07-07',
             # invalid
             'tx_id': '12121'
         }
@@ -207,12 +187,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'collection_exercise_sid': 'test-sid',
             'eq_id': '2',
             'period_id': '3',
-            'period_str': '2016-01-01',
-            'ref_p_start_date': '2016-02-02',
-            'ref_p_end_date': '2016-03-03',
             'ru_ref': '2016-04-04',
-            'ru_name': 'Apple',
-            'return_by': '2016-07-07',
             # one character short
             'tx_id': '83a3db82-bea7-403c-a411-6357ff70f2f'
         }

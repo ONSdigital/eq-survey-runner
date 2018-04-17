@@ -118,7 +118,7 @@ def decrypt_token(encrypted_token):
     if not encrypted_token:
         raise NoTokenException('Please provide a token')
 
-    mandatory_claims = ['eq_id', 'form_type', 'ru_ref', 'collection_exercise_sid', 'exp', 'iat']
+    mandatory_claims = ['eq_id', 'form_type', 'ru_ref', 'collection_exercise_sid']
 
     logger.debug('decrypting token')
     decrypted_token = decrypt(token=encrypted_token,
