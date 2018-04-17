@@ -10,14 +10,14 @@
     "sections": [{
         "id": "default-section",
         "groups": [{
-            "id": "radio-checkbox-descriptio",
+            "id": "radio-checkbox-description",
             "title": "Did this business make major changes in the following areas?",
             "blocks": [{
                     "type": "Question",
                     "id": "checkbox-block",
                     "title": "Did this business make major changes in the following areas?",
 
-                    "description": "<p>Include all <strong>new</strong> and <strong>significantly improved</strong> forms of organisation, business structures or practices aimed at raising internal efficiency or the effectiveness of approaching markets and customers.</p>",
+                    "description": "Include all <strong>new</strong> and <strong>significantly improved</strong> forms of organisation, business structures or practices aimed at raising internal efficiency or the effectiveness of approaching markets and customers.",
                     "questions": [{
                         "answers": [{
                             "id": "checkbox-answer",

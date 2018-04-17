@@ -234,7 +234,7 @@
                                     "title": "Include"
                                 },
                                 {
-                                    "description": "<p>Guidance <b>include</b> description text</p>"
+                                    "description": "Guidance <b>include</b> description text"
                                 },
                                 {
                                     "list": [
@@ -248,7 +248,7 @@
                                     "title": "Exclude"
                                 },
                                 {
-                                    "description": "<p>Guidance <b>exclude</b> description text</p>"
+                                    "description": "Guidance <b>exclude</b> description text"
                                 },
                                 {
                                     "list": [
@@ -262,7 +262,7 @@
                                     "title": "Other"
                                 },
                                 {
-                                    "description": "<p>Guidance <b>other</b> description text</p>"
+                                    "description": "Guidance <b>other</b> description text"
                                 },
                                 {
                                     "list": [

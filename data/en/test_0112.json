@@ -18,7 +18,7 @@
                         "type": "Basic",
                         "title": "You will be asked to provide information for the business, including:",
                         "content": [{
-                            "description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>.</p>"
+                            "description": "The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>."
                         }, {
 
                             "list": [
@@ -71,7 +71,7 @@
                             "currency": "GBP",
                             "decimal_places": 2
                         }],
-                        "description": "<p>Even if your figures are zero, please still complete.</p>",
+                        "description": "Even if your figures are zero, please still complete.",
                         "guidance": {
                             "content": [{
                                     "title": "Include",
@@ -111,7 +111,7 @@
                             "currency": "GBP",
                             "decimal_places": 2
                         }],
-                        "description": "<p>Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.</p>",
+                        "description": "Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.",
                         "guidance": {
                             "content": [{
                                 "title": "Include",
@@ -163,10 +163,16 @@
                             "q_code": "146",
                             "type": "TextArea"
                         }],
-                        "description": "<p>We rely on your commentary to 'tell the story' behind changes to the business's figures.</p><p>By commenting here it will reduce the need for us to call you.</p>",
+                        "content": [{
+                                "description": "We rely on your commentary to 'tell the story' behind changes to the business's figures."
+                            },
+                            {
+                                "description": "By commenting here it will reduce the need for us to call you."
+                            }
+                        ],
                         "guidance": {
                             "content": [{
-                                    "description": "<p>Comment on significant changes to the business's total retail turnover figures from:</p>"
+                                    "description": "Comment on significant changes to the business's total retail turnover figures from:"
                                 },
                                 {
                                     "list": [
@@ -224,7 +230,7 @@
                         ],
                         "id": "number-of-employees-question",
                         "title": "On {{exercise.employment_date|format_date}} what was the number of employees?",
-                        "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
+                        "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
                         "guidance": {
                             "content": [{
                                     "title": "Include",

@@ -180,7 +180,13 @@
                         "id": "general-business-information-completed",
                         "section_number": "1",
                         "title": "General Business Information",
-                        "description": "<p>You have successfully completed this section</p><p>The next section covers changes in <em>business strategy and practices</em>, for example, implementing changes to marketing concepts or strategies.</p>",
+                        "content": [{
+                                "description": "You have successfully completed this section"
+                            },
+                            {
+                                "description": "The next section covers changes in <em>business strategy and practices</em>, for example, implementing changes to marketing concepts or strategies."
+                            }
+                        ],
                         "type": "Interstitial"
                     }
                 ],
