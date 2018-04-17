@@ -56,6 +56,7 @@
                                             "description": "Exclude:",
                                             "list": [
                                                 "VAT",
+                                                "excise duties",
                                                 "income from the sale of fixed capital assets",
                                                 "grants and subsidies",
                                                 "insurance claims",
@@ -77,6 +78,60 @@
                                             "currency effects (increase/decrease in the currency value)"
                                         ]
                                     }]
+                                },
+                                {
+                                    "question": "Number of employees",
+                                    "content": [{
+                                            "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme."
+                                        },
+                                        {
+                                            "description": "Include:",
+                                            "list": [
+                                                "all workers paid directly from this business's payroll(s)",
+                                                "those temporarily absent but still being paid, for example on maternity leave"
+                                            ]
+                                        },
+                                        {
+                                            "description": "Exclude:",
+                                            "list": [
+                                                "agency workers paid directly from the agency payroll",
+                                                "voluntary workers",
+                                                "former employees only receiving a pension",
+                                                "self-employed workers",
+                                                "working owners who are not paid via PAYE"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Employees and working hours",
+                                    "content": [{
+                                            "description": "The number of:",
+                                            "list": [
+                                                "male employees working more than 30 hours per week",
+                                                "male employees working 30 hours or less per week",
+                                                "female employees working more than 30 hours per week",
+                                                "female employees working 30 hours or less per week"
+                                            ]
+                                        },
+                                        {
+                                            "description": "Include:",
+                                            "list": [
+                                                "all workers paid directly from this business's payroll(s)",
+                                                "those temporarily absent but still being paid, for example on maternity leave"
+                                            ]
+                                        },
+                                        {
+                                            "description": "Exclude:",
+                                            "list": [
+                                                "agency workers paid directly from the agency payroll",
+                                                "voluntary workers",
+                                                "former employees only receiving a pension",
+                                                "self-employed workers",
+                                                "working owners who are not paid via PAYE"
+                                            ]
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -200,6 +255,191 @@
                             "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total turnover</em>, excluding VAT?"
                         }],
                         "title": "Total Turnover"
+                    },
+                    {
+                        "id": "number-of-employees-total-block",
+                        "questions": [{
+                            "answers": [{
+                                "id": "number-of-employees-total",
+                                "label": "Total number of employees",
+                                "mandatory": false,
+                                "q_code": "50",
+                                "type": "Number",
+                                "default": 0
+                            }],
+                            "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include",
+                                        "list": [
+                                            "all workers paid directly from this business’s payroll(s)",
+                                            "those temporarily absent but still being paid, for example on maternity leave"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "agency workers paid directly from the agency payroll",
+                                            "voluntary workers",
+                                            "former employees only receiving a pension",
+                                            "self-employed workers",
+                                            "working owners who are not paid via PAYE"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "id": "number-of-employees-total-question",
+                            "title": "On {{exercise.employment_date|format_date}}, what was the number of employees for {{respondent.trad_as_or_ru_name}}?",
+                            "type": "General"
+                        }],
+                        "title": "Employees",
+                        "type": "Question"
+                    },
+                    {
+                        "type": "ConfirmationQuestion",
+                        "title": "Employees",
+                        "id": "confirm-zero-employees-block",
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "number-of-employees-total",
+                                "condition": "greater than",
+                                "value": 0
+                            }]
+                        }],
+                        "questions": [{
+                            "type": "General",
+                            "answers": [{
+                                "type": "Radio",
+                                "id": "confirm-zero-employees-answer",
+                                "q_code": "d50",
+                                "options": [{
+                                        "label": "Yes this is correct",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No I need to change this",
+                                        "value": "No"
+                                    }
+                                ],
+                                "mandatory": true
+                            }],
+                            "id": "confirm-zero-employees-question",
+                            "title": "On {{exercise.employment_date|format_date}}, the number of employees for {{respondent.trad_as_or_ru_name}} was <em>0</em>, is this correct?"
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "when": [{
+                                        "value": "No",
+                                        "id": "confirm-zero-employees-answer",
+                                        "condition": "equals"
+                                    }],
+                                    "block": "number-of-employees-total-block"
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "changes-in-turnover-block"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "number-of-employees-split-block",
+                        "title": "Employees",
+                        "type": "Question",
+                        "questions": [{
+                            "calculations": [{
+                                    "calculation_type": "sum",
+                                    "value": 0,
+                                    "answers_to_calculate": [
+                                        "number-of-employees-male-more-30-hours",
+                                        "number-of-employees-male-less-30-hours",
+                                        "number-of-employees-female-more-30-hours",
+                                        "number-of-employees-female-less-30-hours"
+                                    ],
+                                    "conditions": [
+                                        "equals"
+                                    ]
+                                },
+                                {
+                                    "calculation_type": "sum",
+                                    "answer_id": "number-of-employees-total",
+                                    "answers_to_calculate": [
+                                        "number-of-employees-male-more-30-hours",
+                                        "number-of-employees-male-less-30-hours",
+                                        "number-of-employees-female-more-30-hours",
+                                        "number-of-employees-female-less-30-hours"
+                                    ],
+                                    "conditions": [
+                                        "equals"
+                                    ]
+                                }
+                            ],
+                            "answers": [{
+                                    "id": "number-of-employees-male-more-30-hours",
+                                    "label": "Number of male employees working more than 30 hours per week",
+                                    "mandatory": false,
+                                    "q_code": "51",
+                                    "type": "Number",
+                                    "max_value": {
+                                        "answer_id": "number-of-employees-total"
+                                    }
+                                },
+                                {
+                                    "id": "number-of-employees-male-less-30-hours",
+                                    "label": "Number of male employees working 30 hours or less per week",
+                                    "mandatory": false,
+                                    "q_code": "52",
+                                    "type": "Number",
+                                    "max_value": {
+                                        "answer_id": "number-of-employees-total"
+                                    }
+                                },
+                                {
+                                    "id": "number-of-employees-female-more-30-hours",
+                                    "label": "Number of female employees working more than 30 hours per week",
+                                    "mandatory": false,
+                                    "q_code": "53",
+                                    "type": "Number",
+                                    "max_value": {
+                                        "answer_id": "number-of-employees-total"
+                                    }
+                                },
+                                {
+                                    "id": "number-of-employees-female-less-30-hours",
+                                    "label": "Number of female employees working 30 hours or less per week",
+                                    "mandatory": false,
+                                    "q_code": "54",
+                                    "type": "Number",
+                                    "max_value": {
+                                        "answer_id": "number-of-employees-total"
+                                    }
+                                }
+                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include",
+                                        "list": [
+                                            "all workers paid directly from this business’s payroll(s)",
+                                            "those temporarily absent but still being paid, for example on maternity leave"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "agency workers paid directly from the agency payroll",
+                                            "voluntary workers",
+                                            "former employees only receiving a pension",
+                                            "self-employed workers",
+                                            "working owners who are not paid via PAYE"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "id": "number-of-employees-split-question",
+                            "title": "Of the <em>{{answers['number-of-employees-total']}}</em> total employees employed on {{exercise.employment_date|format_date}}, how many male and female employees worked the following hours?",
+                            "type": "Calculated"
+                        }]
                     },
                     {
                         "id": "changes-in-turnover-block",

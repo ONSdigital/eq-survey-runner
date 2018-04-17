@@ -6,9 +6,9 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
     "legal_basis": "StatisticsOfTradeAct",
-    "description": "mbs",
+    "description": "mbs 0123",
     "eq_id": "mbs",
-    "form_type": "0161",
+    "form_type": "0123",
     "view_submitted_response": {
         "enabled": true,
         "duration": 900
@@ -26,7 +26,7 @@
                             "id": "use-of-information",
                             "content": [{
                                 "list": [
-                                    "Data should relate to all sites in England, Scotland and Wales.",
+                                    "Data should relate to all sites in England, Scotland and Wales",
                                     "You can provide informed estimates if actual figures aren’t available.",
                                     "We will treat your data securely and confidentially."
                                 ]
@@ -36,45 +36,21 @@
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
+                                "title": "",
                                 "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
                             }],
                             "questions": [{
-                                    "question": "Total Turnover",
-                                    "content": [{
-                                            "description": "Include:",
-                                            "list": [
-                                                "exports",
-                                                "payments for work in progress",
-                                                "costs incurred and passed on to customers",
-                                                "income from sub-contracted activities",
-                                                "commission",
-                                                "sales of goods purchased for resale",
-                                                "revenue earned from other parts of the business not named (please supply at fair value)"
-                                            ]
-                                        },
-                                        {
-                                            "description": "Exclude:",
-                                            "list": [
-                                                "VAT",
-                                                "income from the sale of fixed capital assets",
-                                                "grants and subsidies",
-                                                "insurance claims",
-                                                "interest received"
-                                            ]
-                                        }
-                                    ]
+                                    "question": "Commission and fees"
                                 },
                                 {
-                                    "question": "Changes in total turnover",
+                                    "question": "Sales on own account and turnover from other activities",
                                     "content": [{
-                                        "description": "Include:",
+                                        "description": "Exclude:",
                                         "list": [
-                                            "change in level of business activity",
-                                            "maintenance/shutdowns",
-                                            "special/calendar events",
-                                            "weather",
-                                            "price effects",
-                                            "currency effects (increase/decrease in the currency value)"
+                                            "VAT",
+                                            "commission and fees",
+                                            "income from sales of fixed capital assets",
+                                            "grants"
                                         ]
                                     }]
                                 }
@@ -121,7 +97,7 @@
                                         "value": "Yes",
                                         "condition": "equals"
                                     }],
-                                    "block": "turnover-block"
+                                    "block": "commission-and-fees-block"
                                 }
                             },
                             {
@@ -158,55 +134,62 @@
                         }]
                     },
                     {
-                        "id": "turnover-block",
+                        "id": "commission-and-fees-block",
                         "type": "Question",
+                        "title": "Commission and fees",
                         "questions": [{
-                            "guidance": {
-                                "content": [{
-                                        "title": "Include:",
-                                        "list": [
-                                            "exports",
-                                            "payments for work in progress",
-                                            "costs incurred and passed on to customers",
-                                            "income from sub-contracted activities",
-                                            "commission",
-                                            "sales of goods purchased for resale",
-                                            "revenue earned from other parts of the business not named (please supply at fair value)"
-                                        ]
-                                    },
-                                    {
-                                        "title": "Exclude:",
-                                        "list": [
-                                            "VAT",
-                                            "income from the sale of fixed capital assets",
-                                            "grants and subsidies",
-                                            "insurance claims",
-                                            "interest received"
-                                        ]
-                                    }
-                                ]
-                            },
-                            "id": "turnover-question",
+                            "description": "For example, as a travel agent, where you do not hold title to goods/services",
+                            "id": "commission-and-fees-question",
+                            "type": "General",
+                            "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>commission and fees</em>, excluding VAT?",
                             "answers": [{
-                                "id": "turnover-answer",
-                                "label": "Total turnover excluding VAT",
+                                "id": "commission-and-fees-answer",
+                                "label": "Total commission and fees excluding VAT",
                                 "type": "Currency",
                                 "currency": "GBP",
                                 "decimal_places": 2,
-                                "q_code": "40",
+                                "q_code": "42",
                                 "mandatory": true
-                            }],
-                            "type": "General",
-                            "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total turnover</em>, excluding VAT?"
-                        }],
-                        "title": "Total Turnover"
+                            }]
+                        }]
                     },
                     {
-                        "id": "changes-in-turnover-block",
+                        "id": "sales-on-own-account-block",
+                        "type": "Question",
+                        "title": "Sales on own account and turnover from other activities",
+                        "questions": [{
+                            "guidance": {
+                                "content": [{
+                                    "title": "Exclude",
+                                    "list": [
+                                        "VAT",
+                                        "commission and fees",
+                                        "income from sales of fixed capital assets",
+                                        "grants"
+                                    ]
+                                }]
+                            },
+                            "id": "sales-on-own-account-question",
+                            "type": "General",
+                            "description": "For example, as a tour operator",
+                            "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>sales on own account and turnover from other activities</em>, excluding VAT?",
+                            "answers": [{
+                                "id": "sales-on-own-account-answer",
+                                "label": "Total Sales on own account and turnover from other activities  excluding VAT",
+                                "type": "Currency",
+                                "currency": "GBP",
+                                "decimal_places": 2,
+                                "q_code": "43",
+                                "mandatory": true
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "changes-block",
                         "type": "Question",
                         "questions": [{
-                            "title": "Did any significant changes occur to the total turnover for {{respondent.trad_as_or_ru_name}}?",
-                            "id": "changes-in-turnover-question",
+                            "title": "Did any significant changes occur to the figures provided for {{respondent.trad_as_or_ru_name}}?",
+                            "id": "changes-question",
                             "description": "<p>Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>",
                             "answers": [{
                                 "options": [{
@@ -218,10 +201,10 @@
                                         "label": "No"
                                     }
                                 ],
-                                "id": "changes-in-turnover-answer",
+                                "id": "changes-answer",
                                 "type": "Radio",
                                 "q_code": "146",
-                                "mandatory": false
+                                "mandatory": true
                             }],
                             "guidance": {
                                 "content": [{
@@ -238,15 +221,15 @@
                             },
                             "type": "General"
                         }],
-                        "title": "Changes in total turnover",
+                        "title": "Changes",
                         "routing_rules": [{
                                 "goto": {
                                     "when": [{
-                                        "id": "changes-in-turnover-answer",
+                                        "id": "changes-answer",
                                         "value": "Yes",
                                         "condition": "equals"
                                     }],
-                                    "block": "changes-in-turnover-block-2"
+                                    "block": "changes-block-2"
                                 }
                             },
                             {
@@ -257,10 +240,12 @@
                         ]
                     },
                     {
-                        "id": "changes-in-turnover-block-2",
+                        "id": "changes-block-2",
                         "type": "Question",
                         "questions": [{
-                            "title": "Please indicate the reasons for any changes in the total turnover for {{respondent.trad_as_or_ru_name}}",
+                            "title": "Please indicate the reasons for any changes in the turnover for {{respondent.trad_as_or_ru_name}}",
+                            "type": "General",
+                            "id": "changes-question-2",
                             "answers": [{
                                 "options": [{
                                         "q_code": "146a",
@@ -298,54 +283,46 @@
                                         "label": "Other"
                                     }
                                 ],
-                                "id": "changes-in-turnover-answer-2",
+                                "id": "changes-answer-2",
                                 "type": "Checkbox",
-                                "mandatory": false
-                            }],
-                            "type": "General",
-                            "id": "changes-in-turnover-question-2"
+                                "mandatory": true
+                            }]
                         }],
-                        "title": "Changes in total turnover"
+                        "title": "Changes"
                     },
                     {
                         "type": "Question",
-                        "id": "changes-in-turnover-block-3",
-                        "title": "Changes in total turnover",
+                        "id": "changes-block-3",
+                        "title": "Changes",
                         "questions": [{
                             "type": "General",
-                            "id": "changes-in-turnover-question-3",
-                            "title": "Please describe the changes in total turnover for {{respondent.trad_as_or_ru_name}} in more detail",
+                            "id": "changes-question-3",
+                            "title": "Please describe the changes in turnover for {{respondent.trad_as_or_ru_name}} in more detail",
                             "answers": [{
                                 "guidance": {
-                                    "hide_guidance": "Hide examples of commentary on changes to total turnover",
-                                    "show_guidance": "Show examples of commentary on changes to total turnover",
+                                    "hide_guidance": "Hide examples of commentary on changes to turnover",
+                                    "show_guidance": "Show examples of commentary on changes to turnover",
                                     "content": [{
-                                            "list": [],
                                             "title": "‘Change in level of business activity’",
                                             "description": "\"We gained a new two year overseas contract, which increased our exports this month.\""
                                         },
                                         {
-                                            "list": [],
                                             "title": "‘Maintenance/shutdowns’",
                                             "description": "\"Our activity is significantly lower this month as we had a two week planned maintenance shutdown.\""
                                         },
                                         {
-                                            "list": [],
                                             "title": "‘Special/calendar events’",
                                             "description": "\"We manufacture school uniforms so the increase this month is a typical seasonal peak for our business.\""
                                         },
                                         {
-                                            "list": [],
                                             "title": "‘Weather’",
                                             "description": "\"Bad weather caused a flood at one of our sites, this reduced the amount of work we could undertake and affected sales.\""
                                         },
                                         {
-                                            "list": [],
                                             "title": "‘Price effects’",
                                             "description": "\"We have increased the prices of our products/services. We do this every January, hence our sales figures appear higher.\""
                                         },
                                         {
-                                            "list": [],
                                             "title": "‘Currency effects (increase/decrease in the currency value)’",
                                             "description": "\"The depreciation of sterling has resulted in more overseas sales.\""
                                         }
@@ -354,7 +331,7 @@
                                 "type": "TextArea",
                                 "mandatory": true,
                                 "label": "Comments",
-                                "id": "changes-in-turnover-answer-3",
+                                "id": "changes-answer-3",
                                 "q_code": "146h"
                             }],
                             "description": "<p>We rely on your commentary to ‘tell the story’ behind changes in figures.  By commenting here it will reduce the need for us to call you.</p>"
