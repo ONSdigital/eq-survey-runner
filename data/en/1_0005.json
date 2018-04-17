@@ -1414,7 +1414,7 @@
                             "title": "Did any significant changes occur to the <em>total pay or number</em> of <em>calendar monthly</em> paid employees?",
                             "type": "General",
                             "content": [{
-                                    "description": "This is your own interpretation of whether there has been a significant change in  {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month."
+                                    "description": "This is your own interpretation of whether there has been a significant change in {{respondent.trad_as_or_ru_name}}’s figures compared with the previous month."
                                 },
                                 {
                                     "description": "Also consider whether there has been a significant change from the same month in the previous year."
