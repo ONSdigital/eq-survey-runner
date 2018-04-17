@@ -323,7 +323,7 @@
                 {
                     "type": "Question",
                     "id": "number-employees",
-                    "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
+                    "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
                     "questions": [{
                             "guidance": {
                                 "content": [{

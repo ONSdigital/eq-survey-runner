@@ -2857,7 +2857,7 @@
                     "type": "Confirmation",
                     "id": "confirmation",
                     "title": "You’re ready to submit your Labour Force Survey answers",
-                    "description": "<p>Thank you for taking part.</p>",
+                    "description": "Thank you for taking part.",
                     "questions": [{
                         "answers": [],
                         "id": "questionnaire-completed-question",

@@ -790,7 +790,7 @@
                             "type": "Number",
                             "default": 0
                         }],
-                        "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
+                        "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
                         "id": "total-number-employees-question",
                         "title": "On {{exercise.employment_date|format_date}} what was the number of employees for {{respondent.trad_as_or_ru_name}}?",
                         "type": "General"

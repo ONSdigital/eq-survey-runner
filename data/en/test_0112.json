@@ -268,7 +268,7 @@
                         }],
                         "guidance": {
                             "content": [{
-                                    "description": "<p>Comment on significant changes in the number of employees from:</p>"
+                                    "description": "Comment on significant changes in the number of employees from:"
                                 },
                                 {
                                     "list": [
