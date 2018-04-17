@@ -652,16 +652,14 @@
                         "questions": [{
                             "id": "central-heating-question",
                             "title": "What type of central heating does <em>{{answers.address_line_1}}</em> have?",
-                            "content":[{
-                              "description": "Central heating is a central system that generates heat for multiple rooms."
-                            },
-                            {
-                              "description": ""
-                            }
-
-
-                            }],
-                              "type": "General",
+                            "content": [{
+                                    "description": "Central heating is a central system that generates heat for multiple rooms."
+                                },
+                                {
+                                    "description": "Select all that apply, whether or not you use it"
+                                }
+                            ],
+                            "type": "General",
                             "answers": [{
                                 "id": "central-heating-answer",
                                 "mandatory": false,
@@ -1041,7 +1039,11 @@
                     {
                         "id": "request-private-response",
                         "title": "Request for personal and confidential form",
-                        "description": "<p>You can <a rel='noopener noreferrer' target='_blank' href='https://census.gov.uk/individualquestionnaire'>request a personal and confidential form online</a>.</p> <p>Alternatively, call <a href='tel:03000683001'>0300 068 3001</a>.</p>",
+                        "content": [{
+                            "description": "You can <a rel='noopener noreferrer' target='_blank' href='https://census.gov.uk/individualquestionnaire'>request a personal and confidential form online</a>."
+                        }, {
+                            "description": "Alternatively, call <a href='tel:03000683001'>0300 068 3001</a>."
+                        }],
                         "type": "Interstitial",
                         "routing_rules": [{
                             "goto": {
@@ -3427,8 +3429,12 @@
                             "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> employment status?",
                             "guidance": {
                                 "content": [{
-                                    "description": "<p>If you are not working answer the remaining questions about your last main job.</p><p>Your main job is the job which you usually work (worked) the most hours</p>"
-                                }]
+                                        "description": "If you are not working answer the remaining questions about your last main job."
+                                    },
+                                    {
+                                        "description": "Your main job is the job which you usually work (worked) the most hours"
+                                    }
+                                ]
                             },
                             "type": "General",
                             "answers": [{
@@ -3555,7 +3561,22 @@
                         "questions": [{
                             "id": "job-title-question",
                             "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> full job title?",
-                            "description": "<p>For example, <b>primary school teacher, car mechanic, district nurse, structural engineer</b></p><p>Do not state your grade or pay band</p><p>Please enter your job title in the space provided.</p><p>Do not state your grade or pay band.</p><p>If you are not sure of your job title please give the best information you can.</p>",
+                            "content": [{
+                                    "description": "For example, <b>primary school teacher, car mechanic, district nurse, structural engineer</b>"
+                                },
+                                {
+                                    "description": "Do not state your grade or pay band"
+                                },
+                                {
+                                    "description": "Please enter your job title in the space provided."
+                                },
+                                {
+                                    "description": "Do not state your grade or pay band."
+                                },
+                                {
+                                    "description": "If you are not sure of your job title please give the best information you can."
+                                }
+                            ],
                             "type": "General",
                             "answers": [{
                                 "id": "job-title-answer",
@@ -3630,7 +3651,20 @@
                         "questions": [{
                             "id": "business-name-question",
                             "title": "What is the name of the organisation of business that <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> work for?",
-                            "description": "<p>If you were self-employed in your own organisation or business, enter the name</p><p>This question is asking for the name of the organisation or business that you work (or worked) for in your main job.</p><p>If you can’t remember the name of the organisation, please give the best information you can.</p><p>If you are employed through an agency please enter the name of the business you are working for, not the agency.</p>",
+                            "content": [{
+                                    "description": "If you were self-employed in your own organisation or business, enter the name"
+                                },
+                                {
+                                    "description": "This question is asking for the name of the organisation or business that you work (or worked) for in your main job."
+                                },
+                                {
+                                    "description": "If you can’t remember the name of the organisation, please give the best information you can."
+                                },
+                                {
+                                    "description": "If you are employed through an agency please enter the name of the business you are working for, not the agency."
+                                }
+
+                            ],
                             "type": "General",
                             "answers": [{
                                 "id": "business-name-answer",
@@ -3647,7 +3681,22 @@
                         "questions": [{
                             "id": "employers-business-question",
                             "title": "What is the main activity of <em>{{answers.company_name}}</em>?",
-                            "description": "<p>Enter the main activity of your employer or business.</p><p>Another way of describing main activity is the industry that your employer or business works in.</p><p>If you are not sure of the main activity of your employer or business please give the best information you can.</p><p>If you are employed through an agency please enter the main activity of the business you are working for, not the agency.</p><p>For example, <b>primary education, repairing cars, contract catering, computer servicing</b></p>",
+                            "content": [{
+                                    "description": "Enter the main activity of your employer or business."
+                                },
+                                {
+                                    "description": "Another way of describing main activity is the industry that your employer or business works in."
+                                },
+                                {
+                                    "description": "If you are not sure of the main activity of your employer or business please give the best information you can."
+                                },
+                                {
+                                    "description": "If you are employed through an agency please enter the main activity of the business you are working for, not the agency."
+                                },
+                                {
+                                    "description": "For example, <b>primary education, repairing cars, contract catering, computer servicing</b>"
+                                }
+                            ],
                             "type": "General",
                             "answers": [{
                                 "id": "employers-business-answer",
@@ -3903,7 +3952,7 @@
                     "type": "Confirmation",
                     "id": "confirmation",
                     "title": "You’re ready to submit your 2017 Census Test",
-                    "description": "<p>Thank you for taking part in the 2017 Census Test.</p>",
+                    "description": "Thank you for taking part in the 2017 Census Test.",
                     "questions": [{
                         "answers": [],
                         "id": "questionnaire-completed-question",

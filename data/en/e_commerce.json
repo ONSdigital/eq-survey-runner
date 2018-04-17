@@ -646,11 +646,12 @@
                         "id": "access-and-use-of-the-internet-block-16",
                         "title": "Access and Use of the Internet",
                         "content": [{
-                            "description": "You have completed the previous section."
-                        },
-                        {
-                            "description": "This section covers your business’ access to and use of the internet."
-                        }]
+                                "description": "You have completed the previous section."
+                            },
+                            {
+                                "description": "This section covers your business’ access to and use of the internet."
+                            }
+                        ]
 
                     }
                 ],
