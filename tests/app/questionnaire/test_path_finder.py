@@ -873,43 +873,6 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         pytest.xfail(reason='Known bug when skipping last group due to summary bundled into it')
         self.assertEqual(path_finder.get_routing_path('should-skip-group'), expected_route)
 
-    def test_given_no_completed_blocks_when_get_latest_location_then_go_to_first_block(self):
-        # Given no completed blocks
-        schema = load_schema_from_params('test', 'repeating_household')
-        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
-        completed_block = []
-
-        # When go latest location
-        latest_location = path_finder.get_latest_location(completed_block)
-
-        # Then go to the first block
-        self.assertEqual(Location('multiple-questions-group', 0, 'introduction'), latest_location)
-
-    def test_given_some_completed_blocks_when_get_latest_location_then_go_to_next_uncompleted_block(self):
-        # Given no completed blocks
-        schema = load_schema_from_params('test', 'repeating_household')
-        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
-        completed_block = [Location('multiple-questions-group', 0, 'introduction')]
-
-        # When go latest location
-        latest_location = path_finder.get_latest_location(completed_block)
-
-        # Then go to the first block
-        self.assertEqual(Location('multiple-questions-group', 0, 'household-composition'), latest_location)
-
-    def test_given_completed_all_the_blocks_when_get_latest_location_then_go_to_last_block(self):
-        # Given no completed blocks
-        schema = load_schema_from_params('test', 'textarea')
-        path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
-        completed_block = [Location('textarea-group', 0, 'textarea-block'),
-                           Location('textarea-group', 0, 'textarea-summary')]
-
-        # When go latest location
-        latest_location = path_finder.get_latest_location(completed_block)
-
-        # Then go to the first block
-        self.assertEqual(Location('textarea-group', 0, 'textarea-summary'), latest_location)
-
     def test_build_path_with_group_routing(self):
         # Given i have answered the routing question
         schema = load_schema_from_params('test', 'routing_group')
@@ -955,7 +918,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         completed_blocks = [
             Location('property-details', 0, 'insurance-type'),
             Location('property-details', 0, 'insurance-address'),
-            Location('address-length', 0, 'address-duration')
+            Location('address-length', 0, 'address-duration'),
         ]
 
         answer_store = AnswerStore()
@@ -963,7 +926,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answer_store.add(Answer(answer_id='insurance-address-answer', value='123 Test Road'))
         answer_store.add(Answer(answer_id='address-duration-answer', value='No'))
 
-        summary_location = Location('address-length', 0, 'property-details-summary')
+        summary_location = Location('property-details-summary-group', 0, 'property-details-summary')
 
         path_finder = PathFinder(schema, answer_store, metadata={}, completed_blocks=completed_blocks)
 
@@ -977,7 +940,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             Location('property-details', 0, 'insurance-type'),
             Location('property-details', 0, 'insurance-address'),
             Location('address-length', 0, 'address-duration'),
-            Location('address-length', 0, 'property-details-summary')
+            Location('property-details-summary-group', 0, 'property-details-summary')
         ]
 
         answer_store = AnswerStore()

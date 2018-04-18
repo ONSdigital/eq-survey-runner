@@ -204,3 +204,47 @@ class TestQuestionnaireSchema(AppContextTestCase):
         has_questions = schema.group_has_questions('non-question-group')
 
         self.assertFalse(has_questions)
+
+    def test_is_summary(self):
+        survey_json = {
+            'sections': [{
+                'id': 'section-1',
+                'groups': [{
+                    'id': 'group-1',
+                    'blocks': [
+                        {
+                            'id': 'block-1',
+                            'type': 'Summary'
+                        }
+                    ]
+                }]
+            }]
+        }
+
+        schema = QuestionnaireSchema(survey_json)
+        self.assertTrue(schema.is_summary_section(schema.get_section('section-1')))
+        self.assertTrue(schema.is_summary_group(schema.get_group('group-1')))
+        self.assertFalse(schema.is_confirmation_section(schema.get_section('section-1')))
+        self.assertFalse(schema.is_confirmation_group(schema.get_group('group-1')))
+
+    def test_is_confirmation(self):
+        survey_json = {
+            'sections': [{
+                'id': 'section-1',
+                'groups': [{
+                    'id': 'group-1',
+                    'blocks': [
+                        {
+                            'id': 'block-1',
+                            'type': 'Confirmation'
+                        }
+                    ]
+                }]
+            }]
+        }
+
+        schema = QuestionnaireSchema(survey_json)
+        self.assertTrue(schema.is_confirmation_section(schema.get_section('section-1')))
+        self.assertTrue(schema.is_confirmation_group(schema.get_group('group-1')))
+        self.assertFalse(schema.is_summary_section(schema.get_section('section-1')))
+        self.assertFalse(schema.is_summary_group(schema.get_group('group-1')))

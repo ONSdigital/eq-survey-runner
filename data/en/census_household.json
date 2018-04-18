@@ -380,7 +380,6 @@
                 {
                     "id": "who-lives-here-relationship",
                     "title": "Relationships",
-                    "hide_in_navigation": true,
                     "routing_rules": [{
                         "repeat": {
                             "type": "answer_count_minus_one",
@@ -460,7 +459,6 @@
                 {
                     "id": "who-lives-here-interstitial",
                     "title": "Who lives here?",
-                    "hide_in_navigation": true,
                     "blocks": [{
                         "id": "who-lives-here-completed",
                         "title": "You have successfully completed the ‘Who lives here?’ section",
@@ -3725,7 +3723,7 @@
                             "when": [{
                                 "id": "overnight-visitors-answer",
                                 "condition": "equals",
-                                "value": "0"
+                                "value": 0
                             }]
                         },
                         {
@@ -3923,7 +3921,7 @@
                             "when": [{
                                 "id": "overnight-visitors-answer",
                                 "condition": "equals",
-                                "value": "0"
+                                "value": 0
                             }]
                         },
                         {

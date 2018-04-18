@@ -1,7 +1,12 @@
 import copy
 from structlog import get_logger
 from app.questionnaire.location import Location
-from app.questionnaire.rules import evaluate_goto, evaluate_repeat, evaluate_skip_conditions, is_goto_rule
+from app.questionnaire.rules import (
+    evaluate_goto,
+    evaluate_skip_conditions,
+    is_goto_rule,
+    get_number_of_repeats,
+)
 
 logger = get_logger()
 
@@ -48,7 +53,7 @@ class PathFinder:
                 if evaluate_skip_conditions(group['skip_conditions'], self.metadata, self.answer_store):
                     continue
 
-            no_of_repeats = self._calculate_no_of_repeats(group, path)
+            no_of_repeats = get_number_of_repeats(group, self.schema, path, self.answer_store)
 
             for instance_idx in range(0, no_of_repeats):
                 group_blocks = self._build_blocks_for_group(group, instance_idx)
@@ -112,15 +117,6 @@ class PathFinder:
                 continue
 
             return path, block_index
-
-    def _calculate_no_of_repeats(self, group, path):
-        repeating_rule = self.schema.get_repeat_rule(group)
-
-        if repeating_rule:
-            answer_ids_on_path = self.get_answer_ids_on_routing_path(self.schema, path)
-            return evaluate_repeat(repeating_rule, self.answer_store, answer_ids_on_path)
-
-        return 1
 
     def _evaluate_routing_rules(self, this_location, blocks, block, block_index, path):
         for rule in filter(is_goto_rule, block['routing_rules']):
@@ -264,34 +260,6 @@ class PathFinder:
 
         if current_location_index is not None and current_location_index != 0:
             return routing_path[current_location_index - 1]
-
-    def get_latest_location(self, completed_blocks, routing_path=None):
-        """
-        Returns the latest 'location' based on the location path and previously completed blocks
-
-        :param completed_blocks:
-        :param routing_path:
-        :return:
-        """
-        routing_path = self.get_full_routing_path() if routing_path is None else routing_path
-        latest_location = routing_path[0]
-        if completed_blocks:
-            incomplete_blocks = [item for item in routing_path if item not in completed_blocks]
-
-            if incomplete_blocks:
-                latest_location = incomplete_blocks[0]
-            else:
-                latest_location = routing_path[-1]
-
-        return latest_location
-
-    @staticmethod
-    def get_answer_ids_on_routing_path(schema, path):
-        answer_ids_on_path = []
-        for location in path:
-            answer_ids_on_path.extend(schema.get_answers_by_id_for_block(location.block_id))
-
-        return answer_ids_on_path
 
     @staticmethod
     def _relationship_previous_location(current_group_instance):

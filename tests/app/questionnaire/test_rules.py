@@ -3,10 +3,9 @@ from datetime import datetime
 
 from app.data_model.answer_store import AnswerStore, Answer
 from app.questionnaire.location import Location
-from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.rules import evaluate_rule, evaluate_date_rule, evaluate_goto, evaluate_repeat, \
-    evaluate_skip_conditions, evaluate_when_rules
+    evaluate_skip_conditions, evaluate_when_rules, get_answer_ids_on_routing_path
 
 
 class TestRules(TestCase):  # pylint: disable=too-many-public-methods
@@ -451,7 +450,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         current_path = [Location('group-1', 0, 'block-1')]
 
         # When
-        answer_on_path = PathFinder.get_answer_ids_on_routing_path(schema, current_path)
+        answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
         number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 3)
@@ -498,7 +497,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         current_path = [Location('group-1', 0, 'block-1')]
 
         # When
-        answer_on_path = PathFinder.get_answer_ids_on_routing_path(schema, current_path)
+        answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
         number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 2)
@@ -545,7 +544,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         current_path = [Location('group-1', 0, 'block-1')]
 
         # When
-        answer_on_path = PathFinder.get_answer_ids_on_routing_path(schema, current_path)
+        answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
         number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 1)
@@ -592,7 +591,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         current_path = [Location('group-1', 0, 'block-1')]
 
         # When
-        answer_on_path = PathFinder.get_answer_ids_on_routing_path(schema, current_path)
+        answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
         number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 24)

@@ -139,6 +139,38 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
         for question_json in block_json.get('questions', []):
             yield question_json
 
+    @staticmethod
+    def is_summary_section(section):
+        for group in section['groups']:
+            if QuestionnaireSchema.is_summary_group(group):
+                return True
+
+        return False
+
+    @staticmethod
+    def is_summary_group(group):
+        for block in group['blocks']:
+            if block['type'] == 'Summary':
+                return True
+
+        return False
+
+    @staticmethod
+    def is_confirmation_section(section):
+        for group in section['groups']:
+            if QuestionnaireSchema.is_confirmation_group(group):
+                return True
+
+        return False
+
+    @staticmethod
+    def is_confirmation_group(group):
+        for block in group['blocks']:
+            if block['type'] == 'Confirmation':
+                return True
+
+        return False
+
     def _parse_schema(self):
         self._sections_by_id = self._get_sections_by_id()
         self._groups_by_id = get_nested_schema_objects(self._sections_by_id, 'groups')
