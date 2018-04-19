@@ -15,6 +15,8 @@ from app.settings import DEFAULT_LOCALE
 from app.questionnaire.rules import convert_to_datetime
 blueprint = flask.Blueprint('filters', __name__)
 
+DATE_FORMAT = '%-d %B %Y'
+
 
 @blueprint.app_template_filter()
 def format_number(value):
@@ -53,6 +55,10 @@ def format_unit(unit, value=''):
     return units.format_unit(value=value, measurement_unit=unit, length='short', locale=DEFAULT_LOCALE)
 
 
+def as_london_tz(value):
+    return value.replace(tzinfo=tz.gettz('UTC')).astimezone(tz.gettz('Europe/London'))
+
+
 @evalcontextfilter
 @blueprint.app_template_filter()
 def format_multilined_string(context, value):
@@ -67,10 +73,16 @@ def format_multilined_string(context, value):
 
 
 @blueprint.app_template_filter()
+def get_current_date():
+    now = as_london_tz(datetime.utcnow()).strftime(DATE_FORMAT)
+    return "<span class='date'>{date}</span>".format(date=now)
+
+
+@blueprint.app_template_filter()
 def format_date(value):
     date_format = '%B %Y'
     if value and re.match(r'\d{4}-\d{2}-\d{2}', value):
-        date_format = '%-d %B %Y'
+        date_format = DATE_FORMAT
 
     return "<span class='date'>{date}</span>".format(date=convert_to_datetime(value).strftime(date_format))
 
@@ -81,9 +93,8 @@ def format_month_year_date(value, date_format='%B %Y'):
 
 
 @blueprint.app_template_filter()
-def format_datetime(value, date_format='%d %B %Y at %H:%M'):
-    london_date_time = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f').replace(tzinfo=tz.gettz('UTC'))\
-        .astimezone(tz.gettz('Europe/London'))
+def format_datetime(value, date_format=DATE_FORMAT + ' at %H:%M'):
+    london_date_time = as_london_tz(datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
     return "<span class='date'>{date}</span>".format(date=london_date_time.strftime(date_format))
 
 
