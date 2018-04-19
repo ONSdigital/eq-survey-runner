@@ -20,42 +20,36 @@ def id_generator():
     return str(uuid.uuid4())
 
 
-validators = {
-    'date': iso_8601_date_parser,
-    'uuid': uuid_4_parser,
-    'string': lambda *args: None
-}
+def parse_metadata(decrypted_token, schema_metadata):
 
-mandatory_meta = {
-    'tx_id': 'uuid',
-}
+    validators = {
+        'date': iso_8601_date_parser,
+        'uuid': uuid_4_parser,
+        'string': lambda *args: None
+    }
 
+    mandatory_metadata = {
+        'tx_id': 'uuid',
+    }
 
-def parse_metadata(metadata_to_check, schema_metadata):
-
-    parsed = metadata_to_check.copy()
-
-    required_metadata = _validate_mandatory_schema_metadata(parsed, schema_metadata)
-
-    mandatory_meta.update(required_metadata)
+    required_schema_metadata = _validate_mandatory_schema_metadata(decrypted_token, schema_metadata)
+    mandatory_metadata.update(required_schema_metadata)
+    claims = decrypted_token.copy()
 
     try:
-        for key, field in mandatory_meta.items():
-
-            if key in parsed:
-                attr_value = parsed[key]
-                validators[field](attr_value)
-                logger.debug('parsing metadata', key=key, value=attr_value)
-                parsed[key] = attr_value
+        for key, field in mandatory_metadata.items():
+            if key in claims:
+                value = claims[key]
+                validators[field](value)
+                logger.debug('parsing metadata', key=key, value=value)
             elif key == 'tx_id':
                 logger.debug('generating metadata value', key=key)
-                parsed[key] = id_generator()
-
+                claims[key] = id_generator()
     except (RuntimeError, ValueError, TypeError) as e:
         logger.error('unable to parse metadata', exc_info=e)
         raise InvalidTokenException('incorrect data in token')
 
-    return parsed
+    return claims
 
 
 def _validate_mandatory_schema_metadata(metadata, schema_metadata):
