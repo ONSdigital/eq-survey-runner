@@ -28,13 +28,18 @@
   {%- if question.description -%}
     <div class="question__description mars">
       {{question.description}}
-    {% for content in question.content %}
-        <p>{{content.description}}</p>
-    {% endfor %}
     </div>
   {% endif %}
 {% endset %}
 
+
+{% set question_content %}
+  {%- if question.content -%}
+    {% for content in question.content %}
+        <p>{{content.description}}</p>
+    {% endfor %}
+  {% endif %}
+{% endset %}
 
 {% set question_guidance %}
   {%- if question.guidance -%}
