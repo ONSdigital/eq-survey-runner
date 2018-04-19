@@ -2,7 +2,7 @@ import unittest
 import uuid
 
 from sdc.crypto.exceptions import InvalidTokenException
-from app.storage.metadata_parser import parse_metadata, _validate_mandatory_schema_metadata
+from app.storage.metadata_parser import parse_metadata
 from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
 
@@ -97,7 +97,6 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'eq_id': '2',
             'period_id': '3',
             'ru_ref': '2016-04-04',
-
         }
 
         with self.assertRaises(InvalidTokenException) as ite:
@@ -139,6 +138,27 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             parse_metadata(jwt, self.required_schema_metadata)
 
         self.assertEqual('Missing key/value for return_by', str(ite.exception))
+
+    def test_required_metadata_trad_as_or_ru_name_in_token(self): #form type
+        jwt = {
+            'jti': str(uuid.uuid4()),
+            'user_id': '1',
+            'form_type': 'a',
+            'collection_exercise_sid': 'test-sid',
+            'eq_id': '2',
+            'period_id': '3',
+            'ru_ref': '2016-04-04',
+            'ru_name': 'ESSENTIAL ENTERPRISE LIMITED'
+        }
+
+        self.required_schema_metadata.update({
+            'trad_as_or_ru_name': 'string'
+        })
+
+        try:
+            parse_metadata(jwt, self.required_schema_metadata)
+        except InvalidTokenException:
+            self.fail('Unexpected exception raised.')
 
     def test_invalid_required_ref_p_start_date(self):
         jwt = {
