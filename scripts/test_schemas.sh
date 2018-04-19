@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-docker pull onsdigital/eq-schema-validator:add-question-content-level
+docker pull onsdigital/eq-schema-validator
 validator="$(docker run -d -p 5001:5000 onsdigital/eq-schema-validator)"
 
 sleep 3
