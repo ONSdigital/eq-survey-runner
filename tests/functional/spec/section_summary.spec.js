@@ -35,7 +35,6 @@ describe('Section Summary', function() {
         .click(PropertyDetailsSummaryPage.submit())
         .getUrl().should.eventually.contain(HouseHoldCompositionPage.pageName);
     });
-
   });
 
   describe('Given I start a Test Section Summary survey and complete to Final Summary', function() {
@@ -69,7 +68,21 @@ describe('Section Summary', function() {
         .click(InsuranceTypePage.submit())
         .getUrl().should.eventually.contain(PropertyDetailsSummaryPage.pageName);
     });
+  });
 
+  describe('Given I start a Test Section Summary survey and complete to the first Section Summary', function() {
+    it('When I select edit from Section Summary but change routing, Then I should be stepped through the section', function() {
+      return helpers.openQuestionnaire('test_section_summary.json').then(() => {
+        return browser
+          .click(InsuranceTypePage.both())
+          .click(InsuranceTypePage.submit())
+          .click(InsuranceAddressPage.submit())
+          .click(PropertyDetailsSummaryPage.insuranceTypeAnswerEdit())
+          .click(InsuranceTypePage.contents())
+          .click(InsuranceTypePage.submit())
+          .getUrl().should.eventually.contain(InsuranceAddressPage.pageName);
+      });
+    });
   });
 
 });

@@ -135,6 +135,7 @@
         },
         {
             "id": "summary-section",
+            "title": "Summary",
             "groups": [{
                 "blocks": [{
                     "type": "Summary",

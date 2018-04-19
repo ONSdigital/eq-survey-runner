@@ -8,8 +8,7 @@ from structlog import get_logger
 
 from app.authentication.authenticator import store_session, decrypt_token
 from app.authentication.jti_claim_storage import JtiTokenUsed, use_jti_claim
-from app.globals import get_answer_store, get_completed_blocks
-from app.questionnaire.path_finder import PathFinder
+from app.globals import get_completeness
 from app.settings import ACCOUNT_URL
 from app.storage.metadata_parser import parse_metadata
 from app.utilities.schema import load_schema_from_params
@@ -76,9 +75,7 @@ def login():
     if 'account_service_url' in metadata and metadata.get('account_service_url'):
         cookie_session[ACCOUNT_URL] = metadata.get('account_service_url')
 
-    completed_blocks = get_completed_blocks(current_user)
-    navigator = PathFinder(g.schema, get_answer_store(current_user), metadata, completed_blocks)
-    current_location = navigator.get_latest_location(completed_blocks)
+    current_location = get_completeness(current_user).get_latest_location()
 
     return redirect(current_location.url(metadata))
 
