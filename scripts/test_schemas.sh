@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
+docker pull onsdigital/eq-schema-validator:specify-required-metadata-in-schema
+validator="$(docker run -d -p 5001:5000 onsdigital/eq-schema-validator:specify-required-metadata-in-schema)"
 
+sleep 3
 
 green="$(tput setaf 2)"
 red="$(tput setaf 1)"
@@ -60,5 +63,5 @@ done
 
 echo -e "\\n${green}$passed Passed${default} - ${red}$failed Failed${default}"
 
-
+docker rm -f "$validator"
 exit "$exit"
