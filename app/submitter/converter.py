@@ -87,7 +87,7 @@ def _build_metadata(metadata):
         'ru_ref': metadata['ru_ref'],
     }
 
-    if metadata.get('ref_start_date'):
+    if metadata.get('ref_p_start_date'):
         downstream_metadata['ref_period_start_date'] = metadata['ref_p_start_date']
     if metadata.get('ref_p_end_date'):
         downstream_metadata['ref_period_end_date'] = metadata['ref_p_end_date']
