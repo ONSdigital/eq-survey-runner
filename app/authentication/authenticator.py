@@ -127,7 +127,7 @@ def decrypt_token(encrypted_token):
                               leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'])
 
     for claim in mandatory_claims:
-        if not decrypted_token[claim]:
+        if not decrypted_token.get(claim):
             raise InvalidTokenException('Missing mandatory key/value in claims - {}'.format(claim))
 
     logger.debug('token decrypted')
