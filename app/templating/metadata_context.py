@@ -4,7 +4,7 @@ from app.templating.schema_context import json_and_html_safe
 
 def build_metadata_context(metadata):
     """
-    :param metadata: user metadata
+    :param metadata: token metadata
     :return: metadata context
     """
     return {
@@ -33,8 +33,8 @@ def build_metadata_context_for_survey_completed(session_data):
     }
 
     if session_data.period_str:
-        metadata_context.update({'period_str': session_data.period_str})
+        metadata_context['period_str'] = session_data.period_str
     if session_data.ru_name:
-        metadata_context.update({'ru_name': session_data.ru_name})
+        metadata_context['ru_name'] = session_data.ru_name
 
     return metadata_context

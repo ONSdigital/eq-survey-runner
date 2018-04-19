@@ -55,7 +55,7 @@ def parse_metadata(decrypted_token, schema_metadata):
 def _validate_mandatory_schema_metadata(metadata, schema_metadata):
 
     for key in schema_metadata.keys():
-        if key not in metadata or not metadata[key]:
+        if not metadata[key]:
             if key == 'trad_as_or_ru_name':
                 if 'trad_as' in metadata or 'ru_name' in metadata:
                     continue

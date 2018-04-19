@@ -28,9 +28,14 @@ class TestMetadataContext(SurveyRunnerTestCase):
             'transaction_id': '4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f'
         }
 
+        self.required_schema_metadata = {
+            'user_id': 'string',
+            'period_id': 'string',
+        }
+
     def test_build_metadata_context(self):
         with self.application.test_request_context():
-            metadata = parse_metadata(self.jwt, {})
+            metadata = parse_metadata(self.jwt, self.required_schema_metadata)
 
         metadata_context = build_metadata_context(metadata)
 
@@ -53,7 +58,7 @@ class TestMetadataContext(SurveyRunnerTestCase):
             jwt[key] = '<">\\'
 
         with self.application.test_request_context():
-            metadata = parse_metadata(jwt, {})
+            metadata = parse_metadata(jwt, self.required_schema_metadata)
 
         metadata_context = build_metadata_context(metadata)
 

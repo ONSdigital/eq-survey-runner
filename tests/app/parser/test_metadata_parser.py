@@ -104,7 +104,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
         self.assertEqual('Missing key/value for user_id', str(ite.exception))
 
-    def test_missing_required_metadata_period_id_in_token(self): #collection id
+    def test_missing_required_metadata_period_id_in_token(self):
         jwt = {
             'jti': str(uuid.uuid4()),
             'user_id': '1',
@@ -119,7 +119,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
         self.assertEqual('Missing key/value for period_id', str(ite.exception))
 
-    def test_missing_required_metadata_return_by_in_token(self): #form type
+    def test_missing_required_metadata_return_by_in_token(self):
         jwt = {
             'jti': str(uuid.uuid4()),
             'user_id': '1',
@@ -130,16 +130,14 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_ref': '2016-04-04',
         }
 
-        self.required_schema_metadata.update({
-            'return_by': 'date'
-        })
+        self.required_schema_metadata['return_by'] = 'date'
 
         with self.assertRaises(InvalidTokenException) as ite:
             parse_metadata(jwt, self.required_schema_metadata)
 
         self.assertEqual('Missing key/value for return_by', str(ite.exception))
 
-    def test_required_metadata_trad_as_or_ru_name_in_token(self): #form type
+    def test_required_metadata_trad_as_or_ru_name_in_token(self):
         jwt = {
             'jti': str(uuid.uuid4()),
             'user_id': '1',
@@ -151,9 +149,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_name': 'ESSENTIAL ENTERPRISE LIMITED'
         }
 
-        self.required_schema_metadata.update({
-            'trad_as_or_ru_name': 'string'
-        })
+        self.required_schema_metadata['trad_as_or_ru_name'] = 'string'
 
         try:
             parse_metadata(jwt, self.required_schema_metadata)
@@ -172,9 +168,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_ref': '2016-04-04',
         }
 
-        self.required_schema_metadata.update({
-            'ref_p_start_date': 'date'
-        })
+        self.required_schema_metadata['ref_p_start_date'] = 'date'
 
         with self.assertRaises(InvalidTokenException) as ite:
             parse_metadata(jwt, self.required_schema_metadata)
@@ -216,6 +210,23 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             parse_metadata(jwt, self.required_schema_metadata)
 
         self.assertEqual('incorrect data in token', str(ite.exception))
+
+    def test_generated_tx_id_format(self):
+        jwt = {
+            'jti': str(uuid.uuid4()),
+            'user_id': '1',
+            'form_type': 'a',
+            'collection_exercise_sid': 'test-sid',
+            'eq_id': '2',
+            'period_id': '3',
+            'ru_ref': '2016-04-04',
+            # one character short
+        }
+
+        parsed = parse_metadata(jwt, self.required_schema_metadata)
+        tx_id = parsed['tx_id']
+
+        self.assertEqual(tx_id,  str(uuid.UUID(tx_id)))
 
 
 if __name__ == '__main__':
