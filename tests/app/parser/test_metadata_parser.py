@@ -226,7 +226,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
         parsed = parse_metadata(jwt, self.required_schema_metadata)
         tx_id = parsed['tx_id']
 
-        self.assertEqual(tx_id,  str(uuid.UUID(tx_id)))
+        self.assertEqual(tx_id, str(uuid.UUID(tx_id)))
 
 
 if __name__ == '__main__':
