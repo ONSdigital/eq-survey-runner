@@ -11,7 +11,8 @@ from app.jinja_filters import format_date, format_conditional_date, format_curre
     format_multilined_string, format_percentage, format_date_range, format_household_member_name, \
     format_month_year_date, format_datetime, format_number_to_alphabetic_letter, \
     format_unit, format_currency_for_input, format_number, format_unordered_list, \
-    format_household_member_name_possessive, concatenated_list, calculate_years_difference
+    format_household_member_name_possessive, concatenated_list, calculate_years_difference, \
+    get_current_date, as_london_tz
 
 
 class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
@@ -110,6 +111,17 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
 
         self.assertEqual(str(format_value), '<p>&lt;</p>')
 
+    def test_get_current_date(self):
+        # Given
+        date_format = '%-d %B %Y'
+
+        # When
+        format_value = get_current_date()
+        current_date = as_london_tz(datetime.utcnow()).strftime(date_format)
+
+        # Then
+        self.assertEqual(format_value, "<span class='date'>{date}</span>".format(date=current_date))
+
     def test_format_date(self):
         # Given
         date = '2017-01-01'
@@ -117,6 +129,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         # When
         format_value = format_date(date)
 
+        # Then
         self.assertEqual(format_value, "<span class='date'>1 January 2017</span>")
 
     def test_format_date_month_year(self):
@@ -132,7 +145,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
     def test_format_date_time_in_bst(self):
         # Given
         date_time = '2018-03-29T11:59:13.528680'
-        date_format = '%d %B %Y at %H:%M'
+        date_format = '%-d %B %Y at %H:%M'
 
         # When
         format_value = format_datetime(date_time, date_format)
@@ -143,7 +156,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
     def test_format_date_time_in_gmt(self):
         # Given
         date_time = '2018-10-28T11:59:13.528680'
-        date_format = '%d %B %Y at %H:%M'
+        date_format = '%-d %B %Y at %H:%M'
 
         # When
         format_value = format_datetime(date_time, date_format)

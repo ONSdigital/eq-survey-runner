@@ -168,6 +168,9 @@ describe('Feature: Routing on a Date', function () {
       var dd_today = today.getDate(); // today
       var dd_yesterday = today.getDate()-1; // yesterday
       var mm = today.getMonth()+1; //January is 0!
+      const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
       var yyyy = today.getFullYear();
 
       beforeEach(function() {
@@ -188,6 +191,8 @@ describe('Feature: Routing on a Date', function () {
 
       it('When I enter a date greater than or equal to today, Then I should be routed to the incorrect page', function () {
         return browser
+          .getText(DateQuestionPage.questionText()).should.eventually.contain('Enter a date less than ' + dd_today + ' ' + monthNames[today.getMonth()] + ' ' + yyyy)
+          .getText(CorrectAnswerPage.questionText()).should.eventually.contain('')
           .setValue(DateQuestionPage.day(), dd_today)
           .selectByValue(DateQuestionPage.month(), mm)
           .setValue(DateQuestionPage.year(), yyyy)
