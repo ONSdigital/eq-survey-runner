@@ -340,7 +340,7 @@
                 {
                     "type": "Question",
                     "id": "star-wars-trivia",
-                    "description": "May the force be with you young EQ developer<br/><br/>",
+                    "description": "May the force be with you young EQ developer",
                     "questions": [{
                             "answers": [{
                                 "id": "death-star-plans-answer",

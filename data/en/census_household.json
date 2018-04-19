@@ -392,7 +392,25 @@
                         "questions": [{
                             "id": "household-relationships-question",
                             "title": "How is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> related to the people below?",
-                            "description": "If members are not related, select the ‘unrelated’ option.<br />If you are the parents of adopted children, select the ‘Mother or father’ option to show your relationship to them.<br />If you have foster children living with you, select the ‘Unrelated’ option.<br />Include half-brothers and half-sisters in the ‘Step-brother or step-sister’ category.<br />Same-sex civil partner is used to describe the relationship between two people who have legally registered a civil partnership.<br />If none of the options fully reflects your relationship, please select the one which you feel best describes your situation.",
+                            "content": [{
+                                    "description": "If members are not related, select the ‘unrelated’ option."
+                                },
+                                {
+                                    "description": "If you are the parents of adopted children, select the ‘Mother or father’ option to show your relationship to them."
+                                },
+                                {
+                                    "description": "If you have foster children living with you, select the ‘Unrelated’ option."
+                                },
+                                {
+                                    "description": "Include half-brothers and half-sisters in the ‘Step-brother or step-sister’ category."
+                                },
+                                {
+                                    "description": "Same-sex civil partner is used to describe the relationship between two people who have legally registered a civil partnership."
+                                },
+                                {
+                                    "description": "If none of the options fully reflects your relationship, please select the one which you feel best describes your situation."
+                                }
+                            ],
                             "type": "Relationship",
                             "answers": [{
                                 "id": "household-relationships-answer",

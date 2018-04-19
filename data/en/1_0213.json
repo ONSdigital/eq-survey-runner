@@ -9,299 +9,45 @@
     "legal_basis": "StatisticsOfTradeAct",
     "view_submitted_response": {
         "enabled": true,
-        "duration": 900
-    },
-    "sections": [{
-        "id": "default-section",
-        "groups": [{
-            "blocks": [{
-                    "type": "Introduction",
-                    "id": "introduction",
-                    "primary_content": [{
-                        "id": "get-started",
-                        "content": [{
-                            "list": [
-                                "On average it takes 10 minutes to complete this survey once you’ve collected the information.",
-                                "Data should relate to all sites in England, Scotland and Wales.",
-                                "You can provide informed estimates if actual figures aren't available.",
-                                "We will treat your data securely and confidentially."
-                            ]
-                        }]
-                    }],
-                    "preview_content": {
-                        "id": "preview",
-                        "title": "Information you need",
-                        "content": [{
-                                "description": "The total retail turnover must be less than or equal to the value of food sales, alcohol, confectionery and tobacco sales, clothing and footwear sales,  household goods, and other goods."
-                            },
-                            {
-                                "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
-                            }
-                        ],
-                        "questions": [{
-                            "question": "Total retail turnover",
+        "duration": 900,
+        "sections": [{
+            "id": "default-section",
+            "groups": [{
+                "blocks": [{
+                        "type": "Introduction",
+                        "id": "introduction",
+                        "primary_content": [{
+                            "id": "get-started",
                             "content": [{
-                                "description": "Include:",
                                 "list": [
-                                    "VAT",
-                                    "internet sales",
-                                    "retail sales from outlets in Great Britain to customers abroad"
-                                ]
-                            }, {
-                                "description": "Exclude:",
-                                "list": [
-                                    "revenue from mobile phone network commission and top-up",
-                                    "sales from catering facilities used by customers",
-                                    "lottery sales and commission from lottery sales",
-                                    "sales of car accessories and motor vehicles",
-                                    "NHS receipts"
+                                    "On average it takes 10 minutes to complete this survey once you’ve collected the information.",
+                                    "Data should relate to all sites in England, Scotland and Wales.",
+                                    "You can provide informed estimates if actual figures aren't available.",
+                                    "We will treat your data securely and confidentially."
                                 ]
                             }]
-                        }, {
-                            "question": "Food sales",
+                        }],
+                        "preview_content": {
+                            "id": "preview",
+                            "title": "Information you need",
                             "content": [{
-                                "description": "Include:",
-                                "list": [
-                                    "all fresh food",
-                                    "other food for human consumption (except chocolate and sugar confectionery)",
-                                    "soft drinks"
-                                ]
-                            }, {
-                                "description": "Exclude:",
-                                "list": [
-                                    "sales from catering facilities used by customers"
-                                ]
-                            }]
-                        }, {
-                            "question": "Alcohol, confectionery and tobacco sales",
-                            "content": [{
-                                "description": "Include:",
-                                "list": [
-                                    "chocolate and sugar confectionery",
-                                    "tobacco and smokers’ requisites"
-                                ]
-                            }]
-                        }, {
-                            "question": "Clothing and footwear sales",
-                            "content": [{
-                                "description": "Include:",
-                                "list": [
-                                    "clothing fabrics",
-                                    "haberdashery and furs",
-                                    "leather and travel goods",
-                                    "handbags and umbrellas"
-                                ]
-                            }]
-                        }, {
-                            "question": "Household goods sales",
-                            "content": [{
-                                "description": "Include:",
-                                "list": [
-                                    "carpets, rugs and other floor coverings",
-                                    "furniture",
-                                    "household textiles and soft furnishings",
-                                    "prints and picture frames",
-                                    "antiques and works of art",
-                                    "domestic electrical and gas appliances, audio/visual equipment and home computers",
-                                    "lighting and minor electrical supplies",
-                                    "records, compact discs, audio and video tapes",
-                                    "musical instruments and goods",
-                                    "decorators’ and DIY supplies",
-                                    "lawn-mowers",
-                                    "hardware",
-                                    "china, glassware and cutlery",
-                                    "novelties, souvenirs and gifts",
-                                    "e-cigarettes"
-                                ]
-                            }]
-                        }, {
-                            "question": "Other sales",
-                            "content": [{
-                                "description": "Include:",
-                                "list": [
-                                    "toiletries and medications (except NHS receipts)",
-                                    "newspapers and periodicals",
-                                    "books, stationery and office supplies",
-                                    "photographic and optical goods",
-                                    "spectacles, contact lenses and sunglasses",
-                                    "toys and games",
-                                    "cycles and cycle accessories",
-                                    "sport and camping equipment",
-                                    "jewellery",
-                                    "silverware and plates, clocks and watches",
-                                    "household cleaning products and kitchen paper products",
-                                    "pets, pets’ requisites and pet foods",
-                                    "cut flowers, plants, seeds and other garden sundries",
-                                    "other new and secondhand goods",
-                                    "mobile phones"
-                                ]
-                            }, {
-                                "description": "Exclude:",
-                                "list": [
-                                    "revenue from mobile phone network commission and top up",
-                                    "lottery sales and commission from lottery sales",
-                                    "sales of car accessories and motor vehicles",
-                                    "NHS receipts"
-                                ]
-                            }]
-                        }, {
-                            "question": "Internet sales",
-                            "content": [{
-                                "description": "Include: VAT"
-                            }]
-                        }, {
-                            "question": "Significant changes to the total retail turnover",
-                            "content": [{
-                                "description": "Include:",
-                                "list": [
-                                    "in-store / online promotions",
-                                    "special events (e.g.  sporting events)",
-                                    "calendar events (e.g.  Christmas, Easter, Bank Holiday)",
-                                    "weather",
-                                    "store closures/openings"
-                                ]
-                            }]
-                        }, {
-                            "question": "Employees",
-                            "content": [{
-                                "title": "Number of employees",
-                                "description": "Include:",
-                                "list": [
-                                    "all workers paid directly from this business's payroll(s)",
-                                    "those temporarily absent but still being paid, for example on maternity leave"
-                                ]
-                            }, {
-                                "description": "Exclude:",
-                                "list": [
-                                    "agency workers paid directly from the agency payroll",
-                                    "voluntary workers",
-                                    "former employees only receiving a pension",
-                                    "self-employed workers",
-                                    "working owners who are not paid via PAYE"
-                                ]
-                            }]
-                        }, {
-                            "question": "Working hours",
-                            "content": [{
-                                "description": "The number of:",
-                                "list": [
-                                    "male employees working more than 30 hours per week",
-                                    "male employees working 30 hours or less per week",
-                                    "female employees working more than 30 hours per week",
-                                    "female employees working 30 hours or less per week"
-                                ]
-                            }, {
-                                "description": "Include:",
-                                "list": [
-                                    "all workers paid directly from this business's payroll(s)",
-                                    "those temporarily absent but still being paid, for example on maternity leave"
-                                ]
-
-                            }, {
-                                "description": "Exclude:",
-                                "list": [
-                                    "agency workers paid directly from the agency payroll",
-                                    "voluntary workers",
-                                    "former employees only receiving a pension",
-                                    "self-employed workers",
-                                    "working owners who are not paid via PAYE"
-                                ]
-                            }]
-                        }]
-                    },
-                    "secondary_content": [{
-                        "id": "how-we-use-your-data",
-                        "title": "How we use your data",
-                        "content": [{
-                            "list": [
-                                "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
-                                "The information you supply is used to produce monthly estimates of the total retail sales in Great Britain. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the UK National Accounts."
-                            ]
-                        }]
-                    }]
-                },
-                {
-                    "title": "Reporting period",
-                    "routing_rules": [{
-                            "goto": {
-                                "when": [{
-                                    "value": "Yes",
-                                    "condition": "equals",
-                                    "id": "reporting-period-choice-answer"
-                                }],
-                                "block": "total-retail-turnover-block"
-                            }
-                        },
-                        {
-                            "goto": {
-                                "block": "reporting-period"
-                            }
-                        }
-                    ],
-                    "questions": [{
-                        "title": "Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?",
-                        "type": "General",
-                        "id": "reporting-period-choice-question",
-                        "answers": [{
-                            "mandatory": true,
-                            "options": [{
-                                    "label": "Yes",
-                                    "value": "Yes"
+                                    "description": "The total retail turnover must be less than or equal to the value of food sales, alcohol, confectionery and tobacco sales, clothing and footwear sales,  household goods, and other goods."
                                 },
                                 {
-                                    "label": "No",
-                                    "value": "No"
+                                    "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
                                 }
                             ],
-                            "id": "reporting-period-choice-answer",
-                            "type": "Radio"
-                        }]
-                    }],
-                    "id": "reporting-period-choice",
-                    "type": "Question"
-                },
-                {
-                    "title": "Reporting period",
-                    "questions": [{
-                        "title": "What are the dates of the period that you will be reporting for?",
-                        "type": "DateRange",
-                        "id": "reporting-period-question",
-                        "answers": [{
-                                "mandatory": true,
-                                "label": "From",
-                                "id": "period-from",
-                                "alias": "period_from",
-                                "q_code": "11",
-                                "type": "Date"
-                            },
-                            {
-                                "mandatory": true,
-                                "label": "To",
-                                "id": "period-to",
-                                "alias": "period_to",
-                                "q_code": "12",
-                                "type": "Date"
-                            }
-                        ]
-                    }],
-                    "id": "reporting-period",
-                    "type": "Question"
-                },
-                {
-                    "type": "Question",
-                    "id": "total-retail-turnover-block",
-                    "questions": [{
-                        "guidance": {
-                            "content": [{
-                                    "title": "Include",
+                            "questions": [{
+                                "question": "Total retail turnover",
+                                "content": [{
+                                    "description": "Include:",
                                     "list": [
                                         "VAT",
                                         "internet sales",
                                         "retail sales from outlets in Great Britain to customers abroad"
                                     ]
-                                },
-                                {
-                                    "title": "Exclude",
+                                }, {
+                                    "description": "Exclude:",
                                     "list": [
                                         "revenue from mobile phone network commission and top-up",
                                         "sales from catering facilities used by customers",
@@ -309,189 +55,46 @@
                                         "sales of car accessories and motor vehicles",
                                         "NHS receipts"
                                     ]
-                                }
-                            ]
-                        },
-                        "answers": [{
-                            "id": "total-retail-turnover",
-                            "alias": "total_turnover",
-                            "label": "Total retail turnover",
-                            "mandatory": false,
-                            "q_code": "20",
-                            "type": "Currency",
-                            "currency": "GBP",
-                            "decimal_places": 2,
-                            "default": 0
-                        }],
-                        "id": "total-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total retail turnover</em>?",
-                        "type": "General"
-                    }],
-                    "title": "Retail Turnover"
-                },
-                {
-                    "type": "ConfirmationQuestion",
-                    "title": "Retail Turnover",
-                    "id": "confirm-zero-turnover-block",
-                    "skip_conditions": [{
-                        "when": [{
-                            "id": "total-retail-turnover",
-                            "condition": "greater than",
-                            "value": 0
-                        }]
-                    }],
-                    "questions": [{
-                        "type": "General",
-                        "answers": [{
-                            "type": "Radio",
-                            "id": "confirm-zero-turnover-answer",
-                            "q_code": "d20",
-                            "options": [{
-                                    "label": "Yes this is correct",
-                                    "value": "Yes"
-                                },
-                                {
-                                    "label": "No I need to change this",
-                                    "value": "No"
-                                }
-                            ],
-                            "mandatory": true
-                        }],
-                        "id": "confirm-zero-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, the value of the total retail turnover was <em>£0</em>, is this correct?"
-                    }],
-                    "routing_rules": [{
-                            "goto": {
-                                "when": [{
-                                    "value": "No",
-                                    "id": "confirm-zero-turnover-answer",
-                                    "condition": "equals"
-                                }],
-                                "block": "total-retail-turnover-block"
-                            }
-                        },
-                        {
-                            "goto": {
-                                "block": "significant-change"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "Question",
-                    "id": "food-sales",
-                    "questions": [{
-                        "guidance": {
-                            "content": [{
-                                    "title": "Include",
+                                }]
+                            }, {
+                                "question": "Food sales",
+                                "content": [{
+                                    "description": "Include:",
                                     "list": [
                                         "all fresh food",
                                         "other food for human consumption (except chocolate and sugar confectionery)",
                                         "soft drinks"
                                     ]
-                                },
-                                {
-                                    "title": "Exclude",
+                                }, {
+                                    "description": "Exclude:",
                                     "list": [
                                         "sales from catering facilities used by customers"
                                     ]
-                                }
-                            ]
-                        },
-                        "answers": [{
-                            "id": "total-sales-food",
-                            "label": "Food",
-                            "mandatory": false,
-                            "q_code": "22",
-                            "type": "Currency",
-                            "currency": "GBP",
-                            "decimal_places": 2,
-                            "max_value": {
-                                "answer_id": "total-retail-turnover"
-                            }
-                        }],
-                        "id": "total-sales-food-question",
-                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>food</em> sales?",
-                        "type": "General"
-                    }],
-                    "title": "Retail turnover"
-                },
-                {
-                    "type": "Question",
-                    "id": "alcohol-sales",
-                    "questions": [{
-                        "guidance": {
-                            "content": [{
-                                "title": "Include",
-                                "list": [
-                                    "alcoholic drink",
-                                    "chocolate and sugar confectionery",
-                                    "tobacco and smokers’ requisites"
-                                ]
-                            }]
-                        },
-                        "answers": [{
-                            "id": "total-sales-alcohol",
-                            "label": "Alcohol, confectionery and tobacco",
-                            "mandatory": false,
-                            "q_code": "23",
-                            "type": "Currency",
-                            "currency": "GBP",
-                            "decimal_places": 2,
-                            "max_value": {
-                                "answer_id": "total-retail-turnover"
-                            }
-                        }],
-                        "id": "total-sales-alcohol-question",
-                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>alcohol, confectionery and tobacco</em> sales?",
-                        "type": "General"
-                    }],
-                    "title": "Retail turnover"
-                },
-                {
-                    "type": "Question",
-                    "id": "clothing-sales",
-                    "questions": [{
-                        "guidance": {
-                            "content": [{
-                                "title": "Include",
-                                "list": [
-                                    "clothing and footwear",
-                                    "clothing fabrics",
-                                    "haberdashery and furs",
-                                    "leather and travel goods",
-                                    "handbags and umbrellas"
-                                ]
-                            }]
-                        },
-                        "answers": [{
-                            "id": "total-sales-clothing",
-                            "label": "Clothing and footwear",
-                            "mandatory": false,
-                            "q_code": "24",
-                            "type": "Currency",
-                            "currency": "GBP",
-                            "decimal_places": 2,
-                            "max_value": {
-                                "answer_id": "total-retail-turnover"
-                            }
-                        }],
-                        "id": "total-sales-clothing-question",
-                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>clothing and footwear</em> sales?",
-                        "type": "General"
-                    }],
-                    "title": "Retail turnover"
-                },
-                {
-                    "type": "Question",
-                    "id": "household-goods-sales",
-                    "questions": [{
-                        "answers": [{
-                            "guidance": {
-                                "show_guidance": "Show household goods items to include",
-                                "hide_guidance": "Hide household goods items to include",
+                                }]
+                            }, {
+                                "question": "Alcohol, confectionery and tobacco sales",
                                 "content": [{
-                                    "title": "Include",
+                                    "description": "Include:",
+                                    "list": [
+                                        "chocolate and sugar confectionery",
+                                        "tobacco and smokers’ requisites"
+                                    ]
+                                }]
+                            }, {
+                                "question": "Clothing and footwear sales",
+                                "content": [{
+                                    "description": "Include:",
+                                    "list": [
+                                        "clothing fabrics",
+                                        "haberdashery and furs",
+                                        "leather and travel goods",
+                                        "handbags and umbrellas"
+                                    ]
+                                }]
+                            }, {
+                                "question": "Household goods sales",
+                                "content": [{
+                                    "description": "Include:",
                                     "list": [
                                         "carpets, rugs and other floor coverings",
                                         "furniture",
@@ -510,56 +113,197 @@
                                         "e-cigarettes"
                                     ]
                                 }]
+                            }, {
+                                "question": "Other sales",
+                                "content": [{
+                                    "description": "Include:",
+                                    "list": [
+                                        "toiletries and medications (except NHS receipts)",
+                                        "newspapers and periodicals",
+                                        "books, stationery and office supplies",
+                                        "photographic and optical goods",
+                                        "spectacles, contact lenses and sunglasses",
+                                        "toys and games",
+                                        "cycles and cycle accessories",
+                                        "sport and camping equipment",
+                                        "jewellery",
+                                        "silverware and plates, clocks and watches",
+                                        "household cleaning products and kitchen paper products",
+                                        "pets, pets’ requisites and pet foods",
+                                        "cut flowers, plants, seeds and other garden sundries",
+                                        "other new and secondhand goods",
+                                        "mobile phones"
+                                    ]
+                                }, {
+                                    "description": "Exclude:",
+                                    "list": [
+                                        "revenue from mobile phone network commission and top up",
+                                        "lottery sales and commission from lottery sales",
+                                        "sales of car accessories and motor vehicles",
+                                        "NHS receipts"
+                                    ]
+                                }]
+                            }, {
+                                "question": "Internet sales",
+                                "content": [{
+                                    "description": "Include: VAT"
+                                }]
+                            }, {
+                                "question": "Significant changes to the total retail turnover",
+                                "content": [{
+                                    "description": "Include:",
+                                    "list": [
+                                        "in-store / online promotions",
+                                        "special events (e.g.  sporting events)",
+                                        "calendar events (e.g.  Christmas, Easter, Bank Holiday)",
+                                        "weather",
+                                        "store closures/openings"
+                                    ]
+                                }]
+                            }, {
+                                "question": "Employees",
+                                "content": [{
+                                    "title": "Number of employees",
+                                    "description": "Include:",
+                                    "list": [
+                                        "all workers paid directly from this business's payroll(s)",
+                                        "those temporarily absent but still being paid, for example on maternity leave"
+                                    ]
+                                }, {
+                                    "description": "Exclude:",
+                                    "list": [
+                                        "agency workers paid directly from the agency payroll",
+                                        "voluntary workers",
+                                        "former employees only receiving a pension",
+                                        "self-employed workers",
+                                        "working owners who are not paid via PAYE"
+                                    ]
+                                }]
+                            }, {
+                                "question": "Working hours",
+                                "content": [{
+                                    "description": "The number of:",
+                                    "list": [
+                                        "male employees working more than 30 hours per week",
+                                        "male employees working 30 hours or less per week",
+                                        "female employees working more than 30 hours per week",
+                                        "female employees working 30 hours or less per week"
+                                    ]
+                                }, {
+                                    "description": "Include:",
+                                    "list": [
+                                        "all workers paid directly from this business's payroll(s)",
+                                        "those temporarily absent but still being paid, for example on maternity leave"
+                                    ]
+
+                                }, {
+                                    "description": "Exclude:",
+                                    "list": [
+                                        "agency workers paid directly from the agency payroll",
+                                        "voluntary workers",
+                                        "former employees only receiving a pension",
+                                        "self-employed workers",
+                                        "working owners who are not paid via PAYE"
+                                    ]
+                                }]
+                            }]
+                        },
+                        "secondary_content": [{
+                            "id": "how-we-use-your-data",
+                            "title": "How we use your data",
+                            "content": [{
+                                "list": [
+                                    "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
+                                    "The information you supply is used to produce monthly estimates of the total retail sales in Great Britain. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the UK National Accounts."
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "title": "Reporting period",
+                        "routing_rules": [{
+                                "goto": {
+                                    "when": [{
+                                        "value": "Yes",
+                                        "condition": "equals",
+                                        "id": "reporting-period-choice-answer"
+                                    }],
+                                    "block": "total-retail-turnover-block"
+                                }
                             },
-                            "id": "total-sales-household-goods",
-                            "label": "Household goods",
-                            "mandatory": false,
-                            "q_code": "25",
-                            "type": "Currency",
-                            "currency": "GBP",
-                            "decimal_places": 2,
-                            "max_value": {
-                                "answer_id": "total-retail-turnover"
+                            {
+                                "goto": {
+                                    "block": "reporting-period"
+                                }
                             }
+                        ],
+                        "questions": [{
+                            "title": "Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?",
+                            "type": "General",
+                            "id": "reporting-period-choice-question",
+                            "answers": [{
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ],
+                                "id": "reporting-period-choice-answer",
+                                "type": "Radio"
+                            }]
                         }],
-                        "id": "total-sales-household-goods-question",
-                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of sales for <em>household goods</em>?",
-                        "type": "General"
-                    }],
-                    "title": "Retail turnover"
-                },
-                {
-                    "type": "Question",
-                    "id": "other-goods-sales",
-                    "questions": [{
-                        "answers": [{
+                        "id": "reporting-period-choice",
+                        "type": "Question"
+                    },
+                    {
+                        "title": "Reporting period",
+                        "questions": [{
+                            "title": "What are the dates of the period that you will be reporting for?",
+                            "type": "DateRange",
+                            "id": "reporting-period-question",
+                            "answers": [{
+                                    "mandatory": true,
+                                    "label": "From",
+                                    "id": "period-from",
+                                    "alias": "period_from",
+                                    "q_code": "11",
+                                    "type": "Date"
+                                },
+                                {
+                                    "mandatory": true,
+                                    "label": "To",
+                                    "id": "period-to",
+                                    "alias": "period_to",
+                                    "q_code": "12",
+                                    "type": "Date"
+                                }
+                            ]
+                        }],
+                        "id": "reporting-period",
+                        "type": "Question"
+                    },
+                    {
+                        "type": "Question",
+                        "id": "total-retail-turnover-block",
+                        "questions": [{
                             "guidance": {
-                                "show_guidance": "Show sales items to include/exclude",
-                                "hide_guidance": "Hide sales items to include/exclude",
                                 "content": [{
                                         "title": "Include",
                                         "list": [
-                                            "toiletries and medications (except NHS receipts)",
-                                            "newspapers and periodicals",
-                                            "books, stationery and office supplies",
-                                            "photographic and optical goods",
-                                            "spectacles, contact lenses and sunglasses",
-                                            "toys and games",
-                                            "cycles and cycle accessories",
-                                            "sport and camping equipment",
-                                            "jewellery",
-                                            "silverware and plate, clocks and watches",
-                                            "household cleaning products and kitchen paper products",
-                                            "pets, pets’ requisites and pet foods",
-                                            "cut flowers, plants, seeds and other garden sundries",
-                                            "other new and second hand goods",
-                                            "Mobile phones"
+                                            "VAT",
+                                            "internet sales",
+                                            "retail sales from outlets in Great Britain to customers abroad"
                                         ]
                                     },
                                     {
                                         "title": "Exclude",
                                         "list": [
-                                            "revenue from mobile phone network commission and top up ",
+                                            "revenue from mobile phone network commission and top-up",
+                                            "sales from catering facilities used by customers",
                                             "lottery sales and commission from lottery sales",
                                             "sales of car accessories and motor vehicles",
                                             "NHS receipts"
@@ -567,389 +311,650 @@
                                     }
                                 ]
                             },
-                            "id": "total-sales-other-goods",
-                            "label": "Other goods",
-                            "mandatory": false,
-                            "q_code": "26",
-                            "type": "Currency",
-                            "currency": "GBP",
-                            "decimal_places": 2,
-                            "max_value": {
-                                "answer_id": "total-retail-turnover"
-                            }
+                            "answers": [{
+                                "id": "total-retail-turnover",
+                                "alias": "total_turnover",
+                                "label": "Total retail turnover",
+                                "mandatory": false,
+                                "q_code": "20",
+                                "type": "Currency",
+                                "currency": "GBP",
+                                "decimal_places": 2,
+                                "default": 0
+                            }],
+                            "id": "total-turnover-question",
+                            "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total retail turnover</em>?",
+                            "type": "General"
                         }],
-                        "id": "total-sales-other-goods-question",
-                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>other</em> sales?",
-                        "type": "General"
-                    }],
-                    "title": "Retail turnover"
-                },
-                {
-                    "type": "Question",
-                    "id": "total-internet-sales",
-                    "questions": [{
-                        "guidance": {
-                            "content": [{
-                                "title": "Include",
-                                "list": [
-                                    "VAT"
-                                ]
+                        "title": "Retail Turnover"
+                    },
+                    {
+                        "type": "ConfirmationQuestion",
+                        "title": "Retail Turnover",
+                        "id": "confirm-zero-turnover-block",
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "total-retail-turnover",
+                                "condition": "greater than",
+                                "value": 0
                             }]
-                        },
-                        "answers": [{
-                            "id": "internet-sales",
-                            "label": "Internet sales",
-                            "mandatory": false,
-                            "q_code": "21",
-                            "type": "Currency",
-                            "currency": "GBP",
-                            "decimal_places": 2,
-                            "max_value": {
-                                "answer_id": "total-retail-turnover"
+                        }],
+                        "questions": [{
+                            "type": "General",
+                            "answers": [{
+                                "type": "Radio",
+                                "id": "confirm-zero-turnover-answer",
+                                "q_code": "d20",
+                                "options": [{
+                                        "label": "Yes this is correct",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No I need to change this",
+                                        "value": "No"
+                                    }
+                                ],
+                                "mandatory": true
+                            }],
+                            "id": "confirm-zero-turnover-question",
+                            "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, the value of the total retail turnover was <em>£0</em>, is this correct?"
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "when": [{
+                                        "value": "No",
+                                        "id": "confirm-zero-turnover-answer",
+                                        "condition": "equals"
+                                    }],
+                                    "block": "total-retail-turnover-block"
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "significant-change"
+                                }
                             }
-                        }],
-                        "id": "internet-sales-question",
-                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
-                        "type": "General"
-                    }],
-                    "title": "Retail turnover"
-                },
-                {
-                    "id": "significant-change",
-                    "questions": [{
-                        "guidance": {
-                            "content": [{
-                                "title": "Include",
-                                "list": [
-                                    "in-store / online promotions",
-                                    "special events (e.g. sporting events)",
-                                    "calendar events (e.g. Christmas, Easter, Bank Holiday)",
-                                    "weather",
-                                    "store closures/openings"
-                                ]
-                            }]
-                        },
-                        "answers": [{
-                            "id": "significant-change-established-answer",
-                            "label": "",
-                            "mandatory": true,
-                            "options": [{
-                                    "label": "Yes",
-                                    "value": "Yes"
-                                },
-                                {
-                                    "label": "No",
-                                    "value": "No"
-                                }
-                            ],
-                            "q_code": "146a",
-                            "type": "Radio"
-                        }],
-                        "description": "Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year.<br><br>This information will help us to validate your data and should reduce the need to query any figures with you.",
-                        "id": "significant-change-question",
-                        "title": "Did any significant changes occur to the total retail turnover for {{respondent.trad_as_or_ru_name}}?",
-                        "type": "General"
-                    }],
-                    "title": "Changes in total retail turnover",
-                    "type": "Question"
-                },
-                {
-                    "type": "Question",
-                    "id": "reason-for-change",
-                    "skip_conditions": [{
-                        "when": [{
-                            "id": "significant-change-established-answer",
-                            "condition": "equals",
-                            "value": "No"
-                        }]
-                    }],
-                    "questions": [{
-                        "answers": [{
-                            "id": "reason-for-change-answer",
-                            "label": "",
-                            "mandatory": true,
-                            "options": [{
-                                    "label": "In-store / online promotions",
-                                    "q_code": "146b",
-                                    "value": "In-store / online promotions"
-                                },
-                                {
-                                    "label": "Special events (e.g. sporting events)",
-                                    "q_code": "146c",
-                                    "value": "Special events (e.g. sporting events)"
-                                },
-                                {
-                                    "label": "Calendar events (e.g. Christmas, Easter, Bank Holiday)",
-                                    "q_code": "146d",
-                                    "value": "Calendar events (e.g. Christmas, Easter, Bank Holiday)"
-                                },
-                                {
-                                    "label": "Weather",
-                                    "q_code": "146e",
-                                    "value": "Weather"
-                                },
-                                {
-                                    "label": "Store closures",
-                                    "q_code": "146f",
-                                    "value": "Store closures"
-                                },
-                                {
-                                    "label": "Store openings",
-                                    "q_code": "146g",
-                                    "value": "Store openings"
-                                },
-                                {
-                                    "label": "Other",
-                                    "q_code": "146h",
-                                    "value": "Other"
-                                }
-                            ],
-                            "type": "Checkbox"
-                        }],
-                        "id": "reason-for-change-question",
-                        "title": "Please indicate the reasons for any changes in the total retail turnover for {{respondent.trad_as_or_ru_name}}",
-                        "type": "General"
-                    }],
-                    "title": "Changes in total retail turnover"
-                },
-                {
-                    "type": "Question",
-                    "id": "change-comment-block",
-                    "skip_conditions": [{
-                        "when": [{
-                            "id": "significant-change-established-answer",
-                            "condition": "equals",
-                            "value": "No"
-                        }]
-                    }],
-                    "questions": [{
-                        "answers": [{
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "food-sales",
+                        "questions": [{
                             "guidance": {
-                                "show_guidance": "Show examples of commentary on changes to total retail turnover",
-                                "hide_guidance": "Hide examples of commentary on changes to total retail turnover",
                                 "content": [{
-                                        "description": "Examples of commentary:"
+                                        "title": "Include",
+                                        "list": [
+                                            "all fresh food",
+                                            "other food for human consumption (except chocolate and sugar confectionery)",
+                                            "soft drinks"
+                                        ]
                                     },
                                     {
-                                        "title": "‘In-store promotion’",
-                                        "description": "“Offer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.”"
-                                    },
-                                    {
-                                        "title": "‘Special events (for example, sporting events)’",
-                                        "description": "“This was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.”"
-                                    },
-                                    {
-                                        "title": "‘Weather’",
-                                        "description": "“The bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.”"
+                                        "title": "Exclude",
+                                        "list": [
+                                            "sales from catering facilities used by customers"
+                                        ]
                                     }
                                 ]
                             },
-                            "id": "change-comment",
-                            "label": "Comments",
-                            "mandatory": true,
-                            "q_code": "146",
-                            "type": "TextArea"
+                            "answers": [{
+                                "id": "total-sales-food",
+                                "label": "Food",
+                                "mandatory": false,
+                                "q_code": "22",
+                                "type": "Currency",
+                                "currency": "GBP",
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "total-retail-turnover"
+                                }
+                            }],
+                            "id": "total-sales-food-question",
+                            "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>food</em> sales?",
+                            "type": "General"
                         }],
-                        "description": "We rely on your commentary to ‘tell the story’ behind changes in figures. By commenting here it will reduce the need for us to call you.",
-                        "id": "change-comment-question",
-                        "title": "Please describe the changes in total retail turnover for {{respondent.trad_as_or_ru_name}} in more detail",
-                        "type": "General"
-                    }],
-                    "title": "Changes in total retail turnover"
-                },
-                {
-                    "type": "Question",
-                    "id": "total-employees",
-                    "questions": [{
-                        "guidance": {
-                            "content": [{
+                        "title": "Retail turnover"
+                    },
+                    {
+                        "type": "Question",
+                        "id": "alcohol-sales",
+                        "questions": [{
+                            "guidance": {
+                                "content": [{
                                     "title": "Include",
                                     "list": [
-                                        "all workers paid directly from this business’s payroll(s)",
-                                        "those temporarily absent but still being paid, for example on maternity leave"
+                                        "alcoholic drink",
+                                        "chocolate and sugar confectionery",
+                                        "tobacco and smokers’ requisites"
                                     ]
-                                },
-                                {
-                                    "title": "Exclude",
-                                    "list": [
-                                        "agency workers paid directly from the agency payroll",
-                                        "voluntary workers",
-                                        "former employees only receiving pension",
-                                        "self-employed workers",
-                                        "working owners who are not paid via PAYE"
-                                    ]
+                                }]
+                            },
+                            "answers": [{
+                                "id": "total-sales-alcohol",
+                                "label": "Alcohol, confectionery and tobacco",
+                                "mandatory": false,
+                                "q_code": "23",
+                                "type": "Currency",
+                                "currency": "GBP",
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "total-retail-turnover"
                                 }
-                            ]
-                        },
-                        "answers": [{
-                            "id": "total-number-employees",
-                            "alias": "employee_count",
-                            "label": "Total number of employees",
-                            "mandatory": false,
-                            "q_code": "50",
-                            "type": "Number",
-                            "default": 0
+                            }],
+                            "id": "total-sales-alcohol-question",
+                            "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>alcohol, confectionery and tobacco</em> sales?",
+                            "type": "General"
                         }],
-                        "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
-                        "id": "total-number-employees-question",
-                        "title": "On {{exercise.employment_date|format_date}} what was the number of employees for {{respondent.trad_as_or_ru_name}}?",
-                        "type": "General"
-                    }],
-                    "title": "Employees"
-                },
-                {
-                    "type": "ConfirmationQuestion",
-                    "title": "Employees",
-                    "id": "confirm-zero-employees-block",
-                    "skip_conditions": [{
-                        "when": [{
-                            "id": "total-number-employees",
-                            "condition": "greater than",
-                            "value": 0
-                        }]
-                    }],
-                    "questions": [{
-                        "type": "General",
-                        "answers": [{
-                            "type": "Radio",
-                            "id": "confirm-zero-employees-answer",
-                            "q_code": "d50",
-                            "options": [{
-                                    "label": "Yes this is correct",
-                                    "value": "Yes"
+                        "title": "Retail turnover"
+                    },
+                    {
+                        "type": "Question",
+                        "id": "clothing-sales",
+                        "questions": [{
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "clothing and footwear",
+                                        "clothing fabrics",
+                                        "haberdashery and furs",
+                                        "leather and travel goods",
+                                        "handbags and umbrellas"
+                                    ]
+                                }]
+                            },
+                            "answers": [{
+                                "id": "total-sales-clothing",
+                                "label": "Clothing and footwear",
+                                "mandatory": false,
+                                "q_code": "24",
+                                "type": "Currency",
+                                "currency": "GBP",
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "total-retail-turnover"
+                                }
+                            }],
+                            "id": "total-sales-clothing-question",
+                            "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>clothing and footwear</em> sales?",
+                            "type": "General"
+                        }],
+                        "title": "Retail turnover"
+                    },
+                    {
+                        "type": "Question",
+                        "id": "household-goods-sales",
+                        "questions": [{
+                            "answers": [{
+                                "guidance": {
+                                    "show_guidance": "Show household goods items to include",
+                                    "hide_guidance": "Hide household goods items to include",
+                                    "content": [{
+                                        "title": "Include",
+                                        "list": [
+                                            "carpets, rugs and other floor coverings",
+                                            "furniture",
+                                            "household textiles and soft furnishings",
+                                            "prints and picture frames",
+                                            "antiques and works of art",
+                                            "domestic electrical and gas appliances, audio/visual equipment and home computers",
+                                            "lighting and minor electrical supplies",
+                                            "records, compact discs, audio and video tapes",
+                                            "musical instruments and goods",
+                                            "decorators’ and DIY supplies",
+                                            "lawn-mowers",
+                                            "hardware",
+                                            "china, glassware and cutlery",
+                                            "novelties, souvenirs and gifts",
+                                            "e-cigarettes"
+                                        ]
+                                    }]
+                                },
+                                "id": "total-sales-household-goods",
+                                "label": "Household goods",
+                                "mandatory": false,
+                                "q_code": "25",
+                                "type": "Currency",
+                                "currency": "GBP",
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "total-retail-turnover"
+                                }
+                            }],
+                            "id": "total-sales-household-goods-question",
+                            "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of sales for <em>household goods</em>?",
+                            "type": "General"
+                        }],
+                        "title": "Retail turnover"
+                    },
+                    {
+                        "type": "Question",
+                        "id": "other-goods-sales",
+                        "questions": [{
+                            "answers": [{
+                                "guidance": {
+                                    "show_guidance": "Show sales items to include/exclude",
+                                    "hide_guidance": "Hide sales items to include/exclude",
+                                    "content": [{
+                                            "title": "Include",
+                                            "list": [
+                                                "toiletries and medications (except NHS receipts)",
+                                                "newspapers and periodicals",
+                                                "books, stationery and office supplies",
+                                                "photographic and optical goods",
+                                                "spectacles, contact lenses and sunglasses",
+                                                "toys and games",
+                                                "cycles and cycle accessories",
+                                                "sport and camping equipment",
+                                                "jewellery",
+                                                "silverware and plate, clocks and watches",
+                                                "household cleaning products and kitchen paper products",
+                                                "pets, pets’ requisites and pet foods",
+                                                "cut flowers, plants, seeds and other garden sundries",
+                                                "other new and second hand goods",
+                                                "Mobile phones"
+                                            ]
+                                        },
+                                        {
+                                            "title": "Exclude",
+                                            "list": [
+                                                "revenue from mobile phone network commission and top up ",
+                                                "lottery sales and commission from lottery sales",
+                                                "sales of car accessories and motor vehicles",
+                                                "NHS receipts"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "id": "total-sales-other-goods",
+                                "label": "Other goods",
+                                "mandatory": false,
+                                "q_code": "26",
+                                "type": "Currency",
+                                "currency": "GBP",
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "total-retail-turnover"
+                                }
+                            }],
+                            "id": "total-sales-other-goods-question",
+                            "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>other</em> sales?",
+                            "type": "General"
+                        }],
+                        "title": "Retail turnover"
+                    },
+                    {
+                        "type": "Question",
+                        "id": "total-internet-sales",
+                        "questions": [{
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "VAT"
+                                    ]
+                                }]
+                            },
+                            "answers": [{
+                                "id": "internet-sales",
+                                "label": "Internet sales",
+                                "mandatory": false,
+                                "q_code": "21",
+                                "type": "Currency",
+                                "currency": "GBP",
+                                "decimal_places": 2,
+                                "max_value": {
+                                    "answer_id": "total-retail-turnover"
+                                }
+                            }],
+                            "id": "internet-sales-question",
+                            "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
+                            "type": "General"
+                        }],
+                        "title": "Retail turnover"
+                    },
+                    {
+                        "id": "significant-change",
+                        "questions": [{
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "in-store / online promotions",
+                                        "special events (e.g. sporting events)",
+                                        "calendar events (e.g. Christmas, Easter, Bank Holiday)",
+                                        "weather",
+                                        "store closures/openings"
+                                    ]
+                                }]
+                            },
+                            "answers": [{
+                                "id": "significant-change-established-answer",
+                                "label": "",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ],
+                                "q_code": "146a",
+                                "type": "Radio"
+                            }],
+                            "content": [{
+                                    "description": "Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year."
                                 },
                                 {
-                                    "label": "No I need to change this",
-                                    "value": "No"
+                                    "description": "This information will help us to validate your data and should reduce the need to query any figures with you."
                                 }
                             ],
-                            "mandatory": true
+                            "id": "significant-change-question",
+                            "title": "Did any significant changes occur to the total retail turnover for {{respondent.trad_as_or_ru_name}}?",
+                            "type": "General"
                         }],
-                        "id": "confirm-zero-employees-question",
-                        "title": "On {{exercise.employment_date|format_date}}, the number of employees for {{respondent.trad_as_or_ru_name}} was <em>0</em>, is this correct?"
-                    }],
-                    "routing_rules": [{
-                            "goto": {
-                                "when": [{
-                                    "value": "No",
-                                    "id": "confirm-zero-employees-answer",
-                                    "condition": "equals"
-                                }],
-                                "block": "total-employees"
-                            }
-                        },
-                        {
-                            "goto": {
-                                "block": "summary"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "Question",
-                    "id": "employees-breakdown",
-                    "questions": [{
-                        "calculations": [{
-                                "calculation_type": "sum",
-                                "value": 0,
-                                "answers_to_calculate": [
-                                    "number-male-employees-over-30-hours",
-                                    "number-male-employees-under-30-hours",
-                                    "number-female-employees-over-30-hours",
-                                    "number-female-employees-under-30-hours"
+                        "title": "Changes in total retail turnover",
+                        "type": "Question"
+                    },
+                    {
+                        "type": "Question",
+                        "id": "reason-for-change",
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "significant-change-established-answer",
+                                "condition": "equals",
+                                "value": "No"
+                            }]
+                        }],
+                        "questions": [{
+                            "answers": [{
+                                "id": "reason-for-change-answer",
+                                "label": "",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "In-store / online promotions",
+                                        "q_code": "146b",
+                                        "value": "In-store / online promotions"
+                                    },
+                                    {
+                                        "label": "Special events (e.g. sporting events)",
+                                        "q_code": "146c",
+                                        "value": "Special events (e.g. sporting events)"
+                                    },
+                                    {
+                                        "label": "Calendar events (e.g. Christmas, Easter, Bank Holiday)",
+                                        "q_code": "146d",
+                                        "value": "Calendar events (e.g. Christmas, Easter, Bank Holiday)"
+                                    },
+                                    {
+                                        "label": "Weather",
+                                        "q_code": "146e",
+                                        "value": "Weather"
+                                    },
+                                    {
+                                        "label": "Store closures",
+                                        "q_code": "146f",
+                                        "value": "Store closures"
+                                    },
+                                    {
+                                        "label": "Store openings",
+                                        "q_code": "146g",
+                                        "value": "Store openings"
+                                    },
+                                    {
+                                        "label": "Other",
+                                        "q_code": "146h",
+                                        "value": "Other"
+                                    }
                                 ],
-                                "conditions": [
-                                    "equals"
+                                "type": "Checkbox"
+                            }],
+                            "id": "reason-for-change-question",
+                            "title": "Please indicate the reasons for any changes in the total retail turnover for {{respondent.trad_as_or_ru_name}}",
+                            "type": "General"
+                        }],
+                        "title": "Changes in total retail turnover"
+                    },
+                    {
+                        "type": "Question",
+                        "id": "change-comment-block",
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "significant-change-established-answer",
+                                "condition": "equals",
+                                "value": "No"
+                            }]
+                        }],
+                        "questions": [{
+                            "answers": [{
+                                "guidance": {
+                                    "show_guidance": "Show examples of commentary on changes to total retail turnover",
+                                    "hide_guidance": "Hide examples of commentary on changes to total retail turnover",
+                                    "content": [{
+                                            "description": "Examples of commentary:"
+                                        },
+                                        {
+                                            "title": "‘In-store promotion’",
+                                            "description": "“Offer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.”"
+                                        },
+                                        {
+                                            "title": "‘Special events (for example, sporting events)’",
+                                            "description": "“This was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.”"
+                                        },
+                                        {
+                                            "title": "‘Weather’",
+                                            "description": "“The bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.”"
+                                        }
+                                    ]
+                                },
+                                "id": "change-comment",
+                                "label": "Comments",
+                                "mandatory": true,
+                                "q_code": "146",
+                                "type": "TextArea"
+                            }],
+                            "description": "We rely on your commentary to ‘tell the story’ behind changes in figures. By commenting here it will reduce the need for us to call you.",
+                            "id": "change-comment-question",
+                            "title": "Please describe the changes in total retail turnover for {{respondent.trad_as_or_ru_name}} in more detail",
+                            "type": "General"
+                        }],
+                        "title": "Changes in total retail turnover"
+                    },
+                    {
+                        "type": "Question",
+                        "id": "total-employees",
+                        "questions": [{
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include",
+                                        "list": [
+                                            "all workers paid directly from this business’s payroll(s)",
+                                            "those temporarily absent but still being paid, for example on maternity leave"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude",
+                                        "list": [
+                                            "agency workers paid directly from the agency payroll",
+                                            "voluntary workers",
+                                            "former employees only receiving pension",
+                                            "self-employed workers",
+                                            "working owners who are not paid via PAYE"
+                                        ]
+                                    }
                                 ]
                             },
-                            {
-                                "calculation_type": "sum",
-                                "answer_id": "total-number-employees",
-                                "answers_to_calculate": [
-                                    "number-male-employees-over-30-hours",
-                                    "number-male-employees-under-30-hours",
-                                    "number-female-employees-over-30-hours",
-                                    "number-female-employees-under-30-hours"
+                            "answers": [{
+                                "id": "total-number-employees",
+                                "alias": "employee_count",
+                                "label": "Total number of employees",
+                                "mandatory": false,
+                                "q_code": "50",
+                                "type": "Number",
+                                "default": 0
+                            }],
+                            "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
+                            "id": "total-number-employees-question",
+                            "title": "On {{exercise.employment_date|format_date}} what was the number of employees for {{respondent.trad_as_or_ru_name}}?",
+                            "type": "General"
+                        }],
+                        "title": "Employees"
+                    },
+                    {
+                        "type": "ConfirmationQuestion",
+                        "title": "Employees",
+                        "id": "confirm-zero-employees-block",
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "total-number-employees",
+                                "condition": "greater than",
+                                "value": 0
+                            }]
+                        }],
+                        "questions": [{
+                            "type": "General",
+                            "answers": [{
+                                "type": "Radio",
+                                "id": "confirm-zero-employees-answer",
+                                "q_code": "d50",
+                                "options": [{
+                                        "label": "Yes this is correct",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No I need to change this",
+                                        "value": "No"
+                                    }
                                 ],
-                                "conditions": [
-                                    "equals"
-                                ]
+                                "mandatory": true
+                            }],
+                            "id": "confirm-zero-employees-question",
+                            "title": "On {{exercise.employment_date|format_date}}, the number of employees for {{respondent.trad_as_or_ru_name}} was <em>0</em>, is this correct?"
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "when": [{
+                                        "value": "No",
+                                        "id": "confirm-zero-employees-answer",
+                                        "condition": "equals"
+                                    }],
+                                    "block": "total-employees"
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "summary"
+                                }
                             }
-                        ],
-                        "guidance": {
-                            "content": [{
-                                    "title": "Include",
-                                    "list": [
-                                        "all workers paid directly from this business’s payroll(s)",
-                                        "those temporarily absent but still being paid, for example on maternity leave"
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "employees-breakdown",
+                        "questions": [{
+                            "calculations": [{
+                                    "calculation_type": "sum",
+                                    "value": 0,
+                                    "answers_to_calculate": [
+                                        "number-male-employees-over-30-hours",
+                                        "number-male-employees-under-30-hours",
+                                        "number-female-employees-over-30-hours",
+                                        "number-female-employees-under-30-hours"
+                                    ],
+                                    "conditions": [
+                                        "equals"
                                     ]
                                 },
                                 {
-                                    "title": "Exclude",
-                                    "list": [
-                                        "agency workers paid directly from the agency payroll",
-                                        "voluntary workers",
-                                        "former employees only receiving pension",
-                                        "self-employed workers",
-                                        "working owners who are not paid via PAYE"
+                                    "calculation_type": "sum",
+                                    "answer_id": "total-number-employees",
+                                    "answers_to_calculate": [
+                                        "number-male-employees-over-30-hours",
+                                        "number-male-employees-under-30-hours",
+                                        "number-female-employees-over-30-hours",
+                                        "number-female-employees-under-30-hours"
+                                    ],
+                                    "conditions": [
+                                        "equals"
                                     ]
                                 }
-                            ]
-                        },
-                        "answers": [{
-                                "id": "number-male-employees-over-30-hours",
-                                "label": "Number of male employees working more than 30 hours per week",
-                                "mandatory": false,
-                                "q_code": "51",
-                                "type": "Number",
-                                "max_value": {
-                                    "answer_id": "total-number-employees"
-                                }
+                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include",
+                                        "list": [
+                                            "all workers paid directly from this business’s payroll(s)",
+                                            "those temporarily absent but still being paid, for example on maternity leave"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude",
+                                        "list": [
+                                            "agency workers paid directly from the agency payroll",
+                                            "voluntary workers",
+                                            "former employees only receiving pension",
+                                            "self-employed workers",
+                                            "working owners who are not paid via PAYE"
+                                        ]
+                                    }
+                                ]
                             },
-                            {
-                                "id": "number-male-employees-under-30-hours",
-                                "label": "Number of male employees working 30 hours or less per week",
-                                "mandatory": false,
-                                "q_code": "52",
-                                "type": "Number",
-                                "max_value": {
-                                    "answer_id": "total-number-employees"
+                            "answers": [{
+                                    "id": "number-male-employees-over-30-hours",
+                                    "label": "Number of male employees working more than 30 hours per week",
+                                    "mandatory": false,
+                                    "q_code": "51",
+                                    "type": "Number",
+                                    "max_value": {
+                                        "answer_id": "total-number-employees"
+                                    }
+                                },
+                                {
+                                    "id": "number-male-employees-under-30-hours",
+                                    "label": "Number of male employees working 30 hours or less per week",
+                                    "mandatory": false,
+                                    "q_code": "52",
+                                    "type": "Number",
+                                    "max_value": {
+                                        "answer_id": "total-number-employees"
+                                    }
+                                },
+                                {
+                                    "id": "number-female-employees-over-30-hours",
+                                    "label": "Number of female employees working more than 30 hours per week",
+                                    "mandatory": false,
+                                    "q_code": "53",
+                                    "type": "Number",
+                                    "max_value": {
+                                        "answer_id": "total-number-employees"
+                                    }
+                                },
+                                {
+                                    "id": "number-female-employees-under-30-hours",
+                                    "label": "Number of female employees working 30 hours or less per week",
+                                    "mandatory": false,
+                                    "q_code": "54",
+                                    "type": "Number",
+                                    "max_value": {
+                                        "answer_id": "total-number-employees"
+                                    }
                                 }
-                            },
-                            {
-                                "id": "number-female-employees-over-30-hours",
-                                "label": "Number of female employees working more than 30 hours per week",
-                                "mandatory": false,
-                                "q_code": "53",
-                                "type": "Number",
-                                "max_value": {
-                                    "answer_id": "total-number-employees"
-                                }
-                            },
-                            {
-                                "id": "number-female-employees-under-30-hours",
-                                "label": "Number of female employees working 30 hours or less per week",
-                                "mandatory": false,
-                                "q_code": "54",
-                                "type": "Number",
-                                "max_value": {
-                                    "answer_id": "total-number-employees"
-                                }
-                            }
-                        ],
-                        "id": "employee-breakdown-questions",
-                        "title": "Of the <em>{{answers.employee_count|format_number}}</em> total employees employed on {{exercise.employment_date|format_date}}, please specify the number of:",
-                        "type": "Calculated"
-                    }],
-                    "title": "Employees"
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ],
-            "id": "mci",
-            "title": ""
+                            ],
+                            "id": "employee-breakdown-questions",
+                            "title": "Of the <em>{{answers.employee_count|format_number}}</em> total employees employed on {{exercise.employment_date|format_date}}, please specify the number of:",
+                            "type": "Calculated"
+                        }],
+                        "title": "Employees"
+                    },
+                    {
+                        "type": "Summary",
+                        "id": "summary"
+                    }
+                ],
+                "id": "mci",
+                "title": ""
+            }]
         }]
-    }]
-}
+    }

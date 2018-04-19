@@ -677,7 +677,13 @@
                             "q_code": "146a",
                             "type": "Radio"
                         }],
-                        "description": "Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year.<br><br>This information will help us to validate your data and should reduce the need to query any figures with you.",
+                        "content": [{
+                                "description": "Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year."
+                            },
+                            {
+                                "description": "This information will help us to validate your data and should reduce the need to query any figures with you."
+                            }
+                        ],
                         "id": "significant-change-question",
                         "title": "Did any significant changes occur to the total retail turnover for {{respondent.trad_as_or_ru_name}}?",
                         "type": "General"
