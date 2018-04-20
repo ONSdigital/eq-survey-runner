@@ -20,6 +20,8 @@ class QuestionPage extends BasePage {
 
   displayedName() { return '[data-qa="block-title"]'; }
 
+  displayedDescription() { return '[data-qa="block-description"]'; }
+
   submit() { return '[data-qa="btn-submit"]'; }
 
   saveSignOut() { return '[data-qa="btn-save-sign-out"]'; }

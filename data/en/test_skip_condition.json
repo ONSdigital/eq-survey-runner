@@ -46,7 +46,6 @@
                     "description": "",
                     "questions": [{
                         "answers": [{
-                            "alias": "",
                             "id": "drink-answer",
                             "label": "What is your favourite breakfast beverage",
                             "mandatory": true,

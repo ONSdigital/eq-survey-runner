@@ -176,7 +176,6 @@
                         },
                         "type": "RepeatingAnswer",
                         "answers": [{
-                                "alias": "first_name",
                                 "id": "first-name",
                                 "label": "First name",
                                 "mandatory": true,
@@ -188,7 +187,6 @@
                                 }
                             },
                             {
-                                "alias": "last_name",
                                 "id": "last-name",
                                 "label": "Last name",
                                 "mandatory": false,
@@ -212,7 +210,7 @@
                 "blocks": [{
                         "type": "Question",
                         "id": "repeating-block-1",
-                        "title": "{{answers.first_name[group_instance]}} {{answers.last_name[group_instance]}}",
+                        "title": "{{answers['first-name'][group_instance]}} {{answers['last-name'][group_instance]}}",
                         "description": "",
                         "questions": [{
                             "id": "over-16-question",
@@ -240,7 +238,7 @@
                     {
                         "type": "Question",
                         "id": "repeating-block-2",
-                        "title": "{{answers.first_name[group_instance]}} {{answers.last_name[group_instance]}}",
+                        "title": "{{answers['first-name'][group_instance]}} {{answers['last-name'][group_instance]}}",
                         "description": "",
                         "questions": [{
                             "id": "working-status-question",

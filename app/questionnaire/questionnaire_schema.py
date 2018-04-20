@@ -46,11 +46,10 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
     def get_answer_dependencies_by_id(self, answer_id):
         return self._answer_dependencies.get(answer_id, [])
 
-    def get_group_and_block_id_by_answer_id(self, answer_id):
-        return self._answer_with_block_and_group_id.get(answer_id)
-
-    def get_section_and_group_id_by_block_id(self, block_id):
-        return self._block_with_group_and_section_id.get(block_id)
+    def get_section_by_block_id(self, block_id):
+        block = self.get_block(block_id)
+        group = self.get_group(block['parent_id'])
+        return self.get_section(group['parent_id'])
 
     def get_groups_that_repeat_with_answer_id(self, answer_id):
         for group in self.groups:
@@ -171,6 +170,20 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
 
         return False
 
+    def is_repeating_answer_type(self, answer_id):
+        answer = self.get_answer(answer_id)
+        question = self.get_question(answer['parent_id'])
+        return answer.get('type') == 'Checkbox' or question['type'] == 'RepeatingAnswer'
+
+    def answer_is_in_repeating_group(self, answer_id):
+        answer = self.get_answer(answer_id)
+        question = self.get_question(answer['parent_id'])
+        block = self.get_block(question['parent_id'])
+        group = self.get_group(block['parent_id'])
+
+        repeat_rule = self.get_repeat_rule(group)
+        return repeat_rule and repeat_rule['type'] == 'answer_count'
+
     def _parse_schema(self):
         self._sections_by_id = self._get_sections_by_id()
         self._groups_by_id = get_nested_schema_objects(self._sections_by_id, 'groups')
@@ -178,10 +191,7 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
         self._questions_by_id = get_nested_schema_objects(self._blocks_by_id, 'questions')
         self._answers_by_id = get_nested_schema_objects(self._questions_by_id, 'answers')
         self.error_messages = self._get_error_messages()
-        self.aliases = self._get_aliases()
         self._answer_dependencies = self._get_answer_dependencies()
-        self._answer_with_block_and_group_id = self._get_answer_block_group_ids()
-        self._block_with_group_and_section_id = self._get_block_section_group_ids()
 
     def _get_sections_by_id(self):
         return OrderedDict(
@@ -195,21 +205,6 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
             messages.update(self.json['messages'])
 
         return messages
-
-    def _get_aliases(self):
-        aliases = {}
-        for question in self.questions:
-            for answer in question.get('answers', []):
-                if 'alias' in answer:
-                    if answer['alias'] in aliases:
-                        raise Exception(
-                            'Duplicate alias found: ' + answer['alias'])
-                    aliases[answer['alias']] = {
-                        'answer_id': answer['id'],
-                        'repeats': answer['type'] == 'Checkbox' or question['type'] == 'RepeatingAnswer',
-                    }
-
-        return aliases
 
     def _get_answer_dependencies(self):
         dependencies = defaultdict(list)
@@ -233,45 +228,23 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
 
         return dependencies
 
-    def _get_answer_block_group_ids(self):
-        answers_blocks_groups = {}
-        for group in self.groups:
-            for block in group['blocks']:
-                block_group = {
-                    'block': block['id'],
-                    'group': group['id']
-                }
-                answer_ids = self.get_answer_ids_for_block(block['id'])
-                for answer_id in answer_ids:
-                    answers_blocks_groups[answer_id] = block_group
-
-        return answers_blocks_groups
-
-    def _get_block_section_group_ids(self):
-        block_section_groups = {}
-        for section in self.sections:
-            for group in section['groups']:
-                section_group = {
-                    'section': section['id'],
-                    'group': group['id']
-                }
-                block_ids = (block['id'] for block in group['blocks'])
-                for block_id in block_ids:
-                    block_section_groups[block_id] = section_group
-
-        return block_section_groups
-
 
 def get_nested_schema_objects(parent_object, list_key):
     """
+    Generic method to extract a flattened list of child objects from a parent
+    object and return an ID-keyed dictionary of those child objects.
+
+    This method also patches on a `parent_id` attribute to each child object.
+
     :param parent_object: dict containing a list
     :param list_key: key of the nested list to extract
     """
-    lists = (
-        obj.get(list_key, [])
-        for obj in parent_object.values()
-    )
-    return OrderedDict(
-        (nested_item['id'], nested_item)
-        for nested_item in itertools.chain.from_iterable(lists)
-    )
+    nested_objects = OrderedDict()
+
+    for parent_id, child_object in parent_object.items():
+        for child_list_object in child_object.get(list_key, []):
+            # patch the ID of the parent onto the object
+            child_list_object['parent_id'] = parent_id
+            nested_objects[child_list_object['id']] = child_list_object
+
+    return nested_objects

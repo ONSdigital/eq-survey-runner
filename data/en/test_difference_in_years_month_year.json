@@ -21,7 +21,6 @@
                         "title": "When did you last go on holiday?",
                         "type": "General",
                         "answers": [{
-                            "alias": "date_dob",
                             "id": "date-dob",
                             "label": "For example March 1990",
                             "mandatory": true,
@@ -35,7 +34,7 @@
                     "title": "Confirm Duration",
                     "questions": [{
                         "id": "confirm-dob-question",
-                        "title": "It has been {{ calculate_years_difference (answers.date_dob, 'now') }} since you last went on holiday. Is this correct?",
+                        "title": "It has been {{ calculate_years_difference (answers['date-dob'], 'now') }} since you last went on holiday. Is this correct?",
                         "type": "General",
                         "answers": [{
                             "id": "date-test-answer",

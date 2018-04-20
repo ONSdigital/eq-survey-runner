@@ -17,7 +17,6 @@
                         "questions": [{
                             "answers": [{
                                     "id": "set-minimum",
-                                    "alias": "min_value",
                                     "description": "",
                                     "label": "Minimum Value",
                                     "mandatory": true,
@@ -32,7 +31,6 @@
                                 },
                                 {
                                     "id": "set-maximum",
-                                    "alias": "max_value",
                                     "description": "",
                                     "label": "Maximum Value",
                                     "mandatory": true,
@@ -61,7 +59,7 @@
                             "answers": [{
                                     "id": "test-range",
                                     "description": "",
-                                    "label": "Range Test ({{answers.min_value|format_number}} to {{answers.max_value|format_number}})",
+                                    "label": "Range Test ({{answers['set-minimum']|format_number}} to {{answers['set-maximum']|format_number}})",
                                     "mandatory": false,
                                     "type": "Number",
                                     "decimal_places": 2,
@@ -75,7 +73,7 @@
                                 {
                                     "id": "test-range-exclusive",
                                     "description": "",
-                                    "label": "Range Exclusive Test ({{answers.min_value|format_number}} to {{answers.max_value|format_number}} Exclusive)",
+                                    "label": "Range Exclusive Test ({{answers['set-minimum']|format_number}} to {{answers['set-maximum']|format_number}} Exclusive)",
                                     "mandatory": false,
                                     "type": "Number",
                                     "decimal_places": 2,
@@ -143,7 +141,7 @@
                                 {
                                     "id": "test-decimal",
                                     "description": "",
-                                    "label": "Decimal test to 2 decimal places between {{answers.min_value|format_number}} to {{answers.max_value|format_number}}",
+                                    "label": "Decimal test to 2 decimal places between {{answers['set-minimum']|format_number}} to {{answers['set-maximum']|format_number}}",
                                     "mandatory": false,
                                     "type": "Currency",
                                     "currency": "GBP",

@@ -69,7 +69,6 @@
                     "questions": [{
                         "answers": [{
                             "id": "number-of-employees-total",
-                            "alias": "number_of_employees_total",
                             "label": "Total number of employees",
                             "mandatory": false,
                             "q_code": "50",
@@ -246,7 +245,7 @@
                             ]
                         },
                         "id": "number-of-employees-split-question",
-                        "title": "Of the <em>{{answers.number_of_employees_total}}</em> total employees employed on {{exercise.start_date|format_date}}, how many male and female employees worked the following hours?",
+                        "title": "Of the <em>{{answers['number-of-employees-total']}}</em> total employees employed on {{exercise.start_date|format_date}}, how many male and female employees worked the following hours?",
                         "type": "Calculated"
                     }]
                 },
