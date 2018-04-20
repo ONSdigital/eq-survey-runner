@@ -7,6 +7,7 @@
 {% set question_title = question.title %}
 {% set question_subtitle = question.subtitle %}
 {% set question_guidance = "" %}
+{% set question_content = "" %}
 
 {% set question_titles %}
   {%- if question_title -%}
@@ -24,9 +25,12 @@
 {% endset %}
 
 {% set question_description %}
-  {%- if question.description -%}
-    <div class="question__description mars" id="description-{{question.id}}">
-      {{question.description}}
+  {%- if question.description or question.content -%}
+    <div class="question__description mars">
+    {{question.description}}
+    {% for content in question.content %}
+        <p>{{content.description}}</p>
+    {% endfor %}
     </div>
   {% endif %}
 {% endset %}

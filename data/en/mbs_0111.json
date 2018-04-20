@@ -149,7 +149,13 @@
                             "q_code": "40"
                         }],
                         "id": "turnover-question-4",
-                        "description": "<p>If you do not have a figure to report for this survey period, please enter zero.</p><p>If you are unable to calculate a figure, please provide a careful estimate.</p>"
+                        "content": [{
+                                "description": "If you do not have a figure to report for this survey period, please enter zero."
+                            },
+                            {
+                                "description": "If you are unable to calculate a figure, please provide a careful estimate."
+                            }
+                        ]
                     }]
                 },
                 {
@@ -190,7 +196,11 @@
                             "description": ""
                         }],
                         "id": "changes-in-total-turnover-question-5",
-                        "description": "<p>Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>"
+                        "content": [{
+                            "description": "Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year."
+                        }, {
+                            "description": "This information will help us to validate your data and should reduce the need to query any figures with you."
+                        }]
                     }],
                     "routing_rules": [{
                             "goto": {
@@ -303,7 +313,7 @@
                             "q_code": "146",
                             "description": ""
                         }],
-                        "description": "<p>We rely on your commentary to ‘tell the story’ behind changes in figures.  By commenting here it will reduce the need for us to call you.</p>"
+                        "description": "We rely on your commentary to ‘tell the story’ behind changes in figures.  By commenting here it will reduce the need for us to call you."
                     }]
                 },
                 {

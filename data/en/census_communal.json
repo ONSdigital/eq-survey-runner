@@ -451,7 +451,7 @@
                     "type": "Confirmation",
                     "id": "confirmation",
                     "title": "You’re ready to submit your 2017 Census Test",
-                    "description": "<p>Thank you for taking part in the 2017 Census Test.</p>",
+                    "description": "Thank you for taking part in the 2017 Census Test.",
                     "questions": [{
                         "answers": [],
                         "id": "questionnaire-completed-question",

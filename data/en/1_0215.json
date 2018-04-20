@@ -722,7 +722,13 @@
                             "q_code": "146a",
                             "type": "Radio"
                         }],
-                        "description": "Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year.<br><br>This information will help us to validate your data and should reduce the need to query any figures with you.",
+                        "content": [{
+                                "description": "Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year."
+                            },
+                            {
+                                "description": "This information will help us to validate your data and should reduce the need to query any figures with you."
+                            }
+                        ],
                         "id": "significant-change-question",
                         "title": "Did any significant changes occur to the total retail turnover for {{respondent.trad_as_or_ru_name}}?",
                         "type": "General"
@@ -858,7 +864,7 @@
                             "type": "Number",
                             "default": 0
                         }],
-                        "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
+                        "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
                         "id": "total-number-employees-question",
                         "title": "On {{exercise.employment_date|format_date}} what was the number of employees for {{respondent.trad_as_or_ru_name}}?",
                         "type": "General"

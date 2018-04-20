@@ -19,7 +19,18 @@
                     "questions": [{
                         "id": "household-composition-question",
                         "title": "Who usually lives here?",
-                        "description": "<br> <div> <h3>Include:</h3> <ul> <li>Yourself, if this is your permanent or family home </li> <li>Family members including partners, children and babies born on or before 9 April 2017</li> <li>Students and/or school children who live away from home during term time</li> <li>Housemates, tenants or lodgers</li> </ul> </div>",
+                        "content": [{
+                                "description": "Include:"
+                            },
+                            {
+                                "list": [
+                                    "Yourself, if this is your permanent or family home",
+                                    "Family members including partners, children and babies born on or before 9 April 2017",
+                                    "Students and/or school children who live away from home during term time",
+                                    "Housemates, tenants or lodgers"
+                                ]
+                            }
+                        ],
                         "type": "RepeatingAnswer",
                         "answers": [{
                                 "id": "first-name",

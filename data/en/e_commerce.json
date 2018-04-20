@@ -131,7 +131,13 @@
                         "type": "Interstitial",
                         "id": "comments-block-4",
                         "title": "Comments",
-                        "description": "<p>You have completed the previous section.</p><p>This section covers your comments.</p>"
+                        "content": [{
+                                "description": "You have completed the previous section."
+                            },
+                            {
+                                "description": "This section covers your comments."
+                            }
+                        ]
                     },
                     {
                         "skip_conditions": [{
@@ -144,7 +150,13 @@
                         "type": "Interstitial",
                         "id": "ict-specialists-and-skills-block-4",
                         "title": "ICT Specialists and Skills",
-                        "description": "<p>You have completed the previous section.</p><p>This section covers the employment of ICT or IT specialists by your business and their skills and functions.</p>"
+                        "content": [{
+                                "description": "You have completed the previous section."
+                            },
+                            {
+                                "description": "This section covers the employment of ICT or IT specialists by your business and their skills and functions."
+                            }
+                        ]
                     }
                 ],
                 "id": "group-1",
@@ -163,7 +175,7 @@
                             "type": "General",
                             "guidance": {
                                 "content": [{
-                                        "description": "<p>ICT or IT is the employee’s main function. ICT or IT specialist skills involve developing, operating or maintaining ICT or IT systems or applications.</p>"
+                                        "description": "ICT or IT is the employee’s main function. ICT or IT specialist skills involve developing, operating or maintaining ICT or IT systems or applications."
                                     },
                                     {
                                         "list": [
@@ -633,7 +645,14 @@
                         "type": "Interstitial",
                         "id": "access-and-use-of-the-internet-block-16",
                         "title": "Access and Use of the Internet",
-                        "description": "<p>You have completed the previous section.</p><p>This section covers your business’ access to and use of the internet.</p>"
+                        "content": [{
+                                "description": "You have completed the previous section."
+                            },
+                            {
+                                "description": "This section covers your business’ access to and use of the internet."
+                            }
+                        ]
+
                     }
                 ],
                 "id": "group-2",
@@ -1587,7 +1606,13 @@
                         "type": "Interstitial",
                         "id": "use-of-3d-printing-block-42",
                         "title": "Use of 3D printing",
-                        "description": "<p>You have completed the previous section.</p> <p>This section covers the use of 3D printing also known as additive layer manufacturing.</p>"
+                        "content": [{
+                                "description": "You have completed the previous section."
+                            },
+                            {
+                                "description": "This section covers the use of 3D printing also known as additive layer manufacturing."
+                            }
+                        ]
                     },
                     {
                         "skip_conditions": [{
@@ -1600,7 +1625,30 @@
                         "type": "Interstitial",
                         "id": "use-of-cloud-computing-services-block-42",
                         "title": "Use of cloud computing services",
-                        "description": "<p>You have completed the previous section.</p><p>This section covers the use of cloud computing.</p> <p><em>Cloud computing</em><br /><em>ICT services</em> that are used <em>over the internet</em> to access software, computing power, storage capacity, etc.<br /> Cloud computing services must have all of the following characteristics: <ul><li>Are delivered from <em>servers</em> of service providers</li> <li>Can be easily <em>scaled</em> up or down (for example; the number of users or change of storage capacity)</li> <li>Can be used <em>on-demand by the user</em>, at least after the initial set up (without human interaction with the service provider)</li> <li>Are <em>paid</em> for, either by the user, by the capacity used or they are pre-paid</li> </ul>Cloud computing may include connections via Virtual Private Networks (VPN)</p>"
+                        "content": [{
+                                "description": "You have completed the previous section."
+                            },
+                            {
+                                "description": "This section covers the use of cloud computing."
+                            }, {
+                                "description": "<em>Cloud computing</em>"
+                            },
+                            {
+                                "description": "<em>ICT services</em> that are used <em>over the internet</em> to access software, computing power, storage capacity, etc."
+                            },
+                            {
+                                "description": "Cloud computing services must have all of the following characteristics:"
+                            }, {
+                                "list": [
+                                    "Are delivered from <em>servers</em> of service providers",
+                                    "Can be easily <em>scaled</em> up or down (for example; the number of users or change of storage capacity)",
+                                    "Can be used <em>on-demand by the user</em>, at least after the initial set up (without human interaction with the service provider)",
+                                    "Are <em>paid</em> for, either by the user, by the capacity used or they are pre-paid"
+                                ]
+                            }, {
+                                "description": "Cloud computing may include connections via Virtual Private Networks (VPN)"
+                            }
+                        ]
                     }
                 ],
                 "id": "group-3",
@@ -2173,7 +2221,13 @@
                         "type": "Interstitial",
                         "id": "use-of-3d-printing-block-53",
                         "title": "Use of 3D printing",
-                        "description": "<p>You have completed the previous section.</p> <p>This section covers the use of 3D printing also known as additive layer manufacturing.</p>"
+                        "content": [{
+                                "description": "You have completed the previous section."
+                            },
+                            {
+                                "description": "This section covers the use of 3D printing also known as additive layer manufacturing."
+                            }
+                        ]
                     }
                 ],
                 "id": "group-4",
@@ -2459,7 +2513,15 @@
                         "type": "Interstitial",
                         "id": "invoicing-block-59",
                         "title": "Invoicing",
-                        "description": "<p>You have completed the previous section.</p><p>This section covers invoicing completed by your business.</p>"
+                        "content": [{
+                            "description": "You have completed the previous section."
+                        }, {
+                            "description": "This section covers invoicing completed by your business."
+                        }]
+
+
+
+
                     }
                 ],
                 "id": "group-5",
@@ -2638,7 +2700,19 @@
                         "type": "Interstitial",
                         "id": "e-commerce-block-63",
                         "title": "e-Commerce",
-                        "description": "<p>You have completed the previous section.</p><p>This section covers E-Commerce.</p> <p>E-Commerce is the sale or purchase of goods or services conducted over computer networks by methods specifically designed for the purpose of receiving or placing of orders.<br />The payment and the delivery of the goods or services do not have to be conducted online.<br />E-Commerce transactions <em>exclude</em> orders made by manually typed emails.</p>"
+                        "content": [{
+                                "description": "You have completed the previous section."
+                            }, {
+                                "description": "This section covers E-Commerce."
+                            }, {
+                                "description": "E-Commerce is the sale or purchase of goods or services conducted over computer networks by methods specifically designed for the purpose of receiving or placing of orders."
+                            },
+                            {
+                                "description": "The payment and the delivery of the goods or services do not have to be conducted online."
+                            }, {
+                                "description": "E-Commerce transactions <em>exclude</em> orders made by manually typed emails."
+                            }
+                        ]
                     }
                 ],
                 "id": "group-6",
@@ -3120,7 +3194,13 @@
                         "type": "Interstitial",
                         "id": "comments-block-73",
                         "title": "Comments",
-                        "description": "<p>You have completed the previous section.</p><p>This section covers your comments.</p>"
+                        "content": [{
+                                "description": "You have completed the previous section."
+                            },
+                            {
+                                "description": "This section covers your comments."
+                            }
+                        ]
                     }
                 ],
                 "id": "group-7",

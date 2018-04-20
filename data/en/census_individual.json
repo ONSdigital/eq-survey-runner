@@ -709,7 +709,14 @@
                     "questions": [{
                         "id": "carer-question",
                         "title": "Do you look after, or give any help or support to family members, friends, neighbours or others because of either:",
-                        "description": "<div> <ul> <li>Long-term physical or mental ill-health/disability?</li> <li>Problems related to old age?</li></ul></div>",
+
+                        "content": [{
+                            "list": [
+                                "Long-term physical or mental ill-health/disability?",
+                                "Problems related to old age?"
+                            ]
+                        }],
+
                         "guidance": {
                             "content": [{
                                 "description": "<strong>Exclude</strong> anything you do as part of your paid employment"
@@ -2680,8 +2687,12 @@
                         "title": "In your main job, are (were) you:",
                         "guidance": {
                             "content": [{
-                                "description": "<p>If you are not working answer the remaining questions about your last main job.</p><p>Your main job is the job which you usually work (worked) the most hours</p>"
-                            }]
+                                    "description": "If you are not working answer the remaining questions about your last main job."
+                                },
+                                {
+                                    "description": "Your main job is the job which you usually work (worked) the most hours"
+                                }
+                            ]
                         },
                         "type": "General",
                         "answers": [{
@@ -2713,8 +2724,12 @@
                         "title": "What is (was) your full and specific job title?",
                         "guidance": {
                             "content": [{
-                                "description": "<p>For example, <b>primary school teacher, car mechanic, district nurse, structural engineer</b></p><p>Do not state your grade or pay band</p>"
-                            }]
+                                    "description": "For example, <b>primary school teacher, car mechanic, district nurse, structural engineer</b>"
+                                },
+                                {
+                                    "description": "Do not state your grade or pay band"
+                                }
+                            ]
                         },
                         "type": "General",
                         "answers": [{
@@ -3000,12 +3015,11 @@
                         }]
                     }]
                 },
-
                 {
                     "type": "Confirmation",
                     "id": "confirmation",
                     "title": "You’re ready to submit your 2017 Census Test",
-                    "description": "<p>Thank you for taking part in the 2017 Census Test.</p>",
+                    "description": "Thank you for taking part in the 2017 Census Test.",
                     "questions": [{
                         "answers": [],
                         "id": "questionnaire-completed-question",
