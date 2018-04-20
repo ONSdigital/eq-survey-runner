@@ -5,13 +5,15 @@ from unittest import TestCase
 from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
+from jinja2 import Undefined
 from mock import Mock
 
 from app.jinja_filters import format_date, format_conditional_date, format_currency, get_currency_symbol, \
     format_multilined_string, format_percentage, format_date_range, format_household_member_name, \
     format_month_year_date, format_datetime, format_number_to_alphabetic_letter, \
     format_unit, format_currency_for_input, format_number, format_unordered_list, \
-    format_household_member_name_possessive, concatenated_list, calculate_years_difference
+    format_household_member_name_possessive, concatenated_list, calculate_years_difference, \
+    get_current_date, as_london_tz
 
 
 class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
@@ -28,6 +30,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         self.assertEqual(format_currency_for_input(0), '0')
         self.assertEqual(format_currency_for_input(''), '')
         self.assertEqual(format_currency_for_input(None), '')
+        self.assertEqual(format_currency_for_input(Undefined()), '')
 
     def test_get_currency_symbol(self):
         self.assertEqual(get_currency_symbol('GBP'), '£')
@@ -43,6 +46,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         self.assertEqual(format_currency(0), '£0.00')
         self.assertEqual(format_currency('', ), '')
         self.assertEqual(format_currency(None), '')
+        self.assertEqual(format_currency(Undefined()), '')
 
     def test_format_number(self):
         self.assertEqual(format_number(123), '123')
@@ -54,6 +58,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         self.assertEqual(format_number(0), '0')
         self.assertEqual(format_number(''), '')
         self.assertEqual(format_number(None), '')
+        self.assertEqual(format_number(Undefined()), '')
 
     def test_format_multilined_string_matches_carriage_return(self):
         # Given
@@ -110,6 +115,17 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
 
         self.assertEqual(str(format_value), '<p>&lt;</p>')
 
+    def test_get_current_date(self):
+        # Given
+        date_format = '%-d %B %Y'
+
+        # When
+        format_value = get_current_date()
+        current_date = as_london_tz(datetime.utcnow()).strftime(date_format)
+
+        # Then
+        self.assertEqual(format_value, "<span class='date'>{date}</span>".format(date=current_date))
+
     def test_format_date(self):
         # Given
         date = '2017-01-01'
@@ -117,6 +133,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         # When
         format_value = format_date(date)
 
+        # Then
         self.assertEqual(format_value, "<span class='date'>1 January 2017</span>")
 
     def test_format_date_month_year(self):
@@ -132,7 +149,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
     def test_format_date_time_in_bst(self):
         # Given
         date_time = '2018-03-29T11:59:13.528680'
-        date_format = '%d %B %Y at %H:%M'
+        date_format = '%-d %B %Y at %H:%M'
 
         # When
         format_value = format_datetime(date_time, date_format)
@@ -143,7 +160,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
     def test_format_date_time_in_gmt(self):
         # Given
         date_time = '2018-10-28T11:59:13.528680'
-        date_format = '%d %B %Y at %H:%M'
+        date_format = '%-d %B %Y at %H:%M'
 
         # When
         format_value = format_datetime(date_time, date_format)

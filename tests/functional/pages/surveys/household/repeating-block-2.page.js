@@ -13,9 +13,5 @@ class RepeatingBlock2Page extends QuestionPage {
 
   answerLabel() { return '#label-what-is-your-shoe-size'; }
 
-  personName() {
-    return '[data-qa="block-title"]';
-  }
-
 }
 module.exports = new RepeatingBlock2Page();

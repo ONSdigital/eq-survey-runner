@@ -63,6 +63,9 @@ class AnswerStore(object):
     def __getitem__(self, key):
         return self.answers[key]
 
+    def __len__(self):
+        return len(self.answers)
+
     @staticmethod
     def _validate(answer):
         if not isinstance(answer, Answer):
@@ -131,7 +134,7 @@ class AnswerStore(object):
 
         :return: Number of answers in this store.
         """
-        return len(self.answers)
+        return len(self)
 
     def values(self):
         """

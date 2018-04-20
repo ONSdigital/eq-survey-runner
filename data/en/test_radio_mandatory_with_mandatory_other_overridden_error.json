@@ -36,7 +36,6 @@
                             },
                             {
                                 "parent_answer_id": "radio-mandatory-answer",
-                                "alias": "othervalue",
                                 "mandatory": true,
                                 "id": "other-answer-mandatory",
                                 "label": "Please specify other",

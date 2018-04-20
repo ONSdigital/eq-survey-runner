@@ -2830,7 +2830,6 @@
                             "answers": [{
                                 "type": "Percentage",
                                 "label": "",
-                                "alias": "answer-65",
                                 "mandatory": true,
                                 "q_code": "235",
                                 "max_value": {

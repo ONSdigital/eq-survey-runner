@@ -39,7 +39,6 @@
                             ],
                             "type": "RepeatingAnswer",
                             "answers": [{
-                                    "alias": "first_name",
                                     "id": "first-name",
                                     "label": "First Name",
                                     "mandatory": false,
@@ -47,7 +46,6 @@
                                     "type": "TextField"
                                 },
                                 {
-                                    "alias": "middle_names",
                                     "id": "middle-names",
                                     "label": "Middle Names",
                                     "mandatory": false,
@@ -55,7 +53,6 @@
                                     "type": "TextField"
                                 },
                                 {
-                                    "alias": "last_name",
                                     "id": "last-name",
                                     "label": "Last Name",
                                     "mandatory": false,
@@ -80,8 +77,8 @@
                 "blocks": [{
                         "type": "Question",
                         "id": "repeating-block-1",
-                        "title": "{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
-                        "description": "This question is for {{ [answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name }}",
+                        "title": "{{ [answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}",
+                        "description": "This question is for {{ [answers['first-name'][group_instance], answers['middle-names'][group_instance], answers['last-name'][group_instance]] | format_household_name }}",
                         "questions": [{
                             "id": "repeating-question-1",
                             "title": "",
@@ -99,7 +96,7 @@
                     {
                         "type": "Question",
                         "id": "repeating-block-2",
-                        "title": "{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
+                        "title": "{{ [answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}",
                         "description": "",
                         "questions": [{
                             "id": "repeating-question-2",
@@ -112,6 +109,30 @@
                                 "label": "What is their shoe size?",
                                 "mandatory": true,
                                 "type": "Number"
+                            }]
+                        }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "repeating-block-3",
+                        "description": "",
+                        "questions": [{
+                            "id": "repeating-question-3",
+                            "title": "Confirm that their age is {{ answers['what-is-your-age'][group_instance] }} and shoe size is {{ answers['what-is-your-shoe-size'][group_instance] }}",
+                            "type": "General",
+                            "answers": [{
+                                "id": "confirm-answer",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ],
+                                "type": "Radio"
                             }]
                         }]
                     }

@@ -224,13 +224,13 @@ class PathFinder:
         :param routing_path: routing path
         :return: location or None
         """
-        current_section = self.schema.get_section_and_group_id_by_block_id(current_block_id)['section']
+        current_section = self.schema.get_section_by_block_id(current_block_id)
 
         if self.schema.get_block(current_block_id)['type'] in ['Summary', 'SectionSummary']:
             return None
 
         for location in routing_path:
-            location_section = self.schema.get_section_and_group_id_by_block_id(location.block_id)['section']
+            location_section = self.schema.get_section_by_block_id(location.block_id)
             if location_section == current_section:
                 block_type = self.schema.get_block(location.block_id)['type']
                 if block_type == 'SectionSummary':

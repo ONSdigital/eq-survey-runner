@@ -8,7 +8,7 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "variables": {
-        "period": "{{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}"
+        "period": "{{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}"
     },
     "view_submitted_response": {
         "enabled": true,
@@ -137,16 +137,14 @@
                                 "type": "Date",
                                 "id": "period-from",
                                 "q_code": "11",
-                                "mandatory": true,
-                                "alias": "period_from"
+                                "mandatory": true
                             },
                             {
                                 "label": "To",
                                 "type": "Date",
                                 "id": "period-to",
                                 "q_code": "12",
-                                "mandatory": true,
-                                "alias": "period_to"
+                                "mandatory": true
                             }
                         ],
                         "id": "reporting-period-question",
@@ -178,7 +176,6 @@
                         },
                         "answers": [{
                             "id": "total-retail-turnover-answer",
-                            "alias": "total_turnover",
                             "label": "Total retail turnover",
                             "mandatory": false,
                             "q_code": "20",
@@ -188,7 +185,7 @@
                             "default": 0
                         }],
                         "id": "total-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total retail turnover</em>?",
+                        "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total retail turnover</em>?",
                         "type": "General"
                     }],
                     "title": "Retail Turnover"
@@ -222,7 +219,7 @@
                             "mandatory": true
                         }],
                         "id": "confirm-zero-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, the value of the total retail turnover was <em>£0</em>, is this correct?"
+                        "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, the value of the total retail turnover was <em>£0</em>, is this correct?"
                     }],
                     "routing_rules": [{
                             "goto": {
@@ -264,7 +261,7 @@
                             }
                         }],
                         "id": "internet-sales-question",
-                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
+                        "title": "Of the <em>{{answers['total-retail-turnover-answer']|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
                         "type": "General"
                     }],
                     "title": "Retail turnover"

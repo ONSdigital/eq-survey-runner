@@ -156,7 +156,6 @@
                             "answers": [{
                                 "id": "pay-pattern-frequency-answer",
                                 "label": "You will be asked to provide information for each of the selected pay patterns.",
-                                "alias": "pay_pattern",
                                 "mandatory": true,
                                 "options": [{
                                         "label": "Weekly",
@@ -200,7 +199,7 @@
                         "questions": [{
                             "id": "pay-pattern-frequency-confirmation-question",
                             "title": "Are these all of the pay patterns used?",
-                            "description": "{{ answers.pay_pattern|format_unordered_list }}",
+                            "description": "{{ answers['pay-pattern-frequency-answer']|format_unordered_list }}",
                             "type": "General",
                             "answers": [{
                                 "id": "pay-pattern-frequency-confirmation-answer",
@@ -354,7 +353,6 @@
                                 "type": "Currency",
                                 "currency": "GBP",
                                 "decimal_places": 2,
-                                "alias": "weekly_total_gross",
                                 "default": 0,
                                 "min_value": {
                                     "value": 0
@@ -485,7 +483,7 @@
                                 }
                             ],
                             "id": "weekly-pay-breakdown-question",
-                            "title": "Of the <em>{{answers.weekly_total_gross|format_currency}}</em> paid to <em>weekly</em> paid employees in the last week of {{exercise.period_str}}, what other amounts were paid? ",
+                            "title": "Of the <em>{{answers['weekly-pay-gross-pay-answer']|format_currency}}</em> paid to <em>weekly</em> paid employees in the last week of {{exercise.period_str}}, what other amounts were paid? ",
                             "type": "Calculated",
                             "calculations": [{
                                 "calculation_type": "sum",
@@ -796,7 +794,6 @@
                                 "mandatory": false,
                                 "q_code": "50f",
                                 "type": "Currency",
-                                "alias": "fortnightly_total_gross",
                                 "default": 0,
                                 "currency": "GBP",
                                 "decimal_places": 2,
@@ -929,7 +926,6 @@
                                 }
                             ],
                             "id": "fortnightly-pay-breakdown-question",
-                            "title": "Of the <em>{{answers.fortnightly_total_gross|format_currency}}</em> paid to <em>fortnightly</em> paid employees in the last week of {{exercise.period_str}}, what other amounts were paid?",
                             "type": "Calculated",
                             "calculations": [{
                                 "calculation_type": "sum",
@@ -944,6 +940,7 @@
                                     "equals"
                                 ]
                             }],
+                            "title": "Of the <em>{{answers['fortnightly-pay-gross-pay-answer']|format_currency}}</em> paid to <em>fortnightly</em> paid employees in the last week of {{exercise.period_str}}, what other amounts were paid?",
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -1245,7 +1242,6 @@
                                 "mandatory": false,
                                 "q_code": "151",
                                 "type": "Currency",
-                                "alias": "monthly_total_gross",
                                 "default": 0,
                                 "currency": "GBP",
                                 "decimal_places": 2,
@@ -1365,7 +1361,6 @@
                                 }
                             ],
                             "id": "calendar-monthly-pay-breakdown-question",
-                            "title": "Of the <em>{{answers.monthly_total_gross|format_currency}}</em> paid to <em>calendar monthly</em> paid employees in {{exercise.period_str}}, what other amounts were paid?",
                             "type": "Calculated",
                             "calculations": [{
                                 "calculation_type": "sum",
@@ -1378,6 +1373,7 @@
                                     "less than"
                                 ]
                             }],
+                            "title": "Of the <em>{{answers['calendar-monthly-pay-gross-pay-answer']|format_currency}}</em> paid to <em>calendar monthly</em> paid employees in {{exercise.period_str}}, what other amounts were paid?",
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -1679,7 +1675,6 @@
                                 "mandatory": false,
                                 "q_code": "152",
                                 "type": "Currency",
-                                "alias": "four_weekly_total_gross",
                                 "default": 0,
                                 "currency": "GBP",
                                 "decimal_places": 2,
@@ -1799,7 +1794,6 @@
                                 }
                             ],
                             "id": "four-weekly-pay-breakdown-question",
-                            "title": "Of the <em>{{answers.four_weekly_total_gross|format_currency}}</em> paid to <em>four weekly</em> paid employees in {{exercise.period_str}}, what other amounts were paid?",
                             "type": "Calculated",
                             "calculations": [{
                                 "calculation_type": "sum",
@@ -1812,6 +1806,7 @@
                                     "less than"
                                 ]
                             }],
+                            "title": "Of the <em>{{answers['four-weekly-pay-gross-pay-answer']|format_currency}}</em> paid to <em>four weekly</em> paid employees in {{exercise.period_str}}, what other amounts were paid?",
                             "guidance": {
                                 "content": [{
                                     "title": "Include:",
@@ -2120,7 +2115,6 @@
                                 "mandatory": false,
                                 "q_code": "153",
                                 "type": "Currency",
-                                "alias": "five_weekly_total_gross",
                                 "default": 0,
                                 "currency": "GBP",
                                 "decimal_places": 2,
@@ -2241,7 +2235,7 @@
                                 }
                             ],
                             "id": "five-weekly-pay-breakdown-question",
-                            "title": "Of the <em>{{answers.five_weekly_total_gross|format_currency}}</em> paid to <em>five weekly paid employees</em> in {{exercise.period_str}}, what other amounts were paid?",
+                            "title": "Of the <em>{{answers['five-weekly-pay-gross-pay-answer']|format_currency}}</em> paid to <em>five weekly paid employees</em> in {{exercise.period_str}}, what other amounts were paid?",
                             "type": "Calculated",
                             "calculations": [{
                                 "calculation_type": "sum",

@@ -61,8 +61,8 @@ ANSWER_GETTER = Template(r"""  ${answerName}() {
 
 """)
 
-HOUSEHOLD_ANSWER_GETTER = Template(r"""  ${answerName}(index = 0) {
-    return '#household-' + index + '-${answerId}';
+HOUSEHOLD_ANSWER_GETTER = Template(r"""  ${answerName}(index = '') {
+    return '#household-0-${answerId}' + index;
   }
 
 """)
@@ -71,12 +71,18 @@ REPEATING_ANSWER_ADD_REMOVE = r"""  addPerson() {
     return 'button[name="action[add_answer]"]';
   }
 
-  removePerson(index) {
-    return 'button[value="' + index + '"]';
+  removePerson(index = 0) {
+    return 'div.question__answer:nth-child('+ (index+1) + ') > h3 > small > span > button';
     // Have to check whether it's visible in test code
   }
 
 """
+
+REPEATING_ANSWER_LEGEND = r"""  personLegend(index = 1) {
+    return 'div.question__answer:nth-child(' + index + ') > fieldset > legend';
+  }
+"""
+
 SECTION_SUMMARY_ANSWER_GETTER = Template(r"""  ${answerName}() { return '#${answerId}-answer'; }
 
 """)
@@ -194,6 +200,7 @@ def process_question(question, page_spec, num_questions, page_name):
     question_type = question['type']
     if question_type == 'RepeatingAnswer':
         page_spec.write(REPEATING_ANSWER_ADD_REMOVE)
+        page_spec.write(REPEATING_ANSWER_LEGEND)
 
     long_names = long_names_required(question, num_questions)
 
