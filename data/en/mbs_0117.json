@@ -154,19 +154,17 @@
                             "title": "What are the dates of the period that you will be reporting for?",
                             "answers": [{
                                     "type": "Date",
-                                    "id": "reporting-period-answer-from",
+                                    "id": "period-from",
                                     "label": "From",
                                     "mandatory": true,
-                                    "q_code": "11",
-                                    "alias": "period_from"
+                                    "q_code": "11"
                                 },
                                 {
                                     "type": "Date",
-                                    "id": "reporting-period-answer-to",
+                                    "id": "period-to",
                                     "label": "To",
                                     "mandatory": true,
-                                    "q_code": "12",
-                                    "alias": "period_to"
+                                    "q_code": "12"
                                 }
                             ],
                             "description": ""
@@ -217,7 +215,7 @@
                                 "mandatory": true
                             }],
                             "type": "General",
-                            "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>turnover</em>, excluding VAT?"
+                            "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>turnover</em>, excluding VAT?"
                         }],
                         "title": "Turnover"
                     },
