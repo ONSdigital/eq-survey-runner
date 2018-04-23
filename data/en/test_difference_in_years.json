@@ -25,7 +25,6 @@
                         "title": "What is your date of birth?",
                         "type": "General",
                         "answers": [{
-                            "alias": "date_dob",
                             "id": "date-dob",
                             "label": "For example 20 March 1990",
                             "mandatory": true,
@@ -39,7 +38,7 @@
                     "title": "Confirm Your Age",
                     "questions": [{
                         "id": "confirm-dob-question",
-                        "title": "You are {{ calculate_years_difference (answers.date_dob, 'now') }} old. Is this correct?",
+                        "title": "You are {{ calculate_years_difference (answers['date-dob'], 'now') }} old. Is this correct?",
                         "type": "General",
                         "answers": [{
                             "id": "date-test-answer",

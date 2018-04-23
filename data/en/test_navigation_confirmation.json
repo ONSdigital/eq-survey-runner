@@ -154,7 +154,6 @@
                         "title": "Who usually lives at the property?",
                         "type": "RepeatingAnswer",
                         "answers": [{
-                            "alias": "person_full_name",
                             "id": "household-full-name",
                             "label": "Full Name",
                             "mandatory": true,
@@ -177,7 +176,7 @@
                 "blocks": [{
                         "type": "Question",
                         "id": "repeating-block-1",
-                        "title": "{{answers.person_full_name[group_instance]}}",
+                        "title": "{{answers['household-full-name'][group_instance]}}",
                         "description": "",
                         "questions": [{
                             "id": "over-16-question",
@@ -205,7 +204,7 @@
                     {
                         "type": "Question",
                         "id": "repeating-block-2",
-                        "title": "{{answers.person_full_name[group_instance]}}",
+                        "title": "{{answers['household-full-name'][group_instance]}}",
                         "description": "",
                         "questions": [{
                             "id": "working-status-question",

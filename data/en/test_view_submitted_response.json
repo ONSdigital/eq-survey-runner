@@ -55,7 +55,6 @@
                             },
                             {
                                 "parent_answer_id": "radio-answer",
-                                "alias": "othervalue",
                                 "mandatory": false,
                                 "id": "other-answer-mandatory",
                                 "label": "Please specify other",

@@ -22,7 +22,6 @@
                     "description": "",
                     "questions": [{
                         "answers": [{
-                                "alias": "date_start_from",
                                 "id": "date-start-from",
                                 "label": "Period from",
                                 "mandatory": false,
@@ -30,7 +29,6 @@
                                 "type": "Date"
                             },
                             {
-                                "alias": "date_end_to",
                                 "id": "date-end-to",
                                 "label": "Period to",
                                 "mandatory": false,
@@ -58,7 +56,7 @@
                             "type": "Number"
                         }],
                         "id": "total-retail-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers.date_start_from, metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers.date_end_to, metadata['ref_p_end_date'])}}, what was the value of the business’s total retail turnover?",
+                        "title": "For the period {{ format_conditional_date (answers['date-start-from'], exercise.start_date)}} to {{ format_conditional_date (answers['date-end-to'], exercise.end_date)}}, what was the value of the business’s total retail turnover?",
                         "type": "General"
                     }],
                     "title": "Conditional Date Validation"

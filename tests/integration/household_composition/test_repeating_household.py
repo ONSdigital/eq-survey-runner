@@ -25,8 +25,10 @@ class TestRepeatingHousehold(IntegrationTestCase):
         # And provide details
         self.post({'what-is-your-age': '9990'})
         self.post({'what-is-your-shoe-size': '9991'})
+        self.post({'confirm-answer': 'Yes'})
         self.post({'what-is-your-age': '9992'})
         self.post({'what-is-your-shoe-size': '9993'})
+        self.post({'confirm-answer': 'Yes'})
 
         # When I go back to household composition page and make changes and submit
         self.get(self.household_composition_url)
@@ -47,6 +49,8 @@ class TestRepeatingHousehold(IntegrationTestCase):
 
         self.post({'what-is-your-age': '34'})
         self.post({'what-is-your-shoe-size': '10'})
+
+        self.post({'confirm-answer': 'Yes'})
 
         self.assertInPage('Jane Doe')
         self.assertInPage('What is their age')

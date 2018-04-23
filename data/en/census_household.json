@@ -36,7 +36,6 @@
                                     "label": "Address Line 1 (Including your house name or number)",
                                     "mandatory": true,
                                     "type": "TextField",
-                                    "alias": "address_line_1",
                                     "validation": {
                                         "messages": {
                                             "MANDATORY_TEXTFIELD": "Enter an address to continue"
@@ -95,7 +94,7 @@
                             "type": "Interstitial",
                             "id": "who-lives-here-block",
                             "title": "People who live in the household",
-                            "description": "In this section, we’re going to ask you about the people that live at <em>{{answers.address_line_1}}</em>.",
+                            "description": "In this section, we’re going to ask you about the people that live at <em>{{answers['address-line-1']}}</em>.",
                             "content": [{
                                 "title": "Information you need",
                                 "list": [
@@ -109,7 +108,7 @@
                             "id": "permanent-or-family-home",
                             "questions": [{
                                 "id": "permanent-or-family-home-question",
-                                "title": "Does anyone live at <em>{{answers.address_line_1}}</em> as their permanent or family home?",
+                                "title": "Does anyone live at <em>{{answers['address-line-1']}}</em> as their permanent or family home?",
                                 "guidance": {
                                     "content": [{
                                         "title": "Include",
@@ -229,7 +228,7 @@
                             "id": "household-composition",
                             "questions": [{
                                 "id": "household-composition-question",
-                                "title": "What are the names of everyone who live at <em>{{answers.address_line_1}}</em>?",
+                                "title": "What are the names of everyone who live at <em>{{answers['address-line-1']}}</em>?",
                                 "guidance": {
                                     "content": [{
                                         "title": "Include",
@@ -244,7 +243,6 @@
                                 },
                                 "type": "RepeatingAnswer",
                                 "answers": [{
-                                        "alias": "first_name",
                                         "id": "first-name",
                                         "label": "First name",
                                         "mandatory": true,
@@ -256,14 +254,12 @@
                                         }
                                     },
                                     {
-                                        "alias": "middle_names",
                                         "id": "middle-names",
                                         "label": "Middle names",
                                         "mandatory": false,
                                         "type": "TextField"
                                     },
                                     {
-                                        "alias": "last_name",
                                         "id": "last-name",
                                         "label": "Last name",
                                         "mandatory": false,
@@ -302,7 +298,7 @@
                         {
                             "type": "Question",
                             "id": "everyone-at-address-confirmation",
-                            "description": "<h2 class='neptune'>Your household includes:</h2> {{ [answers.first_name, answers.middle_names, answers.last_name]|format_household_summary }}",
+                            "description": "<h2 class='neptune'>Your household includes:</h2> {{ [answers['first-name'], answers['middle-names'], answers['last-name']]|format_household_summary }}",
                             "questions": [{
                                 "id": "everyone-at-address-confirmation-question",
                                 "title": "Is this everyone for whom this is their permanent or family home?",
@@ -358,7 +354,7 @@
                             "id": "overnight-visitors",
                             "questions": [{
                                 "id": "overnight-visitors-question",
-                                "title": "How many visitors are staying overnight at <em>{{answers.address_line_1}}</em> on 9th April 2017?",
+                                "title": "How many visitors are staying overnight at <em>{{answers['address-line-1']}}</em> on 9th April 2017?",
                                 "guidance": {
                                     "content": [{
                                         "title": "Include",
@@ -395,7 +391,7 @@
                         "id": "household-relationships",
                         "questions": [{
                             "id": "household-relationships-question",
-                            "title": "How is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> related to the people below?",
+                            "title": "How is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> related to the people below?",
                             "description": "If members are not related, select the ‘unrelated’ option.<br />If you are the parents of adopted children, select the ‘Mother or father’ option to show your relationship to them.<br />If you have foster children living with you, select the ‘Unrelated’ option.<br />Include half-brothers and half-sisters in the ‘Step-brother or step-sister’ category.<br />Same-sex civil partner is used to describe the relationship between two people who have legally registered a civil partnership.<br />If none of the options fully reflects your relationship, please select the one which you feel best describes your situation.",
                             "type": "Relationship",
                             "answers": [{
@@ -497,7 +493,7 @@
                         "id": "type-of-accommodation",
                         "questions": [{
                             "id": "type-of-accommodation-question",
-                            "title": "What type of accommodation is <em>{{answers.address_line_1}}</em>?",
+                            "title": "What type of accommodation is <em>{{answers['address-line-1']}}</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "type-of-accommodation-answer",
@@ -609,7 +605,7 @@
                         "id": "self-contained-accommodation",
                         "questions": [{
                             "id": "self-contained-accommodation-question",
-                            "title": "Is the accommodation of <em>{{answers.address_line_1}}</em> self-contained?",
+                            "title": "Is the accommodation of <em>{{answers['address-line-1']}}</em> self-contained?",
                             "description": "This means that all the rooms, including the kitchen, bathroom and toilet, are behind a door that only this household can use",
                             "type": "General",
                             "answers": [{
@@ -633,7 +629,7 @@
                         "id": "number-of-bedrooms",
                         "questions": [{
                             "id": "number-of-bedrooms-question",
-                            "title": "How many bedrooms are at <em>{{answers.address_line_1}}</em>?",
+                            "title": "How many bedrooms are at <em>{{answers['address-line-1']}}</em>?",
                             "guidance": {
                                 "content": [{
                                     "description": "Include all rooms built or converted for use as bedrooms, even if they’re not currently used as bedrooms"
@@ -653,7 +649,7 @@
                         "id": "central-heating",
                         "questions": [{
                             "id": "central-heating-question",
-                            "title": "What type of central heating does <em>{{answers.address_line_1}}</em> have?",
+                            "title": "What type of central heating does <em>{{answers['address-line-1']}}</em> have?",
                             "description": "<p>Central heating is a central system that generates heat for multiple rooms.</p><p>Select all that apply, whether or not you use it.</p>",
                             "type": "General",
                             "answers": [{
@@ -723,7 +719,7 @@
                         "id": "own-or-rent",
                         "questions": [{
                             "id": "own-or-rent-question",
-                            "title": "Does your household own or rent <em>{{answers.address_line_1}}</em>?",
+                            "title": "Does your household own or rent <em>{{answers['address-line-1']}}</em>?",
                             "type": "General",
                             "answers": [{
                                 "id": "own-or-rent-answer",
@@ -865,8 +861,8 @@
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "household-member-begin-section",
-                        "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}",
-                        "description": "In this section, we’re going to ask you questions about <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em>.",
+                        "title": "{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}",
+                        "description": "In this section, we’re going to ask you questions about <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em>.",
                         "content": [{
                             "title": "Information you need",
                             "list": [
@@ -884,7 +880,7 @@
                         "id": "details-correct",
                         "questions": [{
                             "id": "details-correct-question",
-                            "title": "Is the name {{ [answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name }} correct, including any middle name(s)?",
+                            "title": "Is the name {{ [answers['first-name'][group_instance], answers['middle-names'][group_instance], answers['last-name'][group_instance]] | format_household_name }} correct, including any middle name(s)?",
                             "type": "General",
                             "answers": [{
                                 "id": "details-correct-answer",
@@ -1048,7 +1044,7 @@
                         "id": "sex",
                         "questions": [{
                             "id": "sex-question",
-                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> sex?",
+                            "title": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> sex?",
                             "type": "General",
                             "answers": [{
                                 "id": "sex-answer",
@@ -1071,7 +1067,7 @@
                         "id": "date-of-birth",
                         "questions": [{
                             "id": "date-of-birth-question",
-                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> date of birth?",
+                            "title": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive }}</em> date of birth?",
                             "description": "For example 20 March 1980",
                             "type": "General",
                             "answers": [{
@@ -1086,7 +1082,7 @@
                         "id": "marital-status",
                         "questions": [{
                             "id": "marital-status-question",
-                            "title": "On 9 April 2017, what is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> legal marital or same-sex civil partnership status?",
+                            "title": "On 9 April 2017, what is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive }}</em> legal marital or same-sex civil partnership status?",
                             "description": "If you were married (or formed a registered same-sex partnership) abroad, and this enables you to be recognised as married or civil partnered in the UK, complete the question reflecting that legal partnership.",
                             "type": "General",
                             "answers": [{
@@ -1138,7 +1134,7 @@
                         "id": "another-address",
                         "questions": [{
                             "id": "another-address-question",
-                            "title": "Does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> stay at another address for more than 30 days a year?",
+                            "title": "Does <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> stay at another address for more than 30 days a year?",
                             "type": "General",
                             "guidance": {
                                 "content": [{
@@ -1239,7 +1235,7 @@
                         "id": "other-address",
                         "questions": [{
                             "id": "other-address-question",
-                            "title": "Enter details of the other UK address where <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> stay more than 30 days a year",
+                            "title": "Enter details of the other UK address where <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> stay more than 30 days a year",
                             "type": "General",
                             "answers": [{
                                     "id": "other-address-answer-building",
@@ -1331,7 +1327,7 @@
                         "id": "in-education",
                         "questions": [{
                             "id": "in-education-question",
-                            "title": "Is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> in full-time education?",
+                            "title": "Is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> in full-time education?",
                             "type": "General",
                             "answers": [{
                                 "id": "in-education-answer",
@@ -1370,7 +1366,7 @@
                         "id": "term-time-location",
                         "questions": [{
                             "id": "term-time-location-question",
-                            "title": "During term time, does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> live at <em>{{answers.address_line_1}}</em> ?",
+                            "title": "During term time, does <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> live at <em>{{answers['address-line-1']}}</em> ?",
                             "type": "General",
                             "answers": [{
                                 "id": "term-time-location-answer",
@@ -1409,7 +1405,7 @@
                         "id": "country-of-birth",
                         "questions": [{
                                 "id": "country-of-birth-england-question",
-                                "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> country of birth?",
+                                "title": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> country of birth?",
                                 "type": "General",
                                 "answers": [{
                                         "id": "country-of-birth-england-answer",
@@ -1460,7 +1456,7 @@
                             },
                             {
                                 "id": "country-of-birth-wales-question",
-                                "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> country of birth?",
+                                "title": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> country of birth?",
                                 "type": "General",
                                 "answers": [{
                                         "id": "country-of-birth-wales-answer",
@@ -1602,7 +1598,7 @@
                         "id": "arrive-in-uk",
                         "questions": [{
                             "id": "arrive-in-uk-question",
-                            "title": "If you were not born in the United Kingdom, when did <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> most recently arrive to live here?",
+                            "title": "If you were not born in the United Kingdom, when did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> most recently arrive to live here?",
                             "guidance": {
                                 "content": [{
                                     "description": "Exclude short visits away from the UK"
@@ -1621,7 +1617,7 @@
                         "id": "length-of-stay",
                         "questions": [{
                             "id": "length-of-stay-question",
-                            "title": "Including the time already spent here, how long does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> intend to stay in the United Kingdom?",
+                            "title": "Including the time already spent here, how long does <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> intend to stay in the United Kingdom?",
                             "type": "General",
                             "answers": [{
                                 "id": "length-of-stay-answer",
@@ -1644,7 +1640,7 @@
                         "id": "health",
                         "questions": [{
                             "id": "health-question",
-                            "title": "How is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> health in general?",
+                            "title": "How is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> health in general?",
                             "type": "General",
                             "answers": [{
                                 "id": "health-answer",
@@ -1679,7 +1675,7 @@
                         "id": "carer",
                         "questions": [{
                             "id": "carer-question",
-                            "title": "Does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> look after, or give any help or support to family members, friends, neighbours or others?",
+                            "title": "Does <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> look after, or give any help or support to family members, friends, neighbours or others?",
                             "description": "",
                             "guidance": {
                                 "content": [{
@@ -1727,7 +1723,7 @@
                         "id": "national-identity",
                         "questions": [{
                                 "id": "national-identity-england-question",
-                                "title": "How would you describe <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> national identity?",
+                                "title": "How would you describe <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> national identity?",
                                 "type": "General",
                                 "answers": [{
                                         "id": "national-identity-england-answer",
@@ -1778,7 +1774,7 @@
                             },
                             {
                                 "id": "national-identity-wales-question",
-                                "title": "How would you describe <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> national identity?",
+                                "title": "How would you describe <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> national identity?",
                                 "type": "General",
                                 "answers": [{
                                         "id": "national-identity-wales-answer",
@@ -1834,7 +1830,7 @@
                         "id": "ethnic-group",
                         "questions": [{
                                 "id": "ethnic-group-england-question",
-                                "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> ethnic group?",
+                                "title": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> ethnic group?",
                                 "description": "It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself.",
                                 "type": "General",
                                 "answers": [{
@@ -1878,7 +1874,7 @@
                             },
                             {
                                 "id": "ethnic-group-wales-question",
-                                "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> ethnic group?",
+                                "title": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> ethnic group?",
                                 "description": "It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself.",
                                 "type": "General",
                                 "answers": [{
@@ -2059,7 +2055,7 @@
                         "id": "white-ethnic-group",
                         "questions": [{
                                 "id": "white-ethnic-group-england-question",
-                                "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> White ethnic group or background?",
+                                "title": "Which one best describes <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> White ethnic group or background?",
                                 "type": "General",
                                 "answers": [{
                                         "id": "white-ethnic-group-england-answer",
@@ -2102,7 +2098,7 @@
                             },
                             {
                                 "id": "white-ethnic-group-wales-question",
-                                "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> White ethnic group or background?",
+                                "title": "Which one best describes <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> White ethnic group or background?",
                                 "type": "General",
                                 "answers": [{
                                         "id": "white-ethnic-group-wales-answer",
@@ -2182,7 +2178,7 @@
                         "id": "mixed-ethnic-group",
                         "questions": [{
                             "id": "mixed-ethnic-group-question",
-                            "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> Mixed, multiple ethnic group or background?",
+                            "title": "Which one best describes <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> Mixed, multiple ethnic group or background?",
                             "type": "General",
                             "answers": [{
                                     "id": "mixed-ethnic-group-answer",
@@ -2254,7 +2250,7 @@
                         "id": "asian-ethnic-group",
                         "questions": [{
                             "id": "asian-ethnic-group-question",
-                            "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> Asian, Asian British ethnic group or background?",
+                            "title": "Which one best describes <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> Asian, Asian British ethnic group or background?",
                             "type": "General",
                             "answers": [{
                                     "id": "asian-ethnic-group-answer",
@@ -2330,7 +2326,7 @@
                         "id": "black-ethnic-group",
                         "questions": [{
                             "id": "black-ethnic-group-question",
-                            "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> Black, African, Caribbean, Black British ethnic group or background?",
+                            "title": "Which one best describes <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> Black, African, Caribbean, Black British ethnic group or background?",
                             "type": "General",
                             "answers": [{
                                     "id": "black-ethnic-group-answer",
@@ -2398,7 +2394,7 @@
                         "id": "other-ethnic-group",
                         "questions": [{
                             "id": "other-ethnic-group-question",
-                            "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> Other ethnic group or background?",
+                            "title": "Which one best describes <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> Other ethnic group or background?",
                             "type": "General",
                             "answers": [{
                                     "id": "other-ethnic-group-answer",
@@ -2462,7 +2458,7 @@
                         "id": "sexual-identity",
                         "questions": [{
                             "id": "sexual-identity-question",
-                            "title": "Which of the following options best describes how <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> thinks of themselves?",
+                            "title": "Which of the following options best describes how <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> thinks of themselves?",
                             "type": "General",
                             "answers": [{
                                     "id": "sexual-identity-answer",
@@ -2522,7 +2518,7 @@
                         "id": "understand-welsh",
                         "questions": [{
                             "id": "understand-welsh-question",
-                            "title": "Can <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> understand, speak, read or write Welsh",
+                            "title": "Can <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> understand, speak, read or write Welsh",
                             "type": "General",
                             "answers": [{
                                 "id": "understand-welsh-answer",
@@ -2557,7 +2553,7 @@
                         "id": "language",
                         "questions": [{
                                 "id": "language-england-question",
-                                "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> main language?",
+                                "title": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> main language?",
                                 "type": "General",
                                 "answers": [{
                                         "id": "language-england-answer",
@@ -2593,7 +2589,7 @@
                             },
                             {
                                 "id": "language-welsh-question",
-                                "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> main language?",
+                                "title": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> main language?",
                                 "type": "General",
                                 "answers": [{
                                         "id": "language-welsh-answer",
@@ -2660,7 +2656,7 @@
                         "id": "english",
                         "questions": [{
                             "id": "english-question",
-                            "title": "How well can <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> speak English?",
+                            "title": "How well can <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> speak English?",
                             "type": "General",
                             "answers": [{
                                 "id": "english-answer",
@@ -2691,7 +2687,7 @@
                         "id": "religion",
                         "questions": [{
                             "id": "religion-question",
-                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> religion?",
+                            "title": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> religion?",
                             "description": "This question is voluntary",
                             "type": "General",
                             "answers": [{
@@ -2924,7 +2920,7 @@
                         "id": "disability",
                         "questions": [{
                             "id": "disability-question",
-                            "title": "Are <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> day-to-day activities limited because of a health problem or disability which has lasted, or is expected to last, at least 12 months?",
+                            "title": "Are <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> day-to-day activities limited because of a health problem or disability which has lasted, or is expected to last, at least 12 months?",
                             "guidance": {
                                 "content": [{
                                     "description": "<strong>Include</strong> problems related to old age"
@@ -2972,7 +2968,7 @@
                         "id": "qualifications",
                         "questions": [{
                                 "id": "qualifications-england-question",
-                                "title": "Thinking of any studies, exams or qualifications, which of the following does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> have?",
+                                "title": "Thinking of any studies, exams or qualifications, which of the following does <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> have?",
                                 "description": "Select every option that applies (whether UK or foreign equivalent) if you have any of the qualifications listed",
                                 "type": "General",
                                 "answers": [{
@@ -3055,7 +3051,7 @@
                             },
                             {
                                 "id": "qualifications-welsh-question",
-                                "title": "Thinking of any studies, exams or qualifications, which of the following does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> have?",
+                                "title": "Thinking of any studies, exams or qualifications, which of the following does <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> have?",
                                 "description": "Select every option that applies (whether UK or foreign equivalent) if you have any of the qualifications listed",
                                 "type": "General",
                                 "answers": [{
@@ -3143,7 +3139,7 @@
                         "id": "employment-type",
                         "questions": [{
                             "id": "employment-type-question",
-                            "title": "Which of the following best describes what <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> was doing last week?",
+                            "title": "Which of the following best describes what <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> was doing last week?",
                             "guidance": {
                                 "content": [{
                                     "description": "<strong>Include</strong> any paid work, including casual or temporary work, even if only for one hour"
@@ -3257,7 +3253,7 @@
                         "id": "jobseeker",
                         "questions": [{
                             "id": "jobseeker-question",
-                            "title": "Was <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> actively looking for any kind of paid work during the last four weeks?",
+                            "title": "Was <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> actively looking for any kind of paid work during the last four weeks?",
                             "type": "General",
                             "answers": [{
                                 "id": "jobseeker-answer",
@@ -3280,7 +3276,7 @@
                         "id": "job-availability",
                         "questions": [{
                             "id": "job-availability-question",
-                            "title": "If a job had been offered to <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> last week, could they have started it within 2 weeks?",
+                            "title": "If a job had been offered to <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> last week, could they have started it within 2 weeks?",
                             "type": "General",
                             "answers": [{
                                 "id": "job-availability-answer",
@@ -3303,7 +3299,7 @@
                         "id": "job-pending",
                         "questions": [{
                             "id": "job-pending-question",
-                            "title": "Last week, was <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> waiting to start a job already accepted?",
+                            "title": "Last week, was <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> waiting to start a job already accepted?",
                             "type": "General",
                             "answers": [{
                                 "id": "job-pending-answer",
@@ -3326,7 +3322,7 @@
                         "id": "occupation",
                         "questions": [{
                             "id": "occupation-question",
-                            "title": "Which of the following best describes what <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> was doing last week?",
+                            "title": "Which of the following best describes what <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> was doing last week?",
                             "type": "General",
                             "answers": [{
                                 "id": "occupation-answer",
@@ -3361,7 +3357,7 @@
                         "id": "ever-worked",
                         "questions": [{
                             "id": "ever-worked-question",
-                            "title": "Has <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> ever worked?",
+                            "title": "Has <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> ever worked?",
                             "type": "General",
                             "guidance": {
                                 "content": [{
@@ -3418,7 +3414,7 @@
                         "id": "main-job",
                         "questions": [{
                             "id": "main-job-question",
-                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> employment status?",
+                            "title": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive }}</em> employment status?",
                             "guidance": {
                                 "content": [{
                                     "description": "<p>If you are not working answer the remaining questions about your last main job.</p><p>Your main job is the job which you usually work (worked) the most hours</p>"
@@ -3450,7 +3446,7 @@
                         "id": "hours-worked",
                         "description": "",
                         "questions": [{
-                            "title": "In <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> main job, how many hours a week do they usually work?",
+                            "title": "In <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive }}</em> main job, how many hours a week do they usually work?",
                             "guidance": {
                                 "content": [{
                                     "description": "Include paid and unpaid overtime"
@@ -3487,7 +3483,7 @@
                         "id": "work-travel",
                         "description": "",
                         "questions": [{
-                            "title": "How does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> usually travel to work?",
+                            "title": "How does <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> usually travel to work?",
                             "description": "Select the option for the longest part, in distance, of your journey. For example, you travel by bus and by car. Your bus journey is 5 miles, and the car journey is 8 miles. You should select car as your answer.",
                             "id": "work-travel-question",
                             "type": "General",
@@ -3548,7 +3544,7 @@
                         "id": "job-title",
                         "questions": [{
                             "id": "job-title-question",
-                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> full job title?",
+                            "title": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive }}</em> full job title?",
                             "description": "<p>For example, <b>primary school teacher, car mechanic, district nurse, structural engineer</b></p><p>Do not state your grade or pay band</p><p>Please enter your job title in the space provided.</p><p>Do not state your grade or pay band.</p><p>If you are not sure of your job title please give the best information you can.</p>",
                             "type": "General",
                             "answers": [{
@@ -3564,7 +3560,7 @@
                         "id": "job-description",
                         "questions": [{
                             "id": "job-description-question",
-                            "title": "What <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> does in their main job?",
+                            "title": "What <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> does in their main job?",
                             "type": "General",
                             "answers": [{
                                 "id": "job-description-answer",
@@ -3579,7 +3575,7 @@
                         "id": "main-job-type",
                         "questions": [{
                             "id": "main-job-type-question",
-                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> employment status?",
+                            "title": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> employment status?",
                             "type": "General",
                             "answers": [{
                                 "id": "main-job-type-answer",
@@ -3623,15 +3619,14 @@
                         "id": "business-name",
                         "questions": [{
                             "id": "business-name-question",
-                            "title": "What is the name of the organisation of business that <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> work for?",
+                            "title": "What is the name of the organisation of business that <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> work for?",
                             "description": "<p>If you were self-employed in your own organisation or business, enter the name</p><p>This question is asking for the name of the organisation or business that you work (or worked) for in your main job.</p><p>If you can’t remember the name of the organisation, please give the best information you can.</p><p>If you are employed through an agency please enter the name of the business you are working for, not the agency.</p>",
                             "type": "General",
                             "answers": [{
                                 "id": "business-name-answer",
                                 "label": "Organisation or business name",
                                 "mandatory": false,
-                                "type": "TextField",
-                                "alias": "company_name"
+                                "type": "TextField"
                             }]
                         }]
                     },
@@ -3640,7 +3635,7 @@
                         "id": "employers-business",
                         "questions": [{
                             "id": "employers-business-question",
-                            "title": "What is the main activity of <em>{{answers.company_name}}</em>?",
+                            "title": "What is the main activity of <em>{{answers['business-name-answer'][group_instance]}}</em>?",
                             "description": "<p>Enter the main activity of your employer or business.</p><p>Another way of describing main activity is the industry that your employer or business works in.</p><p>If you are not sure of the main activity of your employer or business please give the best information you can.</p><p>If you are employed through an agency please enter the main activity of the business you are working for, not the agency.</p><p>For example, <b>primary education, repairing cars, contract catering, computer servicing</b></p>",
                             "type": "General",
                             "answers": [{
@@ -3653,7 +3648,7 @@
                     },
                     {
                         "id": "household-member-completed",
-                        "title": "There are no more questions for {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
+                        "title": "There are no more questions for {{ [answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}",
                         "description": "",
                         "type": "Interstitial"
                     }
@@ -3684,7 +3679,7 @@
                         "type": "Interstitial",
                         "id": "visitor-begin-section",
                         "title": "Visitors",
-                        "description": "In this section, we’re going to ask you about any visitors that were staying overnight at <em>{{answers.address_line_1}}</em> on 29 November 2017.",
+                        "description": "In this section, we’re going to ask you about any visitors that were staying overnight at <em>{{answers['address-line-1']}}</em> on 29 November 2017.",
                         "content": [{
                             "title": "Information you need",
                             "list": [

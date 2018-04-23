@@ -576,8 +576,11 @@ def _remove_dependent_answers_from_completed_blocks(answer_id, questionnaire_sto
     """
     dependencies = g.schema.get_answer_dependencies_by_id(answer_id)
     for dependency in dependencies:
-        group_block = g.schema.get_group_and_block_id_by_answer_id(dependency)
-        location = Location(group_block['group'], 0, group_block['block'])
+        answer = g.schema.get_answer(dependency)
+        question = g.schema.get_question(answer['parent_id'])
+        block = g.schema.get_block(question['parent_id'])
+
+        location = Location(block['parent_id'], 0, block['id'])
         if location in questionnaire_store.completed_blocks:
             questionnaire_store.completed_blocks.remove(location)
 
@@ -674,11 +677,9 @@ def _get_block_json(current_location):
 
 
 def _get_schema_context(full_routing_path, group_instance, metadata, answer_store):
-    aliases = g.schema.aliases
     answer_ids_on_path = get_answer_ids_on_routing_path(g.schema, full_routing_path)
 
     return build_schema_context(metadata=metadata,
-                                aliases=aliases,
                                 answer_store=answer_store,
                                 group_instance=group_instance,
                                 answer_ids_on_path=answer_ids_on_path)

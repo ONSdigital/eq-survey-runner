@@ -22,7 +22,6 @@
                         "answers": [{
                             "id": "answer",
                             "mandatory": true,
-                            "alias": "answer",
                             "type": "Number"
                         }],
                         "id": "question",
@@ -51,7 +50,7 @@
                     "type": "Interstitial",
                     "id": "incorrect-answer",
                     "title": "You entered a number that was not greater than 123",
-                    "description": "You were asked to enter a number greater than <em>123</em> but you entered <em>{{answers.answer}}</em>.",
+                    "description": "You were asked to enter a number greater than <em>123</em> but you entered <em>{{answers['answer']}}</em>.",
                     "routing_rules": [{
                         "goto": {
                             "block": "summary"
@@ -62,7 +61,7 @@
                     "type": "Interstitial",
                     "id": "correct-answer",
                     "title": "You entered a number greater than 123",
-                    "description": "You were asked to enter a number greater than <em>123</em> and you entered <em>{{answers.answer}}</em>."
+                    "description": "You were asked to enter a number greater than <em>123</em> and you entered <em>{{answers['answer']}}</em>."
                 },
                 {
                     "type": "Summary",

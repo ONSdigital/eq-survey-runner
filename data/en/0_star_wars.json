@@ -362,7 +362,6 @@
                         },
                         {
                             "answers": [{
-                                "alias": "chewies_age",
                                 "id": "chewies-age-answer",
                                 "label": "How old is Chewy?",
                                 "mandatory": true,
@@ -651,7 +650,7 @@
                             }],
                             "description": "",
                             "id": "confirm-chewbacca-age-question",
-                            "title": "Do you really think that Chewbacca is {{answers.chewies_age}} years old?",
+                            "title": "Do you really think that Chewbacca is {{answers['chewies-age-answer']}} years old?",
                             "type": "General"
                         },
                         {

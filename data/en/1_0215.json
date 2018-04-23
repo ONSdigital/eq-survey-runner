@@ -296,7 +296,6 @@
                                 "mandatory": true,
                                 "label": "From",
                                 "id": "period-from",
-                                "alias": "period_from",
                                 "q_code": "11",
                                 "type": "Date"
                             },
@@ -304,7 +303,6 @@
                                 "mandatory": true,
                                 "label": "To",
                                 "id": "period-to",
-                                "alias": "period_to",
                                 "q_code": "12",
                                 "type": "Date"
                             }
@@ -341,7 +339,6 @@
                         },
                         "answers": [{
                             "id": "total-retail-turnover",
-                            "alias": "total_turnover",
                             "label": "Total retail turnover",
                             "mandatory": false,
                             "q_code": "20",
@@ -351,7 +348,7 @@
                             "default": 0
                         }],
                         "id": "total-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers.period_from, metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers.period_to, metadata['ref_p_end_date'])}}, what was the value of {{metadata['trad_as_or_ru_name']}}’s <em>total retail turnover</em>?",
+                        "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total retail turnover</em>?",
                         "type": "General"
                     }],
                     "title": "Retail Turnover"
@@ -385,7 +382,7 @@
                             "mandatory": true
                         }],
                         "id": "confirm-zero-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers.period_from, metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers.period_to, metadata['ref_p_end_date'])}}, the value of the total retail turnover was <em>£0</em>, is this correct?"
+                        "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, the value of the total retail turnover was <em>£0</em>, is this correct?"
                     }],
                     "routing_rules": [{
                             "goto": {
@@ -438,7 +435,7 @@
                             }
                         }],
                         "id": "total-sales-food-question",
-                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>food</em> sales?",
+                        "title": "Of the <em>{{answers['total-retail-turnover']|format_currency}}</em> total retail turnover, what was the value of <em>food</em> sales?",
                         "type": "General"
                     }],
                     "title": "Retail turnover"
@@ -470,7 +467,7 @@
                             }
                         }],
                         "id": "total-sales-alcohol-question",
-                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>alcohol, confectionery and tobacco</em> sales?",
+                        "title": "Of the <em>{{answers['total-retail-turnover']|format_currency}}</em> total retail turnover, what was the value of <em>alcohol, confectionery and tobacco</em> sales?",
                         "type": "General"
                     }],
                     "title": "Retail turnover"
@@ -504,7 +501,7 @@
                             }
                         }],
                         "id": "total-sales-clothing-question",
-                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>clothing and footwear</em> sales?",
+                        "title": "Of the <em>{{answers['total-retail-turnover']|format_currency}}</em> total retail turnover, what was the value of <em>clothing and footwear</em> sales?",
                         "type": "General"
                     }],
                     "title": "Retail turnover"
@@ -553,7 +550,7 @@
                             }
                         }],
                         "id": "total-sales-household-goods-question",
-                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of sales for <em>household goods</em>?",
+                        "title": "Of the <em>{{answers['total-retail-turnover']|format_currency}}</em> total retail turnover, what was the value of sales for <em>household goods</em>?",
                         "type": "General"
                     }],
                     "title": "Retail turnover"
@@ -613,7 +610,7 @@
                             }
                         }],
                         "id": "total-sales-other-goods-question",
-                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>other</em> sales?",
+                        "title": "Of the <em>{{answers['total-retail-turnover']|format_currency}}</em> total retail turnover, what was the value of <em>other</em> sales?",
                         "type": "General"
                     }],
                     "title": "Retail turnover"
@@ -643,7 +640,7 @@
                             }
                         }],
                         "id": "internet-sales-question",
-                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
+                        "title": "Of the <em>{{answers['total-retail-turnover']|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
                         "type": "General"
                     }],
                     "title": "Retail turnover"
@@ -863,7 +860,6 @@
                         },
                         "answers": [{
                             "id": "total-number-employees",
-                            "alias": "employee_count",
                             "label": "Total number of employees",
                             "mandatory": false,
                             "q_code": "50",
@@ -1019,7 +1015,7 @@
                             }
                         ],
                         "id": "employee-breakdown-questions",
-                        "title": "Of the <em>{{answers.employee_count|format_number}}</em> total employees employed on {{metadata['employment_date']|format_date}}, please specify the number of:",
+                        "title": "Of the <em>{{answers['total-number-employees']|format_number}}</em> total employees employed on {{exercise.employment_date|format_date}}, please specify the number of:",
                         "type": "Calculated"
                     }],
                     "title": "Employees"

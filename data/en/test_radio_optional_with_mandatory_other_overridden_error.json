@@ -41,7 +41,6 @@
                             {
                                 "parent_answer_id": "radio-non-mandatory-answer",
                                 "mandatory": false,
-                                "alias": "radio-non-mandatory-answer",
                                 "id": "other-answer-non-mandatory",
                                 "label": "Please specify other",
                                 "type": "TextField",

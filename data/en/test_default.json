@@ -22,7 +22,6 @@
                         "answers": [{
                             "id": "answer",
                             "mandatory": false,
-                            "alias": "answer",
                             "type": "Number",
                             "default": 0
                         }],

@@ -28,14 +28,12 @@
                                 "mandatory": true,
                                 "label": "From",
                                 "id": "period-from",
-                                "alias": "period_from",
                                 "type": "Date"
                             },
                             {
                                 "mandatory": true,
                                 "label": "To",
                                 "id": "period-to",
-                                "alias": "period_to",
                                 "type": "Date"
                             }
                         ]
@@ -47,7 +45,7 @@
                     "title": "Confirm Dates",
                     "questions": [{
                         "id": "confirm-dob-question",
-                        "title": "You were out of the UK for {{ calculate_years_difference (answers.period_from, answers.period_to) }}. Is this correct?",
+                        "title": "You were out of the UK for {{ calculate_years_difference (answers['period-from'], answers['period-to']) }}. Is this correct?",
                         "type": "General",
                         "answers": [{
                             "id": "date-test-answer",

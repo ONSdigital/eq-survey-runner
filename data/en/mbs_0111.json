@@ -1,7 +1,7 @@
 {
     "mime_type": "application/json/ons/eq",
     "variables": {
-        "period": "{{ format_conditional_date (answers.period_from, metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers.period_to, metadata['ref_p_end_date'])}}"
+      "period": "{{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period_to'], exercise.end_date)}}"
     },
     "schema_version": "0.0.1",
     "survey_id": "023",
@@ -101,16 +101,14 @@
                                 "id": "reporting-period-answer-3-0",
                                 "label": "From",
                                 "mandatory": true,
-                                "q_code": "11",
-                                "alias": "period_from"
+                                "q_code": "11"
                             },
                             {
                                 "type": "Date",
                                 "id": "reporting-period-answer-3-1",
                                 "label": "To",
                                 "mandatory": true,
-                                "q_code": "12",
-                                "alias": "period_to"
+                                "q_code": "12"
                             }
                         ],
                         "description": ""
@@ -148,7 +146,7 @@
                                 }
                             ]
                         },
-                        "title": "For the period {{ format_conditional_date (answers.period_from, metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers.period_to, metadata['ref_p_end_date'])}}, what was the value of {{metadata['trad_as_or_ru_name']}}’s <em>total turnover</em>, excluding VAT?",
+                        "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period_to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total turnover</em>, excluding VAT?",
                         "answers": [{
                             "type": "Currency",
                             "id": "turnover-answer-4-0",

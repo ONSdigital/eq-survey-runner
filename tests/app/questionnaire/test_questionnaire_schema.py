@@ -17,7 +17,7 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_get_blocks(self):
         schema = load_schema_from_params('test', 'repeating_household')
-        self.assertEqual(len(schema.blocks), 5)
+        self.assertEqual(len(schema.blocks), 6)
 
     def test_get_block(self):
         schema = load_schema_from_params('test', 'repeating_household')
@@ -37,7 +37,7 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_get_questions(self):
         schema = load_schema_from_params('test', 'repeating_household')
-        self.assertEqual(len(schema.questions), 3)
+        self.assertEqual(len(schema.questions), 4)
 
     def test_get_question(self):
         schema = load_schema_from_params('test', 'repeating_household')
@@ -47,7 +47,7 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_get_answers(self):
         schema = load_schema_from_params('test', 'repeating_household')
-        self.assertEqual(len(schema.answers), 5)
+        self.assertEqual(len(schema.answers), 6)
 
     def test_get_answer(self):
         schema = load_schema_from_params('test', 'repeating_household')
@@ -91,39 +91,6 @@ class TestQuestionnaireSchema(AppContextTestCase):
         }
 
         self.assertEqual(parent_options, expected)
-
-    def test_get_duplicate_aliases(self):
-        survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'group1',
-                    'blocks': [{
-                        'id': 'block1',
-                        'questions': [{
-                            'id': 'question1',
-                            'answers': [
-                                {
-                                    'id': '1',
-                                    'alias': 'alias_name',
-                                    'type': 'Checkbox'
-                                },
-                                {
-                                    'id': '2',
-                                    'alias': 'alias_name',
-                                    'type': 'Checkbox'
-                                }
-                            ]
-                        }]
-                    }]
-                }]
-            }]
-        }
-
-        with self.assertRaises(Exception)as err:
-            QuestionnaireSchema(survey_json)
-
-        self.assertEqual('Duplicate alias found: alias_name', str(err.exception))
 
     def test_get_summary_and_confirmation_blocks_returns_only_summary(self):
         survey_json = {
@@ -227,6 +194,32 @@ class TestQuestionnaireSchema(AppContextTestCase):
         self.assertFalse(schema.is_confirmation_section(schema.get_section('section-1')))
         self.assertFalse(schema.is_confirmation_group(schema.get_group('group-1')))
 
+    def test_is_repeating_answer_type_repeating_answer(self):
+        survey_json = {
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'question-group',
+                    'blocks': [
+                        {
+                            'id': 'repeating-question-block',
+                            'type': 'Question',
+                            'questions': [{
+                                'id': 'repeating-question',
+                                'type': 'RepeatingAnswer',
+                                'answers': [{
+                                    'id': 'first-name'
+                                }]
+                            }]
+                        }
+                    ]
+                }]
+            }]
+        }
+        schema = QuestionnaireSchema(survey_json)
+
+        self.assertTrue(schema.is_repeating_answer_type('first-name'))
+
     def test_is_confirmation(self):
         survey_json = {
             'sections': [{
@@ -243,8 +236,72 @@ class TestQuestionnaireSchema(AppContextTestCase):
             }]
         }
 
+
         schema = QuestionnaireSchema(survey_json)
         self.assertTrue(schema.is_confirmation_section(schema.get_section('section-1')))
         self.assertTrue(schema.is_confirmation_group(schema.get_group('group-1')))
         self.assertFalse(schema.is_summary_section(schema.get_section('section-1')))
         self.assertFalse(schema.is_summary_group(schema.get_group('group-1')))
+
+    def test_is_repeating_answer_type_general_answer(self):
+        survey_json = {
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'question-group',
+                    'blocks': [
+                        {
+                            'id': 'question-block',
+                            'type': 'Question',
+                            'questions': [{
+                                'id': 'question',
+                                'type': 'General',
+                                'answers': [{
+                                    'id': 'first-name'
+                                }]
+                            }]
+                        }
+                    ]
+                }]
+            }]
+        }
+
+        schema = QuestionnaireSchema(survey_json)
+
+        self.assertFalse(schema.is_repeating_answer_type('first-name'))
+
+    def test_is_repeating_answer_type_checkbox(self):
+        survey_json = {
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'question-group',
+                    'blocks': [
+                        {
+                            'id': 'question-block',
+                            'type': 'Question',
+                            'questions': [{
+                                'id': 'question',
+                                'type': 'General',
+                                'answers': [{
+                                    'id': 'frequency-answer',
+                                    'options': [{
+                                        'value': 'Weekly'
+                                    }],
+                                    'type': 'Checkbox'
+                                }]
+                            }]
+                        }
+                    ]
+                }]
+            }]
+        }
+        schema = QuestionnaireSchema(survey_json)
+
+        self.assertTrue(schema.is_repeating_answer_type('frequency-answer'))
+
+    def test_answer_is_in_repeating_group(self):
+        schema = load_schema_from_params('test', 'repeating_household')
+
+        self.assertFalse(schema.answer_is_in_repeating_group('first-name'))
+        self.assertTrue(schema.answer_is_in_repeating_group('confirm-answer'))

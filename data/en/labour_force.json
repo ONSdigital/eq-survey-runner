@@ -56,7 +56,6 @@
                                 },
                                 "type": "RepeatingAnswer",
                                 "answers": [{
-                                        "alias": "first_name",
                                         "id": "first-name",
                                         "label": "First name",
                                         "mandatory": true,
@@ -68,14 +67,12 @@
                                         }
                                     },
                                     {
-                                        "alias": "middle_names",
                                         "id": "middle-names",
                                         "label": "Middle names",
                                         "mandatory": false,
                                         "type": "TextField"
                                     },
                                     {
-                                        "alias": "last_name",
                                         "id": "last-name",
                                         "label": "Last name",
                                         "mandatory": true,
@@ -92,7 +89,7 @@
                         {
                             "type": "Question",
                             "id": "everyone-at-address-confirmation",
-                            "description": "<h2 class='neptune'>You have added:</h2> {{ [answers.first_name, answers.middle_names, answers.last_name]|format_household_summary }}",
+                            "description": "<h2 class='neptune'>You have added:</h2> {{ [answers['first-name'], answers['middle-names'], answers['last-name']]|format_household_summary }}",
                             "questions": [{
                                 "id": "everyone-at-address-confirmation-question",
                                 "title": "Is this everyone who lives at {{ metadata['ru_name'] }}?",
@@ -148,7 +145,7 @@
                         "id": "household-relationships",
                         "questions": [{
                             "id": "household-relationships-question",
-                            "title": "How is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> related to the people below?",
+                            "title": "How is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> related to the people below?",
                             "description": "If members are not related, select the ‘unrelated’ option.</br>If you are the parents of adopted children, select the ‘Mother or father’ option to show your relationship to them.</br>If you have foster children living with you, select the ‘Unrelated’ option.</br>Include half-brothers and half-sisters in the ‘Step-brother or step-sister’ category.</br>Same-sex civil partner is used to describe the relationship between two people who have legally registered a civil partnership.</br>If none of the options fully reflects your relationship, please select the one which you feel best describes your situation.",
                             "type": "Relationship",
                             "answers": [{
@@ -243,13 +240,13 @@
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "household-member-begin",
-                        "title": "{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}",
-                        "description": "In this section, we’re going to ask questions about <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em>.",
+                        "title": "{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}",
+                        "description": "In this section, we’re going to ask questions about <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em>.",
                         "content": [{
                             "title": "Information you need",
                             "list": [
                                 "Personal details such as date of birth, nationality, country of birth",
-                                "How long <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> has lived in the UK",
+                                "How long <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> has lived in the UK",
                                 "Their national identity, ethnicity and religion"
                             ]
                         }]
@@ -259,7 +256,7 @@
                         "id": "proxy-check",
                         "questions": [{
                             "id": "proxy-check-question",
-                            "title": "Are you {{ [answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name }}, or answering on their behalf?",
+                            "title": "Are you {{ [answers['first-name'][group_instance], answers['middle-names'][group_instance], answers['last-name'][group_instance]] | format_household_name }}, or answering on their behalf?",
                             "type": "General",
                             "guidance": {
                                 "content": [{
@@ -271,11 +268,11 @@
                                 "mandatory": true,
                                 "type": "Radio",
                                 "options": [{
-                                        "label": "Yes I am {{ answers.first_name[group_instance] }}",
+                                        "label": "Yes I am {{ answers['first-name'][group_instance] }}",
                                         "value": "no proxy"
                                     },
                                     {
-                                        "label": "No, I am answering on <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> behalf",
+                                        "label": "No, I am answering on <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive }}</em> behalf",
                                         "value": "proxy"
                                     }
                                 ]
@@ -303,7 +300,7 @@
                         "id": "date-of-birth",
                         "questions": [{
                             "id": "date-of-birth-question",
-                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> date of birth?",
+                            "title": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive }}</em> date of birth?",
                             "description": "For example 20 March 1980",
                             "type": "General",
                             "answers": [{
@@ -339,7 +336,7 @@
                         "id": "marital-status",
                         "questions": [{
                             "id": "marital-status-question",
-                            "title": "On {{ metadata['ref_p_start_date']|format_date }}, what is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive }}</em> legal marital or same-sex civil partnership status?",
+                            "title": "On {{ exercise.start_date|format_date }}, what is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive }}</em> legal marital or same-sex civil partnership status?",
                             "description": "If you were married (or formed a registered same-sex partnership) abroad, and this enables you to be recognised as married or civil partnered in the UK, complete the question reflecting that legal partnership.",
                             "type": "General",
                             "answers": [{
@@ -391,7 +388,7 @@
                         "id": "nationality",
                         "questions": [{
                             "id": "nationality-question",
-                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> nationality?",
+                            "title": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> nationality?",
                             "type": "General",
                             "answers": [{
                                     "id": "nationality-answer",
@@ -439,7 +436,7 @@
                         "id": "country-of-birth",
                         "questions": [{
                             "id": "country-of-birth-question",
-                            "title": "In which country was <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> born?",
+                            "title": "In which country was <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> born?",
                             "type": "General",
                             "answers": [{
                                     "id": "country-of-birth-answer",
@@ -549,7 +546,7 @@
                         "id": "arrive-in-uk",
                         "questions": [{
                             "id": "arrive-in-uk-question",
-                            "title": "In which year did <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> arrive to live here?",
+                            "title": "In which year did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> arrive to live here?",
                             "guidance": {
                                 "content": [{
                                     "description": "Exclude holidays and short visits to the UK."
@@ -558,7 +555,6 @@
                             "type": "General",
                             "answers": [{
                                 "id": "arrive-in-uk-answer",
-                                "alias": "arrived_year",
                                 "mandatory": false,
                                 "type": "MonthYearDate"
                             }]
@@ -600,7 +596,7 @@
                         "questions": [{
                             "id": "arrive-date-in-uk-invalid-question",
                             "title": "Invalid date entered",
-                            "description": "The date <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> arrived in the UK must be after their date of birth.",
+                            "description": "The date <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> arrived in the UK must be after their date of birth.",
                             "guidance": {
                                 "content": [{
                                     "description": "Correct either their date of birth or the date they arrived in the UK."
@@ -649,7 +645,7 @@
                         "id": "continuous-in-uk",
                         "questions": [{
                             "id": "continuous-in-uk-question",
-                            "title": "Apart from holidays and short visits abroad, has {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}} lived in the UK continuously since {{answers.arrived_year}}?",
+                            "title": "Apart from holidays and short visits abroad, has {{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}} lived in the UK continuously since {{answers['arrive-in-uk-answer']}}?",
                             "type": "General",
                             "answers": [{
                                 "id": "continuous-in-uk-answer",
@@ -730,11 +726,10 @@
                         "id": "camyr2-block",
                         "questions": [{
                             "id": "camyr2-question",
-                            "title": "In what year did <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> most recently arrive in the United Kingdom?",
+                            "title": "In what year did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> most recently arrive in the United Kingdom?",
                             "type": "General",
                             "answers": [{
                                 "id": "first-arrive-in-uk-answer",
-                                "alias": "first_arrived_year",
                                 "mandatory": false,
                                 "type": "MonthYearDate"
                             }]
@@ -816,7 +811,7 @@
                         "questions": [{
                             "id": "first-arrive-date-in-uk-invalid-question",
                             "title": "Invalid date entered",
-                            "description": "The date <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> most recently arrived in the UK must be after their date of birth.",
+                            "description": "The date <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> most recently arrived in the UK must be after their date of birth.",
                             "guidance": {
                                 "content": [{
                                     "description": "Correct either their date of birth or the date they most recently arrived in the UK."
@@ -871,7 +866,7 @@
                         "id": "why-uk",
                         "questions": [{
                             "id": "why-uk-question",
-                            "title": "What was the main reason for you coming to the UK in {{answers.arrived_year}} or {{answers.first_arrived_year}} (need filter to pick max)?",
+                            "title": "What was the main reason for you coming to the UK in {{answers['arrive-in-uk-answer']}} or {{answers['first-arrive-in-uk-answer']}} (need filter to pick max)?",
                             "type": "General",
                             "answers": [{
                                 "id": "why-uk-answer",
@@ -918,7 +913,7 @@
                         "id": "national-identity",
                         "questions": [{
                                 "id": "national-identity-england-question",
-                                "title": "What does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]]|format_household_name}}</em> consider his or her national identity to be?  Please select all that apply.",
+                                "title": "What does <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]]|format_household_name}}</em> consider his or her national identity to be?  Please select all that apply.",
                                 "type": "General",
                                 "answers": [{
                                         "id": "national-identity-england-answer",
@@ -969,7 +964,7 @@
                             },
                             {
                                 "id": "national-identity-wales-question",
-                                "title": "What does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]]|format_household_name}}</em> consider his or her national identity to be?  Please select all that apply.",
+                                "title": "What does <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]]|format_household_name}}</em> consider his or her national identity to be?  Please select all that apply.",
                                 "type": "General",
                                 "answers": [{
                                         "id": "national-identity-wales-answer",
@@ -1041,7 +1036,7 @@
                         "id": "understand-welsh",
                         "questions": [{
                             "id": "understand-welsh-question",
-                            "title": "Can <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> understand, speak, read or write Welsh.  Please select all that apply",
+                            "title": "Can <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> understand, speak, read or write Welsh.  Please select all that apply",
                             "type": "General",
                             "answers": [{
                                 "id": "understand-welsh-answer",
@@ -1076,7 +1071,7 @@
                         "id": "welsh-frequency",
                         "questions": [{
                             "id": "welsh-frequency-question",
-                            "title": "How often does <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}</em> speak Welsh?",
+                            "title": "How often does <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> speak Welsh?",
                             "type": "General",
                             "answers": [{
                                 "id": "welsh-frequency-answer",
@@ -1107,7 +1102,7 @@
                         "id": "ethnic-group",
                         "questions": [{
                             "id": "ethnic-group-question",
-                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> ethnic group?",
+                            "title": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> ethnic group?",
                             "description": "It is for the individual to choose their ethnic group. For example this could be their family or cultural background, or it could be how they would describe themselves.",
                             "type": "General",
                             "answers": [{
@@ -1219,7 +1214,7 @@
                         "id": "white-ethnic-group",
                         "questions": [{
                             "id": "white-ethnic-group-question",
-                            "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> White ethnic group or background?",
+                            "title": "Which one best describes <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> White ethnic group or background?",
                             "type": "General",
                             "answers": [{
                                     "id": "white-ethnic-group-answer",
@@ -1280,7 +1275,7 @@
                         "id": "mixed-ethnic-group",
                         "questions": [{
                             "id": "mixed-ethnic-group-question",
-                            "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> Mixed, multiple ethnic group or background?",
+                            "title": "Which one best describes <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> Mixed, multiple ethnic group or background?",
                             "type": "General",
                             "answers": [{
                                     "id": "mixed-ethnic-group-answer",
@@ -1341,7 +1336,7 @@
                         "id": "asian-ethnic-group",
                         "questions": [{
                             "id": "asian-ethnic-group-question",
-                            "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> Asian, Asian British ethnic group or background?",
+                            "title": "Which one best describes <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> Asian, Asian British ethnic group or background?",
                             "type": "General",
                             "answers": [{
                                     "id": "asian-ethnic-group-answer",
@@ -1406,7 +1401,7 @@
                         "id": "black-ethnic-group",
                         "questions": [{
                             "id": "black-ethnic-group-question",
-                            "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> Black, African, Caribbean, Black British ethnic group or background?",
+                            "title": "Which one best describes <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> Black, African, Caribbean, Black British ethnic group or background?",
                             "type": "General",
                             "answers": [{
                                     "id": "black-ethnic-group-answer",
@@ -1463,7 +1458,7 @@
                         "id": "other-ethnic-group",
                         "questions": [{
                             "id": "other-ethnic-group-question",
-                            "title": "Which one best describes <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> Other ethnic group or background?",
+                            "title": "Which one best describes <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> Other ethnic group or background?",
                             "type": "General",
                             "answers": [{
                                     "id": "other-ethnic-group-answer",
@@ -1516,7 +1511,7 @@
                         "id": "religion",
                         "questions": [{
                             "id": "religion-question",
-                            "title": "What is <em>{{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name_possessive}}</em> religion?",
+                            "title": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> religion?",
                             "description": "This question is voluntary",
                             "type": "General",
                             "answers": [{
@@ -1834,7 +1829,6 @@
                             "type": "General",
                             "answers": [{
                                 "id": "arrive-in-uk-answer-np",
-                                "alias": "arrived_year_np",
                                 "mandatory": false,
                                 "type": "MonthYearDate"
                             }]
@@ -1925,7 +1919,7 @@
                         "id": "continuous-in-uk-no-proxy",
                         "questions": [{
                             "id": "continuous-in-uk-question-np",
-                            "title": "Apart from holidays and short visits abroad, have you lived in the UK continuously since {{answers.arrived_year_np}}?",
+                            "title": "Apart from holidays and short visits abroad, have you lived in the UK continuously since {{answers['arrived_ye-r_np']}}?",
                             "type": "General",
                             "answers": [{
                                 "id": "continuous-in-uk-answer-np",
@@ -2010,7 +2004,6 @@
                             "type": "General",
                             "answers": [{
                                 "id": "first-arrive-in-uk-answer-np",
-                                "alias": "first_arrived_year_np",
                                 "mandatory": false,
                                 "type": "MonthYearDate"
                             }]
@@ -2147,7 +2140,7 @@
                         "id": "why-uk-no-proxy",
                         "questions": [{
                             "id": "why-uk-question-np",
-                            "title": "What was the main reason for you coming to the UK in {{answers.arrived_year}} or {{answers.first_arrived_year}} (need filter to pick max)?",
+                            "title": "What was the main reason for you coming to the UK in {{answers['arrive-in-uk-answer']}} or {{answers['first-arrive-in-uk-answer']}} (need filter to pick max)?",
                             "type": "General",
                             "answers": [{
                                 "id": "why-uk-answer-np",
@@ -2846,7 +2839,7 @@
                     },
                     {
                         "id": "household-member-completed",
-                        "title": "There are no more questions for {{[answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name}}",
+                        "title": "There are no more questions for {{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}",
                         "description": "",
                         "type": "Interstitial"
                     }

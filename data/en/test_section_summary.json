@@ -221,7 +221,6 @@
                         },
                         "type": "RepeatingAnswer",
                         "answers": [{
-                                "alias": "first_name",
                                 "id": "first-name",
                                 "label": "First name",
                                 "mandatory": true,
@@ -233,7 +232,6 @@
                                 }
                             },
                             {
-                                "alias": "last_name",
                                 "id": "last-name",
                                 "label": "Last name",
                                 "mandatory": false,

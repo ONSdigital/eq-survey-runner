@@ -13,9 +13,5 @@ class RepeatingBlock1Page extends QuestionPage {
 
   answerLabel() { return '#label-what-is-your-age'; }
 
-  personName() {
-    return '[data-qa="block-title"]';
-  }
-
 }
 module.exports = new RepeatingBlock1Page();
