@@ -9,7 +9,7 @@
     "navigation": {
         "visible": true
     },
-    "required_metadata": {
+    "metadata": {
         "user_id": "string",
         "period_id": "string"
     },

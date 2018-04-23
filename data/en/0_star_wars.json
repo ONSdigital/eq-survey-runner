@@ -7,7 +7,7 @@
     "theme": "starwars",
     "legal_basis": "Voluntary",
     "description": "Kitchen sink test for the Star Wars questionnaire",
-    "required_metadata": {
+    "metadata": {
         "user_id": "string",
         "period_id": "string",
         "ref_p_start_date": "date",

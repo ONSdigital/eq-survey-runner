@@ -12,7 +12,7 @@
         "NUMBER_TOO_SMALL": "Number cannot be less than zero",
         "INVALID_DECIMAL": "Please enter a number to %(max)d decimal places"
     },
-    "required_metadata": {
+    "metadata": {
         "user_id": "string",
         "period_id": "string"
     },

@@ -8,7 +8,7 @@
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to test skip condition.",
     "messages": {},
-    "required_metadata": {
+    "metadata": {
         "user_id": "string",
         "period_id": "string"
     },

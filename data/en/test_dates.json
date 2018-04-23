@@ -7,7 +7,7 @@
     "description": "A test schema for different date formats",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "required_metadata": {
+    "metadata": {
         "user_id": "string",
         "period_id": "string"
     },

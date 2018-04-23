@@ -14,7 +14,7 @@
         "enabled": true,
         "duration": 900
     },
-    "required_metadata": {
+    "metadata": {
         "user_id": "string",
         "period_id": "string",
         "ref_p_start_date": "date",

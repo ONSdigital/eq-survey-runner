@@ -7,7 +7,7 @@
     "survey_id": "023",
     "theme": "default",
     "data_version": "0.0.1",
-    "required_metadata": {
+    "metadata": {
         "user_id": "string",
         "period_id": "string",
         "ref_p_start_date": "date",

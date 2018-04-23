@@ -1,7 +1,7 @@
 {
     "data_version": "0.0.1",
     "description": "UK Innovation Survey",
-    "required_metadata": {
+    "metadata": {
         "user_id": "string",
         "period_id": "string",
         "ru_name": "string"

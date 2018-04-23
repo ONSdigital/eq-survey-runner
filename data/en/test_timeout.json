@@ -9,7 +9,7 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to test the time out functionality",
-    "required_metadata": {
+    "metadata": {
         "user_id": "string",
         "period_id": "string"
     },

@@ -7,7 +7,7 @@
     "description": "Census England Individual Schema",
     "theme": "census",
     "legal_basis": "Voluntary",
-    "required_metadata": {
+    "metadata": {
         "user_id": "string",
         "period_id": "string"
     },
