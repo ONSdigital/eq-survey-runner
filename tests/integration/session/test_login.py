@@ -67,11 +67,12 @@ class TestLogin(IntegrationTestCase):
         self.get('/session?token=' + token)
 
         # Then
-        self.assertStatusNotFound()
+        self.assertStatusForbidden()
 
     def test_http_head_request_to_login_returns_successfully_and_get_still_works(self):
         # Given
         token = self.token_generator.create_token('0205', '1')
+
 
         # When
         self._client.head('/session?token=' + token, as_tuple=True, follow_redirects=True)

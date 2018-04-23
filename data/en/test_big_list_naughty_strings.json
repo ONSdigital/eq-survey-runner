@@ -1,5 +1,9 @@
 {
     "mime_type": "application/json/ons/eq",
+    "metadata": {
+        "user_id": "string",
+        "period_id": "string"
+    },
     "sections": [{
         "id": "default-section",
         "groups": [{

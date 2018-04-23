@@ -7,6 +7,11 @@
     "navigation": {
         "visible": true
     },
+    "metadata": {
+        "user_id": "string",
+        "period_id": "string",
+        "trad_as": "string"
+    },
     "sections": [{
             "id": "use-of-computers",
             "title": "Use Of Computers",
@@ -34,7 +39,7 @@
                                     }
                                 ]
                             },
-                            "title": "Does {{respondent.trad_as}} use any of the following computers: desktops, laptops, notebooks, netbooks, tablets, and other portable devices such as smartphones?",
+                            "title": "Does {{metadata['trad_as']}} use any of the following computers: desktops, laptops, notebooks, netbooks, tablets, and other portable devices such as smartphones?",
                             "answers": [{
                                 "type": "Radio",
                                 "label": "",
@@ -104,7 +109,7 @@
                                     }
                                 ]
                             },
-                            "title": "What percentage of people in {{respondent.trad_as}} use computers, as defined in the previous question, for their work?",
+                            "title": "What percentage of people in {{metadata['trad_as']}} use computers, as defined in the previous question, for their work?",
                             "answers": [{
                                 "description": "Please provide percentages to one decimal place where possible",
                                 "type": "Percentage",
@@ -181,7 +186,7 @@
                                     }
                                 ]
                             },
-                            "title": "Does {{respondent.trad_as}} employ ICT or IT specialists?",
+                            "title": "Does {{metadata['trad_as']}} employ ICT or IT specialists?",
                             "answers": [{
                                 "guidance": {
                                     "hide_guidance": "Hide ICT Definition",
@@ -217,7 +222,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "ict-specialists-and-skills-question-6",
-                            "title": "During 2017, did {{respondent.trad_as}} provide any type of training to develop the ICT or IT related skills of the following?",
+                            "title": "During 2017, did {{metadata['trad_as']}} provide any type of training to develop the ICT or IT related skills of the following?",
                             "answers": [{
                                 "type": "Checkbox",
                                 "id": "ict-specialists-and-skills-answer-6",
@@ -249,7 +254,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "ict-specialists-and-skills-question-7",
-                            "title": "During 2017, did {{respondent.trad_as}} recruit or try to recruit ICT or IT specialists?",
+                            "title": "During 2017, did {{metadata['trad_as']}} recruit or try to recruit ICT or IT specialists?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "ict-specialists-and-skills-answer-7",
@@ -292,7 +297,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "ict-specialists-and-skills-question-8",
-                            "title": "During 2017, did {{respondent.trad_as}} have vacancies for ICT or IT specialists that were difficult to fill?",
+                            "title": "During 2017, did {{metadata['trad_as']}} have vacancies for ICT or IT specialists that were difficult to fill?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "ict-specialists-and-skills-answer-8",
@@ -665,7 +670,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "access-and-use-of-the-internet-question-17",
-                            "title": "Does {{respondent.trad_as}} have internet access?",
+                            "title": "Does {{metadata['trad_as']}} have internet access?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-17",
@@ -728,7 +733,7 @@
                             },
                             "type": "General",
                             "id": "access-and-use-of-the-internet-question-18",
-                            "title": "What percentage of people in {{respondent.trad_as}} use computers with internet access for their work?",
+                            "title": "What percentage of people in {{metadata['trad_as']}} use computers with internet access for their work?",
                             "answers": [{
                                 "type": "Percentage",
                                 "label": "",
@@ -757,7 +762,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "access-and-use-of-the-internet-question-19",
-                            "title": "Does {{respondent.trad_as}} use a fixed broadband connection to the internet, for example DSL, (ADSL, SDSL, VDSL), fibre optic technology, cable technology?",
+                            "title": "Does {{metadata['trad_as']}} use a fixed broadband connection to the internet, for example DSL, (ADSL, SDSL, VDSL), fibre optic technology, cable technology?",
                             "answers": [{
                                 "type": "Radio",
                                 "label": "",
@@ -814,7 +819,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "access-and-use-of-the-internet-question-20",
-                            "title": "What is the maximum contracted download speed of the fastest fixed internet connection of {{respondent.trad_as}}?",
+                            "title": "What is the maximum contracted download speed of the fastest fixed internet connection of {{metadata['trad_as']}}?",
                             "answers": [{
                                 "guidance": {
                                     "hide_guidance": "Hide Mbps and Internet Connection Speeds Definitions",
@@ -874,7 +879,7 @@
                                     "description": ""
                                 }]
                             },
-                            "title": "Does {{respondent.trad_as}} provide the people employed with portable devices that allow a mobile telephone network connection to the internet for business purposes?",
+                            "title": "Does {{metadata['trad_as']}} provide the people employed with portable devices that allow a mobile telephone network connection to the internet for business purposes?",
                             "answers": [{
                                 "guidance": {
                                     "hide_guidance": "Hide Mobile Connection to the Internet Definition",
@@ -926,7 +931,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "access-and-use-of-the-internet-question-22",
-                            "title": "What percentage of people employed in {{respondent.trad_as}} use portable devices provided by this business that allow a mobile telephone connection to the internet for business purposes?",
+                            "title": "What percentage of people employed in {{metadata['trad_as']}} use portable devices provided by this business that allow a mobile telephone connection to the internet for business purposes?",
                             "answers": [{
                                 "description": "Please provide percentages to one decimal place where possible",
                                 "type": "Percentage",
@@ -948,7 +953,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "access-and-use-of-the-internet-question-23",
-                            "title": "Does {{respondent.trad_as}} provide portable devices that allow mobile connection to the internet using mobile telephone networks, for business use to <em>access the business’ e-mail system</em>?",
+                            "title": "Does {{metadata['trad_as']}} provide portable devices that allow mobile connection to the internet using mobile telephone networks, for business use to <em>access the business’ e-mail system</em>?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-23",
@@ -978,7 +983,7 @@
                                     "description": "For example spreadsheets, word documents, presentations etc."
                                 }]
                             },
-                            "title": "Does {{respondent.trad_as}} provide portable devices that allow mobile connection to the internet using mobile telephone networks, for business use to <em>access and modify the business’ documents</em>?",
+                            "title": "Does {{metadata['trad_as']}} provide portable devices that allow mobile connection to the internet using mobile telephone networks, for business use to <em>access and modify the business’ documents</em>?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-24",
@@ -1012,7 +1017,7 @@
                                     "description": "For example for orders or sales management, ERP (Enterprise Resource Planning) related applications, etc."
                                 }]
                             },
-                            "title": "Does {{respondent.trad_as}} provide portable devices that allow mobile connection to the internet using mobile telephone networks, for business use to <em>use dedicated business software applications</em>?",
+                            "title": "Does {{metadata['trad_as']}} provide portable devices that allow mobile connection to the internet using mobile telephone networks, for business use to <em>use dedicated business software applications</em>?",
                             "answers": [{
                                 "guidance": {
                                     "hide_guidance": "Hide ERP Definition",
@@ -1056,7 +1061,7 @@
                                     "description": ""
                                 }]
                             },
-                            "title": "Does {{respondent.trad_as}} have a website, either its own or third party?",
+                            "title": "Does {{metadata['trad_as']}} have a website, either its own or third party?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-26",
@@ -1105,7 +1110,7 @@
                                     "description": "For example using a shopping cart."
                                 }]
                             },
-                            "title": "Does {{respondent.trad_as}}’s website have <em>online ordering or reservation/booking?</em>",
+                            "title": "Does {{metadata['trad_as']}}’s website have <em>online ordering or reservation/booking?</em>",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-27",
@@ -1133,7 +1138,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "access-and-use-of-the-internet-question-28",
-                            "title": "Does {{respondent.trad_as}}’s website have <em>description of goods or services, price lists</em>?",
+                            "title": "Does {{metadata['trad_as']}}’s website have <em>description of goods or services, price lists</em>?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-28",
@@ -1160,7 +1165,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "access-and-use-of-the-internet-question-29",
-                            "title": "Does {{respondent.trad_as}}’s website have <em>order tracking</em>?",
+                            "title": "Does {{metadata['trad_as']}}’s website have <em>order tracking</em>?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-29",
@@ -1187,7 +1192,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "access-and-use-of-the-internet-question-30",
-                            "title": "Does {{respondent.trad_as}}’s website have <em>the possibility for visitors to customise or design the goods or services online</em>?",
+                            "title": "Does {{metadata['trad_as']}}’s website have <em>the possibility for visitors to customise or design the goods or services online</em>?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-30",
@@ -1214,7 +1219,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "access-and-use-of-the-internet-question-31",
-                            "title": "Does {{respondent.trad_as}}’s website have <em>personalised content for regular/repeat visitors</em>?",
+                            "title": "Does {{metadata['trad_as']}}’s website have <em>personalised content for regular/repeat visitors</em>?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-31",
@@ -1241,7 +1246,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "access-and-use-of-the-internet-question-32",
-                            "title": "Does {{respondent.trad_as}}’s website have <em>links or references to this business’ social media profiles</em>?",
+                            "title": "Does {{metadata['trad_as']}}’s website have <em>links or references to this business’ social media profiles</em>?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-32",
@@ -1268,7 +1273,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "access-and-use-of-the-internet-question-33",
-                            "title": "Does {{respondent.trad_as}} pay to advertise on the internet, for example adverts on search engines, on social media, on other websites?",
+                            "title": "Does {{metadata['trad_as']}} pay to advertise on the internet, for example adverts on search engines, on social media, on other websites?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-33",
@@ -1311,7 +1316,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "access-and-use-of-the-internet-question-34",
-                            "title": "Does {{respondent.trad_as}} pay to advertise on the internet  <em>based on webpages’ content or keywords searched by users</em>?",
+                            "title": "Does {{metadata['trad_as']}} pay to advertise on the internet  <em>based on webpages’ content or keywords searched by users</em>?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-34",
@@ -1339,7 +1344,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "access-and-use-of-the-internet-question-35",
-                            "title": "Does {{respondent.trad_as}} pay to advertise on the internet <em>based on the tracking of internet users' past activities or profile</em>?",
+                            "title": "Does {{metadata['trad_as']}} pay to advertise on the internet <em>based on the tracking of internet users' past activities or profile</em>?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-35",
@@ -1367,7 +1372,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "access-and-use-of-the-internet-question-36",
-                            "title": "Does {{respondent.trad_as}} pay to advertise on the internet <em>based on the geolocation of internet users</em>?",
+                            "title": "Does {{metadata['trad_as']}} pay to advertise on the internet <em>based on the geolocation of internet users</em>?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-36",
@@ -1395,7 +1400,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "access-and-use-of-the-internet-question-37",
-                            "title": "Does {{respondent.trad_as}} pay to advertise on the internet using <em>any other method of targeted advertising on the internet not specified previously</em>?",
+                            "title": "Does {{metadata['trad_as']}} pay to advertise on the internet using <em>any other method of targeted advertising on the internet not specified previously</em>?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-37",
@@ -1435,7 +1440,7 @@
                                     }
                                 ]
                             },
-                            "title": "During 2017, did {{respondent.trad_as}} arrange accommodation from a private individual, for example a room, apartment or house, via <em>dedicated websites or ‘apps’</em>?",
+                            "title": "During 2017, did {{metadata['trad_as']}} arrange accommodation from a private individual, for example a room, apartment or house, via <em>dedicated websites or ‘apps’</em>?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-38",
@@ -1472,7 +1477,7 @@
                                     "description": ""
                                 }]
                             },
-                            "title": "During 2017, did {{respondent.trad_as}} arrange accommodation from a private individual, for example a room, apartment or house, via any<em> other websites or ‘apps’?</em>",
+                            "title": "During 2017, did {{metadata['trad_as']}} arrange accommodation from a private individual, for example a room, apartment or house, via any<em> other websites or ‘apps’?</em>",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-39",
@@ -1509,7 +1514,7 @@
                                     "description": ""
                                 }]
                             },
-                            "title": "During 2017, did {{respondent.trad_as}} arrange a transport service from a private individual, for example by car, via <em>dedicated websites or ‘apps’, for example Uber, Lyft, Liftshare, BlaBlaCar?</em>",
+                            "title": "During 2017, did {{metadata['trad_as']}} arrange a transport service from a private individual, for example by car, via <em>dedicated websites or ‘apps’, for example Uber, Lyft, Liftshare, BlaBlaCar?</em>",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-40",
@@ -1554,7 +1559,7 @@
                                     }
                                 ]
                             },
-                            "title": "During 2017, did {{respondent.trad_as}} arrange a transport service from a private individual, for example by car, via any <em>other websites or ‘apps’?</em> ",
+                            "title": "During 2017, did {{metadata['trad_as']}} arrange a transport service from a private individual, for example by car, via any <em>other websites or ‘apps’?</em> ",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "access-and-use-of-the-internet-answer-41",
@@ -1646,7 +1651,7 @@
                                     "description": ""
                                 }]
                             },
-                            "title": "Does {{respondent.trad_as}} buy any cloud computing services used over the internet?",
+                            "title": "Does {{metadata['trad_as']}} buy any cloud computing services used over the internet?",
                             "answers": [{
                                 "type": "Radio",
                                 "label": "",
@@ -1718,7 +1723,7 @@
                                     "description": "For example Gmail"
                                 }]
                             },
-                            "title": "Does {{respondent.trad_as}} buy <em>email</em> (as a cloud computing service)  over the internet?",
+                            "title": "Does {{metadata['trad_as']}} buy <em>email</em> (as a cloud computing service)  over the internet?",
                             "answers": [{
                                 "type": "Radio",
                                 "label": "",
@@ -1774,7 +1779,7 @@
                                     "description": "For example Google Docs, Microsoft 365 etc."
                                 }]
                             },
-                            "title": "Does {{respondent.trad_as}} buy <em>office software</em> (as a cloud computing service)  over the internet?",
+                            "title": "Does {{metadata['trad_as']}} buy <em>office software</em> (as a cloud computing service)  over the internet?",
                             "answers": [{
                                 "type": "Radio",
                                 "label": "",
@@ -1824,7 +1829,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "use-of-cloud-computing-services-question-46",
-                            "title": "Does {{respondent.trad_as}} buy <em>hosting of the business’ database</em> (as a cloud computing service) over the internet?",
+                            "title": "Does {{metadata['trad_as']}} buy <em>hosting of the business’ database</em> (as a cloud computing service) over the internet?",
                             "answers": [{
                                 "type": "Radio",
                                 "label": "",
@@ -1873,7 +1878,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "use-of-cloud-computing-services-question-47",
-                            "title": "Does {{respondent.trad_as}} buy <em>storage of files</em> (as a cloud computing service) over the internet?",
+                            "title": "Does {{metadata['trad_as']}} buy <em>storage of files</em> (as a cloud computing service) over the internet?",
                             "answers": [{
                                 "type": "Radio",
                                 "label": "",
@@ -1922,7 +1927,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "use-of-cloud-computing-services-question-48",
-                            "title": "Does {{respondent.trad_as}} buy<em> finance or accounting software applications</em> (as a cloud computing service)  over the internet?",
+                            "title": "Does {{metadata['trad_as']}} buy<em> finance or accounting software applications</em> (as a cloud computing service)  over the internet?",
                             "answers": [{
                                 "type": "Radio",
                                 "label": "",
@@ -1971,7 +1976,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "use-of-cloud-computing-services-question-49",
-                            "title": "Does {{respondent.trad_as}} buy <em>Customer Relationship Management (CRM) software application for managing information about customers</em> (as a cloud computing service) over the internet?",
+                            "title": "Does {{metadata['trad_as']}} buy <em>Customer Relationship Management (CRM) software application for managing information about customers</em> (as a cloud computing service) over the internet?",
                             "answers": [{
                                 "type": "Radio",
                                 "label": "",
@@ -2028,7 +2033,7 @@
                                     "description": "This is using cloud computing for running the business’ software applications. This may be provided either as Software as a service (SaaS) or as Infrastructure (hardware/software)  as a Service (IaaS). For the former the business uses the software application that has been developed and it is accessible and used through a browser. For the latter the business maintains control of the software environment."
                                 }]
                             },
-                            "title": "Does {{respondent.trad_as}} buy <em>computing power to run the business’ own software</em> (as a cloud computing service) over the internet?",
+                            "title": "Does {{metadata['trad_as']}} buy <em>computing power to run the business’ own software</em> (as a cloud computing service) over the internet?",
                             "answers": [{
                                 "type": "Radio",
                                 "label": "",
@@ -2078,7 +2083,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "use-of-cloud-computing-services-question-51",
-                            "title": "Does {{respondent.trad_as}} buy any cloud computing services from <em>shared servers of service providers</em>?",
+                            "title": "Does {{metadata['trad_as']}} buy any cloud computing services from <em>shared servers of service providers</em>?",
                             "answers": [{
                                 "type": "Radio",
                                 "label": "",
@@ -2127,7 +2132,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "use-of-cloud-computing-services-question-52",
-                            "title": "Does {{respondent.trad_as}} buy any cloud computing services from <em>servers of service providers exclusively reserved for this business</em>?",
+                            "title": "Does {{metadata['trad_as']}} buy any cloud computing services from <em>servers of service providers exclusively reserved for this business</em>?",
                             "answers": [{
                                 "type": "Radio",
                                 "label": "",
@@ -2226,7 +2231,7 @@
                                     "description": ""
                                 }]
                             },
-                            "title": "During 2017, did {{respondent.trad_as}} use 3D printing by using your business’ 3D printers?",
+                            "title": "During 2017, did {{metadata['trad_as']}} use 3D printing by using your business’ 3D printers?",
                             "answers": [{
                                 "guidance": {
                                     "hide_guidance": "Hide 3D Printing Definition",
@@ -2286,7 +2291,7 @@
                                     "description": ""
                                 }]
                             },
-                            "title": "During 2017, did {{respondent.trad_as}} use 3D printing by using printing services provided by other businesses?",
+                            "title": "During 2017, did {{metadata['trad_as']}} use 3D printing by using printing services provided by other businesses?",
                             "answers": [{
                                 "type": "Radio",
                                 "label": "",
@@ -2339,7 +2344,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "use-of-3d-printing-question-56",
-                            "title": "During 2017, did {{respondent.trad_as}} use 3D printing for <em>the following</em>?",
+                            "title": "During 2017, did {{metadata['trad_as']}} use 3D printing for <em>the following</em>?",
                             "answers": [{
                                 "guidance": {
                                     "hide_guidance": "Hide 3D Printing Definition",
@@ -2384,7 +2389,7 @@
                                     "description": "For example moulds, tools, parts of goods, semi-finished goods, etc."
                                 }]
                             },
-                            "title": "During 2017, did {{respondent.trad_as}} use 3D printing for <em>goods for sale excluding prototypes or models</em>?",
+                            "title": "During 2017, did {{metadata['trad_as']}} use 3D printing for <em>goods for sale excluding prototypes or models</em>?",
                             "answers": [{
                                 "guidance": {
                                     "hide_guidance": "Hide 3D Printing Definition",
@@ -2426,7 +2431,7 @@
                                     "description": "For example moulds, tools, parts of goods, semi-finished goods, etc."
                                 }]
                             },
-                            "title": "During 2017, did {{respondent.trad_as}} use 3D printing for <em>goods to be used in {{respondent.trad_as}} production process excluding prototypes or models?</em>",
+                            "title": "During 2017, did {{metadata['trad_as']}} use 3D printing for <em>goods to be used in {{metadata['trad_as']}} production process excluding prototypes or models?</em>",
                             "answers": [{
                                 "guidance": {
                                     "hide_guidance": "Hide 3D Printing Definition",
@@ -2499,7 +2504,7 @@
                                     "description": ""
                                 }]
                             },
-                            "title": "In 2017, did {{respondent.trad_as}} issue/send <em>invoices in electronic form, in a standard structure suitable for automated processing, for example EDI, UBL, XML</em>?",
+                            "title": "In 2017, did {{metadata['trad_as']}} issue/send <em>invoices in electronic form, in a standard structure suitable for automated processing, for example EDI, UBL, XML</em>?",
                             "answers": [{
                                 "guidance": {
                                     "hide_guidance": "Hide Invoices, EDI, UBL and XML Definitions",
@@ -2562,7 +2567,7 @@
                                     "description": ""
                                 }]
                             },
-                            "title": "In 2017, did {{respondent.trad_as}} issue/send <em>invoices in electronic form not suitable for automated processing, for example, emails, PDF email attachments, images in TIF, JPEG or other formats</em>?",
+                            "title": "In 2017, did {{metadata['trad_as']}} issue/send <em>invoices in electronic form not suitable for automated processing, for example, emails, PDF email attachments, images in TIF, JPEG or other formats</em>?",
                             "answers": [{
                                 "guidance": {
                                     "hide_guidance": "Hide Invoices Definition",
@@ -2613,7 +2618,7 @@
                                     "description": ""
                                 }]
                             },
-                            "title": "In 2017, did {{respondent.trad_as}} issue/send <em>only paper invoices</em>?",
+                            "title": "In 2017, did {{metadata['trad_as']}} issue/send <em>only paper invoices</em>?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "invoicing-answer-62",
@@ -2687,7 +2692,7 @@
                                     }
                                 ]
                             },
-                            "title": "During 2017, did {{respondent.trad_as}} receive any orders from customers for goods or services via a website or ‘app’?",
+                            "title": "During 2017, did {{metadata['trad_as']}} receive any orders from customers for goods or services via a website or ‘app’?",
                             "answers": [{
                                 "guidance": {
                                     "hide_guidance": "Hide EDI and Extranet Definitions",
@@ -2818,7 +2823,7 @@
                                     "description": ""
                                 }]
                             },
-                            "title": "During 2017, did {{respondent.trad_as}} receive orders for goods or services via this business’ own website or ‘app’?",
+                            "title": "During 2017, did {{metadata['trad_as']}} receive orders for goods or services via this business’ own website or ‘app’?",
                             "answers": [{
                                 "type": "Radio",
                                 "label": "",
@@ -2877,7 +2882,7 @@
                                     "description": "For example Booking, eBay, Amazon, Amazon Business, Alibaba, Rakuten, Etsy etc."
                                 }]
                             },
-                            "title": "During 2017, did {{respondent.trad_as}} receive orders for goods or services via an e-commerce market place website or ‘app’ used by several businesses for trading products?",
+                            "title": "During 2017, did {{metadata['trad_as']}} receive orders for goods or services via an e-commerce market place website or ‘app’ used by several businesses for trading products?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "e-commerce-answer-68",
@@ -2973,7 +2978,7 @@
                                     }
                                 ]
                             },
-                            "title": "During 2017, did {{respondent.trad_as}} receive any orders from customers for goods or services via EDI type messages? ",
+                            "title": "During 2017, did {{metadata['trad_as']}} receive any orders from customers for goods or services via EDI type messages? ",
                             "answers": [{
                                 "type": "Radio",
                                 "label": "",
@@ -3087,7 +3092,7 @@
                                     }
                                 ]
                             },
-                            "title": "During 2017, did {{respondent.trad_as}} place any orders for goods or services, excluding capital goods, via websites, ‘apps’ or EDI type messages?",
+                            "title": "During 2017, did {{metadata['trad_as']}} place any orders for goods or services, excluding capital goods, via websites, ‘apps’ or EDI type messages?",
                             "answers": [{
                                 "guidance": {
                                     "hide_guidance": "Hide EDI Definition",

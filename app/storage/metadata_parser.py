@@ -1,6 +1,5 @@
 import uuid
 from datetime import datetime
-
 from structlog import get_logger
 
 from sdc.crypto.exceptions import InvalidTokenException
@@ -8,7 +7,7 @@ from sdc.crypto.exceptions import InvalidTokenException
 logger = get_logger()
 
 
-def iso_8601_data_parser(iso_8601_string):
+def iso_8601_date_parser(iso_8601_string):
     return datetime.strptime(iso_8601_string, '%Y-%m-%d')
 
 
@@ -20,74 +19,57 @@ def id_generator():
     return str(uuid.uuid4())
 
 
-class MetadataField(object):
-    def __init__(self, mandatory=True, validator=None, generator=None):
-        # the function to convert the value from the jwt into the required data type
-        self._validator = validator
-        # the function to execute if the value should be auto-generated
-        self._generator = generator
-        # flag to indicate if the value must exist in the jwt token
-        self.mandatory = mandatory
+validators = {
+    'date': iso_8601_date_parser,
+    'uuid': uuid_4_parser,
+    'string': lambda *args: None
+}
 
-    def validate(self, original_value):
-        if self._validator:
-            # The parser methods throw exceptions on incorrect data
-            self._validator(original_value)
-
-    def generate(self):
-        if self._generator:
-            return self._generator()
-
-        return None
-
-
-metadata_fields = {
-    'user_id': MetadataField(),
-    'ru_ref': MetadataField(),
-    'ru_name': MetadataField(),
-    'eq_id': MetadataField(),
-    'collection_exercise_sid': MetadataField(),
-    'period_id': MetadataField(),
-    'period_str': MetadataField(),
-    'ref_p_start_date': MetadataField(validator=iso_8601_data_parser),
-    'ref_p_end_date': MetadataField(mandatory=False, validator=iso_8601_data_parser),
-    'form_type': MetadataField(),
-    'survey_url': MetadataField(mandatory=False),
-    'return_by': MetadataField(validator=iso_8601_data_parser),
-    'trad_as': MetadataField(mandatory=False),
-    'employment_date': MetadataField(mandatory=False, validator=iso_8601_data_parser),
-    'region_code': MetadataField(mandatory=False),
-    'language_code': MetadataField(mandatory=False),
-    'tx_id': MetadataField(mandatory=False, validator=uuid_4_parser, generator=id_generator),
-    'variant_flags': MetadataField(mandatory=False),
-    'roles': MetadataField(mandatory=False),
-    'case_id': MetadataField(mandatory=False),
-    'case_ref': MetadataField(mandatory=False),
-    'account_service_url': MetadataField(mandatory=False),
+mandatory_metadata = {
+    'tx_id': 'uuid',
 }
 
 
-def parse_metadata(metadata_to_check):
-    parsed = {}
-    try:
-        for key, field in metadata_fields.items():
-            if key in metadata_to_check:
-                attr_value = metadata_to_check[key]
-                field.validate(attr_value)
-                logger.debug('parsing metadata', key=key, value=attr_value)
-            else:
-                logger.debug('generating metadata value', key=key)
-                attr_value = field.generate()
+def parse_metadata(decrypted_token, schema_metadata):
+    """
+    Extracts values from the JWT claims that are defined in the schema's metadata.
+    Ensures that the values adhere to the expected format.
+    :param decrypted_token:
+    :param schema_metadata:
+    :return: Validated claims
+    """
 
-            parsed[key] = attr_value
+    required_schema_metadata = _validate_mandatory_schema_metadata(decrypted_token, schema_metadata)
+    mandatory_metadata.update(required_schema_metadata)
+    claims = decrypted_token.copy()
+    claims['tx_id'] = claims.get('tx_id', id_generator())  # Generate tx_id if not preset in claims
+
+    try:
+        for key, field in mandatory_metadata.items():
+            if key in claims:
+                value = claims[key]
+                validators[field](value)
+                logger.debug('parsing metadata', key=key, value=value)
+
     except (RuntimeError, ValueError, TypeError) as e:
         logger.error('unable to parse metadata', exc_info=e)
         raise InvalidTokenException('incorrect data in token')
-    return parsed
+
+    return claims
 
 
-def is_valid_metadata(metadata):
-    for key, field in metadata_fields.items():
-        if field.mandatory and key not in metadata:
-            return False, key
-    return True, ''
+def _validate_mandatory_schema_metadata(metadata, schema_metadata):
+    """
+    Validate that JWT claims contain metadata defined within the schema
+    :param metadata:
+    :param schema_metadata:
+    :return:
+    """
+    for key in schema_metadata.keys():
+        if not metadata.get(key):
+            if key == 'trad_as_or_ru_name':
+                if 'trad_as' in metadata or 'ru_name' in metadata:
+                    continue
+            raise InvalidTokenException('Missing key/value for {}'.format(key))
+
+    return schema_metadata

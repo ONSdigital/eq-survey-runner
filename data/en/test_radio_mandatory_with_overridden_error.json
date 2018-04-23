@@ -6,6 +6,10 @@
     "title": "Radio Mandatory with Overridden Error",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
+    "metadata": {
+        "user_id": "string",
+        "period_id": "string"
+    },
     "sections": [{
         "id": "default-section",
         "groups": [{

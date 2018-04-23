@@ -13,6 +13,10 @@ from tests.app.app_context_test_case import AppContextTestCase
 class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-methods
     def setUp(self):
         super().setUp()
+        self.required_schema_metadata = {
+            'user_id': 'string',
+            'period_id': 'string',
+        }
         self.metadata = parse_metadata({
             'user_id': '789473423',
             'form_type': '0205',
@@ -27,7 +31,7 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             'return_by': '2016-07-07',
             'case_id': '1234567890',
             'case_ref': '1000000000000001'
-        })
+        }, self.required_schema_metadata)
 
     def test_convert_answers_flushed_flag_default_is_false(self):
         with self._app.test_request_context():

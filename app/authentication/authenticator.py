@@ -3,8 +3,8 @@ from uuid import uuid4
 from blinker import ANY
 from flask import session as cookie_session, current_app
 from flask_login import LoginManager, user_logged_out
-from sdc.crypto.exceptions import InvalidTokenException
 from sdc.crypto.decrypter import decrypt
+from sdc.crypto.exceptions import InvalidTokenException
 from structlog import get_logger
 
 from app.authentication.no_token_exception import NoTokenException
@@ -12,8 +12,9 @@ from app.authentication.user import User
 from app.data_model.session_data import SessionData
 from app.globals import get_questionnaire_store, get_session_store, create_session_store
 from app.keys import KEY_PURPOSE_AUTHENTICATION
-from app.storage.metadata_parser import is_valid_metadata
+
 from app.settings import EQ_SESSION_ID, USER_IK
+
 
 logger = get_logger()
 
@@ -114,18 +115,20 @@ def store_session(metadata):
 
 
 def decrypt_token(encrypted_token):
-    logger.debug('decrypting token')
-    if not encrypted_token or encrypted_token is None:
+    if not encrypted_token:
         raise NoTokenException('Please provide a token')
 
+    mandatory_claims = ['eq_id', 'form_type', 'ru_ref', 'collection_exercise_sid']
+
+    logger.debug('decrypting token')
     decrypted_token = decrypt(token=encrypted_token,
                               key_store=current_app.eq['key_store'],
                               key_purpose=KEY_PURPOSE_AUTHENTICATION,
                               leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'])
 
-    valid, field = is_valid_metadata(decrypted_token)
-    if not valid:
-        raise InvalidTokenException('Missing value {}'.format(field))
+    for claim in mandatory_claims:
+        if not decrypted_token.get(claim):
+            raise InvalidTokenException('Missing mandatory key/value in claims - {}'.format(claim))
 
     logger.debug('token decrypted')
     return decrypted_token

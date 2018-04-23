@@ -7,6 +7,10 @@
     "description": "Test schema for routing on multiple selected answers",
     "theme": "census",
     "legal_basis": "Voluntary",
+    "metadata": {
+        "user_id": "string",
+        "period_id": "string"
+    },
     "sections": [{
         "id": "default-section",
         "groups": [{

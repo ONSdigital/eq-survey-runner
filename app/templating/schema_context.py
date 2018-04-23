@@ -13,8 +13,7 @@ def build_schema_context(metadata, answer_store, answer_ids_on_path, group_insta
     :return: questionnaire schema context
     """
     return {
-        'exercise': _build_exercise(metadata),
-        'respondent': _build_respondent(metadata),
+        'metadata': _build_metadata(metadata),
         'answers': _build_answers(answer_store, answer_ids_on_path),
         'group_instance': group_instance,
     }
@@ -46,27 +45,22 @@ def _build_answers(answer_store, answer_ids_on_path):
     return answers
 
 
-def _build_exercise(metadata):
+def _build_metadata(metadata):
     return {
-        'start_date': metadata['ref_p_start_date'],
-        'end_date': metadata['ref_p_end_date'],
-        'period_str': json_and_html_safe(metadata['period_str']),
-        'employment_date': metadata['employment_date'],
-        'return_by': metadata['return_by'],
-        'region_code': json_and_html_safe(metadata['region_code']),
-    }
-
-
-def _build_respondent(metadata):
-    return {
-        'ru_name': json_and_html_safe(metadata['ru_name']),
-        'trad_as': json_and_html_safe(metadata['trad_as']),
-        'trad_as_or_ru_name': json_and_html_safe(metadata['trad_as'] or metadata['ru_name']),
+        'ref_p_start_date': metadata.get('ref_p_start_date'),
+        'ref_p_end_date': metadata.get('ref_p_end_date'),
+        'period_str': json_and_html_safe(metadata.get('period_str')),
+        'employment_date': metadata.get('employment_date'),
+        'return_by': metadata.get('return_by'),
+        'region_code': json_and_html_safe(metadata.get('region_code')),
+        'ru_name': json_and_html_safe(metadata.get('ru_name')),
+        'trad_as': json_and_html_safe(metadata.get('trad_as')),
+        'trad_as_or_ru_name': json_and_html_safe(metadata.get('trad_as') or metadata.get('ru_name')),
     }
 
 
 def json_and_html_safe(data):
-    if isinstance(data, str):
+    if data and isinstance(data, str):
         return escape(data.replace('\\', r'\\'))
     return data
 

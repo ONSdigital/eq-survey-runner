@@ -7,6 +7,10 @@
     "description": "Census England Communal Schema",
     "theme": "census",
     "legal_basis": "Voluntary",
+    "metadata": {
+        "user_id": "string",
+        "period_id": "string"
+    },
     "sections": [{
         "id": "default-section",
         "groups": [{

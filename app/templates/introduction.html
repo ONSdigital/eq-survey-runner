@@ -25,14 +25,14 @@
             <div class="grid__col col-7@m">
 
                 <h2 class="saturn">You are completing this for
-                    <span>{{ meta.respondent.name}}</span>
-                    {% if meta.respondent.trading_as %}
-                        <span class="trading_as">(trading as&nbsp;<span class="trad_as">{{meta.respondent.trading_as }}</span>)</span>
+                    <span>{{ metadata.ru_name}}</span>
+                    {% if metadata.trad_as %}
+                        <span class="trading_as">(trading as&nbsp;<span class="trad_as">{{metadata.trad_as }}</span>)</span>
                     {% endif %}
                 </h2>
 
                 <p class="mars">If the company details or structure have changed contact us on {{ helpers.telephone_number() }}
-                    or email {{ helpers.email_address('details-changed-title', subject="Change of details reference " + meta.respondent.respondent_id) }}.
+                    or email {{ helpers.email_address('details-changed-title', subject="Change of details reference " + metadata.ru_ref) }}.
                 </p>
 
             </div>

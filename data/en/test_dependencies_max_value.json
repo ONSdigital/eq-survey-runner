@@ -10,6 +10,10 @@
     "navigation": {
         "visible": true
     },
+    "metadata": {
+        "user_id": "string",
+        "period_id": "string"
+    },
     "sections": [{
             "id": "default-section",
             "title": "Max Dependency",

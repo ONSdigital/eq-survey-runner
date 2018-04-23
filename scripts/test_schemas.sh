@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-docker pull onsdigital/eq-schema-validator
-validator="$(docker run -d -p 5001:5000 onsdigital/eq-schema-validator)"
+docker pull onsdigital/eq-schema-validator:specify-required-metadata-in-schema
+validator="$(docker run -d -p 5001:5000 onsdigital/eq-schema-validator:specify-required-metadata-in-schema)"
 
 sleep 3
 
