@@ -56,7 +56,7 @@
                             "type": "Number"
                         }],
                         "id": "total-retail-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers['date-start-from'], exercise.start_date)}} to {{ format_conditional_date (answers['date-end-to'], exercise.end_date)}}, what was the value of the business’s total retail turnover?",
+                        "title": "For the period {{ format_conditional_date (answers['date-start-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['date-end-to'], metadata['ref_p_end_date'])}}, what was the value of the business’s total retail turnover?",
                         "type": "General"
                     }],
                     "title": "Conditional Date Validation"

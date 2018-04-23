@@ -14,7 +14,7 @@ def build_schema_context(metadata, answer_store, answer_ids_on_path, group_insta
     """
     return {
         'metadata': _build_metadata(metadata),
-        'answers': _map_alias_to_answers(answer_store, answer_ids_on_path),
+        'answers': _build_answers(answer_store, answer_ids_on_path),
         'group_instance': group_instance,
     }
 

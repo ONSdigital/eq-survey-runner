@@ -251,7 +251,7 @@
                             ]
                         },
                         "id": "number-of-employees-split-question",
-                        "title": "Of the <em>{{answers['number-of-employees-total']}}</em> total employees employed on {{exercise.start_date|format_date}}, how many male and female employees worked the following hours?",
+                        "title": "Of the <em>{{answers['number-of-employees-total']}}</em> total employees employed on {{metadata['ref_p_start_date']|format_date}}, how many male and female employees worked the following hours?",
                         "type": "Calculated"
                     }]
                 },
