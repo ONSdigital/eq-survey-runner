@@ -215,7 +215,7 @@
                                 "id": "changes-answer",
                                 "type": "Radio",
                                 "q_code": "146",
-                                "mandatory": false
+                                "mandatory": true
                             }],
                             "guidance": {
                                 "content": [{
