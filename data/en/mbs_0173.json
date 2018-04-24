@@ -490,7 +490,7 @@
                         "questions": [{
                             "title": "Please indicate the reasons for any changes in the turnover for {{respondent.trad_as_or_ru_name}}",
                             "type": "General",
-                            "id": "changes-answer-2",
+                            "id": "changes-question-2",
                             "answers": [{
                                 "options": [{
                                         "q_code": "146a",
