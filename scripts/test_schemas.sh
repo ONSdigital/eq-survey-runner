@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-docker pull onsdigital/eq-schema-validator
-validator="$(docker run -d -p 5001:5000 onsdigital/eq-schema-validator)"
+docker pull onsdigital/eq-schema-validator:eq-1947-date-range-validation
+validator="$(docker run -d -p 5001:5000 onsdigital/eq-schema-validator:eq-1947-date-range-validation)"
 
 sleep 3
 

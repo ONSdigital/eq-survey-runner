@@ -11,14 +11,15 @@ from app.forms.questionnaire_form import generate_form
 logger = get_logger()
 
 
-def get_form_for_location(schema, block_json, location, answer_store, disable_mandatory=False):
+def get_form_for_location(schema, block_json, location, answer_store, metadata, disable_mandatory=False):  # pylint: disable=too-many-locals
     """
     Returns the form necessary for the location given a get request, plus any template arguments
 
+    :param schema: schema
     :param block_json: The block json
     :param location: The location which this form is for
     :param answer_store: The current answer store
-    :param error_messages: The default error messages to use within the form
+    :param metadata: metadata
     :param disable_mandatory: Make mandatory answers optional
     :return: form, template_args A tuple containing the form for this location and any additional template arguments
     """
@@ -62,16 +63,17 @@ def get_form_for_location(schema, block_json, location, answer_store, disable_ma
 
     mapped_answers = deserialise_dates(schema, location.block_id, mapped_answers)
 
-    return generate_form(schema, block_json, mapped_answers, answer_store)
+    return generate_form(schema, block_json, mapped_answers, answer_store, metadata)
 
 
-def post_form_for_location(schema, block_json, location, answer_store, request_form, disable_mandatory=False):
+def post_form_for_location(schema, block_json, location, answer_store, metadata, request_form, disable_mandatory=False):
     """
     Returns the form necessary for the location given a post request, plus any template arguments
 
     :param block_json: The block json
     :param location: The location which this form is for
     :param answer_store: The current answer store
+    :param metadata: metadata
     :param request_form: form, template_args A tuple containing the form for this location and any additional template arguments
     :param error_messages: The default error messages to use within the form
     :param disable_mandatory: Make mandatory answers optional
@@ -89,7 +91,7 @@ def post_form_for_location(schema, block_json, location, answer_store, request_f
         return form
 
     data = clear_other_text_field(request_form, schema.get_questions_for_block(block_json))
-    return generate_form(schema, block_json, data, answer_store)
+    return generate_form(schema, block_json, data, answer_store, metadata)
 
 
 def disable_mandatory_answers(block_json):

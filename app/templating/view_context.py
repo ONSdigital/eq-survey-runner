@@ -23,7 +23,7 @@ def build_view_context(metadata, answer_store, schema_context, block, current_lo
 
     if block['type'] in ('Question', 'ConfirmationQuestion'):
         if not form:
-            form = get_form_for_location(g.schema, rendered_block, current_location, answer_store)
+            form = get_form_for_location(g.schema, rendered_block, current_location, answer_store, metadata)
 
         return build_view_context_for_question(current_location, variables, rendered_block, form)
 

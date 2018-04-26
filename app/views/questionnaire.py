@@ -176,8 +176,8 @@ def post_household_composition(routing_path, **kwargs):
 
     block = _get_block_json(current_location)
 
-    form = post_form_for_location(g.schema, block, current_location, answer_store, request.form,
-                                  disable_mandatory=disable_mandatory)
+    form = post_form_for_location(g.schema, block, current_location, answer_store, get_metadata(current_user),
+                                  request.form, disable_mandatory=disable_mandatory)
 
     if 'action[add_answer]' in request.form:
         form.household.append_entry()
@@ -319,6 +319,7 @@ def _generate_wtf_form(form, block, location):
         block,
         location,
         get_answer_store(current_user),
+        get_metadata(current_user),
         request.form,
         disable_mandatory)
 
