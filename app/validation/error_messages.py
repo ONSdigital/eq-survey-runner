@@ -22,4 +22,8 @@ error_messages = {
     'MAX_LENGTH_EXCEEDED': 'Your answer is too long, it has to be less than %(max)d characters.',
     'INVALID_DATE': 'Enter a valid date.',
     'INVALID_DATE_RANGE': "Enter a 'period to' date later than the 'period from' date.",
+    'DATE_PERIOD_TOO_SMALL': 'Enter a reporting period greater than or equal to %(min)s.',
+    'DATE_PERIOD_TOO_LARGE': 'Enter a reporting period less than or equal to %(max)s.',
+    'SINGLE_DATE_PERIOD_TOO_EARLY': 'Enter a date after %(min)s.',
+    'SINGLE_DATE_PERIOD_TOO_LATE': 'Enter a date before %(max)s.',
 }

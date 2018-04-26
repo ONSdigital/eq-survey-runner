@@ -21,7 +21,7 @@ class TestFormHelper(AppContextTestCase):
                                 group_instance=0,
                                 block_id='introduction')
 
-            form = get_form_for_location(schema, block_json, location, AnswerStore())
+            form = get_form_for_location(schema, block_json, location, AnswerStore(), metadata=None)
 
             self.assertTrue(hasattr(form, 'period-to'))
             self.assertTrue(hasattr(form, 'period-from'))
@@ -42,7 +42,7 @@ class TestFormHelper(AppContextTestCase):
                                 block_id='introduction')
 
             form = get_form_for_location(schema, block_json, location,
-                                         AnswerStore(), disable_mandatory=True)
+                                         AnswerStore(), metadata=None, disable_mandatory=True)
 
             self.assertTrue(hasattr(form, 'period-from'))
             self.assertTrue(hasattr(form, 'period-to'))
@@ -72,7 +72,7 @@ class TestFormHelper(AppContextTestCase):
                     'value': '2017-09-01',
                     'answer_instance': 0,
                 }
-            ]))
+            ]), metadata=None)
 
             self.assertTrue(hasattr(form, 'period-to'))
             self.assertTrue(hasattr(form, 'period-from'))
@@ -158,7 +158,7 @@ class TestFormHelper(AppContextTestCase):
                                 group_instance=0,
                                 block_id='introduction')
 
-            form = post_form_for_location(schema, block_json, location, AnswerStore(), {
+            form = post_form_for_location(schema, block_json, location, AnswerStore(), metadata=None, request_form={
                 'period-from-day': '1',
                 'period-from-month': '05',
                 'period-from-year': '2015',
@@ -196,7 +196,7 @@ class TestFormHelper(AppContextTestCase):
                                 group_instance=0,
                                 block_id='introduction')
 
-            form = post_form_for_location(schema, block_json, location, AnswerStore(), {
+            form = post_form_for_location(schema, block_json, location, AnswerStore(), metadata=None, request_form={
             }, disable_mandatory=True)
 
             self.assertTrue(hasattr(form, 'period-from'))
@@ -234,7 +234,7 @@ class TestFormHelper(AppContextTestCase):
             block_json = schema.get_block('household-composition')
             location = Location('who-lives-here', 0, 'household-composition')
 
-            form = post_form_for_location(schema, block_json, location, AnswerStore(), {
+            form = post_form_for_location(schema, block_json, location, AnswerStore(), metadata=None, request_form={
                 'household-0-first-name': 'Joe',
                 'household-0-last-name': '',
                 'household-1-first-name': 'Bob',
@@ -336,9 +336,8 @@ class TestFormHelper(AppContextTestCase):
 
             answer = schema.get_answers_for_block('household-relationships')[0]
 
-            form = post_form_for_location(schema, block_json, location, answer_store, MultiDict({
-                '{answer_id}-0'.format(answer_id=answer['id']): '3'
-            }))
+            form = post_form_for_location(schema, block_json, location, answer_store, metadata=None,
+                                          request_form=MultiDict({'{answer_id}-0'.format(answer_id=answer['id']): '3'}))
 
             self.assertTrue(hasattr(form, answer['id']))
 
@@ -372,10 +371,9 @@ class TestFormHelper(AppContextTestCase):
                 }
             ])
 
-            form = post_form_for_location(schema, block_json, location, answer_store, MultiDict({
-                'radio-mandatory-answer': 'Bacon',
-                'other-answer-mandatory': 'Old other text'
-            }))
+            form = post_form_for_location(schema, block_json, location, answer_store, metadata=None,
+                                          request_form=MultiDict({'radio-mandatory-answer': 'Bacon',
+                                                                  'other-answer-mandatory': 'Old other text'}))
 
             self.assertTrue(hasattr(form, 'radio-mandatory-answer'))
 
@@ -407,7 +405,7 @@ class TestFormHelper(AppContextTestCase):
             radio_answer = schema.get_answers_for_block('radio-mandatory')[0]
             text_answer = 'other-answer-mandatory'
 
-            form = post_form_for_location(schema, block_json, location, answer_store, MultiDict({
+            form = post_form_for_location(schema, block_json, location, answer_store, metadata=None, request_form=MultiDict({
                 '{answer_id}'.format(answer_id=radio_answer['id']): 'Other',
                 '{answer_id}'.format(answer_id=text_answer): 'Other text field value',
             }))

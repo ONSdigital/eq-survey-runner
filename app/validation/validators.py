@@ -1,6 +1,7 @@
 from decimal import Decimal, InvalidOperation
 from datetime import datetime
 from babel import numbers
+from dateutil.relativedelta import relativedelta
 from wtforms import validators
 from wtforms.compat import string_types
 from structlog import get_logger
@@ -15,9 +16,10 @@ logger = get_logger()
 
 class NumberCheck(object):
     def __init__(self, message=None):
-        if not message:
-            message = error_messages['INVALID_NUMBER']
-        self.message = message
+        if message:
+            self.message = message
+        else:
+            self.message = error_messages['INVALID_NUMBER']
 
     def __call__(self, form, field):
         try:
@@ -73,9 +75,7 @@ class NumberRange(object):
         self.maximum = maximum
         self.minimum_exclusive = minimum_exclusive
         self.maximum_exclusive = maximum_exclusive
-        if not messages:
-            messages = error_messages
-        self.messages = messages
+        self.messages = messages or error_messages
         self.currency = currency
 
     def __call__(self, form, field):
@@ -123,9 +123,7 @@ class DecimalPlaces(object):
     """
     def __init__(self, max_decimals=0, messages=None):
         self.max_decimals = max_decimals
-        if not messages:
-            messages = error_messages
-        self.messages = messages
+        self.messages = messages or error_messages
 
     def __call__(self, form, field):
         data = field.raw_data[0].replace(numbers.get_group_symbol(DEFAULT_LOCALE), '').replace(' ', '')
@@ -167,9 +165,7 @@ class DateRequired(object):
     field_flags = ('required', )
 
     def __init__(self, message=None):
-        if not message:
-            message = error_messages['MANDATORY_DATE']
-        self.message = message
+        self.message = message or error_messages['MANDATORY_DATE']
 
     def __call__(self, form, field):
         if hasattr(form, 'day'):
@@ -182,16 +178,11 @@ class DateRequired(object):
 
 class DateCheck(object):
     def __init__(self, message=None):
-        if not message:
-            message = error_messages['INVALID_DATE']
-        self.message = message
+        self.message = message or error_messages['INVALID_DATE']
 
     def __call__(self, form, field):
         try:
-            date_str = '{}-{:02d}-{:02d}'.format(int(form.year.data or 0),
-                                                 int(form.month.data or 0),
-                                                 int(form.day.data or 0))
-
+            date_str = format_date_string(form)
             datetime.strptime(date_str, '%Y-%m-%d')
         except ValueError:
             raise validators.StopValidation(self.message)
@@ -199,9 +190,7 @@ class DateCheck(object):
 
 class MonthYearCheck(object):
     def __init__(self, message=None):
-        if not message:
-            message = error_messages['INVALID_DATE']
-        self.message = message
+        self.message = message or error_messages['INVALID_DATE']
 
     def __call__(self, form, field):
         try:
@@ -212,24 +201,42 @@ class MonthYearCheck(object):
             raise validators.ValidationError(self.message)
 
 
+class SingleDatePeriodCheck(object):
+    def __init__(self, messages=None, minimum_date=None, maximum_date=None):
+        self.messages = messages or error_messages
+        self.minimum_date = minimum_date
+        self.maximum_date = maximum_date
+
+    def __call__(self, form, field):
+        date_str = format_date_string(form)
+        date = convert_to_datetime(date_str)
+
+        if self.minimum_date:
+            if date < self.minimum_date:
+                raise validators.ValidationError(self.messages['SINGLE_DATE_PERIOD_TOO_EARLY'] %
+                                                 dict(min=self._format_playback_date(self.minimum_date +
+                                                                                     relativedelta(days=-1))))
+
+        if self.maximum_date:
+            if date > self.maximum_date:
+                raise validators.ValidationError(self.messages['SINGLE_DATE_PERIOD_TOO_LATE'] %
+                                                 dict(max=self._format_playback_date(self.maximum_date +
+                                                                                     relativedelta(days=+1))))
+
+    @staticmethod
+    def _format_playback_date(date):
+        return date.strftime('%-d %B %Y')
+
+
 class DateRangeCheck(object):
-    def __init__(self, messages=None):
-        if not messages:
-            messages = error_messages
-        self.messages = messages
+    def __init__(self, messages=None, period_min=None, period_max=None):
+        self.messages = messages or error_messages
+        self.period_min = period_min
+        self.period_max = period_max
 
     def __call__(self, form, from_field, to_field):
-
-        from_day = int(from_field.data['day']) if 'day' in from_field.data else 1
-        to_day = int(to_field.data['day']) if 'day' in to_field.data else 1
-
-        from_date_str = '{}-{:02d}-{:02d}'.format(int(from_field.data['year']),
-                                                  int(from_field.data['month']),
-                                                  from_day)
-
-        to_date_str = '{}-{:02d}-{:02d}'.format(int(to_field.data['year']),
-                                                int(to_field.data['month']),
-                                                to_day)
+        from_date_str = format_date_string(from_field)
+        to_date_str = format_date_string(to_field)
 
         from_date = convert_to_datetime(from_date_str)
         to_date = convert_to_datetime(to_date_str)
@@ -237,13 +244,49 @@ class DateRangeCheck(object):
         if from_date == to_date or from_date > to_date:
             raise validators.ValidationError(self.messages['INVALID_DATE_RANGE'])
 
+        if self.period_min:
+            min_to = self._get_offset_date(from_date, self.period_min)
+            if to_date < min_to:
+                raise validators.ValidationError(self.messages['DATE_PERIOD_TOO_SMALL'] % dict(
+                    min=self._build_range_length_error(self.period_min)))
+
+        if self.period_max:
+            max_to = self._get_offset_date(from_date, self.period_max)
+            if to_date > max_to:
+                raise validators.ValidationError(self.messages['DATE_PERIOD_TOO_LARGE'] % dict(
+                    max=self._build_range_length_error(self.period_max)))
+
+    @staticmethod
+    def _get_offset_date(date, period_object):
+        return date + relativedelta(years=period_object.get('years', 0),
+                                    months=period_object.get('months', 0),
+                                    days=period_object.get('days', 0))
+
+    def _build_range_length_error(self, period_object):
+        error_message = ''
+        if 'years' in period_object:
+            error_message = self.return_error_component(error_message, period_object['years'], ' year')
+        if 'months' in period_object:
+            error_message = self.return_error_component(error_message, period_object['months'], ' month')
+        if 'days' in period_object:
+            error_message = self.return_error_component(error_message, period_object['days'], ' day')
+
+        return error_message
+
+    @staticmethod
+    def return_error_component(error_message, number, unit):
+        if error_message != '':
+            error_message = error_message + ', '
+        error_message = error_message + str(number) + unit
+        if number > 1:
+            error_message = error_message + 's'
+
+        return error_message
+
 
 class SumCheck(object):
     def __init__(self, messages=None, currency=None):
-        if messages:
-            self.messages = messages
-        else:
-            self.messages = error_messages
+        self.messages = messages or error_messages
         self.currency = currency
 
     def __call__(self, form, conditions, total, target_total):
@@ -283,3 +326,10 @@ def format_playback_value(value, currency=None):
     if currency:
         return format_currency(value, currency)
     return format_number(value)
+
+
+def format_date_string(field):
+    day = int(field.data.get('day', 1))
+    return '{}-{:02d}-{:02d}'.format(int(field.data['year']),
+                                     int(field.data['month']),
+                                     day)
