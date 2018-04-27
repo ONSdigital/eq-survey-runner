@@ -43,9 +43,13 @@ class QuestionnaireForm(FlaskForm):
 
         for question in self.schema.get_questions_for_block(self.block_json):
             if question['type'] == 'DateRange':
-                valid_date_range_form = self.validate_date_range_question(question)
+                valid_date_range = self.validate_date_range_question(question)
+                if valid_date_range_form:
+                    valid_date_range_form = valid_date_range
             elif question['type'] == 'Calculated':
-                valid_calculated_form = self.validate_calculated_question(question)
+                valid_calculated = self.validate_calculated_question(question)
+                if valid_calculated_form:
+                    valid_calculated_form = valid_calculated
 
         return valid_calculated_form and valid_date_range_form and valid_fields
 
@@ -68,6 +72,7 @@ class QuestionnaireForm(FlaskForm):
         messages = None
         if 'validation' in question:
             messages = question['validation'].get('messages')
+
         if not (
                 self.answers_all_valid([period_from_id, period_to_id]) and
                 self._validate_date_range_question(question['id'], period_from_id, period_to_id, messages,
@@ -97,15 +102,12 @@ class QuestionnaireForm(FlaskForm):
 
     def validate_date_range_with_period_limits_and_single_date_limits(self, question_id, period_limits, period_range):
         # Get period_limits from question
-        period_min, period_max = self._get_period_limits(period_limits)
+        period_min = self._get_period_limits(period_limits)[0]
+        min_offset = self._get_offset_value(period_min)
 
-        # Exception to be raised if range from answers are smaller than
-        # minimum or larger than maximum period_limits
-        exception = 'The schema has invalid period_limits for {}'.format(question_id)
-
-        if period_min and period_range < self._get_offset_value(period_min):
-            raise Exception(exception)
-        if period_max and period_range > self._get_offset_value(period_max):
+        # Exception to be raised if range available is smaller than minimum range allowed
+        if period_min and period_range < min_offset:
+            exception = 'The schema has invalid period_limits for {}'.format(question_id)
             raise Exception(exception)
 
     @staticmethod

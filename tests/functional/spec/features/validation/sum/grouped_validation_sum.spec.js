@@ -2,9 +2,9 @@ const helpers = require('../../../../helpers');
 
 describe('Feature: Sum of grouped answers validation against total', function() {
   describe('Equal to', function () {
-    var TotalAnswerPage = require('../../../../pages/features/grouped_validation/sum/equal-to/total-block.page');
-    var BreakdownAnswerPage = require('../../../../pages/features/grouped_validation/sum/equal-to/breakdown-block.page');
-    var SummaryPage = require('../../../../pages/features/grouped_validation/sum/equal-to/summary.page');
+    var TotalAnswerPage = require('../../../../pages/features/validation/sum/equal-to/total-block.page');
+    var BreakdownAnswerPage = require('../../../../pages/features/validation/sum/equal-to/breakdown-block.page');
+    var SummaryPage = require('../../../../pages/features/validation/sum/equal-to/summary.page');
 
     beforeEach(function() {
         return helpers.openQuestionnaire('test_sum_equal_validation_against_total.json');
@@ -54,9 +54,9 @@ describe('Feature: Sum of grouped answers validation against total', function() 
   });
 
   describe('Less than', function () {
-    var TotalAnswerPage = require('../../../../pages/features/grouped_validation/sum/less-than/total-block.page');
-    var BreakdownAnswerPage = require('../../../../pages/features/grouped_validation/sum/less-than/breakdown-block.page');
-    var SummaryPage = require('../../../../pages/features/grouped_validation/sum/less-than/summary.page');
+    var TotalAnswerPage = require('../../../../pages/features/validation/sum/less-than/total-block.page');
+    var BreakdownAnswerPage = require('../../../../pages/features/validation/sum/less-than/breakdown-block.page');
+    var SummaryPage = require('../../../../pages/features/validation/sum/less-than/summary.page');
 
     beforeEach(function() {
         return helpers.openQuestionnaire('test_sum_less_validation_against_total.json');
@@ -120,9 +120,9 @@ describe('Feature: Sum of grouped answers validation against total', function() 
    });
 
   describe('Less than or equal to', function () {
-    var TotalAnswerPage = require('../../../../pages/features/grouped_validation/sum/less-than-equal-to/total-block.page');
-    var BreakdownAnswerPage = require('../../../../pages/features/grouped_validation/sum/less-than-equal-to/breakdown-block.page');
-    var SummaryPage = require('../../../../pages/features/grouped_validation/sum/less-than-equal-to/summary.page');
+    var TotalAnswerPage = require('../../../../pages/features/validation/sum/less-than-equal-to/total-block.page');
+    var BreakdownAnswerPage = require('../../../../pages/features/validation/sum/less-than-equal-to/breakdown-block.page');
+    var SummaryPage = require('../../../../pages/features/validation/sum/less-than-equal-to/summary.page');
 
     beforeEach(function() {
         return helpers.openQuestionnaire('test_sum_equal_or_less_validation_against_total.json');
@@ -200,9 +200,9 @@ describe('Feature: Sum of grouped answers validation against total', function() 
   });
 
   describe('Multi Rule Equals', function () {
-    var TotalAnswerPage = require('../../../../pages/features/grouped_validation/sum/equal-to/total-block.page');
-    var BreakdownAnswerPage = require('../../../../pages/features/grouped_validation/sum/equal-to/breakdown-block.page');
-    var SummaryPage = require('../../../../pages/features/grouped_validation/sum/equal-to/summary.page');
+    var TotalAnswerPage = require('../../../../pages/features/validation/sum/equal-to/total-block.page');
+    var BreakdownAnswerPage = require('../../../../pages/features/validation/sum/equal-to/breakdown-block.page');
+    var SummaryPage = require('../../../../pages/features/validation/sum/equal-to/summary.page');
 
     beforeEach(function() {
         return helpers.openQuestionnaire('test_sum_multi_validation_against_total.json');

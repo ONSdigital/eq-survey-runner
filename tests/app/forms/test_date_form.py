@@ -38,7 +38,7 @@ class TestDateForm(AppContextTestCase):
         self.assertTrue(hasattr(form, 'year'))
 
     def test_generate_date_form_validates_single_date_period(self):
-        schema = load_schema_from_params('test', 'single_date_period_validation')
+        schema = load_schema_from_params('test', 'date_validation_single')
         error_messages = schema.error_messages
         test_metadata = {'ref_p_start_date': '2017-02-20'}
 
@@ -51,7 +51,7 @@ class TestDateForm(AppContextTestCase):
         self.assertTrue(hasattr(form, 'year'))
 
     def test_generate_date_form_validates_single_date_period_with_bespoke_message(self):
-        schema = load_schema_from_params('test', 'single_date_period_validation')
+        schema = load_schema_from_params('test', 'date_validation_single')
         error_messages = schema.error_messages
         answer = {
             'id': 'date-range-from',

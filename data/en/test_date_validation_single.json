@@ -49,13 +49,13 @@
                                 "minimum": {
                                     "meta": "ref_p_start_date",
                                     "offset_by": {
-                                      "days": -19
+                                        "days": -19
                                     }
                                 },
                                 "maximum": {
-                                  "value": "2017-06-11",
-                                  "offset_by": {
-                                      "days": 20
+                                    "value": "2017-06-11",
+                                    "offset_by": {
+                                        "days": 20
                                     }
                                 }
                             },
@@ -67,8 +67,8 @@
                                 "minimum": {
                                     "answer_id": "date",
                                     "offset_by": {
-                                      "months": 1,
-                                      "days": 10
+                                        "months": 1,
+                                        "days": 10
                                     }
                                 }
                             }

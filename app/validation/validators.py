@@ -241,26 +241,35 @@ class DateRangeCheck(object):
         from_date = convert_to_datetime(from_date_str)
         to_date = convert_to_datetime(to_date_str)
 
-        if from_date == to_date or from_date > to_date:
+        if from_date >= to_date:
             raise validators.ValidationError(self.messages['INVALID_DATE_RANGE'])
 
+        answered_range_relative = relativedelta(to_date, from_date)
+
         if self.period_min:
-            min_to = self._get_offset_date(from_date, self.period_min)
-            if to_date < min_to:
+            min_range = self._return_relative_delta(self.period_min)
+            if self._is_first_relative_delta_largest(min_range, answered_range_relative):
                 raise validators.ValidationError(self.messages['DATE_PERIOD_TOO_SMALL'] % dict(
                     min=self._build_range_length_error(self.period_min)))
 
         if self.period_max:
-            max_to = self._get_offset_date(from_date, self.period_max)
-            if to_date > max_to:
+            max_range = self._return_relative_delta(self.period_max)
+            if self._is_first_relative_delta_largest(answered_range_relative, max_range):
                 raise validators.ValidationError(self.messages['DATE_PERIOD_TOO_LARGE'] % dict(
                     max=self._build_range_length_error(self.period_max)))
 
     @staticmethod
-    def _get_offset_date(date, period_object):
-        return date + relativedelta(years=period_object.get('years', 0),
-                                    months=period_object.get('months', 0),
-                                    days=period_object.get('days', 0))
+    def _return_relative_delta(period_object):
+        return relativedelta(years=period_object.get('years', 0),
+                             months=period_object.get('months', 0),
+                             days=period_object.get('days', 0))
+
+    @staticmethod
+    def _is_first_relative_delta_largest(relativedelta1, relativedelta2):
+        epoch = datetime.min    # generic epoch for comparison purposes only
+        date1 = epoch + relativedelta1
+        date2 = epoch + relativedelta2
+        return date1 > date2
 
     def _build_range_length_error(self, period_object):
         error_message = ''
