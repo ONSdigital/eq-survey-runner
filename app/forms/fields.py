@@ -15,16 +15,17 @@ MAX_DECIMAL_PLACES = 6
 logger = get_logger()
 
 
-def get_field(answer, label, error_messages, answer_store):
+def get_field(answer, label, error_messages, answer_store, metadata):
     guidance = answer.get('guidance', '')
 
     if answer['type'] in ['Number', 'Currency', 'Percentage', 'Unit']:
         field = get_number_field(answer, label, guidance, error_messages, answer_store)
+    elif answer['type'] == 'Date':
+        field = get_date_field(answer, label, guidance, error_messages, answer_store, metadata)
     else:
         field = {
             'Radio': get_select_field,
             'Checkbox': get_select_multiple_field,
-            'Date': get_date_field,
             'MonthYearDate': get_month_year_field,
             'TextArea': get_text_area_field,
             'TextField': get_string_field,
@@ -103,10 +104,10 @@ def get_text_area_field(answer, label, guidance, error_messages):
     )
 
 
-def get_date_field(answer, label, guidance, error_messages):
+def get_date_field(answer, label, guidance, error_messages, answer_store, metadata):
 
     return FormField(
-        get_date_form(answer, error_messages=error_messages),
+        get_date_form(answer_store=answer_store, metadata=metadata, answer=answer, error_messages=error_messages),
         label=label,
         description=guidance,
     )
