@@ -1,0 +1,455 @@
+{
+    "title": "Monthly Business Survey",
+    "survey_id": "009",
+    "mime_type": "application/json/ons/eq",
+    "theme": "default",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "legal_basis": "StatisticsOfTradeAct",
+    "description": "mbs",
+    "view_submitted_response": {
+        "enabled": true,
+        "duration": 900
+    },
+    "sections": [{
+            "id": "section",
+            "groups": [{
+                "id": "msi",
+                "title": "",
+                "blocks": [{
+                        "type": "Introduction",
+                        "id": "introduction",
+                        "primary_content": [{
+                            "type": "Basic",
+                            "id": "use-of-information",
+                            "content": [{
+                                "list": [
+                                    "Data should relate to all sites in England, Scotland, Wales and Northern Ireland.",
+                                    "You can provide informed estimates if actual figures aren’t available.",
+                                    "We will treat your data securely and confidentially."
+                                ]
+                            }]
+                        }],
+                        "preview_content": {
+                            "id": "preview",
+                            "title": "Information you need",
+                            "content": [{
+                                "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
+                            }],
+                            "questions": [{
+                                    "question": "Volume of potable water that was supplied to customers"
+                                },
+                                {
+                                    "question": "Number of employees",
+                                    "content": [{
+                                            "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme."
+                                        },
+                                        {
+                                            "description": "Include:",
+                                            "list": [
+                                                "all workers paid directly from this business's payroll(s)",
+                                                "those temporarily absent but still being paid, for example on maternity leave"
+                                            ]
+                                        },
+                                        {
+                                            "description": "Exclude:",
+                                            "list": [
+                                                "agency workers paid directly from the agency payroll",
+                                                "voluntary workers",
+                                                "former employees only receiving a pension",
+                                                "self-employed workers",
+                                                "working owners who are not paid via PAYE"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Employees and working hours",
+                                    "content": [{
+                                            "description": "The number of:",
+                                            "list": [
+                                                "male employees working more than 30 hours per week",
+                                                "male employees working 30 hours or less per week",
+                                                "female employees working more than 30 hours per week",
+                                                "female employees working 30 hours or less per week"
+                                            ]
+                                        },
+                                        {
+                                            "description": "Include:",
+                                            "list": [
+                                                "all workers paid directly from this business's payroll(s)",
+                                                "those temporarily absent but still being paid, for example on maternity leave"
+                                            ]
+                                        },
+                                        {
+                                            "description": "Exclude:",
+                                            "list": [
+                                                "agency workers paid directly from the agency payroll",
+                                                "voluntary workers",
+                                                "former employees only receiving a pension",
+                                                "self-employed workers",
+                                                "working owners who are not paid via PAYE"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "secondary_content": [{
+                            "id": "how-we-use-your-data",
+                            "title": "How we use your data",
+                            "content": [{
+                                "list": [
+                                    "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
+                                    "The information you provide contributes to <a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/economy/grossdomesticproductgdp'>Gross Domestic Product (GDP).</a>"
+                                ]
+                            }]
+                        }]
+                    },
+                    {
+                        "id": "reporting-period-block",
+                        "type": "Question",
+                        "questions": [{
+                            "answers": [{
+                                "options": [{
+                                        "value": "Yes",
+                                        "label": "Yes"
+                                    },
+                                    {
+                                        "value": "No",
+                                        "label": "No"
+                                    }
+                                ],
+                                "id": "reporting-period-answer",
+                                "type": "Radio",
+                                "q_code": "d12",
+                                "mandatory": true
+                            }],
+                            "type": "General",
+                            "id": "reporting-period-question",
+                            "title": "Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?"
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "when": [{
+                                        "id": "reporting-period-answer",
+                                        "value": "Yes",
+                                        "condition": "equals"
+                                    }],
+                                    "block": "water-volume-block"
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reporting-period-block-2"
+                                }
+                            }
+                        ],
+                        "title": "Reporting period"
+                    },
+                    {
+                        "type": "Question",
+                        "id": "reporting-period-block-2",
+                        "title": "Reporting period",
+                        "questions": [{
+                            "type": "DateRange",
+                            "id": "reporting-period-question-2",
+                            "title": "What are the dates of the period that you will be reporting for?",
+                            "answers": [{
+                                    "type": "Date",
+                                    "id": "period-from",
+                                    "label": "From",
+                                    "mandatory": true,
+                                    "q_code": "11"
+                                },
+                                {
+                                    "type": "Date",
+                                    "id": "period-to",
+                                    "label": "To",
+                                    "mandatory": true,
+                                    "q_code": "12"
+                                }
+                            ]
+                        }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "water-volume-block",
+                        "title": "Volume of potable water that was supplied to customers",
+                        "questions": [{
+                            "id": "water-volume-question",
+                            "type": "General",
+                            "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the volume of {{respondent.trad_as_or_ru_name}}’s <em>potable water that was supplied to customers</em>, in megalitres?",
+                            "answers": [{
+                                "id": "water-volume",
+                                "mandatory": true,
+                                "q_code": "110",
+                                "type": "Unit",
+                                "label": "Volume of potable water that was supplied to customers, in megalitres",
+                                "unit": "volume-megaliter"
+                            }]
+                        }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "number-of-employees",
+                        "questions": [{
+                            "answers": [{
+                                "id": "total-number-employees",
+                                "label": "Total number of employees",
+                                "mandatory": false,
+                                "q_code": "50",
+                                "type": "Number",
+                                "default": 0
+                            }],
+                            "id": "total-number-employees-question",
+                            "title": "On {{exercise.employment_date|format_date}} what was the number of employees for {{respondent.trad_as_or_ru_name}}?",
+                            "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include",
+                                        "list": [
+                                            "all workers paid directly from this business's payroll(s)",
+                                            "those temporarily absent but still being paid, for example on maternity leave"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude",
+                                        "list": [
+                                            "working owners who are not paid via PAYE",
+                                            "agency workers paid directly from the agency payroll",
+                                            "voluntary workers",
+                                            "former employees only receiving pension",
+                                            "self-employed workers"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "General"
+                        }],
+                        "title": "Employees"
+                    },
+                    {
+                        "type": "ConfirmationQuestion",
+                        "title": "Employees",
+                        "id": "confirm-zero-employees-block",
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "total-number-employees",
+                                "condition": "greater than",
+                                "value": 0
+                            }]
+                        }],
+                        "questions": [{
+                            "type": "General",
+                            "answers": [{
+                                "type": "Radio",
+                                "id": "confirm-zero-employees-answer",
+                                "q_code": "d50",
+                                "options": [{
+                                        "label": "Yes this is correct",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No I need to change this",
+                                        "value": "No"
+                                    }
+                                ],
+                                "mandatory": true
+                            }],
+                            "id": "confirm-zero-employees-question",
+                            "title": "On {{exercise.employment_date|format_date}}, the number of employees for {{respondent.trad_as_or_ru_name}} was <em>0</em>, is this correct?"
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "when": [{
+                                        "value": "No",
+                                        "id": "confirm-zero-employees-answer",
+                                        "condition": "equals"
+                                    }],
+                                    "block": "number-of-employees"
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "significant-change"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "employees-breakdown",
+                        "questions": [{
+                            "calculations": [{
+                                    "calculation_type": "sum",
+                                    "value": 0,
+                                    "answers_to_calculate": [
+                                        "number-male-employees-over-30-hours",
+                                        "number-male-employees-under-30-hours",
+                                        "number-female-employees-over-30-hours",
+                                        "number-female-employees-under-30-hours"
+                                    ],
+                                    "conditions": [
+                                        "equals"
+                                    ]
+                                },
+                                {
+                                    "calculation_type": "sum",
+                                    "answer_id": "total-number-employees",
+                                    "answers_to_calculate": [
+                                        "number-male-employees-over-30-hours",
+                                        "number-male-employees-under-30-hours",
+                                        "number-female-employees-over-30-hours",
+                                        "number-female-employees-under-30-hours"
+                                    ],
+                                    "conditions": [
+                                        "equals"
+                                    ]
+                                }
+                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include",
+                                        "list": [
+                                            "all workers paid directly from this business’s payroll(s)",
+                                            "those temporarily absent but still being paid, for example on maternity leave"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude",
+                                        "list": [
+                                            "agency workers paid directly from the agency payroll",
+                                            "voluntary workers",
+                                            "former employees only receiving pension",
+                                            "self-employed workers",
+                                            "working owners who are not paid via PAYE"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "answers": [{
+                                    "id": "number-male-employees-over-30-hours",
+                                    "label": "Number of male employees working more than 30 hours per week",
+                                    "mandatory": false,
+                                    "q_code": "51",
+                                    "type": "Number",
+                                    "max_value": {
+                                        "answer_id": "total-number-employees"
+                                    }
+                                },
+                                {
+                                    "id": "number-male-employees-under-30-hours",
+                                    "label": "Number of male employees working 30 hours or less per week",
+                                    "mandatory": false,
+                                    "q_code": "52",
+                                    "type": "Number",
+                                    "max_value": {
+                                        "answer_id": "total-number-employees"
+                                    }
+                                },
+                                {
+                                    "id": "number-female-employees-over-30-hours",
+                                    "label": "Number of female employees working more than 30 hours per week",
+                                    "mandatory": false,
+                                    "q_code": "53",
+                                    "type": "Number",
+                                    "max_value": {
+                                        "answer_id": "total-number-employees"
+                                    }
+                                },
+                                {
+                                    "id": "number-female-employees-under-30-hours",
+                                    "label": "Number of female employees working 30 hours or less per week",
+                                    "mandatory": false,
+                                    "q_code": "54",
+                                    "type": "Number",
+                                    "max_value": {
+                                        "answer_id": "total-number-employees"
+                                    }
+                                }
+                            ],
+                            "id": "employee-breakdown-questions",
+                            "title": "Of the <em>{{answers['total-number-employees']|format_number}}</em> total employees employed on {{exercise.employment_date|format_date}}, how many male and female employees worked the following hours?",
+                            "type": "Calculated"
+                        }],
+                        "title": "Employees"
+                    },
+                    {
+                        "id": "significant-change",
+                        "title": "Changes",
+                        "type": "Question",
+                        "questions": [{
+                            "type": "General",
+                            "id": "significant-change-question",
+                            "title": "Did any significant changes occur to the figures provided for {{respondent.trad_as_or_ru_name}}?",
+                            "description": "Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year.<br><br>This information will help us to validate your data and should reduce the need to query any figures with you.",
+                            "answers": [{
+                                "id": "significant-change-established-answer",
+                                "label": "",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ],
+                                "q_code": "146",
+                                "type": "Radio"
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "change-comment-block",
+                                    "when": [{
+                                        "id": "significant-change-established-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "group": "summary-group"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "change-comment-block",
+                        "questions": [{
+                            "answers": [{
+                                "id": "change-comment",
+                                "label": "Comments",
+                                "mandatory": true,
+                                "q_code": "146h",
+                                "type": "TextArea"
+                            }],
+                            "description": "We rely on your commentary to ‘tell the story’ behind changes in figures. By commenting here it will reduce the need for us to call you.",
+                            "id": "change-comment-question",
+                            "title": "Please describe the changes for {{respondent.trad_as_or_ru_name}} in more detail",
+                            "type": "General"
+                        }],
+                        "title": "Changes"
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "summary-section",
+            "title": "Summary",
+            "groups": [{
+                "id": "summary-group",
+                "title": "Summary",
+                "blocks": [{
+                    "type": "Summary",
+                    "id": "summary"
+                }]
+            }]
+        }
+    ]
+}
