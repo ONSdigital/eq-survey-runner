@@ -1,11 +1,11 @@
 const helpers = require('../../../../helpers');
 
 describe('Feature: Question level validation for date ranges', function() {
-  var DateRangePage = require('../../../../pages/features/grouped_validation/date-range/date-range-block.page');
-  var SummaryPage = require('../../../../pages/features/grouped_validation/date-range/summary.page');
+  var DateRangePage = require('../../../../pages/features/validation/date-validation/date-range/date-range-block.page');
+  var SummaryPage = require('../../../../pages/features/validation/date-validation/date-range/summary.page');
 
   beforeEach(function() {
-        return helpers.openQuestionnaire('test_date_range_period_validation.json');
+        return helpers.openQuestionnaire('test_date_validation_range.json');
   });
 
   describe('Period Validation', function () {

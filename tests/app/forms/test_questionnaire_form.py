@@ -106,7 +106,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
     def test_date_range_too_large_period_raises_question_error(self):
         with self.test_request_context():
-            schema = load_schema_from_params('test', 'date_range_period_validation')
+            schema = load_schema_from_params('test', 'date_validation_range')
 
             block_json = schema.get_block('date-range-block')
 
@@ -133,7 +133,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
     def test_date_range_too_small_period_raises_question_error(self):
         with self.test_request_context():
-            schema = load_schema_from_params('test', 'date_range_period_validation')
+            schema = load_schema_from_params('test', 'date_validation_range')
 
             block_json = schema.get_block('date-range-block')
 
@@ -160,7 +160,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
     def test_date_range_valid_period(self):
         with self.test_request_context():
-            schema = load_schema_from_params('test', 'date_range_period_validation')
+            schema = load_schema_from_params('test', 'date_validation_range')
 
             block_json = schema.get_block('date-range-block')
 
@@ -183,9 +183,109 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             form.validate()
             self.assertEqual(form.data, expected_form_data)
 
-    def test_bespoke_message_for_date_range_period_validation(self):
+    def test_date_combined_single_validation(self):
         with self.test_request_context():
-            schema = load_schema_from_params('test', 'date_range_period_validation')
+            schema = load_schema_from_params('test', 'date_validation_combined')
+
+            block_json = schema.get_block('date-range-block')
+
+            data = {
+                'date-range-from-day': '01',
+                'date-range-from-month': 1,
+                'date-range-from-year': '2017',
+                'date-range-to-day': '14',
+                'date-range-to-month': 3,
+                'date-range-to-year': '2017'
+            }
+
+            metadata = {
+                'ref_p_start_date': '2017-01-21',
+                'ref_p_end_date': '2017-02-21'
+            }
+
+            expected_form_data = {
+                'csrf_token': '',
+                'date-range-from': {'day': '01', 'month': '1', 'year': '2017'},
+                'date-range-to': {'day': '14', 'month': '3', 'year': '2017'}
+            }
+            form = generate_form(schema, block_json, data, AnswerStore(), metadata)
+
+            form.validate()
+            self.assertEqual(form.data, expected_form_data)
+            self.assertEqual(form.errors['date-range-from']['month'][0],
+                             schema.error_messages['SINGLE_DATE_PERIOD_TOO_EARLY'] % dict(min='1 January 2017'))
+
+            self.assertEqual(form.errors['date-range-to']['month'][0],
+                             schema.error_messages['SINGLE_DATE_PERIOD_TOO_LATE'] % dict(max='14 March 2017'))
+
+    def test_date_combined_range_too_small_validation(self):
+        with self.test_request_context():
+            schema = load_schema_from_params('test', 'date_validation_combined')
+
+            block_json = schema.get_block('date-range-block')
+
+            data = {
+                'date-range-from-day': '01',
+                'date-range-from-month': 1,
+                'date-range-from-year': '2017',
+                'date-range-to-day': '10',
+                'date-range-to-month': 1,
+                'date-range-to-year': '2017'
+            }
+
+            metadata = {
+                'ref_p_start_date': '2017-01-20',
+                'ref_p_end_date': '2017-02-20'
+            }
+
+            expected_form_data = {
+                'csrf_token': '',
+                'date-range-from': {'day': '01', 'month': '1', 'year': '2017'},
+                'date-range-to': {'day': '10', 'month': '1', 'year': '2017'}
+            }
+            form = generate_form(schema, block_json, data, AnswerStore(), metadata)
+
+            form.validate()
+            self.assertEqual(form.data, expected_form_data)
+            self.assertEqual(form.question_errors['date-range-question'],
+                             schema.error_messages['DATE_PERIOD_TOO_SMALL'] % dict(min='10 days'))
+
+    def test_date_combined_range_too_large_validation(self):
+        with self.test_request_context():
+            schema = load_schema_from_params('test', 'date_validation_combined')
+
+            block_json = schema.get_block('date-range-block')
+
+            data = {
+                'date-range-from-day': '01',
+                'date-range-from-month': 1,
+                'date-range-from-year': '2017',
+                'date-range-to-day': '21',
+                'date-range-to-month': 2,
+                'date-range-to-year': '2017'
+            }
+
+            metadata = {
+                'ref_p_start_date': '2017-01-20',
+                'ref_p_end_date': '2017-02-20'
+            }
+
+            expected_form_data = {
+                'csrf_token': '',
+                'date-range-from': {'day': '01', 'month': '1', 'year': '2017'},
+                'date-range-to': {'day': '21', 'month': '2', 'year': '2017'}
+            }
+            form = generate_form(schema, block_json, data, AnswerStore(), metadata)
+
+            form.validate()
+            self.assertEqual(form.data, expected_form_data)
+            self.assertEqual(form.question_errors['date-range-question'],
+                             schema.error_messages['DATE_PERIOD_TOO_LARGE'] % dict(max='50 days'))
+
+
+    def test_bespoke_message_for_date_validation_range(self):
+        with self.test_request_context():
+            schema = load_schema_from_params('test', 'date_validation_range')
 
             block_json = schema.get_block('date-range-block')
 
@@ -233,7 +333,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
     def test_invalid_minimum_period_limit_and_single_date_periods(self):
         with self.test_request_context():
-            schema = load_schema_from_params('test', 'date_range_period_validation')
+            schema = load_schema_from_params('test', 'date_validation_range')
 
             block_json = schema.get_block('date-range-block')
 
@@ -289,7 +389,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
     def test_invalid_maximum_period_limit_and_single_date_periods(self):
         with self.test_request_context():
-            schema = load_schema_from_params('test', 'date_range_period_validation')
+            schema = load_schema_from_params('test', 'date_validation_range')
 
             block_json = schema.get_block('date-range-block')
 
@@ -354,7 +454,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             )
             store.add(test_answer_id)
 
-            schema = load_schema_from_params('test', 'date_range_period_validation')
+            schema = load_schema_from_params('test', 'date_validation_range')
 
             block_json = schema.get_block('date-range-block')
 

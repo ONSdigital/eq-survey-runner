@@ -1,5 +1,5 @@
 // >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
-const QuestionPage = require('../../../surveys/question.page');
+const QuestionPage = require('../../../../surveys/question.page');
 
 class SummaryPage extends QuestionPage {
 

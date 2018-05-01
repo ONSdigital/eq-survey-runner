@@ -130,7 +130,7 @@ describe('Feature: Routing on a Date', function () {
   });
 
   describe('Greater Than', function () {
-    describe('Given I start number routing not equals survey', function () {
+    describe('Given I start date routing greater than survey', function () {
 
       var DateQuestionPage = require('../../../pages/features/routing/date/greater_than/date-question.page');
 
@@ -161,17 +161,25 @@ describe('Feature: Routing on a Date', function () {
   });
 
   describe('Less Than', function () {
-    describe('Given I start number routing not equals survey', function () {
+    describe('Given I start date routing less than survey', function () {
 
       var DateQuestionPage = require('../../../pages/features/routing/date/less_than/date-question.page');
+      // TODAY
       var today = new Date();
-      var dd_today = today.getDate(); // today
-      var dd_yesterday = today.getDate()-1; // yesterday
-      var mm = today.getMonth()+1; //January is 0!
+      var dd_today = today.getDate();
+      var mm_today = today.getMonth()+1;
+      var yyyy_today = today.getFullYear();
+
+      // YESTERDAY
+      var yesterday = new Date(today);
+      yesterday.setDate(today.getDate() - 1);
+      var dd_yesterday = yesterday.getDate(); // yesterday
+      var mm_yesterday = yesterday.getMonth()+1; //January is 0!
+      var yyyy_yesterday = yesterday.getFullYear();
+
       const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
       ];
-      var yyyy = today.getFullYear();
 
       beforeEach(function() {
         return helpers.openQuestionnaire('test_routing_date_less_than.json').then(() => {
@@ -183,19 +191,19 @@ describe('Feature: Routing on a Date', function () {
       it('When I enter a date less than today, Then I should be routed to the correct page', function () {
         return browser
           .setValue(DateQuestionPage.day(), dd_yesterday)
-          .selectByValue(DateQuestionPage.month(), mm)
-          .setValue(DateQuestionPage.year(), yyyy)
+          .selectByValue(DateQuestionPage.month(), mm_yesterday)
+          .setValue(DateQuestionPage.year(), yyyy_yesterday)
           .click(DateQuestionPage.submit())
           .getUrl().should.eventually.contain(CorrectAnswerPage.pageName);
       });
 
       it('When I enter a date greater than or equal to today, Then I should be routed to the incorrect page', function () {
         return browser
-          .getText(DateQuestionPage.questionText()).should.eventually.contain('Enter a date less than ' + dd_today + ' ' + monthNames[today.getMonth()] + ' ' + yyyy)
+          .getText(DateQuestionPage.questionText()).should.eventually.contain('Enter a date less than ' + dd_today + ' ' + monthNames[today.getMonth()] + ' ' + yyyy_today)
           .getText(CorrectAnswerPage.questionText()).should.eventually.contain('')
           .setValue(DateQuestionPage.day(), dd_today)
-          .selectByValue(DateQuestionPage.month(), mm)
-          .setValue(DateQuestionPage.year(), yyyy)
+          .selectByValue(DateQuestionPage.month(), mm_today)
+          .setValue(DateQuestionPage.year(), yyyy_today)
           .click(DateQuestionPage.submit())
           .getUrl().should.eventually.contain(IncorrectAnswerPage.pageName);
       });
