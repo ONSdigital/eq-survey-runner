@@ -1,2 +1,10 @@
 @import "../../themes-common/config";
 @import "../../themes-common/ui";
+
+/**
+ * Theme override
+ */
+
+.logo__img {
+  width: 280px;
+}
