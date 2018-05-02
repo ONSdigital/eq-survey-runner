@@ -5,7 +5,7 @@ from mock import patch
 
 from app.data_model.answer_store import AnswerStore, Answer
 from app.forms.date_form import get_date_form, get_month_year_form, get_referenced_offset_value, \
-    get_dates_for_single_date_period_validation
+    get_dates_for_single_date_period_validation, validate_mandatory_date
 from app.questionnaire.rules import convert_to_datetime
 from app.utilities.schema import load_schema_from_params
 from tests.app.app_context_test_case import AppContextTestCase
@@ -31,7 +31,7 @@ class TestDateForm(AppContextTestCase):
 
         answers = schema.get_answers_by_id_for_block('date-block')
 
-        form = get_month_year_form(answers['month-year-answer'], error_messages=error_messages)
+        form = get_month_year_form(answers['month-year-answer'], {}, {}, error_messages=error_messages)
 
         self.assertFalse(hasattr(form, 'day'))
         self.assertTrue(hasattr(form, 'month'))
@@ -202,3 +202,26 @@ class TestDateForm(AppContextTestCase):
             get_dates_for_single_date_period_validation(answer, AnswerStore(), {})
             self.assertEqual('The minimum offset date is greater than the maximum offset date for date-answer.',
                              str(ite.exception))
+
+    def test_validate_mandatory_date(self):
+        schema = load_schema_from_params('test', 'date_validation_single')
+        error_messages = schema.error_messages
+        answer = {
+            'id': 'date-range-from',
+            'mandatory': True,
+            'label': 'Period from',
+            'type': 'Date',
+            'maximum': {
+                'value': '2017-06-11',
+                'offset_by': {
+                    'days': 20
+                }
+            },
+            'validation': {
+                'messages': {
+                    'MANDATORY_DATE': 'Test Mandatory Date Message'
+                }
+            }
+        }
+        validator = validate_mandatory_date(error_messages, answer)
+        self.assertEqual(validator[0].message, 'Test Mandatory Date Message')

@@ -202,10 +202,11 @@ class MonthYearCheck(object):
 
 
 class SingleDatePeriodCheck(object):
-    def __init__(self, messages=None, minimum_date=None, maximum_date=None):
+    def __init__(self, messages=None, date_format='%-d %B %Y', minimum_date=None, maximum_date=None):
         self.messages = messages or error_messages
         self.minimum_date = minimum_date
         self.maximum_date = maximum_date
+        self.date_format = date_format
 
     def __call__(self, form, field):
         date_str = format_date_string(form)
@@ -215,17 +216,19 @@ class SingleDatePeriodCheck(object):
             if date < self.minimum_date:
                 raise validators.ValidationError(self.messages['SINGLE_DATE_PERIOD_TOO_EARLY'] %
                                                  dict(min=self._format_playback_date(self.minimum_date +
-                                                                                     relativedelta(days=-1))))
+                                                                                     relativedelta(days=-1),
+                                                                                     self.date_format)))
 
         if self.maximum_date:
             if date > self.maximum_date:
                 raise validators.ValidationError(self.messages['SINGLE_DATE_PERIOD_TOO_LATE'] %
                                                  dict(max=self._format_playback_date(self.maximum_date +
-                                                                                     relativedelta(days=+1))))
+                                                                                     relativedelta(days=+1),
+                                                                                     self.date_format)))
 
     @staticmethod
-    def _format_playback_date(date):
-        return date.strftime('%-d %B %Y')
+    def _format_playback_date(date, date_format='%-d %B %Y'):
+        return date.strftime(date_format)
 
 
 class DateRangeCheck(object):

@@ -36,11 +36,7 @@ def get_date_form(answer_store, metadata, answer=None, error_messages=None):
         date_messages = {}
 
     if answer['mandatory'] is True:
-        if 'validation' in answer and 'messages' in answer['validation'] \
-                and 'MANDATORY_DATE' in answer['validation']['messages']:
-            date_messages['MANDATORY_DATE'] = answer['validation']['messages']['MANDATORY_DATE']
-
-        validate_with = [DateRequired(message=date_messages['MANDATORY_DATE'])]
+        validate_with = validate_mandatory_date(error_messages, answer)
 
     if 'validation' in answer and 'messages' in answer['validation'] \
             and 'INVALID_DATE' in answer['validation']['messages']:
@@ -49,21 +45,16 @@ def get_date_form(answer_store, metadata, answer=None, error_messages=None):
     validate_with.append(DateCheck(date_messages['INVALID_DATE']))
 
     if 'minimum' in answer or 'maximum' in answer:
-        messages = None
-        if 'validation' in answer:
-            messages = answer['validation'].get('messages')
-        minimum_date, maximum_date = get_dates_for_single_date_period_validation(answer, answer_store, metadata)
-        validate_with.append(SingleDatePeriodCheck(messages=messages, minimum_date=minimum_date, maximum_date=maximum_date))
+        min_max_validation = validate_min_max_date(answer, answer_store, metadata, 'yyyy-mm-dd')
+        validate_with.append(min_max_validation)
 
     # Set up all the calendar month choices for select
-    month_choices = [('', 'Select month')] + [(str(x), calendar.month_name[x]) for x in range(1, 13)]
-
-    DateForm.month = SelectField(choices=month_choices, default='', validators=validate_with)
+    DateForm.month = get_month_selection_field(validate_with)
 
     return DateForm
 
 
-def get_month_year_form(answer, error_messages):
+def get_month_year_form(answer, answer_store, metadata, error_messages):
     """
     Returns a month year form metaclass with appropriate validators. Used in both date and
     date range form creation.
@@ -78,26 +69,52 @@ def get_month_year_form(answer, error_messages):
     validate_with = [OptionalForm()]
 
     if answer['mandatory'] is True:
-        error_message = error_messages['MANDATORY_DATE']
-        if 'validation' in answer and 'messages' in answer['validation'] \
-                and 'MANDATORY_DATE' in answer['validation']['messages']:
-            error_message = answer['validation']['messages']['MANDATORY_DATE']
-
-        validate_with = [DateRequired(message=error_message)]
+        validate_with = validate_mandatory_date(error_messages, answer)
 
     if 'validation' in answer and 'messages' in answer['validation'] \
             and 'INVALID_DATE' in answer['validation']['messages']:
         error_message = answer['validation']['messages']['INVALID_DATE']
-        validate_with += [MonthYearCheck(error_message)]
+        validate_with.append(MonthYearCheck(error_message))
     else:
-        validate_with += [MonthYearCheck()]
+        validate_with.append(MonthYearCheck())
 
-    # Set up all the calendar month choices for select
-    month_choices = [('', 'Select month')] + [(str(x), calendar.month_name[x]) for x in range(1, 13)]
+    if 'minimum' in answer or 'maximum' in answer:
+        min_max_validation = validate_min_max_date(answer, answer_store, metadata, 'yyyy-mm')
+        validate_with.append(min_max_validation)
 
-    MonthYearDateForm.month = SelectField(choices=month_choices, default='', validators=validate_with)
+    MonthYearDateForm.month = get_month_selection_field(validate_with)
 
     return MonthYearDateForm
+
+
+def validate_mandatory_date(error_messages, answer):
+    error_message = error_messages['MANDATORY_DATE']
+    if 'validation' in answer and 'messages' in answer['validation']:
+        if 'MANDATORY_DATE' in answer['validation']['messages']:
+            error_message = answer['validation']['messages']['MANDATORY_DATE']
+
+    validate_with = [DateRequired(message=error_message)]
+    return validate_with
+
+
+def get_month_selection_field(validate_with):
+    month_choices = [('', 'Select month')] + [(str(x), calendar.month_name[x]) for x in range(1, 13)]
+    return SelectField(choices=month_choices, default='', validators=validate_with)
+
+
+def validate_min_max_date(answer, answer_store, metadata, date_format):
+    messages = None
+    if 'validation' in answer:
+        messages = answer['validation'].get('messages')
+    minimum_date, maximum_date = get_dates_for_single_date_period_validation(answer, answer_store, metadata)
+
+    display_format = '%-d %B %Y'
+    if date_format == 'yyyy-mm':
+        display_format = '%B %Y'
+        minimum_date = minimum_date.replace(day=1) if minimum_date else None    # First day of Month
+        maximum_date = maximum_date + relativedelta(day=31) if maximum_date else None   # Last day of month
+
+    return SingleDatePeriodCheck(messages=messages, date_format=display_format, minimum_date=minimum_date, maximum_date=maximum_date)
 
 
 def get_dates_for_single_date_period_validation(answer, answer_store, metadata):
