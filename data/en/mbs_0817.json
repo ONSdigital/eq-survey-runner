@@ -1,14 +1,12 @@
 {
-    "title": "Monthly Business Survey",
-    "survey_id": "009",
     "mime_type": "application/json/ons/eq",
-    "theme": "default",
     "schema_version": "0.0.1",
+    "survey_id": "009",
+    "theme": "default",
     "data_version": "0.0.1",
+    "title": "Monthly Business Survey",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "mbs",
-    "eq_id": "mbs",
-    "form_type": "0161",
     "view_submitted_response": {
         "enabled": true,
         "duration": 900
@@ -26,7 +24,7 @@
                             "id": "use-of-information",
                             "content": [{
                                 "list": [
-                                    "Data should relate to all sites in England, Scotland and Wales.",
+                                    "Data should relate to all sites in England, Scotland, Wales and Northern Ireland.",
                                     "You can provide informed estimates if actual figures aren’t available.",
                                     "We will treat your data securely and confidentially."
                                 ]
@@ -39,17 +37,16 @@
                                 "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
                             }],
                             "questions": [{
-                                    "question": "Total Turnover",
+                                    "question": "Total turnover",
                                     "content": [{
                                             "description": "Include:",
                                             "list": [
                                                 "exports",
-                                                "payments for work in progress",
                                                 "costs incurred and passed on to customers",
                                                 "income from sub-contracted activities",
                                                 "commission",
                                                 "sales of goods purchased for resale",
-                                                "revenue earned from other parts of the business not named (please supply at fair value)"
+                                                "revenue earned from other parts of the business, not named at the top of this page (please supply at fair value)"
                                             ]
                                         },
                                         {
@@ -65,7 +62,7 @@
                                     ]
                                 },
                                 {
-                                    "question": "Changes in total turnover",
+                                    "question": "Changes in turnover",
                                     "content": [{
                                         "description": "Include:",
                                         "list": [
@@ -142,14 +139,14 @@
                             "title": "What are the dates of the period that you will be reporting for?",
                             "answers": [{
                                     "type": "Date",
-                                    "id": "period-from",
+                                    "id": "reporting-period-answer-from",
                                     "label": "From",
                                     "mandatory": true,
                                     "q_code": "11"
                                 },
                                 {
                                     "type": "Date",
-                                    "id": "period-to",
+                                    "id": "reporting-period-answer-to",
                                     "label": "To",
                                     "mandatory": true,
                                     "q_code": "12"
@@ -166,7 +163,6 @@
                                         "title": "Include:",
                                         "list": [
                                             "exports",
-                                            "payments for work in progress",
                                             "costs incurred and passed on to customers",
                                             "income from sub-contracted activities",
                                             "commission",
@@ -197,15 +193,15 @@
                                 "mandatory": true
                             }],
                             "type": "General",
-                            "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total turnover</em>, excluding VAT?"
+                            "title": "For the period {{format_conditional_date (answers['reporting-period-answer-from'], exercise.start_date)}} to {{format_conditional_date (answers['reporting-period-answer-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total turnover</em>, excluding VAT?"
                         }],
-                        "title": "Total Turnover"
+                        "title": "Turnover"
                     },
                     {
                         "id": "changes-in-turnover-block",
                         "type": "Question",
                         "questions": [{
-                            "title": "Did any significant changes occur to the total turnover for {{respondent.trad_as_or_ru_name}}?",
+                            "title": "Did any significant changes occur to the turnover for {{respondent.trad_as_or_ru_name}}?",
                             "id": "changes-in-turnover-question",
                             "description": "<p>Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>",
                             "answers": [{
@@ -221,11 +217,11 @@
                                 "id": "changes-in-turnover-answer",
                                 "type": "Radio",
                                 "q_code": "146",
-                                "mandatory": false
+                                "mandatory": true
                             }],
                             "guidance": {
                                 "content": [{
-                                    "title": "Include",
+                                    "title": "Include:",
                                     "list": [
                                         "change in level of business activity",
                                         "maintenance/shutdowns",
@@ -238,7 +234,7 @@
                             },
                             "type": "General"
                         }],
-                        "title": "Changes in total turnover",
+                        "title": "Changes in turnover",
                         "routing_rules": [{
                                 "goto": {
                                     "when": [{
@@ -260,7 +256,7 @@
                         "id": "changes-in-turnover-block-2",
                         "type": "Question",
                         "questions": [{
-                            "title": "Please indicate the reasons for any changes in the total turnover for {{respondent.trad_as_or_ru_name}}",
+                            "title": "Please indicate the reasons for any changes in the turnover for {{respondent.trad_as_or_ru_name}}",
                             "answers": [{
                                 "options": [{
                                         "q_code": "146a",
@@ -305,20 +301,20 @@
                             "type": "General",
                             "id": "changes-in-turnover-question-2"
                         }],
-                        "title": "Changes in total turnover"
+                        "title": "Changes in turnover"
                     },
                     {
                         "type": "Question",
                         "id": "changes-in-turnover-block-3",
-                        "title": "Changes in total turnover",
+                        "title": "Changes in turnover",
                         "questions": [{
                             "type": "General",
                             "id": "changes-in-turnover-question-3",
-                            "title": "Please describe the changes in total turnover for {{respondent.trad_as_or_ru_name}} in more detail",
+                            "title": "Please describe the changes in turnover for {{respondent.trad_as_or_ru_name}} in more detail",
                             "answers": [{
                                 "guidance": {
-                                    "hide_guidance": "Hide examples of commentary on changes to total turnover",
-                                    "show_guidance": "Show examples of commentary on changes to total turnover",
+                                    "hide_guidance": "Hide examples of commentary on changes to turnover",
+                                    "show_guidance": "Show examples of commentary on changes to turnover",
                                     "content": [{
                                             "list": [],
                                             "title": "‘Change in level of business activity’",

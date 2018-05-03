@@ -16,6 +16,7 @@
 {% endif %}
 {% endfor %}
 </div>
+{% if intro.questions %}
 <div class="accordion js-accordion">
         <div class="mars accordion__controls">
             <a class="accordion__control js-accordion-open-all u-hidden" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Show all" tabindex="0" aria-hidden="true">Show all</a>
@@ -53,3 +54,4 @@
             {% endfor %}
         </dl>
 </div>
+{% endif %}
