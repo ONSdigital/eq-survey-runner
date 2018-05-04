@@ -203,19 +203,39 @@
                             "type": "DateRange",
                             "id": "reporting-period-question-2",
                             "title": "What are the dates of the period that you will be reporting for?",
+                            "period_limits": {
+                                "minimum": {
+                                    "days": 10
+                                },
+                                "maximum": {
+                                    "days": 50
+                                }
+                            },
                             "answers": [{
                                     "type": "Date",
                                     "id": "period-from",
                                     "label": "From",
                                     "mandatory": true,
-                                    "q_code": "11"
+                                    "q_code": "11",
+                                    "minimum": {
+                                        "meta": "ref_p_start_date",
+                                        "offset_by": {
+                                            "days": -19
+                                        }
+                                    }
                                 },
                                 {
                                     "type": "Date",
                                     "id": "period-to",
                                     "label": "To",
                                     "mandatory": true,
-                                    "q_code": "12"
+                                    "q_code": "12",
+                                    "maximum": {
+                                        "meta": "ref_p_end_date",
+                                        "offset_by": {
+                                            "days": 20
+                                        }
+                                    }
                                 }
                             ]
                         }]
