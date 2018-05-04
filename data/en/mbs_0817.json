@@ -215,7 +215,7 @@
                             "type": "General",
                             "title": "For the period {{format_conditional_date (answers['period-from'], exercise.start_date)}} to {{format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total turnover</em>, excluding VAT?"
                         }],
-                        "title": "Turnover"
+                        "title": "Total turnover"
                     },
                     {
                         "id": "changes-in-turnover-block",
@@ -316,7 +316,7 @@
                                 ],
                                 "id": "changes-in-turnover-answer-2",
                                 "type": "Checkbox",
-                                "mandatory": false
+                                "mandatory": true
                             }],
                             "type": "General",
                             "id": "changes-in-turnover-question-2"

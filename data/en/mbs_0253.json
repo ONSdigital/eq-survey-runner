@@ -92,6 +92,9 @@
                                             ]
                                         }
                                     ]
+                                },
+                                {
+                                  "question": "Significant changes"
                                 }
                             ]
                         },
@@ -397,7 +400,7 @@
                     },
                     {
                         "id": "significant-change",
-                        "title": "Changes",
+                        "title": "Significant changes",
                         "type": "Question",
                         "questions": [{
                             "type": "General",
@@ -454,7 +457,7 @@
                             "title": "Please describe the changes for {{respondent.trad_as_or_ru_name}} in more detail",
                             "type": "General"
                         }],
-                        "title": "Changes"
+                        "title": "Significant changes"
                     }
                 ]
             }]
