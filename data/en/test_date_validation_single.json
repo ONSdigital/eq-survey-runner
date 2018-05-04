@@ -19,7 +19,7 @@
                     "type": "Question",
                     "id": "date-block",
                     "title": "Date",
-                    "description": "Enter a date after 1 July 2017. Entering a date before will result in a 5xx on the next page as this will invalidate the schema",
+                    "description": "This date will be used as a maximum date for the 'To' date in the next question",
                     "questions": [{
                         "id": "date-question",
                         "title": "Enter Date",
@@ -40,7 +40,15 @@
                         "id": "date-range-question",
                         "title": "Enter Date Range",
                         "type": "DateRange",
-                        "description": "Enter any 'period from' 19 days before exercise start date and 1 July 2017. Then enter any 'period to', at least 1 month and 10 days after your previous answer on the last question",
+                        "guidance": {
+                            "content": [{
+                                "list": [
+                                    "Period 'from' date should be greater than 19 days before {{exercise.start_date|format_date}}",
+                                    "Period 'from' should also be no greater than 20 days after 11 June 2017",
+                                    "Period 'to' date should be no greater than 1 month 10 days after {{answers['date']|format_date}}"
+                                ]
+                            }]
+                        },
                         "answers": [{
                                 "id": "date-range-from",
                                 "label": "Period from",
