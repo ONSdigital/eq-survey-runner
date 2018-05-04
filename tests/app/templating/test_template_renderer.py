@@ -22,6 +22,14 @@ class TestTemplateRenderer(unittest.TestCase):
 
         self.assertEqual(rendered, "<span class='date'>1 January 2017</span>")
 
+    def test_render_date_month_year(self):
+        date = '{{date|format_date}}'
+        context = {'date': '2017-01'}
+
+        rendered = TemplateRenderer().render(date, **context)
+
+        self.assertEqual(rendered, "<span class='date'>January 2017</span>")
+
     def test_strings_containing_backslashes_are_escaped(self):
         title = '{{ [answers.person_name] | format_household_name }}'
         context = {
