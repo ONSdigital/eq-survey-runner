@@ -53,6 +53,9 @@
                                             "grants"
                                         ]
                                     }]
+                                },
+                                {
+                                    "question": "Significant changes"
                                 }
                             ]
                         },
@@ -241,7 +244,7 @@
                             },
                             "type": "General"
                         }],
-                        "title": "Changes",
+                        "title": "Significant changes",
                         "routing_rules": [{
                                 "goto": {
                                     "when": [{
@@ -308,7 +311,7 @@
                                 "mandatory": true
                             }]
                         }],
-                        "title": "Changes"
+                        "title": "Significant changes"
                     },
                     {
                         "type": "Question",

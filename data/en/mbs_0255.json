@@ -63,20 +63,6 @@
                                     ]
                                 },
                                 {
-                                    "question": "Changes in turnover",
-                                    "content": [{
-                                        "description": "Include:",
-                                        "list": [
-                                            "change in level of business activity",
-                                            "maintenance/shutdowns",
-                                            "special/calendar events",
-                                            "weather",
-                                            "price effects",
-                                            "currency effects (increase/decrease in the currency value)"
-                                        ]
-                                    }]
-                                },
-                                {
                                     "question": "Value of exports",
                                     "content": [{
                                         "description": "Include:",
@@ -141,6 +127,20 @@
                                             ]
                                         }
                                     ]
+                                },
+                                {
+                                    "question": "Changes in turnover",
+                                    "content": [{
+                                        "description": "Include:",
+                                        "list": [
+                                            "change in level of business activity",
+                                            "maintenance/shutdowns",
+                                            "special/calendar events",
+                                            "weather",
+                                            "price effects",
+                                            "currency effects (increase/decrease in the currency value)"
+                                        ]
+                                    }]
                                 }
                             ]
                         },
@@ -613,7 +613,7 @@
                                 ],
                                 "id": "changes-in-turnover-answer-2",
                                 "type": "Checkbox",
-                                "mandatory": false
+                                "mandatory": true
                             }],
                             "type": "General",
                             "id": "changes-in-turnover-question-2"

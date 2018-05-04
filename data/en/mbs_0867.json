@@ -62,20 +62,6 @@
                                     ]
                                 },
                                 {
-                                    "question": "Changes in turnover",
-                                    "content": [{
-                                        "description": "Include:",
-                                        "list": [
-                                            "change in level of business activity",
-                                            "maintenance/shutdowns",
-                                            "special/calendar events",
-                                            "weather",
-                                            "price effects",
-                                            "currency effects (increase/decrease in the currency value)"
-                                        ]
-                                    }]
-                                },
-                                {
                                     "question": "Number of employees",
                                     "content": [{
                                             "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme."
@@ -128,6 +114,20 @@
                                             ]
                                         }
                                     ]
+                                },
+                                {
+                                    "question": "Changes in turnover",
+                                    "content": [{
+                                        "description": "Include:",
+                                        "list": [
+                                            "change in level of business activity",
+                                            "maintenance/shutdowns",
+                                            "special/calendar events",
+                                            "weather",
+                                            "price effects",
+                                            "currency effects (increase/decrease in the currency value)"
+                                        ]
+                                    }]
                                 }
                             ]
                         },
@@ -269,7 +269,7 @@
                             "type": "General",
                             "title": "For the period {{format_conditional_date (answers['period-from'], exercise.start_date)}} to {{format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total turnover</em>, excluding VAT?"
                         }],
-                        "title": "Turnover"
+                        "title": "Total turnover"
                     },
                     {
                         "id": "number-of-employees-total-block",
@@ -555,7 +555,7 @@
                                 ],
                                 "id": "changes-in-turnover-answer-2",
                                 "type": "Checkbox",
-                                "mandatory": false
+                                "mandatory": true
                             }],
                             "type": "General",
                             "id": "changes-in-turnover-question-2"

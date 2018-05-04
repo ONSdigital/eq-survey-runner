@@ -61,6 +61,18 @@
                                     ]
                                 },
                                 {
+                                    "question": "Value of exports",
+                                    "content": [{
+                                        "description": "Include:",
+                                        "list": [
+                                            "all countries outside of England, Scotland, Wales and Northern Ireland"
+                                        ]
+                                    }]
+                                },
+                                {
+                                    "question": "Value of excise duty"
+                                },
+                                {
                                     "question": "Changes in turnover",
                                     "content": [{
                                         "description": "Include:",
@@ -73,18 +85,6 @@
                                             "currency effects (increase/decrease in the currency value)"
                                         ]
                                     }]
-                                },
-                                {
-                                    "question": "Value of exports",
-                                    "content": [{
-                                        "description": "Include:",
-                                        "list": [
-                                            "all countries outside of England, Scotland, Wales and Northern Ireland"
-                                        ]
-                                    }]
-                                },
-                                {
-                                    "question": "Value of excise duty"
                                 }
                             ]
                         },
@@ -372,7 +372,7 @@
                                 ],
                                 "id": "changes-in-turnover-answer-2",
                                 "type": "Checkbox",
-                                "mandatory": false
+                                "mandatory": true
                             }],
                             "type": "General",
                             "id": "changes-in-turnover-question-2"
