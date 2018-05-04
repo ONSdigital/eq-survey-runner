@@ -2,7 +2,7 @@
     "title": "Monthly Business Survey",
     "survey_id": "009",
     "mime_type": "application/json/ons/eq",
-    "theme": "default",
+    "theme": "northernireland",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
     "legal_basis": "StatisticsOfTradeAct",
