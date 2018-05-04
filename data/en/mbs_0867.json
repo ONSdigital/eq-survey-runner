@@ -191,19 +191,39 @@
                             "type": "DateRange",
                             "id": "reporting-period-question-2",
                             "title": "What are the dates of the period that you will be reporting for?",
+                            "period_limits": {
+                                "minimum": {
+                                    "days": 10
+                                },
+                                "maximum": {
+                                    "days": 50
+                                }
+                            },
                             "answers": [{
                                     "type": "Date",
-                                    "id": "reporting-period-answer-from",
+                                    "id": "period-from",
                                     "label": "From",
                                     "mandatory": true,
-                                    "q_code": "11"
+                                    "q_code": "11",
+                                    "minimum": {
+                                        "meta": "ref_p_start_date",
+                                        "offset_by": {
+                                            "days": -19
+                                        }
+                                    }
                                 },
                                 {
                                     "type": "Date",
-                                    "id": "reporting-period-answer-to",
+                                    "id": "period-to",
                                     "label": "To",
                                     "mandatory": true,
-                                    "q_code": "12"
+                                    "q_code": "12",
+                                    "maximum": {
+                                        "meta": "ref_p_end_date",
+                                        "offset_by": {
+                                            "days": 20
+                                        }
+                                    }
                                 }
                             ]
                         }]
@@ -247,7 +267,7 @@
                                 "mandatory": true
                             }],
                             "type": "General",
-                            "title": "For the period {{format_conditional_date (answers['reporting-period-answer-from'], exercise.start_date)}} to {{format_conditional_date (answers['reporting-period-answer-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total turnover</em>, excluding VAT?"
+                            "title": "For the period {{format_conditional_date (answers['period-from'], exercise.start_date)}} to {{format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total turnover</em>, excluding VAT?"
                         }],
                         "title": "Turnover"
                     },
