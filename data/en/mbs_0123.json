@@ -55,7 +55,18 @@
                                     }]
                                 },
                                 {
-                                    "question": "Significant changes"
+                                    "question": "Significant changes",
+                                    "content": [{
+                                        "description": "Include:",
+                                        "list": [
+                                            "change in level of business activity",
+                                            "maintenance/shutdowns",
+                                            "special/calendar events",
+                                            "weather",
+                                            "price effects",
+                                            "currency effects (increase/decrease in the currency value)"
+                                        ]
+                                    }]
                                 }
                             ]
                         },
