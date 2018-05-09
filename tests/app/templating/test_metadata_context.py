@@ -76,3 +76,14 @@ class TestMetadataContext(SurveyRunnerTestCase):
         self.assertEqual(escaped_bad_characters, survey['eq_id'])
         self.assertEqual(escaped_bad_characters, survey['collection_id'])
         self.assertEqual(escaped_bad_characters, survey['form_type'])
+
+    def test_clean_leading_trailing_spaces(self):
+        jwt = self.jwt.copy()
+        jwt['trad_as'] = ' '
+        jwt['ru_name'] = '   Apple   '
+
+        with self.application.test_request_context():
+            metadata = parse_metadata(jwt)
+
+        self.assertEqual(metadata['trad_as'], '')
+        self.assertEqual(metadata['ru_name'], 'Apple')
