@@ -36,8 +36,8 @@
                             "content": [{
                                 "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate.",
                                 "list": [
-                                  "Volume of potable water that was supplied to customers",
-                                  "Significant changes"
+                                    "Volume of potable water that was supplied to customers",
+                                    "Significant changes"
                                 ]
                             }]
                         },
