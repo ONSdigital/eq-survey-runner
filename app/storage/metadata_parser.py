@@ -83,7 +83,8 @@ def parse_metadata(metadata_to_check):
     except (RuntimeError, ValueError, TypeError) as e:
         logger.error('unable to parse metadata', exc_info=e)
         raise InvalidTokenException('incorrect data in token')
-    return parsed
+
+    return clean_leading_trailing_spaces(parsed)
 
 
 def is_valid_metadata(metadata):
@@ -91,3 +92,14 @@ def is_valid_metadata(metadata):
         if field.mandatory and key not in metadata:
             return False, key
     return True, ''
+
+
+def clean_leading_trailing_spaces(metadata):
+    clean_metadata = {}
+    for key, value in metadata.items():
+        if isinstance(value, str):
+            value = value.strip()
+
+        clean_metadata[key] = value
+
+    return clean_metadata
