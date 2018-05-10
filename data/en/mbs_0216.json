@@ -2,7 +2,7 @@
     "title": "Monthly Business Survey",
     "survey_id": "009",
     "mime_type": "application/json/ons/eq",
-    "theme": "default",
+    "theme": "northernireland",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
     "legal_basis": "StatisticsOfTradeAct",
@@ -61,6 +61,18 @@
                                     ]
                                 },
                                 {
+                                    "question": "Value of exports",
+                                    "content": [{
+                                        "description": "Include:",
+                                        "list": [
+                                            "all countries outside of England, Scotland, Wales and Northern Ireland"
+                                        ]
+                                    }]
+                                },
+                                {
+                                    "question": "Value of excise duty"
+                                },
+                                {
                                     "question": "Changes in turnover",
                                     "content": [{
                                         "description": "Include:",
@@ -73,18 +85,6 @@
                                             "currency effects (increase/decrease in the currency value)"
                                         ]
                                     }]
-                                },
-                                {
-                                    "question": "Value of exports",
-                                    "content": [{
-                                        "description": "Include:",
-                                        "list": [
-                                            "all countries outside of England, Scotland, Wales and Northern Ireland"
-                                        ]
-                                    }]
-                                },
-                                {
-                                    "question": "Value of excise duty"
                                 }
                             ]
                         },
@@ -148,19 +148,39 @@
                             "type": "DateRange",
                             "id": "reporting-period-question-2",
                             "title": "What are the dates of the period that you will be reporting for?",
+                            "period_limits": {
+                                "minimum": {
+                                    "days": 10
+                                },
+                                "maximum": {
+                                    "days": 50
+                                }
+                            },
                             "answers": [{
                                     "type": "Date",
                                     "id": "period-from",
                                     "label": "From",
                                     "mandatory": true,
-                                    "q_code": "11"
+                                    "q_code": "11",
+                                    "minimum": {
+                                        "meta": "ref_p_start_date",
+                                        "offset_by": {
+                                            "days": -19
+                                        }
+                                    }
                                 },
                                 {
                                     "type": "Date",
                                     "id": "period-to",
                                     "label": "To",
                                     "mandatory": true,
-                                    "q_code": "12"
+                                    "q_code": "12",
+                                    "maximum": {
+                                        "meta": "ref_p_end_date",
+                                        "offset_by": {
+                                            "days": 20
+                                        }
+                                    }
                                 }
                             ]
                         }]
@@ -352,7 +372,7 @@
                                 ],
                                 "id": "changes-in-turnover-answer-2",
                                 "type": "Checkbox",
-                                "mandatory": false
+                                "mandatory": true
                             }],
                             "type": "General",
                             "id": "changes-in-turnover-question-2"

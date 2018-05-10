@@ -23,7 +23,13 @@
                         "id": "date-range-question",
                         "title": "Enter Date Range",
                         "type": "DateRange",
-                        "description": "Enter a date range that is at least 23 days apart and at most 1 month 23 days apart",
+                        "guidance": {
+                            "content": [{
+                                "list": [
+                                    "Enter a date range between 23 days and 1 month and 20 days apart"
+                                ]
+                            }]
+                        },
                         "period_limits": {
                             "minimum": {
                                 "days": 23

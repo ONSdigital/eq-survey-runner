@@ -4,7 +4,7 @@
     "data_version": "0.0.2",
     "survey_id": "023",
     "title": "Date formats",
-    "description": "A test schema for single date period validation",
+    "description": "A test schema for different date formats",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "variables": {
@@ -17,23 +17,6 @@
             "title": "Date Range Validation",
             "blocks": [{
                     "type": "Question",
-                    "id": "date-block",
-                    "title": "Date",
-                    "description": "This date will be used as a maximum date for the 'To' date in the next question",
-                    "questions": [{
-                        "id": "date-question",
-                        "title": "Enter Date",
-                        "type": "General",
-                        "answers": [{
-                            "id": "date",
-                            "label": "Enter date",
-                            "mandatory": true,
-                            "type": "Date"
-                        }]
-                    }]
-                },
-                {
-                    "type": "Question",
                     "id": "date-range-block",
                     "title": "Date Range",
                     "questions": [{
@@ -43,27 +26,29 @@
                         "guidance": {
                             "content": [{
                                 "list": [
-                                    "Period 'from' date should be greater than 19 days before {{exercise.start_date|format_date}}",
-                                    "Period 'from' should also be no greater than 20 days after 11 June 2017",
-                                    "Period 'to' date should be no greater than 1 month 10 days after {{answers['date']|format_date}}"
+                                    "Dates between 2 and 3 months apart",
+                                    "Period from date greater than 1 month before {{exercise.start_date|format_date}}",
+                                    "Period to date no greater than 3 months after {{exercise.end_date|format_date}}"
                                 ]
                             }]
+                        },
+                        "period_limits": {
+                            "minimum": {
+                                "months": 2
+                            },
+                            "maximum": {
+                                "months": 3
+                            }
                         },
                         "answers": [{
                                 "id": "date-range-from",
                                 "label": "Period from",
                                 "mandatory": true,
-                                "type": "Date",
+                                "type": "MonthYearDate",
                                 "minimum": {
                                     "meta": "ref_p_start_date",
                                     "offset_by": {
-                                        "days": -19
-                                    }
-                                },
-                                "maximum": {
-                                    "value": "2017-06-11",
-                                    "offset_by": {
-                                        "days": 20
+                                        "months": -1
                                     }
                                 }
                             },
@@ -71,12 +56,11 @@
                                 "id": "date-range-to",
                                 "label": "Period to",
                                 "mandatory": true,
-                                "type": "Date",
-                                "minimum": {
-                                    "answer_id": "date",
+                                "type": "MonthYearDate",
+                                "maximum": {
+                                    "meta": "ref_p_end_date",
                                     "offset_by": {
-                                        "months": 1,
-                                        "days": 10
+                                        "months": 3
                                     }
                                 }
                             }

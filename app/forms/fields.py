@@ -22,11 +22,12 @@ def get_field(answer, label, error_messages, answer_store, metadata):
         field = get_number_field(answer, label, guidance, error_messages, answer_store)
     elif answer['type'] == 'Date':
         field = get_date_field(answer, label, guidance, error_messages, answer_store, metadata)
+    elif answer['type'] == 'MonthYearDate':
+        field = get_month_year_field(answer, label, guidance, error_messages, answer_store, metadata)
     else:
         field = {
             'Radio': get_select_field,
             'Checkbox': get_select_multiple_field,
-            'MonthYearDate': get_month_year_field,
             'TextArea': get_text_area_field,
             'TextField': get_string_field,
             'Dropdown': get_dropdown_field,
@@ -113,9 +114,9 @@ def get_date_field(answer, label, guidance, error_messages, answer_store, metada
     )
 
 
-def get_month_year_field(answer, label, guidance, error_messages):
+def get_month_year_field(answer, label, guidance, error_messages, answer_store, metadata):
     return FormField(
-        get_month_year_form(answer, error_messages),
+        get_month_year_form(answer, answer_store, metadata, error_messages),
         label=label,
         description=guidance,
     )
