@@ -44,7 +44,7 @@ class TestTemplateRenderer(unittest.TestCase):
 
         rendered = TemplateRenderer().render(title, **context)
 
-        self.assertEqual(rendered, '"')
+        self.assertEqual(rendered, '&#34;')
 
     def test_household_summary_values_are_escaped_and_not_encoded(self):
         description = "<h2 class='neptune'>Your household includes:</h2> " \
@@ -62,7 +62,7 @@ class TestTemplateRenderer(unittest.TestCase):
                                    '<ul>'
                                    '<li>Alice Aardvark</li>'
                                    '<li>Bob Berty Brown</li>'
-                                   r'<li>\ " !</li>'
+                                   r'<li>\ &#34; !</li>'
                                    '<li>Dave Dixon Davies</li>'
                                    '</ul>')
 

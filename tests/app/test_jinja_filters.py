@@ -17,6 +17,10 @@ from app.jinja_filters import format_date, format_conditional_date, format_curre
 
 
 class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
+    def setUp(self):
+        self.autoescape_context = Mock(autoescape=True)
+        self.no_autoescape_context = Mock(autoescape=False)
+        super(TestJinjaFilters, self).setUp()
 
     def test_format_currency_for_input(self):
         self.assertEqual(format_currency_for_input('100', 2), '100.00')
@@ -63,55 +67,47 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
     def test_format_multilined_string_matches_carriage_return(self):
         # Given
         new_line = 'this is on a new\rline'
-        context = Mock()
-        context.autoescape = False
 
         # When
-        format_value = format_multilined_string(context, new_line)
+        format_value = format_multilined_string(self.no_autoescape_context, new_line)
 
         self.assertEqual(format_value, '<p>this is on a new<br>line</p>')
 
     def test_format_multilined_string_matches_new_line(self):
         # Given
         new_line = 'this is on a new\nline'
-        context = Mock()
-        context.autoescape = False
 
         # When
-        format_value = format_multilined_string(context, new_line)
+        format_value = format_multilined_string(self.no_autoescape_context,
+                                                new_line)
 
         self.assertEqual(format_value, '<p>this is on a new<br>line</p>')
 
     def test_format_multilined_string_matches_carriage_return_new_line(self):
         # Given
         new_line = 'this is on a new\r\nline'
-        context = Mock()
-        context.autoescape = False
 
         # When
-        format_value = format_multilined_string(context, new_line)
+        format_value = format_multilined_string(self.no_autoescape_context, new_line)
 
         self.assertEqual(format_value, '<p>this is on a new<br>line</p>')
 
     def test_format_multilined_string(self):
         # Given
         new_line = 'this is\ron a\nnew\r\nline'
-        context = Mock()
-        context.autoescape = False
 
         # When
-        format_value = format_multilined_string(context, new_line)
+        format_value = format_multilined_string(self.no_autoescape_context,
+                                                new_line)
 
         self.assertEqual(format_value, '<p>this is<br>on a<br>new<br>line</p>')
 
     def test_format_multilined_string_auto_escape(self):
         # Given
         new_line = '<'
-        context = Mock()
-        context.autoescape = True
 
         # When
-        format_value = format_multilined_string(context, new_line)
+        format_value = format_multilined_string(self.autoescape_context, new_line)
 
         self.assertEqual(str(format_value), '<p>&lt;</p>')
 
@@ -120,7 +116,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         date_format = '%-d %B %Y'
 
         # When
-        format_value = get_current_date()
+        format_value = get_current_date(self.no_autoescape_context)
         current_date = as_london_tz(datetime.utcnow()).strftime(date_format)
 
         # Then
@@ -131,7 +127,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         date = '2017-01-01'
 
         # When
-        format_value = format_date(date)
+        format_value = format_date(self.no_autoescape_context, date)
 
         # Then
         self.assertEqual(format_value, "<span class='date'>1 January 2017</span>")
@@ -141,7 +137,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         date = '2017-01'
 
         # When
-        format_value = format_date(date)
+        format_value = format_date(self.no_autoescape_context, date)
 
         # Then
         self.assertEqual(format_value, "<span class='date'>January 2017</span>")
@@ -152,7 +148,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         date_format = '%-d %B %Y at %H:%M'
 
         # When
-        format_value = format_datetime(date_time, date_format)
+        format_value = format_datetime(self.no_autoescape_context, date_time, date_format)
 
         # Then
         self.assertEqual(format_value, "<span class='date'>29 March 2018 at 12:59</span>")
@@ -163,7 +159,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         date_format = '%-d %B %Y at %H:%M'
 
         # When
-        format_value = format_datetime(date_time, date_format)
+        format_value = format_datetime(self.no_autoescape_context, date_time, date_format)
 
         # Then
         self.assertEqual(format_value, "<span class='date'>28 October 2018 at 11:59</span>")
@@ -179,7 +175,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
             date1 = nonsense[0]
             date2 = nonsense[1]
             with self.assertRaises(Exception) as exception:
-                format_conditional_date(date1, date2)
+                format_conditional_date(self.no_autoescape_context, date1, date2)
         # Then
             self.assertIn("does not match format '%Y-%m'", str(exception.exception))
 
@@ -188,7 +184,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
 
         # When
         with self.assertRaises(Exception) as exception:
-            format_conditional_date(None, None)
+            format_conditional_date(self.no_autoescape_context, None, None)
 
         # Then
         self.assertIn('No valid dates passed to format_conditional_dates filter', str(exception.exception))
@@ -205,7 +201,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
             date1 = triple[0]
             date2 = triple[1]
 
-            format_value = format_conditional_date(date1, date2)
+            format_value = format_conditional_date(self.no_autoescape_context, date1, date2)
 
             # Then
             self.assertEqual(format_value, "<span class='date'>{date}</span>".format(date=triple[2]))
@@ -246,7 +242,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         end_date = '2017-01-31'
 
         # When
-        format_value = format_date_range(start_date, end_date)
+        format_value = format_date_range(self.no_autoescape_context, start_date, end_date)
 
         # Then
         self.assertEqual(format_value, "<span class='date'>1 January 2017</span> to <span class='date'>31 January 2017</span>")
@@ -256,7 +252,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         start_date = '2017-01-01'
 
         # When
-        format_value = format_date_range(start_date)
+        format_value = format_date_range(self.no_autoescape_context, start_date)
 
         # Then
         self.assertEqual(format_value, "<span class='date'>1 January 2017</span>")
@@ -266,7 +262,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         month_year_date = '2018-03'
 
         # When
-        format_value = format_month_year_date(month_year_date)
+        format_value = format_month_year_date(self.no_autoescape_context, month_year_date)
 
         self.assertEqual(format_value, "<span class='date'>March 2018</span>")
 
@@ -427,7 +423,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
     def test_format_unordered_list(self):
         list_items = [['item 1', 'item 2']]
 
-        formatted_value = format_unordered_list(list_items)
+        formatted_value = format_unordered_list(self.no_autoescape_context, list_items)
 
         expected_value = '<ul><li>item 1</li><li>item 2</li></ul>'
 
@@ -436,13 +432,13 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
     def test_format_unordered_list_with_no_input(self):
         list_items = []
 
-        formatted_value = format_unordered_list(list_items)
+        formatted_value = format_unordered_list(self.no_autoescape_context, list_items)
 
         self.assertEqual('', formatted_value)
 
     def test_format_unordered_list_with_empty_list(self):
         list_items = [[]]
 
-        formatted_value = format_unordered_list(list_items)
+        formatted_value = format_unordered_list(self.no_autoescape_context, list_items)
 
         self.assertEqual('', formatted_value)
