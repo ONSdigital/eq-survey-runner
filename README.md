@@ -262,6 +262,7 @@ EQ_ENABLE_SECURE_SESSION_COOKIE - Set secure session cookies
 EQ_MAX_HTTP_POST_CONTENT_LENGTH - The maximum http post content length that the system wil accept
 EQ_MAX_NUM_REPEATS - The maximum number of repeats the system will allow
 EQ_DEVELOPER_LOGGING - Enable developer style logging described here http://structlog.readthedocs.io/en/stable/development.html
+EQ_ENABLE_LIVE_RELOAD - Enable livereload of browser when scripts, styles or templates are updated
 
 EQ_NEW_RELIC_ENABLED - Enable New Relic monitoring
 NEW_RELIC_LICENSE_KEY - Enable new relic monitoring by supplying a New Relic licence key

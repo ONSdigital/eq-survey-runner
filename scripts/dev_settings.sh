@@ -8,6 +8,10 @@ if [ -z "$EQ_DEVELOPER_LOGGING" ]; then
     export EQ_DEVELOPER_LOGGING=True
 fi
 
+if [ -z "$EQ_ENABLE_LIVE_RELOAD" ]; then
+    export EQ_ENABLE_LIVE_RELOAD=True
+fi
+
 if [ -z "$EQ_ENABLE_SECURE_SESSION_COOKIE" ]; then
     export EQ_ENABLE_SECURE_SESSION_COOKIE=False
 fi

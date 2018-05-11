@@ -7,6 +7,7 @@ class TestApplicationVariables(IntegrationTestCase):
     def setUp(self):
         settings.EQ_ENABLE_FLASK_DEBUG_TOOLBAR = True
         settings.EQ_DEV_MODE = True
+        settings.EQ_ENABLE_LIVE_RELOAD = True
         settings.EQ_UA_ID = 'TestId'
         super().setUp()
 
@@ -14,6 +15,7 @@ class TestApplicationVariables(IntegrationTestCase):
         super().tearDown()
         settings.EQ_ENABLE_FLASK_DEBUG_TOOLBAR = False
         settings.EQ_DEV_MODE = False
+        settings.EQ_ENABLE_LIVE_RELOAD = False
         settings.EQ_UA_ID = None
 
     def test_flask_toolbar_is_displayed(self):
@@ -25,3 +27,8 @@ class TestApplicationVariables(IntegrationTestCase):
         self.launchSurvey('0', 'star_wars')
         self.assertStatusOK()
         self.assertInPage('GoogleAnalyticsObject', 'The page does not contain the GoogleAnalyticsObject')
+
+    def test_livereload_script_rendered(self):
+        self.launchSurvey('0', 'star_wars')
+        self.assertStatusOK()
+        self.assertInPage('__bs_script__', 'The page does not contain the browsersync script')
