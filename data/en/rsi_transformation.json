@@ -25,7 +25,7 @@
                             "list": [
                                 "On average it takes five minutes to complete this survey once you’ve collected the information.",
                                 "Provide figures based on UK economic ownership. This is the same method used when producing statutory accounts.",
-                                "Data should relate to all sites in England, Scotland, Wales and Northern Ireland, but excludes the Channel Islands and Isle of Man.",
+                                "The UK consists of England, Scotland, Wales and Northern Ireland, but excludes the Channel Islands and the Isle of Man.",
                                 "You can provide informed estimates if actual figures aren't available.",
                                 "We will treat your data securely and confidentially."
                             ]
@@ -69,7 +69,7 @@
                                     {
                                         "description": "Exclude:",
                                         "list": [
-                                            "catering activity (for example, sales of preprepared food and drink)",
+                                            "sales from catering facilities to customers (e.g. in-store cafes)",
                                             "revenue from mobile phone network commission and top-up",
                                             "NHS receipts",
                                             "lottery sales",
@@ -308,7 +308,7 @@
                                 {
                                     "title": "Exclude",
                                     "list": [
-                                        "catering activity (for example, sales of preprepared food and drink)",
+                                        "sales from catering facilities to customers (e.g. in-store cafes)",
                                         "revenue from mobile phone network commission and top-up",
                                         "NHS receipts",
                                         "lottery sales",
@@ -415,7 +415,7 @@
                             "mandatory": true
                         }],
                         "id": "online-sales-question",
-                        "title": "Of the <em>{{answers['retail-sales-answer']|format_currency}}</em> retail sales, how much were your online sales <em>including VAT</em>?",
+                        "title": "Of the <em>{{answers['retail-sales-answer']|format_currency}}</em> retail sales, how much were your <em>online sales</em>?",
                         "description": "These are sales of goods made online, irrespective of the delivery method.",
                         "type": "General"
                     }],
