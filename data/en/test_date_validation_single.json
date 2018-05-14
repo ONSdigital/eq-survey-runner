@@ -19,7 +19,7 @@
                     "type": "Question",
                     "id": "date-block",
                     "title": "Date",
-                    "description": "This date will be used as a maximum date for the 'To' date in the next question",
+                    "description": "This date will be used as a minimum date for the 'To' date in the next question",
                     "questions": [{
                         "id": "date-question",
                         "title": "Enter Date",
@@ -45,7 +45,7 @@
                                 "list": [
                                     "Period 'from' date should be greater than 19 days before {{exercise.start_date|format_date}}",
                                     "Period 'from' should also be no greater than 20 days after 11 June 2017",
-                                    "Period 'to' date should be no greater than 1 month 10 days after {{answers['date']|format_date}}"
+                                    "Period 'to' date should be greater than 1 month 10 days after {{answers['date']|format_date}}"
                                 ]
                             }]
                         },
