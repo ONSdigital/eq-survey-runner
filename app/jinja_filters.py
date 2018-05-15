@@ -7,7 +7,7 @@ from dateutil import relativedelta, tz
 
 import flask
 
-from jinja2 import Markup, escape, evalcontextfilter
+from jinja2 import Markup, escape, evalcontextfilter, evalcontextfunction
 from babel import units, numbers
 
 
@@ -67,39 +67,46 @@ def format_multilined_string(context, value):
     value_with_line_break_tag = re.sub(new_line_regex, '<br>', escaped_value)
     result = '<p>{}</p>'.format(value_with_line_break_tag)
 
-    if context.autoescape:
-        return Markup(result)
-    return result
+    return mark_safe(context, result)
 
 
+@evalcontextfunction
 @blueprint.app_template_filter()
-def get_current_date():
+def get_current_date(context):
     now = as_london_tz(datetime.utcnow()).strftime(DATE_FORMAT)
-    return "<span class='date'>{date}</span>".format(date=now)
+    result = "<span class='date'>{date}</span>".format(date=now)
+    return mark_safe(context, result)
 
 
+@evalcontextfilter
 @blueprint.app_template_filter()
-def format_date(value):
+def format_date(context, value):
     date_format = '%B %Y'
     if value and re.match(r'\d{4}-\d{2}-\d{2}', value):
         date_format = DATE_FORMAT
 
-    return "<span class='date'>{date}</span>".format(date=convert_to_datetime(value).strftime(date_format))
+    result = "<span class='date'>{date}</span>".format(date=convert_to_datetime(value).strftime(date_format))
+    return mark_safe(context, result)
 
 
+@evalcontextfilter
 @blueprint.app_template_filter()
-def format_month_year_date(value, date_format='%B %Y'):
-    return "<span class='date'>{date}</span>".format(date=datetime.strptime(value, '%Y-%m').strftime(date_format))
+def format_month_year_date(context, value, date_format='%B %Y'):
+    result = "<span class='date'>{date}</span>".format(date=datetime.strptime(value, '%Y-%m').strftime(date_format))
+    return mark_safe(context, result)
 
 
+@evalcontextfilter
 @blueprint.app_template_filter()
-def format_datetime(value, date_format=DATE_FORMAT + ' at %H:%M'):
+def format_datetime(context, value, date_format=DATE_FORMAT + ' at %H:%M'):
     london_date_time = as_london_tz(datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
-    return "<span class='date'>{date}</span>".format(date=london_date_time.strftime(date_format))
+    result = "<span class='date'>{date}</span>".format(date=london_date_time.strftime(date_format))
+    return mark_safe(context, result)
 
 
+@evalcontextfunction
 @blueprint.app_template_filter()
-def format_conditional_date(date1=None, date2=None):
+def format_conditional_date(context, date1=None, date2=None):
     """
     This function format_conditional_date accepts two dates, a user submitted date and a metadata date
 
@@ -115,7 +122,7 @@ def format_conditional_date(date1=None, date2=None):
     if date is None:
         raise Exception('No valid dates passed to format_conditional_dates filter')
 
-    return format_date(date)
+    return format_date(context, date)
 
 
 @blueprint.app_template_filter()
@@ -131,11 +138,12 @@ def calculate_years_difference(from_str, to_str):
     return year_string.format(difference.years)
 
 
-def format_date_range(start_date, end_date=None):
+@evalcontextfunction
+def format_date_range(context, start_date, end_date=None):
     if end_date:
-        return '{from_date} to {to_date}'.format(from_date=format_date(start_date),
-                                                 to_date=format_date(end_date))
-    return format_date(start_date)
+        return '{from_date} to {to_date}'.format(from_date=format_date(context, start_date),
+                                                 to_date=format_date(context, end_date))
+    return format_date(context, start_date)
 
 
 @blueprint.app_template_filter()
@@ -153,8 +161,9 @@ def format_household_member_name_possessive(names):
     return name + '’s'
 
 
+@evalcontextfilter
 @blueprint.app_template_filter()
-def format_unordered_list(list_items):
+def format_unordered_list(context, list_items):
     summary_list = ''
 
     if list_items and list_items[0]:
@@ -163,22 +172,23 @@ def format_unordered_list(list_items):
             summary_list += '<li>{}</li>'.format(item)
         summary_list += '</ul>'
 
-    return summary_list
+    return mark_safe(context, summary_list)
 
 
 @blueprint.app_template_filter()
 def concatenated_list(list_items, delimiter=', '):
-    return delimiter.join(map(lambda item: item.strip(), filter(None, list_items)))
+    return Markup(delimiter).join(item.strip() for item in list_items if item)
 
 
+@evalcontextfilter
 @blueprint.app_template_filter()
-def format_household_summary(names):
+def format_household_summary(context, names):
     if names:
         person_list = []
         for first_name, middle_name, last_name in zip(names[0], names[1], names[2]):
             person_list.append(format_household_member_name([first_name, middle_name, last_name]))
 
-        return format_unordered_list([person_list])
+        return format_unordered_list(context, [person_list])
     return ''
 
 
@@ -222,3 +232,9 @@ def format_currency_for_input_processor():
 @blueprint.app_context_processor
 def format_number_processor():
     return dict(format_number=format_number)
+
+
+def mark_safe(context, value):
+    if context.autoescape:
+        value = Markup(value)
+    return value

@@ -13,7 +13,7 @@ from app.jinja_filters import format_date, format_household_member_name, format_
 
 class TemplateRenderer:
     def __init__(self):
-        self.environment = Environment()
+        self.environment = Environment(autoescape=True)
 
         self.environment.filters['format_date'] = format_date
         self.environment.filters['format_household_name'] = format_household_member_name
