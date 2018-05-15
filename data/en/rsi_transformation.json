@@ -240,7 +240,7 @@
                             "default": 0
                         }],
                         "id": "total-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, how much was {{respondent.trad_as_or_ru_name}}’s total turnover <em>excluding VAT</em>?",
+                        "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, how much was {{respondent.trad_as_or_ru_name}}’s <em>total turnover excluding VAT</em>?",
                         "type": "General"
                     }],
                     "title": "Total turnover excluding VAT"
@@ -328,7 +328,7 @@
                             "decimal_places": 2
                         }],
                         "id": "retail-sales-question",
-                        "title": "How much were your retail sales <em>including VAT</em>?",
+                        "title": "How much were your <em>retail sales including VAT</em>?",
                         "description": "These are sales of goods to the general public (not businesses) for personal or household use.",
                         "type": "General"
                     }],
