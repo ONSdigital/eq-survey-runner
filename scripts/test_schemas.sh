@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
-docker pull onsdigital/eq-schema-validator
-validator="$(docker run -d -p 5001:5000 onsdigital/eq-schema-validator)"
+run_docker=true
+if [ "$1" == "--local" ] || [ "$2" == "--local" ]; then
+    run_docker=false
+fi
 
-sleep 3
+if [ "$run_docker" == true ]; then
+    docker pull onsdigital/eq-schema-validator
+    validator="$(docker run -d -p 5001:5000 onsdigital/eq-schema-validator)"
+    sleep 3
+fi
 
 green="$(tput setaf 2)"
 red="$(tput setaf 1)"
@@ -32,7 +38,7 @@ done
 
 exit=0
 
-if [ $# -eq 0 ]; then
+if [ $# -eq 0 ] || [ "$1" == "--local" ]; then
     file_path="./data/en"
 else
     file_path="$1"
@@ -63,5 +69,8 @@ done
 
 echo -e "\\n${green}$passed Passed${default} - ${red}$failed Failed${default}"
 
-docker rm -f "$validator"
+if [ "$run_docker" == true ]; then
+    docker rm -f "$validator"
+fi
+
 exit "$exit"
