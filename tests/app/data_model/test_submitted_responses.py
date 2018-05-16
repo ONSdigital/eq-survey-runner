@@ -61,14 +61,16 @@ class SubmittedResponsesTest(unittest.TestCase):
         item = submitted_responses.get_item('test_tx_id')
         self.assertIsNone(item)
 
-    @mock.patch('app.data_model.submitted_responses._get_table', return_value=None)
+    @mock.patch(
+        'app.data_model.submitted_responses._get_table',
+        return_value=None)
     def test_no_table(self, _get_table):
         self.assertFalse(submitted_responses.put_item(self.item))
         self.assertFalse(submitted_responses.get_item('test_tx_id'))
 
 
 class SubmittedResponsesGetTableTest(unittest.TestCase):
-    @mock.patch('app.data_model.submitted_responses.get_dynamodb')
+    @mock.patch('app.data_model.submitted_responses.dynamo_api.get_table')
     @mock.patch('app.data_model.submitted_responses.current_app', **{'config.new': {'EQ_SUBMITTED_RESPONSES_TABLE_NAME': 'foo'}})
-    def test_get_table(self, get_dynamodb, current_app): # pylint: disable=unused-argument
+    def test_get_table(self, get_table, current_app): # pylint: disable=unused-argument
         self.assertTrue(submitted_responses._get_table())  # pylint: disable=protected-access
