@@ -73,7 +73,11 @@ gulp.task('test:a11ym', done => {
 gulp.task('listen', () => {
   browserSync.init({
     proxy: process.env.EQ_SURVEY_RUNNER_URL,
-    open: false
+    open: false,
+    port: 5075,
+    ui: {
+      port: 5076
+    }
   })
   gulp.watch(paths.images.input, ['build:images'])
   gulp.watch(paths.styles.input_all, ['build:styles'])
