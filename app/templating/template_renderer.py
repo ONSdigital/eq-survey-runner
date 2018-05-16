@@ -5,52 +5,58 @@ import json
 import re
 from jinja2 import Environment
 
-from app.jinja_filters import format_date, format_household_member_name, format_currency, format_number,\
-    get_currency_symbol, format_household_summary, format_conditional_date, format_unordered_list, \
-    format_date_range, format_household_member_name_possessive, concatenated_list, calculate_years_difference, \
-    get_current_date
+import app.jinja_filters as filters
 
 
 class TemplateRenderer:
     def __init__(self):
-        self.environment = Environment(autoescape=True)
-
-        self.environment.filters['format_date'] = format_date
-        self.environment.filters['format_household_name'] = format_household_member_name
-        self.environment.filters['format_household_name_possessive'] = format_household_member_name_possessive
-        self.environment.filters['format_household_summary'] = format_household_summary
-        self.environment.filters['format_unordered_list'] = format_unordered_list
-        self.environment.globals['format_conditional_date'] = format_conditional_date
-        self.environment.filters['format_currency'] = format_currency
-        self.environment.filters['format_number'] = format_number
-        self.environment.filters['get_currency_symbol'] = get_currency_symbol
-        self.environment.globals['format_date_range'] = format_date_range
-        self.environment.filters['concatenated_list'] = concatenated_list
-        self.environment.globals['calculate_years_difference'] = calculate_years_difference
-        self.environment.globals['get_current_date'] = get_current_date
+        env = Environment(autoescape=True)
+        env.filters['format_date'] = filters.format_date
+        env.filters['format_household_name'] = filters.format_household_member_name
+        env.filters['format_household_name_possessive'] = filters.format_household_member_name_possessive
+        env.filters['format_household_summary'] = filters.format_household_summary
+        env.filters['format_unordered_list'] = filters.format_unordered_list
+        env.globals['format_conditional_date'] = filters.format_conditional_date
+        env.filters['format_currency'] = filters.format_currency
+        env.filters['format_number'] = filters.format_number
+        env.filters['get_currency_symbol'] = filters.get_currency_symbol
+        env.globals['format_date_range'] = filters.format_date_range
+        env.filters['concatenated_list'] = filters.concatenated_list
+        env.globals['calculate_years_difference'] = filters.calculate_years_difference
+        env.globals['get_current_date'] = filters.get_current_date
+        self.environment = env
 
     def render(self, renderable, **context):
+        """Render.
+
+        Substitute variables into renderable with the variables in context.
+
+        :param (dict) renderable: Map of variables to be substituted.
+        :param (dict) context: Map of variables to substitute.
+        :returns (dict): The rendered version of the original renderable dict.
         """
-        Substitute variables into renderable with the variables in context
-        :param renderable: dict with variables to be substituted
-        :param context: the variables to substitute
-        :return: the rendered version of the original renderable dict
-        """
-        json_string = json.dumps(renderable) if isinstance(renderable, dict) else renderable
+        json_string = json.dumps(renderable) if isinstance(
+            renderable, dict) else renderable
         template = self.environment.from_string(json_string)
         rendered = template.render(**context)
-        result = rendered if isinstance(renderable, dict) else json.dumps(rendered)
-
+        result = rendered if isinstance(
+            renderable, dict) else json.dumps(rendered)
         return json.loads(result)
 
     @staticmethod
     def safe_content(content):
+        """Make content safe.
+
+        Replaces variable with ellipsis and strips any HTML tags.
+
+        :param (str) content: Input string.
+        :returns (str): Modified string.
+        """
         if content is not None:
             # Replace piping with ellipsis
-            content = re.sub(r'\{\{[^}]+\}\}', '…', content)
+            content = re.sub(r'{{[^}]+}}', '…', content)
             # Strip HTML Tags
             content = re.sub(r'</?[^>]+>', '', content)
-
         return content
 
 

@@ -81,18 +81,20 @@ def get_current_date(context):
 @evalcontextfilter
 @blueprint.app_template_filter()
 def format_date(context, value):
+    """Format a datetime string.
+
+    :param (jinja2.nodes.EvalContext) context: Evaluation context.
+    :param (any) value: Value representing a datetime.
+    :returns (str): Formatted datetime.
+    """
+    value = value[0] if isinstance(value, list) else value
+    if not isinstance(value, str):
+        return value
     date_format = '%B %Y'
     if value and re.match(r'\d{4}-\d{2}-\d{2}', value):
         date_format = DATE_FORMAT
-
-    result = "<span class='date'>{date}</span>".format(date=convert_to_datetime(value).strftime(date_format))
-    return mark_safe(context, result)
-
-
-@evalcontextfilter
-@blueprint.app_template_filter()
-def format_month_year_date(context, value, date_format='%B %Y'):
-    result = "<span class='date'>{date}</span>".format(date=datetime.strptime(value, '%Y-%m').strftime(date_format))
+    result = "<span class='date'>{date}</span>".format(
+        date=convert_to_datetime(value).strftime(date_format))
     return mark_safe(context, result)
 
 
