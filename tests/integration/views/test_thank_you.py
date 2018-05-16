@@ -5,9 +5,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 class TestThankYou(IntegrationTestCase):
 
-    def setUp(self):
-        super().SetUpWithDynamoDB()
-
     def test_thank_you_page_shows_trading_as_if_present(self):
         self.launchSurvey('test', 'currency')
 

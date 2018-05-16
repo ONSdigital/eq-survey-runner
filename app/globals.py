@@ -1,19 +1,16 @@
-import boto3
-from botocore.config import Config
 from flask import g, current_app, session as cookie_session
 from structlog import get_logger
-
 from app.settings import EQ_SESSION_ID, USER_IK
 
 from app.data_model.questionnaire_store import QuestionnaireStore
-from app.data_model.session_store import SessionStore
-from app.storage.encrypted_questionnaire_storage import EncryptedQuestionnaireStorage
 from app.questionnaire.completeness import Completeness
 
 logger = get_logger()
 
 
 def get_questionnaire_store(user_id, user_ik):
+    from app.storage.encrypted_questionnaire_storage import EncryptedQuestionnaireStorage
+
     # Sets up a single QuestionnaireStore instance per request.
     store = g.get('_questionnaire_store')
     if store is None:
@@ -25,6 +22,8 @@ def get_questionnaire_store(user_id, user_ik):
 
 
 def get_session_store():
+    from app.data_model.session_store import SessionStore
+
     if USER_IK not in cookie_session or EQ_SESSION_ID not in cookie_session:
         return None
 
@@ -39,6 +38,8 @@ def get_session_store():
 
 
 def create_session_store(eq_session_id, user_id, user_ik, session_data):
+    from app.data_model.session_store import SessionStore
+
     # pylint: disable=W0212
     pepper = current_app.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
     g._session_store = SessionStore(user_ik, pepper).create(eq_session_id, user_id, session_data).save()
@@ -83,23 +84,3 @@ def get_completeness(user):
             g.schema, answer_store, completed_blocks, routing_path, metadata)
 
     return completeness_object
-
-
-def get_dynamodb():
-    if not is_dynamodb_enabled():
-        logger.warn('DynamoDB not enabled')
-        return
-
-    dynamodb = g.get('_dynamodb')
-    if not dynamodb:
-        # Number of additional connection attempts
-        config = Config(retries={'max_attempts': 1})
-
-        dynamodb = g._dynamodb = boto3.resource(
-            'dynamodb', endpoint_url=current_app.config['EQ_DYNAMODB_ENDPOINT'], config=config)
-
-    return dynamodb
-
-
-def is_dynamodb_enabled():
-    return current_app.config['EQ_DYNAMODB_ENABLED']
