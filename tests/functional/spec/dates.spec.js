@@ -1,5 +1,6 @@
 const helpers = require('../helpers');
 const DatesPage = require('../pages/surveys/dates/date-block.page');
+const MinMaxBlockPage = require('../pages/surveys/dates/min-max-block.page');
 const SummaryPage = require('../pages/surveys/dates/summary.page');
 
 describe('Date checks', function() {
@@ -28,6 +29,9 @@ describe('Date checks', function() {
         .setValue(DatesPage.singleDateyear(), 1999)
 
         .click(DatesPage.submit())
+        // Interstitial displaying min-max formats
+        .click(MinMaxBlockPage.submit())
+        .getUrl().should.eventually.contain(SummaryPage.pageName)
 
         // Then the summary screen shows the dates entered formatted
         .getText(SummaryPage.dateRangeFromAnswer()).should.eventually.contain('1 March 2016 to 3 May 2017')
@@ -163,6 +167,9 @@ describe('Date checks', function() {
         // Then when it is corrected, it goes to the summary page and the information is correct
         .setValue(DatesPage.monthYearanswerYear(), 2018)
         .click(DatesPage.submit())
+        // Interstitial displaying min-max formats
+        .click(MinMaxBlockPage.submit())
+        .getUrl().should.eventually.contain(SummaryPage.pageName)
 
         // Then the summary screen shows the dates entered formatted
         .getText(SummaryPage.dateRangeFromAnswer()).should.eventually.contain('1 March 2016 to 3 May 2017')

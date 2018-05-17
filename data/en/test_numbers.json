@@ -154,7 +154,7 @@
                                     }
                                 }
                             ],
-                            "description": "",
+                            "description": "You entered a minimum value of <em>{{ min_value(answers['set-minimum'], answers['set-maximum']) }}</em> and a maximum value of <em>{{ max_value(answers['set-minimum'], answers['set-maximum']) }}</em>",
                             "id": "test-min-max-range-question",
                             "title": "Please enter test values (none mandatory)",
                             "type": "General"

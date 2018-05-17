@@ -28,6 +28,8 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
         }
 
         self.post(post_data)
+        self.assertInPage('Application of min and max filters to dates')
+        self.post(action='save_continue')
         self.assertInPage('22 February 2099')
         self.assertNotInPage('No answer provided')
 

@@ -8,6 +8,8 @@ from dateutil import relativedelta, tz
 import flask
 
 from jinja2 import Markup, escape, evalcontextfilter, evalcontextfunction
+from jinja2.exceptions import UndefinedError
+
 from babel import units, numbers
 
 
@@ -199,6 +201,26 @@ def format_number_to_alphabetic_letter(number):
     if 0 <= int(number) < 26:
         return string.ascii_lowercase[int(number)]
     return ''
+
+
+@blueprint.app_template_filter()
+def min_value(a, b):
+    try:
+        return min(i for i in [a, b] if i is not None)
+    except (TypeError, UndefinedError):
+        msg = ('Cannot determine minimum of incompatible types '
+               'min({}, {})'.format(a.__class__, b.__class__))
+        raise Exception(msg)
+
+
+@blueprint.app_template_filter()
+def max_value(a, b):
+    try:
+        return max(i for i in [a, b] if i is not None)
+    except (TypeError, UndefinedError):
+        msg = ('Cannot determine maximum of incompatible types '
+               'max({}, {})'.format(a.__class__, b.__class__))
+        raise Exception(msg)
 
 
 @blueprint.app_context_processor
