@@ -1,5 +1,6 @@
 from structlog import get_logger
 
+from app import settings
 from app.data_model import models, db_models
 from app.globals import is_dynamodb_enabled
 from app.storage import dynamo_api
@@ -9,19 +10,19 @@ logger = get_logger()
 
 TABLE_CONFIG = {
     db_models.QuestionnaireState: {
-        'table_name': 'questionnaire-state',
+        'table_name': settings.EQ_QUESTIONNAIRE_STATE_TABLE_NAME,
         'key_field': 'user_id',
         'schema': db_models.QuestionnaireStateSchema,
         'sql_model': models.QuestionnaireState,
     },
     db_models.EQSession: {
-        'table_name': 'eq-session',
+        'table_name': settings.EQ_SESSION_TABLE_NAME,
         'key_field': 'eq_session_id',
         'schema': db_models.EQSessionSchema,
         'sql_model': models.EQSession,
     },
     db_models.UsedJtiClaim: {
-        'table_name': 'used-jti-claim',
+        'table_name': settings.EQ_USED_JTI_CLAIM_TABLE_NAME,
         'key_field': 'jti_claim',
         'schema': db_models.UsedJtiClaimSchema,
         'sql_model': models.UsedJtiClaim,
@@ -39,7 +40,7 @@ def get_by_key(model_type, key_value, force_rds=False):
 
     if is_dynamodb_enabled() and not force_rds:
         # find in dynamo
-        table_name = 'dev-' + config['table_name']
+        table_name = config['table_name']
         returned_data = dynamo_api.get_item(table_name, key)
         if returned_data:
             model, _ = schema.load(returned_data)
@@ -73,12 +74,11 @@ def put(model, force_rds=False):
         sql_model = models.db.session.merge(sql_model)
         models.db.session.commit()
     else:
-        table_name = 'dev-' + config['table_name']
         item, _ = schema.dump(model)
 
         # TODO: update updated_at time
         # TODO: set created_at time
-        dynamo_api.put_item(table_name, item)
+        dynamo_api.put_item(config['table_name'], item)
 
 
 def delete(model, force_rds=False):
@@ -94,5 +94,4 @@ def delete(model, force_rds=False):
         models.db.session.delete(sql_model)
         models.db.session.commit()
     else:
-        table_name = 'dev-' + config['table_name']
-        dynamo_api.delete_item(table_name, key)
+        dynamo_api.delete_item(config['table_name'], key)
