@@ -7,7 +7,7 @@ from app.globals import get_dynamodb
 logger = get_logger()
 
 
-def put_item(table, item, fail_silently=False):
+def put_item(table, item):
     """Insert an item to table"""
     if isinstance(table, str):
         table = get_table(table)
@@ -16,54 +16,33 @@ def put_item(table, item, fail_silently=False):
         item['valid_until'] = int(
             item['valid_until'].strftime('%s'))  # convert to epoch
 
-    try:
-        response = table.put_item(
-            Item=item)['ResponseMetadata']['HTTPStatusCode']
-        return response == 200
-
-    except (BotoCoreError, BotoConnectionError, ConnectionError):
-        logger.warn('Could not load data into DynamoDB')
-        if fail_silently:
-            return False
-        raise
+    response = table.put_item(
+        Item=item)['ResponseMetadata']['HTTPStatusCode']
+    return response == 200
 
 
-def get_item(table, key, fail_silently=False):
+def get_item(table, key):
     """ Get an item given its key """
     if isinstance(table, str):
         table = get_table(table)
 
-    try:
-        response = table.get_item(Key=key)
-        item = response.get('Item', None)
-        if item and item.get('valid_until'):
-            item['valid_until'] = datetime.utcfromtimestamp(
-                item['valid_until'])
-        return item
-
-    except (BotoCoreError, BotoConnectionError, ConnectionError):
-        logger.warn('Could not get data from DynamoDB')
-        if fail_silently:
-            return None
-        raise
+    response = table.get_item(Key=key)
+    item = response.get('Item', None)
+    if item and item.get('valid_until'):
+        item['valid_until'] = datetime.utcfromtimestamp(
+            item['valid_until'])
+    return item
 
 
-def delete_item(table, key, fail_silently=False):
+def delete_item(table, key):
     """Deletes an item by its key
     """
     if isinstance(table, str):
         table = get_table(table)
 
-    try:
-        response = table.delete_item(Key=key)
-        item = response.get('Item', None)
-        return item
-
-    except (BotoCoreError, BotoConnectionError, ConnectionError):
-        logger.warn('Could not delete data from DynamoDB')
-        if fail_silently:
-            return None
-        raise
+    response = table.delete_item(Key=key)
+    item = response.get('Item', None)
+    return item
 
 
 def get_table(table_name):
