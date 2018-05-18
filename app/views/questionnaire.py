@@ -13,7 +13,7 @@ from structlog import get_logger
 
 from app.globals import get_session_store, is_dynamodb_enabled, get_completeness
 from app.data_model.answer_store import Answer, AnswerStore
-from app.data_model import submitted_responses
+from app.data_model.db_models import SubmittedResponse
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
 from app.helpers.form_helper import post_form_for_location
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required
@@ -26,6 +26,7 @@ from app.questionnaire.rules import get_answer_ids_on_routing_path
 
 from app.questionnaire.rules import evaluate_skip_conditions
 from app.keys import KEY_PURPOSE_SUBMISSION
+from app.storage import data_access
 from app.storage.storage_encryption import StorageEncryption
 from app.submitter.converter import convert_answers
 from app.submitter.submission_failed import SubmissionFailedException
@@ -247,7 +248,7 @@ def get_view_submission(eq_id, form_type):  # pylint: disable=unused-argument
     g.schema = load_schema_from_session_data(session_data)
 
     if _is_submission_viewable(g.schema.json, session_data.submitted_time):
-        submitted_data = submitted_responses.get_item(session_data.tx_id)
+        submitted_data = data_access.get_by_key(SubmittedResponse, session_data.tx_id)
 
         if submitted_data:
 
@@ -256,7 +257,7 @@ def get_view_submission(eq_id, form_type):  # pylint: disable=unused-argument
             pepper = current_app.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
             encrypter = StorageEncryption(current_user.user_id, current_user.user_ik, pepper)
 
-            submitted_data = json.loads(encrypter.decrypt_data(submitted_data['data']))
+            submitted_data = json.loads(encrypter.decrypt_data(submitted_data.data))
             answer_store = AnswerStore(existing_answers=submitted_data.get('answers'))
 
             metadata = submitted_data.get('metadata')
@@ -405,13 +406,13 @@ def _store_viewable_submission(answers, metadata, submitted_time):
 
     valid_until = submitted_time + timedelta(seconds=g.schema.json['view_submitted_response']['duration'])
 
-    item = {
-        'tx_id': metadata['tx_id'],
-        'data': encrypted_data,
-        'valid_until': valid_until
-    }
+    item = SubmittedResponse(
+        tx_id=metadata['tx_id'],
+        data=encrypted_data,
+        valid_until=valid_until
+    )
 
-    submitted_responses.put_item(item)
+    data_access.put(item)
 
 
 def is_view_submitted_response_enabled(schema):

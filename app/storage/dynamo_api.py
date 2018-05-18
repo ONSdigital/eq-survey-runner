@@ -12,10 +12,6 @@ def put_item(table, item):
     if isinstance(table, str):
         table = get_table(table)
 
-    if item and item.get('valid_until'):
-        item['valid_until'] = int(
-            item['valid_until'].strftime('%s'))  # convert to epoch
-
     response = table.put_item(
         Item=item)['ResponseMetadata']['HTTPStatusCode']
     return response == 200
@@ -28,9 +24,6 @@ def get_item(table, key):
 
     response = table.get_item(Key=key)
     item = response.get('Item', None)
-    if item and item.get('valid_until'):
-        item['valid_until'] = datetime.utcfromtimestamp(
-            item['valid_until'])
     return item
 
 

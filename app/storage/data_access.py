@@ -27,6 +27,12 @@ TABLE_CONFIG = {
         'schema': db_models.UsedJtiClaimSchema,
         'sql_model': models.UsedJtiClaim,
     },
+    db_models.SubmittedResponse: {
+        'table_name': settings.EQ_SUBMITTED_RESPONSES_TABLE_NAME,
+        'key_field': 'tx_id',
+        'schema': db_models.SubmittedResponseSchema,
+        'sql_model': None  # submitted responses aren't stored in RDS
+    }
 }
 
 
@@ -53,6 +59,8 @@ def get_by_key(model_type, key_value, force_rds=False):
     if not model:
         # find in RDS
         sql_model = config['sql_model']
+        if not sql_model:
+            return
 
         returned_data = sql_model.query.filter_by(**key).first()
         if returned_data:
@@ -70,9 +78,10 @@ def put(model, force_rds=False):
             force_rds or
             getattr(model, '_use_rds', False) or
             not is_dynamodb_enabled()):
-        sql_model = config['sql_model'].from_new_model(model)
-        sql_model = models.db.session.merge(sql_model)
-        models.db.session.commit()
+        if config['sql_model']:
+            sql_model = config['sql_model'].from_new_model(model)
+            sql_model = models.db.session.merge(sql_model)
+            models.db.session.commit()
     else:
         item, _ = schema.dump(model)
 
@@ -90,8 +99,9 @@ def delete(model, force_rds=False):
             force_rds or
             getattr(model, '_use_rds', False) or
             not is_dynamodb_enabled()):
-        sql_model = config['sql_model'].from_new_model(model)
-        models.db.session.delete(sql_model)
-        models.db.session.commit()
+        if config['sql_model']:
+            sql_model = config['sql_model'].from_new_model(model)
+            models.db.session.delete(sql_model)
+            models.db.session.commit()
     else:
         dynamo_api.delete_item(config['table_name'], key)

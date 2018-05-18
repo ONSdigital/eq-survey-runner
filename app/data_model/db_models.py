@@ -22,6 +22,21 @@ class UsedJtiClaim:
         self.used_at = used_at or datetime.datetime.now()
 
 
+class SubmittedResponse:
+    def __init__(self, tx_id, data, valid_until):
+        self.tx_id = tx_id
+        self.data = data
+        self.valid_until = valid_until
+
+
+class Timestamp(fields.Field):
+    def _serialize(self, value, attr, obj):
+        return int(value.strftime('%s'))
+
+    def _deserialize(self, value, attr, data):
+        return datetime.datetime.utcfromtimestamp(value)
+
+
 class LoadObjectMixin:
     def load_object(self, obj):
         data = {field: getattr(obj, field) for field in self._declared_fields}
@@ -33,6 +48,7 @@ class DateTimeSchemaMixin:
     # created_at = fields.DateTime()
     # updated_at = fields.DateTime()
     pass
+
 
 class QuestionnaireStateSchema(Schema, LoadObjectMixin, DateTimeSchemaMixin):
     user_id = fields.Str()
@@ -61,3 +77,13 @@ class UsedJtiClaimSchema(Schema, LoadObjectMixin):
     @post_load
     def make_model(self, data):
         return UsedJtiClaim(**data)
+
+
+class SubmittedResponseSchema(Schema, LoadObjectMixin):
+    tx_id = fields.Str()
+    data = fields.Str()
+    valid_until = Timestamp()
+
+    @post_load
+    def make_model(self, data):
+        return SubmittedResponse(**data)
