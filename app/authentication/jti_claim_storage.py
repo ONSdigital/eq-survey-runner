@@ -1,5 +1,6 @@
 from uuid import UUID
 
+from botocore.exceptions import ClientError
 from sqlalchemy.exc import IntegrityError
 from structlog import get_logger
 
@@ -44,8 +45,14 @@ def use_jti_claim(jti_claim):
     try:
         jti = UsedJtiClaim(jti_claim)
 
-        # TODO: use dynamo conditional expression to check if already claimed
-        data_access.put(jti)
+        data_access.put(jti, overwrite=False)
     except IntegrityError as e:
         logger.error('jti claim has already been used', jti_claim=jti_claim)
         raise JtiTokenUsed(jti_claim) from e
+    except ClientError as e:
+        if e.response['Error']['Code'] == 'ConditionalCheckFailedException':
+            logger.error(
+                'jti claim has already been used', jti_claim=jti_claim)
+            raise JtiTokenUsed(jti_claim) from e
+
+        raise

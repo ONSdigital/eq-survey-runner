@@ -70,7 +70,7 @@ def get_by_key(model_type, key_value, force_rds=False):
     return model
 
 
-def put(model, force_rds=False):
+def put(model, overwrite=True, force_rds=False):
     config = TABLE_CONFIG[type(model)]
     schema = config['schema'](strict=True)
 
@@ -87,7 +87,10 @@ def put(model, force_rds=False):
 
         # TODO: update updated_at time
         # TODO: set created_at time
-        dynamo_api.put_item(config['table_name'], item)
+        dynamo_api.put_item(
+            config['table_name'],
+            item,
+            overwrite=overwrite)
 
 
 def delete(model, force_rds=False):

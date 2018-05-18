@@ -7,13 +7,19 @@ from app.globals import get_dynamodb
 logger = get_logger()
 
 
-def put_item(table, item):
+def put_item(table, item, overwrite=True):
     """Insert an item to table"""
     if isinstance(table, str):
         table = get_table(table)
 
+    put_kwargs = {'Item': item}
+    if not overwrite:
+        first_key = next(iter(item.keys()))
+        put_kwargs['ConditionExpression'] = 'attribute_not_exists({first_key})'.format(
+                first_key=first_key)
+
     response = table.put_item(
-        Item=item)['ResponseMetadata']['HTTPStatusCode']
+        **put_kwargs)['ResponseMetadata']['HTTPStatusCode']
     return response == 200
 
 
