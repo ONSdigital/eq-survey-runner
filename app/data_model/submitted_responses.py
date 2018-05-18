@@ -8,7 +8,7 @@ def put_item(item):
     if not table:
         return
 
-    return dynamo_api.put_item(table, item)
+    return dynamo_api.put_item(table, item, fail_silently=True)
 
 
 def get_item(tx_id):
@@ -16,7 +16,7 @@ def get_item(tx_id):
     if not table:
         return
 
-    return dynamo_api.get_item(table, {'tx_id': tx_id})
+    return dynamo_api.get_item(table, {'tx_id': tx_id}, fail_silently=True)
 
 
 def _get_table():
