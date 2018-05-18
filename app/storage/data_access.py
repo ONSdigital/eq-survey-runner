@@ -81,6 +81,18 @@ def put(model, force_rds=False):
         dynamo_api.put_item(table_name, item)
 
 
-def delete(model):
-    # TODO
-    pass
+def delete(model, force_rds=False):
+    config = TABLE_CONFIG[type(model)]
+    key_name = config['key_field']
+    key = {key_name: getattr(model, key_name)}
+
+    if (
+            force_rds or
+            getattr(model, '_use_rds', False) or
+            not is_dynamodb_enabled()):
+        sql_model = config['sql_model'].from_new_model(model)
+        models.db.session.delete(sql_model)
+        models.db.session.commit()
+    else:
+        table_name = 'dev-' + config['table_name']
+        dynamo_api.delete_item(table_name, key)

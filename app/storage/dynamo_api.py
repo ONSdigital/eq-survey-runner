@@ -48,6 +48,24 @@ def get_item(table, key, fail_silently=False):
         raise
 
 
+def delete_item(table, key, fail_silently=False):
+    """Deletes an item by its key
+    """
+    if isinstance(table, str):
+        table = get_table(table)
+
+    try:
+        response = table.delete_item(Key=key)
+        item = response.get('Item', None)
+        return item
+
+    except (BotoCoreError, BotoConnectionError, ConnectionError):
+        logger.warn('Could not delete data from DynamoDB')
+        if fail_silently:
+            return None
+        raise
+
+
 def get_table(table_name):
     dynamodb = get_dynamodb()
     if dynamodb and table_name:
