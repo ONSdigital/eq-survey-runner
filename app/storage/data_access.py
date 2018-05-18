@@ -101,6 +101,7 @@ def delete(model, force_rds=False):
             not is_dynamodb_enabled()):
         if config['sql_model']:
             sql_model = config['sql_model'].from_new_model(model)
+            sql_model = models.db.session.merge(sql_model)
             models.db.session.delete(sql_model)
             models.db.session.commit()
     else:
