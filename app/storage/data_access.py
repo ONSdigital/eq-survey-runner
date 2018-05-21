@@ -1,6 +1,6 @@
 from structlog import get_logger
 
-from app import settings
+from flask import current_app as app
 from app.data_model import models, db_models
 from app.globals import is_dynamodb_enabled
 from app.storage import dynamo_api
@@ -10,25 +10,25 @@ logger = get_logger()
 
 TABLE_CONFIG = {
     db_models.QuestionnaireState: {
-        'table_name': settings.EQ_QUESTIONNAIRE_STATE_TABLE_NAME,
+        'table_name_key': 'EQ_QUESTIONNAIRE_STATE_TABLE_NAME',
         'key_field': 'user_id',
         'schema': db_models.QuestionnaireStateSchema,
         'sql_model': models.QuestionnaireState,
     },
     db_models.EQSession: {
-        'table_name': settings.EQ_SESSION_TABLE_NAME,
+        'table_name_key': 'EQ_SESSION_TABLE_NAME',
         'key_field': 'eq_session_id',
         'schema': db_models.EQSessionSchema,
         'sql_model': models.EQSession,
     },
     db_models.UsedJtiClaim: {
-        'table_name': settings.EQ_USED_JTI_CLAIM_TABLE_NAME,
+        'table_name_key': 'EQ_USED_JTI_CLAIM_TABLE_NAME',
         'key_field': 'jti_claim',
         'schema': db_models.UsedJtiClaimSchema,
         'sql_model': models.UsedJtiClaim,
     },
     db_models.SubmittedResponse: {
-        'table_name': settings.EQ_SUBMITTED_RESPONSES_TABLE_NAME,
+        'table_name_key': 'EQ_SUBMITTED_RESPONSES_TABLE_NAME',
         'key_field': 'tx_id',
         'schema': db_models.SubmittedResponseSchema,
         'sql_model': None  # submitted responses aren't stored in RDS
@@ -46,7 +46,7 @@ def get_by_key(model_type, key_value, force_rds=False):
 
     if is_dynamodb_enabled() and not force_rds:
         # find in dynamo
-        table_name = config['table_name']
+        table_name = _get_table_name(config)
         returned_data = dynamo_api.get_item(table_name, key)
         if returned_data:
             model, _ = schema.load(returned_data)
@@ -91,8 +91,9 @@ def put(model, overwrite=True, force_rds=False):
 
         # TODO: update updated_at time
         # TODO: set created_at time
+        table_name = _get_table_name(config)
         dynamo_api.put_item(
-            config['table_name'],
+            table_name,
             item,
             overwrite=overwrite)
 
@@ -112,4 +113,9 @@ def delete(model, force_rds=False):
             models.db.session.delete(sql_model)
             models.db.session.commit()
     else:
-        dynamo_api.delete_item(config['table_name'], key)
+        table_name = _get_table_name(config)
+        dynamo_api.delete_item(table_name, key)
+
+
+def _get_table_name(config):
+    return app.config[config['table_name_key']]
