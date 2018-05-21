@@ -14,7 +14,7 @@ class TestJtiClaimStorage(AppContextTestCase):
         jti_token = str(uuid4())
 
         # When
-        with patch('app.data_model.models.db.session.add') as add:
+        with patch('app.data_model.models.db.session.commit') as add:
             use_jti_claim(jti_token)
 
             # Then
@@ -34,7 +34,7 @@ class TestJtiClaimStorage(AppContextTestCase):
 
         # When
         with self.assertRaises(JtiTokenUsed) as err:
-            with patch('app.data_model.models.db.session.add', side_effect=[IntegrityError('', '', '')]):
+            with patch('app.data_model.models.db.session.commit', side_effect=[IntegrityError('', '', '')]):
                 use_jti_claim(jti_token)
 
         # Then
