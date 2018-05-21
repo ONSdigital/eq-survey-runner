@@ -1,6 +1,7 @@
 from uuid import uuid4
 
 from mock import patch
+from botocore.exceptions import ClientError
 from sqlalchemy.exc import IntegrityError
 
 from app.authentication.jti_claim_storage import JtiTokenUsed, use_jti_claim
@@ -14,7 +15,12 @@ class TestJtiClaimStorage(AppContextTestCase):
         jti_token = str(uuid4())
 
         # When
-        with patch('app.data_model.models.db.session.commit') as add:
+        if self._app.config['EQ_DYNAMODB_ENABLED']:
+            patch_op = 'app.storage.dynamo_api.put_item'
+        else:
+            patch_op = 'app.data_model.models.db.session.add'
+
+        with patch(patch_op) as add:
             use_jti_claim(jti_token)
 
             # Then
@@ -32,9 +38,18 @@ class TestJtiClaimStorage(AppContextTestCase):
         # Given
         jti_token = str(uuid4())
 
+        if self._app.config['EQ_DYNAMODB_ENABLED']:
+            patch_op = 'app.storage.dynamo_api.put_item'
+            side_effect = ClientError(
+                    {'Error': {'Code': 'ConditionalCheckFailedException'}},
+                    'PutItem')
+        else:
+            patch_op = 'app.data_model.models.db.session.add'
+            side_effect = [IntegrityError('', '', '')]
+
         # When
         with self.assertRaises(JtiTokenUsed) as err:
-            with patch('app.data_model.models.db.session.commit', side_effect=[IntegrityError('', '', '')]):
+            with patch(patch_op, side_effect=side_effect):
                 use_jti_claim(jti_token)
 
         # Then
