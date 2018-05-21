@@ -145,9 +145,12 @@ def calculate_years_difference(from_str, to_str):
 @evalcontextfunction
 def format_date_range(context, start_date, end_date=None):
     if end_date:
-        return '{from_date} to {to_date}'.format(from_date=format_date(context, start_date),
-                                                 to_date=format_date(context, end_date))
-    return format_date(context, start_date)
+        result = '{from_date} to {to_date}'.format(from_date=format_date(context, start_date),
+                                                   to_date=format_date(context, end_date))
+    else:
+        result = format_date(context, start_date)
+
+    return mark_safe(context, result)
 
 
 @blueprint.app_template_filter()
