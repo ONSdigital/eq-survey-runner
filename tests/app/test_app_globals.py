@@ -16,3 +16,5 @@ class TestGetDynamoDB(AppContextTestCase):
         self._app.config['EQ_DYNAMODB_ENABLED'] = False
 
         self.assertFalse(get_dynamodb())
+
+        self._app.config['EQ_DYNAMODB_ENABLED'] = True
