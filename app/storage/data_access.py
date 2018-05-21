@@ -1,7 +1,7 @@
 from structlog import get_logger
 
 from flask import current_app as app
-from app.data_model import models, db_models
+from app.data_model import models, app_models
 from app.globals import is_dynamodb_enabled
 from app.storage import dynamo_api
 
@@ -9,28 +9,28 @@ logger = get_logger()
 
 
 TABLE_CONFIG = {
-    db_models.QuestionnaireState: {
+    app_models.QuestionnaireState: {
         'table_name_key': 'EQ_QUESTIONNAIRE_STATE_TABLE_NAME',
         'key_field': 'user_id',
-        'schema': db_models.QuestionnaireStateSchema,
+        'schema': app_models.QuestionnaireStateSchema,
         'sql_model': models.QuestionnaireState,
     },
-    db_models.EQSession: {
+    app_models.EQSession: {
         'table_name_key': 'EQ_SESSION_TABLE_NAME',
         'key_field': 'eq_session_id',
-        'schema': db_models.EQSessionSchema,
+        'schema': app_models.EQSessionSchema,
         'sql_model': models.EQSession,
     },
-    db_models.UsedJtiClaim: {
+    app_models.UsedJtiClaim: {
         'table_name_key': 'EQ_USED_JTI_CLAIM_TABLE_NAME',
         'key_field': 'jti_claim',
-        'schema': db_models.UsedJtiClaimSchema,
+        'schema': app_models.UsedJtiClaimSchema,
         'sql_model': models.UsedJtiClaim,
     },
-    db_models.SubmittedResponse: {
+    app_models.SubmittedResponse: {
         'table_name_key': 'EQ_SUBMITTED_RESPONSES_TABLE_NAME',
         'key_field': 'tx_id',
-        'schema': db_models.SubmittedResponseSchema,
+        'schema': app_models.SubmittedResponseSchema,
         'sql_model': None  # submitted responses aren't stored in RDS
     }
 }

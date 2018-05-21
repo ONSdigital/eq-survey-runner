@@ -2,7 +2,7 @@ import simplejson as json
 
 from structlog import get_logger
 
-from app.data_model.db_models import QuestionnaireState
+from app.data_model.app_models import QuestionnaireState
 from app.storage import data_access
 from app.storage.storage_encryption import StorageEncryption
 logger = get_logger()

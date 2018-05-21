@@ -4,7 +4,7 @@ from botocore.exceptions import ClientError
 from sqlalchemy.exc import IntegrityError
 from structlog import get_logger
 
-from app.data_model.db_models import UsedJtiClaim
+from app.data_model.app_models import UsedJtiClaim
 from app.storage import data_access
 
 logger = get_logger()

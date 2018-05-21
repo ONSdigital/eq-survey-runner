@@ -1,7 +1,7 @@
 from structlog import get_logger
 import simplejson as json
 
-from app.data_model.db_models import EQSession
+from app.data_model.app_models import EQSession
 from app.data_model.session_data import SessionData
 from app.storage import data_access
 from app.storage.storage_encryption import StorageEncryption

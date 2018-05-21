@@ -13,7 +13,7 @@ from structlog import get_logger
 
 from app.globals import get_session_store, is_dynamodb_enabled, get_completeness
 from app.data_model.answer_store import Answer, AnswerStore
-from app.data_model.db_models import SubmittedResponse
+from app.data_model.app_models import SubmittedResponse
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
 from app.helpers.form_helper import post_form_for_location
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required

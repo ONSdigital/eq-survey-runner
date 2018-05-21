@@ -1,6 +1,6 @@
 import mock
 
-from app.data_model.db_models import SubmittedResponse
+from app.data_model.app_models import SubmittedResponse
 from app.storage import data_access
 from tests.integration.integration_test_case import IntegrationTestCase
 
