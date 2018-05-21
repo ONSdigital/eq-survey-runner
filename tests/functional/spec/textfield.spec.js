@@ -1,5 +1,6 @@
 const helpers = require('../helpers');
 const TextFieldPage = require('../pages/surveys/textfield/block.page.js');
+const MinMaxBlockPage = require('../pages/surveys/textfield/min-max-block.page');
 const SummaryPage = require('../pages/surveys/textfield/summary.page.js');
 
 describe('Textfield', function() {
@@ -17,6 +18,9 @@ describe('Textfield', function() {
       return browser
         .setValue(TextFieldPage.answer(), "'Twenty><&Five'")
         .click(TextFieldPage.submit())
+        // Interstitial displaying min-max formats
+        .click(MinMaxBlockPage.submit())
+        .getUrl().should.eventually.contain(SummaryPage.pageName)
         .getText(SummaryPage.answer()).should.eventually.contain("Twenty><&Five'")
         .click(SummaryPage.answerEdit())
         .getValue(TextFieldPage.answer()).should.eventually.contain("'Twenty><&Five'");

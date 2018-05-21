@@ -2,7 +2,7 @@
 
 from unittest import TestCase
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from dateutil.relativedelta import relativedelta
 from jinja2 import Undefined, Markup
@@ -15,7 +15,8 @@ from app.jinja_filters import (
     format_number_to_alphabetic_letter, format_unit, format_currency_for_input,
     format_number, format_unordered_list,
     format_household_member_name_possessive, concatenated_list,
-    calculate_years_difference, get_current_date, as_london_tz
+    calculate_years_difference, get_current_date, as_london_tz, max_value,
+    min_value
 )
 
 
@@ -466,3 +467,159 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         formatted_value = format_unordered_list(self.no_autoescape_context, list_items)
 
         self.assertEqual('', formatted_value)
+
+    def test_max_value(self):
+        # Given
+        two_ints = (1, 2)
+
+        # When
+        max_of_two = max_value(*two_ints)
+
+        # Then
+        self.assertEqual(max_of_two, 2)
+
+    def test_max_value_none(self):
+        # Given
+        one_int = (1, None)
+
+        # When
+        max_of_two = max_value(*one_int)
+
+        # Then
+        self.assertEqual(max_of_two, 1)
+
+    def test_max_value_undefined(self):
+        # Given
+        args = ('foo', Undefined())
+
+        # When
+        with self.assertRaises(Exception) as exception:
+            max_value(*args)
+
+        # Then
+        self.assertIn(
+            "Cannot determine maximum of incompatible types max(<class 'str'>,"
+            " <class 'jinja2.runtime.Undefined'>)", str(exception.exception))
+
+    def test_max_values_incompatible(self):
+        # Given
+        args = (1, 'abc')
+
+        # When
+        with self.assertRaises(Exception) as exception:
+            max_value(*args)
+
+        # Then
+        self.assertIn(
+            "Cannot determine maximum of incompatible types max(<class 'int'>,"
+            " <class 'str'>)", str(exception.exception))
+
+    def test_max_values_compatible(self):
+        # Given
+        args = (-1, True)
+
+        # When
+        max_of_two = max_value(*args)
+
+        # Then
+        self.assertEqual(max_of_two, True)
+
+    def test_max_value_str(self):
+        # Given
+        two_str = ('a', 'abc')
+
+        # When
+        max_of_two = max_value(*two_str)
+
+        # Then
+        self.assertEqual(max_of_two, 'abc')
+
+    def test_max_value_date(self):
+        # Given
+        now = datetime.utcnow()
+        then = now - timedelta(seconds=60)
+        two_dates = (then, now)
+
+        # When
+        max_of_two = max_value(*two_dates)
+
+        # Then
+        self.assertEqual(max_of_two, now)
+
+    def test_min_value(self):
+        # Given
+        two_ints = (1, 2)
+
+        # When
+        min_of_two = min_value(*two_ints)
+
+        # Then
+        self.assertEqual(min_of_two, 1)
+
+    def test_min_value_none(self):
+        # Given
+        one_int = (1, None)
+
+        # When
+        min_of_two = min_value(*one_int)
+
+        # Then
+        self.assertEqual(min_of_two, 1)
+
+    def test_min_value_undefined(self):
+        # Given
+        args = ('foo', Undefined())
+
+        # When
+        with self.assertRaises(Exception) as exception:
+            min_value(*args)
+
+        # Then
+        self.assertIn(
+            "Cannot determine minimum of incompatible types min(<class 'str'>,"
+            " <class 'jinja2.runtime.Undefined'>)", str(exception.exception))
+
+    def test_min_values_incompatible(self):
+        # Given
+        args = (1, 'abc')
+
+        # When
+        with self.assertRaises(Exception) as exception:
+            min_value(*args)
+
+        # Then
+        self.assertIn(
+            "Cannot determine minimum of incompatible types min(<class 'int'>,"
+            " <class 'str'>)", str(exception.exception))
+
+    def test_min_values_compatible(self):
+        # Given
+        args = (-1, True)
+
+        # When
+        min_of_two = min_value(*args)
+
+        # Then
+        self.assertEqual(min_of_two, -1)
+
+    def test_min_value_str(self):
+        # Given
+        two_str = ('a', 'abc')
+
+        # When
+        min_of_two = min_value(*two_str)
+
+        # Then
+        self.assertEqual(min_of_two, 'a')
+
+    def test_min_value_date(self):
+        # Given
+        now = datetime.utcnow()
+        then = now - timedelta(seconds=60)
+        two_dates = (then, now)
+
+        # When
+        min_of_two = min_value(*two_dates)
+
+        # Then
+        self.assertEqual(min_of_two, then)

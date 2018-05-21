@@ -24,6 +24,8 @@ class TemplateRenderer:
         env.filters['concatenated_list'] = filters.concatenated_list
         env.globals['calculate_years_difference'] = filters.calculate_years_difference
         env.globals['get_current_date'] = filters.get_current_date
+        env.globals['min_value'] = filters.min_value
+        env.globals['max_value'] = filters.max_value
         self.environment = env
 
     def render(self, renderable, **context):

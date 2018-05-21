@@ -1,5 +1,8 @@
 # coding: utf-8
 
+# pylint: disable=too-many-public-methods
+
+import datetime
 import unittest
 
 from app.templating.template_renderer import TemplateRenderer
@@ -187,3 +190,61 @@ class TestTemplateRenderer(unittest.TestCase):
         safe_content = TemplateRenderer.safe_content(content)
 
         self.assertEqual(safe_content, 'Is … really correct?')
+
+    def test_render_max(self):
+        content = 'The largest number is {{ max_value(first, second) }}'
+        context = {
+            'first': 1,
+            'second': 2
+        }
+        rendered = TemplateRenderer().render(content, **context)
+        self.assertEqual(rendered, 'The largest number is 2')
+
+    def test_render_max_str(self):
+        content = 'The largest string is {{ max_value(first, second) }}'
+        context = {
+            'first': 'zzz',
+            'second': 'zzz1'
+        }
+        rendered = TemplateRenderer().render(content, **context)
+        self.assertEqual(rendered, 'The largest string is zzz1')
+
+    def test_render_max_date(self):
+        content = 'The most recent date is {{ max_value(first, second) }}'
+        now = datetime.datetime.utcnow()
+        then = now - datetime.timedelta(seconds=60)
+        context = {
+            'first': now,
+            'second': then
+        }
+        rendered = TemplateRenderer().render(content, **context)
+        self.assertEqual(rendered, 'The most recent date is {}'.format(now))
+
+    def test_render_min(self):
+        content = 'The smallest number is {{ min_value(first, second) }}'
+        context = {
+            'first': 1,
+            'second': 2
+        }
+        rendered = TemplateRenderer().render(content, **context)
+        self.assertEqual(rendered, 'The smallest number is 1')
+
+    def test_render_min_str(self):
+        content = 'The smallest string is {{ min_value(first, second) }}'
+        context = {
+            'first': 'zzz',
+            'second': 'zzz1'
+        }
+        rendered = TemplateRenderer().render(content, **context)
+        self.assertEqual(rendered, 'The smallest string is zzz')
+
+    def test_render_min_date(self):
+        content = 'The least recent date is {{ min_value(first, second) }}'
+        now = datetime.datetime.utcnow()
+        then = now - datetime.timedelta(seconds=60)
+        context = {
+            'first': now,
+            'second': then
+        }
+        rendered = TemplateRenderer().render(content, **context)
+        self.assertEqual(rendered, 'The least recent date is {}'.format(then))
