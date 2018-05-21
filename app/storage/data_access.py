@@ -37,6 +37,12 @@ TABLE_CONFIG = {
 
 
 def get_by_key(model_type, key_value, force_rds=False):
+    """Gets a given model by its key
+
+    :param model: the type of the app model to fetch
+    :param key_value: the value of the model's key
+    :param force_rds: if true will forcibly try and get object from RDS
+    """
     config = TABLE_CONFIG[model_type]
     schema = config['schema'](strict=True)
     key_name = config['key_field']
@@ -71,6 +77,13 @@ def get_by_key(model_type, key_value, force_rds=False):
 
 
 def put(model, overwrite=True, force_rds=False):
+    """Inserts or updates the given app model
+
+    :param model: the app model to be saved
+    :param overwrite: if true then the object may overwrite an existing object
+        with the same ID. if not a `boto3.ClientError` will be raised
+    :param force_rds: if true will forcibly try and save object to RDS
+    """
     config = TABLE_CONFIG[type(model)]
     schema = config['schema'](strict=True)
 
@@ -99,6 +112,11 @@ def put(model, overwrite=True, force_rds=False):
 
 
 def delete(model, force_rds=False):
+    """Deletes the given app model
+
+    :param model: the app model to be deleted
+    :param force_rds: if true will forcibly try and delete object from RDS
+    """
     config = TABLE_CONFIG[type(model)]
     key_name = config['key_field']
     key = {key_name: getattr(model, key_name)}
@@ -118,6 +136,8 @@ def delete(model, force_rds=False):
 
 
 def flush_all_data():
+    """Deletes all data in DynamoDB
+    """
     for config in TABLE_CONFIG.values():
         table_name = _get_table_name(config)
         dynamo_api.delete_all(table_name)
