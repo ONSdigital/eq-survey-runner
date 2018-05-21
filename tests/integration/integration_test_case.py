@@ -38,7 +38,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         self.last_csrf_token = None
 
         # Perform setup steps
-        self._set_up_app()
+        self._set_up_app(True)
 
     def SetUpWithDynamoDB(self):
         # Cache for requests
@@ -55,8 +55,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
             'EQ_DYNAMODB_ENABLED': enable_dynamo_db
         }
         if enable_dynamo_db:
-            setting_overrides.update({'EQ_DYNAMODB_ENDPOINT': 'http://localhost:6060',
-                                      'EQ_SUBMITTED_RESPONSES_TABLE_NAME': 'dev-submitted-responses'})
+            setting_overrides.update({'EQ_DYNAMODB_ENDPOINT': 'http://localhost:6060'})
 
             with patch('boto3.resource', return_value=Mock()):
                 self._application = create_app(setting_overrides)
