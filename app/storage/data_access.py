@@ -80,7 +80,11 @@ def put(model, overwrite=True, force_rds=False):
             not is_dynamodb_enabled()):
         if config['sql_model']:
             sql_model = config['sql_model'].from_new_model(model)
-            sql_model = models.db.session.merge(sql_model)
+
+            if overwrite:
+                models.db.session.merge(sql_model)
+            else:
+                models.db.session.add(sql_model)
             models.db.session.commit()
     else:
         item, _ = schema.dump(model)
