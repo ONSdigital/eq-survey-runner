@@ -9,6 +9,7 @@ from mock import patch, Mock
 from sdc.crypto.key_store import KeyStore
 from app.keys import KEY_PURPOSE_AUTHENTICATION, KEY_PURPOSE_SUBMISSION
 from app.setup import create_app
+from app.storage import data_access
 
 from tests.integration.create_token import TokenGenerator
 
@@ -90,6 +91,10 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         )
 
         self._client = self._application.test_client()
+
+    def tearDown(self):
+        with self._application.app_context():
+            data_access.flush_all_data()
 
     def launchSurvey(self, eq_id='test', form_type_id='dates', **payload_kwargs):
         """

@@ -117,5 +117,11 @@ def delete(model, force_rds=False):
         dynamo_api.delete_item(table_name, key)
 
 
+def flush_all_data():
+    for config in TABLE_CONFIG.values():
+        table_name = _get_table_name(config)
+        dynamo_api.delete_all(table_name)
+
+
 def _get_table_name(config):
     return app.config[config['table_name_key']]

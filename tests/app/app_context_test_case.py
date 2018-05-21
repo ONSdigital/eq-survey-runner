@@ -1,6 +1,7 @@
 import unittest
 
 from app.setup import create_app
+from app.storage import data_access
 
 
 class AppContextTestCase(unittest.TestCase):
@@ -24,6 +25,9 @@ class AppContextTestCase(unittest.TestCase):
         self._app_context.push()
 
     def tearDown(self):
+        with self._app.app_context():
+            data_access.flush_all_data()
+
         self._app_context.pop()
 
     def test_request_context(self, *args, **kwargs):

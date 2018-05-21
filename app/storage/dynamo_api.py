@@ -44,6 +44,21 @@ def delete_item(table, key):
     return item
 
 
+def delete_all(table):
+    """Deletes all items from a table
+    """
+    if isinstance(table, str):
+        table = get_table(table)
+
+    keys = [k['AttributeName'] for k in table.key_schema]
+    response = table.scan()
+
+    with table.batch_writer() as batch:
+        for item in response['Items']:
+            key_dict = {k: item[k] for k in keys}
+            batch.delete_item(Key=key_dict)
+
+
 def get_table(table_name):
     dynamodb = get_dynamodb()
     if dynamodb and table_name:
