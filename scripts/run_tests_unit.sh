@@ -25,8 +25,8 @@ if [ "$1" == "--local" ] || [ "$2" == "--local" ]; then
 fi
 
 if [ "$run_docker" == true ]; then
-    docker pull onsdigital/eq-docker-dynamodb
-    validator="$(docker run -d -p 5001:5000 onsdigital/eq-docker-dynamodb)"
+    docker pull onsdigital/eq-docker-dynamodb:eq-2120-dynamodb-spike
+    validator="$(docker run -d -p 6060:8000 onsdigital/eq-docker-dynamodb:eq-2120-dynamodb-spike)"
     sleep 3
 fi
 
