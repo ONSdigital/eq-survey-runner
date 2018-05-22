@@ -138,6 +138,9 @@ def delete(model, force_rds=False):
 def flush_all_data():
     """Deletes all data in DynamoDB
     """
+    if not is_dynamodb_enabled():
+        return
+
     for config in TABLE_CONFIG.values():
         table_name = _get_table_name(config)
         dynamo_api.delete_all(table_name)
