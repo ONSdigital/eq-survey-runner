@@ -29,6 +29,7 @@ class SubmittedResponse:
         self.valid_until = valid_until
 
 
+# pylint: disable=no-self-use
 class Timestamp(fields.Field):
     def _serialize(self, value, attr, obj):
         return int(value.strftime('%s'))
@@ -43,6 +44,7 @@ class LoadObjectMixin:
         return self.load(data)
 
 
+# pylint: disable=fixme
 class DateTimeSchemaMixin:
     # TODO: implement
     # created_at = fields.DateTime()

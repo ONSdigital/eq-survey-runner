@@ -1,5 +1,3 @@
-from datetime import datetime
-from botocore.exceptions import BotoCoreError, ConnectionError as BotoConnectionError
 from structlog import get_logger
 
 from app.globals import get_dynamodb
@@ -16,7 +14,7 @@ def put_item(table, item, overwrite=True):
     if not overwrite:
         first_key = next(iter(item.keys()))
         put_kwargs['ConditionExpression'] = 'attribute_not_exists({first_key})'.format(
-                first_key=first_key)
+            first_key=first_key)
 
     response = table.put_item(
         **put_kwargs)['ResponseMetadata']['HTTPStatusCode']

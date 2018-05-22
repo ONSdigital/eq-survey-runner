@@ -41,8 +41,8 @@ class TestJtiClaimStorage(AppContextTestCase):
         if self._app.config['EQ_DYNAMODB_ENABLED']:
             patch_op = 'app.storage.dynamo_api.put_item'
             side_effect = ClientError(
-                    {'Error': {'Code': 'ConditionalCheckFailedException'}},
-                    'PutItem')
+                {'Error': {'Code': 'ConditionalCheckFailedException'}},
+                'PutItem')
         else:
             patch_op = 'app.data_model.models.db.session.add'
             side_effect = [IntegrityError('', '', '')]

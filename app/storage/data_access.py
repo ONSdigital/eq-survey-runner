@@ -71,7 +71,7 @@ def get_by_key(model_type, key_value, force_rds=False):
         returned_data = sql_model.query.filter_by(**key).first()
         if returned_data:
             model, _ = schema.load_object(returned_data)
-            model._use_rds = True
+            setattr(model, '_use_rds')
 
     return model
 
@@ -94,6 +94,7 @@ def put(model, overwrite=True, force_rds=False):
         if config['sql_model']:
             sql_model = config['sql_model'].from_new_model(model)
 
+            # pylint: disable=maybe-no-member
             if overwrite:
                 models.db.session.merge(sql_model)
             else:
@@ -102,6 +103,7 @@ def put(model, overwrite=True, force_rds=False):
     else:
         item, _ = schema.dump(model)
 
+        # pylint: disable=fixme
         # TODO: update updated_at time
         # TODO: set created_at time
         table_name = _get_table_name(config)
@@ -127,6 +129,8 @@ def delete(model, force_rds=False):
             not is_dynamodb_enabled()):
         if config['sql_model']:
             sql_model = config['sql_model'].from_new_model(model)
+
+            # pylint: disable=maybe-no-member
             sql_model = models.db.session.merge(sql_model)
             models.db.session.delete(sql_model)
             models.db.session.commit()
