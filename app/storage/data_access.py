@@ -71,7 +71,7 @@ def get_by_key(model_type, key_value, force_rds=False):
         returned_data = sql_model.query.filter_by(**key).first()
         if returned_data:
             model, _ = schema.load_object(returned_data)
-            setattr(model, '_use_rds')
+            setattr(model, '_use_rds', True)
 
     return model
 
