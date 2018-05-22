@@ -19,6 +19,17 @@ function display_result {
   fi
 }
 
+run_docker=true
+if [ "$1" == "--local" ] || [ "$2" == "--local" ]; then
+    run_docker=false
+fi
+
+if [ "$run_docker" == true ]; then
+    docker pull onsdigital/eq-docker-dynamodb
+    validator="$(docker run -d -p 5001:5000 onsdigital/eq-docker-dynamodb)"
+    sleep 3
+fi
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 source ${DIR}/dev_settings.sh
@@ -28,3 +39,7 @@ env | grep EQ_
 
 py.test --cov=app --cov-report html "$@"
 display_result $? 3 "Unit tests"
+
+if [ "$run_docker" == true ]; then
+    docker rm -f "$validator"
+fi
