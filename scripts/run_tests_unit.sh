@@ -37,7 +37,7 @@ source ${DIR}/dev_settings.sh
 echo "Environment variables in use:"
 env | grep EQ_
 
-py.test --cov=app --cov-report html "$@"
+py.test --cov=app --cov-report html "$1"
 display_result $? 3 "Unit tests"
 
 if [ "$run_docker" == true ]; then
