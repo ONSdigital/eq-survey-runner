@@ -27,7 +27,7 @@ fi
 if [ "$run_docker" == true ]; then
     docker pull onsdigital/eq-docker-dynamodb:eq-2120-dynamodb-spike
     validator="$(docker run -d -p 6060:8000 onsdigital/eq-docker-dynamodb:eq-2120-dynamodb-spike)"
-    sleep 3
+    sleep 10
 fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
