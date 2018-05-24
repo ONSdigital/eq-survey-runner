@@ -1,3 +1,4 @@
+from botocore.exceptions import ClientError
 from structlog import get_logger
 
 from app.globals import get_dynamodb
@@ -48,7 +49,12 @@ def delete_all(table):
     if isinstance(table, str):
         table = get_table(table)
 
-    keys = [k['AttributeName'] for k in table.key_schema]
+    try:
+        keys = [k['AttributeName'] for k in table.key_schema]
+    except ClientError as e:
+        if e.response['Error']['Code'] == 'ResourceNotFoundException':
+            return
+
     response = table.scan()
 
     with table.batch_writer() as batch:
