@@ -2,7 +2,8 @@ import unittest
 from uuid import UUID
 from mock import patch
 
-from flask import Flask, request
+# from flask import Flask, request
+from flask import Flask
 from flask_babel import Babel
 
 from app import settings
@@ -62,31 +63,31 @@ class TestCreateApp(unittest.TestCase):
             _, kwargs = logger.new.call_args
             self.assertTrue(UUID(kwargs['request_id'], version=4))
 
-    def test_enforces_secure_headers(self):
-        with create_app(self._setting_overrides).test_client() as client:
-            headers = client.get(
-                '/',
-                headers={'X-Forwarded-Proto': 'https'} # set protocal so that talisman sets HSTS headers
-            ).headers
+    # def test_enforces_secure_headers(self):
+    #     with create_app(self._setting_overrides).test_client() as client:
+    #         headers = client.get(
+    #             '/',
+    #             headers={'X-Forwarded-Proto': 'https'} # set protocal so that talisman sets HSTS headers
+    #         ).headers
 
-            self.assertEqual('no-cache, no-store, must-revalidate', headers['Cache-Control'])
-            self.assertEqual('no-cache', headers['Pragma'])
-            self.assertEqual('max-age=31536000; includeSubDomains', headers['Strict-Transport-Security'])
-            self.assertEqual('DENY', headers['X-Frame-Options'])
-            self.assertEqual('1; mode=block', headers['X-Xss-Protection'])
-            self.assertEqual('nosniff', headers['X-Content-Type-Options'])
+    #         self.assertEqual('no-cache, no-store, must-revalidate', headers['Cache-Control'])
+    #         self.assertEqual('no-cache', headers['Pragma'])
+    #         self.assertEqual('max-age=31536000; includeSubDomains', headers['Strict-Transport-Security'])
+    #         self.assertEqual('DENY', headers['X-Frame-Options'])
+    #         self.assertEqual('1; mode=block', headers['X-Xss-Protection'])
+    #         self.assertEqual('nosniff', headers['X-Content-Type-Options'])
 
-            csp_policy_parts = headers['Content-Security-Policy'].split('; ')
-            self.assertIn("default-src 'self' https://cdn.ons.gov.uk", csp_policy_parts)
-            self.assertIn(
-                "script-src 'self' https://www.google-analytics.com https://cdn.ons.gov.uk 'nonce-{}'".format(
-                    request.csp_nonce),
-                csp_policy_parts
-            )
-            self.assertIn(
-                "img-src 'self' data: https://www.google-analytics.com https://cdn.ons.gov.uk", csp_policy_parts)
-            self.assertIn(
-                "font-src 'self' data: https://cdn.ons.gov.uk", csp_policy_parts)
+    #         csp_policy_parts = headers['Content-Security-Policy'].split('; ')
+    #         self.assertIn("default-src 'self' https://cdn.ons.gov.uk", csp_policy_parts)
+    #         self.assertIn(
+    #             "script-src 'self' https://www.google-analytics.com https://cdn.ons.gov.uk 'nonce-{}'".format(
+    #                 request.csp_nonce),
+    #             csp_policy_parts
+    #         )
+    #         self.assertIn(
+    #             "img-src 'self' data: https://www.google-analytics.com https://cdn.ons.gov.uk", csp_policy_parts)
+    #         self.assertIn(
+    #             "font-src 'self' data: https://cdn.ons.gov.uk", csp_policy_parts)
 
     # Indirectly covered by higher level integration
     # tests, keeping to highlight that create_app is where
