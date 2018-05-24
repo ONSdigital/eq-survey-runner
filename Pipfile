@@ -52,7 +52,7 @@ ua-parser = "*"
 blinker = "*"
 "boto3" = "*"
 humanize = "*"
-flask-talisman = "*"
+flask-talisman = "==0.4.1"
 marshmallow = "*"
 
 
