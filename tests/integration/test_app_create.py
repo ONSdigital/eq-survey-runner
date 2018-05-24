@@ -14,7 +14,7 @@ class TestCreateApp(unittest.TestCase):
     def setUp(self):
         self._setting_overrides = {
             'SQLALCHEMY_DATABASE_URI': 'sqlite:////tmp/questionnaire.db',
-            'EQ_DYNAMODB_ENABLED': False
+            'EQ_DYNAMODB_ENABLED': True
         }
 
     def test_returns_application(self):
