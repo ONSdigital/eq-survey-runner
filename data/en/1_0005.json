@@ -275,6 +275,11 @@
                                         "value": "Five weekly"
                                     }]
                                 }
+                            },
+                            {
+                                "goto": {
+                                    "group": "weekly-pay"
+                                }
                             }
                         ]
                     }
