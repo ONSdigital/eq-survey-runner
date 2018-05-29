@@ -1,6 +1,7 @@
 import unittest
 
 from app.setup import create_app
+from app.storage import data_access
 
 
 class AppContextTestCase(unittest.TestCase):
@@ -14,7 +15,8 @@ class AppContextTestCase(unittest.TestCase):
         setting_overrides = {
             'SQLALCHEMY_DATABASE_URI': 'sqlite://',
             'LOGIN_DISABLED': self.LOGIN_DISABLED,
-            'EQ_DYNAMODB_ENABLED': False
+            'EQ_DYNAMODB_ENABLED': True,
+            'EQ_DYNAMODB_ENDPOINT': 'http://localhost:6060',
         }
         self._app = create_app(setting_overrides)
 
@@ -23,6 +25,9 @@ class AppContextTestCase(unittest.TestCase):
         self._app_context.push()
 
     def tearDown(self):
+        with self._app.app_context():
+            data_access.flush_all_data()
+
         self._app_context.pop()
 
     def test_request_context(self, *args, **kwargs):

@@ -21,6 +21,10 @@ class QuestionnaireState(db.Model):
         self.state = state
         self.version = version
 
+    @classmethod
+    def from_new_model(cls, model):
+        return cls(model.user_id, model.state, model.version)
+
 
 # pylint: disable=maybe-no-member
 class EQSession(db.Model):
@@ -31,10 +35,17 @@ class EQSession(db.Model):
     created_at = db.Column('created_at', db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column('updated_at', db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
-    def __init__(self, eq_session_id, user_id):
+    def __init__(self, eq_session_id, user_id, session_data=None):
         self.eq_session_id = eq_session_id
         self.user_id = user_id
-        self.session_data = None
+        self.session_data = session_data
+
+    @classmethod
+    def from_new_model(cls, model):
+        return cls(
+            model.eq_session_id,
+            model.user_id,
+            session_data=model.session_data)
 
 
 # pylint: disable=maybe-no-member
@@ -43,6 +54,10 @@ class UsedJtiClaim(db.Model):
     jti_claim = db.Column('jti_claim', db.String, primary_key=True)
     used_at = db.Column('used_at', db.DateTime)
 
-    def __init__(self, jti_claim):
+    def __init__(self, jti_claim, used_at=None):
         self.jti_claim = jti_claim
-        self.used_at = datetime.datetime.now()
+        self.used_at = used_at or datetime.datetime.now()
+
+    @classmethod
+    def from_new_model(cls, model):
+        return cls(model.jti_claim)

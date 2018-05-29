@@ -2,8 +2,9 @@ import simplejson as json
 
 from structlog import get_logger
 
+from app.data_model.app_models import QuestionnaireState
+from app.storage import data_access
 from app.storage.storage_encryption import StorageEncryption
-from app.data_model.models import QuestionnaireState, db
 logger = get_logger()
 
 
@@ -28,10 +29,7 @@ class EncryptedQuestionnaireStorage:
             logger.debug('creating questionnaire data', user_id=self._user_id)
             questionnaire_state = QuestionnaireState(self._user_id, encrypted_data_json, version)
 
-        # session has a add function but it is wrapped in a session_scope which confuses pylint
-        # pylint: disable=maybe-no-member
-        db.session.add(questionnaire_state)
-        db.session.commit()
+        data_access.put(questionnaire_state)
 
     def get_user_data(self):
         questionnaire_state = self._find_questionnaire_state()
@@ -49,13 +47,8 @@ class EncryptedQuestionnaireStorage:
         logger.debug('deleting users data', user_id=self._user_id)
         questionnaire_state = self._find_questionnaire_state()
         if questionnaire_state:
-            # session has a delete function but it is wrapped in a session_scope which confuses pylint
-            # pylint: disable=maybe-no-member
-            db.session.delete(questionnaire_state)
-            db.session.commit()
+            data_access.delete(questionnaire_state)
 
     def _find_questionnaire_state(self):
         logger.debug('getting questionnaire data', user_id=self._user_id)
-        # pylint: disable=maybe-no-member
-        # SQLAlchemy doing declarative magic which makes session scope query property available
-        return QuestionnaireState.query.filter(QuestionnaireState.user_id == self._user_id).first()
+        return data_access.get_by_key(QuestionnaireState, self._user_id)

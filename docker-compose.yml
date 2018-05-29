@@ -47,6 +47,10 @@ services:
       EQ_SECRETS_FILE: docker-secrets.yml
       EQ_KEYS_FILE: docker-keys.yml
       EQ_SUBMITTED_RESPONSES_TABLE_NAME: dev-submitted-responses
+      EQ_QUESTIONNAIRE_STATE_TABLE_NAME: dev-questionnaire-state
+      EQ_SESSION_TABLE_NAME: dev-eq-session
+      EQ_USED_JTI_CLAIM_TABLE_NAME: dev-used-jti-claim
+      EQ_DYNAMODB_ENABLED: "True"
       EQ_DYNAMODB_ENDPOINT: http://eq-docker-dynamodb:8000
       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID:-dummy}"
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:-dummy}"
@@ -75,7 +79,7 @@ services:
 
 
   eq-docker-dynamodb:
-    image: onsdigital/eq-docker-dynamodb:latest
+    image: onsdigital/eq-docker-dynamodb:eq-2120-dynamodb-spike
     restart: always
     networks:
       - eq-env

@@ -19,6 +19,17 @@ function display_result {
   fi
 }
 
+run_docker=true
+if [ "$1" == "--local" ] || [ "$2" == "--local" ]; then
+    run_docker=false
+fi
+
+if [ "$run_docker" == true ]; then
+    docker pull onsdigital/eq-docker-dynamodb:eq-2120-dynamodb-spike
+    validator="$(docker run -d -p 6060:8000 onsdigital/eq-docker-dynamodb:eq-2120-dynamodb-spike)"
+    sleep 10
+fi
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 source ${DIR}/dev_settings.sh
@@ -26,5 +37,13 @@ source ${DIR}/dev_settings.sh
 echo "Environment variables in use:"
 env | grep EQ_
 
-py.test --cov=app --cov-report html "$@"
+if [ "$1" ] && [ "$1" != "--local" ]; then
+  spec="$1"
+fi
+
+py.test --cov=app --cov-report html $spec
 display_result $? 3 "Unit tests"
+
+if [ "$run_docker" == true ]; then
+    docker rm -f "$validator"
+fi

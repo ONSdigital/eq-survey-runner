@@ -1,5 +1,7 @@
 import mock
 
+from app.data_model.app_models import SubmittedResponse
+from app.storage import data_access
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -44,19 +46,27 @@ class TestViewSubmission(IntegrationTestCase):
         self.assertInPage('Please check your answers carefully before submitting.')
 
         # Submit answers
-        with mock.patch('app.data_model.submitted_responses.put_item',
-                        return_value={'ResponseMetadata': {'HTTPStatusCode': 200}}) as put_item:
+        with mock.patch('app.storage.data_access.put', wraps=data_access.put) as put_item:
             self.post(action=None)
 
-            item = put_item.call_args[0][0]
+            for call in put_item.call_args:
+                if isinstance(call[0], SubmittedResponse):
+                    item = call[0]
+                    break
 
         # check we're on the thank you page and view submission link is available
         self.assertInUrl('thank-you')
         self.assertInPage('View and print a copy of your answers')
 
+        orig_get_by_key = data_access.get_by_key
+        def get_by_key(model_type, key_value, **kwargs):
+            if model_type == SubmittedResponse:
+                return item
+
+            return orig_get_by_key(model_type, key_value, **kwargs)
+
         # go to the view submission page
-        with mock.patch('app.data_model.submitted_responses.get_item',
-                        return_value=item):
+        with mock.patch('app.storage.data_access.get_by_key', new=get_by_key):
             self.get('questionnaire/test/view_submitted_response/view-submission')
 
         # check we're on the view submission page
