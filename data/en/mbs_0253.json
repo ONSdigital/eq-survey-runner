@@ -198,17 +198,17 @@
                     {
                         "type": "Question",
                         "id": "water-volume-block",
-                        "title": "Volume of potable water that was supplied to customers",
+                        "title": "Total volume of potable water that was supplied to customers",
                         "questions": [{
                             "id": "water-volume-question",
                             "type": "General",
-                            "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the volume of {{respondent.trad_as_or_ru_name}}’s <em>potable water that was supplied to customers</em>, in megalitres?",
+                            "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the total volume of {{respondent.trad_as_or_ru_name}}’s <em>potable water that was supplied to customers</em>, in megalitres?",
                             "answers": [{
                                 "id": "water-volume",
                                 "mandatory": true,
                                 "q_code": "110",
                                 "type": "Unit",
-                                "label": "Volume of potable water that was supplied to customers, in megalitres",
+                                "label": "Total volume of potable water that was supplied to customers, in megalitres",
                                 "unit": "volume-megaliter"
                             }]
                         }]
