@@ -535,3 +535,43 @@ class TestQuestionnaire(IntegrationTestCase):
             update_questionnaire_store_with_form_data(self.question_store, calculation_answer_location, calculation_answer_data)
 
         self.assertNotIn(dependent_location, self.question_store.completed_blocks)
+
+    def test_updating_questionnaire_store_specific_group(self):
+        g.schema = load_schema_from_params('test',
+                                           'repeating_household_routing')
+        answers = [
+            Answer(
+                group_instance=0,
+                answer_id='first-name',
+                answer_instance=0,
+                value='Joe'
+            ), Answer(
+                group_instance=0,
+                answer_id='last-name',
+                answer_instance=0,
+                value='Bloggs'
+            ), Answer(
+                group_instance=0,
+                answer_id='date-of-birth-answer',
+                answer_instance=0,
+                value='2016-03-12'
+            ), Answer(
+                group_instance=1,
+                answer_id='date-of-birth-answer',
+                answer_instance=0,
+                value='2018-01-01'
+            )
+        ]
+
+        for answer in answers:
+            self.question_store.answer_store.add_or_update(answer)
+
+        answer_form_data = {'date-of-birth-answer': {}}
+        location = Location('household-member-group', 1, 'date-of-birth')
+        with self._application.test_request_context():
+            update_questionnaire_store_with_form_data(
+                self.question_store, location, answer_form_data)
+
+        self.assertIsNone(self.question_store.answer_store.find(answers[3]))
+        for answer in answers[:2]:
+            self.assertIsNotNone(self.question_store.answer_store.find(answer))
