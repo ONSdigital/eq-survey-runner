@@ -39,7 +39,13 @@
                                 "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
                             }],
                             "questions": [{
-                                    "question": "Commission and fees"
+                                    "question": "Commission and fees",
+                                    "content": [{
+                                        "description": "Exclude:",
+                                        "list": [
+                                            "VAT"
+                                        ]
+                                    }]
                                 },
                                 {
                                     "question": "Sales on own account and turnover from other activities",
@@ -48,7 +54,7 @@
                                         "list": [
                                             "VAT",
                                             "commission and fees",
-                                            "income from sales of fixed capital assets",
+                                            "income from the sale of fixed capital assets",
                                             "grants"
                                         ]
                                     }]
