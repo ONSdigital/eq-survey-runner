@@ -304,7 +304,7 @@
                                 ]
                             },
                             "id": "number-of-employees-total-question",
-                            "title": "On {{exercise.start_date|format_date}}, what was the number of employees for {{respondent.trad_as_or_ru_name}}?",
+                            "title": "On {{exercise.employment_date|format_date}}, what was the number of employees for {{respondent.trad_as_or_ru_name}}?",
                             "type": "General"
                         }],
                         "title": "Employees",
@@ -339,7 +339,7 @@
                                 "mandatory": true
                             }],
                             "id": "confirm-zero-employees-question",
-                            "title": "On {{exercise.start_date|format_date}}, the number of employees for {{respondent.trad_as_or_ru_name}} was <em>0</em>, is this correct?"
+                            "title": "On {{exercise.employment_date|format_date}}, the number of employees for {{respondent.trad_as_or_ru_name}} was <em>0</em>, is this correct?"
                         }],
                         "routing_rules": [{
                                 "goto": {
