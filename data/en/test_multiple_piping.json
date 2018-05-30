@@ -120,7 +120,7 @@
                         "answers": [{
                             "id": "multiple-piping-answer",
                             "type": "Radio",
-                            "mandatory": false,
+                            "mandatory": true,
                             "options": [{
                                     "label": "{{[answers['building'], answers['address-line-1'], answers['address-line-2'], answers['address-line-3'], answers['town-city'], answers['county'], answers['postcode'], answers['country']] | concatenated_list}}",
                                     "value": "at your address"

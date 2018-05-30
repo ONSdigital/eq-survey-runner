@@ -23,7 +23,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
     <!--[if gt IE 8]><!-->
-      <script nonce="{{ request.csp_nonce }}">document.documentElement.className = document.documentElement.className.replace('no-js','has-js')</script>
+      <script nonce="{{ csp_nonce() }}">document.documentElement.className = document.documentElement.className.replace('no-js','has-js')</script>
     <!--<![endif]-->
     {%- block styles %}
     {% set css_fixed_cdn = cdn_url_prefix~"/css/fixed.css" %}
@@ -48,7 +48,7 @@
     <!-- Google Analytics -->
 
     {% if analytics_ua_id  %}
-    <script nonce="{{ request.csp_nonce }}">
+    <script nonce="{{ csp_nonce() }}">
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -60,7 +60,7 @@
     </script>
     {% endif %}
     <!-- End Google Analytics -->
-    <script nonce="{{ request.csp_nonce }}">
+    <script nonce="{{ csp_nonce() }}">
       window.__EQ_SESSION_TIMEOUT__ = {{ session_timeout|default('null') }};
       window.__EQ_SESSION_TIMEOUT_PROMPT__ = {{ session_timeout_prompt|default('null') }};
     </script>
@@ -129,8 +129,8 @@
     </body>
 
     {% if config['EQ_ENABLE_LIVE_RELOAD'] %}
-    <script nonce="{{ request.csp_nonce }}" id="__bs_script__">//<![CDATA[
-      document.write("<script async nonce='{{ request.csp_nonce }}' src='http://HOST:5075/browser-sync/browser-sync-client.js?v=2.24.4'><\/script>".replace("HOST", location.hostname));
+    <script nonce="{{ csp_nonce() }}" id="__bs_script__">//<![CDATA[
+      document.write("<script async nonce='{{ csp_nonce() }}' src='http://HOST:5075/browser-sync/browser-sync-client.js?v=2.24.4'><\/script>".replace("HOST", location.hostname));
     //]]></script>
     {% endif %}
 </html>

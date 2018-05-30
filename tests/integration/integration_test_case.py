@@ -50,6 +50,9 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         self._set_up_app(True)
 
     def _set_up_app(self, enable_dynamo_db=False):
+        from application import configure_logging
+        configure_logging()
+
         setting_overrides = {
             'SQLALCHEMY_DATABASE_URI': 'sqlite://',
             'EQ_DYNAMODB_ENABLED': enable_dynamo_db
@@ -205,6 +208,13 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
     # Extra Helper Assertions
     def assertInPage(self, content, message=None):
         self.assertIn(member=content, container=self.getResponseData(), msg=message)
+
+    def assertInSelector(self, content, **selectors):
+        data = self.getHtmlSoup().find(**selectors)
+        message = '\n{} not in \n{}'.format(content, data)
+
+        # intentionally not using assertIn to avoid duplicating the output message
+        self.assertTrue(content in str(data), msg=message)
 
     def assertNotInPage(self, content, message=None):
         self.assertNotIn(member=content, container=self.getResponseData(), msg=message)
