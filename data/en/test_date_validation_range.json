@@ -7,8 +7,13 @@
     "description": "A test schema for different date formats",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "variables": {
-        "period": "{{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}"
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        }
     },
     "sections": [{
         "id": "default-section",

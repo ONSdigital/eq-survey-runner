@@ -13,6 +13,23 @@
         "enabled": true,
         "duration": 900
     },
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        },
+        "ref_p_start_date": {
+            "validator": "date"
+        },
+        "ref_p_end_date": {
+            "validator": "date"
+        },
+        "trad_as_or_ru_name": {
+            "validator": "string"
+        }
+    },
     "sections": [{
         "id": "default-section",
         "groups": [{
@@ -140,7 +157,7 @@
                             "mandatory": true
                         }],
                         "id": "reporting-period-choice-question",
-                        "title": "Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?"
+                        "title": "Are you able to report for the period from {{metadata['ref_p_start_date']|format_date}} to {{metadata['ref_p_end_date']|format_date}}?"
                     }],
                     "type": "Question",
                     "title": "Reporting period",
@@ -240,7 +257,7 @@
                             "default": 0
                         }],
                         "id": "total-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, how much was {{respondent.trad_as_or_ru_name}}’s <em>total turnover excluding VAT</em>?",
+                        "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, how much was {{metadata['trad_as_or_ru_name']}}’s <em>total turnover excluding VAT</em>?",
                         "type": "General"
                     }],
                     "title": "Total turnover excluding VAT"
@@ -274,7 +291,7 @@
                             "mandatory": true
                         }],
                         "id": "confirm-zero-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, the value of the total turnover was <em>£0</em>, is this correct?"
+                        "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, the value of the total turnover was <em>£0</em>, is this correct?"
                     }],
                     "routing_rules": [{
                             "goto": {
@@ -363,7 +380,7 @@
                             "mandatory": true
                         }],
                         "id": "confirm-zero-retail-sales-question",
-                        "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, the value of retail sales was <em>£0</em>, is this correct?"
+                        "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, the value of retail sales was <em>£0</em>, is this correct?"
                     }],
                     "routing_rules": [{
                             "goto": {
@@ -451,9 +468,9 @@
                             "q_code": "146a",
                             "type": "Radio"
                         }],
-                        "description": "Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year.<br><br>This information will help us to validate your data and should reduce the need to query any figures with you.",
+                        "description": "Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{metadata['trad_as_or_ru_name']}}’s figures from the previous reporting period and the same reporting period last year.<br><br>This information will help us to validate your data and should reduce the need to query any figures with you.",
                         "id": "significant-change-question",
-                        "title": "Did any significant changes occur to the retail sales for {{respondent.trad_as_or_ru_name}}?",
+                        "title": "Did any significant changes occur to the retail sales for {{metadata['trad_as_or_ru_name']}}?",
                         "type": "General"
                     }],
                     "title": "Changes in retail sales",
@@ -521,7 +538,7 @@
                             "type": "Checkbox"
                         }],
                         "id": "reason-for-change-question",
-                        "title": "Please indicate the reasons for any changes in the retail sales for {{respondent.trad_as_or_ru_name}}",
+                        "title": "Please indicate the reasons for any changes in the retail sales for {{metadata['trad_as_or_ru_name']}}",
                         "type": "General"
                     }],
                     "title": "Changes in retail sales"
@@ -559,7 +576,7 @@
                         }],
                         "description": "We rely on your commentary to ‘tell the story’ behind changes in figures. By commenting here it will reduce the need for us to call you.",
                         "id": "change-comment-question",
-                        "title": "Please describe the changes in retail sales for {{respondent.trad_as_or_ru_name}} in more detail",
+                        "title": "Please describe the changes in retail sales for {{metadata['trad_as_or_ru_name']}} in more detail",
                         "type": "General"
                     }],
                     "title": "Changes in retail sales"

@@ -7,6 +7,14 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A test survey for routing based on a number greater than or equal",
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        }
+    },
     "sections": [{
         "id": "default-section",
         "groups": [{

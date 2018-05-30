@@ -6,6 +6,14 @@
     "title": "Radio Optional with Mandatory Other",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        }
+    },
     "sections": [{
         "id": "default-section",
         "groups": [{

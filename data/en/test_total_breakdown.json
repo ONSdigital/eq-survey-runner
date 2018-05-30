@@ -7,6 +7,14 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A survey that tests the totalling of percentage input fields",
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        }
+    },
     "sections": [{
         "id": "default-section",
         "groups": [{

@@ -10,6 +10,14 @@
     "navigation": {
         "visible": true
     },
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        }
+    },
     "sections": [{
             "id": "group-1-section",
             "title": "Group 1",

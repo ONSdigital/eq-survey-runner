@@ -5,7 +5,7 @@ import dateutil.parser
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.location import Location
-from app.storage.metadata_parser import parse_metadata
+from app.storage.metadata_parser import validate_metadata, parse_runner_claims
 from app.submitter.converter import convert_answers, DataVersionError
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -13,6 +13,20 @@ from tests.app.app_context_test_case import AppContextTestCase
 class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-methods
     def setUp(self):
         super().setUp()
+
+        def parse_metadata(claims, schema_metadata):
+            validated_claims = parse_runner_claims(claims)
+            validate_metadata(validated_claims, schema_metadata)
+            return validated_claims
+
+        self.schema_metadata = {
+            'user_id': {
+                'validator': 'string'
+            },
+            'period_id': {
+                'validator': 'string'
+            }
+        }
         self.metadata = parse_metadata({
             'user_id': '789473423',
             'form_type': '0205',
@@ -27,7 +41,7 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             'return_by': '2016-07-07',
             'case_id': '1234567890',
             'case_ref': '1000000000000001'
-        })
+        }, self.schema_metadata)
 
     def test_convert_answers_flushed_flag_default_is_false(self):
         with self._app.test_request_context():

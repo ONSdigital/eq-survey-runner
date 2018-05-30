@@ -1,6 +1,7 @@
 # Python temp file
 *.py[cod]
 __pycache__
+.pytest_cache
 
 # C extensions
 *.so
@@ -50,6 +51,9 @@ venv
 *.iml
 *.iws
 
+# VS Code
+.vscode
+
 .DS_Store
 
 node_modules/
@@ -83,3 +87,5 @@ keys.yml
 secrets.yml
 
 requirements.txt
+
+.screenshots

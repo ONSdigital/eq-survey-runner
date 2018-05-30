@@ -7,6 +7,14 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A survey that tests grouped and calculated answers against a total",
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        }
+    },
     "sections": [{
         "id": "default-section",
         "groups": [{

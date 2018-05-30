@@ -13,6 +13,23 @@
         "enabled": true,
         "duration": 900
     },
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        },
+        "ref_p_start_date": {
+            "validator": "date"
+        },
+        "ref_p_end_date": {
+            "validator": "date"
+        },
+        "trad_as_or_ru_name": {
+            "validator": "string"
+        }
+    },
     "sections": [{
             "id": "section",
             "groups": [{
@@ -112,7 +129,7 @@
                             }],
                             "type": "General",
                             "id": "reporting-period-question",
-                            "title": "Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?"
+                            "title": "Are you able to report for the period from {{metadata['ref_p_start_date']|format_date}} to {{metadata['ref_p_end_date']|format_date}}?"
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -217,7 +234,7 @@
                                 "mandatory": true
                             }],
                             "type": "General",
-                            "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total turnover</em>, excluding VAT?"
+                            "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{metadata['trad_as_or_ru_name']}}’s <em>total turnover</em>, excluding VAT?"
                         }],
                         "title": "Total Turnover"
                     },
@@ -225,9 +242,9 @@
                         "id": "changes-in-turnover-block",
                         "type": "Question",
                         "questions": [{
-                            "title": "Did any significant changes occur to the total turnover for {{respondent.trad_as_or_ru_name}}?",
+                            "title": "Did any significant changes occur to the total turnover for {{metadata['trad_as_or_ru_name']}}?",
                             "id": "changes-in-turnover-question",
-                            "description": "<p>Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>",
+                            "description": "<p>Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{metadata['trad_as_or_ru_name']}}’s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>",
                             "answers": [{
                                 "options": [{
                                         "value": "Yes",
@@ -280,7 +297,7 @@
                         "id": "changes-in-turnover-block-2",
                         "type": "Question",
                         "questions": [{
-                            "title": "Please indicate the reasons for any changes in the total turnover for {{respondent.trad_as_or_ru_name}}",
+                            "title": "Please indicate the reasons for any changes in the total turnover for {{metadata['trad_as_or_ru_name']}}",
                             "answers": [{
                                 "options": [{
                                         "q_code": "146a",
@@ -334,7 +351,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "changes-in-turnover-question-3",
-                            "title": "Please describe the changes in total turnover for {{respondent.trad_as_or_ru_name}} in more detail",
+                            "title": "Please describe the changes in total turnover for {{metadata['trad_as_or_ru_name']}} in more detail",
                             "answers": [{
                                 "guidance": {
                                     "hide_guidance": "Hide examples of commentary on changes to total turnover",

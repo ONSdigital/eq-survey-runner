@@ -13,8 +13,7 @@ def build_schema_context(metadata, answer_store, answer_ids_on_path, group_insta
     :return: questionnaire schema context
     """
     return {
-        'exercise': _build_exercise(metadata),
-        'respondent': _build_respondent(metadata),
+        'metadata': build_schema_metadata(metadata),
         'answers': _build_answers(answer_store, answer_ids_on_path),
         'group_instance': group_instance,
     }
@@ -46,27 +45,27 @@ def _build_answers(answer_store, answer_ids_on_path):
     return answers
 
 
-def _build_exercise(metadata):
-    return {
-        'start_date': metadata['ref_p_start_date'],
-        'end_date': metadata['ref_p_end_date'],
-        'period_str': json_and_html_safe(metadata['period_str']),
-        'employment_date': metadata['employment_date'],
-        'return_by': metadata['return_by'],
-        'region_code': json_and_html_safe(metadata['region_code']),
-    }
+def build_schema_metadata(metadata):
 
+    schema_metadata = g.schema.json['metadata']
+    parsed = {key: json_and_html_safe(metadata[key]) for key in schema_metadata.keys() if key in metadata}
+    trad_as = json_and_html_safe(metadata.get('trad_as'))
+    ru_name = json_and_html_safe(metadata.get('ru_name'))
 
-def _build_respondent(metadata):
-    return {
-        'ru_name': json_and_html_safe(metadata['ru_name']),
-        'trad_as': json_and_html_safe(metadata['trad_as']),
-        'trad_as_or_ru_name': json_and_html_safe(metadata['trad_as'] or metadata['ru_name']),
-    }
+    if trad_as:
+        parsed['trad_as'] = trad_as
+
+    if ru_name:
+        parsed['ru_name'] = ru_name
+
+    if 'trad_as_or_ru_name' in schema_metadata:
+        parsed['trad_as_or_ru_name'] = trad_as or ru_name
+
+    return parsed
 
 
 def json_and_html_safe(data):
-    if isinstance(data, str):
+    if data and isinstance(data, str):
         return escape(data.replace('\\', r'\\'))
     return data
 
