@@ -123,8 +123,35 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_deserialises_lists(self):
         with self.test_request_context():
+            # STANDARD CHECKBOX
             schema = load_schema_from_params('test', 'checkbox')
 
+            block_json = schema.get_block('mandatory-checkbox')
+            location = Location(group_id='checkboxes',
+                                group_instance=0,
+                                block_id='mandatory-checkbox')
+
+            error_messages = schema.error_messages
+
+            form = get_form_for_location(schema, block_json, location, AnswerStore([
+                {
+                    'answer_id': 'mandatory-checkbox-answer',
+                    'group_id': 'checkboxes',
+                    'group_instance': 0,
+                    'block_id': 'mandatory-checkbox',
+                    'value': ['Cheese', 'Ham'],
+                    'answer_instance': 0,
+                }
+            ]), error_messages)
+
+            self.assertTrue(hasattr(form, 'mandatory-checkbox-answer'))
+
+            checkbox_field = getattr(form, 'mandatory-checkbox-answer')
+
+            self.assertEqual(checkbox_field.data, ['Cheese', 'Ham'])
+
+            # MUTUALLY EXCLUSIVE CHECKBOX
+            schema = load_schema_from_params('test', 'checkbox_mutually_exclusive')
             block_json = schema.get_block('mandatory-checkbox')
             location = Location(group_id='checkboxes',
                                 group_instance=0,

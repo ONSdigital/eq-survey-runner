@@ -26,4 +26,5 @@ error_messages = {
     'DATE_PERIOD_TOO_LARGE': 'Enter a reporting period less than or equal to %(max)s.',
     'SINGLE_DATE_PERIOD_TOO_EARLY': 'Enter a date after %(min)s.',
     'SINGLE_DATE_PERIOD_TOO_LATE': 'Enter a date before %(max)s.',
+    'MUTUALLY_EXCLUSIVE': 'Uncheck %(non_exclusives)s or "%(exclusive)s" to continue',
 }

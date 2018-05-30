@@ -945,6 +945,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
     def test_option_has_other(self):
         with self.test_request_context():
+            # STANDARD CHECKBOX
             schema = load_schema_from_params('test', 'checkbox')
             block_json = schema.get_block('mandatory-checkbox')
 
@@ -953,8 +954,18 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             self.assertFalse(form.option_has_other('mandatory-checkbox-answer', 1))
             self.assertTrue(form.option_has_other('mandatory-checkbox-answer', 6))
 
+            # MUTUALLY EXCLUSIVE CHECKBOX
+            schema = load_schema_from_params('test', 'checkbox_mutually_exclusive')
+            block_json = schema.get_block('mandatory-checkbox')
+
+            form = generate_form(schema, block_json, {}, AnswerStore(), metadata=None)
+
+            self.assertFalse(form.option_has_other('mandatory-checkbox-answer', 1))
+            self.assertTrue(form.option_has_other('mandatory-checkbox-answer', 5))
+
     def test_get_other_answer(self):
         with self.test_request_context():
+            # STANDARD CHECKBOX
             schema = load_schema_from_params('test', 'checkbox')
             block_json = schema.get_block('mandatory-checkbox')
 
@@ -966,9 +977,34 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
             self.assertEqual('Some data', field.data)
 
+            # MUTUALLY EXCLUSIVE CHECKBOX
+            schema = load_schema_from_params('test', 'checkbox_mutually_exclusive')
+            block_json = schema.get_block('mandatory-checkbox')
+
+            form = generate_form(schema, block_json, {
+                'other-answer-mandatory': 'Some data'
+            }, AnswerStore(), metadata=None)
+
+            field = form.get_other_answer('mandatory-checkbox-answer', 5)
+
+            self.assertEqual('Some data', field.data)
+
     def test_get_other_answer_invalid(self):
         with self.test_request_context():
+            # STANDARD CHECKBOX
             schema = load_schema_from_params('test', 'checkbox')
+            block_json = schema.get_block('mandatory-checkbox')
+
+            form = generate_form(schema, block_json, {
+                'other-answer-mandatory': 'Some data'
+            }, AnswerStore(), metadata=None)
+
+            field = form.get_other_answer('mandatory-checkbox-answer', 4)
+
+            self.assertEqual(None, field)
+
+            # MUTUALLY EXCLUSIVE CHECKBOX
+            schema = load_schema_from_params('test', 'checkbox_mutually_exclusive')
             block_json = schema.get_block('mandatory-checkbox')
 
             form = generate_form(schema, block_json, {

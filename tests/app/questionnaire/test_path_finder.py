@@ -322,7 +322,6 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         schema = load_schema_from_params('test', 'checkbox')
 
         expected_path = [
-            Location('checkboxes', 0, 'introduction'),
             Location('checkboxes', 0, 'mandatory-checkbox'),
             Location('checkboxes', 0, 'non-mandatory-checkbox'),
             Location('checkboxes', 0, 'summary')
@@ -343,8 +342,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
-        current_location = expected_path[1]
-        expected_next_location = expected_path[2]
+        current_location = expected_path[0]
+        expected_next_location = expected_path[1]
 
         next_location = path_finder.get_next_location(current_location=current_location)
 

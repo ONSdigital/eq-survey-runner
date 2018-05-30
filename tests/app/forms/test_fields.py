@@ -5,11 +5,11 @@ from wtforms import validators, StringField, FormField, SelectField, SelectMulti
 from app.forms.custom_fields import MaxTextAreaField
 from app.forms.fields import CustomIntegerField, CustomDecimalField, get_field, get_mandatory_validator, get_length_validator, _coerce_str_unless_none
 from app.validation.error_messages import error_messages
-from app.validation.validators import ResponseRequired
+from app.validation.validators import ResponseRequired, MutuallyExclusive
 from app.data_model.answer_store import AnswerStore
 
 
-# pylint: disable=no-member
+# pylint: disable=no-member, too-many-public-methods
 class TestFields(unittest.TestCase):
 
     def setUp(self):
@@ -113,7 +113,7 @@ class TestFields(unittest.TestCase):
         unbound_field = get_field(textfield_json, textfield_json['label'], error_messages, self.answer_store,
                                   self.metadata)
 
-        self.assertTrue(unbound_field.field_class == StringField)
+        self.assertEqual(unbound_field.field_class, StringField)
         self.assertEqual(unbound_field.kwargs['label'], textfield_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], textfield_json['guidance'])
 
@@ -130,7 +130,7 @@ class TestFields(unittest.TestCase):
         unbound_field = get_field(textarea_json, textarea_json['label'], error_messages, self.answer_store,
                                   self.metadata)
 
-        self.assertTrue(unbound_field.field_class == MaxTextAreaField)
+        self.assertEqual(unbound_field.field_class, MaxTextAreaField)
         self.assertEqual(unbound_field.kwargs['label'], textarea_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], textarea_json['guidance'])
 
@@ -152,7 +152,7 @@ class TestFields(unittest.TestCase):
         unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
                                   self.metadata)
 
-        self.assertTrue(unbound_field.field_class == FormField)
+        self.assertEqual(unbound_field.field_class, FormField)
         self.assertEqual(unbound_field.kwargs['label'], date_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], date_json['guidance'])
 
@@ -176,7 +176,7 @@ class TestFields(unittest.TestCase):
         unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
                                   self.metadata)
 
-        self.assertTrue(unbound_field.field_class == FormField)
+        self.assertEqual(unbound_field.field_class, FormField)
         self.assertEqual(unbound_field.kwargs['label'], date_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], date_json['guidance'])
 
@@ -215,7 +215,7 @@ class TestFields(unittest.TestCase):
 
         expected_choices = [(option['label'], option['value']) for option in radio_json['options']]
 
-        self.assertTrue(unbound_field.field_class == SelectField)
+        self.assertEqual(unbound_field.field_class, SelectField)
         self.assertTrue(unbound_field.kwargs['coerce'], _coerce_str_unless_none)
         self.assertEqual(unbound_field.kwargs['label'], radio_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], radio_json['guidance'])
@@ -250,7 +250,7 @@ class TestFields(unittest.TestCase):
         expected_choices = [('', 'Select an answer')] + \
                            [(option['label'], option['value']) for option in dropdown_json['options']]
 
-        self.assertTrue(unbound_field.field_class == SelectField)
+        self.assertEqual(unbound_field.field_class, SelectField)
         self.assertEqual(unbound_field.kwargs['label'], dropdown_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], '')
         self.assertEqual(unbound_field.kwargs['default'], '')
@@ -304,12 +304,61 @@ class TestFields(unittest.TestCase):
         unbound_field = get_field(checkbox_json, checkbox_json['label'], error_messages, self.answer_store,
                                   self.metadata)
 
-        expected_choices = [(option['label'], option['value']) for option in checkbox_json['options']]
+        expected_choices = [(option['value'], option['label']) for option in checkbox_json['options']]
 
-        self.assertTrue(unbound_field.field_class == SelectMultipleField)
+        self.assertEqual(unbound_field.field_class, SelectMultipleField)
         self.assertEqual(unbound_field.kwargs['label'], checkbox_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], checkbox_json['guidance'])
         self.assertEqual(unbound_field.kwargs['choices'], expected_choices)
+        self.assertEqual(len(unbound_field.kwargs['validators']), 1)
+
+
+    def test_mutually_exclusive_checkbox_field(self):
+        checkbox_json = {
+            'guidance': '',
+            'id': 'opening-crawler-answer',
+            'label': '',
+            'mandatory': False,
+            'options': [
+                {
+                    'label': 'Luke Skywalker',
+                    'value': 'Luke Skywalker'
+                },
+                {
+                    'label': 'Han Solo',
+                    'value': 'Han Solo'
+                },
+                {
+                    'label': 'The Emperor',
+                    'value': 'The Emperor'
+                },
+                {
+                    'label': 'R2D2',
+                    'value': 'R2D2'
+                },
+                {
+                    'label': 'Senator Amidala',
+                    'value': 'Senator Amidala'
+                },
+                {
+                    'label': 'I prefer star trek',
+                    'value': 'None'
+                }
+            ],
+            'type': 'MutuallyExclusiveCheckbox'
+        }
+
+        unbound_field = get_field(checkbox_json, checkbox_json['label'], error_messages, self.answer_store,
+                                  self.metadata)
+
+        expected_choices = [(option['value'], option['label']) for option in checkbox_json['options']]
+
+        self.assertEqual(unbound_field.field_class, SelectMultipleField)
+        self.assertEqual(unbound_field.kwargs['label'], checkbox_json['label'])
+        self.assertEqual(unbound_field.kwargs['description'], checkbox_json['guidance'])
+        self.assertEqual(unbound_field.kwargs['choices'], expected_choices)
+        self.assertEqual(type(unbound_field.kwargs['validators'][1]), MutuallyExclusive)
+
 
     def test_integer_field(self):
         integer_json = {
@@ -331,7 +380,7 @@ class TestFields(unittest.TestCase):
 
         unbound_field = get_field(integer_json, integer_json['label'], error_messages, self.answer_store, self.metadata)
 
-        self.assertTrue(unbound_field.field_class == CustomIntegerField)
+        self.assertEqual(unbound_field.field_class, CustomIntegerField)
         self.assertEqual(unbound_field.kwargs['label'], integer_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], integer_json['guidance'])
 
@@ -354,7 +403,7 @@ class TestFields(unittest.TestCase):
 
         unbound_field = get_field(decimal_json, decimal_json['label'], error_messages, self.answer_store, self.metadata)
 
-        self.assertTrue(unbound_field.field_class == CustomDecimalField)
+        self.assertEqual(unbound_field.field_class, CustomDecimalField)
         self.assertEqual(unbound_field.kwargs['label'], decimal_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], decimal_json['guidance'])
 
@@ -378,7 +427,7 @@ class TestFields(unittest.TestCase):
         unbound_field = get_field(currency_json, currency_json['label'], error_messages, self.answer_store,
                                   self.metadata)
 
-        self.assertTrue(unbound_field.field_class == CustomIntegerField)
+        self.assertEqual(unbound_field.field_class, CustomIntegerField)
         self.assertEqual(unbound_field.kwargs['label'], currency_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], currency_json['guidance'])
 
@@ -405,6 +454,6 @@ class TestFields(unittest.TestCase):
         unbound_field = get_field(percentage_json, percentage_json['label'], error_messages, self.answer_store,
                                   self.metadata)
 
-        self.assertTrue(unbound_field.field_class == CustomIntegerField)
+        self.assertEqual(unbound_field.field_class, CustomIntegerField)
         self.assertEqual(unbound_field.kwargs['label'], percentage_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], percentage_json['description'])

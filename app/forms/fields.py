@@ -6,7 +6,7 @@ from structlog import get_logger
 
 from app.forms.custom_fields import MaxTextAreaField, CustomIntegerField, CustomDecimalField
 from app.forms.date_form import get_date_form, get_month_year_form
-from app.validation.validators import NumberCheck, NumberRange, ResponseRequired, DecimalPlaces
+from app.validation.validators import NumberCheck, NumberRange, ResponseRequired, DecimalPlaces, MutuallyExclusive
 
 MAX_LENGTH = 2000
 MAX_NUMBER = 9999999999
@@ -24,10 +24,11 @@ def get_field(answer, label, error_messages, answer_store, metadata):
         field = get_date_field(answer, label, guidance, error_messages, answer_store, metadata)
     elif answer['type'] == 'MonthYearDate':
         field = get_month_year_field(answer, label, guidance, error_messages, answer_store, metadata)
+    elif answer['type'] in ['Checkbox', 'MutuallyExclusiveCheckbox']:
+        field = get_select_multiple_field(answer, label, guidance, error_messages)
     else:
         field = {
             'Radio': get_select_field,
-            'Checkbox': get_select_multiple_field,
             'TextArea': get_text_area_field,
             'TextField': get_string_field,
             'Dropdown': get_dropdown_field,
@@ -124,6 +125,11 @@ def get_month_year_field(answer, label, guidance, error_messages, answer_store, 
 
 def get_select_multiple_field(answer, label, guidance, error_messages):
     validate_with = get_mandatory_validator(answer, error_messages, 'MANDATORY_CHECKBOX')
+
+    if answer['type'] == 'MutuallyExclusiveCheckbox':
+        validate_with.append(
+            MutuallyExclusive(answer.get('options'), error_messages)
+        )
 
     return SelectMultipleField(
         label=label,
