@@ -10,6 +10,14 @@
     "navigation": {
         "visible": true
     },
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        }
+    },
     "sections": [{
             "id": "coffee-section",
             "title": "Coffee",

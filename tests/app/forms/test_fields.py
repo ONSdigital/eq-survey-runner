@@ -4,7 +4,6 @@ from wtforms import validators, StringField, FormField, SelectField, SelectMulti
 
 from app.forms.custom_fields import MaxTextAreaField
 from app.forms.fields import CustomIntegerField, CustomDecimalField, get_field, get_mandatory_validator, get_length_validator, _coerce_str_unless_none
-from app.storage.metadata_parser import parse_metadata
 from app.validation.error_messages import error_messages
 from app.validation.validators import ResponseRequired
 from app.data_model.answer_store import AnswerStore
@@ -15,7 +14,7 @@ class TestFields(unittest.TestCase):
 
     def setUp(self):
         self.answer_store = AnswerStore()
-        self.metadata = parse_metadata({
+        self.metadata = {
             'user_id': '789473423',
             'form_type': '0205',
             'collection_exercise_sid': 'test-sid',
@@ -29,7 +28,7 @@ class TestFields(unittest.TestCase):
             'return_by': '2016-07-07',
             'case_id': '1234567890',
             'case_ref': '1000000000000001'
-        })
+        }
 
     def tearDown(self):
         self.answer_store.clear()

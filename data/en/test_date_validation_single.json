@@ -7,8 +7,16 @@
     "description": "A test schema for single date period validation",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "variables": {
-        "period": "{{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}"
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        },
+        "ref_p_start_date": {
+            "validator": "date"
+        }
     },
     "sections": [{
         "id": "default-section",
@@ -43,7 +51,7 @@
                         "guidance": {
                             "content": [{
                                 "list": [
-                                    "Period 'from' date should be greater than 19 days before {{exercise.start_date|format_date}}",
+                                    "Period 'from' date should be greater than 19 days before {{metadata['ref_p_start_date']|format_date}}",
                                     "Period 'from' should also be no greater than 20 days after 11 June 2017",
                                     "Period 'to' date should be greater than 1 month 10 days after {{answers['date']|format_date}}"
                                 ]

@@ -67,7 +67,7 @@ class TestLogin(IntegrationTestCase):
         self.get('/session?token=' + token)
 
         # Then
-        self.assertStatusNotFound()
+        self.assertStatusForbidden()
 
     def test_http_head_request_to_login_returns_successfully_and_get_still_works(self):
         # Given
@@ -126,7 +126,7 @@ class TestLogin(IntegrationTestCase):
     @staticmethod
     @urlmatch(netloc=r'eq-survey-register', path=r'\/my-test-schema')
     def survey_url_mock(_url, _request):
-        schema_path = get_schema_file_path('1_0205.json')
+        schema_path = get_schema_file_path('test_textarea.json')
 
         with open(schema_path, encoding='utf8') as json_data:
             return json_data.read()

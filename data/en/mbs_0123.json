@@ -13,6 +13,23 @@
         "enabled": true,
         "duration": 900
     },
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        },
+        "ref_p_start_date": {
+            "validator": "date"
+        },
+        "ref_p_end_date": {
+            "validator": "date"
+        },
+        "trad_as_or_ru_name": {
+            "validator": "string"
+        }
+    },
     "sections": [{
             "id": "section",
             "groups": [{
@@ -108,7 +125,7 @@
                             }],
                             "type": "General",
                             "id": "reporting-period-question",
-                            "title": "Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?"
+                            "title": "Are you able to report for the period from {{metadata['ref_p_start_date']|format_date}} to {{metadata['ref_p_end_date']|format_date}}?"
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -181,7 +198,7 @@
                             "description": "For example, as a travel agent, where you do not hold title to goods/services",
                             "id": "commission-and-fees-question",
                             "type": "General",
-                            "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>commission and fees</em>, excluding VAT?",
+                            "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{metadata['trad_as_or_ru_name']}}’s <em>commission and fees</em>, excluding VAT?",
                             "answers": [{
                                 "id": "commission-and-fees-answer",
                                 "label": "Total commission and fees excluding VAT",
@@ -212,7 +229,7 @@
                             "id": "sales-on-own-account-question",
                             "type": "General",
                             "description": "For example, as a tour operator",
-                            "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>sales on own account and turnover from other activities</em>, excluding VAT?",
+                            "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{metadata['trad_as_or_ru_name']}}’s <em>sales on own account and turnover from other activities</em>, excluding VAT?",
                             "answers": [{
                                 "id": "sales-on-own-account-answer",
                                 "label": "Total Sales on own account and turnover from other activities  excluding VAT",
@@ -228,9 +245,9 @@
                         "id": "changes-block",
                         "type": "Question",
                         "questions": [{
-                            "title": "Did any significant changes occur to the figures provided for {{respondent.trad_as_or_ru_name}}?",
+                            "title": "Did any significant changes occur to the figures provided for {{metadata['trad_as_or_ru_name']}}?",
                             "id": "changes-question",
-                            "description": "<p>Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>",
+                            "description": "<p>Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{metadata['trad_as_or_ru_name']}}’s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>",
                             "answers": [{
                                 "options": [{
                                         "value": "Yes",
@@ -283,7 +300,7 @@
                         "id": "changes-block-2",
                         "type": "Question",
                         "questions": [{
-                            "title": "Please indicate the reasons for any changes in the turnover for {{respondent.trad_as_or_ru_name}}",
+                            "title": "Please indicate the reasons for any changes in the turnover for {{metadata['trad_as_or_ru_name']}}",
                             "type": "General",
                             "id": "changes-question-2",
                             "answers": [{
@@ -337,7 +354,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "changes-question-3",
-                            "title": "Please describe the changes in turnover for {{respondent.trad_as_or_ru_name}} in more detail",
+                            "title": "Please describe the changes in turnover for {{metadata['trad_as_or_ru_name']}} in more detail",
                             "answers": [{
                                 "guidance": {
                                     "hide_guidance": "Hide examples of commentary on changes to turnover",

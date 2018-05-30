@@ -7,6 +7,20 @@
     "description": "Census England Individual Schema",
     "theme": "census",
     "legal_basis": "Voluntary",
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        },
+        "region_code": {
+            "validator": "string"
+        },
+        "variant_flags": {
+            "validator": "object"
+        }
+    },
     "sections": [{
         "id": "default-section",
         "groups": [{

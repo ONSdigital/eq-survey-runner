@@ -13,6 +13,26 @@
         "enabled": true,
         "duration": 900
     },
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        },
+        "ref_p_start_date": {
+            "validator": "date"
+        },
+        "ref_p_end_date": {
+            "validator": "date"
+        },
+        "employment_date": {
+            "validator": "date"
+        },
+        "trad_as_or_ru_name": {
+            "validator": "string"
+        }
+    },
     "sections": [{
             "id": "section",
             "groups": [{
@@ -150,7 +170,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "reporting-period-question",
-                            "title": "Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?",
+                            "title": "Are you able to report for the period from {{metadata['ref_p_start_date']|format_date}} to {{metadata['ref_p_end_date']|format_date}}?",
                             "answers": [{
                                 "id": "reporting-period-answer",
                                 "type": "Radio",
@@ -235,7 +255,7 @@
                         "title": "Total turnover",
                         "questions": [{
                             "type": "General",
-                            "title": "For the period {{format_conditional_date (answers['period-from'], exercise.start_date)}} to {{format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}’s <em>total turnover</em>, excluding VAT?",
+                            "title": "For the period {{format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{metadata['trad_as_or_ru_name']}}’s <em>total turnover</em>, excluding VAT?",
                             "guidance": {
                                 "content": [{
                                         "title": "Include:",
@@ -279,7 +299,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "number-of-employees-total-question",
-                            "title": "On {{exercise.employment_date|format_date}}, what was the number of employees for {{respondent.trad_as_or_ru_name}}?",
+                            "title": "On {{metadata['employment_date']|format_date}}, what was the number of employees for {{metadata['trad_as_or_ru_name']}}?",
                             "type": "General",
                             "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
                             "answers": [{
@@ -326,7 +346,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "confirm-zero-employees-question",
-                            "title": "On {{exercise.employment_date|format_date}}, the number of employees for {{respondent.trad_as_or_ru_name}} was <em>0</em>, is this correct?",
+                            "title": "On {{metadata['employment_date']|format_date}}, the number of employees for {{metadata['trad_as_or_ru_name']}} was <em>0</em>, is this correct?",
                             "answers": [{
                                 "type": "Radio",
                                 "id": "confirm-zero-employees-answer",
@@ -366,7 +386,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "number-of-employees-split-question",
-                            "title": "Of the <em>{{answers['number-of-employees-total']}}</em> total employees employed on {{exercise.employment_date|format_date}}, how many male and female employees worked the following hours?",
+                            "title": "Of the <em>{{answers['number-of-employees-total']}}</em> total employees employed on {{metadata['employment_date']|format_date}}, how many male and female employees worked the following hours?",
                             "type": "Calculated",
                             "calculations": [{
                                     "calculation_type": "sum",
@@ -464,9 +484,9 @@
                         "title": "Changes in total turnover",
                         "questions": [{
                             "type": "General",
-                            "title": "Did any significant changes occur to the total turnover for {{respondent.trad_as_or_ru_name}}?",
+                            "title": "Did any significant changes occur to the total turnover for {{metadata['trad_as_or_ru_name']}}?",
                             "id": "changes-in-turnover-question",
-                            "description": "<p>Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year.</p><p>This information will help us to validate your data and should reduce the need to query any figures with you.</p>",
+                            "description": "<p>Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{metadata['trad_as_or_ru_name']}}’s figures from the previous reporting period and the same reporting period last year.</p><p>This information will help us to validate your data and should reduce the need to query any figures with you.</p>",
                             "answers": [{
                                 "id": "changes-in-turnover-answer",
                                 "type": "Radio",
@@ -520,7 +540,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "changes-in-turnover-question-2",
-                            "title": "Please indicate the reasons for any changes in the total turnover for {{respondent.trad_as_or_ru_name}}",
+                            "title": "Please indicate the reasons for any changes in the total turnover for {{metadata['trad_as_or_ru_name']}}",
                             "answers": [{
                                 "id": "changes-in-turnover-answer-2",
                                 "type": "Checkbox",
@@ -571,7 +591,7 @@
                         "questions": [{
                             "type": "General",
                             "id": "changes-in-turnover-question-3",
-                            "title": "Please describe the changes in total turnover for {{respondent.trad_as_or_ru_name}} in more detail",
+                            "title": "Please describe the changes in total turnover for {{metadata['trad_as_or_ru_name']}} in more detail",
                             "description": "<p>We rely on your commentary to ‘tell the story’ behind changes in figures. By commenting here it will reduce the need for us to call you.</p>",
                             "answers": [{
                                 "type": "TextArea",

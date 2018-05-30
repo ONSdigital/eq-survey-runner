@@ -36,7 +36,7 @@ def with_metadata(func):
         metadata = get_metadata(current_user)
         metadata_context = build_metadata_context(metadata)
 
-        return func(*args, meta=metadata_context, **kwargs)
+        return func(*args, metadata=metadata_context, **kwargs)
 
     return metadata_wrapper
 
@@ -52,12 +52,11 @@ def with_questionnaire_url_prefix(func):
     def url_prefix_wrapper(*args, **kwargs):
         metadata = get_metadata(current_user)
         metadata_context = build_metadata_context(metadata)
-        survey_data = metadata_context['survey']
 
         url_prefix = '/questionnaire/{}/{}/{}'.format(
-            survey_data['eq_id'],
-            survey_data['form_type'],
-            survey_data['collection_id'],
+            metadata_context['eq_id'],
+            metadata_context['form_type'],
+            metadata_context['collection_id'],
         )
 
         return func(*args, url_prefix=url_prefix, **kwargs)

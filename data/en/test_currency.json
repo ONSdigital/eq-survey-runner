@@ -12,6 +12,14 @@
         "NUMBER_TOO_SMALL": "Number cannot be less than zero",
         "INVALID_DECIMAL": "Please enter a number to %(max)d decimal places"
     },
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        }
+    },
     "sections": [{
         "id": "default-section",
         "groups": [{

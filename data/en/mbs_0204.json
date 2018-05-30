@@ -11,6 +11,23 @@
         "enabled": true,
         "duration": 900
     },
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        },
+        "ref_p_start_date": {
+            "validator": "date"
+        },
+        "ref_p_end_date": {
+            "validator": "date"
+        },
+        "trad_as_or_ru_name": {
+            "validator": "string"
+        }
+    },
     "sections": [{
             "id": "section",
             "groups": [{
@@ -73,7 +90,7 @@
                             }],
                             "type": "General",
                             "id": "reporting-period-question",
-                            "title": "Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?"
+                            "title": "Are you able to report for the period from {{metadata['ref_p_start_date']|format_date}} to {{metadata['ref_p_end_date']|format_date}}?"
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -145,7 +162,7 @@
                         "questions": [{
                             "id": "water-volume-question",
                             "type": "General",
-                            "title": "For the period {{ format_conditional_date (answers['period-from'], exercise.start_date)}} to {{ format_conditional_date (answers['period-to'], exercise.end_date)}}, what was the total volume of {{respondent.trad_as_or_ru_name}}’s <em>potable water that was supplied to customers</em>, in megalitres?",
+                            "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the total volume of {{metadata['trad_as_or_ru_name']}}’s <em>potable water that was supplied to customers</em>, in megalitres?",
                             "answers": [{
                                 "id": "water-volume",
                                 "mandatory": true,
@@ -163,8 +180,8 @@
                         "questions": [{
                             "type": "General",
                             "id": "significant-change-question",
-                            "title": "Did any significant changes occur to the figures provided for {{respondent.trad_as_or_ru_name}}?",
-                            "description": "Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}’s figures from the previous reporting period and the same reporting period last year.<br><br>This information will help us to validate your data and should reduce the need to query any figures with you.",
+                            "title": "Did any significant changes occur to the figures provided for {{metadata['trad_as_or_ru_name']}}?",
+                            "description": "Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{metadata['trad_as_or_ru_name']}}’s figures from the previous reporting period and the same reporting period last year.<br><br>This information will help us to validate your data and should reduce the need to query any figures with you.",
                             "answers": [{
                                 "id": "significant-change-established-answer",
                                 "label": "",
@@ -212,7 +229,7 @@
                             }],
                             "description": "We rely on your commentary to ‘tell the story’ behind changes in figures. By commenting here it will reduce the need for us to call you.",
                             "id": "change-comment-question",
-                            "title": "Please describe the changes for {{respondent.trad_as_or_ru_name}} in more detail",
+                            "title": "Please describe the changes for {{metadata['trad_as_or_ru_name']}} in more detail",
                             "type": "General"
                         }],
                         "title": "Significant changes"

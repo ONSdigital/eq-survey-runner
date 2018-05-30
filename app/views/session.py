@@ -2,7 +2,7 @@ from flask import Blueprint, redirect, request, g, session as cookie_session
 from flask_login import current_user, login_required, logout_user
 from sdc.crypto.exceptions import InvalidTokenException
 
-from werkzeug.exceptions import NotFound, Unauthorized
+from werkzeug.exceptions import Unauthorized
 
 from structlog import get_logger
 
@@ -10,7 +10,7 @@ from app.authentication.authenticator import store_session, decrypt_token
 from app.authentication.jti_claim_storage import JtiTokenUsed, use_jti_claim
 from app.globals import get_completeness
 from app.settings import ACCOUNT_URL
-from app.storage.metadata_parser import parse_metadata
+from app.storage.metadata_parser import validate_metadata, parse_runner_claims
 from app.utilities.schema import load_schema_from_metadata
 from app.views.errors import render_template
 
@@ -43,7 +43,36 @@ def login():
         cookie_session.clear()
 
     decrypted_token = decrypt_token(request.args.get('token'))
+    validate_jti(decrypted_token)
 
+    claims = parse_runner_claims(decrypted_token)
+
+    g.schema = load_schema_from_metadata(claims)
+    schema_metadata = g.schema.json['metadata']
+    validate_metadata(claims, schema_metadata)
+
+    eq_id = claims['eq_id']
+    form_type = claims['form_type']
+    tx_id = claims['tx_id']
+    ru_ref = claims['ru_ref']
+
+    logger.bind(eq_id=eq_id, form_type=form_type, tx_id=tx_id, ru_ref=ru_ref)
+    logger.info('decrypted token and parsed metadata')
+
+    store_session(claims)
+
+    cookie_session['theme'] = g.schema.json['theme']
+    cookie_session['survey_title'] = g.schema.json['title']
+
+    if 'account_service_url' in claims and claims.get('account_service_url'):
+        cookie_session[ACCOUNT_URL] = claims.get('account_service_url')
+
+    current_location = get_completeness(current_user).get_latest_location()
+
+    return redirect(current_location.url(claims))
+
+
+def validate_jti(decrypted_token):
     jti_claim = decrypted_token.get('jti')
     try:
         use_jti_claim(jti_claim)
@@ -51,32 +80,6 @@ def login():
         raise Unauthorized from e
     except (TypeError, ValueError) as e:
         raise InvalidTokenException from e
-
-    metadata = parse_metadata(decrypted_token)
-    eq_id = metadata['eq_id']
-    form_type = metadata['form_type']
-    tx_id = metadata['tx_id']
-    ru_ref = metadata['ru_ref']
-    logger.bind(eq_id=eq_id, form_type=form_type, tx_id=tx_id, ru_ref=ru_ref)
-    logger.info('decrypted token and parsed metadata')
-
-    if not eq_id or not form_type:
-        logger.error('missing eq id or form type in jwt')
-        raise NotFound
-
-    g.schema = load_schema_from_metadata(metadata)
-
-    store_session(metadata)
-
-    cookie_session['theme'] = g.schema.json['theme']
-    cookie_session['survey_title'] = g.schema.json['title']
-
-    if 'account_service_url' in metadata and metadata.get('account_service_url'):
-        cookie_session[ACCOUNT_URL] = metadata.get('account_service_url')
-
-    current_location = get_completeness(current_user).get_latest_location()
-
-    return redirect(current_location.url(metadata))
 
 
 @session_blueprint.route('/timeout-continue', methods=['GET'])

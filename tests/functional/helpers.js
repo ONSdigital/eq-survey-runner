@@ -8,7 +8,7 @@ const getUri = uri => browser.options.baseUrl + uri;
 const getRandomString = length => _.sampleSize('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', length).join('');
 
 const openCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-ENG', language = 'en') => {
-  return generateToken(schema, getRandomString(10), getRandomString(10), null, null, region, language, sexualIdentity)
+  return generateToken(schema, getRandomString(10), getRandomString(10), '2011', null, region, language, sexualIdentity)
     .then(function(token) {
       return browser.url('/session?token=' + token);
     });

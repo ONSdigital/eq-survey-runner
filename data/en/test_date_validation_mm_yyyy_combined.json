@@ -8,7 +8,21 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "variables": {
-        "period": "{{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}"
+        "period": "{{ format_conditional_date (answers.period_from, metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers.period_to, metadata['ref_p_end_date'])}}"
+    },
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        },
+        "ref_p_start_date": {
+            "validator": "date"
+        },
+        "ref_p_end_date": {
+            "validator": "date"
+        }
     },
     "sections": [{
         "id": "default-section",
@@ -27,8 +41,8 @@
                             "content": [{
                                 "list": [
                                     "Dates between 2 and 3 months apart",
-                                    "Period from date greater than 1 month before {{exercise.start_date|format_date}}",
-                                    "Period to date no greater than 3 months after {{exercise.end_date|format_date}}"
+                                    "Period from date greater than 1 month before {{metadata['ref_p_start_date']|format_date}}",
+                                    "Period to date no greater than 3 months after {{metadata['ref_p_end_date']|format_date}}"
                                 ]
                             }]
                         },

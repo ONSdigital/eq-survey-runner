@@ -7,6 +7,20 @@
     "description": "MCI Description",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        },
+        "ref_p_start_date": {
+            "validator": "date"
+        },
+        "ref_p_end_date": {
+            "validator": "date"
+        }
+    },
     "sections": [{
         "id": "default-section",
         "groups": [{
@@ -45,7 +59,7 @@
                     "questions": [{
                             "id": "reporting-period-question",
                             "title": "What are the dates of the sales period you are reporting for?",
-                            "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
+                            "description": "If possible, this should be for the period {{metadata['ref_p_start_date']|format_date}} to {{metadata['ref_p_end_date']|format_date}}.",
                             "type": "DateRange",
                             "answers": [{
                                     "id": "period-from",
