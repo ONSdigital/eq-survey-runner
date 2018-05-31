@@ -549,7 +549,10 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
                 if latest_answer_store_hash != questionnaire_store.answer_store.get_hash():
                     _remove_dependent_answers_from_completed_blocks(answer_id, questionnaire_store)
             else:
-                _remove_answer_from_questionnaire_store(answer_id, questionnaire_store)
+                _remove_answer_from_questionnaire_store(
+                    answer_id,
+                    questionnaire_store,
+                    group_instance=location.group_instance)
 
     if location not in questionnaire_store.completed_blocks:
         questionnaire_store.completed_blocks.append(location)
@@ -586,8 +589,11 @@ def _remove_dependent_answers_from_completed_blocks(answer_id, questionnaire_sto
             questionnaire_store.completed_blocks.remove(location)
 
 
-def _remove_answer_from_questionnaire_store(answer_id, questionnaire_store):
-    questionnaire_store.answer_store.remove(answer_ids=[answer_id], answer_instance=0)
+def _remove_answer_from_questionnaire_store(answer_id, questionnaire_store,
+                                            group_instance=0):
+    questionnaire_store.answer_store.remove(answer_ids=[answer_id],
+                                            group_instance=group_instance,
+                                            answer_instance=0)
 
 
 def answer_value_empty(answer_value_dict):
