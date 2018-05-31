@@ -2,12 +2,12 @@
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.2",
-    "survey_id": "lfs ",
-    "title": "Labour Force Survey (Alpha)",
-    "description": "Labour Force Survey Schema (Alpha)",
+    "survey_id": "lms ",
+    "title": "Labour Market Survey (Alpha)",
+    "description": "Labour Market Survey Schema (Alpha)",
     "theme": "default",
     "legal_basis": "Voluntary",
-    "eq_id": "1",
+    "eq_id": "lms",
     "form_type": "1",
     "navigation": {
         "visible": true
