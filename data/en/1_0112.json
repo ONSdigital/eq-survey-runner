@@ -191,28 +191,48 @@
                 },
                 {
                     "title": "Reporting period",
+                    "id": "reporting-period",
+                    "type": "Question",
                     "questions": [{
                         "title": "What are the dates of the period that you will be reporting for?",
                         "type": "DateRange",
                         "id": "reporting-period-question",
+                        "period_limits": {
+                            "minimum": {
+                                "days": 23
+                            },
+                            "maximum": {
+                                "days": 50
+                            }
+                        },
                         "answers": [{
                                 "mandatory": true,
                                 "label": "From",
                                 "id": "period-from",
                                 "q_code": "11",
-                                "type": "Date"
+                                "type": "Date",
+                                "minimum": {
+                                    "meta": "ref_p_start_date",
+                                    "offset_by": {
+                                        "days": -19
+                                    }
+                                }
                             },
                             {
                                 "mandatory": true,
                                 "label": "To",
                                 "id": "period-to",
                                 "q_code": "12",
-                                "type": "Date"
+                                "type": "Date",
+                                "maximum": {
+                                    "meta": "ref_p_end_date",
+                                    "offset_by": {
+                                        "days": 20
+                                    }
+                                }
                             }
                         ]
-                    }],
-                    "id": "reporting-period",
-                    "type": "Question"
+                    }]
                 },
                 {
                     "type": "Question",
