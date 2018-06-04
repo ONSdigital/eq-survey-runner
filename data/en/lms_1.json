@@ -19,10 +19,10 @@
         "period_id": {
             "validator": "string"
         },
-        "region_code": {
+        "ru_name": {
             "validator": "string"
         },
-        "ru_name": {
+        "region_code": {
             "validator": "string"
         }
     },

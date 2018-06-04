@@ -21,6 +21,9 @@
         "period_id": {
             "validator": "string"
         },
+        "ru_name": {
+            "validator": "string"
+        },
         "trad_as_or_ru_name": {
             "validator": "string"
         }
