@@ -55,9 +55,6 @@ def build_schema_metadata(metadata):
     if trad_as:
         parsed['trad_as'] = trad_as
 
-    if ru_name:
-        parsed['ru_name'] = ru_name
-
     if 'trad_as_or_ru_name' in schema_metadata:
         parsed['trad_as_or_ru_name'] = trad_as or ru_name
 

@@ -14,10 +14,10 @@
         "period_id": {
             "validator": "string"
         },
-        "period_str": {
+        "ru_name": {
             "validator": "string"
         },
-        "ru_name": {
+        "period_str": {
             "validator": "string"
         },
         "trad_as": {
