@@ -64,10 +64,7 @@
                             "questions": [{
                                     "question": "Commission and fees",
                                     "content": [{
-                                        "description": "Exclude:",
-                                        "list": [
-                                            "VAT"
-                                        ]
+                                        "description": "Exclude VAT"
                                     }]
                                 },
                                 {

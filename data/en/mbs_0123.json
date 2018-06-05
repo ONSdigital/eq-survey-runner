@@ -62,10 +62,7 @@
                             "questions": [{
                                     "question": "Commission and fees",
                                     "content": [{
-                                        "description": "Exclude:",
-                                        "list": [
-                                            "VAT"
-                                        ]
+                                        "description": "Exclude VAT"
                                     }]
                                 },
                                 {
@@ -75,7 +72,7 @@
                                         "list": [
                                             "VAT",
                                             "commission and fees",
-                                            "income from sales of fixed capital assets",
+                                            "income from sale of fixed capital assets",
                                             "grants"
                                         ]
                                     }]
