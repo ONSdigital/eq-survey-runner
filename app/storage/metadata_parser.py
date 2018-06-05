@@ -78,7 +78,7 @@ def _validate_mandatory_metadata(metadata, required_metadata):
             valid = 'variant_flags' in metadata
         elif key == 'trad_as_or_ru_name':
             # either of 'trad_as' or 'ru_name' is required
-            valid = 'trad_as' in metadata or 'ru_name' in metadata
+            valid = bool(metadata.get('trad_as') or metadata.get('ru_name'))
         else:
             valid = bool(metadata.get(key))
 
