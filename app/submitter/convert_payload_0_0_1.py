@@ -26,9 +26,10 @@ def convert_answers_to_payload_0_0_1(answer_store, schema, routing_path):
             value = answer['value']
 
             if answer_schema is not None and value is not None and 'parent_answer_id' not in answer_schema:
-                if 'q_code' in answer_schema and (answer_schema['type'] != 'Checkbox' or any('q_code' not in option for option in
-                                                                                             answer_schema['options'])):
 
+                is_single_value_answer = answer_schema['type'] not in ['Checkbox', 'MutuallyExclusiveCheckbox']
+                all_options_have_q_codes = all('q_code' in option for option in answer_schema.get('options', []))
+                if 'q_code' in answer_schema and (is_single_value_answer or not all_options_have_q_codes):
                     answer_data = _get_answer_data(data, answer_schema['q_code'], value)
                     if answer_data is not None:
                         data[answer_schema['q_code']] = _format_downstream_answer(answer_schema['type'], answer['value'], answer_data)

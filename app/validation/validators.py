@@ -14,7 +14,7 @@ from app.questionnaire.rules import convert_to_datetime
 logger = get_logger()
 
 
-class NumberCheck(object):
+class NumberCheck:
     def __init__(self, message=None):
         if message:
             self.message = message
@@ -31,7 +31,7 @@ class NumberCheck(object):
             raise validators.StopValidation(self.message)
 
 
-class ResponseRequired(object):
+class ResponseRequired:
     """
     Validates that input was provided for this field. This is a copy of the
     InputRequired validator provided by wtforms, which checks that form-input data
@@ -55,7 +55,7 @@ class ResponseRequired(object):
             raise validators.StopValidation(self.message)
 
 
-class NumberRange(object):
+class NumberRange:
     """
     Validates that a number is of a minimum and/or maximum value, inclusive.
     This will work with any comparable number type, such as floats and
@@ -113,7 +113,7 @@ class NumberRange(object):
         return None
 
 
-class DecimalPlaces(object):
+class DecimalPlaces:
     """
     Validates that an input has less than or equal to a
     set number of decimal places
@@ -135,7 +135,7 @@ class DecimalPlaces(object):
                 raise validators.ValidationError(self.messages['INVALID_DECIMAL'] % dict(max=self.max_decimals))
 
 
-class OptionalForm(object):
+class OptionalForm:
     """
     Allows completely empty form and stops the validation chain from continuing.
     Will not stop the validation chain if any one of the fields is populated.
@@ -161,7 +161,7 @@ class OptionalForm(object):
             raise validators.StopValidation()
 
 
-class DateRequired(object):
+class DateRequired:
     field_flags = ('required', )
 
     def __init__(self, message=None):
@@ -176,7 +176,7 @@ class DateRequired(object):
                 raise validators.StopValidation(self.message)
 
 
-class DateCheck(object):
+class DateCheck:
     def __init__(self, message=None):
         self.message = message or error_messages['INVALID_DATE']
 
@@ -188,7 +188,7 @@ class DateCheck(object):
             raise validators.StopValidation(self.message)
 
 
-class MonthYearCheck(object):
+class MonthYearCheck:
     def __init__(self, message=None):
         self.message = message or error_messages['INVALID_DATE']
 
@@ -201,7 +201,7 @@ class MonthYearCheck(object):
             raise validators.ValidationError(self.message)
 
 
-class SingleDatePeriodCheck(object):
+class SingleDatePeriodCheck:
     def __init__(self, messages=None, date_format='%-d %B %Y', minimum_date=None, maximum_date=None):
         self.messages = messages or error_messages
         self.minimum_date = minimum_date
@@ -231,7 +231,7 @@ class SingleDatePeriodCheck(object):
         return date.strftime(date_format)
 
 
-class DateRangeCheck(object):
+class DateRangeCheck:
     def __init__(self, messages=None, period_min=None, period_max=None):
         self.messages = messages or error_messages
         self.period_min = period_min
@@ -296,7 +296,7 @@ class DateRangeCheck(object):
         return error_message
 
 
-class SumCheck(object):
+class SumCheck:
     def __init__(self, messages=None, currency=None):
         self.messages = messages or error_messages
         self.currency = currency
@@ -345,3 +345,35 @@ def format_date_string(field):
     return '{}-{:02d}-{:02d}'.format(int(field.data['year']),
                                      int(field.data['month']),
                                      day)
+
+
+class MutuallyExclusive:
+    def __init__(self, options, messages=None):
+        self.exclusive_value = options[-1]['value']
+        self.value_labels = self._get_value_labels(options)
+        self.messages = messages or error_messages
+
+    def __call__(self, form, field):
+        values = field.data
+        if len(values) > 1 and self.exclusive_value in values:
+            non_exclusives = self._build_non_exclusives(values)
+            raise validators.ValidationError(self.messages['MUTUALLY_EXCLUSIVE'] %
+                                             dict(non_exclusives=non_exclusives,
+                                                  exclusive=self.value_labels[self.exclusive_value]))
+
+    def _build_non_exclusives(self, values):
+        non_exclusive_values = [
+            '"{}"'.format(self.value_labels[value])
+            for value in values
+            if value != self.exclusive_value
+        ]
+        if len(non_exclusive_values) == 1:
+            return non_exclusive_values[0]
+
+        return '{} and {}'.format(', '.join(non_exclusive_values[:-1]), non_exclusive_values[-1])
+
+    @staticmethod
+    def _get_value_labels(options):
+        return {
+            option['value']: option['label'] for option in options
+        }

@@ -115,7 +115,7 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
         options_with_children = {}
 
         for answer_json in self.get_answers_for_block(block_id):
-            if answer_json['type'] in ['Checkbox', 'Radio']:
+            if answer_json['type'] in ['Checkbox', 'MutuallyExclusiveCheckbox', 'Radio']:
                 answer_options_with_children = {
                     answer_json['id']: {
                         'index': index,
@@ -173,7 +173,7 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
     def is_repeating_answer_type(self, answer_id):
         answer = self.get_answer(answer_id)
         question = self.get_question(answer['parent_id'])
-        return answer.get('type') == 'Checkbox' or question['type'] == 'RepeatingAnswer'
+        return answer.get('type') in ['Checkbox', 'MutuallyExclusiveCheckbox'] or question['type'] == 'RepeatingAnswer'
 
     def answer_is_in_repeating_group(self, answer_id):
         answer = self.get_answer(answer_id)

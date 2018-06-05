@@ -54,7 +54,7 @@ class Question:
             return None
         elif question_schema['type'] == 'DateRange':
             return self._build_date_range_answer(answer_store, answer_value, answer_schemas)
-        elif answer_schema['type'] == 'Checkbox':
+        elif answer_schema['type'] in ['Checkbox', 'MutuallyExclusiveCheckbox']:
             checkbox_answers = self._build_checkbox_answers(answer_value, answer_schema)
             return checkbox_answers or None
         elif answer_schema['type'] == 'Radio':
