@@ -15,7 +15,7 @@ class TestLocation(AppContextTestCase):
         }
         location_url = location.url(metadata)
 
-        self.assertEqual(location_url, 'http://test/questionnaire/1/some_form/999/some-group/0/some-block')
+        self.assertEqual(location_url, 'http://test.localdomain/questionnaire/1/some_form/999/some-group/0/some-block')
 
     def test_location_hash(self):
         location = Location('some-group', 0, 'some-block')

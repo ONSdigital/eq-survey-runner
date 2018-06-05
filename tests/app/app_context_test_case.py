@@ -18,7 +18,7 @@ class AppContextTestCase(unittest.TestCase):
         }
         self._app = create_app(setting_overrides)
 
-        self._app.config['SERVER_NAME'] = 'test'
+        self._app.config['SERVER_NAME'] = 'test.localdomain'
         self._app_context = self._app.app_context()
         self._app_context.push()
 

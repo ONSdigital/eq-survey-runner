@@ -7,27 +7,24 @@ from app.templating.summary_context import build_summary_rendering_context
 from app.templating.template_renderer import renderer
 
 
-def build_view_context(metadata, answer_store, schema_context, block, current_location, form):
+def build_view_context(block_type, metadata, answer_store, schema_context, rendered_block, current_location, form):
 
     variables = None
     if g.schema.json.get('variables'):
         variables = renderer.render(g.schema.json.get('variables'), **schema_context)
 
-    rendered_block = renderer.render(block, **schema_context)
-
-    if block['type'] in ('Summary', 'SectionSummary'):
+    if block_type in ('Summary', 'SectionSummary'):
         form = form or FlaskForm()
 
-        return build_view_context_for_summary(metadata, answer_store, schema_context, block['type'], variables,
+        return build_view_context_for_summary(metadata, answer_store, schema_context, block_type, variables,
                                               form.csrf_token, current_location)
 
-    if block['type'] in ('Question', 'ConfirmationQuestion'):
-        if not form:
-            form = get_form_for_location(g.schema, rendered_block, current_location, answer_store, metadata)
+    if block_type in ('Question', 'ConfirmationQuestion'):
+        form = form or get_form_for_location(g.schema, rendered_block, current_location, answer_store, metadata)
 
         return build_view_context_for_question(current_location, variables, rendered_block, form)
 
-    if block['type'] in ('Introduction', 'Interstitial', 'Confirmation'):
+    if block_type in ('Introduction', 'Interstitial', 'Confirmation'):
         form = form or FlaskForm()
         return build_view_context_for_non_question(variables, form.csrf_token, rendered_block)
 

@@ -1,3 +1,4 @@
+import copy
 import json
 import logging
 import os
@@ -7,31 +8,24 @@ from uuid import uuid4
 
 import sqlalchemy
 import yaml
-from flask import Flask
-from flask import url_for
-from flask_caching import Cache
+from flask import Flask, url_for
 from flask_babel import Babel
+from flask_caching import Cache
+from flask_talisman import Talisman
 from flask_themes2 import Themes
 from flask_wtf.csrf import CSRFProtect
-
+from sdc.crypto.key_store import KeyStore, validate_required_keys
 from structlog import get_logger
-
-from sdc.crypto.key_store import validate_required_keys, KeyStore
 
 from app import settings
 from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
-
 from app.authentication.user_id_generator import UserIDGenerator
-from app.data_model.models import db, QuestionnaireState, EQSession
-
+from app.data_model.models import EQSession, QuestionnaireState, db
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.new_relic import setup_newrelic
 from app.secrets import SecretStore, validate_required_secrets
-from app.talisman import Talisman
-
 from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
-
 
 CACHE_HEADERS = {
     'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -131,7 +125,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     if application.config['EQ_ENABLE_CACHE']:
         cache.init_app(application, config={'CACHE_TYPE': 'simple'})
     else:
-        cache.init_app(application)  # Doesnt cache
+        # no cache and silence warning
+        cache.init_app(application, config={'CACHE_NO_NULL_WARNING': True})
 
     # Switch off flask default autoescaping as content is html encoded
     # during schema/metadata/summary context (and navigition) generation
@@ -161,13 +156,15 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
 
 def setup_secure_headers(application):
+    csp_policy = copy.deepcopy(CSP_POLICY)
+
     if application.config['EQ_ENABLE_LIVE_RELOAD']:
         # browsersync is configured to bind on port 5075
-        CSP_POLICY['connect-src'] += ['http://localhost:5075', 'ws://localhost:5075']
+        csp_policy['connect-src'] += ['http://localhost:5075', 'ws://localhost:5075']
 
     Talisman(
         application,
-        content_security_policy=CSP_POLICY,
+        content_security_policy=csp_policy,
         content_security_policy_nonce_in=['script-src'],
         session_cookie_secure=application.config['EQ_ENABLE_SECURE_SESSION_COOKIE'],
         force_https=False,  # this is handled at the firewall

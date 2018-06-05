@@ -131,7 +131,8 @@ def get_block(routing_path, eq_id, form_type, collection_id, group_id, group_ins
     if _is_skipping_to_the_end(block, current_location):
         return _redirect_to_latest_location(collection_id, eq_id, form_type)
 
-    return _render_page(routing_path, block, current_location)
+    context = _get_context(routing_path, block, current_location)
+    return _render_page(block['type'], context, current_location, routing_path)
 
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=['POST'])
@@ -139,12 +140,18 @@ def get_block(routing_path, eq_id, form_type, collection_id, group_id, group_ins
 @full_routing_path_required
 def post_block(routing_path, eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=too-many-locals
     current_location = Location(group_id, group_instance, block_id)
+    metadata = get_metadata(current_user)
+    answer_store = get_answer_store(current_user)
 
     if not _is_valid_location(routing_path, current_location):
         return _redirect_to_latest_location(collection_id, eq_id, form_type)
 
     block = _get_block_json(current_location)
-    form = _generate_wtf_form(request.form, block, current_location)
+
+    schema_context = _get_schema_context(routing_path, current_location.group_instance, metadata, answer_store)
+    rendered_block = renderer.render(block, **schema_context)
+
+    form = _generate_wtf_form(request.form, rendered_block, current_location)
 
     if 'action[save_sign_out]' in request.form:
         return _save_sign_out(routing_path, current_location, form)
@@ -158,7 +165,9 @@ def post_block(routing_path, eq_id, form_type, collection_id, group_id, group_in
 
         return redirect(_next_location_url(next_location))
 
-    return _render_page(routing_path, block, current_location, post_form=form)
+    context = build_view_context(block['type'], metadata, answer_store, schema_context, rendered_block, current_location, form)
+
+    return _render_page(block['type'], context, current_location, routing_path)
 
 
 @questionnaire_blueprint.route('<group_id>/0/household-composition', methods=['POST'])
@@ -179,16 +188,19 @@ def post_household_composition(routing_path, **kwargs):
     form = post_form_for_location(g.schema, block, current_location, answer_store, get_metadata(current_user),
                                   request.form, disable_mandatory=disable_mandatory)
 
+    form.validate()  # call validate here to keep errors in the form object on the context
+    context = _get_context(routing_path, block, current_location, form)
+
     if 'action[add_answer]' in request.form:
         form.household.append_entry()
 
-        return _render_page(routing_path, block, current_location, post_form=form)
+        return _render_page(block['type'], context, current_location, routing_path)
 
     if 'action[remove_answer]' in request.form:
         index_to_remove = int(request.form.get('action[remove_answer]'))
         form.remove_person(index_to_remove)
 
-        return _render_page(routing_path, block, current_location, post_form=form)
+        return _render_page(block['type'], context, current_location, routing_path)
 
     if 'action[save_sign_out]' in request.form:
         response = _save_sign_out(routing_path, current_location, form)
@@ -205,7 +217,7 @@ def post_household_composition(routing_path, **kwargs):
 
         return redirect(next_location.url(metadata))
 
-    return _render_page(routing_path, block, current_location, post_form=form)
+    return _render_page(block['type'], context, current_location, routing_path)
 
 
 @post_submission_blueprint.route('thank-you', methods=['GET'])
@@ -293,18 +305,15 @@ def _redirect_to_latest_location(collection_id, eq_id, form_type):
     return _redirect_to_location(collection_id, eq_id, form_type, latest_location)
 
 
-def _render_page(full_routing_path, block, current_location, post_form=None):
-
-    context = _get_context(full_routing_path, block, current_location, post_form)
-
+def _render_page(block_type, context, current_location, routing_path):
     if request_wants_json():
         return jsonify(context)
 
     return _build_template(
         current_location,
         context,
-        block['type'],
-        routing_path=full_routing_path)
+        block_type,
+        routing_path=routing_path)
 
 
 def _is_valid_location(routing_path, location):
@@ -448,7 +457,8 @@ def _save_sign_out(routing_path, this_location, form):
 
         return redirect(url_for('session.get_sign_out'))
 
-    return _render_page(routing_path, block, this_location, post_form=form)
+    context = _get_context(routing_path, block, this_location, form)
+    return _render_page(block['type'], context, this_location, routing_path)
 
 
 def _household_answers_changed(answer_store):
@@ -668,12 +678,13 @@ def _redirect_to_location(collection_id, eq_id, form_type, location):
                             group_instance=location.group_instance, block_id=location.block_id))
 
 
-def _get_context(full_routing_path, block, current_location, form):
+def _get_context(full_routing_path, block, current_location, form=None):
     metadata = get_metadata(current_user)
     answer_store = get_answer_store(current_user)
     schema_context = _get_schema_context(full_routing_path, current_location.group_instance, metadata, answer_store)
+    rendered_block = renderer.render(block, **schema_context)
 
-    return build_view_context(metadata, answer_store, schema_context, block, current_location, form)
+    return build_view_context(block['type'], metadata, answer_store, schema_context, rendered_block, current_location, form=form)
 
 
 def _get_block_json(current_location):

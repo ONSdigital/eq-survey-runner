@@ -7,10 +7,10 @@ verify_ssl = true
 
 [dev-packages]
 
-pytest = "==2.8.2"
+pytest = "==3.6.0"
 "pep8" = "==1.6.2"
 mock = "==1.0.1"
-pytest-cov = "==2.3.0"
+pytest-cov = "==2.5.1"
 jsonschema = "==2.5.1"
 pylint = "==1.8.2"
 flask-debugtoolbar = "==0.10.0"
