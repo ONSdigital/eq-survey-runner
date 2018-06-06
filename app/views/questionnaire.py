@@ -612,6 +612,7 @@ def _format_answer_value(answer_value):
     formatted_answer_value = None
     is_day_month_year = 'day' in answer_value and 'month' in answer_value and 'year' in answer_value
     is_month_year = 'day' not in answer_value and 'year' in answer_value and 'month' in answer_value
+    is_year = 'day' not in answer_value and 'month' not in answer_value and 'year' in answer_value
 
     if is_day_month_year:
         formatted_answer_value = '{:04d}-{:02d}-{:02d}'.format(
@@ -623,6 +624,10 @@ def _format_answer_value(answer_value):
         formatted_answer_value = '{:04d}-{:02d}'.format(
             int(answer_value['year']),
             int(answer_value['month'])
+        )
+    elif is_year:
+        formatted_answer_value = '{:04d}'.format(
+            int(answer_value['year'])
         )
     return formatted_answer_value
 

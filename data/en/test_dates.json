@@ -84,6 +84,19 @@
                             "id": "non-mandatory-date-question",
                             "title": "Non Mandatory",
                             "type": "General"
+                        },
+                        {
+                            "answers": [{
+                                "id": "year-date-answer",
+                                "label": "Date",
+                                "mandatory": false,
+                                "q_code": "18",
+                                "type": "YearDate"
+                            }],
+                            "description": "",
+                            "id": "year-date-question",
+                            "title": "Year (YYYY)",
+                            "type": "General"
                         }
                     ],
                     "title": "Date Examples"

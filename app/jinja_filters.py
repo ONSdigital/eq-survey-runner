@@ -23,7 +23,7 @@ DATE_FORMAT = '%-d %B %Y'
 @blueprint.app_template_filter()
 def format_number(value):
     if value or value is 0:
-        return numbers.format_number(value, locale=DEFAULT_LOCALE)
+        return numbers.format_decimal(value, locale=DEFAULT_LOCALE)
     return ''
 
 
@@ -92,9 +92,11 @@ def format_date(context, value):
     value = value[0] if isinstance(value, list) else value
     if not isinstance(value, str):
         return value
-    date_format = '%B %Y'
-    if value and re.match(r'\d{4}-\d{2}-\d{2}', value):
-        date_format = DATE_FORMAT
+    date_format = DATE_FORMAT
+    if value and re.match(r'\d{4}-\d{2}$', value):
+        date_format = '%B %Y'
+    if value and re.match(r'\d{4}$', value):
+        date_format = '%Y'
     result = "<span class='date'>{date}</span>".format(
         date=convert_to_datetime(value).strftime(date_format))
     return mark_safe(context, result)

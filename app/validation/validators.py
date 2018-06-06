@@ -1,5 +1,7 @@
 from decimal import Decimal, InvalidOperation
 from datetime import datetime
+
+import re
 from babel import numbers
 from dateutil.relativedelta import relativedelta
 from wtforms import validators
@@ -168,12 +170,18 @@ class DateRequired:
         self.message = message or error_messages['MANDATORY_DATE']
 
     def __call__(self, form, field):
-        if hasattr(form, 'day'):
-            if not form.day.data and not form.month.data and not form.year.data:
-                raise validators.StopValidation(self.message)
-        else:
-            if not form.month.data and not form.year.data:
-                raise validators.StopValidation(self.message)
+        """
+        Raise exception if ALL fields have not been filled out.
+        Not having that field is the same as not filling it out
+        as the remaining fields would also have to be empty for
+        exception to be raised.
+        """
+        day_not_entered = not form.day.data if hasattr(form, 'day') else True
+        month_not_entered = not form.month.data if hasattr(form, 'month') else True
+        year_not_entered = not form.year.data
+
+        if day_not_entered and month_not_entered and year_not_entered:
+            raise validators.StopValidation(self.message)
 
 
 class DateCheck:
@@ -198,6 +206,16 @@ class MonthYearCheck:
 
             datetime.strptime(datestr, '%Y-%m')
         except ValueError:
+            raise validators.ValidationError(self.message)
+
+
+class YearCheck:
+    def __init__(self, message=None):
+        self.message = message or error_messages['INVALID_DATE']
+
+    def __call__(self, form, field):
+        # Must be 4 digits long
+        if not re.match(r'\d{4}$', str(form.year.data)):
             raise validators.ValidationError(self.message)
 
 
@@ -342,8 +360,9 @@ def format_playback_value(value, currency=None):
 
 def format_date_string(field):
     day = int(field.data.get('day', 1))
+    month = int(field.data.get('month', 1))
     return '{}-{:02d}-{:02d}'.format(int(field.data['year']),
-                                     int(field.data['month']),
+                                     month,
                                      day)
 
 

@@ -180,6 +180,31 @@ class TestFields(unittest.TestCase):
         self.assertEqual(unbound_field.kwargs['label'], date_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], date_json['guidance'])
 
+    def test_year_date_field(self):
+        date_json = {
+            'guidance': '',
+            'id': 'month-year-answer',
+            'label': 'Date',
+            'mandatory': True,
+            'options': [],
+            'q_code': '11',
+            'type': 'YearDate',
+            'validation': {
+                'messages': {
+                    'INVALID_DATE': 'The date entered is not valid.  Please correct your answer.',
+                    'MANDATORY': 'Please provide an answer to continue.'
+                }
+            }
+        }
+
+        unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
+                                  self.metadata)
+
+        self.assertEqual(unbound_field.field_class, FormField)
+        self.assertEqual(unbound_field.kwargs['label'], date_json['label'])
+        self.assertEqual(unbound_field.kwargs['description'], date_json['guidance'])
+
+
     def test_radio_field(self):
         radio_json = {
             'guidance': '',

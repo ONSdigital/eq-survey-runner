@@ -83,6 +83,8 @@ def convert_to_datetime(value):
     date_format = '%Y-%m'
     if value and re.match(r'\d{4}-\d{2}-\d{2}', value):
         date_format = '%Y-%m-%d'
+    if value and re.match(r'\d{4}$', value):
+        date_format = '%Y'
 
     return datetime.strptime(value, date_format) if value else None
 
