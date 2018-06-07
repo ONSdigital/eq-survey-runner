@@ -550,9 +550,7 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
             if answer_value is not None:
                 answer = Answer(answer_id=answer_id,
                                 value=answer_value,
-                                group_instance=location.group_instance,
-                                group_id=location.group_id,
-                                block_id=location.block_id)
+                                group_instance=location.group_instance)
 
                 latest_answer_store_hash = questionnaire_store.answer_store.get_hash()
                 questionnaire_store.answer_store.add_or_update(answer)

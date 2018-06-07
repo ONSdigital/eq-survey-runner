@@ -133,23 +133,17 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
                 'group_instance': 0,
                 'answer_id': 'who-is-related',
                 'answer_instance': 0,
-                'value': 'Husband or Wife',
-                'block_id': None,
-                'group_id': None,
+                'value': 'Husband or Wife'
             }, {
                 'group_instance': 0,
                 'answer_id': 'who-is-related',
                 'answer_instance': 1,
-                'value': 'Son or daughter',
-                'block_id': None,
-                'group_id': None,
+                'value': 'Son or daughter'
             }, {
                 'group_instance': 0,
                 'answer_id': 'who-is-related',
                 'answer_instance': 2,
-                'value': 'Unrelated',
-                'block_id': None,
-                'group_id': None,
+                'value': 'Unrelated'
             }
         ]
 

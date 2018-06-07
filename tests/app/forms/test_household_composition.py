@@ -208,44 +208,32 @@ class TestHouseholdCompositionForm(AppContextTestCase):
                     'group_instance': 0,
                     'answer_id': 'first-name',
                     'answer_instance': 0,
-                    'value': 'Joe',
-                    'block_id': None,
-                    'group_id': None,
+                    'value': 'Joe'
                 }, {
                     'group_instance': 0,
                     'answer_id': 'middle-names',
                     'answer_instance': 0,
-                    'value': '',
-                    'block_id': None,
-                    'group_id': None,
+                    'value': ''
                 }, {
                     'group_instance': 0,
                     'answer_id': 'last-name',
                     'answer_instance': 0,
-                    'value': 'Bloggs',
-                    'block_id': None,
-                    'group_id': None,
+                    'value': 'Bloggs'
                 }, {
                     'group_instance': 0,
                     'answer_id': 'first-name',
                     'answer_instance': 1,
-                    'value': 'Bob',
-                    'block_id': None,
-                    'group_id': None,
+                    'value': 'Bob'
                 }, {
                     'group_instance': 0,
                     'answer_id': 'middle-names',
                     'answer_instance': 1,
-                    'value': '',
-                    'block_id': None,
-                    'group_id': None,
+                    'value': ''
                 }, {
                     'group_instance': 0,
                     'answer_id': 'last-name',
                     'answer_instance': 1,
-                    'value': 'Seymour',
-                    'block_id': None,
-                    'group_id': None,
+                    'value': 'Seymour'
                 }
             ]
 
