@@ -21,10 +21,11 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
             'single-date-answer-month': '1',
             'single-date-answer-year': '2016',
 
-            # non-mandatory date answered
+            # non-mandatory dates answered
             'non-mandatory-date-answer-day': '22',
             'non-mandatory-date-answer-month': '2',
             'non-mandatory-date-answer-year': '2099',
+            'year-date-answer-year': '2017'
         }
 
         self.post(post_data)

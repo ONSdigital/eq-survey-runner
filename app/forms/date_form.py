@@ -7,8 +7,9 @@ from dateutil.relativedelta import relativedelta
 
 from wtforms import Form, SelectField, StringField
 
+from app.forms.custom_fields import CustomIntegerField
 from app.questionnaire.rules import get_metadata_value, get_answer_store_value, convert_to_datetime
-from app.validation.validators import DateCheck, OptionalForm, DateRequired, MonthYearCheck, SingleDatePeriodCheck
+from app.validation.validators import DateCheck, OptionalForm, DateRequired, MonthYearCheck, YearCheck, SingleDatePeriodCheck
 
 logger = logging.getLogger(__name__)
 
@@ -30,19 +31,12 @@ def get_date_form(answer_store, metadata, answer=None, error_messages=None):
 
     validate_with = [OptionalForm()]
 
-    if error_messages:
-        date_messages = error_messages.copy()
-    else:
-        date_messages = {}
-
     if answer['mandatory'] is True:
         validate_with = validate_mandatory_date(error_messages, answer)
 
-    if 'validation' in answer and 'messages' in answer['validation'] \
-            and 'INVALID_DATE' in answer['validation']['messages']:
-        date_messages['INVALID_DATE'] = answer['validation']['messages']['INVALID_DATE']
+    error_message = get_bespoke_message(answer, 'INVALID_DATE') or error_messages['INVALID_DATE']
 
-    validate_with.append(DateCheck(date_messages['INVALID_DATE']))
+    validate_with.append(DateCheck(error_message))
 
     if 'minimum' in answer or 'maximum' in answer:
         min_max_validation = validate_min_max_date(answer, answer_store, metadata, 'yyyy-mm-dd')
@@ -71,12 +65,8 @@ def get_month_year_form(answer, answer_store, metadata, error_messages):
     if answer['mandatory'] is True:
         validate_with = validate_mandatory_date(error_messages, answer)
 
-    if 'validation' in answer and 'messages' in answer['validation'] \
-            and 'INVALID_DATE' in answer['validation']['messages']:
-        error_message = answer['validation']['messages']['INVALID_DATE']
-        validate_with.append(MonthYearCheck(error_message))
-    else:
-        validate_with.append(MonthYearCheck())
+    error_message = get_bespoke_message(answer, 'INVALID_DATE')
+    validate_with.append(MonthYearCheck(error_message))
 
     if 'minimum' in answer or 'maximum' in answer:
         min_max_validation = validate_min_max_date(answer, answer_store, metadata, 'yyyy-mm')
@@ -87,14 +77,53 @@ def get_month_year_form(answer, answer_store, metadata, error_messages):
     return MonthYearDateForm
 
 
+def get_year_form(answer, answer_store, metadata, error_messages, label, guidance):
+    """
+    Returns a year form metaclass with appropriate validators. Used in both date and
+    date range form creation.
+
+    :param answer: The answer on which to base this form
+    :param error_messages: The messages to use upon this form during validation
+    :return: The generated MonthYearDateForm metaclass
+    """
+
+    class YearDateForm(Form):
+        year = None
+
+    validate_with = [OptionalForm()]
+
+    if answer['mandatory'] is True:
+        validate_with = validate_mandatory_date(error_messages, answer)
+
+    error_message = get_bespoke_message(answer, 'INVALID_DATE')
+    validate_with.append(YearCheck(error_message))
+
+    if 'minimum' in answer or 'maximum' in answer:
+        min_max_validation = validate_min_max_date(answer, answer_store, metadata, 'yyyy')
+        validate_with.append(min_max_validation)
+
+    YearDateForm.year = CustomIntegerField(
+        label=label,
+        validators=validate_with,
+        description=guidance,
+    )
+
+    return YearDateForm
+
+
 def validate_mandatory_date(error_messages, answer):
-    error_message = error_messages['MANDATORY_DATE']
-    if 'validation' in answer and 'messages' in answer['validation']:
-        if 'MANDATORY_DATE' in answer['validation']['messages']:
-            error_message = answer['validation']['messages']['MANDATORY_DATE']
+    error_message = get_bespoke_message(answer, 'MANDATORY_DATE') or error_messages['MANDATORY_DATE']
 
     validate_with = [DateRequired(message=error_message)]
     return validate_with
+
+
+def get_bespoke_message(answer, message_type):
+    if ('validation' in answer and 'messages' in answer['validation'] and
+            message_type in answer['validation']['messages']):
+        return answer['validation']['messages'][message_type]
+
+    return None
 
 
 def get_month_selection_field(validate_with):
@@ -113,6 +142,10 @@ def validate_min_max_date(answer, answer_store, metadata, date_format):
         display_format = '%B %Y'
         minimum_date = minimum_date.replace(day=1) if minimum_date else None    # First day of Month
         maximum_date = maximum_date + relativedelta(day=31) if maximum_date else None   # Last day of month
+    elif date_format == 'yyyy':
+        display_format = '%Y'
+        minimum_date = minimum_date.replace(month=1, day=1) if minimum_date else None    # January 1st
+        maximum_date = maximum_date.replace(month=12, day=31) if maximum_date else None   # Last day of december
 
     return SingleDatePeriodCheck(messages=messages, date_format=display_format, minimum_date=minimum_date, maximum_date=maximum_date)
 

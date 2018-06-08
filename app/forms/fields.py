@@ -5,7 +5,7 @@ from wtforms import validators
 from structlog import get_logger
 
 from app.forms.custom_fields import MaxTextAreaField, CustomIntegerField, CustomDecimalField
-from app.forms.date_form import get_date_form, get_month_year_form
+from app.forms.date_form import get_date_form, get_month_year_form, get_year_form
 from app.validation.validators import NumberCheck, NumberRange, ResponseRequired, DecimalPlaces, MutuallyExclusive
 
 MAX_LENGTH = 2000
@@ -24,6 +24,8 @@ def get_field(answer, label, error_messages, answer_store, metadata):
         field = get_date_field(answer, label, guidance, error_messages, answer_store, metadata)
     elif answer['type'] == 'MonthYearDate':
         field = get_month_year_field(answer, label, guidance, error_messages, answer_store, metadata)
+    elif answer['type'] == 'YearDate':
+        field = get_year_field(answer, label, guidance, error_messages, answer_store, metadata)
     elif answer['type'] in ['Checkbox', 'MutuallyExclusiveCheckbox']:
         field = get_select_multiple_field(answer, label, guidance, error_messages)
     else:
@@ -118,6 +120,14 @@ def get_date_field(answer, label, guidance, error_messages, answer_store, metada
 def get_month_year_field(answer, label, guidance, error_messages, answer_store, metadata):
     return FormField(
         get_month_year_form(answer, answer_store, metadata, error_messages),
+        label=label,
+        description=guidance,
+    )
+
+
+def get_year_field(answer, label, guidance, error_messages, answer_store, metadata):
+    return FormField(
+        get_year_form(answer, answer_store, metadata, error_messages, label, guidance),
         label=label,
         description=guidance,
     )

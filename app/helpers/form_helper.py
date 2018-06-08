@@ -106,7 +106,7 @@ def deserialise_dates(schema, block_id, mapped_answers):
     answer_json_list = schema.get_answers_for_block(block_id)
 
     # Deserialise all dates from the store
-    date_answer_ids = [a['id'] for a in answer_json_list if a['type'] == 'Date' or a['type'] == 'MonthYearDate']
+    date_answer_ids = [a['id'] for a in answer_json_list if a['type'] in ['Date', 'MonthYearDate', 'YearDate']]
 
     for date_answer_id in date_answer_ids:
         if date_answer_id in mapped_answers:
@@ -123,6 +123,10 @@ def deserialise_dates(schema, block_id, mapped_answers):
                 mapped_answers.update({
                     '{answer_id}-year'.format(answer_id=date_answer_id): substrings[0],
                     '{answer_id}-month'.format(answer_id=date_answer_id): substrings[1].lstrip('0'),
+                })
+            if len(substrings) == 1:
+                mapped_answers.update({
+                    '{answer_id}-year'.format(answer_id=date_answer_id): substrings[0],
                 })
 
     return mapped_answers
