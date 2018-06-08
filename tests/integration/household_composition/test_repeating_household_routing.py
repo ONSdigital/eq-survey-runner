@@ -50,7 +50,7 @@ class TestRepeatingHouseholdRouting(IntegrationTestCase):
         # The survey answers should still contain the first occupant's DoB
         result = self.dumpAnswers()
         dobs = [a for a in result['answers']
-                if a['block_id'] == 'date-of-birth']
+                if a['answer_id'] == 'date-of-birth-answer']
         self.assertEqual(len(dobs), 2, 'There should be two date-of-birth '
                                        'answers')
         self.assertEqual(dobs[0]['value'], '1990-03-12')
@@ -88,7 +88,7 @@ class TestRepeatingHouseholdRouting(IntegrationTestCase):
         # The survey answers should still contain the first occupant's DoB
         result = self.dumpAnswers()
         janes_dob = [a for a in result['answers']
-                     if a['block_id'] == 'date-of-birth' and
+                     if a['answer_id'] == 'date-of-birth-answer' and
                      a['group_instance'] == 1]
         self.assertEqual(len(janes_dob), 1, 'There should be a date-of-birth '
                                             'answer in group instance 1')
@@ -128,7 +128,7 @@ class TestRepeatingHouseholdRouting(IntegrationTestCase):
         self.post(action='save_continue')
         result = self.dumpAnswers()
         joes_dob = [a for a in result['answers']
-                    if a['block_id'] == 'date-of-birth' and
+                    if a['answer_id'] == 'date-of-birth-answer' and
                     a['group_instance'] == 0]
         self.assertEqual(len(joes_dob), 1, 'There should be a date-of-birth '
                                            'answer in group instance 0')

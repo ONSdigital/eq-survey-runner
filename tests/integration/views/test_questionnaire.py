@@ -51,9 +51,7 @@ class TestQuestionnaire(IntegrationTestCase):
             'group_instance': 0,
             'answer_id': 'total-retail-turnover-answer',
             'answer_instance': 0,
-            'value': '1000',
-            'group_id': 'rsi',
-            'block_id': 'total-retail-turnover'
+            'value': '1000'
         }, self.question_store.answer_store.answers)
 
     def test_update_questionnaire_store_with_default_value(self):
@@ -76,9 +74,7 @@ class TestQuestionnaire(IntegrationTestCase):
             'group_instance': 0,
             'answer_id': 'answer',
             'answer_instance': 0,
-            'value': 0,
-            'group_id': 'group',
-            'block_id': 'number-question'
+            'value': 0
         }, self.question_store.answer_store.answers)
 
     def test_update_questionnaire_store_with_date_form_data(self):
@@ -101,18 +97,14 @@ class TestQuestionnaire(IntegrationTestCase):
             'group_instance': 0,
             'answer_id': 'single-date-answer',
             'answer_instance': 0,
-            'value': '2016-03-12',
-            'group_id': 'dates',
-            'block_id': 'date-block'
+            'value': '2016-03-12'
         }, self.question_store.answer_store.answers)
 
         self.assertIn({
             'group_instance': 0,
             'answer_id': 'month-year-answer',
             'answer_instance': 0,
-            'value': '2014-11',
-            'group_id': 'dates',
-            'block_id': 'date-block'
+            'value': '2014-11'
         }, self.question_store.answer_store.answers)
 
     def test_update_questionnaire_store_with_empty_day_month_year_date(self):
