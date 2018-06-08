@@ -2617,7 +2617,7 @@
                         }],
                         "routing_rules": [{
                             "goto": {
-                                "block": "national-identity"
+                                "block": "national-identity-no-proxy"
                             }
                         }]
                     },
