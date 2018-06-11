@@ -555,19 +555,16 @@
                                 "show_guidance": "Show examples of commentary on changes to retail sales",
                                 "hide_guidance": "Hide examples of commentary on changes to retail sales",
                                 "content": [{
-                                        "description": "Examples of commentary:"
-                                    },
-                                    {
                                         "title": "‘In-store promotion’",
-                                        "description": "“Offer on wine for the whole month. The promotion was available in-store and online, contributing to an increase in both in-store  and internet sales.”"
+                                        "description": "“Offer on wine for the whole month. The promotion was available in-store and online, contributing to an increase in both in-store and online sales.”"
                                     },
                                     {
-                                        "title": "‘Special events (for example, sporting events)’",
+                                        "title": "‘Special events (e.g. sporting events)’",
                                         "description": "“This was the month before the start of  World Cup 2018 (football), we recorded an increase in sales of audio-visual equipment (e.g., televisions and audio equipment). This led to an increase in sales both in-store and online.”"
                                     },
                                     {
                                         "title": "‘Weather’",
-                                        "description": "“The bad weather has decreased our sales of summer clothing. This has led to a reduction in total turnover and internet sales this month.”"
+                                        "description": "“The bad weather has decreased our sales of summer clothing. This has led to a reduction in retail sales and online sales this month.”"
                                     }
                                 ]
                             },
