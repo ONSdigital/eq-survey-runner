@@ -17,7 +17,6 @@ class SessionStore:
         self.session_data = None
         self._eq_session = None
         self.pepper = pepper
-
         if eq_session_id:
             self._load()
 
@@ -89,3 +88,4 @@ class SessionStore:
             logger.debug('eq_session_id not found in database', eq_session_id=self.eq_session_id)
 
         return self._eq_session
+

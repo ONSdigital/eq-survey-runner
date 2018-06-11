@@ -11,7 +11,8 @@
 
 <div class="u-mb-s">
     <div class="panel panel--simple panel--success panel--spacious">
-        <p class="mars">Your answers were submitted for <b>{{metadata.ru_name}}</b> on {{metadata.submitted_time|format_datetime}}</p>
+        <p class="mars">Your answers were submitted for <b>{{metadata.ru_name}}</b>{% if metadata.trad_as %} ({{metadata.trad_as}}){% endif %}
+         on {{metadata.submitted_time|format_datetime}}</p>
         <p class="mars">Transaction ID: <b>{{metadata.tx_id}}</b></p>
     </div>
 </div>

@@ -27,7 +27,8 @@ def build_metadata_context_for_survey_completed(session_data):
     metadata_context = {
         'submitted_time': session_data.submitted_time,
         'tx_id': convert_tx_id(session_data.tx_id),
-        'ru_ref': session_data.ru_ref
+        'ru_ref': session_data.ru_ref,
+        'trad_as': session_data.trad_as
     }
 
     if session_data.period_str:
