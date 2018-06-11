@@ -1,4 +1,4 @@
-class SessionData(object):      # pylint: disable=too-many-locals
+class SessionData(object):
 
     def __init__(self,
                  tx_id,
@@ -14,7 +14,7 @@ class SessionData(object):      # pylint: disable=too-many-locals
                  account_service_url=None,
                  submitted_time=None,
                  trad_as=None,
-                 **_):
+                 **_):                  # pylint: disable=too-many-locals
         self.tx_id = tx_id
         self.eq_id = eq_id
         self.form_type = form_type
