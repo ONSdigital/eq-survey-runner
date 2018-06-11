@@ -203,10 +203,10 @@ class SessionStoreTest(AppContextTestCase):
                 self.case_ref = case_ref
                 self.account_service_url = account_service_url
 
-        def old_json_loader(raw, object_hook):
+        def old_json_loader(raw, object_hook):  # pylint: disable=unused-argument
             """replacement for json.loads to decode to old format ( no trading as) """
 
-            old_data = original_loads_func(raw, object_hook=lambda d: OldSessionData(**d))   # call original json loads but with a hook pointing to an old class
+            old_data = original_loads_func(raw, object_hook=lambda d: OldSessionData(**d))   # call json.loads ,hook pointing to an old class
             return old_data
 
         session_data = SessionData(

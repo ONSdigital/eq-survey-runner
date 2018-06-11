@@ -1,4 +1,4 @@
-class SessionData(object):
+class SessionData(object):      # pylint: disable=too-many-locals
 
     def __init__(self,
                  tx_id,
