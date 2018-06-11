@@ -3,20 +3,22 @@ from flask_wtf import FlaskForm
 from wtforms import FieldList, Form, FormField
 from werkzeug.datastructures import MultiDict
 
+from app.data_model import answer_store
 from app.data_model.answer_store import Answer
 from app.forms.fields import get_string_field
+from app.templating.utils import get_question_title
 
 logger = get_logger()
 
 
-def get_name_form(schema, block_json):
+def get_name_form(schema, block_json, metadata, group_instance):
     class NameForm(Form):
         pass
 
     for question in schema.get_questions_for_block(block_json):
         for answer in question['answers']:
             guidance = answer.get('guidance', '')
-            label = answer.get('label') or question.get('title')
+            label = answer.get('label') or get_question_title(question, answer_store, metadata, group_instance)
 
             field = get_string_field(answer, label, guidance, schema.error_messages)
 
@@ -60,10 +62,10 @@ def map_field_errors(errors, index):
     return ordered_errors
 
 
-def generate_household_composition_form(schema, block_json, data):
+def generate_household_composition_form(schema, block_json, data, metadata, group_instance):
     class HouseHoldCompositionForm(FlaskForm):
         question_errors = {}
-        household = FieldList(FormField(get_name_form(schema, block_json)), min_entries=1)
+        household = FieldList(FormField(get_name_form(schema, block_json, metadata, group_instance)), min_entries=1)
 
         def map_errors(self):
             ordered_errors = []

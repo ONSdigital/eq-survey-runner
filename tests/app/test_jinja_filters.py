@@ -1,5 +1,5 @@
 # coding: utf-8
-
+from types import SimpleNamespace
 from unittest import TestCase
 
 from datetime import datetime, timedelta
@@ -16,7 +16,7 @@ from app.jinja_filters import (
     format_number, format_unordered_list,
     format_household_member_name_possessive, concatenated_list,
     calculate_years_difference, get_current_date, as_london_tz, max_value,
-    min_value
+    min_value, get_question_title, get_answer_label
 )
 
 
@@ -622,3 +622,113 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
 
         # Then
         self.assertEqual(min_of_two, then)
+
+    def test_get_question_title_with_title_value(self):
+        # Given
+        question_id = 'question'
+        context = SimpleNamespace(
+            parent={
+                'question': {
+                    'id': 'question',
+                    'title': 'question_title'
+                }
+            }
+        )
+
+        # When
+        title = get_question_title(context, question_id)
+
+        # Then
+        self.assertEqual(title, 'question_title')
+
+    def test_get_question_title_with_question_titles(self):
+        # Given
+        question_id = 'question'
+        context = SimpleNamespace(
+            parent={
+                'question': {
+                    'id': 'question'
+                },
+                'content': {
+                    'question_titles': {
+                        'question': 'default_question_title'
+                    }
+                }
+            }
+        )
+
+        # When
+        title = get_question_title(context, question_id)
+
+        # Then
+        self.assertEqual(title, 'default_question_title')
+
+    def test_get_answer_label_with_answer_label(self):
+        # Given
+        answer_id = 'answer'
+        question_id = 'question'
+        context = SimpleNamespace(
+            parent={
+                'question': {
+                    'id': 'question',
+                    'answers': [{
+                        'id': 'answer',
+                        'label': 'answer_label'
+                    }]
+                }
+            }
+        )
+
+        # When
+        answer_label = get_answer_label(context, answer_id, question_id)
+
+        # Then
+        self.assertEqual(answer_label, 'answer_label')
+
+    def test_get_answer_label_with_no_answer_label_and_title(self):
+        # Given
+        answer_id = 'answer'
+        question_id = 'question'
+        context = SimpleNamespace(
+            parent={
+                'question': {
+                    'id': 'question',
+                    'title': 'question_title',
+                    'answers': [{
+                        'id': 'answer'
+                    }]
+                }
+            }
+        )
+
+        # When
+        answer_label = get_answer_label(context, answer_id, question_id)
+
+        # Then
+        self.assertEqual(answer_label, 'question_title')
+
+    def test_get_answer_label_with_no_answer_label_and_question_titles(self):
+        # Given
+        answer_id = 'answer'
+        question_id = 'question'
+        context = SimpleNamespace(
+            parent={
+                'question': {
+                    'id': 'question',
+                    'answers': [{
+                        'id': 'answer'
+                    }]
+                },
+                'content': {
+                    'question_titles': {
+                        'question': 'default_question_title'
+                    }
+                }
+            }
+        )
+
+        # When
+        answer_label = get_answer_label(context, answer_id, question_id)
+
+        # Then
+        self.assertEqual(answer_label, 'default_question_title')

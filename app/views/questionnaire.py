@@ -586,7 +586,7 @@ def _remove_dependent_answers_from_completed_blocks(answer_id, questionnaire_sto
     :param questionnaire_store: holds the completed blocks
     :return: None
     """
-    dependencies = g.schema.get_answer_dependencies_by_id(answer_id)
+    dependencies = g.schema.dependencies[answer_id]
     for dependency in dependencies:
         answer = g.schema.get_answer(dependency)
         question = g.schema.get_question(answer['parent_id'])
@@ -717,14 +717,21 @@ def _get_front_end_navigation(answer_store, current_location, metadata, routing_
     return None
 
 
-def get_page_title_for_location(schema, current_location):
+def _get_question_title_for_page(first_question, context):
+    if 'title' in first_question:
+        return first_question['title']
+    return context['question_titles'][first_question['id']]
+
+
+def get_page_title_for_location(schema, current_location, context):
     block = schema.get_block(current_location.block_id)
     if block['type'] == 'Interstitial':
         group = schema.get_group(current_location.group_id)
         page_title = '{group_title} - {survey_title}'.format(group_title=group['title'], survey_title=schema.json['title'])
     elif block['type'] == 'Question':
         first_question = next(schema.get_questions_for_block(block))
-        page_title = '{question_title} - {survey_title}'.format(question_title=first_question['title'], survey_title=schema.json['title'])
+        question_title = _get_question_title_for_page(first_question, context)
+        page_title = '{question_title} - {survey_title}'.format(question_title=question_title, survey_title=schema.json['title'])
     else:
         page_title = schema.json['title']
 
@@ -747,7 +754,7 @@ def _build_template(current_location, context, template, routing_path=None):
 @template_helper.with_analytics
 @template_helper.with_legal_basis
 def _render_template(context, current_location, template, front_end_navigation, previous_url, **kwargs):
-    page_title = get_page_title_for_location(g.schema, current_location)
+    page_title = get_page_title_for_location(g.schema, current_location, context)
 
     return template_helper.render_template(
         template,

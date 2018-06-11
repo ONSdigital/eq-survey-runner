@@ -29,7 +29,7 @@ class Block:
         for question_schema in block_schema.get('questions', []):
             is_skipped = evaluate_skip_conditions(question_schema.get('skip_conditions'), metadata, answer_store)
             if not is_skipped:
-                question = Question(question_schema, answer_store).serialize()
+                question = Question(question_schema, answer_store, metadata).serialize()
                 questions.append(question)
         return questions
 

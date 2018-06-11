@@ -12,6 +12,7 @@ from werkzeug.datastructures import MultiDict
 
 from app.forms.fields import get_field
 from app.forms.date_form import get_dates_for_single_date_period_validation
+from app.templating.utils import get_question_title
 from app.validation.validators import DateRangeCheck, SumCheck
 
 logger = logging.getLogger(__name__)
@@ -259,7 +260,7 @@ class QuestionnaireForm(FlaskForm):
         return None
 
 
-def get_answer_fields(question, data, error_messages, answer_store, metadata):
+def get_answer_fields(question, data, error_messages, answer_store, metadata, group_instance):
     answer_fields = {}
     for answer in question['answers']:
         if 'parent_answer_id' in answer and answer['parent_answer_id'] in data and \
@@ -267,7 +268,7 @@ def get_answer_fields(question, data, error_messages, answer_store, metadata):
             answer['mandatory'] = \
                 next(a['mandatory'] for a in question['answers'] if a['id'] == answer['parent_answer_id'])
 
-        name = answer.get('label') or question.get('title')
+        name = answer.get('label') or get_question_title(question, answer_store, metadata, group_instance)
         answer_fields[answer['id']] = get_field(answer, name, error_messages, answer_store, metadata)
     return answer_fields
 
@@ -298,12 +299,12 @@ def map_child_option_errors(errors, answer_json):
     return child_errors
 
 
-def generate_form(schema, block_json, data, answer_store, metadata):
+def generate_form(schema, block_json, data, answer_store, metadata, group_instance):
     answer_fields = {}
 
     class DynamicForm(QuestionnaireForm):
         for question in schema.get_questions_for_block(block_json):
-            answer_fields.update(get_answer_fields(question, data, schema.error_messages, answer_store, metadata))
+            answer_fields.update(get_answer_fields(question, data, schema.error_messages, answer_store, metadata, group_instance))
 
     for answer_id, field in answer_fields.items():
         setattr(DynamicForm, answer_id, field)

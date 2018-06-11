@@ -251,7 +251,6 @@ class TestQuestionnaireSchema(AppContextTestCase):
             }]
         }
 
-
         schema = QuestionnaireSchema(survey_json)
         self.assertTrue(schema.is_confirmation_section(schema.get_section('section-1')))
         self.assertTrue(schema.is_confirmation_group(schema.get_group('group-1')))
@@ -328,3 +327,11 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
         self.assertFalse(schema.answer_is_in_repeating_group('first-name'))
         self.assertTrue(schema.answer_is_in_repeating_group('confirm-answer'))
+
+    def test_title_when_dependencies_are_added_to_dependencies(self):
+        schema = load_schema_from_params('test', 'titles')
+        dependencies = schema.dependencies['behalf-of-answer']
+
+        self.assertIn('gender-answer', dependencies)
+        self.assertIn('age-answer', dependencies)
+        self.assertEqual(len(dependencies), 2)

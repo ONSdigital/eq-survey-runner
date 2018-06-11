@@ -195,7 +195,7 @@ def process_answer(question_type, answer, page_spec, long_names, page_name):
 
 
 def process_question(question, page_spec, num_questions, page_name):
-    logger.debug('\t\tprocessing question: %s', question['title'])
+    logger.debug('\t\tprocessing question: ', title=question.get('title', 'titles'), question_id=question['id'])
 
     question_type = question['type']
     if question_type == 'RepeatingAnswer':

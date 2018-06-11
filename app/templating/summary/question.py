@@ -1,16 +1,19 @@
 import collections
 
 from app.templating.summary.answer import Answer
+from app.templating.utils import get_question_title
 
 
 class Question:
 
-    def __init__(self, question_schema, answer_store):
+    def __init__(self, question_schema, answer_store, metadata):
         self.id = question_schema['id']
         self.type = question_schema['type']
 
         answer_schemas = iter(question_schema['answers'])
-        self.title = question_schema['title'] or question_schema['answers'][0]['label']
+
+        # Using group instance as 0 for now as summary rendering context only has knowledge of current locations group instance (i.e. 0)
+        self.title = get_question_title(question_schema, answer_store, metadata, group_instance=0) or question_schema['answers'][0]['label']
         self.number = question_schema.get('number', None)
         self.answers = self._build_answers(answer_store, question_schema, answer_schemas)
 
@@ -31,7 +34,8 @@ class Question:
                 continue
             if question_schema['type'] == 'RepeatingAnswer':
                 for answer_value in self._get_answers(answer_store, answer_schema['id']):
-                    answer = self._build_answer(answer_store, question_schema, answer_schema, answer_schemas, answer_value)
+                    answer = self._build_answer(answer_store, question_schema, answer_schema, answer_schemas,
+                                                answer_value)
                     summary_answers.append(Answer(answer_schema, answer))
             else:
                 answer_value = self._get_answer(answer_store, answer_schema['id'])

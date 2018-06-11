@@ -20,7 +20,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
 
     def test_get_name_form_generates_name_form(self):
         with self.test_request_context():
-            form = generate_household_composition_form(self.schema, self.block_json, {})
+            form = generate_household_composition_form(self.schema, self.block_json, {}, metadata={}, group_instance=0)
 
             self.assertEqual(len(form.household.entries), 1)
 
@@ -34,7 +34,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
 
     def test_form_errors_are_correctly_mapped(self):
         with self.test_request_context():
-            form = generate_household_composition_form(self.schema, self.block_json, {})
+            form = generate_household_composition_form(self.schema, self.block_json, {}, metadata={}, group_instance=0)
 
             form.validate()
 
@@ -44,7 +44,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
 
     def test_answer_errors_are_mapped(self):
         with self.test_request_context():
-            form = generate_household_composition_form(self.schema, self.block_json, {})
+            form = generate_household_composition_form(self.schema, self.block_json, {}, metadata={}, group_instance=0)
 
             form.validate()
 
@@ -59,7 +59,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
                 'household-0-last-name': 'Bloggs',
                 'household-1-first-name': 'Jane',
                 'household-1-last-name': 'Seymour',
-            })
+            }, metadata={}, group_instance=0)
 
             self.assertEqual(len(form.household.entries), 2)
             self.assertEqual(form.household.entries[0].data, {
@@ -78,13 +78,50 @@ class TestHouseholdCompositionForm(AppContextTestCase):
             form = generate_household_composition_form(self.schema, self.block_json, {
                 'household-0-first-name': '     ',
                 'household-0-last-name': 'Bloggs',
-            })
+            }, metadata={}, group_instance=0)
 
             form.validate()
 
             message = 'Please enter a name or remove the person to continue'
 
             self.assertIn(message, form.answer_errors('household-0-first-name'))
+
+    def test_get_name_form_generates_name_form_with_titles(self):
+        block_json = {'type': 'Question',
+                      'id': 'household-composition',
+                      'questions': [{
+                          'id': 'household-composition-question',
+                          'titles': [{
+                              'value': 'First Name Default'
+                          }],
+                          'type': 'RepeatingAnswer',
+                          'answers': [{
+                              'id': 'first-name',
+                              'mandatory': True,
+                              'type': 'TextField'
+                          }, {
+                              'id': 'middle-names',
+                              'mandatory': False,
+                              'type': 'TextField'
+                          }, {
+                              'id': 'last-name',
+                              'mandatory': False,
+                              'type': 'TextField'
+                          }]
+                      }]}
+
+        with self.test_request_context():
+            form = generate_household_composition_form(self.schema, block_json, {}, metadata={}, group_instance=0)
+
+            self.assertEqual(len(form.household.entries), 1)
+
+            first_name_field = getattr(form.household.entries[0], 'first-name')
+            middle_names_field = getattr(form.household.entries[0], 'middle-names')
+            last_name_field = getattr(form.household.entries[0], 'last-name')
+
+            self.assertIsInstance(first_name_field.validators[0], ResponseRequired)
+            self.assertIsInstance(middle_names_field.validators[0], validators.Optional)
+            self.assertIsInstance(last_name_field.validators[0], validators.Optional)
 
     def test_remove_first_person(self):
         with self.test_request_context():
@@ -98,7 +135,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
                 'household-2-last-name': 'Bloggs',
                 'household-3-first-name': 'Jane',
                 'household-3-last-name': 'Seymour',
-            })
+            }, metadata={}, group_instance=0)
 
             form.remove_person(0)
 
@@ -132,7 +169,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
                 'household-2-last-name': 'Bloggs',
                 'household-3-first-name': 'Jane',
                 'household-3-last-name': 'Seymour',
-            })
+            }, metadata={}, group_instance=0)
 
             form.remove_person(2)
 
@@ -162,7 +199,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
                 'household-1-last-name': 'Seymour',
                 'household-2-first-name': 'Jane',
                 'household-2-last-name': 'Seymour',
-            })
+            }, metadata={}, group_instance=0)
 
             form.remove_person(2)
 
@@ -185,7 +222,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
                 'household-0-last-name': 'Bloggs',
                 'household-1-first-name': 'Bob',
                 'household-1-last-name': 'Seymour',
-            })
+            }, metadata={}, group_instance=0)
 
             self.assertEqual(len(form.household.entries), 2)
 
@@ -199,7 +236,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
                 'household-0-last-name': 'Bloggs',
                 'household-1-first-name': 'Bob',
                 'household-1-last-name': 'Seymour',
-            })
+            }, metadata={}, group_instance=0)
 
             answers = form.serialise()
 

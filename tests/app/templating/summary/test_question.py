@@ -15,7 +15,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answer_store)
+        question = Question(question_schema, answer_store, {})
 
         # Then
         self.assertEqual(question.id, 'question_id')
@@ -29,11 +29,61 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answer_store)
+        question = Question(question_schema, answer_store, {})
 
         # Then
         self.assertEqual(question.id, 'question_id')
         self.assertEqual(question.title, 'question_title')
+        self.assertEqual(len(question.answers), 1)
+
+    def test_create_question_with_default_title(self):
+        # Given
+        answer_schema = mock.MagicMock()
+        answer_store = AnswerStore()
+        question_schema = {'id': 'question_id', 'titles': [{'value': 'question_title'}], 'type': 'GENERAL', 'answers': [answer_schema]}
+
+        # When
+        question = Question(question_schema, answer_store, {})
+
+        # Then
+        self.assertEqual(question.id, 'question_id')
+        self.assertEqual(question.title, 'question_title')
+        self.assertEqual(len(question.answers), 1)
+
+    def test_create_question_with_conditional_title(self):
+        # Given
+        answer_store = AnswerStore([{
+            'answer_id': 'answer_1',
+            'block_id': '',
+            'value': 'Han',
+            'answer_instance': 0,
+            'group_instance': 0
+        }])
+        answer_schema = mock.MagicMock()
+        question_schema = {'id': 'question_id', 'titles': [{'value': 'conditional_title', 'when': [{'id': 'answer_1',
+                                                                                                    'condition': 'equals',
+                                                                                                    'value': 'Han'}]},
+                                                           {'value': 'question_title'}], 'type': 'GENERAL', 'answers': [answer_schema]}
+
+        # When
+        question = Question(question_schema, answer_store, {})
+
+        # Then
+        self.assertEqual(question.id, 'question_id')
+        self.assertEqual(question.title, 'conditional_title')
+        self.assertEqual(len(question.answers), 1)
+
+    def test_create_question_with_answer_label_when_empty_title(self):
+        # Given
+        answer_schema = {'type': 'Number', 'id': 'age-answer', 'mandatory': True, 'label': 'Age'}
+        answer_store = AnswerStore()
+        question_schema = {'id': 'question_id', 'title': '', 'type': 'GENERAL', 'answers': [answer_schema]}
+
+        # When
+        question = Question(question_schema, answer_store, {})
+
+        # Then
+        self.assertEqual(question.title, 'Age')
         self.assertEqual(len(question.answers), 1)
 
     def test_create_question_with_multiple_answers(self):
@@ -55,7 +105,7 @@ class TestQuestion(TestCase):
                            'answers': [first_answer_schema, second_answer_schema]}
 
         # When
-        question = Question(question_schema, answer_store)
+        question = Question(question_schema, answer_store, {})
 
         # Then
         self.assertEqual(len(question.answers), 2)
@@ -81,7 +131,7 @@ class TestQuestion(TestCase):
                            'answers': [first_date_answer_schema, second_date_answer_schema]}
 
         # When
-        question = Question(question_schema, answer_store)
+        question = Question(question_schema, answer_store, {})
 
         # Then
         self.assertEqual(len(question.answers), 1)
@@ -119,7 +169,7 @@ class TestQuestion(TestCase):
                            [first_date_answer_schema, second_date_answer_schema, third_date_answer_schema, fourth_date_answer_schema]}
 
         # When
-        question = Question(question_schema, answer_store)
+        question = Question(question_schema, answer_store, {})
 
         # Then
         self.assertEqual(len(question.answers), 2)
@@ -148,7 +198,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answer_store)
+        question = Question(question_schema, answer_store, {})
 
         # Then
         self.assertEqual(len(question.answers[0]['value']), 2)
@@ -177,7 +227,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answer_store)
+        question = Question(question_schema, answer_store, {})
 
         # Then
         self.assertEqual(len(question.answers[0]['value']), 1)
@@ -219,7 +269,7 @@ class TestQuestion(TestCase):
                            'answers': answer_schema}
 
         # When
-        question = Question(question_schema, answer_store)
+        question = Question(question_schema, answer_store, {})
 
         # Then
         self.assertEqual(len(question.answers[0]['value']), 2)
@@ -250,7 +300,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answer_store)
+        question = Question(question_schema, answer_store, {})
 
         # Then
         self.assertEqual(len(question.answers[0]['value']), 2)
@@ -273,7 +323,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answer_store)
+        question = Question(question_schema, answer_store, {})
 
         # Then
         self.assertEqual(question.answers[0]['value'], None)
@@ -300,7 +350,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answer_store)
+        question = Question(question_schema, answer_store, {})
 
         # Then
         self.assertEqual(question.answers[0]['value'], 'Other option label')
@@ -327,7 +377,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answer_store)
+        question = Question(question_schema, answer_store, {})
 
         # Then
         self.assertEqual(question.answers[0]['value'], 'I want to be on the dark side')
@@ -348,7 +398,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answer_store)
+        question = Question(question_schema, answer_store, {})
 
         # Then
         self.assertEqual(question.answers[0]['value'], None)
@@ -385,7 +435,7 @@ class TestQuestion(TestCase):
                            'answers': answer_schema}
 
         # When
-        question = Question(question_schema, answer_store)
+        question = Question(question_schema, answer_store, {})
 
         # Then
         self.assertEqual(question.answers[0]['child_answer_value'], 'Test')
@@ -413,7 +463,7 @@ class TestQuestion(TestCase):
                            'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answer_store)
+        question = Question(question_schema, answer_store, {})
 
         # Then
         self.assertEqual(len(question.answers), 3)

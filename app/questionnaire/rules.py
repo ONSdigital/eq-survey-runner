@@ -174,7 +174,10 @@ def evaluate_when_rules(when_rules, metadata, answer_store, group_instance):
     """
     for when_rule in when_rules:
         if 'id' in when_rule:
-            value = get_answer_store_value(when_rule['id'], answer_store, group_instance)
+            when_specified_group_instance = when_rule.get('group_instance')
+            instance = when_specified_group_instance or group_instance
+
+            value = get_answer_store_value(when_rule['id'], answer_store, instance)
         elif 'meta' in when_rule:
             value = get_metadata_value(metadata, when_rule['meta'])
         else:
