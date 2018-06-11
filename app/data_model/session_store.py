@@ -88,4 +88,3 @@ class SessionStore:
             logger.debug('eq_session_id not found in database', eq_session_id=self.eq_session_id)
 
         return self._eq_session
-
