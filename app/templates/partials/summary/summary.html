@@ -15,7 +15,7 @@
 
             {% for question in block.questions %}
 
-              <div class="summary__question" id="{{question.id}}">
+              <div class="summary__question" id="{{question.id}}" data-qa="summary-question-title">
                 {{question.number or ''}} {{question.title|striptags}}
               </div>
 

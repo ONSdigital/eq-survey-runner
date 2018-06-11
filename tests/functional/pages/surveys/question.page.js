@@ -6,6 +6,8 @@ class QuestionPage extends BasePage {
     super(pageName);
     this.questions = [];
   }
+  summaryQuestionText() { return '[data-qa="summary-question-title"]'; }
+
   questionText() { return '[data-qa="question-title"]'; }
 
   alert() { return '[data-qa="error-body"]';  }

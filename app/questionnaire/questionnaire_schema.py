@@ -1,6 +1,7 @@
 import itertools
-from collections import OrderedDict, defaultdict
+from collections import OrderedDict
 from app.validation.error_messages import error_messages
+from app.questionnaire.answer_dependencies import get_dependencies
 
 
 class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
@@ -28,6 +29,10 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
     def answers(self):
         return self._answers_by_id.values()
 
+    @property
+    def dependencies(self):
+        return self._answer_dependencies
+
     def get_section(self, section_id):
         return self._sections_by_id.get(section_id)
 
@@ -42,9 +47,6 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
 
     def get_answer(self, answer_id):
         return self._answers_by_id.get(answer_id)
-
-    def get_answer_dependencies_by_id(self, answer_id):
-        return self._answer_dependencies.get(answer_id, [])
 
     def get_section_by_block_id(self, block_id):
         block = self.get_block(block_id)
@@ -191,7 +193,7 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
         self._questions_by_id = get_nested_schema_objects(self._blocks_by_id, 'questions')
         self._answers_by_id = get_nested_schema_objects(self._questions_by_id, 'answers')
         self.error_messages = self._get_error_messages()
-        self._answer_dependencies = self._get_answer_dependencies()
+        self._answer_dependencies = get_dependencies(self)
 
     def _get_sections_by_id(self):
         return OrderedDict(
@@ -206,27 +208,17 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
 
         return messages
 
-    def _get_answer_dependencies(self):
-        dependencies = defaultdict(list)
-        # Answer level dependencies
-        for answer in self.answers:
-            dependency_id = answer['id']
-            if 'min_value' in answer and 'answer_id' in answer['min_value']:
-                answer_id = answer['min_value']['answer_id']
-                dependencies[answer_id].append(dependency_id)
-            if 'max_value' in answer and 'answer_id' in answer['max_value']:
-                answer_id = answer['max_value']['answer_id']
-                dependencies[answer_id].append(dependency_id)
+    def _get_answers_by_id_for_question(self, question_id):
+        question = self.get_question(question_id)
 
-        # Question level dependencies
-        for question in self.questions:
-            for calculation in question.get('calculations', []):
-                answer_id = calculation.get('answer_id')
-                if answer_id:
-                    for dependency_id in calculation['answers_to_calculate']:
-                        dependencies[answer_id].append(dependency_id)
+        return {
+            answer['id']: answer
+            for answer in question['answers']
+        }
 
-        return dependencies
+    def get_answer_ids_for_question(self, question_id):
+        """ get answer ids associated with a specific question_id """
+        return list(self._get_answers_by_id_for_question(question_id).keys())
 
 
 def get_nested_schema_objects(parent_object, list_key):

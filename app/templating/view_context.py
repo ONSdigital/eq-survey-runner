@@ -5,10 +5,10 @@ from app.globals import is_dynamodb_enabled
 from app.helpers.form_helper import get_form_for_location
 from app.templating.summary_context import build_summary_rendering_context
 from app.templating.template_renderer import renderer
+from app.templating.utils import get_title_from_titles
 
 
 def build_view_context(block_type, metadata, answer_store, schema_context, rendered_block, current_location, form):
-
     variables = None
     if g.schema.json.get('variables'):
         variables = renderer.render(g.schema.json.get('variables'), **schema_context)
@@ -22,7 +22,7 @@ def build_view_context(block_type, metadata, answer_store, schema_context, rende
     if block_type in ('Question', 'ConfirmationQuestion'):
         form = form or get_form_for_location(g.schema, rendered_block, current_location, answer_store, metadata)
 
-        return build_view_context_for_question(current_location, variables, rendered_block, form)
+        return build_view_context_for_question(metadata, answer_store, current_location, variables, rendered_block, form)
 
     if block_type in ('Introduction', 'Interstitial', 'Confirmation'):
         form = form or FlaskForm()
@@ -37,12 +37,13 @@ def build_view_context_for_non_question(variables, csrf_token, rendered_block):
     }
 
 
-def build_view_context_for_question(current_location, variables, rendered_block, form):  # noqa: C901  pylint: disable=too-complex
+def build_view_context_for_question(metadata, answer_store, current_location, variables, rendered_block, form):  # noqa: C901  pylint: disable=too-complex
 
     context = {
         'variables': variables,
         'block': rendered_block,
         'csrf_token': form.csrf_token,
+        'question_titles': {},
         'form': {
             'errors': form.errors,
             'question_errors': form.question_errors,
@@ -57,6 +58,10 @@ def build_view_context_for_question(current_location, variables, rendered_block,
 
     answer_ids = []
     for question in rendered_block.get('questions'):
+        if question.get('titles'):
+            context['question_titles'][question['id']] = get_title_from_titles(metadata, answer_store,
+                                                                               question['titles'],
+                                                                               current_location.group_instance)
         for answer in question['answers']:
             if current_location.block_id == 'household-composition':
                 for repeated_form in form.household:

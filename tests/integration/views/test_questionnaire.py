@@ -2,18 +2,19 @@ from flask import g
 from mock import Mock
 import simplejson as json
 
-from app.data_model.answer_store import Answer
+from app.data_model.answer_store import Answer, AnswerStore
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.questionnaire.location import Location
+from app.templating.view_context import build_view_context
 from app.utilities.schema import load_schema_from_params
 from app.views.questionnaire import update_questionnaire_store_with_answer_data, \
     update_questionnaire_store_with_form_data, remove_empty_household_members_from_answer_store, \
-    get_page_title_for_location
+    get_page_title_for_location, _get_schema_context
 
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
-class TestQuestionnaire(IntegrationTestCase):
+class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-methods
     def setUp(self):
         super().setUp()
         self._application_context = self._application.app_context()
@@ -391,7 +392,7 @@ class TestQuestionnaire(IntegrationTestCase):
         schema = load_schema_from_params('test', 'final_confirmation')
 
         # When
-        page_title = get_page_title_for_location(schema, Location('final-confirmation', 0, 'introduction'))
+        page_title = get_page_title_for_location(schema, Location('final-confirmation', 0, 'introduction'), {})
 
         # Then
         self.assertEqual(page_title, 'Final confirmation to submit')
@@ -401,7 +402,7 @@ class TestQuestionnaire(IntegrationTestCase):
         schema = load_schema_from_params('test', 'interstitial_page')
 
         # When
-        page_title = get_page_title_for_location(schema, Location('favourite-foods', 0, 'breakfast-interstitial'))
+        page_title = get_page_title_for_location(schema, Location('favourite-foods', 0, 'breakfast-interstitial'), {})
 
         # Then
         self.assertEqual(page_title, 'Favourite food - Interstitial Pages')
@@ -411,17 +412,29 @@ class TestQuestionnaire(IntegrationTestCase):
         schema = load_schema_from_params('test', 'final_confirmation')
 
         # When
-        page_title = get_page_title_for_location(schema, Location('final-confirmation', 0, 'breakfast'))
+        page_title = get_page_title_for_location(schema, Location('final-confirmation', 0, 'breakfast'), {})
 
         # Then
         self.assertEqual(page_title, 'What is your favourite breakfast food - Final confirmation to submit')
+
+    def test_given_questionnaire_page_when_get_page_title_with_titles_object(self):
+        context = {'question_titles': {'single-title-question': 'How are you feeling??'}}
+
+        # Given
+        schema = load_schema_from_params('test', 'titles')
+
+        # When
+        page_title = get_page_title_for_location(schema, Location('group', 0, 'single-title-block'), context)
+
+        # Then
+        self.assertEqual(page_title, 'How are you feeling?? - Multiple Question Title Test')
 
     def test_given_jinja_variable_question_title_when_get_page_title_then_replace_with_ellipsis(self):
         # Given
         schema = load_schema_from_params('census', 'household')
 
         # When
-        page_title = get_page_title_for_location(schema, Location('who-lives-here-relationship', 0, 'household-relationships'))
+        page_title = get_page_title_for_location(schema, Location('who-lives-here-relationship', 0, 'household-relationships'), {})
 
         # Then
         self.assertEqual(page_title, 'How is … related to the people below? - 2017 Census Test')
@@ -567,3 +580,22 @@ class TestQuestionnaire(IntegrationTestCase):
         self.assertIsNone(self.question_store.answer_store.find(answers[3]))
         for answer in answers[:2]:
             self.assertIsNotNone(self.question_store.answer_store.find(answer))
+
+    def test_build_view_context_for_question(self):
+        # Given
+        g.schema = load_schema_from_params('test', 'titles')
+        block = g.schema.get_block('single-title-block')
+        full_routing_path = [Location('group', 0, 'single-title-block'),
+                             Location('group', 0, 'who-is-answer-block'),
+                             Location('group', 0, 'multiple-question-versions-block'),
+                             Location('group', 0, 'Summary')]
+        schema_context = _get_schema_context(full_routing_path, 0, {}, AnswerStore())
+        current_location = Location('group', 0, 'single-title-block')
+
+        # When
+        with self._application.test_request_context():
+            question_view_context = build_view_context('Question', {}, AnswerStore(), schema_context, block,
+                                                       current_location, form=None)
+
+        # Then
+        self.assertEqual(question_view_context['question_titles']['single-title-question'], 'How are you feeling??')

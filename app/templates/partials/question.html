@@ -4,7 +4,7 @@
 {% set invalid = form.question_errors[question.id] | length > 0 if form else False %}
 
 {% set question_number = question.number %}
-{% set question_title = question.title %}
+{% set question_title = get_question_title(question.id) %}
 {% set question_subtitle = question.subtitle %}
 {% set question_guidance = "" %}
 

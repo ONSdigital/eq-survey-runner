@@ -274,7 +274,10 @@ class TestCompleteness(AppContextTestCase): # pylint: disable=too-many-public-me
                             'id': 'question-block',
                             'type': 'Question',
                             'questions': [{
-                                'id': 'question'
+                                'id': 'question',
+                                'title': 'foo',
+                                'type': 'general',
+                                'answers': []
                             }]
                         },
                         {
@@ -282,6 +285,9 @@ class TestCompleteness(AppContextTestCase): # pylint: disable=too-many-public-me
                             'type': 'Interstitial',
                             'questions': [{
                                 'id': 'interstitial-question',
+                                'title': 'bar',
+                                'type': 'general',
+                                'answers': []
                             }]
                         }
                     ]
@@ -316,14 +322,20 @@ class TestCompleteness(AppContextTestCase): # pylint: disable=too-many-public-me
                             'id': 'question-block',
                             'type': 'Question',
                             'questions': [{
-                                'id': 'question'
+                                'id': 'question',
+                                'title': 'foo',
+                                'type': 'general',
+                                'answers': []
                             }]
                         },
                         {
                             'id': 'confirm-question-block',
                             'type': 'ConfirmationQuestion',
                             'questions': [{
-                                'id': 'confirm-question'
+                                'id': 'confirm-question',
+                                'title': 'bar',
+                                'type': 'general',
+                                'answers': []
                             }]
                         }
                     ]
