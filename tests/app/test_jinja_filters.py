@@ -74,7 +74,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         # When
         format_value = format_multilined_string(self.autoescape_context, new_line)
 
-        self.assertEqual(format_value, '<p>this is on a new<br>line</p>')
+        self.assertEqual(format_value, 'this is on a new<br>line')
 
     def test_format_multilined_string_matches_new_line(self):
         # Given
@@ -84,7 +84,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         format_value = format_multilined_string(self.autoescape_context,
                                                 new_line)
 
-        self.assertEqual(format_value, '<p>this is on a new<br>line</p>')
+        self.assertEqual(format_value, 'this is on a new<br>line')
 
     def test_format_multilined_string_matches_carriage_return_new_line(self):
         # Given
@@ -93,7 +93,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         # When
         format_value = format_multilined_string(self.autoescape_context, new_line)
 
-        self.assertEqual(format_value, '<p>this is on a new<br>line</p>')
+        self.assertEqual(format_value, 'this is on a new<br>line')
 
     def test_format_multilined_string(self):
         # Given
@@ -103,7 +103,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         format_value = format_multilined_string(self.autoescape_context,
                                                 new_line)
 
-        self.assertEqual(format_value, '<p>this is<br>on a<br>new<br>line</p>')
+        self.assertEqual(format_value, 'this is<br>on a<br>new<br>line')
 
     def test_format_multilined_string_auto_escape(self):
         # Given
@@ -112,7 +112,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         # When
         format_value = format_multilined_string(self.autoescape_context, new_line)
 
-        self.assertEqual(str(format_value), '<p>&lt;</p>')
+        self.assertEqual(str(format_value), '&lt;')
 
     def test_get_current_date(self):
         # Given
