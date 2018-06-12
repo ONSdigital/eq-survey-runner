@@ -1,4 +1,5 @@
 import mock
+from mock import patch
 
 from tests.integration.integration_test_case import IntegrationTestCase
 
@@ -118,3 +119,175 @@ class TestViewSubmission(IntegrationTestCase):
 
         # check we're redirected back to first page
         self.assertInPage('What is your favourite breakfast food')
+
+    def test_view_submission_shows_trading_as_if_present(self):
+        self.launchSurvey('test', 'view_submitted_response')
+
+        # check we're on first page
+        self.assertInPage('What is your favourite breakfast food')
+
+        # We fill in our answer
+        form_data = {
+            # Food choice
+            'radio-answer': 'Bacon',
+        }
+
+        # We submit the form
+        self.post(form_data)
+
+        # check we're on second page
+        self.assertInPage('Please enter test values (none mandatory)')
+
+        # We fill in our answers
+        form_data = {
+            # Food choice
+            'test-currency': '12',
+            'square-kilometres': '345',
+            'test-decimal': '67.89',
+        }
+
+        # We submit the form
+        self.post(form_data)
+
+        # Submit answers
+        with mock.patch('app.data_model.submitted_responses.put_item',
+                        return_value={'ResponseMetadata': {'HTTPStatusCode': 200}}) as put_item:
+            self.post(action=None)
+
+            item = put_item.call_args[0][0]
+
+        # go to the view submission page
+        with mock.patch('app.data_model.submitted_responses.get_item',
+                        return_value=item):
+            self.get('questionnaire/test/view_submitted_response/view-submission')
+
+        # check we're on the view submission page, and trading as value is displayed
+        self.assertInUrl('view-submission')
+        self.assertInPage('(Integration Tests)')
+
+    def test_view_submission_does_not_show_parenthesis_if_no_trading_as(self):
+        no_trading_as_payload = {
+            'user_id': 'integration-test',
+            'period_str': 'April 2016',
+            'period_id': '201604',
+            'collection_exercise_sid': '789',
+            'ru_ref': '123456789012A',
+            'ru_name': 'Integration Testing',
+            'ref_p_start_date': '2016-04-01',
+            'ref_p_end_date': '2016-04-30',
+            'return_by': '2016-05-06',
+            'employment_date': '1983-06-02',
+            'variant_flags': None,
+            'region_code': 'GB-ENG',
+            'language_code': 'en',
+            'roles': []
+        }
+        with patch('tests.integration.create_token.PAYLOAD', no_trading_as_payload):
+            self.launchSurvey('test', 'view_submitted_response')
+
+            # check we're on first page
+            self.assertInPage('What is your favourite breakfast food')
+
+            # We fill in our answer
+            form_data = {
+                # Food choice
+                'radio-answer': 'Bacon',
+            }
+
+            # We submit the form
+            self.post(form_data)
+
+            # check we're on second page
+            self.assertInPage('Please enter test values (none mandatory)')
+
+            # We fill in our answers
+            form_data = {
+                # Food choice
+                'test-currency': '12',
+                'square-kilometres': '345',
+                'test-decimal': '67.89',
+            }
+
+            # We submit the form
+            self.post(form_data)
+
+            # Submit answers
+            with mock.patch('app.data_model.submitted_responses.put_item',
+                            return_value={'ResponseMetadata': {'HTTPStatusCode': 200}}) as put_item:
+                self.post(action=None)
+
+                item = put_item.call_args[0][0]
+
+            # go to the view submission page
+            with mock.patch('app.data_model.submitted_responses.get_item',
+                            return_value=item):
+                self.get('questionnaire/test/view_submitted_response/view-submission')
+
+            # check we're on the view submission page, and trading as value is displayed
+            self.assertInUrl('view-submission')
+            self.assertNotInPage('(Integration Tests)')
+            self.assertNotInPage('()')
+
+    def test_view_submission_does_not_show_parenthesis_trading_as_is_empty_string(self):
+        no_trading_as_payload = {
+            'user_id': 'integration-test',
+            'period_str': 'April 2016',
+            'period_id': '201604',
+            'collection_exercise_sid': '789',
+            'ru_ref': '123456789012A',
+            'ru_name': 'Integration Testing',
+            'ref_p_start_date': '2016-04-01',
+            'ref_p_end_date': '2016-04-30',
+            'return_by': '2016-05-06',
+            'employment_date': '1983-06-02',
+            'variant_flags': None,
+            'region_code': 'GB-ENG',
+            'language_code': 'en',
+            'roles': [],
+            'trad_as': ''
+        }
+        with patch('tests.integration.create_token.PAYLOAD', no_trading_as_payload):
+            self.launchSurvey('test', 'view_submitted_response')
+
+            # check we're on first page
+            self.assertInPage('What is your favourite breakfast food')
+
+            # We fill in our answer
+            form_data = {
+                # Food choice
+                'radio-answer': 'Bacon',
+            }
+
+            # We submit the form
+            self.post(form_data)
+
+            # check we're on second page
+            self.assertInPage('Please enter test values (none mandatory)')
+
+            # We fill in our answers
+            form_data = {
+                # Food choice
+                'test-currency': '12',
+                'square-kilometres': '345',
+                'test-decimal': '67.89',
+            }
+
+            # We submit the form
+            self.post(form_data)
+
+            # Submit answers
+            with mock.patch('app.data_model.submitted_responses.put_item',
+                            return_value={'ResponseMetadata': {'HTTPStatusCode': 200}}) as put_item:
+                self.post(action=None)
+
+                item = put_item.call_args[0][0]
+
+            # go to the view submission page
+            with mock.patch('app.data_model.submitted_responses.get_item',
+                            return_value=item):
+                self.get('questionnaire/test/view_submitted_response/view-submission')
+
+            # check we're on the view submission page, and trading as value is displayed
+            self.assertInUrl('view-submission')
+            self.assertNotInPage('(Integration Tests)')
+            self.assertNotInPage('()')

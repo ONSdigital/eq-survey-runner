@@ -17,7 +17,6 @@ class SessionStore:
         self.session_data = None
         self._eq_session = None
         self.pepper = pepper
-
         if eq_session_id:
             self._load()
 

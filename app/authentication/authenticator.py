@@ -78,6 +78,7 @@ def _create_session_data_from_metadata(metadata):
         ru_ref=metadata.get('ru_ref'),
         case_id=metadata.get('case_id'),
         case_ref=metadata.get('case_ref'),
+        trad_as=metadata.get('trad_as'),
         account_service_url=metadata.get('account_service_url')
     )
     return session_data

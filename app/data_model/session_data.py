@@ -13,7 +13,8 @@ class SessionData(object):
                  case_ref=None,
                  account_service_url=None,
                  submitted_time=None,
-                 **_):
+                 trad_as=None,
+                 **_):                  # pylint: disable=too-many-locals
         self.tx_id = tx_id
         self.eq_id = eq_id
         self.form_type = form_type
@@ -25,4 +26,5 @@ class SessionData(object):
         self.submitted_time = submitted_time
         self.case_id = case_id
         self.case_ref = case_ref
+        self.trad_as = trad_as
         self.account_service_url = account_service_url
