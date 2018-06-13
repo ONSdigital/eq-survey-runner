@@ -113,4 +113,31 @@ describe('Checkbox with "other" option', function() {
 
   });
 
+  it('Given a mandatory checkbox answer, when the user selects only one option, then the answer should not be displayed as a list on the summary screen', function() {
+    // Given
+    return helpers.openQuestionnaire(checkbox_schema).then(() => {
+      return browser
+      // When
+        .click(MandatoryCheckboxPage.ham())
+        .click(MandatoryCheckboxPage.submit())
+        .click(NonMandatoryCheckboxPage.submit())
+      // Then
+        .element(SummaryPage.mandatoryAnswer()).elements('li').then(result => result.value).should.eventually.be.empty;
+    });
+  });
+
+    it('Given a mandatory checkbox answer, when the user selects more than one option, then the answer should be displayed as a list on the summary screen', function() {
+    // Given
+    return helpers.openQuestionnaire(checkbox_schema).then(() => {
+      return browser
+      // When
+        .click(MandatoryCheckboxPage.ham())
+        .click(MandatoryCheckboxPage.cheese())
+        .click(MandatoryCheckboxPage.submit())
+        .click(NonMandatoryCheckboxPage.submit())
+      // Then
+        .element(SummaryPage.mandatoryAnswer()).elements('li').then(result => result.value.length).should.eventually.be.equal(2);
+    });
+  });
+
 });
