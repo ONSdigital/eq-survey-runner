@@ -1,18 +1,26 @@
 {% set not_answered = 'No answer provided' %}
-<ul class="u-m-no">
-      {% for selected_answer in answer.value %}
-        <li>{{selected_answer.label}}
-            {%- if answer.child_answer_value is not none and selected_answer.should_display_other %}
-            <ul>
-                <li>
-                    {%- if answer.child_answer_value == ''  -%}
-                        {{not_answered}}
-                    {%- else -%}
-                        {{ answer.child_answer_value }}
-                    {%- endif -%}
-                </li>
-            </ul>
+
+{% macro answer_with_child(selected_answer) %}
+    {{selected_answer.label}}
+    {%- if answer.child_answer_value is not none and selected_answer.should_display_other %}
+    <ul>
+        <li>
+            {%- if answer.child_answer_value == ''  -%}
+                {{not_answered}}
+            {%- else -%}
+                {{ answer.child_answer_value }}
             {%- endif -%}
         </li>
-      {% endfor %}
-</ul>
+    </ul>
+    {%- endif -%}
+{% endmacro %}
+
+{%- if answer.value|length > 1 -%}
+    <ul class="u-m-no">
+        {% for selected_answer in answer.value %}
+            <li>{{ answer_with_child(selected_answer) }}</li>
+        {% endfor %}
+    </ul>
+{%- else -%}
+    {{ answer_with_child(answer.value[0]) }}
+{%- endif -%}
