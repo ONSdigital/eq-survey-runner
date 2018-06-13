@@ -1,5 +1,5 @@
 # eQ Survey Runner
-[![Build Status](https://travis-ci.org/ONSdigital/eq-survey-runner.svg?branch=master)](https://travis-ci.org/ONSdigital/eq-survey-runner) [![codecov](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/master/graph/badge.svg)](https://codecov.io/gh/ONSdigital/eq-survey-runner) [![Dependency Status](https://gemnasium.com/badges/github.com/ONSdigital/eq-survey-runner.svg)](https://gemnasium.com/github.com/ONSdigital/eq-survey-runner) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/82e63fc5bc5c43e8ba1ba6d13bfb4243)](https://www.codacy.com/app/ONSDigital/eq-survey-runner)
+[![Build Status](https://travis-ci.org/ONSdigital/eq-survey-runner.svg?branch=master)](https://travis-ci.org/ONSdigital/eq-survey-runner) [![codecov](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/master/graph/badge.svg)](https://codecov.io/gh/ONSdigital/eq-survey-runner) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/82e63fc5bc5c43e8ba1ba6d13bfb4243)](https://www.codacy.com/app/ONSDigital/eq-survey-runner)
 
 ## Run with Docker
 Install Docker for your system: https://www.docker.com/
