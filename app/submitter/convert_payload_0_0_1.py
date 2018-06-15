@@ -26,15 +26,13 @@ def convert_answers_to_payload_0_0_1(answer_store, schema, routing_path):
             value = answer['value']
 
             if answer_schema is not None and value is not None and 'parent_answer_id' not in answer_schema:
-
-                is_single_value_answer = answer_schema['type'] not in ['Checkbox', 'MutuallyExclusiveCheckbox']
-                all_options_have_q_codes = all('q_code' in option for option in answer_schema.get('options', []))
-                if 'q_code' in answer_schema and (is_single_value_answer or not all_options_have_q_codes):
+                if answer_schema['type'] in ['Checkbox', 'MutuallyExclusiveCheckbox']:
+                    data.update(_get_checkbox_answer_data(answer_store, answer_schema, value))
+                else:
                     answer_data = _get_answer_data(data, answer_schema['q_code'], value)
                     if answer_data is not None:
                         data[answer_schema['q_code']] = _format_downstream_answer(answer_schema['type'], answer['value'], answer_data)
-                else:
-                    data.update(_get_checkbox_answer_data(answer_store, answer_schema, value))
+
     return data
 
 
@@ -49,7 +47,6 @@ def _format_downstream_answer(answer_type, answer_value, answer_data):
 
 
 def _get_answer_data(original_data, item_code, value):
-
     if item_code in original_data:
         data_to_return = original_data[item_code]
         if not isinstance(data_to_return, list):
@@ -60,13 +57,11 @@ def _get_answer_data(original_data, item_code, value):
     return _encode_value(value)
 
 
-def _get_checkbox_answer_data(answer_store, checkboxes_with_qcode, value):
-
-    checkbox_answer_data = OrderedDict()
-
+def _get_checkbox_answer_data(answer_store, answer_schema, value):
+    qcodes_and_values = []
     for user_answer in value:
         # find the option in the schema which matches the users answer
-        option = next((option for option in checkboxes_with_qcode['options'] if option['value'] == user_answer), None)
+        option = next((option for option in answer_schema['options'] if option['value'] == user_answer), None)
 
         if option:
             if 'child_answer_id' in option:
@@ -75,11 +70,18 @@ def _get_checkbox_answer_data(answer_store, checkboxes_with_qcode, value):
                 if filtered.count() > 1:
                     raise Exception('Multiple answers found for {}'.format(option['child_answer_id']))
 
-                # if the user has selected 'other' we need to find the value it refers to.
-                # when non-mandatory, the other box value can be empty, in this case we just use its value
-                checkbox_answer_data[option['q_code']] = option['value']
-            else:
-                checkbox_answer_data[option['q_code']] = user_answer
+                # if the user has selected 'other' we need to find the child value it refers to.
+                # the child value can be empty, in this case we just use the main value (e.g. other)
+                user_answer = filtered[0]['value'] or user_answer
+
+            qcodes_and_values.append((option.get('q_code'), user_answer))
+
+    checkbox_answer_data = OrderedDict()
+
+    if all(q_code is not None for (q_code, _) in qcodes_and_values):
+        checkbox_answer_data.update(qcodes_and_values)
+    else:
+        checkbox_answer_data[answer_schema['q_code']] = str([v for (_, v) in qcodes_and_values])
 
     return checkbox_answer_data
 
