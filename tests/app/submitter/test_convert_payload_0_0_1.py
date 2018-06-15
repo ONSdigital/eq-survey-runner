@@ -466,6 +466,96 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 2)
             self.assertEqual(answer_object['data']['1'], 'Ready salted')
+            self.assertEqual(answer_object['data']['4'], 'Bacon')
+
+            # when MUTUALLY EXCLUSIVE CHECKBOX
+            questionnaire['sections'][0]['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['type'] = 'MutuallyExclusiveCheckbox'
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers),
+                                            routing_path)
+
+            # Then
+            self.assertEqual(len(answer_object['data']), 2)
+            self.assertEqual(answer_object['data']['1'], 'Ready salted')
+            self.assertEqual(answer_object['data']['4'], 'Bacon')
+
+    def test_converter_checkboxes_with_q_codes_and_empty_other_value(self):
+        with self._app.test_request_context():
+            routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
+            answers = [create_answer('crisps-answer', [
+                'Ready salted',
+                'Other'
+            ], group_id='favourite-food', block_id='crisps')]
+
+            answers += [create_answer('other-answer-mandatory', '', group_id='favourite-food', block_id='crisps')]
+
+            questionnaire = {
+                'survey_id': '999',
+                'data_version': '0.0.1',
+                'sections': [
+                    {
+                        'id': 'favourite-food-section',
+                        'groups': [
+                            {
+                                'id': 'favourite-food',
+                                'blocks': [
+                                    {
+                                        'id': 'crisps',
+                                        'questions': [
+                                            {
+                                                'id': 'crisps-question',
+                                                'answers': [
+                                                    {
+                                                        'id': 'crisps-answer',
+                                                        'type': 'Checkbox',
+                                                        'options': [
+                                                            {
+                                                                'label': 'Ready salted',
+                                                                'value': 'Ready salted',
+                                                                'q_code': '1'
+                                                            },
+                                                            {
+                                                                'label': 'Sweet chilli',
+                                                                'value': 'Sweet chilli',
+                                                                'q_code': '2'
+                                                            },
+                                                            {
+                                                                'label': 'Cheese and onion',
+                                                                'value': 'Cheese and onion',
+                                                                'q_code': '3'
+                                                            },
+                                                            {
+                                                                'label': 'Other',
+                                                                'q_code': '4',
+                                                                'description': 'Choose any other flavour',
+                                                                'value': 'Other',
+                                                                'child_answer_id': 'other-answer-mandatory'
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        'parent_answer_id': 'crisps-answer',
+                                                        'mandatory': True,
+                                                        'id': 'other-answer-mandatory',
+                                                        'label': 'Please specify other',
+                                                        'type': 'TextField'
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+
+            # When STANDARD CHECKBOX
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
+
+            # Then
+            self.assertEqual(len(answer_object['data']), 2)
+            self.assertEqual(answer_object['data']['1'], 'Ready salted')
             self.assertEqual(answer_object['data']['4'], 'Other')
 
             # when MUTUALLY EXCLUSIVE CHECKBOX
