@@ -3,7 +3,7 @@ from datetime import datetime
 
 import re
 from babel import numbers
-from flask_babel import ngettext, lazy_gettext as _
+from flask_babel import lazy_gettext as _
 from dateutil.relativedelta import relativedelta
 from wtforms import validators
 from wtforms.compat import string_types
@@ -296,18 +296,22 @@ class DateRangeCheck:
     def _build_range_length_error(self, period_object):
         error_message = ''
         if 'years' in period_object:
-            error_message = self.return_error_component(error_message, period_object['years'], ' year')
+            error_message = self.return_error_component(error_message, period_object['years'], 'year')
         if 'months' in period_object:
-            error_message = self.return_error_component(error_message, period_object['months'], ' month')
+            error_message = self.return_error_component(error_message, period_object['months'], 'month')
         if 'days' in period_object:
-            error_message = self.return_error_component(error_message, period_object['days'], ' day')
+            error_message = self.return_error_component(error_message, period_object['days'], 'day')
 
         return error_message
 
     @staticmethod
     def return_error_component(error_message, number, unit):
-        _('year'), _('years'), _('month'), _('months'), _('day'), _('days')
-        plural = unit + 's' if number > 1 else unit
+        unit_plurals = {
+            'year': [_('years'), _('year')],
+            'month': [_('months'), _('month')],
+            'day': [_('days'), _('day')]
+        }
+        plural = unit_plurals[unit][(1 if number == 1 else 0)]
 
         if error_message != '':
             error_message = error_message + ', '

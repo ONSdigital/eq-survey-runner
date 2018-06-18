@@ -129,7 +129,7 @@ def get_bespoke_message(answer, message_type):
 
 
 def get_month_selection_field(validate_with):
-    month_names = get_month_names(locale=BABEL_DEFAULT_LOCALE)._data
+    month_names = get_month_names(locale=BABEL_DEFAULT_LOCALE)
     month_choices = [('', _('Select month'))] + [(str(key), month_names[key]) for key in range(1, 13)]
     return SelectField(choices=month_choices, default='', validators=validate_with)
 

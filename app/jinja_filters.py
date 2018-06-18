@@ -4,7 +4,6 @@ import string
 
 from datetime import datetime
 from dateutil import relativedelta, tz
-from babel.dates import format_date
 
 import flask
 
