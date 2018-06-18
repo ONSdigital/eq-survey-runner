@@ -1,0 +1,1353 @@
+# Translations template for PROJECT.
+# Copyright (C) 2018 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2018-06-18 13:27+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.4.0\n"
+
+#: app/forms/date_form.py:133
+msgid "Select month"
+msgstr ""
+
+#: app/templates/confirmation.html:3 app/templates/confirmation.html:10
+msgid "Submit answers"
+msgstr ""
+
+#: app/templates/confirmation.html:8
+#: app/templates/layouts/_questionnaire.html:35
+msgid "Continue"
+msgstr ""
+
+#: app/templates/feedback.html:2 app/templates/feedback.html:8
+msgid "Survey feedback"
+msgstr ""
+
+#: app/templates/feedback_sent.html:3 app/templates/feedback_sent.html:9
+msgid "Thank you for your feedback"
+msgstr ""
+
+#: app/templates/feedback_sent.html:8 app/templates/thank-you.html:8
+msgid "Submission successful"
+msgstr ""
+
+#: app/templates/feedback_sent.html:13
+msgid "It is now safe to close this window"
+msgstr ""
+
+#: app/templates/introduction.html:33
+#, python-format
+msgid ""
+"You are completing this for <span>%(ru_name)s</span> "
+"%(trad_as_open)s%(trad_as)s%(trad_as_close)s"
+msgstr ""
+
+#: app/templates/introduction.html:40
+#, python-format
+msgid ""
+"If the company details or structure have changed contact us on "
+"%(telephone_number)s or email %(email_address)s"
+msgstr ""
+
+#: app/templates/introduction.html:62
+msgid "Your response is legally required"
+msgstr ""
+
+#: app/templates/introduction.html:63
+msgid "Notice is given under section 1 of the Statistics of Trade Act 1947"
+msgstr ""
+
+#: app/templates/multiple_survey.html:7
+msgid "Information"
+msgstr ""
+
+#: app/templates/multiple_survey.html:10
+msgid "Unfortunately you can only complete one survey at a time"
+msgstr ""
+
+#: app/templates/multiple_survey.html:11
+msgid "Close this window to continue with your current survey"
+msgstr ""
+
+#: app/templates/question.html:9
+#, python-format
+msgid "This page has an error"
+msgid_plural "This page has %(num)s errors"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/templates/question.html:12
+msgid "This <strong>must be corrected</strong> to continue"
+msgid_plural "These <strong>must be corrected</strong> to continue"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/templates/session-expired.html:4
+msgid "Session expired"
+msgstr ""
+
+#: app/templates/session-expired.html:9
+msgid "Your session has expired"
+msgstr ""
+
+#: app/templates/session-expired.html:13
+msgid "To help protect your information we have signed you out"
+msgstr ""
+
+#: app/templates/session-expired.html:16 app/templates/signed-out.html:12
+msgid "Return to your account"
+msgstr ""
+
+#: app/templates/signed-out.html:3
+msgid "Signed out"
+msgstr ""
+
+#: app/templates/signed-out.html:9
+msgid "Your survey answers have been saved. You are now signed out"
+msgstr ""
+
+#: app/templates/summary.html:4
+msgid "Summary"
+msgstr ""
+
+#: app/templates/summary.html:21
+msgid "Please remember to submit these answers"
+msgstr ""
+
+#: app/templates/summary.html:24
+msgid "Please check your answers carefully before submitting"
+msgstr ""
+
+#: app/templates/summary.html:32
+msgid "This section is now complete"
+msgstr ""
+
+#: app/templates/summary.html:33
+msgid "You can review your answers below"
+msgstr ""
+
+#: app/templates/summary.html:42
+msgid ""
+"You will have the opportunity to view and print a copy of your answers "
+"after submitting this questionnaire"
+msgstr ""
+
+#: app/templates/thank-you.html:3
+msgid "We've received your answers"
+msgstr ""
+
+#: app/templates/thank-you.html:13 app/templates/view-submission.html:14
+#, python-format
+msgid "Your answers were submitted for <b>%(ru_name)s</b> on %(submitted_time)s"
+msgstr ""
+
+#: app/templates/thank-you.html:15 app/templates/view-submission.html:16
+msgid "Transaction ID"
+msgstr ""
+
+#: app/templates/thank-you.html:20
+msgid "Your answers will be processed in the next few weeks"
+msgstr ""
+
+#: app/templates/thank-you.html:21
+msgid "We may contact you to query your answers via phone or secure message"
+msgstr ""
+
+#: app/templates/thank-you.html:28
+msgid "View and print a copy of your answers"
+msgstr ""
+
+#: app/templates/thank-you.html:29
+#, python-format
+msgid ""
+"Your answers will only be available for <b>%(duration)s</b> to keep them "
+"secure."
+msgstr ""
+
+#: app/templates/thank-you.html:34
+msgid "You are no longer able to view and print your answers"
+msgstr ""
+
+#: app/templates/thank-you.html:35
+msgid "The link expires to maintain the security of your information"
+msgstr ""
+
+#: app/templates/thank-you.html:44
+msgid "For more information on how we use this data"
+msgstr ""
+
+#: app/templates/view-submission.html:4
+msgid "Submission"
+msgstr ""
+
+#: app/templates/view-submission.html:20
+msgid "Print this page"
+msgstr ""
+
+#: app/templates/layouts/_base.html:13
+msgid "ONS Survey"
+msgstr ""
+
+#: app/templates/layouts/_base.html:94
+msgid "Hide sections"
+msgstr ""
+
+#: app/templates/layouts/_base.html:94
+msgid "View sections"
+msgstr ""
+
+#: app/templates/layouts/_error.html:3
+msgid "Error"
+msgstr ""
+
+#: app/templates/layouts/_questionnaire.html:39
+msgid "Save and complete later"
+msgstr ""
+
+#: app/templates/partials/block.html:6
+msgid "Section"
+msgstr ""
+
+#: app/templates/partials/feedback_call_to_action.html:1
+msgid "This is a new service"
+msgstr ""
+
+#: app/templates/partials/feedback_call_to_action.html:1
+msgid "Help us improve it"
+msgstr ""
+
+#: app/templates/partials/feedback_call_to_action.html:2
+msgid "Thanks for your feedback"
+msgstr ""
+
+#: app/templates/partials/feedback_form.html:5
+msgid "How can we improve this survey"
+msgstr ""
+
+#: app/templates/partials/answers/textarea.html:31
+#: app/templates/partials/feedback_form.html:7
+msgid "Characters remaining"
+msgstr ""
+
+#: app/templates/partials/feedback_form.html:12
+msgid "Name (optional)"
+msgstr ""
+
+#: app/templates/partials/feedback_form.html:14
+msgid ""
+"Please include your name and email address if you’re interested in taking"
+" part in further research to improve this survey"
+msgstr ""
+
+#: app/templates/partials/feedback_form.html:20
+msgid "Email address (optional)"
+msgstr ""
+
+#: app/templates/partials/feedback_form.html:24
+msgid "Send feedback"
+msgstr ""
+
+#: app/templates/partials/footer.html:3
+msgid "Office for National Statistics 2016"
+msgstr ""
+
+#: app/templates/partials/footer2.html:9
+msgid "Legal information"
+msgstr ""
+
+#: app/templates/partials/footer2.html:14
+msgid "Cookies and privacy"
+msgstr ""
+
+#: app/templates/partials/footer2.html:21
+msgid "About ONS"
+msgstr ""
+
+#: app/templates/partials/footer2.html:25
+msgid "What we do"
+msgstr ""
+
+#: app/templates/partials/footer2.html:29
+#: app/templates/static/contact-us.html:29
+msgid "Contact us"
+msgstr ""
+
+#: app/templates/partials/footer2.html:33
+msgid "Accessibility"
+msgstr ""
+
+#: app/templates/partials/footer2.html:40
+msgid "Statistics"
+msgstr ""
+
+#: app/templates/partials/footer2.html:45
+msgid "UK Statistics Authority"
+msgstr ""
+
+#: app/templates/partials/footer2.html:48
+msgid "Release calendar"
+msgstr ""
+
+#: app/templates/partials/footer2.html:51
+msgid "News"
+msgstr ""
+
+#: app/templates/partials/header.html:11
+msgid "Survey Help"
+msgstr ""
+
+#: app/templates/partials/header.html:18
+msgid "ID"
+msgstr ""
+
+#: app/templates/partials/navigation.html:3
+msgid "Sections"
+msgstr ""
+
+#: app/templates/partials/previous-link.html:5
+msgid "Previous"
+msgstr ""
+
+#: app/templates/partials/timeout.html:12
+msgid "Your session is about to expire"
+msgstr ""
+
+#: app/templates/partials/timeout.html:26
+msgid "Continue survey"
+msgstr ""
+
+#: app/templates/partials/timeout.html:28
+msgid "Save and sign out"
+msgstr ""
+
+#: app/templates/partials/topbar-introduction.html:5
+#: app/templates/partials/topbar.html:9
+msgid "Period"
+msgstr ""
+
+#: app/templates/partials/answers/date.html:5
+msgid "Day"
+msgstr ""
+
+#: app/templates/partials/answers/date.html:13
+msgid "Month"
+msgstr ""
+
+#: app/templates/partials/answers/date.html:21
+msgid "Year"
+msgstr ""
+
+#: app/templates/partials/feedback/expandable_inline.html:4
+msgid "I don’t want to provide feedback"
+msgstr ""
+
+#: app/templates/partials/introduction/preview.html:22
+msgid "Show all"
+msgstr ""
+
+#: app/templates/partials/introduction/preview.html:23
+msgid "Hide all"
+msgstr ""
+
+#: app/templates/partials/introduction/preview.html:29
+msgid "Show"
+msgstr ""
+
+#: app/templates/partials/introduction/preview.html:29
+msgid "Hide"
+msgstr ""
+
+#: app/templates/partials/introduction/start-survey.html:5
+msgid "Start survey"
+msgstr ""
+
+#: app/templates/partials/questions/repeatinganswer.html:15
+#: app/templates/partials/questions/repeatinganswer.html:21
+msgid "Remove"
+msgstr ""
+
+#: app/templates/partials/questions/repeatinganswer.html:16
+#: app/templates/partials/questions/repeatinganswer.html:28
+msgid "Person "
+msgstr ""
+
+#: app/templates/partials/questions/repeatinganswer.html:19
+msgid "You"
+msgstr ""
+
+#: app/templates/partials/questions/repeatinganswer.html:22
+msgid "Person"
+msgstr ""
+
+#: app/templates/partials/questions/repeatinganswer.html:50
+msgid "Add another person"
+msgstr ""
+
+#: app/templates/partials/summary/checkbox.html:8
+#: app/templates/partials/summary/radio.html:6
+#: app/templates/partials/summary/summary.html:30
+msgid "No answer provided"
+msgstr ""
+
+#: app/templates/partials/summary/summary.html:38
+msgid "Edit"
+msgstr ""
+
+#: app/templates/partials/summary/summary.html:38
+msgid "Edit your answer"
+msgstr ""
+
+#: app/templates/partials/widgets/multiple_choice_widget.html:14
+msgid "Select all that apply"
+msgstr ""
+
+#: app/templates/partials/widgets/multiple_choice_widget.html:20
+#: app/templates/partials/widgets/multiple_choice_widget.html:51
+msgid "Or"
+msgstr ""
+
+#: app/templates/partials/widgets/multiple_choice_widget.html:51
+msgid "Selecting this will uncheck all other checkboxes"
+msgstr ""
+
+#: app/templates/static/contact-us.html:33
+#: app/templates/static/cookies-privacy.html:272
+#: app/templates/static/cookies-privacy.html:434
+#: app/templates/static/cookies-privacy.html:444
+msgid "Telephone"
+msgstr ""
+
+#: app/templates/static/contact-us.html:40
+#, python-format
+msgid ""
+"Please quote the reference <b>%(ru_ref)s</b> when contacting ONS about "
+"this survey."
+msgstr ""
+
+#: app/templates/static/contact-us.html:43
+#, python-format
+msgid "Your Survey ID is <b>%(survey_id)s</b>"
+msgstr ""
+
+#: app/templates/static/contact-us.html:47
+msgid "Opening hours"
+msgstr ""
+
+#: app/templates/static/contact-us.html:49
+msgid "Monday to Thursday 8:30am – 5:00pm"
+msgstr ""
+
+#: app/templates/static/contact-us.html:50
+msgid "Friday 8:30am - 4:30pm"
+msgstr ""
+
+#: app/templates/static/contact-us.html:53
+msgid "This office is closed during public holidays"
+msgstr ""
+
+#: app/templates/static/contact-us.html:55
+#: app/templates/static/cookies-privacy.html:272
+#: app/templates/static/cookies-privacy.html:434
+#: app/templates/static/cookies-privacy.html:444
+msgid "Email"
+msgstr ""
+
+#: app/templates/static/contact-us.html:61
+msgid "Post"
+msgstr ""
+
+#: app/templates/static/contact-us.html:65
+#: app/templates/static/cookies-privacy.html:270
+#: app/templates/static/cookies-privacy.html:433
+msgid "Office for National Statistics"
+msgstr ""
+
+#: app/templates/static/contact-us.html:66
+#: app/templates/static/cookies-privacy.html:270
+msgid "Government Buildings"
+msgstr ""
+
+#: app/templates/static/contact-us.html:67
+#: app/templates/static/cookies-privacy.html:270
+msgid "Cardiff Road"
+msgstr ""
+
+#: app/templates/static/contact-us.html:68
+#: app/templates/static/cookies-privacy.html:270
+msgid "Newport"
+msgstr ""
+
+#: app/templates/static/contact-us.html:69
+#: app/templates/static/cookies-privacy.html:270
+msgid "South Wales"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:27
+msgid "Cookies and Privacy"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:30
+msgid ""
+"The Office for National Statistics (ONS) has created this cookies and "
+"privacy\n"
+"                                statement in order to demonstrate our "
+"firm commitment to privacy."
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:33
+msgid ""
+"The following is a description of what data is collected when you use the"
+" Survey Data Collection (SDC) service,\n"
+"                                how it is stored and what it is used for"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:38
+msgid "Privacy"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:42
+msgid ""
+"Your privacy is very important to us. We comply with confidentiality\n"
+"                                        requirements set out in the "
+"Statistics and Registration Service Act 2007 and\n"
+"                                        the Data Protection Act 1998."
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:46
+msgid ""
+"We can only use your information for research and statistical purposes. "
+"None\n"
+"                                        of your personal information is "
+"disclosed through our statistics."
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:52
+msgid "Security"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:56
+msgid ""
+"We ensure that the information you provide is kept safe and secure. We "
+"have\n"
+"                                        security measures in place to "
+"protect the loss, misuse and alteration of\n"
+"                                        information under our control."
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:60
+msgid ""
+"We use leading security technologies such as industry-standard encryption"
+"\n"
+"                                        software. This service has been "
+"accredited in accordance with government\n"
+"                                        technical and security standards."
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:66
+msgid "Cookies"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:70
+msgid ""
+"We use small files (known as &lsquo;cookies&rsquo;) to collect "
+"information about how you\n"
+"                                        browse the site."
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:73
+msgid "Cookies are used to"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:76
+msgid ""
+"Measure how you use the website so it can be updated and improved based\n"
+"                                            on your needs"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:79
+msgid ""
+"Remember the notifications you&rsquo;ve seen so that we don&rsquo;t show "
+"them to you\n"
+"                                            again"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:84
+msgid "Our cookies are not used to identify you personally."
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:88
+msgid "How cookies are used"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:92
+msgid "Measuring website usage (Google Analytics)"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:94
+msgid ""
+"We use Google Analytics software to collect information about how you use"
+"\n"
+"                                        this service. We do this to help "
+"make sure the site is meeting the needs of\n"
+"                                        its users and to help us make "
+"improvements, for example improving site\n"
+"                                        search."
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:99
+msgid "Google Analytics stores information about"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:102
+msgid "The pages you visit"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:103
+msgid "How long you spend on each page"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:104
+msgid "How you got to the site"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:105
+msgid "What you click on while you&rsquo;re visiting the site"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:108
+msgid ""
+"We don&rsquo;t use Google Analytics to collect or store your personal "
+"information\n"
+"                                        (for example your name or "
+"address)."
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:111
+msgid ""
+"The information we collect through our cookies does not include personal\n"
+"                                        details such as your name, age, "
+"telephone number, postal address or email\n"
+"                                        address, nor does it allow "
+"personal identification of a user."
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:115
+#, python-format
+msgid ""
+"You can manage these small files yourself and learn more about them "
+"through <a %(href)s>internet browser cookies – what they are and how to "
+"manage them.</a>"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:117
+msgid "Find out more information"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:119
+#, python-format
+msgid ""
+"If you have any questions about this privacy statement, you can contact "
+"us at\n"
+"                                        <a %(href)s "
+"%(target)s>surveys@ons.gov.uk</a>"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:126
+msgid "Universal Analytics"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:131
+#: app/templates/static/cookies-privacy.html:163
+#: app/templates/static/cookies-privacy.html:188
+msgid "Name"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:132
+#: app/templates/static/cookies-privacy.html:164
+#: app/templates/static/cookies-privacy.html:189
+#: app/templates/static/cookies-privacy.html:378
+msgid "Purpose"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:133
+#: app/templates/static/cookies-privacy.html:165
+#: app/templates/static/cookies-privacy.html:190
+msgid "Expires"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:138
+#: app/templates/static/cookies-privacy.html:143
+msgid ""
+"This helps us count how many people visit our website by tracking if "
+"you&rsquo;ve visited before"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:139
+msgid "2 years"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:144
+msgid "24 hours"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:148
+msgid "Used to manage the rate at which page view requests are made"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:149
+msgid "10 minutes"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:157
+msgid "Completing a survey (eq.ons.gov.uk)"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:170
+msgid "Session"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:171
+msgid "To keep you signed in when completing a survey"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:172
+msgid ""
+"When a user logs out or closes the browser. Or when\n"
+"                                            their cookie cache is cleared"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:182
+msgid "Your account"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:196
+msgid "To check that your browser can support cookies"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:197
+#: app/templates/static/cookies-privacy.html:206
+#: app/templates/static/cookies-privacy.html:215
+#: app/templates/static/cookies-privacy.html:242
+#: app/templates/static/cookies-privacy.html:251
+#: app/templates/static/cookies-privacy.html:260
+msgid ""
+"When a user closes the browser or when their cookie\n"
+"                                            cache is cleared"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:203
+msgid ""
+"To store your preferred language so that certain\n"
+"                                            content can be displayed in "
+"your own language"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:212
+msgid ""
+"To keep your session active when using your account\n"
+"                                            to access portfolio and "
+"messages"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:221
+msgid ""
+"To store an encrypted identifier which is used to\n"
+"                                            retrieve the information "
+"associated to your account"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:224
+msgid ""
+"When a user logs out or closes the browser or when\n"
+"                                            their cookie cache is cleared"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:230
+msgid ""
+"To store an identifier which is used to retrieve the\n"
+"                                            permissions associated to "
+"your account"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:239
+msgid ""
+"To store the universally unique identifier created\n"
+"                                            for your account"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:248
+msgid ""
+"To store the timestamp of the last request so that\n"
+"                                            the session expiry warning "
+"message can be displayed"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:257
+msgid ""
+"To store the flash object identifier for the most\n"
+"                                            recent action you have "
+"performed"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:267
+msgid "Data controller"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:270
+msgid "The Data Controller for ONS Surveys is"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:271
+msgid ""
+"For questions regarding the Survey Data Collection service please contact"
+" us on"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:275
+msgid "Why we collect your data"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:278
+msgid ""
+"The Survey Data Collection service is used as the online collection "
+"mechanism for a number of our surveys. More surveys will be offered via "
+"this service over time"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:279
+msgid ""
+"Individual survey teams are responsible for the content (the questions "
+"asked) and form (Excel spreadsheet to download, complete and return; or "
+"online questionnaire) of their respective surveys.\n"
+"                                        Survey Data Collection does need "
+"some personal data in its own right for the functioning of the platform"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:281
+msgid ""
+"The lawful reason for which your personal data is collected through the "
+"Survey Data Collection platform is Public task.\n"
+"                                        The processing is necessary for "
+"us to perform a task in the public interest or for our official "
+"functions, and the task or function has a clear basis in law"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:285
+msgid "When we collect your data"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:288
+msgid "Your data is collected when"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:290
+msgid "you create an account and sign in to the ONS Surveys platform"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:291
+msgid "you complete a survey"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:292
+msgid "you contact us by any means"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:293
+msgid "you visit a website that comprises the Survey Data Collection platform"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:297
+msgid "What data we collect"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:300
+msgid ""
+"Personal data items required for the operation of the Survey Data "
+"Collection Platform"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:305
+msgid "Data item"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:306
+#: app/templates/static/cookies-privacy.html:379
+msgid "Description"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:311
+#: app/templates/static/cookies-privacy.html:354
+msgid "Email address"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:313
+msgid ""
+"Survey Data Collection captures and stores the email address of those who"
+" register with the platform. Registration is required in order to "
+"complete a survey return"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:314
+msgid ""
+"Email address is used as a unique user identifier. Once registered the "
+"email address and password created is required to identify you each time "
+"you use the service"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:315
+msgid ""
+"Additionally, the email address is used to send communications for "
+"purposes of account management and reminders of survey responses"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:319
+msgid "Business Name"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:321
+msgid ""
+"Business names are pre-loaded into the Survey Data Collection platform as"
+" part of a business having been selected for a survey"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:322
+msgid ""
+"The name of the business that has been selected for a given survey will "
+"have been provided to Survey Data Collection by another part of the "
+"Office for National Statistics responsible for the survey in question. "
+"Survey Data Collection stores and processes this"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:326
+msgid "IP address"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:328
+msgid "Internet Protocol address"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:329
+msgid ""
+"All devices connected to the internet will have an IP address and this is"
+" used for one device (e.g. the computer you use to provide a survey "
+"response at your place of work) to be able to talk to another (e.g. the "
+"Survey Data Collection web site) over the internet"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:330
+msgid ""
+"The logs of IP address activity against the Survey Data Collection "
+"service are kept for a limited period of time to facilitate "
+"investigations in the case of any problems"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:336
+msgid ""
+"Surveys that are conducted on the Survey Data Collection platform may "
+"collect additional items of personal data"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:338
+msgid "Business surveys that require personal data"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:339
+msgid "Annual Survey of Hours and Earnings"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:340
+msgid ""
+"The legal basis for undertaking the Annual Survey of Hours and Earnings "
+"(ASHE) is the Statistics of Trade Act 1947. \n"
+"                                        This means the General Data "
+"Protection Regulation has not changed the fact that this is mandatory for"
+" the organisations selected to be part of the sample. \n"
+"                                        The personal data an organisation"
+" returns as part of this submission does not require the permission of "
+"the employees who form the data subjects and the subjects do not have any"
+" option to opt-out.\n"
+"                                        The ASHE survey collects the "
+"following items of personal data"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:345
+msgid "National insurance number"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:346
+msgid "Date of birth"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:347
+msgid "Postcode"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:350
+msgid "Communication outside of the Survey Data Collection Platform"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:351
+msgid ""
+"The Survey Data Collection platform contains both a telephone number and "
+"email address which can be used for both queries and issues with the "
+"platform and survey hosted on the platform"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:352
+msgid "If you contact us via email, we will process the following data items"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:355
+msgid "IP address of the server from which the email was sent"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:356
+msgid "Any items of personal data within the email"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:359
+msgid "If you contact us via telephone, we will process the following data items"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:361
+msgid "Telephone number"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:362
+msgid "Name of the caller"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:363
+msgid "Any items of personal data disclosed during the call"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:368
+msgid "Who we share your personal data with"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:371
+msgid ""
+"We use several (1st and 3rd) parties to collect and process personal "
+"data. These include (but are not limited to) government departments and "
+"approved researchers. Further information can be found on the following "
+"articles"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:372
+msgid "Approved Researcher Scheme"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:373
+msgid ""
+"Access to unpublished ONS research data by government organisations for "
+"statistical research"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:374
+msgid ""
+"Data is also processed by 3rd party IT companies who support our systems "
+"for the following purposes"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:384
+msgid "Cloud infrastructure"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:385
+msgid ""
+"Used to support the platform on which the Survey Data Collection service "
+"runs"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:388
+msgid "Email notification service"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:389
+msgid ""
+"A service used to send email messages to the active accounts registered "
+"to the Survey Data Collection service"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:392
+msgid "Secure file transfer"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:393
+msgid ""
+"This is used for the behind the scenes transfer of data that identify the"
+" businesses that have been selected for participation in a given survey"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:400
+msgid "How long we keep your data"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:403
+msgid "Log Retention"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:404
+msgid ""
+"Standard logs from the Survey Data Collection service are retained for a "
+"period of 30 days. Exceptional events may be retained for longer"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:405
+msgid ""
+"Our general retention period for data collected via annual surveys is 3 "
+"years"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:406
+msgid ""
+"Personal data used for account access will be retained as long as the "
+"account is active"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:410
+msgid "Your rights over your personal data"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:413
+msgid ""
+"The General Data Protection Regulation (GDPR) details eight rights of "
+"individuals"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:415
+msgid "The right to be informed"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:416
+msgid "The right of access"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:417
+msgid "The right to rectification"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:418
+msgid "The right to erasure"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:419
+msgid "The right to restrict processing"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:420
+msgid "The right to data portability"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:420
+msgid ""
+"This right only exists if the lawful basis used is either consent or "
+"contract.\n"
+"                                            Neither the Survey Data "
+"Collection service nor any surveys hosted on this platform rely on either"
+" of the lawful basis and therefore this right is not applicable"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:422
+msgid "The right to object"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:423
+msgid "Rights in relation to automated decision making and profiling"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:423
+msgid "No automated decision making or profiling occurs at the personal level"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:425
+msgid "These rights are subject to exemptions"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:429
+msgid "Contacting the Data Protection Office"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:432
+msgid ""
+"The Data Protection Officer for the Office for National Statistics can be"
+" contacted as follows"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:438
+msgid "Contacting the Information Commissioner&rsquo;s Office"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:441
+msgid ""
+"We welcome the opportunity to be able to answer any questions or concerns"
+" you may have around the information provided here.\n"
+"                                        If you are unhappy with our "
+"response to any of your requests or you have concerns around how your "
+"data has been handled, you have the right to lodge a complaint with the "
+"Information Commissioner&rsquo;s Office"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:443
+msgid "Information Commissioner&rsquo;s Office"
+msgstr ""
+
+#: app/templates/static/cookies-privacy.html:445
+msgid ""
+"The Information Commissioner&rsquo;s Office provides guidance to the "
+"public on raising a concern with an organisation at the following "
+"location"
+msgstr ""
+
+#: app/templating/view_context.py:101
+msgid "Your answers"
+msgstr ""
+
+#: app/validation/error_messages.py:5 app/validation/error_messages.py:6
+#: app/validation/error_messages.py:7
+msgid "Enter an answer to continue."
+msgstr ""
+
+#: app/validation/error_messages.py:8 app/validation/error_messages.py:9
+msgid "Select an answer to continue."
+msgstr ""
+
+#: app/validation/error_messages.py:10
+msgid "Select all that apply to continue."
+msgstr ""
+
+#: app/validation/error_messages.py:11
+msgid "Enter a date to continue."
+msgstr ""
+
+#: app/validation/error_messages.py:12
+#, python-format
+msgid "Enter an answer more than or equal to %(min)s."
+msgstr ""
+
+#: app/validation/error_messages.py:13
+#, python-format
+msgid "Enter an answer less than or equal to %(max)s."
+msgstr ""
+
+#: app/validation/error_messages.py:14
+#, python-format
+msgid "Enter an answer more than %(min)s."
+msgstr ""
+
+#: app/validation/error_messages.py:15
+#, python-format
+msgid "Enter an answer less than %(max)s."
+msgstr ""
+
+#: app/validation/error_messages.py:16
+#, python-format
+msgid "Enter answers that add up to %(total)s"
+msgstr ""
+
+#: app/validation/error_messages.py:17
+#, python-format
+msgid "Enter answers that add up to or are less than %(total)s"
+msgstr ""
+
+#: app/validation/error_messages.py:18
+#, python-format
+msgid "Enter answers that add up to less than %(total)s"
+msgstr ""
+
+#: app/validation/error_messages.py:19
+#, python-format
+msgid "Enter answers that add up to greater than %(total)s"
+msgstr ""
+
+#: app/validation/error_messages.py:20
+#, python-format
+msgid "Enter answers that add up to or are greater than %(total)s"
+msgstr ""
+
+#: app/validation/error_messages.py:21
+msgid "Enter a number."
+msgstr ""
+
+#: app/validation/error_messages.py:22
+msgid "Enter a whole number."
+msgstr ""
+
+#: app/validation/error_messages.py:23
+#, python-format
+msgid "Enter a number rounded to %(max)d decimal places."
+msgstr ""
+
+#: app/validation/error_messages.py:24
+#, python-format
+msgid "Your answer is too long, it has to be less than %(max)d characters."
+msgstr ""
+
+#: app/validation/error_messages.py:25
+msgid "Enter a valid date."
+msgstr ""
+
+#: app/validation/error_messages.py:27
+#, python-format
+msgid "Enter a reporting period greater than or equal to %(min)s."
+msgstr ""
+
+#: app/validation/error_messages.py:28
+#, python-format
+msgid "Enter a reporting period less than or equal to %(max)s."
+msgstr ""
+
+#: app/validation/error_messages.py:29
+#, python-format
+msgid "Enter a date after %(min)s."
+msgstr ""
+
+#: app/validation/error_messages.py:30
+#, python-format
+msgid "Enter a date before %(max)s."
+msgstr ""
+
+#: app/validation/error_messages.py:31
+#, python-format
+msgid "Uncheck %(non_exclusives)s or \"%(exclusive)s\" to continue"
+msgstr ""
+
+#: app/validation/validators.py:309
+msgid "year"
+msgstr ""
+
+#: app/validation/validators.py:309
+msgid "years"
+msgstr ""
+
+#: app/validation/validators.py:309
+msgid "month"
+msgstr ""
+
+#: app/validation/validators.py:309
+msgid "months"
+msgstr ""
+
+#: app/validation/validators.py:309
+msgid "day"
+msgstr ""
+
+#: app/validation/validators.py:309
+msgid "days"
+msgstr ""
+
+#: app/validation/validators.py:395
+msgid "and"
+msgstr ""
+

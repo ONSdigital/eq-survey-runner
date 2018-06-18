@@ -19,14 +19,14 @@
 {% if intro.questions %}
 <div class="accordion js-accordion">
         <div class="mars accordion__controls">
-            <a class="accordion__control js-accordion-open-all u-hidden" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Show all" tabindex="0" aria-hidden="true">Show all</a>
-            <a class="accordion__control js-accordion-close-all u-hidden" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Hide all" tabindex="0" aria-hidden="true">Hide all</a>
+            <a class="accordion__control js-accordion-open-all u-hidden" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Show all" tabindex="0" aria-hidden="true">{{ _("Show all") }}</a>
+            <a class="accordion__control js-accordion-close-all u-hidden" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Hide all" tabindex="0" aria-hidden="true">{{ _("Hide all") }}</a>
         </div>
         <dl class="js-accordion-content">
             {% for question in intro.questions %}
             {% set outer_loop = loop %}
             <dt class="accordion__title venus js-accordion-title" data-js-accordion-event-label="{{question.question}}">
-                <span tabindex="0">{{question.question}}</span><span class="mars accordion__title-right accordion-unhide@m js-accordion-preview u-hidden " aria-hidden="true">Show</span><span class="mars accordion__title-right accordion-unhide@m js-accordion-close u-hidden" aria-hidden="true">Hide</span>
+                <span tabindex="0">{{question.question}}</span><span class="mars accordion__title-right accordion-unhide@m js-accordion-preview u-hidden " aria-hidden="true">{{ _("Show") }}</span><span class="mars accordion__title-right accordion-unhide@m js-accordion-close u-hidden" aria-hidden="true">{{ _("Hide") }}</span>
             </dt>
 
             <dd class="accordion__body mars js-accordion-body">

@@ -3,7 +3,7 @@
 <div class="block" id="{{current_location.block_id}}">
   {% if block['number'] %}
     {% if block['title'] %}
-      <p class="block__title neptune" data-qa="block-title">Section {{block['number']}}: {{block['title']}}</p>
+      <p class="block__title neptune" data-qa="block-title">{{ _("Section") }} {{block['number']}}: {{block['title']}}</p>
     {% endif %}
   {% else %}
     {% if block['title'] %}

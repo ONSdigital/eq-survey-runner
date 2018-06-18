@@ -21,18 +21,26 @@
 
     {% block business_details %}
 
+        {% if metadata.trad_as %}
+            {% set  trading_as = metadata.trad_as %}
+            {% set  trad_as_open = '<span class="trading_as">(<span class="trad_as">' %}
+            {% set  trad_as_close = '</span>)</span>' %}
+        {% endif %}
+
         <div class="grid">
             <div class="grid__col col-7@m">
 
-                <h2 class="saturn">You are completing this for
-                    <span>{{ metadata.ru_name }}</span>
-                    {% if metadata.trad_as %}
-                        <span class="trading_as">(<span class="trad_as">{{ metadata.trad_as }}</span>)</span>
-                    {% endif %}
+                <h2 class="saturn">{{ _("You are completing this for <span>%(ru_name)s</span> %(trad_as_open)s%(trad_as)s%(trad_as_close)s",
+                    ru_name = metadata.ru_name,
+                    trad_as_open = trad_as_open,
+                    trad_as = trading_as,
+                    trad_as_close = trad_as_close) }}
                 </h2>
 
-                <p class="mars">If the company details or structure have changed contact us on {{ helpers.telephone_number() }}
-                    or email {{ helpers.email_address('details-changed-title', subject="Change of details reference " + metadata.ru_ref) }}.
+                <p class="mars">{{ _("If the company details or structure have changed contact us on %(telephone_number)s or email %(email_address)s",
+                        telephone_number = helpers.telephone_number(),
+                        email_address = helpers.email_address('details-changed-title', subject="Change of details reference " + metadata.ru_ref)
+                    ) }}
                 </p>
 
             </div>
@@ -51,8 +59,8 @@
             {% endif %}
 
             {%- if legal_basis == 'StatisticsOfTradeAct' -%}
-                <h2 class="neptune u-mb-xs">Your response is legally required</h2>
-                <p class="mars u-mb-m">Notice is given under section 1 of the Statistics of Trade Act 1947.</p>
+                <h2 class="neptune u-mb-xs">{{ _("Your response is legally required") }}</h2>
+                <p class="mars u-mb-m">{{ _("Notice is given under section 1 of the Statistics of Trade Act 1947") }}.</p>
             {%- endif -%}
 
             {% block start_survey %}

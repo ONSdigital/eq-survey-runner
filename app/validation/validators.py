@@ -3,6 +3,7 @@ from datetime import datetime
 
 import re
 from babel import numbers
+from flask_babel import lazy_gettext as _
 from dateutil.relativedelta import relativedelta
 from wtforms import validators
 from wtforms.compat import string_types
@@ -295,23 +296,29 @@ class DateRangeCheck:
     def _build_range_length_error(self, period_object):
         error_message = ''
         if 'years' in period_object:
-            error_message = self.return_error_component(error_message, period_object['years'], ' year')
+            error_message = self.return_error_component(error_message, period_object['years'], 'year')
         if 'months' in period_object:
-            error_message = self.return_error_component(error_message, period_object['months'], ' month')
+            error_message = self.return_error_component(error_message, period_object['months'], 'month')
         if 'days' in period_object:
-            error_message = self.return_error_component(error_message, period_object['days'], ' day')
+            error_message = self.return_error_component(error_message, period_object['days'], 'day')
 
         return error_message
 
     @staticmethod
     def return_error_component(error_message, number, unit):
+        unit_plurals = {
+            'year': [_('years'), _('year')],
+            'month': [_('months'), _('month')],
+            'day': [_('days'), _('day')]
+        }
+        plural = unit_plurals[unit][(1 if number == 1 else 0)]
+
         if error_message != '':
             error_message = error_message + ', '
-        error_message = error_message + str(number) + unit
-        if number > 1:
-            error_message = error_message + 's'
 
-        return error_message
+        error_message = error_message + str(number) + _(plural)
+
+        return _(error_message)
 
 
 class SumCheck:
@@ -389,7 +396,7 @@ class MutuallyExclusive:
         if len(non_exclusive_values) == 1:
             return non_exclusive_values[0]
 
-        return '{} and {}'.format(', '.join(non_exclusive_values[:-1]), non_exclusive_values[-1])
+        return '{} {} {}'.format(', '.join(_(non_exclusive_values[:-1])), _('and'), _(non_exclusive_values[-1]))
 
     @staticmethod
     def _get_value_labels(options):
