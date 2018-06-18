@@ -9,7 +9,7 @@
     <div role="document">
 
       <div class="mars u-mb-s">{{survey_title}}</div>
-      <h1 class="saturn dialog__title" id="dialog-title" tabindex="0">Your session is about to expire</h1>
+      <h1 class="saturn dialog__title" id="dialog-title" tabindex="0">{{ _("Your session is about to expire") }}</h1>
 
       <div class="time js-timeout">
 
@@ -23,9 +23,9 @@
       </div>
 
       <form class="" action="/" method="post">
-        <button class="btn btn--primary btn--loader js-timeout-continue" type="button" data-loading-msg="Continuing&hellip;">Continue survey</button>
+        <button class="btn btn--primary btn--loader js-timeout-continue" type="button" data-loading-msg="Continuing&hellip;">{{ _("Continue survey") }}</button>
         <br/>
-        <button class="btn btn--secondary btn--border js-timeout-save" type="submit">Save and sign out</button>
+        <button class="btn btn--secondary btn--border js-timeout-save" type="submit">{{ _("Save and sign out") }}</button>
       </form>
     </div>
   </div>

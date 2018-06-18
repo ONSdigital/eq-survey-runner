@@ -1,12 +1,14 @@
 import logging
-import calendar
 
 from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 
 from wtforms import Form, SelectField, StringField
+from flask_babel import gettext as _
+from babel.dates import get_month_names
 
+from app.settings import BABEL_DEFAULT_LOCALE
 from app.forms.custom_fields import CustomIntegerField
 from app.questionnaire.rules import get_metadata_value, get_answer_store_value, convert_to_datetime
 from app.validation.validators import DateCheck, OptionalForm, DateRequired, MonthYearCheck, YearCheck, SingleDatePeriodCheck
@@ -127,7 +129,8 @@ def get_bespoke_message(answer, message_type):
 
 
 def get_month_selection_field(validate_with):
-    month_choices = [('', 'Select month')] + [(str(x), calendar.month_name[x]) for x in range(1, 13)]
+    month_names = get_month_names(locale=BABEL_DEFAULT_LOCALE)._data
+    month_choices = [('', _('Select month'))] + [(str(key), month_names[key]) for key in range(1, 13)]
     return SelectField(choices=month_choices, default='', validators=validate_with)
 
 

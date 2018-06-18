@@ -1,5 +1,3 @@
-{% set not_answered = 'No answer provided' %}
-
 <div>
   <div class="summary">
 
@@ -29,7 +27,7 @@
                 <div class="summary__answer">
                   <div class="summary__answer-text" id="{{answer.id}}-answer" data-qa="{{answer.id}}-answer">
                     {%- if answer.value is none or answer.value == '' -%}
-                      {{not_answered}}
+                      {{ _("No answer provided") }}
                     {%- else -%}
                       {% include theme(['partials/summary/' ~ answer.type ~ '.html', 'partials/summary/default.html']) %}
                      {%- endif -%}
@@ -37,7 +35,7 @@
 
                   {% if content.summary.answers_are_editable %}
                     <div class="summary__edit">
-                      <a href="{{ block.link }}#{{answer.id}}" class="summary__edit-link" aria-describedby="{{answer.id}} {{answer.id}}-answer" data-qa="{{answer.id}}-edit" {{helpers.track('click', 'Summary', 'Edit click')}}>Edit <span class="u-vh">your answer</span></a>
+                      <a href="{{ block.link }}#{{answer.id}}" class="summary__edit-link" aria-describedby="{{answer.id}} {{answer.id}}-answer" data-qa="{{answer.id}}-edit" {{helpers.track('click', 'Summary', 'Edit click')}}>{{ _("Edit") }} <span class="u-vh">{{ _("Edit your answer") }}</span></a>
                     </div>
                   {% endif %}
                 </div>

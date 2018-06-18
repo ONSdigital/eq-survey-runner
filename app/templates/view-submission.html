@@ -11,13 +11,13 @@
 
 <div class="u-mb-s">
     <div class="panel panel--simple panel--success panel--spacious">
-        <p class="mars">Your answers were submitted for <b>{{metadata.ru_name}}</b>{% if metadata.trad_as %} ({{metadata.trad_as}}){% endif %}
-         on {{metadata.submitted_time|format_datetime}}</p>
-        <p class="mars">Transaction ID: <b>{{metadata.tx_id}}</b></p>
+        <p class="mars">{{ _("Your answers were submitted for <b>%(ru_name)s</b> on %(submitted_time)s",
+                                                                    ru_name=metadata.ru_name, submitted_time=metadata.submitted_time|format_datetime) }}</p>
+        <p class="mars">{{ _("Transaction ID") }}: <b>{{metadata.tx_id}}</b></p>
     </div>
 </div>
 
-<button class="btn btn--tertiary btn-print print__hidden u-no-js-hide">Print this page <span class="btn__icon btn__icon--print-link"></span></button>
+<button class="btn btn--tertiary btn-print print__hidden u-no-js-hide">{{ _("Print this page") }} <span class="btn__icon btn__icon--print-link"></span></button>
 
 {% include theme('partials/summary/summary.html') %}
 

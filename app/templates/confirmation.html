@@ -5,8 +5,8 @@
 {% block submit_button %}
 
 {% if content.summary and content.summary.summary_type == 'SectionSummary' %}
-    <button class="btn btn--primary btn--lg btn--loader js-btn-submit" data-qa="btn-submit">Continue</button>
+    <button class="btn btn--primary btn--lg btn--loader js-btn-submit" data-qa="btn-submit">{{ _("Continue") }}</button>
 {% else  %}
-    <button class="btn btn--primary btn--lg btn--loader js-btn-submit" data-qa="btn-submit" data-loading-msg="Submitting&hellip;" type="submit">Submit answers</button>
+    <button class="btn btn--primary btn--lg btn--loader js-btn-submit" data-qa="btn-submit" data-loading-msg="Submitting&hellip;" type="submit">{{ _("Submit answers") }}</button>
 {% endif %}
 {% endblock %}

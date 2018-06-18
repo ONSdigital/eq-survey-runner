@@ -1,5 +1,6 @@
 from flask import g
 from flask_wtf import FlaskForm
+from flask_babel import gettext as _
 
 from app.globals import is_dynamodb_enabled
 from app.helpers.form_helper import get_form_for_location
@@ -97,7 +98,7 @@ def build_view_context_for_summary(metadata, answer_store, schema_context, block
 
     if block_type == 'Summary':
         section_list = renderer.render(g.schema.json, **schema_context)['sections']
-        title = 'Your answers'
+        title = _('Your answers')
 
     elif block_type == 'SectionSummary':
         for section in g.schema.json['sections']:

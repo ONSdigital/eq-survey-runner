@@ -4,16 +4,16 @@ import string
 
 from datetime import datetime
 from dateutil import relativedelta, tz
+from babel.dates import format_date
 
 import flask
 
 from jinja2 import Markup, escape, evalcontextfilter, evalcontextfunction, contextfunction
 from jinja2.exceptions import UndefinedError
 
-from babel import units, numbers
+from babel import units, numbers, dates
 
-
-from app.settings import DEFAULT_LOCALE
+from app.settings import DEFAULT_LOCALE, BABEL_DEFAULT_LOCALE
 from app.questionnaire.rules import convert_to_datetime
 blueprint = flask.Blueprint('filters', __name__)
 
@@ -92,21 +92,22 @@ def format_date(context, value):
     value = value[0] if isinstance(value, list) else value
     if not isinstance(value, str):
         return value
-    date_format = DATE_FORMAT
+    date_format = 'd MMMM YYYY'
     if value and re.match(r'\d{4}-\d{2}$', value):
-        date_format = '%B %Y'
+        date_format = 'MMMM YYYY'
     if value and re.match(r'\d{4}$', value):
-        date_format = '%Y'
+        date_format = 'YYYY'
     result = "<span class='date'>{date}</span>".format(
-        date=convert_to_datetime(value).strftime(date_format))
+        date=dates.format_date(convert_to_datetime(value), format=date_format, locale=BABEL_DEFAULT_LOCALE))
     return mark_safe(context, result)
 
 
 @evalcontextfilter
 @blueprint.app_template_filter()
-def format_datetime(context, value, date_format=DATE_FORMAT + ' at %H:%M'):
+def format_datetime(context, value, date_format='d MMMM YYYY' + ' at HH:MM'):
+
     london_date_time = as_london_tz(datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
-    result = "<span class='date'>{date}</span>".format(date=london_date_time.strftime(date_format))
+    result = "<span class='date'>{date}</span>".format(date=dates.format_datetime(london_date_time, format=date_format, locale=BABEL_DEFAULT_LOCALE))
     return mark_safe(context, result)
 
 

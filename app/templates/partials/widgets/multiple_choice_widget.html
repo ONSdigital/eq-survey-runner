@@ -11,13 +11,13 @@
   </legend>
 
   {% if widget_type == "checkbox" %}
-    <div class="field__label mars">Select all that apply:</div>
+    <div class="field__label mars">{{ _("Select all that apply") }}:</div>
   {% endif %}
 
   {% for option in form.fields[answer.id] %}
 
     {% if exclusive and loop.last %}
-      <div class="field__label u-mt-s venus" aria-hidden="true">Or</div>
+      <div class="field__label u-mt-s venus" aria-hidden="true">{{ _("Or") }}</div>
     {% endif %}
 
     {% set input = {
@@ -48,7 +48,7 @@
           <span class="label__description label__inner pluto">{{answer.options[loop.index0].description}}</span>
         {% endif %}
           {% if exclusive and loop.last %}
-            <span class="u-vh">Or, </span>{{option.label.text}}<span class="u-vh">. Selecting this will uncheck all other checkboxes</span>
+            <span class="u-vh">{{ _("Or") }}, </span>{{option.label.text}}<span class="u-vh">. {{ _("Selecting this will uncheck all other checkboxes") }}</span>
           {% endif %}
       </label>
         {% if exclusive and loop.last %}

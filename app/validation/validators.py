@@ -3,6 +3,7 @@ from datetime import datetime
 
 import re
 from babel import numbers
+from flask_babel import ngettext, lazy_gettext as _
 from dateutil.relativedelta import relativedelta
 from wtforms import validators
 from wtforms.compat import string_types
@@ -305,13 +306,15 @@ class DateRangeCheck:
 
     @staticmethod
     def return_error_component(error_message, number, unit):
+        _('year'), _('years'), _('month'), _('months'), _('day'), _('days')
+        plural = unit + 's' if number > 1 else unit
+
         if error_message != '':
             error_message = error_message + ', '
-        error_message = error_message + str(number) + unit
-        if number > 1:
-            error_message = error_message + 's'
 
-        return error_message
+        error_message = error_message + str(number) + _(plural)
+
+        return _(error_message)
 
 
 class SumCheck:
@@ -389,7 +392,7 @@ class MutuallyExclusive:
         if len(non_exclusive_values) == 1:
             return non_exclusive_values[0]
 
-        return '{} and {}'.format(', '.join(non_exclusive_values[:-1]), non_exclusive_values[-1])
+        return '{} {} {}'.format(', '.join(_(non_exclusive_values[:-1])), _('and'), _(non_exclusive_values[-1]))
 
     @staticmethod
     def _get_value_labels(options):

@@ -2,7 +2,7 @@
     <div class="bar__inner container">
         <h1 class="bar__title jupiter">{{ survey_title }}
         {% if content and content.variables.period %}
-            <p class="u-mb-xs pluto">Period:
+            <p class="u-mb-xs pluto">{{ _("Period") }}:
                 <span>{{ content.variables.period }}</span>
             </p>
         {% endif %}

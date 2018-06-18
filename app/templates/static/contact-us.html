@@ -26,47 +26,47 @@
                         <div class="block" id>
                             <section class="section id">
                                 <h1 class="section__title saturn">
-                                    Contact us
+                                    {{ _("Contact us") }}
                                 </h1>
                                 <div class="question">
                                     <h2 class="question__title neptune">
-                                        Telephone
+                                        {{ _("Telephone") }}
                                     </h2>
                                     <div class="question__description mars">
                                         <p>{{helpers.telephone_number()}}</p>
                                     </div>
                                     {% if session %}
                                     <p>
-                                        Please quote the reference <b>{{session.ru_ref}}</b> when contacting ONS about this survey.
+                                        {{ _("Please quote the reference <b>%(ru_ref)s</b> when contacting ONS about this survey.", ru_ref=session.ru_ref) }}
                                     </p>
                                     <p>
-                                        Your Survey ID is <b>{{survey_id}}</b>.
+                                        {{ _("Your Survey ID is <b>%(survey_id)s</b>", survey_id=survey_id) }}.
                                     </p>
                                     {% endif %}
                                     <div class="question__description mars">
-                                        <h3 class="question__title venus">Opening hours:</h3>
+                                        <h3 class="question__title venus">{{ _("Opening hours") }}:</h3>
                                         <p>
-                                            Monday to Thursday 8:30am – 5:00pm<br>
-                                            Friday 8:30am - 4:30pm
+                                            {{ _("Monday to Thursday 8:30am – 5:00pm") }}<br>
+                                            {{ _("Friday 8:30am - 4:30pm") }}
                                         </p>
                                     </div>
-                                    <p>This office is closed during public holidays</p>
+                                    <p>{{ _("This office is closed during public holidays") }}</p>
                                     <h2 class="question__title neptune">
-                                        Email
+                                        {{ _("Email") }}
                                     </h2>
                                     <div class="question__description mars">
                                         <p>{{helpers.email_address(subject=session.ru_ref)}}</p>
                                     </div>
                                     <h2 class="question__title neptune">
-                                        Post
+                                        {{ _("Post") }}
                                     </h2>
                                     <div class="question__description mars">
                                         <p>
-                                            Office for National Statistics<br>
-                                            Government Buildings<br>
-                                            Cardiff Road<br>
-                                            Newport<br>
-                                            South Wales<br>
+                                            {{ _("Office for National Statistics") }}<br>
+                                            {{ _("Government Buildings") }}<br>
+                                            {{ _("Cardiff Road") }}<br>
+                                            {{ _("Newport") }}<br>
+                                            {{ _("South Wales") }}<br>
                                             NP10 8XG
                                         </p>
                                     </div>

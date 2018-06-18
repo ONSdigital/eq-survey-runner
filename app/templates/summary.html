@@ -18,10 +18,10 @@
 <div>
   <h1 class="saturn">{{content.summary.title}}</h1>
   <div class="print__message panel panel--simple panel--error">
-    <h2 class="saturn">Please remember to submit these answers.</h2>
+    <h2 class="saturn">{{ _("Please remember to submit these answers") }}.</h2>
   </div>
   <div class="print__hidden panel panel--simple panel--warn">
-    <h2 class="neptune">Please check your answers carefully before submitting.</h2>
+    <h2 class="neptune">{{ _("Please check your answers carefully before submitting") }}.</h2>
   </div>
 </div>
 {% else %}
@@ -29,8 +29,8 @@
     {% set group = content.summary.groups %}
     <h1 class="saturn">{{content.summary.title}}</h1>
     <div class="print__hidden panel panel--simple panel--success">
-        <strong>This section is now complete</strong>
-        <p>You can review your answers below</p>
+        <strong>{{ _("This section is now complete") }}</strong>
+        <p>{{ _("You can review your answers below") }}</p>
     </div>
 </div>
 {% endif %}
@@ -39,7 +39,7 @@
 
 {% if content.is_view_submission_response_enabled %}
   <div class="u-mb-s u-mb-m@s">
-    <div class="venus">You will have the opportunity to view and print a copy of your answers after submitting this questionnaire</div>
+    <div class="venus">{{ _("You will have the opportunity to view and print a copy of your answers after submitting this questionnaire") }}</div>
   </div>
 {% endif %}
 
