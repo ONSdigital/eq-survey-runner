@@ -1,20 +1,17 @@
 # coding: utf-8
 import re
 import string
-
 from datetime import datetime
-from dateutil import relativedelta, tz
 
 import flask
-
-from jinja2 import Markup, escape, evalcontextfilter, evalcontextfunction, contextfunction
+from babel import numbers, units
+from dateutil import relativedelta, tz
+from jinja2 import Markup, contextfunction, escape, evalcontextfilter, evalcontextfunction
 from jinja2.exceptions import UndefinedError
 
-from babel import units, numbers
-
-
-from app.settings import DEFAULT_LOCALE
 from app.questionnaire.rules import convert_to_datetime
+from app.settings import DEFAULT_LOCALE
+
 blueprint = flask.Blueprint('filters', __name__)
 
 DATE_FORMAT = '%-d %B %Y'
@@ -22,15 +19,17 @@ DATE_FORMAT = '%-d %B %Y'
 
 @blueprint.app_template_filter()
 def format_number(value):
-    if value or value is 0:
+    if value or value == 0:
         return numbers.format_decimal(value, locale=DEFAULT_LOCALE)
+
     return ''
 
 
 @blueprint.app_template_filter()
 def format_currency(value, currency='GBP'):
-    if value or value is 0:
+    if value or value == 0:
         return numbers.format_currency(number=value, currency=currency, locale=DEFAULT_LOCALE)
+
     return ''
 
 
