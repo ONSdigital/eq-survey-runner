@@ -3,6 +3,7 @@ from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.location import Location
 from app.submitter.converter import convert_answers
 from app.submitter.convert_payload_0_0_1 import convert_answers_to_payload_0_0_1
+from tests.app.submitter.schema import make_schema
 from tests.app.submitter.test_converter import TestConverter, create_answer
 
 
@@ -14,47 +15,28 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                            create_answer('DEF', '2016-03-30', group_id='group-1', block_id='block-1'),
                            create_answer('GHI', '2016-05-30', group_id='group-1', block_id='block-1')]
 
-            questionnaire = {
-                'survey_id': '021',
-                'data_version': '0.0.1',
-                'sections': [
-                    {
-                        'id': 'section-1',
-                        'groups': [
-                            {
-                                'id': 'group-1',
-                                'blocks': [
-                                    {
-                                        'id': 'block-1',
-                                        'questions': [
-                                            {
-                                                'id': 'question-1',
-                                                'answers': [
-                                                    {
-                                                        'id': 'LMN',
-                                                        'type': 'TextField',
-                                                        'q_code': '001'
-                                                    },
-                                                    {
-                                                        'id': 'DEF',
-                                                        'type': 'TextField',
-                                                        'q_code': '002'
-                                                    },
-                                                    {
-                                                        'id': 'JKL',
-                                                        'type': 'TextField',
-                                                        'q_code': '003'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'group-1', 'block-1', [
+                {
+                    'id': 'question-1',
+                    'answers': [
+                        {
+                            'id': 'LMN',
+                            'type': 'TextField',
+                            'q_code': '001'
+                        },
+                        {
+                            'id': 'DEF',
+                            'type': 'TextField',
+                            'q_code': '002'
+                        },
+                        {
+                            'id': 'JKL',
+                            'type': 'TextField',
+                            'q_code': '003'
+                        }
+                    ]
+                }
+            ])
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
             answer_object = (convert_answers_to_payload_0_0_1(AnswerStore(user_answer), QuestionnaireSchema(questionnaire), routing_path))
@@ -65,37 +47,18 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
         with self._app.test_request_context():
             user_answer = [create_answer('GHI', 0, group_id='group-1', block_id='block-1')]
 
-            questionnaire = {
-                'survey_id': '021',
-                'data_version': '0.0.1',
-                'sections': [
-                    {
-                        'id': 'section-1',
-                        'groups': [
-                            {
-                                'id': 'group-1',
-                                'blocks': [
-                                    {
-                                        'id': 'block-1',
-                                        'questions': [
-                                            {
-                                                'id': 'question-2',
-                                                'answers': [
-                                                    {
-                                                        'id': 'GHI',
-                                                        'type': 'TextField',
-                                                        'q_code': '003'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'group-1', 'block-1', [
+                {
+                    'id': 'question-2',
+                    'answers': [
+                        {
+                            'id': 'GHI',
+                            'type': 'TextField',
+                            'q_code': '003'
+                        }
+                    ]
+                }
+            ])
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
 
@@ -108,37 +71,18 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
         with self._app.test_request_context():
             user_answer = [create_answer('GHI', 10.02, group_id='group-1', block_id='block-1')]
 
-            questionnaire = {
-                'survey_id': '021',
-                'data_version': '0.0.1',
-                'sections': [
-                    {
-                        'id': 'section-1',
-                        'groups': [
-                            {
-                                'id': 'group-1',
-                                'blocks': [
-                                    {
-                                        'id': 'block-1',
-                                        'questions': [
-                                            {
-                                                'id': 'question-2',
-                                                'answers': [
-                                                    {
-                                                        'id': 'GHI',
-                                                        'type': 'TextField',
-                                                        'q_code': '003'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'group-1', 'block-1', [
+                {
+                    'id': 'question-2',
+                    'answers': [
+                        {
+                            'id': 'GHI',
+                            'type': 'TextField',
+                            'q_code': '003'
+                        }
+                    ]
+                }
+            ])
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
 
@@ -151,37 +95,18 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
         with self._app.test_request_context():
             user_answer = [create_answer('GHI', 'String test + !', group_id='group-1', block_id='block-1')]
 
-            questionnaire = {
-                'survey_id': '021',
-                'data_version': '0.0.1',
-                'sections': [
-                    {
-                        'id': 'section-1',
-                        'groups': [
-                            {
-                                'id': 'group-1',
-                                'blocks': [
-                                    {
-                                        'id': 'block-1',
-                                        'questions': [
-                                            {
-                                                'id': 'question-2',
-                                                'answers': [
-                                                    {
-                                                        'id': 'GHI',
-                                                        'type': 'TextField',
-                                                        'q_code': '003'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'group-1', 'block-1', [
+                {
+                    'id': 'question-2',
+                    'answers': [
+                        {
+                            'id': 'GHI',
+                            'type': 'TextField',
+                            'q_code': '003'
+                        }
+                    ]
+                }
+            ])
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
 
@@ -196,37 +121,18 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                            create_answer('GHI', value=1, answer_instance=1, group_id='group-1', block_id='block-1'),
                            create_answer('GHI', value=2, answer_instance=2, group_id='group-1', block_id='block-1')]
 
-            questionnaire = {
-                'survey_id': '021',
-                'data_version': '0.0.1',
-                'sections': [
-                    {
-                        'id': 'section-1',
-                        'groups': [
-                            {
-                                'id': 'group-1',
-                                'blocks': [
-                                    {
-                                        'id': 'block-1',
-                                        'questions': [
-                                            {
-                                                'id': 'question-2',
-                                                'answers': [
-                                                    {
-                                                        'id': 'GHI',
-                                                        'type': 'TextField',
-                                                        'q_code': '003'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'group-1', 'block-1', [
+                {
+                    'id': 'question-2',
+                    'answers': [
+                        {
+                            'id': 'GHI',
+                            'type': 'TextField',
+                            'q_code': '003'
+                        }
+                    ]
+                }
+            ])
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
 
@@ -234,6 +140,28 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
 
             # Check the converter correctly
             self.assertEqual(answer_object['data']['003'], ['0', '1', '2'])
+
+    def test_answer_without_qcode(self):
+        with self._app.test_request_context():
+            user_answer = [create_answer('GHI', 'String test + !', group_id='group-1', block_id='block-1')]
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'group-1', 'block-1', [
+                {
+                    'id': 'question-2',
+                    'answers': [
+                        {
+                            'id': 'GHI',
+                            'type': 'TextField'
+                        }
+                    ]
+                }
+            ])
+
+            routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
+
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+
+            self.assertEqual(len(answer_object['data']), 0)
 
     def test_get_checkbox_answer_with_duplicate_child_answer_ids(self):
         with self._app.test_request_context():
@@ -248,45 +176,26 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             answers += [create_answer('other-answer-mandatory', 'Other', group_id='favourite-food', block_id='crisps',
                                       group_instance=1)]
 
-            questionnaire = {
-                'survey_id': '999',
-                'data_version': '0.0.1',
-                'sections': [
-                    {
-                        'id': 'favourite-food-section',
-                        'groups': [
-                            {
-                                'id': 'favourite-food',
-                                'blocks': [
-                                    {
-                                        'id': 'crisps',
-                                        'questions': [
-                                            {
-                                                'id': 'crisps-question',
-                                                'answers': [
-                                                    {
-                                                        'id': 'crisps-answer',
-                                                        'type': 'Checkbox',
-                                                        'options': [
-                                                            {
-                                                                'label': 'Other',
-                                                                'q_code': '4',
-                                                                'description': 'Choose any other flavour',
-                                                                'value': 'Other',
-                                                                'child_answer_id': 'other-answer-mandatory'
-                                                            }
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'favourite-food', 'crisps', [
+                {
+                    'id': 'crisps-question',
+                    'answers': [
+                        {
+                            'id': 'crisps-answer',
+                            'type': 'Checkbox',
+                            'options': [
+                                {
+                                    'label': 'Other',
+                                    'q_code': '4',
+                                    'description': 'Choose any other flavour',
+                                    'value': 'Other',
+                                    'child_answer_id': 'other-answer-mandatory'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ])
 
         #  STANDARD CHECKBOX
         with self.assertRaises(Exception) as err:
@@ -308,67 +217,48 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                 'Sweet chilli'
             ], group_id='favourite-food', block_id='crisps')]
 
-            questionnaire = {
-                'survey_id': '999',
-                'data_version': '0.0.1',
-                'sections': [
-                    {
-                        'id': 'favourite-food-section',
-                        'groups': [
-                            {
-                                'id': 'favourite-food',
-                                'blocks': [
-                                    {
-                                        'id': 'crisps',
-                                        'questions': [
-                                            {
-                                                'id': 'crisps-question',
-                                                'answers': [
-                                                    {
-                                                        'id': 'crisps-answer',
-                                                        'type': 'Checkbox',
-                                                        'options': [
-                                                            {
-                                                                'label': 'Ready salted',
-                                                                'value': 'Ready salted',
-                                                                'q_code': '1'
-                                                            },
-                                                            {
-                                                                'label': 'Sweet chilli',
-                                                                'value': 'Sweet chilli',
-                                                                'q_code': '2'
-                                                            },
-                                                            {
-                                                                'label': 'Cheese and onion',
-                                                                'value': 'Cheese and onion',
-                                                                'q_code': '3'
-                                                            },
-                                                            {
-                                                                'label': 'Other',
-                                                                'q_code': '4',
-                                                                'description': 'Choose any other flavour',
-                                                                'value': 'Other',
-                                                                'child_answer_id': 'other-answer-mandatory'
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        'parent_answer_id': 'crisps-answer',
-                                                        'mandatory': True,
-                                                        'id': 'other-answer-mandatory',
-                                                        'label': 'Please specify other',
-                                                        'type': 'TextField'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'favourite-food', 'crisps', [
+                {
+                    'id': 'crisps-question',
+                    'answers': [
+                        {
+                            'id': 'crisps-answer',
+                            'type': 'Checkbox',
+                            'options': [
+                                {
+                                    'label': 'Ready salted',
+                                    'value': 'Ready salted',
+                                    'q_code': '1'
+                                },
+                                {
+                                    'label': 'Sweet chilli',
+                                    'value': 'Sweet chilli',
+                                    'q_code': '2'
+                                },
+                                {
+                                    'label': 'Cheese and onion',
+                                    'value': 'Cheese and onion',
+                                    'q_code': '3'
+                                },
+                                {
+                                    'label': 'Other',
+                                    'q_code': '4',
+                                    'description': 'Choose any other flavour',
+                                    'value': 'Other',
+                                    'child_answer_id': 'other-answer-mandatory'
+                                }
+                            ]
+                        },
+                        {
+                            'parent_answer_id': 'crisps-answer',
+                            'mandatory': True,
+                            'id': 'other-answer-mandatory',
+                            'label': 'Please specify other',
+                            'type': 'TextField'
+                        }
+                    ]
+                }
+            ])
 
             # When STANDARD CHECKBOX
             answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
@@ -398,67 +288,48 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
 
             answers += [create_answer('other-answer-mandatory', 'Bacon', group_id='favourite-food', block_id='crisps')]
 
-            questionnaire = {
-                'survey_id': '999',
-                'data_version': '0.0.1',
-                'sections': [
-                    {
-                        'id': 'favourite-food-section',
-                        'groups': [
-                            {
-                                'id': 'favourite-food',
-                                'blocks': [
-                                    {
-                                        'id': 'crisps',
-                                        'questions': [
-                                            {
-                                                'id': 'crisps-question',
-                                                'answers': [
-                                                    {
-                                                        'id': 'crisps-answer',
-                                                        'type': 'Checkbox',
-                                                        'options': [
-                                                            {
-                                                                'label': 'Ready salted',
-                                                                'value': 'Ready salted',
-                                                                'q_code': '1'
-                                                            },
-                                                            {
-                                                                'label': 'Sweet chilli',
-                                                                'value': 'Sweet chilli',
-                                                                'q_code': '2'
-                                                            },
-                                                            {
-                                                                'label': 'Cheese and onion',
-                                                                'value': 'Cheese and onion',
-                                                                'q_code': '3'
-                                                            },
-                                                            {
-                                                                'label': 'Other',
-                                                                'q_code': '4',
-                                                                'description': 'Choose any other flavour',
-                                                                'value': 'Other',
-                                                                'child_answer_id': 'other-answer-mandatory'
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        'parent_answer_id': 'crisps-answer',
-                                                        'mandatory': True,
-                                                        'id': 'other-answer-mandatory',
-                                                        'label': 'Please specify other',
-                                                        'type': 'TextField'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'favourite-food', 'crisps', [
+                {
+                    'id': 'crisps-question',
+                    'answers': [
+                        {
+                            'id': 'crisps-answer',
+                            'type': 'Checkbox',
+                            'options': [
+                                {
+                                    'label': 'Ready salted',
+                                    'value': 'Ready salted',
+                                    'q_code': '1'
+                                },
+                                {
+                                    'label': 'Sweet chilli',
+                                    'value': 'Sweet chilli',
+                                    'q_code': '2'
+                                },
+                                {
+                                    'label': 'Cheese and onion',
+                                    'value': 'Cheese and onion',
+                                    'q_code': '3'
+                                },
+                                {
+                                    'label': 'Other',
+                                    'q_code': '4',
+                                    'description': 'Choose any other flavour',
+                                    'value': 'Other',
+                                    'child_answer_id': 'other-answer-mandatory'
+                                }
+                            ]
+                        },
+                        {
+                            'parent_answer_id': 'crisps-answer',
+                            'mandatory': True,
+                            'id': 'other-answer-mandatory',
+                            'label': 'Please specify other',
+                            'type': 'TextField'
+                        }
+                    ]
+                }
+            ])
 
             # When STANDARD CHECKBOX
             answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
@@ -488,67 +359,48 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
 
             answers += [create_answer('other-answer-mandatory', '', group_id='favourite-food', block_id='crisps')]
 
-            questionnaire = {
-                'survey_id': '999',
-                'data_version': '0.0.1',
-                'sections': [
-                    {
-                        'id': 'favourite-food-section',
-                        'groups': [
-                            {
-                                'id': 'favourite-food',
-                                'blocks': [
-                                    {
-                                        'id': 'crisps',
-                                        'questions': [
-                                            {
-                                                'id': 'crisps-question',
-                                                'answers': [
-                                                    {
-                                                        'id': 'crisps-answer',
-                                                        'type': 'Checkbox',
-                                                        'options': [
-                                                            {
-                                                                'label': 'Ready salted',
-                                                                'value': 'Ready salted',
-                                                                'q_code': '1'
-                                                            },
-                                                            {
-                                                                'label': 'Sweet chilli',
-                                                                'value': 'Sweet chilli',
-                                                                'q_code': '2'
-                                                            },
-                                                            {
-                                                                'label': 'Cheese and onion',
-                                                                'value': 'Cheese and onion',
-                                                                'q_code': '3'
-                                                            },
-                                                            {
-                                                                'label': 'Other',
-                                                                'q_code': '4',
-                                                                'description': 'Choose any other flavour',
-                                                                'value': 'Other',
-                                                                'child_answer_id': 'other-answer-mandatory'
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        'parent_answer_id': 'crisps-answer',
-                                                        'mandatory': True,
-                                                        'id': 'other-answer-mandatory',
-                                                        'label': 'Please specify other',
-                                                        'type': 'TextField'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'favourite-food', 'crisps', [
+                {
+                    'id': 'crisps-question',
+                    'answers': [
+                        {
+                            'id': 'crisps-answer',
+                            'type': 'Checkbox',
+                            'options': [
+                                {
+                                    'label': 'Ready salted',
+                                    'value': 'Ready salted',
+                                    'q_code': '1'
+                                },
+                                {
+                                    'label': 'Sweet chilli',
+                                    'value': 'Sweet chilli',
+                                    'q_code': '2'
+                                },
+                                {
+                                    'label': 'Cheese and onion',
+                                    'value': 'Cheese and onion',
+                                    'q_code': '3'
+                                },
+                                {
+                                    'label': 'Other',
+                                    'q_code': '4',
+                                    'description': 'Choose any other flavour',
+                                    'value': 'Other',
+                                    'child_answer_id': 'other-answer-mandatory'
+                                }
+                            ]
+                        },
+                        {
+                            'parent_answer_id': 'crisps-answer',
+                            'mandatory': True,
+                            'id': 'other-answer-mandatory',
+                            'label': 'Please specify other',
+                            'type': 'TextField'
+                        }
+                    ]
+                }
+            ])
 
             # When STANDARD CHECKBOX
             answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
@@ -575,44 +427,25 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             answers += [
                 create_answer('other-crisps-answer', 'Ready salted', group_id='favourite-food', block_id='crisps')]
 
-            questionnaire = {
-                'survey_id': '999',
-                'data_version': '0.0.1',
-                'sections': [
-                    {
-                        'id': 'favourite-food-section',
-                        'groups': [
-                            {
-                                'id': 'favourite-food',
-                                'blocks': [
-                                    {
-                                        'id': 'crisps',
-                                        'questions': [
-                                            {
-                                                'id': 'crisps-question',
-                                                'answers': [
-                                                    {
-                                                        'id': 'crisps-answer',
-                                                        'type': 'TextArea',
-                                                        'options': [],
-                                                        'q_code': '1'
-                                                    },
-                                                    {
-                                                        'id': 'other-crisps-answer',
-                                                        'type': 'TextArea',
-                                                        'options': [],
-                                                        'q_code': '2'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'favourite-food', 'crisps', [
+                {
+                    'id': 'crisps-question',
+                    'answers': [
+                        {
+                            'id': 'crisps-answer',
+                            'type': 'TextArea',
+                            'options': [],
+                            'q_code': '1'
+                        },
+                        {
+                            'id': 'other-crisps-answer',
+                            'type': 'TextArea',
+                            'options': [],
+                            'q_code': '2'
+                        }
+                    ]
+                }
+            ])
 
             # When
             answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
@@ -626,47 +459,28 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(group_id='radio-group', group_instance=0, block_id='radio-block')]
             user_answer = [create_answer('radio-answer', 'Coffee', group_id='radio-group', block_id='radio-block')]
 
-            questionnaire = {
-                'data_version': '0.0.1',
-                'survey_id': '0',
-                'sections': [
-                    {
-                        'id': 'radio-section',
-                        'groups': [
-                            {
-                                'id': 'radio-group',
-                                'blocks': [
-                                    {
-                                        'id': 'radio-block',
-                                        'questions': [
-                                            {
-                                                'id': 'radio-question',
-                                                'answers': [
-                                                    {
-                                                        'type': 'Radio',
-                                                        'id': 'radio-answer',
-                                                        'q_code': '1',
-                                                        'options': [
-                                                            {
-                                                                'label': 'Coffee',
-                                                                'value': 'Coffee'
-                                                            },
-                                                            {
-                                                                'label': 'Tea',
-                                                                'value': 'Tea'
-                                                            }
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'radio-block', 'radio-block', [
+                {
+                    'id': 'radio-question',
+                    'answers': [
+                        {
+                            'type': 'Radio',
+                            'id': 'radio-answer',
+                            'q_code': '1',
+                            'options': [
+                                {
+                                    'label': 'Coffee',
+                                    'value': 'Coffee'
+                                },
+                                {
+                                    'label': 'Tea',
+                                    'value': 'Tea'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ])
 
             # When
             answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
@@ -680,37 +494,18 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(group_id='number-group', group_instance=0, block_id='number-block')]
             user_answer = [create_answer('number-answer', 0.9999, group_id='number-block', block_id='number-block')]
 
-            questionnaire = {
-                'data_version': '0.0.1',
-                'survey_id': '0',
-                'sections': [
-                    {
-                        'id': 'number-section',
-                        'groups': [
-                            {
-                                'id': 'number-group',
-                                'blocks': [
-                                    {
-                                        'id': 'number-block',
-                                        'questions': [
-                                            {
-                                                'id': 'number-question',
-                                                'answers': [
-                                                    {
-                                                        'id': 'number-answer',
-                                                        'type': 'Number',
-                                                        'q_code': '1'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'number-block', 'number-block', [
+                {
+                    'id': 'number-question',
+                    'answers': [
+                        {
+                            'id': 'number-answer',
+                            'type': 'Number',
+                            'q_code': '1'
+                        }
+                    ]
+                }
+            ])
 
             # When
             answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
@@ -724,37 +519,18 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(group_id='percentage-group', group_instance=0, block_id='percentage-block')]
             user_answer = [create_answer('percentage-answer', 100, group_id='percentage-group', block_id='percentage-block')]
 
-            questionnaire = {
-                'data_version': '0.0.1',
-                'survey_id': '0',
-                'sections': [
-                    {
-                        'id': 'percentage-section',
-                        'groups': [
-                            {
-                                'id': 'percentage-group',
-                                'blocks': [
-                                    {
-                                        'id': 'percentage-block',
-                                        'questions': [
-                                            {
-                                                'id': 'percentage-question',
-                                                'answers': [
-                                                    {
-                                                        'id': 'percentage-answer',
-                                                        'type': 'Percentage',
-                                                        'q_code': '1'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'percentage-block', 'percentage-block', [
+                {
+                    'id': 'percentage-question',
+                    'answers': [
+                        {
+                            'id': 'percentage-answer',
+                            'type': 'Percentage',
+                            'q_code': '1'
+                        }
+                    ]
+                }
+            ])
 
             # When
             answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
@@ -768,37 +544,18 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(group_id='textarea-group', group_instance=0, block_id='textarea-block')]
             user_answer = [create_answer('textarea-answer', 'example text.', group_id='textarea-group', block_id='textarea-block')]
 
-            questionnaire = {
-                'data_version': '0.0.1',
-                'survey_id': '0',
-                'sections': [
-                    {
-                        'id': 'textarea-section',
-                        'groups': [
-                            {
-                                'id': 'textarea-group',
-                                'blocks': [
-                                    {
-                                        'id': 'textarea-block',
-                                        'questions': [
-                                            {
-                                                'id': 'textarea-question',
-                                                'answers': [
-                                                    {
-                                                        'id': 'textarea-answer',
-                                                        'q_code': '1',
-                                                        'type': 'TextArea'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'textarea-block', 'textarea-block', [
+                {
+                    'id': 'textarea-question',
+                    'answers': [
+                        {
+                            'id': 'textarea-answer',
+                            'q_code': '1',
+                            'type': 'TextArea'
+                        }
+                    ]
+                }
+            ])
 
             # When
             answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
@@ -812,37 +569,18 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(group_id='currency-group', group_instance=0, block_id='currency-block')]
             user_answer = [create_answer('currency-answer', 99.99, group_id='currency-group', block_id='currency-block')]
 
-            questionnaire = {
-                'data_version': '0.0.1',
-                'survey_id': '0',
-                'sections': [
-                    {
-                        'id': 'currency-section',
-                        'groups': [
-                            {
-                                'id': 'currency-group',
-                                'blocks': [
-                                    {
-                                        'id': 'currency-block',
-                                        'questions': [
-                                            {
-                                                'id': 'currency-question',
-                                                'answers': [
-                                                    {
-                                                        'id': 'currency-answer',
-                                                        'type': 'Currency',
-                                                        'q_code': '1'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'currency-block', 'currency-block', [
+                {
+                    'id': 'currency-question',
+                    'answers': [
+                        {
+                            'id': 'currency-answer',
+                            'type': 'Currency',
+                            'q_code': '1'
+                        }
+                    ]
+                }
+            ])
 
             # When
             answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
@@ -856,51 +594,32 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(group_id='dropdown-group', group_instance=0, block_id='dropdown-block')]
             user_answer = [create_answer('dropdown-answer', 'Liverpool', group_id='dropdown-group', block_id='dropdown-block')]
 
-            questionnaire = {
-                'data_version': '0.0.1',
-                'survey_id': '0',
-                'sections': [
-                    {
-                        'id': 'dropdown-section',
-                        'groups': [
-                            {
-                                'id': 'dropdown-group',
-                                'blocks': [
-                                    {
-                                        'id': 'dropdown-block',
-                                        'questions': [
-                                            {
-                                                'id': 'dropdown-question',
-                                                'answers': [
-                                                    {
-                                                        'id': 'dropdown-answer',
-                                                        'type': 'Dropdown',
-                                                        'q_code': '1',
-                                                        'options': [
-                                                            {
-                                                                'label': 'Liverpool',
-                                                                'value': 'Liverpool'
-                                                            },
-                                                            {
-                                                                'label': 'Chelsea',
-                                                                'value': 'Chelsea'
-                                                            },
-                                                            {
-                                                                'label': 'Rugby is better!',
-                                                                'value': 'Rugby is better!'
-                                                            }
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'dropdown-block', 'dropdown-block', [
+                {
+                    'id': 'dropdown-question',
+                    'answers': [
+                        {
+                            'id': 'dropdown-answer',
+                            'type': 'Dropdown',
+                            'q_code': '1',
+                            'options': [
+                                {
+                                    'label': 'Liverpool',
+                                    'value': 'Liverpool'
+                                },
+                                {
+                                    'label': 'Chelsea',
+                                    'value': 'Chelsea'
+                                },
+                                {
+                                    'label': 'Rugby is better!',
+                                    'value': 'Rugby is better!'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ])
 
             # When
             answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
@@ -915,47 +634,28 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             user_answer = [create_answer('single-date-answer', '1990-02-01', group_id='date-group', block_id='date-block'),
                            create_answer('month-year-answer', '1990-01', group_id='date-group', block_id='date-block')]
 
-            questionnaire = {
-                'data_version': '0.0.1',
-                'survey_id': '0',
-                'sections': [
-                    {
-                        'id': 'date-section',
-                        'groups': [
-                            {
-                                'id': 'date-group',
-                                'blocks': [
-                                    {
-                                        'id': 'date-block',
-                                        'questions': [
-                                            {
-                                                'id': 'single-date-question',
-                                                'answers': [
-                                                    {
-                                                        'id': 'single-date-answer',
-                                                        'type': 'Date',
-                                                        'q_code': '1'
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                'id': 'month-year-question',
-                                                'answers': [
-                                                    {
-                                                        'id': 'month-year-answer',
-                                                        'type': 'MonthYearDate',
-                                                        'q_code': '2'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'date-block', 'date-block', [
+                {
+                    'id': 'single-date-question',
+                    'answers': [
+                        {
+                            'id': 'single-date-answer',
+                            'type': 'Date',
+                            'q_code': '1'
+                        }
+                    ]
+                },
+                {
+                    'id': 'month-year-question',
+                    'answers': [
+                        {
+                            'id': 'month-year-answer',
+                            'type': 'MonthYearDate',
+                            'q_code': '2'
+                        }
+                    ]
+                }
+            ])
             # When
             answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
@@ -969,37 +669,18 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(group_id='unit-group', group_instance=0, block_id='unit-block')]
             user_answer = [create_answer('unit-answer', 10, group_id='unit-group', block_id='unit-block')]
 
-            questionnaire = {
-                'data_version': '0.0.1',
-                'survey_id': '0',
-                'sections': [
-                    {
-                        'id': 'unit-section',
-                        'groups': [
-                            {
-                                'id': 'unit-group',
-                                'blocks': [
-                                    {
-                                        'id': 'unit-block',
-                                        'questions': [
-                                            {
-                                                'id': 'unit-question',
-                                                'answers': [
-                                                    {
-                                                        'id': 'unit-answer',
-                                                        'type': 'Unit',
-                                                        'q_code': '1'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'unit-block', 'unit-block', [
+                {
+                    'id': 'unit-question',
+                    'answers': [
+                        {
+                            'id': 'unit-answer',
+                            'type': 'Unit',
+                            'q_code': '1'
+                        }
+                    ]
+                }
+            ])
 
             # When
             answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
@@ -1017,53 +698,33 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                            create_answer('relationship-answer', 'Husband or wife', group_id='relationship-group', block_id='relationship-block',
                                          answer_instance=2)]
 
-            questionnaire = {
-                'data_version': '0.0.1',
-                'survey_id': '0',
-                'sections': [
-                    {
-                        'id': 'relationship-section',
-                        'groups': [
-                            {
-                                'id': 'relationship-group',
-                                'blocks': [
-                                    {
-                                        'type': 'Question',
-                                        'id': 'relationship-block',
-                                        'questions': [
-                                            {
-                                                'id': 'relationship-question',
-                                                'type': 'Relationship',
-                                                'answers': [
-                                                    {
-                                                        'id': 'relationship-answer',
-                                                        'q_code': '1',
-                                                        'type': 'Relationship',
-                                                        'options': [
-                                                            {
-                                                                'label': 'Husband or wife',
-                                                                'value': 'Husband or wife'
-                                                            },
-                                                            {
-                                                                'label': 'Partner',
-                                                                'value': 'Partner'
-                                                            },
-                                                            {
-                                                                'label': 'Unrelated',
-                                                                'value': 'Unrelated'
-                                                            }
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'relationship-block', 'relationship-block', [
+                {
+                    'id': 'relationship-question',
+                    'type': 'Relationship',
+                    'answers': [
+                        {
+                            'id': 'relationship-answer',
+                            'q_code': '1',
+                            'type': 'Relationship',
+                            'options': [
+                                {
+                                    'label': 'Husband or wife',
+                                    'value': 'Husband or wife'
+                                },
+                                {
+                                    'label': 'Partner',
+                                    'value': 'Partner'
+                                },
+                                {
+                                    'label': 'Unrelated',
+                                    'value': 'Unrelated'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ])
 
             # When
             answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
