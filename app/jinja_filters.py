@@ -67,8 +67,7 @@ def format_multilined_string(context, value):
     escaped_value = escape(value)
     new_line_regex = r'(?:\r\n|\r|\n)+'
     value_with_line_break_tag = re.sub(new_line_regex, '<br>', escaped_value)
-    result = '<p>{}</p>'.format(value_with_line_break_tag)
-
+    result = '{}'.format(value_with_line_break_tag)
     return mark_safe(context, result)
 
 
@@ -168,6 +167,18 @@ def format_household_member_name_possessive(names):
         return name + '’'
 
     return name + '’s'
+
+
+@blueprint.app_template_filter()
+def answer_is_type(answer, target_answer_type):
+    """
+    :param answer:
+    :param target_answer_type:
+    :return: true if the answer type matches given input
+    'RepeatingAnswer' question type return 'answers' as an object, and dict for all other question types.
+    """
+    answer_type = answer['type'] if isinstance(answer, dict) else answer.type
+    return answer_type == target_answer_type.lower()
 
 
 @evalcontextfilter
@@ -272,6 +283,11 @@ def get_question_title_processor():
 @blueprint.app_context_processor
 def get_answer_label_processor():
     return dict(get_answer_label=get_answer_label)
+
+
+@blueprint.app_context_processor
+def answer_is_type_processor():
+    return dict(answer_is_type=answer_is_type)
 
 
 @blueprint.app_context_processor
