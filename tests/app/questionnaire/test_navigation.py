@@ -1064,6 +1064,61 @@ class TestNavigation(AppContextTestCase):
         self.assertNotIn(confirmation_link, navigation_links)
         self.assertEqual(len(navigation_links), 4)
 
+    def test_build_navigation_summary_link_shown_when_invalid_section_present(self):
+        schema = load_schema_from_params('test', 'navigation')
+        metadata = {
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
+        }
+
+        intro_section = {
+            'id': 'intro-section',
+            'title': 'Intro',
+            'groups': [{
+                'id': 'intro-group',
+                'blocks': [{
+                    'id': 'intro-block',
+                    'type': 'Interstitial'
+                }]
+            }]
+        }
+        schema.json['sections'].insert(0, intro_section)
+        # pylint: disable=protected-access
+        schema._parse_schema()
+
+        completed_blocks = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('repeating-group', 0, 'repeating-block-1'),
+            Location('repeating-group', 0, 'repeating-block-2'),
+            Location('skip-payment-group', 0, 'skip-payment'),
+        ]
+
+        routing_path = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('repeating-group', 0, 'repeating-block-1'),
+            Location('repeating-group', 0, 'repeating-block-2'),
+            Location('skip-payment-group', 0, 'skip-payment'),
+        ]
+
+        navigation = _create_navigation(schema, AnswerStore(), metadata, completed_blocks, routing_path)
+
+        confirmation_link = {
+            'link_name': 'Summary',
+            'highlight': False,
+            'repeating': False,
+            'completed': False,
+            'link_url': Location('summary-group', 0, 'summary').url(metadata)
+        }
+
+        navigation_links = navigation.build_navigation('skip-payment', 0)
+
+        self.assertIn(confirmation_link, navigation_links)
+        self.assertEqual(len(navigation_links), 6)
+
+
     def test_build_navigation_repeated_blocks_independent_completeness(self):
         schema = load_schema_from_params('test', 'navigation')
 
