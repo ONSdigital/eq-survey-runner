@@ -297,6 +297,7 @@
                             "answers": [{
                                 "id": "turnover-answer",
                                 "label": "Turnover excluding VAT",
+                                "description": "Enter value in full. For example, for 56 thousand you would enter 56,000",
                                 "type": "Currency",
                                 "currency": "GBP",
                                 "decimal_places": 2,
@@ -307,6 +308,47 @@
                             "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{metadata['trad_as_or_ru_name']}}’s <em>turnover</em>, excluding VAT?"
                         }],
                         "title": "Turnover"
+                    },
+                    {
+                        "type": "ConfirmationQuestion",
+                        "title": "Turnover",
+                        "id": "confirm-turnover-block",
+                        "questions": [{
+                            "type": "General",
+                            "answers": [{
+                                "type": "Radio",
+                                "id": "confirm-turnover-answer",
+                                "q_code": "d40",
+                                "options": [{
+                                        "label": "Yes this is correct",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No I need to change this",
+                                        "value": "No"
+                                    }
+                                ],
+                                "mandatory": true
+                            }],
+                            "id": "confirm-turnover-question",
+                            "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, the value of the turnover was <em>{{answers['turnover-answer']|format_currency}}</em>, is this correct?"
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "when": [{
+                                        "value": "No",
+                                        "id": "confirm-turnover-answer",
+                                        "condition": "equals"
+                                    }],
+                                    "block": "turnover-block"
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "grants-funding-block"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "grants-funding-block",
