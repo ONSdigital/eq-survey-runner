@@ -7,6 +7,7 @@
 {% set question_title = get_question_title(question.id) %}
 {% set question_subtitle = question.subtitle %}
 {% set question_guidance = "" %}
+{% set question_definition = "" %}
 
 {% set question_titles %}
   {%- if question_title -%}
@@ -30,6 +31,12 @@
     </div>
   {% endif %}
 {% endset %}
+
+{%- set question_definition -%}
+  {%- if question.definitions -%}
+    {%- include 'partials/question-definition.html' -%}
+  {%- endif -%}
+{%- endset -%}
 
 {% set question_guidance %}
   {%- if question.guidance -%}
