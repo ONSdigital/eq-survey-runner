@@ -7,19 +7,11 @@
             {%- include theme(['partials/summary/display-question.html']) -%}
         </div>
 
-        {%- if not is_textarea -%}
-            {%- include theme(['partials/summary/display-answer.html']) -%}
-        {%- endif -%}
+        {%- include theme(['partials/summary/display-answer.html']) -%}
 
         {%- if content.summary.answers_are_editable -%}
             {%- include theme(['partials/summary/edit-link.html']) -%}
         {%- endif %}
 
     </div>
-
-    {%- if is_textarea -%}
-    <div class="grid u-mt-s">
-        {%- include theme(['partials/summary/display-answer.html']) -%}
-    </div>
-    {%- endif -%}
 </div>

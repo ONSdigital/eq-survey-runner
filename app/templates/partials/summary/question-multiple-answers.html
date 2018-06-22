@@ -12,22 +12,13 @@
             <div class="summary__label mars">{{ answer.label|striptags }}</div>
         </div>
 
-        {%- if not is_textarea -%}
-            {%- include theme(['partials/summary/display-answer.html']) -%}
-        {%- endif %}
+        {%- include theme(['partials/summary/display-answer.html']) -%}
 
         {%- if content.summary.answers_are_editable -%}
             {% include theme(['partials/summary/edit-link.html']) -%}
         {%- endif -%}
 
     </div>
-
-    {%- if is_textarea -%}
-        <div class="grid">
-            {%- include theme(['partials/summary/display-answer.html']) -%}
-        </div>
-    {%- endif -%}
-
 {%- endfor -%}
 
 </div>
