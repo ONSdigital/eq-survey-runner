@@ -5,20 +5,38 @@
 
 {% block main -%}
 
+{% if metadata.trad_as %}
+    {% set  trading_as = metadata.trad_as %}
+    {% set  trad_as_open = '<span class="trading_as"> (<span class="trad_as">' %}
+    {% set  trad_as_close = '</span>)</span>' %}
+{% endif %}
+
 <div>
-  <h1 class="saturn">Submitted answers</h1>
+  <h1 class="saturn">{{ _("Submitted answers") }}</h1>
 </div>
 
 <div class="u-mb-s">
     <div class="panel panel--simple panel--success panel--spacious">
-        <p class="mars">Your answers were submitted for <b>{{metadata.ru_name}}</b>{% if metadata.trad_as %} ({{metadata.trad_as}}){% endif %}
-         on {{metadata.submitted_time|format_datetime}}</p>
-        <p class="mars">Transaction ID: <b>{{metadata.tx_id}}</b></p>
+        <p class="mars">{{ _("Your answers were submitted for <span>%(ru_name)s</span>%(trad_as_open)s%(trad_as)s%(trad_as_close)s on %(submitted_time)s",
+            ru_name = metadata.ru_name,
+            trad_as_open = trad_as_open,
+            trad_as = trading_as,
+            trad_as_close = trad_as_close,
+            submitted_time=metadata.submitted_time|format_datetime) }}
+        </p>
+        <p class="mars">{{ _("Transaction ID") }}: <b>{{metadata.tx_id}}</b></p>
     </div>
 </div>
 
-<button class="btn btn--tertiary btn-print print__hidden u-no-js-hide">Print this page <span class="btn__icon btn__icon--print-link"></span></button>
+<button class="btn btn--tertiary btn-print print__hidden u-no-js-hide">{{ _("Print this page") }} <span class="btn__icon btn__icon--print-link"></span></button>
 
 {% include theme('partials/summary/summary.html') %}
 
 {% endblock -%}
+
+
+{{ _("You are completing this for <span>%(ru_name)s</span> %(trad_as_open)s%(trad_as)s%(trad_as_close)s",
+                    ru_name = metadata.ru_name,
+                    trad_as_open = trad_as_open,
+                    trad_as = trading_as,
+                    trad_as_close = trad_as_close) }}

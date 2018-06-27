@@ -1,12 +1,10 @@
-{% set not_answered = 'No answer provided' %}
-
 {% macro answer_with_child(selected_answer) %}
     {{selected_answer.label}}
     {%- if answer.child_answer_value is not none and selected_answer.should_display_other %}
     <ul>
         <li>
             {%- if answer.child_answer_value == ''  -%}
-                {{not_answered}}
+                {{ _("No answer provided") }}
             {%- else -%}
                 {{ answer.child_answer_value }}
             {%- endif -%}

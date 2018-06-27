@@ -182,7 +182,7 @@ class TestDateRangeValidator(unittest.TestCase):
 
     def test_bespoke_message_playback(self):
         message = {'DATE_PERIOD_TOO_LARGE': 'Test %(max)s'}
-        period_max = {'years': 1, 'months': 1}
+        period_max = {'years': 2, 'months': 1, 'days': 3}
         validator = DateRangeCheck(messages=message, period_max=period_max)
 
         period_from = Mock()
@@ -194,14 +194,60 @@ class TestDateRangeValidator(unittest.TestCase):
 
         period_to = Mock()
         period_to.data = {
-            'day': '14',
+            'day': '19',
             'month': '03',
-            'year': '2017'
+            'year': '2018'
         }
 
         mock_form = Mock()
 
+
+
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, period_from, period_to)
 
-        self.assertEqual('Test 1 year, 1 month', str(ite.exception))
+        self.assertEqual('Test 2 years, 1 month, 3 days', str(ite.exception))
+
+    def test_message_combinations(self):
+        period_from = Mock()
+        period_from.data = {
+            'day': '11',
+            'month': '02',
+            'year': '2016'
+        }
+
+        period_to = Mock()
+        period_to.data = {
+            'day': '19',
+            'month': '03',
+            'year': '2018'
+        }
+
+        mock_form = Mock()
+
+        # Max years, month, days
+        period_max = {'years': 2, 'months': 1, 'days': 3}
+        validator = DateRangeCheck(period_max=period_max)
+
+        with self.assertRaises(ValidationError) as ite:
+            validator(mock_form, period_from, period_to)
+
+        self.assertEqual('Enter a reporting period less than or equal to 2 years, 1 month, 3 days.', str(ite.exception))
+
+        # Max month, day
+        period_max = {'months': 2, 'days': 1}
+        validator = DateRangeCheck(period_max=period_max)
+
+        with self.assertRaises(ValidationError) as ite:
+            validator(mock_form, period_from, period_to)
+
+        self.assertEqual('Enter a reporting period less than or equal to 2 months, 1 day.', str(ite.exception))
+
+        # Max years, days
+        period_min = {'years': 3, 'days': 2}
+        validator = DateRangeCheck(period_min=period_min)
+
+        with self.assertRaises(ValidationError) as ite:
+            validator(mock_form, period_from, period_to)
+
+        self.assertEqual('Enter a reporting period greater than or equal to 3 years, 2 days.', str(ite.exception))

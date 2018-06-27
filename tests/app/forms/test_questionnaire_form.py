@@ -1,5 +1,6 @@
 # pylint: disable=too-many-lines
 from decimal import Decimal
+
 from mock import patch
 
 from app.forms.questionnaire_form import generate_form
@@ -14,7 +15,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
     @staticmethod
     def _error_exists(answer_id, msg, mapped_errors):
-        return any(a_id == answer_id and msg in ordered_errors for a_id, ordered_errors in mapped_errors)
+        return any(a_id == answer_id and str(msg) in ordered_errors for a_id, ordered_errors in mapped_errors)
 
     def test_form_ids_match_block_answer_ids(self):
         with self.test_request_context():
@@ -986,8 +987,9 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             form.validate()
             mapped_errors = form.map_errors()
 
-            self.assertTrue(self._error_exists('total-retail-turnover-answer', schema.error_messages
-                                               ['MANDATORY_NUMBER'], mapped_errors))
+            self.assertTrue(self._error_exists('total-retail-turnover-answer',
+                                               schema.error_messages['MANDATORY_NUMBER'],
+                                               mapped_errors))
 
     def test_form_subfield_errors_are_correctly_mapped(self):
         with self.test_request_context():

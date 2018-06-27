@@ -163,7 +163,7 @@ class TestViewSubmission(IntegrationTestCase):
 
         # check we're on the view submission page, and trading as value is displayed
         self.assertInUrl('view-submission')
-        self.assertInPage('(Integration Tests)')
+        self.assertInPage('(<span class="trad_as">Integration Tests</span>)')
 
     def test_view_submission_does_not_show_parenthesis_if_no_trading_as(self):
         no_trading_as_payload = {
