@@ -4,25 +4,19 @@ def convert_answers_to_payload_0_0_2(answer_store, schema, routing_path):
     'data': [
         {
             'value': 'Joe Bloggs',
-            'block_id': 'household-composition',
             'answer_id': 'household-full-name',
-            'group_id': 'multiple-questions-group',
             'group_instance': 0,
             'answer_instance': 0
         },
         {
             'value': 'Fred Flintstone',
-            'block_id': 'household-composition',
             'answer_id': 'household-full-name',
-            'group_id': 'multiple-questions-group',
             'group_instance': 0,
             'answer_instance': 1
         },
         {
             'value': 'Husband or wife',
-            'block_id': 'relationships',
             'answer_id': 'who-is-related',
-            'group_id': 'household-relationships',
             'group_instance': 0,
             'answer_instance': 0
         }
