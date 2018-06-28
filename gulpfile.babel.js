@@ -173,7 +173,7 @@ gulp.task('lint', ['lint:styles', 'lint:scripts', 'lint:json', 'lint:tests'])
 gulp.task('lint:json', () => {
   return gulp
     .src(['./data/en/*.json'])
-    .pipe(prettify())
+    .pipe(prettify({end_with_newline: true}))
     .pipe(diff())
     .pipe(
       diff.reporter({
@@ -190,12 +190,12 @@ gulp.task('lint:json', () => {
 gulp.task('format:json', () => {
   let schemas = gulp
     .src(['./data/en/*.json'])
-    .pipe(prettify())
+    .pipe(prettify({end_with_newline: true}))
     .pipe(gulp.dest('./data/en/'))
 
   let schemaDef = gulp
     .src(['./data/schema/schema-v1.json'])
-    .pipe(prettify())
+    .pipe(prettify({end_with_newline: true}))
     .pipe(gulp.dest('./data/schema'))
 
   return merge(schemas, schemaDef)
