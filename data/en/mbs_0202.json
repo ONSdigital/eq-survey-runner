@@ -247,7 +247,23 @@
                             }],
                             "type": "General",
                             "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{metadata['trad_as_or_ru_name']}}’s <em>total turnover</em>, excluding VAT?"
-                        }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "when": [{
+                                        "id": "turnover-answer",
+                                        "condition": "greater than",
+                                        "value": 0
+                                    }],
+                                    "block": "confirm-turnover-block"
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "confirm-zero-turnover-block"
+                                }
+                            }
+                        ]
                     },
                     {
                         "type": "ConfirmationQuestion",
@@ -285,12 +301,43 @@
                             },
                             {
                                 "goto": {
-                                    "when": [{
-                                        "id": "turnover-answer",
-                                        "condition": "greater than",
-                                        "value": 0
-                                    }],
                                     "block": "exports-block"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "ConfirmationQuestion",
+                        "title": "Total turnover",
+                        "id": "confirm-zero-turnover-block",
+                        "questions": [{
+                            "type": "General",
+                            "answers": [{
+                                "type": "Radio",
+                                "id": "confirm-zero-turnover-answer",
+                                "q_code": "d49",
+                                "options": [{
+                                        "label": "Yes this is correct",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No I need to change this",
+                                        "value": "No"
+                                    }
+                                ],
+                                "mandatory": true
+                            }],
+                            "id": "confirm-zero-turnover-question",
+                            "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, the value of the total turnover was <em>{{answers['turnover-answer']|format_currency}}</em>, is this correct?"
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "when": [{
+                                        "value": "No",
+                                        "id": "confirm-zero-turnover-answer",
+                                        "condition": "equals"
+                                    }],
+                                    "block": "turnover-block"
                                 }
                             },
                             {
