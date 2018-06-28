@@ -37,8 +37,8 @@
 
 {% include theme('partials/summary/summary.html') %}
 
-{% if content.is_view_submission_response_enabled %}
-  <div class="u-mb-s u-mb-m@s">
+{% if content.summary.is_view_submission_response_enabled %}
+  <div class="u-mb-s u-mb-m@s" data-qa="view-submission-text">
     <div class="venus">{{ _("You will have the opportunity to view and print a copy of your answers after submitting this questionnaire") }}</div>
   </div>
 {% endif %}

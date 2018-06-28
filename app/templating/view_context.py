@@ -125,7 +125,7 @@ def build_view_context_for_summary(metadata, answer_store, schema_context, block
 
 
 def is_view_submitted_response_enabled(schema):
-    if not is_dynamodb_enabled():
+    if is_dynamodb_enabled():
         view_submitted_response = schema.get('view_submitted_response')
         if view_submitted_response:
             return view_submitted_response['enabled']
