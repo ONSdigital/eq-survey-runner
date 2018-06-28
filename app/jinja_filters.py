@@ -270,11 +270,6 @@ def get_answer_label(context, answer_id, question_id):
 
 
 @blueprint.app_context_processor
-def get_current_date_processor():
-    return dict(get_current_date=get_current_date)
-
-
-@blueprint.app_context_processor
 def get_question_title_processor():
     return dict(get_question_title=get_question_title)
 
