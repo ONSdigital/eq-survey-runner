@@ -4,6 +4,7 @@ import del from 'del'
 import yargs from 'yargs'
 import prettify from 'gulp-jsbeautifier'
 import diff from 'gulp-diff'
+import merge from 'merge-stream'
 
 import { paths } from './gulp/paths'
 import { copyScripts, bundle, lint as lintScripts, lintFunctionalTests } from './gulp/scripts'
@@ -170,7 +171,7 @@ gulp.task('test', ['default', 'test:scripts'])
 gulp.task('lint', ['lint:styles', 'lint:scripts', 'lint:json', 'lint:tests'])
 
 gulp.task('lint:json', () => {
-  gulp
+  return gulp
     .src(['./data/en/*.json'])
     .pipe(prettify())
     .pipe(diff())
@@ -187,13 +188,15 @@ gulp.task('lint:json', () => {
 })
 
 gulp.task('format:json', () => {
-  gulp
+  let schemas = gulp
     .src(['./data/en/*.json'])
     .pipe(prettify())
     .pipe(gulp.dest('./data/en/'))
 
-  gulp
+  let schemaDef = gulp
     .src(['./data/schema/schema-v1.json'])
     .pipe(prettify())
     .pipe(gulp.dest('./data/schema'))
+
+  return merge(schemas, schemaDef)
 })
