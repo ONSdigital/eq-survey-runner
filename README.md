@@ -207,26 +207,26 @@ You should only need to create the language files once.
 To create Welsh language files, run the following command
 
 ```
-pybabel init -i app/translations/messages.pot -d translations -l cy
+pybabel init -i app/translations/messages.pot -d app/translations -l cy
 ```
 
 To create the gaelic language files, use the following:
 
 ```
-pybabel init -i app/translations/messages.pot -d translations -l gd
+pybabel init -i app/translations/messages.pot -d app/translations -l gd
 ```
 
 To compile the language files for use in the application, use the following:
 
 ```
-pybabel compile -d translations
+pybabel compile -d app/translations
 ```
 
 As strings are added to the application, you will need to update but not overwrite the translations for the various languages.
 To update the language strings, use:
 
 ```
-pybabel update -i app/translations/messages.pot -d translations
+pybabel update -i app/translations/messages.pot -d app/translations
 ```
 
 ## Environment Variables

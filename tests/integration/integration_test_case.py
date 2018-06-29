@@ -207,7 +207,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
     # Extra Helper Assertions
     def assertInPage(self, content, message=None):
-        self.assertIn(member=content, container=self.getResponseData(), msg=message)
+        self.assertIn(member=str(content), container=self.getResponseData(), msg=str(message))
 
     def assertInSelector(self, content, **selectors):
         data = self.getHtmlSoup().find(**selectors)
@@ -217,10 +217,12 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         self.assertTrue(content in str(data), msg=message)
 
     def assertNotInPage(self, content, message=None):
-        self.assertNotIn(member=content, container=self.getResponseData(), msg=message)
+
+        self.assertNotIn(member=str(content), container=self.getResponseData(), msg=str(message))
 
     def assertRegexPage(self, regex, message=None):
-        self.assertRegex(text=self.getResponseData(), expected_regex=regex, msg=message)
+
+        self.assertRegex(text=self.getResponseData(), expected_regex=str(regex), msg=str(message))
 
     def assertEqualPageTitle(self, title):
         self.assertEqual(self.getHtmlSoup().title.string, title)  # pylint: disable=no-member

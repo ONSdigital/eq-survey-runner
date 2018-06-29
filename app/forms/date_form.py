@@ -1,12 +1,14 @@
 import logging
-import calendar
 
 from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 
 from wtforms import Form, SelectField, StringField
+from flask_babel import gettext as _
+from babel.dates import get_month_names
 
+from app.settings import BABEL_DEFAULT_LOCALE
 from app.forms.custom_fields import CustomIntegerField
 from app.questionnaire.rules import get_metadata_value, get_answer_store_value, convert_to_datetime
 from app.validation.validators import DateCheck, OptionalForm, DateRequired, MonthYearCheck, YearCheck, SingleDatePeriodCheck
@@ -127,7 +129,8 @@ def get_bespoke_message(answer, message_type):
 
 
 def get_month_selection_field(validate_with):
-    month_choices = [('', 'Select month')] + [(str(x), calendar.month_name[x]) for x in range(1, 13)]
+    month_names = get_month_names(locale=BABEL_DEFAULT_LOCALE)
+    month_choices = [('', _('Select month'))] + [(str(key), month_names[key]) for key in range(1, 13)]
     return SelectField(choices=month_choices, default='', validators=validate_with)
 
 
@@ -137,13 +140,13 @@ def validate_min_max_date(answer, answer_store, metadata, date_format):
         messages = answer['validation'].get('messages')
     minimum_date, maximum_date = get_dates_for_single_date_period_validation(answer, answer_store, metadata)
 
-    display_format = '%-d %B %Y'
+    display_format = 'd MMMM YYYY'
     if date_format == 'yyyy-mm':
-        display_format = '%B %Y'
+        display_format = 'MMMM YYYY'
         minimum_date = minimum_date.replace(day=1) if minimum_date else None    # First day of Month
         maximum_date = maximum_date + relativedelta(day=31) if maximum_date else None   # Last day of month
     elif date_format == 'yyyy':
-        display_format = '%Y'
+        display_format = 'YYYY'
         minimum_date = minimum_date.replace(month=1, day=1) if minimum_date else None    # January 1st
         maximum_date = maximum_date.replace(month=12, day=31) if maximum_date else None   # Last day of december
 

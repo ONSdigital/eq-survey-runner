@@ -32,11 +32,11 @@
       {% endblock form_content %}
 
       {% block submit_button %}
-      <button class="btn btn--primary btn--lg" data-qa="btn-submit" type="submit" name="action[save_continue]">{{submit_btn_text or "Continue"}}</button>
+      <button class="btn btn--primary btn--lg" data-qa="btn-submit" type="submit" name="action[save_continue]">{{ _("Continue") }}</button>
       {% endblock %}
 
       <div class="u-mb-m">
-        <button class="btn btn--link mars js-btn-save" data-qa="btn-save-sign-out" type="submit" name="action[save_sign_out]" {{helpers.track('click', 'Navigation', 'Save and complete later click')}}>{% block save_sign_out_button_text %}Save and complete later{% endblock %}</button>
+        <button class="btn btn--link mars js-btn-save" data-qa="btn-save-sign-out" type="submit" name="action[save_sign_out]" {{helpers.track('click', 'Navigation', 'Save and complete later click')}}>{% block save_sign_out_button_text %}{{ _("Save and complete later") }}{% endblock %}</button>
       </div>
     </form>
 

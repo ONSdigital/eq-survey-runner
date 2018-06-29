@@ -1,7 +1,7 @@
 <div class="grid__col col-4@xs col-2@m">
     <div class="summary__link {{ 'summary__link--textarea' if is_textarea }} mars">
-        <a href="{{ block.link }}#{{ answer.id }}" class="summary__edit-link" aria-describedby="{{ answer.id }} {{ answer.id }}-answer" data-qa="{{ answer.id }}-edit" {{ helpers.track('click', 'Summary', 'Edit click') }}>Change <span class="u-vh">
-        your answer for: {{ answer.label|striptags if has_multiple_answers else question.title|striptags }}. The current value is:
+        <a href="{{ block.link }}#{{ answer.id }}" class="summary__edit-link" aria-describedby="{{ answer.id }} {{ answer.id }}-answer" data-qa="{{ answer.id }}-edit" {{ helpers.track('click', 'Summary', 'Edit click') }}>{{ _("Change") }}<span class="u-vh">
+        {{ _("Change your answer for") }}: {{ answer.label|striptags if has_multiple_answers else question.title|striptags }}. {{ _( "The current value is") }}:
         {% include theme(['partials/summary/answer.html']) %}
     </span></a>
     </div>

@@ -180,7 +180,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
     def test_format_date_time_in_bst(self):
         # Given
         date_time = '2018-03-29T11:59:13.528680'
-        date_format = '%-d %B %Y at %H:%M'
+        date_format = "d MMMM YYYY 'at' HH:mm"
 
         # When
         format_value = format_datetime(self.autoescape_context, date_time, date_format)
@@ -191,13 +191,13 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
     def test_format_date_time_in_gmt(self):
         # Given
         date_time = '2018-10-28T11:59:13.528680'
-        date_format = '%-d %B %Y at %H:%M'
+        date_format = "d MMMM YYYY 'at' HH:mm:ss"
 
         # When
         format_value = format_datetime(self.autoescape_context, date_time, date_format)
 
         # Then
-        self.assertEqual(format_value, "<span class='date'>28 October 2018 at 11:59</span>")
+        self.assertEqual(format_value, "<span class='date'>28 October 2018 at 11:59:13</span>")
 
     def test_format_conditional_date_not_date(self):
         # Given       no test for integers this check was removed from jinja_filters
