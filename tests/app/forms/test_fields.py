@@ -1,5 +1,3 @@
-import unittest
-
 from wtforms import validators, StringField, FormField, SelectField, SelectMultipleField
 
 from app.forms.custom_fields import MaxTextAreaField
@@ -7,12 +5,14 @@ from app.forms.fields import CustomIntegerField, CustomDecimalField, get_field, 
 from app.validation.error_messages import error_messages
 from app.validation.validators import ResponseRequired, MutuallyExclusive
 from app.data_model.answer_store import AnswerStore
+from tests.app.app_context_test_case import AppContextTestCase
 
 
 # pylint: disable=no-member, too-many-public-methods
-class TestFields(unittest.TestCase):
+class TestFields(AppContextTestCase):
 
     def setUp(self):
+        super().setUp()
         self.answer_store = AnswerStore()
         self.metadata = {
             'user_id': '789473423',
@@ -31,6 +31,7 @@ class TestFields(unittest.TestCase):
         }
 
     def tearDown(self):
+        super().tearDown()
         self.answer_store.clear()
         self.metadata.clear()
 
@@ -149,8 +150,9 @@ class TestFields(unittest.TestCase):
             }
         }
 
-        unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
-                                  self.metadata)
+        with self.test_request_context('/'):
+            unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
+                                      self.metadata)
 
         self.assertEqual(unbound_field.field_class, FormField)
         self.assertEqual(unbound_field.kwargs['label'], date_json['label'])
@@ -173,8 +175,9 @@ class TestFields(unittest.TestCase):
             }
         }
 
-        unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
-                                  self.metadata)
+        with self.test_request_context('/'):
+            unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
+                                      self.metadata)
 
         self.assertEqual(unbound_field.field_class, FormField)
         self.assertEqual(unbound_field.kwargs['label'], date_json['label'])
@@ -197,8 +200,9 @@ class TestFields(unittest.TestCase):
             }
         }
 
-        unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
-                                  self.metadata)
+        with self.test_request_context('/'):
+            unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
+                                      self.metadata)
 
         self.assertEqual(unbound_field.field_class, FormField)
         self.assertEqual(unbound_field.kwargs['label'], date_json['label'])

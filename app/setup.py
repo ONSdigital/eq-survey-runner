@@ -24,6 +24,7 @@ from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.authentication.user_id_generator import UserIDGenerator
 from app.data_model.models import EQSession, QuestionnaireState, db
+from app.globals import get_session_store
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.new_relic import setup_newrelic
 from app.secrets import SecretStore, validate_required_secrets
@@ -324,6 +325,20 @@ def setup_secure_cookies(application):
 def setup_babel(application):
     application.babel = Babel(application)
     application.jinja_env.add_extension('jinja2.ext.i18n')
+
+    @application.babel.localeselector
+    def get_locale():  # pylint: disable=unused-variable
+        session = get_session_store()
+
+        if not session:
+            return None
+
+        return session.session_data.language_code
+
+    @application.babel.timezoneselector
+    def get_timezone():  # pylint: disable=unused-variable
+        # For now regardless of locale we will show times in GMT/BST
+        return 'Europe/London'
 
 
 def add_safe_health_check(application):

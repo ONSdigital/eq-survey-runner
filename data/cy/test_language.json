@@ -21,13 +21,26 @@
     "sections": [{
         "id": "default-section",
         "groups": [{
-            "id": "welsh-group",
+            "id": "language-group",
             "title": "",
             "blocks": [{
-                    "type": "Interstitial",
-                    "id": "welsh-block",
-                    "title": "Holiadur Cymraeg",
-                    "questions": []
+                    "type": "Question",
+                    "id": "language-block",
+                    "description": "",
+                    "questions": [{
+                        "answers": [{
+                            "id": "month-year-answer",
+                            "label": "Dyddiad",
+                            "mandatory": true,
+                            "q_code": "11",
+                            "type": "MonthYearDate"
+                        }],
+                        "description": "",
+                        "id": "month-year-question",
+                        "title": "Dyddiad gyda mis a blwyddyn",
+                        "type": "General"
+                    }],
+                    "title": "Holiadur Cymraeg"
                 },
                 {
                     "type": "Summary",

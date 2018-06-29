@@ -1,6 +1,5 @@
 # coding: utf-8
 from types import SimpleNamespace
-from unittest import TestCase
 
 from datetime import datetime, timedelta
 
@@ -18,9 +17,10 @@ from app.jinja_filters import (
     calculate_years_difference, get_current_date, as_london_tz, max_value,
     min_value, get_question_title, get_answer_label
 )
+from tests.app.app_context_test_case import AppContextTestCase
 
 
-class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
+class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-methods
     def setUp(self):
         self.autoescape_context = Mock(autoescape=True)
         super(TestJinjaFilters, self).setUp()
@@ -132,7 +132,8 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         date = '2017-01-01'
 
         # When
-        format_value = format_date(self.autoescape_context, date)
+        with self.test_request_context('/'):
+            format_value = format_date(self.autoescape_context, date)
 
         # Then
         self.assertEqual(format_value, "<span class='date'>1 January 2017</span>")
@@ -142,7 +143,8 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         date = '2017-01'
 
         # When
-        format_value = format_date(self.autoescape_context, date)
+        with self.test_request_context('/'):
+            format_value = format_date(self.autoescape_context, date)
 
         # Then
         self.assertEqual(format_value, "<span class='date'>January 2017</span>")
@@ -152,7 +154,8 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         date = [Markup('2017-01')]
 
         # When
-        format_value = format_date(self.autoescape_context, date)
+        with self.test_request_context('/'):
+            format_value = format_date(self.autoescape_context, date)
 
         # Then
         self.assertEqual(format_value, "<span class='date'>January 2017</span>")
@@ -183,7 +186,8 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         date_format = "d MMMM YYYY 'at' HH:mm"
 
         # When
-        format_value = format_datetime(self.autoescape_context, date_time, date_format)
+        with self.test_request_context('/'):
+            format_value = format_datetime(self.autoescape_context, date_time, date_format)
 
         # Then
         self.assertEqual(format_value, "<span class='date'>29 March 2018 at 12:59</span>")
@@ -194,7 +198,8 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         date_format = "d MMMM YYYY 'at' HH:mm:ss"
 
         # When
-        format_value = format_datetime(self.autoescape_context, date_time, date_format)
+        with self.test_request_context('/'):
+            format_value = format_datetime(self.autoescape_context, date_time, date_format)
 
         # Then
         self.assertEqual(format_value, "<span class='date'>28 October 2018 at 11:59:13</span>")
@@ -232,14 +237,15 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
                     (None, '2017-12-24', '24 December 2017')]
 
         # When
-        for triple in datelist:
-            date1 = triple[0]
-            date2 = triple[1]
+        with self.test_request_context('/'):
+            for triple in datelist:
+                date1 = triple[0]
+                date2 = triple[1]
 
-            format_value = format_conditional_date(self.autoescape_context, date1, date2)
+                format_value = format_conditional_date(self.autoescape_context, date1, date2)
 
-            # Then
-            self.assertEqual(format_value, "<span class='date'>{date}</span>".format(date=triple[2]))
+                # Then
+                self.assertEqual(format_value, "<span class='date'>{date}</span>".format(date=triple[2]))
 
     def test_calculate_years_difference(self):
         # Given
@@ -277,7 +283,8 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         end_date = '2017-01-31'
 
         # When
-        format_value = format_date_range(self.autoescape_context, start_date, end_date)
+        with self.test_request_context('/'):
+            format_value = format_date_range(self.autoescape_context, start_date, end_date)
 
         # Then
         self.assertEqual(format_value, "<span class='date'>1 January 2017</span> to <span class='date'>31 January 2017</span>")
@@ -287,7 +294,8 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         start_date = '2017-01-01'
 
         # When
-        format_value = format_date_range(self.autoescape_context, start_date)
+        with self.test_request_context('/'):
+            format_value = format_date_range(self.autoescape_context, start_date)
 
         # Then
         self.assertEqual(format_value, "<span class='date'>1 January 2017</span>")

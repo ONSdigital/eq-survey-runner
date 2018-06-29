@@ -1,76 +1,76 @@
 {
-  "$schema": "http://json-schema.org/draft-06/schema",
-  "$id": "https://edc.ons.gov.uk/schemas/feedback_v1.json",
-  "type": "object",
-  "properties": {
-    "tx_id": {
-      "type": "string",
-      "description": "Survey transaction identifier. This will be the same for all feedback during a survey session.",
-      "pattern": "^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$"
-    },
-    "type": {
-      "type": "string",
-      "pattern": "^uk.gov.ons.edc.eq:feedback$"
-    },
-    "version": {
-      "type": "string",
-      "pattern": "^0.0.1$"
-    },
-    "origin": {
-      "type": "string",
-      "pattern": "^uk.gov.ons.edc.eq$"
-    },
-    "survey_id": {
-      "type": "string",
-      "description": "The ONS id of the survey derived from the inquiry code already in use for that survey.",
-      "pattern": "^[0-9]{3}$"
-    },
-    "collection": {
-      "type": "object",
-      "properties": {
-        "exercise_sid": {
-          "type": "string"
+    "$schema": "http://json-schema.org/draft-06/schema",
+    "$id": "https://edc.ons.gov.uk/schemas/feedback_v1.json",
+    "type": "object",
+    "properties": {
+        "tx_id": {
+            "type": "string",
+            "description": "Survey transaction identifier. This will be the same for all feedback during a survey session.",
+            "pattern": "^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$"
         },
-        "instrument_id":{
-          "type": "string"
+        "type": {
+            "type": "string",
+            "pattern": "^uk.gov.ons.edc.eq:feedback$"
         },
-        "period": {
-          "type": "string"
+        "version": {
+            "type": "string",
+            "pattern": "^0.0.1$"
+        },
+        "origin": {
+            "type": "string",
+            "pattern": "^uk.gov.ons.edc.eq$"
+        },
+        "survey_id": {
+            "type": "string",
+            "description": "The ONS id of the survey derived from the inquiry code already in use for that survey.",
+            "pattern": "^[0-9]{3}$"
+        },
+        "collection": {
+            "type": "object",
+            "properties": {
+                "exercise_sid": {
+                    "type": "string"
+                },
+                "instrument_id": {
+                    "type": "string"
+                },
+                "period": {
+                    "type": "string"
+                }
+            }
+        },
+        "submitted_at": {
+            "type": "string",
+            "description": "Time at which survey feedback was submitted.",
+            "format": "date-time"
+        },
+        "metadata": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "string"
+                },
+                "ru_ref": {
+                    "type": "string"
+                }
+            }
+        },
+        "data": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
         }
-      }
-    },
-    "submitted_at": {
-      "type": "string",
-      "description": "Time at which survey feedback was submitted.",
-      "format": "date-time"
-    },
-    "metadata": {
-      "type": "object",
-      "properties": {
-        "user_id": {
-          "type": "string"
-        },
-        "ru_ref": {
-          "type": "string"
-        }
-      }
-    },
-    "data": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string"
-        }
-      }
     }
-  }
 }

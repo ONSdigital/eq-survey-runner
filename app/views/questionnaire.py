@@ -37,7 +37,7 @@ from app.templating.summary_context import build_summary_rendering_context
 from app.templating.template_renderer import renderer, TemplateRenderer
 from app.templating.view_context import build_view_context
 
-from app.utilities.schema import load_schema_from_metadata, load_schema_from_session_data
+from app.utilities.schema import load_schema_from_session_data
 from app.views.errors import MultipleSurveyError
 from app.authentication.no_token_exception import NoTokenException
 
@@ -74,7 +74,8 @@ def before_questionnaire_request():
                        session_form_type=metadata['form_type'],
                        session_collection_id=metadata['collection_exercise_sid'])
 
-    g.schema = load_schema_from_metadata(metadata)
+    session_data = get_session_store().session_data
+    g.schema = load_schema_from_session_data(session_data)
 
 
 @post_submission_blueprint.before_request
@@ -226,29 +227,28 @@ def post_household_composition(routing_path, **kwargs):
 @login_required
 def get_thank_you(eq_id, form_type):  # pylint: disable=unused-argument
     session_data = get_session_store().session_data
+    g.schema = load_schema_from_session_data(session_data)
 
     if session_data.submitted_time:
-        schema = load_schema_from_session_data(session_data)
         metadata_context = build_metadata_context_for_survey_completed(session_data)
 
         view_submission_url = None
         view_submission_duration = 0
-        if _is_submission_viewable(schema.json, session_data.submitted_time):
+        if _is_submission_viewable(g.schema.json, session_data.submitted_time):
             view_submission_url = url_for('.get_view_submission', eq_id=eq_id, form_type=form_type)
-            view_submission_duration = humanize.naturaldelta(timedelta(seconds=schema.json['view_submitted_response']['duration']))
+            view_submission_duration = humanize.naturaldelta(timedelta(seconds=g.schema.json['view_submitted_response']['duration']))
 
-        return render_theme_template(schema.json['theme'],
+        return render_theme_template(g.schema.json['theme'],
                                      template_name='thank-you.html',
                                      metadata=metadata_context,
                                      analytics_ua_id=current_app.config['EQ_UA_ID'],
-                                     survey_id=schema.json['survey_id'],
-                                     survey_title=TemplateRenderer.safe_content(schema.json['title']),
-                                     is_view_submitted_response_enabled=is_view_submitted_response_enabled(schema.json),
+                                     survey_id=g.schema.json['survey_id'],
+                                     survey_title=TemplateRenderer.safe_content(g.schema.json['title']),
+                                     is_view_submitted_response_enabled=is_view_submitted_response_enabled(g.schema.json),
                                      view_submission_url=view_submission_url,
                                      view_submission_duration=view_submission_duration)
 
     metadata = get_metadata(current_user)
-    g.schema = load_schema_from_metadata(metadata)
     collection_id = metadata['collection_exercise_sid']
     return _redirect_to_latest_location(collection_id, metadata.get('eq_id'), metadata.get('form_type'))
 

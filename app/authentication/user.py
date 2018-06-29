@@ -8,3 +8,6 @@ class User(UserMixin):
             self.user_ik = user_ik
         else:
             raise ValueError('No user_id or user_ik found in session')
+
+    def get_id(self):
+        return self.user_id
