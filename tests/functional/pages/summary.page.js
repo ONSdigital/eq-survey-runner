@@ -1,2 +1,15 @@
 const QuestionPage = require('./surveys/question.page');
-module.exports = new QuestionPage('summary');
+
+class ThankYouPage extends QuestionPage {
+
+  constructor() {
+    super('summary');
+  }
+
+  viewSubmissionText() {
+    return '[data-qa="view-submission-text"]';
+  }
+
+}
+
+module.exports = new ThankYouPage();
