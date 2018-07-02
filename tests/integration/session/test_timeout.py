@@ -11,6 +11,11 @@ class TestTimeout(IntegrationTestCase):
         settings.EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS = 0
         super().setUp()
 
+    def tearDown(self):
+        settings.EQ_SESSION_TIMEOUT_SECONDS = 45 * 60
+        settings.EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS = 30
+        super().tearDown()
+
     def test_timeout_continue_returns_200(self):
         self.launchSurvey('test', 'timeout')
         self.get('/timeout-continue')
