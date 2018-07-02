@@ -6,57 +6,105 @@ const SummaryPage = require('../../pages/components/checkbox/mutually-exclusive/
 describe('Component: Mutually Exclusive Checkbox', function() {
 
   beforeEach(function() {
-    return helpers.openQuestionnaire('test_checkbox_mutually_exclusive.json').then(() => {
-      return browser
-        .getUrl().should.eventually.contain(MandatoryCheckboxPage.pageName);
-    });
+    return helpers.openQuestionnaire('test_checkbox_mutually_exclusive.json');
   });
 
-  describe('Given a mutually exclusive option is available', function() {
-    it('When the user clicks a range of options and the mutually exclusive option then an error should be visible.', function() {
+  describe('Given the user has clicked multiple non-exclusive options', function() {
+    it('When then user clicks the mutually exclusive option, Then only the mutually exclusive option should be checked.', function() {
+
       return browser
+        // Given
         .click(MandatoryCheckboxPage.cheese())
         .click(MandatoryCheckboxPage.ham())
         .click(MandatoryCheckboxPage.pineapple())
+
+        .isSelected(MandatoryCheckboxPage.ham()).should.eventually.be.true
+        .isSelected(MandatoryCheckboxPage.cheese()).should.eventually.be.true
+        .isSelected(MandatoryCheckboxPage.pineapple()).should.eventually.be.true
+
+        // When
         .click(MandatoryCheckboxPage.none())
+        .isSelected(MandatoryCheckboxPage.none()).should.eventually.be.true
+
+        // Then
+        .isSelected(MandatoryCheckboxPage.cheese()).should.eventually.be.false
+        .isSelected(MandatoryCheckboxPage.ham()).should.eventually.be.false
+        .isSelected(MandatoryCheckboxPage.pineapple()).should.eventually.be.false
+
         .click(MandatoryCheckboxPage.submit())
-        .isExisting(SummaryPage.errorNumber()).should.eventually.be.true
-        .getText(MandatoryCheckboxPage.errorNumber()).should.eventually.contain('Uncheck "Cheese", "Ham" and "Pineapple" or "No extra toppings" to continue');
+
+        .getUrl().should.eventually.contain(SummaryPage.pageName)
+        .getText(SummaryPage.answer()).should.eventually.have.string('No extra toppings')
+        .getText(SummaryPage.answer()).should.not.eventually.have.string('Cheese\nHam\nPineapple');
+
     });
   });
 
-  describe('Given a mutually exclusive option is available', function() {
-    it('When the user clicks a range of options but not the mutually exclusive option then it should go to summary.', function() {
+  describe('Given the user has clicked the mutually exclusive option', function() {
+    it('When the user clicks the non-exclusive options, Then only the non-exclusive options should be checked.', function() {
+
       return browser
+        // Given
+        .click(MandatoryCheckboxPage.none())
+        .isSelected(MandatoryCheckboxPage.none()).should.eventually.be.true
+
+        // When
         .click(MandatoryCheckboxPage.cheese())
         .click(MandatoryCheckboxPage.ham())
         .click(MandatoryCheckboxPage.pineapple())
+
+        // Then
+        .isSelected(MandatoryCheckboxPage.none()).should.eventually.be.false
+        .isSelected(MandatoryCheckboxPage.cheese()).should.eventually.be.true
+        .isSelected(MandatoryCheckboxPage.ham()).should.eventually.be.true
+        .isSelected(MandatoryCheckboxPage.pineapple()).should.eventually.be.true
+
         .click(MandatoryCheckboxPage.submit())
+
         .getUrl().should.eventually.contain(SummaryPage.pageName)
-        .getText(SummaryPage.answer()).should.eventually.have.string('Cheese\nHam\nPineapple');
+        .getText(SummaryPage.answer()).should.eventually.have.string('Cheese\nHam\nPineapple')
+        .getText(SummaryPage.answer()).should.not.eventually.have.string('No extra toppings');
+
     });
   });
 
-    describe('Given a mutually exclusive option is available', function() {
-    it('When the user clicks only the mutually exclusive option then it should go to summary.', function() {
+  describe('Given the user has not clicked the mutually exclusive option', function() {
+    it('When the user clicks multiple non-exclusive options, Then only the non-exclusive options should be checked.', function() {
+
       return browser
+        // When
+        .click(MandatoryCheckboxPage.cheese())
+        .click(MandatoryCheckboxPage.ham())
+        .click(MandatoryCheckboxPage.pineapple())
+
+        // Then
+        .isSelected(MandatoryCheckboxPage.cheese()).should.eventually.be.true
+        .isSelected(MandatoryCheckboxPage.ham()).should.eventually.be.true
+        .isSelected(MandatoryCheckboxPage.pineapple()).should.eventually.be.true
+
+        .click(MandatoryCheckboxPage.submit())
+
+        .getUrl().should.eventually.contain(SummaryPage.pageName)
+        .getText(SummaryPage.answer()).should.eventually.have.string('Cheese\nHam\nPineapple')
+        .getText(SummaryPage.answer()).should.not.eventually.have.string('No extra toppings');
+
+    });
+  });
+
+  describe('Given the user has not clicked any of the non-exclusive options', function() {
+    it('When the user clicks the mutually exclusive option, Then only the exclusive option should be checked.', function() {
+
+      return browser
+        // When
         .click(MandatoryCheckboxPage.none())
+        .isSelected(MandatoryCheckboxPage.none()).should.eventually.be.true
         .click(MandatoryCheckboxPage.submit())
-        .getUrl().should.eventually.contain(SummaryPage.pageName)
-        .getText(SummaryPage.answer()).should.eventually.have.string('No extra toppings');
-    });
-  });
 
-  describe('Given an "other" option is available', function() {
-    it('When the user clicks the "other" option the other input should be visible and usable.', function() {
-      return browser
-        .getText(MandatoryCheckboxPage.otherLabel()).should.eventually.have.string('Choose any other topping')
-        .click(MandatoryCheckboxPage.other())
-        .isVisible(MandatoryCheckboxPage.otherText()).should.eventually.be.true
-        .setValue(MandatoryCheckboxPage.otherText(), 'Chicken')
-        .click(MandatoryCheckboxPage.submit())
+        // Then
         .getUrl().should.eventually.contain(SummaryPage.pageName)
-        .getText(SummaryPage.answer()).should.eventually.have.string('Other\nChicken');
+        .getText(SummaryPage.answer()).should.eventually.have.string('No extra toppings')
+        .getText(SummaryPage.answer()).should.not.eventually.have.string('Cheese\nHam\nPineapple');
+
     });
   });
 
