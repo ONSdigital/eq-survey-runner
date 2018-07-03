@@ -46,6 +46,25 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         self.assertTrue(evaluate_rule(when, False))
 
+    def test_evaluate_rule_set_should_be_true(self):
+        when = {
+            'condition': 'set'
+        }
+
+        self.assertTrue(evaluate_rule(when, ''))
+        self.assertTrue(evaluate_rule(when, '0'))
+        self.assertTrue(evaluate_rule(when, 'Yes'))
+        self.assertTrue(evaluate_rule(when, 'No'))
+        self.assertTrue(evaluate_rule(when, 0))
+        self.assertTrue(evaluate_rule(when, 1))
+
+    def test_evaluate_rule_set_should_be_false(self):
+        when = {
+            'condition': 'set'
+        }
+
+        self.assertFalse(evaluate_rule(when, None))
+
     def test_evaluate_rule_not_set_should_be_true(self):
         when = {
             'condition': 'not set'
