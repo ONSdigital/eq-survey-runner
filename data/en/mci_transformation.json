@@ -60,7 +60,7 @@
                             "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
                         }],
                         "questions": [{
-                                "question": "Total Turnover excluding VAT",
+                                "question": "Total turnover excluding VAT",
                                 "content": [{
                                         "description": "Include:",
                                         "list": [
@@ -79,7 +79,7 @@
                                 ]
                             },
                             {
-                                "question": "Retail Sales including VAT",
+                                "question": "Retail sales including VAT",
                                 "content": [{
                                         "description": "Include:",
                                         "list": [
@@ -100,75 +100,70 @@
                                 ]
                             },
                             {
-                                "question": "Food sales",
+                                "question": "Food, drink and tobacco sales",
                                 "content": [{
                                         "description": "Include:",
                                         "list": [
-                                            "all fresh food",
-                                            "other food for human consumption (except chocolate and sugar confectionery)",
-                                            "soft drinks"
+                                            "all food for human consumption",
+                                            "alcoholic and non-alcoholic drinks",
+                                            "tobacco products and smokers’ requisites (including e-cigarettes)"
                                         ]
                                     },
                                     {
                                         "description": "Exclude:",
                                         "list": [
-                                            "sales from catering facilities to customers (e.g. in-store cafes)"
+                                            "sales from catering facilities used by customers (e.g. in-house cafes)"
                                         ]
                                     }
                                 ]
                             },
                             {
-                                "question": "Alcohol, confectionery and tobacco sales",
-                                "content": [{
-                                    "description": "Include:",
-                                    "list": [
-                                        "alcoholic drink",
-                                        "chocolate and sugar confectionery",
-                                        "tobacco and smokers’ requisites"
-                                    ]
-                                }]
-                            },
-                            {
                                 "question": "Clothing and footwear sales",
                                 "content": [{
-                                    "description": "Include:",
-                                    "list": [
-                                        "clothing and footwear",
-                                        "clothing fabrics",
-                                        "haberdashery and furs",
-                                        "leather and travel goods",
-                                        "handbags and umbrellas"
-                                    ]
-                                }]
+                                        "description": "Include:",
+                                        "list": [
+                                            "all clothing and footwear",
+                                            "clothing fabrics and haberdashery",
+                                            "accessories such as belts, handbags and umbrellas",
+                                            "travel cases and luggage"
+                                        ]
+                                    },
+                                    {
+                                        "description": "Exclude:",
+                                        "list": [
+                                            "jewellery and watches",
+                                            "second-hand goods"
+                                        ]
+                                    }
+                                ]
                             },
                             {
                                 "question": "Household goods sales",
                                 "content": [{
-                                    "description": "Include:",
-                                    "list": [
-                                        "carpets, rugs and other floor coverings",
-                                        "furniture",
-                                        "household textiles and soft furnishings",
-                                        "prints and picture frames",
-                                        "antiques and works of art",
-                                        "domestic electrical and gas appliances, audio/visual equipment and home computers",
-                                        "lighting and minor electrical supplies",
-                                        "records, compact discs, audio and video tapes",
-                                        "musical instruments and goods",
-                                        "decorators’ and DIY supplies",
-                                        "lawn-mowers",
-                                        "hardware",
-                                        "china, glassware and cutlery",
-                                        "novelties, souvenirs and gifts",
-                                        "e-cigarettes"
-                                    ]
-                                }]
+                                        "description": "Include:",
+                                        "list": [
+                                            "household furniture, furnishings and decorative goods",
+                                            "household electricals and appliances (including garden electricals)",
+                                            "music and technology goods",
+                                            "DIY goods"
+                                        ]
+                                    },
+                                    {
+                                        "description": "Exclude:",
+                                        "list": [
+                                            "household cleaning products",
+                                            "mobile phones",
+                                            "second-hand goods (but not antiques and fine-art)"
+                                        ]
+                                    }
+                                ]
                             },
                             {
-                                "question": "Automotive fuel sales",
+                                "question": "Automotive fuel",
                                 "content": [{
                                         "description": "Include:",
                                         "list": [
+                                            "VAT",
                                             "sales of fuel owned by you"
                                         ]
                                     },
@@ -186,30 +181,26 @@
                                 "content": [{
                                         "description": "Include:",
                                         "list": [
-                                            "toiletries and medications (except NHS receipts)",
-                                            "newspapers and periodicals",
-                                            "books, stationery and office supplies",
-                                            "photographic and optical goods",
+                                            "toiletries and over-the-counter medicines",
                                             "spectacles, contact lenses and sunglasses",
+                                            "mobile phones",
+                                            "books, newspapers, stationery and office supplies",
                                             "toys and games",
-                                            "cycles and cycle accessories",
-                                            "sport and camping equipment",
-                                            "jewellery",
-                                            "silverware and plate, clocks and watches",
-                                            "household cleaning products and kitchen paper products",
-                                            "pets, pets’ requisites and pet foods",
-                                            "cut flowers, plants, seeds and other garden sundries",
-                                            "other new and second hand goods",
-                                            "mobile phones"
+                                            "leisure equipment (such as camping, photography, cycling and other sports)",
+                                            "jewellery, silverware, clocks and watches",
+                                            "pets, pet food and sundries",
+                                            "household cleaning products",
+                                            "plants, flowers and other garden sundries",
+                                            "second-hand goods (but not antiques and fine-art)"
                                         ]
                                     },
                                     {
                                         "description": "Exclude:",
                                         "list": [
-                                            "revenue from mobile phone network commission and top up",
-                                            "lottery sales and commission from lottery sales",
-                                            "sales of car accessories and motor vehicles",
-                                            "NHS receipts"
+                                            "NHS receipts",
+                                            "sales of car accessories and motor vehicles ",
+                                            "lottery sales (including commission)",
+                                            "revenue from mobile phone network commission and top up"
                                         ]
                                     }
                                 ]
@@ -524,15 +515,15 @@
                     "title": "Retail sales including VAT",
                     "questions": [{
                         "id": "food-sales-question",
-                        "title": "Of the {{answers['retail-sales-answer']|format_currency}} retail sales, how much were your <em>food sales</em>?",
+                        "title": "Of the {{answers['retail-sales-answer']|format_currency}} retail sales, how much were your <em>food, drink and tobacco sales</em>?",
                         "type": "General",
                         "guidance": {
                             "content": [{
                                     "title": "Include",
                                     "list": [
-                                        "all fresh food",
-                                        "other food for human consumption (except chocolate and sugar confectionery)",
-                                        "soft drinks"
+                                        "all food for human consumption",
+                                        "alcoholic and non-alcoholic drinks",
+                                        "tobacco products and smokers’ requisites (including e-cigarettes)"
                                     ]
                                 },
                                 {
@@ -545,41 +536,9 @@
                         },
                         "answers": [{
                             "id": "food-sales-answer",
-                            "label": "Food sales including VAT",
+                            "label": "Food, drink and tobacco sales including VAT",
                             "mandatory": false,
                             "q_code": "22",
-                            "type": "Currency",
-                            "currency": "GBP",
-                            "decimal_places": 2,
-                            "max_value": {
-                                "answer_id": "retail-sales-answer"
-                            }
-                        }]
-                    }]
-                },
-                {
-                    "type": "Question",
-                    "id": "alcohol-sales-block",
-                    "title": "Retail sales including VAT",
-                    "questions": [{
-                        "id": "alcohol-sales-question",
-                        "title": "Of the {{answers['retail-sales-answer']|format_currency}} retail sales, how much were <em>alcohol, confectionery and tobacco sales</em>?",
-                        "type": "General",
-                        "guidance": {
-                            "content": [{
-                                "title": "Include",
-                                "list": [
-                                    "alcoholic drink",
-                                    "chocolate and sugar confectionery",
-                                    "tobacco and smokers’ requisites"
-                                ]
-                            }]
-                        },
-                        "answers": [{
-                            "id": "alcohol-sales-answer",
-                            "label": "Alcohol, confectionery and tobacco sales including VAT",
-                            "mandatory": false,
-                            "q_code": "23",
                             "type": "Currency",
                             "currency": "GBP",
                             "decimal_places": 2,
@@ -595,19 +554,26 @@
                     "title": "Retail sales including VAT",
                     "questions": [{
                         "id": "clothing-sales-question",
-                        "title": "Of the {{answers['retail-sales-answer']|format_currency}} retail sales, how much were <em>clothing and footwear sales</em>?",
+                        "title": "Of the {{answers['retail-sales-answer']|format_currency}} retail sales, how much were your <em>clothing and footwear sales</em>?",
                         "type": "General",
                         "guidance": {
                             "content": [{
-                                "title": "Include",
-                                "list": [
-                                    "clothing and footwear",
-                                    "clothing fabrics",
-                                    "haberdashery and furs",
-                                    "leather and travel goods",
-                                    "handbags and umbrellas"
-                                ]
-                            }]
+                                    "title": "Include",
+                                    "list": [
+                                        "all clothing and footwear",
+                                        "clothing fabrics and haberdashery",
+                                        "accessories such as belts, handbags and umbrellas",
+                                        "travel cases and luggage"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "jewellery and watches",
+                                        "second-hand goods"
+                                    ]
+                                }
+                            ]
                         },
                         "answers": [{
                             "id": "clothing-sales-answer",
@@ -629,8 +595,28 @@
                     "title": "Retail sales including VAT",
                     "questions": [{
                         "id": "household-goods-sales-question",
-                        "title": "Of the {{answers['retail-sales-answer']|format_currency}} retail sales, how much were sales of <em>household goods</em>?",
+                        "title": "Of the {{answers['retail-sales-answer']|format_currency}} retail sales, how much were your sales of <em>household goods</em>?",
                         "type": "General",
+                        "guidance": {
+                            "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "household furniture, furnishings and decorative goods",
+                                        "household electricals and appliances (including garden electricals)",
+                                        "music and technology goods",
+                                        "DIY goods"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "household cleaning products",
+                                        "mobile phones",
+                                        "second-hand goods (but not antiques and fine-art)"
+                                    ]
+                                }
+                            ]
+                        },
                         "answers": [{
                             "id": "household-goods-sales-answer",
                             "label": "Household goods sales including VAT",
@@ -641,30 +627,6 @@
                             "decimal_places": 2,
                             "max_value": {
                                 "answer_id": "retail-sales-answer"
-                            },
-                            "guidance": {
-                                "show_guidance": "Show household goods items to include",
-                                "hide_guidance": "Hide household goods items to include",
-                                "content": [{
-                                    "title": "Include",
-                                    "list": [
-                                        "carpets, rugs and other floor coverings",
-                                        "furniture",
-                                        "household textiles and soft furnishings",
-                                        "prints and picture frames",
-                                        "antiques and works of art",
-                                        "domestic electrical and gas appliances, audio/visual equipment and home computers",
-                                        "lighting and minor electrical supplies",
-                                        "records, compact discs, audio and video tapes",
-                                        "musical instruments and goods",
-                                        "decorators’ and DIY supplies",
-                                        "lawn-mowers",
-                                        "hardware",
-                                        "china, glassware and cutlery",
-                                        "novelties, souvenirs and gifts",
-                                        "e-cigarettes"
-                                    ]
-                                }]
                             }
                         }]
                     }]
@@ -675,12 +637,13 @@
                     "title": "Retail sales including VAT",
                     "questions": [{
                         "id": "automotive-fuel-sales-question",
-                        "title": "Of the {{answers['retail-sales-answer']|format_currency}} retail sales, how much were <em>automotive fuel sales</em>?",
+                        "title": "Of the {{answers['retail-sales-answer']|format_currency}} retail sales, how much were your sales of <em>automotive fuel</em>?",
                         "type": "General",
                         "guidance": {
                             "content": [{
                                     "title": "Include",
                                     "list": [
+                                        "VAT",
                                         "sales of fuel owned by you"
                                     ]
                                 },
@@ -695,7 +658,7 @@
                         },
                         "answers": [{
                             "id": "automotive-fuel-sales-answer",
-                            "label": "Automotive fuel sales including VAT",
+                            "label": "Automotive fuel including VAT",
                             "mandatory": false,
                             "q_code": "27",
                             "type": "Currency",
@@ -713,8 +676,36 @@
                     "title": "Retail sales including VAT",
                     "questions": [{
                         "id": "other-goods-sales-question",
-                        "title": "Of the {{answers['retail-sales-answer']|format_currency}} retail sales, how much were sales of <em>other goods</em>?",
+                        "title": "Of the {{answers['retail-sales-answer']|format_currency}} retail sales, how much were your sales of <em>other goods</em>?",
                         "type": "General",
+                        "guidance": {
+                            "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "toiletries and over-the-counter medicines",
+                                        "spectacles, contact lenses and sunglasses",
+                                        "mobile phones",
+                                        "books, newspapers, stationery and office supplies",
+                                        "toys and games",
+                                        "leisure equipment (such as camping, photography, cycling and other sports)",
+                                        "jewellery, silverware, clocks and watches",
+                                        "pets, pet food and sundries",
+                                        "household cleaning products",
+                                        "plants, flowers and other garden sundries",
+                                        "second-hand goods (but not antiques and fine-art)"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "NHS receipts",
+                                        "sales of car accessories and motor vehicles",
+                                        "lottery sales (including commission)",
+                                        "revenue from mobile phone network commission and top up"
+                                    ]
+                                }
+                            ]
+                        },
                         "answers": [{
                             "id": "other-goods-sales-answer",
                             "label": "Other goods sales including VAT",
@@ -725,40 +716,6 @@
                             "decimal_places": 2,
                             "max_value": {
                                 "answer_id": "retail-sales-answer"
-                            },
-                            "guidance": {
-                                "show_guidance": "Show sales items to include/exclude",
-                                "hide_guidance": "Hide sales items to include/exclude",
-                                "content": [{
-                                        "title": "Include",
-                                        "list": [
-                                            "toiletries and medications (except NHS receipts)",
-                                            "newspapers and periodicals",
-                                            "books, stationery and office supplies",
-                                            "photographic and optical goods",
-                                            "spectacles, contact lenses and sunglasses",
-                                            "toys and games",
-                                            "cycles and cycle accessories",
-                                            "sport and camping equipment",
-                                            "jewellery",
-                                            "silverware and plate, clocks and watches",
-                                            "household cleaning products and kitchen paper products",
-                                            "pets, pets’ requisites and pet foods",
-                                            "cut flowers, plants, seeds and other garden sundries",
-                                            "other new and second hand goods",
-                                            "mobile phones"
-                                        ]
-                                    },
-                                    {
-                                        "title": "Exclude",
-                                        "list": [
-                                            "revenue from mobile phone network commission and top up ",
-                                            "lottery sales and commission from lottery sales",
-                                            "sales of car accessories and motor vehicles",
-                                            "NHS receipts"
-                                        ]
-                                    }
-                                ]
                             }
                         }]
                     }]
@@ -790,7 +747,7 @@
                         },
                         "answers": [{
                             "id": "online-sales-answer",
-                            "label": "Online  sales including VAT",
+                            "label": "Online sales including VAT",
                             "q_code": "21",
                             "type": "Currency",
                             "currency": "GBP",
@@ -808,7 +765,7 @@
                     "type": "Question",
                     "questions": [{
                         "id": "significant-change-question",
-                        "title": "Did any significant changes occur to the retail sales for {{metadata['trad_as_or_ru_name']}}?",
+                        "title": "Did any significant changes occur to the <em>retail sales</em> for {{metadata['trad_as_or_ru_name']}}?",
                         "type": "General",
                         "description": "Please note: what constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{metadata['trad_as_or_ru_name']}}’s figures from the previous reporting period and the same reporting period last year.<br><br>This information will help us to validate your data and should reduce the need to query any figures with you.",
                         "guidance": {
@@ -862,7 +819,7 @@
                     "title": "Changes in retail sales",
                     "questions": [{
                         "id": "reason-for-change-question",
-                        "title": "Please indicate the reasons for any changes in the retail sales for {{metadata['trad_as_or_ru_name']}}",
+                        "title": "Please indicate the reasons for any changes in the <em>retail sales</em> for {{metadata['trad_as_or_ru_name']}}",
                         "type": "General",
                         "answers": [{
                             "id": "reason-for-change-answer",
@@ -913,7 +870,7 @@
                     "title": "Changes in retail sales",
                     "questions": [{
                         "id": "significant-change-comment-question",
-                        "title": "Please describe the changes in retail sales for {{metadata['trad_as_or_ru_name']}} in more detail",
+                        "title": "Please describe the changes in <em>retail sales</em> for {{metadata['trad_as_or_ru_name']}} in more detail",
                         "type": "General",
                         "description": "We rely on your commentary to ‘tell the story’ behind changes in figures. By commenting here it will reduce the need for us to call you.",
                         "answers": [{
