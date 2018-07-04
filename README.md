@@ -31,6 +31,11 @@ docker build -t onsdigital/eq-survey-runner-unit-tests -f Dockerfile.test .
 docker run onsdigital/eq-survey-runner-unit-tests
 ```
 
+To run the unit tests locally:
+```
+pipenv run scripts/run_tests_unit.sh
+```
+
 
 ## Pre-Requisites
 In order to run locally you'll need PostgreSQL and Node.js installed
@@ -67,7 +72,6 @@ Run the server inside the virtual env created by Pipenv with:
 
 ```
 pipenv run ./scripts/run_app.sh
-
 ```
 
 Note, you will also need to run an upstream tool (eg, https://github.com/ONSDigital/go-launch-a-survey) to launch a survey.
@@ -90,6 +94,13 @@ This will generate a JWT for you to log into the application.
 ### Front-end Toolkit
 
 The front-end toolkit uses nodejs, yarn and gulp.
+
+Currently, in order to build the front-end toolkit, you will need to have node version 8.X.  To do this, do the following commands:
+```
+brew install nvm
+nvm install 8
+nvm use 8
+```
 
 Install yarn with:
 
