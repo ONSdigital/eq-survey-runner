@@ -26,6 +26,8 @@ httmock = "==1.2.6"
 "flake8-print" = "*"
 "flake8-tuple" = "*"
 python-dateutil = "*"
+moto = "*"
+google-compute-engine = "*"
 
 
 [packages]
@@ -39,7 +41,7 @@ flask-script = "*"
 flask-sqlalchemy = "*"
 "flask-themes2" = "*"
 flask-wtf = "*"
-gevent = "*"
+gevent = {version = "*", platform_python_implementation="=='CPython'"}
 gunicorn = "*"
 newrelic = "*"
 pika = "*"
@@ -53,6 +55,7 @@ blinker = "*"
 "boto3" = "*"
 humanize = "*"
 flask-talisman = "*"
+marshmallow = "*"
 
 
 [requires]

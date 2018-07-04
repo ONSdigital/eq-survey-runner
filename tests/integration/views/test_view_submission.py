@@ -1,13 +1,9 @@
-import mock
 from mock import patch
 
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestViewSubmission(IntegrationTestCase):
-
-    def setUp(self):
-        super().SetUpWithDynamoDB()
 
     def test_view_submission(self):
         self.launchSurvey('test', 'view_submitted_response')
@@ -45,20 +41,14 @@ class TestViewSubmission(IntegrationTestCase):
         self.assertInPage('Please check your answers carefully before submitting.')
 
         # Submit answers
-        with mock.patch('app.data_model.submitted_responses.put_item',
-                        return_value={'ResponseMetadata': {'HTTPStatusCode': 200}}) as put_item:
-            self.post(action=None)
-
-            item = put_item.call_args[0][0]
+        self.post(action=None)
 
         # check we're on the thank you page and view submission link is available
         self.assertInUrl('thank-you')
         self.assertInPage('View and print a copy of your answers')
 
         # go to the view submission page
-        with mock.patch('app.data_model.submitted_responses.get_item',
-                        return_value=item):
-            self.get('questionnaire/test/view_submitted_response/view-submission')
+        self.get('questionnaire/test/view_submitted_response/view-submission')
 
         # check we're on the view submission page
         self.assertInUrl('view-submission')
@@ -150,16 +140,10 @@ class TestViewSubmission(IntegrationTestCase):
         self.post(form_data)
 
         # Submit answers
-        with mock.patch('app.data_model.submitted_responses.put_item',
-                        return_value={'ResponseMetadata': {'HTTPStatusCode': 200}}) as put_item:
-            self.post(action=None)
-
-            item = put_item.call_args[0][0]
+        self.post(action=None)
 
         # go to the view submission page
-        with mock.patch('app.data_model.submitted_responses.get_item',
-                        return_value=item):
-            self.get('questionnaire/test/view_submitted_response/view-submission')
+        self.get('questionnaire/test/view_submitted_response/view-submission')
 
         # check we're on the view submission page, and trading as value is displayed
         self.assertInUrl('view-submission')
@@ -212,16 +196,10 @@ class TestViewSubmission(IntegrationTestCase):
             self.post(form_data)
 
             # Submit answers
-            with mock.patch('app.data_model.submitted_responses.put_item',
-                            return_value={'ResponseMetadata': {'HTTPStatusCode': 200}}) as put_item:
-                self.post(action=None)
-
-                item = put_item.call_args[0][0]
+            self.post(action=None)
 
             # go to the view submission page
-            with mock.patch('app.data_model.submitted_responses.get_item',
-                            return_value=item):
-                self.get('questionnaire/test/view_submitted_response/view-submission')
+            self.get('questionnaire/test/view_submitted_response/view-submission')
 
             # check we're on the view submission page, and trading as value is displayed
             self.assertInUrl('view-submission')
@@ -276,16 +254,10 @@ class TestViewSubmission(IntegrationTestCase):
             self.post(form_data)
 
             # Submit answers
-            with mock.patch('app.data_model.submitted_responses.put_item',
-                            return_value={'ResponseMetadata': {'HTTPStatusCode': 200}}) as put_item:
-                self.post(action=None)
-
-                item = put_item.call_args[0][0]
+            self.post(action=None)
 
             # go to the view submission page
-            with mock.patch('app.data_model.submitted_responses.get_item',
-                            return_value=item):
-                self.get('questionnaire/test/view_submitted_response/view-submission')
+            self.get('questionnaire/test/view_submitted_response/view-submission')
 
             # check we're on the view submission page, and trading as value is displayed
             self.assertInUrl('view-submission')

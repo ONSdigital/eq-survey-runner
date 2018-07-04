@@ -1,3 +1,6 @@
+from datetime import datetime
+
+from dateutil.tz import tzutc
 from flask import Blueprint, redirect, request, g, session as cookie_session
 from flask_login import current_user, login_required, logout_user
 from sdc.crypto.exceptions import InvalidTokenException
@@ -73,9 +76,13 @@ def login():
 
 
 def validate_jti(decrypted_token):
+    expires = datetime.utcfromtimestamp(decrypted_token['exp']).replace(tzinfo=tzutc())
+    if expires < datetime.now(tz=tzutc()):
+        raise Unauthorized
+
     jti_claim = decrypted_token.get('jti')
     try:
-        use_jti_claim(jti_claim)
+        use_jti_claim(jti_claim, expires)
     except JtiTokenUsed as e:
         raise Unauthorized from e
     except (TypeError, ValueError) as e:

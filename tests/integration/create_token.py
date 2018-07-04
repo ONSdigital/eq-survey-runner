@@ -38,12 +38,13 @@ class TokenGenerator:
         payload_vars['form_type'] = form_type_id
         if survey_url:
             payload_vars['survey_url'] = survey_url
-        for key, value in extra_payload.items():
-            payload_vars[key] = value
 
         payload_vars['iat'] = time.time()
         payload_vars['exp'] = payload_vars['iat'] + float(3600)  # one hour from now
         payload_vars['jti'] = str(uuid4())
+
+        for key, value in extra_payload.items():
+            payload_vars[key] = value
 
         return payload_vars
 

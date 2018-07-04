@@ -1,3 +1,5 @@
+import time
+
 from tests.integration.integration_test_case import IntegrationTestCase
 from app.settings import RESPONDENT_ACCOUNT_URL
 
@@ -24,3 +26,7 @@ class TestSession(IntegrationTestCase):
         self.get('/signed-out')
         self.assertInPage('Your survey answers have been saved')
         self.assertInPage(RESPONDENT_ACCOUNT_URL)
+
+    def test_session_jti_token_expired(self):
+        self.launchSurvey(exp=time.time() - float(60))
+        self.assertStatusUnauthorised()
