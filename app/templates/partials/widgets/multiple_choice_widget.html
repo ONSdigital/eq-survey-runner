@@ -20,8 +20,12 @@
       <div class="field__label u-mt-s venus" aria-hidden="true">{{ _("Or") }}</div>
     {% endif %}
 
+    {% if exclusive %}
+        {% set exclusive_class = "js-exclusive-checkbox" if loop.last else "js-exclusive-checkbox-group" %}
+    {% endif %}
+
     {% set input = {
-      "class": "input input--" ~ widget_type ~ " js-focusable " ~ exclusive ~ "",
+      "class": "input input--" ~ widget_type ~ " js-focusable " ~ exclusive_class ~ "",
       "type": widget_type,
       "value": option.data,
       "name": option.name,
