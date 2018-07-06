@@ -48,7 +48,7 @@
                                 "On average it takes five minutes to complete this survey once you’ve collected the information.",
                                 "Provide figures based on UK economic ownership. This is the same method used when producing statutory accounts.",
                                 "Data should relate to all sites in England, Scotland, Wales and Northern Ireland, but excludes the Channel Islands and Isle of Man.",
-                                "You can provide informed estimates if actual figures aren't available.",
+                                "You can provide informed estimates if actual figures aren’t available.",
                                 "We will treat your data securely and confidentially."
                             ]
                         }]
@@ -231,7 +231,7 @@
                                         "special events (e.g. sporting events)",
                                         "calendar events (e.g. Christmas, Easter, Bank Holiday)",
                                         "weather",
-                                        "store closures/openings"
+                                        "store closures / openings"
                                     ]
                                 }]
                             }
@@ -776,7 +776,7 @@
                                     "special events (e.g. sporting events)",
                                     "calendar events (e.g. Christmas, Easter, Bank Holiday)",
                                     "weather",
-                                    "store closures/openings"
+                                    "store closures / openings"
                                 ]
                             }]
                         },
