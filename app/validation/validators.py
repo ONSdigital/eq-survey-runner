@@ -2,14 +2,15 @@ from decimal import Decimal, InvalidOperation
 from datetime import datetime
 
 import re
-from babel import numbers
+from babel import numbers, dates
+from flask_babel import lazy_gettext as _, ngettext
 from dateutil.relativedelta import relativedelta
 from wtforms import validators
 from wtforms.compat import string_types
 from structlog import get_logger
 
 from app.jinja_filters import format_number, format_currency
-from app.settings import DEFAULT_LOCALE
+from app.settings import DEFAULT_LOCALE, BABEL_DEFAULT_LOCALE
 from app.validation.error_messages import error_messages
 from app.questionnaire.rules import convert_to_datetime
 
@@ -220,7 +221,7 @@ class YearCheck:
 
 
 class SingleDatePeriodCheck:
-    def __init__(self, messages=None, date_format='%-d %B %Y', minimum_date=None, maximum_date=None):
+    def __init__(self, messages=None, date_format='d MMMM YYYY', minimum_date=None, maximum_date=None):
         self.messages = messages or error_messages
         self.minimum_date = minimum_date
         self.maximum_date = maximum_date
@@ -245,8 +246,8 @@ class SingleDatePeriodCheck:
                                                                                      self.date_format)))
 
     @staticmethod
-    def _format_playback_date(date, date_format='%-d %B %Y'):
-        return date.strftime(date_format)
+    def _format_playback_date(date, date_format='d MMMM YYYY'):
+        return dates.format_date(date, format=date_format, locale=BABEL_DEFAULT_LOCALE)
 
 
 class DateRangeCheck:
@@ -292,24 +293,17 @@ class DateRangeCheck:
         date2 = epoch + relativedelta2
         return date1 > date2
 
-    def _build_range_length_error(self, period_object):
+    @staticmethod
+    def _build_range_length_error(period_object):
         error_message = ''
         if 'years' in period_object:
-            error_message = self.return_error_component(error_message, period_object['years'], ' year')
+            error_message = ngettext('%(num)s year', '%(num)s years', period_object['years'])
         if 'months' in period_object:
-            error_message = self.return_error_component(error_message, period_object['months'], ' month')
+            message_addition = ngettext('%(num)s month', '%(num)s months', period_object['months'])
+            error_message += message_addition if error_message == '' else ', ' + message_addition
         if 'days' in period_object:
-            error_message = self.return_error_component(error_message, period_object['days'], ' day')
-
-        return error_message
-
-    @staticmethod
-    def return_error_component(error_message, number, unit):
-        if error_message != '':
-            error_message = error_message + ', '
-        error_message = error_message + str(number) + unit
-        if number > 1:
-            error_message = error_message + 's'
+            message_addition = ngettext('%(num)s day', '%(num)s days', period_object['days'])
+            error_message += message_addition if error_message == '' else ', ' + message_addition
 
         return error_message
 
@@ -382,14 +376,14 @@ class MutuallyExclusive:
 
     def _build_non_exclusives(self, values):
         non_exclusive_values = [
-            '"{}"'.format(self.value_labels[value])
+            '"{}"'.format(_(self.value_labels[value]))
             for value in values
             if value != self.exclusive_value
         ]
         if len(non_exclusive_values) == 1:
             return non_exclusive_values[0]
 
-        return '{} and {}'.format(', '.join(non_exclusive_values[:-1]), non_exclusive_values[-1])
+        return '{} {} {}'.format(', '.join(non_exclusive_values[:-1]), _('and'), _(non_exclusive_values[-1]))
 
     @staticmethod
     def _get_value_labels(options):

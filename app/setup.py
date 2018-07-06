@@ -6,8 +6,10 @@ import sys
 from datetime import timedelta
 from uuid import uuid4
 
+import boto3
 import sqlalchemy
 import yaml
+from botocore.config import Config
 from flask import Flask, url_for
 from flask_babel import Babel
 from flask_caching import Cache
@@ -84,6 +86,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
         setup_newrelic()
 
     setup_database(application)
+
+    setup_dynamodb(application)
 
     if application.config['EQ_RABBITMQ_ENABLED']:
         application.eq['submitter'] = RabbitMQSubmitter(
@@ -214,6 +218,17 @@ def check_database():
 
     if 'session_data' not in session_table.c:
         raise Exception('Database patch "pr-1391-apply.sql" has not been run')
+
+
+def setup_dynamodb(application):
+    # Number of additional connection attempts
+    config = Config(
+        retries={'max_attempts': application.config['EQ_DYNAMODB_MAX_RETRIES']},
+        max_pool_connections=application.config['EQ_DYNAMODB_MAX_POOL_CONNECTIONS']
+    )
+
+    application.eq['dynamodb'] = boto3.resource(
+        'dynamodb', endpoint_url=application.config['EQ_DYNAMODB_ENDPOINT'], config=config)
 
 
 def setup_profiling(application):

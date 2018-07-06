@@ -1,36 +1,35 @@
 # coding: utf-8
 import re
 import string
-
 from datetime import datetime
-from dateutil import relativedelta, tz
 
 import flask
-
-from jinja2 import Markup, escape, evalcontextfilter, evalcontextfunction, contextfunction
+from dateutil import relativedelta, tz
+from jinja2 import Markup, contextfunction, escape, evalcontextfilter, evalcontextfunction
 from jinja2.exceptions import UndefinedError
 
-from babel import units, numbers
+from babel import units, numbers, dates
 
-
-from app.settings import DEFAULT_LOCALE
+from app.settings import BABEL_DEFAULT_LOCALE
 from app.questionnaire.rules import convert_to_datetime
-blueprint = flask.Blueprint('filters', __name__)
+from app.settings import DEFAULT_LOCALE
 
-DATE_FORMAT = '%-d %B %Y'
+blueprint = flask.Blueprint('filters', __name__)
 
 
 @blueprint.app_template_filter()
 def format_number(value):
-    if value or value is 0:
+    if value or value == 0:
         return numbers.format_decimal(value, locale=DEFAULT_LOCALE)
+
     return ''
 
 
 @blueprint.app_template_filter()
 def format_currency(value, currency='GBP'):
-    if value or value is 0:
+    if value or value == 0:
         return numbers.format_currency(number=value, currency=currency, locale=DEFAULT_LOCALE)
+
     return ''
 
 
@@ -67,15 +66,14 @@ def format_multilined_string(context, value):
     escaped_value = escape(value)
     new_line_regex = r'(?:\r\n|\r|\n)+'
     value_with_line_break_tag = re.sub(new_line_regex, '<br>', escaped_value)
-    result = '<p>{}</p>'.format(value_with_line_break_tag)
-
+    result = '{}'.format(value_with_line_break_tag)
     return mark_safe(context, result)
 
 
 @evalcontextfunction
 @blueprint.app_template_filter()
 def get_current_date(context):
-    now = as_london_tz(datetime.utcnow()).strftime(DATE_FORMAT)
+    now = as_london_tz(datetime.utcnow()).strftime('%-d %B %Y')
     result = "<span class='date'>{date}</span>".format(date=now)
     return mark_safe(context, result)
 
@@ -92,21 +90,24 @@ def format_date(context, value):
     value = value[0] if isinstance(value, list) else value
     if not isinstance(value, str):
         return value
-    date_format = DATE_FORMAT
+    date_format = 'd MMMM YYYY'
     if value and re.match(r'\d{4}-\d{2}$', value):
-        date_format = '%B %Y'
+        date_format = 'MMMM YYYY'
     if value and re.match(r'\d{4}$', value):
-        date_format = '%Y'
+        date_format = 'YYYY'
     result = "<span class='date'>{date}</span>".format(
-        date=convert_to_datetime(value).strftime(date_format))
+        date=dates.format_date(convert_to_datetime(value), format=date_format, locale=BABEL_DEFAULT_LOCALE))
     return mark_safe(context, result)
 
 
 @evalcontextfilter
 @blueprint.app_template_filter()
-def format_datetime(context, value, date_format=DATE_FORMAT + ' at %H:%M'):
+def format_datetime(context, value, date_format="d MMMM YYYY 'at' HH:mm"):
+
     london_date_time = as_london_tz(datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
-    result = "<span class='date'>{date}</span>".format(date=london_date_time.strftime(date_format))
+    result = "<span class='date'>{date}</span>".format(date=dates.format_datetime(london_date_time,
+                                                                                  format=date_format,
+                                                                                  locale=BABEL_DEFAULT_LOCALE))
     return mark_safe(context, result)
 
 
@@ -168,6 +169,18 @@ def format_household_member_name_possessive(names):
         return name + '’'
 
     return name + '’s'
+
+
+@blueprint.app_template_filter()
+def answer_is_type(answer, target_answer_type):
+    """
+    :param answer:
+    :param target_answer_type:
+    :return: true if the answer type matches given input
+    'RepeatingAnswer' question type return 'answers' as an object, and dict for all other question types.
+    """
+    answer_type = answer['type'] if isinstance(answer, dict) else answer.type
+    return answer_type == target_answer_type.lower()
 
 
 @evalcontextfilter
@@ -267,6 +280,11 @@ def get_question_title_processor():
 @blueprint.app_context_processor
 def get_answer_label_processor():
     return dict(get_answer_label=get_answer_label)
+
+
+@blueprint.app_context_processor
+def answer_is_type_processor():
+    return dict(answer_is_type=answer_is_type)
 
 
 @blueprint.app_context_processor

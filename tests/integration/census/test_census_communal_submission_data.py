@@ -1,17 +1,18 @@
-
+from unittest.mock import patch
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestCensusCommunalSubmissionData(IntegrationTestCase):
 
     def test_census_communal_data_matches_census_communal(self):
-        self.complete_survey('census', 'communal')
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.complete_survey('census', 'communal')
 
-        # Only verifying 'data'
-        actual_downstream_data = self.dumpSubmission()['submission']['data']
-        expected_downstream_data = self.get_expected_submission_data()
+            # Only verifying 'data'
+            actual_downstream_data = self.dumpSubmission()['submission']['data']
+            expected_downstream_data = self.get_expected_submission_data()
 
-        self.assertCountEqual(actual_downstream_data, expected_downstream_data)
+            self.assertCountEqual(actual_downstream_data, expected_downstream_data)
 
     @staticmethod
     def get_expected_submission_data():

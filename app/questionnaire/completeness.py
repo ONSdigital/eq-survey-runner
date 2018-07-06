@@ -32,7 +32,7 @@ class Completeness:
         return location in self.completed_blocks
 
     def all_sections_complete(self):
-        return all(state in [self.COMPLETED, self.SKIPPED] for state in self._get_all_section_states())
+        return all(state in self.COMPLETED_STATES for state in self._get_all_section_states())
 
     def any_section_complete(self):
         return any(state == self.COMPLETED for state in self._get_all_section_states())

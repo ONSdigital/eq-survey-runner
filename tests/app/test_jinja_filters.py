@@ -51,6 +51,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         self.assertEqual(format_currency('11.99', 'GBP'), '£11.99')
         self.assertEqual(format_currency('11000', 'USD'), 'US$11,000.00')
         self.assertEqual(format_currency(0), '£0.00')
+        self.assertEqual(format_currency(0.00), '£0.00')
         self.assertEqual(format_currency('', ), '')
         self.assertEqual(format_currency(None), '')
         self.assertEqual(format_currency(Undefined()), '')
@@ -63,6 +64,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         self.assertEqual(format_number('10000'), '10,000')
         self.assertEqual(format_number('100000000'), '100,000,000')
         self.assertEqual(format_number(0), '0')
+        self.assertEqual(format_number(0.00), '0')
         self.assertEqual(format_number(''), '')
         self.assertEqual(format_number(None), '')
         self.assertEqual(format_number(Undefined()), '')
@@ -74,7 +76,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         # When
         format_value = format_multilined_string(self.autoescape_context, new_line)
 
-        self.assertEqual(format_value, '<p>this is on a new<br>line</p>')
+        self.assertEqual(format_value, 'this is on a new<br>line')
 
     def test_format_multilined_string_matches_new_line(self):
         # Given
@@ -84,7 +86,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         format_value = format_multilined_string(self.autoescape_context,
                                                 new_line)
 
-        self.assertEqual(format_value, '<p>this is on a new<br>line</p>')
+        self.assertEqual(format_value, 'this is on a new<br>line')
 
     def test_format_multilined_string_matches_carriage_return_new_line(self):
         # Given
@@ -93,7 +95,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         # When
         format_value = format_multilined_string(self.autoescape_context, new_line)
 
-        self.assertEqual(format_value, '<p>this is on a new<br>line</p>')
+        self.assertEqual(format_value, 'this is on a new<br>line')
 
     def test_format_multilined_string(self):
         # Given
@@ -103,7 +105,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         format_value = format_multilined_string(self.autoescape_context,
                                                 new_line)
 
-        self.assertEqual(format_value, '<p>this is<br>on a<br>new<br>line</p>')
+        self.assertEqual(format_value, 'this is<br>on a<br>new<br>line')
 
     def test_format_multilined_string_auto_escape(self):
         # Given
@@ -112,7 +114,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         # When
         format_value = format_multilined_string(self.autoescape_context, new_line)
 
-        self.assertEqual(str(format_value), '<p>&lt;</p>')
+        self.assertEqual(str(format_value), '&lt;')
 
     def test_get_current_date(self):
         # Given
@@ -178,7 +180,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
     def test_format_date_time_in_bst(self):
         # Given
         date_time = '2018-03-29T11:59:13.528680'
-        date_format = '%-d %B %Y at %H:%M'
+        date_format = "d MMMM YYYY 'at' HH:mm"
 
         # When
         format_value = format_datetime(self.autoescape_context, date_time, date_format)
@@ -189,13 +191,13 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
     def test_format_date_time_in_gmt(self):
         # Given
         date_time = '2018-10-28T11:59:13.528680'
-        date_format = '%-d %B %Y at %H:%M'
+        date_format = "d MMMM YYYY 'at' HH:mm:ss"
 
         # When
         format_value = format_datetime(self.autoescape_context, date_time, date_format)
 
         # Then
-        self.assertEqual(format_value, "<span class='date'>28 October 2018 at 11:59</span>")
+        self.assertEqual(format_value, "<span class='date'>28 October 2018 at 11:59:13</span>")
 
     def test_format_conditional_date_not_date(self):
         # Given       no test for integers this check was removed from jinja_filters

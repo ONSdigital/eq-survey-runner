@@ -51,6 +51,18 @@ CLASS_NAME = Template(r"""class ${pageName}Page extends $basePage {
 
 """)
 
+QUESTION_DEFINITION_TITLE_GETTER = Template(r"""  definitionTitle${definitionIndex}() { return '[data-definition-title-index="${definitionIndex}"]'; }
+
+""")
+
+QUESTION_DEFINITION_CONTENT_GETTER = Template(r"""  definitionContent${definitionIndex}() { return '[data-definition-content-index="${definitionIndex}"]'; }
+
+""")
+
+QUESTION_DEFINITION_BUTTON_GETTER = Template(r"""  definitionButton${definitionIndex}() { return '[data-definition-hide-button-index="${definitionIndex}"]'; }
+
+""")
+
 ANSWER_LABEL_GETTER = Template(r"""  ${answerName}Label() { return '#label-${answerId}'; }
 
 """)
@@ -203,6 +215,15 @@ def process_question(question, page_spec, num_questions, page_name):
         page_spec.write(REPEATING_ANSWER_LEGEND)
 
     long_names = long_names_required(question, num_questions)
+
+    if 'definitions' in question:
+        for index, definition in enumerate(question['definitions'], 1):
+            definition_context = {
+                'definitionIndex': index,
+            }
+            page_spec.write(QUESTION_DEFINITION_TITLE_GETTER.substitute(definition_context))
+            page_spec.write(QUESTION_DEFINITION_CONTENT_GETTER.substitute(definition_context))
+            page_spec.write(QUESTION_DEFINITION_BUTTON_GETTER.substitute(definition_context))
 
     for answer in question['answers']:
         process_answer(question_type, answer, page_spec, long_names, page_name)

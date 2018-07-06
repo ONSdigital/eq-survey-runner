@@ -1,9 +1,11 @@
+from unittest.mock import patch
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestQbsSubmissionData(IntegrationTestCase):
     def test_submission_data_2_0001(self):
-        self.submission_data('2', '0001')
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.submission_data('2', '0001')
 
     def submission_data(self, eq_id, form_type_id):
         self.launchSurvey(eq_id, form_type_id, roles=['dumper'])

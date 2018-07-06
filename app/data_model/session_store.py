@@ -1,8 +1,9 @@
 from structlog import get_logger
 import simplejson as json
 
-from app.data_model.models import EQSession, db
+from app.data_model.app_models import EQSession
 from app.data_model.session_data import SessionData
+from app.storage import data_access
 from app.storage.storage_encryption import StorageEncryption
 
 logger = get_logger()
@@ -39,18 +40,14 @@ class SessionStore:
             self._eq_session.session_data = \
                 StorageEncryption(self.user_id, self.user_ik, self.pepper).encrypt_data(vars(self.session_data))
 
-            # pylint: disable=maybe-no-member
-            db.session.add(self._eq_session)
-            db.session.commit()
+            data_access.put(self._eq_session)
 
     def delete(self):
         """
         deletes user session from database
         """
         if self._eq_session:
-            # pylint: disable=maybe-no-member
-            db.session.delete(self._eq_session)
-            db.session.commit()
+            data_access.delete(self._eq_session)
 
             self._eq_session = None
             self.eq_session_id = None
@@ -67,9 +64,7 @@ class SessionStore:
 
         logger.debug('finding eq_session_id in database', eq_session_id=self.eq_session_id)
 
-        # pylint: disable=maybe-no-member
-        # SQLAlchemy doing declarative magic which makes session scope query property available
-        self._eq_session = EQSession.query.filter(EQSession.eq_session_id == self.eq_session_id).first()
+        self._eq_session = data_access.get_by_key(EQSession, self.eq_session_id)
 
         if self._eq_session:
             self.user_id = self._eq_session.user_id

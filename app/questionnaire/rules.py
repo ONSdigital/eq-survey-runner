@@ -2,6 +2,8 @@ import logging
 import re
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from flask import g
+
 MAX_REPEATS = 25
 
 logger = logging.getLogger(__name__)
@@ -170,14 +172,14 @@ def evaluate_when_rules(when_rules, metadata, answer_store, group_instance):
     :param metadata: metadata for evaluating rules with metadata conditions
     :param answer_store: store of answers to evaluate
     :param group_instance: when evaluating a when rule for a repeating group
+           this holds the group instance of the repeating group
     :return: True if the when condition has been met otherwise False
     """
     for when_rule in when_rules:
         if 'id' in when_rule:
-            when_specified_group_instance = when_rule.get('group_instance')
-            instance = when_specified_group_instance or group_instance
-
-            value = get_answer_store_value(when_rule['id'], answer_store, instance)
+            if group_instance > 0 and not _answer_is_in_repeating_group(when_rule['id']):
+                group_instance = 0
+            value = get_answer_store_value(when_rule['id'], answer_store, group_instance)
         elif 'meta' in when_rule:
             value = get_metadata_value(metadata, when_rule['meta'])
         else:
@@ -244,3 +246,7 @@ def _contains_in_dict(metadata, keys):
         return _contains_in_dict(metadata[key], rest)
 
     return keys in metadata
+
+
+def _answer_is_in_repeating_group(answer_id):
+    return g.schema.answer_is_in_repeating_group(answer_id)

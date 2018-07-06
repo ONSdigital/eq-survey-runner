@@ -2,5 +2,5 @@
 
     <form class="form" method="POST" autocomplete="off" novalidate>
         {{ content.csrf_token }}
-        <button class="btn btn--primary btn--lg qa-btn-get-started" type="submit" name="action[start_questionnaire]">Start survey</button>
+        <button class="btn btn--primary btn--lg qa-btn-get-started" type="submit" name="action[start_questionnaire]">{{ _("Start survey") }}</button>
     </form>

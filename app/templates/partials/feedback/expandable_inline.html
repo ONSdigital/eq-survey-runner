@@ -1,6 +1,6 @@
 <div class="feedback__inline js-feedback-inline is-collapsed">
     <div class="feedback__border">
         {% include theme('partials/feedback_form.html') %}
-        <button class="mars btn btn--link u-mb-no feedback__cancel js-feedback-cancel" data-qa="a-feedback-close" {{helpers.track('click', 'Feedback', 'Cancel feedback link click')}}>I don’t want to provide feedback</button>
+        <button class="mars btn btn--link u-mb-no feedback__cancel js-feedback-cancel" data-qa="a-feedback-close" {{helpers.track('click', 'Feedback', 'Cancel feedback link click')}}>{{ _("I don’t want to provide feedback") }}</button>
     </div>
 </div>

@@ -1,5 +1,5 @@
 # eQ Survey Runner
-[![Build Status](https://travis-ci.org/ONSdigital/eq-survey-runner.svg?branch=master)](https://travis-ci.org/ONSdigital/eq-survey-runner) [![codecov](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/master/graph/badge.svg)](https://codecov.io/gh/ONSdigital/eq-survey-runner) [![Dependency Status](https://gemnasium.com/badges/github.com/ONSdigital/eq-survey-runner.svg)](https://gemnasium.com/github.com/ONSdigital/eq-survey-runner) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/82e63fc5bc5c43e8ba1ba6d13bfb4243)](https://www.codacy.com/app/ONSDigital/eq-survey-runner)
+[![Build Status](https://travis-ci.org/ONSdigital/eq-survey-runner.svg?branch=master)](https://travis-ci.org/ONSdigital/eq-survey-runner) [![codecov](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/master/graph/badge.svg)](https://codecov.io/gh/ONSdigital/eq-survey-runner) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/82e63fc5bc5c43e8ba1ba6d13bfb4243)](https://www.codacy.com/app/ONSDigital/eq-survey-runner)
 
 ## Run with Docker
 Install Docker for your system: https://www.docker.com/
@@ -29,6 +29,11 @@ To run just the unit tests inside Docker:
 docker build -t onsdigital/eq-survey-runner .
 docker build -t onsdigital/eq-survey-runner-unit-tests -f Dockerfile.test .
 docker run onsdigital/eq-survey-runner-unit-tests
+```
+
+To run the unit tests locally:
+```
+pipenv run scripts/run_tests_unit.sh
 ```
 
 
@@ -67,7 +72,6 @@ Run the server inside the virtual env created by Pipenv with:
 
 ```
 pipenv run ./scripts/run_app.sh
-
 ```
 
 Note, you will also need to run an upstream tool (eg, https://github.com/ONSDigital/go-launch-a-survey) to launch a survey.
@@ -90,6 +94,13 @@ This will generate a JWT for you to log into the application.
 ### Front-end Toolkit
 
 The front-end toolkit uses nodejs, yarn and gulp.
+
+Currently, in order to build the front-end toolkit, you will need to have node version 8.X.  To do this, do the following commands:
+```
+brew install nvm
+nvm install 8
+nvm use 8
+```
 
 Install yarn with:
 
@@ -207,26 +218,26 @@ You should only need to create the language files once.
 To create Welsh language files, run the following command
 
 ```
-pybabel init -i app/translations/messages.pot -d translations -l cy
+pybabel init -i app/translations/messages.pot -d app/translations -l cy
 ```
 
 To create the gaelic language files, use the following:
 
 ```
-pybabel init -i app/translations/messages.pot -d translations -l gd
+pybabel init -i app/translations/messages.pot -d app/translations -l gd
 ```
 
 To compile the language files for use in the application, use the following:
 
 ```
-pybabel compile -d translations
+pybabel compile -d app/translations
 ```
 
 As strings are added to the application, you will need to update but not overwrite the translations for the various languages.
 To update the language strings, use:
 
 ```
-pybabel update -i app/translations/messages.pot -d translations
+pybabel update -i app/translations/messages.pot -d app/translations
 ```
 
 ## Environment Variables

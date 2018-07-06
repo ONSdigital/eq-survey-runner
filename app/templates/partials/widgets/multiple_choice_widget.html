@@ -11,17 +11,21 @@
   </legend>
 
   {% if widget_type == "checkbox" %}
-    <div class="field__label mars">Select all that apply:</div>
+    <div class="field__label mars">{{ _("Select all that apply") }}:</div>
   {% endif %}
 
   {% for option in form.fields[answer.id] %}
 
     {% if exclusive and loop.last %}
-      <div class="field__label u-mt-s venus" aria-hidden="true">Or</div>
+      <div class="field__label u-mt-s venus" aria-hidden="true">{{ _("Or") }}</div>
+    {% endif %}
+
+    {% if exclusive %}
+        {% set exclusive_class = "js-exclusive-checkbox" if loop.last else "js-exclusive-checkbox-group" %}
     {% endif %}
 
     {% set input = {
-      "class": "input input--" ~ widget_type ~ " js-focusable " ~ exclusive ~ "",
+      "class": "input input--" ~ widget_type ~ " js-focusable " ~ exclusive_class ~ "",
       "type": widget_type,
       "value": option.data,
       "name": option.name,
@@ -48,11 +52,11 @@
           <span class="label__description label__inner pluto">{{answer.options[loop.index0].description}}</span>
         {% endif %}
           {% if exclusive and loop.last %}
-            <span class="u-vh">Or, </span>{{option.label.text}}<span class="u-vh">. Selecting this will uncheck all other checkboxes</span>
+            <span class="u-vh">{{ _("Or") }}, </span>{{option.label.text}}<span class="u-vh">. {{ _("Selecting this will uncheck all other checkboxes") }}</span>
           {% endif %}
       </label>
         {% if exclusive and loop.last %}
-            <span class="js-exclusive-checkbox-alert u-vh" role="alert" aria-live="polite" data-adjective="deselected"></span>
+            <span class="js-exclusive-checkbox-alert u-vh" role="alert" aria-live="polite" data-adjective='{{ _("deselected") }}'></span>
         {% endif %}
 
       {% if answer.id in form.other_answer and form.other_answer[answer.id][loop.index0] != None %}

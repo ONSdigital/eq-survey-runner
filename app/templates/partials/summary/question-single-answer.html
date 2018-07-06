@@ -1,0 +1,17 @@
+<div class="summary__item">
+    <div class="grid">
+        {% set answer = question.answers[0] %}
+        {% set is_textarea = answer_is_type(answer, 'textarea') %}
+
+        <div class="grid__col col-12@xs {{ 'col-10@m' if is_textarea else 'col-6@m' }}">
+            {%- include theme(['partials/summary/display-question.html']) -%}
+        </div>
+
+        {%- include theme(['partials/summary/display-answer.html']) -%}
+
+        {%- if content.summary.answers_are_editable -%}
+            {%- include theme(['partials/summary/edit-link.html']) -%}
+        {%- endif %}
+
+    </div>
+</div>

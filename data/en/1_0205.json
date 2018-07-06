@@ -55,12 +55,8 @@
                         "id": "preview",
                         "title": "Information you need",
                         "content": [{
-                                "description": "The total retail turnover must be less than or equal to the value of food sales, alcohol, confectionery and tobacco sales, clothing and footwear sales,  household goods, and other goods."
-                            },
-                            {
-                                "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
-                            }
-                        ],
+                            "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
+                        }],
                         "questions": [{
                             "question": "Total retail turnover",
                             "content": [{
@@ -179,8 +175,7 @@
                                 "description": "Include:",
                                 "list": [
                                     "VAT",
-                                    "sales of fuel owned by you",
-                                    "sales of other items not paid a commission for"
+                                    "sales of fuel owned by you"
                                 ]
                             }, {
                                 "description": "Exclude:",
@@ -639,8 +634,7 @@
                                     "title": "Include",
                                     "list": [
                                         "VAT",
-                                        "sales of fuel owned by you",
-                                        "sales of other items not paid a commission for"
+                                        "sales of fuel owned by you"
                                     ]
                                 },
                                 {

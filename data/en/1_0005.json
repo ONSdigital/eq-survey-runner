@@ -578,7 +578,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "fortnightly-pay",
+                                    "group": "weekly-pay-summary-group",
                                     "when": [{
                                         "id": "weekly-pay-significant-changes-paid-employees-answer",
                                         "condition": "equals",
@@ -724,6 +724,27 @@
                 ],
                 "id": "weekly-pay",
                 "title": "Weekly Pay",
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "pay-pattern-frequency-answer",
+                            "condition": "not contains",
+                            "value": "Weekly"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "pay-pattern-frequency-answer",
+                            "condition": "not set"
+                        }]
+                    }
+                ]
+            }, {
+                "id": "weekly-pay-summary-group",
+                "title": "Weekly Pay Summary",
+                "blocks": [{
+                    "id": "weekly-pay-summary",
+                    "type": "SectionSummary"
+                }],
                 "skip_conditions": [{
                         "when": [{
                             "id": "pay-pattern-frequency-answer",
@@ -1007,7 +1028,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "calendar-monthly",
+                                    "group": "fortnightly-pay-summary-group",
                                     "when": [{
                                         "id": "fortnightly-pay-significant-changes-paid-employees-answer",
                                         "condition": "equals",
@@ -1153,6 +1174,27 @@
                 ],
                 "id": "fortnightly-pay",
                 "title": "Fortnightly Pay",
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "pay-pattern-frequency-answer",
+                            "condition": "not contains",
+                            "value": "Fortnightly"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "pay-pattern-frequency-answer",
+                            "condition": "not set"
+                        }]
+                    }
+                ]
+            }, {
+                "id": "fortnightly-pay-summary-group",
+                "title": "Fortnightly Pay Summary",
+                "blocks": [{
+                    "id": "fortnightly-pay-summary",
+                    "type": "SectionSummary"
+                }],
                 "skip_conditions": [{
                         "when": [{
                             "id": "pay-pattern-frequency-answer",
@@ -1421,7 +1463,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "four-weekly-pay",
+                                    "group": "calendar-monthly-pay-summary-group",
                                     "when": [{
                                         "id": "calendar-monthly-pay-significant-changes-paid-employees-answer",
                                         "condition": "equals",
@@ -1567,6 +1609,27 @@
                 ],
                 "id": "calendar-monthly",
                 "title": "Calendar Monthly Pay",
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "pay-pattern-frequency-answer",
+                            "condition": "not contains",
+                            "value": "Calendar monthly"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "pay-pattern-frequency-answer",
+                            "condition": "not set"
+                        }]
+                    }
+                ]
+            }, {
+                "id": "calendar-monthly-pay-summary-group",
+                "title": "Calendar Monthly Pay Summary",
+                "blocks": [{
+                    "id": "calendar-monthly-pay-summary",
+                    "type": "SectionSummary"
+                }],
                 "skip_conditions": [{
                         "when": [{
                             "id": "pay-pattern-frequency-answer",
@@ -1835,7 +1898,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "five-weekly-pay",
+                                    "group": "four-weekly-pay-summary-group",
                                     "when": [{
                                         "id": "four-weekly-pay-significant-changes-paid-employees-answer",
                                         "condition": "equals",
@@ -1988,6 +2051,27 @@
                 ],
                 "id": "four-weekly-pay",
                 "title": "Four Weekly Pay",
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "pay-pattern-frequency-answer",
+                            "condition": "not contains",
+                            "value": "Four weekly"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "pay-pattern-frequency-answer",
+                            "condition": "not set"
+                        }]
+                    }
+                ]
+            }, {
+                "id": "four-weekly-pay-summary-group",
+                "title": "Four Weekly Pay Summary",
+                "blocks": [{
+                    "id": "four-weekly-pay-summary",
+                    "type": "SectionSummary"
+                }],
                 "skip_conditions": [{
                         "when": [{
                             "id": "pay-pattern-frequency-answer",
@@ -2257,7 +2341,7 @@
                             },
                             {
                                 "goto": {
-                                    "group": "general-comments-group",
+                                    "group": "five-weekly-pay-summary-group",
                                     "when": [{
                                         "id": "five-weekly-pay-significant-changes-paid-employees-answer",
                                         "condition": "equals",
@@ -2410,6 +2494,27 @@
                 ],
                 "id": "five-weekly-pay",
                 "title": "Five Weekly Pay",
+                "skip_conditions": [{
+                        "when": [{
+                            "id": "pay-pattern-frequency-answer",
+                            "condition": "not contains",
+                            "value": "Five weekly"
+                        }]
+                    },
+                    {
+                        "when": [{
+                            "id": "pay-pattern-frequency-answer",
+                            "condition": "not set"
+                        }]
+                    }
+                ]
+            }, {
+                "id": "five-weekly-pay-summary-group",
+                "title": "Five Weekly Pay Summary",
+                "blocks": [{
+                    "id": "five-weekly-pay-summary",
+                    "type": "SectionSummary"
+                }],
                 "skip_conditions": [{
                         "when": [{
                             "id": "pay-pattern-frequency-answer",

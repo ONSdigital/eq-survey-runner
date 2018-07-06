@@ -5,9 +5,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 class TestThankYou(IntegrationTestCase):
 
-    def setUp(self):
-        super().SetUpWithDynamoDB()
-
     def test_thank_you_page_shows_trading_as_if_present(self):
         self.launchSurvey('test', 'currency')
 
@@ -34,7 +31,7 @@ class TestThankYou(IntegrationTestCase):
 
         # check we're on the thank you page and that the trading as is displayed
         self.assertInUrl('thank-you')
-        self.assertInPage('(Integration Tests)')
+        self.assertInPage('(<span class="trad_as">Integration Tests</span>)')
 
     def test_thank_you_page_does_not_show_empty_parenthesis_if_trading_as_if_not_present(self):
         no_trading_as_payload = {
@@ -126,5 +123,5 @@ class TestThankYou(IntegrationTestCase):
 
             # check we're on the thank you page and that the trading as parenthesis are not displayed
             self.assertInUrl('thank-you')
-            self.assertNotInPage('(Integration Tests)')
-            self.assertNotInPage('()')
+            self.assertNotInPage('(<span class="trad_as">Integration Tests</span>)')
+            self.assertNotInPage('(<span class="trad_as"></span>)')

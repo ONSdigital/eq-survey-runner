@@ -4,11 +4,13 @@ import unittest
 import json
 
 from bs4 import BeautifulSoup
-from mock import patch, Mock
+from moto import mock_dynamodb2
 
 from sdc.crypto.key_store import KeyStore
+
 from app.keys import KEY_PURPOSE_AUTHENTICATION, KEY_PURPOSE_SUBMISSION
 from app.setup import create_app
+from tests.app.app_context_test_case import setup_tables
 
 from tests.integration.create_token import TokenGenerator
 
@@ -40,31 +42,19 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         # Perform setup steps
         self._set_up_app()
 
-    def SetUpWithDynamoDB(self):
-        # Cache for requests
-        self.last_url = None
-        self.last_response = None
-        self.last_csrf_token = None
+    def _set_up_app(self):
+        self._ddb = mock_dynamodb2()
+        self._ddb.start()
 
-        # Perform setup steps
-        self._set_up_app(True)
-
-    def _set_up_app(self, enable_dynamo_db=False):
         from application import configure_logging
         configure_logging()
 
         setting_overrides = {
             'SQLALCHEMY_DATABASE_URI': 'sqlite://',
-            'EQ_DYNAMODB_ENABLED': enable_dynamo_db
+            'EQ_DYNAMODB_ENDPOINT': None
         }
-        if enable_dynamo_db:
-            setting_overrides.update({'EQ_DYNAMODB_ENDPOINT': 'http://localhost:6060',
-                                      'EQ_SUBMITTED_RESPONSES_TABLE_NAME': 'dev-submitted-responses'})
 
-            with patch('boto3.resource', return_value=Mock()):
-                self._application = create_app(setting_overrides)
-        else:
-            self._application = create_app(setting_overrides)
+        self._application = create_app(setting_overrides)
 
         self._key_store = KeyStore({
             'keys': {
@@ -94,6 +84,12 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         )
 
         self._client = self._application.test_client()
+
+        with self._application.app_context():
+            setup_tables()
+
+    def tearDown(self):
+        self._ddb.stop()
 
     def launchSurvey(self, eq_id='test', form_type_id='dates', **payload_kwargs):
         """
@@ -207,7 +203,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
     # Extra Helper Assertions
     def assertInPage(self, content, message=None):
-        self.assertIn(member=content, container=self.getResponseData(), msg=message)
+        self.assertIn(member=str(content), container=self.getResponseData(), msg=str(message))
 
     def assertInSelector(self, content, **selectors):
         data = self.getHtmlSoup().find(**selectors)
@@ -217,10 +213,12 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         self.assertTrue(content in str(data), msg=message)
 
     def assertNotInPage(self, content, message=None):
-        self.assertNotIn(member=content, container=self.getResponseData(), msg=message)
+
+        self.assertNotIn(member=str(content), container=self.getResponseData(), msg=str(message))
 
     def assertRegexPage(self, regex, message=None):
-        self.assertRegex(text=self.getResponseData(), expected_regex=regex, msg=message)
+
+        self.assertRegex(text=self.getResponseData(), expected_regex=str(regex), msg=str(message))
 
     def assertEqualPageTitle(self, title):
         self.assertEqual(self.getHtmlSoup().title.string, title)  # pylint: disable=no-member

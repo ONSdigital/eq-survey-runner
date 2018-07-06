@@ -1,53 +1,24 @@
-{% set not_answered = 'No answer provided' %}
+<div class="summary">
+	{%- for group in content.summary.groups -%}
+        {%- if group.title -%}
+            <h2 class="summary__title neptune" id="{{ group.id }}">{{ group.title }}</h2>
+        {%- endif %}
 
-<div>
-  <div class="summary">
+        <div class="summary__block u-mb-l">
+            {%- for block in group.blocks -%}
+                {%- for question in block.questions -%}
 
-    {% for group in content.summary.groups %}
-      {% if group.title %}
-        <h2 class="summary__title saturn" id="{{group.id}}">{{group.title}}</h2>
-      {% endif %}
-      <div class="summary__block">
+                    {% set has_multiple_answers = question.answers|length > 1 %}
 
-        {% for block in group.blocks %}
-
-          <div class="summary__items">
-
-            {% for question in block.questions %}
-
-              <div class="summary__question" id="{{question.id}}" data-qa="summary-question-title">
-                {{question.number or ''}} {{question.title|striptags}}
-              </div>
-
-              {% for answer in question.answers %}
-                {% if question.answers|length > 1 and answer.label %}
-                  <div class="summary__question summary__question--sub">
-                    {{answer.label|striptags}}
-                  </div>
-                {% endif %}
-
-                <div class="summary__answer">
-                  <div class="summary__answer-text" id="{{answer.id}}-answer" data-qa="{{answer.id}}-answer">
-                    {%- if answer.value is none or answer.value == '' -%}
-                      {{not_answered}}
+                    {%- if has_multiple_answers -%}
+                        {%- include theme(['partials/summary/question-multiple-answers.html']) -%}
                     {%- else -%}
-                      {% include theme(['partials/summary/' ~ answer.type ~ '.html', 'partials/summary/default.html']) %}
-                     {%- endif -%}
-                   </div>
+                        {%- include theme(['partials/summary/question-single-answer.html']) -%}
+                    {%- endif -%}
 
-                  {% if content.summary.answers_are_editable %}
-                    <div class="summary__edit">
-                      <a href="{{ block.link }}#{{answer.id}}" class="summary__edit-link" aria-describedby="{{answer.id}} {{answer.id}}-answer" data-qa="{{answer.id}}-edit" {{helpers.track('click', 'Summary', 'Edit click')}}>Edit <span class="u-vh">your answer</span></a>
-                    </div>
-                  {% endif %}
-                </div>
-              {% endfor %}
-            {% endfor %}
+                {%- endfor -%}
+            {%- endfor -%}
+        </div>
 
-          </div>
-
-        {% endfor %}
-      </div>
-    {% endfor %}
-  </div>
+	{%- endfor -%}
 </div>

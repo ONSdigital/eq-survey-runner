@@ -37,6 +37,8 @@ class TestFlushData(IntegrationTestCase):
         self.submitter_patcher.stop()
         self.encrypter_patcher.stop()
 
+        super().tearDown()
+
     def test_flush_data_successful(self):
         self.post(url='/flush?token=' + self.token_generator.generate_token(self.get_payload()))
         self.assertStatusOK()
