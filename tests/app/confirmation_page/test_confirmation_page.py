@@ -1,3 +1,4 @@
+from unittest.mock import patch
 from app.data_model.answer_store import Answer, AnswerStore
 from app.questionnaire.location import Location
 from app.questionnaire.path_finder import PathFinder
@@ -17,6 +18,8 @@ class TestConfirmationPage(AppContextTestCase):
 
         schema = load_schema_from_params('0', 'rogue_one')
         navigator = PathFinder(schema, answer_store, {}, [])
-        next_location = navigator.get_next_location(Location('rogue-one', 0, 'film-takings'))
+
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            next_location = navigator.get_next_location(Location('rogue-one', 0, 'film-takings'))
 
         self.assertEqual('summary', next_location.block_id)

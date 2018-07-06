@@ -1,5 +1,5 @@
 from mock import MagicMock
-
+from mock import patch
 from app.data_model.answer_store import Answer, AnswerStore
 from app.templating.summary.block import Block
 from tests.app.app_context_test_case import AppContextTestCase
@@ -68,14 +68,16 @@ class TestSection(AppContextTestCase):
         skip_conditions = [{'when': [{'id': 'answer_1', 'condition': 'equals', 'value': 'skip me'}]}]
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema],
                            'skip_conditions': skip_conditions}
-        second_question_schema = build_question_schema('question_2', [MagicMock()])
-        block_schema = build_block_schema([question_schema, second_question_schema])
 
-        # When
-        block = Block(block_schema, 'group_id', answer_store, metadata)
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            second_question_schema = build_question_schema('question_2', [MagicMock()])
+            block_schema = build_block_schema([question_schema, second_question_schema])
 
-        # Then
-        self.assertTrue(len(block.questions) == 1)
+            # When
+            block = Block(block_schema, 'group_id', answer_store, metadata)
+
+            # Then
+            self.assertTrue(len(block.questions) == 1)
 
     def test_question_with_no_answers_should_not_be_skipped(self):
         # Given
@@ -86,10 +88,12 @@ class TestSection(AppContextTestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema],
                            'skip_conditions': skip_conditions}
         second_question_schema = build_question_schema('question_2', [MagicMock()])
-        block_schema = build_block_schema([question_schema, second_question_schema])
 
-        # When
-        block = Block(block_schema, 'group_id', answer_store, metadata)
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            block_schema = build_block_schema([question_schema, second_question_schema])
 
-        # Then
-        self.assertTrue(len(block.questions) == 2)
+            # When
+            block = Block(block_schema, 'group_id', answer_store, metadata)
+
+            # Then
+            self.assertTrue(len(block.questions) == 2)

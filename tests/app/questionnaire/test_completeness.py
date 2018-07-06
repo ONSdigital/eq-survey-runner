@@ -1,3 +1,4 @@
+from unittest.mock import patch
 from tests.app.app_context_test_case import AppContextTestCase
 
 from app.data_model.answer_store import AnswerStore, Answer
@@ -260,7 +261,8 @@ class TestCompleteness(AppContextTestCase): # pylint: disable=too-many-public-me
 
         progress = Completeness(
             schema, AnswerStore(), completed_blocks, routing_path, metadata={})
-        progress_value = progress.get_state_for_group('payment-details')
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            progress_value = progress.get_state_for_group('payment-details')
         self.assertEqual(Completeness.SKIPPED, progress_value)
 
     def test_only_question_blocks_counted_for_completeness(self):
@@ -440,7 +442,8 @@ class TestCompleteness(AppContextTestCase): # pylint: disable=too-many-public-me
         progress = Completeness(
             schema, answer_store, completed_blocks, routing_path, metadata={})
 
-        invalid_location = progress.get_first_incomplete_location_in_survey()
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            invalid_location = progress.get_first_incomplete_location_in_survey()
         self.assertEqual(expected_location, invalid_location)
 
     def test_get_first_incomplete_location_in_survey_completed(self):
@@ -484,7 +487,8 @@ class TestCompleteness(AppContextTestCase): # pylint: disable=too-many-public-me
         ]
         progress = Completeness(
             schema, AnswerStore(), completed_blocks, routing_path, metadata={})
-        self.assertFalse(progress.get_first_incomplete_location_in_survey())
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertFalse(progress.get_first_incomplete_location_in_survey())
 
     def test_get_latest_location_no_completed_blocks(self):
         schema = load_schema_from_params('test', 'navigation')

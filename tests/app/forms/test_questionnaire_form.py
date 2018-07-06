@@ -971,7 +971,8 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'age-answer': int('25'),
                 'sure-answer': 'yes'
             }
-            form = generate_form(schema, block_json, data, store, metadata={}, group_instance=0)
+            with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+                form = generate_form(schema, block_json, data, store, metadata={}, group_instance=0)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)

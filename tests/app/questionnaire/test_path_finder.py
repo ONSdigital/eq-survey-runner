@@ -1,3 +1,4 @@
+from unittest.mock import patch
 import pytest
 
 from app.data_model.answer_store import Answer, AnswerStore
@@ -59,7 +60,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
 
-        blocks = [b.block_id for b in path_finder.get_full_routing_path()]
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            blocks = [b.block_id for b in path_finder.get_full_routing_path()]
 
         self.assertNotIn('introduction', blocks)
 
@@ -97,7 +99,9 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ]
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=completed_blocks)
-        actual_next_block = path_finder.get_next_location(current_location=current_location)
+
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            actual_next_block = path_finder.get_next_location(current_location=current_location)
 
         self.assertEqual(actual_next_block, expected_next_location)
 
@@ -161,7 +165,9 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answers.add(answer_2)
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
-        routing_path = path_finder.get_full_routing_path()
+
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            routing_path = path_finder.get_full_routing_path()
 
         self.assertEqual(routing_path, expected_path)
 
@@ -172,7 +178,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         path_finder = PathFinder(schema, AnswerStore(), {}, [introduction])
 
-        next_location = path_finder.get_next_location(current_location=introduction)
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            next_location = path_finder.get_next_location(current_location=introduction)
 
         self.assertEqual('choose-your-side-block', next_location.block_id)
 
@@ -196,19 +203,20 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         current_location = Location('star-wars', 0, 'star-wars-trivia-part-2')
 
-        next_location = path_finder.get_next_location(current_location=current_location)
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            next_location = path_finder.get_next_location(current_location=current_location)
 
-        expected_next_location = Location('star-wars', 0, 'star-wars-trivia-part-3')
+            expected_next_location = Location('star-wars', 0, 'star-wars-trivia-part-3')
 
-        self.assertEqual(expected_next_location, next_location)
+            self.assertEqual(expected_next_location, next_location)
 
-        current_location = expected_next_location
+            current_location = expected_next_location
 
-        next_location = path_finder.get_next_location(current_location=current_location)
+            next_location = path_finder.get_next_location(current_location=current_location)
 
-        expected_next_location = Location('star-wars', 0, 'summary')
+            expected_next_location = Location('star-wars', 0, 'summary')
 
-        self.assertEqual(expected_next_location, next_location)
+            self.assertEqual(expected_next_location, next_location)
 
     def test_get_previous_location_introduction(self):
         schema = load_schema_from_params('0', 'star_wars')
@@ -217,7 +225,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         first_location = Location('star-wars', 0, 'choose-your-side-block')
 
-        previous_location = path_finder.get_previous_location(current_location=first_location)
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            previous_location = path_finder.get_previous_location(current_location=first_location)
 
         self.assertEqual('introduction', previous_location.block_id)
 
@@ -250,16 +259,18 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         expected_previous_location = expected_path[2]
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
-        actual_previous_block = path_finder.get_previous_location(current_location=current_location)
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            actual_previous_block = path_finder.get_previous_location(current_location=current_location)
 
-        self.assertEqual(actual_previous_block, expected_previous_location)
+            self.assertEqual(actual_previous_block, expected_previous_location)
 
-        current_location = expected_path[2]
-        expected_previous_location = expected_path[1]
+            current_location = expected_path[2]
+            expected_previous_location = expected_path[1]
 
-        actual_previous_block = path_finder.get_previous_location(current_location=current_location)
 
-        self.assertEqual(actual_previous_block, expected_previous_location)
+            actual_previous_block = path_finder.get_previous_location(current_location=current_location)
+
+            self.assertEqual(actual_previous_block, expected_previous_location)
 
     def test_previous_with_conditional_path_alternative(self):
         schema = load_schema_from_params('0', 'star_wars')
@@ -290,8 +301,9 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
-        self.assertEqual(path_finder.get_previous_location(current_location=current_location),
-                         expected_previous_location)
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertEqual(path_finder.get_previous_location(current_location=current_location),
+                             expected_previous_location)
 
     def test_next_location_goto_summary(self):
         schema = load_schema_from_params('0', 'star_wars')
@@ -314,7 +326,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         current_location = expected_path[1]
         expected_next_location = expected_path[2]
 
-        next_location = path_finder.get_next_location(current_location=current_location)
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            next_location = path_finder.get_next_location(current_location=current_location)
 
         self.assertEqual(next_location, expected_next_location)
 
@@ -345,7 +358,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         current_location = expected_path[0]
         expected_next_location = expected_path[1]
 
-        next_location = path_finder.get_next_location(current_location=current_location)
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            next_location = path_finder.get_next_location(current_location=current_location)
 
         self.assertEqual(next_location, expected_next_location)
 
@@ -362,7 +376,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
-        self.assertFalse(Location('star-wars', 0, 'summary') in path_finder.get_full_routing_path())
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertFalse(Location('star-wars', 0, 'summary') in path_finder.get_full_routing_path())
 
     def test_repeating_groups(self):
         schema = load_schema_from_params('test', 'repeating_household')
@@ -598,65 +613,67 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         self.assertEqual(summary_location, path_finder.get_next_location(current_location=current_location))
 
     def test_repeating_groups_conditional_location_path(self):
-        schema = load_schema_from_params('test', 'repeating_and_conditional_routing')
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=True):
+            schema = load_schema_from_params('test', 'repeating_and_conditional_routing')
 
-        expected_path = [
-            Location('repeat-value-group', 0, 'introduction'),
-            Location('repeat-value-group', 0, 'no-of-repeats'),
-            Location('repeated-group', 0, 'repeated-block'),
-            Location('repeated-group', 0, 'age-block'),
-            Location('repeated-group', 0, 'shoe-size-block'),
-            Location('repeated-group', 1, 'repeated-block'),
-            Location('repeated-group', 1, 'shoe-size-block'),
-            Location('summary-group', 0, 'summary')
-        ]
+            expected_path = [
+                Location('repeat-value-group', 0, 'introduction'),
+                Location('repeat-value-group', 0, 'no-of-repeats'),
+                Location('repeated-group', 0, 'repeated-block'),
+                Location('repeated-group', 0, 'age-block'),
+                Location('repeated-group', 0, 'shoe-size-block'),
+                Location('repeated-group', 1, 'repeated-block'),
+                Location('repeated-group', 1, 'shoe-size-block'),
+                Location('summary-group', 0, 'summary')
+            ]
 
-        answer_1 = Answer(
-            answer_id='no-of-repeats-answer',
-            value='2'
-        )
+            answer_1 = Answer(
+                answer_id='no-of-repeats-answer',
+                value='2'
+            )
 
-        answer_2 = Answer(
-            group_instance=0,
-            answer_id='conditional-answer',
-            value='Age and Shoe Size'
-        )
+            answer_2 = Answer(
+                group_instance=0,
+                answer_id='conditional-answer',
+                value='Age and Shoe Size'
+            )
 
-        answer_3 = Answer(
-            group_instance=1,
-            answer_id='conditional-answer',
-            value='Shoe Size Only'
-        )
-
-        answers = AnswerStore()
-        answers.add(answer_1)
-        answers.add(answer_2)
-        answers.add(answer_3)
-
-        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
-
-        self.assertEqual(expected_path, path_finder.get_full_routing_path())
-
-    def test_excessive_repeating_groups_conditional_location_path(self):
-        schema = load_schema_from_params('test', 'repeating_and_conditional_routing')
-
-        answers = AnswerStore()
-
-        answers.add(Answer(
-            answer_id='no-of-repeats-answer',
-            value='10000'
-        ))
-
-        for i in range(50):
-            answers.add(Answer(
-                group_instance=i,
+            answer_3 = Answer(
+                group_instance=1,
                 answer_id='conditional-answer',
                 value='Shoe Size Only'
+            )
+
+            answers = AnswerStore()
+            answers.add(answer_1)
+            answers.add(answer_2)
+            answers.add(answer_3)
+
+            path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
+
+            self.assertEqual(expected_path, path_finder.get_full_routing_path())
+
+    def test_excessive_repeating_groups_conditional_location_path(self):
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            schema = load_schema_from_params('test', 'repeating_and_conditional_routing')
+
+            answers = AnswerStore()
+
+            answers.add(Answer(
+                answer_id='no-of-repeats-answer',
+                value='10000'
             ))
 
-        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
+            for i in range(50):
+                answers.add(Answer(
+                    group_instance=i,
+                    answer_id='conditional-answer',
+                    value='Shoe Size Only'
+                ))
 
-        self.assertEqual('summary', path_finder.get_full_routing_path().pop().block_id)
+            path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
+
+            self.assertEqual('summary', path_finder.get_full_routing_path().pop().block_id)
 
     def test_next_with_conditional_path_based_on_metadata(self):
         schema = load_schema_from_params('test', 'metadata_routing')
@@ -744,7 +761,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
-        self.assertEqual(expected_next_location, path_finder.get_next_location(current_location=current_location))
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertEqual(expected_next_location, path_finder.get_next_location(current_location=current_location))
 
     def test_routing_backwards_continues_to_summary_when_complete(self):
         schema = load_schema_from_params('test', 'household_question')
@@ -789,7 +807,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
-        self.assertEqual(expected_next_location, path_finder.get_next_location(current_location=current_location))
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertEqual(expected_next_location, path_finder.get_next_location(current_location=current_location))
 
     def test_get_next_location_should_skip_block(self):
         # Given
@@ -805,7 +824,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         # Then
         expected_next_location = Location('summary-group', 0, 'summary')
 
-        self.assertEqual(path_finder.get_next_location(current_location=current_location), expected_next_location)
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertEqual(path_finder.get_next_location(current_location=current_location), expected_next_location)
 
     def test_get_next_location_should_skip_group(self):
         # Given
@@ -821,7 +841,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         # Then
         expected_next_location = Location('last-group', 0, 'last-group-block')
 
-        self.assertEqual(path_finder.get_next_location(current_location=current_location), expected_next_location)
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertEqual(path_finder.get_next_location(current_location=current_location), expected_next_location)
 
     def test_get_next_location_should_not_skip_group(self):
         # Given
@@ -837,7 +858,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         # Then
         expected_location = Location('should-skip-group', 0, 'should-skip')
 
-        self.assertEqual(path_finder.get_next_location(current_location=current_location), expected_location)
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertEqual(path_finder.get_next_location(current_location=current_location), expected_location)
 
     def test_get_next_location_should_not_skip_when_no_answers(self):
         # Given
@@ -851,7 +873,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         # Then
         expected_location = Location('should-skip-group', 0, 'should-skip')
 
-        self.assertEqual(path_finder.get_next_location(current_location=current_location), expected_location)
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertEqual(path_finder.get_next_location(current_location=current_location), expected_location)
 
     def test_get_routing_path_when_first_block_in_group_skipped(self):
         # Given
@@ -891,7 +914,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         # When i build the path
         path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
 
-        path = path_finder.build_path()
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            path = path_finder.build_path()
 
         # Then it should route me straight to Group2 and not Group1
         self.assertNotIn(Location('group1', 0, 'group1-block'), path)
@@ -937,7 +961,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         path_finder = PathFinder(schema, answer_store, metadata={}, completed_blocks=completed_blocks)
 
-        self.assertEqual(path_finder.get_next_location(current_location=completed_blocks[0]), summary_location)
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertEqual(path_finder.get_next_location(current_location=completed_blocks[0]), summary_location)
 
     def test_go_to_next_section_after_section_summary(self):
         schema = load_schema_from_params('test', 'section_summary')
@@ -959,7 +984,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         path_finder = PathFinder(schema, answer_store, metadata={}, completed_blocks=completed_blocks)
 
-        self.assertEqual(path_finder.get_next_location(current_location=completed_blocks[3]), second_section_location)
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertEqual(path_finder.get_next_location(current_location=completed_blocks[3]), second_section_location)
 
     def test_remove_answer_and_block_if_routing_backwards(self):
         schema = load_schema_from_params('test', 'confirmation_question')
@@ -980,7 +1006,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         self.assertEqual(len(path_finder.completed_blocks), 2)
         self.assertEqual(len(path_finder.answer_store.answers), 2)
 
-        self.assertEqual(path_finder.get_next_location(current_location=completed_blocks[1]), completed_blocks[0])
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertEqual(path_finder.get_next_location(current_location=completed_blocks[1]), completed_blocks[0])
 
         self.assertEqual(path_finder.completed_blocks, [completed_blocks[0]])
         self.assertEqual(len(path_finder.answer_store.answers), 1)

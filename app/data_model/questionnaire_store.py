@@ -48,6 +48,17 @@ class QuestionnaireStore:
         data = self._serialise()
         self._storage.add_or_update(data=data, version=self.version)
 
+    def remove_completed_blocks(self, **kwargs):
+        """removes completed blocks from store either by specific location
+           or all group instances within a group and block"""
+
+        if 'location' in kwargs:
+            self.completed_blocks.remove(kwargs['location'])
+        else:
+            self.completed_blocks = [completed_block for completed_block in self.completed_blocks
+                                     if completed_block.group_id != kwargs['group_id'] or
+                                     completed_block.block_id != kwargs['block_id']]
+
     def _encode_questionnaire_store(self, o):
         if hasattr(o, 'to_dict'):
             return o.to_dict()

@@ -1,5 +1,5 @@
 from flask import g
-from mock import Mock
+from mock import Mock, patch
 import simplejson as json
 
 from app.data_model.answer_store import Answer, AnswerStore
@@ -599,3 +599,39 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
 
         # Then
         self.assertEqual(question_view_context['question_titles']['single-title-question'], 'How are you feeling??')
+
+    def test_answer_non_repeating_dependency_repeating_validate_all_of_block_and_group_removed(self):
+        """ load a schema with a non repeating independent answer and a repeating one that depends on it
+        validate that when the independent variable is set a call is made to remove all instances of
+        the dependant variables
+        """
+        g.schema = load_schema_from_params('test', 'titles_repeating_non_repeating_dependency')
+        colour_answer_location = Location('colour-group', 0, 'favourite-colour')
+        colour_answer = {'fav-colour-answer': 'blue'}
+
+        with self._application.test_request_context():
+            with patch('app.data_model.questionnaire_store.QuestionnaireStore.remove_completed_blocks') as patch_remove:
+                update_questionnaire_store_with_form_data(self.question_store, colour_answer_location, colour_answer)
+                patch_remove.assert_called_with(group_id='repeating-group', block_id='repeating-block-3')
+
+    def test_remove_completed_by_group_and_block(self):
+        for i in range(10):
+            self.question_store.completed_blocks.append(Location('group1', i, 'block1'))
+
+        self.question_store.completed_blocks.append(Location('group2', 0, 'block2'))
+
+        self.question_store.remove_completed_blocks(group_id='group1', block_id='block1')
+
+        self.assertEqual(len(self.question_store.completed_blocks), 1)
+        self.assertEqual(self.question_store.completed_blocks[0], Location('group2', 0, 'block2'))
+
+    def test_remove_completed_by_group_and_block_does_not_error_if_no_matching_blocks(self):
+        for i in range(10):
+            self.question_store.completed_blocks.append(Location('group1', i, 'block1'))
+
+        self.question_store.completed_blocks.append(Location('group2', 0, 'block2'))
+
+        self.question_store.remove_completed_blocks(group_id='group1', block_id='block2')
+        self.question_store.remove_completed_blocks(group_id='group2', block_id='block1')
+
+        # no exception equates to passed

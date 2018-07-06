@@ -451,7 +451,7 @@ def _save_sign_out(routing_path, this_location, form):
         _update_questionnaire_store(this_location, form)
 
         if this_location in questionnaire_store.completed_blocks:
-            questionnaire_store.completed_blocks.remove(this_location)
+            questionnaire_store.remove_completed_blocks(location=this_location)
             questionnaire_store.add_or_update()
 
         logout_user()
@@ -555,8 +555,8 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
 
                 latest_answer_store_hash = questionnaire_store.answer_store.get_hash()
                 questionnaire_store.answer_store.add_or_update(answer)
-                if latest_answer_store_hash != questionnaire_store.answer_store.get_hash():
-                    _remove_dependent_answers_from_completed_blocks(answer_id, questionnaire_store)
+                if latest_answer_store_hash != questionnaire_store.answer_store.get_hash() and g.schema.dependencies[answer_id]:
+                    _remove_dependent_answers_from_completed_blocks(answer_id, location.group_instance, questionnaire_store)
             else:
                 _remove_answer_from_questionnaire_store(
                     answer_id,
@@ -577,7 +577,7 @@ def _return_date_answer_value(answer_value):
     return None
 
 
-def _remove_dependent_answers_from_completed_blocks(answer_id, questionnaire_store):
+def _remove_dependent_answers_from_completed_blocks(answer_id, group_instance, questionnaire_store):
     """
     Gets a list of answers ids that are dependent on the answer_id passed in.
     Then for each dependent answer it will remove it's block from those completed.
@@ -587,15 +587,22 @@ def _remove_dependent_answers_from_completed_blocks(answer_id, questionnaire_sto
     :param questionnaire_store: holds the completed blocks
     :return: None
     """
+    answer_in_repeating_group = g.schema.answer_is_in_repeating_group(answer_id)
     dependencies = g.schema.dependencies[answer_id]
+
     for dependency in dependencies:
+        dependency_in_repeating_group = g.schema.answer_is_in_repeating_group(dependency)
+
         answer = g.schema.get_answer(dependency)
         question = g.schema.get_question(answer['parent_id'])
         block = g.schema.get_block(question['parent_id'])
 
-        location = Location(block['parent_id'], 0, block['id'])
-        if location in questionnaire_store.completed_blocks:
-            questionnaire_store.completed_blocks.remove(location)
+        if dependency_in_repeating_group and not answer_in_repeating_group:
+            questionnaire_store.remove_completed_blocks(group_id=block['parent_id'], block_id=block['id'])
+        else:
+            location = Location(block['parent_id'], group_instance, block['id'])
+            if location in questionnaire_store.completed_blocks:
+                questionnaire_store.remove_completed_blocks(location=location)
 
 
 def _remove_answer_from_questionnaire_store(answer_id, questionnaire_store,

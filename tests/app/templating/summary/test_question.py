@@ -1,12 +1,11 @@
-from unittest import TestCase
-
 import mock
-
+from mock import patch
 from app.templating.summary.question import Question
 from app.data_model.answer_store import AnswerStore
+from tests.app.app_context_test_case import AppContextTestCase
 
 
-class TestQuestion(TestCase):
+class TestQuestion(AppContextTestCase):
 
     def test_create_question(self):
         # Given
@@ -66,7 +65,8 @@ class TestQuestion(TestCase):
                                                            {'value': 'question_title'}], 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answer_store, {})
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            question = Question(question_schema, answer_store, {})
 
         # Then
         self.assertEqual(question.id, 'question_id')

@@ -184,7 +184,7 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
         group = self.get_group(block['parent_id'])
 
         repeat_rule = self.get_repeat_rule(group)
-        return repeat_rule and repeat_rule['type'] == 'answer_count'
+        return repeat_rule and repeat_rule['type'] in ['answer_count', 'answer_count_minus_one', 'answer_value']
 
     def _parse_schema(self):
         self._sections_by_id = self._get_sections_by_id()
