@@ -2,15 +2,17 @@ from decimal import Decimal, InvalidOperation
 from datetime import datetime
 
 import re
-from babel import numbers, dates
+
+import flask_babel
 from flask_babel import lazy_gettext as _, ngettext
+from babel import numbers
 from dateutil.relativedelta import relativedelta
 from wtforms import validators
 from wtforms.compat import string_types
 from structlog import get_logger
 
 from app.jinja_filters import format_number, format_currency
-from app.settings import DEFAULT_LOCALE, BABEL_DEFAULT_LOCALE
+from app.settings import DEFAULT_LOCALE
 from app.validation.error_messages import error_messages
 from app.questionnaire.rules import convert_to_datetime
 
@@ -247,7 +249,7 @@ class SingleDatePeriodCheck:
 
     @staticmethod
     def _format_playback_date(date, date_format='d MMMM YYYY'):
-        return dates.format_date(date, format=date_format, locale=BABEL_DEFAULT_LOCALE)
+        return flask_babel.format_date(date, format=date_format)
 
 
 class DateRangeCheck:

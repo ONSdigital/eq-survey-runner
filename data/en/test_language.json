@@ -21,13 +21,26 @@
     "sections": [{
         "id": "default-section",
         "groups": [{
-            "id": "english-group",
+            "id": "language-group",
             "title": "",
             "blocks": [{
-                    "type": "Interstitial",
-                    "id": "english-block",
-                    "title": "English language schema",
-                    "questions": []
+                    "type": "Question",
+                    "id": "language-block",
+                    "description": "",
+                    "questions": [{
+                        "answers": [{
+                            "id": "month-year-answer",
+                            "label": "Date",
+                            "mandatory": true,
+                            "q_code": "11",
+                            "type": "MonthYearDate"
+                        }],
+                        "description": "",
+                        "id": "month-year-question",
+                        "title": "Date with month and year",
+                        "type": "General"
+                    }],
+                    "title": "English Questionnaire"
                 },
                 {
                     "type": "Summary",

@@ -20,7 +20,8 @@ class TestDateForm(AppContextTestCase):
 
         answers = schema.get_answers_by_id_for_block('date-block')
 
-        form = get_date_form(AnswerStore(), {}, answers['single-date-answer'], error_messages=error_messages)
+        with self.test_request_context('/'):
+            form = get_date_form(AnswerStore(), {}, answers['single-date-answer'], error_messages=error_messages)
 
         self.assertTrue(hasattr(form, 'day'))
         self.assertTrue(hasattr(form, 'month'))
@@ -32,7 +33,8 @@ class TestDateForm(AppContextTestCase):
 
         answers = schema.get_answers_by_id_for_block('date-block')
 
-        form = get_month_year_form(answers['month-year-answer'], {}, {}, error_messages=error_messages)
+        with self.test_request_context('/'):
+            form = get_month_year_form(answers['month-year-answer'], {}, {}, error_messages=error_messages)
 
         self.assertFalse(hasattr(form, 'day'))
         self.assertTrue(hasattr(form, 'month'))
@@ -50,7 +52,6 @@ class TestDateForm(AppContextTestCase):
         self.assertFalse(hasattr(form, 'month'))
         self.assertTrue(hasattr(form, 'year'))
 
-
     def test_generate_date_form_validates_single_date_period(self):
         schema = load_schema_from_params('test', 'date_validation_single')
         error_messages = schema.error_messages
@@ -58,7 +59,8 @@ class TestDateForm(AppContextTestCase):
 
         answers = schema.get_answers_by_id_for_block('date-range-block')
 
-        form = get_date_form(AnswerStore(), test_metadata, answers['date-range-from'], error_messages=error_messages)
+        with self.test_request_context('/'):
+            form = get_date_form(AnswerStore(), test_metadata, answers['date-range-from'], error_messages=error_messages)
 
         self.assertTrue(hasattr(form, 'day'))
         self.assertTrue(hasattr(form, 'month'))
@@ -86,7 +88,7 @@ class TestDateForm(AppContextTestCase):
         }
 
         with patch('app.questionnaire.questionnaire_schema.QuestionnaireSchema.get_answers_by_id_for_block',
-                   return_value=[answer]):
+                   return_value=[answer]), self.test_request_context('/'):
             form = get_date_form(AnswerStore(), {}, answer, error_messages=error_messages)
 
             self.assertTrue(hasattr(form, 'day'))

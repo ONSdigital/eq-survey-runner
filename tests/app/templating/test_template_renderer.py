@@ -3,12 +3,12 @@
 # pylint: disable=too-many-public-methods
 
 import datetime
-import unittest
 
 from app.templating.template_renderer import TemplateRenderer
+from tests.app.app_context_test_case import AppContextTestCase
 
 
-class TestTemplateRenderer(unittest.TestCase):
+class TestTemplateRenderer(AppContextTestCase):
     def test_render_schema_item(self):
         title = 'Hello {{name}}'
         context = {'name': 'Joe Bloggs'}
@@ -21,7 +21,8 @@ class TestTemplateRenderer(unittest.TestCase):
         date = '{{date|format_date}}'
         context = {'date': '2017-01-01'}
 
-        rendered = TemplateRenderer().render(date, **context)
+        with self.test_request_context('/'):
+            rendered = TemplateRenderer().render(date, **context)
 
         self.assertEqual(rendered, "<span class='date'>1 January 2017</span>")
 
@@ -29,7 +30,8 @@ class TestTemplateRenderer(unittest.TestCase):
         date = '{{date|format_date}}'
         context = {'date': '2017-01'}
 
-        rendered = TemplateRenderer().render(date, **context)
+        with self.test_request_context('/'):
+            rendered = TemplateRenderer().render(date, **context)
 
         self.assertEqual(rendered, "<span class='date'>January 2017</span>")
 

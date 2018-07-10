@@ -20,8 +20,8 @@ const startCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-E
   });
 };
 
-function openQuestionnaire(schema, userId = getRandomString(10), collectionId = getRandomString(10), periodId = '201605', periodStr = 'May 2016') {
-  return generateToken(schema, userId, collectionId, periodId, periodStr)
+function openQuestionnaire(schema, userId = getRandomString(10), collectionId = getRandomString(10), periodId = '201605', periodStr = 'May 2016', region = 'GB-ENG', language = 'en') {
+  return generateToken(schema, userId, collectionId, periodId, periodStr, region, language)
     .then(function(token) {
       return browser.url('/session?token=' + token);
     });

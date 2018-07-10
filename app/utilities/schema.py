@@ -5,13 +5,12 @@ import simplejson as json
 from structlog import get_logger
 from werkzeug.exceptions import NotFound
 
-from app.questionnaire.questionnaire_schema import QuestionnaireSchema
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema, DEFAULT_LANGUAGE_CODE
 from app.setup import cache
 
 logger = get_logger()
 
 DEFAULT_SCHEMA_DIR = 'data'
-DEFAULT_LANGUAGE_CODE = 'en'
 
 
 def load_schema_from_metadata(metadata):
@@ -25,17 +24,19 @@ def load_schema_from_session_data(session_data):
 
 
 @cache.memoize()
-def load_schema_from_params(eq_id, form_type, language_code=DEFAULT_LANGUAGE_CODE):
-    return QuestionnaireSchema(_load_schema_file('{}_{}.json'.format(eq_id, form_type), language_code))
+def load_schema_from_params(eq_id, form_type, language_code=None):
+    language_code = language_code or DEFAULT_LANGUAGE_CODE
+    schema_json = _load_schema_file('{}_{}.json'.format(eq_id, form_type), language_code)
+
+    return QuestionnaireSchema(schema_json, language_code)
 
 
-def _load_schema_file(schema_file, language_code=None):
+def _load_schema_file(schema_file, language_code):
     """
     Load a schema, optionally for a specified language.
     :param schema_file: The name of the schema e.g. census_household.json
     :param language_code: ISO 2-character code for language e.g. 'en', 'cy'
     """
-    language_code = language_code or DEFAULT_LANGUAGE_CODE
     schema_path = get_schema_file_path(schema_file, language_code)
 
     if language_code != DEFAULT_LANGUAGE_CODE and not os.path.exists(schema_path):
@@ -56,6 +57,7 @@ def _load_schema_file(schema_file, language_code=None):
 
 @cache.memoize()
 def load_schema_from_url(survey_url, language_code):
+    language_code = language_code or DEFAULT_LANGUAGE_CODE
     logger.info('loading schema from URL', survey_url=survey_url, language_code=language_code)
 
     constructed_survey_url = '{}?language={}'.format(survey_url, language_code)
@@ -67,13 +69,13 @@ def load_schema_from_url(survey_url, language_code):
         logger.error('no schema exists', survey_url=constructed_survey_url)
         raise NotFound
 
-    return QuestionnaireSchema(json.loads(schema_response))
+    return QuestionnaireSchema(json.loads(schema_response), language_code)
 
 
-def get_schema_path(schema_dir=DEFAULT_SCHEMA_DIR, language_code=DEFAULT_LANGUAGE_CODE):
+def get_schema_path(language_code, schema_dir=DEFAULT_SCHEMA_DIR):
     return os.path.join(schema_dir, language_code)
 
 
-def get_schema_file_path(schema_file, language_code=DEFAULT_LANGUAGE_CODE):
-    schema_dir = get_schema_path(language_code=language_code)
+def get_schema_file_path(schema_file, language_code):
+    schema_dir = get_schema_path(language_code)
     return os.path.join(schema_dir, schema_file)

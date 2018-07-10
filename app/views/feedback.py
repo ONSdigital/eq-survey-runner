@@ -9,9 +9,9 @@ from structlog import get_logger
 from app.helpers import template_helper
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.submitter.submission_failed import SubmissionFailedException
-from app.globals import get_metadata
+from app.globals import get_metadata, get_session_store
 from app.submitter.converter import convert_feedback
-from app.utilities.schema import load_schema_from_metadata
+from app.utilities.schema import load_schema_from_session_data
 
 logger = get_logger()
 
@@ -30,10 +30,10 @@ class FeedbackForm(FlaskForm):
 def before_request():
     logger.info('feedback request', url_path=request.full_path)
 
-    metadata = get_metadata(current_user)
-    if metadata:
-        logger.bind(tx_id=metadata['tx_id'])
-        g.schema = load_schema_from_metadata(metadata)
+    session = get_session_store()
+    if session:
+        logger.bind(tx_id=session.session_data.tx_id)
+        g.schema = load_schema_from_session_data(session.session_data)
 
 
 @feedback_blueprint.route('', methods=['GET'])

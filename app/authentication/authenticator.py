@@ -2,7 +2,7 @@ from uuid import uuid4
 
 from blinker import ANY
 from flask import session as cookie_session, current_app
-from flask_login import LoginManager, user_logged_out
+from flask_login import LoginManager, user_logged_out, login_user
 from sdc.crypto.decrypter import decrypt
 from structlog import get_logger
 
@@ -110,6 +110,11 @@ def store_session(metadata):
     questionnaire_store = get_questionnaire_store(user_id, user_ik)
     questionnaire_store.metadata = metadata
     questionnaire_store.add_or_update()
+
+    # Set the user in Flask such that anyone calling current_user for the duration of this request doesn't have to
+    # load it from the db.
+    login_user(User(user_id, user_ik))
+
     logger.info('user authenticated')
 
 

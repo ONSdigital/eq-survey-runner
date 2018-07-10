@@ -1,12 +1,19 @@
 import itertools
 from collections import OrderedDict
+
+from flask_babel import force_locale
+
 from app.validation.error_messages import error_messages
 from app.questionnaire.answer_dependencies import get_dependencies
 
 
+DEFAULT_LANGUAGE_CODE = 'en'
+
+
 class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
-    def __init__(self, questionnaire_json):
+    def __init__(self, questionnaire_json, language_code=DEFAULT_LANGUAGE_CODE):
         self.json = questionnaire_json
+        self.language_code = language_code
         self._parse_schema()
 
     @property
@@ -202,7 +209,10 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
         )
 
     def _get_error_messages(self):
-        messages = error_messages.copy()
+        # Force translation of global error messages (stored as LazyString's) into the language of the schema.
+        with force_locale(self.language_code):
+            messages = {k: str(v) for k, v in error_messages.items()}
+
         if 'messages' in self.json:
             messages.update(self.json['messages'])
 

@@ -6,6 +6,10 @@ class ThankYouPage extends QuestionPage {
     super('thank-you');
   }
 
+  submissionSuccessfulTitle() {
+    return '[data-qa="submission-successful-title"]';
+  }
+
   viewSubmitted() {
     return '[data-qa="view-submission"]';
   }

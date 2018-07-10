@@ -4,13 +4,13 @@ import string
 from datetime import datetime
 
 import flask
+import flask_babel
 from dateutil import relativedelta, tz
 from jinja2 import Markup, contextfunction, escape, evalcontextfilter, evalcontextfunction
 from jinja2.exceptions import UndefinedError
 
-from babel import units, numbers, dates
+from babel import units, numbers
 
-from app.settings import BABEL_DEFAULT_LOCALE
 from app.questionnaire.rules import convert_to_datetime
 from app.settings import DEFAULT_LOCALE
 
@@ -96,7 +96,8 @@ def format_date(context, value):
     if value and re.match(r'\d{4}$', value):
         date_format = 'YYYY'
     result = "<span class='date'>{date}</span>".format(
-        date=dates.format_date(convert_to_datetime(value), format=date_format, locale=BABEL_DEFAULT_LOCALE))
+        date=flask_babel.format_date(convert_to_datetime(value), format=date_format))
+
     return mark_safe(context, result)
 
 
@@ -104,10 +105,9 @@ def format_date(context, value):
 @blueprint.app_template_filter()
 def format_datetime(context, value, date_format="d MMMM YYYY 'at' HH:mm"):
 
-    london_date_time = as_london_tz(datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
-    result = "<span class='date'>{date}</span>".format(date=dates.format_datetime(london_date_time,
-                                                                                  format=date_format,
-                                                                                  locale=BABEL_DEFAULT_LOCALE))
+    london_date_time = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+    result = "<span class='date'>{date}</span>".format(date=flask_babel.format_datetime(london_date_time,
+                                                                                        format=date_format))
     return mark_safe(context, result)
 
 
