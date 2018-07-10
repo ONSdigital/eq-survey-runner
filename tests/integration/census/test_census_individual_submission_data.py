@@ -389,7 +389,7 @@ class TestCensusIndividualSubmissionData(IntegrationTestCase):
 
         # We are in the questionnaire
         self.assertInPage('What is your name?')
-        self.assertInPage('>Continue<')
+        self.assertInPage('>Save and continue<')
 
         post_data = [
             {

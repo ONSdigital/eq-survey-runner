@@ -12,7 +12,7 @@ class HouseholdCompositionPage extends QuestionPage {
   }
 
   removePerson(index = 2) {
-    return 'div:nth-child(' + index + ') > h3 > small > button';
+    return 'div:nth-child(' + index + ') > h3 > button';
   }
 
   numRemoveButtons() {

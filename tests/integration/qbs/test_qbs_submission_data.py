@@ -20,7 +20,7 @@ class TestQbsSubmissionData(IntegrationTestCase):
         # We are in the Questionnaire
         self.assertInPage('>Quarterly Business Survey</')
         self.assertInPage('what was the number of employees for Integration Tests?')
-        self.assertInPage('>Continue<')
+        self.assertInPage('>Save and continue<')
 
         # When I submit answers
         self.post(post_data={'number-of-employees-total': '10'})

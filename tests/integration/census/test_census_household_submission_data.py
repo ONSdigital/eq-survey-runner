@@ -955,7 +955,7 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
         # We are in the questionnaire
         self.assertInPage('What is your address?')
         self.assertInPage('Who lives here?')
-        self.assertInPage('>Continue<')
+        self.assertInPage('>Save and continue<')
         # In Who lives here? Section
 
         self.post(post_data={'permanent-or-family-home-answer': ['Yes']})
