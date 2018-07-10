@@ -23,9 +23,10 @@ from app.helpers import template_helper
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
 from app.questionnaire.path_finder import PathFinder
+from app.questionnaire.router import Router
 from app.questionnaire.rules import get_answer_ids_on_routing_path
-
 from app.questionnaire.rules import evaluate_skip_conditions
+
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.storage import data_access
 from app.storage.storage_encryption import StorageEncryption
@@ -125,15 +126,15 @@ def save_questionnaire_store(func):
 @full_routing_path_required
 def get_block(routing_path, eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=unused-argument,too-many-locals
     current_location = Location(group_id, group_instance, block_id)
+    completeness = get_completeness(current_user)
 
-    if not _is_valid_location(routing_path, current_location):
-        return _redirect_to_latest_location(collection_id, eq_id, form_type)
+    router = Router(g.schema, routing_path, completeness, current_location)
+
+    if not router.can_access_location():
+        next_location = router.get_next_location()
+        return _redirect_to_location(collection_id, eq_id, form_type, next_location)
 
     block = _get_block_json(current_location)
-
-    if _is_skipping_to_the_end(block, current_location):
-        return _redirect_to_latest_location(collection_id, eq_id, form_type)
-
     context = _get_context(routing_path, block, current_location)
     return _render_page(block['type'], context, current_location, routing_path)
 
@@ -143,14 +144,17 @@ def get_block(routing_path, eq_id, form_type, collection_id, group_id, group_ins
 @full_routing_path_required
 def post_block(routing_path, eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=too-many-locals
     current_location = Location(group_id, group_instance, block_id)
-    metadata = get_metadata(current_user)
     answer_store = get_answer_store(current_user)
+    completeness = get_completeness(current_user)
+    metadata = get_metadata(current_user)
 
-    if not _is_valid_location(routing_path, current_location):
-        return _redirect_to_latest_location(collection_id, eq_id, form_type)
+    router = Router(g.schema, routing_path, completeness, current_location)
+
+    if not router.can_access_location():
+        next_location = router.get_next_location()
+        return _redirect_to_location(collection_id, eq_id, form_type, next_location)
 
     block = _get_block_json(current_location)
-
     schema_context = _get_schema_context(routing_path, current_location.group_instance, metadata, answer_store)
     rendered_block = renderer.render(block, **schema_context)
 
@@ -248,9 +252,16 @@ def get_thank_you(eq_id, form_type):  # pylint: disable=unused-argument
                                      view_submission_url=view_submission_url,
                                      view_submission_duration=view_submission_duration)
 
+    routing_path = path_finder.get_full_routing_path()
+    completeness = get_completeness(current_user)
     metadata = get_metadata(current_user)
+
     collection_id = metadata['collection_exercise_sid']
-    return _redirect_to_latest_location(collection_id, metadata.get('eq_id'), metadata.get('form_type'))
+
+    router = Router(g.schema, routing_path, completeness)
+    next_location = router.get_next_location()
+
+    return _redirect_to_location(collection_id, metadata.get('eq_id'), metadata.get('form_type'), next_location)
 
 
 @post_submission_blueprint.route('view-submission', methods=['GET'])
@@ -301,12 +312,6 @@ def get_view_submission(eq_id, form_type):  # pylint: disable=unused-argument
     return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
 
 
-def _redirect_to_latest_location(collection_id, eq_id, form_type):
-    latest_location = get_completeness(current_user).get_latest_location()
-
-    return _redirect_to_location(collection_id, eq_id, form_type, latest_location)
-
-
 def _render_page(block_type, context, current_location, routing_path):
     if request_wants_json():
         return jsonify(context)
@@ -316,10 +321,6 @@ def _render_page(block_type, context, current_location, routing_path):
         context,
         block_type,
         routing_path=routing_path)
-
-
-def _is_valid_location(routing_path, location):
-    return location in routing_path
 
 
 def _generate_wtf_form(form, block, location):
@@ -346,16 +347,6 @@ def _is_end_of_questionnaire(block, next_location):
     return (
         block['type'] in END_BLOCKS and
         next_location is None
-    )
-
-
-def _is_skipping_to_the_end(block, current_location):
-    latest_location = get_completeness(current_user).get_first_incomplete_location_in_survey()
-
-    return (
-        latest_location and
-        current_location != latest_location and
-        block['type'] in END_BLOCKS
     )
 
 
