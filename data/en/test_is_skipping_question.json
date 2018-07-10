@@ -1,0 +1,216 @@
+{
+    "data_version": "0.0.2",
+    "navigation": {
+        "visible": true
+    },
+    "view_submitted_response": {
+        "enabled": true,
+        "duration": 900
+    },
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        },
+        "ru_name": {
+            "validator": "string"
+        }
+    },
+    "sections": [{
+            "id": "test-skipping-section",
+            "title": "Section 1",
+            "groups": [{
+                    "blocks": [{
+                            "id": "test-skipping-forced",
+                            "questions": [{
+                                "answers": [{
+                                    "id": "test-skipping-answer",
+                                    "mandatory": true,
+                                    "options": [{
+                                            "label": "Yes",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "label": "No",
+                                            "value": "No"
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                }],
+                                "description": "",
+                                "id": "test-skipping-question",
+                                "title": "Were you forced to complete section 1?",
+                                "type": "General"
+                            }],
+                            "title": "This is section 1",
+                            "type": "Question",
+                            "routing_rules": [{
+                                    "goto": {
+                                        "block": "test-skipping-optional",
+                                        "when": [{
+                                            "id": "test-skipping-answer",
+                                            "condition": "equals",
+                                            "value": "Yes"
+                                        }]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "group": "test-skipping-summary-group",
+                                        "when": [{
+                                            "id": "test-skipping-answer",
+                                            "condition": "equals",
+                                            "value": "No"
+                                        }]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "test-skipping-optional",
+                            "title": "This is section 1",
+                            "type": "Question",
+                            "questions": [{
+                                "answers": [{
+                                    "id": "test-skipping-optional-answer",
+                                    "mandatory": true,
+                                    "options": [{
+                                            "label": "£5 Cash",
+                                            "value": "fiver"
+                                        },
+                                        {
+                                            "label": "£10 Amazon Voucher",
+                                            "value": "tenner"
+                                        }
+                                    ],
+                                    "type": "Checkbox"
+                                }],
+                                "id": "test-skipping-optional-question",
+                                "title": "What would incentivise you to complete this section?",
+                                "type": "General"
+                            }]
+                        }
+                    ],
+                    "id": "test-skipping-group",
+                    "title": "Section 1"
+                },
+                {
+                    "id": "test-skipping-summary-group",
+                    "title": "Section 1 Summary",
+                    "blocks": [{
+                        "id": "test-skipping-summary",
+                        "type": "SectionSummary"
+                    }]
+                }
+            ]
+        },
+        {
+            "id": "test-skipping-section-2",
+            "title": "Section 2",
+            "groups": [{
+                    "blocks": [{
+                            "id": "test-skipping-forced-2",
+                            "questions": [{
+                                "answers": [{
+                                    "id": "test-skipping-answer-2",
+                                    "mandatory": true,
+                                    "options": [{
+                                            "label": "Yes",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "label": "No",
+                                            "value": "No"
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                }],
+                                "description": "",
+                                "id": "test-skipping-question-2",
+                                "title": "Were you forced to complete section 2?",
+                                "type": "General"
+                            }],
+                            "title": "This is section 2",
+                            "type": "Question",
+                            "routing_rules": [{
+                                    "goto": {
+                                        "block": "test-skipping-optional-2",
+                                        "when": [{
+                                            "id": "test-skipping-answer-2",
+                                            "condition": "equals",
+                                            "value": "yes"
+                                        }]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "group": "test-skipping-summary-group-2",
+                                        "when": [{
+                                            "id": "test-skipping-answer-2",
+                                            "condition": "equals",
+                                            "value": "No"
+                                        }]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "test-skipping-optional-2",
+                            "title": "This is section 2",
+                            "type": "Question",
+                            "questions": [{
+                                "answers": [{
+                                    "id": "test-skipping-optional-answer-2",
+                                    "mandatory": true,
+                                    "options": [{
+                                            "label": "£5 Cash",
+                                            "value": "fiver"
+                                        },
+                                        {
+                                            "label": "£10 Amazon Voucher",
+                                            "value": "tenner"
+                                        }
+                                    ],
+                                    "type": "Checkbox"
+                                }],
+                                "id": "test-skipping-optional-question-2",
+                                "title": "What would incentivise you to complete this section?",
+                                "type": "General"
+                            }]
+                        }
+                    ],
+                    "id": "test-skipping-group-2",
+                    "title": "Section 2"
+                },
+                {
+                    "id": "test-skipping-summary-group-2",
+                    "title": "Section 2 Summary",
+                    "blocks": [{
+                        "id": "test-skipping-summary-2",
+                        "type": "SectionSummary"
+                    }]
+                }
+            ]
+        },
+        {
+            "id": "summary-section",
+            "title": "Summary",
+            "groups": [{
+                "blocks": [{
+                    "type": "Summary",
+                    "id": "summary"
+                }],
+                "id": "summary-group",
+                "title": "Summary"
+            }]
+        }
+    ],
+    "legal_basis": "StatisticsOfTradeAct",
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "survey_id": "134",
+    "theme": "default",
+    "title": "Test Skipping Question"
+}
