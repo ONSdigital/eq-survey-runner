@@ -394,11 +394,10 @@
                             }]
                         }],
                         "routing_rules": [{
-                                "goto": {
-                                    "block": "date-of-birth"
-                                }
+                            "goto": {
+                                "block": "date-of-birth"
                             }
-                        ]
+                        }]
                     },
                     {
                         "type": "Question",
@@ -486,12 +485,12 @@
                                     }]
 
                                 }
-                          },
-                          {
+                            },
+                            {
                                 "goto": {
                                     "block": "household-member-completed"
                                 }
-                           }
+                            }
                         ]
                     },
                     {
@@ -619,12 +618,11 @@
                                 ]
                             }]
                         }],
-                        "routing_rules": [
-                          {
+                        "routing_rules": [{
                             "goto": {
-                              "block": "nationality"
+                                "block": "nationality"
                             }
-                          }]
+                        }]
                     },
                     {
                         "type": "Question",
@@ -684,10 +682,9 @@
                                 }
                             ]
                         }],
-                        "routing_rules": [
-                        {
+                        "routing_rules": [{
                             "goto": {
-                              "block": "country-of-birth"
+                                "block": "country-of-birth"
                             }
                         }]
                     },
@@ -1571,11 +1568,10 @@
                             }]
                         }],
                         "routing_rules": [{
-                                "goto": {
-                                    "block": "ethnic-group"
-                                }
+                            "goto": {
+                                "block": "ethnic-group"
                             }
-                        ]
+                        }]
                     },
                     {
                         "type": "Question",
