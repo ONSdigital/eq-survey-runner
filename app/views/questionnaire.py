@@ -23,6 +23,7 @@ from app.helpers import template_helper
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
 from app.questionnaire.path_finder import PathFinder
+from app.questionnaire.router import Router
 from app.questionnaire.rules import get_answer_ids_on_routing_path
 
 from app.questionnaire.rules import evaluate_skip_conditions
@@ -125,14 +126,19 @@ def save_questionnaire_store(func):
 @full_routing_path_required
 def get_block(routing_path, eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=unused-argument,too-many-locals
     current_location = Location(group_id, group_instance, block_id)
+    completeness = get_completeness(current_user)
+    route = Router(current_location, routing_path, completeness)
 
-    if not _is_valid_location(routing_path, current_location):
-        return _redirect_to_latest_location(collection_id, eq_id, form_type)
+    if not route.is_valid_location():
+        next_location = route.get_next_location()
+        return _redirect_to_location(collection_id, eq_id, form_type, next_location)
 
+    section = _get_section_json(current_location)
     block = _get_block_json(current_location)
 
-    if _is_skipping_to_the_end(block, current_location):
-        return _redirect_to_latest_location(collection_id, eq_id, form_type)
+    if not route.can_access_location(section, block):
+        next_location = route.get_next_location()
+        return _redirect_to_location(collection_id, eq_id, form_type, next_location)
 
     context = _get_context(routing_path, block, current_location)
     return _render_page(block['type'], context, current_location, routing_path)
@@ -346,16 +352,6 @@ def _is_end_of_questionnaire(block, next_location):
     return (
         block['type'] in END_BLOCKS and
         next_location is None
-    )
-
-
-def _is_skipping_to_the_end(block, current_location):
-    latest_location = get_completeness(current_user).get_first_incomplete_location_in_survey()
-
-    return (
-        latest_location and
-        current_location != latest_location and
-        block['type'] in END_BLOCKS
     )
 
 
@@ -703,6 +699,11 @@ def _get_block_json(current_location):
     answer_store = get_answer_store(current_user)
     block_json = g.schema.get_block(current_location.block_id)
     return _evaluate_skip_conditions(block_json, current_location, answer_store, metadata)
+
+
+def _get_section_json(current_location):
+    section_json = g.schema.get_section_by_block_id(current_location.block_id)
+    return section_json
 
 
 def _get_schema_context(full_routing_path, group_instance, metadata, answer_store):
