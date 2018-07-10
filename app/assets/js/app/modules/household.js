@@ -34,8 +34,11 @@ class HouseholdMember extends EventEmitter {
     this.removeTxt = this.node.getAttribute('data-remove')
     this.removeBtn.innerHTML = this.removeTxt
     this.removeBtn.classList.add('btn')
-    this.removeBtn.classList.add('btn--link')
-    this.removeBtn.classList.add('pluto')
+    this.removeBtn.classList.add('btn--secondary')
+    this.removeBtn.classList.add('btn--small')
+    this.removeBtn.classList.add('u-mb-no')
+    this.removeBtn.classList.add('u-wa--@xs')
+    this.removeBtn.classList.add('u-fr')
     this.removeBtn.setAttribute('type', 'button')
     this.node.classList.add('is-hidden')
     this.actionNode.innerHTML = ''
@@ -102,6 +105,7 @@ domready(() => {
   const existingPeople = document.querySelectorAll('.js-household-person')
   const btn = document.querySelector('.js-household-btn')
   const householdMembers = []
+  const voiceOverAlert = document.querySelector('.js-add-another-alert')
 
   if (existingPeople.length === 0) {
     return
@@ -127,6 +131,8 @@ domready(() => {
     const originalNode = existingPeople[0]
     const newNode = originalNode.cloneNode(true)
     const parent = originalNode.parentNode
+    voiceOverAlert.innerHTML = ''
+    voiceOverAlert.append(voiceOverAlert.getAttribute('data-msg'))
     createHouseholdMember().add(newNode, parent)
   }
 

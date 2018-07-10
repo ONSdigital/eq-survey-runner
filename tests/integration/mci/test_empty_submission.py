@@ -19,7 +19,7 @@ class TestEmptySubmission(IntegrationTestCase):
 
         # We are in the Questionnaire
         self.assertInPage('What are the dates of the sales period you are reporting for?')
-        self.assertInPage('>Continue<')
+        self.assertInPage('>Save and continue<')
 
         form_data = {
             # Start Date

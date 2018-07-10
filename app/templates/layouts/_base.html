@@ -1,5 +1,5 @@
 <!doctype html>
-{% set cdn_hash = "v1.2.0" %}
+{% set cdn_hash = "v1.4.4" %}
 {% set cdn_url_prefix = "https://cdn.ons.gov.uk/sdc/"~cdn_hash %}
 <!--[if lt IE 7]>      <html lang="en-gb" dir="ltr" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en-gb" dir="ltr" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
@@ -91,7 +91,7 @@
               {% with position = 'top' %}{% include 'partials/previous-link.html' %}{% endwith %}
               {% if navigation %}
               <div class="page__menubtn">
-                <button class="btn btn--link pluto btn--menu js-menu-btn" data-close-label="{{_('Hide sections')}}" type="button" id="menu-btn">{{_('View sections')}}</button>
+              <button class="btn btn--menu js-menu-btn " data-close-label="Hide sections" type="button" id="menu-btn" aria-expanded="false" aria-controls="section-nav" aria-label="Toggle section menu" aria-haspopup="true">View sections</button>
               </div>
               {% endif %}
             {% endblock subheader %}

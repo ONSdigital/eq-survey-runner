@@ -68,7 +68,7 @@ class TestNavigation(StarWarsTestCase):
         self.assertInUrl('thank-you')
 
     def _check_quiz_first_page(self):
-        self.assertInPage('>Continue<')
+        self.assertInPage('>Save and continue<')
         self.assertInPage('Star Wars Quiz')
         self.assertInPage('May the force be with you young EQ developer')
 
