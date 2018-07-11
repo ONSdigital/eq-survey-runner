@@ -91,7 +91,7 @@
               {% with position = 'top' %}{% include 'partials/previous-link.html' %}{% endwith %}
               {% if navigation %}
               <div class="page__menubtn">
-              <button class="btn btn--menu js-menu-btn " data-close-label="Hide sections" type="button" id="menu-btn" aria-expanded="false" aria-controls="section-nav" aria-label="Toggle section menu" aria-haspopup="true">View sections</button>
+              <button class="btn btn--menu js-menu-btn " data-close-label="{{_('Hide sections')}}" type="button" id="menu-btn" aria-expanded="false" aria-controls="section-nav" aria-label="Toggle section menu" aria-haspopup="true">{{_('View sections')}}</button>
               </div>
               {% endif %}
             {% endblock subheader %}
