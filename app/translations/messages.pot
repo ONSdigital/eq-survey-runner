@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-28 17:16+0100\n"
+"POT-Creation-Date: 2018-07-11 14:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.4.0\n"
 
-#: app/forms/date_form.py:133
+#: app/forms/date_form.py:132
 msgid "Select month"
 msgstr ""
 
@@ -26,7 +26,6 @@ msgid "Submit answers"
 msgstr ""
 
 #: app/templates/confirmation.html:8
-#: app/templates/layouts/_questionnaire.html:35
 msgid "Continue"
 msgstr ""
 
@@ -250,6 +249,10 @@ msgstr ""
 msgid "Your system information"
 msgstr ""
 
+#: app/templates/layouts/_questionnaire.html:35
+msgid "Save and continue"
+msgstr ""
+
 #: app/templates/layouts/_questionnaire.html:39
 msgid "Save and complete later"
 msgstr ""
@@ -431,13 +434,13 @@ msgstr ""
 msgid "Start survey"
 msgstr ""
 
-#: app/templates/partials/questions/repeatinganswer.html:15
+#: app/templates/partials/questions/repeatinganswer.html:16
 #: app/templates/partials/questions/repeatinganswer.html:21
 msgid "Remove"
 msgstr ""
 
-#: app/templates/partials/questions/repeatinganswer.html:16
-#: app/templates/partials/questions/repeatinganswer.html:28
+#: app/templates/partials/questions/repeatinganswer.html:17
+#: app/templates/partials/questions/repeatinganswer.html:27
 msgid "Person "
 msgstr ""
 
@@ -449,7 +452,7 @@ msgstr ""
 msgid "Person"
 msgstr ""
 
-#: app/templates/partials/questions/repeatinganswer.html:50
+#: app/templates/partials/questions/repeatinganswer.html:49
 msgid "Add another person"
 msgstr ""
 
@@ -476,15 +479,15 @@ msgid "Select all that apply"
 msgstr ""
 
 #: app/templates/partials/widgets/multiple_choice_widget.html:20
-#: app/templates/partials/widgets/multiple_choice_widget.html:51
+#: app/templates/partials/widgets/multiple_choice_widget.html:55
 msgid "Or"
 msgstr ""
 
-#: app/templates/partials/widgets/multiple_choice_widget.html:51
+#: app/templates/partials/widgets/multiple_choice_widget.html:55
 msgid "Selecting this will uncheck all other checkboxes"
 msgstr ""
 
-#: app/templates/partials/widgets/multiple_choice_widget.html:55
+#: app/templates/partials/widgets/multiple_choice_widget.html:59
 msgid "deselected"
 msgstr ""
 
@@ -1282,7 +1285,7 @@ msgid ""
 "location"
 msgstr ""
 
-#: app/templating/view_context.py:101
+#: app/templating/view_context.py:100
 msgid "Your answers"
 msgstr ""
 
@@ -1399,28 +1402,28 @@ msgstr ""
 msgid "Uncheck %(non_exclusives)s or \"%(exclusive)s\" to continue"
 msgstr ""
 
-#: app/validation/validators.py:299
+#: app/validation/validators.py:302
 #, python-format
 msgid "%(num)s year"
 msgid_plural "%(num)s years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/validation/validators.py:302
+#: app/validation/validators.py:304
 #, python-format
 msgid "%(num)s month"
 msgid_plural "%(num)s months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/validation/validators.py:305
+#: app/validation/validators.py:307
 #, python-format
 msgid "%(num)s day"
 msgid_plural "%(num)s days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/validation/validators.py:396
+#: app/validation/validators.py:388
 msgid "and"
 msgstr ""
 
