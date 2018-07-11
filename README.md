@@ -164,6 +164,10 @@ To run a single test, add `@watch` into the name of any `describe` or `it` funct
 
 `yarn test_functional --watch`
 
+An example of adding `@watch` looks like this:  
+`describe('@watch Skip Conditions', function() {...}` or  
+`it('@watch Given this is a test', function() {...}`
+
 To run the tests against a remote deployment you will need to specify the environment variable of EQ_FUNCTIONAL_TEST_ENV eg:
 
 `EQ_FUNCTIONAL_TEST_ENV=https://staging-new-surveys.dev.eq.ons.digital/ yarn test_functional`
