@@ -1,6 +1,7 @@
 from wtforms import validators, StringField, FormField, SelectField, SelectMultipleField
 
 from app.forms.custom_fields import MaxTextAreaField
+from app.forms.date_form import DateField, MonthYearField, YearField
 from app.forms.fields import CustomIntegerField, CustomDecimalField, get_field, get_mandatory_validator, get_length_validator, _coerce_str_unless_none
 from app.validation.error_messages import error_messages
 from app.validation.validators import ResponseRequired, MutuallyExclusive
@@ -154,7 +155,7 @@ class TestFields(AppContextTestCase):
             unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
                                       self.metadata)
 
-        self.assertEqual(unbound_field.field_class, FormField)
+        self.assertEqual(unbound_field.field_class, DateField)
         self.assertEqual(unbound_field.kwargs['label'], date_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], date_json['guidance'])
 
@@ -179,7 +180,7 @@ class TestFields(AppContextTestCase):
             unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
                                       self.metadata)
 
-        self.assertEqual(unbound_field.field_class, FormField)
+        self.assertEqual(unbound_field.field_class, MonthYearField)
         self.assertEqual(unbound_field.kwargs['label'], date_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], date_json['guidance'])
 
@@ -204,10 +205,35 @@ class TestFields(AppContextTestCase):
             unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
                                       self.metadata)
 
-        self.assertEqual(unbound_field.field_class, FormField)
+        self.assertEqual(unbound_field.field_class, YearField)
         self.assertEqual(unbound_field.kwargs['label'], date_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], date_json['guidance'])
 
+    def test_duration_field(self):
+        date_json = {
+            'guidance': '',
+            'id': 'year-month-answer',
+            'label': 'Duration',
+            'mandatory': True,
+            'options': [],
+            'q_code': '11',
+            'type': 'Duration',
+            'units': ['years', 'months'],
+            'validation': {
+                'messages': {
+                    'INVALID_DURATION': 'The duration entered is not valid.  Please correct your answer.',
+                    'MANDATORY_DURATION': 'Please provide a duration to continue.'
+                }
+            }
+        }
+
+        with self.test_request_context('/'):
+            unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
+                                      self.metadata)
+
+        self.assertEqual(unbound_field.field_class, FormField)
+        self.assertEqual(unbound_field.kwargs['label'], date_json['label'])
+        self.assertEqual(unbound_field.kwargs['description'], date_json['guidance'])
 
     def test_radio_field(self):
         radio_json = {

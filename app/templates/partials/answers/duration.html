@@ -1,0 +1,15 @@
+<fieldset class="fieldgroup fieldgroup--duration">
+
+  <legend id="duration-label" class="fieldgroup__title venus">{{answer.label}}</legend>
+
+  <div class="fieldgroup__fields">
+    {% if form.fields[answer.id].years %}
+      {% set input = form.fields[answer.id].years %}
+      {% include 'partials/answers/duration_unit.html' %}
+    {% endif %}
+    {% if form.fields[answer.id].months %}
+      {% set input = form.fields[answer.id].months %}
+      {% include 'partials/answers/duration_unit.html' %}
+    {% endif %}
+  </div>
+</fieldset>

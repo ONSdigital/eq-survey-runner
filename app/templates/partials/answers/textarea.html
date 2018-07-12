@@ -21,7 +21,7 @@
 
     {% set answer_helper = answer.name ~ "-helper" %}
 
-    <textarea {{attr|xmlattr}}>{{ form.data[answer['id']] }}</textarea>
+    <textarea {{attr|xmlattr}}>{{ input._value() }}</textarea>
 
     {% set remainingAttr = {
       "id": answer.id ~ "-remaining",

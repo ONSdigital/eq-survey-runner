@@ -189,6 +189,9 @@ def process_answer(question_type, answer, page_spec, long_names, page_name):
     elif answer['type'] in 'MonthYearDate':
         page_spec.write(_write_month_year_date_answer(answer['id'], prefix))
 
+    elif answer['type'] in 'Duration':
+        page_spec.write(_write_duration_answer(answer['id'], answer['units'], prefix))
+
     elif answer['type'] in ('TextField', 'Number', 'TextArea', 'Currency', 'Percentage', 'Relationship', 'Unit', 'Dropdown'):
 
         answer_context = {
@@ -280,7 +283,15 @@ def _write_date_answer(answer_id, prefix):
 def _write_month_year_date_answer(answer_id, prefix):
     return \
         ANSWER_GETTER.substitute({'answerName': prefix + 'Month', 'answerId': answer_id + '-month'}) + \
-        ANSWER_GETTER.substitute({'answerName': prefix + 'answerYear', 'answerId': answer_id + '-year'})
+        ANSWER_GETTER.substitute({'answerName': prefix + 'Year', 'answerId': answer_id + '-year'})
+
+
+def _write_duration_answer(answer_id, units, prefix):
+    resp = []
+    for unit in units:
+        resp.append(ANSWER_GETTER.substitute({'answerName': prefix + unit.title(), 'answerId': answer_id + '-' + unit}))
+
+    return ''.join(resp)
 
 
 def find_kv(block, key, values):

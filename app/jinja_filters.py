@@ -56,6 +56,16 @@ def format_unit(unit, value=''):
     return units.format_unit(value=value, measurement_unit=unit, length='short', locale=DEFAULT_LOCALE)
 
 
+def format_duration(value):
+    parts = []
+
+    if 'years' in value and (value['years'] > 0 or len(value) == 1):
+        parts.append(flask_babel.ngettext('%(num)s year', '%(num)s years', value['years']))
+    if 'months' in value and (value['months'] > 0 or len(value) == 1 or ('years' in value and value['years'] == 0)):
+        parts.append(flask_babel.ngettext('%(num)s month', '%(num)s months', value['months']))
+    return ' '.join(parts)
+
+
 def as_london_tz(value):
     return value.replace(tzinfo=tz.gettz('UTC')).astimezone(tz.gettz('Europe/London'))
 
@@ -300,6 +310,11 @@ def conditional_dates_check():
 @blueprint.app_context_processor
 def format_unit_processor():
     return dict(format_unit=format_unit)
+
+
+@blueprint.app_context_processor
+def format_duration_processor():
+    return dict(format_duration=format_duration)
 
 
 @blueprint.app_context_processor

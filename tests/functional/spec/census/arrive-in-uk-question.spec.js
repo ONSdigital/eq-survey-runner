@@ -51,7 +51,7 @@ describe('Census Household', function () {
 
             .getUrl().should.eventually.contain(ArriveInUK.pageName)
             .selectByValue(ArriveInUK.Month(), 5)
-            .setValue(ArriveInUK.answerYear(), '1982')
+            .setValue(ArriveInUK.Year(), '1982')
             .click(ArriveInUK.submit())
             .getUrl().should.eventually.contain(LengthOfStay.pageName);
       });

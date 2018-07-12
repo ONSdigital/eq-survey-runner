@@ -7,32 +7,12 @@ from app.validation.validators import DateCheck
 
 
 class TestDateCheckValidator(unittest.TestCase):
-    def test_date_type_validator_none(self):
-        validator = DateCheck()
-
-        mock_form = Mock()
-        mock_form.data = {
-            'day': '',
-            'month': '',
-            'year': ''
-        }
-
-        mock_field = Mock()
-
-        with self.assertRaises(StopValidation) as ite:
-            validator(mock_form, mock_field)
-
-        self.assertEqual(error_messages['INVALID_DATE'], str(ite.exception))
 
     def test_date_type_validator_empty_string(self):
         validator = DateCheck()
 
         mock_form = Mock()
-        mock_form.data = {
-            'day': '',
-            'month': '',
-            'year': ''
-        }
+        mock_form.data = ''
 
         mock_field = Mock()
 
@@ -45,11 +25,7 @@ class TestDateCheckValidator(unittest.TestCase):
         validator = DateCheck()
 
         mock_form = Mock()
-        mock_form.data = {
-            'day': '',
-            'month': '12',
-            'year': '2016'
-        }
+        mock_form.data = '2016-12-'
 
         mock_field = Mock()
 
@@ -62,11 +38,7 @@ class TestDateCheckValidator(unittest.TestCase):
         validator = DateCheck()
 
         mock_form = Mock()
-        mock_form.data = {
-            'day': '03',
-            'month': '',
-            'year': '2016'
-        }
+        mock_form.data = '2016--03'
 
         mock_field = Mock()
 
@@ -79,11 +51,7 @@ class TestDateCheckValidator(unittest.TestCase):
         validator = DateCheck()
 
         mock_form = Mock()
-        mock_form.data = {
-            'day': '03',
-            'month': '12',
-            'year': ''
-        }
+        mock_form.data = '-12-03'
 
         mock_field = Mock()
 
@@ -96,11 +64,7 @@ class TestDateCheckValidator(unittest.TestCase):
         validator = DateCheck()
 
         mock_form = Mock()
-        mock_form.data = {
-            'day': '40',
-            'month': '12',
-            'year': '2016'
-        }
+        mock_form.data = '2016-12-40'
 
         mock_field = Mock()
 
@@ -113,11 +77,7 @@ class TestDateCheckValidator(unittest.TestCase):
         validator = DateCheck()
 
         mock_form = Mock()
-        mock_form.data = {
-            'day': '20',
-            'month': '13',
-            'year': '2016'
-        }
+        mock_form.data = '2016-13-20'
 
         mock_field = Mock()
 
@@ -130,11 +90,7 @@ class TestDateCheckValidator(unittest.TestCase):
         validator = DateCheck()
 
         mock_form = Mock()
-        mock_form.data = {
-            'day': '20',
-            'month': '12',
-            'year': '16'
-        }
+        mock_form.data = '20000-12-20'
 
         mock_field = Mock()
 
@@ -149,11 +105,7 @@ class TestDateCheckValidator(unittest.TestCase):
 
         # 2015 was not a leap year
         mock_form = Mock()
-        mock_form.data = {
-            'day': '29',
-            'month': '02',
-            'year': '2015'
-        }
+        mock_form.data = '2015-02-29'
 
         mock_field = Mock()
 
@@ -168,11 +120,7 @@ class TestDateCheckValidator(unittest.TestCase):
 
         # 2016 WAS a leap year
         mock_form = Mock()
-        mock_form.data = {
-            'day': '29',
-            'month': '02',
-            'year': '2016'
-        }
+        mock_form.data = '2016-02-29'
 
         mock_field = Mock()
         validator(mock_form, mock_field)
@@ -182,31 +130,19 @@ class TestDateCheckValidator(unittest.TestCase):
         validator = DateCheck()
 
         mock_form = Mock()
-        mock_form.data = {
-            'day': '29',
-            'month': '01',
-            'year': '2016'
-        }
+        mock_form.data = '2016-01-29'
 
         mock_field = Mock()
         validator(mock_form, mock_field)
 
         mock_form = Mock()
-        mock_form.data = {
-            'day': '01',
-            'month': '12',
-            'year': '2016'
-        }
+        mock_form.data = '2016-12-01'
 
         mock_field = Mock()
         validator(mock_form, mock_field)
 
         mock_form = Mock()
-        mock_form.data = {
-            'day': '03',
-            'month': '03',
-            'year': '2016'
-        }
+        mock_form.data = '2016-03-03'
 
         mock_field = Mock()
         validator(mock_form, mock_field)

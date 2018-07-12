@@ -9,7 +9,7 @@
 
     {% set input = {
       'type': 'text',
-      'data': input.data or ''|e,
+      'data': input._value(),
       'name': input.name,
       'id': answer.id
     } %}

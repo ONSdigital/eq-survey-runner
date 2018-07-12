@@ -13,18 +13,11 @@
     {% endif %}
 
     <div class="input-type input-type--unit">
-
-        {% if form.errors or form.question_errors %}
-            {% set data_input = form.data[answer['id']] %}
-        {% else %}
-            {% set data_input = format_number(form.data[answer['id']]) %}
-        {% endif %}
-
         {% set input = {
         'type': 'number',
         'classes': input_classes,
         'hasType': true,
-        'data': data_input,
+        'data': input._value(),
         'name': input.name,
         'id': answer.id
         } %}

@@ -4,7 +4,7 @@ from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 
-from wtforms import Form, SelectField, StringField
+from wtforms import Form, SelectField, StringField, FormField
 from flask_babel import gettext as _, get_locale
 from babel.dates import get_month_names
 
@@ -13,6 +13,57 @@ from app.questionnaire.rules import get_metadata_value, get_answer_store_value, 
 from app.validation.validators import DateCheck, OptionalForm, DateRequired, MonthYearCheck, YearCheck, SingleDatePeriodCheck
 
 logger = logging.getLogger(__name__)
+
+
+class DateField(FormField):
+
+    def __init__(self, answer_store, metadata, answer, error_messages, **kwargs):
+        form_class = get_date_form(answer_store, metadata, answer, error_messages)
+        super(DateField, self).__init__(form_class, **kwargs)
+
+    def process(self, formdata, data=None):
+        if data is not None:
+            substrings = data.split('-')
+            data = {
+                'year': substrings[0],
+                'month': substrings[1].lstrip('0'),
+                'day': substrings[2]
+            }
+
+        super().process(formdata, data)
+
+
+class MonthYearField(FormField):
+
+    def __init__(self, answer_store, metadata, answer, error_messages, **kwargs):
+        form_class = get_month_year_form(answer_store, metadata, answer, error_messages)
+        super(MonthYearField, self).__init__(form_class, **kwargs)
+
+    def process(self, formdata, data=None):
+        if data is not None:
+            substrings = data.split('-')
+            data = {
+                'year': substrings[0],
+                'month': substrings[1].lstrip('0')
+            }
+
+        super().process(formdata, data)
+
+
+class YearField(FormField):
+
+    def __init__(self, answer_store, metadata, answer, error_messages, **kwargs):
+        form_class = get_year_form(answer_store, metadata, answer, error_messages, kwargs.get('description'), kwargs.get('label'))
+        super(YearField, self).__init__(form_class, **kwargs)
+
+    def process(self, formdata, data=None):
+        if data is not None:
+            substrings = data.split('-')
+            data = {
+                'year': substrings[0]
+            }
+
+        super().process(formdata, data)
 
 
 def get_date_form(answer_store, metadata, answer=None, error_messages=None):
@@ -29,6 +80,18 @@ def get_date_form(answer_store, metadata, answer=None, error_messages=None):
     class DateForm(Form):
         day = StringField()
         year = StringField()
+
+        @property
+        def data(self):
+            data = super().data
+            if not data['year'] and not data['month'] and not data['day']:
+                return None
+
+            return '{:04d}-{:02d}-{:02d}'.format(
+                int(data['year']),
+                int(data['month']),
+                int(data['day'])
+            )
 
     validate_with = [OptionalForm()]
 
@@ -61,6 +124,17 @@ def get_month_year_form(answer, answer_store, metadata, error_messages):
     class MonthYearDateForm(Form):
         year = StringField()
 
+        @property
+        def data(self):
+            data = super().data
+            if not data['year'] and not data['month']:
+                return None
+
+            return '{:04d}-{:02d}'.format(
+                int(data['year']),
+                int(data['month'])
+            )
+
     validate_with = [OptionalForm()]
 
     if answer['mandatory'] is True:
@@ -90,6 +164,14 @@ def get_year_form(answer, answer_store, metadata, error_messages, label, guidanc
 
     class YearDateForm(Form):
         year = None
+
+        @property
+        def data(self):
+            data = super().data
+            if not data['year']:
+                return None
+
+            return '{:04d}'.format(int(data['year']))
 
     validate_with = [OptionalForm()]
 

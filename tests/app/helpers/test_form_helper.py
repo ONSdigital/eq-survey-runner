@@ -53,129 +53,6 @@ class TestFormHelper(AppContextTestCase):
             self.assertIsInstance(period_from_field.month.validators[0], OptionalForm)
             self.assertIsInstance(period_to_field.month.validators[0], OptionalForm)
 
-    def test_get_form_deserialises_dates(self):
-        with self.test_request_context():
-            schema = load_schema_from_params('test', '0102')
-
-            block_json = schema.get_block('reporting-period')
-            location = Location('rsi', 0, 'reporting-period')
-
-            form = get_form_for_location(schema, block_json, location, AnswerStore([
-                {
-                    'answer_id': 'period-from',
-                    'group_instance': 0,
-                    'value': '2015-05-01',
-                    'answer_instance': 0,
-                }, {
-                    'answer_id': 'period-to',
-                    'group_instance': 0,
-                    'value': '2017-09-01',
-                    'answer_instance': 0,
-                }
-            ]), metadata=None)
-
-            self.assertTrue(hasattr(form, 'period-to'))
-            self.assertTrue(hasattr(form, 'period-from'))
-
-            period_to_field = getattr(form, 'period-to')
-            period_from_field = getattr(form, 'period-from')
-
-            self.assertEqual(period_from_field.data, {
-                'day': '01',
-                'month': '5',
-                'year': '2015',
-            })
-            self.assertEqual(period_to_field.data, {
-                'day': '01',
-                'month': '9',
-                'year': '2017',
-            })
-
-    def test_get_form_deserialises_month_year_dates(self):
-        with self.test_request_context():
-            schema = load_schema_from_params('test', 'dates')
-
-            block_json = schema.get_block('date-block')
-            location = Location(group_id='dates',
-                                group_instance=0,
-                                block_id='date-block')
-            error_messages = schema.error_messages
-
-            form = get_form_for_location(schema, block_json, location, AnswerStore([
-                {
-                    'answer_id': 'month-year-answer',
-                    'group_id': 'dates',
-                    'group_instance': 0,
-                    'block_id': 'date-block',
-                    'value': '2015-05-01',
-                    'answer_instance': 0,
-                }
-            ]), error_messages)
-
-            self.assertTrue(hasattr(form, 'month-year-answer'))
-
-            month_year_field = getattr(form, 'month-year-answer')
-
-            self.assertEqual(month_year_field.data, {
-                'month': '5',
-                'year': '2015',
-            })
-
-    def test_get_form_deserialises_lists(self):
-        with self.test_request_context():
-            # STANDARD CHECKBOX
-            schema = load_schema_from_params('test', 'checkbox')
-
-            block_json = schema.get_block('mandatory-checkbox')
-            location = Location(group_id='checkboxes',
-                                group_instance=0,
-                                block_id='mandatory-checkbox')
-
-            error_messages = schema.error_messages
-
-            form = get_form_for_location(schema, block_json, location, AnswerStore([
-                {
-                    'answer_id': 'mandatory-checkbox-answer',
-                    'group_id': 'checkboxes',
-                    'group_instance': 0,
-                    'block_id': 'mandatory-checkbox',
-                    'value': ['Cheese', 'Ham'],
-                    'answer_instance': 0,
-                }
-            ]), error_messages)
-
-            self.assertTrue(hasattr(form, 'mandatory-checkbox-answer'))
-
-            checkbox_field = getattr(form, 'mandatory-checkbox-answer')
-
-            self.assertEqual(checkbox_field.data, ['Cheese', 'Ham'])
-
-            # MUTUALLY EXCLUSIVE CHECKBOX
-            schema = load_schema_from_params('test', 'checkbox_mutually_exclusive')
-            block_json = schema.get_block('mandatory-checkbox')
-            location = Location(group_id='checkboxes',
-                                group_instance=0,
-                                block_id='mandatory-checkbox')
-
-            error_messages = schema.error_messages
-
-            form = get_form_for_location(schema, block_json, location, AnswerStore([
-                {
-                    'answer_id': 'mandatory-checkbox-answer',
-                    'group_id': 'checkboxes',
-                    'group_instance': 0,
-                    'block_id': 'mandatory-checkbox',
-                    'value': ['Cheese', 'Ham'],
-                    'answer_instance': 0,
-                }
-            ]), error_messages)
-
-            self.assertTrue(hasattr(form, 'mandatory-checkbox-answer'))
-
-            checkbox_field = getattr(form, 'mandatory-checkbox-answer')
-
-            self.assertEqual(checkbox_field.data, ['Cheese', 'Ham'])
-
     def test_post_form_for_block_location(self):
         with self.test_request_context():
             schema = load_schema_from_params('test', '0102')
@@ -203,16 +80,8 @@ class TestFormHelper(AppContextTestCase):
             self.assertIsInstance(period_from_field.month.validators[0], DateRequired)
             self.assertIsInstance(period_to_field.month.validators[0], DateRequired)
 
-            self.assertEqual(period_from_field.data, {
-                'day': '1',
-                'month': '05',
-                'year': '2015',
-            })
-            self.assertEqual(period_to_field.data, {
-                'day': '1',
-                'month': '09',
-                'year': '2017',
-            })
+            self.assertEqual(period_from_field.data, '2015-05-01')
+            self.assertEqual(period_to_field.data, '2017-09-01')
 
     def test_post_form_and_disable_mandatory(self):
         with self.test_request_context():

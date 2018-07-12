@@ -17,18 +17,10 @@ class TestDateRangeValidator(unittest.TestCase):
         validator = DateRangeCheck()
 
         period_from = Mock()
-        period_from.data = {
-            'day': '03',
-            'month': '01',
-            'year': '2016'
-        }
+        period_from.data = '2016-01-03'
 
         period_to = Mock()
-        period_to.data = {
-            'day': '03',
-            'month': '01',
-            'year': '2016'
-        }
+        period_to.data = '2016-01-03'
         mock_form = Mock()
 
         with self.assertRaises(ValidationError) as ite:
@@ -41,18 +33,10 @@ class TestDateRangeValidator(unittest.TestCase):
         validator = DateRangeCheck()
 
         period_from = Mock()
-        period_from.data = {
-            'day': '20',
-            'month': '01',
-            'year': '2018'
-        }
+        period_from.data = '2018-01-20'
 
         period_to = Mock()
-        period_to.data = {
-            'day': '20',
-            'month': '01',
-            'year': '2016'
-        }
+        period_to.data = '2016-01-20'
 
         mock_form = Mock()
 
@@ -69,18 +53,10 @@ class TestDateRangeValidator(unittest.TestCase):
         validator = DateRangeCheck(period_min=period_min, period_max=period_max)
 
         period_from = Mock()
-        period_from.data = {
-            'day': '01',
-            'month': '01',
-            'year': '2016'
-        }
+        period_from.data = '2016-01-01'
 
         period_to = Mock()
-        period_to.data = {
-            'day': '05',
-            'month': '01',
-            'year': '2017'
-        }
+        period_to.data = '2017-01-05'
 
         mock_form = Mock()
         validator(mock_form, period_from, period_to)
@@ -91,16 +67,10 @@ class TestDateRangeValidator(unittest.TestCase):
         validator = DateRangeCheck()
 
         period_from = Mock()
-        period_from.data = {
-            'month': '09',
-            'year': '2016'
-        }
+        period_from.data = '2016-09'
 
         period_to = Mock()
-        period_to.data = {
-            'month': '01',
-            'year': '2018'
-        }
+        period_to.data = '2018-01'
 
         mock_form = Mock()
         validator(mock_form, period_from, period_to)
@@ -110,16 +80,10 @@ class TestDateRangeValidator(unittest.TestCase):
         validator = DateRangeCheck()
 
         period_from = Mock()
-        period_from.data = {
-            'month': '07',
-            'year': '2018'
-        }
+        period_from.data = '2018-07'
 
         period_to = Mock()
-        period_to.data = {
-            'month': '06',
-            'year': '2018'
-        }
+        period_to.data = '2018-06'
 
         mock_form = Mock()
 
@@ -134,18 +98,10 @@ class TestDateRangeValidator(unittest.TestCase):
         validator = DateRangeCheck(period_min=period_min)
 
         period_from = Mock()
-        period_from.data = {
-            'day': '01',
-            'month': '02',
-            'year': '2016'
-        }
+        period_from.data = '2016-02-01'
 
         period_to = Mock()
-        period_to.data = {
-            'day': '12',
-            'month': '02',
-            'year': '2016'
-        }
+        period_to.data = '2016-02-12'
 
         mock_form = Mock()
 
@@ -160,18 +116,10 @@ class TestDateRangeValidator(unittest.TestCase):
         validator = DateRangeCheck(period_max=period_max)
 
         period_from = Mock()
-        period_from.data = {
-            'day': '11',
-            'month': '02',
-            'year': '2016'
-        }
+        period_from.data = '2016-02-11'
 
         period_to = Mock()
-        period_to.data = {
-            'day': '14',
-            'month': '03',
-            'year': '2016'
-        }
+        period_to.data = '2016-03-14'
 
         mock_form = Mock()
 
@@ -186,18 +134,10 @@ class TestDateRangeValidator(unittest.TestCase):
         validator = DateRangeCheck(messages=message, period_max=period_max)
 
         period_from = Mock()
-        period_from.data = {
-            'day': '11',
-            'month': '02',
-            'year': '2016'
-        }
+        period_from.data = '2016-02-11'
 
         period_to = Mock()
-        period_to.data = {
-            'day': '19',
-            'month': '03',
-            'year': '2018'
-        }
+        period_to.data = '2018-03-19'
 
         mock_form = Mock()
 
@@ -210,18 +150,10 @@ class TestDateRangeValidator(unittest.TestCase):
 
     def test_message_combinations(self):
         period_from = Mock()
-        period_from.data = {
-            'day': '11',
-            'month': '02',
-            'year': '2016'
-        }
+        period_from.data = '2016-02-11'
 
         period_to = Mock()
-        period_to.data = {
-            'day': '19',
-            'month': '03',
-            'year': '2018'
-        }
+        period_to.data = '2018-03-19'
 
         mock_form = Mock()
 

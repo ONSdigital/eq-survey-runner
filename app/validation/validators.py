@@ -193,8 +193,7 @@ class DateCheck:
 
     def __call__(self, form, field):
         try:
-            date_str = format_date_string(form)
-            datetime.strptime(date_str, '%Y-%m-%d')
+            datetime.strptime(form.data, '%Y-%m-%d')
         except ValueError:
             raise validators.StopValidation(self.message)
 
@@ -230,8 +229,7 @@ class SingleDatePeriodCheck:
         self.date_format = date_format
 
     def __call__(self, form, field):
-        date_str = format_date_string(form)
-        date = convert_to_datetime(date_str)
+        date = convert_to_datetime(form.data)
 
         if self.minimum_date:
             if date < self.minimum_date:
@@ -259,11 +257,8 @@ class DateRangeCheck:
         self.period_max = period_max
 
     def __call__(self, form, from_field, to_field):
-        from_date_str = format_date_string(from_field)
-        to_date_str = format_date_string(to_field)
-
-        from_date = convert_to_datetime(from_date_str)
-        to_date = convert_to_datetime(to_date_str)
+        from_date = convert_to_datetime(from_field.data)
+        to_date = convert_to_datetime(to_field.data)
 
         if from_date >= to_date:
             raise validators.ValidationError(self.messages['INVALID_DATE_RANGE'])
@@ -352,14 +347,6 @@ def format_playback_value(value, currency=None):
     if currency:
         return format_currency(value, currency)
     return format_number(value)
-
-
-def format_date_string(field):
-    day = int(field.data.get('day', 1))
-    month = int(field.data.get('month', 1))
-    return '{}-{:02d}-{:02d}'.format(int(field.data['year']),
-                                     month,
-                                     day)
 
 
 class MutuallyExclusive:

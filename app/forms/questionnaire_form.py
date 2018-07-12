@@ -6,9 +6,9 @@ from decimal import Decimal
 import itertools
 
 from dateutil.relativedelta import relativedelta
+from werkzeug.datastructures import MultiDict
 from wtforms import validators
 from flask_wtf import FlaskForm
-from werkzeug.datastructures import MultiDict
 
 from app.forms.fields import get_field
 from app.forms.date_form import get_dates_for_single_date_period_validation
@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 class QuestionnaireForm(FlaskForm):
 
-    def __init__(self, schema, block_json, answer_store, metadata, formdata=None, **kwargs):
+    def __init__(self, schema, block_json, answer_store, metadata, **kwargs):
         self.schema = schema
         self.block_json = block_json
         self.answer_store = answer_store
@@ -28,10 +28,7 @@ class QuestionnaireForm(FlaskForm):
         self.question_errors = {}
         self.options_with_children = {}
 
-        if formdata:
-            super().__init__(formdata=formdata, **kwargs)
-        else:
-            super().__init__(**kwargs)
+        super().__init__(**kwargs)
 
     def validate(self):
         """
@@ -299,19 +296,25 @@ def map_child_option_errors(errors, answer_json):
     return child_errors
 
 
-def generate_form(schema, block_json, data, answer_store, metadata, group_instance):
-    answer_fields = {}
-
+def generate_form(schema, block_json, answer_store, metadata, group_instance, data=None, formdata=None):
     class DynamicForm(QuestionnaireForm):
-        for question in schema.get_questions_for_block(block_json):
-            answer_fields.update(get_answer_fields(question, data, schema.error_messages, answer_store, metadata, group_instance))
+        pass
+
+    answer_fields = {}
+    for question in schema.get_questions_for_block(block_json):
+        answer_fields.update(get_answer_fields(
+            question,
+            formdata if formdata is not None else data,
+            schema.error_messages,
+            answer_store,
+            metadata,
+            group_instance
+        ))
 
     for answer_id, field in answer_fields.items():
         setattr(DynamicForm, answer_id, field)
 
-    if data:
-        form = DynamicForm(schema, block_json, answer_store, metadata, MultiDict(data))
-    else:
-        form = DynamicForm(schema, block_json, answer_store, metadata)
+    if formdata:
+        formdata = MultiDict(formdata)
 
-    return form
+    return DynamicForm(schema, block_json, answer_store, metadata, data=data, formdata=formdata)

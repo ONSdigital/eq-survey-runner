@@ -1,0 +1,94 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "023",
+    "title": "Durations",
+    "description": "A test schema for different durations",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "metadata": {
+        "user_id": {
+            "validator": "string"
+        },
+        "period_id": {
+            "validator": "string"
+        },
+        "ru_name": {
+            "validator": "string"
+        }
+    },
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "blocks": [{
+                    "type": "Question",
+                    "id": "duration-block",
+                    "description": "",
+                    "questions": [{
+                        "answers": [{
+                                "id": "year-month-answer",
+                                "label": "Years and Months",
+                                "mandatory": false,
+                                "units": ["years", "months"],
+                                "q_code": "11",
+                                "type": "Duration"
+                            },
+                            {
+                                "id": "mandatory-year-month-answer",
+                                "label": "Mandatory Years and Months",
+                                "mandatory": true,
+                                "units": ["years", "months"],
+                                "q_code": "12",
+                                "type": "Duration"
+                            },
+                            {
+                                "id": "year-answer",
+                                "label": "Years",
+                                "mandatory": false,
+                                "units": ["years"],
+                                "q_code": "13",
+                                "type": "Duration"
+                            },
+                            {
+                                "id": "mandatory-year-answer",
+                                "label": "Mandatory Years",
+                                "mandatory": true,
+                                "units": ["years"],
+                                "q_code": "14",
+                                "type": "Duration"
+                            },
+                            {
+                                "id": "month-answer",
+                                "label": "Months",
+                                "mandatory": false,
+                                "units": ["months"],
+                                "q_code": "14",
+                                "type": "Duration"
+                            },
+                            {
+                                "id": "mandatory-month-answer",
+                                "label": "Mandatory Months",
+                                "mandatory": true,
+                                "units": ["months"],
+                                "q_code": "15",
+                                "type": "Duration"
+                            }
+                        ],
+                        "description": "",
+                        "id": "duration-question",
+                        "title": "Durations",
+                        "type": "General"
+                    }],
+                    "title": "Duration Examples"
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ],
+            "id": "durations",
+            "title": ""
+        }]
+    }]
+}

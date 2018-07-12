@@ -11,7 +11,7 @@ class LanguageBlockPage extends QuestionPage {
     return '#month-year-answer-month';
   }
 
-  answerYear() {
+  Year() {
     return '#month-year-answer-year';
   }
 
