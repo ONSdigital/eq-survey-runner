@@ -81,9 +81,7 @@
                 {
                     "type": "Confirmation",
                     "id": "confirmation",
-                    "title": "Thank you for your answers, do you wish to submit",
-                    "questions": []
-
+                    "title": "Thank you for your answers, do you wish to submit"
                 }
             ],
             "id": "favourite-foods",

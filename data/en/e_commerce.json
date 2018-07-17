@@ -3189,7 +3189,7 @@
                     "title": "You are now ready to submit this survey",
                     "questions": [{
                         "id": "ready-to-submit-completed-question",
-                        "type": "General",
+                        "type": "Content",
                         "guidance": {
                             "content": [{
                                 "list": [
@@ -3198,8 +3198,7 @@
                                 ]
                             }]
                         },
-                        "title": "Submission",
-                        "answers": []
+                        "title": "Submission"
                     }],
                     "description": ""
                 }],

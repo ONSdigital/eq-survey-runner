@@ -223,7 +223,7 @@ class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
 
         return {
             answer['id']: answer
-            for answer in question['answers']
+            for answer in question.get('answers', [])
         }
 
     def get_answer_ids_for_question(self, question_id):

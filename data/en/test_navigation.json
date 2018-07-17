@@ -145,10 +145,9 @@
                     "description": "",
                     "questions": [{
                         "description": "You have successfully completed the Property Details section. No need to answer House Type questions for contents only.",
-                        "answers": [],
                         "id": "property-interstitial-question",
                         "title": "Property Details",
-                        "type": "General"
+                        "type": "Content"
                     }],
                     "title": ""
                 }],
@@ -529,10 +528,9 @@
                             "description": "",
                             "questions": [{
                                 "description": "You have successfully completed the payment section, thank you.",
-                                "answers": [],
                                 "id": "security-code-interstitial-question",
                                 "title": "Payment",
-                                "type": "General"
+                                "type": "Content"
                             }],
                             "skip_conditions": [{
                                 "when": [{

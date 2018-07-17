@@ -143,7 +143,7 @@ def clear_other_text_field(data, questions_for_block):
     """
     form_data = MultiDict(data)
     for question in questions_for_block:
-        for answer in question['answers']:
+        for answer in question.get('answers', []):
             if 'parent_answer_id' in answer and \
                     answer['parent_answer_id'] in data and \
                     'Other' not in form_data.getlist(answer['parent_answer_id']) and \

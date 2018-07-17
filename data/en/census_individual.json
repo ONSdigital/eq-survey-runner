@@ -3021,10 +3021,9 @@
                     "title": "You’re ready to submit your 2017 Census Test",
                     "description": "<p>Thank you for taking part in the 2017 Census Test.</p>",
                     "questions": [{
-                        "answers": [],
                         "id": "questionnaire-completed-question",
                         "title": "",
-                        "type": "General",
+                        "type": "Content",
                         "guidance": {
                             "content": [{
                                 "title": "Please note:",
