@@ -680,6 +680,100 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                 evaluate_when_rules(when, {}, answer_store, 3)  # passed in group instance ignored if present in when
                 patch_val.assert_called_with('Some Id', answer_store, 0)
 
+    def test_id_when_rule_answer_count_equal_0(self):
+        """Assert that an `answer_count` can be used in a when block and the
+            correct value is fetched. """
+        answer_group_id = 'repeated-answer'
+        when = [{
+            'answer_count': answer_group_id,
+            'condition': 'equals',
+            'value': 0,
+        }]
+
+        answer_store = AnswerStore({})
+
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertTrue(evaluate_when_rules(when, {}, answer_store, 0))
+
+    def test_answer_count_when_rule_equal_1(self):
+        """Assert that an `answer_count` can be used in a when block and the
+            correct value is fetched. """
+        answer_group_id = 'repeated-answer'
+        when = [{
+            'answer_count': answer_group_id,
+            'condition': 'equals',
+            'value': 1,
+        }]
+
+        answer_store = AnswerStore({})
+        answer_store.add(Answer(
+            answer_id=answer_group_id,
+            group_instance=0,
+            value=10,
+        ))
+
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertTrue(evaluate_when_rules(when, {}, answer_store, 0))
+
+    def test_answer_count_when_rule_equal_2(self):
+        """Assert that an `answer_count` can be used in a when block and the
+            value is correctly matched """
+        answer_group_id = 'repeated-answer'
+        when = [{
+            'answer_count': answer_group_id,
+            'condition': 'equals',
+            'value': 2,
+        }]
+
+        answer_store = AnswerStore({})
+        answer_store.add(Answer(
+            answer_id=answer_group_id,
+            group_instance=0,
+            value=10,
+        ))
+        answer_store.add(Answer(
+            answer_id=answer_group_id,
+            group_instance=1,
+            value=20,
+        ))
+
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertTrue(evaluate_when_rules(when, {}, answer_store, 0))
+
+    def test_answer_count_when_rule_not_equal(self):  # pylint: disable=no-self-use
+        """Assert that an `answer_count` can be used in a when block and the
+            False is returned when the values do not match. """
+        answer_group_id = 'repeated-answer'
+        when = [{
+            'answer_count': answer_group_id,
+            'condition': 'equals',
+            'value': 1,
+        }]
+        answer_store = AnswerStore({})
+
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertFalse(evaluate_when_rules(when, {}, answer_store, 0))
+
+    def test_answer_count_when_rule_id_takes_precident(self):
+        """Assert that if somehow, both `id` and `answer_count` are present in a when clause
+            the `id` takes precident and no errors are thrown. """
+        answer_group_id = 'repeated-answer'
+        ref_id = 'just-a-regular-answer'
+        when = [{
+            'id': ref_id,
+            'answer_count': answer_group_id,
+            'condition': 'equals',
+            'value': 10,
+        }]
+        answer_store = AnswerStore({})
+        answer_store.add(Answer(
+            answer_id=ref_id,
+            group_instance=0,
+            value=10,
+        ))
+
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            self.assertTrue(evaluate_when_rules(when, {}, answer_store, 0))
 
 class TestDateRules(AppContextTestCase):
 

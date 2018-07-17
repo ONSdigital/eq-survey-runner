@@ -133,3 +133,40 @@ class TestRepeatingHouseholdRouting(IntegrationTestCase):
         self.assertEqual(len(joes_dob), 1, 'There should be a date-of-birth '
                                            'answer in group instance 0')
         self.assertEqual(joes_dob[0]['value'], '1990-03-12')
+
+class TestHouseholdWhenRouting(IntegrationTestCase):
+    """Test repeating household with routing.
+
+    Tests goto clauses which use `answer_count` in the `when` clause
+    """
+    def setUp(self):
+        super().setUp()
+        self.launchSurvey('test', 'routing_answer_count',
+                          roles=['dumper'])
+        self.household_composition_url = self.last_url
+
+    def test_routes_based_on_answer_count(self):
+        """ Asserts that the routing rule is followed based on the
+        number of answers to a household composition question.
+        """
+        form_data = MultiDict()
+        form_data.add('household-0-first-name', 'Joe')
+        form_data.add('household-0-middle-names', '')
+        form_data.add('household-0-last-name', 'Bloggs')
+        form_data.add('household-1-first-name', 'Jane')
+        form_data.add('household-1-middle-names', '')
+        form_data.add('household-1-last-name', 'Doe')
+        self.post(form_data)
+
+        self.assertInPage('This is Group 1 - you answered "2"')
+
+    def test_routes_based_on_answer_count_false_condition(self):
+        """Asserts that the goto is ignored when the condition is false
+        """
+        form_data = MultiDict()
+        form_data.add('household-0-first-name', 'Joe')
+        form_data.add('household-0-middle-names', '')
+        form_data.add('household-0-last-name', 'Bloggs')
+        self.post(form_data)
+
+        self.assertInPage('This is Group 0 - You answered less than "2"')
