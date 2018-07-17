@@ -52,7 +52,7 @@ for schema in $(find $file_path -name '*.json'); do
 
     result="$(curl -s -w 'HTTPSTATUS:%{http_code}' -X POST -H "Content-Type: application/json" -d @"$schema" http://localhost:5001/validate | tr -d '\n')"
     result_response="${result//*HTTPSTATUS:/}"
-    result_body="${result//HTTPSTATUS:*/}"
+    result_body=$(echo "${result//HTTPSTATUS:*/}" | python -m json.tool)
 
     if [ "$result_response" == "200" ] && [ "$result_body" == "{}" ]; then
         echo -e "${green}$schema - PASSED${default}"
