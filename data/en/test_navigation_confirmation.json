@@ -80,10 +80,9 @@
                         "description": "",
                         "questions": [{
                             "description": "You have successfully completed the property details section. Next we want to know who lives in the house.",
-                            "answers": [],
                             "id": "property-interstitial-question",
                             "title": "Property Details",
-                            "type": "General"
+                            "type": "Content"
                         }]
                     }
                 ],
@@ -288,10 +287,9 @@
                         "description": "",
                         "questions": [{
                             "description": "You have successfully completed the special items section. Next we want to know about your payment details.",
-                            "answers": [],
                             "id": "extra-cover-interstitial-question",
                             "title": "Extra Cover",
-                            "type": "General"
+                            "type": "Content"
                         }]
                     }
                 ],
@@ -367,10 +365,9 @@
                         "description": "",
                         "questions": [{
                             "description": "You have successfully completed the payment section, thank you.",
-                            "answers": [],
                             "id": "security-code-interstitial-question",
                             "title": "Payment",
-                            "type": "General"
+                            "type": "Content"
                         }]
                     }
                 ],

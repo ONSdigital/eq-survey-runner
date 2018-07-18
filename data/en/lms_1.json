@@ -2155,10 +2155,9 @@
                         "id": "confirmation",
                         "title": "",
                         "questions": [{
-                            "answers": [],
                             "id": "questionnaire-completed-question",
                             "title": "Thank you, please submit your answers.",
-                            "type": "General",
+                            "type": "Content",
                             "description": "<p>Thank you for taking the time to provide your answers to these questions. The information you have provided will be held securely and treated as confidential as directed by the Code of Practice for Official Statistics.</p><p>Please submit your responses by using the <em>Submit answers</em> button below. This will lock your questionnaire so that it will not be possible to re-enter the survey.</p>"
                         }]
                     }

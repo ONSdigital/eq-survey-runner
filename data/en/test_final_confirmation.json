@@ -68,8 +68,7 @@
                 "blocks": [{
                     "type": "Confirmation",
                     "id": "confirmation",
-                    "title": "Thank you for your answers, do you wish to submit",
-                    "questions": []
+                    "title": "Thank you for your answers, do you wish to submit"
                 }],
                 "id": "confirmation-group",
                 "title": "Submit answers"

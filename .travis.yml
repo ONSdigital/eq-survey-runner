@@ -32,7 +32,7 @@ before_install:
     - pyenv global $(cat .python-version)
     - pip install -U pip pipenv wheel
     - pipenv install --dev --deploy
-    - pipenv check
+    - pipenv check -i 36333
 cache:
     - yarn
     - pip

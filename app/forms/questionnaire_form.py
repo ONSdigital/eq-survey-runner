@@ -262,7 +262,7 @@ class QuestionnaireForm(FlaskForm):
 
 def get_answer_fields(question, data, error_messages, answer_store, metadata, group_instance):
     answer_fields = {}
-    for answer in question['answers']:
+    for answer in question.get('answers', []):
         if 'parent_answer_id' in answer and answer['parent_answer_id'] in data and \
                 data[answer['parent_answer_id']] == 'Other':
             answer['mandatory'] = \
