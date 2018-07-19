@@ -30,7 +30,7 @@
                         "answers": [{
                             "id": "food-answer",
                             "label": "What is your favourite breakfast food",
-                            "mandatory": true,
+                            "mandatory": false,
                             "options": [{
                                     "label": "Bacon",
                                     "value": "Bacon"
@@ -77,42 +77,13 @@
                         "title": "What beverage would you like to accompany your choice of breakfast?",
                         "type": "General"
                     }],
-                    "title": ""
-                },
-                {
-                    "type": "Question",
-                    "id": "sandwich-block",
-                    "description": "",
-                    "questions": [{
-                        "answers": [{
-                            "id": "sandwich-answer",
-                            "label": "What is your favourite sandwich",
-                            "mandatory": false,
-                            "options": [{
-                                    "label": "Ham",
-                                    "value": "Ham"
-                                },
-                                {
-                                    "label": "Tuna",
-                                    "value": "Tuna"
-                                }
-                            ],
-                            "q_code": "20",
-                            "type": "Radio"
-                        }],
-                        "description": "",
-                        "id": "sandwich-question",
-                        "title": "",
-                        "type": "General"
-                    }],
-                    "title": "What is your favourite sandwich",
+                    "title": "",
                     "skip_conditions": [{
                         "when": [{
-                            "id": "drink-answer",
+                            "id": "food-answer",
                             "condition": "not set"
                         }]
-                    }],
-                    "routing_rules": []
+                    }]
                 },
                 {
                     "type": "Summary",
