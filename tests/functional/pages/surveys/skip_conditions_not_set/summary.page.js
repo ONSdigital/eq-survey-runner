@@ -15,10 +15,6 @@ class SummaryPage extends QuestionPage {
 
   drinkAnswerEdit() { return '[data-qa="drink-answer-edit"]'; }
 
-  sandwichAnswer() { return '#sandwich-answer-answer'; }
-
-  sandwichAnswerEdit() { return '[data-qa="sandwich-answer-edit"]'; }
-
   breakfastTitle() { return '#breakfast'; }
 
 }
