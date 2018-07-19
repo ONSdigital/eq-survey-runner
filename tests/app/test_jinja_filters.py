@@ -15,8 +15,8 @@ from app.jinja_filters import (
     format_number, format_unordered_list,
     format_household_member_name_possessive, concatenated_list,
     calculate_years_difference, get_current_date, as_london_tz, max_value,
-    min_value, get_question_title, get_answer_label
-)
+    min_value, get_question_title, get_answer_label,
+    format_duration)
 from tests.app.app_context_test_case import AppContextTestCase
 
 
@@ -453,6 +453,26 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         self.assertEqual(format_unit('volume-liter', 100), '100 l')
         self.assertEqual(format_unit('volume-hectoliter', 100), '100 hl')
         self.assertEqual(format_unit('volume-megaliter', 100), '100 Ml')
+
+    def test_format_year_month_duration(self):
+        with self.test_request_context('/'):
+            self.assertEqual(format_duration({'years': 5, 'months': 4}), '5 years 4 months')
+            self.assertEqual(format_duration({'years': 5, 'months': 0}), '5 years')
+            self.assertEqual(format_duration({'years': 0, 'months': 4}), '4 months')
+            self.assertEqual(format_duration({'years': 1, 'months': 1}), '1 year 1 month')
+            self.assertEqual(format_duration({'years': 0, 'months': 0}), '0 months')
+
+    def test_format_year_duration(self):
+        with self.test_request_context('/'):
+            self.assertEqual(format_duration({'years': 5}), '5 years')
+            self.assertEqual(format_duration({'years': 1}), '1 year')
+            self.assertEqual(format_duration({'years': 0}), '0 years')
+
+    def test_format_month_duration(self):
+        with self.test_request_context('/'):
+            self.assertEqual(format_duration({'months': 5}), '5 months')
+            self.assertEqual(format_duration({'months': 1}), '1 month')
+            self.assertEqual(format_duration({'months': 0}), '0 months')
 
     def test_format_unordered_list(self):
         list_items = [['item 1', 'item 2']]

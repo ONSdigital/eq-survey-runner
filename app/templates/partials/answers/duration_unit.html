@@ -1,0 +1,12 @@
+<div class="field">
+  <div class="input-type input-type--unit">
+    {% set args = {
+      'class': 'input input--number input--with-unit input--block',
+      'pattern': '[0-9]*',
+      'aria-labelledby': 'duration-label ' + input.id + '-label'
+    } %}
+
+    {{ input(**args) }}
+    <abbr title="{{ _(input.label.text) }}" class="input-type__type input-type__type--period" id="{{input.id}}-label">{{ _(input.label.text) }}</abbr>
+  </div>
+</div>

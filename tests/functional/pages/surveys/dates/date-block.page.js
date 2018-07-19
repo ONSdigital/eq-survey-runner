@@ -35,7 +35,7 @@ class DateBlockPage extends QuestionPage {
     return '#month-year-answer-month';
   }
 
-  monthYearanswerYear() {
+  monthYearYear() {
     return '#month-year-answer-year';
   }
 

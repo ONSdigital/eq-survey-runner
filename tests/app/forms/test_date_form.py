@@ -2,11 +2,12 @@ from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 from mock import patch
+from wtforms import Form
 
 from app.data_model.answer_store import AnswerStore, Answer
 from app.forms.date_form import get_date_form, get_month_year_form, get_year_form, \
     get_referenced_offset_value, get_dates_for_single_date_period_validation, \
-    validate_mandatory_date
+    validate_mandatory_date, DateField, MonthYearField, YearField
 from app.questionnaire.rules import convert_to_datetime
 from app.utilities.schema import load_schema_from_params
 from tests.app.app_context_test_case import AppContextTestCase
@@ -51,6 +52,85 @@ class TestDateForm(AppContextTestCase):
         self.assertFalse(hasattr(form, 'day'))
         self.assertFalse(hasattr(form, 'month'))
         self.assertTrue(hasattr(form, 'year'))
+
+    def test_date_form_empty_data(self):
+        schema = load_schema_from_params('test', 'dates')
+        error_messages = schema.error_messages
+
+        answers = schema.get_answers_by_id_for_block('date-block')
+
+        with self.test_request_context('/'):
+            form = get_date_form(AnswerStore(), {}, answers['single-date-answer'], error_messages=error_messages)
+
+        self.assertIsNone(form().data)
+
+    def test_month_year_date_form_empty_data(self):
+        schema = load_schema_from_params('test', 'dates')
+        error_messages = schema.error_messages
+
+        answers = schema.get_answers_by_id_for_block('date-block')
+
+        with self.test_request_context('/'):
+            form = get_month_year_form(answers['month-year-answer'], {}, {}, error_messages=error_messages)
+
+        self.assertIsNone(form().data)
+
+    def test_year_date_form_empty_data(self):
+        schema = load_schema_from_params('test', 'dates')
+        error_messages = schema.error_messages
+
+        answers = schema.get_answers_by_id_for_block('date-block')
+
+        form = get_year_form(answers['year-date-answer'], {}, {}, error_messages=error_messages, label=None, guidance=None)
+
+        self.assertIsNone(form().data)
+
+    def test_date_form_format_data(self):
+        schema = load_schema_from_params('test', 'dates')
+        error_messages = schema.error_messages
+
+        answers = schema.get_answers_by_id_for_block('date-block')
+
+        data = {'field': '2000-01-01'}
+
+        with self.test_request_context('/'):
+            class TestForm(Form):
+                field = DateField(AnswerStore(), {}, answers['single-date-answer'], error_messages)
+
+            test_form = TestForm(data=data)
+
+        self.assertEqual(test_form.field.data, '2000-01-01')
+
+    def test_month_year_date_form_format_data(self):
+        schema = load_schema_from_params('test', 'dates')
+        error_messages = schema.error_messages
+
+        answers = schema.get_answers_by_id_for_block('date-block')
+
+        data = {'field': '2000-01'}
+
+        with self.test_request_context('/'):
+            class TestForm(Form):
+                field = MonthYearField(answers['month-year-answer'], {}, {}, error_messages)
+
+            test_form = TestForm(data=data)
+
+        self.assertEqual(test_form.field.data, '2000-01')
+
+    def test_year_date_form_format_data(self):
+        schema = load_schema_from_params('test', 'dates')
+        error_messages = schema.error_messages
+
+        answers = schema.get_answers_by_id_for_block('date-block')
+
+        data = {'field': '2000'}
+
+        class TestForm(Form):
+            field = YearField(answers['year-date-answer'], {}, {}, error_messages)
+
+        test_form = TestForm(data=data)
+
+        self.assertEqual(test_form.field.data, '2000')
 
     def test_generate_date_form_validates_single_date_period(self):
         schema = load_schema_from_params('test', 'date_validation_single')

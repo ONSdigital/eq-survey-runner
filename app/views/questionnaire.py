@@ -544,10 +544,6 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
             answer_value = g.schema.get_answer(answer_id).get('default')
 
         if answer_id in survey_answer_ids or location.block_id == 'household-composition':
-
-            if isinstance(answer_value, dict):
-                answer_value = _return_date_answer_value(answer_value)
-
             if answer_value is not None:
                 answer = Answer(answer_id=answer_id,
                                 value=answer_value,
@@ -565,16 +561,6 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
 
     if location not in questionnaire_store.completed_blocks:
         questionnaire_store.completed_blocks.append(location)
-
-
-def _return_date_answer_value(answer_value):
-    if not answer_value_empty(answer_value):
-        # Dates are comprised of 3 string values
-        formatted_answer_value = _format_answer_value(answer_value)
-        if formatted_answer_value:
-            return formatted_answer_value
-
-    return None
 
 
 def _remove_dependent_answers_from_completed_blocks(answer_id, group_instance, questionnaire_store):
@@ -610,34 +596,6 @@ def _remove_answer_from_questionnaire_store(answer_id, questionnaire_store,
     questionnaire_store.answer_store.remove(answer_ids=[answer_id],
                                             group_instance=group_instance,
                                             answer_instance=0)
-
-
-def answer_value_empty(answer_value_dict):
-    return all(not value for value in answer_value_dict.values())
-
-
-def _format_answer_value(answer_value):
-    formatted_answer_value = None
-    is_day_month_year = 'day' in answer_value and 'month' in answer_value and 'year' in answer_value
-    is_month_year = 'day' not in answer_value and 'year' in answer_value and 'month' in answer_value
-    is_year = 'day' not in answer_value and 'month' not in answer_value and 'year' in answer_value
-
-    if is_day_month_year:
-        formatted_answer_value = '{:04d}-{:02d}-{:02d}'.format(
-            int(answer_value['year']),
-            int(answer_value['month']),
-            int(answer_value['day'])
-        )
-    elif is_month_year:
-        formatted_answer_value = '{:04d}-{:02d}'.format(
-            int(answer_value['year']),
-            int(answer_value['month'])
-        )
-    elif is_year:
-        formatted_answer_value = '{:04d}'.format(
-            int(answer_value['year'])
-        )
-    return formatted_answer_value
 
 
 @save_questionnaire_store

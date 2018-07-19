@@ -22,7 +22,7 @@ describe('Date checks', function() {
         .setValue(DatesPage.dateRangeToyear(), 2017)
 
         .selectByValue(DatesPage.monthYearMonth(), 4)
-        .setValue(DatesPage.monthYearanswerYear(), 2018)
+        .setValue(DatesPage.monthYearYear(), 2018)
 
         .setValue(DatesPage.singleDateday(), 4)
         .selectByValue(DatesPage.singleDatemonth(), 1)
@@ -127,7 +127,7 @@ describe('Date checks', function() {
 
           // When the year (month year type) is left empty
           .selectByValue(DatesPage.monthYearMonth(), 4)
-          .setValue(DatesPage.monthYearanswerYear(), '')
+          .setValue(DatesPage.monthYearYear(), '')
 
           .click(DatesPage.submit())
 
@@ -154,7 +154,7 @@ describe('Date checks', function() {
         .setValue(DatesPage.dateRangeToyear(), 2017)
 
         .selectByValue(DatesPage.monthYearMonth(), 4)
-        .setValue(DatesPage.monthYearanswerYear(), '')
+        .setValue(DatesPage.monthYearYear(), '')
 
         .setValue(DatesPage.singleDateday(), 4)
         .selectByValue(DatesPage.singleDatemonth(), 1)
@@ -165,7 +165,7 @@ describe('Date checks', function() {
         .getText(DatesPage.error()).should.eventually.contain('Enter a valid date.')
 
         // Then when it is corrected, it goes to the summary page and the information is correct
-        .setValue(DatesPage.monthYearanswerYear(), 2018)
+        .setValue(DatesPage.monthYearYear(), 2018)
         .click(DatesPage.submit())
         // Interstitial displaying min-max formats
         .click(MinMaxBlockPage.submit())

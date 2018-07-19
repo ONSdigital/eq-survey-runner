@@ -14,11 +14,7 @@ class TestDateRangeValidator(AppContextTestCase):
         validator = SingleDatePeriodCheck(minimum_date=minimum_date)
 
         mock_form = Mock()
-        mock_form.data = {
-            'day': '29',
-            'month': '01',
-            'year': '2016'
-        }
+        mock_form.data = '2016-01-29'
 
         mock_field = Mock()
 
@@ -33,11 +29,7 @@ class TestDateRangeValidator(AppContextTestCase):
         validator = SingleDatePeriodCheck(maximum_date=maximum_date)
 
         mock_form = Mock()
-        mock_form.data = {
-            'day': '29',
-            'month': '04',
-            'year': '2016'
-        }
+        mock_form.data = '2016-04-29'
 
         mock_field = Mock()
 
@@ -54,11 +46,7 @@ class TestDateRangeValidator(AppContextTestCase):
         validator = SingleDatePeriodCheck(messages=message, maximum_date=maximum_date)
 
         mock_form = Mock()
-        mock_form.data = {
-            'day': '29',
-            'month': '04',
-            'year': '2016'
-        }
+        mock_form.data = '2016-04-29'
 
         mock_field = Mock()
 
@@ -75,11 +63,7 @@ class TestDateRangeValidator(AppContextTestCase):
         validator = SingleDatePeriodCheck(minimum_date=minimum_date, maximum_date=maximum_date)
 
         mock_form = Mock()
-        mock_form.data = {
-            'day': '26',
-            'month': '03',
-            'year': '2016'
-        }
+        mock_form.data = '2016-03-26'
 
         mock_field = Mock()
 

@@ -1,4 +1,5 @@
 const helpers = require('../helpers');
+
 const LanguagePage = require('../pages/surveys/language_code/language-block.page');
 const SummaryPage = require('../pages/surveys/language_code/summary.page');
 const ThankYouPage = require('../pages/thank-you.page.js');
@@ -12,7 +13,7 @@ describe('Language Code', function() {
       return browser
         .getText(LanguagePage.displayedName()).should.eventually.equal('Holiadur Cymraeg')
         .selectByValue(LanguagePage.Month(), 4)
-        .setValue(LanguagePage.answerYear(), 2018)
+        .setValue(LanguagePage.Year(), 2018)
         .click(LanguagePage.submit())
 
         .getUrl().should.eventually.contain(SummaryPage.pageName)
@@ -32,7 +33,7 @@ describe('Language Code', function() {
       return browser
         .getText(LanguagePage.displayedName()).should.eventually.equal('English Questionnaire')
         .selectByValue(LanguagePage.Month(), 4)
-        .setValue(LanguagePage.answerYear(), 2018)
+        .setValue(LanguagePage.Year(), 2018)
         .click(LanguagePage.submit())
 
         .getUrl().should.eventually.contain(SummaryPage.pageName)

@@ -5,7 +5,9 @@ from wtforms import validators
 from structlog import get_logger
 
 from app.forms.custom_fields import MaxTextAreaField, CustomIntegerField, CustomDecimalField
-from app.forms.date_form import get_date_form, get_month_year_form, get_year_form
+from app.forms.date_form import MonthYearField, YearField, \
+    DateField
+from app.forms.duration_form import get_duration_form
 from app.validation.validators import NumberCheck, NumberRange, ResponseRequired, DecimalPlaces, MutuallyExclusive
 
 MAX_LENGTH = 2000
@@ -34,6 +36,7 @@ def get_field(answer, label, error_messages, answer_store, metadata):
             'TextArea': get_text_area_field,
             'TextField': get_string_field,
             'Dropdown': get_dropdown_field,
+            'Duration': get_duration_field
         }[answer['type']](answer, label, guidance, error_messages)
 
     if field is None:
@@ -109,25 +112,41 @@ def get_text_area_field(answer, label, guidance, error_messages):
 
 
 def get_date_field(answer, label, guidance, error_messages, answer_store, metadata):
-
-    return FormField(
-        get_date_form(answer_store=answer_store, metadata=metadata, answer=answer, error_messages=error_messages),
+    return DateField(
+        answer_store,
+        metadata,
+        answer,
+        error_messages,
         label=label,
         description=guidance,
     )
 
 
 def get_month_year_field(answer, label, guidance, error_messages, answer_store, metadata):
-    return FormField(
-        get_month_year_form(answer, answer_store, metadata, error_messages),
+    return MonthYearField(
+        answer,
+        answer_store,
+        metadata,
+        error_messages,
         label=label,
         description=guidance,
     )
 
 
 def get_year_field(answer, label, guidance, error_messages, answer_store, metadata):
+    return YearField(
+        answer,
+        answer_store,
+        metadata,
+        error_messages,
+        label=label,
+        description=guidance,
+    )
+
+
+def get_duration_field(answer, label, guidance, error_messages):
     return FormField(
-        get_year_form(answer, answer_store, metadata, error_messages, label, guidance),
+        get_duration_form(answer, error_messages),
         label=label,
         description=guidance,
     )

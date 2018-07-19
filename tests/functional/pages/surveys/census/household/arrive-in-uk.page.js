@@ -11,7 +11,7 @@ class ArriveInUkPage extends QuestionPage {
     return '#arrive-in-uk-answer-month';
   }
 
-  answerYear() {
+  Year() {
     return '#arrive-in-uk-answer-year';
   }
 

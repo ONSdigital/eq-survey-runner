@@ -53,17 +53,7 @@ def get_form_for_location(schema, block_json, location, answer_store, metadata, 
         block_id=location.block_id,
     )
 
-    # Form generation expects post like data, so cast answers to strings
-    for answer_id, mapped_answer in mapped_answers.items():
-        if isinstance(mapped_answer, list):
-            for index, element in enumerate(mapped_answer):
-                mapped_answers[answer_id][index] = str(element)
-        else:
-            mapped_answers[answer_id] = str(mapped_answer)
-
-    mapped_answers = deserialise_dates(schema, location.block_id, mapped_answers)
-
-    return generate_form(schema, block_json, mapped_answers, answer_store, metadata, location.group_instance)
+    return generate_form(schema, block_json, answer_store, metadata, location.group_instance, data=mapped_answers)
 
 
 def post_form_for_location(schema, block_json, location, answer_store, metadata, request_form, disable_mandatory=False):
@@ -91,7 +81,7 @@ def post_form_for_location(schema, block_json, location, answer_store, metadata,
         return form
 
     data = clear_other_text_field(request_form, schema.get_questions_for_block(block_json))
-    return generate_form(schema, block_json, data, answer_store, metadata, location.group_instance)
+    return generate_form(schema, block_json, answer_store, metadata, location.group_instance, formdata=data)
 
 
 def disable_mandatory_answers(block_json):
@@ -100,36 +90,6 @@ def disable_mandatory_answers(block_json):
             if 'mandatory' in answer_json and answer_json['mandatory'] is True:
                 answer_json['mandatory'] = False
     return block_json
-
-
-def deserialise_dates(schema, block_id, mapped_answers):
-    answer_json_list = schema.get_answers_for_block(block_id)
-
-    # Deserialise all dates from the store
-    date_answer_ids = [a['id'] for a in answer_json_list if a['type'] in ['Date', 'MonthYearDate', 'YearDate']]
-
-    for date_answer_id in date_answer_ids:
-        if date_answer_id in mapped_answers:
-            substrings = mapped_answers[date_answer_id].split('-')
-
-            del mapped_answers[date_answer_id]
-            if len(substrings) == 3:
-                mapped_answers.update({
-                    '{answer_id}-year'.format(answer_id=date_answer_id): substrings[0],
-                    '{answer_id}-month'.format(answer_id=date_answer_id): substrings[1].lstrip('0'),
-                    '{answer_id}-day'.format(answer_id=date_answer_id): substrings[2],
-                })
-            if len(substrings) == 2:
-                mapped_answers.update({
-                    '{answer_id}-year'.format(answer_id=date_answer_id): substrings[0],
-                    '{answer_id}-month'.format(answer_id=date_answer_id): substrings[1].lstrip('0'),
-                })
-            if len(substrings) == 1:
-                mapped_answers.update({
-                    '{answer_id}-year'.format(answer_id=date_answer_id): substrings[0],
-                })
-
-    return mapped_answers
 
 
 def clear_other_text_field(data, questions_for_block):

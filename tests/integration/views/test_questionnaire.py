@@ -78,66 +78,6 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
             'value': 0
         }, self.question_store.answer_store.answers)
 
-    def test_update_questionnaire_store_with_date_form_data(self):
-
-        g.schema = load_schema_from_params('test', 'dates')
-
-        location = Location('dates', 0, 'date-block')
-
-        form_data = {
-            'single-date-answer': {'day': '12', 'month': '03', 'year': '2016'},
-            'month-year-answer': {'month': '11', 'year': '2014'},
-        }
-
-        with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, location, form_data)
-
-        self.assertEqual(self.question_store.completed_blocks, [location])
-
-        self.assertIn({
-            'group_instance': 0,
-            'answer_id': 'single-date-answer',
-            'answer_instance': 0,
-            'value': '2016-03-12'
-        }, self.question_store.answer_store.answers)
-
-        self.assertIn({
-            'group_instance': 0,
-            'answer_id': 'month-year-answer',
-            'answer_instance': 0,
-            'value': '2014-11'
-        }, self.question_store.answer_store.answers)
-
-    def test_update_questionnaire_store_with_empty_day_month_year_date(self):
-
-        g.schema = load_schema_from_params('test', 'dates')
-
-        location = Location('dates', 0, 'date-block')
-
-        form_data = {
-            'non-mandatory-date-answer': {'day': '', 'month': '', 'year': ''},
-        }
-
-        with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, location, form_data)
-
-        self.assertEqual([], self.question_store.answer_store.answers)
-
-    def test_update_questionnaire_store_with_empty_month_year_date(self):
-
-        g.schema = load_schema_from_params('test', 'dates')
-
-        location = Location('dates', 0, 'date-block')
-
-        form_data = {
-            'month-year-answer': {'month': '', 'year': ''},
-        }
-
-        with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, location, form_data)
-
-        self.assertEqual([], self.question_store.answer_store.answers)
-
     def test_update_questionnaire_store_with_answer_data(self):
         g.schema = load_schema_from_params('census', 'household')
 
@@ -571,7 +511,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         for answer in answers:
             self.question_store.answer_store.add_or_update(answer)
 
-        answer_form_data = {'date-of-birth-answer': {}}
+        answer_form_data = {'date-of-birth-answer': None}
         location = Location('household-member-group', 1, 'date-of-birth')
         with self._application.test_request_context():
             update_questionnaire_store_with_form_data(
