@@ -1,5 +1,11 @@
 dist: trusty
 sudo: true
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 language: node_js
 node_js: 6
 env:

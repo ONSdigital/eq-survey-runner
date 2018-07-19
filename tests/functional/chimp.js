@@ -40,7 +40,7 @@ let config = {
         chrome: {
           // check for more recent versions of chrome driver here:
           // http://chromedriver.storage.googleapis.com/index.html
-          version: '2.34',
+          version: '2.38',
         }
       }
     }
