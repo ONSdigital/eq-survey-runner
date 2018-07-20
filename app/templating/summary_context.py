@@ -27,6 +27,6 @@ def build_summary_rendering_context(schema, sections, answer_store, metadata):
     for group in itertools.chain.from_iterable(group_lists):
         if group['id'] in group_ids_on_path \
                 and schema.group_has_questions(group['id']):
-            groups.extend([Group(group, path, answer_store, metadata).serialize()])
+            groups.extend([Group(group, path, answer_store, metadata, schema).serialize()])
 
     return groups

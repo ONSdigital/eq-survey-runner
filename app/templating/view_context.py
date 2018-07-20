@@ -1,4 +1,3 @@
-from flask import g
 from flask_wtf import FlaskForm
 from flask_babel import gettext as _
 
@@ -8,21 +7,21 @@ from app.templating.template_renderer import renderer
 from app.templating.utils import get_title_from_titles
 
 
-def build_view_context(block_type, metadata, answer_store, schema_context, rendered_block, current_location, form):
+def build_view_context(block_type, metadata, schema, answer_store, schema_context, rendered_block, current_location, form):
     variables = None
-    if g.schema.json.get('variables'):
-        variables = renderer.render(g.schema.json.get('variables'), **schema_context)
+    if schema.json.get('variables'):
+        variables = renderer.render(schema.json.get('variables'), **schema_context)
 
     if block_type in ('Summary', 'SectionSummary'):
         form = form or FlaskForm()
 
-        return build_view_context_for_summary(metadata, answer_store, schema_context, block_type, variables,
+        return build_view_context_for_summary(metadata, schema, answer_store, schema_context, block_type, variables,
                                               form.csrf_token, current_location)
 
     if block_type in ('Question', 'ConfirmationQuestion'):
-        form = form or get_form_for_location(g.schema, rendered_block, current_location, answer_store, metadata)
+        form = form or get_form_for_location(schema, rendered_block, current_location, answer_store, metadata)
 
-        return build_view_context_for_question(metadata, answer_store, current_location, variables, rendered_block, form)
+        return build_view_context_for_question(metadata, schema, answer_store, current_location, variables, rendered_block, form)
 
     if block_type in ('Introduction', 'Interstitial', 'Confirmation'):
         form = form or FlaskForm()
@@ -37,7 +36,7 @@ def build_view_context_for_non_question(variables, csrf_token, rendered_block):
     }
 
 
-def build_view_context_for_question(metadata, answer_store, current_location, variables, rendered_block, form):  # noqa: C901  pylint: disable=too-complex
+def build_view_context_for_question(metadata, schema, answer_store, current_location, variables, rendered_block, form):  # noqa: C901, E501  pylint: disable=too-complex,line-too-long
 
     context = {
         'variables': variables,
@@ -59,7 +58,7 @@ def build_view_context_for_question(metadata, answer_store, current_location, va
     answer_ids = []
     for question in rendered_block.get('questions'):
         if question.get('titles'):
-            context['question_titles'][question['id']] = get_title_from_titles(metadata, answer_store,
+            context['question_titles'][question['id']] = get_title_from_titles(metadata, schema, answer_store,
                                                                                question['titles'],
                                                                                current_location.group_instance)
         for answer in question['answers']:
@@ -90,31 +89,31 @@ def build_view_context_for_question(metadata, answer_store, current_location, va
     return context
 
 
-def build_view_context_for_summary(metadata, answer_store, schema_context, block_type, variables, csrf_token,
+def build_view_context_for_summary(metadata, schema, answer_store, schema_context, block_type, variables, csrf_token,
                                    current_location):
     section_list = []
     title = None
 
     if block_type == 'Summary':
-        section_list = renderer.render(g.schema.json, **schema_context)['sections']
+        section_list = renderer.render(schema.json, **schema_context)['sections']
         title = _('Your answers')
 
     elif block_type == 'SectionSummary':
-        for section in g.schema.json['sections']:
+        for section in schema.json['sections']:
             group_ids = (group['id'] for group in section['groups'])
             if current_location.group_id in group_ids:
                 section_list = [renderer.render(section, **schema_context)]
                 title = section['title']
                 break
 
-    summary_rendering_context = build_summary_rendering_context(g.schema, section_list, answer_store, metadata)
+    summary_rendering_context = build_summary_rendering_context(schema, section_list, answer_store, metadata)
 
     context = {
         'csrf_token': csrf_token,
         'summary': {
             'groups': summary_rendering_context,
             'answers_are_editable': True,
-            'is_view_submission_response_enabled': is_view_submitted_response_enabled(g.schema.json),
+            'is_view_submission_response_enabled': is_view_submitted_response_enabled(schema.json),
             'summary_type': block_type,
             'title': title,
         },

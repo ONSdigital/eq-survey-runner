@@ -50,7 +50,7 @@ class PathFinder:
                 this_location = Location(group['id'], 0, first_block_in_group)
 
             if 'skip_conditions' in group:
-                if evaluate_skip_conditions(group['skip_conditions'], self.metadata, self.answer_store):
+                if evaluate_skip_conditions(group['skip_conditions'], self.schema, self.metadata, self.answer_store):
                     continue
 
             no_of_repeats = get_number_of_repeats(group, self.schema, path, self.answer_store)
@@ -79,7 +79,7 @@ class PathFinder:
         for block in group['blocks']:
             skip_conditions = block.get('skip_conditions')
             if skip_conditions and evaluate_skip_conditions(
-                    skip_conditions, self.metadata, self.answer_store, instance_idx):
+                    skip_conditions, self.schema, self.metadata, self.answer_store, instance_idx):
                 continue
 
             yield {
@@ -128,7 +128,7 @@ class PathFinder:
 
     def _evaluate_routing_rules(self, this_location, blocks, block, block_index, path):
         for rule in filter(is_goto_rule, block['routing_rules']):
-            should_goto = evaluate_goto(rule['goto'], self.metadata, self.answer_store, this_location.group_instance)
+            should_goto = evaluate_goto(rule['goto'], self.schema, self.metadata, self.answer_store, this_location.group_instance)
 
             if should_goto:
                 return self._follow_routing_rule(this_location, rule, blocks, block_index, path)

@@ -261,7 +261,7 @@ class TestCompleteness(AppContextTestCase): # pylint: disable=too-many-public-me
 
         progress = Completeness(
             schema, AnswerStore(), completed_blocks, routing_path, metadata={})
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+        with patch('app.questionnaire.path_finder.evaluate_skip_conditions', return_value=True):
             progress_value = progress.get_state_for_group('payment-details')
         self.assertEqual(Completeness.SKIPPED, progress_value)
 
@@ -442,7 +442,7 @@ class TestCompleteness(AppContextTestCase): # pylint: disable=too-many-public-me
         progress = Completeness(
             schema, answer_store, completed_blocks, routing_path, metadata={})
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+        with patch('app.questionnaire.path_finder.evaluate_goto', return_value=True):
             invalid_location = progress.get_first_incomplete_location_in_survey()
         self.assertEqual(expected_location, invalid_location)
 
@@ -487,5 +487,5 @@ class TestCompleteness(AppContextTestCase): # pylint: disable=too-many-public-me
         ]
         progress = Completeness(
             schema, AnswerStore(), completed_blocks, routing_path, metadata={})
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+        with patch('app.questionnaire.path_finder.evaluate_goto', return_value=False):
             self.assertFalse(progress.get_first_incomplete_location_in_survey())

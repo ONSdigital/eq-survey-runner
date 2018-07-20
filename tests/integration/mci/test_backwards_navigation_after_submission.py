@@ -1,11 +1,13 @@
 from tests.integration.mci import mci_test_urls
-from .test_happy_path import TestHappyPath
+from tests.integration.integration_test_case import IntegrationTestCase
+
+from .test_happy_path import HappyPathHelperMixin
 
 
-class TestBackwardsNavigationAfterSubmission(TestHappyPath):
+class TestBackwardsNavigationAfterSubmission(IntegrationTestCase, HappyPathHelperMixin):
 
     def test_backwards_navigation_205(self):
-        self.test_happy_path_205()
+        self._happy_path('0205', 'test')
         self.backwards_navigation()
 
     def backwards_navigation(self):

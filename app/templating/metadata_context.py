@@ -1,6 +1,7 @@
 from app.libs.utils import convert_tx_id
 from app.templating.schema_context import json_and_html_safe
 from app.templating.schema_context import build_schema_metadata
+from app.utilities.schema import load_schema_from_metadata
 
 
 def build_metadata_context(metadata):
@@ -17,7 +18,9 @@ def build_metadata_context(metadata):
         'tx_id': json_and_html_safe(metadata['tx_id'])
     }
 
-    eq_context.update(build_schema_metadata(metadata))
+    schema = load_schema_from_metadata(metadata)
+
+    eq_context.update(build_schema_metadata(metadata, schema))
 
     return eq_context
 

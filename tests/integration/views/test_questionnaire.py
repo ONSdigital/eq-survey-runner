@@ -523,18 +523,18 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
 
     def test_build_view_context_for_question(self):
         # Given
-        g.schema = load_schema_from_params('test', 'titles')
+        g.schema = schema = load_schema_from_params('test', 'titles')
         block = g.schema.get_block('single-title-block')
         full_routing_path = [Location('group', 0, 'single-title-block'),
                              Location('group', 0, 'who-is-answer-block'),
                              Location('group', 0, 'multiple-question-versions-block'),
                              Location('group', 0, 'Summary')]
-        schema_context = _get_schema_context(full_routing_path, 0, {}, AnswerStore())
+        schema_context = _get_schema_context(full_routing_path, 0, {}, AnswerStore(), schema)
         current_location = Location('group', 0, 'single-title-block')
 
         # When
         with self._application.test_request_context():
-            question_view_context = build_view_context('Question', {}, AnswerStore(), schema_context, block,
+            question_view_context = build_view_context('Question', {}, schema, AnswerStore(), schema_context, block,
                                                        current_location, form=None)
 
         # Then

@@ -19,7 +19,7 @@ class TestConfirmationPage(AppContextTestCase):
         schema = load_schema_from_params('0', 'rogue_one')
         navigator = PathFinder(schema, answer_store, {}, [])
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+        with patch('app.questionnaire.rules.evaluate_when_rules', return_value=True):
             next_location = navigator.get_next_location(Location('rogue-one', 0, 'film-takings'))
 
         self.assertEqual('summary', next_location.block_id)

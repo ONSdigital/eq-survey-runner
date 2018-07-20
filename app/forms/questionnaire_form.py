@@ -256,7 +256,7 @@ class QuestionnaireForm(FlaskForm):
         return None
 
 
-def get_answer_fields(question, data, error_messages, answer_store, metadata, group_instance):
+def get_answer_fields(question, data, error_messages, schema, answer_store, metadata, group_instance):
     answer_fields = {}
     for answer in question.get('answers', []):
         if 'parent_answer_id' in answer and answer['parent_answer_id'] in data and \
@@ -264,7 +264,7 @@ def get_answer_fields(question, data, error_messages, answer_store, metadata, gr
             answer['mandatory'] = \
                 next(a['mandatory'] for a in question['answers'] if a['id'] == answer['parent_answer_id'])
 
-        name = answer.get('label') or get_question_title(question, answer_store, metadata, group_instance)
+        name = answer.get('label') or get_question_title(question, answer_store, schema, metadata, group_instance)
         answer_fields[answer['id']] = get_field(answer, name, error_messages, answer_store, metadata)
     return answer_fields
 
@@ -305,6 +305,7 @@ def generate_form(schema, block_json, answer_store, metadata, group_instance, da
             question,
             formdata if formdata is not None else data,
             schema.error_messages,
+            schema,
             answer_store,
             metadata,
             group_instance

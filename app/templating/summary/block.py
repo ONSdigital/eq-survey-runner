@@ -6,12 +6,12 @@ from app.templating.summary.question import Question
 
 class Block:
 
-    def __init__(self, block_schema, group_id, answer_store, metadata):
+    def __init__(self, block_schema, group_id, answer_store, metadata, schema):
         self.id = block_schema['id']
         self.title = block_schema.get('title')
         self.number = block_schema.get('number')
         self.link = self._build_link(block_schema, group_id, metadata)
-        self.questions = self._build_questions(block_schema, answer_store, metadata)
+        self.questions = self._build_questions(block_schema, answer_store, metadata, schema)
 
     @staticmethod
     def _build_link(block_schema, group_id, metadata):
@@ -24,12 +24,12 @@ class Block:
                        block_id=block_schema['id'])
 
     @staticmethod
-    def _build_questions(block_schema, answer_store, metadata):
+    def _build_questions(block_schema, answer_store, metadata, schema):
         questions = []
         for question_schema in block_schema.get('questions', []):
-            is_skipped = evaluate_skip_conditions(question_schema.get('skip_conditions'), metadata, answer_store)
+            is_skipped = evaluate_skip_conditions(question_schema.get('skip_conditions'), schema, metadata, answer_store)
             if not is_skipped:
-                question = Question(question_schema, answer_store, metadata).serialize()
+                question = Question(question_schema, answer_store, metadata, schema).serialize()
                 questions.append(question)
         return questions
 

@@ -6,14 +6,14 @@ from app.templating.utils import get_question_title
 
 class Question:
 
-    def __init__(self, question_schema, answer_store, metadata):
+    def __init__(self, question_schema, answer_store, metadata, schema):
         self.id = question_schema['id']
         self.type = question_schema['type']
 
         answer_schemas = iter(question_schema['answers'])
 
         # Using group instance as 0 for now as summary rendering context only has knowledge of current locations group instance (i.e. 0)
-        self.title = get_question_title(question_schema, answer_store, metadata, group_instance=0) or question_schema['answers'][0]['label']
+        self.title = get_question_title(question_schema, answer_store, schema, metadata, group_instance=0) or question_schema['answers'][0]['label']
         self.number = question_schema.get('number', None)
         self.answers = self._build_answers(answer_store, question_schema, answer_schemas)
 
