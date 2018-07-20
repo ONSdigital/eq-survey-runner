@@ -1011,3 +1011,32 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         self.assertEqual(path_finder.completed_blocks, [completed_blocks[0]])
         self.assertEqual(len(path_finder.answer_store.answers), 1)
+
+    def test_route_based_on_answer_count(self):
+        schema = load_schema_from_params('test', 'routing_answer_count')
+
+        answer_group_id = 'first-name'
+
+        answer_store = AnswerStore({})
+        answer_store.add(Answer(
+            answer_id=answer_group_id,
+            answer_instance=0,
+            value='alice',
+        ))
+        answer_store.add(Answer(
+            answer_id=answer_group_id,
+            answer_instance=1,
+            value='bob',
+        ))
+
+        completed_blocks = [
+            Location('multiple-questions-group', 0, 'household-composition')
+        ]
+        expected_next_location = Location('group-equal-2', 0, 'group-equal-2-block')
+        should_not_be_present = Location('group-less-than-2', 0, 'group-less-than-2-block')
+
+        path_finder = PathFinder(schema, answer_store, metadata={}, completed_blocks=completed_blocks)
+        path = path_finder.build_path()
+
+        self.assertNotIn(should_not_be_present, path)
+        self.assertIn(expected_next_location, path)

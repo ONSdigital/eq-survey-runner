@@ -184,6 +184,8 @@ def evaluate_when_rules(when_rules, metadata, answer_store, group_instance):
             value = get_answer_store_value(when_rule['id'], answer_store, group_instance)
         elif 'meta' in when_rule:
             value = get_metadata_value(metadata, when_rule['meta'])
+        elif 'answer_count' in when_rule:
+            value = answer_store.filter(answer_ids=[when_rule['answer_count']]).count()
         else:
             return True
 
