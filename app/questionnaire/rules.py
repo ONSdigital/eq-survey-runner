@@ -110,17 +110,19 @@ def evaluate_goto(goto_rule, metadata, answer_store, group_instance):
 def evaluate_repeat(repeat_rule, answer_store, answer_ids_on_path):
     """
     Returns the number of times repetition should occur based on answers
-    :param repeat_rule:
-    :param answer_store:
-    :param max_repeats:
-    :return: The number of times to repeat
     """
-    repeat_functions = {
-        'answer_value': _get_answer_value,
-        'answer_count': len,
-        'answer_count_minus_one': lambda f: min(_get_answer_count(f), MAX_REPEATS - 1),
-    }
-    if 'answer_id' in repeat_rule and 'type' in repeat_rule:
+    if repeat_rule['type'] == 'until':
+        when = repeat_rule['when'][0]
+        answers = list(answer_store.filter(answer_ids=[when['id']]))
+        stop = bool(answers and evaluate_rule(when, answers[-1]['value']))
+        no_of_repeats = len(answers) + (0 if stop else 1)
+    else:
+        repeat_functions = {
+            'answer_value': _get_answer_value,
+            'answer_count': lambda f: _get_answer_count(f, repeat_rule),
+            'answer_count_minus_one': lambda f: min(_get_answer_count_minus_one(f), MAX_REPEATS - 1)
+        }
+
         repeat_index = repeat_rule['answer_id']
 
         answers = []
@@ -131,19 +133,23 @@ def evaluate_repeat(repeat_rule, answer_store, answer_ids_on_path):
         repeat_function = repeat_functions[repeat_rule['type']]
         no_of_repeats = repeat_function(answers)
 
-        if no_of_repeats > MAX_REPEATS:
-            logger.warning('Excessive number of repeats found [%s] capping at [%s]', no_of_repeats, MAX_REPEATS)
-            no_of_repeats = MAX_REPEATS
+    if no_of_repeats > MAX_REPEATS:
+        logger.warning('Excessive number of repeats found [%s] capping at [%s]', no_of_repeats, MAX_REPEATS)
+        no_of_repeats = MAX_REPEATS
 
-        return no_of_repeats
+    return no_of_repeats
 
 
 def _get_answer_value(filtered_answers):
     return int(filtered_answers[0]['value'] if len(filtered_answers) == 1 and filtered_answers[0]['value'] else 0)
 
 
-def _get_answer_count(filtered_answers):
-    return len(filtered_answers) - 1 if len(filtered_answers) > 0 else 0  # pylint: disable=len-as-condition
+def _get_answer_count_minus_one(filtered_answers):
+    return _get_answer_count(filtered_answers, {'offset': -1})
+
+
+def _get_answer_count(filtered_answers, repeat_rule):
+    return max(len(filtered_answers) + repeat_rule.get('offset', 0), 0)
 
 
 def evaluate_skip_conditions(skip_conditions, metadata, answer_store, group_instance=0):
