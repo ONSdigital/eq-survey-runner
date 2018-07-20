@@ -2,7 +2,6 @@ import logging
 import re
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from flask import g
 
 MAX_REPEATS = 25
 

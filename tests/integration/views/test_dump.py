@@ -1,5 +1,7 @@
 import json
 
+from werkzeug.datastructures import MultiDict
+
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -204,3 +206,25 @@ class TestDumpSubmission(IntegrationTestCase):
         # Enable full dictionary diffs on test failure
         self.maxDiff = None
         self.assertDictEqual(actual, expected)
+
+    def test_dump_submission_repeating_groups(self):
+        """Regression test to ensure that surveys with repeating groups can be correctly dumped"""
+        self.launchSurvey('test', 'repeating_household_routing', roles=['dumper'])
+
+        form_data = MultiDict()
+        form_data.add('household-0-first-name', 'Joe')
+        form_data.add('household-0-middle-names', '')
+        form_data.add('household-0-last-name', 'Bloggs')
+        form_data.add('household-1-first-name', 'Jane')
+        form_data.add('household-1-middle-names', '')
+        form_data.add('household-1-last-name', 'Doe')
+        self.post(form_data)
+
+        # Check that's submitted correctly, else we don't have `group_instance > 0` on any answers
+        self.assertInPage('Is that everyone?')
+
+        # And I attempt to dump the submission payload
+        self.get('/dump/submission')
+
+        # Then I get a 200 OK response
+        self.assertStatusOK()
