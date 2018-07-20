@@ -93,17 +93,18 @@ def convert_to_datetime(value):
     return datetime.strptime(value, date_format) if value else None
 
 
-def evaluate_goto(goto_rule, metadata, answer_store, group_instance):
+def evaluate_goto(goto_rule, schema, metadata, answer_store, group_instance):
     """
     Determine whether a goto rule will be satisfied based on a given answer
     :param goto_rule: goto rule to evaluate
+    :param schema: survey schema
     :param metadata: metadata for evaluating rules with metadata conditions
     :param answer_store: store of answers to evaluate
     :param group_instance: when evaluating a when rule for a repeating group, defaults to 0 for non-repeating groups
     :return: True if the when condition has been met otherwise False
     """
     if 'when' in goto_rule.keys():
-        return evaluate_when_rules(goto_rule['when'], metadata, answer_store, group_instance)
+        return evaluate_when_rules(goto_rule['when'], schema, metadata, answer_store, group_instance)
     return True
 
 
@@ -146,10 +147,11 @@ def _get_answer_count(filtered_answers):
     return len(filtered_answers) - 1 if len(filtered_answers) > 0 else 0  # pylint: disable=len-as-condition
 
 
-def evaluate_skip_conditions(skip_conditions, metadata, answer_store, group_instance=0):
+def evaluate_skip_conditions(skip_conditions, schema, metadata, answer_store, group_instance=0):
     """
     Determine whether a skip condition will be satisfied based on a given answer
     :param skip_conditions: skip_conditions rule to evaluate
+    :param schema: survey schema
     :param metadata: metadata for evaluating rules with metadata conditions
     :param answer_store: store of answers to evaluate
     :param group_instance: when evaluating a when rule for a repeating group, defaults to 0 for non-repeating groups
@@ -161,16 +163,17 @@ def evaluate_skip_conditions(skip_conditions, metadata, answer_store, group_inst
         return False
 
     for when in skip_conditions:
-        condition = evaluate_when_rules(when['when'], metadata, answer_store, group_instance)
+        condition = evaluate_when_rules(when['when'], schema, metadata, answer_store, group_instance)
         if condition is True:
             return True
     return False
 
 
-def evaluate_when_rules(when_rules, metadata, answer_store, group_instance):
+def evaluate_when_rules(when_rules, schema, metadata, answer_store, group_instance):
     """
     Whether the skip condition has been met.
     :param when_rules: when rules to evaluate
+    :param schema: survey schema
     :param metadata: metadata for evaluating rules with metadata conditions
     :param answer_store: store of answers to evaluate
     :param group_instance: when evaluating a when rule for a repeating group
@@ -179,7 +182,7 @@ def evaluate_when_rules(when_rules, metadata, answer_store, group_instance):
     """
     for when_rule in when_rules:
         if 'id' in when_rule:
-            if group_instance > 0 and not _answer_is_in_repeating_group(when_rule['id']):
+            if group_instance > 0 and not schema.answer_is_in_repeating_group(when_rule['id']):
                 group_instance = 0
             value = get_answer_store_value(when_rule['id'], answer_store, group_instance)
         elif 'meta' in when_rule:
@@ -250,7 +253,3 @@ def _contains_in_dict(metadata, keys):
         return _contains_in_dict(metadata[key], rest)
 
     return keys in metadata
-
-
-def _answer_is_in_repeating_group(answer_id):
-    return g.schema.answer_is_in_repeating_group(answer_id)
