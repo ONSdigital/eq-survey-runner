@@ -35,5 +35,5 @@ insert_final_newline = true
 [*.{json}]
 insert_final_newline = false
 
-[*.{js,json,scss}]
+[*.{js,scss,html}]
 indent_size = 2
