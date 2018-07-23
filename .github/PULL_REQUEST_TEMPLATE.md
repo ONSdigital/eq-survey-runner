@@ -6,5 +6,5 @@ Describe the steps required to test the changes (include screenshots if appropri
 
 ### Checklist
 
-* [  ] New static content marked up for translation
-* [  ] Newly defined schema content included in eq-translations repo
+* [ ] New static content marked up for translation
+* [ ] Newly defined schema content included in eq-translations repo
