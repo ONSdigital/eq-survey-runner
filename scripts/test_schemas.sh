@@ -6,8 +6,8 @@ if [ "$1" == "--local" ] || [ "$2" == "--local" ]; then
 fi
 
 if [ "$run_docker" == true ]; then
-    docker pull onsdigital/eq-schema-validator:add_repeat_until
-    validator="$(docker run -d -p 5001:5000 onsdigital/eq-schema-validator:add_repeat_until)"
+    docker pull onsdigital/eq-schema-validator
+    validator="$(docker run -d -p 5001:5000 onsdigital/eq-schema-validator)"
     sleep 3
 fi
 
