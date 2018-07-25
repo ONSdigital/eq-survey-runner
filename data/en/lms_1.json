@@ -24,6 +24,9 @@
         },
         "region_code": {
             "validator": "string"
+        },
+        "display_address": {
+            "validator": "string"
         }
     },
     "sections": [{
@@ -35,7 +38,7 @@
                     "blocks": [{
                             "type": "Interstitial",
                             "id": "about-household",
-                            "title": "About you and people who live at {{ metadata['ru_name'] }}",
+                            "title": "About you and people who live at {{ metadata['display_address'] }}",
                             "description": "In this section, we’re going to ask about you, and the people that live with you.",
                             "content": [{
                                 "title": "Information you need",
@@ -49,7 +52,7 @@
                             "type": "Question",
                             "id": "address-check-block",
                             "title": "Your address:",
-                            "description": "{{metadata['ru_name']}}",
+                            "description": "{{metadata['display_address']}}",
                             "questions": [{
                                 "id": "address-check-question",
                                 "title": "Is the address above your main residence?",
@@ -101,7 +104,7 @@
                         {
                             "type": "Question",
                             "id": "address-type-check-block",
-                            "title": "You said {{ metadata['ru_name'] }} is not your main residence",
+                            "title": "You said {{ metadata['display_address'] }} is not your main residence",
                             "description": "",
                             "questions": [{
                                 "id": "address-type-check-question",
@@ -158,7 +161,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "household-composition-question",
-                                "title": "What are the names of everyone who lives in the <em>{{ metadata['ru_name'] }}</em> household?",
+                                "title": "What are the names of everyone who lives in the <em>{{ metadata['display_address'] }}</em> household?",
                                 "type": "RepeatingAnswer",
                                 "answers": [{
                                         "id": "first-name",
