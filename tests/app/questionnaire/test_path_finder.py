@@ -653,6 +653,124 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
             self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
+    def test_repeating_group_block_skip_correct_if_independent_answer_is_not_repeating_but_causes_a_skip(self):
+        """ tests blocks are correctly added to path in the case where the blocks in a repeating group have
+        skip conditions and those skip conditions are dependant on a non repeating answer which causes a skip
+        condition to return true.
+        """
+
+        independent_answer = '3'
+
+        expected_path = [
+            Location('about-household-group', 0, 'household-composition'),
+            Location('independent-answer-group', 0, 'non-repeating-question-block'),
+            Location('questionnaire-completed', 0, 'confirmation')
+        ]
+
+        schema = load_schema_from_params('test', 'skip_conditions_from_repeating_group_based_on_non_repeating_answer')
+        answer_store = AnswerStore()
+
+        # Set up some first names
+        answer_store.add(Answer(answer_id='first-name', value='aaa', group_instance=0))
+        answer_store.add(Answer(answer_id='first-name', value='bbb', group_instance=1))
+        answer_store.add(Answer(answer_id='first-name', value='ccc', group_instance=2))
+
+        # Set up the independent answer
+        answer_store.add(Answer(answer_id='an-independent-answer', value=independent_answer, group_instance=0))
+
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            sut = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
+            sut_path = sut.get_full_routing_path()
+
+            # validate that path returned from path finder matches expected path
+
+            self.assertEqual(expected_path, sut_path)
+
+    def test_repeating_group_block_skip_correct_if_independent_answer_is_not_repeating_but_does_not_cause_a_skip(self):
+        """ tests blocks are correctly added to path in the case where the blocks in a repeating group have
+        skip conditions and those skip conditions are dependant on a non repeating answer which causes a skip
+        condition to return false.
+        """
+
+        independent_answer = 2
+
+        expected_path = [
+            Location('about-household-group', 0, 'household-composition'),
+            Location('independent-answer-group', 0, 'non-repeating-question-block'),
+            Location('dependant-group', 0, 'additional-question-block'),
+            Location('dependant-group', 1, 'additional-question-block'),
+            Location('dependant-group', 2, 'additional-question-block'),
+            Location('questionnaire-completed', 0, 'confirmation')
+        ]
+
+        schema = load_schema_from_params('test',
+                                         'skip_conditions_from_repeating_group_based_on_non_repeating_answer')
+        answer_store = AnswerStore()
+
+        # Set up some first names
+        answer_store.add(Answer(answer_id='first-name', value='aaa', group_instance=0))
+        answer_store.add(Answer(answer_id='first-name', value='bbb', group_instance=1))
+        answer_store.add(Answer(answer_id='first-name', value='ccc', group_instance=2))
+
+        # Set up the independent answer
+        answer_store.add(Answer(answer_id='an-independent-answer', value=independent_answer, group_instance=0))
+
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            sut = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
+            sut_path = sut.get_full_routing_path()
+
+            # validate that path returned from path finder matches expected path
+
+            self.assertEqual(expected_path, sut_path)
+
+    def test_repeating_group_block_skip_correct_if_independent_answer_is_repeating(self):
+        """ tests blocks are correctly added to path in the case where the blocks have
+        skip conditions and those skip conditions are dependant on a repeating answer
+        tests various combinations of independent answers being set , since we saw different
+        behaviours for group_instance 0 as it was the default"""
+
+        param_list = [(0, 2), (1, 3)]
+
+        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=True):
+            for first_group_instance, second_group_instance in param_list:
+
+                with self.subTest(first_group_instance=first_group_instance,
+                                  second_group_instance=second_group_instance):
+                    expected_path = [
+                        Location('about-household-group', 0, 'household-composition'),
+                        Location('household-member-group', 0, 'date-of-birth'),
+                        Location('household-member-group', 1, 'date-of-birth'),
+                        Location('household-member-group', 2, 'date-of-birth'),
+                        Location('household-member-group', 3, 'date-of-birth'),
+                        Location('dependant-group', first_group_instance, 'additional-question-block'),
+                        Location('dependant-group', second_group_instance, 'additional-question-block'),
+                        Location('questionnaire-completed', 0, 'confirmation')
+                    ]
+
+                    schema = load_schema_from_params('test', 'skip_conditions_on_blocks_repeating_group')
+                    answer_store = AnswerStore()
+
+                    # Set up some first names
+
+                    answer_store.add(Answer(answer_id='first-name', value='aaa', group_instance=0))
+                    answer_store.add(Answer(answer_id='first-name', value='bbb', group_instance=1))
+                    answer_store.add(Answer(answer_id='first-name', value='ccc', group_instance=2))
+                    answer_store.add(Answer(answer_id='first-name', value='ddd', group_instance=3))
+
+                    # Now set a date of birth for the two group instances
+
+                    answer_store.add(Answer(answer_id='date-of-birth-answer', value='01-01-1980',
+                                            group_instance=first_group_instance))
+                    answer_store.add(Answer(answer_id='date-of-birth-answer', value='01-01-1980',
+                                            group_instance=second_group_instance))
+
+                    sut = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
+                    sut_path = sut.get_full_routing_path()
+
+                    # validate that path returned from path finder matches expected path
+
+                    self.assertEqual(expected_path, sut_path)
+
     def test_excessive_repeating_groups_conditional_location_path(self):
         with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
             schema = load_schema_from_params('test', 'repeating_and_conditional_routing')
@@ -819,13 +937,15 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
                                 value='Yes'))
 
         # When
-        path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
+        sut = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
 
         # Then
-        expected_next_location = Location('summary-group', 0, 'summary')
+        expected_next_location = Location('do-you-want-to-skip-group', 0, 'a-non-skipped-block')
 
         with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertEqual(path_finder.get_next_location(current_location=current_location), expected_next_location)
+            sut_location = sut.get_next_location(current_location=current_location)
+
+            self.assertEqual(sut_location, expected_next_location)
 
     def test_get_next_location_should_skip_group(self):
         # Given
