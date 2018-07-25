@@ -45,8 +45,8 @@ class PathFinder:
         first_groups = self._get_first_group_in_section()
 
         for group in self.schema.groups:
+            first_block_in_group = self.schema.get_first_block_id_for_group(group['id'])
             if not this_location:
-                first_block_in_group = self.schema.get_first_block_id_for_group(group['id'])
                 this_location = Location(group['id'], 0, first_block_in_group)
 
             if 'skip_conditions' in group:
@@ -55,15 +55,23 @@ class PathFinder:
 
             no_of_repeats = get_number_of_repeats(group, self.schema, path, self.answer_store)
 
+            first_group_instance_index = None
             for instance_idx in range(0, no_of_repeats):
-                group_blocks = self._build_blocks_for_group(group, instance_idx)
+                group_blocks = list(self._build_blocks_for_group(group, instance_idx))
                 blocks += group_blocks
 
-            if group['id'] in first_groups:
-                this_location = Location(group['id'], 0, group['blocks'][0]['id'])
+                if group_blocks and first_group_instance_index is None:
+                    # get the group instance of the first instance of a block in this group that has not been skipped
+                    first_group_instance_index = group_blocks[0]['group_instance']
 
-            if blocks:
-                path, block_index = self._build_path_within_group(blocks, block_index, this_location, path)
+            all_blocks_skipped = first_group_instance_index is None
+
+            if not all_blocks_skipped:
+                if group['id'] in first_groups:
+                    this_location = Location(group['id'], first_group_instance_index, first_block_in_group)
+
+                if blocks:
+                    path, block_index = self._build_path_within_group(blocks, block_index, this_location, path)
 
         return path
 
@@ -71,7 +79,7 @@ class PathFinder:
         for block in group['blocks']:
             skip_conditions = block.get('skip_conditions')
             if skip_conditions and evaluate_skip_conditions(
-                    skip_conditions, self.metadata, self.answer_store):
+                    skip_conditions, self.metadata, self.answer_store, instance_idx):
                 continue
 
             yield {

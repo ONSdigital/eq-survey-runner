@@ -78,6 +78,23 @@
                                 "value": "Yes"
                             }]
                         }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "a-non-skipped-block",
+                        "description": "an additional question within the same group",
+                        "title": "Additional Question",
+                        "questions": [{
+                            "id": "will-not-be-skipped-question",
+                            "title": "Always ask this question",
+                            "type": "General",
+                            "answers": [{
+                                "id": "will-not-be-skipped-answer",
+                                "label": "never skipped",
+                                "mandatory": true,
+                                "type": "TextArea"
+                            }]
+                        }]
                     }
                 ]
             },
