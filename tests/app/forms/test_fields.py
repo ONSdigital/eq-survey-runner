@@ -151,7 +151,7 @@ class TestFields(AppContextTestCase):
             }
         }
 
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
                                       self.metadata)
 
@@ -176,7 +176,7 @@ class TestFields(AppContextTestCase):
             }
         }
 
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
                                       self.metadata)
 
@@ -201,7 +201,7 @@ class TestFields(AppContextTestCase):
             }
         }
 
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
                                       self.metadata)
 
@@ -227,7 +227,7 @@ class TestFields(AppContextTestCase):
             }
         }
 
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
                                       self.metadata)
 

@@ -25,7 +25,7 @@ class TestAuthenticator(AppContextTestCase): # pylint: disable=too-many-public-m
         self.session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
     def test_check_session_with_user_id_in_session(self):
-        with self.test_request_context('/status'):
+        with self.app_request_context('/status'):
             with patch('app.authentication.authenticator.get_session_store', return_value=self.session_store):
                 # Given
                 self.session_store.create('eq_session_id', 'user_id', self.session_data)
@@ -39,7 +39,7 @@ class TestAuthenticator(AppContextTestCase): # pylint: disable=too-many-public-m
                 self.assertEqual(user.user_ik, 'user_ik')
 
     def test_check_session_with_no_user_id_in_session(self):
-        with self.test_request_context('/status'):
+        with self.app_request_context('/status'):
             with patch('app.authentication.authenticator.get_session_store', return_value=None):
                 # When
                 user = load_user()
@@ -48,7 +48,7 @@ class TestAuthenticator(AppContextTestCase): # pylint: disable=too-many-public-m
                 self.assertIsNone(user)
 
     def test_load_user(self):
-        with self.test_request_context('/status'):
+        with self.app_request_context('/status'):
             with patch('app.authentication.authenticator.get_session_store', return_value=self.session_store):
                 # Given
                 self.session_store.create('eq_session_id', 'user_id', self.session_data)
@@ -62,7 +62,7 @@ class TestAuthenticator(AppContextTestCase): # pylint: disable=too-many-public-m
                 self.assertEqual(user.user_ik, 'user_ik')
 
     def test_request_load_user(self):
-        with self.test_request_context('/status'):
+        with self.app_request_context('/status'):
             with patch('app.authentication.authenticator.get_session_store', return_value=self.session_store):
                 # Given
                 self.session_store.create('eq_session_id', 'user_id', self.session_data)

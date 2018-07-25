@@ -132,7 +132,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         date = '2017-01-01'
 
         # When
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             format_value = format_date(self.autoescape_context, date)
 
         # Then
@@ -143,7 +143,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         date = '2017-01'
 
         # When
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             format_value = format_date(self.autoescape_context, date)
 
         # Then
@@ -154,7 +154,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         date = [Markup('2017-01')]
 
         # When
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             format_value = format_date(self.autoescape_context, date)
 
         # Then
@@ -186,7 +186,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         date_format = "d MMMM YYYY 'at' HH:mm"
 
         # When
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             format_value = format_datetime(self.autoescape_context, date_time, date_format)
 
         # Then
@@ -198,7 +198,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         date_format = "d MMMM YYYY 'at' HH:mm:ss"
 
         # When
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             format_value = format_datetime(self.autoescape_context, date_time, date_format)
 
         # Then
@@ -237,7 +237,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
                     (None, '2017-12-24', '24 December 2017')]
 
         # When
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             for triple in datelist:
                 date1 = triple[0]
                 date2 = triple[1]
@@ -283,7 +283,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         end_date = '2017-01-31'
 
         # When
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             format_value = format_date_range(self.autoescape_context, start_date, end_date)
 
         # Then
@@ -294,7 +294,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         start_date = '2017-01-01'
 
         # When
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             format_value = format_date_range(self.autoescape_context, start_date)
 
         # Then
@@ -455,7 +455,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         self.assertEqual(format_unit('volume-megaliter', 100), '100 Ml')
 
     def test_format_year_month_duration(self):
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             self.assertEqual(format_duration({'years': 5, 'months': 4}), '5 years 4 months')
             self.assertEqual(format_duration({'years': 5, 'months': 0}), '5 years')
             self.assertEqual(format_duration({'years': 0, 'months': 4}), '4 months')
@@ -463,13 +463,13 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
             self.assertEqual(format_duration({'years': 0, 'months': 0}), '0 months')
 
     def test_format_year_duration(self):
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             self.assertEqual(format_duration({'years': 5}), '5 years')
             self.assertEqual(format_duration({'years': 1}), '1 year')
             self.assertEqual(format_duration({'years': 0}), '0 years')
 
     def test_format_month_duration(self):
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             self.assertEqual(format_duration({'months': 5}), '5 months')
             self.assertEqual(format_duration({'months': 1}), '1 month')
             self.assertEqual(format_duration({'months': 0}), '0 months')

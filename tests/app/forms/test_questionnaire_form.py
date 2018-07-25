@@ -18,7 +18,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
         return any(a_id == answer_id and str(msg) in ordered_errors for a_id, ordered_errors in mapped_errors)
 
     def test_form_ids_match_block_answer_ids(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', '0102')
 
             block_json = schema.get_block('reporting-period')
@@ -29,7 +29,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 self.assertTrue(hasattr(form, answer['id']))
 
     def test_form_date_range_populates_data(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', '0102')
 
             block_json = schema.get_block('reporting-period')
@@ -53,7 +53,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             self.assertEqual(form.data, expected_form_data)
 
     def test_date_range_matching_dates_raises_question_error(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', '0102')
 
             block_json = schema.get_block('reporting-period')
@@ -80,7 +80,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                              ['INVALID_DATE_RANGE'])
 
     def test_date_range_to_precedes_from_raises_question_error(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', '0102')
 
             block_json = schema.get_block('reporting-period')
@@ -107,7 +107,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                              ['INVALID_DATE_RANGE'], AnswerStore())
 
     def test_date_range_too_large_period_raises_question_error(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'date_validation_range')
 
             block_json = schema.get_block('date-range-block')
@@ -134,7 +134,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                              ['DATE_PERIOD_TOO_LARGE'] % dict(max='1 month, 20 days'), AnswerStore())
 
     def test_date_range_too_small_period_raises_question_error(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'date_validation_range')
 
             block_json = schema.get_block('date-range-block')
@@ -161,7 +161,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                              ['DATE_PERIOD_TOO_SMALL'] % dict(min='23 days'), AnswerStore())
 
     def test_date_range_valid_period(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'date_validation_range')
 
             block_json = schema.get_block('date-range-block')
@@ -186,7 +186,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             self.assertEqual(form.data, expected_form_data)
 
     def test_date_combined_single_validation(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'date_validation_combined')
 
             block_json = schema.get_block('date-range-block')
@@ -221,7 +221,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                              schema.error_messages['SINGLE_DATE_PERIOD_TOO_LATE'] % dict(max='14 March 2017'))
 
     def test_date_combined_range_too_small_validation(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'date_validation_combined')
 
             block_json = schema.get_block('date-range-block')
@@ -253,7 +253,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                              schema.error_messages['DATE_PERIOD_TOO_SMALL'] % dict(min='10 days'))
 
     def test_date_combined_range_too_large_validation(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'date_validation_combined')
 
             block_json = schema.get_block('date-range-block')
@@ -285,7 +285,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                              schema.error_messages['DATE_PERIOD_TOO_LARGE'] % dict(max='50 days'))
 
     def test_date_mm_yyyy_combined_single_validation(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'date_validation_mm_yyyy_combined')
 
             block_json = schema.get_block('date-range-block')
@@ -318,7 +318,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                              schema.error_messages['SINGLE_DATE_PERIOD_TOO_LATE'] % dict(max='June 2017'))
 
     def test_date_mm_yyyy_combined_range_too_small_validation(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'date_validation_mm_yyyy_combined')
 
             block_json = schema.get_block('date-range-block')
@@ -348,7 +348,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                              schema.error_messages['DATE_PERIOD_TOO_SMALL'] % dict(min='2 months'))
 
     def test_date_mm_yyyy_combined_range_too_large_validation(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'date_validation_mm_yyyy_combined')
 
             block_json = schema.get_block('date-range-block')
@@ -378,7 +378,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                              schema.error_messages['DATE_PERIOD_TOO_LARGE'] % dict(max='3 months'))
 
     def test_date_yyyy_combined_single_validation(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'date_validation_yyyy_combined')
 
             block_json = schema.get_block('date-range-block')
@@ -403,7 +403,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                              schema.error_messages['SINGLE_DATE_PERIOD_TOO_LATE'] % dict(max='2021'))
 
     def test_date_yyyy_combined_range_too_small_validation(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'date_validation_yyyy_combined')
 
             block_json = schema.get_block('date-range-block')
@@ -425,7 +425,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                              schema.error_messages['DATE_PERIOD_TOO_SMALL'] % dict(min='2 years'))
 
     def test_date_yyyy_combined_range_too_large_validation(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'date_validation_yyyy_combined')
 
             block_json = schema.get_block('date-range-block')
@@ -447,7 +447,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                              schema.error_messages['DATE_PERIOD_TOO_LARGE'] % dict(max='3 years'))
 
     def test_bespoke_message_for_date_validation_range(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'date_validation_range')
 
             block_json = schema.get_block('date-range-block')
@@ -495,7 +495,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 self.assertIn(form.question_errors['date-range-question'], 'Test Message')
 
     def test_invalid_minimum_period_limit_and_single_date_periods(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'date_validation_range')
 
             block_json = schema.get_block('date-range-block')
@@ -551,7 +551,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                     self.assertEqual('The schema has invalid period_limits for date-range-question', str(ite.exception))
 
     def test_invalid_maximum_period_limit_and_single_date_periods(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'date_validation_range')
 
             block_json = schema.get_block('date-range-block')
@@ -607,7 +607,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                     self.assertEqual('The schema has invalid period_limits for date-range-question', str(ite.exception))
 
     def test_invalid_date_range_and_single_date_periods(self):
-        with self.test_request_context():
+        with self.app_request_context():
             store = AnswerStore()
             test_answer_id = Answer(
                 answer_id='date',
@@ -678,7 +678,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
         store.add(answer_total)
 
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'sum_equal_validation_against_total')
 
             block_json = schema.get_block('breakdown-block')
@@ -733,7 +733,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
         store.add(answer_total)
 
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'sum_equal_validation_against_total')
 
             block_json = schema.get_block('breakdown-block')
@@ -792,7 +792,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
         store.add(answer_total)
 
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'sum_equal_validation_against_total')
 
             block_json = schema.get_block('breakdown-block')
@@ -830,7 +830,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
         store.add(answer_total)
 
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'sum_equal_validation_against_total')
 
             block_json = schema.get_block('breakdown-block')
@@ -866,7 +866,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
         store.add(answer_total)
 
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'sum_equal_validation_against_total')
 
             block_json = schema.get_block('breakdown-block')
@@ -904,7 +904,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
         store.add(answer_total)
 
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'sum_multi_validation_against_total')
 
             block_json = schema.get_block('breakdown-block')
@@ -954,7 +954,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
         store.add(conditional_answer)
 
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'titles')
 
             block_json = schema.get_block('multiple-question-versions-block')
@@ -978,7 +978,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             self.assertEqual(form.data, expected_form_data)
 
     def test_form_errors_are_correctly_mapped(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', '0112')
 
             block_json = schema.get_block('total-retail-turnover')
@@ -993,7 +993,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                                                mapped_errors))
 
     def test_form_subfield_errors_are_correctly_mapped(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', '0102')
 
             block_json = schema.get_block('reporting-period')
@@ -1007,7 +1007,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             self.assertTrue(self._error_exists('period-from', schema.error_messages['MANDATORY_DATE'], mapped_errors))
 
     def test_answer_with_child_inherits_mandatory_from_parent(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'radio_mandatory_with_mandatory_other')
 
             block_json = schema.get_block('radio-mandatory')
@@ -1021,7 +1021,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             self.assertIsInstance(child_field.validators[0], ResponseRequired)
 
     def test_answer_with_child_errors_are_correctly_mapped(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'radio_mandatory_with_mandatory_other')
 
             block_json = schema.get_block('radio-mandatory')
@@ -1039,7 +1039,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                                                 mapped_errors))
 
     def test_answer_errors_are_interpolated(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', '0112')
 
             block_json = schema.get_block('number-of-employees')
@@ -1053,7 +1053,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             self.assertIn(schema.error_messages['NUMBER_TOO_SMALL'] % dict(min='0'), answer_errors)
 
     def test_option_has_other(self):
-        with self.test_request_context():
+        with self.app_request_context():
             # STANDARD CHECKBOX
             schema = load_schema_from_params('test', 'checkbox')
             block_json = schema.get_block('mandatory-checkbox')
@@ -1073,7 +1073,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             self.assertTrue(form.option_has_other('mandatory-checkbox-answer', 5))
 
     def test_get_other_answer(self):
-        with self.test_request_context():
+        with self.app_request_context():
             # STANDARD CHECKBOX
             schema = load_schema_from_params('test', 'checkbox')
             block_json = schema.get_block('mandatory-checkbox')
@@ -1099,7 +1099,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             self.assertEqual('Some data', field.data)
 
     def test_get_other_answer_invalid(self):
-        with self.test_request_context():
+        with self.app_request_context():
             # STANDARD CHECKBOX
             schema = load_schema_from_params('test', 'checkbox')
             block_json = schema.get_block('mandatory-checkbox')

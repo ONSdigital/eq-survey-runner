@@ -21,7 +21,7 @@ class TestTemplateRenderer(AppContextTestCase):
         date = '{{date|format_date}}'
         context = {'date': '2017-01-01'}
 
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             rendered = TemplateRenderer().render(date, **context)
 
         self.assertEqual(rendered, "<span class='date'>1 January 2017</span>")
@@ -30,7 +30,7 @@ class TestTemplateRenderer(AppContextTestCase):
         date = '{{date|format_date}}'
         context = {'date': '2017-01'}
 
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             rendered = TemplateRenderer().render(date, **context)
 
         self.assertEqual(rendered, "<span class='date'>January 2017</span>")

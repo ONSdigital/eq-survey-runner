@@ -13,7 +13,7 @@ from app.validation.validators import DateRequired, OptionalForm
 class TestFormHelper(AppContextTestCase):
 
     def test_get_form_for_block_location(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', '0102')
 
             block_json = schema.get_block('reporting-period')
@@ -33,7 +33,7 @@ class TestFormHelper(AppContextTestCase):
             self.assertIsInstance(period_to_field.month.validators[0], DateRequired)
 
     def test_get_form_and_disable_mandatory_answers(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', '0102')
 
             block_json = schema.get_block('reporting-period')
@@ -54,7 +54,7 @@ class TestFormHelper(AppContextTestCase):
             self.assertIsInstance(period_to_field.month.validators[0], OptionalForm)
 
     def test_post_form_for_block_location(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', '0102')
 
             block_json = schema.get_block('reporting-period')
@@ -84,7 +84,7 @@ class TestFormHelper(AppContextTestCase):
             self.assertEqual(period_to_field.data, '2017-09-01')
 
     def test_post_form_and_disable_mandatory(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', '0102')
 
             block_json = schema.get_block('reporting-period')
@@ -105,7 +105,7 @@ class TestFormHelper(AppContextTestCase):
             self.assertIsInstance(period_to_field.month.validators[0], OptionalForm)
 
     def test_get_form_for_household_composition(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('census', 'household')
 
             block_json = schema.get_block('household-composition')
@@ -124,7 +124,7 @@ class TestFormHelper(AppContextTestCase):
             self.assertTrue(hasattr(first_field_entry, 'last-name'))
 
     def test_post_form_for_household_composition(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('census', 'household')
 
             block_json = schema.get_block('household-composition')
@@ -150,7 +150,7 @@ class TestFormHelper(AppContextTestCase):
             })
 
     def test_get_form_for_household_relationship(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('census', 'household')
 
             block_json = schema.get_block('household-relationships')
@@ -200,7 +200,7 @@ class TestFormHelper(AppContextTestCase):
             self.assertEqual(len(field_list.entries), 1)
 
     def test_post_form_for_household_relationship(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('census', 'household')
 
             block_json = schema.get_block('household-relationships')
@@ -246,7 +246,7 @@ class TestFormHelper(AppContextTestCase):
             self.assertEqual(field_list.entries[0].data, '3')
 
     def test_post_form_for_radio_other_not_selected(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'radio_mandatory_with_mandatory_other')
 
             block_json = schema.get_block('radio-mandatory')
@@ -277,7 +277,7 @@ class TestFormHelper(AppContextTestCase):
             self.assertEqual(other_text_field.data, '')
 
     def test_post_form_for_radio_other_selected(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'radio_mandatory_with_mandatory_other')
 
             block_json = schema.get_block('radio-mandatory')
