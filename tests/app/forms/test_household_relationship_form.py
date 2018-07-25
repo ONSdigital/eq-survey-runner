@@ -73,7 +73,7 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
 
             relationship_choices = [['a', 'b'], ['c', 'd'], ['e', 'f']]
 
-            form = generate_relationship_form(schema, block_json, relationship_choices, {}, 0)
+            form = generate_relationship_form(schema, block_json, relationship_choices, {}, 0, 'group-0')
 
             self.assertTrue(hasattr(form, answer['id']))
             self.assertEqual(len(form.data[answer['id']]), 3)
@@ -91,7 +91,7 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
                 '{answer_id}-0'.format(answer_id=answer['id']): 'Husband or Wife',
                 '{answer_id}-1'.format(answer_id=answer['id']): 'Brother or Sister',
                 '{answer_id}-2'.format(answer_id=answer['id']): 'Relation - other',
-            }, 0)
+            }, 0, 'group-0')
 
             self.assertTrue(hasattr(form, answer['id']))
 
@@ -107,13 +107,13 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
 
             relationship_choices = [['a', 'b'], ['c', 'd'], ['e', 'f']]
 
-            generated_form = generate_relationship_form(schema, block_json, relationship_choices, None, 0)
+            generated_form = generate_relationship_form(schema, block_json, relationship_choices, None, 0, 'group-0')
 
             form = generate_relationship_form(schema, block_json, relationship_choices, {
                 'csrf_token': generated_form.csrf_token.current_token,
                 '{answer_id}-0'.format(answer_id=answer['id']): '1',
                 '{answer_id}-1'.format(answer_id=answer['id']): '3',
-            }, 0)
+            }, 0, 'group-0')
 
             form.validate()
             mapped_errors = form.map_errors()
@@ -126,20 +126,23 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
 
         field_data = ['Husband or Wife', 'Son or daughter', 'Unrelated']
 
-        actual_answers = serialise_relationship_answers('who-is-related', field_data, 0)
+        actual_answers = serialise_relationship_answers('who-is-related', field_data, 0, 'group-0')
 
         expected_answers = [
             {
+                'group_instance_id': 'group-0',
                 'group_instance': 0,
                 'answer_id': 'who-is-related',
                 'answer_instance': 0,
                 'value': 'Husband or Wife'
             }, {
+                'group_instance_id': 'group-0',
                 'group_instance': 0,
                 'answer_id': 'who-is-related',
                 'answer_instance': 1,
                 'value': 'Son or daughter'
             }, {
+                'group_instance_id': 'group-0',
                 'group_instance': 0,
                 'answer_id': 'who-is-related',
                 'answer_instance': 2,
@@ -154,20 +157,23 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
 
         field_data = ['Husband or Wife', 'Son or daughter', 'Unrelated']
 
-        actual_answers = serialise_relationship_answers('who-is-related', field_data, 1)
+        actual_answers = serialise_relationship_answers('who-is-related', field_data, 1, 'group-1')
 
         expected_answers = [
             {
+                'group_instance_id': 'group-1',
                 'group_instance': 1,
                 'answer_id': 'who-is-related',
                 'answer_instance': 0,
                 'value': 'Husband or Wife'
             }, {
+                'group_instance_id': 'group-1',
                 'group_instance': 1,
                 'answer_id': 'who-is-related',
                 'answer_instance': 1,
                 'value': 'Son or daughter'
             }, {
+                'group_instance_id': 'group-1',
                 'group_instance': 1,
                 'answer_id': 'who-is-related',
                 'answer_instance': 2,

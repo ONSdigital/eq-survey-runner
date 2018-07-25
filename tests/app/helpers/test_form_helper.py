@@ -159,31 +159,27 @@ class TestFormHelper(AppContextTestCase):
 
             answer_store = AnswerStore([
                 {
-                    'group_id': 'who-lives-here-relationship',
                     'group_instance': 0,
+                    'group_instance_id': 'who-lives-here-relationship-0',
                     'answer_id': 'first-name',
-                    'block_id': 'household-composition',
                     'value': 'Joe',
                     'answer_instance': 0,
                 }, {
-                    'group_id': 'who-lives-here-relationship',
                     'group_instance': 0,
+                    'group_instance_id': 'who-lives-here-relationship-0',
                     'answer_id': 'last-name',
-                    'block_id': 'household-composition',
                     'value': 'Bloggs',
                     'answer_instance': 0,
                 }, {
-                    'group_id': 'who-lives-here-relationship',
-                    'group_instance': 1,
+                    'group_instance': 0,
+                    'group_instance_id': 'who-lives-here-relationship-0',
                     'answer_id': 'first-name',
-                    'block_id': 'household-composition',
                     'value': 'Jane',
                     'answer_instance': 1,
                 }, {
-                    'group_id': 'who-lives-here-relationship',
-                    'group_instance': 1,
+                    'group_instance': 0,
+                    'group_instance_id': 'who-lives-here-relationship-0',
                     'answer_id': 'last-name',
-                    'block_id': 'household-composition',
                     'value': 'Bloggs',
                     'answer_instance': 1,
                 }
@@ -209,22 +205,26 @@ class TestFormHelper(AppContextTestCase):
             answer_store = AnswerStore([
                 {
                     'answer_id': 'first-name',
-                    'block_id': 'household-composition',
+                    'group_instance': 0,
+                    'group_instance_id': 'who-lives-here-relationship-0',
                     'value': 'Joe',
                     'answer_instance': 0,
                 }, {
                     'answer_id': 'last-name',
-                    'block_id': 'household-composition',
+                    'group_instance': 0,
+                    'group_instance_id': 'who-lives-here-relationship-0',
                     'value': 'Bloggs',
                     'answer_instance': 0,
                 }, {
                     'answer_id': 'first-name',
-                    'block_id': 'household-composition',
+                    'group_instance': 0,
+                    'group_instance_id': 'who-lives-here-relationship-0',
                     'value': 'Jane',
                     'answer_instance': 1,
                 }, {
                     'answer_id': 'last-name',
-                    'block_id': 'household-composition',
+                    'group_instance': 0,
+                    'group_instance_id': 'who-lives-here-relationship-0',
                     'value': 'Bloggs',
                     'answer_instance': 1,
                 }
@@ -358,12 +358,14 @@ class TestGetMappedAnswers(unittest.TestCase):
         answer_1 = Answer(
             answer_id='answer2',
             answer_instance=1,
+            group_instance_id='group-1',
             group_instance=1,
             value=25,
         )
         answer_2 = Answer(
             answer_id='answer1',
             answer_instance=1,
+            group_instance_id='group-1',
             group_instance=1,
             value=65,
         )
@@ -375,7 +377,7 @@ class TestGetMappedAnswers(unittest.TestCase):
             'answer1_1': 65
         }
 
-        self.assertEqual(get_mapped_answers(schema, self.store, block_id='block1', group_instance=1), expected_answers)
+        self.assertEqual(get_mapped_answers(schema, self.store, block_id='block1', group_instance_id='group-1'), expected_answers)
 
     def test_returns_ordered_map(self):
 
@@ -403,6 +405,7 @@ class TestGetMappedAnswers(unittest.TestCase):
 
         answer = Answer(
             answer_id='answer1',
+            group_instance_id='group-1',
             group_instance=1,
             value=25,
         )
@@ -416,7 +419,7 @@ class TestGetMappedAnswers(unittest.TestCase):
 
         self.assertEqual(len(self.store.answers), 100)
 
-        mapped = get_mapped_answers(schema, self.store, block_id='block1', group_instance=1)
+        mapped = get_mapped_answers(schema, self.store, block_id='block1', group_instance_id='group-1')
 
         for key, _ in mapped.items():
             pos = key.find('_')

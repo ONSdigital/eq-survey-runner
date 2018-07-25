@@ -1,20 +1,25 @@
+from collections import defaultdict
+
 from jinja2 import escape
 
 
-def build_schema_context(metadata, schema, answer_store, answer_ids_on_path, group_instance=0):
+def build_schema_context(metadata, schema, answer_store, answer_ids_on_path, group_instance=0, group_instance_id=None):
     """
     Build questionnaire schema context containing exercise and answers
     :param metadata: user metadata
     :param schema: Survey schema
     :param answer_store: all the answers for the given questionnaire
     :param answer_ids_on_path: a list of the answer ids on the routing path
-    :param group_instance: The group instance Id passed into the url route
+    :param group_instance: The group instance passed into the url route
+    :param group_instance_id: The group instance Id passed into the url route
     :return: questionnaire schema context
     """
     return {
         'metadata': build_schema_metadata(metadata, schema),
         'answers': _build_answers(answer_store, schema, answer_ids_on_path),
+        'group_instances': _build_group_instances(answer_store, answer_ids_on_path),
         'group_instance': group_instance,
+        'group_instance_id': group_instance_id,
     }
 
 
@@ -42,6 +47,18 @@ def _build_answers(answer_store, schema, answer_ids_on_path):
         answers[answer_id] = value
 
     return answers
+
+
+def _build_group_instances(answer_store, answer_ids_on_path):
+    groups = defaultdict(dict)
+
+    for answer_id in answer_ids_on_path:
+        matching_answers = answer_store.filter(answer_ids=[answer_id], limit=True)
+
+        for answer in matching_answers:
+            groups[answer['group_instance_id']][answer_id] = answer['value']
+
+    return groups
 
 
 def build_schema_metadata(metadata, schema):

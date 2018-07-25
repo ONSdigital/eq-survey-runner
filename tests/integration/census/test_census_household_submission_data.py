@@ -1,10 +1,13 @@
+from mock import patch
+
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
 # pylint: disable=too-many-lines
 class TestCensusHouseholdSubmissionData(IntegrationTestCase):
     def test_census_household_data_matches_census_individual(self):
-        self.complete_survey('census', 'household')
+        with patch('app.helpers.schema_helpers.uuid4', side_effect=range(100)):
+            self.complete_survey('census', 'household')
 
         # Only verifying 'data'
         actual_downstream_data = self.dumpSubmission()['submission']['data']
@@ -16,639 +19,523 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
     @staticmethod
     def get_expected_submission_data():
         expected_downstream_data = [
-            {
-                'answer_id': 'address-line-1',
-                'answer_instance': 0,
-                'group_instance': 0,
-                'value': '44 hill side'
-            },
-            {
-                'answer_id': 'address-line-2',
-                'answer_instance': 0,
-                'group_instance': 0,
-                'value': 'cimla'
-            },
-            {
-                'answer_id': 'county',
-                'answer_instance': 0,
-                'group_instance': 0,
-                'value': 'west glamorgan'
-            },
-            {
-                'answer_id': 'country',
-                'answer_instance': 0,
-                'group_instance': 0,
-                'value': 'wales'
-            },
-            {
-                'answer_id': 'postcode',
-                'answer_instance': 0,
-                'group_instance': 0,
-                'value': 'cf336gn'
-            },
-            {
-                'answer_id': 'address-line-3',
-                'answer_instance': 0,
-                'group_instance': 0,
-                'value': ''
-            },
-            {
-                'answer_id': 'town-city',
-                'answer_instance': 0,
-                'group_instance': 0,
-                'value': 'neath'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'permanent-or-family-home-answer',
-                'answer_instance': 0,
-                'value': 'Yes'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'middle-names',
-                'answer_instance': 0,
-                'value': 'K'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'first-name',
-                'answer_instance': 0,
-                'value': 'Danny'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'last-name',
-                'answer_instance': 0,
-                'value': 'Boje'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'middle-names',
-                'answer_instance': 1,
-                'value': 'K'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'first-name',
-                'answer_instance': 1,
-                'value': 'Anjali'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'last-name',
-                'answer_instance': 1,
-                'value': 'Yo'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'everyone-at-address-confirmation-answer',
-                'answer_instance': 0,
-                'value': 'Yes'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'overnight-visitors-answer',
-                'answer_instance': 0,
-                'value': 2
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'household-relationships-answer',
-                'answer_instance': 0,
-                'value': 'Husband or wife'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'type-of-accommodation-answer',
-                'answer_instance': 0,
-                'value': 'Whole house or bungalow'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'type-of-house-answer',
-                'answer_instance': 0,
-                'value': 'Detached'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'self-contained-accommodation-answer',
-                'answer_instance': 0,
-                'value': 'No'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'number-of-bedrooms-answer',
-                'answer_instance': 0,
-                'value': 2
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'central-heating-answer',
-                'answer_instance': 0,
-                'value': [
-                    'Gas',
-                    'Electric (include storage heaters)',
-                    'Oil',
-                    'Solid fuel (for example wood, coal)',
-                    'Renewable (for example solar panels)',
-                    'Other central heating',
-                    'No central heating'
-                ]
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'own-or-rent-answer',
-                'answer_instance': 0,
-                'value': 'Owns outright'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'number-of-vehicles-answer',
-                'answer_instance': 0,
-                'value': 2
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'over-16-answer',
-                'answer_instance': 0,
-                'value': 'Yes'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'private-response-answer',
-                'answer_instance': 0,
-                'value': 'No, I do not want to request a personal form'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'sex-answer',
-                'answer_instance': 0,
-                'value': 'Male'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'date-of-birth-answer',
-                'answer_instance': 0,
-                'value': '1988-05-12'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'marital-status-answer',
-                'answer_instance': 0,
-                'value': 'In a registered same-sex civil partnership'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'another-address-answer',
-                'answer_instance': 0,
-                'value': 'Yes, an address within the UK'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'another-address-answer-other',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'other-address-answer-building',
-                'answer_instance': 0,
-                'value': '12'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'other-address-answer-street',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'other-address-answer-city',
-                'answer_instance': 0,
-                'value': 'Newport'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'other-address-answer-county',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'other-address-answer-postcode',
-                'answer_instance': 0,
-                'value': 'NP10 8XG'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'address-type-answer',
-                'answer_instance': 0,
-                'value': 'Other'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'address-type-answer-other',
-                'answer_instance': 0,
-                'value': 'Friends Home'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'in-education-answer',
-                'answer_instance': 0,
-                'value': 'Yes'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'term-time-location-answer',
-                'answer_instance': 0,
-                'value': 'Yes'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'country-of-birth-england-answer-other',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'country-of-birth-england-answer',
-                'answer_instance': 0,
-                'value': 'England'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'country-of-birth-wales-answer-other',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'carer-answer',
-                'answer_instance': 0,
-                'value': 'Yes, 1 -19 hours a week'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'national-identity-england-answer',
-                'answer_instance': 0,
-                'value': [
-                    'English',
-                    'Welsh',
-                    'Scottish',
-                    'Northern Irish',
-                    'British',
-                    'Other'
-                ]
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'national-identity-wales-answer',
-                'answer_instance': 0,
-                'value': []
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'national-identity-wales-answer-other',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'national-identity-england-answer-other',
-                'answer_instance': 0,
-                'value': 'Ind'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'ethnic-group-england-answer',
-                'answer_instance': 0,
-                'value': 'Other ethnic group'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'other-ethnic-group-answer',
-                'answer_instance': 0,
-                'value': 'Other'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'other-ethnic-group-answer-other',
-                'answer_instance': 0,
-                'value': 'Telugu'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'language-england-answer-other',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'language-england-answer',
-                'answer_instance': 0,
-                'value': 'English'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'language-welsh-answer-other',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'religion-answer',
-                'answer_instance': 0,
-                'value': [
-                    'No religion',
-                    'Buddhism',
-                    'Hinduism',
-                    'Judaism',
-                    'Islam',
-                    'Sikhism',
-                    'Other'
-                ]
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'religion-answer-other',
-                'answer_instance': 0,
-                'value': 'Ind'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'past-usual-address-answer',
-                'answer_instance': 0,
-                'value': 'This address'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'past-usual-address-answer-other',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'passports-answer',
-                'answer_instance': 0,
-                'value': [
-                    'United Kingdom'
-                ]
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'disability-answer',
-                'answer_instance': 0,
-                'value': 'Yes, limited a lot'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'qualifications-welsh-answer',
-                'answer_instance': 0,
-                'value': []
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'qualifications-england-answer',
-                'answer_instance': 0,
-                'value': [
-                    'Masters Degree',
-                    'Postgraduate Certificate / Diploma'
-                ]
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'employment-type-answer',
-                'answer_instance': 0,
-                'value': [
-                    'none of the above'
-                ]
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'jobseeker-answer',
-                'answer_instance': 0,
-                'value': 'Yes'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'job-availability-answer',
-                'answer_instance': 0,
-                'value': 'Yes'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'job-pending-answer',
-                'answer_instance': 0,
-                'value': 'Yes'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'occupation-answer',
-                'answer_instance': 0,
-                'value': [
-                    'a student',
-                    'long-term sick or disabled'
-                ]
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'ever-worked-answer',
-                'answer_instance': 0,
-                'value': 'Yes'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'main-job-answer',
-                'answer_instance': 0,
-                'value': 'an employee'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'hours-worked-answer',
-                'answer_instance': 0,
-                'value': '31 - 48'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'work-travel-answer',
-                'answer_instance': 0,
-                'value': 'Train'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'job-title-answer',
-                'answer_instance': 0,
-                'value': 'Software Engineer'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'job-description-answer',
-                'answer_instance': 0,
-                'value': 'Development'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'employers-business-answer',
-                'answer_instance': 0,
-                'value': 'Civil Servant'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'main-job-type-answer',
-                'answer_instance': 0,
-                'value': 'Employed by an organisation or business'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'business-name-answer',
-                'answer_instance': 0,
-                'value': 'ONS'
-            },
-            {
-                'group_instance': 1,
-                'answer_id': 'over-16-answer',
-                'answer_instance': 0,
-                'value': 'Yes'
-            },
-            {
-                'group_instance': 1,
-                'answer_id': 'private-response-answer',
-                'answer_instance': 0,
-                'value': 'Yes, I want to request a personal form'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'visitor-first-name',
-                'answer_instance': 0,
-                'value': 'Diya'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'visitor-last-name',
-                'answer_instance': 0,
-                'value': 'K'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'visitor-sex-answer',
-                'answer_instance': 0,
-                'value': 'Female'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'visitor-date-of-birth-answer',
-                'answer_instance': 0,
-                'value': '2016-11-04'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'visitor-uk-resident-answer-other',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'visitor-uk-resident-answer',
-                'answer_instance': 0,
-                'value': 'Yes, usually lives in the United Kingdom'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'visitor-address-answer-postcode',
-                'answer_instance': 0,
-                'value': '530003'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'visitor-address-answer-street',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'visitor-address-answer-building',
-                'answer_instance': 0,
-                'value': '309'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'visitor-address-answer-city',
-                'answer_instance': 0,
-                'value': 'Vizag'
-            },
-            {
-                'group_instance': 0,
-                'answer_id': 'visitor-address-answer-county',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 1,
-                'answer_id': 'visitor-first-name',
-                'answer_instance': 0,
-                'value': 'Niki'
-            },
-            {
-                'group_instance': 1,
-                'answer_id': 'visitor-last-name',
-                'answer_instance': 0,
-                'value': 'K'
-            },
-            {
-                'group_instance': 1,
-                'answer_id': 'visitor-sex-answer',
-                'answer_instance': 0,
-                'value': 'Male'
-            },
-            {
-                'group_instance': 1,
-                'answer_id': 'visitor-date-of-birth-answer',
-                'answer_instance': 0,
-                'value': '1985-10-17'
-            },
-            {
-                'group_instance': 1,
-                'answer_id': 'visitor-uk-resident-answer-other',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 1,
-                'answer_id': 'visitor-uk-resident-answer',
-                'answer_instance': 0,
-                'value': 'Yes, usually lives in the United Kingdom'
-            },
-            {
-                'group_instance': 1,
-                'answer_id': 'visitor-address-answer-postcode',
-                'answer_instance': 0,
-                'value': '12345'
-            },
-            {
-                'group_instance': 1,
-                'answer_id': 'visitor-address-answer-street',
-                'answer_instance': 0,
-                'value': ''
-            },
-            {
-                'group_instance': 1,
-                'answer_id': 'visitor-address-answer-building',
-                'answer_instance': 0,
-                'value': '1009'
-            },
-            {
-                'group_instance': 1,
-                'answer_id': 'visitor-address-answer-city',
-                'answer_instance': 0,
-                'value': 'Detroit'
-            },
-            {
-                'group_instance': 1,
-                'answer_id': 'visitor-address-answer-county',
-                'answer_instance': 0,
-                'value': ''
-            }
+            {'answer_id': 'town-city',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'what-is-your-address-group-7',
+             'value': 'neath'},
+            {'answer_id': 'address-line-2',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'what-is-your-address-group-7',
+             'value': 'cimla'},
+            {'answer_id': 'postcode',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'what-is-your-address-group-7',
+             'value': 'cf336gn'},
+            {'answer_id': 'county',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'what-is-your-address-group-7',
+             'value': 'west glamorgan'},
+            {'answer_id': 'country',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'what-is-your-address-group-7',
+             'value': 'wales'},
+            {'answer_id': 'address-line-3',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'what-is-your-address-group-7',
+             'value': ''},
+            {'answer_id': 'address-line-1',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'what-is-your-address-group-7',
+             'value': '44 hill side'},
+            {'answer_id': 'permanent-or-family-home-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'who-lives-here-13',
+             'value': 'Yes'},
+            {'answer_id': 'first-name',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': None,
+             'value': 'Danny'},
+            {'answer_id': 'last-name',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': None,
+             'value': 'Boje'},
+            {'answer_id': 'middle-names',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': None,
+             'value': 'K'},
+            {'answer_id': 'first-name',
+             'answer_instance': 1,
+             'group_instance': 0,
+             'group_instance_id': None,
+             'value': 'Anjali'},
+            {'answer_id': 'last-name',
+             'answer_instance': 1,
+             'group_instance': 0,
+             'group_instance_id': None,
+             'value': 'Yo'},
+            {'answer_id': 'middle-names',
+             'answer_instance': 1,
+             'group_instance': 0,
+             'group_instance_id': None,
+             'value': 'K'},
+            {'answer_id': 'everyone-at-address-confirmation-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'who-lives-here-13',
+             'value': 'Yes'},
+            {'answer_id': 'overnight-visitors-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'who-lives-here-13',
+             'value': 2},
+            {'answer_id': 'household-relationships-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'who-lives-here-relationship-17',
+             'value': 'Husband or wife'},
+            {'answer_id': 'type-of-accommodation-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-and-accommodation-25',
+             'value': 'Whole house or bungalow'},
+            {'answer_id': 'type-of-house-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-and-accommodation-25',
+             'value': 'Detached'},
+            {'answer_id': 'self-contained-accommodation-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-and-accommodation-25',
+             'value': 'No'},
+            {'answer_id': 'number-of-bedrooms-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-and-accommodation-25',
+             'value': 2},
+            {'answer_id': 'central-heating-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-and-accommodation-25',
+             'value': ['Gas',
+                       'Electric (include storage heaters)',
+                       'Oil',
+                       'Solid fuel (for example wood, coal)',
+                       'Renewable (for example solar panels)',
+                       'Other central heating',
+                       'No central heating']},
+            {'answer_id': 'own-or-rent-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-and-accommodation-25',
+             'value': 'Owns outright'},
+            {'answer_id': 'number-of-vehicles-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-and-accommodation-25',
+             'value': 2},
+            {'answer_id': 'over-16-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Yes'},
+            {'answer_id': 'private-response-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'No, I do not want to request a personal form'},
+            {'answer_id': 'sex-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Male'},
+            {'answer_id': 'date-of-birth-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': '1988-05-12'},
+            {'answer_id': 'marital-status-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'In a registered same-sex civil partnership'},
+            {'answer_id': 'another-address-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Yes, an address within the UK'},
+            {'answer_id': 'another-address-answer-other',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': ''},
+            {'answer_id': 'other-address-answer-street',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': ''},
+            {'answer_id': 'other-address-answer-building',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': '12'},
+            {'answer_id': 'other-address-answer-county',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': ''},
+            {'answer_id': 'other-address-answer-city',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Newport'},
+            {'answer_id': 'other-address-answer-postcode',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'NP10 8XG'},
+            {'answer_id': 'address-type-answer-other',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Friends Home'},
+            {'answer_id': 'address-type-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Other'},
+            {'answer_id': 'in-education-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Yes'},
+            {'answer_id': 'term-time-location-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Yes'},
+            {'answer_id': 'country-of-birth-england-answer-other',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': ''},
+            {'answer_id': 'country-of-birth-wales-answer-other',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': ''},
+            {'answer_id': 'country-of-birth-england-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'England'},
+            {'answer_id': 'carer-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Yes, 1 -19 hours a week'},
+            {'answer_id': 'national-identity-england-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': ['English',
+                       'Welsh',
+                       'Scottish',
+                       'Northern Irish',
+                       'British',
+                       'Other']},
+            {'answer_id': 'national-identity-wales-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': []},
+            {'answer_id': 'national-identity-england-answer-other',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Ind'},
+            {'answer_id': 'national-identity-wales-answer-other',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': ''},
+            {'answer_id': 'ethnic-group-england-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Other ethnic group'},
+            {'answer_id': 'other-ethnic-group-answer-other',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Telugu'},
+            {'answer_id': 'other-ethnic-group-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Other'},
+            {'answer_id': 'language-welsh-answer-other',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': ''},
+            {'answer_id': 'language-england-answer-other',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': ''},
+            {'answer_id': 'language-england-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'English'},
+            {'answer_id': 'religion-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': ['No religion',
+                       'Buddhism',
+                       'Hinduism',
+                       'Judaism',
+                       'Islam',
+                       'Sikhism',
+                       'Other']},
+            {'answer_id': 'religion-answer-other',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Ind'},
+            {'answer_id': 'past-usual-address-answer-other',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': ''},
+            {'answer_id': 'past-usual-address-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'This address'},
+            {'answer_id': 'passports-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': ['United Kingdom']},
+            {'answer_id': 'disability-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Yes, limited a lot'},
+            {'answer_id': 'qualifications-welsh-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': []},
+            {'answer_id': 'qualifications-england-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': ['Masters Degree', 'Postgraduate Certificate / Diploma']},
+            {'answer_id': 'employment-type-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': ['none of the above']},
+            {'answer_id': 'jobseeker-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Yes'},
+            {'answer_id': 'job-availability-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Yes'},
+            {'answer_id': 'job-pending-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Yes'},
+            {'answer_id': 'occupation-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': ['a student', 'long-term sick or disabled']},
+            {'answer_id': 'ever-worked-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Yes'},
+            {'answer_id': 'main-job-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'an employee'},
+            {'answer_id': 'hours-worked-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': '31 - 48'},
+            {'answer_id': 'work-travel-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Train'},
+            {'answer_id': 'job-title-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Software Engineer'},
+            {'answer_id': 'job-description-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Development'},
+            {'answer_id': 'main-job-type-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Employed by an organisation or business'},
+            {'answer_id': 'business-name-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'ONS'},
+            {'answer_id': 'employers-business-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'household-member-35',
+             'value': 'Civil Servant'},
+            {'answer_id': 'over-16-answer',
+             'answer_instance': 0,
+             'group_instance': 1,
+             'group_instance_id': 'household-member-45',
+             'value': 'Yes'},
+            {'answer_id': 'private-response-answer',
+             'answer_instance': 0,
+             'group_instance': 1,
+             'group_instance_id': 'household-member-45',
+             'value': 'Yes, I want to request a personal form'},
+            {'answer_id': 'visitor-first-name',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'visitors-51',
+             'value': 'Diya'},
+            {'answer_id': 'visitor-last-name',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'visitors-51',
+             'value': 'K'},
+            {'answer_id': 'visitor-sex-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'visitors-51',
+             'value': 'Female'},
+            {'answer_id': 'visitor-date-of-birth-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'visitors-51',
+             'value': '2016-11-04'},
+            {'answer_id': 'visitor-uk-resident-answer',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'visitors-51',
+             'value': 'Yes, usually lives in the United Kingdom'},
+            {'answer_id': 'visitor-uk-resident-answer-other',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'visitors-51',
+             'value': ''},
+            {'answer_id': 'visitor-address-answer-street',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'visitors-51',
+             'value': ''},
+            {'answer_id': 'visitor-address-answer-postcode',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'visitors-51',
+             'value': '530003'},
+            {'answer_id': 'visitor-address-answer-city',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'visitors-51',
+             'value': 'Vizag'},
+            {'answer_id': 'visitor-address-answer-building',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'visitors-51',
+             'value': '309'},
+            {'answer_id': 'visitor-address-answer-county',
+             'answer_instance': 0,
+             'group_instance': 0,
+             'group_instance_id': 'visitors-51',
+             'value': ''},
+            {'answer_id': 'visitor-first-name',
+             'answer_instance': 0,
+             'group_instance': 1,
+             'group_instance_id': 'visitors-55',
+             'value': 'Niki'},
+            {'answer_id': 'visitor-last-name',
+             'answer_instance': 0,
+             'group_instance': 1,
+             'group_instance_id': 'visitors-55',
+             'value': 'K'},
+            {'answer_id': 'visitor-sex-answer',
+             'answer_instance': 0,
+             'group_instance': 1,
+             'group_instance_id': 'visitors-55',
+             'value': 'Male'},
+            {'answer_id': 'visitor-date-of-birth-answer',
+             'answer_instance': 0,
+             'group_instance': 1,
+             'group_instance_id': 'visitors-55',
+             'value': '1985-10-17'},
+            {'answer_id': 'visitor-uk-resident-answer',
+             'answer_instance': 0,
+             'group_instance': 1,
+             'group_instance_id': 'visitors-55',
+             'value': 'Yes, usually lives in the United Kingdom'},
+            {'answer_id': 'visitor-uk-resident-answer-other',
+             'answer_instance': 0,
+             'group_instance': 1,
+             'group_instance_id': 'visitors-55',
+             'value': ''},
+            {'answer_id': 'visitor-address-answer-street',
+             'answer_instance': 0,
+             'group_instance': 1,
+             'group_instance_id': 'visitors-55',
+             'value': ''},
+            {'answer_id': 'visitor-address-answer-postcode',
+             'answer_instance': 0,
+             'group_instance': 1,
+             'group_instance_id': 'visitors-55',
+             'value': '12345'},
+            {'answer_id': 'visitor-address-answer-city',
+             'answer_instance': 0,
+             'group_instance': 1,
+             'group_instance_id': 'visitors-55',
+             'value': 'Detroit'},
+            {'answer_id': 'visitor-address-answer-building',
+             'answer_instance': 0,
+             'group_instance': 1,
+             'group_instance_id': 'visitors-55',
+             'value': '1009'},
+            {'answer_id': 'visitor-address-answer-county',
+             'answer_instance': 0,
+             'group_instance': 1,
+             'group_instance_id': 'visitors-55',
+             'value': ''}
         ]
 
         return expected_downstream_data

@@ -5,6 +5,7 @@ from app.templating.schema_context import build_schema_context, _build_answers, 
 from app.utilities.schema import _load_schema_file
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema, DEFAULT_LANGUAGE_CODE
 
+
 def get_metadata_sample():
     """Returns a metadata sample"""
     return {
@@ -21,6 +22,7 @@ def get_metadata_sample():
         'form_type': 'schema_context'
     }
 
+
 def get_test_schema():
     test_json = _load_schema_file('test_schema_context.json', DEFAULT_LANGUAGE_CODE)
     schema = QuestionnaireSchema(test_json, DEFAULT_LANGUAGE_CODE)
@@ -28,6 +30,7 @@ def get_test_schema():
     schema.is_repeating_answer_type = MagicMock(return_value=False)
     schema.answer_is_in_repeating_group = MagicMock(return_value=False)
     return schema
+
 
 class TestBuildSchemaContext(TestCase):  # pylint: disable=too-many-public-methods
 

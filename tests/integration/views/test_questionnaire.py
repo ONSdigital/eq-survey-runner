@@ -43,12 +43,13 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
             'total-retail-turnover-answer': '1000',
         }
 
-        with self._application.test_request_context():
+        with self._application.test_request_context(), patch('app.helpers.schema_helpers.uuid4', return_value='1'):
             update_questionnaire_store_with_form_data(self.question_store, location, form_data, schema)
 
         self.assertEqual(self.question_store.completed_blocks, [location])
 
         self.assertIn({
+            'group_instance_id': 'rsi-1',
             'group_instance': 0,
             'answer_id': 'total-retail-turnover-answer',
             'answer_instance': 0,
@@ -66,12 +67,13 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
             'answer': None
         }
 
-        with self._application.test_request_context():
+        with self._application.test_request_context(), patch('app.helpers.schema_helpers.uuid4', return_value='1'):
             update_questionnaire_store_with_form_data(self.question_store, location, form_data, schema)
 
         self.assertEqual(self.question_store.completed_blocks, [location])
 
         self.assertIn({
+            'group_instance_id': 'group-1',
             'group_instance': 0,
             'answer_id': 'answer',
             'answer_instance': 0,
@@ -176,16 +178,19 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         answered = [
             Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='first-name',
                 answer_instance=0,
                 value='Joe'
             ), Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='middle-names',
                 answer_instance=0,
                 value=''
             ), Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='last-name',
                 answer_instance=0,
                 value='Bloggs'
@@ -195,16 +200,19 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         unanswered = [
             Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='first-name',
                 answer_instance=1,
                 value=''
             ), Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='middle-names',
                 answer_instance=1,
                 value=''
             ), Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='last-name',
                 answer_instance=1,
                 value=''
@@ -232,16 +240,19 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         answered = [
             Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='first-name',
                 answer_instance=0,
                 value='Joe'
             ), Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='middle-names',
                 answer_instance=0,
                 value=''
             ), Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='last-name',
                 answer_instance=0,
                 value='Bloggs'
@@ -251,31 +262,37 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         partially_answered = [
             Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='first-name',
                 answer_instance=1,
                 value=''
             ), Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='middle-names',
                 answer_instance=1,
                 value=''
             ), Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='last-name',
                 answer_instance=1,
                 value='Last name only'
             ), Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='first-name',
                 answer_instance=2,
                 value='First name only'
             ), Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='middle-names',
                 answer_instance=2,
                 value=''
             ), Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='last-name',
                 answer_instance=2,
                 value=''
@@ -486,21 +503,25 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         answers = [
             Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='first-name',
                 answer_instance=0,
                 value='Joe'
             ), Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='last-name',
                 answer_instance=0,
                 value='Bloggs'
             ), Answer(
                 group_instance=0,
+                group_instance_id='group-0',
                 answer_id='date-of-birth-answer',
                 answer_instance=0,
                 value='2016-03-12'
             ), Answer(
                 group_instance=1,
+                group_instance_id='group-1',
                 answer_id='date-of-birth-answer',
                 answer_instance=0,
                 value='2018-01-01'
@@ -513,8 +534,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         answer_form_data = {'date-of-birth-answer': None}
         location = Location('household-member-group', 1, 'date-of-birth')
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(
-                self.question_store, location, answer_form_data, schema)
+            update_questionnaire_store_with_form_data(self.question_store, location, answer_form_data, schema)
 
         self.assertIsNone(self.question_store.answer_store.find(answers[3]))
         for answer in answers[:2]:
@@ -528,8 +548,8 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
                              Location('group', 0, 'who-is-answer-block'),
                              Location('group', 0, 'multiple-question-versions-block'),
                              Location('group', 0, 'Summary')]
-        schema_context = _get_schema_context(full_routing_path, 0, {}, AnswerStore(), schema)
         current_location = Location('group', 0, 'single-title-block')
+        schema_context = _get_schema_context(full_routing_path, current_location, {}, AnswerStore(), g.schema)
 
         # When
         with self._application.test_request_context():
