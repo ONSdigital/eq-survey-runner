@@ -59,7 +59,7 @@ class SessionStoreTest(AppContextTestCase):
             self.assertEqual(session_store.session_data.submitted_time, current_time)
 
     def test_should_not_delete_when_no_session(self):
-        with self.test_request_context('/status'):
+        with self.app_request_context('/status'):
             with patch('app.data_model.models.db.session.delete') as delete:
 
                 # Call clear with a valid user_id but no session in database

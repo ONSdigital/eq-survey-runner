@@ -77,7 +77,7 @@ class TestDurationForm(AppContextTestCase):
             form.months.raw_data = [months]
             form.months.data = to_int(months)
 
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             self.assertEqual(form.validate(), valid)
 
             if error:

@@ -18,7 +18,7 @@ class TestDateRangeValidator(AppContextTestCase):
 
         mock_field = Mock()
 
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             with self.assertRaises(ValidationError) as ite:
                 validator(mock_form, mock_field)
 
@@ -33,7 +33,7 @@ class TestDateRangeValidator(AppContextTestCase):
 
         mock_field = Mock()
 
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             with self.assertRaises(ValidationError) as ite:
                 validator(mock_form, mock_field)
 
@@ -50,7 +50,7 @@ class TestDateRangeValidator(AppContextTestCase):
 
         mock_field = Mock()
 
-        with self.test_request_context('/'):
+        with self.app_request_context('/'):
             with self.assertRaises(ValidationError) as ite:
                 validator(mock_form, mock_field)
 

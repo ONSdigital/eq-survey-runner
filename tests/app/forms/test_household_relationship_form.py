@@ -65,7 +65,7 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
         self.assertEqual(expected_choices, choices)
 
     def test_generate_relationship_form_creates_empty_form(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'relationship_household')
             block_json = schema.get_block('relationships')
 
@@ -79,7 +79,7 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
             self.assertEqual(len(form.data[answer['id']]), 3)
 
     def test_generate_relationship_form_creates_form_from_data(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'relationship_household')
             block_json = schema.get_block('relationships')
 
@@ -99,7 +99,7 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
             self.assertEqual(form.data[answer['id']], expected_form_data)
 
     def test_generate_relationship_form_errors_are_correctly_mapped(self):
-        with self.test_request_context():
+        with self.app_request_context():
             schema = load_schema_from_params('test', 'relationship_household')
             block_json = schema.get_block('relationships')
 

@@ -36,7 +36,7 @@ class AppContextTestCase(unittest.TestCase):
 
         self._ddb.stop()
 
-    def test_request_context(self, *args, **kwargs):
+    def app_request_context(self, *args, **kwargs):
         return self._app.test_request_context(*args, **kwargs)
 
 
