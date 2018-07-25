@@ -314,6 +314,10 @@ def add_blueprints(application):
     application.register_blueprint(contact_blueprint)
     contact_blueprint.config = application.config.copy()
 
+    from app.views.schema import schema_blueprint
+    application.register_blueprint(schema_blueprint)
+    schema_blueprint.config = application.config.copy()
+
 
 def setup_secure_cookies(application):
     session_timeout = application.config['EQ_SESSION_TIMEOUT_SECONDS']
