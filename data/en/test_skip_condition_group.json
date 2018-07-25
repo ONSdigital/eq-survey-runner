@@ -6,112 +6,104 @@
     "title": "Skip group",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
-                "id": "do-you-want-to-skip-group",
-                "title": "Do you want to skip the next group?",
-                "blocks": [{
-                    "type": "Question",
-                    "id": "do-you-want-to-skip",
-                    "routing_rules": [],
+            "id": "do-you-want-to-skip-group",
+            "title": "Do you want to skip the next group?",
+            "blocks": [{
+                "type": "Question",
+                "id": "do-you-want-to-skip",
+                "routing_rules": [],
+                "description": "",
+                "title": "Do you want to skip?",
+                "questions": [{
                     "description": "",
+                    "id": "do-you-want-to-skip-question",
                     "title": "Do you want to skip?",
-                    "questions": [{
-                        "description": "",
-                        "id": "do-you-want-to-skip-question",
-                        "title": "Do you want to skip?",
-                        "type": "General",
-                        "answers": [{
-                            "id": "do-you-want-to-skip-answer",
-                            "label": "Do you want to skip?",
-                            "mandatory": true,
-                            "options": [{
-                                    "label": "Yes",
-                                    "value": "Yes"
-                                },
-                                {
-                                    "label": "No",
-                                    "value": "No"
-                                }
-                            ],
-                            "type": "Radio",
-                            "validation": {
-                                "messages": {}
-                            }
-                        }]
-                    }]
-                }]
-            },
-            {
-                "id": "should-skip-group",
-                "title": "This question may or may not be skipped",
-                "skip_conditions": [{
-                    "when": [{
+                    "type": "General",
+                    "answers": [{
                         "id": "do-you-want-to-skip-answer",
-                        "condition": "equals",
-                        "value": "Yes"
-                    }]
-                }],
-                "blocks": [{
-                    "type": "Question",
-                    "id": "should-skip",
-                    "routing_rules": [],
-                    "description": "",
-                    "title": "Why didn't you skip the group?",
-                    "questions": [{
-                        "description": "",
-                        "id": "should-skip-question",
-                        "title": "Do you want to skip?",
-                        "type": "General",
-                        "answers": [{
-                            "id": "should-skip-answer",
-                            "label": "Why didn't you skip the group?",
-                            "mandatory": true,
-                            "type": "TextArea"
-                        }]
+                        "label": "Do you want to skip?",
+                        "mandatory": true,
+                        "options": [{
+                            "label": "Yes",
+                            "value": "Yes"
+                        }, {
+                            "label": "No",
+                            "value": "No"
+                        }],
+                        "type": "Radio",
+                        "validation": {
+                            "messages": {}
+                        }
                     }]
                 }]
-            },
-            {
-                "id": "last-group",
+            }]
+        }, {
+            "id": "should-skip-group",
+            "title": "This question may or may not be skipped",
+            "skip_conditions": [{
+                "when": [{
+                    "id": "do-you-want-to-skip-answer",
+                    "condition": "equals",
+                    "value": "Yes"
+                }]
+            }],
+            "blocks": [{
+                "type": "Question",
+                "id": "should-skip",
+                "routing_rules": [],
+                "description": "",
+                "title": "Why didn't you skip the group?",
+                "questions": [{
+                    "description": "",
+                    "id": "should-skip-question",
+                    "title": "Do you want to skip?",
+                    "type": "General",
+                    "answers": [{
+                        "id": "should-skip-answer",
+                        "label": "Why didn't you skip the group?",
+                        "mandatory": true,
+                        "type": "TextArea"
+                    }]
+                }]
+            }]
+        }, {
+            "id": "last-group",
+            "title": "This group is required as a skipped group can't be the last group",
+            "blocks": [{
+                "type": "Question",
+                "id": "last-group-block",
+                "routing_rules": [],
+                "description": "",
                 "title": "This group is required as a skipped group can't be the last group",
-                "blocks": [{
-                        "type": "Question",
-                        "id": "last-group-block",
-                        "routing_rules": [],
-                        "description": "",
-                        "title": "This group is required as a skipped group can't be the last group",
-                        "questions": [{
-                            "description": "",
-                            "id": "last-group-question",
-                            "title": "This group is required as a skipped group can't be the last group",
-                            "type": "General",
-                            "answers": [{
-                                "id": "last-group-answer",
-                                "label": "This group is required as a skipped group can't be the last group",
-                                "mandatory": true,
-                                "type": "TextField"
-                            }]
-                        }]
-                    },
-                    {
-                        "type": "Summary",
-                        "id": "summary"
-                    }
-                ]
-            }
-        ]
+                "questions": [{
+                    "description": "",
+                    "id": "last-group-question",
+                    "title": "This group is required as a skipped group can't be the last group",
+                    "type": "General",
+                    "answers": [{
+                        "id": "last-group-answer",
+                        "label": "This group is required as a skipped group can't be the last group",
+                        "mandatory": true,
+                        "type": "TextField"
+                    }]
+                }]
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }]
+        }]
     }]
 }

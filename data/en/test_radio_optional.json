@@ -6,50 +6,45 @@
     "title": "Radio Optional",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
         "id": "section-1",
         "groups": [{
             "id": "radio",
             "title": "Radio Optional",
             "blocks": [{
-                    "type": "Question",
-                    "id": "radio-non-mandatory",
-                    "questions": [{
-                        "type": "General",
-                        "id": "radio-non-mandatory-question",
-                        "title": "What is you favourite breakfast beverage?",
-                        "answers": [{
-                            "type": "Radio",
-                            "id": "radio-non-mandatory-answer",
-                            "mandatory": false,
-                            "options": [{
-                                    "label": "Coffee",
-                                    "value": "Coffee"
-                                },
-                                {
-                                    "label": "Tea",
-                                    "value": "Tea"
-                                }
-                            ]
+                "type": "Question",
+                "id": "radio-non-mandatory",
+                "questions": [{
+                    "type": "General",
+                    "id": "radio-non-mandatory-question",
+                    "title": "What is you favourite breakfast beverage?",
+                    "answers": [{
+                        "type": "Radio",
+                        "id": "radio-non-mandatory-answer",
+                        "mandatory": false,
+                        "options": [{
+                            "label": "Coffee",
+                            "value": "Coffee"
+                        }, {
+                            "label": "Tea",
+                            "value": "Tea"
                         }]
                     }]
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ]
+                }]
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }]
         }]
     }]
 }

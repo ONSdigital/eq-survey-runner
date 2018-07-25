@@ -7,89 +7,81 @@
     "description": "A test schema for calculate age from date",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
             "id": "dates",
             "title": "Date Difference",
             "blocks": [{
-                    "type": "Question",
-                    "id": "age-block",
-                    "title": "Calculate Difference",
-                    "questions": [{
-                        "id": "date-pipe-question",
-                        "title": "When did you last go on holiday?",
-                        "type": "General",
-                        "answers": [{
-                            "id": "date-dob",
-                            "label": "For example March 1990",
-                            "mandatory": true,
-                            "type": "MonthYearDate"
+                "type": "Question",
+                "id": "age-block",
+                "title": "Calculate Difference",
+                "questions": [{
+                    "id": "date-pipe-question",
+                    "title": "When did you last go on holiday?",
+                    "type": "General",
+                    "answers": [{
+                        "id": "date-dob",
+                        "label": "For example March 1990",
+                        "mandatory": true,
+                        "type": "MonthYearDate"
+                    }]
+                }]
+            }, {
+                "type": "ConfirmationQuestion",
+                "id": "age-test",
+                "title": "Confirm Duration",
+                "questions": [{
+                    "id": "confirm-dob-question",
+                    "title": "It has been {{ calculate_years_difference (answers['date-dob'], 'now') }} since you last went on holiday. Is this correct?",
+                    "type": "General",
+                    "answers": [{
+                        "id": "date-test-answer",
+                        "label": "Piped dates",
+                        "mandatory": true,
+                        "type": "Radio",
+                        "options": [{
+                            "label": "Yes",
+                            "value": "Yes"
+                        }, {
+                            "label": "No",
+                            "value": "No"
                         }]
                     }]
-                },
-                {
-                    "type": "ConfirmationQuestion",
-                    "id": "age-test",
-                    "title": "Confirm Duration",
-                    "questions": [{
-                        "id": "confirm-dob-question",
-                        "title": "It has been {{ calculate_years_difference (answers['date-dob'], 'now') }} since you last went on holiday. Is this correct?",
-                        "type": "General",
-                        "answers": [{
+                }],
+                "routing_rules": [{
+                    "goto": {
+                        "block": "age-block",
+                        "when": [{
                             "id": "date-test-answer",
-                            "label": "Piped dates",
-                            "mandatory": true,
-                            "type": "Radio",
-                            "options": [{
-                                    "label": "Yes",
-                                    "value": "Yes"
-                                },
-                                {
-                                    "label": "No",
-                                    "value": "No"
-                                }
-                            ]
+                            "condition": "equals",
+                            "value": "No"
                         }]
-                    }],
-                    "routing_rules": [{
-                            "goto": {
-                                "block": "age-block",
-                                "when": [{
-                                    "id": "date-test-answer",
-                                    "condition": "equals",
-                                    "value": "No"
-                                }]
-                            }
-                        },
-                        {
-                            "goto": {
-                                "block": "summary",
-                                "when": [{
-                                    "id": "date-test-answer",
-                                    "condition": "equals",
-                                    "value": "Yes"
-                                }]
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ]
+                    }
+                }, {
+                    "goto": {
+                        "block": "summary",
+                        "when": [{
+                            "id": "date-test-answer",
+                            "condition": "equals",
+                            "value": "Yes"
+                        }]
+                    }
+                }]
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }]
         }]
     }]
 }

@@ -23,10 +23,6 @@ def clean_leading_trailing_spaces(metadata):
     return metadata
 
 
-def id_generator():
-    return str(uuid.uuid4())
-
-
 VALIDATORS = {
     'date': iso_8601_date_parser,
     'uuid': uuid_4_parser,
@@ -34,71 +30,77 @@ VALIDATORS = {
     'object': lambda *args: None
 }
 
-MANDATORY_METADATA = {
-    'eq_id': {
+MANDATORY_METADATA = [
+    {
+        'name': 'eq_id',
         'validator': 'string'
     },
-    'form_type': {
+    {
+        'name': 'form_type',
         'validator': 'string'
     },
-    'ru_ref': {
+    {
+        'name': 'ru_ref',
         'validator': 'string'
     },
-    'collection_exercise_sid': {
+    {
+        'name': 'collection_exercise_sid',
         'validator': 'string'
     },
-    'tx_id': {
+    {
+        'name': 'tx_id',
         'validator': 'uuid'
     }
-}
+]
 
 
 def parse_runner_claims(claims):
     cleaned_claims = clean_leading_trailing_spaces(claims.copy())
-    cleaned_claims['tx_id'] = claims.get('tx_id', id_generator())  # Generate tx_id if not preset in claims
     validate_metadata(cleaned_claims, MANDATORY_METADATA)
 
     return cleaned_claims
 
 
 def validate_metadata(claims, required_metadata):
-    _validate_mandatory_metadata(claims, required_metadata)
-    _validate_metadata_values(claims, required_metadata)
+    _validate_metadata_is_present(claims, required_metadata)
+    _validate_metadata_values_are_valid(claims, required_metadata)
 
 
-def _validate_mandatory_metadata(metadata, required_metadata):
+def _validate_metadata_is_present(metadata, required_metadata):
     """
     Validate that JWT claims contain the required metadata
     :param metadata:
     :param required_metadata:
     """
-    for key in required_metadata.keys():
-        if key == 'variant_flags':
+    for metadata_field in required_metadata:
+        name = metadata_field['name']
+        if name == 'variant_flags':
             # variant flags is empty by default
             valid = 'variant_flags' in metadata
-        elif key == 'trad_as_or_ru_name':
+        elif name == 'trad_as_or_ru_name':
             # either of 'trad_as' or 'ru_name' is required
             valid = bool(metadata.get('trad_as') or metadata.get('ru_name'))
         else:
-            valid = bool(metadata.get(key))
+            valid = bool(metadata.get(name))
 
         if not valid:
-            raise InvalidTokenException('Missing key/value for {}'.format(key))
+            raise InvalidTokenException('Missing key/value for {}'.format(name))
 
 
-def _validate_metadata_values(claims, validators):
+def _validate_metadata_values_are_valid(claims, required_metadata):
     """
     Validate metadata from the JWT claims that are required by the schema/runner.
     Ensures that the values adhere to the expected format.
     :param claims:
-    :param validators:
+    :param required_metadata:
     """
     try:
-        for key, field in validators.items():
-            if claims.get(key):
-                value = claims[key]
-                VALIDATORS[field['validator']](value)
-                logger.debug('parsing metadata', key=key, value=value)
+        for metadata_field in required_metadata:
+            name = metadata_field['name']
+            claim = claims.get(name)
+            if claim:
+                VALIDATORS[metadata_field['validator']](claim)
+                logger.debug('parsing metadata', key=name, value=claim)
 
     except (RuntimeError, ValueError, TypeError) as error:
         logger.error('unable to parse metadata', exc_info=error)

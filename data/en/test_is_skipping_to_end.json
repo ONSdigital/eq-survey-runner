@@ -13,17 +13,19 @@
         "enabled": true,
         "duration": 900
     },
-    "metadata": {
-        "user_id": {
+    "metadata": [{
+            "name": "user_id",
             "validator": "string"
         },
-        "period_id": {
+        {
+            "name": "period_id",
             "validator": "string"
         },
-        "ru_name": {
+        {
+            "name": "ru_name",
             "validator": "string"
         }
-    },
+    ],
     "sections": [{
             "id": "test-skipping-section",
             "title": "Section 1",

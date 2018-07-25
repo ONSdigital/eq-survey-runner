@@ -34,6 +34,7 @@ class TokenGenerator:
     @staticmethod
     def _get_payload_with_params(form_type_id, eq_id, survey_url=None, **extra_payload):
         payload_vars = PAYLOAD.copy()
+        payload_vars['tx_id'] = str(uuid4())
         payload_vars['eq_id'] = eq_id
         payload_vars['form_type'] = form_type_id
         if survey_url:

@@ -7,139 +7,122 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to demo radio field Other input.",
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
-                "blocks": [{
-                        "type": "Question",
-                        "id": "radio",
-                        "description": "",
-                        "questions": [{
-                            "answers": [{
-                                    "id": "radio-answer",
-                                    "label": "What is your favourite breakfast food",
-                                    "mandatory": false,
-                                    "options": [{
-                                            "label": "None",
-                                            "value": "None"
-                                        },
-                                        {
-                                            "label": "Bacon",
-                                            "value": "Bacon"
-                                        },
-                                        {
-                                            "label": "Eggs",
-                                            "value": "Eggs"
-                                        },
-                                        {
-                                            "label": "Sausage",
-                                            "value": "Sausage"
-                                        },
-                                        {
-                                            "label": "Other",
-                                            "description": "An answer is required.",
-                                            "value": "Other",
-                                            "child_answer_id": "other-answer-mandatory"
-                                        }
-                                    ],
-                                    "q_code": "20",
-                                    "type": "Radio"
-                                },
-                                {
-                                    "parent_answer_id": "radio-answer",
-                                    "mandatory": false,
-                                    "id": "other-answer-mandatory",
-                                    "label": "Please specify other",
-                                    "q_code": "20",
-                                    "type": "TextField"
-                                }
-                            ],
-                            "description": "",
-                            "id": "radio-question",
-                            "title": "",
-                            "type": "General"
+            "blocks": [{
+                "type": "Question",
+                "id": "radio",
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "radio-answer",
+                        "label": "What is your favourite breakfast food",
+                        "mandatory": false,
+                        "options": [{
+                            "label": "None",
+                            "value": "None"
+                        }, {
+                            "label": "Bacon",
+                            "value": "Bacon"
+                        }, {
+                            "label": "Eggs",
+                            "value": "Eggs"
+                        }, {
+                            "label": "Sausage",
+                            "value": "Sausage"
+                        }, {
+                            "label": "Other",
+                            "description": "An answer is required.",
+                            "value": "Other",
+                            "child_answer_id": "other-answer-mandatory"
                         }],
-                        "title": "What is your favourite breakfast food",
-                        "routing_rules": []
-                    },
-                    {
-                        "type": "Question",
-                        "id": "test-number-block",
+                        "q_code": "20",
+                        "type": "Radio"
+                    }, {
+                        "parent_answer_id": "radio-answer",
+                        "mandatory": false,
+                        "id": "other-answer-mandatory",
+                        "label": "Please specify other",
+                        "q_code": "20",
+                        "type": "TextField"
+                    }],
+                    "description": "",
+                    "id": "radio-question",
+                    "title": "",
+                    "type": "General"
+                }],
+                "title": "What is your favourite breakfast food",
+                "routing_rules": []
+            }, {
+                "type": "Question",
+                "id": "test-number-block",
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "test-currency",
                         "description": "",
-                        "questions": [{
-                            "answers": [{
-                                    "id": "test-currency",
-                                    "description": "",
-                                    "label": "Currency Test",
-                                    "mandatory": false,
-                                    "type": "Currency",
-                                    "currency": "GBP"
-                                },
-                                {
-                                    "id": "square-kilometres",
-                                    "description": "",
-                                    "label": "Kilometres Square",
-                                    "mandatory": false,
-                                    "type": "Unit",
-                                    "unit": "area-square-kilometer"
-                                },
-                                {
-                                    "id": "test-decimal",
-                                    "description": "",
-                                    "label": "Decimal test to 2 decimal places",
-                                    "mandatory": false,
-                                    "type": "Number",
-                                    "decimal_places": 2
-                                }
-                            ],
-                            "description": "",
-                            "id": "test-number-range-question",
-                            "title": "Please enter test values (none mandatory)",
-                            "type": "General"
-                        }],
-                        "title": ""
-                    }
-                ],
-                "id": "summary-group",
+                        "label": "Currency Test",
+                        "mandatory": false,
+                        "type": "Currency",
+                        "currency": "GBP"
+                    }, {
+                        "id": "square-kilometres",
+                        "description": "",
+                        "label": "Kilometres Square",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "area-square-kilometer"
+                    }, {
+                        "id": "test-decimal",
+                        "description": "",
+                        "label": "Decimal test to 2 decimal places",
+                        "mandatory": false,
+                        "type": "Number",
+                        "decimal_places": 2
+                    }],
+                    "description": "",
+                    "id": "test-number-range-question",
+                    "title": "Please enter test values (none mandatory)",
+                    "type": "General"
+                }],
                 "title": ""
-            },
-            {
-                "blocks": [{
-                        "description": "",
-                        "type": "Question",
-                        "id": "dessert-block",
-                        "questions": [{
-                            "id": "test-dessert-question",
-                            "title": "",
-                            "type": "General",
-                            "answers": [{
-                                "id": "dessert",
-                                "label": "What is your favourite dessert?",
-                                "mandatory": false,
-                                "q_code": "30",
-                                "type": "TextField"
-                            }]
-                        }]
-                    },
-                    {
-                        "type": "Summary",
-                        "id": "summary"
-                    }
-                ],
-                "id": "dessert-group",
-                "title": "Dessert"
-            }
-        ]
+            }],
+            "id": "summary-group",
+            "title": ""
+        }, {
+            "blocks": [{
+                "description": "",
+                "type": "Question",
+                "id": "dessert-block",
+                "questions": [{
+                    "id": "test-dessert-question",
+                    "title": "",
+                    "type": "General",
+                    "answers": [{
+                        "id": "dessert",
+                        "label": "What is your favourite dessert?",
+                        "mandatory": false,
+                        "q_code": "30",
+                        "type": "TextField"
+                    }]
+                }]
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }],
+            "id": "dessert-group",
+            "title": "Dessert"
+        }]
     }]
 }

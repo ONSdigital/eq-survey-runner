@@ -7,66 +7,59 @@
     "description": "A test schema for different date formats",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
             "id": "dates",
             "title": "Date Range Validation",
             "blocks": [{
-                    "type": "Question",
-                    "id": "date-range-block",
-                    "title": "Date Range",
-                    "questions": [{
-                        "id": "date-range-question",
-                        "title": "Enter Date Range",
-                        "type": "DateRange",
-                        "guidance": {
-                            "content": [{
-                                "list": [
-                                    "Enter a date range between 23 days and 1 month and 20 days apart"
-                                ]
-                            }]
+                "type": "Question",
+                "id": "date-range-block",
+                "title": "Date Range",
+                "questions": [{
+                    "id": "date-range-question",
+                    "title": "Enter Date Range",
+                    "type": "DateRange",
+                    "guidance": {
+                        "content": [{
+                            "list": ["Enter a date range between 23 days and 1 month and 20 days apart"]
+                        }]
+                    },
+                    "period_limits": {
+                        "minimum": {
+                            "days": 23
                         },
-                        "period_limits": {
-                            "minimum": {
-                                "days": 23
-                            },
-                            "maximum": {
-                                "months": 1,
-                                "days": 20
-                            }
-                        },
-                        "answers": [{
-                                "id": "date-range-from",
-                                "label": "Period from",
-                                "mandatory": true,
-                                "type": "Date"
-                            },
-                            {
-                                "id": "date-range-to",
-                                "label": "Period to",
-                                "mandatory": true,
-                                "type": "Date"
-                            }
-                        ]
+                        "maximum": {
+                            "months": 1,
+                            "days": 20
+                        }
+                    },
+                    "answers": [{
+                        "id": "date-range-from",
+                        "label": "Period from",
+                        "mandatory": true,
+                        "type": "Date"
+                    }, {
+                        "id": "date-range-to",
+                        "label": "Period to",
+                        "mandatory": true,
+                        "type": "Date"
                     }]
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ]
+                }]
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }]
         }]
     }]
 }

@@ -7,78 +7,71 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A test survey for routing based on a Date less than",
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
             "blocks": [{
-                    "type": "Question",
-                    "id": "date-question",
-                    "description": "",
-                    "questions": [{
-                        "answers": [{
-                            "id": "single-date-answer",
-                            "label": "Today",
-                            "mandatory": true,
-                            "type": "Date"
-                        }],
-                        "description": "",
-                        "id": "date-questions",
-                        "title": "Enter a date less than {{ get_current_date() }}",
-                        "type": "General"
+                "type": "Question",
+                "id": "date-question",
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "single-date-answer",
+                        "label": "Today",
+                        "mandatory": true,
+                        "type": "Date"
                     }],
-                    "title": "",
-                    "routing_rules": [{
-                            "goto": {
-                                "block": "correct-answer",
-                                "when": [{
-                                    "id": "single-date-answer",
-                                    "condition": "less than",
-                                    "date_comparison": {
-                                        "value": "now"
-                                    }
-                                }]
+                    "description": "",
+                    "id": "date-questions",
+                    "title": "Enter a date less than {{ get_current_date() }}",
+                    "type": "General"
+                }],
+                "title": "",
+                "routing_rules": [{
+                    "goto": {
+                        "block": "correct-answer",
+                        "when": [{
+                            "id": "single-date-answer",
+                            "condition": "less than",
+                            "date_comparison": {
+                                "value": "now"
                             }
-                        },
-                        {
-                            "goto": {
-                                "block": "incorrect-answer"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "Interstitial",
-                    "id": "incorrect-answer",
-                    "title": "Incorrect Date",
-                    "description": "You entered a date later than yesterday.",
-                    "routing_rules": [{
-                        "goto": {
-                            "block": "summary"
-                        }
-                    }]
-                },
-                {
-                    "type": "Interstitial",
-                    "id": "correct-answer",
-                    "title": "Correct Date",
-                    "description": "You entered a date older than {{ get_current_date() }}."
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ],
+                        }]
+                    }
+                }, {
+                    "goto": {
+                        "block": "incorrect-answer"
+                    }
+                }]
+            }, {
+                "type": "Interstitial",
+                "id": "incorrect-answer",
+                "title": "Incorrect Date",
+                "description": "You entered a date later than yesterday.",
+                "routing_rules": [{
+                    "goto": {
+                        "block": "summary"
+                    }
+                }]
+            }, {
+                "type": "Interstitial",
+                "id": "correct-answer",
+                "title": "Correct Date",
+                "description": "You entered a date older than {{ get_current_date() }}."
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }],
             "id": "group",
             "title": ""
         }]

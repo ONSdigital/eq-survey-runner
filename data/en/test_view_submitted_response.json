@@ -11,114 +11,100 @@
         "enabled": true,
         "duration": 5
     },
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
             "blocks": [{
-                    "type": "Question",
-                    "id": "radio",
-                    "description": "",
-                    "questions": [{
-                        "answers": [{
-                                "id": "radio-answer",
-                                "label": "What is your favourite breakfast food?",
-                                "mandatory": false,
-                                "options": [{
-                                        "label": "None",
-                                        "value": "None"
-                                    },
-                                    {
-                                        "label": "Bacon",
-                                        "value": "Bacon"
-                                    },
-                                    {
-                                        "label": "Eggs",
-                                        "value": "Eggs"
-                                    },
-                                    {
-                                        "label": "Sausage",
-                                        "value": "Sausage"
-                                    },
-                                    {
-                                        "label": "Other",
-                                        "description": "An answer is required.",
-                                        "value": "Other",
-                                        "child_answer_id": "other-answer-mandatory"
-                                    }
-                                ],
-                                "q_code": "20",
-                                "type": "Radio"
-                            },
-                            {
-                                "parent_answer_id": "radio-answer",
-                                "mandatory": false,
-                                "id": "other-answer-mandatory",
-                                "label": "Please specify other",
-                                "q_code": "20",
-                                "type": "TextField"
-                            }
-                        ],
-                        "description": "",
-                        "id": "radio-question",
-                        "title": "",
-                        "type": "General"
+                "type": "Question",
+                "id": "radio",
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "radio-answer",
+                        "label": "What is your favourite breakfast food?",
+                        "mandatory": false,
+                        "options": [{
+                            "label": "None",
+                            "value": "None"
+                        }, {
+                            "label": "Bacon",
+                            "value": "Bacon"
+                        }, {
+                            "label": "Eggs",
+                            "value": "Eggs"
+                        }, {
+                            "label": "Sausage",
+                            "value": "Sausage"
+                        }, {
+                            "label": "Other",
+                            "description": "An answer is required.",
+                            "value": "Other",
+                            "child_answer_id": "other-answer-mandatory"
+                        }],
+                        "q_code": "20",
+                        "type": "Radio"
+                    }, {
+                        "parent_answer_id": "radio-answer",
+                        "mandatory": false,
+                        "id": "other-answer-mandatory",
+                        "label": "Please specify other",
+                        "q_code": "20",
+                        "type": "TextField"
                     }],
-                    "title": "What is your favourite breakfast food"
-                },
-                {
-                    "type": "Question",
-                    "id": "test-number-block",
                     "description": "",
-                    "questions": [{
-                        "answers": [{
-                                "id": "test-currency",
-                                "description": "",
-                                "label": "Currency Test",
-                                "mandatory": false,
-                                "type": "Currency",
-                                "currency": "GBP",
-                                "decimal_places": 2
-                            },
-                            {
-                                "id": "square-kilometres",
-                                "description": "",
-                                "label": "Kilometres Square",
-                                "mandatory": false,
-                                "type": "Unit",
-                                "unit": "area-square-kilometer"
-                            },
-                            {
-                                "id": "test-decimal",
-                                "description": "",
-                                "label": "Decimal test to 2 decimal places",
-                                "mandatory": false,
-                                "type": "Number",
-                                "decimal_places": 2
-                            }
-                        ],
+                    "id": "radio-question",
+                    "title": "",
+                    "type": "General"
+                }],
+                "title": "What is your favourite breakfast food"
+            }, {
+                "type": "Question",
+                "id": "test-number-block",
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "test-currency",
                         "description": "",
-                        "id": "test-number-range-question",
-                        "title": "Please enter test values (none mandatory)",
-                        "type": "General"
+                        "label": "Currency Test",
+                        "mandatory": false,
+                        "type": "Currency",
+                        "currency": "GBP",
+                        "decimal_places": 2
+                    }, {
+                        "id": "square-kilometres",
+                        "description": "",
+                        "label": "Kilometres Square",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "area-square-kilometer"
+                    }, {
+                        "id": "test-decimal",
+                        "description": "",
+                        "label": "Decimal test to 2 decimal places",
+                        "mandatory": false,
+                        "type": "Number",
+                        "decimal_places": 2
                     }],
-                    "title": ""
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ],
+                    "description": "",
+                    "id": "test-number-range-question",
+                    "title": "Please enter test values (none mandatory)",
+                    "type": "General"
+                }],
+                "title": ""
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }],
             "id": "summary-group",
             "title": "View Submission Test"
         }]

@@ -57,6 +57,7 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
         iat = time.time()
         exp = time.time() + (5 * 60)
         return {
+            'tx_id': str(uuid.uuid4()),
             'jti': str(uuid.uuid4()),
             'user_id': 'jimmy',
             'iat': int(iat),

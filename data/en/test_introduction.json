@@ -1,227 +1,152 @@
 {
     "data_version": "0.0.1",
     "description": "UK Innovation Survey",
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
-                "blocks": [{
-                        "id": "introduction",
-                        "type": "Introduction",
-                        "primary_content": [{
-                            "type": "Preview",
-                            "id": "preview",
-                            "title": "What you need to do next",
-                            "content": [{
-                                "description": "To take part, all you need to do is check that you have the information you need to answer the survey questions."
-                            }, {
-                                "title": "Employee pay frequency",
-                                "description": "You will need to indicate how frequently employees are paid i.e weekly, fortnightly, calendar monthly, four weekly or five weekly."
-                            }, {
-                                "description": "You will be asked to answer the questions below for all of your selected pay patterns."
-                            }],
-                            "questions": [{
-                                "question": "Number of paid employees",
-                                "content": [{
-                                    "title": "What was the number of employees paid in the last week of the given period?",
-                                    "description": "If the last week of the month is affected by holidays please use a more representative week."
-                                }, {
-                                    "description": "Include:",
-                                    "list": [
-                                        "All employees in Great Britain (England, Scotland and Wales), both full and part-time, who received pay in the relevant period"
-                                    ]
-                                }, {
-                                    "description": "Exclude:",
-                                    "list": [
-                                        "trainees on government schemes",
-                                        "employees working abroad unless paid directly from this business's GB payroll",
-                                        "employees in Northern Ireland"
-                                    ]
-                                }]
-                            }, {
-                                "question": "Total gross pay",
-                                "content": [{
-                                    "title": "What was the total gross pay paid to employees in the last week of the given period?",
-                                    "description": "Include:",
-                                    "list": [
-                                        "overtime and shift allowance payment",
-                                        "advanced holiday pay",
-                                        "pay award arrears",
-                                        "bonuses or commissions",
-                                        "voluntary employee contributions to, and annual profit from, profit related pay schemes"
-                                    ]
-                                }, {
-                                    "description": "Exclude:",
-                                    "list": [
-                                        "any redundancy pay and pay in lieu of notice payments",
-                                        "trainees on government schemes",
-                                        "director’s fees",
-                                        "employer’s NI and contribution to pension schemes",
-                                        "employees working abroad unless paid directly from this business’s GB payroll",
-                                        "signing on fees (sporting professionals)",
-                                        "payment in lieu of notice",
-                                        "redundancy pay (taxable and non-taxable)",
-                                        "accrued holiday pay",
-                                        "employees in Northern Ireland",
-                                        "benefits employees receive through pay, for example, family working tax credit",
-                                        "expenses payments for attending meetings, for example, councillors"
-                                    ]
-                                }]
-                            }, {
-                                "question": "Holiday pay, pay awards and bonuses",
-                                "content": [{
-                                    "title": "Of the total gross pay paid to employees in the last week of the given period, what amount was:",
-                                    "list": [
-                                        "holiday pay, paid in advance (estimate if necessary)",
-                                        "arrears of pay owing to pay awards",
-                                        "bonuses, commissions or annual profit from profit related pay schemes"
-                                    ]
-                                }, {
-                                    "description": "Include:",
-                                    "list": [
-                                        "performance pay (for example productivity bonuses)",
-                                        "long service awards",
-                                        "appearance money (sporting professionals)"
-                                    ]
-                                }, {
-                                    "description": "Exclude:",
-                                    "list": [
-                                        "trainees on government schemes",
-                                        "director’s fees",
-                                        "employer’s NI and contribution to pension schemes",
-                                        "employees working abroad unless paid directly from this business’s GB payroll",
-                                        "signing on fees (sporting professionals)",
-                                        "payment in lieu of notice",
-                                        "redundancy pay (taxable and non-taxable)",
-                                        "accrued holiday pay",
-                                        "employees in Northern Ireland",
-                                        "benefits employees receive through pay, for example, family working tax credit",
-                                        "expenses payments for attending meetings, for example, councillors"
-                                    ]
-                                }]
-                            }, {
-                                "question": "Redundancies and temporary employees",
-                                "content": [{
-                                    "title": "Did any significant changes occur to the number of paid employees?",
-                                    "description": "What constitutes a ‘significant change’ is dependent on your own interpretation in relation to your figures from the previous reporting period and the same reporting period last year."
-                                }, {
-                                    "description": "Include:",
-                                    "list": [
-                                        "redundancies",
-                                        "changes in the number of temporary staff"
-                                    ]
-                                }, {
-                                    "title": "Did any significant changes occur to the number of redundancies among paid employees?"
-                                }, {
-                                    "title": "Did any significant changes occur to the number of temporary paid employees?"
-                                }, {
-                                    "title": "Did any significant changes occur to the total gross pay paid to paid employees?",
-                                    "description": "Include:",
-                                    "list": [
-                                        "more or less overtime",
-                                        "new pay rates",
-                                        "industrial action"
-                                    ]
-                                }]
-                            }, {
-                                "question": "Paid overtime, new pay rates and industrial action",
-                                "content": [{
-                                    "title": "Did any significant changes occur to the amount of overtime paid to paid employees?"
-                                }, {
-                                    "title": "Did any significant changes occur to the pay rates of paid employees?",
-                                    "description": "Please enter the percentage increase of new pay rates, if possible:",
-                                    "list": [
-                                        "Percentage increase of new pay rates",
-                                        "If your figures are back dated, from when",
-                                        "What was the percentage or number of weekly paid employees who received this new pay rate"
-                                    ]
-                                }, {
-                                    "title": "Did industrial action significantly affect total gross pay paid to paid employees?"
-                                }, {
-                                    "title": "Did any other significant changes occur to the pay or number of paid employees?"
-                                }, {
-                                    "title": "Please specify any other significant changes to the pay or number of paid employees."
-                                }]
-                            }]
-                        }, {
-                            "id": "what-you-need-to-know",
-                            "type": "Basic",
-                            "content": [{
-                                "title": "What you need to know",
-                                "list": [
-                                    "You can provide informed estimates if actual figures aren't available",
-                                    "All information you provide is strictly confidential"
-                                ]
-                            }]
-                        }, {
-                            "id": "definition-of-innovation",
-                            "type": "Definition",
-                            "content": [{
-                                "title": "Definition of innovation",
-                                "list": [
-                                    "Innovation, for the purpose of this survey, is defined as <strong>new</strong> or <strong>significantly improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all goods or services that {{ metadata['ru_name'] }} has introduced, regardless of their origin.",
-                                    "These innovations may be new to {{ metadata['ru_name'] }} or new to the market",
-                                    "Investments for future innovation and changes that {{ metadata['ru_name'] }} has introduced at a <strong>strategic</strong> level (in organisation and practices) are also covered"
-                                ]
-                            }]
-                        }, {
-                            "id": "how-we-use-your-data",
-                            "type": "Basic",
-                            "content": [{
-                                "title": "How we use your data",
-                                "list": [
-                                    "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy",
-                                    "The data from you business is essential is it helps us calculate the GDP of the UK",
-                                    "Our surveys inform government decisions. For example, past statistics from our surveys led to the introduction of business grants"
-                                ]
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "general-business-information-completed",
-                        "section_number": "1",
-                        "title": "General Business Information",
-                        "description": "<p>You have successfully completed this section</p><p>The next section covers changes in <em>business strategy and practices</em>, for example, implementing changes to marketing concepts or strategies.</p>",
-                        "type": "Interstitial"
-                    }
-                ],
-                "id": "general-business-information",
-                "title": "General Business Information"
-            },
-            {
-                "blocks": [{
-                    "id": "confirmation",
-                    "description": "",
-                    "questions": [{
-                        "id": "ready-to-submit-completed-question",
-                        "title": "Submission",
-                        "type": "Content",
-                        "guidance": {
-                            "content": [{
-                                "list": [
-                                    "You will not be able to access or change your answers on submitting the questionnaire",
-                                    "If you wish to review your answers please select the relevant completed sections"
-                                ]
-                            }]
-                        }
+            "blocks": [{
+                "id": "introduction",
+                "type": "Introduction",
+                "primary_content": [{
+                    "type": "Preview",
+                    "id": "preview",
+                    "title": "What you need to do next",
+                    "content": [{
+                        "description": "To take part, all you need to do is check that you have the information you need to answer the survey questions."
+                    }, {
+                        "title": "Employee pay frequency",
+                        "description": "You will need to indicate how frequently employees are paid i.e weekly, fortnightly, calendar monthly, four weekly or five weekly."
+                    }, {
+                        "description": "You will be asked to answer the questions below for all of your selected pay patterns."
                     }],
-                    "title": "You are now ready to submit this survey",
-                    "type": "Confirmation"
+                    "questions": [{
+                        "question": "Number of paid employees",
+                        "content": [{
+                            "title": "What was the number of employees paid in the last week of the given period?",
+                            "description": "If the last week of the month is affected by holidays please use a more representative week."
+                        }, {
+                            "description": "Include:",
+                            "list": ["All employees in Great Britain (England, Scotland and Wales), both full and part-time, who received pay in the relevant period"]
+                        }, {
+                            "description": "Exclude:",
+                            "list": ["trainees on government schemes", "employees working abroad unless paid directly from this business's GB payroll", "employees in Northern Ireland"]
+                        }]
+                    }, {
+                        "question": "Total gross pay",
+                        "content": [{
+                            "title": "What was the total gross pay paid to employees in the last week of the given period?",
+                            "description": "Include:",
+                            "list": ["overtime and shift allowance payment", "advanced holiday pay", "pay award arrears", "bonuses or commissions", "voluntary employee contributions to, and annual profit from, profit related pay schemes"]
+                        }, {
+                            "description": "Exclude:",
+                            "list": ["any redundancy pay and pay in lieu of notice payments", "trainees on government schemes", "director\u2019s fees", "employer\u2019s NI and contribution to pension schemes", "employees working abroad unless paid directly from this business\u2019s GB payroll", "signing on fees (sporting professionals)", "payment in lieu of notice", "redundancy pay (taxable and non-taxable)", "accrued holiday pay", "employees in Northern Ireland", "benefits employees receive through pay, for example, family working tax credit", "expenses payments for attending meetings, for example, councillors"]
+                        }]
+                    }, {
+                        "question": "Holiday pay, pay awards and bonuses",
+                        "content": [{
+                            "title": "Of the total gross pay paid to employees in the last week of the given period, what amount was:",
+                            "list": ["holiday pay, paid in advance (estimate if necessary)", "arrears of pay owing to pay awards", "bonuses, commissions or annual profit from profit related pay schemes"]
+                        }, {
+                            "description": "Include:",
+                            "list": ["performance pay (for example productivity bonuses)", "long service awards", "appearance money (sporting professionals)"]
+                        }, {
+                            "description": "Exclude:",
+                            "list": ["trainees on government schemes", "director\u2019s fees", "employer\u2019s NI and contribution to pension schemes", "employees working abroad unless paid directly from this business\u2019s GB payroll", "signing on fees (sporting professionals)", "payment in lieu of notice", "redundancy pay (taxable and non-taxable)", "accrued holiday pay", "employees in Northern Ireland", "benefits employees receive through pay, for example, family working tax credit", "expenses payments for attending meetings, for example, councillors"]
+                        }]
+                    }, {
+                        "question": "Redundancies and temporary employees",
+                        "content": [{
+                            "title": "Did any significant changes occur to the number of paid employees?",
+                            "description": "What constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to your figures from the previous reporting period and the same reporting period last year."
+                        }, {
+                            "description": "Include:",
+                            "list": ["redundancies", "changes in the number of temporary staff"]
+                        }, {
+                            "title": "Did any significant changes occur to the number of redundancies among paid employees?"
+                        }, {
+                            "title": "Did any significant changes occur to the number of temporary paid employees?"
+                        }, {
+                            "title": "Did any significant changes occur to the total gross pay paid to paid employees?",
+                            "description": "Include:",
+                            "list": ["more or less overtime", "new pay rates", "industrial action"]
+                        }]
+                    }, {
+                        "question": "Paid overtime, new pay rates and industrial action",
+                        "content": [{
+                            "title": "Did any significant changes occur to the amount of overtime paid to paid employees?"
+                        }, {
+                            "title": "Did any significant changes occur to the pay rates of paid employees?",
+                            "description": "Please enter the percentage increase of new pay rates, if possible:",
+                            "list": ["Percentage increase of new pay rates", "If your figures are back dated, from when", "What was the percentage or number of weekly paid employees who received this new pay rate"]
+                        }, {
+                            "title": "Did industrial action significantly affect total gross pay paid to paid employees?"
+                        }, {
+                            "title": "Did any other significant changes occur to the pay or number of paid employees?"
+                        }, {
+                            "title": "Please specify any other significant changes to the pay or number of paid employees."
+                        }]
+                    }]
+                }, {
+                    "id": "what-you-need-to-know",
+                    "type": "Basic",
+                    "content": [{
+                        "title": "What you need to know",
+                        "list": ["You can provide informed estimates if actual figures aren't available", "All information you provide is strictly confidential"]
+                    }]
+                }, {
+                    "id": "definition-of-innovation",
+                    "type": "Definition",
+                    "content": [{
+                        "title": "Definition of innovation",
+                        "list": ["Innovation, for the purpose of this survey, is defined as <strong>new</strong> or <strong>significantly improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all goods or services that {{ metadata['ru_name'] }} has introduced, regardless of their origin.", "These innovations may be new to {{ metadata['ru_name'] }} or new to the market", "Investments for future innovation and changes that {{ metadata['ru_name'] }} has introduced at a <strong>strategic</strong> level (in organisation and practices) are also covered"]
+                    }]
+                }, {
+                    "id": "how-we-use-your-data",
+                    "type": "Basic",
+                    "content": [{
+                        "title": "How we use your data",
+                        "list": ["You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy", "The data from you business is essential is it helps us calculate the GDP of the UK", "Our surveys inform government decisions. For example, past statistics from our surveys led to the introduction of business grants"]
+                    }]
+                }]
+            }, {
+                "id": "general-business-information-completed",
+                "section_number": "1",
+                "title": "General Business Information",
+                "description": "<p>You have successfully completed this section</p><p>The next section covers changes in <em>business strategy and practices</em>, for example, implementing changes to marketing concepts or strategies.</p>",
+                "type": "Interstitial"
+            }],
+            "id": "general-business-information",
+            "title": "General Business Information"
+        }, {
+            "blocks": [{
+                "id": "confirmation",
+                "description": "",
+                "questions": [{
+                    "id": "ready-to-submit-completed-question",
+                    "title": "Submission",
+                    "type": "Content",
+                    "guidance": {
+                        "content": [{
+                            "list": ["You will not be able to access or change your answers on submitting the questionnaire", "If you wish to review your answers please select the relevant completed sections"]
+                        }]
+                    }
                 }],
-                "id": "ready-to-submit",
-                "title": "Submit answers"
-            }
-        ]
+                "title": "You are now ready to submit this survey",
+                "type": "Confirmation"
+            }],
+            "id": "ready-to-submit",
+            "title": "Submit answers"
+        }]
     }],
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",

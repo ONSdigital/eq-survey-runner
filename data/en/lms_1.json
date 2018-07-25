@@ -12,23 +12,22 @@
     "navigation": {
         "visible": true
     },
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        },
-        "country_code": {
-            "validator": "string"
-        },
-        "display_address": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }, {
+        "name": "country_code",
+        "validator": "string"
+    }, {
+        "name": "display_address",
+        "validator": "string"
+    }],
     "sections": [{
             "id": "household-section",
             "title": "About the household",

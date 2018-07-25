@@ -15,64 +15,59 @@
         "NUMBER_TOO_SMALL": "Number cannot be less than zero",
         "INVALID_NUMBER": "Please enter an integer"
     },
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
-            "id": "first-group",
-            "title": "First group",
-            "groups": [{
-                "blocks": [{
-                        "type": "Introduction",
-                        "id": "introduction",
-                        "title": "Introduction",
-                        "description": ""
-                    },
-                    {
-                        "type": "Question",
-                        "id": "breakfast",
-                        "description": "",
-                        "title": "What is your favourite breakfast food",
-                        "questions": [{
-                            "answers": [{
-                                "id": "breakfast-answer",
-                                "label": "What is your favourite breakfast food",
-                                "mandatory": false,
-                                "q_code": "0",
-                                "type": "TextField"
-                            }],
-                            "description": "",
-                            "id": "breakfast-question",
-                            "title": "What is your favourite breakfast food",
-                            "type": "General"
-                        }],
-                        "routing_rules": []
-                    }
-                ],
-                "id": "final-confirmation",
-                "title": "First group"
-            }]
-        },
-        {
-            "id": "submit-answers",
-            "title": "Submit answers",
-            "groups": [{
-                "blocks": [{
-                    "type": "Confirmation",
-                    "id": "confirmation",
-                    "title": "Thank you for your answers, do you wish to submit"
+        "id": "first-group",
+        "title": "First group",
+        "groups": [{
+            "blocks": [{
+                "type": "Introduction",
+                "id": "introduction",
+                "title": "Introduction",
+                "description": ""
+            }, {
+                "type": "Question",
+                "id": "breakfast",
+                "description": "",
+                "title": "What is your favourite breakfast food",
+                "questions": [{
+                    "answers": [{
+                        "id": "breakfast-answer",
+                        "label": "What is your favourite breakfast food",
+                        "mandatory": false,
+                        "q_code": "0",
+                        "type": "TextField"
+                    }],
+                    "description": "",
+                    "id": "breakfast-question",
+                    "title": "What is your favourite breakfast food",
+                    "type": "General"
                 }],
-                "id": "confirmation-group",
-                "title": "Submit answers"
-            }]
-        }
-    ]
+                "routing_rules": []
+            }],
+            "id": "final-confirmation",
+            "title": "First group"
+        }]
+    }, {
+        "id": "submit-answers",
+        "title": "Submit answers",
+        "groups": [{
+            "blocks": [{
+                "type": "Confirmation",
+                "id": "confirmation",
+                "title": "Thank you for your answers, do you wish to submit"
+            }],
+            "id": "confirmation-group",
+            "title": "Submit answers"
+        }]
+    }]
 }

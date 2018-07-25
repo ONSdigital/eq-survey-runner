@@ -7,115 +7,91 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A survey that tests grouped and calculated answers against a total",
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
             "id": "group",
             "title": "Validate sum against total",
             "blocks": [{
-                    "type": "Question",
-                    "title": "Target total",
-                    "id": "total-block",
-                    "description": "",
-                    "questions": [{
-                        "id": "total-question",
-                        "title": "Total",
-                        "type": "General",
-                        "answers": [{
-                            "id": "total-answer",
-                            "label": "Total",
-                            "mandatory": true,
-                            "type": "Number",
-                            "decimal_places": 2,
-                            "min_value": {
-                                "value": 0,
-                                "exclusive": true
-                            }
-                        }]
+                "type": "Question",
+                "title": "Target total",
+                "id": "total-block",
+                "description": "",
+                "questions": [{
+                    "id": "total-question",
+                    "title": "Total",
+                    "type": "General",
+                    "answers": [{
+                        "id": "total-answer",
+                        "label": "Total",
+                        "mandatory": true,
+                        "type": "Number",
+                        "decimal_places": 2,
+                        "min_value": {
+                            "value": 0,
+                            "exclusive": true
+                        }
                     }]
-                },
-                {
-                    "type": "Question",
-                    "title": "Calculated total",
-                    "id": "breakdown-block",
-                    "questions": [{
-                        "id": "breakdown-question",
-                        "title": "Breakdown",
-                        "type": "Calculated",
-                        "calculations": [{
-                                "calculation_type": "sum",
-                                "value": 0,
-                                "answers_to_calculate": [
-                                    "breakdown-1",
-                                    "breakdown-2",
-                                    "breakdown-3",
-                                    "breakdown-4"
-                                ],
-                                "conditions": [
-                                    "equals"
-                                ]
-                            },
-                            {
-                                "calculation_type": "sum",
-                                "answer_id": "total-answer",
-                                "answers_to_calculate": [
-                                    "breakdown-1",
-                                    "breakdown-2",
-                                    "breakdown-3",
-                                    "breakdown-4"
-                                ],
-                                "conditions": [
-                                    "equals"
-                                ]
-                            }
-                        ],
-                        "answers": [{
-                                "id": "breakdown-1",
-                                "label": "Breakdown 1",
-                                "mandatory": false,
-                                "decimal_places": 2,
-                                "type": "Number"
-                            },
-                            {
-                                "id": "breakdown-2",
-                                "label": "Breakdown 2",
-                                "mandatory": false,
-                                "decimal_places": 2,
-                                "type": "Number"
-                            },
-                            {
-                                "id": "breakdown-3",
-                                "label": "Breakdown 3",
-                                "mandatory": false,
-                                "decimal_places": 2,
-                                "type": "Number"
-                            },
-                            {
-                                "id": "breakdown-4",
-                                "label": "Breakdown 4",
-                                "mandatory": false,
-                                "decimal_places": 2,
-                                "type": "Number"
-                            }
-                        ]
+                }]
+            }, {
+                "type": "Question",
+                "title": "Calculated total",
+                "id": "breakdown-block",
+                "questions": [{
+                    "id": "breakdown-question",
+                    "title": "Breakdown",
+                    "type": "Calculated",
+                    "calculations": [{
+                        "calculation_type": "sum",
+                        "value": 0,
+                        "answers_to_calculate": ["breakdown-1", "breakdown-2", "breakdown-3", "breakdown-4"],
+                        "conditions": ["equals"]
+                    }, {
+                        "calculation_type": "sum",
+                        "answer_id": "total-answer",
+                        "answers_to_calculate": ["breakdown-1", "breakdown-2", "breakdown-3", "breakdown-4"],
+                        "conditions": ["equals"]
+                    }],
+                    "answers": [{
+                        "id": "breakdown-1",
+                        "label": "Breakdown 1",
+                        "mandatory": false,
+                        "decimal_places": 2,
+                        "type": "Number"
+                    }, {
+                        "id": "breakdown-2",
+                        "label": "Breakdown 2",
+                        "mandatory": false,
+                        "decimal_places": 2,
+                        "type": "Number"
+                    }, {
+                        "id": "breakdown-3",
+                        "label": "Breakdown 3",
+                        "mandatory": false,
+                        "decimal_places": 2,
+                        "type": "Number"
+                    }, {
+                        "id": "breakdown-4",
+                        "label": "Breakdown 4",
+                        "mandatory": false,
+                        "decimal_places": 2,
+                        "type": "Number"
                     }]
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ]
+                }]
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }]
         }]
     }]
 }

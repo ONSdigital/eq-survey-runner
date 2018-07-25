@@ -7,141 +7,123 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to test multiple piping into a question and answer",
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
             "id": "what-is-your-address-group",
             "title": "What is your address?",
             "blocks": [{
-                    "type": "Question",
-                    "id": "what-is-your-address",
-                    "questions": [{
-                        "id": "what-is-your-address-question",
-                        "title": "What is your address?",
-                        "type": "General",
-                        "answers": [{
-                                "id": "building",
-                                "label": "Building",
-                                "mandatory": false,
-                                "type": "TextField"
-                            },
-                            {
-                                "id": "address-line-1",
-                                "label": "Address Line 1",
-                                "mandatory": true,
-                                "type": "TextField",
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY_TEXTFIELD": "Enter an address to continue"
-                                    }
-                                }
-                            },
-                            {
-                                "id": "address-line-2",
-                                "label": "Address Line 2",
-                                "mandatory": false,
-                                "type": "TextField"
-                            },
-                            {
-                                "id": "address-line-3",
-                                "label": "Address Line 3",
-                                "mandatory": false,
-                                "type": "TextField"
-                            },
-                            {
-                                "id": "town-city",
-                                "label": "Town/City",
-                                "mandatory": false,
-                                "type": "TextField"
-                            },
-                            {
-                                "id": "county",
-                                "label": "County",
-                                "mandatory": false,
-                                "type": "TextField"
-                            },
-                            {
-                                "id": "postcode",
-                                "label": "Postcode",
-                                "mandatory": false,
-                                "type": "TextField"
-                            },
-                            {
-                                "id": "country",
-                                "label": "Country",
-                                "mandatory": false,
-                                "type": "TextField"
+                "type": "Question",
+                "id": "what-is-your-address",
+                "questions": [{
+                    "id": "what-is-your-address-question",
+                    "title": "What is your address?",
+                    "type": "General",
+                    "answers": [{
+                        "id": "building",
+                        "label": "Building",
+                        "mandatory": false,
+                        "type": "TextField"
+                    }, {
+                        "id": "address-line-1",
+                        "label": "Address Line 1",
+                        "mandatory": true,
+                        "type": "TextField",
+                        "validation": {
+                            "messages": {
+                                "MANDATORY_TEXTFIELD": "Enter an address to continue"
                             }
-                        ]
+                        }
+                    }, {
+                        "id": "address-line-2",
+                        "label": "Address Line 2",
+                        "mandatory": false,
+                        "type": "TextField"
+                    }, {
+                        "id": "address-line-3",
+                        "label": "Address Line 3",
+                        "mandatory": false,
+                        "type": "TextField"
+                    }, {
+                        "id": "town-city",
+                        "label": "Town/City",
+                        "mandatory": false,
+                        "type": "TextField"
+                    }, {
+                        "id": "county",
+                        "label": "County",
+                        "mandatory": false,
+                        "type": "TextField"
+                    }, {
+                        "id": "postcode",
+                        "label": "Postcode",
+                        "mandatory": false,
+                        "type": "TextField"
+                    }, {
+                        "id": "country",
+                        "label": "Country",
+                        "mandatory": false,
+                        "type": "TextField"
                     }]
-                },
-                {
-                    "type": "Question",
-                    "id": "textfield",
-                    "questions": [{
-                        "id": "textfield-question",
-                        "title": "Enter text below",
-                        "type": "General",
-                        "answers": [{
-                                "id": "first-text",
-                                "label": "Enter Name 1",
-                                "mandatory": true,
-                                "type": "TextField",
-                                "validation": {
-                                    "messages": {
-                                        "MANDATORY_TEXTFIELD": "Please enter text?"
-                                    }
-                                }
-                            },
-                            {
-                                "id": "second-text",
-                                "label": "Enter Name 2",
-                                "mandatory": false,
-                                "type": "TextField"
+                }]
+            }, {
+                "type": "Question",
+                "id": "textfield",
+                "questions": [{
+                    "id": "textfield-question",
+                    "title": "Enter text below",
+                    "type": "General",
+                    "answers": [{
+                        "id": "first-text",
+                        "label": "Enter Name 1",
+                        "mandatory": true,
+                        "type": "TextField",
+                        "validation": {
+                            "messages": {
+                                "MANDATORY_TEXTFIELD": "Please enter text?"
                             }
-                        ]
+                        }
+                    }, {
+                        "id": "second-text",
+                        "label": "Enter Name 2",
+                        "mandatory": false,
+                        "type": "TextField"
                     }]
-                },
-                {
-                    "type": "Question",
-                    "id": "piping-question",
-                    "questions": [{
-                        "id": "multiple-piping-question",
-                        "title": "Does <em>{{[answers['first-text'], answers['second-text']] | format_household_name}}</em> live at <em>{{answers['address-line-1']}}</em>",
-                        "type": "General",
-                        "answers": [{
-                            "id": "multiple-piping-answer",
-                            "type": "Radio",
-                            "mandatory": true,
-                            "options": [{
-                                    "label": "{{[answers['building'], answers['address-line-1'], answers['address-line-2'], answers['address-line-3'], answers['town-city'], answers['county'], answers['postcode'], answers['country']] | concatenated_list}}",
-                                    "value": "at your address"
-                                },
-                                {
-                                    "label": "at another address",
-                                    "value": "at another address"
-                                }
-                            ]
+                }]
+            }, {
+                "type": "Question",
+                "id": "piping-question",
+                "questions": [{
+                    "id": "multiple-piping-question",
+                    "title": "Does <em>{{[answers['first-text'], answers['second-text']] | format_household_name}}</em> live at <em>{{answers['address-line-1']}}</em>",
+                    "type": "General",
+                    "answers": [{
+                        "id": "multiple-piping-answer",
+                        "type": "Radio",
+                        "mandatory": true,
+                        "options": [{
+                            "label": "{{[answers['building'], answers['address-line-1'], answers['address-line-2'], answers['address-line-3'], answers['town-city'], answers['county'], answers['postcode'], answers['country']] | concatenated_list}}",
+                            "value": "at your address"
+                        }, {
+                            "label": "at another address",
+                            "value": "at another address"
                         }]
                     }]
-
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ]
+                }]
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }]
         }]
     }]
 }
