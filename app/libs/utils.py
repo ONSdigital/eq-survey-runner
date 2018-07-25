@@ -16,6 +16,6 @@ def convert_tx_id_for_boxes(tx_id):
 
 
 # Converts a dict into an object with the key names as property names
-class ObjectFromDict(object):
+class ObjectFromDict:
     def __init__(self, properties):
         self.__dict__ = properties

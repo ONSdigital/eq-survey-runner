@@ -333,13 +333,13 @@ class SumCheck:
     def _is_valid(condition, total, target_total):
         if condition == 'equals':
             return total == target_total, 'TOTAL_SUM_NOT_EQUALS'
-        elif condition == 'less than':
+        if condition == 'less than':
             return total < target_total, 'TOTAL_SUM_NOT_LESS_THAN'
-        elif condition == 'greater than':
+        if condition == 'greater than':
             return total > target_total, 'TOTAL_SUM_NOT_GREATER_THAN'
-        elif condition == 'greater than or equals':
+        if condition == 'greater than or equals':
             return total >= target_total, 'TOTAL_SUM_NOT_GREATER_THAN_OR_EQUALS'
-        elif condition == 'less than or equals':
+        if condition == 'less than or equals':
             return total <= target_total, 'TOTAL_SUM_NOT_LESS_THAN_OR_EQUALS'
 
 

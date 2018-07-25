@@ -57,9 +57,8 @@ def load_user():
 
         return user
 
-    else:
-        logger.info('session does not exist')
-        return None
+    logger.info('session does not exist')
+    return None
 
 
 def _create_session_data_from_metadata(metadata):

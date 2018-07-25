@@ -1,4 +1,4 @@
-class SessionData(object):
+class SessionData:
 
     def __init__(self,
                  tx_id,

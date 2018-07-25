@@ -1,8 +1,8 @@
 import re
 from collections import defaultdict
 from datetime import datetime, timedelta
+import humanize
 import simplejson as json
-import humanize as humanize
 from dateutil.tz import tzutc
 
 from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify
@@ -358,34 +358,34 @@ def submit_answers(routing_path, eq_id, form_type):
 
     if invalid_location:
         return redirect(invalid_location.url(metadata))
-    else:
-        message = json.dumps(convert_answers(
-            metadata,
-            g.schema,
-            answer_store,
-            routing_path,
-        ))
 
-        encrypted_message = encrypt(message, current_app.eq['key_store'], KEY_PURPOSE_SUBMISSION)
-        sent = current_app.eq['submitter'].send_message(
-            encrypted_message,
-            current_app.config['EQ_RABBITMQ_QUEUE_NAME'],
-            metadata['tx_id'],
-        )
+    message = json.dumps(convert_answers(
+        metadata,
+        g.schema,
+        answer_store,
+        routing_path,
+    ))
 
-        if not sent:
-            raise SubmissionFailedException()
+    encrypted_message = encrypt(message, current_app.eq['key_store'], KEY_PURPOSE_SUBMISSION)
+    sent = current_app.eq['submitter'].send_message(
+        encrypted_message,
+        current_app.config['EQ_RABBITMQ_QUEUE_NAME'],
+        metadata['tx_id'],
+    )
 
-        submitted_time = datetime.utcnow()
+    if not sent:
+        raise SubmissionFailedException()
 
-        _store_submitted_time_in_session(submitted_time)
+    submitted_time = datetime.utcnow()
 
-        if is_view_submitted_response_enabled(g.schema.json):
-            _store_viewable_submission(answer_store.answers, metadata, submitted_time)
+    _store_submitted_time_in_session(submitted_time)
 
-        get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
+    if is_view_submitted_response_enabled(g.schema.json):
+        _store_viewable_submission(answer_store.answers, metadata, submitted_time)
 
-        return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
+    get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
+
+    return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
 
 
 def _store_submitted_time_in_session(submitted_time):

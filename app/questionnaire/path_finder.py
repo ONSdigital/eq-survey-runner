@@ -118,7 +118,7 @@ class PathFinder:
                 return path, block_index
 
             # No routing rules, so if this isn't the last block, step forward a block
-            elif block_index < len(blocks) - 1:
+            if block_index < len(blocks) - 1:
                 this_location = Location(blocks[block_index + 1]['group_id'],
                                          blocks[block_index + 1]['group_instance'],
                                          blocks[block_index + 1]['block']['id'])

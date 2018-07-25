@@ -25,7 +25,7 @@ class TestDateRequiredValidator(unittest.TestCase):
     def test_date_month_year_required_empty(self):
         validator = DateRequired()
 
-        class TestMonthYearSpec(object):
+        class TestMonthYearSpec:
             month = None
             year = None
 
@@ -42,7 +42,7 @@ class TestDateRequiredValidator(unittest.TestCase):
     def test_date_year_required_empty(self):
         validator = DateRequired()
 
-        class TestYearSpec(object):
+        class TestYearSpec:
             year = None
 
         mock_form = Mock(spec=TestYearSpec)

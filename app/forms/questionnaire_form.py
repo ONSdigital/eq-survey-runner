@@ -202,9 +202,8 @@ class QuestionnaireForm(FlaskForm):
     def _get_calculation_type(calculation_type):
         if calculation_type == 'sum':
             return sum
-        else:
-            error = 'Invalid calculation_type: {}'.format(calculation_type)
-            raise Exception(error)
+
+        raise Exception('Invalid calculation_type: {}'.format(calculation_type))
 
     def _get_formatted_calculation_values(self, answers_list):
         return[self.get_data(answer_id).replace(' ', '').replace(',', '') for answer_id in answers_list]

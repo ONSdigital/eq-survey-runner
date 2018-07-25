@@ -56,14 +56,14 @@ class Question:
     def _build_answer(self, answer_store, question_schema, answer_schema, answer_schemas, answer_value=None):
         if answer_value is None:
             return None
-        elif question_schema['type'] == 'DateRange':
+        if question_schema['type'] == 'DateRange':
             return self._build_date_range_answer(answer_store, answer_value, answer_schemas)
-        elif answer_schema['type'] in ['Checkbox', 'MutuallyExclusiveCheckbox']:
+        if answer_schema['type'] in ['Checkbox', 'MutuallyExclusiveCheckbox']:
             checkbox_answers = self._build_checkbox_answers(answer_value, answer_schema)
             return checkbox_answers or None
-        elif answer_schema['type'] == 'Radio':
+        if answer_schema['type'] == 'Radio':
             return self._build_radio_answer(answer_value, answer_schema)
-        elif answer_schema['type'] == 'Dropdown':
+        if answer_schema['type'] == 'Dropdown':
             return self._build_dropdown_answer(answer_value, answer_schema)
         return answer_value
 
@@ -95,7 +95,7 @@ class Question:
         for option in answer_schema['options']:
             if option['value'].lower() == 'other' and answer != option['value']:
                 return answer if answer else option['label']
-            elif answer == option['value']:
+            if answer == option['value']:
                 return option['label']
 
     @staticmethod

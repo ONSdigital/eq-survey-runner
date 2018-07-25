@@ -174,7 +174,7 @@ class SessionStoreTest(AppContextTestCase):
 
         original_loads_func = simplejson.loads
 
-        class OldSessionData(object):
+        class OldSessionData:
             """class representing what old sessions expect ( no trading as) """
             def __init__(self,
                          tx_id,
