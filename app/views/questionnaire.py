@@ -1,4 +1,3 @@
-from functools import wraps
 import re
 from collections import defaultdict
 from datetime import datetime, timedelta
@@ -225,8 +224,11 @@ def post_household_composition(routing_path, schema, metadata, answer_store, **k
         return response
 
     if form.validate():
-        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-        answer_store_updater = AnswerStoreUpdater(current_location, schema, questionnaire_store)
+        answer_store_updater = AnswerStoreUpdater(
+            current_location,
+            schema,
+            get_questionnaire_store(current_user.user_id, current_user.user_ik)
+        )
         answer_store_updater.save_form(form)
 
         metadata = get_metadata(current_user)
@@ -447,7 +449,7 @@ def _save_sign_out(routing_path, current_location, form, schema, answer_store, m
     block = _get_block_json(current_location, schema, answer_store, metadata)
 
     if form.validate():
-        answer_store_updater = AnswerStoreUpdater(this_location, schema, questionnaire_store)
+        answer_store_updater = AnswerStoreUpdater(current_location, schema, questionnaire_store)
         answer_store_updater.save_form(form)
 
         questionnaire_store.remove_completed_blocks(location=current_location)

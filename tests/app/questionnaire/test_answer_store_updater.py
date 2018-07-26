@@ -208,7 +208,7 @@ class TestAnswerStoreUpdaterDependencies(unittest.TestCase):
         self.schema.get_answer_ids_for_block.return_value = [parent_id]
         self.schema.dependencies = {parent_id: [dependent_answer_id]}
         self.schema.get_block.return_value = {'id': dependent_location.block_id, 'parent_id': dependent_location.group_id}
-        
+
         # the dependent answer is in a repeating group, the parent is not
         self.schema.answer_is_in_repeating_group = lambda _answer_id: _answer_id == dependent_answer_id
 
