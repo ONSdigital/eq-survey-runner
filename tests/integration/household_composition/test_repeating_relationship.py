@@ -5,12 +5,7 @@ class TestRepeatingRelationship(IntegrationTestCase):
 
     def setUp(self):
         super().setUp()
-        self.launchSurvey('census', 'household')
-        self.post(action='start_questionnaire')
-        self.post({'address-line-1': '44 hill side'})
-        self.post(action='save_continue')
-        self.post({'permanent-or-family-home-answer': 'Yes'})
-        self.household_composition_url = self.last_url
+        self.launchSurvey('test', 'relationship_household', roles=['dumper'])
 
     def test_should_ask_twenty_four_relationships_when_twenty_five_max_limit_and_twenty_six_people_added(self):
         # Given
@@ -23,12 +18,55 @@ class TestRepeatingRelationship(IntegrationTestCase):
         # When
         self.post(twenty_six_people)
 
-        # Mandatory visitors question
-        self.post({'overnight-visitors-answer': 0})
+        # Then
+        last_relationship_page = 'questionnaire/test/relationship_household/789/household-relationships/23/relationships'
+        self.get(url=last_relationship_page)
+        self.assertInPage('Describe how this person is related to the others')
+
+    def test_multiple_relationship_groups(self):
+        # Given
+        household_form_data = {
+            'household-0-first-name': 'Han',
+            'household-1-first-name': 'Leia',
+            'household-2-first-name': 'Luke'
+        }
+        self.post(household_form_data)
+
+        # When
+        relationship_form_data_1 = {
+            'who-is-related-0': 'Husband or wife',
+            'who-is-related-1': 'Relation - other'
+        }
+        self.post(relationship_form_data_1)
+
+        relationship_form_data_2 = {
+            'who-is-related-0': 'Brother or sister'
+        }
+        self.post(relationship_form_data_2)
 
         # Then
-        last_relationship_page = 'questionnaire/census/household/789/who-lives-here-relationship/23/household-relationships'
-        self.get(url=last_relationship_page)
-        self.assertInPage('How is <em>Joe_23</em> related to the people below')
-        self.post(url=last_relationship_page)
-        self.assertInUrl('who-lives-here-completed')
+        relationship_answers = [
+            answer for answer in self.dumpAnswers()['answers']
+            if answer['answer_id'] == 'who-is-related'
+        ]
+        expected_relationship_answers = [
+            {
+                'answer_id': 'who-is-related',
+                'answer_instance': 0,
+                'group_instance': 0,
+                'value': 'Husband or wife'
+            },
+            {
+                'answer_id': 'who-is-related',
+                'answer_instance': 1,
+                'group_instance': 0,
+                'value': 'Relation - other'
+            },
+            {
+                'answer_id': 'who-is-related',
+                'answer_instance': 0,
+                'group_instance': 1,
+                'value': 'Brother or sister'
+            }
+        ]
+        self.assertEqual(expected_relationship_answers, relationship_answers)

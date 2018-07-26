@@ -42,7 +42,7 @@ def get_form_for_location(schema, block_json, location, answer_store, metadata, 
 
         relationship_choices = build_relationship_choices(answer_store, location.group_instance)
 
-        form = generate_relationship_form(schema, block_json, relationship_choices, data)
+        form = generate_relationship_form(schema, block_json, relationship_choices, data, location.group_instance)
 
         return form
 
@@ -76,7 +76,7 @@ def post_form_for_location(schema, block_json, location, answer_store, metadata,
 
     if location.block_id in ['relationships', 'household-relationships']:
         relationship_choices = build_relationship_choices(answer_store, location.group_instance)
-        form = generate_relationship_form(schema, block_json, relationship_choices, request_form)
+        form = generate_relationship_form(schema, block_json, relationship_choices, request_form, location.group_instance)
 
         return form
 
