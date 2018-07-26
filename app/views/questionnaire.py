@@ -450,9 +450,8 @@ def _save_sign_out(routing_path, current_location, form, schema, answer_store, m
         answer_store_updater = AnswerStoreUpdater(this_location, schema, questionnaire_store)
         answer_store_updater.save_form(form)
 
-        if current_location in questionnaire_store.completed_blocks:
-            questionnaire_store.remove_completed_blocks(location=current_location)
-            questionnaire_store.add_or_update()
+        questionnaire_store.remove_completed_blocks(location=current_location)
+        questionnaire_store.add_or_update()
 
         logout_user()
 

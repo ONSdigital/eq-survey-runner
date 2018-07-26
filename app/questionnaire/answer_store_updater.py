@@ -82,8 +82,7 @@ class AnswerStoreUpdater:
                 self._questionnaire_store.remove_completed_blocks(group_id=block['parent_id'], block_id=block['id'])
             else:
                 location = Location(block['parent_id'], group_instance, block['id'])
-                if location in self._questionnaire_store.completed_blocks:
-                    self._questionnaire_store.remove_completed_blocks(location=location)
+                self._questionnaire_store.remove_completed_blocks(location=location)
 
     def _remove_answer_from_questionnaire_store(self, answer_id, group_instance=0):
         self._questionnaire_store.answer_store.remove(answer_ids=[answer_id],
