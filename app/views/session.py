@@ -12,6 +12,8 @@ from structlog import get_logger
 from app.authentication.authenticator import store_session, decrypt_token
 from app.authentication.jti_claim_storage import JtiTokenUsed, use_jti_claim
 from app.globals import get_completeness
+from app.helpers.path_finder_helper import path_finder
+from app.questionnaire.router import Router
 from app.settings import ACCOUNT_URL
 from app.storage.metadata_parser import validate_metadata, parse_runner_claims
 from app.utilities.schema import load_schema_from_metadata
@@ -70,9 +72,13 @@ def login():
     if 'account_service_url' in claims and claims.get('account_service_url'):
         cookie_session[ACCOUNT_URL] = claims.get('account_service_url')
 
-    current_location = get_completeness(current_user).get_latest_location()
+    routing_path = path_finder.get_full_routing_path()
+    completeness = get_completeness(current_user)
+    router = Router(g.schema, routing_path, completeness)
 
-    return redirect(current_location.url(claims))
+    next_location = router.get_next_location()
+
+    return redirect(next_location.url(claims))
 
 
 def validate_jti(decrypted_token):

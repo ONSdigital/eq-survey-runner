@@ -134,18 +134,6 @@ class Completeness:
         )
         return next(incomplete_locations, None)
 
-    def get_latest_location(self):
-        latest_location = self.routing_path[0]
-
-        if self.completed_blocks:
-            latest_location = self.get_first_incomplete_location_in_survey()
-
-            if not latest_location:
-                # survey is complete
-                latest_location = self.routing_path[-1]
-
-        return latest_location
-
     def _get_block_states_for_group(self, group, group_instance=None):
         if group_instance is not None:
             start_instance = max_instance = group_instance
