@@ -411,6 +411,28 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         # Then
         self.assertTrue(goto)
 
+    def test_meta_comparison_missing(self):
+        # Given
+        goto_rule = {
+            'id': 'next-question',
+            'when': [
+                {
+                    'condition': 'equals',
+                    'meta': 'varient_flags.does_not_exist',
+                    'value': True
+                }
+            ]
+        }
+        answer_store = AnswerStore({})
+        answer_store.add(Answer(answer_id='my_answer', value='Yes'))
+        metadata = {'varient_flags': {'sexual_identity': True}}
+
+        # When
+        goto = evaluate_goto(goto_rule, get_schema_mock(), metadata, answer_store, 0)
+
+        # Then
+        self.assertFalse(goto)
+
     def test_should_not_go_to_next_question_when_second_condition_fails(self):
         # Given
         goto_rule = {

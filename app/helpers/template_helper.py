@@ -1,3 +1,5 @@
+from functools import wraps
+
 from flask import current_app, g
 from flask_login import current_user
 from flask_themes2 import render_theme_template
@@ -11,6 +13,7 @@ logger = get_logger()
 
 
 def with_session_timeout(func):
+    @wraps(func)
     def session_wrapper(*args, **kwargs):
         session_timeout = current_app.config['EQ_SESSION_TIMEOUT_SECONDS']
         schema_session_timeout = g.schema.json.get('session_timeout_in_seconds')
@@ -31,17 +34,19 @@ def with_session_timeout(func):
     return session_wrapper
 
 
-def with_metadata(func):
-    def metadata_wrapper(*args, **kwargs):
+def with_metadata_context(func):
+    @wraps(wraps)
+    def metadata_context_wrapper(*args, **kwargs):
         metadata = get_metadata(current_user)
         metadata_context = build_metadata_context(metadata)
 
         return func(*args, metadata=metadata_context, **kwargs)
 
-    return metadata_wrapper
+    return metadata_context_wrapper
 
 
 def with_analytics(func):
+    @wraps(func)
     def analytics_wrapper(*args, **kwargs):
         return func(*args, analytics_ua_id=current_app.config['EQ_UA_ID'], **kwargs)
 
@@ -49,6 +54,7 @@ def with_analytics(func):
 
 
 def with_questionnaire_url_prefix(func):
+    @wraps(func)
     def url_prefix_wrapper(*args, **kwargs):
         metadata = get_metadata(current_user)
         metadata_context = build_metadata_context(metadata)
@@ -65,6 +71,7 @@ def with_questionnaire_url_prefix(func):
 
 
 def with_legal_basis(func):
+    @wraps(func)
     def legal_basis_wrapper(*args, **kwargs):
         return func(*args, legal_basis=g.schema.json['legal_basis'], **kwargs)
 
