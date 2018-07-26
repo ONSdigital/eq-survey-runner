@@ -12,7 +12,7 @@ from app.utilities.strings import to_str
 logger = get_logger()
 
 
-class UserIDGenerator(object):
+class UserIDGenerator():
 
     def __init__(self, iterations, user_id_salt, user_ik_salt):
         if user_id_salt is None:
@@ -60,6 +60,6 @@ class UserIDGenerator(object):
 
         if ru_ref and collection_exercise_sid and eq_id and form_type:
             return collection_exercise_sid, eq_id, form_type, ru_ref
-        else:
-            logger.error('missing values for ru_ref, collection_exercise_sid, form_type or eq_id', metadata=metadata)
-            raise InvalidTokenException('Missing values in JWT token')
+
+        logger.error('missing values for ru_ref, collection_exercise_sid, form_type or eq_id', metadata=metadata)
+        raise InvalidTokenException('Missing values in JWT token')

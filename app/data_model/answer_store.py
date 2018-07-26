@@ -43,7 +43,7 @@ class Answer:
         ))
 
 
-class AnswerStore(object):
+class AnswerStore:
     """
     An object that stores and updates a collection of answers, ready for serialisation
     via the Questionnaire Store.

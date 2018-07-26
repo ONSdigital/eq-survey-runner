@@ -10,7 +10,7 @@ from app.questionnaire.answer_dependencies import get_dependencies
 DEFAULT_LANGUAGE_CODE = 'en'
 
 
-class QuestionnaireSchema(object):  # pylint: disable=too-many-public-methods
+class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def __init__(self, questionnaire_json, language_code=DEFAULT_LANGUAGE_CODE):
         self.json = questionnaire_json
         self.language_code = language_code

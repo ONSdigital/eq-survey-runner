@@ -60,8 +60,8 @@ def _submit_data(user):
 
         get_questionnaire_store(user.user_id, user.user_ik).delete()
         return True
-    else:
-        return False
+
+    return False
 
 
 def _get_user(decrypted_token):

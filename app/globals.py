@@ -42,7 +42,7 @@ def create_session_store(eq_session_id, user_id, user_ik, session_data):
 
     # pylint: disable=W0212
     pepper = current_app.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
-    g._session_store = SessionStore(user_ik, pepper).create(eq_session_id, user_id, session_data).save()
+    g._session_store = SessionStore(user_ik, pepper).create(eq_session_id, user_id, session_data).save()  # pylint: disable=assignment-from-no-return
 
 
 def get_metadata(user):

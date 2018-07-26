@@ -1,7 +1,7 @@
 from flask import url_for
 
 
-class Location(object):
+class Location:
 
     def __init__(self, group_id, group_instance, block_id):
 

@@ -9,7 +9,7 @@ from app.questionnaire.rules import evaluate_repeat, get_answer_ids_on_routing_p
 logger = get_logger()
 
 
-class Navigation(object):
+class Navigation:
     """
     Reads navigation config from the schema and returns collections of dicts that describe
     completion status of each group

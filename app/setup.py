@@ -48,7 +48,7 @@ cache = Cache()
 logger = get_logger()
 
 
-class AWSReverseProxied(object):
+class AWSReverseProxied:
 
     def __init__(self, app):
         self.app = app
