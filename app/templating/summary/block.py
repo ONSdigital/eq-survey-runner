@@ -39,5 +39,5 @@ class Block:
             'title': self.title,
             'number': self.number,
             'link': self.link,
-            'questions': self.questions
+            'questions': self.questions,
         }

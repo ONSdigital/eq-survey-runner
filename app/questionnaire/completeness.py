@@ -13,7 +13,7 @@ class Completeness:
     # for the purposes of deriving completeness all of the following states
     # allow a block to be marked as complete so long as at least
     # one item is complete
-    COMPLETED_STATES = (COMPLETED, INVALID, SKIPPED,)
+    COMPLETED_STATES = (COMPLETED, INVALID, SKIPPED)
 
     def __init__(self, schema, answer_store, completed_blocks, routing_path, metadata):
         self.answer_store = answer_store

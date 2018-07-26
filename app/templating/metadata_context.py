@@ -15,7 +15,7 @@ def build_metadata_context(metadata):
         'collection_id': json_and_html_safe(metadata['collection_exercise_sid']),
         'form_type': json_and_html_safe(metadata['form_type']),
         'ru_ref': json_and_html_safe(metadata['ru_ref']),
-        'tx_id': json_and_html_safe(metadata['tx_id'])
+        'tx_id': json_and_html_safe(metadata['tx_id']),
     }
 
     schema = load_schema_from_metadata(metadata)
@@ -31,7 +31,7 @@ def build_metadata_context_for_survey_completed(session_data):
         'submitted_time': session_data.submitted_time,
         'tx_id': convert_tx_id(session_data.tx_id),
         'ru_ref': session_data.ru_ref,
-        'trad_as': session_data.trad_as
+        'trad_as': session_data.trad_as,
     }
 
     if session_data.period_str:

@@ -308,7 +308,7 @@ def generate_form(schema, block_json, answer_store, metadata, group_instance, da
             schema,
             answer_store,
             metadata,
-            group_instance
+            group_instance,
         ))
 
     for answer_id, field in answer_fields.items():

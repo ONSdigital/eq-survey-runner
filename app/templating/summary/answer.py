@@ -19,5 +19,5 @@ class Answer:
             'unit': self.unit,
             'parent_answer_id': self.parent_answer_id,
             'child_answer_value': self.child_answer_value,
-            'currency': self.currency
+            'currency': self.currency,
         }

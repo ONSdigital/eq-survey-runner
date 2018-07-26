@@ -25,5 +25,5 @@ class Group:
         return {
             'id': self.id,
             'title': self.title,
-            'blocks': self.blocks
+            'blocks': self.blocks,
         }

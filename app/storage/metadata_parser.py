@@ -27,30 +27,30 @@ VALIDATORS = {
     'date': iso_8601_date_parser,
     'uuid': uuid_4_parser,
     'string': lambda *args: None,
-    'object': lambda *args: None
+    'object': lambda *args: None,
 }
 
 MANDATORY_METADATA = [
     {
         'name': 'eq_id',
-        'validator': 'string'
+        'validator': 'string',
     },
     {
         'name': 'form_type',
-        'validator': 'string'
+        'validator': 'string',
     },
     {
         'name': 'ru_ref',
-        'validator': 'string'
+        'validator': 'string',
     },
     {
         'name': 'collection_exercise_sid',
-        'validator': 'string'
+        'validator': 'string',
     },
     {
         'name': 'tx_id',
-        'validator': 'uuid'
-    }
+        'validator': 'uuid',
+    },
 ]
 
 

@@ -314,7 +314,7 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
                     'answers_are_editable': False,
                     'is_view_submission_response_enabled': is_view_submitted_response_enabled(schema.json),
                 },
-                'variables': None
+                'variables': None,
             }
 
             return render_theme_template(schema.json['theme'],
@@ -415,8 +415,8 @@ def _store_viewable_submission(answers, metadata, submitted_time):
     encrypted_data = encrypter.encrypt_data(
         {
             'answers': answers,
-            'metadata': metadata
-        }
+            'metadata': metadata,
+        },
     )
 
     valid_until = submitted_time + timedelta(seconds=g.schema.json['view_submitted_response']['duration'])
@@ -424,7 +424,7 @@ def _store_viewable_submission(answers, metadata, submitted_time):
     item = SubmittedResponse(
         tx_id=metadata['tx_id'],
         data=encrypted_data,
-        valid_until=valid_until.replace(tzinfo=tzutc())
+        valid_until=valid_until.replace(tzinfo=tzutc()),
     )
 
     data_access.put(item)

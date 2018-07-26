@@ -50,9 +50,8 @@ def build_view_context_for_question(metadata, schema, answer_store, current_loca
             'answer_errors': {},
             'data': {},
             'other_answer': {},
-            'fields': {}
-        }
-
+            'fields': {},
+        },
     }
 
     answer_ids = []

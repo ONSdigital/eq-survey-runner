@@ -36,7 +36,7 @@ def get_field(answer, label, error_messages, answer_store, metadata):
             'TextArea': get_text_area_field,
             'TextField': get_string_field,
             'Dropdown': get_dropdown_field,
-            'Duration': get_duration_field
+            'Duration': get_duration_field,
         }[answer['type']](answer, label, guidance, error_messages)
 
     if field is None:
@@ -157,7 +157,7 @@ def get_select_multiple_field(answer, label, guidance, error_messages):
 
     if answer['type'] == 'MutuallyExclusiveCheckbox':
         validate_with.append(
-            MutuallyExclusive(answer.get('options'), error_messages)
+            MutuallyExclusive(answer.get('options'), error_messages),
         )
 
     return SelectMultipleField(
