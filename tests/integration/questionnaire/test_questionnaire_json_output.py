@@ -1,5 +1,6 @@
-from tests.integration.integration_test_case import IntegrationTestCase
 import simplejson as json
+from tests.integration.integration_test_case import IntegrationTestCase
+
 
 class TestQuestionnaireJSONOutput(IntegrationTestCase):
 
@@ -15,4 +16,3 @@ class TestQuestionnaireJSONOutput(IntegrationTestCase):
         # Then
         data = json.loads(self.getResponseData())
         self.assertIn('block', data)
-
