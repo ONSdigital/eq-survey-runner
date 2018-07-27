@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-19 08:24+0100\n"
+"POT-Creation-Date: 2018-07-27 15:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.4.0\n"
 
 #: app/jinja_filters.py:63 app/validation/validators.py:297
 #, python-format
@@ -35,7 +35,7 @@ msgstr[1] ""
 msgid "Select month"
 msgstr ""
 
-#: app/templates/confirmation.html:3 app/templates/confirmation.html:10
+#: app/templates/confirmation.html:3 app/templates/confirmation.html:12
 msgid "Submit answers"
 msgstr ""
 
@@ -44,6 +44,10 @@ msgid "Continue"
 msgstr ""
 
 #: app/templates/confirmation.html:10
+msgid "Yes, I confirm these are correct"
+msgstr ""
+
+#: app/templates/confirmation.html:12
 msgid "Submitting"
 msgstr ""
 
@@ -138,6 +142,10 @@ msgstr ""
 msgid "Summary"
 msgstr ""
 
+#: app/templates/summary.html:19
+msgid "Your answers"
+msgstr ""
+
 #: app/templates/summary.html:21
 msgid "Please remember to submit these answers"
 msgstr ""
@@ -154,10 +162,15 @@ msgstr ""
 msgid "You can review your answers below"
 msgstr ""
 
-#: app/templates/summary.html:42
+#: app/templates/summary.html:40
+msgid "Please review your answers and confirm these are correct"
+msgstr ""
+
+#: app/templates/summary.html:49
 msgid ""
 "You will have the opportunity to view and print a copy of your answers "
-"after submitting this survey"
+"after submitting\n"
+"        this survey"
 msgstr ""
 
 #: app/templates/thank-you.html:3
@@ -1297,10 +1310,6 @@ msgid ""
 "The Information Commissioner&rsquo;s Office provides guidance to the "
 "public on raising a concern with an organisation at the following "
 "location"
-msgstr ""
-
-#: app/templating/view_context.py:100
-msgid "Your answers"
 msgstr ""
 
 #: app/validation/error_messages.py:5 app/validation/error_messages.py:6

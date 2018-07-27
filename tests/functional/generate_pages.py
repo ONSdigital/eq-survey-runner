@@ -330,7 +330,7 @@ def process_block(block, dir_out, schema_data, spec_file, relative_require='..')
         page_spec.write(HEADER.substitute(block_context))
         page_spec.write(CLASS_NAME.substitute(block_context))
         page_spec.write(CONSTRUCTOR.substitute(block_context))
-        if block['type'] in ('Summary', 'SectionSummary'):
+        if block['type'] in ('Summary', 'SectionSummary', 'CalculatedSummary'):
             process_summary(schema_data, page_spec)
         else:
             num_questions = len(block.get('questions', []))

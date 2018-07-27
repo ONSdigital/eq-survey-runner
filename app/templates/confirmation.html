@@ -6,6 +6,8 @@
 
 {% if content.summary and content.summary.summary_type == 'SectionSummary' %}
     <button class="btn btn--loader js-btn-submit" data-qa="btn-submit">{{ _("Continue") }}</button>
+{% elif content.summary and content.summary.summary_type == 'CalculatedSummary' %}
+    <button class="btn btn--loader js-btn-submit" data-qa="btn-submit">{{ _("Yes, I confirm these are correct") }}</button>
 {% else  %}
     <button class="btn  btn--loader js-btn-submit" data-qa="btn-submit" data-loading-msg='{{ _("Submitting") }}&hellip;' type="submit">{{ _("Submit answers") }}</button>
 {% endif %}

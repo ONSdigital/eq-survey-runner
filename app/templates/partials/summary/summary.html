@@ -18,6 +18,10 @@
 
                 {%- endfor -%}
             {%- endfor -%}
+
+            {% if content.summary.summary_type == 'CalculatedSummary' %}
+                {%- include theme(['partials/summary/calculated-summary-answer.html']) -%}
+            {%- endif %}
         </div>
 
 	{%- endfor -%}
