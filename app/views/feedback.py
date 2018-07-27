@@ -86,6 +86,6 @@ def thank_you():
 
 @template_helper.with_session_timeout
 @template_helper.with_analytics
-@template_helper.with_metadata
+@template_helper.with_metadata_context
 def _render_template(template, **kwargs):
     return template_helper.render_template(template, **kwargs)

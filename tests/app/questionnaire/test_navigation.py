@@ -1,4 +1,4 @@
-from unittest.mock import patch
+from unittest.mock import MagicMock
 
 from app.data_model.answer_store import AnswerStore, Answer
 from app.questionnaire.completeness import Completeness
@@ -14,6 +14,7 @@ class TestNavigation(AppContextTestCase):
 
     def test_navigation_no_blocks_completed(self):
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=False)
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -52,11 +53,12 @@ class TestNavigation(AppContextTestCase):
                 'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata)
             }
         ]
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
+        self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_non_repeating_block_completed(self):
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
+
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -124,11 +126,12 @@ class TestNavigation(AppContextTestCase):
             }
 
         ]
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
+        self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_navigation_repeating_household_and_hidden_household_groups_completed(self):
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
+
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -238,11 +241,12 @@ class TestNavigation(AppContextTestCase):
                 'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata)
             }
         ]
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
+        self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_navigation_repeating_group_extra_answered_not_completed(self):
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
+
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -341,11 +345,12 @@ class TestNavigation(AppContextTestCase):
             }
         ]
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
+        self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_navigation_repeating_group_extra_answered_completed(self):
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
+
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -449,11 +454,13 @@ class TestNavigation(AppContextTestCase):
                 'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata)
             }
         ]
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
+
+        self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_navigation_repeating_group_link_name_format(self):
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
+
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -549,11 +556,11 @@ class TestNavigation(AppContextTestCase):
             }
         ]
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
+        self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_navigation_skip_condition_hide_group(self):
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
 
         metadata = {
             'eq_id': '1',
@@ -573,14 +580,14 @@ class TestNavigation(AppContextTestCase):
         )
 
         answer_store.add(answer_1)
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            navigation = _create_navigation(schema, answer_store, metadata, completed_blocks, [])
-            user_navigation = navigation.build_navigation('property-details', 0)
-            link_names = [d['link_name'] for d in user_navigation]
-            self.assertNotIn('Property Interstitial', link_names)
+        navigation = _create_navigation(schema, answer_store, metadata, completed_blocks, [])
+        user_navigation = navigation.build_navigation('property-details', 0)
+        link_names = [d['link_name'] for d in user_navigation]
+        self.assertNotIn('Property Interstitial', link_names)
 
     def test_navigation_skip_condition_show_group(self):
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
 
         metadata = {
             'eq_id': '1',
@@ -603,13 +610,13 @@ class TestNavigation(AppContextTestCase):
 
         navigation = _create_navigation(schema, answer_store, metadata, completed_blocks, [])
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            user_navigation = navigation.build_navigation('property-details', 0)
+        user_navigation = navigation.build_navigation('property-details', 0)
         link_names = [d['link_name'] for d in user_navigation]
         self.assertIn('Property Interstitial', link_names)
 
     def test_navigation_skip_condition_change_answer(self):
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
 
         metadata = {
             'eq_id': '1',
@@ -631,24 +638,23 @@ class TestNavigation(AppContextTestCase):
         answer_store.add(answer_1)
         navigation = _create_navigation(schema, answer_store, metadata, completed_blocks, [])
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            user_navigation = navigation.build_navigation('property-details', 0)
-            link_names = [d['link_name'] for d in user_navigation]
-            self.assertIn('Property Interstitial', link_names)
+        user_navigation = navigation.build_navigation('property-details', 0)
+        link_names = [d['link_name'] for d in user_navigation]
+        self.assertIn('Property Interstitial', link_names)
 
-            change_answer = Answer(
-                value='Buildings',
-                group_instance=0,
-                answer_instance=0,
-                answer_id='insurance-type-answer'
-            )
+        change_answer = Answer(
+            value='Buildings',
+            group_instance=0,
+            answer_instance=0,
+            answer_id='insurance-type-answer'
+        )
 
-            answer_store.update(change_answer)
+        answer_store.update(change_answer)
 
-            user_navigation = navigation.build_navigation('property-details', 0)
+        user_navigation = navigation.build_navigation('property-details', 0)
 
-            link_names = [d['link_name'] for d in user_navigation]
-            self.assertNotIn('Property Interstitial', link_names)
+        link_names = [d['link_name'] for d in user_navigation]
+        self.assertNotIn('Property Interstitial', link_names)
 
     def test_build_navigation_returns_none_when_schema_navigation_is_false(self):
         # Given
@@ -681,7 +687,9 @@ class TestNavigation(AppContextTestCase):
     def test_build_navigation_returns_navigation_when_schema_navigation_is_true(self):
         # Given
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
         schema.json['navigation'] = {'visible': True}
+
         completed_blocks = []
         metadata = {
             'eq_id': '1',
@@ -691,14 +699,15 @@ class TestNavigation(AppContextTestCase):
         navigation = _create_navigation(schema, AnswerStore(), metadata, completed_blocks, [])
 
         # When
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            nav_menu = navigation.build_navigation('group-1', 'group-instance-1')
+        nav_menu = navigation.build_navigation('group-1', 'group-instance-1')
 
         # Then
         self.assertIsNotNone(nav_menu)
 
     def test_build_navigation_summary_link_hidden_when_no_sections_completed(self):
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
+
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -715,11 +724,12 @@ class TestNavigation(AppContextTestCase):
             'link_url': Location('summary-group', 0, 'summary').url(metadata)
         }
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertNotIn(confirmation_link, navigation.build_navigation('property-details', 0))
+        self.assertNotIn(confirmation_link, navigation.build_navigation('property-details', 0))
 
     def test_build_navigation_summary_link_hidden_when_not_all_sections_completed(self):
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
+
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -744,13 +754,14 @@ class TestNavigation(AppContextTestCase):
             'link_url': Location('summary-group', 0, 'summary').url(metadata)
         }
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            navigation_links = navigation.build_navigation('property-details', 0)
+        navigation_links = navigation.build_navigation('property-details', 0)
         self.assertNotIn(confirmation_link, navigation_links)
         self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_summary_link_visible_when_all_sections_complete(self):
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
+
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -806,13 +817,14 @@ class TestNavigation(AppContextTestCase):
             'link_url': Location('summary-group', 0, 'summary').url(metadata)
         }
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            navigation_links = navigation.build_navigation('property-details', 0)
+        navigation_links = navigation.build_navigation('property-details', 0)
         self.assertIn(confirmation_link, navigation_links)
         self.assertEqual(len(navigation_links), 5)
 
     def test_build_navigation_submit_answers_link_not_visible_for_survey_with_summary(self):
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
+
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -846,13 +858,14 @@ class TestNavigation(AppContextTestCase):
             'link_url': Location('confirmation-group', 0, 'confirmation').url(metadata)
         }
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            navigation_links = navigation.build_navigation('property-details', 0)
+        navigation_links = navigation.build_navigation('property-details', 0)
         self.assertNotIn(confirmation_link, navigation_links)
         self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_submit_answers_link_hidden_when_no_sections_completed(self):
         schema = load_schema_from_params('test', 'navigation_confirmation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
+
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -869,14 +882,15 @@ class TestNavigation(AppContextTestCase):
             'link_url': Location('confirmation-group', 0, 'confirmation').url(metadata)
         }
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            navigation_links = navigation.build_navigation('property-details', 0)
+        navigation_links = navigation.build_navigation('property-details', 0)
 
         self.assertNotIn(confirmation_link, navigation_links)
         self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_submit_answers_link_hidden_when_not_all_sections_completed(self):
         schema = load_schema_from_params('test', 'navigation_confirmation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
+
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -901,13 +915,14 @@ class TestNavigation(AppContextTestCase):
             'link_url': Location('confirmation-group', 0, 'confirmation').url(metadata)
         }
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            navigation_links = navigation.build_navigation('property-details', 0)
+        navigation_links = navigation.build_navigation('property-details', 0)
         self.assertNotIn(confirmation_link, navigation_links)
         self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_submit_answers_link_visible_when_all_sections_complete(self):
         schema = load_schema_from_params('test', 'navigation_confirmation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
+
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -958,13 +973,14 @@ class TestNavigation(AppContextTestCase):
             'completed': False,
             'link_url': Location('confirmation-group', 0, 'confirmation').url(metadata)
         }
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            navigation_links = navigation.build_navigation('property-details', 0)
+        navigation_links = navigation.build_navigation('property-details', 0)
         self.assertIn(confirmation_link, navigation_links)
         self.assertEqual(len(navigation_links), 5)
 
     def test_build_navigation_summary_link_not_visible_for_survey_with_confirmation(self):
         schema = load_schema_from_params('test', 'navigation_confirmation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
+
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -998,11 +1014,11 @@ class TestNavigation(AppContextTestCase):
             'link_url': Location('summary-group', 0, 'summary').url(metadata)
         }
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertNotIn(confirmation_link, navigation.build_navigation('property-details', 0))
+        self.assertNotIn(confirmation_link, navigation.build_navigation('property-details', 0))
 
     def test_build_navigation_submit_answers_link_not_visible_when_no_completed_blocks(self):
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
 
         metadata = {
             'eq_id': '1',
@@ -1023,13 +1039,14 @@ class TestNavigation(AppContextTestCase):
             'link_url': Location('summary-group', 0, 'summary').url(metadata)
         }
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            navigation_links = navigation.build_navigation('property-details', 0)
+        navigation_links = navigation.build_navigation('property-details', 0)
         self.assertNotIn(confirmation_link, navigation_links)
         self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_summary_link_hidden_when_not_on_routing_path(self):
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
+
         metadata = {
             'eq_id': '1',
             'collection_exercise_sid': '999',
@@ -1081,8 +1098,7 @@ class TestNavigation(AppContextTestCase):
             'link_url': Location('summary-group', 0, 'summary').url(metadata)
         }
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            navigation_links = navigation.build_navigation('property-details', 0)
+        navigation_links = navigation.build_navigation('property-details', 0)
         self.assertNotIn(confirmation_link, navigation_links)
         self.assertEqual(len(navigation_links), 4)
 
@@ -1141,115 +1157,116 @@ class TestNavigation(AppContextTestCase):
         self.assertEqual(len(navigation_links), 6)
 
     def test_build_navigation_repeated_blocks_independent_completeness(self):
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            schema = load_schema_from_params('test', 'navigation')
+        schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
 
-            metadata = {
-                'eq_id': '1',
-                'collection_exercise_sid': '999',
-                'form_type': 'some_form'
-            }
+        metadata = {
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
+        }
 
-            completed_blocks = [
-                Location('property-details', 0, 'insurance-type'),
-                Location('property-details', 0, 'insurance-address'),
-                Location('repeating-group', 0, 'repeating-block-1'),
-                Location('repeating-group', 0, 'repeating-block-2'),
-                Location('multiple-questions-group', 0, 'household-composition'),
-                Location('extra-cover', 0, 'extra-cover-block')
-                ]
-
-            answer_store = AnswerStore()
-
-            answer_store.add(Answer(
-                answer_instance=0,
-                answer_id='first-name',
-                group_instance=0,
-                value='Person1'
-                ))
-            answer_store.add(Answer(
-                answer_instance=1,
-                answer_id='first-name',
-                group_instance=0,
-                value='Person2'
-                ))
-            answer_store.add(Answer(
-                answer_instance=0,
-                answer_id='what-is-your-age',
-                group_instance=0,
-                value=42
-                ))
-            answer_store.add(Answer(
-                answer_instance=0,
-                answer_id='what-is-your-shoe-size',
-                group_instance=0,
-                value='Employed'
-                ))
-
-            routing_path = [
-                Location('property-details', 0, 'insurance-type'),
-                Location('property-details', 0, 'insurance-address'),
-                Location('repeating-group', 0, 'repeating-block-1'),
-                Location('repeating-group', 0, 'repeating-block-2'),
-                Location('repeating-group', 1, 'repeating-block-1'),
-                Location('repeating-group', 1, 'repeating-block-2'),
-                Location('multiple-questions-group', 0, 'household-composition'),
-                Location('extra-cover', 0, 'extra-cover-block'),
-                Location('extra-cover-items-group', 0, 'extra-cover-items'),
-                Location('skip-payment-group', 0, 'skip-payment'),
-                ]
-
-            navigation = _create_navigation(schema, answer_store, metadata, completed_blocks, routing_path)
-
-            user_navigation = [
-                {
-                    'completed': True,
-                    'highlight': True,
-                    'repeating': False,
-                    'link_name': 'Property Details',
-                    'link_url': Location('property-details', 0, 'insurance-type').url(metadata)
-                },
-                {
-                    'link_name': 'Household Composition',
-                    'highlight': False,
-                    'repeating': False,
-                    'completed': True,
-                    'link_url': Location('multiple-questions-group', 0, 'household-composition').url(metadata)
-                },
-                {
-                    'completed': True,
-                    'highlight': False,
-                    'repeating': True,
-                    'link_name': 'Person1',
-                    'link_url': Location('repeating-group', 0, 'repeating-block-1').url(metadata),
-                },
-                {
-                    'completed': False,
-                    'highlight': False,
-                    'repeating': True,
-                    'link_name': 'Person2',
-                    'link_url': Location('repeating-group', 1, 'repeating-block-1').url(metadata),
-                },
-                {
-                    'completed': True,
-                    'highlight': False,
-                    'repeating': False,
-                    'link_name': 'Extra Cover',
-                    'link_url': Location('extra-cover', 0, 'extra-cover-block').url(metadata),
-                },
-                {
-                    'completed': False,
-                    'highlight': False,
-                    'repeating': False,
-                    'link_name': 'Payment Details',
-                    'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata),
-                }
+        completed_blocks = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('repeating-group', 0, 'repeating-block-1'),
+            Location('repeating-group', 0, 'repeating-block-2'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('extra-cover', 0, 'extra-cover-block')
             ]
 
-            self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
+        answer_store = AnswerStore()
+
+        answer_store.add(Answer(
+            answer_instance=0,
+            answer_id='first-name',
+            group_instance=0,
+            value='Person1'
+            ))
+        answer_store.add(Answer(
+            answer_instance=1,
+            answer_id='first-name',
+            group_instance=0,
+            value='Person2'
+            ))
+        answer_store.add(Answer(
+            answer_instance=0,
+            answer_id='what-is-your-age',
+            group_instance=0,
+            value=42
+            ))
+        answer_store.add(Answer(
+            answer_instance=0,
+            answer_id='what-is-your-shoe-size',
+            group_instance=0,
+            value='Employed'
+            ))
+
+        routing_path = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('repeating-group', 0, 'repeating-block-1'),
+            Location('repeating-group', 0, 'repeating-block-2'),
+            Location('repeating-group', 1, 'repeating-block-1'),
+            Location('repeating-group', 1, 'repeating-block-2'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('extra-cover', 0, 'extra-cover-block'),
+            Location('extra-cover-items-group', 0, 'extra-cover-items'),
+            Location('skip-payment-group', 0, 'skip-payment'),
+            ]
+
+        navigation = _create_navigation(schema, answer_store, metadata, completed_blocks, routing_path)
+
+        user_navigation = [
+            {
+                'completed': True,
+                'highlight': True,
+                'repeating': False,
+                'link_name': 'Property Details',
+                'link_url': Location('property-details', 0, 'insurance-type').url(metadata)
+            },
+            {
+                'link_name': 'Household Composition',
+                'highlight': False,
+                'repeating': False,
+                'completed': True,
+                'link_url': Location('multiple-questions-group', 0, 'household-composition').url(metadata)
+            },
+            {
+                'completed': True,
+                'highlight': False,
+                'repeating': True,
+                'link_name': 'Person1',
+                'link_url': Location('repeating-group', 0, 'repeating-block-1').url(metadata),
+            },
+            {
+                'completed': False,
+                'highlight': False,
+                'repeating': True,
+                'link_name': 'Person2',
+                'link_url': Location('repeating-group', 1, 'repeating-block-1').url(metadata),
+            },
+            {
+                'completed': True,
+                'highlight': False,
+                'repeating': False,
+                'link_name': 'Extra Cover',
+                'link_url': Location('extra-cover', 0, 'extra-cover-block').url(metadata),
+            },
+            {
+                'completed': False,
+                'highlight': False,
+                'repeating': False,
+                'link_name': 'Payment Details',
+                'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata),
+            }
+        ]
+
+        self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_build_navigation_first_group_with_skip_condition_containing_repeating_group(self):
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
 
         metadata = {
             'eq_id': '1',
@@ -1324,15 +1341,15 @@ class TestNavigation(AppContextTestCase):
                 'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata),
             }
         ]
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertEqual(navigation.build_navigation(
-                'property-details', 0), user_navigation)
+        self.assertEqual(navigation.build_navigation(
+            'property-details', 0), user_navigation)
 
     def test_build_navigation_with_single_skipped_block_in_group(self):
         """A section containing a group which doesn't have all of its blocks skipped should
         have its navigation rendered
         """
         schema = load_schema_from_params('test', 'navigation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
 
         metadata = {
             'eq_id': '1',
@@ -1408,48 +1425,47 @@ class TestNavigation(AppContextTestCase):
             }
         ]
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
+        self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_build_navigation_completed_section_with_summary_links_to_last_block(self):
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            schema = load_schema_from_params('test', 'navigation_confirmation')
+        schema = load_schema_from_params('test', 'navigation_confirmation')
+        schema.answer_is_in_repeating_group = MagicMock(return_value=True)
 
-            schema.json['sections'][0]['groups'][0]['blocks'].append({
-                'id': 'property-summary',
-                'type': 'SectionSummary'
-            })
+        schema.json['sections'][0]['groups'][0]['blocks'].append({
+            'id': 'property-summary',
+            'type': 'SectionSummary'
+        })
 
-            metadata = {
-                'eq_id': '1',
-                'collection_exercise_sid': '999',
-                'form_type': 'some_form'
-            }
+        metadata = {
+            'eq_id': '1',
+            'collection_exercise_sid': '999',
+            'form_type': 'some_form'
+        }
 
-            completed_blocks = [
-                Location('property-details', 0, 'insurance-type'),
-                Location('property-details', 0, 'insurance-address'),
-                Location('property-details', 0, 'property-interstitial'),
-            ]
+        completed_blocks = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('property-details', 0, 'property-interstitial'),
+        ]
 
-            routing_path = [
-                Location('property-details', 0, 'insurance-type'),
-                Location('property-details', 0, 'insurance-address'),
-                Location('property-details', 0, 'property-interstitial'),
-                Location('property-details', 0, 'property-summary'),
-            ]
+        routing_path = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('property-details', 0, 'property-interstitial'),
+            Location('property-details', 0, 'property-summary'),
+        ]
 
-            navigation = _create_navigation(schema, AnswerStore(), metadata, completed_blocks, routing_path)
+        navigation = _create_navigation(schema, AnswerStore(), metadata, completed_blocks, routing_path)
 
-            confirmation_link = {
-                'link_name': 'Property Details',
-                'highlight': True,
-                'repeating': False,
-                'completed': True,
-                'link_url': Location('property-details', 0, 'property-summary').url(metadata)
-            }
+        confirmation_link = {
+            'link_name': 'Property Details',
+            'highlight': True,
+            'repeating': False,
+            'completed': True,
+            'link_url': Location('property-details', 0, 'property-summary').url(metadata)
+        }
 
-            self.assertIn(confirmation_link, navigation.build_navigation('property-details', 0))
+        self.assertIn(confirmation_link, navigation.build_navigation('property-details', 0))
 
 
 def _create_navigation(schema, answer_store, metadata, completed_blocks, routing_path):

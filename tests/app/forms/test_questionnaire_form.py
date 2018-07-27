@@ -971,7 +971,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'age-answer': int('25'),
                 'sure-answer': 'yes'
             }
-            with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
+            with patch('app.questionnaire.path_finder.evaluate_goto', return_value=False):
                 form = generate_form(schema, block_json, store, metadata={}, group_instance=0, formdata=data)
 
             form.validate()

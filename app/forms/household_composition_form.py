@@ -18,7 +18,7 @@ def get_name_form(schema, block_json, metadata, group_instance):
     for question in schema.get_questions_for_block(block_json):
         for answer in question['answers']:
             guidance = answer.get('guidance', '')
-            label = answer.get('label') or get_question_title(question, answer_store, metadata, group_instance)
+            label = answer.get('label') or get_question_title(question, answer_store, schema, metadata, group_instance)
 
             field = get_string_field(answer, label, guidance, schema.error_messages)
 

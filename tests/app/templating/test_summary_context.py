@@ -1,4 +1,3 @@
-from flask import g
 from mock import MagicMock, Mock, patch
 
 from app.data_model.answer_store import AnswerStore
@@ -115,16 +114,14 @@ class TestSectionSummaryContext(AppContextTestCase):
         csrf_token = None
         variables = None
 
-        g.schema = load_schema_from_params('test', 'section_summary')
-
-        section = g.schema.json
+        section = self.schema.json
         current_location = Location(
             block_id='property-details-summary',
             group_id='property-details',
             group_instance=0,
         )
 
-        context = build_view_context_for_summary(self.metadata, self.answer_store, section, block_type, variables,
+        context = build_view_context_for_summary(self.metadata, self.schema, self.answer_store, section, block_type, variables,
                                                  csrf_token, current_location)
 
         self.assertEqual(len(context), 3)

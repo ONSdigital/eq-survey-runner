@@ -172,7 +172,7 @@ class Completeness:
     def _should_skip(self, group_or_block):
         return (
             'skip_conditions' in group_or_block and
-            evaluate_skip_conditions(group_or_block['skip_conditions'], self.metadata, self.answer_store)
+            evaluate_skip_conditions(group_or_block['skip_conditions'], self.schema, self.metadata, self.answer_store)
         )
 
     def _is_valid_for_completeness(self, block, location):

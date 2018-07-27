@@ -1,4 +1,4 @@
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 from datetime import datetime
 
 from app.data_model.answer_store import AnswerStore, Answer
@@ -8,6 +8,11 @@ from app.questionnaire.rules import evaluate_rule, evaluate_date_rule, evaluate_
     evaluate_skip_conditions, evaluate_when_rules, get_answer_ids_on_routing_path
 from tests.app.app_context_test_case import AppContextTestCase
 
+
+def get_schema_mock(answer_is_in_repeating_group=False):
+    schema = QuestionnaireSchema({})
+    schema.answer_is_in_repeating_group = Mock(return_value=answer_is_in_repeating_group)
+    return schema
 
 class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
@@ -134,8 +139,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         answer_store.add(Answer(answer_id='my_answer', value='Yes'))
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertTrue(evaluate_goto(goto, {}, answer_store, 0))
+        self.assertTrue(evaluate_goto(goto, get_schema_mock(), {}, answer_store, 0))
 
     def test_do_not_go_to_next_question_for_answer(self):
         # Given
@@ -153,8 +157,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         answer_store.add(Answer(answer_id='my_answer', value='No'))
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertFalse(evaluate_goto(goto_rule, {}, answer_store, 0))
+        self.assertFalse(evaluate_goto(goto_rule, get_schema_mock(), {}, answer_store, 0))
 
     def test_evaluate_goto_returns_true_when_value_contained_in_list(self):
 
@@ -169,11 +172,9 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             ]
         }
         answer_store = AnswerStore({})
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            answer_store.add(Answer(answer_id='my_answers', value=['answer1', 'answer2', 'answer3']))
+        answer_store.add(Answer(answer_id='my_answers', value=['answer1', 'answer2', 'answer3']))
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertTrue(evaluate_goto(goto, {}, answer_store, 0))
+        self.assertTrue(evaluate_goto(goto, get_schema_mock(), {}, answer_store, 0))
 
     def test_evaluate_goto_returns_true_when_value_not_contained_in_list(self):
 
@@ -190,8 +191,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='my_answers', value=['answer2', 'answer3']))
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertTrue(evaluate_goto(goto, {}, answer_store, 0))
+        self.assertTrue(evaluate_goto(goto, get_schema_mock(), {}, answer_store, 0))
 
     def test_evaluate_skip_condition_returns_true_when_this_rule_true(self):
         # Given
@@ -219,8 +219,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         answer_store.add(Answer(answer_id='this', value='value'))
 
         # When
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            condition = evaluate_skip_conditions(skip_conditions, {}, answer_store)
+        condition = evaluate_skip_conditions(skip_conditions, get_schema_mock(), {}, answer_store)
 
         # Given
         self.assertTrue(condition)
@@ -251,8 +250,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         answer_store.add(Answer(answer_id='that', value='other value'))
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertTrue(evaluate_skip_conditions(skip_conditions, {}, answer_store))
+        self.assertTrue(evaluate_skip_conditions(skip_conditions, get_schema_mock(), {}, answer_store))
 
     def test_evaluate_skip_condition_returns_true_when_more_than_one_rule_is_true(self):
         # Given
@@ -281,8 +279,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         answer_store.add(Answer(answer_id='that', value='other value'))
 
         # When
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            condition = evaluate_skip_conditions(skip_conditions, {}, answer_store)
+        condition = evaluate_skip_conditions(skip_conditions, get_schema_mock(), {}, answer_store)
 
         # Then
         self.assertTrue(condition)
@@ -314,8 +311,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         answer_store.add(Answer(answer_id='that', value='not correct'))
 
         # When
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            condition = evaluate_skip_conditions(skip_conditions, {}, answer_store)
+        condition = evaluate_skip_conditions(skip_conditions, get_schema_mock(), {}, answer_store)
 
         # Then
         self.assertFalse(condition)
@@ -325,7 +321,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         skip_conditions = None
 
         # When
-        condition = evaluate_skip_conditions(skip_conditions, {}, AnswerStore({}))
+        condition = evaluate_skip_conditions(skip_conditions, get_schema_mock(), {}, AnswerStore({}))
 
         # Then
         self.assertFalse(condition)
@@ -341,7 +337,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         }
         answer_store = AnswerStore({})
 
-        self.assertTrue(evaluate_when_rules(when, {}, answer_store, 0))
+        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0))
 
     def test_go_to_next_question_for_multiple_answers(self):
         # Given
@@ -364,8 +360,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         answer_store.add(Answer(answer_id='my_answer', value='Yes'))
         answer_store.add(Answer(answer_id='my_other_answer', value='2'))
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertTrue(evaluate_goto(goto, {}, answer_store, 0))
+        self.assertTrue(evaluate_goto(goto, get_schema_mock(), {}, answer_store, 0))
 
     def test_do_not_go_to_next_question_for_multiple_answers(self):
         # Given
@@ -387,8 +382,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='my_answer', value='No'))
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertFalse(evaluate_goto(goto_rule, {}, answer_store, 0))
+        self.assertFalse(evaluate_goto(goto_rule, get_schema_mock(), {}, answer_store, 0))
 
     def test_should_go_to_next_question_when_condition_is_meta_and_answer_type(self):
         # Given
@@ -412,11 +406,32 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         metadata = {'sexual_identity': True}
 
         # When
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            goto = evaluate_goto(goto_rule, metadata, answer_store, 0)
+        goto = evaluate_goto(goto_rule, get_schema_mock(), metadata, answer_store, 0)
 
         # Then
         self.assertTrue(goto)
+
+    def test_meta_comparison_missing(self):
+        # Given
+        goto_rule = {
+            'id': 'next-question',
+            'when': [
+                {
+                    'condition': 'equals',
+                    'meta': 'varient_flags.does_not_exist.does_not_exist',
+                    'value': True
+                }
+            ]
+        }
+        answer_store = AnswerStore({})
+        answer_store.add(Answer(answer_id='my_answer', value='Yes'))
+        metadata = {'varient_flags': {'sexual_identity': True}}
+
+        # When
+        goto = evaluate_goto(goto_rule, get_schema_mock(), metadata, answer_store, 0)
+
+        # Then
+        self.assertFalse(goto)
 
     def test_should_not_go_to_next_question_when_second_condition_fails(self):
         # Given
@@ -440,8 +455,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         metadata = {'sexual_identity': True}
 
         # When
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            goto = evaluate_goto(goto_rule, metadata, answer_store, 0)
+        goto = evaluate_goto(goto_rule, get_schema_mock(), metadata, answer_store, 0)
 
         # Then
         self.assertFalse(goto)
@@ -718,8 +732,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         with self.assertRaises(Exception) as err:
-            with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-                evaluate_when_rules(when['when'], None, answer_store, 0)
+            evaluate_when_rules(when['when'], get_schema_mock(), None, answer_store, 0)
         self.assertEqual('Multiple answers (2) found evaluating when rule for answer (my_answers)', str(err.exception))
 
     def test_id_when_rule_uses_passed_in_group_instance_if_present(self):  # pylint: disable=no-self-use
@@ -730,9 +743,8 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         answer_store = AnswerStore({})
         with patch('app.questionnaire.rules.get_answer_store_value', return_value=False) as patch_val:
-            with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-                evaluate_when_rules(when, {}, answer_store, 3)  # passed in group instance ignored if present in when
-                patch_val.assert_called_with('Some Id', answer_store, 0)
+            evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 3)  # passed in group instance ignored if present in when
+            patch_val.assert_called_with('Some Id', answer_store, 0)
 
     def test_id_when_rule_answer_count_equal_0(self):
         """Assert that an `answer_count` can be used in a when block and the
@@ -745,9 +757,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         }]
 
         answer_store = AnswerStore({})
-
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertTrue(evaluate_when_rules(when, {}, answer_store, 0))
+        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0))
 
     def test_answer_count_when_rule_equal_1(self):
         """Assert that an `answer_count` can be used in a when block and the
@@ -766,8 +776,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             value=10,
         ))
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertTrue(evaluate_when_rules(when, {}, answer_store, 0))
+        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0))
 
     def test_answer_count_when_rule_equal_2(self):
         """Assert that an `answer_count` can be used in a when block and the
@@ -791,8 +800,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             value=20,
         ))
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertTrue(evaluate_when_rules(when, {}, answer_store, 0))
+        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0))
 
     def test_answer_count_when_rule_not_equal(self):  # pylint: disable=no-self-use
         """Assert that an `answer_count` can be used in a when block and the
@@ -805,8 +813,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         }]
         answer_store = AnswerStore({})
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertFalse(evaluate_when_rules(when, {}, answer_store, 0))
+        self.assertFalse(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0))
 
     def test_answer_count_when_rule_id_takes_precident(self):
         """Assert that if somehow, both `id` and `answer_count` are present in a when clause
@@ -826,8 +833,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             value=10,
         ))
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertTrue(evaluate_when_rules(when, {}, answer_store, 0))
+        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0))
 
 class TestDateRules(AppContextTestCase):
 
@@ -959,5 +965,4 @@ class TestDateRules(AppContextTestCase):
         answer_store = AnswerStore({})
         answer_store.add(Answer(answer_id='date_answer', value='2018-02-01'))
 
-        with patch('app.questionnaire.rules._answer_is_in_repeating_group', return_value=False):
-            self.assertFalse(evaluate_goto(goto_rule, {}, answer_store, 0))
+        self.assertFalse(evaluate_goto(goto_rule, get_schema_mock(), {}, answer_store, 0))

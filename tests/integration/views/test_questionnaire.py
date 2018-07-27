@@ -35,7 +35,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
 
     def test_update_questionnaire_store_with_form_data(self):
 
-        g.schema = load_schema_from_params('test', '0112')
+        schema = load_schema_from_params('test', '0112')
 
         location = Location('rsi', 0, 'total-retail-turnover')
 
@@ -44,7 +44,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         }
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, location, form_data)
+            update_questionnaire_store_with_form_data(self.question_store, location, form_data, schema)
 
         self.assertEqual(self.question_store.completed_blocks, [location])
 
@@ -57,7 +57,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
 
     def test_update_questionnaire_store_with_default_value(self):
 
-        g.schema = load_schema_from_params('test', 'default')
+        schema = load_schema_from_params('test', 'default')
 
         location = Location('group', 0, 'number-question')
 
@@ -67,7 +67,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         }
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, location, form_data)
+            update_questionnaire_store_with_form_data(self.question_store, location, form_data, schema)
 
         self.assertEqual(self.question_store.completed_blocks, [location])
 
@@ -79,7 +79,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         }, self.question_store.answer_store.answers)
 
     def test_update_questionnaire_store_with_answer_data(self):
-        g.schema = load_schema_from_params('census', 'household')
+        schema = load_schema_from_params('census', 'household')
 
         location = Location('who-lives-here', 0, 'household-composition')
 
@@ -118,7 +118,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         ]
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_answer_data(self.question_store, location, answers)
+            update_questionnaire_store_with_answer_data(self.question_store, location, answers, schema)
 
         self.assertEqual(self.question_store.completed_blocks, [location])
 
@@ -126,7 +126,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
             self.assertIn(answer.__dict__, self.question_store.answer_store.answers)
 
     def test_remove_empty_household_members_from_answer_store(self):
-        g.schema = load_schema_from_params('census', 'household')
+        schema = load_schema_from_params('census', 'household')
 
         answers = [
             Answer(
@@ -165,13 +165,13 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         for answer in answers:
             self.question_store.answer_store.add_or_update(answer)
 
-        remove_empty_household_members_from_answer_store(self.question_store.answer_store)
+        remove_empty_household_members_from_answer_store(self.question_store.answer_store, schema)
 
         for answer in answers:
             self.assertIsNone(self.question_store.answer_store.find(answer))
 
     def test_remove_empty_household_members_values_entered_are_stored(self):
-        g.schema = load_schema_from_params('census', 'household')
+        schema = load_schema_from_params('census', 'household')
 
         answered = [
             Answer(
@@ -218,7 +218,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         for answer in answers:
             self.question_store.answer_store.add_or_update(answer)
 
-        remove_empty_household_members_from_answer_store(self.question_store.answer_store)
+        remove_empty_household_members_from_answer_store(self.question_store.answer_store, schema)
 
         for answer in answered:
             self.assertIsNotNone(self.question_store.answer_store.find(answer))
@@ -227,7 +227,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
             self.assertIsNone(self.question_store.answer_store.find(answer))
 
     def test_remove_empty_household_members_partial_answers_are_stored(self):
-        g.schema = load_schema_from_params('census', 'household')
+        schema = load_schema_from_params('census', 'household')
 
         answered = [
             Answer(
@@ -289,7 +289,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         for answer in answers:
             self.question_store.answer_store.add_or_update(answer)
 
-        remove_empty_household_members_from_answer_store(self.question_store.answer_store)
+        remove_empty_household_members_from_answer_store(self.question_store.answer_store, schema)
 
         for answer in answered:
             self.assertIsNotNone(self.question_store.answer_store.find(answer))
@@ -298,7 +298,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
             self.assertIsNotNone(self.question_store.answer_store.find(answer))
 
     def test_remove_empty_household_members_middle_name_only_not_stored(self):
-        g.schema = load_schema_from_params('census', 'household')
+        schema = load_schema_from_params('census', 'household')
 
         unanswered = [
             Answer(
@@ -322,7 +322,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         for answer in unanswered:
             self.question_store.answer_store.add_or_update(answer)
 
-        remove_empty_household_members_from_answer_store(self.question_store.answer_store)
+        remove_empty_household_members_from_answer_store(self.question_store.answer_store, schema)
 
         for answer in unanswered:
             self.assertIsNone(self.question_store.answer_store.find(answer))
@@ -381,7 +381,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
 
     def test_updating_questionnaire_store_removes_completed_block_for_min_dependencies(self):
 
-        g.schema = load_schema_from_params('test', 'dependencies_min_value')
+        schema = load_schema_from_params('test', 'dependencies_min_value')
 
         min_answer_location = Location('group', 0, 'min-block')
         dependent_location = Location('group', 0, 'dependent-block')
@@ -395,10 +395,10 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         }
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, min_answer_location, min_answer_data)
+            update_questionnaire_store_with_form_data(self.question_store, min_answer_location, min_answer_data, schema)
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, dependent_location, dependent_data)
+            update_questionnaire_store_with_form_data(self.question_store, dependent_location, dependent_data, schema)
 
         self.assertIn(min_answer_location, self.question_store.completed_blocks)
         self.assertIn(dependent_location, self.question_store.completed_blocks)
@@ -408,13 +408,13 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         }
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, min_answer_location, min_answer_data)
+            update_questionnaire_store_with_form_data(self.question_store, min_answer_location, min_answer_data, schema)
 
         self.assertNotIn(dependent_location, self.question_store.completed_blocks)
 
     def test_updating_questionnaire_store_removes_completed_block_for_max_dependencies(self):
 
-        g.schema = load_schema_from_params('test', 'dependencies_max_value')
+        schema = load_schema_from_params('test', 'dependencies_max_value')
 
         max_answer_location = Location('group', 0, 'max-block')
         dependent_location = Location('group', 0, 'dependent-block')
@@ -428,10 +428,10 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         }
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, max_answer_location, max_answer_data)
+            update_questionnaire_store_with_form_data(self.question_store, max_answer_location, max_answer_data, schema)
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, dependent_location, dependent_data)
+            update_questionnaire_store_with_form_data(self.question_store, dependent_location, dependent_data, schema)
 
         self.assertIn(max_answer_location, self.question_store.completed_blocks)
         self.assertIn(dependent_location, self.question_store.completed_blocks)
@@ -441,13 +441,13 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         }
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, max_answer_location, max_answer_data)
+            update_questionnaire_store_with_form_data(self.question_store, max_answer_location, max_answer_data, schema)
 
         self.assertNotIn(dependent_location, self.question_store.completed_blocks)
 
     def test_updating_questionnaire_store_removes_completed_block_for_calculation_dependencies(self):
 
-        g.schema = load_schema_from_params('test', 'dependencies_calculation')
+        schema = load_schema_from_params('test', 'dependencies_calculation')
 
         calculation_answer_location = Location('group', 0, 'total-block')
         dependent_location = Location('group', 0, 'breakdown-block')
@@ -464,10 +464,10 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         }
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, calculation_answer_location, calculation_answer_data)
+            update_questionnaire_store_with_form_data(self.question_store, calculation_answer_location, calculation_answer_data, schema)
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, dependent_location, dependent_data)
+            update_questionnaire_store_with_form_data(self.question_store, dependent_location, dependent_data, schema)
 
         self.assertIn(calculation_answer_location, self.question_store.completed_blocks)
         self.assertIn(dependent_location, self.question_store.completed_blocks)
@@ -477,13 +477,12 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         }
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, calculation_answer_location, calculation_answer_data)
+            update_questionnaire_store_with_form_data(self.question_store, calculation_answer_location, calculation_answer_data, schema)
 
         self.assertNotIn(dependent_location, self.question_store.completed_blocks)
 
     def test_updating_questionnaire_store_specific_group(self):
-        g.schema = load_schema_from_params('test',
-                                           'repeating_household_routing')
+        schema = load_schema_from_params('test', 'repeating_household_routing')
         answers = [
             Answer(
                 group_instance=0,
@@ -515,7 +514,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         location = Location('household-member-group', 1, 'date-of-birth')
         with self._application.test_request_context():
             update_questionnaire_store_with_form_data(
-                self.question_store, location, answer_form_data)
+                self.question_store, location, answer_form_data, schema)
 
         self.assertIsNone(self.question_store.answer_store.find(answers[3]))
         for answer in answers[:2]:
@@ -523,18 +522,18 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
 
     def test_build_view_context_for_question(self):
         # Given
-        g.schema = load_schema_from_params('test', 'titles')
+        g.schema = schema = load_schema_from_params('test', 'titles')
         block = g.schema.get_block('single-title-block')
         full_routing_path = [Location('group', 0, 'single-title-block'),
                              Location('group', 0, 'who-is-answer-block'),
                              Location('group', 0, 'multiple-question-versions-block'),
                              Location('group', 0, 'Summary')]
-        schema_context = _get_schema_context(full_routing_path, 0, {}, AnswerStore())
+        schema_context = _get_schema_context(full_routing_path, 0, {}, AnswerStore(), schema)
         current_location = Location('group', 0, 'single-title-block')
 
         # When
         with self._application.test_request_context():
-            question_view_context = build_view_context('Question', {}, AnswerStore(), schema_context, block,
+            question_view_context = build_view_context('Question', {}, schema, AnswerStore(), schema_context, block,
                                                        current_location, form=None)
 
         # Then
@@ -545,14 +544,18 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         validate that when the independent variable is set a call is made to remove all instances of
         the dependant variables
         """
-        g.schema = load_schema_from_params('test', 'titles_repeating_non_repeating_dependency')
+        # Given
+        schema = load_schema_from_params('test', 'titles_repeating_non_repeating_dependency')
         colour_answer_location = Location('colour-group', 0, 'favourite-colour')
         colour_answer = {'fav-colour-answer': 'blue'}
 
+        # When
         with self._application.test_request_context():
             with patch('app.data_model.questionnaire_store.QuestionnaireStore.remove_completed_blocks') as patch_remove:
-                update_questionnaire_store_with_form_data(self.question_store, colour_answer_location, colour_answer)
-                patch_remove.assert_called_with(group_id='repeating-group', block_id='repeating-block-3')
+                update_questionnaire_store_with_form_data(self.question_store, colour_answer_location, colour_answer, schema)
+
+        # Then
+        patch_remove.assert_called_with(group_id='repeating-group', block_id='repeating-block-3')
 
     def test_remove_completed_by_group_and_block(self):
         for i in range(10):

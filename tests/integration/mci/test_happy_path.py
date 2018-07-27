@@ -1,13 +1,6 @@
 from tests.integration.integration_test_case import IntegrationTestCase
 
-
-class TestHappyPath(IntegrationTestCase):
-
-    def test_happy_path_203(self):
-        self._happy_path('0203', 'test')
-
-    def test_happy_path_205(self):
-        self._happy_path('0205', 'test')
+class HappyPathHelperMixin():
 
     def _happy_path(self, form_type_id, eq_id):
         self.launchSurvey(eq_id, form_type_id)
@@ -58,3 +51,10 @@ class TestHappyPath(IntegrationTestCase):
 
         # We are on the thank you page
         self.assertRegexPage('(?s)Monthly Business Survey - Retail Sales Index.*?Monthly Business Survey - Retail Sales Index')
+
+class TestHappyPath(IntegrationTestCase, HappyPathHelperMixin):
+    def test_happy_path_203(self):
+        self._happy_path('0203', 'test')
+
+    def test_happy_path_205(self):
+        self._happy_path('0205', 'test')

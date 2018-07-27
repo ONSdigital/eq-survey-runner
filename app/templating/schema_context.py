@@ -1,30 +1,29 @@
 from jinja2 import escape
 
-from flask import g
 
-
-def build_schema_context(metadata, answer_store, answer_ids_on_path, group_instance=0):
+def build_schema_context(metadata, schema, answer_store, answer_ids_on_path, group_instance=0):
     """
     Build questionnaire schema context containing exercise and answers
     :param metadata: user metadata
+    :param schema: Survey schema
     :param answer_store: all the answers for the given questionnaire
     :param answer_ids_on_path: a list of the answer ids on the routing path
     :param group_instance: The group instance Id passed into the url route
     :return: questionnaire schema context
     """
     return {
-        'metadata': build_schema_metadata(metadata),
-        'answers': _build_answers(answer_store, answer_ids_on_path),
+        'metadata': build_schema_metadata(metadata, schema),
+        'answers': _build_answers(answer_store, schema, answer_ids_on_path),
         'group_instance': group_instance,
     }
 
 
-def _build_answers(answer_store, answer_ids_on_path):
+def _build_answers(answer_store, schema, answer_ids_on_path):
     answers = {}
 
     for answer_id in answer_ids_on_path:
-        is_repeating_answer = _get_is_repeating_answer(answer_id)
-        answer_is_in_repeating_group = _get_answer_is_in_repeating_group(answer_id)
+        is_repeating_answer = _get_is_repeating_answer(answer_id, schema)
+        answer_is_in_repeating_group = _get_answer_is_in_repeating_group(answer_id, schema)
 
         matching_answers = answer_store.filter(
             answer_ids=[answer_id], limit=True)
@@ -45,9 +44,9 @@ def _build_answers(answer_store, answer_ids_on_path):
     return answers
 
 
-def build_schema_metadata(metadata):
+def build_schema_metadata(metadata, schema):
 
-    schema_metadata = g.schema.json['metadata']
+    schema_metadata = schema.json['metadata']
     parsed = {key: json_and_html_safe(metadata[key]) for key in schema_metadata.keys() if key in metadata}
     trad_as = json_and_html_safe(metadata.get('trad_as'))
     ru_name = json_and_html_safe(metadata.get('ru_name'))
@@ -67,12 +66,12 @@ def json_and_html_safe(data):
     return data
 
 
-def _get_is_repeating_answer(answer_id):
-    return g.schema.is_repeating_answer_type(answer_id)
+def _get_is_repeating_answer(answer_id, schema):
+    return schema.is_repeating_answer_type(answer_id)
 
 
-def _get_answer_is_in_repeating_group(answer_id):
-    return g.schema.answer_is_in_repeating_group(answer_id)
+def _get_answer_is_in_repeating_group(answer_id, schema):
+    return schema.answer_is_in_repeating_group(answer_id)
 
 
 def _create_answers_list(answers, index_key):
