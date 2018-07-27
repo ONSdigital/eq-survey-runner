@@ -39,9 +39,6 @@ def get_field(answer, label, error_messages, answer_store, metadata):
             'Duration': get_duration_field,
         }[answer['type']](answer, label, guidance, error_messages)
 
-    if field is None:
-        logger.error('Unknown answer type used during form creation', type=answer['type'])
-
     return field
 
 

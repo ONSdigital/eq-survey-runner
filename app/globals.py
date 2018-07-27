@@ -57,9 +57,9 @@ def get_metadata(user):
 def get_answer_store(user):
     questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
 
-    if questionnaire_store.version < questionnaire_store.LATEST_VERSION:
+    if questionnaire_store.version < questionnaire_store.get_latest_version_number():
         questionnaire_store.answer_store.upgrade(questionnaire_store.version, g.schema)
-        questionnaire_store.version = questionnaire_store.LATEST_VERSION
+        questionnaire_store.version = questionnaire_store.get_latest_version_number()
 
     return questionnaire_store.answer_store
 

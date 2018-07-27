@@ -1,11 +1,10 @@
-import unittest
+from unittest import TestCase
 import simplejson as json
 
 from app.storage.storage_encryption import StorageEncryption
-from tests.app.app_context_test_case import AppContextTestCase
 
 # pylint: disable=W0212
-class TestStorageEncryption(AppContextTestCase):
+class TestStorageEncryption(TestCase):
 
     def setUp(self):
         super().setUp()
@@ -56,5 +55,6 @@ class TestStorageEncryption(AppContextTestCase):
         decrypted_data = json.loads(decrypted_data)
         self.assertEqual(data, decrypted_data)
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_no_pepper(self):
+        with self.assertRaises(ValueError):
+            self.encrypter = StorageEncryption('user_id', 'user_ik', None)

@@ -44,6 +44,14 @@ class Feedback(IntegrationTestCase):
         self.assertStatusOK()
         self.assertEqualUrl(FEEDBACK_THANKYOU_URL)
 
+    def test_feedback_no_redirect(self):
+        post_data = {
+            'redirect': False,
+        }
+        self.post(url=FEEDBACK_FORM_URL, post_data=post_data, action='send_feedback')
+        self.assertStatusOK()
+        self.assertEqualUrl(FEEDBACK_FORM_URL)
+
     def test_post_with_empty_message_does_not_send_message(self):
         post_data = {
             'message': '',

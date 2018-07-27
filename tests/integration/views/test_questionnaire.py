@@ -578,3 +578,17 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         self.question_store.remove_completed_blocks(group_id='group2', block_id='block1')
 
         # no exception equates to passed
+
+class TestQuestionnaireLanguage(IntegrationTestCase):
+    """ Tests that the language selection from tokens works """
+    def test_load_cy_survey(self):
+        # When: load a cy survey
+        self.launchSurvey('test', 'language', language_code='cy')
+        # Then: welsh
+        self.assertInPage('Holiadur Cymraeg')
+
+    def test_load_non_existant_lang_fallback(self):
+        # When: load a hindi survey
+        self.launchSurvey('test', 'language', language_code='hi')
+        # Then: Falls back to english
+        self.assertInPage('English Questionnaire')

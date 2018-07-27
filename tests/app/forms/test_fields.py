@@ -512,3 +512,10 @@ class TestFields(AppContextTestCase):
         self.assertEqual(unbound_field.field_class, CustomIntegerField)
         self.assertEqual(unbound_field.kwargs['label'], percentage_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], percentage_json['description'])
+
+    def test_invalid_field_type_raises_on_invalid(self):
+        # Given
+        invalid_field_type = 'Football'
+        # When / Then
+        with self.assertRaises(KeyError):
+            get_field({'type': invalid_field_type}, 'Football Field', error_messages, self.answer_store, self.metadata)

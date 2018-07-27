@@ -444,3 +444,43 @@ class TestQuestion(TestCase):
 
         # Then
         self.assertEqual(len(question.answers), 3)
+
+    def test_dropdown_none_selected_should_be_none(self):
+        # Given
+        options = [{
+            'label': 'Light Side',
+            'value': 'Light Side',
+        }]
+        answer_schema = {'id': 'answer_1', 'label': 'Which side?', 'type': 'Dropdown', 'options': options}
+        question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
+
+        # When
+        with patch('app.templating.summary.question.get_question_title', return_value=False):
+            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+
+        # Then
+        self.assertEqual(question.answers[0]['value'], None)
+
+    def test_dropdown_selected_option_label(self):
+        # Given
+        options = [{
+            'label': 'Light Side label',
+            'value': 'Light Side',
+        }, {
+            'label': 'Dark Side label',
+            'value': 'Dark Side',
+        }]
+        answer_schema = {'id': 'answer_1', 'label': 'Which side?', 'type': 'Dropdown', 'options': options}
+        question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
+
+        self.answer_store.add(Answer(
+            answer_id='answer_1',
+            value='Dark Side',
+        ))
+
+        # When
+        with patch('app.templating.summary.question.get_question_title', return_value=False):
+            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+
+        # Then
+        self.assertEqual(question.answers[0]['value'], 'Dark Side label')

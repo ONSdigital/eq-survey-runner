@@ -5,11 +5,12 @@ from app.questionnaire.location import Location
 
 
 class QuestionnaireStore:
-
     LATEST_VERSION = 1
 
-    def __init__(self, storage, version=LATEST_VERSION):
+    def __init__(self, storage, version=None):
         self._storage = storage
+        if version is None:
+            version = self.get_latest_version_number()
         self.version = version
         self.metadata = {}
         self.answer_store = AnswerStore()
@@ -20,6 +21,9 @@ class QuestionnaireStore:
             self._deserialise(raw_data)
         if version is not None:
             self.version = version
+
+    def get_latest_version_number(self):
+        return self.LATEST_VERSION
 
     def _deserialise(self, data):
         json_data = json.loads(data, use_decimal=True)
@@ -48,16 +52,31 @@ class QuestionnaireStore:
         data = self._serialise()
         self._storage.add_or_update(data=data, version=self.version)
 
-    def remove_completed_blocks(self, **kwargs):
-        """removes completed blocks from store either by specific location
-           or all group instances within a group and block"""
+    def remove_completed_blocks(self, location=None, group_id=None, block_id=None):
+        """Removes completed blocks from store either by specific location
+           or all group instances within a group and block.
 
-        if 'location' in kwargs:
-            self.completed_blocks.remove(kwargs['location'])
+            e.g.
+            ```
+            # By location
+            question_store.remove_completed_blocks(location=Location(...))
+
+            # By group_id/block_id (i.e. for all group instances for that group/block)
+            question_store.remove_completed_blocks(group_id='a-test-group', block_id='a-test-block')
+            ```
+        """
+
+        if location:
+            if not isinstance(location, Location):
+                raise TypeError('location needs to be a Location instance')
+            self.completed_blocks.remove(location)
         else:
+            if None in (group_id, block_id):
+                raise KeyError('Both group_id and block_id required')
+
             self.completed_blocks = [completed_block for completed_block in self.completed_blocks
-                                     if completed_block.group_id != kwargs['group_id'] or
-                                     completed_block.block_id != kwargs['block_id']]
+                                     if completed_block.group_id != group_id or
+                                     completed_block.block_id != block_id]
 
     def _encode_questionnaire_store(self, o):
         if hasattr(o, 'to_dict'):

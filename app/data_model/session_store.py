@@ -55,13 +55,6 @@ class SessionStore:
             self.session_data = None
 
     def _load(self):
-
-        if self._eq_session:
-            return self._eq_session
-
-        if self.eq_session_id is None:
-            return None
-
         logger.debug('finding eq_session_id in database', eq_session_id=self.eq_session_id)
 
         self._eq_session = data_access.get_by_key(EQSession, self.eq_session_id)

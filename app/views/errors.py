@@ -67,10 +67,7 @@ def log_exception(error, status_code):
     if metadata:
         logger.bind(tx_id=metadata['tx_id'])
 
-    if error:
-        logger.error('an error has occurred', exc_info=error, url=request.url, status_code=status_code)
-    else:
-        logger.error('an error has occurred', url=request.url, status_code=status_code)
+    logger.error('an error has occurred', exc_info=error, url=request.url, status_code=status_code)
 
 
 def _render_error_page(status_code):

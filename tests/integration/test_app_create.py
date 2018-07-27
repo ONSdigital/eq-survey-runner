@@ -1,12 +1,13 @@
 import unittest
 from uuid import UUID
-from mock import patch
+from contextlib import contextmanager
+from mock import patch, MagicMock
 
 from flask import Flask, request
 from flask_babel import Babel
 
 from app import settings
-from app.setup import create_app, versioned_url_for
+from app.setup import create_app, versioned_url_for, get_database_uri
 from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
 
 
@@ -15,6 +16,24 @@ class TestCreateApp(unittest.TestCase):
         self._setting_overrides = {
             'SQLALCHEMY_DATABASE_URI': 'sqlite:////tmp/questionnaire.db'
         }
+
+    @contextmanager
+    def override_settings(self):
+        """ Required because although the settings are overriden on the application
+        by passing _setting_overrides in, there are many funtions which use the
+        imported settings object - this does not get the overrides merged in. this
+        helper does that.
+
+        Note - this is not very nice, however it's better than polluting the global
+        settings.
+
+        Returns a list of contexts."""
+        patches = [patch('app.setup.settings.{}'.format(k), v) for k, v in self._setting_overrides.items()]
+        for p in patches:
+            p.start()
+        yield patches
+        for p in patches:
+            p.stop()
 
     def test_returns_application(self):
         self.assertIsInstance(create_app(self._setting_overrides), Flask)
@@ -52,8 +71,10 @@ class TestCreateApp(unittest.TestCase):
 
     def test_adds_logging_of_request_ids(self):
         with patch('app.setup.logger') as logger:
-            settings.EQ_DEV_MODE = True
-            settings.EQ_APPLICATION_VERSION = False
+            self._setting_overrides.update({
+                'EQ_DEV_MODE': True,
+                'EQ_APPLICATION_VERSION': False
+            })
             application = create_app(self._setting_overrides)
 
             application.test_client().get('/')
@@ -94,38 +115,39 @@ class TestCreateApp(unittest.TestCase):
         self.assertGreater(len(create_app(self._setting_overrides).blueprints), 0)
 
     def test_versioned_url_for_with_version(self):
-        settings.EQ_APPLICATION_VERSION = 'abc123'
+        self._setting_overrides['EQ_APPLICATION_VERSION'] = 'abc123'
         application = create_app(self._setting_overrides)
         application.config['SERVER_NAME'] = 'test'
 
-        with application.app_context():
+        with application.app_context(), self.override_settings():
             self.assertEqual(
                 'http://test/s/a.jpg?q=abc123',
                 versioned_url_for('static', filename='a.jpg')
             )
 
-        # This is bad news, should make better use of
-        # Flasks application factories pattern so that
-        # cross test config bleed isn't possible
-        settings.EQ_APPLICATION_VERSION = 'False'
-
     def test_versioned_url_for_without_version(self):
-        settings.EQ_MINIMIZE_VERSION = False
+        self._setting_overrides.update({
+            'EQ_APPLICATION_VERSION': False,
+        })
         application = create_app(self._setting_overrides)
         application.config['SERVER_NAME'] = 'test'
 
-        with application.app_context():
+        # Patches the application version, since it's used in `versioned_url_for`
+        with application.app_context(), self.override_settings():
             self.assertEqual(
                 'http://test/s/a.jpg?q=False',
                 versioned_url_for('static', filename='a.jpg')
             )
 
     def test_versioned_url_for_minimized_assets(self):
-        settings.EQ_MINIMIZE_ASSETS = True
+        self._setting_overrides.update({
+            'EQ_MINIMIZE_ASSETS': True,
+            'EQ_APPLICATION_VERSION': 'False',
+        })
         application = create_app(self._setting_overrides)
         application.config['SERVER_NAME'] = 'test'
 
-        with application.app_context():
+        with application.app_context(), self.override_settings():
             self.assertEqual(
                 'http://test/s/some.min.css?q=False',
                 versioned_url_for('static', filename='some.css')
@@ -136,17 +158,15 @@ class TestCreateApp(unittest.TestCase):
                 versioned_url_for('static', filename='some.js')
             )
 
-        # This is bad news, should make better use of
-        # Flasks application factories pattern so that
-        # cross test config bleed isn't possible
-        settings.EQ_MINIMIZE_ASSETS = False
-
     def test_versioned_url_for_regular_assets(self):
-        settings.EQ_MINIMIZE_ASSETS = False
+        self._setting_overrides.update({
+            'EQ_MINIMIZE_ASSETS': False,
+            'EQ_APPLICATION_VERSION': False,
+        })
         application = create_app(self._setting_overrides)
         application.config['SERVER_NAME'] = 'test'
 
-        with application.app_context():
+        with application.app_context(), self.override_settings():
             self.assertEqual(
                 'http://test/s/some.css?q=False',
                 versioned_url_for('static', filename='some.css')
@@ -158,12 +178,10 @@ class TestCreateApp(unittest.TestCase):
             )
 
     def test_adds_rabbit_submitter_to_the_application(self):
-        settings.EQ_RABBITMQ_ENABLED = True
+        self._setting_overrides['EQ_RABBITMQ_ENABLED'] = True
         application = create_app(self._setting_overrides)
 
         self.assertIsInstance(application.eq['submitter'], RabbitMQSubmitter)
-
-        settings.EQ_RABBITMQ_ENABLED = False
 
     def test_defaults_to_adding_the_log_submitter_to_the_application(self):
         settings.EQ_RABBITMQ_ENABLED = False
@@ -171,6 +189,24 @@ class TestCreateApp(unittest.TestCase):
 
         self.assertIsInstance(application.eq['submitter'], LogSubmitter)
 
+    def test_setup_from_database_components(self):
+        # Given
+        self._setting_overrides.update({
+            'EQ_SERVER_SIDE_STORAGE_DATABASE_HOST': '',
+            'EQ_SERVER_SIDE_STORAGE_DATABASE_PORT': '',
+            'EQ_SERVER_SIDE_STORAGE_DATABASE_NAME': 'questionnaire.db',
+            'EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER': 'sqlite',
+            'SQLALCHEMY_DATABASE_URI': False,
+        })
 
-if __name__ == '__main__':
-    unittest.main()
+        application = MagicMock()
+        application.config = self._setting_overrides
+        secret_store = MagicMock()
+        secret_store.get_secret_by_name = MagicMock(return_value='')
+        application.eq = {'secret_store': secret_store}
+
+        # When
+        uri = get_database_uri(application)
+
+        # Then
+        self.assertEqual(uri, 'sqlite://:@:/questionnaire.db')
