@@ -369,24 +369,9 @@ def _is_end_of_questionnaire(block, next_location):
     )
 
 
-def _is_skipping_to_the_end(block, current_location):
-    latest_location = get_completeness(current_user).get_first_incomplete_location_in_survey()
-
-    return (
-        latest_location and
-        current_location != latest_location and
-        block['type'] in END_BLOCKS
-    )
-
-
 def submit_answers(routing_path, eq_id, form_type, schema):
     metadata = get_metadata(current_user)
     answer_store = get_answer_store(current_user)
-
-    invalid_location = get_completeness(current_user).get_first_incomplete_location_in_survey()
-
-    if invalid_location:
-        return redirect(invalid_location.url(metadata))
 
     message = json.dumps(convert_answers(
         metadata,

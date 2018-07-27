@@ -418,7 +418,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             'when': [
                 {
                     'condition': 'equals',
-                    'meta': 'varient_flags.does_not_exist',
+                    'meta': 'varient_flags.does_not_exist.does_not_exist',
                     'value': True
                 }
             ]
