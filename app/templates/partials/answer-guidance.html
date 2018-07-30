@@ -18,16 +18,14 @@
   "aria-hidden": "true"
 } %}
 
-{% set guidance_content = {
-  "content": answer_guidance.schema_item.content
-} %}
+{% set content_block = answer_guidance.schema_item.content %}
 
 <div class="guidance js-details" {{guidance|xmlattr}}>
   <a class="guidance__link js-details-trigger js-details-label mars"
     {{guidance_link|xmlattr}} {{helpers.track('click', 'Help', 'Guidance click', answer_guidance.id)}}>{{_(answer_guidance.schema_item.show_guidance)}}</a>
   <div class="guidance__main js-details-body" {{guidance_body|xmlattr}}>
     <div class="guidance__content mars">
-      {% include 'partials/guidance.html' %}
+      {% include 'partials/content-block.html' %}
     </div>
   </div>
 </div>

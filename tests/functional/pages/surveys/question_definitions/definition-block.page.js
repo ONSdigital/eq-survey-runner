@@ -13,6 +13,12 @@ class DefinitionBlockPage extends QuestionPage {
 
   definitionButton1() { return '[data-definition-hide-button-index="1"]'; }
 
+  definitionTitle2() { return '[data-definition-title-index="2"]'; }
+
+  definitionContent2() { return '[data-definition-content-index="2"]'; }
+
+  definitionButton2() { return '[data-definition-hide-button-index="2"]'; }
+
   yes() {
     return '#radio-mandatory-answer-0';
   }

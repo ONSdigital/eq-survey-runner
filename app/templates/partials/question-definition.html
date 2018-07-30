@@ -1,16 +1,23 @@
+
 {% for definition in question.definitions %}
-    <div class="definition js-details u-mb-s" data-hide-label="Click to collapse." data-show-label="Click to expand.">
+  {% set content_block = definition.content %}
+  <div id="question-definition-{{question.id}}" class="definition js-details u-mb-s" data-hide-label="{{ _('Click to collapse') }}." data-show-label="{{ _('Click to expand') }}.">
 
-        <a href="#definition" class="definition__link mars js-details-trigger u-no-js-hide" aria-expanded="false" data-definition-title-index="{{loop.index}}" data-js-accordion-event-label="{{ definition.title }}" data-ga-label="definition-pattern-library" data-ga-action="Definition click" data-ga="click"
-            data-ga-category="Help">{{ definition.title }} <span class="u-vh js-details-label">Click to expand.</span></a>
+    <a href="#definition" class="definition__link mars js-details-trigger u-no-js-hide" aria-expanded="false" data-definition-title-index="{{loop.index}}" data-js-accordion-event-label="{{ definition.title }}" data-ga-label="definition-pattern-library" data-ga-action="Definition click" data-ga="click"
+      data-ga-category="Help">{{ definition.title }} <span class="u-vh js-details-label">{{ _("Click to expand") }}.</span></a>
 
-        <h3 class="venus u-no-js-show u-mb-no">{{ definition.title }}</h3>
+    <h3 class="venus u-no-js-show u-mb-no">{{ definition.title }}</h3>
 
-        <div id="definition" class="definition__main js-details-body">
-            <div class="definition__content mars" data-definition-content-index="{{loop.index}}">
-                <p>{{ definition.description }}</p>
-            </div>
-            <button class="btn btn--secondary btn--small definition__content-close-trigger js-details-trigger u-no-js-hide" data-definition-hide-button-index="{{loop.index}}">Hide this</button>
-        </div>
+    <div id="definition" class="definition__main js-details-body">
+      <div class="definition__content mars" data-definition-content-index="{{loop.index}}">
+        <aside>
+          <div>
+            {% include 'partials/content-block.html' %}
+          </div>
+        </aside>
+      </div>
+      <button class="btn btn--secondary btn--small definition__content-close-trigger js-details-trigger u-no-js-hide" data-definition-hide-button-index="{{loop.index}}">{{ _("Hide this") }}</button>
     </div>
+
+  </div>
 {% endfor %}

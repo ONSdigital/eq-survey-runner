@@ -61,5 +61,21 @@ describe('Component: Definition', function() {
 
     });
 
+
+    it('When I click the second definition\'s title link then the description and "Hide this" button for the second definition should be visible', function() {
+
+      return browser
+        .isVisible(DefinitionPage.definitionContent2()).should.eventually.be.false
+        .isVisible(DefinitionPage.definitionButton2()).should.eventually.be.false
+
+        // When
+        .click(DefinitionPage.definitionTitle2())
+
+        // Then
+        .waitForVisible(DefinitionPage.definitionContent2(), 300)
+        .waitForVisible(DefinitionPage.definitionButton2(), 300);
+
+    });
+
   });
 });
