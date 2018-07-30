@@ -7,174 +7,157 @@
     "description": "",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
-                "id": "primary-group",
-                "title": "Your Details",
-                "blocks": [{
-                        "type": "Question",
-                        "id": "primary-name-block",
-                        "title": "",
+            "id": "primary-group",
+            "title": "Your Details",
+            "blocks": [{
+                "type": "Question",
+                "id": "primary-name-block",
+                "title": "",
+                "description": "",
+                "questions": [{
+                    "description": "",
+                    "id": "primary-name-question",
+                    "title": "Please enter your name",
+                    "type": "General",
+                    "answers": [{
+                        "id": "primary-name",
                         "description": "",
-                        "questions": [{
-                            "description": "",
-                            "id": "primary-name-question",
-                            "title": "Please enter your name",
-                            "type": "General",
-                            "answers": [{
-                                "id": "primary-name",
-                                "description": "",
-                                "label": "First Name",
-                                "mandatory": true,
-                                "type": "TextField"
-                            }]
-                        }]
-                    },
-                    {
-                        "type": "Question",
-                        "id": "primary-anyone-else-block",
-                        "questions": [{
-                            "type": "General",
-                            "id": "primary-anyone-else-question",
-                            "title": "Does anyone else live here?",
-                            "answers": [{
-                                "type": "Radio",
-                                "id": "primary-anyone-else",
-                                "mandatory": true,
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ]
-                            }]
-
-                        }]
-                    }
-                ]
-            },
-            {
-                "id": "repeating-group",
-                "title": "Other Household Members",
-                "skip_conditions": [{
-                    "when": [{
+                        "label": "First Name",
+                        "mandatory": true,
+                        "type": "TextField"
+                    }]
+                }]
+            }, {
+                "type": "Question",
+                "id": "primary-anyone-else-block",
+                "questions": [{
+                    "type": "General",
+                    "id": "primary-anyone-else-question",
+                    "title": "Does anyone else live here?",
+                    "answers": [{
+                        "type": "Radio",
                         "id": "primary-anyone-else",
+                        "mandatory": true,
+                        "options": [{
+                            "label": "Yes",
+                            "value": "Yes"
+                        }, {
+                            "label": "No",
+                            "value": "No"
+                        }]
+                    }]
+                }]
+            }]
+        }, {
+            "id": "repeating-group",
+            "title": "Other Household Members",
+            "skip_conditions": [{
+                "when": [{
+                    "id": "primary-anyone-else",
+                    "condition": "equals",
+                    "value": "No"
+                }]
+            }],
+            "routing_rules": [{
+                "repeat": {
+                    "type": "until",
+                    "when": [{
+                        "id": "repeating-anyone-else",
                         "condition": "equals",
                         "value": "No"
                     }]
-                }],
-                "routing_rules": [{
-                    "repeat": {
-                        "type": "until",
-                        "when": [{
-                            "id": "repeating-anyone-else",
-                            "condition": "equals",
-                            "value": "No"
-                        }]
-                    }
-                }],
-                "blocks": [{
-                        "type": "Question",
-                        "id": "repeating-name-block",
-                        "title": "",
+                }
+            }],
+            "blocks": [{
+                "type": "Question",
+                "id": "repeating-name-block",
+                "title": "",
+                "description": "",
+                "questions": [{
+                    "description": "",
+                    "id": "repeating-name-question",
+                    "title": "Who else lives here?",
+                    "type": "General",
+                    "answers": [{
+                        "id": "repeating-name",
                         "description": "",
-                        "questions": [{
-                            "description": "",
-                            "id": "repeating-name-question",
-                            "title": "Who else lives here?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "repeating-name",
-                                "description": "",
-                                "label": "First Name",
-                                "mandatory": true,
-                                "type": "TextField"
-                            }]
-                        }]
-                    },
-                    {
-                        "type": "Question",
-                        "id": "repeating-anyone-else-block",
-                        "questions": [{
-                            "type": "General",
-                            "id": "repeating-anyone-else-question",
-                            "title": "Does anyone else live here?",
-                            "answers": [{
-                                "type": "Radio",
-                                "id": "repeating-anyone-else",
-                                "mandatory": true,
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ]
-                            }]
-
-                        }]
-                    }
-                ]
-            },
-            {
-                "id": "sex-group",
-                "title": "Household Member Details",
-                "routing_rules": [{
-                    "repeat": {
-                        "type": "answer_count",
-                        "answer_id": "repeating-name",
-                        "offset": 1
-                    }
-                }],
-                "blocks": [{
-                    "type": "Question",
-                    "id": "sex-block",
-                    "questions": [{
-                        "id": "sex-question",
-                        "title": "What is {{( [answers['primary-name']] + answers['repeating-name']|default([]) )[group_instance] }}'s sex?",
-                        "type": "General",
-                        "answers": [{
-                            "id": "sex-answer",
-                            "mandatory": true,
-                            "type": "Radio",
-                            "options": [{
-                                    "label": "Male",
-                                    "value": "Male"
-                                },
-                                {
-                                    "label": "Female",
-                                    "value": "Female"
-                                }
-                            ]
+                        "label": "First Name",
+                        "mandatory": true,
+                        "type": "TextField"
+                    }]
+                }]
+            }, {
+                "type": "Question",
+                "id": "repeating-anyone-else-block",
+                "questions": [{
+                    "type": "General",
+                    "id": "repeating-anyone-else-question",
+                    "title": "Does anyone else live here?",
+                    "answers": [{
+                        "type": "Radio",
+                        "id": "repeating-anyone-else",
+                        "mandatory": true,
+                        "options": [{
+                            "label": "Yes",
+                            "value": "Yes"
+                        }, {
+                            "label": "No",
+                            "value": "No"
                         }]
                     }]
                 }]
-            },
-            {
-                "id": "summary-group",
-                "title": "",
-                "blocks": [{
-                    "type": "Summary",
-                    "id": "summary"
+            }]
+        }, {
+            "id": "sex-group",
+            "title": "Household Member Details",
+            "routing_rules": [{
+                "repeat": {
+                    "type": "answer_count",
+                    "answer_id": "repeating-name",
+                    "offset": 1
+                }
+            }],
+            "blocks": [{
+                "type": "Question",
+                "id": "sex-block",
+                "questions": [{
+                    "id": "sex-question",
+                    "title": "What is {{( [answers['primary-name']] + answers['repeating-name']|default([]) )[group_instance] }}'s sex?",
+                    "type": "General",
+                    "answers": [{
+                        "id": "sex-answer",
+                        "mandatory": true,
+                        "type": "Radio",
+                        "options": [{
+                            "label": "Male",
+                            "value": "Male"
+                        }, {
+                            "label": "Female",
+                            "value": "Female"
+                        }]
+                    }]
                 }]
-            }
-        ]
+            }]
+        }, {
+            "id": "summary-group",
+            "title": "",
+            "blocks": [{
+                "type": "Summary",
+                "id": "summary"
+            }]
+        }]
     }]
 }

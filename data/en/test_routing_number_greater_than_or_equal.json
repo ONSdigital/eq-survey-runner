@@ -7,84 +7,76 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A test survey for routing based on a number greater than or equal",
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
             "blocks": [{
-                    "type": "Question",
-                    "id": "number-question",
-                    "description": "",
-                    "questions": [{
-                        "answers": [{
-                            "id": "answer",
-                            "mandatory": true,
-                            "type": "Number"
-                        }],
-                        "id": "question",
-                        "title": "Enter the number greater than or equal to 123",
-                        "type": "General"
+                "type": "Question",
+                "id": "number-question",
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "answer",
+                        "mandatory": true,
+                        "type": "Number"
                     }],
-                    "title": "Number Routing Greater Than or Equal",
-                    "routing_rules": [{
-                            "goto": {
-                                "block": "correct-answer",
-                                "when": [{
-                                    "id": "answer",
-                                    "condition": "greater than",
-                                    "value": 123
-                                }]
-                            }
-                        },
-                        {
-                            "goto": {
-                                "block": "correct-answer",
-                                "when": [{
-                                    "id": "answer",
-                                    "condition": "equals",
-                                    "value": 123
-                                }]
-                            }
-                        },
-                        {
-                            "goto": {
-                                "block": "incorrect-answer"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "Interstitial",
-                    "id": "incorrect-answer",
-                    "title": "You entered a number that was not greater than or equal 123",
-                    "description": "You were asked to enter a number greater than or equal to <em>123</em> but you entered <em>{{answers['answer']}}</em>.",
-                    "routing_rules": [{
-                        "goto": {
-                            "block": "summary"
-                        }
-                    }]
-                },
-                {
-                    "type": "Interstitial",
-                    "id": "correct-answer",
-                    "title": "You entered a number greater than or equal to 123",
-                    "description": "You were asked to enter a number greater than or equal to <em>123</em> and you entered <em>{{answers['answer']}}</em>."
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ],
+                    "id": "question",
+                    "title": "Enter the number greater than or equal to 123",
+                    "type": "General"
+                }],
+                "title": "Number Routing Greater Than or Equal",
+                "routing_rules": [{
+                    "goto": {
+                        "block": "correct-answer",
+                        "when": [{
+                            "id": "answer",
+                            "condition": "greater than",
+                            "value": 123
+                        }]
+                    }
+                }, {
+                    "goto": {
+                        "block": "correct-answer",
+                        "when": [{
+                            "id": "answer",
+                            "condition": "equals",
+                            "value": 123
+                        }]
+                    }
+                }, {
+                    "goto": {
+                        "block": "incorrect-answer"
+                    }
+                }]
+            }, {
+                "type": "Interstitial",
+                "id": "incorrect-answer",
+                "title": "You entered a number that was not greater than or equal 123",
+                "description": "You were asked to enter a number greater than or equal to <em>123</em> but you entered <em>{{answers['answer']}}</em>.",
+                "routing_rules": [{
+                    "goto": {
+                        "block": "summary"
+                    }
+                }]
+            }, {
+                "type": "Interstitial",
+                "id": "correct-answer",
+                "title": "You entered a number greater than or equal to 123",
+                "description": "You were asked to enter a number greater than or equal to <em>123</em> and you entered <em>{{answers['answer']}}</em>."
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }],
             "id": "group",
             "title": ""
         }]

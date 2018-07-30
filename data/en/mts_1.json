@@ -11,26 +11,31 @@
         "enabled": true,
         "duration": 900
     },
-    "metadata": {
-        "user_id": {
+    "metadata": [{
+            "name": "user_id",
             "validator": "string"
         },
-        "period_id": {
+        {
+            "name": "period_id",
             "validator": "string"
         },
-        "ru_name": {
+        {
+            "name": "ru_name",
             "validator": "string"
         },
-        "ref_p_start_date": {
+        {
+            "name": "ref_p_start_date",
             "validator": "date"
         },
-        "ref_p_end_date": {
+        {
+            "name": "ref_p_end_date",
             "validator": "date"
         },
-        "trad_as_or_ru_name": {
+        {
+            "name": "trad_as_or_ru_name",
             "validator": "string"
         }
-    },
+    ],
     "sections": [{
             "id": "section",
             "groups": [{

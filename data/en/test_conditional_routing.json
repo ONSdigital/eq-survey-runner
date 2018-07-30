@@ -7,119 +7,110 @@
     "description": "",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
             "blocks": [{
-                    "type": "Question",
-                    "id": "conditional-routing-block",
-                    "title": "Conditional Routing Test",
+                "type": "Question",
+                "id": "conditional-routing-block",
+                "title": "Conditional Routing Test",
+                "description": "",
+                "questions": [{
+                    "id": "conditional-routing-question",
+                    "title": "Do you drink coffee?",
                     "description": "",
-                    "questions": [{
-                        "id": "conditional-routing-question",
-                        "title": "Do you drink coffee?",
-                        "description": "",
-                        "type": "General",
-                        "answers": [{
-                            "options": [{
-                                    "label": "Yes",
-                                    "value": "yes",
-                                    "description": ""
-                                },
-                                {
-                                    "label": "No, I prefer tea",
-                                    "value": "no",
-                                    "description": ""
-                                }
-                            ],
-                            "q_code": "1",
+                    "type": "General",
+                    "answers": [{
+                        "options": [{
+                            "label": "Yes",
+                            "value": "yes",
+                            "description": ""
+                        }, {
+                            "label": "No, I prefer tea",
+                            "value": "no",
+                            "description": ""
+                        }],
+                        "q_code": "1",
+                        "id": "conditional-routing-answer",
+                        "label": "Which conditional question should we jump to?",
+                        "mandatory": true,
+                        "type": "Radio"
+                    }]
+                }],
+                "routing_rules": [{
+                    "goto": {
+                        "block": "response-yes",
+                        "when": [{
                             "id": "conditional-routing-answer",
-                            "label": "Which conditional question should we jump to?",
-                            "mandatory": true,
-                            "type": "Radio"
+                            "condition": "equals",
+                            "value": "yes"
                         }]
-                    }],
-                    "routing_rules": [{
-                            "goto": {
-                                "block": "response-yes",
-                                "when": [{
-                                    "id": "conditional-routing-answer",
-                                    "condition": "equals",
-                                    "value": "yes"
-                                }]
-                            }
-                        },
-                        {
-                            "goto": {
-                                "block": "response-no",
-                                "when": [{
-                                    "id": "conditional-routing-answer",
-                                    "condition": "equals",
-                                    "value": "no"
-                                }]
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "Question",
-                    "id": "response-yes",
-                    "title": "Yes, I do drink coffee",
+                    }
+                }, {
+                    "goto": {
+                        "block": "response-no",
+                        "when": [{
+                            "id": "conditional-routing-answer",
+                            "condition": "equals",
+                            "value": "no"
+                        }]
+                    }
+                }]
+            }, {
+                "type": "Question",
+                "id": "response-yes",
+                "title": "Yes, I do drink coffee",
+                "description": "",
+                "questions": [{
+                    "id": "response-yes-question",
+                    "title": "How many cups of coffee do you drink a day?",
                     "description": "",
-                    "questions": [{
-                        "id": "response-yes-question",
-                        "title": "How many cups of coffee do you drink a day?",
-                        "description": "",
-                        "type": "General",
-                        "answers": [{
-                            "id": "response-yes-number-of-cups",
-                            "label": "Number of cups",
-                            "mandatory": true,
-                            "q_code": "2",
-                            "type": "Number"
-                        }]
-                    }],
-                    "routing_rules": [{
-                        "goto": {
-                            "block": "summary"
-                        }
+                    "type": "General",
+                    "answers": [{
+                        "id": "response-yes-number-of-cups",
+                        "label": "Number of cups",
+                        "mandatory": true,
+                        "q_code": "2",
+                        "type": "Number"
                     }]
-                },
-                {
-                    "type": "Question",
-                    "id": "response-no",
-                    "title": "No, I prefer tea",
+                }],
+                "routing_rules": [{
+                    "goto": {
+                        "block": "summary"
+                    }
+                }]
+            }, {
+                "type": "Question",
+                "id": "response-no",
+                "title": "No, I prefer tea",
+                "description": "",
+                "questions": [{
+                    "id": "response-no-question",
+                    "title": "How many cups of tea do you drink a day?",
                     "description": "",
-                    "questions": [{
-                        "id": "response-no-question",
-                        "title": "How many cups of tea do you drink a day?",
-                        "description": "",
-                        "type": "General",
-                        "answers": [{
-                            "id": "response-no-number-of-cups",
-                            "label": "Number of cups",
-                            "mandatory": true,
-                            "q_code": "2",
-                            "type": "Number"
-                        }]
+                    "type": "General",
+                    "answers": [{
+                        "id": "response-no-number-of-cups",
+                        "label": "Number of cups",
+                        "mandatory": true,
+                        "q_code": "2",
+                        "type": "Number"
                     }]
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ],
+                }]
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }],
             "id": "conditional-routing-within-group",
             "title": "Conditional routing within group"
         }]

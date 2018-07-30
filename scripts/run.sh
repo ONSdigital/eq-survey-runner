@@ -11,6 +11,7 @@ if [ "$EQ_RUN_LOCAL_LINT" = True ]; then
 
     echo "Testing schemas"
     ./scripts/test_schemas.sh data/en
+    ./scripts/test_schemas.sh data/cy
 fi
 
 if [ "$EQ_RUN_LOCAL_TESTS" = True ]; then

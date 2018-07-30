@@ -1,3 +1,4 @@
+import uuid
 from datetime import datetime, timedelta, timezone
 
 import dateutil.parser
@@ -19,15 +20,19 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             validate_metadata(validated_claims, schema_metadata)
             return validated_claims
 
-        self.schema_metadata = {
-            'user_id': {
+        self.schema_metadata = [
+            {
+                'name': 'user_id',
                 'validator': 'string'
             },
-            'period_id': {
+            {
+                'name': 'period_id',
                 'validator': 'string'
             }
-        }
+        ]
+
         self.metadata = parse_metadata({
+            'tx_id': str(uuid.uuid4()),
             'user_id': '789473423',
             'form_type': '0205',
             'collection_exercise_sid': 'test-sid',

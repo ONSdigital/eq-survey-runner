@@ -7,76 +7,70 @@
     "description": "A test schema for different date formats",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        },
-        "ref_p_start_date": {
-            "validator": "date"
-        },
-        "ref_p_end_date": {
-            "validator": "date"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }, {
+        "name": "ref_p_start_date",
+        "validator": "date"
+    }, {
+        "name": "ref_p_end_date",
+        "validator": "date"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
             "blocks": [{
-                    "type": "Question",
-                    "id": "date-block",
+                "type": "Question",
+                "id": "date-block",
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "date-start-from",
+                        "label": "Period from",
+                        "mandatory": false,
+                        "q_code": "1111",
+                        "type": "Date"
+                    }, {
+                        "id": "date-end-to",
+                        "label": "Period to",
+                        "mandatory": false,
+                        "q_code": "1112",
+                        "type": "Date"
+                    }],
                     "description": "",
-                    "questions": [{
-                        "answers": [{
-                                "id": "date-start-from",
-                                "label": "Period from",
-                                "mandatory": false,
-                                "q_code": "1111",
-                                "type": "Date"
-                            },
-                            {
-                                "id": "date-end-to",
-                                "label": "Period to",
-                                "mandatory": false,
-                                "q_code": "1112",
-                                "type": "Date"
-                            }
-                        ],
-                        "description": "",
-                        "id": "date-pipe-question",
-                        "title": "Pipe range",
-                        "type": "DateRange"
+                    "id": "date-pipe-question",
+                    "title": "Pipe range",
+                    "type": "DateRange"
+                }],
+                "title": "Date Examples"
+            }, {
+                "type": "Question",
+                "id": "date-value-test",
+                "description": "A test to see if dates are correctly passed",
+                "questions": [{
+                    "answers": [{
+                        "id": "date-test-answer",
+                        "label": "Piped dates",
+                        "mandatory": false,
+                        "q_code": "20",
+                        "type": "Number"
                     }],
-                    "title": "Date Examples"
-                },
-                {
-                    "type": "Question",
-                    "id": "date-value-test",
-                    "description": "A test to see if dates are correctly passed",
-                    "questions": [{
-                        "answers": [{
-                            "id": "date-test-answer",
-                            "label": "Piped dates",
-                            "mandatory": false,
-                            "q_code": "20",
-                            "type": "Number"
-                        }],
-                        "id": "total-retail-turnover-question",
-                        "title": "For the period {{ format_conditional_date (answers['date-start-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['date-end-to'], metadata['ref_p_end_date'])}}, what was the value of the business’s total retail turnover?",
-                        "type": "General"
-                    }],
-                    "title": "Conditional Date Validation"
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ],
+                    "id": "total-retail-turnover-question",
+                    "title": "For the period {{ format_conditional_date (answers['date-start-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['date-end-to'], metadata['ref_p_end_date'])}}, what was the value of the business\u2019s total retail turnover?",
+                    "type": "General"
+                }],
+                "title": "Conditional Date Validation"
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }],
             "id": "dates",
             "title": ""
         }]

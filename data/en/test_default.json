@@ -7,42 +7,39 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A test survey for routing based on an number equals",
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
             "blocks": [{
-                    "type": "Question",
-                    "id": "number-question",
-                    "description": "",
-                    "questions": [{
-                        "answers": [{
-                            "id": "answer",
-                            "mandatory": false,
-                            "type": "Number",
-                            "default": 0
-                        }],
-                        "id": "question",
-                        "title": "Don't enter an answer. Zero will be shown on summary",
-                        "type": "General"
+                "type": "Question",
+                "id": "number-question",
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "answer",
+                        "mandatory": false,
+                        "type": "Number",
+                        "default": 0
                     }],
-                    "title": "Zero Default"
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ],
+                    "id": "question",
+                    "title": "Don't enter an answer. Zero will be shown on summary",
+                    "type": "General"
+                }],
+                "title": "Zero Default"
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }],
             "id": "group",
             "title": ""
         }]

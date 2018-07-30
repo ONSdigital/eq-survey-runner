@@ -7,191 +7,170 @@
     "description": "Tests for localised (UK rendering) measurements.",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
-                "blocks": [{
-                        "type": "Question",
-                        "id": "set-length-units-block",
+            "blocks": [{
+                "type": "Question",
+                "id": "set-length-units-block",
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "centimetres",
                         "description": "",
-                        "questions": [{
-                            "answers": [{
-                                    "id": "centimetres",
-                                    "description": "",
-                                    "label": "Centimetres",
-                                    "mandatory": false,
-                                    "type": "Unit",
-                                    "unit": "length-centimeter"
-                                },
-                                {
-                                    "id": "metres",
-                                    "description": "",
-                                    "label": "Metres",
-                                    "mandatory": false,
-                                    "type": "Unit",
-                                    "unit": "length-meter"
-                                },
-                                {
-                                    "id": "kilometres",
-                                    "description": "",
-                                    "label": "Kilometres",
-                                    "mandatory": false,
-                                    "type": "Unit",
-                                    "unit": "length-kilometer"
-                                },
-                                {
-                                    "id": "miles",
-                                    "description": "",
-                                    "label": "Miles",
-                                    "mandatory": false,
-                                    "type": "Unit",
-                                    "unit": "length-mile"
-                                }
-                            ],
-                            "description": "",
-                            "id": "set-length-units-question",
-                            "title": "Length Units",
-                            "type": "General"
-                        }],
-                        "title": "Length Units"
-                    },
-                    {
-                        "type": "Question",
-                        "id": "set-area-units-block",
+                        "label": "Centimetres",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "length-centimeter"
+                    }, {
+                        "id": "metres",
                         "description": "",
-                        "questions": [{
-                            "answers": [{
-                                    "id": "square-centimetres",
-                                    "description": "",
-                                    "label": "Centimetres Square",
-                                    "mandatory": false,
-                                    "type": "Unit",
-                                    "unit": "area-square-centimeter"
-                                },
-                                {
-                                    "id": "square-metres",
-                                    "description": "",
-                                    "label": "Metres Square",
-                                    "mandatory": false,
-                                    "type": "Unit",
-                                    "unit": "area-square-meter"
-                                },
-                                {
-                                    "id": "square-kilometres",
-                                    "description": "",
-                                    "label": "Kilometres Square",
-                                    "mandatory": false,
-                                    "type": "Unit",
-                                    "unit": "area-square-kilometer"
-                                },
-                                {
-                                    "id": "square-miles",
-                                    "description": "",
-                                    "label": "Miles Square",
-                                    "mandatory": false,
-                                    "type": "Unit",
-                                    "unit": "area-square-mile"
-                                },
-                                {
-                                    "id": "acres",
-                                    "description": "",
-                                    "label": "Acres",
-                                    "mandatory": false,
-                                    "type": "Unit",
-                                    "unit": "area-acre"
-                                },
-                                {
-                                    "id": "hectares",
-                                    "description": "",
-                                    "label": "Hectares",
-                                    "mandatory": false,
-                                    "type": "Unit",
-                                    "unit": "area-hectare"
-                                }
-                            ],
-                            "description": "",
-                            "id": "set-area-unit-questions",
-                            "title": "Area Units",
-                            "type": "General"
-                        }],
-                        "title": "Area Units"
-                    },
-                    {
-                        "type": "Question",
-                        "id": "set-volume-units-block",
+                        "label": "Metres",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "length-meter"
+                    }, {
+                        "id": "kilometres",
                         "description": "",
-                        "questions": [{
-                            "answers": [{
-                                    "id": "cubic-centimetres",
-                                    "description": "",
-                                    "label": "Cubic Centimetres",
-                                    "mandatory": false,
-                                    "type": "Unit",
-                                    "unit": "volume-cubic-centimeter"
-                                },
-                                {
-                                    "id": "cubic-metres",
-                                    "description": "",
-                                    "label": "Cubic Metres",
-                                    "mandatory": false,
-                                    "type": "Unit",
-                                    "unit": "volume-cubic-meter"
-                                },
-                                {
-                                    "id": "litres",
-                                    "description": "",
-                                    "label": "Litres",
-                                    "mandatory": false,
-                                    "type": "Unit",
-                                    "unit": "volume-liter"
-                                },
-                                {
-                                    "id": "hectolitres",
-                                    "description": "",
-                                    "label": "Hectolitres",
-                                    "mandatory": false,
-                                    "type": "Unit",
-                                    "unit": "volume-hectoliter"
-                                },
-                                {
-                                    "id": "megalitres",
-                                    "description": "",
-                                    "label": "Megalitres",
-                                    "mandatory": false,
-                                    "type": "Unit",
-                                    "unit": "volume-megaliter"
-                                }
-                            ],
-                            "description": "",
-                            "id": "set-volume-unit-questions",
-                            "title": "Volume Units",
-                            "type": "General"
-                        }],
-                        "title": "Volume Units"
-                    }
-                ],
-                "id": "test",
-                "title": ""
-            },
-            {
-                "blocks": [{
-                    "type": "Summary",
-                    "id": "summary"
+                        "label": "Kilometres",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "length-kilometer"
+                    }, {
+                        "id": "miles",
+                        "description": "",
+                        "label": "Miles",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "length-mile"
+                    }],
+                    "description": "",
+                    "id": "set-length-units-question",
+                    "title": "Length Units",
+                    "type": "General"
                 }],
-                "id": "summary-group",
-                "title": "Summary"
-            }
-        ]
+                "title": "Length Units"
+            }, {
+                "type": "Question",
+                "id": "set-area-units-block",
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "square-centimetres",
+                        "description": "",
+                        "label": "Centimetres Square",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "area-square-centimeter"
+                    }, {
+                        "id": "square-metres",
+                        "description": "",
+                        "label": "Metres Square",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "area-square-meter"
+                    }, {
+                        "id": "square-kilometres",
+                        "description": "",
+                        "label": "Kilometres Square",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "area-square-kilometer"
+                    }, {
+                        "id": "square-miles",
+                        "description": "",
+                        "label": "Miles Square",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "area-square-mile"
+                    }, {
+                        "id": "acres",
+                        "description": "",
+                        "label": "Acres",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "area-acre"
+                    }, {
+                        "id": "hectares",
+                        "description": "",
+                        "label": "Hectares",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "area-hectare"
+                    }],
+                    "description": "",
+                    "id": "set-area-unit-questions",
+                    "title": "Area Units",
+                    "type": "General"
+                }],
+                "title": "Area Units"
+            }, {
+                "type": "Question",
+                "id": "set-volume-units-block",
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "cubic-centimetres",
+                        "description": "",
+                        "label": "Cubic Centimetres",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "volume-cubic-centimeter"
+                    }, {
+                        "id": "cubic-metres",
+                        "description": "",
+                        "label": "Cubic Metres",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "volume-cubic-meter"
+                    }, {
+                        "id": "litres",
+                        "description": "",
+                        "label": "Litres",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "volume-liter"
+                    }, {
+                        "id": "hectolitres",
+                        "description": "",
+                        "label": "Hectolitres",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "volume-hectoliter"
+                    }, {
+                        "id": "megalitres",
+                        "description": "",
+                        "label": "Megalitres",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "volume-megaliter"
+                    }],
+                    "description": "",
+                    "id": "set-volume-unit-questions",
+                    "title": "Volume Units",
+                    "type": "General"
+                }],
+                "title": "Volume Units"
+            }],
+            "id": "test",
+            "title": ""
+        }, {
+            "blocks": [{
+                "type": "Summary",
+                "id": "summary"
+            }],
+            "id": "summary-group",
+            "title": "Summary"
+        }]
     }]
 }

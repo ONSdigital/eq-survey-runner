@@ -10,73 +10,68 @@
     "navigation": {
         "visible": true
     },
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
-            "id": "default-section",
-            "title": "Min Dependency",
-            "groups": [{
-                "id": "group",
-                "title": "Min Dependency Group",
-                "blocks": [{
-                        "type": "Question",
-                        "title": "Minimum Value Allowed",
-                        "id": "min-block",
-                        "description": "",
-                        "questions": [{
-                            "id": "min-question",
-                            "title": "min",
-                            "type": "General",
-                            "answers": [{
-                                "id": "min-answer",
-                                "label": "min",
-                                "mandatory": true,
-                                "type": "Number"
-                            }]
-                        }]
-                    },
-                    {
-                        "type": "Question",
-                        "title": "Calculated min",
-                        "id": "dependent-block",
-                        "questions": [{
-                            "id": "dependent-question",
-                            "title": "dependent",
-                            "type": "General",
-                            "answers": [{
-                                "id": "dependent-1",
-                                "label": "dependent",
-                                "mandatory": false,
-                                "type": "Number",
-                                "min_value": {
-                                    "answer_id": "min-answer"
-                                }
-                            }]
-                        }]
-                    }
-                ]
+        "id": "default-section",
+        "title": "Min Dependency",
+        "groups": [{
+            "id": "group",
+            "title": "Min Dependency Group",
+            "blocks": [{
+                "type": "Question",
+                "title": "Minimum Value Allowed",
+                "id": "min-block",
+                "description": "",
+                "questions": [{
+                    "id": "min-question",
+                    "title": "min",
+                    "type": "General",
+                    "answers": [{
+                        "id": "min-answer",
+                        "label": "min",
+                        "mandatory": true,
+                        "type": "Number"
+                    }]
+                }]
+            }, {
+                "type": "Question",
+                "title": "Calculated min",
+                "id": "dependent-block",
+                "questions": [{
+                    "id": "dependent-question",
+                    "title": "dependent",
+                    "type": "General",
+                    "answers": [{
+                        "id": "dependent-1",
+                        "label": "dependent",
+                        "mandatory": false,
+                        "type": "Number",
+                        "min_value": {
+                            "answer_id": "min-answer"
+                        }
+                    }]
+                }]
             }]
-        },
-        {
-            "id": "summary-section",
-            "title": "Summary",
-            "groups": [{
-                "blocks": [{
-                    "type": "Summary",
-                    "id": "summary"
-                }],
-                "id": "summary-group",
-                "title": "Summary"
-            }]
-        }
-    ]
+        }]
+    }, {
+        "id": "summary-section",
+        "title": "Summary",
+        "groups": [{
+            "blocks": [{
+                "type": "Summary",
+                "id": "summary"
+            }],
+            "id": "summary-group",
+            "title": "Summary"
+        }]
+    }]
 }

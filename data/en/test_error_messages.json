@@ -7,70 +7,64 @@
     "description": "Test Description",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "metadata": {
-        "user_id": {
-            "validator": "string"
-        },
-        "period_id": {
-            "validator": "string"
-        },
-        "ru_name": {
-            "validator": "string"
-        }
-    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
-                "blocks": [{
-                    "type": "Question",
-                    "id": "test-errors",
-                    "description": "",
-                    "questions": [{
-                        "answers": [{
-                                "id": "test-number",
-                                "description": "",
-                                "label": "Number Test",
-                                "mandatory": false,
-                                "type": "Number"
-                            },
-                            {
-                                "id": "test-percent",
-                                "description": "",
-                                "label": "Percent Test (0 to 100)",
-                                "mandatory": false,
-                                "type": "Percentage",
-                                "max_value": {
-                                    "value": 100
-                                }
-                            },
-                            {
-                                "id": "test-currency",
-                                "description": "",
-                                "label": "Currency test to 2 decimal places",
-                                "mandatory": false,
-                                "type": "Currency",
-                                "currency": "GBP",
-                                "decimal_places": 2
-                            }
-                        ],
+            "blocks": [{
+                "type": "Question",
+                "id": "test-errors",
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "test-number",
                         "description": "",
-                        "id": "test-min-max-range-question",
-                        "title": "Please enter test values (none mandatory)",
-                        "type": "General"
+                        "label": "Number Test",
+                        "mandatory": false,
+                        "type": "Number"
+                    }, {
+                        "id": "test-percent",
+                        "description": "",
+                        "label": "Percent Test (0 to 100)",
+                        "mandatory": false,
+                        "type": "Percentage",
+                        "max_value": {
+                            "value": 100
+                        }
+                    }, {
+                        "id": "test-currency",
+                        "description": "",
+                        "label": "Currency test to 2 decimal places",
+                        "mandatory": false,
+                        "type": "Currency",
+                        "currency": "GBP",
+                        "decimal_places": 2
                     }],
-                    "title": ""
+                    "description": "",
+                    "id": "test-min-max-range-question",
+                    "title": "Please enter test values (none mandatory)",
+                    "type": "General"
                 }],
-                "id": "test",
                 "title": ""
-            },
-            {
-                "blocks": [{
-                    "type": "Summary",
-                    "id": "summary"
-                }],
-                "id": "summary-group",
-                "title": "Summary"
-            }
-        ]
+            }],
+            "id": "test",
+            "title": ""
+        }, {
+            "blocks": [{
+                "type": "Summary",
+                "id": "summary"
+            }],
+            "id": "summary-group",
+            "title": "Summary"
+        }]
     }]
 }

@@ -11,6 +11,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
     def setUp(self):
         super().setUp()
         self.metadata = {
+            'tx_id': str(uuid.uuid4()),
             'jti': str(uuid.uuid4()),
             'user_id': '1',
             'form_type': 'a',
@@ -23,20 +24,21 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_ref': '2016-04-04',
             'ru_name': 'Apple',
             'return_by': '2016-07-07',
-            'tx_id': '4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f',
             'case_id': '1234567890',
             'case_ref': '1000000000000001',
             'account_service_url': 'https://ras.ons.gov.uk'
         }
 
-        self.schema_metadata = {
-            'user_id': {
+        self.schema_metadata = [
+            {
+                'name': 'user_id',
                 'validator': 'string'
             },
-            'period_id': {
+            {
+                'name': 'period_id',
                 'validator': 'string'
             }
-        }
+        ]
 
         with self.application.test_request_context():
             validate_metadata(self.metadata, self.schema_metadata)
@@ -172,7 +174,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_ref': '2016-04-04',
         }
 
-        self.schema_metadata['return_by'] = {'validator': 'date'}
+        self.schema_metadata.append({'name': 'return_by', 'validator': 'date'})
 
         with self.assertRaises(InvalidTokenException) as ite_key:
             validate_metadata(metadata, self.schema_metadata)
@@ -196,7 +198,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_ref': '2016-04-04'
         }
 
-        self.schema_metadata['trad_as_or_ru_name'] = {'validator': 'string'}
+        self.schema_metadata.append({'name': 'trad_as_or_ru_name', 'validator': 'string'})
 
         try:
             metadata['ru_name'] = 'ESSENTIAL ENTERPRISE LIMITED'
@@ -222,7 +224,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_ref': '2016-04-04',
         }
 
-        self.schema_metadata['ref_p_start_date'] = {'validator': 'date'}
+        self.schema_metadata.append({'name': 'ref_p_start_date', 'validator': 'date'})
 
         with self.assertRaises(InvalidTokenException) as ite:
             validate_metadata(metadata, self.schema_metadata)
@@ -268,6 +270,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
     def test_generated_tx_id_format(self):
 
         metadata = {
+            'tx_id': str(uuid.uuid4()),
             'jti': str(uuid.uuid4()),
             'user_id': '1',
             'form_type': 'a',
@@ -294,7 +297,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'period_str': 'May 2016'
         }
 
-        self.schema_metadata['period_id'] = {'validator': 'invalidValidator'}
+        self.schema_metadata.append({'name': 'period_id', 'validator': 'invalidValidator'})
 
         with self.assertRaises(KeyError) as ite:
             validate_metadata(metadata, self.schema_metadata)
