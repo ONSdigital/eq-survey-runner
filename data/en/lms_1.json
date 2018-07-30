@@ -22,7 +22,7 @@
         "ru_name": {
             "validator": "string"
         },
-        "region_code": {
+        "country_code": {
             "validator": "string"
         },
         "display_address": {
@@ -1381,9 +1381,9 @@
                                 ],
                                 "skip_conditions": [{
                                     "when": [{
-                                        "meta": "region_code",
+                                        "meta": "country_code",
                                         "condition": "equals",
-                                        "value": "GB-WLS"
+                                        "value": "W"
                                     }]
                                 }]
                             },
@@ -1443,9 +1443,9 @@
                                 ],
                                 "skip_conditions": [{
                                     "when": [{
-                                        "meta": "region_code",
+                                        "meta": "country_code",
                                         "condition": "not equals",
-                                        "value": "GB-WLS"
+                                        "value": "W"
                                     }]
                                 }]
                             }
@@ -1454,9 +1454,9 @@
                                 "goto": {
                                     "block": "understand-welsh",
                                     "when": [{
-                                        "meta": "region_code",
+                                        "meta": "country_code",
                                         "condition": "equals",
-                                        "value": "GB-WLS"
+                                        "value": "W"
                                     }]
                                 }
                             },
