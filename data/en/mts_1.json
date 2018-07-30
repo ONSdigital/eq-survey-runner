@@ -98,20 +98,16 @@
                                 {
                                     "question": "Significant changes to turnover",
                                     "content": [{
-                                            "description": "Significant changes to turnover"
-                                        },
-                                        {
-                                            "description": "Include:",
-                                            "list": [
-                                                "change in level of business activity",
-                                                "maintenance/shutdowns",
-                                                "special/calendar events",
-                                                "weather",
-                                                "price effects",
-                                                "currency effects (increase/decrease in currency value)"
-                                            ]
-                                        }
-                                    ]
+                                        "description": "Include:",
+                                        "list": [
+                                            "change in level of business activity",
+                                            "maintenance/shutdowns",
+                                            "special/calendar events",
+                                            "weather",
+                                            "price effects",
+                                            "currency effects (increase/decrease in currency value)"
+                                        ]
+                                    }]
                                 }
                             ]
                         },
