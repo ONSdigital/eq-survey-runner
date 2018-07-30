@@ -409,7 +409,14 @@
                         "q_code": "90w",
                         "type": "Radio"
                     }],
-                    "description": "<p>This is your own interpretation of whether there has been a significant change in {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year. </p>",
+                    "definitions": [{
+                        "title": "What constitutes a significant change?",
+                        "content": [{
+                            "description": "what constitutes a ‘significant change’ is dependent on your own interpretation of whether there has been a significant change in {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month."
+                        }, {
+                            "description": "Also consider whether there has been a significant change from the same month in the previous year."
+                        }]
+                    }],
                     "guidance": {
                         "content": [{
                             "title": "Include:",
@@ -778,7 +785,14 @@
                         "q_code": "90f",
                         "type": "Radio"
                     }],
-                    "description": "<p>This is your own interpretation of whether there has been a significant change in  {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year.</p>",
+                    "definitions": [{
+                        "title": "What constitutes a significant change?",
+                        "content": [{
+                            "description": "what constitutes a ‘significant change’ is dependent on your own interpretation of whether there has been a significant change in {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month."
+                        }, {
+                            "description": "Also consider whether there has been a significant change from the same month in the previous year."
+                        }]
+                    }],
                     "guidance": {
                         "content": [{
                             "title": "Include:",
@@ -1139,7 +1153,14 @@
                     "id": "calendar-monthly-pay-significant-changes-paid-employees-question",
                     "title": "Did any significant changes occur to the <em>total pay or number</em> of <em>calendar monthly</em> paid employees?",
                     "type": "General",
-                    "description": "<p>This is your own interpretation of whether there has been a significant change in  {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year.</p>",
+                    "definitions": [{
+                        "title": "What constitutes a significant change?",
+                        "content": [{
+                            "description": "what constitutes a ‘significant change’ is dependent on your own interpretation of whether there has been a significant change in {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month."
+                        }, {
+                            "description": "Also consider whether there has been a significant change from the same month in the previous year."
+                        }]
+                    }],
                     "guidance": {
                         "content": [{
                             "title": "Include:",
@@ -1497,7 +1518,14 @@
                     "id": "four-weekly-pay-significant-changes-paid-employees-question",
                     "title": "Did any significant changes occur to the <em>total pay or number</em> of <em>four weekly</em> paid employees?",
                     "type": "General",
-                    "description": "<p>This is your own interpretation of whether there has been a significant change in  {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year.</p>",
+                    "definitions": [{
+                        "title": "What constitutes a significant change?",
+                        "content": [{
+                            "description": "what constitutes a ‘significant change’ is dependent on your own interpretation of whether there has been a significant change in {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month."
+                        }, {
+                            "description": "Also consider whether there has been a significant change from the same month in the previous year."
+                        }]
+                    }],
                     "guidance": {
                         "content": [{
                             "title": "Include:",
@@ -1862,7 +1890,14 @@
                     "id": "five-weekly-pay-significant-changes-paid-employees-question",
                     "title": "Did any significant changes occur to the <em>total pay or number</em> of <em>five weekly</em> paid employees?",
                     "type": "General",
-                    "description": "<p>This is your own interpretation of whether there has been a significant change in  {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month.</p><p>Also consider whether there has been a significant change from the same month in the previous year.</p>",
+                    "definitions": [{
+                        "title": "What constitutes a significant change?",
+                        "content": [{
+                            "description": "what constitutes a ‘significant change’ is dependent on your own interpretation of whether there has been a significant change in {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month."
+                        }, {
+                            "description": "Also consider whether there has been a significant change from the same month in the previous year."
+                        }]
+                    }],
                     "guidance": {
                         "content": [{
                             "title": "Include:",
