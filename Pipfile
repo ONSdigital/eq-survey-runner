@@ -1,13 +1,10 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 name = "pypi"
 verify_ssl = true
 
-
 [dev-packages]
-
-pytest = "*"
+pytest = "==3.6.4" # The latest pytest introduces dependency conflicts on the pluggy library, waiting for a fix.
 "pep8" = "*"
 mock = "*"
 pytest-cov = "*"
@@ -28,9 +25,7 @@ httmock = "*"
 moto = "*"
 google-compute-engine = "*"
 
-
 [packages]
-
 colorama = "*"
 flask = "*"
 flask-babel = "*"
@@ -47,7 +42,7 @@ pika = "*"
 "psycopg2" = "*"
 pyyaml = "*"
 requests = "*"
-sdc-cryptography = "==0.2.2"
+sdc-cryptography = "==0.2.3"
 structlog = "*"
 ua-parser = "*"
 blinker = "*"
@@ -56,7 +51,5 @@ humanize = "*"
 flask-talisman = "*"
 marshmallow = "*"
 
-
 [requires]
-
 python_version = "3.4"
