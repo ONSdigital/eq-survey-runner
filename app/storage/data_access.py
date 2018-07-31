@@ -39,7 +39,7 @@ TABLE_CONFIG = {
         'key_field': 'jti_claim',
         'schema': app_models.UsedJtiClaimSchema,
         'sql_model': models.UsedJtiClaim,
-    }
+    },
 }
 
 

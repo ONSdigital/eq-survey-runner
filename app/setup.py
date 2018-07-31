@@ -36,11 +36,11 @@ CACHE_HEADERS = {
 }
 
 CSP_POLICY = {
-    'default-src': ["'self'", 'https://cdn.ons.gov.uk', ],
-    'font-src': ["'self'", 'data:', 'https://cdn.ons.gov.uk', ],
-    'script-src': ["'self'", 'https://www.google-analytics.com', 'https://cdn.ons.gov.uk', ],
-    'connect-src': ["'self'", 'https://www.google-analytics.com', 'https://cdn.ons.gov.uk', ],
-    'img-src': ["'self'", 'data:', 'https://www.google-analytics.com', 'https://cdn.ons.gov.uk', ]
+    'default-src': ["'self'", 'https://cdn.ons.gov.uk'],
+    'font-src': ["'self'", 'data:', 'https://cdn.ons.gov.uk'],
+    'script-src': ["'self'", 'https://www.google-analytics.com', 'https://cdn.ons.gov.uk'],
+    'connect-src': ["'self'", 'https://www.google-analytics.com', 'https://cdn.ons.gov.uk'],
+    'img-src': ["'self'", 'data:', 'https://www.google-analytics.com', 'https://cdn.ons.gov.uk'],
 }
 
 cache = Cache()
@@ -225,7 +225,7 @@ def setup_dynamodb(application):
     # Number of additional connection attempts
     config = Config(
         retries={'max_attempts': application.config['EQ_DYNAMODB_MAX_RETRIES']},
-        max_pool_connections=application.config['EQ_DYNAMODB_MAX_POOL_CONNECTIONS']
+        max_pool_connections=application.config['EQ_DYNAMODB_MAX_POOL_CONNECTIONS'],
     )
 
     application.eq['dynamodb'] = boto3.resource(

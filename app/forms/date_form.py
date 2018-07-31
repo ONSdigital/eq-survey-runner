@@ -27,7 +27,7 @@ class DateField(FormField):
             data = {
                 'year': substrings[0],
                 'month': substrings[1].lstrip('0'),
-                'day': substrings[2]
+                'day': substrings[2],
             }
 
         super().process(formdata, data)
@@ -44,7 +44,7 @@ class MonthYearField(FormField):
             substrings = data.split('-')
             data = {
                 'year': substrings[0],
-                'month': substrings[1].lstrip('0')
+                'month': substrings[1].lstrip('0'),
             }
 
         super().process(formdata, data)
@@ -60,7 +60,7 @@ class YearField(FormField):
         if data is not None:
             substrings = data.split('-')
             data = {
-                'year': substrings[0]
+                'year': substrings[0],
             }
 
         super().process(formdata, data)
@@ -90,7 +90,7 @@ def get_date_form(answer_store, metadata, answer=None, error_messages=None):
             return '{:04d}-{:02d}-{:02d}'.format(
                 int(data['year']),
                 int(data['month']),
-                int(data['day'])
+                int(data['day']),
             )
 
     validate_with = [OptionalForm()]
@@ -132,7 +132,7 @@ def get_month_year_form(answer, answer_store, metadata, error_messages):
 
             return '{:04d}-{:02d}'.format(
                 int(data['year']),
-                int(data['month'])
+                int(data['month']),
             )
 
     validate_with = [OptionalForm()]

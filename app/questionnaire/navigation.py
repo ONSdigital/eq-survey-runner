@@ -173,7 +173,7 @@ class Navigation:
             last_group,
             first_group['blocks'][0],
             last_group['blocks'][-1],
-            first_incomplete
+            first_incomplete,
         )
 
     def _get_location_for_group(self, group, group_instance=None):
@@ -189,7 +189,7 @@ class Navigation:
             group['blocks'][0],
             group['blocks'][-1],
             first_incomplete,
-            group_instance=group_instance or 0
+            group_instance=group_instance or 0,
         )
 
     @staticmethod

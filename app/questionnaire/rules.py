@@ -120,7 +120,7 @@ def evaluate_repeat(repeat_rule, answer_store, answer_ids_on_path):
         repeat_functions = {
             'answer_value': _get_answer_value,
             'answer_count': lambda f: _get_answer_count(f, repeat_rule),
-            'answer_count_minus_one': lambda f: min(_get_answer_count_minus_one(f), MAX_REPEATS - 1)
+            'answer_count_minus_one': lambda f: min(_get_answer_count_minus_one(f), MAX_REPEATS - 1),
         }
 
         repeat_index = repeat_rule['answer_id']

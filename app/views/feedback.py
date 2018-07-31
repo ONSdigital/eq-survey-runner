@@ -41,7 +41,7 @@ def before_request():
 def get_form():
     form = FeedbackForm()
     content = {
-        'csrf_token': form.csrf_token
+        'csrf_token': form.csrf_token,
     }
     return _render_template('feedback', content=content)
 
