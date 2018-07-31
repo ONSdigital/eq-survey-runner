@@ -53,7 +53,8 @@ class QuestionnaireStore:
            or all group instances within a group and block"""
 
         if 'location' in kwargs:
-            self.completed_blocks.remove(kwargs['location'])
+            if kwargs['location'] in self.completed_blocks:
+                self.completed_blocks.remove(kwargs['location'])
         else:
             self.completed_blocks = [completed_block for completed_block in self.completed_blocks
                                      if completed_block.group_id != kwargs['group_id'] or
