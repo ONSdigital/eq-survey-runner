@@ -127,3 +127,11 @@ class TestDataAccess(AppContextTestCase):
 
         rds_model = delete.call_args[0][0]
         self.assertEqual(rds_model.user_id, USER_ID)
+
+    def test_dymo_no_write_when_read_disabled(self): # pylint: disable=no-self-use
+        model = QuestionnaireState(USER_ID, STATE_DATA, VERSION)
+        with mock.patch('app.storage.data_access.is_dynamodb_read_enabled', mock.Mock(return_value=False)), \
+                mock.patch('app.storage.data_access.models.db.session.add') as merge:
+            data_access.put(model, overwrite=False)
+
+        merge.assert_called()

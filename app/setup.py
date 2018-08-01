@@ -178,27 +178,28 @@ def setup_secure_headers(application):
         frame_options='DENY')
 
 
+def get_database_uri(application):
+    """ Returns database URI. Prefer SQLALCHEMY_DATABASE_URI over components."""
+    if application.config.get('SQLALCHEMY_DATABASE_URI'):
+        return application.config['SQLALCHEMY_DATABASE_URI']
+
+    return '{driver}://{username}:{password}@{host}:{port}/{name}'\
+           .format(driver=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER'],
+                   username=application.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_DATABASE_USERNAME'),
+                   password=application.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_DATABASE_PASSWORD'),
+                   host=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_HOST'],
+                   port=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_PORT'],
+                   name=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_NAME'])
+
+
 def setup_database(application):
     application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
     application.config['SQLALCHEMY_POOL_RECYCLE'] = 60
-
-    driver = application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER']
-
-    if not application.config['SQLALCHEMY_DATABASE_URI']:
-        application.config[
-            'SQLALCHEMY_DATABASE_URI'] = '{driver}://{username}:{password}@{host}:{port}/{name}'\
-            .format(driver=driver,
-                    username=application.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_DATABASE_USERNAME'),
-                    password=application.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_DATABASE_PASSWORD'),
-                    host=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_HOST'],
-                    port=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_PORT'],
-                    name=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_NAME'])
+    application.config['SQLALCHEMY_DATABASE_URI'] = get_database_uri(application)
 
     with application.app_context():
         db.init_app(application)
         db.create_all()
-
         check_database()
 
 
@@ -209,7 +210,7 @@ def check_database():
                              autoload=True,
                              autoload_with=db.engine)
 
-    if 'version' not in table.c:
+    if 'version' not in table.c:  # pragma: no cover
         raise Exception('Database patch "pr-1347-apply.sql" has not been run')
 
     session_table = sqlalchemy.Table(EQSession.__tablename__,
@@ -217,7 +218,7 @@ def check_database():
                                      autoload=True,
                                      autoload_with=db.engine)
 
-    if 'session_data' not in session_table.c:
+    if 'session_data' not in session_table.c:  # pragma: no cover
         raise Exception('Database patch "pr-1391-apply.sql" has not been run')
 
 

@@ -59,14 +59,6 @@ class Location:
         collection_id = metadata['collection_exercise_sid']
         form_type = metadata['form_type']
 
-        path_params = {
-            'eq_id': eq_id,
-            'form_type': form_type,
-            'collection_id': collection_id,
-        }
-        if self.block_id == 'thank-you':
-            return url_for('questionnaire.get_thank_you', **path_params)
-
         return url_for('questionnaire.get_block',
                        eq_id=eq_id,
                        form_type=form_type,

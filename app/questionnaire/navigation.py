@@ -119,8 +119,6 @@ class Navigation:
         :param current_group_instance: The current selected group_instance
         :return: A list of navigation items represented as dicts
         """
-        if not link_names:
-            return []
 
         nav_items = []
 
