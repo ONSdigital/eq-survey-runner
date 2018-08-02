@@ -68,6 +68,7 @@ class TestMciSubmissionData(IntegrationTestCase):
                 'survey_id': '023',
                 'flushed': False,
                 'tx_id': actual['submission']['tx_id'],
+                'started_at': actual['submission']['started_at'],
                 'submitted_at': actual['submission']['submitted_at'],
                 'collection': {
                     'period': '201604',

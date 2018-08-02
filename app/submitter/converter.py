@@ -36,6 +36,7 @@ def convert_answers(metadata, schema, answer_store, routing_path, flushed=False)
           'instrument_id': 'yui789',
           'period': '2016-02-01'
         },
+        'started_at': '2016-03-06T15:28:05Z',
         'submitted_at': '2016-03-07T15:28:05Z',
         'metadata': {
           'user_id': '789473423',
@@ -57,6 +58,8 @@ def convert_answers(metadata, schema, answer_store, routing_path, flushed=False)
         'collection': _build_collection(metadata),
         'metadata': _build_metadata(metadata),
     }
+    if 'started_at' in metadata and metadata['started_at']:
+        payload['started_at'] = metadata['started_at']
     if 'case_id' in metadata and metadata['case_id']:
         payload['case_id'] = metadata['case_id']
     if 'case_ref' in metadata and metadata['case_ref']:
@@ -69,7 +72,7 @@ def convert_answers(metadata, schema, answer_store, routing_path, flushed=False)
     else:
         raise DataVersionError(schema.json['data_version'])
 
-    logger.debug('converted answer ready for submission')
+    logger.info('converted answer ready for submission')
     return payload
 
 
