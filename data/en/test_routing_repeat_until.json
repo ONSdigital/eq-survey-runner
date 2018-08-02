@@ -125,11 +125,9 @@
             "title": "Household Member Details",
             "routing_rules": [{
                 "repeat": {
-                    "type": "group",
-                    "group_ids": [
-                        "primary-group",
-                        "repeating-group"
-                    ]
+                    "type": "answer_count",
+                    "answer_id": "repeating-name",
+                    "offset": 1
                 }
             }],
             "blocks": [{
@@ -137,7 +135,7 @@
                 "id": "sex-block",
                 "questions": [{
                     "id": "sex-question",
-                    "title": "What is {{ group_instances[group_instance_id]['repeating-name']|default(group_instances[group_instance_id]['primary-name']) }}'s sex?",
+                    "title": "What is {{( [answers['primary-name']] + answers['repeating-name']|default([]) )[group_instance] }}'s sex?",
                     "type": "General",
                     "answers": [{
                         "id": "sex-answer",
