@@ -4,7 +4,7 @@ name = "pypi"
 verify_ssl = true
 
 [dev-packages]
-pytest = "==3.6.4" # The latest pytest introduces dependency conflicts on the pluggy library, waiting for a fix.
+pytest = "*"
 "pep8" = "*"
 mock = "*"
 pytest-cov = "*"
