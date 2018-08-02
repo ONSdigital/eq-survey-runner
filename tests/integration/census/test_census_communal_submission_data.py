@@ -1,13 +1,10 @@
-from mock import patch
-
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestCensusCommunalSubmissionData(IntegrationTestCase):
 
     def test_census_communal_data_matches_census_communal(self):
-        with patch('app.helpers.schema_helpers.uuid4', side_effect=range(100)):
-            self.complete_survey('census', 'communal')
+        self.complete_survey('census', 'communal')
 
         # Only verifying 'data'
         actual_downstream_data = self.dumpSubmission()['submission']['data']
@@ -22,36 +19,31 @@ class TestCensusCommunalSubmissionData(IntegrationTestCase):
                 'value': 'Hotel',
                 'answer_id': 'establishment-type-answer',
                 'answer_instance': 0,
-                'group_instance': 0,
-                'group_instance_id': 'communal-establishment-3',
+                'group_instance': 0
             },
             {
                 'value': '',
                 'answer_id': 'establishment-type-answer-other',
                 'answer_instance': 0,
-                'group_instance': 0,
-                'group_instance_id': 'communal-establishment-3',
+                'group_instance': 0
             },
             {
                 'value': 20,
                 'answer_id': 'bed-spaces-answer',
                 'answer_instance': 0,
-                'group_instance': 0,
-                'group_instance_id': 'communal-establishment-3',
+                'group_instance': 0
             },
             {
                 'value': 'Yes',
                 'answer_id': 'usual-residents-answer',
                 'answer_instance': 0,
-                'group_instance': 0,
-                'group_instance_id': 'communal-establishment-3',
+                'group_instance': 0
             },
             {
                 'value': 99,
                 'answer_id': 'usual-residents-number-answer',
                 'answer_instance': 0,
-                'group_instance': 0,
-                'group_instance_id': 'communal-establishment-3',
+                'group_instance': 0
             },
             {
                 'value': [
@@ -62,57 +54,49 @@ class TestCensusCommunalSubmissionData(IntegrationTestCase):
                 ],
                 'answer_id': 'describe-residents-answer',
                 'answer_instance': 0,
-                'group_instance': 0,
-                'group_instance_id': 'communal-establishment-3',
+                'group_instance': 0
             },
             {
                 'value': 'Sports visitors',
                 'answer_id': 'describe-residents-answer-other',
                 'answer_instance': 0,
-                'group_instance': 0,
-                'group_instance_id': 'communal-establishment-3',
+                'group_instance': 0
             },
             {
                 'value': 'Online',
                 'answer_id': 'completion-preference-individual-answer',
                 'answer_instance': 0,
-                'group_instance': 0,
-                'group_instance_id': 'communal-establishment-3',
+                'group_instance': 0
             },
             {
                 'value': 'Online',
                 'answer_id': 'completion-preference-establishment-answer',
                 'answer_instance': 0,
-                'group_instance': 0,
-                'group_instance_id': 'communal-establishment-3',
+                'group_instance': 0
             },
             {
                 'value': 'Yes',
                 'answer_id': 'further-contact-answer',
                 'answer_instance': 0,
-                'group_instance': 0,
-                'group_instance_id': 'communal-establishment-3',
+                'group_instance': 0
             },
             {
                 'value': '0123456789',
                 'answer_id': 'contact-details-answer-phone',
                 'answer_instance': 0,
-                'group_instance': 0,
-                'group_instance_id': 'communal-establishment-3',
+                'group_instance': 0
             },
             {
                 'value': 'danny.boje@gmail.com',
                 'answer_id': 'contact-details-answer-email',
                 'answer_instance': 0,
-                'group_instance': 0,
-                'group_instance_id': 'communal-establishment-3',
+                'group_instance': 0
             },
             {
                 'value': 'Danny',
                 'answer_id': 'contact-details-answer-name',
                 'answer_instance': 0,
-                'group_instance': 0,
-                'group_instance_id': 'communal-establishment-3',
+                'group_instance': 0
             }
         ]
 
