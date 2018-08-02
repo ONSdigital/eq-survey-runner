@@ -5,7 +5,7 @@ from dateutil.tz import tzutc
 from mock import patch
 
 from app.authentication.jti_claim_storage import JtiTokenUsed, use_jti_claim
-from app.storage.data_access import ItemAlreadyExistsError
+from app.storage.errors import ItemAlreadyExistsError
 from tests.app.app_context_test_case import AppContextTestCase
 
 

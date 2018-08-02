@@ -6,7 +6,7 @@ from structlog import get_logger
 
 from app.data_model.app_models import UsedJtiClaim
 from app.storage import data_access
-from app.storage.data_access import ItemAlreadyExistsError
+from app.storage.errors import ItemAlreadyExistsError
 
 logger = get_logger()
 

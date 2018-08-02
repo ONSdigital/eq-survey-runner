@@ -49,14 +49,8 @@ services:
       EQ_DYNAMODB_ENDPOINT: http://eq-docker-dynamodb:8000
       EQ_SUBMITTED_RESPONSES_TABLE_NAME: dev-submitted-responses
       EQ_QUESTIONNAIRE_STATE_TABLE_NAME: dev-questionnaire-state
-      EQ_QUESTIONNAIRE_STATE_DYNAMO_READ: "True"
-      EQ_QUESTIONNAIRE_STATE_DYNAMO_WRITE: "True"
       EQ_SESSION_TABLE_NAME: dev-eq-session
-      EQ_SESSION_DYNAMO_READ: "True"
-      EQ_SESSION_DYNAMO_WRITE: "True"
       EQ_USED_JTI_CLAIM_TABLE_NAME: dev-used-jti-claim
-      EQ_USED_JTI_CLAIM_DYNAMO_READ: "True"
-      EQ_USED_JTI_CLAIM_DYNAM_WRITE: "True"
       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID:-dummy}"
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:-dummy}"
     restart: always

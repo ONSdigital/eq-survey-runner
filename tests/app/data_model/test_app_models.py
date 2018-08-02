@@ -3,7 +3,7 @@ import datetime
 from dateutil.tz import tzutc
 
 from app.data_model.app_models import EQSession, QuestionnaireState, UsedJtiClaim, SubmittedResponse
-from app.storage.data_access import TABLE_CONFIG
+from app.storage.dynamo_api import TABLE_CONFIG
 from tests.app.app_context_test_case import AppContextTestCase
 
 

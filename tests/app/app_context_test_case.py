@@ -4,7 +4,7 @@ from flask import current_app
 from moto import mock_dynamodb2
 
 from app.setup import create_app
-from app.storage.data_access import get_table_name, TABLE_CONFIG, is_dynamodb_read_enabled
+from app.storage.dynamo_api import TABLE_CONFIG
 
 
 class AppContextTestCase(unittest.TestCase):
@@ -42,12 +42,10 @@ class AppContextTestCase(unittest.TestCase):
 
 def setup_tables():
     for config in TABLE_CONFIG.values():
-        if is_dynamodb_read_enabled(config):
-            table_name = get_table_name(config)
-            if table_name:
-                current_app.eq['dynamodb'].create_table(
-                    TableName=table_name,
-                    AttributeDefinitions=[{'AttributeName': config['key_field'], 'AttributeType': 'S'}],
-                    KeySchema=[{'AttributeName': config['key_field'], 'KeyType': 'HASH'}],
-                    ProvisionedThroughput={'ReadCapacityUnits': 1, 'WriteCapacityUnits': 1}
-                )
+        table_name = current_app.config[config['table_name_key']]
+        current_app.eq['dynamodb'].create_table(
+            TableName=table_name,
+            AttributeDefinitions=[{'AttributeName': config['key_field'], 'AttributeType': 'S'}],
+            KeySchema=[{'AttributeName': config['key_field'], 'KeyType': 'HASH'}],
+            ProvisionedThroughput={'ReadCapacityUnits': 1, 'WriteCapacityUnits': 1}
+        )
