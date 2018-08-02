@@ -33,11 +33,13 @@ class TestAnswer(unittest.TestCase):
             answer_id='4',
             answer_instance=1,
             group_instance=1,
+            group_instance_id='foo-1',
             value=25,
         )
         answer_2 = {
             'answer_id': '4',
             'answer_instance': 1,
+            'group_instance_id': 'foo-1',
             'group_instance': 1,
             'value': 25,
         }
@@ -81,6 +83,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
             answer_id='4',
             answer_instance=1,
             group_instance=1,
+            group_instance_id='group-1',
             value=25,
         )
         self.store.add(answer_1)
@@ -95,6 +98,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
             answer_id='4',
             answer_instance=1,
             group_instance=1,
+            group_instance_id='group-1',
             value=25,
         )
 

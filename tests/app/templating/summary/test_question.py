@@ -428,11 +428,13 @@ class TestQuestion(TestCase):
             answer_id='answer',
             value='Value 2',
             group_instance=1,
+            group_instance_id='group-1',
         ))
         self.answer_store.add(Answer(
             answer_id='answer',
             value='Value 3',
             group_instance=2,
+            group_instance_id='group-2',
         ))
         answer_schema = {'id': 'answer', 'title': '', 'type': '', 'label': ''}
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'RepeatingAnswer',

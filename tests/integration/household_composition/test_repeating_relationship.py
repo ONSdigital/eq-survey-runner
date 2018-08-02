@@ -1,3 +1,5 @@
+from mock import patch
+
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -25,47 +27,56 @@ class TestRepeatingRelationship(IntegrationTestCase):
 
     def test_multiple_relationship_groups(self):
         # Given
+        uuid_generator = (i for i in range(10))
+
         household_form_data = {
             'household-0-first-name': 'Han',
             'household-1-first-name': 'Leia',
             'household-2-first-name': 'Luke'
         }
-        self.post(household_form_data)
+        with patch('app.helpers.schema_helpers.uuid4', side_effect=uuid_generator):
+            self.post(household_form_data)
 
         # When
         relationship_form_data_1 = {
             'who-is-related-0': 'Husband or wife',
             'who-is-related-1': 'Relation - other'
         }
-        self.post(relationship_form_data_1)
+        with patch('app.helpers.schema_helpers.uuid4', side_effect=uuid_generator):
+            self.post(relationship_form_data_1)
 
         relationship_form_data_2 = {
             'who-is-related-0': 'Brother or sister'
         }
-        self.post(relationship_form_data_2)
+        with patch('app.helpers.schema_helpers.uuid4', side_effect=uuid_generator):
+            self.post(relationship_form_data_2)
 
         # Then
         relationship_answers = [
             answer for answer in self.dumpAnswers()['answers']
             if answer['answer_id'] == 'who-is-related'
         ]
+
         expected_relationship_answers = [
             {
                 'answer_id': 'who-is-related',
                 'answer_instance': 0,
                 'group_instance': 0,
+                'group_instance_id': 'household-relationships-4',
                 'value': 'Husband or wife'
             },
             {
                 'answer_id': 'who-is-related',
                 'answer_instance': 1,
                 'group_instance': 0,
+                'group_instance_id': 'household-relationships-4',
                 'value': 'Relation - other'
             },
             {
                 'answer_id': 'who-is-related',
                 'answer_instance': 0,
                 'group_instance': 1,
+                'group_instance_id': 'household-relationships-8',
                 'value': 'Brother or sister'
             }
         ]

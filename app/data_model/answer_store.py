@@ -6,11 +6,12 @@ import simplejson as json
 
 
 class Answer:
-    def __init__(self, answer_id, value, group_instance=0, answer_instance=0):
+    def __init__(self, answer_id, value, group_instance_id=None, group_instance=0, answer_instance=0):
         if answer_id is None or value is None:
             raise ValueError("Both 'answer_id' and 'value' must be set for Answer")
 
         self.answer_id = answer_id
+        self.group_instance_id = group_instance_id
         self.group_instance = group_instance
         self.answer_instance = answer_instance
         self.value = value
@@ -18,13 +19,13 @@ class Answer:
     def matches(self, answer):
         """
         Check to see if two answers match.
-        Two answers are considered to match if they share the same block_id, answer, answer_instance, group_id and group_instance.
+        Two answers are considered to match if they share the same answer_id, answer_instance and group_instance_id.
 
         :param answer: An answer to compare
         :return: True if both answers match, otherwise False.
         """
         return self.answer_id == answer.answer_id and \
-            self.group_instance == answer.group_instance and \
+            self.group_instance_id == answer.group_instance_id and \
             self.answer_instance == answer.answer_instance
 
     def matches_dict(self, answer_dict):
@@ -38,6 +39,7 @@ class Answer:
         return self.matches(Answer(
             answer_dict['answer_id'],
             answer_dict['value'],
+            answer_dict['group_instance_id'],
             answer_dict['group_instance'],
             answer_dict['answer_instance'],
         ))
@@ -155,14 +157,14 @@ class AnswerStore:
             escaped.append(answer)
         return self.__class__(existing_answers=escaped)
 
-    def filter(self, answer_ids, group_instance=None, answer_instance=None,
-               limit=None):
+    def filter(self, answer_ids=None, group_instance=None, group_instance_id=None, answer_instance=None, limit=None):
         """
         Find all answers in the answer store for a given set of filter parameter matches.
         If no filter parameters are passed it returns a copy of the instance.
 
         :param answer_ids: The answer ids to filter results by
         :param answer_instance: The answer instance to filter results by
+        :param group_instance_id: The group instance ID to filter results by
         :param group_instance: The group instance to filter results by
         :param limit: True | False Limit the number of answers returned
         :return: Return a new AnswerStore object with filtered answers for chaining
@@ -172,6 +174,7 @@ class AnswerStore:
         filter_vars = {
             'answer_id': answer_ids,
             'answer_instance': answer_instance,
+            'group_instance_id': group_instance_id,
             'group_instance': group_instance,
         }
 
@@ -201,7 +204,7 @@ class AnswerStore:
         :param answer_instance: The answer instance to filter results to remove
         :param group_instance: The group instance to filter results to remove
         """
-        for answer in self.filter(answer_ids, group_instance, answer_instance):
+        for answer in self.filter(answer_ids, group_instance=group_instance, answer_instance=answer_instance):
             self.answers.remove(answer)
 
     def get_hash(self):
