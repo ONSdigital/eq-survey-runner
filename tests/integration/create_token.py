@@ -17,7 +17,6 @@ PAYLOAD = {
     'return_by': '2016-05-06',
     'trad_as': 'Integration Tests',
     'employment_date': '1983-06-02',
-    'variant_flags': None,
     'region_code': 'GB-ENG',
     'language_code': 'en',
     'roles': [],

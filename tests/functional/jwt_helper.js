@@ -26,10 +26,6 @@ module.exports = function generateToken(schema, userId, collectionId, periodId =
     kid: '709eb42cfee5570058ce0711f730bfbb7d4c8ade'
   };
 
-  let variantFlags = {
-    'sexual_identity': sexualIdentity
-  };
-
   // Payload
   let oPayload = {
     tx_id: uuid(),
@@ -51,7 +47,7 @@ module.exports = function generateToken(schema, userId, collectionId, periodId =
     return_by: '2017-03-01',
     region_code: regionCode,
     language_code: languageCode,
-    variant_flags: variantFlags
+    sexual_identity: sexualIdentity
   };
 
   // Sign JWT, password=616161

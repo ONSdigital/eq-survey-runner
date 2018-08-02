@@ -58,7 +58,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
 
     def test_given_valid_answers_on_household_composition_when_answer_with_invalid_csrf_token_then_answers_not_saved(self):
         # Given
-        self.launchSurvey('census', 'household', roles=['dumper'])
+        self.launchSurvey('census', 'household', sexual_identity=False, roles=['dumper'])
         post_data = {'first_name': 'Joe'}
 
         # When

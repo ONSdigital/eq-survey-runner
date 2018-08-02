@@ -17,8 +17,8 @@
         "name": "region_code",
         "validator": "string"
     }, {
-        "name": "variant_flags",
-        "validator": "object"
+        "name": "sexual_identity",
+        "validator": "boolean"
     }],
     "sections": [{
         "id": "default-section",
@@ -955,7 +955,7 @@
                     "goto": {
                         "block": "sexual-identity",
                         "when": [{
-                            "meta": "variant_flags.sexual_identity",
+                            "meta": "sexual_identity",
                             "condition": "equals",
                             "value": true
                         }]
@@ -1073,7 +1073,7 @@
                     "goto": {
                         "block": "sexual-identity",
                         "when": [{
-                            "meta": "variant_flags.sexual_identity",
+                            "meta": "sexual_identity",
                             "condition": "equals",
                             "value": true
                         }]
@@ -1139,7 +1139,7 @@
                     "goto": {
                         "block": "sexual-identity",
                         "when": [{
-                            "meta": "variant_flags.sexual_identity",
+                            "meta": "sexual_identity",
                             "condition": "equals",
                             "value": true
                         }]
@@ -1208,7 +1208,7 @@
                     "goto": {
                         "block": "sexual-identity",
                         "when": [{
-                            "meta": "variant_flags.sexual_identity",
+                            "meta": "sexual_identity",
                             "condition": "equals",
                             "value": true
                         }]
@@ -1271,7 +1271,7 @@
                     "goto": {
                         "block": "sexual-identity",
                         "when": [{
-                            "meta": "variant_flags.sexual_identity",
+                            "meta": "sexual_identity",
                             "condition": "equals",
                             "value": true
                         }]
@@ -1331,7 +1331,7 @@
                     "goto": {
                         "block": "sexual-identity",
                         "when": [{
-                            "meta": "variant_flags.sexual_identity",
+                            "meta": "sexual_identity",
                             "condition": "equals",
                             "value": true
                         }]

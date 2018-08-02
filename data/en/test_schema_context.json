@@ -40,9 +40,6 @@
     }, {
         "name": "region_code",
         "validator": "string"
-    }, {
-        "name": "variant_flags",
-        "validator": "object"
     }],
     "sections": [{
         "id": "default-section",
@@ -72,8 +69,6 @@
                         "title": "return_by: {{ metadata['return_by'] }}"
                     }, {
                         "title": "region_code: {{ metadata['region_code'] }}"
-                    }, {
-                        "title": "variant_flags: {{ metadata['variant_flags'] }}"
                     }]
                 }]
             }],
