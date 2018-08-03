@@ -539,6 +539,39 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         # Then
         self.assertEqual(question_view_context['question_titles']['single-title-question'], 'How are you feeling??')
 
+    def test_build_view_context_for_calculation_summary(self):
+        # Given
+        schema = load_schema_from_params('test', 'calculated_summary')
+        block = schema.get_block('currency-total-playback')
+        metadata = {
+            'tx_id': '12345678-1234-5678-1234-567812345678',
+            'collection_exercise_sid': '789',
+            'form_type': 'calculated_summary',
+            'eq_id': 'test',
+        }
+        answers = [
+            {'answer_instance': 0, 'group_instance': 0, 'answer_id': 'first-number-answer', 'value': 1},
+            {'answer_instance': 0, 'group_instance': 0, 'answer_id': 'second-number-answer', 'value': 2},
+            {'answer_instance': 0, 'group_instance': 0, 'answer_id': 'third-number-answer', 'value': 4},
+            {'answer_instance': 0, 'group_instance': 0, 'answer_id': 'fourth-number-answer', 'value': 6},
+        ]
+        schema_context = {
+            'answers': answers,
+            'group_instance': 0,
+            'metadata': metadata
+        }
+        current_location = Location('group', 0, 'currency-total-playback')
+
+        # When
+        with self._application.test_request_context():
+            view_context = build_view_context(block['type'], metadata, schema, AnswerStore(answers),
+                                              schema_context, block, current_location, form=None)
+
+        # Then
+        self.assertTrue('summary' in view_context)
+        self.assertTrue('calculated_question' in view_context['summary'])
+        self.assertEqual(view_context['summary']['title'], 'We calculate the total of currency values entered to be £13.00. Is this correct?')
+
     def test_answer_non_repeating_dependency_repeating_validate_all_of_block_and_group_removed(self):
         """ load a schema with a non repeating independent answer and a repeating one that depends on it
         validate that when the independent variable is set a call is made to remove all instances of
