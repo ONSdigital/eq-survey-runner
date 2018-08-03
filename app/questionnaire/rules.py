@@ -236,25 +236,9 @@ def get_answer_ids_on_routing_path(schema, path):
     return answer_ids_on_path
 
 
-def get_metadata_value(metadata, keys):
-    if not _contains_in_dict(metadata, keys):
-        return None
-
-    if '.' in keys:
-        key, rest = keys.split('.', 1)
-        return get_metadata_value(metadata[key], rest)
-    return metadata[keys]
+def get_metadata_value(metadata, key):
+    return metadata.get(key)
 
 
 def is_goto_rule(rule):
     return any(key in rule.get('goto', {}) for key in ('when', 'block', 'group'))
-
-
-def _contains_in_dict(metadata, keys):
-    if '.' in keys:
-        key, rest = keys.split('.', 1)
-        if key not in metadata:
-            return False
-        return _contains_in_dict(metadata[key], rest)
-
-    return keys in metadata

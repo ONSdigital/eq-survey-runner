@@ -20,8 +20,8 @@
         "name": "region_code",
         "validator": "string"
     }, {
-        "name": "variant_flags",
-        "validator": "object"
+        "name": "sexual_identity",
+        "validator": "boolean"
     }],
     "sections": [{
         "id": "address-section",
@@ -1711,7 +1711,7 @@
                             "condition": "equals",
                             "value": "Yes"
                         }, {
-                            "meta": "variant_flags.sexual_identity",
+                            "meta": "sexual_identity",
                             "condition": "equals",
                             "value": true
                         }]
@@ -1814,7 +1814,7 @@
                             "condition": "equals",
                             "value": "Yes"
                         }, {
-                            "meta": "variant_flags.sexual_identity",
+                            "meta": "sexual_identity",
                             "condition": "equals",
                             "value": true
                         }]
@@ -1874,7 +1874,7 @@
                             "condition": "equals",
                             "value": "Yes"
                         }, {
-                            "meta": "variant_flags.sexual_identity",
+                            "meta": "sexual_identity",
                             "condition": "equals",
                             "value": true
                         }]
@@ -1937,7 +1937,7 @@
                             "condition": "equals",
                             "value": "Yes"
                         }, {
-                            "meta": "variant_flags.sexual_identity",
+                            "meta": "sexual_identity",
                             "condition": "equals",
                             "value": true
                         }]
@@ -1994,7 +1994,7 @@
                             "condition": "equals",
                             "value": "Yes"
                         }, {
-                            "meta": "variant_flags.sexual_identity",
+                            "meta": "sexual_identity",
                             "condition": "equals",
                             "value": true
                         }]
@@ -2048,7 +2048,7 @@
                             "condition": "equals",
                             "value": "Yes"
                         }, {
-                            "meta": "variant_flags.sexual_identity",
+                            "meta": "sexual_identity",
                             "condition": "equals",
                             "value": true
                         }]

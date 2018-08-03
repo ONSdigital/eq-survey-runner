@@ -161,7 +161,6 @@ class TestViewSubmission(IntegrationTestCase):
             'ref_p_end_date': '2016-04-30',
             'return_by': '2016-05-06',
             'employment_date': '1983-06-02',
-            'variant_flags': None,
             'region_code': 'GB-ENG',
             'language_code': 'en',
             'roles': []
@@ -218,7 +217,6 @@ class TestViewSubmission(IntegrationTestCase):
             'ref_p_end_date': '2016-04-30',
             'return_by': '2016-05-06',
             'employment_date': '1983-06-02',
-            'variant_flags': None,
             'region_code': 'GB-ENG',
             'language_code': 'en',
             'roles': [],

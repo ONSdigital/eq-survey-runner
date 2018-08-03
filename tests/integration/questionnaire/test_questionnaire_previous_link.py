@@ -35,7 +35,7 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
     def test_previous_link_on_relationship(self):
 
         # Given the census questionnaire.
-        self.launchSurvey('census', 'household')
+        self.launchSurvey('census', 'household', sexual_identity=False)
         self.post(action='start_questionnaire')
 
         # When we complete the who lives here section and the other questions needed to build the path.

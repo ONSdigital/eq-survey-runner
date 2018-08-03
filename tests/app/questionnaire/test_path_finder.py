@@ -816,9 +816,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         expected_next_location = expected_path[1]
 
         metadata = {
-            'variant_flags': {
-                'flag_1': True
-            }
+            'flag_1': True,
         }
 
         path_finder = PathFinder(schema, AnswerStore(), metadata=metadata, completed_blocks=[])
@@ -837,10 +835,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         expected_next_location = expected_path[1]
 
-        metadata = {
-            'variant_flags': {
-            }
-        }
+        metadata = {}
 
         path_finder = PathFinder(schema, AnswerStore(), metadata=metadata, completed_blocks=[])
 

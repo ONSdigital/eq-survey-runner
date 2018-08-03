@@ -14,8 +14,8 @@
         "name": "period_id",
         "validator": "string"
     }, {
-        "name": "variant_flags",
-        "validator": "object"
+        "name": "flag_1",
+        "validator": "boolean"
     }],
     "sections": [{
         "id": "default-section",
@@ -41,7 +41,7 @@
                     "goto": {
                         "block": "block3",
                         "when": [{
-                            "meta": "variant_flags.flag_1",
+                            "meta": "flag_1",
                             "condition": "equals",
                             "value": true
                         }]

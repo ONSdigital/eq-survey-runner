@@ -654,8 +654,7 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
         return expected_downstream_data
 
     def complete_survey(self, eq_id, form_type_id):
-        variant_flags = {'sexual_identity': 'false'}
-        self.launchSurvey(eq_id, form_type_id, region_code='GB-ENG', variant_flags=variant_flags, roles=['dumper'])
+        self.launchSurvey(eq_id, form_type_id, region_code='GB-ENG', sexual_identity=False, roles=['dumper'])
 
         self.post(action='start_questionnaire')
 
