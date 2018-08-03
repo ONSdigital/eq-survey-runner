@@ -45,9 +45,20 @@ class Timestamp(fields.Field):
         return datetime.datetime.utcfromtimestamp(value).replace(tzinfo=tzutc())
 
 
+class PermissiveDateTimeField(fields.DateTime):
+    """Overrides the standard DateTime field to allow
+    deserializing of values that have already been
+    deserialized
+    """
+    def _deserialize(self, value, attr, data):
+        if isinstance(value, datetime.datetime):
+            return value
+        return super()._deserialize(value, attr, data)
+
+
 class DateTimeSchemaMixin:
-    created_at = fields.DateTime()
-    updated_at = fields.DateTime()
+    created_at = PermissiveDateTimeField()
+    updated_at = PermissiveDateTimeField()
 
     @pre_dump
     def set_date(self, data):

@@ -52,6 +52,10 @@ if [ -z "$EQ_USED_JTI_CLAIM_TABLE_NAME" ]; then
   export EQ_USED_JTI_CLAIM_TABLE_NAME="dev-used-jti-claim"
 fi
 
+if [ -z "$COSMOSDB_CONNECTION_STRING" ]; then
+  export COSMOSDB_CONNECTION_STRING=""
+fi
+
 if [ -z "$AWS_DEFAULT_REGION" ]; then
   export AWS_DEFAULT_REGION=eu-west-1
 fi

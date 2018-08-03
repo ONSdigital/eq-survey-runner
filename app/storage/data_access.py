@@ -1,11 +1,12 @@
 from flask import current_app
 
-from app.storage import dynamo_api, sql_api
+from app.storage import dynamo_api, sql_api, cosmos_api
 
 
 STORAGE_BACKENDS = {
     'dynamodb': dynamo_api,
     'sql': sql_api,
+    'cosmosdb': cosmos_api
 }
 
 

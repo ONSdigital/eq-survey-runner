@@ -9,6 +9,7 @@ from uuid import uuid4
 import boto3
 import sqlalchemy
 import yaml
+from azure.cosmosdb.table import TableService
 from botocore.config import Config
 from flask import Flask, url_for
 from flask_babel import Babel
@@ -89,6 +90,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     setup_database(application)
 
     setup_dynamodb(application)
+
+    setup_cosmodb(application)
 
     if application.config['EQ_RABBITMQ_ENABLED']:
         application.eq['submitter'] = RabbitMQSubmitter(
@@ -231,6 +234,15 @@ def setup_dynamodb(application):
 
     application.eq['dynamodb'] = boto3.resource(
         'dynamodb', endpoint_url=application.config['EQ_DYNAMODB_ENDPOINT'], config=config)
+
+
+def setup_cosmodb(application):
+    service = TableService(
+        endpoint_suffix="table.cosmosdb.azure.com",
+        connection_string=application.config['COSMOSDB_CONNECTION_STRING']
+    )
+
+    application.eq['cosmosdb'] = service
 
 
 def setup_profiling(application):
