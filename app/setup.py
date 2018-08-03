@@ -196,14 +196,15 @@ def get_database_uri(application):
 
 
 def setup_database(application):
-    application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    application.config['SQLALCHEMY_POOL_RECYCLE'] = 60
-    application.config['SQLALCHEMY_DATABASE_URI'] = get_database_uri(application)
+    if application.config['EQ_STORAGE_BACKEND'] == 'sql':
+        application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+        application.config['SQLALCHEMY_POOL_RECYCLE'] = 60
+        application.config['SQLALCHEMY_DATABASE_URI'] = get_database_uri(application)
 
-    with application.app_context():
-        db.init_app(application)
-        db.create_all()
-        check_database()
+        with application.app_context():
+            db.init_app(application)
+            db.create_all()
+            check_database()
 
 
 def check_database():
@@ -226,23 +227,25 @@ def check_database():
 
 
 def setup_dynamodb(application):
-    # Number of additional connection attempts
-    config = Config(
-        retries={'max_attempts': application.config['EQ_DYNAMODB_MAX_RETRIES']},
-        max_pool_connections=application.config['EQ_DYNAMODB_MAX_POOL_CONNECTIONS'],
-    )
+    if application.config['EQ_STORAGE_BACKEND'] == 'dynamodb':
+        # Number of additional connection attempts
+        config = Config(
+            retries={'max_attempts': application.config['EQ_DYNAMODB_MAX_RETRIES']},
+            max_pool_connections=application.config['EQ_DYNAMODB_MAX_POOL_CONNECTIONS'],
+        )
 
-    application.eq['dynamodb'] = boto3.resource(
-        'dynamodb', endpoint_url=application.config['EQ_DYNAMODB_ENDPOINT'], config=config)
+        application.eq['dynamodb'] = boto3.resource(
+            'dynamodb', endpoint_url=application.config['EQ_DYNAMODB_ENDPOINT'], config=config)
 
 
 def setup_cosmodb(application):
-    service = TableService(
-        endpoint_suffix="table.cosmosdb.azure.com",
-        connection_string=application.config['COSMOSDB_CONNECTION_STRING']
-    )
+    if application.config['EQ_STORAGE_BACKEND'] == 'cosmosdb':
+        service = TableService(
+            endpoint_suffix="table.cosmosdb.azure.com",
+            connection_string=application.config['COSMOSDB_CONNECTION_STRING']
+        )
 
-    application.eq['cosmosdb'] = service
+        application.eq['cosmosdb'] = service
 
 
 def setup_profiling(application):
