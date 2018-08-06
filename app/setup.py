@@ -335,10 +335,10 @@ def setup_babel(application):
     def get_locale():  # pylint: disable=unused-variable
         session = get_session_store()
 
-        if not session:
-            return None
+        if session and session.session_data:
+            return session.session_data.language_code
 
-        return session.session_data.language_code
+        return None
 
     @application.babel.timezoneselector
     def get_timezone():  # pylint: disable=unused-variable
