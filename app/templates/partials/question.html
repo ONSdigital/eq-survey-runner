@@ -40,12 +40,10 @@
 
 {% set question_guidance %}
   {%- if question.guidance -%}
-    {% set guidance_content = {
-      "content": question.guidance.content
-    } %}
+    {% set content_block = question.guidance.content %}
     <aside class="question__guidance">
       <div class="panel panel--simple panel--info" id="question-guidance-{{question.id}}">
-        {% include 'partials/guidance.html' %}
+        {% include 'partials/content-block.html' %}
       </div>
     </aside>
   {% endif %}
