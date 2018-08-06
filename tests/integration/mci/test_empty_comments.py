@@ -43,8 +43,8 @@ class TestEmptyComments(IntegrationTestCase):
 
         # We are on the review answers page
         self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
-        self.assertInPage('>Your answers<')
-        self.assertInPage('Please check your answers carefully before submitting')
+        self.assertInPage('>Check your answers and submit<')
+        self.assertInPage('You can check your answers below')
         self.assertInPage('>Submit answers<')
 
         # We submit our answers

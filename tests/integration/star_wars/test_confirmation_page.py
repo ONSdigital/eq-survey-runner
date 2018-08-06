@@ -57,4 +57,4 @@ class TestConfirmationPage(IntegrationTestCase):
 
     def rogue_one_check_confirmation_page(self):
         self.assertInPage('Summary')
-        self.assertInPage('Please check your answers carefully before submitting')
+        self.assertInPage('You can check your answers below')
