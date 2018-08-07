@@ -41,6 +41,7 @@ class TestQbsSubmissionData(IntegrationTestCase):
         expected = {
             'submission': {
                 'origin': 'uk.gov.ons.edc.eq',
+                'started_at': actual['submission']['started_at'],
                 'submitted_at': actual['submission']['submitted_at'],
                 'collection': {
                     'exercise_sid': '789',

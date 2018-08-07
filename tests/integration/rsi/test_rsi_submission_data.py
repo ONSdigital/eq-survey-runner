@@ -48,6 +48,7 @@ class TestRsiSubmissionData(IntegrationTestCase):
         expected = {
             'submission': {
                 'version': '0.0.1',
+                'started_at': actual['submission']['started_at'],
                 'submitted_at': actual['submission']['submitted_at'],
                 'tx_id': actual['submission']['tx_id'],
                 'type': 'uk.gov.ons.edc.eq:surveyresponse',
@@ -136,6 +137,7 @@ class TestRsiSubmissionData(IntegrationTestCase):
         expected = {
             'submission': {
                 'type': 'uk.gov.ons.edc.eq:surveyresponse',
+                'started_at': actual['submission']['started_at'],
                 'submitted_at': actual['submission']['submitted_at'],
                 'version': '0.0.1',
                 'survey_id': '023',

@@ -181,6 +181,7 @@ class TestDumpSubmission(IntegrationTestCase):
                 'origin': 'uk.gov.ons.edc.eq',
                 'type': 'uk.gov.ons.edc.eq:surveyresponse',
                 'tx_id': actual['submission']['tx_id'],
+                'started_at': actual['submission']['started_at'],
                 'submitted_at': actual['submission']['submitted_at'],
                 'collection': {
                     'period': '201604',

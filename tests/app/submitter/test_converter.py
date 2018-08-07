@@ -1,3 +1,4 @@
+import copy
 import uuid
 from datetime import datetime, timedelta, timezone
 
@@ -44,6 +45,7 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             'ru_ref': '432423423423',
             'ru_name': 'Apple',
             'return_by': '2016-07-07',
+            'started_at': '2018-07-04T14:49:33.448608+00:00',
             'case_id': '1234567890',
             'case_ref': '1000000000000001'
         }, self.schema_metadata)
@@ -102,6 +104,32 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {}, flushed=True)
 
             self.assertTrue(answer_object['flushed'])
+
+    def test_started_at_should_be_set_in_payload_if_present_in_metadata(self):
+        with self._app.test_request_context():
+
+            questionnaire = {
+                'survey_id': '021',
+                'data_version': '0.0.2'
+            }
+
+            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(), {})
+
+            self.assertEqual(answer_object['started_at'], self.metadata['started_at'])
+
+    def test_started_at_should_not_be_set_in_payload_if_absent_in_metadata(self):
+        with self._app.test_request_context():
+
+            questionnaire = {
+                'survey_id': '021',
+                'data_version': '0.0.2'
+            }
+            metadata_copy = copy.copy(self.metadata)
+            del metadata_copy['started_at']
+
+            answer_object = convert_answers(metadata_copy, QuestionnaireSchema(questionnaire), AnswerStore(), {})
+
+            self.assertFalse('started_at' in answer_object)
 
     def test_submitted_at_should_be_set_in_payload(self):
         with self._app.test_request_context():
