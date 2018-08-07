@@ -43,7 +43,7 @@ class TestConditionalDisplay(StarWarsTestCase):
 
         # We are on the summary page
         self.assertInPage('>Star Wars</')
-        self.assertInPage('>Your answers<')
+        self.assertInPage('>Check your answers and submit<')
         self.assertInPage('What is the name of Jar Jar Binks')
 
     def test_conditional_display_questions_non_present(self):
@@ -81,5 +81,5 @@ class TestConditionalDisplay(StarWarsTestCase):
 
         # We are on the review answers page
         self.assertInPage('>Star Wars</')
-        self.assertInPage('>Your answers<')
+        self.assertInPage('>Check your answers and submit<')
         self.assertNotInPage('What is the name of Jar Jar Binks')

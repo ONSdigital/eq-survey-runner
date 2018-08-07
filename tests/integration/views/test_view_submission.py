@@ -38,7 +38,7 @@ class TestViewSubmission(IntegrationTestCase):
         self.assertInUrl('summary')
 
         # check we're on the review answers page
-        self.assertInPage('Please check your answers carefully before submitting.')
+        self.assertInPage('You can check your answers below')
 
         # Submit answers
         self.post(action=None)

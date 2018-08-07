@@ -2086,7 +2086,7 @@
         }]
     }, {
         "id": "summary-section",
-        "title": "Summary",
+        "title": "Check your answers and submit",
         "groups": [{
             "blocks": [{
                 "type": "Summary",

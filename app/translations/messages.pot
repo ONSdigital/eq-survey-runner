@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-06 09:05+0100\n"
+"POT-Creation-Date: 2018-08-06 12:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,7 +143,7 @@ msgid "Summary"
 msgstr ""
 
 #: app/templates/summary.html:19
-msgid "Your answers"
+msgid "Check your answers and submit"
 msgstr ""
 
 #: app/templates/summary.html:21
@@ -151,22 +151,26 @@ msgid "Please remember to submit these answers"
 msgstr ""
 
 #: app/templates/summary.html:24
-msgid "Please check your answers carefully before submitting"
+msgid "Please submit this survey to complete it"
 msgstr ""
 
-#: app/templates/summary.html:32
-msgid "This section is now complete"
+#: app/templates/summary.html:25
+msgid "You can check your answers below"
 msgstr ""
 
 #: app/templates/summary.html:33
+msgid "This section is now complete"
+msgstr ""
+
+#: app/templates/summary.html:34
 msgid "You can review your answers below"
 msgstr ""
 
-#: app/templates/summary.html:40
+#: app/templates/summary.html:41
 msgid "Please review your answers and confirm these are correct"
 msgstr ""
 
-#: app/templates/summary.html:49
+#: app/templates/summary.html:50
 msgid ""
 "You will have the opportunity to view and print a copy of your answers "
 "after submitting this survey"
