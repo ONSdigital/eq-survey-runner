@@ -42,6 +42,8 @@ class SessionStore:
 
             data_access.put(self._eq_session)
 
+        return self
+
     def delete(self):
         """
         deletes user session from database
