@@ -332,7 +332,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         schema = load_schema_from_params('test', 'final_confirmation')
 
         # When
-        page_title = get_page_title_for_location(schema, Location('final-confirmation', 0, 'introduction'), {})
+        page_title = get_page_title_for_location(schema, Location('final-confirmation', 0, 'introduction'), {}, AnswerStore())
 
         # Then
         self.assertEqual(page_title, 'Final confirmation to submit')
@@ -342,7 +342,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         schema = load_schema_from_params('test', 'interstitial_page')
 
         # When
-        page_title = get_page_title_for_location(schema, Location('favourite-foods', 0, 'breakfast-interstitial'), {})
+        page_title = get_page_title_for_location(schema, Location('favourite-foods', 0, 'breakfast-interstitial'), {}, AnswerStore())
 
         # Then
         self.assertEqual(page_title, 'Favourite food - Interstitial Pages')
@@ -352,19 +352,18 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         schema = load_schema_from_params('test', 'final_confirmation')
 
         # When
-        page_title = get_page_title_for_location(schema, Location('final-confirmation', 0, 'breakfast'), {})
+        page_title = get_page_title_for_location(schema, Location('final-confirmation', 0, 'breakfast'), {}, AnswerStore())
 
         # Then
         self.assertEqual(page_title, 'What is your favourite breakfast food - Final confirmation to submit')
 
     def test_given_questionnaire_page_when_get_page_title_with_titles_object(self):
-        context = {'question_titles': {'single-title-question': 'How are you feeling??'}}
 
         # Given
         schema = load_schema_from_params('test', 'titles')
 
         # When
-        page_title = get_page_title_for_location(schema, Location('group', 0, 'single-title-block'), context)
+        page_title = get_page_title_for_location(schema, Location('group', 0, 'single-title-block'), {}, AnswerStore())
 
         # Then
         self.assertEqual(page_title, 'How are you feeling?? - Multiple Question Title Test')
@@ -374,7 +373,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         schema = load_schema_from_params('census', 'household')
 
         # When
-        page_title = get_page_title_for_location(schema, Location('who-lives-here-relationship', 0, 'household-relationships'), {})
+        page_title = get_page_title_for_location(schema, Location('who-lives-here-relationship', 0, 'household-relationships'), {}, AnswerStore())
 
         # Then
         self.assertEqual(page_title, 'How is … related to the people below? - 2017 Census Test')

@@ -40,7 +40,7 @@ def with_metadata_context(func):
         metadata = get_metadata(current_user)
         metadata_context = build_metadata_context(metadata)
 
-        return func(*args, metadata=metadata_context, **kwargs)
+        return func(*args, metadata_context=metadata_context, **kwargs)
 
     return metadata_context_wrapper
 

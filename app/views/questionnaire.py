@@ -41,6 +41,7 @@ from app.templating.schema_context import build_schema_context
 from app.templating.summary_context import build_summary_rendering_context
 from app.templating.template_renderer import renderer, TemplateRenderer
 from app.templating.view_context import build_view_context
+from app.templating.utils import get_question_title
 
 from app.utilities.schema import load_schema_from_session_data
 from app.views.errors import MultipleSurveyError
@@ -697,20 +698,14 @@ def _get_front_end_navigation(answer_store, current_location, metadata, schema, 
     return None
 
 
-def _get_question_title_for_page(first_question, context):
-    if 'title' in first_question:
-        return first_question['title']
-    return context['question_titles'][first_question['id']]
-
-
-def get_page_title_for_location(schema, current_location, context):
+def get_page_title_for_location(schema, current_location, metadata, answer_store):
     block = schema.get_block(current_location.block_id)
     if block['type'] == 'Interstitial':
         group = schema.get_group(current_location.group_id)
         page_title = '{group_title} - {survey_title}'.format(group_title=group['title'], survey_title=schema.json['title'])
     elif block['type'] == 'Question':
         first_question = next(schema.get_questions_for_block(block))
-        question_title = _get_question_title_for_page(first_question, context)
+        question_title = get_question_title(first_question, answer_store, schema, metadata, current_location.group_instance)
         page_title = '{question_title} - {survey_title}'.format(question_title=question_title, survey_title=schema.json['title'])
     else:
         page_title = schema.json['title']
@@ -723,7 +718,7 @@ def _build_template(current_location, context, template, schema, answer_store, m
     previous_location = path_finder.get_previous_location(current_location)
     previous_url = previous_location.url(metadata) if previous_location is not None else None
 
-    return _render_template(context, current_location, template, front_end_navigation, previous_url)
+    return _render_template(context, current_location, template, front_end_navigation, previous_url, schema, metadata, answer_store)
 
 
 @with_session_timeout
@@ -731,8 +726,8 @@ def _build_template(current_location, context, template, schema, answer_store, m
 @with_metadata_context
 @with_analytics
 @with_legal_basis
-def _render_template(context, current_location, template, front_end_navigation, previous_url, **kwargs):
-    page_title = get_page_title_for_location(g.schema, current_location, context)
+def _render_template(context, current_location, template, front_end_navigation, previous_url, schema, metadata, answer_store, **kwargs):
+    page_title = get_page_title_for_location(schema, current_location, metadata, answer_store)
 
     return render_template(
         template,
@@ -741,6 +736,7 @@ def _render_template(context, current_location, template, front_end_navigation, 
         navigation=front_end_navigation,
         previous_location=previous_url,
         page_title=page_title,
+        metadata=kwargs.pop('metadata_context'),  # `metadata_context` is used as `metadata` in the jinja templates
         **kwargs
     )
 
