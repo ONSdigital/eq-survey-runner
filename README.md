@@ -77,7 +77,7 @@ pipenv run ./scripts/run_app.sh
 Note, you will also need to run an upstream tool (eg, https://github.com/ONSDigital/go-launch-a-survey) to launch a survey.
 
 ```
-docker run -it -p 8000:8000 onsdigital/go-launch-a-survey:latest
+docker run -e SURVEY_RUNNER_SCHEMA_URL=http://docker.for.mac.host.internal:5000 -it -p 8000:8000 onsdigital/go-launch-a-survey:latest
 ```
 
 If you wish to view submitted data you will also need to run an additional upstream tool (eg, https://github.com/ONSDigital/eq-docker-dynamodb) to launch a dynamoDB container.
