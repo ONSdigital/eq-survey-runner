@@ -35,7 +35,7 @@ describe('Feature: Conditional question title', function() {
         .getTitle().should.eventually.contain('Who are you answering on behalf of? - Multiple Question Title Test')
         .click(SingleTitlePage.chad())
         .click(SingleTitlePage.submit())
-        .getTitle().should.eventually.contain('What is chad’s gender? - Multiple Question Title Test')
+        .getTitle().should.eventually.contain('What is … gender? - Multiple Question Title Test')
         .click(ConditionalTitlePage.genderMale())
         .setValue(ConditionalTitlePage.age(), '25')
         .click(ConditionalTitlePage.sureYes())
