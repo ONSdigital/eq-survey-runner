@@ -412,7 +412,7 @@
                     "definitions": [{
                         "title": "What constitutes a significant change?",
                         "content": [{
-                            "description": "what constitutes a ‘significant change’ is dependent on your own interpretation of whether there has been a significant change in {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month."
+                            "description": "What constitutes a ‘significant change’ is dependent on your own interpretation of whether there has been a significant change in {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month."
                         }, {
                             "description": "Also consider whether there has been a significant change from the same month in the previous year."
                         }]
@@ -788,7 +788,7 @@
                     "definitions": [{
                         "title": "What constitutes a significant change?",
                         "content": [{
-                            "description": "what constitutes a ‘significant change’ is dependent on your own interpretation of whether there has been a significant change in {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month."
+                            "description": "What constitutes a ‘significant change’ is dependent on your own interpretation of whether there has been a significant change in {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month."
                         }, {
                             "description": "Also consider whether there has been a significant change from the same month in the previous year."
                         }]
@@ -1156,7 +1156,7 @@
                     "definitions": [{
                         "title": "What constitutes a significant change?",
                         "content": [{
-                            "description": "what constitutes a ‘significant change’ is dependent on your own interpretation of whether there has been a significant change in {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month."
+                            "description": "What constitutes a ‘significant change’ is dependent on your own interpretation of whether there has been a significant change in {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month."
                         }, {
                             "description": "Also consider whether there has been a significant change from the same month in the previous year."
                         }]
@@ -1521,7 +1521,7 @@
                     "definitions": [{
                         "title": "What constitutes a significant change?",
                         "content": [{
-                            "description": "what constitutes a ‘significant change’ is dependent on your own interpretation of whether there has been a significant change in {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month."
+                            "description": "What constitutes a ‘significant change’ is dependent on your own interpretation of whether there has been a significant change in {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month."
                         }, {
                             "description": "Also consider whether there has been a significant change from the same month in the previous year."
                         }]
@@ -1893,7 +1893,7 @@
                     "definitions": [{
                         "title": "What constitutes a significant change?",
                         "content": [{
-                            "description": "what constitutes a ‘significant change’ is dependent on your own interpretation of whether there has been a significant change in {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month."
+                            "description": "What constitutes a ‘significant change’ is dependent on your own interpretation of whether there has been a significant change in {{metadata['trad_as_or_ru_name']}}\u2019s figures compared with the previous month."
                         }, {
                             "description": "Also consider whether there has been a significant change from the same month in the previous year."
                         }]

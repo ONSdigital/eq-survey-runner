@@ -251,7 +251,7 @@
                     "definitions": [{
                         "title": "What constitutes a significant change?",
                         "content": [{
-                            "description": "what constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{metadata['trad_as_or_ru_name']}}\u2019s figures from the previous reporting period and the same reporting period last year."
+                            "description": "What constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{metadata['trad_as_or_ru_name']}}\u2019s figures from the previous reporting period and the same reporting period last year."
                         }, {
                             "description": "This information will help us to validate your data and should reduce the need to query any figures with you."
                         }]
