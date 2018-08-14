@@ -113,6 +113,16 @@ def format_date(context, value):
 
 @evalcontextfilter
 @blueprint.app_template_filter()
+def format_date_custom(context, value, date_format='EEEE d MMMM YYYY'):
+
+    london_date = datetime.strptime(value, '%Y-%m-%d')
+    result = "<span class='date'>{date}</span>".format(date=flask_babel.format_datetime(london_date,
+                                                                                        format=date_format))
+    return mark_safe(context, result)
+
+
+@evalcontextfilter
+@blueprint.app_template_filter()
 def format_datetime(context, value, date_format="d MMMM YYYY 'at' HH:mm"):
 
     london_date_time = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
@@ -143,6 +153,45 @@ def format_conditional_date(context, date1=None, date2=None):
 
 
 @blueprint.app_template_filter()
+def calculate_offset_from_weekday_in_last_whole_week(input_datetime, offset, day_of_week='MO'):
+    """
+    Offset a date from a particular day of the week in the previous week.
+
+    Intended to be used to generate reference date ranges around a particular date
+    The offsets will always be based on one day of the week in the previous Mon-Sun
+
+    :param (str) input_datetime: The datetime (or date) to offset. Defaults to now
+    :param (int) offset: The offset dictionary, can contain days, weeks, or years
+    :param (str) day_of_week: The day of the previous week to offset from (two letter abbreviation)
+    :returns (str): The offset date
+    """
+    if input_datetime:
+        parsed_datetime = datetime.strptime(input_datetime.split('T')[0], '%Y-%m-%d')
+    else:
+        parsed_datetime = datetime.utcnow()
+
+    offset_days = offset.get('days', 0)
+    offset_weeks = offset.get('weeks', 0)
+    offset_years = offset.get('years', 0)
+
+    offset = relativedelta.relativedelta(days=offset_days, weeks=offset_weeks, years=offset_years)
+
+    weekdays = ('MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU')
+
+    try:
+        day_of_week_index = weekdays.index(day_of_week)
+    except ValueError:
+        raise Exception('Invalid day of week passed to calculate_offset_from_weekday_in_last_whole_week')
+
+    day_of_week_offset = relativedelta.relativedelta(days=(-parsed_datetime.weekday() - (7 - day_of_week_index)))
+    day_of_last_week = parsed_datetime + day_of_week_offset
+
+    offset_output = day_of_last_week + offset
+
+    return datetime.strftime(offset_output, '%Y-%m-%d')
+
+
+@blueprint.app_template_filter()
 def calculate_years_difference(from_str, to_str):
     if from_str is None or to_str is None:
         raise Exception('Valid date(s) not passed to calculate_years_difference filter')
@@ -164,6 +213,53 @@ def format_date_range(context, start_date, end_date=None):
         result = format_date(context, start_date)
 
     return mark_safe(context, result)
+
+
+@evalcontextfunction
+def format_date_range_no_repeated_month_year(context, start_date, end_date, date_format='d MMMM YYYY'):
+    """
+    Format a date range, ensuring months and years are not repeated.
+
+    If the dates are in the same year, the first year (YYYY) will be removed.
+    If the dates are in the same month and year, the first year (YYYY) and month will be removed.
+
+    e.g. Friday 1 to Sunday 3 October
+    or   Thursday 30 September to Sunday 3 October
+
+    Assumptions:
+        - The date format uses space as a seperator
+        - The date format can have leading and trailing whitespace stripped
+
+    :param (jinja2.nodes.EvalContext) context: Evaluation context.
+    :param (str) start_date : The date format that should be used for output. MMMM, YYYY will be removed if necessary
+    :param (str) end_date: The date format that should be used for output. MMMM, YYYY will be removed if necessary
+    :param (str) date_format: The date format that should be used for output. MMMM, YYYY will be removed if necessary
+    :returns (str): The formatted range.
+    """
+    start_datetime = convert_to_datetime(start_date)
+    end_datetime = convert_to_datetime(end_date)
+
+    first_date_format = date_format
+
+    if start_datetime.year == end_datetime.year:
+        first_date_format = date_format.replace('YYYY', '')
+
+        if start_datetime.month == end_datetime.month:
+            first_date_format = first_date_format.replace('MMMM', '')
+
+    # Cleanup any extra spaces in the new format string
+    first_date_format = first_date_format.replace('  ', ' ').strip()
+
+    if not first_date_format:
+        # If the date format was entirely removed, leave it alone
+        first_date_format = date_format
+
+    output = '{} to {}'.format(
+        format_date_custom(context, start_date, first_date_format),
+        format_date_custom(context, end_date, date_format),
+    )
+
+    return mark_safe(context, output)
 
 
 @blueprint.app_template_filter()

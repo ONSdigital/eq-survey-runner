@@ -548,7 +548,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
                              Location('group', 0, 'multiple-question-versions-block'),
                              Location('group', 0, 'Summary')]
         current_location = Location('group', 0, 'single-title-block')
-        schema_context = _get_schema_context(full_routing_path, current_location, {}, AnswerStore(), g.schema)
+        schema_context = _get_schema_context(full_routing_path, current_location, {}, {}, AnswerStore(), g.schema)
 
         # When
         with self._application.test_request_context():

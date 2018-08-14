@@ -57,21 +57,3 @@ class TestIntroduction(IntegrationTestCase):
         started_at_datetime = datetime.strptime(actual['started_at'], '%Y-%m-%dT%H:%M:%S.%f')
 
         self.assertIsNotNone(started_at_datetime)
-
-    def test_started_at_retrieved_from_metadata_if_available(self):
-        """
-        This tests functionality to load started_at from metadata which
-        should only occur during deployment of collection_metadata
-        This should be removed after collection_metadata changes are deployed.
-        """
-        # Given survey with a start survey button and started_at set in metadata
-        now = datetime.utcnow().isoformat()
-        self.launchSurvey('1', '0112', roles=['dumper'], started_at=now)
-
-        self.post(action='start_questionnaire')
-
-        # When start survey button is pressed,
-        # Then started_at should be set from metadata
-        actual = self.dumpSubmission()['submission']
-
-        self.assertEqual(actual['started_at'], now)

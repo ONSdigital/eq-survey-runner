@@ -26,6 +26,9 @@ class TemplateRenderer:
         env.globals['get_current_date'] = filters.get_current_date
         env.globals['min_value'] = filters.min_value
         env.globals['max_value'] = filters.max_value
+        env.filters['format_date_custom'] = filters.format_date_custom
+        env.globals['format_date_range_no_repeated_month_year'] = filters.format_date_range_no_repeated_month_year
+        env.globals['calculate_offset_from_weekday_in_last_whole_week'] = filters.calculate_offset_from_weekday_in_last_whole_week
         self.environment = env
 
     def render(self, renderable, **context):

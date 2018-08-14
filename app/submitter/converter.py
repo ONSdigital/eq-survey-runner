@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime
 from structlog import get_logger
 from app.submitter.convert_payload_0_0_1 import convert_answers_to_payload_0_0_1
 from app.submitter.convert_payload_0_0_2 import convert_answers_to_payload_0_0_2
@@ -47,7 +47,7 @@ def convert_answers(metadata, collection_metadata, schema, answer_store, routing
       }
     """
     survey_id = schema.json['survey_id']
-    submitted_at = datetime.now(timezone.utc)
+    submitted_at = datetime.utcnow()
     payload = {
         'tx_id': metadata['tx_id'],
         'type': 'uk.gov.ons.edc.eq:surveyresponse',
@@ -128,7 +128,7 @@ def convert_feedback(message, name, email, url, metadata, survey_id):
         'data': {}
       }
     """
-    submitted_at = datetime.now(timezone.utc)
+    submitted_at = datetime.utcnow()
     payload = {
         'tx_id': metadata['tx_id'],
         'type': 'uk.gov.ons.edc.eq:feedback',
