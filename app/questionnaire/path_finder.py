@@ -1,6 +1,7 @@
 import copy
 from structlog import get_logger
 from app.questionnaire.location import Location
+from app.questionnaire.routing_path import RoutingPath
 from app.questionnaire.rules import (
     evaluate_goto,
     evaluate_skip_conditions,
@@ -73,7 +74,7 @@ class PathFinder:
                 if blocks:
                     path, block_index = self._build_path_within_group(blocks, block_index, this_location, path)
 
-        return path
+        return RoutingPath(path)
 
     def _build_blocks_for_group(self, group, instance_idx):
         for block in group['blocks']:

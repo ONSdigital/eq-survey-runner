@@ -801,7 +801,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
-        self.assertEqual('summary', path_finder.get_full_routing_path().pop().block_id)
+        self.assertEqual('summary', path_finder.get_full_routing_path()[-1].block_id)
 
     def test_next_with_conditional_path_based_on_metadata(self):
         schema = load_schema_from_params('test', 'metadata_routing')
