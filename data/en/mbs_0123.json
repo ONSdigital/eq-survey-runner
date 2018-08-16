@@ -170,7 +170,7 @@
                     "answers": [{
                         "id": "commission-and-fees-answer",
                         "label": "Total commission and fees excluding VAT",
-                        "description": "Enter value in full. For example, for 56 thousand you would enter 56,000",
+                        "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
                         "type": "Currency",
                         "currency": "GBP",
                         "decimal_places": 2,
@@ -232,6 +232,7 @@
                     "answers": [{
                         "id": "sales-on-own-account-answer",
                         "label": "Total Sales on own account and turnover from other activities  excluding VAT",
+                        "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
                         "type": "Currency",
                         "currency": "GBP",
                         "decimal_places": 2,
