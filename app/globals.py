@@ -54,6 +54,11 @@ def get_metadata(user):
     return questionnaire_store.metadata
 
 
+def get_collection_metadata(user):
+    questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
+    return questionnaire_store.collection_metadata
+
+
 def get_answer_store(user):
     questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
 
@@ -81,6 +86,7 @@ def get_completeness(user):
         routing_path = path_finder.get_full_routing_path()
 
         completeness_object = g._completeness = Completeness(
-            g.schema, answer_store, completed_blocks, routing_path, metadata)
+            g.schema, answer_store, completed_blocks, routing_path, metadata,
+        )
 
     return completeness_object

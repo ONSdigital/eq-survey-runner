@@ -1,3 +1,4 @@
+from types import MappingProxyType
 import simplejson as json
 
 from app.data_model.answer_store import AnswerStore
@@ -12,7 +13,10 @@ class QuestionnaireStore:
         if version is None:
             version = self.get_latest_version_number()
         self.version = version
-        self.metadata = {}
+        self._metadata = {}
+        # metadata is a read-only view over self._metadata
+        self.metadata = MappingProxyType(self._metadata)
+        self.collection_metadata = {}
         self.answer_store = AnswerStore()
         self.completed_blocks = []
 
@@ -25,26 +29,44 @@ class QuestionnaireStore:
     def get_latest_version_number(self):
         return self.LATEST_VERSION
 
+    def set_metadata(self, to_set):
+        """
+        Set metadata. This should only be used where absolutely necessary.
+        Metadata should normally be read only.
+        """
+        self._metadata = to_set
+        self.metadata = MappingProxyType(self._metadata)
+
+    def set_metadata_key(self, key, value):
+        """
+        Temporary method to allow setting a key on our 'immutable' metadata.
+        This should be removed after deployment of collection_metadata changes.
+        """
+        self._metadata[key] = value
+
     def _deserialise(self, data):
         json_data = json.loads(data, use_decimal=True)
         # pylint: disable=maybe-no-member
         completed_blocks = [Location.from_dict(location_dict=completed_block) for completed_block in
                             json_data.get('COMPLETED_BLOCKS', [])]
-        self.metadata = json_data.get('METADATA', {})
+        self.set_metadata(json_data.get('METADATA', {}))
         self.answer_store.answers = json_data.get('ANSWERS', [])
         self.completed_blocks = completed_blocks
+        self.collection_metadata = json_data.get('COLLECTION_METADATA', {})
 
     def _serialise(self):
         data = {
-            'METADATA': self.metadata,
+            'METADATA': self._metadata,
             'ANSWERS': self.answer_store.answers,
             'COMPLETED_BLOCKS': self.completed_blocks,
+            'COLLECTION_METADATA': self.collection_metadata,
         }
         return json.dumps(data, default=self._encode_questionnaire_store)
 
     def delete(self):
         self._storage.delete()
-        self.metadata = {}
+        self._metadata.clear()
+        self.collection_metadata = {}
         self.answer_store.clear()
         self.completed_blocks = []
 
