@@ -33,6 +33,7 @@ module.exports = function generateToken(schema, userId, collectionId, periodId =
     iat: KJUR.jws.IntDate.get('now'),
     exp: KJUR.jws.IntDate.get('now') + 1800,
     user_id: userId,
+    case_id: uuid(),
     ru_ref: '12346789012A',
     ru_name: 'Apple',
     trad_as: 'Apple',

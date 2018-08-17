@@ -46,7 +46,7 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             'ru_name': 'Apple',
             'return_by': '2016-07-07',
             'started_at': '2018-07-04T14:49:33.448608+00:00',
-            'case_id': '1234567890',
+            'case_id': str(uuid.uuid4()),
             'case_ref': '1000000000000001'
         }, self.schema_metadata)
 

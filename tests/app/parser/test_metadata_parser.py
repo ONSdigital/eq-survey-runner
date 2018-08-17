@@ -240,6 +240,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'eq_id': '2',
             'period_id': '3',
             'ru_ref': '2016-04-04',
+            'case_id': str(uuid.uuid4()),
             # invalid
             'tx_id': '12121'
         }
@@ -258,6 +259,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'eq_id': '2',
             'period_id': '3',
             'ru_ref': '2016-04-04',
+            'case_id': str(uuid.uuid4()),
             # one character short
             'tx_id': '83a3db82-bea7-403c-a411-6357ff70f2f'
         }
@@ -278,6 +280,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'eq_id': '2',
             'period_id': '3',
             'ru_ref': '2016-04-04',
+            'case_id': str(uuid.uuid4())
         }
 
         parsed = parse_runner_claims(metadata)
@@ -294,7 +297,8 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'eq_id': '2',
             'period_id': '3',
             'ru_ref': '2016-04-04',
-            'period_str': 'May 2016'
+            'period_str': 'May 2016',
+            'case_id': str(uuid.uuid4())
         }
 
         self.schema_metadata.append({'name': 'period_id', 'validator': 'invalidValidator'})

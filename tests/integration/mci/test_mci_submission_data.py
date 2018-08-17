@@ -70,6 +70,7 @@ class TestMciSubmissionData(IntegrationTestCase):
                 'tx_id': actual['submission']['tx_id'],
                 'started_at': actual['submission']['started_at'],
                 'submitted_at': actual['submission']['submitted_at'],
+                'case_id': actual['submission']['case_id'],
                 'collection': {
                     'period': '201604',
                     'exercise_sid': '789',

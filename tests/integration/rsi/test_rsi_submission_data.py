@@ -51,6 +51,7 @@ class TestRsiSubmissionData(IntegrationTestCase):
                 'started_at': actual['submission']['started_at'],
                 'submitted_at': actual['submission']['submitted_at'],
                 'tx_id': actual['submission']['tx_id'],
+                'case_id': actual['submission']['case_id'],
                 'type': 'uk.gov.ons.edc.eq:surveyresponse',
                 'collection': {
                     'instrument_id': '0102',
@@ -139,6 +140,7 @@ class TestRsiSubmissionData(IntegrationTestCase):
                 'type': 'uk.gov.ons.edc.eq:surveyresponse',
                 'started_at': actual['submission']['started_at'],
                 'submitted_at': actual['submission']['submitted_at'],
+                'case_id': actual['submission']['case_id'],
                 'version': '0.0.1',
                 'survey_id': '023',
                 'flushed': False,

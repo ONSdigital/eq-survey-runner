@@ -57,11 +57,10 @@ def convert_answers(metadata, schema, answer_store, routing_path, flushed=False)
         'submitted_at': submitted_at.isoformat(),
         'collection': _build_collection(metadata),
         'metadata': _build_metadata(metadata),
+        'case_id': metadata['case_id'],
     }
     if 'started_at' in metadata and metadata['started_at']:
         payload['started_at'] = metadata['started_at']
-    if 'case_id' in metadata and metadata['case_id']:
-        payload['case_id'] = metadata['case_id']
     if 'case_ref' in metadata and metadata['case_ref']:
         payload['case_ref'] = metadata['case_ref']
 
