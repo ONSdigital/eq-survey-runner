@@ -4,7 +4,6 @@ from app.helpers.form_helper import get_form_for_location
 from app.templating.summary_context import build_summary_rendering_context
 from app.templating.template_renderer import renderer
 from app.templating.utils import get_title_from_titles, get_question_title
-from app.questionnaire.rules import get_answer_store_value
 
 
 def build_view_context(block_type, metadata, schema, answer_store, schema_context, rendered_block, current_location,
@@ -135,7 +134,7 @@ def build_view_context_for_calculated_summary(metadata, schema, answer_store, sc
     context = build_view_context_for_summary(schema, section_list, answer_store, metadata,
                                              csrf_token, block_type, variables)
 
-    formatted_total = _get_formatted_total(rendered_block, answer_store, current_location.group_instance, schema)
+    formatted_total = _get_formatted_total(context['summary'].get('groups', []))
     context['summary'].update({
         'calculated_question': _get_calculated_question(rendered_block['calculation'], answer_store, schema,
                                                         metadata, current_location.group_instance, formatted_total),
@@ -201,25 +200,32 @@ def _remove_unwanted_questions_answers(block, answers_in_block, answer_ids_to_ke
     return reduced_block
 
 
-def _get_formatted_total(block, answer_store, group_instance, schema):
+def _get_formatted_total(groups):
     calculated_total = 0
-    for answer in block['calculation']['answers_to_calculate']:
-        if group_instance > 0 and not schema.answer_is_in_repeating_group(answer):
-            group_instance = 0
-        calculated_total += get_answer_store_value(answer, answer_store, group_instance) or 0
+    answer_format = None
+    for group in groups:
+        for block in group['blocks']:
+            for question in block['questions']:
+                for answer in question['answers']:
+                    if not answer_format:
+                        answer_format = {
+                            'type': answer['type'],
+                            'unit': answer.get('unit'),
+                            'currency': answer.get('currency'),
+                        }
+                    answer_value = answer.get('value') or 0
+                    calculated_total += answer_value
 
-    answer_json = schema.get_answer(block['calculation']['answers_to_calculate'][0])
-    number_type = answer_json['type']
-    if number_type == 'Currency':
-        formatted_total = format_currency(calculated_total, answer_json['currency'])
-    elif number_type == 'Unit':
-        formatted_total = format_unit(answer_json['unit'], calculated_total)
-    elif number_type == 'Percentage':
-        formatted_total = format_percentage(calculated_total)
-    else:
-        formatted_total = format_number(calculated_total)
+    if answer_format['type'] == 'currency':
+        return format_currency(calculated_total, answer_format['currency'])
 
-    return formatted_total
+    if answer_format['type'] == 'unit':
+        return format_unit(answer_format['unit'], calculated_total)
+
+    if answer_format['type'] == 'percentage':
+        return format_percentage(calculated_total)
+
+    return format_number(calculated_total)
 
 
 def _get_calculated_question(calculation, answer_store, schema, metadata, group_instance, formatted_total):

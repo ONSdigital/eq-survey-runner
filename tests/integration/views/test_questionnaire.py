@@ -569,7 +569,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         # Then
         self.assertTrue('summary' in view_context)
         self.assertTrue('calculated_question' in view_context['summary'])
-        self.assertEqual(view_context['summary']['title'], 'We calculate the total of currency values entered to be £13.00. Is this correct?')
+        self.assertEqual(view_context['summary']['title'], 'We calculate the total of currency values entered to be £13.00. Is this correct? (With Fourth)')
 
     def test_answer_non_repeating_dependency_repeating_validate_all_of_block_and_group_removed(self):
         """ load a schema with a non repeating independent answer and a repeating one that depends on it

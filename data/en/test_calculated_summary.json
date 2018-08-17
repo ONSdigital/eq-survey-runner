@@ -117,6 +117,36 @@
                 },
                 {
                     "type": "Question",
+                    "id": "skip-fourth-block",
+                    "questions": [{
+                        "type": "General",
+                        "id": "skip-fourth-block-question",
+                        "title": "Skip Fourth Block so it doesn't appear in Total?",
+                        "answers": [{
+                            "type": "Radio",
+                            "id": "skip-fourth-block-answer",
+                            "mandatory": false,
+                            "options": [{
+                                    "label": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No",
+                                    "value": "No"
+                                }
+                            ]
+                        }]
+                    }]
+                },
+                {
+                    "skip_conditions": [{
+                        "when": [{
+                            "id": "skip-fourth-block-answer",
+                            "condition": "equals",
+                            "value": "Yes"
+                        }]
+                    }],
+                    "type": "Question",
                     "title": "Fourth Number Block Title",
                     "id": "fourth-number-block",
                     "description": "",
@@ -208,8 +238,17 @@
                     "type": "CalculatedSummary",
                     "id": "currency-total-playback",
                     "titles": [{
-                        "value": "We calculate the total of currency values entered to be %(total)s. Is this correct?"
-                    }],
+                            "value": "We calculate the total of currency values entered to be %(total)s. Is this correct? (Skipped Fourth)",
+                            "when": [{
+                                "id": "skip-fourth-block-answer",
+                                "condition": "equals",
+                                "value": "Yes"
+                            }]
+                        },
+                        {
+                            "value": "We calculate the total of currency values entered to be %(total)s. Is this correct? (With Fourth)"
+                        }
+                    ],
                     "calculation": {
                         "calculation_type": "sum",
                         "answers_to_calculate": [

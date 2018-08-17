@@ -3,6 +3,7 @@ const helpers = require('../../helpers');
 const FirstNumberBlockPage = require('../../pages/features/calculated_summary/first-number-block.page.js');
 const SecondNumberBlockPage = require('../../pages/features/calculated_summary/second-number-block.page.js');
 const ThirdNumberBlockPage = require('../../pages/features/calculated_summary/third-number-block.page.js');
+const SkipFourthBlockPage = require('../../pages/features/calculated_summary/skip-fourth-block.page.js');
 const FourthNumberBlockPage = require('../../pages/features/calculated_summary/fourth-number-block.page.js');
 const FifthNumberBlockPage = require('../../pages/features/calculated_summary/fifth-number-block.page.js');
 const SixthNumberBlockPage = require('../../pages/features/calculated_summary/sixth-number-block.page.js');
@@ -31,6 +32,9 @@ describe('Feature: Calculated Summary', function() {
         .setValue(ThirdNumberBlockPage.thirdNumber(), 3.45)
         .setValue(ThirdNumberBlockPage.thirdNumberUnitTotal(), 678)
         .click(ThirdNumberBlockPage.submit())
+
+        .click(SkipFourthBlockPage.no())
+        .click(SkipFourthBlockPage.submit())
 
         .setValue(FourthNumberBlockPage.fourthNumber(), 9.01)
         .setValue(FourthNumberBlockPage.fourthNumberAlsoInTotal(), 2.34)
@@ -105,6 +109,26 @@ describe('Feature: Calculated Summary', function() {
         .getText(CurrencyTotalPlaybackPage.calculatedSummaryTitle()).should.eventually.contain('We calculate the total of currency values entered to be £9.36. Is this correct?')
         .getText(CurrencyTotalPlaybackPage.calculatedSummaryAnswer()).should.eventually.contain('£9.36')
         .getText(CurrencyTotalPlaybackPage.fourthNumberAnswer()).should.eventually.contain('No answer provided');
+    });
+
+
+    it('Given I skip the fourth page, When i get to the playback, Then I can should not see it in the total', function() {
+      return browser
+        .click(CurrencyTotalPlaybackPage.thirdNumberAnswerEdit())
+        .click(ThirdNumberBlockPage.submit())
+
+        .click(SkipFourthBlockPage.yes())
+        .click(SkipFourthBlockPage.submit())
+
+        .click(FifthNumberBlockPage.submit())
+        .click(SixthNumberBlockPage.submit())
+
+        .getUrl().should.eventually.contain(CurrencyTotalPlaybackPage.pageName)
+        .elements(CurrencyTotalPlaybackPage.fourthNumberAnswer()).then(result => result.value).should.eventually.be.empty
+        .elements(CurrencyTotalPlaybackPage.fourthNumberAnswerAlsoInTotal()).then(result => result.value).should.eventually.be.empty
+        .getText(CurrencyTotalPlaybackPage.calculatedSummaryTitle()).should.eventually.contain('We calculate the total of currency values entered to be £9.36. Is this correct?')
+        .getText(CurrencyTotalPlaybackPage.calculatedSummaryAnswer()).should.eventually.contain('£9.36');
+
     });
 
     it('Given I complete every question, When i get to the unit summary, Then I should see the correct total', function() {
