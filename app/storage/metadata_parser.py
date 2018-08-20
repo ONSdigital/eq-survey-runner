@@ -62,6 +62,10 @@ MANDATORY_METADATA = [
         'name': 'tx_id',
         'validator': 'uuid',
     },
+    {
+        'name': 'case_id',
+        'validator': 'uuid',
+    },
 ]
 
 

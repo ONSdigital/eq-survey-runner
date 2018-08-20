@@ -9,7 +9,7 @@ class SessionData:
                  survey_url,
                  ru_name,
                  ru_ref,
-                 case_id=None,
+                 case_id,
                  case_ref=None,
                  account_service_url=None,
                  submitted_time=None,

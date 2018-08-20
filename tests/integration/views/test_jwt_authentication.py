@@ -59,6 +59,7 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
         return {
             'tx_id': str(uuid.uuid4()),
             'jti': str(uuid.uuid4()),
+            'case_id': str(uuid.uuid4()),
             'user_id': 'jimmy',
             'iat': int(iat),
             'exp': int(exp),

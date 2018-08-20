@@ -42,6 +42,7 @@ class TokenGenerator:
         payload_vars['iat'] = time.time()
         payload_vars['exp'] = payload_vars['iat'] + float(3600)  # one hour from now
         payload_vars['jti'] = str(uuid4())
+        payload_vars['case_id'] = str(uuid4())
 
         for key, value in extra_payload.items():
             payload_vars[key] = value
@@ -56,6 +57,12 @@ class TokenGenerator:
     def create_token_without_jti(self, form_type_id, eq_id, **extra_payload):
         payload_vars = self._get_payload_with_params(form_type_id, eq_id, None, **extra_payload)
         del payload_vars['jti']
+
+        return self.generate_token(payload_vars)
+
+    def create_token_without_case_id(self, form_type_id, eq_id, **extra_payload):
+        payload_vars = self._get_payload_with_params(form_type_id, eq_id, None, **extra_payload)
+        del payload_vars['case_id']
 
         return self.generate_token(payload_vars)
 

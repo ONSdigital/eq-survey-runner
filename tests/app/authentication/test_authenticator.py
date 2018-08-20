@@ -21,6 +21,7 @@ class TestAuthenticator(AppContextTestCase): # pylint: disable=too-many-public-m
             survey_url=None,
             ru_name='ru_name',
             ru_ref='ru_ref',
+            case_id='case_id'
         )
         self.session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
