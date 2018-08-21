@@ -116,6 +116,10 @@ SUMMARY_TITLE_GETTER = Template(r"""  ${group_id_camel}Title() { return '#${grou
 
 """)
 
+CALCULATED_SUMMARY_LABEL_GETTER = Template(r"""  ${answerName}Label() { return '#${answerId}-label'; } 
+
+""")
+
 CONSTRUCTOR = Template(r"""  constructor() {
     super('${block_id}');
   }
@@ -231,6 +235,17 @@ def process_question(question, page_spec, num_questions, page_name):
     for answer in question['answers']:
         process_answer(question_type, answer, page_spec, long_names, page_name)
 
+def process_calculated_summary(answers, page_spec):
+    for answer in answers:
+        answer_name = generate_pascal_case_from_id(answer)
+        answer_context = {
+            'answerName': camel_case(answer_name),
+            'answerId': answer
+        }
+
+        page_spec.write(SUMMARY_ANSWER_GETTER.substitute(answer_context))
+        page_spec.write(SUMMARY_ANSWER_EDIT_GETTER.substitute(answer_context))
+        page_spec.write(CALCULATED_SUMMARY_LABEL_GETTER.substitute(answer_context))
 
 def process_summary(schema_data, page_spec):
     for section in schema_data['sections']:
@@ -317,6 +332,11 @@ def process_block(block, dir_out, schema_data, spec_file, relative_require='..')
         base_page = 'QuestionPage'
         base_page_file = 'question.page'
 
+        if block['type'] == 'CalculatedSummary':
+            base_page = 'CalculatedSummaryPage'
+            base_page_file = 'calculated-summary.page'
+            relative_require = relative_require.replace('/surveys', '')
+
         block_context = {
             'pageName': page_name,
             'basePage': base_page,
@@ -330,8 +350,10 @@ def process_block(block, dir_out, schema_data, spec_file, relative_require='..')
         page_spec.write(HEADER.substitute(block_context))
         page_spec.write(CLASS_NAME.substitute(block_context))
         page_spec.write(CONSTRUCTOR.substitute(block_context))
-        if block['type'] in ('Summary', 'SectionSummary', 'CalculatedSummary'):
+        if block['type'] in ('Summary', 'SectionSummary'):
             process_summary(schema_data, page_spec)
+        elif block['type'] in ('CalculatedSummary'):
+            process_calculated_summary(block['calculation']['answers_to_calculate'], page_spec)
         else:
             num_questions = len(block.get('questions', []))
 

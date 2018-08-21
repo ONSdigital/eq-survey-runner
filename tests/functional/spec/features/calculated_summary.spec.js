@@ -13,7 +13,7 @@ const NumberTotalPlaybackPage = require('../../pages/features/calculated_summary
 const SummaryPage = require('../../pages/summary.page.js');
 const ThankYouPage = require('../../pages/thank-you.page.js');
 
-describe('@watch Feature: Calculated Summary', function() {
+describe('Feature: Calculated Summary', function() {
 
   describe('Given I have a Calculated Summary', function() {
 
@@ -56,18 +56,24 @@ describe('@watch Feature: Calculated Summary', function() {
       .getText(CurrencyTotalPlaybackPage.calculatedSummaryAnswer()).should.eventually.contain('£20.71')
 
       // Answers included in calculation should be shown
+      .getText(CurrencyTotalPlaybackPage.firstNumberAnswerLabel()).should.eventually.contain('First answer label')
       .getText(CurrencyTotalPlaybackPage.firstNumberAnswer()).should.eventually.contain('£1.23')
+      .getText(CurrencyTotalPlaybackPage.secondNumberAnswerLabel()).should.eventually.contain('Second answer in currency label')
       .getText(CurrencyTotalPlaybackPage.secondNumberAnswer()).should.eventually.contain('£4.56')
+      .getText(CurrencyTotalPlaybackPage.secondNumberAnswerAlsoInTotalLabel()).should.eventually.contain('Second answer label also in currency total (optional)')
       .getText(CurrencyTotalPlaybackPage.secondNumberAnswerAlsoInTotal()).should.eventually.contain('£0.12')
+      .getText(CurrencyTotalPlaybackPage.thirdNumberAnswerLabel()).should.eventually.contain('Third answer label')
       .getText(CurrencyTotalPlaybackPage.thirdNumberAnswer()).should.eventually.contain('£3.45')
+      .getText(CurrencyTotalPlaybackPage.fourthNumberAnswerLabel()).should.eventually.contain('Fourth answer label (optional)')
       .getText(CurrencyTotalPlaybackPage.fourthNumberAnswer()).should.eventually.contain('£9.01')
+      .getText(CurrencyTotalPlaybackPage.fourthNumberAnswerAlsoInTotalLabel()).should.eventually.contain('Fourth answer label also in total (optional)')
       .getText(CurrencyTotalPlaybackPage.fourthNumberAnswerAlsoInTotal()).should.eventually.contain('£2.34')
 
       // Answers not included in calculation should not be shown
-      .elements(CurrencyTotalPlaybackPage.secondNumberAnswerUnitTotal()).then(result => result.value).should.eventually.be.empty
-      .elements(CurrencyTotalPlaybackPage.thirdNumberAnswerUnitTotal()).then(result => result.value).should.eventually.be.empty
-      .elements(CurrencyTotalPlaybackPage.fifthNumberAnswer()).then(result => result.value).should.eventually.be.empty
-      .elements(CurrencyTotalPlaybackPage.sixthNumberAnswer()).then(result => result.value).should.eventually.be.empty;
+      .elements(UnitTotalPlaybackPage.secondNumberAnswerUnitTotal()).then(result => result.value).should.eventually.be.empty
+      .elements(UnitTotalPlaybackPage.thirdNumberAnswerUnitTotal()).then(result => result.value).should.eventually.be.empty
+      .elements(NumberTotalPlaybackPage.fifthNumberAnswer()).then(result => result.value).should.eventually.be.empty
+      .elements(NumberTotalPlaybackPage.sixthNumberAnswer()).then(result => result.value).should.eventually.be.empty;
     });
 
     it('Given change an answer, When i get to the currency summary, Then I should see the new total', function() {
@@ -110,7 +116,9 @@ describe('@watch Feature: Calculated Summary', function() {
         .getText(UnitTotalPlaybackPage.calculatedSummaryAnswer()).should.eventually.contain('1,467 cm')
 
         // Answers included in calculation should be shown
+        .getText(UnitTotalPlaybackPage.secondNumberAnswerUnitTotalLabel()).should.eventually.contain('Second answer label in unit total')
         .getText(UnitTotalPlaybackPage.secondNumberAnswerUnitTotal()).should.eventually.contain('789 cm')
+        .getText(UnitTotalPlaybackPage.thirdNumberAnswerUnitTotalLabel()).should.eventually.contain('Third answer label in unit total')
         .getText(UnitTotalPlaybackPage.thirdNumberAnswerUnitTotal()).should.eventually.contain('678 cm');
     });
 
@@ -123,7 +131,9 @@ describe('@watch Feature: Calculated Summary', function() {
         .getText(UnitTotalPlaybackPage.calculatedSummaryAnswer()).should.eventually.contain('79%')
 
         // Answers included in calculation should be shown
+        .getText(PercentageTotalPlaybackPage.fifthPercentAnswerLabel()).should.eventually.contain('Fifth answer label percentage tota')
         .getText(PercentageTotalPlaybackPage.fifthPercentAnswer()).should.eventually.contain('56%')
+        .getText(PercentageTotalPlaybackPage.sixthPercentAnswerLabel()).should.eventually.contain('Sixth answer label percentage tota')
         .getText(PercentageTotalPlaybackPage.sixthPercentAnswer()).should.eventually.contain('23%');
     });
 
@@ -136,7 +146,9 @@ describe('@watch Feature: Calculated Summary', function() {
         .getText(UnitTotalPlaybackPage.calculatedSummaryAnswer()).should.eventually.contain('124.58')
 
         // Answers included in calculation should be shown
+        .getText(NumberTotalPlaybackPage.fifthNumberAnswerLabel()).should.eventually.contain('Fifth answer label number total')
         .getText(NumberTotalPlaybackPage.fifthNumberAnswer()).should.eventually.contain('78.91')
+        .getText(NumberTotalPlaybackPage.sixthNumberAnswerLabel()).should.eventually.contain('Sixth answer label number total')
         .getText(NumberTotalPlaybackPage.sixthNumberAnswer()).should.eventually.contain('45.67');
     });
 

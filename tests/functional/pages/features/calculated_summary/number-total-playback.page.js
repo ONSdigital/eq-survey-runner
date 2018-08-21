@@ -1,7 +1,7 @@
 // >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
-const QuestionPage = require('../../surveys/question.page');
+const CalculatedSummaryPage = require('../../calculated-summary.page');
 
-class NumberTotalPlaybackPage extends QuestionPage {
+class NumberTotalPlaybackPage extends CalculatedSummaryPage {
 
   constructor() {
     super('number-total-playback');
@@ -11,17 +11,13 @@ class NumberTotalPlaybackPage extends QuestionPage {
 
   fifthNumberAnswerEdit() { return '[data-qa="fifth-number-answer-edit"]'; }
 
+  fifthNumberAnswerLabel() { return '#fifth-number-answer-label'; } 
+
   sixthNumberAnswer() { return '#sixth-number-answer-answer'; }
 
   sixthNumberAnswerEdit() { return '[data-qa="sixth-number-answer-edit"]'; }
 
-  calculatedSummaryTitle() { return '[data-qa="calculated-summary-title"]'; }
-
-  calculatedSummaryQuestion() { return '#calculated-summary-question'; }
-
-  calculatedSummaryAnswer() { return '#calculated-summary-answer-answer'; }
-
-  groupTitle() { return '#group'; }
+  sixthNumberAnswerLabel() { return '#sixth-number-answer-label'; } 
 
 }
 module.exports = new NumberTotalPlaybackPage();

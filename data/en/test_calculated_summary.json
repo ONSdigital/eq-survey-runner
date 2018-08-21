@@ -59,7 +59,7 @@
                         "type": "General",
                         "answers": [{
                                 "id": "second-number-answer",
-                                "label": "Second answer in currency total",
+                                "label": "Second answer in currency label",
                                 "mandatory": true,
                                 "type": "Currency",
                                 "currency": "GBP",

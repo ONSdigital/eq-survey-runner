@@ -1,27 +1,23 @@
 // >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
-const QuestionPage = require('../../surveys/question.page');
+const CalculatedSummaryPage = require('../../calculated-summary.page');
 
-class CurrencyTotalPlaybackPage extends QuestionPage {
+class PercentageTotalPlaybackPage extends CalculatedSummaryPage {
 
   constructor() {
-    super('currency-total-playback');
+    super('percentage-total-playback');
   }
 
   fifthPercentAnswer() { return '#fifth-percent-answer-answer'; }
 
   fifthPercentAnswerEdit() { return '[data-qa="fifth-percent-answer-edit"]'; }
 
+  fifthPercentAnswerLabel() { return '#fifth-percent-answer-label'; } 
+
   sixthPercentAnswer() { return '#sixth-percent-answer-answer'; }
 
   sixthPercentAnswerEdit() { return '[data-qa="sixth-percent-answer-edit"]'; }
 
-  calculatedSummaryTitle() { return '[data-qa="calculated-summary-title"]'; }
-
-  calculatedSummaryQuestion() { return '#calculated-summary-question'; }
-
-  calculatedSummaryAnswer() { return '#calculated-summary-answer-answer'; }
-
-  groupTitle() { return '#group'; }
+  sixthPercentAnswerLabel() { return '#sixth-percent-answer-label'; } 
 
 }
-module.exports = new CurrencyTotalPlaybackPage();
+module.exports = new PercentageTotalPlaybackPage();
