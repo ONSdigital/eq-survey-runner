@@ -21,6 +21,10 @@
             "validator": "string"
         },
         {
+            "name": "period_str",
+            "validator": "string"
+        },
+        {
             "name": "ru_name",
             "validator": "string"
         },
@@ -66,74 +70,184 @@
                             "description": "<p><a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/aboutonsbusinesssurveys/detailedguidancetohelpcompletethequarterlyacquisitionsanddisposalsofcapitalassetssurvey'>Read the detailed guidance for completing this survey</a></p>"
                         }],
                         "questions": [{
-                            "question": "Total capital expenditure on major improvements and construction work",
-                            "content": [{
-                                    "description": "Include"
-                                },
-                                {
-                                    "list": [
-                                        "Newly built, major refurbishments or improvements to existing buildings, for own use, or where you are responsible for maintenance.",
-                                        "Work contracted to constructors or arranged through agents or developers.",
-                                        "Non-residential buildings, for example, public monuments, commercial, industrial, educational and health buildings.",
-                                        "Fittings and installations such as lifts, electrics, plumbing, heating and ventilation systems and water supply.",
-                                        "Construction of structures such as oil wells, platforms, mines, pipes, power lines, transport infrastructure, wind farms, turbines and steel frameworks.",
-                                        "Site improvements and other land preparation for own use, for example, levelling, clearance and draining of marshes.",
-                                        "Transfer costs, stamp duties and taxes payable to acquire the asset.",
-                                        "All professional charges such as legal costs, agents’ commission, and architects’, engineers’, and surveyors’ fees.",
-                                        "Delivery, installation and decommissioning costs."
-                                    ]
-                                },
-                                {
-                                    "description": "Exclude"
-                                },
-                                {
-                                    "list": [
-                                        "Current repair and maintenance costs.",
-                                        "Expenditure on land purchased in connection with construction work.",
-                                        "Structures that are used primarily as residences (dwellings) including houses, houseboats, caravans, and associated structures such as garages.",
-                                        "Machinery and equipment - report this in the next section.",
-                                        "Purchase of existing structures such as oil wells, platforms, mines, pipes, power lines, transport infrastructure, wind farms, turbines and steel frameworks.",
-                                        "Land and existing buildings."
-                                    ]
-                                }
-                            ]
-                        }, {
-                            "question": "Total capital expenditure on machinery and equipments",
-                            "content": [{
-                                    "description": "Include"
-                                },
-                                {
-                                    "list": [
-                                        "Transport assets and equipment.",
-                                        "Computer and peripheral devices (hardware).",
-                                        "Computer software programmes purchased and developed externally (bespoke).",
-                                        "Databases purchased or developed externally (bespoke).",
-                                        "Telecommunication equipments.",
-                                        "Other machinery or equipments.",
-                                        "Mineral exploration and evaluation."
-                                    ]
-                                }
-                            ]
-                        }, {
-                            "question": "Significant changes to total investment",
-                            "content": [{
-                                    "description": "Include"
-                                },
-                                {
-                                    "list": [
-                                        "Start or end of a long term project (please outline in comments box).",
-                                        "Site changes, for example, openings, closures, refurbishments or upgrades.",
-                                        "End of accounting period or financial year.",
-                                        "Normal movement for time of year.",
-                                        "Change to business structure, merger or takeover.",
-                                        "One off or unusual investment (please outline in comments box).",
-                                        "Introduction / removal of new legislation / incentive.",
-                                        "Availability of credit.",
-                                        "Overspend during the previous quarter(s)."
-                                    ]
-                                }
-                            ]
-                        }]
+                                "question": "Total capital expenditure on major improvements and construction work",
+                                "content": [{
+                                        "title": "Include"
+                                    },
+                                    {
+                                        "list": [
+                                            "Newly built, major refurbishments or improvements to existing buildings, for own use, or where you are responsible for maintenance.",
+                                            "Work contracted to constructors or arranged through agents or developers.",
+                                            "Non-residential buildings, for example, public monuments, commercial, industrial, educational and health buildings.",
+                                            "Fittings and installations such as lifts, electrics, plumbing, heating and ventilation systems and water supply.",
+                                            "Construction of structures such as oil wells, platforms, mines, pipes, power lines, transport infrastructure, wind farms, turbines and steel frameworks.",
+                                            "Site improvements and other land preparation for own use, for example, levelling, clearance and draining of marshes.",
+                                            "Transfer costs, stamp duties and taxes payable to acquire the asset.",
+                                            "All professional charges such as legal costs, agents’ commission, and architects’, engineers’, and surveyors’ fees.",
+                                            "Delivery, installation and decommissioning costs."
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude"
+                                    },
+                                    {
+                                        "list": [
+                                            "Current repair and maintenance costs.",
+                                            "Expenditure on land purchased in connection with construction work.",
+                                            "Structures that are used primarily as residences (dwellings) including houses, houseboats, caravans, and associated structures such as garages.",
+                                            "Machinery and equipment - report this in the next section.",
+                                            "Purchase of existing structures such as oil wells, platforms, mines, pipes, power lines, transport infrastructure, wind farms, turbines and steel frameworks.",
+                                            "Land and existing buildings."
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "question": "Total capital expenditure on transport assets and equipment",
+                                "content": [{
+                                        "title": "Include"
+                                    },
+                                    {
+                                        "list": [
+                                            "new and used motor vehicles, special purpose vehicles, and trailers",
+                                            "ships and boats",
+                                            "aircraft and railway rolling stock",
+                                            "motorcycles and bicycles",
+                                            "mobility scooters and powered wheelchairs",
+                                            "parts and accessories",
+                                            "major repairs"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude"
+                                    },
+                                    {
+                                        "list": [
+                                            "lifting and handling machinery",
+                                            "special purpose machinery"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "question": "Total capital expenditure on computers and peripheral devices (hardware)",
+                                "content": [{
+                                        "title": "Include"
+                                    },
+                                    {
+                                        "list": [
+                                            "computer monitors and terminals",
+                                            "printers, keyboards, and computer projectors",
+                                            "servers"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "question": "Total capital expenditure on computer software programs purchased or developed externally (bespoke)",
+                                "content": [{
+                                        "title": "Include"
+                                    },
+                                    {
+                                        "list": [
+                                            "program descriptions",
+                                            "extensions",
+                                            "supporting materials for systems and applications"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude"
+                                    },
+                                    {
+                                        "list": [
+                                            "computer software programs developed by own staff for business use"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "question": "Total capital expenditure on databases purchased or developed externally (bespoke)",
+                                "content": [{
+                                        "title": "Exclude"
+                                    },
+                                    {
+                                        "list": [
+                                            "cost of ongoing management",
+                                            "databases developed by own staff for business use"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "question": "Total capital expenditure on telecommunication equipment",
+                                "content": [{
+                                        "title": "Include"
+                                    },
+                                    {
+                                        "list": [
+                                            "phones, switchboards, and fax machines",
+                                            "transmitters and receivers",
+                                            "CCTV equipment and burglar or fire alarms",
+                                            "TV cameras and other cameras"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "question": "Total capital expenditure on other machinery or equipment not mentioned",
+                                "content": [{
+                                        "title": "Include"
+                                    },
+                                    {
+                                        "list": [
+                                            "electrical or electronic equipment",
+                                            "general or special purpose equipment",
+                                            "small tools",
+                                            "furniture",
+                                            "office equipment",
+                                            "fabricated products"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "question": "Total capital expenditure on mineral exploration and evaluation",
+                                "content": [{
+                                        "title": "Include"
+                                    },
+                                    {
+                                        "list": [
+                                            "pre-licence costs",
+                                            "licence and acquisition costs",
+                                            "appraisal costs",
+                                            "drilling costs eg test drilling and boring",
+                                            "surveys and aerial costs",
+                                            "transportation costs"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "question": "Significant changes to total investment",
+                                "content": [{
+                                        "description": "Include"
+                                    },
+                                    {
+                                        "list": [
+                                            "Start or end of a long term project (please outline in comments box).",
+                                            "Site changes, for example, openings, closures, refurbishments or upgrades.",
+                                            "End of accounting period or financial year.",
+                                            "Normal movement for time of year.",
+                                            "Change to business structure, merger or takeover.",
+                                            "One off or unusual investment (please outline in comments box).",
+                                            "Introduction / removal of new legislation / incentive.",
+                                            "Availability of credit.",
+                                            "Overspend during the previous quarter(s)."
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
                     },
                     "secondary_content": [{
                         "id": "how-we-use-your-data",
@@ -156,26 +270,24 @@
                 "title": "",
                 "blocks": [{
                         "id": "reporting-period-block",
-                        "title": "Reporting period",
                         "type": "Question",
                         "questions": [{
                             "id": "reporting-period-question",
-                            "title": "Are you able to report for the period Quarter 3 2018 ({{metadata['ref_p_start_date']|format_date}} to {{metadata['ref_p_end_date']|format_date}})?",
+                            "title": "Are you able to report for the period {{ metadata['period_str'] }} ({{ metadata['ref_p_start_date']|format_date }} to {{ metadata['ref_p_end_date']|format_date }})?",
                             "type": "General",
                             "answers": [{
                                 "id": "reporting-period-answer",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
+                                "q_code": "d12",
                                 "options": [{
                                         "label": "Yes",
-                                        "value": "Yes",
-                                        "q_code": "678"
+                                        "value": "Yes"
                                     },
                                     {
                                         "label": "No",
-                                        "value": "No",
-                                        "q_code": "679"
+                                        "value": "No"
                                     }
                                 ]
                             }]
@@ -199,7 +311,6 @@
                     },
                     {
                         "id": "change-reporting-period-block",
-                        "title": "Reporting period",
                         "type": "Question",
                         "questions": [{
                             "id": "change-reporting-period-question",
@@ -243,7 +354,6 @@
                         }]
                     }, {
                         "id": "improvements-construction-block",
-                        "title": "Major improvements and construction work",
                         "type": "Question",
                         "questions": [{
                             "id": "improvements-construction-question",
@@ -288,14 +398,13 @@
                                 "type": "Currency",
                                 "q_code": "681",
                                 "label": "Value of acquisitions for improvements and construction work",
-                                "description": "Figures can be entered rounded (eg 56,000) or in full (eg 56,234.33). Do not enter ‘56’ for £56,000.",
+                                "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
                                 "decimal_places": 2,
                                 "currency": "GBP"
                             }]
                         }]
                     }, {
                         "type": "ConfirmationQuestion",
-                        "title": "Major improvements and construction work",
                         "id": "confirm-improvements-construction-figure-block",
                         "questions": [{
                             "type": "General",
@@ -331,11 +440,10 @@
                         }]
                     }, {
                         "id": "machinery-equipment-block-1",
-                        "title": "Machinery and equipment",
                         "type": "Question",
                         "questions": [{
                             "id": "machinery-equipment-question-1",
-                            "title": "What was the value of acquisitions and proceeds from disposal of capital assets for <em>transport assets and equipment</em>?",
+                            "title": "What was the value of acquisitions and proceeds from disposals of capital assets for <em>transport assets and equipment</em>?",
                             "guidance": {
                                 "content": [{
                                         "title": "Include"
@@ -386,11 +494,10 @@
                     },
                     {
                         "id": "machinery-equipment-block-2",
-                        "title": "Machinery and equipment",
                         "type": "Question",
                         "questions": [{
                             "id": "machinery-equipment-question-2",
-                            "title": "What was the value of acquisitions and proceeds from disposal of capital assets for <em>computers and peripheral devices (hardware)</em>?",
+                            "title": "What was the value of acquisitions and proceeds from disposals of capital assets for <em>computers and peripheral devices (hardware)</em>?",
                             "guidance": {
                                 "content": [{
                                         "title": "Include"
@@ -428,11 +535,10 @@
                     },
                     {
                         "id": "machinery-equipment-block-3",
-                        "title": "Machinery and equipment",
                         "type": "Question",
                         "questions": [{
                             "id": "machinery-equipment-question-3",
-                            "title": "What was the value of acquisitions and proceeds from disposal of capital assets for <em>computer software programs purchased or developed externally</em> (bespoke)?",
+                            "title": "What was the value of acquisitions and proceeds from disposals of capital assets for <em>computer software programs purchased or developed externally</em> (bespoke)?",
                             "guidance": {
                                 "content": [{
                                         "title": "Include"
@@ -478,7 +584,6 @@
                     },
                     {
                         "id": "machinery-equipment-block-4",
-                        "title": "Machinery and equipment",
                         "type": "Question",
                         "questions": [{
                             "id": "machinery-equipment-question-4",
@@ -520,11 +625,10 @@
                     },
                     {
                         "id": "machinery-equipment-block-5",
-                        "title": "Machinery and equipment",
                         "type": "Question",
                         "questions": [{
                             "id": "machinery-equipment-question-5",
-                            "title": "What was the value of acquisitions and proceeds from disposal of capital assets for <em>telecommunication equipment</em>?",
+                            "title": "What was the value of acquisitions and proceeds from disposals of capital assets for <em>telecommunication equipment</em>?",
                             "guidance": {
                                 "content": [{
                                         "title": "Include"
@@ -563,11 +667,10 @@
                     },
                     {
                         "id": "machinery-equipment-block-6",
-                        "title": "Machinery and equipment",
                         "type": "Question",
                         "questions": [{
                             "id": "machinery-equipment-question-6",
-                            "title": "What was the value of acquisitions and proceeds from disposal of capital assets for <em>other machinery or equipment</em> not mentioned?",
+                            "title": "What was the value of acquisitions and proceeds from disposals of capital assets for <em>other machinery or equipment</em> not mentioned?",
                             "guidance": {
                                 "content": [{
                                         "title": "Include"
@@ -605,9 +708,50 @@
                                 }
                             ]
                         }]
+                    },
+                    {
+                        "type": "CalculatedSummary",
+                        "id": "acquisitions-playback",
+                        "titles": [{
+                            "value": "We calculate the total value of acquisitions entered to be %(total)s. Is this correct?"
+                        }],
+                        "calculation": {
+                            "calculation_type": "sum",
+                            "answers_to_calculate": [
+                                "machinery-equipment-acquisitions-answer-1",
+                                "machinery-equipment-acquisitions-answer-2",
+                                "machinery-equipment-acquisitions-answer-3",
+                                "machinery-equipment-acquisitions-answer-4",
+                                "machinery-equipment-acquisitions-answer-5",
+                                "machinery-equipment-acquisitions-answer-6"
+                            ],
+                            "titles": [{
+                                "value": "Total value of acquisitions"
+                            }]
+                        }
+                    },
+                    {
+                        "type": "CalculatedSummary",
+                        "id": "proceeds-playback",
+                        "titles": [{
+                            "value": "We calculate the total value of proceeds from disposals entered to be %(total)s. Is this correct?"
+                        }],
+                        "calculation": {
+                            "calculation_type": "sum",
+                            "answers_to_calculate": [
+                                "machinery-equipment-proceeds-answer-1",
+                                "machinery-equipment-proceeds-answer-2",
+                                "machinery-equipment-proceeds-answer-3",
+                                "machinery-equipment-proceeds-answer-4",
+                                "machinery-equipment-proceeds-answer-5",
+                                "machinery-equipment-proceeds-answer-6"
+                            ],
+                            "titles": [{
+                                "value": "Total value of proceeds from disposals"
+                            }]
+                        }
                     }, {
                         "id": "minerals-block",
-                        "title": "Mineral exploration and evaluation",
                         "type": "Question",
                         "questions": [{
                             "id": "minerals-question",
@@ -639,52 +783,8 @@
                                 "currency": "GBP"
                             }]
                         }]
-                    },
-                    {
-                        "type": "CalculatedSummary",
-                        "id": "acquisitions-playback",
-                        "titles": [{
-                            "value": "We calculate the total value of acquisitions entered to be %(total)s. Is this correct?"
-                        }],
-                        "calculation": {
-                            "calculation_type": "sum",
-                            "answers_to_calculate": [
-                                "machinery-equipment-acquisitions-answer-1",
-                                "machinery-equipment-acquisitions-answer-2",
-                                "machinery-equipment-acquisitions-answer-3",
-                                "machinery-equipment-acquisitions-answer-4",
-                                "machinery-equipment-acquisitions-answer-5",
-                                "machinery-equipment-acquisitions-answer-6",
-                                "minerals-answer"
-                            ],
-                            "titles": [{
-                                "value": "Total value of acquisitions"
-                            }]
-                        }
-                    },
-                    {
-                        "type": "CalculatedSummary",
-                        "id": "proceeds-playback",
-                        "titles": [{
-                            "value": "We calculate the total value of proceeds from disposals entered to be %(total)s. Is this correct?"
-                        }],
-                        "calculation": {
-                            "calculation_type": "sum",
-                            "answers_to_calculate": [
-                                "machinery-equipment-proceeds-answer-1",
-                                "machinery-equipment-proceeds-answer-2",
-                                "machinery-equipment-proceeds-answer-3",
-                                "machinery-equipment-proceeds-answer-4",
-                                "machinery-equipment-proceeds-answer-5",
-                                "machinery-equipment-proceeds-answer-6"
-                            ],
-                            "titles": [{
-                                "value": "Total value of proceeds from disposals"
-                            }]
-                        }
                     }, {
                         "id": "any-significant-changes-block",
-                        "title": "Significant changes",
                         "type": "Question",
                         "questions": [{
                             "id": "any-significant-changes-question",
@@ -732,7 +832,6 @@
                     },
                     {
                         "id": "significant-changes-reason-block-1",
-                        "title": "Significant changes",
                         "type": "Question",
                         "questions": [{
                             "id": "significant-changes-reason-question-1",
@@ -799,7 +898,6 @@
                     },
                     {
                         "id": "significant-changes-reason-block-2",
-                        "title": "Significant changes",
                         "type": "Question",
                         "questions": [{
                             "id": "significant-changes-reason-question-2",
