@@ -1,5 +1,7 @@
+import itertools
 import re
 
+from collections import defaultdict
 from datetime import datetime
 from jinja2 import escape
 import simplejson as json
@@ -53,6 +55,7 @@ class AnswerStore:
 
     def __init__(self, existing_answers=None):
         self.answers = existing_answers or []
+        self.answer_map = self._build_map(self.answers)
 
     def __iter__(self):
         return iter(self.answers)
@@ -60,8 +63,23 @@ class AnswerStore:
     def __getitem__(self, key):
         return self.answers[key]
 
+    def __setattr__(self, key, value):
+        super().__setattr__(key, value)
+
+        if key == 'answers':
+            self.answer_map = self._build_map(self.answers)
+
     def __len__(self):
         return len(self.answers)
+
+    @staticmethod
+    def _build_map(answers):
+        answer_map = defaultdict(list)
+
+        for answer in answers:
+            answer_map[answer['answer_id']].append(answer)
+
+        return answer_map
 
     @staticmethod
     def _validate(answer):
@@ -82,6 +100,7 @@ class AnswerStore:
             raise ValueError('Answer instance already exists in store')
         else:
             self.answers.append(answer_to_add)
+            self.answer_map[answer_to_add['answer_id']].append(answer_to_add)
 
     def update(self, answer):
         """
@@ -175,7 +194,12 @@ class AnswerStore:
             'group_instance': group_instance,
         }
 
-        for answer in self.answers:
+        if answer_ids:
+            answers = itertools.chain.from_iterable(self.answer_map[answer_id] for answer_id in answer_ids)
+        else:
+            answers = self.answers
+
+        for answer in answers:
             matches = all(
                 answer[key] in value if isinstance(value, list) else answer[key] == value
                 for key, value in filter_vars.items()
@@ -185,6 +209,7 @@ class AnswerStore:
                 filtered.append(answer)
                 if limit and len(filtered) == self.EQ_MAX_NUM_REPEATS:
                     break
+
         return self.__class__(existing_answers=filtered)
 
     def clear(self):
@@ -192,6 +217,7 @@ class AnswerStore:
         Clears answers *in place*
         """
         self.answers.clear()
+        self.answer_map = defaultdict(list)
 
     def remove(self, answer_ids=None, group_instance=None, answer_instance=None):
         """
@@ -202,6 +228,7 @@ class AnswerStore:
         :param group_instance: The group instance to filter results to remove
         """
         for answer in self.filter(answer_ids, group_instance, answer_instance):
+            self.answer_map[answer['answer_id']].remove(answer)
             self.answers.remove(answer)
 
     def get_hash(self):

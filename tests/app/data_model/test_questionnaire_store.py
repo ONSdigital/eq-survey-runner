@@ -12,7 +12,7 @@ def get_basic_input():
             'test': True
         },
         'ANSWERS': [{
-            'answer-id': 'test',
+            'answer_id': 'test',
             'value': 'test',
         }],
         'COMPLETED_BLOCKS': [
