@@ -1,5 +1,5 @@
 from mock import patch
-from app.data_model.answer_store import AnswerStore
+from app.data_model.answer_store import AnswerStore, Answer
 from app.questionnaire.location import Location
 from app.templating.summary_context import build_summary_rendering_context
 from app.templating.view_context import build_view_context_for_final_summary, \
@@ -148,6 +148,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             {'value': 4, 'answer_id': 'second-number-answer-also-in-total', 'group_instance': 0, 'answer_instance': 0},
             {'value': 5, 'answer_id': 'third-number-answer', 'group_instance': 0, 'answer_instance': 0},
             {'value': 6, 'answer_id': 'third-number-answer-unit-total', 'group_instance': 0, 'answer_instance': 0},
+            {'value': 'No', 'answer_id': 'skip-fourth-block-answer', 'group_instance': 0, 'answer_instance': 0},
             {'value': 7, 'answer_id': 'fourth-number-answer', 'group_instance': 0, 'answer_instance': 0},
             {'value': 8, 'answer_id': 'fourth-number-answer-also-in-total', 'group_instance': 0, 'answer_instance': 0},
             {'value': 9, 'answer_id': 'fifth-percent-answer', 'group_instance': 0, 'answer_instance': 0},
@@ -163,7 +164,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         }
         self.block_type = 'CalculatedSummary'
 
-    def test_build_view_context_for_currency_calculated_summary(self):
+    def test_build_view_context_for_currency_calculated_summary_no_skip(self):
         csrf_token = None
         variables = None
 
@@ -182,11 +183,41 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
         self.assertEqual(context_summary['title'],
-                         'We calculate the total of currency values entered to be £27.00. Is this correct?')
+                         'We calculate the total of currency values entered to be £27.00. Is this correct? (With Fourth)')
+
+        self.assertTrue('calculated_question' in context_summary)
+        self.assertEqual(len(context_summary['groups'][0]['blocks']), 4)
+        self.assertEqual(context_summary['calculated_question']['title'], 'Grand total of previous values')
+        self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '£27.00')
+
+
+    def test_build_view_context_for_currency_calculated_summary_with_skip(self):
+        csrf_token = None
+        variables = None
+
+        current_location = Location(
+            block_id='currency-total-playback',
+            group_id='group',
+            group_instance=0,
+        )
+
+        skip_answer = Answer('skip-fourth-block-answer', 'Yes')
+        self.answer_store.add_or_update(skip_answer)
+        context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
+                                                            self.schema_context, self.block_type,
+                                                            variables, csrf_token, current_location)
+
+        self.check_context(context)
+        self.assertEqual(len(context['summary']), 5)
+        context_summary = context['summary']
+        self.assertTrue('title' in context_summary)
+        self.assertEqual(len(context_summary['groups'][0]['blocks']), 3)
+        self.assertEqual(context_summary['title'],
+                         'We calculate the total of currency values entered to be £12.00. Is this correct? (Skipped Fourth)')
 
         self.assertTrue('calculated_question' in context_summary)
         self.assertEqual(context_summary['calculated_question']['title'], 'Grand total of previous values')
-        self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '£27.00')
+        self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '£12.00')
 
     def test_build_view_context_for_unit_calculated_summary(self):
         csrf_token = None
