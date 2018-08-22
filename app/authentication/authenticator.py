@@ -107,7 +107,7 @@ def store_session(metadata):
     create_session_store(eq_session_id, user_id, user_ik, session_data)
 
     questionnaire_store = get_questionnaire_store(user_id, user_ik)
-    questionnaire_store.metadata = metadata
+    questionnaire_store.set_metadata(metadata)
     questionnaire_store.add_or_update()
 
     # Set the user in Flask such that anyone calling current_user for the duration of this request doesn't have to

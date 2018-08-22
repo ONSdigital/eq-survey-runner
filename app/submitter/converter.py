@@ -15,10 +15,11 @@ class DataVersionError(Exception):
         return 'Data version {} not supported'.format(self.version)
 
 
-def convert_answers(metadata, schema, answer_store, routing_path, flushed=False):
+def convert_answers(metadata, collection_metadata, schema, answer_store, routing_path, flushed=False):
     """
     Create the JSON answer format for down stream processing
     :param metadata: metadata for the questionnaire
+    :param collection_metadata: Any metadata about the collection of the questionnaire
     :param schema: QuestionnaireSchema class with populated schema json
     :param answer_store: the users answers
     :param routing_path: the path followed by the user when answering the questionnaire
@@ -59,9 +60,13 @@ def convert_answers(metadata, schema, answer_store, routing_path, flushed=False)
         'metadata': _build_metadata(metadata),
         'case_id': metadata['case_id'],
     }
-    if 'started_at' in metadata and metadata['started_at']:
+    if collection_metadata.get('started_at'):
+        payload['started_at'] = collection_metadata['started_at']
+    elif metadata.get('started_at'):
         payload['started_at'] = metadata['started_at']
-    if 'case_ref' in metadata and metadata['case_ref']:
+    if metadata.get('case_id'):
+        payload['case_id'] = metadata['case_id']
+    if metadata.get('case_ref'):
         payload['case_ref'] = metadata['case_ref']
 
     if schema.json['data_version'] == '0.0.2':

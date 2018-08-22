@@ -50,6 +50,10 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             'case_ref': '1000000000000001'
         }, self.schema_metadata)
 
+        self.collection_metadata = {
+            'started_at': '2018-07-04T14:49:33.448608+00:00',
+        }
+
     def test_convert_answers_flushed_flag_default_is_false(self):
         with self._app.test_request_context():
             user_answer = [create_answer('GHI', 0)]
@@ -59,7 +63,7 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
                 'data_version': '0.0.2'
             }
 
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {})
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {})
 
             self.assertFalse(answer_object['flushed'])
 
@@ -72,11 +76,11 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
                 'data_version': '0.0.2'
             }
             self.metadata['ref_p_end_date'] = None
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {})
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {})
             self.assertFalse('ref_period_end_date' in answer_object['metadata'])
 
             del self.metadata['ref_p_end_date']
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {})
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {})
             self.assertFalse('ref_period_end_date' in answer_object['metadata'])
 
     def test_ref_period_start_and_end_date_is_in_output(self):
@@ -88,7 +92,7 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
                 'data_version': '0.0.2'
             }
 
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {})
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {})
             self.assertEqual(answer_object['metadata']['ref_period_start_date'], '2016-02-02')
             self.assertEqual(answer_object['metadata']['ref_period_end_date'], '2016-03-03')
 
@@ -101,11 +105,13 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
                 'data_version': '0.0.2'
             }
 
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {}, flushed=True)
+            answer_object = convert_answers(
+                self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {}, flushed=True
+            )
 
             self.assertTrue(answer_object['flushed'])
 
-    def test_started_at_should_be_set_in_payload_if_present_in_metadata(self):
+    def test_started_at_should_be_set_in_payload_if_present_in_collection_metadata(self):
         with self._app.test_request_context():
 
             questionnaire = {
@@ -113,9 +119,33 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
                 'data_version': '0.0.2'
             }
 
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(), {})
+            answer_object = convert_answers(
+                self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(), {}
+            )
 
-            self.assertEqual(answer_object['started_at'], self.metadata['started_at'])
+            self.assertEqual(answer_object['started_at'], self.collection_metadata['started_at'])
+
+    def test_started_at_comes_from_metadata_if_necessary(self):
+        """
+        This tests functionality that should be removed after collection_metadata changes are released
+        """
+        questionnaire = {
+            'survey_id': '021',
+            'data_version': '0.0.2'
+        }
+
+        # Remove started at from collection metadata and add it to metadata
+        collection_metadata = self.collection_metadata.copy()
+        metadata = self.metadata.copy()
+        metadata['started_at'] = collection_metadata['started_at']
+        del collection_metadata['started_at']
+
+        answer_object = convert_answers(
+            metadata, collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(), {}
+        )
+
+        self.assertEqual(answer_object['started_at'], metadata['started_at'])
+
 
     def test_started_at_should_not_be_set_in_payload_if_absent_in_metadata(self):
         with self._app.test_request_context():
@@ -124,10 +154,13 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
                 'survey_id': '021',
                 'data_version': '0.0.2'
             }
-            metadata_copy = copy.copy(self.metadata)
-            del metadata_copy['started_at']
+            collection_metadata_copy = copy.copy(self.collection_metadata)
+            metadata = self.metadata.copy()
+            metadata.pop('started_at', None)
 
-            answer_object = convert_answers(metadata_copy, QuestionnaireSchema(questionnaire), AnswerStore(), {})
+            del collection_metadata_copy['started_at']
+
+            answer_object = convert_answers(metadata, collection_metadata_copy, QuestionnaireSchema(questionnaire), AnswerStore(), {})
 
             self.assertFalse('started_at' in answer_object)
 
@@ -140,7 +173,7 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
                 'data_version': '0.0.2'
             }
 
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {})
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {})
 
             self.assertLess(datetime.now(timezone.utc) - dateutil.parser.parse(answer_object['submitted_at']),
                             timedelta(seconds=5))
@@ -153,7 +186,7 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
                 'data_version': '0.0.2'
             }
 
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(), {})
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(), {})
 
             self.assertEqual(answer_object['case_id'], self.metadata['case_id'])
 
@@ -165,7 +198,7 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
                 'data_version': '0.0.2'
             }
 
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(), {})
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(), {})
 
             self.assertEqual(answer_object['case_ref'], self.metadata['case_ref'])
 
@@ -177,7 +210,7 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             }
 
             with self.assertRaises(DataVersionError) as err:
-                convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(), {})
+                convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(), {})
 
             self.assertEqual(str(err.exception), 'Data version -0.0.1 not supported')
 
@@ -224,7 +257,7 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
             }
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             self.assertEqual(answer_object['type'], 'uk.gov.ons.edc.eq:surveyresponse')
             self.assertEqual(answer_object['version'], '0.0.1')

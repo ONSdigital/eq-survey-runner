@@ -4,7 +4,8 @@ from sdc.crypto.decrypter import decrypt
 
 
 from app.authentication.user import User
-from app.globals import get_answer_store, get_metadata, get_questionnaire_store, get_completed_blocks
+from app.globals import (get_answer_store, get_metadata, get_questionnaire_store,
+                         get_completed_blocks, get_collection_metadata)
 from app.questionnaire.path_finder import PathFinder
 from app.keys import KEY_PURPOSE_AUTHENTICATION, KEY_PURPOSE_SUBMISSION
 from app.submitter.converter import convert_answers
@@ -46,11 +47,12 @@ def _submit_data(user):
 
     if answer_store.answers:
         metadata = get_metadata(user)
+        collection_metadata = get_collection_metadata(user)
         schema = load_schema_from_metadata(metadata)
         completed_blocks = get_completed_blocks(user)
         routing_path = PathFinder(schema, answer_store, metadata, completed_blocks).get_full_routing_path()
 
-        message = convert_answers(metadata, schema, answer_store, routing_path, flushed=True)
+        message = convert_answers(metadata, collection_metadata, schema, answer_store, routing_path, flushed=True)
         encrypted_message = encrypt(message, current_app.eq['key_store'], KEY_PURPOSE_SUBMISSION)
 
         sent = current_app.eq['submitter'].send_message(encrypted_message, current_app.config['EQ_RABBITMQ_QUEUE_NAME'], metadata['tx_id'])

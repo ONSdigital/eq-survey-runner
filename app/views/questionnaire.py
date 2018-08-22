@@ -1,7 +1,7 @@
 from functools import wraps
 import re
 from collections import defaultdict
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 import humanize
 import simplejson as json
 from dateutil.tz import tzutc
@@ -16,11 +16,12 @@ from structlog import get_logger
 from app.globals import get_session_store, get_completeness
 from app.data_model.answer_store import Answer, AnswerStore
 from app.data_model.app_models import SubmittedResponse
-from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
+from app.globals import (get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store,
+                         get_collection_metadata)
 from app.helpers.form_helper import post_form_for_location
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required
 from app.helpers.schema_helpers import with_schema
-from app.helpers.session_helpers import with_answer_store, with_metadata
+from app.helpers.session_helpers import with_answer_store, with_metadata, with_collection_metadata
 from app.helpers.template_helper import (with_session_timeout, with_metadata_context, with_analytics,
                                          with_questionnaire_url_prefix, with_legal_basis, render_template)
 
@@ -153,10 +154,11 @@ def get_block(routing_path, schema, metadata, answer_store, eq_id, form_type, co
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=['POST'])
 @login_required
 @with_answer_store
+@with_collection_metadata
 @with_metadata
 @with_schema
 @full_routing_path_required
-def post_block(routing_path, schema, metadata, answer_store, eq_id, form_type, collection_id, group_id,  # pylint: disable=too-many-locals
+def post_block(routing_path, schema, metadata, collection_metadata, answer_store, eq_id, form_type, collection_id, group_id,  # pylint: disable=too-many-locals
                group_instance, block_id):
     current_location = Location(group_id, group_instance, block_id)
     completeness = get_completeness(current_user)
@@ -178,7 +180,7 @@ def post_block(routing_path, schema, metadata, answer_store, eq_id, form_type, c
         return _save_sign_out(routing_path, current_location, form, schema, answer_store, metadata)
 
     if form.validate():
-        _set_started_at_metadata_if_required(form, metadata)
+        _set_started_at_metadata_if_required(form, collection_metadata, metadata)
         _update_questionnaire_store(current_location, form, schema)
         next_location = path_finder.get_next_location(current_location=current_location)
 
@@ -330,13 +332,25 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
     return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
 
 
-def _set_started_at_metadata_if_required(form, metadata):
-    questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-    if not questionnaire_store.answer_store.answers and len(form.data) > 1:
-        started_at = datetime.now(timezone.utc).isoformat()
-        logger.info('first answer about to be stored. writing started_at time to metadata',
+def _set_started_at_metadata_if_required(form, collection_metadata, metadata):
+    if not collection_metadata.get('started_at') and form.data:
+        started_at = datetime.utcnow().isoformat()
+
+        # To avoid loss of in-flight data while collection_metadata is deployed.
+        # After deployment of collection metdata, remove from here to the next comment.
+
+        if metadata.get('started_at'):
+            logger.info('Found in-flight metadata started_at.')
+            started_at = metadata['started_at']
+
+        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+        questionnaire_store.set_metadata_key('started_at', started_at)
+
+        # After deployment of collection metadata, remove up to here.
+
+        logger.info('Survey started. Writing started_at time to collection metadata',
                     started_at=started_at)
-        metadata['started_at'] = started_at
+        collection_metadata['started_at'] = started_at
 
 
 def _render_page(block_type, context, current_location, schema, answer_store, metadata, routing_path):
@@ -382,10 +396,12 @@ def _is_end_of_questionnaire(block, next_location):
 
 def submit_answers(routing_path, eq_id, form_type, schema):
     metadata = get_metadata(current_user)
+    collection_metadata = get_collection_metadata(current_user)
     answer_store = get_answer_store(current_user)
 
     message = json.dumps(convert_answers(
         metadata,
+        collection_metadata,
         schema,
         answer_store,
         routing_path,
@@ -426,7 +442,7 @@ def _store_viewable_submission(answers, metadata, submitted_time):
     encrypted_data = encrypter.encrypt_data(
         {
             'answers': answers,
-            'metadata': metadata,
+            'metadata': metadata.copy(),
         },
     )
 

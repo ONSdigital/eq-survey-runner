@@ -22,6 +22,9 @@ def get_basic_input():
                 'block_id': 'a-test-block',
             }
         ],
+        'COLLECTION_METADATA': {
+            'test-meta': 'test'
+        },
     }
 
 class TestQuestionnaireStore(TestCase):
@@ -52,7 +55,8 @@ class TestQuestionnaireStore(TestCase):
         # When
         store = QuestionnaireStore(self.storage)
         # Then
-        self.assertEqual(store.metadata, expected['METADATA'])
+        self.assertEqual(store.metadata.copy(), expected['METADATA'])
+        self.assertEqual(store.collection_metadata, expected['COLLECTION_METADATA'])
         self.assertEqual(store.answer_store.answers, expected['ANSWERS'])
         expected_location = expected['COMPLETED_BLOCKS'][0]
         self.assertEqual(len(store.completed_blocks), 1)
@@ -66,7 +70,8 @@ class TestQuestionnaireStore(TestCase):
         # When
         store = QuestionnaireStore(self.storage)
         # Then
-        self.assertEqual(store.metadata, expected['METADATA'])
+        self.assertEqual(store.metadata.copy(), expected['METADATA'])
+        self.assertEqual(store.collection_metadata, expected['COLLECTION_METADATA'])
         self.assertEqual(store.answer_store.answers, expected['ANSWERS'])
         expected_location = expected['COMPLETED_BLOCKS'][0]
         self.assertEqual(len(store.completed_blocks), 1)
@@ -80,7 +85,8 @@ class TestQuestionnaireStore(TestCase):
         # When
         store = QuestionnaireStore(self.storage)
         # Then
-        self.assertEqual(store.metadata, expected['METADATA'])
+        self.assertEqual(store.metadata.copy(), expected['METADATA'])
+        self.assertEqual(store.collection_metadata, expected['COLLECTION_METADATA'])
         self.assertEqual(store.answer_store.answers, expected['ANSWERS'])
         self.assertEqual(len(store.completed_blocks), 0)
 
@@ -88,8 +94,9 @@ class TestQuestionnaireStore(TestCase):
         # Given
         expected = get_basic_input()
         store = QuestionnaireStore(self.storage)
-        store.metadata = expected['METADATA']
+        store.set_metadata(expected['METADATA'])
         store.answer_store.answers = expected['ANSWERS']
+        store.collection_metadata = expected['COLLECTION_METADATA']
         store.completed_blocks = [Location.from_dict(expected['COMPLETED_BLOCKS'][0])]
 
         # When
@@ -100,12 +107,17 @@ class TestQuestionnaireStore(TestCase):
 
     def test_questionnaire_store_errors_on_invalid_object(self):
         # Given
-        class NotSerializable():
+        class NotSerializable:
             pass
+
+        non_serializable_metadata = {
+            'test': NotSerializable()
+        }
 
         expected = get_basic_input()
         store = QuestionnaireStore(self.storage)
-        store.metadata = NotSerializable()
+        store.set_metadata(non_serializable_metadata)
+        store.collection_metadata = expected['COLLECTION_METADATA']
         store.answer_store.answers = expected['ANSWERS']
         store.completed_blocks = [Location.from_dict(expected['COMPLETED_BLOCKS'][0])]
 
@@ -116,7 +128,8 @@ class TestQuestionnaireStore(TestCase):
         # Given
         expected = get_basic_input()
         store = QuestionnaireStore(self.storage)
-        store.metadata = expected['METADATA']
+        store.set_metadata(expected['METADATA'])
+        store.collection_metadata = expected['COLLECTION_METADATA']
         store.answer_store.answers = expected['ANSWERS']
         store.completed_blocks = [Location.from_dict(expected['COMPLETED_BLOCKS'][0])]
 
@@ -125,8 +138,9 @@ class TestQuestionnaireStore(TestCase):
 
         # Then
         self.assertEqual(store.completed_blocks, [])
-        self.assertEqual(store.metadata, {})
+        self.assertEqual(store.metadata.copy(), {})
         self.assertEqual(store.answer_store.count(), 0)
+        self.assertEqual(store.collection_metadata, {})
 
     def test_questionnaire_store_removes_completed_location(self):
         # Given
@@ -189,3 +203,9 @@ class TestQuestionnaireStore(TestCase):
         # When / Then
         with self.assertRaises(TypeError):
             store.remove_completed_blocks(location={'group_id': 'a-group', 'group_instance': 0, 'block-id': 'a-block-id'})
+
+    def test_questionnaire_store_raises_when_writing_to_metadata(self):
+        store = QuestionnaireStore(self.storage)
+
+        with self.assertRaises(TypeError):
+            store.metadata['no'] = 'writing'

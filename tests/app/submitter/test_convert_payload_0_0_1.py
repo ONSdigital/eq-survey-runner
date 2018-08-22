@@ -62,7 +62,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
 
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Check the converter correctly
             self.assertEqual('0', answer_object['data']['003'])
@@ -86,7 +86,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
 
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Check the converter correctly
             self.assertEqual('10.02', answer_object['data']['003'])
@@ -110,7 +110,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
 
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Check the converter correctly
             self.assertEqual('String test + !', answer_object['data']['003'])
@@ -136,7 +136,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
 
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Check the converter correctly
             self.assertEqual(answer_object['data']['003'], ['0', '1', '2'])
@@ -159,7 +159,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
 
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             self.assertEqual(len(answer_object['data']), 0)
 
@@ -199,14 +199,14 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
 
         #  STANDARD CHECKBOX
         with self.assertRaises(Exception) as err:
-            convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
+            convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
         self.assertEqual('Multiple answers found for {}'.format('other-answer-mandatory'), str(err.exception))
 
 
         #  MUTUALLY EXCLUSIVE CHECKBOX
         questionnaire['sections'][0]['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['type'] = 'MutuallyExclusiveCheckbox'
         with self.assertRaises(Exception) as err:
-            convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
+            convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
         self.assertEqual('Multiple answers found for {}'.format('other-answer-mandatory'), str(err.exception))
 
     def test_converter_checkboxes_with_q_codes(self):
@@ -261,7 +261,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             ])
 
             # When STANDARD CHECKBOX
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 2)
@@ -270,7 +270,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
 
             # when MUTUALLY EXCLUSIVE CHECKBOX
             questionnaire['sections'][0]['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['type'] = 'MutuallyExclusiveCheckbox'
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers),
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers),
                                             routing_path)
 
             # Then
@@ -332,7 +332,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             ])
 
             # When STANDARD CHECKBOX
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 2)
@@ -341,7 +341,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
 
             # when MUTUALLY EXCLUSIVE CHECKBOX
             questionnaire['sections'][0]['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['type'] = 'MutuallyExclusiveCheckbox'
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers),
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers),
                                             routing_path)
 
             # Then
@@ -403,7 +403,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             ])
 
             # When STANDARD CHECKBOX
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 2)
@@ -412,7 +412,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
 
             # when MUTUALLY EXCLUSIVE CHECKBOX
             questionnaire['sections'][0]['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['type'] = 'MutuallyExclusiveCheckbox'
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers),
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers),
                                             routing_path)
 
             # Then
@@ -448,7 +448,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             ])
 
             # When
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -483,7 +483,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             ])
 
             # When
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -508,7 +508,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             ])
 
             # When
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -533,7 +533,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             ])
 
             # When
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -558,7 +558,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             ])
 
             # When
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -583,7 +583,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             ])
 
             # When
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -622,7 +622,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             ])
 
             # When
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -657,7 +657,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                 }
             ])
             # When
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 2)
@@ -683,7 +683,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             ])
 
             # When
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -727,7 +727,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             ])
 
             # When
-            answer_object = convert_answers(self.metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
