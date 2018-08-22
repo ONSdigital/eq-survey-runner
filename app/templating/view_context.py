@@ -202,12 +202,12 @@ def _remove_unwanted_questions_answers(block, answers_in_block, answer_ids_to_ke
 
 def _get_formatted_total(groups):
     calculated_total = 0
-    answer_format = None
+    answer_format = {'type': None}
     for group in groups:
         for block in group['blocks']:
             for question in block['questions']:
                 for answer in question['answers']:
-                    if not answer_format:
+                    if not answer_format['type']:
                         answer_format = {
                             'type': answer['type'],
                             'unit': answer.get('unit'),
