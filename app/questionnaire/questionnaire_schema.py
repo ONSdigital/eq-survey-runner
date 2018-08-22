@@ -87,24 +87,17 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         return answer_ids
 
     def get_answers_by_id_for_block(self, block_id):
-        block = self.get_block(block_id)
-        if block:
-            answer_lists = (
-                question.get('answers', [])
-                for question in block.get('questions', [])
-            )
-            return {
-                answer['id']: answer
-                for answer in itertools.chain.from_iterable(answer_lists)
-            }
-
-        return {}
+        return self._answers_by_block_id[block_id]
 
     def get_answer_ids_for_block(self, block_id):
         return list(self.get_answers_by_id_for_block(block_id).keys())
 
     def get_answers_for_block(self, block_id):
         return list(self.get_answers_by_id_for_block(block_id).values())
+
+    def get_answer_ids_for_question(self, question_id):
+        """ get answer ids associated with a specific question_id """
+        return list(self._answers_by_question_id[question_id].keys())
 
     def get_answers_that_repeat_in_block(self, block_id):
         block = self.get_block(block_id)
@@ -199,6 +192,10 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         self._blocks_by_id = get_nested_schema_objects(self._groups_by_id, 'blocks')
         self._questions_by_id = get_nested_schema_objects(self._blocks_by_id, 'questions')
         self._answers_by_id = get_nested_schema_objects(self._questions_by_id, 'answers')
+
+        self._answers_by_question_id = self._get_answers_by_question_id()
+        self._answers_by_block_id = self._get_answers_by_block_id()
+
         self.error_messages = self._get_error_messages()
         self._answer_dependencies = get_dependencies(self)
 
@@ -218,17 +215,30 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
         return messages
 
-    def _get_answers_by_id_for_question(self, question_id):
-        question = self.get_question(question_id)
+    def _get_answers_by_question_id(self):
+        answers_by_question_id = {}
+        for question in self.questions:
+            answers_by_question_id[question['id']] = {
+                answer['id']: answer
+                for answer in question.get('answers', [])
+            }
 
-        return {
-            answer['id']: answer
-            for answer in question.get('answers', [])
-        }
+        return answers_by_question_id
 
-    def get_answer_ids_for_question(self, question_id):
-        """ get answer ids associated with a specific question_id """
-        return list(self._get_answers_by_id_for_question(question_id).keys())
+    def _get_answers_by_block_id(self):
+        answers_by_block_id = {}
+        for block in self.blocks:
+            answer_lists = (
+                question.get('answers', [])
+                for question in block.get('questions', [])
+            )
+
+            answers_by_block_id[block['id']] = {
+                answer['id']: answer
+                for answer in itertools.chain.from_iterable(answer_lists)
+            }
+
+        return answers_by_block_id
 
 
 def get_nested_schema_objects(parent_object, list_key):
