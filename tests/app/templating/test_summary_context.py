@@ -142,19 +142,19 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         super().setUp()
         self.schema = load_schema_from_params('test', 'calculated_summary')
         answers = [
-            {'value': 1, 'answer_id': 'first-number-answer', 'group_instance': 0, 'answer_instance': 0},
-            {'value': 2, 'answer_id': 'second-number-answer', 'group_instance': 0, 'answer_instance': 0},
-            {'value': 3, 'answer_id': 'second-number-answer-unit-total', 'group_instance': 0, 'answer_instance': 0},
-            {'value': 4, 'answer_id': 'second-number-answer-also-in-total', 'group_instance': 0, 'answer_instance': 0},
-            {'value': 5, 'answer_id': 'third-number-answer', 'group_instance': 0, 'answer_instance': 0},
-            {'value': 6, 'answer_id': 'third-number-answer-unit-total', 'group_instance': 0, 'answer_instance': 0},
-            {'value': 'No', 'answer_id': 'skip-fourth-block-answer', 'group_instance': 0, 'answer_instance': 0},
-            {'value': 7, 'answer_id': 'fourth-number-answer', 'group_instance': 0, 'answer_instance': 0},
-            {'value': 8, 'answer_id': 'fourth-number-answer-also-in-total', 'group_instance': 0, 'answer_instance': 0},
-            {'value': 9, 'answer_id': 'fifth-percent-answer', 'group_instance': 0, 'answer_instance': 0},
-            {'value': 10, 'answer_id': 'fifth-number-answer', 'group_instance': 0, 'answer_instance': 0},
-            {'value': 11, 'answer_id': 'sixth-percent-answer', 'group_instance': 0, 'answer_instance': 0},
-            {'value': 12, 'answer_id': 'sixth-number-answer', 'group_instance': 0, 'answer_instance': 0},
+            {'value': 1, 'answer_id': 'first-number-answer', 'group_instance': 0, 'group_instance_id': None, 'answer_instance': 0},
+            {'value': 2, 'answer_id': 'second-number-answer', 'group_instance': 0, 'group_instance_id': None, 'answer_instance': 0},
+            {'value': 3, 'answer_id': 'second-number-answer-unit-total', 'group_instance': 0, 'group_instance_id': None, 'answer_instance': 0},
+            {'value': 4, 'answer_id': 'second-number-answer-also-in-total', 'group_instance': 0, 'group_instance_id': None, 'answer_instance': 0},
+            {'value': 5, 'answer_id': 'third-number-answer', 'group_instance': 0, 'group_instance_id': None, 'answer_instance': 0},
+            {'value': 6, 'answer_id': 'third-number-answer-unit-total', 'group_instance': 0, 'group_instance_id': None, 'answer_instance': 0},
+            {'value': 'No', 'answer_id': 'skip-fourth-block-answer', 'group_instance': 0, 'group_instance_id': None, 'answer_instance': 0},
+            {'value': 7, 'answer_id': 'fourth-number-answer', 'group_instance': 0, 'group_instance_id': None, 'answer_instance': 0},
+            {'value': 8, 'answer_id': 'fourth-number-answer-also-in-total', 'group_instance': 0, 'group_instance_id': None, 'answer_instance': 0},
+            {'value': 9, 'answer_id': 'fifth-percent-answer', 'group_instance': 0, 'group_instance_id': None, 'answer_instance': 0},
+            {'value': 10, 'answer_id': 'fifth-number-answer', 'group_instance': 0, 'group_instance_id': None, 'answer_instance': 0},
+            {'value': 11, 'answer_id': 'sixth-percent-answer', 'group_instance': 0, 'group_instance_id': None, 'answer_instance': 0},
+            {'value': 12, 'answer_id': 'sixth-number-answer', 'group_instance': 0, 'group_instance_id': None, 'answer_instance': 0},
         ]
         self.answer_store = AnswerStore(answers)
         self.schema_context = {

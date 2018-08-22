@@ -6,7 +6,7 @@ from app.questionnaire.location import Location
 
 
 class QuestionnaireStore:
-    LATEST_VERSION = 1
+    LATEST_VERSION = 2
 
     def __init__(self, storage, version=None):
         self._storage = storage
@@ -43,6 +43,16 @@ class QuestionnaireStore:
         This should be removed after deployment of collection_metadata changes.
         """
         self._metadata[key] = value
+
+    def ensure_latest_version(self, schema):
+        """ If the code has been updated, the data being loaded may need
+        transforming to match the latest code. """
+        new_version = self.get_latest_version_number()
+        if self.version < new_version:
+            self.answer_store.upgrade(self.version, schema)
+            self.version = new_version
+
+        return self
 
     def _deserialise(self, data):
         json_data = json.loads(data, use_decimal=True)

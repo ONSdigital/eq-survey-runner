@@ -25,6 +25,7 @@ class TestRepeatingRelationship(IntegrationTestCase):
 
     def test_multiple_relationship_groups(self):
         # Given
+
         household_form_data = {
             'household-0-first-name': 'Han',
             'household-1-first-name': 'Leia',
@@ -49,23 +50,27 @@ class TestRepeatingRelationship(IntegrationTestCase):
             answer for answer in self.dumpAnswers()['answers']
             if answer['answer_id'] == 'who-is-related'
         ]
+
         expected_relationship_answers = [
             {
                 'answer_id': 'who-is-related',
                 'answer_instance': 0,
                 'group_instance': 0,
+                'group_instance_id': None,
                 'value': 'Husband or wife'
             },
             {
                 'answer_id': 'who-is-related',
                 'answer_instance': 1,
                 'group_instance': 0,
+                'group_instance_id': None,
                 'value': 'Relation - other'
             },
             {
                 'answer_id': 'who-is-related',
                 'answer_instance': 0,
                 'group_instance': 1,
+                'group_instance_id': None,
                 'value': 'Brother or sister'
             }
         ]

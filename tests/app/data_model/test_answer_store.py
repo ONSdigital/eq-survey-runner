@@ -1,6 +1,7 @@
 import unittest
+from unittest.mock import patch, MagicMock
 
-from app.data_model.answer_store import Answer, AnswerStore
+from app.data_model.answer_store import Answer, AnswerStore, upgrade_0_to_1_update_date_formats, upgrade_1_to_2_add_group_instance_id
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 
 
@@ -33,11 +34,13 @@ class TestAnswer(unittest.TestCase):
             answer_id='4',
             answer_instance=1,
             group_instance=1,
+            group_instance_id='foo-1',
             value=25,
         )
         answer_2 = {
             'answer_id': '4',
             'answer_instance': 1,
+            'group_instance_id': 'foo-1',
             'group_instance': 1,
             'value': 25,
         }
@@ -81,6 +84,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
             answer_id='4',
             answer_instance=1,
             group_instance=1,
+            group_instance_id='group-1',
             value=25,
         )
         self.store.add(answer_1)
@@ -95,6 +99,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
             answer_id='4',
             answer_instance=1,
             group_instance=1,
+            group_instance_id='group-1',
             value=25,
         )
 
@@ -318,7 +323,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.store = AnswerStore(existing_answers=answers)
 
-        self.store.upgrade(current_version=0, schema=QuestionnaireSchema(questionnaire))
+        upgrade_0_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.answers[0]['value'], '2017-12-25')
 
@@ -357,7 +362,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.store = AnswerStore(existing_answers=answers)
 
-        self.store.upgrade(current_version=0, schema=QuestionnaireSchema(questionnaire))
+        upgrade_0_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.answers[0]['value'], '2017-12')
 
@@ -392,7 +397,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.store = AnswerStore(existing_answers=answers)
 
-        self.store.upgrade(current_version=0, schema=QuestionnaireSchema(questionnaire))
+        upgrade_0_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.answers[0]['value'], '12/2017')
 
@@ -420,9 +425,125 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.store = AnswerStore(existing_answers=answers)
 
-        self.store.upgrade(current_version=0, schema=QuestionnaireSchema(questionnaire))
+        upgrade_0_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.answers[0]['value'], '12/2017')
+
+
+    def test_upgrade_add_group_instance_id(self):
+
+        survey = {
+            'survey_id': '021',
+            'data_version': '0.0.2',
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'blocks': [{
+                        'id': 'block1',
+                        'type': 'Question',
+                        'questions': [{
+                            'id': 'question1',
+                            'answers': [
+                                {
+                                    'id': 'answer1',
+                                    'type': 'TextArea'
+                                }
+                            ]
+                        }]
+                    }]
+                }, {
+                    'id': 'group-2',
+                    'blocks': [{
+                        'id': 'block-2',
+                        'type': 'Question'
+                    }],
+                    'routing_rules':[{
+                        'repeat': {
+                            'type': 'group',
+                            'group_ids': ['group1']
+                        }
+                    }]
+                }]
+            }]
+        }
+
+        existing_answers = [
+            {
+                'answer_id': 'answer1',
+                'answer_instance': 0,
+                'group_instance': 0,
+                'value': '12/2017'
+            },
+            {
+                'answer_id': 'answer1',
+                'answer_instance': 1,
+                'group_instance': 0,
+                'value': '12/2017'
+            },
+            {
+                'answer_id': 'answer1',
+                'answer_instance': 0,
+                'group_instance': 1,
+                'value': '12/2017'
+            },
+        ]
+
+        answer_store = AnswerStore(existing_answers)
+
+        upgrade_1_to_2_add_group_instance_id(answer_store, QuestionnaireSchema(survey))
+
+        self.assertEqual(answer_store[0]['group_instance_id'], answer_store[1]['group_instance_id'])
+        self.assertNotEqual(answer_store[0]['group_instance_id'], answer_store[2]['group_instance_id'])
+
+
+    def test_upgrade_multiple_versions(self):  # pylint: disable=no-self-use
+
+        answer_store = AnswerStore()
+
+        upgrade_0 = MagicMock()
+        upgrade_0.__name__ = 'upgrade_0'
+        upgrade_1 = MagicMock()
+        upgrade_1.__name__ = 'upgrade_1'
+        upgrade_2 = MagicMock()
+        upgrade_2.__name__ = 'upgrade_2'
+
+        UPGRADE_TRANSFORMS = (
+            upgrade_0, upgrade_1, upgrade_2
+        )
+
+        schema = MagicMock()
+
+        with patch('app.data_model.answer_store.UPGRADE_TRANSFORMS', UPGRADE_TRANSFORMS):
+            answer_store.upgrade(0, schema)
+
+        upgrade_0.assert_called_once_with(answer_store, schema)
+        upgrade_1.assert_called_once_with(answer_store, schema)
+        upgrade_2.assert_called_once_with(answer_store, schema)
+
+    def test_upgrade_multiple_versions_skipping_already_run(self):  # pylint: disable=no-self-use
+
+        answer_store = AnswerStore()
+
+        upgrade_0 = MagicMock()
+        upgrade_0.__name__ = 'upgrade_0'
+        upgrade_1 = MagicMock()
+        upgrade_1.__name__ = 'upgrade_1'
+        upgrade_2 = MagicMock()
+        upgrade_2.__name__ = 'upgrade_2'
+
+        UPGRADE_TRANSFORMS = (
+            upgrade_0, upgrade_1, upgrade_2
+        )
+
+        schema = MagicMock()
+
+        with patch('app.data_model.answer_store.UPGRADE_TRANSFORMS', UPGRADE_TRANSFORMS):
+            answer_store.upgrade(1, schema)
+
+        upgrade_0.assert_not_called(answer_store, schema)
+        upgrade_1.assert_called_once_with(answer_store, schema)
+        upgrade_2.assert_called_once_with(answer_store, schema)
 
     def test_remove_all_answers(self):
         answer_1 = Answer(

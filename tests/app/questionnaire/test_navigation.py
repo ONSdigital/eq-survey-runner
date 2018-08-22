@@ -370,6 +370,7 @@ class TestNavigation(AppContextTestCase):
         answer_1 = Answer(
             value=2,
             group_instance=0,
+            group_instance_id='group-1-0',
             answer_id='extra-cover-answer',
             answer_instance=0
 
@@ -377,24 +378,28 @@ class TestNavigation(AppContextTestCase):
         answer_2 = Answer(
             value='1',
             group_instance=0,
+            group_instance_id='group-1-0',
             answer_id='extra-cover-items-answer',
             answer_instance=0
         )
         answer_3 = Answer(
             value='Yes',
             group_instance=0,
+            group_instance_id='group-1-0',
             answer_id='extra-cover-items-radio-answer',
             answer_instance=0
         )
         answer_4 = Answer(
             value='2',
             group_instance=1,
+            group_instance_id='group-1-1',
             answer_id='extra-cover-items-answer',
             answer_instance=0
         )
         answer_5 = Answer(
             value='Yes',
             group_instance=1,
+            group_instance_id='group-1-1',
             answer_id='extra-cover-items-radio-answer',
             answer_instance=0
         )
@@ -631,6 +636,7 @@ class TestNavigation(AppContextTestCase):
         answer_1 = Answer(
             value='Contents',
             group_instance=0,
+            group_instance_id='group-0',
             answer_instance=0,
             answer_id='insurance-type-answer'
         )
@@ -645,6 +651,7 @@ class TestNavigation(AppContextTestCase):
         change_answer = Answer(
             value='Buildings',
             group_instance=0,
+            group_instance_id='group-0',
             answer_instance=0,
             answer_id='insurance-type-answer'
         )

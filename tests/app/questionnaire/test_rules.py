@@ -460,7 +460,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         # Then
         self.assertFalse(goto)
 
-    def test_should_repeat_for_answer_until(self):
+    def test_should_repeat_until(self):
         questionnaire = {
             'survey_id': '021',
             'data_version': '0.0.1',
@@ -506,13 +506,13 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         current_path = [Location('group-1', 0, 'block-1')]
         answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
 
-        self.assertEqual(evaluate_repeat(repeat, answer_store, answer_on_path), 1)
+        self.assertEqual(evaluate_repeat(schema, repeat, answer_store, answer_on_path), 1)
 
-        answer_store.add(Answer(answer_id='my_answer', value='Not Done', group_instance=0))
-        self.assertEqual(evaluate_repeat(repeat, answer_store, answer_on_path), 2)
+        answer_store.add(Answer(answer_id='my_answer', value='Not Done', group_instance=0, group_instance_id='group-1-0'))
+        self.assertEqual(evaluate_repeat(schema, repeat, answer_store, answer_on_path), 2)
 
-        answer_store.add(Answer(answer_id='my_answer', value='Done', group_instance=1))
-        self.assertEqual(evaluate_repeat(repeat, answer_store, answer_on_path), 2)
+        answer_store.add(Answer(answer_id='my_answer', value='Done', group_instance=1, group_instance_id='group-1-1'))
+        self.assertEqual(evaluate_repeat(schema, repeat, answer_store, answer_on_path), 2)
 
     def test_should_repeat_for_answer_answer_value(self):
         questionnaire = {
@@ -556,7 +556,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
+        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 3)
 
@@ -603,7 +603,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
+        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 2)
 
@@ -650,9 +650,56 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
+        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 1)
+
+    def test_should_repeat_for_group(self):
+        questionnaire = {
+            'survey_id': '021',
+            'data_version': '0.0.1',
+            'sections': [{
+                'id': 'section1',
+                'groups': [
+                    {
+                        'id': 'group-1',
+                        'blocks': [
+                            {
+                                'id': 'block-1',
+                                'questions': [{
+                                    'id': 'question-2',
+                                    'answers': [
+                                        {
+                                            'id': 'my_answer',
+                                            'type': 'TextField'
+                                        }
+                                    ]
+                                }]
+                            }
+                        ]
+                    }
+                ]
+            }]
+        }
+
+        schema = QuestionnaireSchema(questionnaire)
+
+        # Given
+        repeat = {
+            'group_ids': ['group-1'],
+            'type': 'group'
+        }
+        answer_store = AnswerStore({})
+        answer_store.add(Answer(answer_id='my_answer', group_instance_id='group-1-0', value='3'))
+        answer_store.add(Answer(answer_id='my_answer', group_instance_id='group-1-1', value='4'))
+
+        current_path = [Location('group-1', 0, 'block-1')]
+
+        # When
+        answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
+        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
+
+        self.assertEqual(number_of_repeats, 2)
 
     def test_should_minus_one_from_maximum_repeats(self):
         questionnaire = {
@@ -697,7 +744,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
+        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 24)
 
@@ -792,11 +839,13 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         answer_store.add(Answer(
             answer_id=answer_group_id,
             group_instance=0,
+            group_instance_id='group-1-0',
             value=10,
         ))
         answer_store.add(Answer(
             answer_id=answer_group_id,
             group_instance=1,
+            group_instance_id='group-1-1',
             value=20,
         ))
 

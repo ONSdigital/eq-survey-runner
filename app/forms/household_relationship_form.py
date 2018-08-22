@@ -56,7 +56,7 @@ def build_relationship_choices(answer_store, group_instance):  # pylint: disable
     return choices
 
 
-def serialise_relationship_answers(answer_id, listfield_data, group_instance):
+def serialise_relationship_answers(answer_id, listfield_data, group_instance, group_instance_id):
     answers = []
 
     for index, listfield_value in enumerate(listfield_data):
@@ -64,6 +64,7 @@ def serialise_relationship_answers(answer_id, listfield_data, group_instance):
             answer_id=answer_id,
             answer_instance=index,
             group_instance=group_instance,
+            group_instance_id=group_instance_id,
             value=listfield_value,
         )
         answers.append(answer)
@@ -83,7 +84,7 @@ def deserialise_relationship_answers(answers):
     return relationships
 
 
-def generate_relationship_form(schema, block_json, relationship_choices, data, group_instance):
+def generate_relationship_form(schema, block_json, relationship_choices, data, group_instance, group_instance_id):
 
     answer = schema.get_answers_for_block(block_json['id'])[0]
 
@@ -112,7 +113,7 @@ def generate_relationship_form(schema, block_json, relationship_choices, data, g
             """
             list_field = getattr(self, answer['id'])
 
-            return serialise_relationship_answers(answer['id'], list_field.data, group_instance)
+            return serialise_relationship_answers(answer['id'], list_field.data, group_instance, group_instance_id)
 
     choices = [('', 'Select relationship')] + build_choices(answer['options'])
 

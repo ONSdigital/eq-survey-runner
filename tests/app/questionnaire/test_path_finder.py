@@ -637,12 +637,14 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         answer_2 = Answer(
             group_instance=0,
+            group_instance_id='group-0',
             answer_id='conditional-answer',
             value='Age and Shoe Size'
         )
 
         answer_3 = Answer(
             group_instance=1,
+            group_instance_id='group-1',
             answer_id='conditional-answer',
             value='Shoe Size Only'
         )
@@ -674,12 +676,12 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answer_store = AnswerStore()
 
         # Set up some first names
-        answer_store.add(Answer(answer_id='first-name', value='aaa', group_instance=0))
-        answer_store.add(Answer(answer_id='first-name', value='bbb', group_instance=1))
-        answer_store.add(Answer(answer_id='first-name', value='ccc', group_instance=2))
+        answer_store.add(Answer(answer_id='first-name', value='aaa', group_instance=0, group_instance_id='group-1-0'))
+        answer_store.add(Answer(answer_id='first-name', value='bbb', group_instance=1, group_instance_id='group-1-1'))
+        answer_store.add(Answer(answer_id='first-name', value='ccc', group_instance=2, group_instance_id='group-1-2'))
 
         # Set up the independent answer
-        answer_store.add(Answer(answer_id='an-independent-answer', value=independent_answer, group_instance=0))
+        answer_store.add(Answer(answer_id='an-independent-answer', value=independent_answer, group_instance=0, group_instance_id='group-1-0'))
 
         path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
 
@@ -712,12 +714,12 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answer_store = AnswerStore()
 
         # Set up some first names
-        answer_store.add(Answer(answer_id='first-name', value='aaa', group_instance=0))
-        answer_store.add(Answer(answer_id='first-name', value='bbb', group_instance=1))
-        answer_store.add(Answer(answer_id='first-name', value='ccc', group_instance=2))
+        answer_store.add(Answer(answer_id='first-name', value='aaa', group_instance=0, group_instance_id='group-1-0'))
+        answer_store.add(Answer(answer_id='first-name', value='bbb', group_instance=1, group_instance_id='group-1-1'))
+        answer_store.add(Answer(answer_id='first-name', value='ccc', group_instance=2, group_instance_id='group-1-2'))
 
         # Set up the independent answer
-        answer_store.add(Answer(answer_id='an-independent-answer', value=independent_answer, group_instance=0))
+        answer_store.add(Answer(answer_id='an-independent-answer', value=independent_answer, group_instance=0, group_instance_id='group-1-0'))
 
         # When
         with patch('app.questionnaire.path_finder.evaluate_skip_conditions', return_value=False):
@@ -760,17 +762,17 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
                 # Set up some first names
 
-                answer_store.add(Answer(answer_id='first-name', value='aaa', group_instance=0))
-                answer_store.add(Answer(answer_id='first-name', value='bbb', group_instance=1))
-                answer_store.add(Answer(answer_id='first-name', value='ccc', group_instance=2))
-                answer_store.add(Answer(answer_id='first-name', value='ddd', group_instance=3))
+                answer_store.add(Answer(answer_id='first-name', value='aaa', group_instance=0, group_instance_id='group-1-0'))
+                answer_store.add(Answer(answer_id='first-name', value='bbb', group_instance=1, group_instance_id='group-1-1'))
+                answer_store.add(Answer(answer_id='first-name', value='ccc', group_instance=2, group_instance_id='group-1-2'))
+                answer_store.add(Answer(answer_id='first-name', value='ddd', group_instance=3, group_instance_id='group-1-3'))
 
                 # Now set a date of birth for the two group instances
 
                 answer_store.add(Answer(answer_id='date-of-birth-answer', value='01-01-1980',
-                                        group_instance=first_group_instance))
+                                        group_instance=first_group_instance, group_instance_id='group-1-{}'.format(first_group_instance)))
                 answer_store.add(Answer(answer_id='date-of-birth-answer', value='01-01-1980',
-                                        group_instance=second_group_instance))
+                                        group_instance=second_group_instance, group_instance_id='group-1-{}'.format(second_group_instance)))
 
                 path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
 
@@ -795,6 +797,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         for i in range(50):
             answers.add(Answer(
                 group_instance=i,
+                group_instance_id='group-1-{}'.format(i),
                 answer_id='conditional-answer',
                 value='Shoe Size Only'
             ))

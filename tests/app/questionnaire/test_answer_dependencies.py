@@ -1,6 +1,6 @@
 import unittest
 from app.questionnaire.answer_dependencies import AnswerDependencies
-from app.questionnaire.answer_dependencies import get_dependencies
+from app.questionnaire.answer_dependencies import get_answer_dependencies
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 
 
@@ -109,7 +109,7 @@ class TestGetDependencies(unittest.TestCase):
 
         schema = QuestionnaireSchema(survey_json)   # schema uses a dependencies builder, using an external one to make tests obvious
 
-        dependencies = get_dependencies(schema)
+        dependencies = get_answer_dependencies(schema)
 
         self.assertEqual(len(dependencies), 2)
         self.assertEqual(dependencies['dependency1'], {'set-minimum'})
@@ -167,7 +167,7 @@ class TestGetDependencies(unittest.TestCase):
 
         schema = QuestionnaireSchema(survey_json)
 
-        dependencies = get_dependencies(schema)
+        dependencies = get_answer_dependencies(schema)
 
         self.assertEqual(len(dependencies), 2)
         self.assertEqual(dependencies['dependency1'], {'set-minimum'})
@@ -239,7 +239,7 @@ class TestGetDependencies(unittest.TestCase):
         }
         schema = QuestionnaireSchema(survey_json)
 
-        dependencies = get_dependencies(schema)
+        dependencies = get_answer_dependencies(schema)
 
         self.assertEqual(len(dependencies), 1)
         self.assertEqual(dependencies['total-answer'], {'breakdown-1', 'breakdown-2', 'breakdown-3', 'breakdown-4'})
@@ -307,7 +307,7 @@ class TestGetDependencies(unittest.TestCase):
 
         schema = QuestionnaireSchema(survey_json)
 
-        dependencies = get_dependencies(schema)
+        dependencies = get_answer_dependencies(schema)
 
         self.assertEqual(len(dependencies), 3)
         self.assertEqual(dependencies['behalf-of-answer1'], {'gender-answer'})
