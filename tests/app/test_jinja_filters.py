@@ -18,7 +18,7 @@ from app.jinja_filters import (
     calculate_years_difference, get_current_date, as_london_tz, max_value,
     min_value, get_question_title, get_answer_label,
     format_duration, calculate_offset_from_weekday_in_last_whole_week, format_date_custom,
-    format_date_range_no_repeated_month_year)
+    format_date_range_no_repeated_month_year, format_repeating_summary)
 from tests.app.app_context_test_case import AppContextTestCase
 
 
@@ -831,3 +831,31 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
                     format_date_range_no_repeated_month_year(self.autoescape_context, *case[0:3]),
                     "<span class='date'>{}</span> to <span class='date'>{}</span>".format(case[3], case[4])
                 )
+
+    @patch('app.jinja_filters.format_unordered_list')
+    def test_format_repeated_summaries_unformatted(self, patched_format): # pylint: disable=no-self-use
+
+        test_cases = [
+            # (input list, expected output)
+            ([['John', 'Smith'], [['Jane', 'Sarah'], ['Smith', 'Smythe']]], ['John Smith', 'Jane Smith', 'Sarah Smythe']),
+            ([['John', 'Smith']], ['John Smith']),
+            ([['John', 'Smith'], ['Andy', 'Smith'], ['David', 'Smith']], ['John Smith', 'Andy Smith', 'David Smith']),
+            ([[['Jane', 'Sarah'], ['Smith', 'Smith']]], ['Jane Smith', 'Sarah Smith']),
+            ([[['David', 'Sarah'], ['Smith', 'Smith']]], ['David Smith', 'Sarah Smith']),
+            ([[['David', 'Sarah'], ['', 'Smith']]], ['David', 'Sarah Smith']),
+            ([['John', 'Smith'], [[], []]], ['John Smith'])
+        ]
+
+        for case in test_cases:
+            format_repeating_summary(None, case[0])
+            # Format unordered list takes a list of lists
+            patched_format.assert_called_with(None, [[Markup(x) for x in case[1]]])
+
+    def test_format_repeated_summaries_no_input(self):
+
+        self.assertEqual('', format_repeating_summary(None, []))
+
+    def test_format_repeated_summaries_delimiters(self):
+        self.autoescape_context = Mock(autoescape=True)
+        output = format_repeating_summary(self.autoescape_context, [['', '51 Testing Gardens', '', 'Bristol', 'BS9 1AW']], delimiter=', ')
+        self.assertEqual(output, '<ul><li>51 Testing Gardens, Bristol, BS9 1AW</li></ul>')
