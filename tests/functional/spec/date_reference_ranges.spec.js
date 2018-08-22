@@ -32,7 +32,7 @@ describe('Reference Date Range Checks', function() {
 
           // Matches `between Friday 24 August 2018 to Saturday 25 September 2019`. The day of the month can be 1 or two characters
           // In this case, the month and the year can be ommitted if they are both the same in the range.
-          .getText(DateRangeBlockPage.questionText()).should.eventually.match(new RegExp('between \\d(?:\\d)?(?:[a-zA-Z ]+)?(?:[\\d ]{4})? to \\d(?:\\d)? \\w+ \\d{4} did'))
+          .getText(DateRangeBlockPage.questionText()).should.eventually.match(new RegExp('between \\d(?:\\d)?(?:[a-zA-Z ]+)?(?:[\\d ]{4})? to \\d(?:\\d)? \\w+ \\d{4} did'));
 
 
         });
