@@ -75,27 +75,19 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
 
             # Then
             self.assertEqual(len(answer_object['data']), 4)
-            self.assertEqual(answer_object['data'][0]['group_id'], 'personal details')
             self.assertEqual(answer_object['data'][0]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][0]['block_id'], 'about you')
             self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
             self.assertEqual(answer_object['data'][0]['value'], 'Joe Bloggs')
 
-            self.assertEqual(answer_object['data'][1]['group_id'], 'personal details')
             self.assertEqual(answer_object['data'][1]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][1]['block_id'], 'about you')
             self.assertEqual(answer_object['data'][1]['answer_instance'], 1)
             self.assertEqual(answer_object['data'][1]['value'], 'Fred Bloggs')
 
-            self.assertEqual(answer_object['data'][2]['group_id'], 'household')
             self.assertEqual(answer_object['data'][2]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][2]['block_id'], 'where you live')
             self.assertEqual(answer_object['data'][2]['answer_instance'], 0)
             self.assertEqual(answer_object['data'][2]['value'], '62 Somewhere')
 
-            self.assertEqual(answer_object['data'][3]['group_id'], 'household')
             self.assertEqual(answer_object['data'][3]['group_instance'], 1)
-            self.assertEqual(answer_object['data'][3]['block_id'], 'where you live')
             self.assertEqual(answer_object['data'][3]['answer_instance'], 0)
             self.assertEqual(answer_object['data'][3]['value'], '63 Somewhere')
 
@@ -136,9 +128,7 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
-            self.assertEqual(answer_object['data'][0]['group_id'], 'favourite-food')
             self.assertEqual(answer_object['data'][0]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][0]['block_id'], 'crisps')
             self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
             self.assertEqual(answer_object['data'][0]['value'], ['Ready salted', 'Sweet chilli'])
 
@@ -175,8 +165,6 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 1)
             self.assertEqual(answer_object['data'][0]['value'], 'Coffee')
-            self.assertEqual(answer_object['data'][0]['group_id'], 'radio-group')
-            self.assertEqual(answer_object['data'][0]['block_id'], 'radio-block')
             self.assertEqual(answer_object['data'][0]['group_instance'], 0)
             self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
@@ -203,8 +191,6 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 1)
             self.assertEqual(answer_object['data'][0]['value'], 1.755)
-            self.assertEqual(answer_object['data'][0]['group_id'], 'number-group')
-            self.assertEqual(answer_object['data'][0]['block_id'], 'number-block')
             self.assertEqual(answer_object['data'][0]['group_instance'], 0)
             self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
@@ -231,8 +217,6 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 1)
             self.assertEqual(answer_object['data'][0]['value'], 99)
-            self.assertEqual(answer_object['data'][0]['group_id'], 'percentage-group')
-            self.assertEqual(answer_object['data'][0]['block_id'], 'percentage-block')
             self.assertEqual(answer_object['data'][0]['group_instance'], 0)
             self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
@@ -259,8 +243,6 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 1)
             self.assertEqual(answer_object['data'][0]['value'], 'This is an example text!')
-            self.assertEqual(answer_object['data'][0]['group_id'], 'textarea-group')
-            self.assertEqual(answer_object['data'][0]['block_id'], 'textarea-block')
             self.assertEqual(answer_object['data'][0]['group_instance'], 0)
             self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
@@ -287,8 +269,6 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 1)
             self.assertEqual(answer_object['data'][0]['value'], 100)
-            self.assertEqual(answer_object['data'][0]['group_id'], 'currency-group')
-            self.assertEqual(answer_object['data'][0]['block_id'], 'currency-block')
             self.assertEqual(answer_object['data'][0]['group_instance'], 0)
             self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
@@ -329,8 +309,6 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 1)
             self.assertEqual(answer_object['data'][0]['value'], 'Rugby is better!')
-            self.assertEqual(answer_object['data'][0]['group_id'], 'dropdown-group')
-            self.assertEqual(answer_object['data'][0]['block_id'], 'dropdown-block')
             self.assertEqual(answer_object['data'][0]['group_instance'], 0)
             self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
@@ -367,14 +345,10 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 2)
             self.assertEqual(answer_object['data'][0]['value'], '01-01-1990')
-            self.assertEqual(answer_object['data'][0]['group_id'], 'date-group')
-            self.assertEqual(answer_object['data'][0]['block_id'], 'date-block')
             self.assertEqual(answer_object['data'][0]['group_instance'], 0)
             self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
             self.assertEqual(answer_object['data'][1]['value'], '01-1990')
-            self.assertEqual(answer_object['data'][1]['group_id'], 'date-group')
-            self.assertEqual(answer_object['data'][1]['block_id'], 'date-block')
             self.assertEqual(answer_object['data'][1]['group_instance'], 0)
             self.assertEqual(answer_object['data'][1]['answer_instance'], 0)
 
@@ -401,8 +375,6 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 1)
             self.assertEqual(answer_object['data'][0]['value'], 10)
-            self.assertEqual(answer_object['data'][0]['group_id'], 'unit-group')
-            self.assertEqual(answer_object['data'][0]['block_id'], 'unit-block')
             self.assertEqual(answer_object['data'][0]['group_instance'], 0)
             self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
@@ -449,19 +421,14 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 3)
             self.assertEqual(answer_object['data'][0]['value'], 'Unrelated')
-            self.assertEqual(answer_object['data'][0]['group_id'], 'relationship-group')
-            self.assertEqual(answer_object['data'][0]['block_id'], 'relationship-block')
+
             self.assertEqual(answer_object['data'][0]['group_instance'], 0)
             self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
             self.assertEqual(answer_object['data'][1]['value'], 'Partner')
-            self.assertEqual(answer_object['data'][1]['group_id'], 'relationship-group')
-            self.assertEqual(answer_object['data'][1]['block_id'], 'relationship-block')
             self.assertEqual(answer_object['data'][1]['group_instance'], 0)
             self.assertEqual(answer_object['data'][1]['answer_instance'], 1)
 
             self.assertEqual(answer_object['data'][2]['value'], 'Husband or wife')
-            self.assertEqual(answer_object['data'][2]['group_id'], 'relationship-group')
-            self.assertEqual(answer_object['data'][2]['block_id'], 'relationship-block')
             self.assertEqual(answer_object['data'][2]['group_instance'], 0)
             self.assertEqual(answer_object['data'][2]['answer_instance'], 2)

@@ -330,7 +330,7 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_title_when_dependencies_are_added_to_dependencies(self):
         schema = load_schema_from_params('test', 'titles')
-        dependencies = schema.dependencies['behalf-of-answer']
+        dependencies = schema.answer_dependencies['behalf-of-answer']
 
         self.assertIn('gender-answer', dependencies)
         self.assertIn('age-answer', dependencies)

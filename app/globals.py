@@ -10,6 +10,7 @@ logger = get_logger()
 
 def get_questionnaire_store(user_id, user_ik):
     from app.storage.encrypted_questionnaire_storage import EncryptedQuestionnaireStorage
+    from app.utilities.schema import load_schema_from_metadata
 
     # Sets up a single QuestionnaireStore instance per request.
     store = g.get('_questionnaire_store')
@@ -17,6 +18,10 @@ def get_questionnaire_store(user_id, user_ik):
         pepper = current_app.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
         storage = EncryptedQuestionnaireStorage(user_id, user_ik, pepper)
         store = g._questionnaire_store = QuestionnaireStore(storage)
+
+    if store.metadata:  # When creating the questionnaire storage, there is no metadata for upgrading
+        schema = load_schema_from_metadata(store.metadata)
+        store.ensure_latest_version(schema)
 
     return store
 
@@ -61,11 +66,6 @@ def get_collection_metadata(user):
 
 def get_answer_store(user):
     questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
-
-    if questionnaire_store.version < questionnaire_store.get_latest_version_number():
-        questionnaire_store.answer_store.upgrade(questionnaire_store.version, g.schema)
-        questionnaire_store.version = questionnaire_store.get_latest_version_number()
-
     return questionnaire_store.answer_store
 
 

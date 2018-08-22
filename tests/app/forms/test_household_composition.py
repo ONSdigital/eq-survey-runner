@@ -246,31 +246,37 @@ class TestHouseholdCompositionForm(AppContextTestCase):
 
             expected_answers = [
                 {
+                    'group_instance_id': None,
                     'group_instance': 0,
                     'answer_id': 'first-name',
                     'answer_instance': 0,
                     'value': 'Joe'
                 }, {
+                    'group_instance_id': None,
                     'group_instance': 0,
                     'answer_id': 'middle-names',
                     'answer_instance': 0,
                     'value': ''
                 }, {
+                    'group_instance_id': None,
                     'group_instance': 0,
                     'answer_id': 'last-name',
                     'answer_instance': 0,
                     'value': 'Bloggs'
                 }, {
+                    'group_instance_id': None,
                     'group_instance': 0,
                     'answer_id': 'first-name',
                     'answer_instance': 1,
                     'value': 'Bob'
                 }, {
+                    'group_instance_id': None,
                     'group_instance': 0,
                     'answer_id': 'middle-names',
                     'answer_instance': 1,
                     'value': ''
                 }, {
+                    'group_instance_id': None,
                     'group_instance': 0,
                     'answer_id': 'last-name',
                     'answer_instance': 1,

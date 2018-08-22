@@ -20,6 +20,7 @@ from app.globals import (get_answer_store, get_completed_blocks, get_metadata, g
                          get_collection_metadata)
 from app.helpers.form_helper import post_form_for_location
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required
+from app.helpers.schema_helpers import get_group_instance_id
 from app.helpers.schema_helpers import with_schema
 from app.helpers.session_helpers import with_answer_store, with_metadata, with_collection_metadata
 from app.helpers.template_helper import (with_session_timeout, with_metadata_context, with_analytics,
@@ -170,7 +171,7 @@ def post_block(routing_path, schema, metadata, collection_metadata, answer_store
 
     block = _get_block_json(current_location, schema, answer_store, metadata)
 
-    schema_context = _get_schema_context(routing_path, current_location.group_instance, metadata, answer_store, schema)
+    schema_context = _get_schema_context(routing_path, current_location, metadata, answer_store, schema)
 
     rendered_block = renderer.render(block, **schema_context)
 
@@ -308,7 +309,7 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
 
             routing_path = PathFinder(schema, answer_store, metadata, []).get_full_routing_path()
 
-            schema_context = _get_schema_context(routing_path, 0, metadata, answer_store, schema)
+            schema_context = _get_schema_context(routing_path, None, metadata, answer_store, schema)
             rendered_schema = renderer.render(schema.json, **schema_context)
             summary_rendered_context = build_summary_rendering_context(schema, rendered_schema['sections'], answer_store, metadata)
 
@@ -557,7 +558,8 @@ def remove_empty_household_members_from_answer_store(answer_store, schema):
 
 def _update_questionnaire_store(current_location, form, schema):
     questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-    if current_location.block_id in ['relationships', 'household-relationships']:
+
+    if schema.block_has_question_type(current_location.block_id, 'Relationship'):
         update_questionnaire_store_with_answer_data(questionnaire_store, current_location,
                                                     form.serialise(), schema)
     else:
@@ -579,11 +581,12 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
             if answer_value is not None:
                 answer = Answer(answer_id=answer_id,
                                 value=answer_value,
+                                group_instance_id=get_group_instance_id(schema, questionnaire_store.answer_store, location),
                                 group_instance=location.group_instance)
 
                 latest_answer_store_hash = questionnaire_store.answer_store.get_hash()
                 questionnaire_store.answer_store.add_or_update(answer)
-                if latest_answer_store_hash != questionnaire_store.answer_store.get_hash() and schema.dependencies[answer_id]:
+                if latest_answer_store_hash != questionnaire_store.answer_store.get_hash() and schema.answer_dependencies[answer_id]:
                     _remove_dependent_answers_from_completed_blocks(answer_id, location.group_instance, questionnaire_store, schema)
             else:
                 _remove_answer_from_questionnaire_store(
@@ -606,7 +609,7 @@ def _remove_dependent_answers_from_completed_blocks(answer_id, group_instance, q
     :return: None
     """
     answer_in_repeating_group = schema.answer_is_in_repeating_group(answer_id)
-    dependencies = schema.dependencies[answer_id]
+    dependencies = schema.answer_dependencies[answer_id]
 
     for dependency in dependencies:
         dependency_in_repeating_group = schema.answer_is_in_repeating_group(dependency)
@@ -636,6 +639,7 @@ def update_questionnaire_store_with_answer_data(questionnaire_store, location, a
     survey_answer_ids = schema.get_answer_ids_for_block(location.block_id)
 
     for answer in [a for a in answers if a.answer_id in survey_answer_ids]:
+        answer.group_instance_id = get_group_instance_id(schema, questionnaire_store.answer_store, location, answer.answer_instance)
         questionnaire_store.answer_store.add_or_update(answer)
 
     if location not in questionnaire_store.completed_blocks:
@@ -682,7 +686,7 @@ def _redirect_to_location(collection_id, eq_id, form_type, location):
 def _get_context(full_routing_path, block, current_location, schema, form=None):
     metadata = get_metadata(current_user)
     answer_store = get_answer_store(current_user)
-    schema_context = _get_schema_context(full_routing_path, current_location.group_instance, metadata, answer_store, schema)
+    schema_context = _get_schema_context(full_routing_path, current_location, metadata, answer_store, schema)
     rendered_block = renderer.render(block, **schema_context)
 
     return build_view_context(block['type'], metadata, schema, answer_store, schema_context, rendered_block, current_location, form=form)
@@ -693,13 +697,15 @@ def _get_block_json(current_location, schema, answer_store, metadata):
     return _evaluate_skip_conditions(block_json, current_location, schema, answer_store, metadata)
 
 
-def _get_schema_context(full_routing_path, group_instance, metadata, answer_store, schema):
+def _get_schema_context(full_routing_path, location, metadata, answer_store, schema):
     answer_ids_on_path = get_answer_ids_on_routing_path(schema, full_routing_path)
+    group_instance_id = get_group_instance_id(schema, answer_store, location) if location else None
 
     return build_schema_context(metadata=metadata,
                                 schema=schema,
                                 answer_store=answer_store,
-                                group_instance=group_instance,
+                                group_instance=location.group_instance if location else 0,
+                                group_instance_id=group_instance_id,
                                 answer_ids_on_path=answer_ids_on_path)
 
 

@@ -37,7 +37,7 @@ class AnswerDependencies:
             self.answer_dependencies[key] |= dependencies
 
 
-def get_dependencies(schema):
+def get_answer_dependencies(schema):
     """gets the all the answer dependencies for a schema by walking questions and answers
     """
     dependencies = _get_answer_level_dependencies(schema)

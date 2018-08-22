@@ -107,7 +107,7 @@ def evaluate_goto(goto_rule, schema, metadata, answer_store, group_instance):
     return True
 
 
-def evaluate_repeat(repeat_rule, answer_store, answer_ids_on_path):
+def evaluate_repeat(schema, repeat_rule, answer_store, answer_ids_on_path):
     """
     Returns the number of times repetition should occur based on answers
     """
@@ -116,11 +116,18 @@ def evaluate_repeat(repeat_rule, answer_store, answer_ids_on_path):
         answers = list(answer_store.filter(answer_ids=[when['id']]))
         stop = bool(answers and evaluate_rule(when, answers[-1]['value']))
         no_of_repeats = len(answers) + (0 if stop else 1)
+    elif repeat_rule['type'] == 'group':
+        group_instances = set()
+        for group_id in repeat_rule['group_ids']:
+            answer_ids_in_group = schema.get_answer_ids_for_group(group_id)
+            group_instances |= {a['group_instance_id'] for a in answer_store.filter(answer_ids=answer_ids_in_group)}
+
+        no_of_repeats = len(group_instances)
     else:
         repeat_functions = {
             'answer_value': _get_answer_value,
-            'answer_count': lambda f: _get_answer_count(f, repeat_rule),
-            'answer_count_minus_one': lambda f: min(_get_answer_count_minus_one(f), MAX_REPEATS - 1),
+            'answer_count': len,
+            'answer_count_minus_one': _get_answer_count_minus_one,
         }
 
         repeat_index = repeat_rule['answer_id']
@@ -145,11 +152,7 @@ def _get_answer_value(filtered_answers):
 
 
 def _get_answer_count_minus_one(filtered_answers):
-    return _get_answer_count(filtered_answers, {'offset': -1})
-
-
-def _get_answer_count(filtered_answers, repeat_rule):
-    return max(len(filtered_answers) + repeat_rule.get('offset', 0), 0)
+    return min(max(len(filtered_answers) - 1, 0), MAX_REPEATS - 1)
 
 
 def evaluate_skip_conditions(skip_conditions, schema, metadata, answer_store, group_instance=0):
@@ -222,7 +225,7 @@ def get_number_of_repeats(group, schema, routing_path, answer_store):
     if repeating_rule:
         answer_ids_on_path = get_answer_ids_on_routing_path(
             schema, routing_path)
-        return evaluate_repeat(repeating_rule, answer_store, answer_ids_on_path)
+        return evaluate_repeat(schema, repeating_rule, answer_store, answer_ids_on_path)
 
     return 1
 

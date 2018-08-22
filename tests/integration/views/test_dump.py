@@ -1,5 +1,6 @@
 import json
 
+from mock import patch
 from werkzeug.datastructures import MultiDict
 
 from tests.integration.integration_test_case import IntegrationTestCase
@@ -53,7 +54,8 @@ class TestDumpAnswers(IntegrationTestCase):
         self.launchSurvey('test', 'radio_mandatory_with_mandatory_other', roles=['dumper'])
 
         # When I submit an answer
-        self.post(post_data={'radio-mandatory-answer': 'Toast'})
+        with patch('app.helpers.schema_helpers.uuid4', side_effect=range(10)):
+            self.post(post_data={'radio-mandatory-answer': 'Toast'})
 
         # And I attempt to dump the answer store
         self.get('/dump/answers')
@@ -69,12 +71,14 @@ class TestDumpAnswers(IntegrationTestCase):
                     'value': '',
                     'answer_instance': 0,
                     'group_instance': 0,
+                    'group_instance_id': None,
                     'answer_id': 'other-answer-mandatory',
                 },
                 {
                     'value': 'Toast',
                     'answer_instance': 0,
                     'group_instance': 0,
+                    'group_instance_id': None,
                     'answer_id': 'radio-mandatory-answer',
                 }
             ]
@@ -162,7 +166,8 @@ class TestDumpSubmission(IntegrationTestCase):
         self.launchSurvey('test', 'radio_mandatory', roles=['dumper'])
 
         # When I submit an answer
-        self.post(post_data={'radio-mandatory-answer': 'Coffee'})
+        with patch('app.helpers.schema_helpers.uuid4', side_effect=range(10)):
+            self.post(post_data={'radio-mandatory-answer': 'Coffee'})
 
         # And I attempt to dump the submission payload
         self.get('/dump/submission')
@@ -195,6 +200,7 @@ class TestDumpSubmission(IntegrationTestCase):
                         'answer_id': 'radio-mandatory-answer',
                         'answer_instance': 0,
                         'group_instance': 0,
+                        'group_instance_id': None,
                         'value': 'Coffee',
                     },
                 ],
