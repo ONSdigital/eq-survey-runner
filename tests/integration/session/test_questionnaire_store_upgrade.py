@@ -50,7 +50,7 @@ class TestLogin(IntegrationTestCase):
                 'value': 'Han'
             },
             {
-                'answer_id': 'primary-anyone-else',
+                'answer_id': 'repeating-anyone-else',
                 'answer_instance': 0,
                 'group_instance': 0,
                 'value': 'Yes'
@@ -64,7 +64,7 @@ class TestLogin(IntegrationTestCase):
             {
                 'answer_id': 'repeating-anyone-else',
                 'answer_instance': 0,
-                'group_instance': 0,
+                'group_instance': 1,
                 'value': 'Yes'
             },
             {
@@ -76,7 +76,7 @@ class TestLogin(IntegrationTestCase):
             {
                 'answer_id': 'repeating-anyone-else',
                 'answer_instance': 0,
-                'group_instance': 1,
+                'group_instance': 2,
                 'value': 'No'
             }
         ]
@@ -100,13 +100,7 @@ class TestLogin(IntegrationTestCase):
         answers = dumped['answers']
 
         # Then
-        for i in answers:
-            self.assertIn('group_instance_id', i)
-
-        # This survey works out as having pairs of answers which should have
-        # the same `group_instance_id`
         for i in range(0, 6, 2):
-            self.assertEqual(
-                answers[i]['group_instance_id'],
-                answers[i+1]['group_instance_id']
+            self.assertIsNotNone(
+                answers[i]['group_instance_id']
             )

@@ -19,11 +19,13 @@ def with_schema(function):
         ...
     ```
     """
+
     @wraps(function)
     def wrapped_function(*args, **kwargs):
         session_data = get_session_store().session_data
         schema = load_schema_from_session_data(session_data)
         return function(schema, *args, **kwargs)
+
     return wrapped_function
 
 
@@ -37,7 +39,8 @@ def get_group_instance_id(schema, answer_store, location, answer_instance=0):
         return _get_dependent_group_instance(schema, dependent_drivers, answer_store, location.group_instance)
 
     existing_answers = []
-    if location.group_id in schema.get_group_dependencies_group_drivers():
+    if location.group_id in schema.get_group_dependencies_group_drivers() or \
+       location.block_id in schema.get_group_dependencies_group_drivers():
         group_answer_ids = schema.get_answer_ids_for_group(location.group_id)
         existing_answers = answer_store.filter(answer_ids=group_answer_ids, group_instance=location.group_instance)
 
@@ -56,8 +59,12 @@ def _get_dependent_group_instance(schema, dependent_drivers, answer_store, group
     group_instance_ids = []
     for driver_id in dependent_drivers:
         if driver_id in schema.get_group_dependencies_group_drivers():
-            driver_answer_ids = schema.get_answer_ids_for_group(driver_id)
-            group_instance_ids.extend(_get_group_instance_ids_for_group(answer_store, driver_answer_ids))
+            if schema.get_group(driver_id):
+                driver_answer_ids = schema.get_answer_ids_for_group(driver_id)
+                group_instance_ids.extend(_get_group_instance_ids_for_group(answer_store, driver_answer_ids))
+            else:
+                driver_answer_ids = schema.get_answer_ids_for_block(driver_id)
+                group_instance_ids.extend(_get_group_instance_ids_for_group(answer_store, driver_answer_ids))
         if driver_id in schema.get_group_dependencies_block_drivers():
             driver_answer_ids = schema.get_answer_ids_for_block(driver_id)
             group_instance_ids.extend(_get_group_instance_ids_for_block(answer_store, driver_answer_ids))

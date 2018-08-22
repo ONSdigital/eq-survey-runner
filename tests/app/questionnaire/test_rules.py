@@ -337,7 +337,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         }
         answer_store = AnswerStore({})
 
-        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0))
+        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0, None))
 
     def test_go_to_next_question_for_multiple_answers(self):
         # Given
@@ -506,13 +506,13 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         current_path = [Location('group-1', 0, 'block-1')]
         answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
 
-        self.assertEqual(evaluate_repeat(schema, repeat, answer_store, answer_on_path), 1)
+        self.assertEqual(evaluate_repeat(repeat, answer_store, answer_on_path), 1)
 
         answer_store.add(Answer(answer_id='my_answer', value='Not Done', group_instance=0, group_instance_id='group-1-0'))
-        self.assertEqual(evaluate_repeat(schema, repeat, answer_store, answer_on_path), 2)
+        self.assertEqual(evaluate_repeat(repeat, answer_store, answer_on_path), 2)
 
         answer_store.add(Answer(answer_id='my_answer', value='Done', group_instance=1, group_instance_id='group-1-1'))
-        self.assertEqual(evaluate_repeat(schema, repeat, answer_store, answer_on_path), 2)
+        self.assertEqual(evaluate_repeat(repeat, answer_store, answer_on_path), 2)
 
     def test_should_repeat_for_answer_answer_value(self):
         questionnaire = {
@@ -556,7 +556,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
+        number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 3)
 
@@ -603,7 +603,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
+        number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 2)
 
@@ -650,56 +650,9 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
+        number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 1)
-
-    def test_should_repeat_for_group(self):
-        questionnaire = {
-            'survey_id': '021',
-            'data_version': '0.0.1',
-            'sections': [{
-                'id': 'section1',
-                'groups': [
-                    {
-                        'id': 'group-1',
-                        'blocks': [
-                            {
-                                'id': 'block-1',
-                                'questions': [{
-                                    'id': 'question-2',
-                                    'answers': [
-                                        {
-                                            'id': 'my_answer',
-                                            'type': 'TextField'
-                                        }
-                                    ]
-                                }]
-                            }
-                        ]
-                    }
-                ]
-            }]
-        }
-
-        schema = QuestionnaireSchema(questionnaire)
-
-        # Given
-        repeat = {
-            'group_ids': ['group-1'],
-            'type': 'group'
-        }
-        answer_store = AnswerStore({})
-        answer_store.add(Answer(answer_id='my_answer', group_instance_id='group-1-0', value='3'))
-        answer_store.add(Answer(answer_id='my_answer', group_instance_id='group-1-1', value='4'))
-
-        current_path = [Location('group-1', 0, 'block-1')]
-
-        # When
-        answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
-
-        self.assertEqual(number_of_repeats, 2)
 
     def test_should_minus_one_from_maximum_repeats(self):
         questionnaire = {
@@ -744,7 +697,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
+        number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 24)
 
@@ -779,7 +732,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         with self.assertRaises(Exception) as err:
-            evaluate_when_rules(when['when'], get_schema_mock(), None, answer_store, 0)
+            evaluate_when_rules(when['when'], get_schema_mock(), None, answer_store, 0, None)
         self.assertEqual('Multiple answers (2) found evaluating when rule for answer (my_answers)', str(err.exception))
 
     def test_id_when_rule_uses_passed_in_group_instance_if_present(self):  # pylint: disable=no-self-use
@@ -790,8 +743,8 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         answer_store = AnswerStore({})
         with patch('app.questionnaire.rules.get_answer_store_value', return_value=False) as patch_val:
-            evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 3)  # passed in group instance ignored if present in when
-            patch_val.assert_called_with('Some Id', answer_store, 0)
+            evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 3, None)  # passed in group instance ignored if present in when
+            patch_val.assert_called_with('Some Id', answer_store, 0, None)
 
     def test_id_when_rule_answer_count_equal_0(self):
         """Assert that an `answer_count` can be used in a when block and the
@@ -804,7 +757,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         }]
 
         answer_store = AnswerStore({})
-        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0))
+        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0, None))
 
     def test_answer_count_when_rule_equal_1(self):
         """Assert that an `answer_count` can be used in a when block and the
@@ -823,7 +776,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             value=10,
         ))
 
-        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0))
+        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0, None))
 
     def test_answer_count_when_rule_equal_2(self):
         """Assert that an `answer_count` can be used in a when block and the
@@ -849,7 +802,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             value=20,
         ))
 
-        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0))
+        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0, None))
 
     def test_answer_count_when_rule_not_equal(self):  # pylint: disable=no-self-use
         """Assert that an `answer_count` can be used in a when block and the
@@ -862,7 +815,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         }]
         answer_store = AnswerStore({})
 
-        self.assertFalse(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0))
+        self.assertFalse(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0, None))
 
     def test_answer_count_when_rule_id_takes_precident(self):
         """Assert that if somehow, both `id` and `answer_count` are present in a when clause
@@ -882,7 +835,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             value=10,
         ))
 
-        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0))
+        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0, None))
 
 class TestDateRules(AppContextTestCase):
 

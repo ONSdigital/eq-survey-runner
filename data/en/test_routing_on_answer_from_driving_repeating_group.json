@@ -3,9 +3,10 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.2",
     "survey_id": "023",
-    "title": "Test Repeat Until",
+    "title": "Test Skipping from repeated group",
     "description": "",
     "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
     "metadata": [{
             "name": "user_id",
             "validator": "string"
@@ -25,24 +26,48 @@
                 "id": "primary-group",
                 "title": "Your Details",
                 "blocks": [{
-                    "type": "Question",
-                    "id": "primary-name-block",
-                    "title": "",
-                    "description": "",
-                    "questions": [{
+                        "type": "Question",
+                        "id": "primary-name-block",
+                        "title": "",
                         "description": "",
-                        "id": "primary-name-question",
-                        "title": "Please enter your name",
-                        "type": "General",
-                        "answers": [{
-                            "id": "primary-name",
+                        "questions": [{
                             "description": "",
-                            "label": "First Name",
-                            "mandatory": true,
-                            "type": "TextField"
+                            "id": "primary-name-question",
+                            "title": "Please enter your name",
+                            "type": "General",
+                            "answers": [{
+                                "id": "primary-name",
+                                "description": "",
+                                "label": "First Name",
+                                "mandatory": true,
+                                "type": "TextField"
+                            }]
                         }]
-                    }]
-                }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "primary-live-here-block",
+                        "questions": [{
+                            "type": "General",
+                            "id": "primary-live-here-question",
+                            "title": "Do you live here?",
+                            "answers": [{
+                                "type": "Radio",
+                                "id": "primary-live-here",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }]
+                    }
+                ]
             },
             {
                 "id": "repeating-group",
@@ -111,6 +136,13 @@
             {
                 "id": "sex-group",
                 "title": "Household Member Details",
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "primary-live-here",
+                        "condition": "equals",
+                        "value": "No"
+                    }]
+                }],
                 "routing_rules": [{
                     "repeat": {
                         "type": "answer_count",

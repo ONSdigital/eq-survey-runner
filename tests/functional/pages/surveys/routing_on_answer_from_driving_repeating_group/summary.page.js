@@ -11,6 +11,10 @@ class SummaryPage extends QuestionPage {
 
   primaryNameEdit() { return '[data-qa="primary-name-edit"]'; }
 
+  primaryLiveHere() { return '#primary-live-here-answer'; }
+
+  primaryLiveHereEdit() { return '[data-qa="primary-live-here-edit"]'; }
+
   primaryGroupTitle() { return '#primary-group'; }
 
   repeatingAnyoneElse() { return '#repeating-anyone-else-answer'; }

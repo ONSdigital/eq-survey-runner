@@ -64,15 +64,39 @@ def get_group_dependencies(schema):
         if group.get('routing_rules') and not _group_has_relationship_type(schema, group['blocks']):
             for routing_rule in group['routing_rules']:
                 if _routing_rule_has_repeat(routing_rule):
-                    if 'group_ids' in routing_rule['repeat']:
-                        dependencies.update(
-                            _get_dependency_drivers_from_group_ids(group['id'],
-                                                                   routing_rule['repeat']['group_ids']))
-                    else:
-                        dependencies.update(
-                            _get_dependency_driver_from_answer_id(schema,
-                                                                  group['id'],
-                                                                  routing_rule['repeat']['answer_id']))
+                    dependencies.update(_build_routing_dependencies(schema, routing_rule, group['id']))
+                    dependencies.update(_build_skip_condition_dependencies(schema, group))
+
+    return dependencies
+
+
+def _build_routing_dependencies(schema, routing_rule, group_id):
+    if 'group_ids' in routing_rule['repeat']:
+        return _get_dependency_drivers_from_group_ids(group_id,
+                                                      routing_rule['repeat']['group_ids'])
+    if 'answer_ids' in routing_rule['repeat']:
+        dependencies = GroupDependencies()
+        for answer_id in routing_rule['repeat']['answer_ids']:
+            dependencies.update(_get_group_dependency_driver_from_answer_id(schema,
+                                                                            group_id,
+                                                                            answer_id))
+        return dependencies
+
+    return _get_dependency_driver_from_answer_id(schema,
+                                                 group_id,
+                                                 routing_rule['repeat']['answer_id'])
+
+
+def _build_skip_condition_dependencies(schema, group):
+    dependencies = GroupDependencies()
+    if group.get('skip_conditions'):
+        for skip_condition in group['skip_conditions']:
+            if 'when' in skip_condition:
+                for when in skip_condition['when']:
+                    if 'id' in when:
+                        dependencies.update(_get_group_dependency_driver_from_answer_id(schema,
+                                                                                        group['id'],
+                                                                                        when['id']))
 
     return dependencies
 
@@ -81,6 +105,15 @@ def _get_dependency_drivers_from_group_ids(dependent_group_id, group_ids):
     dependencies = GroupDependencies()
     for group_id in group_ids:
         dependencies.add(dependent_group_id, group_id, 'group')
+
+    return dependencies
+
+
+def _get_group_dependency_driver_from_answer_id(schema, dependent_group_id, answer_id):
+    dependencies = GroupDependencies()
+    question_id = schema.get_answer(answer_id)['parent_id']
+    block_id = schema.get_question(question_id)['parent_id']
+    dependencies.add(dependent_group_id, block_id, 'group')
 
     return dependencies
 

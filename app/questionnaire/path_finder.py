@@ -1,5 +1,7 @@
 import copy
 from structlog import get_logger
+
+from app.helpers.schema_helpers import get_group_instance_id
 from app.questionnaire.location import Location
 from app.questionnaire.rules import (
     evaluate_goto,
@@ -49,15 +51,19 @@ class PathFinder:
             if not this_location:
                 this_location = Location(group['id'], 0, first_block_in_group)
 
-            if 'skip_conditions' in group:
-                if evaluate_skip_conditions(group['skip_conditions'], self.schema, self.metadata, self.answer_store):
-                    continue
-
             no_of_repeats = get_number_of_repeats(group, self.schema, path, self.answer_store)
 
             first_group_instance_index = None
-            for instance_idx in range(0, no_of_repeats):
-                group_blocks = list(self._build_blocks_for_group(group, instance_idx))
+            for group_instance in range(0, no_of_repeats):
+
+                if 'skip_conditions' in group:
+                    group_instance_id = get_group_instance_id(self.schema, self.answer_store, Location(group['id'], group_instance, first_block_in_group))
+
+                    if evaluate_skip_conditions(group['skip_conditions'], self.schema, self.metadata,
+                                                self.answer_store, group_instance, group_instance_id):
+                        continue
+
+                group_blocks = list(self._build_blocks_for_group(group, group_instance))
                 blocks += group_blocks
 
                 if group_blocks and first_group_instance_index is None:
