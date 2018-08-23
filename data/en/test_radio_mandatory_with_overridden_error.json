@@ -5,7 +5,6 @@
     "survey_id": "0",
     "title": "Radio Mandatory with Overridden Error",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "metadata": [{
         "name": "user_id",
         "validator": "string"

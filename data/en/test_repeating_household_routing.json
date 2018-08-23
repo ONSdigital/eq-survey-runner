@@ -6,7 +6,6 @@
     "title": "Test repeating household routing",
     "description": "Tests a repeating group with alternate paths based on an optional answer",
     "theme": "census",
-    "legal_basis": "Voluntary",
     "eq_id": "1",
     "form_type": "1",
     "metadata": [{

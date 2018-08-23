@@ -6,7 +6,6 @@
     "title": "A Test Schema to test skip conditions in a repeating group",
     "description": "A survey that has an answer in one repeating group being the independent variable for a skip condition on a block in another repeating group ",
     "theme": "default",
-    "legal_basis": "Voluntary",
     "form_type": "1",
     "navigation": {
         "visible": true

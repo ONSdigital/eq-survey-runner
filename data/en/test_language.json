@@ -5,7 +5,6 @@
     "survey_id": "0",
     "title": "English Language Survey",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to demonstrate english language",
     "metadata": [{
         "name": "user_id",

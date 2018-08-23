@@ -6,7 +6,6 @@
     "title": "Durations",
     "description": "A test schema for different durations",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "metadata": [{
         "name": "user_id",
         "validator": "string"

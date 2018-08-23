@@ -5,7 +5,6 @@
     "survey_id": "0",
     "title": "Other input fields",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to test currency input type",
     "messages": {
         "NUMBER_TOO_LARGE": "Number is too large",

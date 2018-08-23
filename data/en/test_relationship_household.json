@@ -6,7 +6,6 @@
     "title": "Household relationship",
     "description": "",
     "theme": "census",
-    "legal_basis": "Voluntary",
     "metadata": [{
         "name": "user_id",
         "validator": "string"

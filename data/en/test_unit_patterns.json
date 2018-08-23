@@ -6,7 +6,6 @@
     "title": "Test Unit Patterns",
     "description": "Tests for localised (UK rendering) measurements.",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "metadata": [{
         "name": "user_id",
         "validator": "string"

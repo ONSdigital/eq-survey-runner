@@ -6,7 +6,6 @@
     "title": "Date formats",
     "description": "A test schema for different date formats",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "variables": {
         "period": "{{ format_conditional_date (answers.period_from, metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers.period_to, metadata['ref_p_end_date'])}}"
     },

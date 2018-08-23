@@ -6,7 +6,6 @@
     "title": "Test schema for routing on multiple selected answers",
     "description": "Test schema for routing on multiple selected answers",
     "theme": "census",
-    "legal_basis": "Voluntary",
     "metadata": [{
         "name": "user_id",
         "validator": "string"

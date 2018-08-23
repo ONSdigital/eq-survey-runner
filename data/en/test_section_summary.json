@@ -6,7 +6,6 @@
     "title": "Section Summary",
     "description": "A questionnaire to test section summaries",
     "theme": "default",
-    "legal_basis": "Voluntary",
     "view_submitted_response": {
         "enabled": true,
         "duration": 9000

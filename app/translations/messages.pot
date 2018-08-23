@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-06 12:50+0100\n"
+"POT-Creation-Date: 2018-08-23 13:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,10 +83,6 @@ msgstr ""
 
 #: app/templates/introduction.html:62
 msgid "Your response is legally required"
-msgstr ""
-
-#: app/templates/introduction.html:63
-msgid "Notice is given under section 1 of the Statistics of Trade Act 1947"
 msgstr ""
 
 #: app/templates/multiple_survey.html:7

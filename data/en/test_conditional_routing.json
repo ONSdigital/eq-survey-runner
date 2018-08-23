@@ -6,7 +6,6 @@
     "title": "Test Conditional Routing",
     "description": "",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "metadata": [{
         "name": "user_id",
         "validator": "string"

@@ -50,9 +50,9 @@
                 {% endfor %}
             {% endif %}
 
-            {%- if legal_basis == 'StatisticsOfTradeAct' -%}
+            {%- if legal_basis -%}
                 <h2 class="neptune u-mb-xs">Your response is legally required</h2>
-                <p class="mars u-mb-m">Notice is given under article 5 of the Statistics of Trade and Employment (Northern Ireland) Order 1988.</p>
+                <p class="mars u-mb-m">{{ legal_basis }}</p>
             {%- endif -%}
 
             {% block start_survey %}

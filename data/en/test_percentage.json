@@ -5,7 +5,6 @@
     "survey_id": "0",
     "title": "Percentage Field Demo",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to test percentage input type",
     "navigation": {
         "visible": true

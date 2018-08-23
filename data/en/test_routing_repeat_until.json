@@ -6,7 +6,6 @@
     "title": "Test Repeat Until",
     "description": "",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "metadata": [{
         "name": "user_id",
         "validator": "string"

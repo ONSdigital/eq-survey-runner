@@ -5,7 +5,6 @@
     "survey_id": "0",
     "title": "Test set skip condition",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to test skip condition set.",
     "messages": {},
     "metadata": [{

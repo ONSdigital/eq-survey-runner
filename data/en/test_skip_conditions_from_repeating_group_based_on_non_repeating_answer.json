@@ -6,7 +6,6 @@
     "title": "A Test Schema to test skip conditions in a non repeating  answer in a repeating group",
     "description": "Tests skip conditions in repeating group when referencing a non repeating answer ",
     "theme": "default",
-    "legal_basis": "Voluntary",
     "metadata": [{
         "name": "user_id",
         "validator": "string"

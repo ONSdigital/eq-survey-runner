@@ -4,7 +4,6 @@
     "survey_id": "137",
     "theme": "default",
     "title": "Test Skipping To End",
-    "legal_basis": "StatisticsOfTradeAct",
     "mime_type": "application/json/ons/eq",
     "navigation": {
         "visible": true
