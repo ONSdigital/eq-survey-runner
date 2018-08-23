@@ -5,4 +5,4 @@ if [ -n "$SECRETS_S3_BUCKET" ]; then
     aws s3 sync s3://$SECRETS_S3_BUCKET/ /secrets
 fi
 
-gunicorn -w 3 --worker-class gevent -b 0.0.0.0:5000 application:application
+gunicorn -w $GUNICORN_WORKERS --worker-class gevent -b 0.0.0.0:5000 application:application
