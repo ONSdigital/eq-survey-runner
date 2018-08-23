@@ -4,7 +4,7 @@ from flask import current_app
 from moto import mock_dynamodb2
 
 from app.setup import create_app
-from app.storage.dynamo_api import TABLE_CONFIG
+from app.storage.dynamodb_api import TABLE_CONFIG
 
 
 class AppContextTestCase(unittest.TestCase):

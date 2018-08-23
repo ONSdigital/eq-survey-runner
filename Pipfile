@@ -51,6 +51,8 @@ humanize = "*"
 flask-talisman = "*"
 marshmallow = "*"
 azure-cosmosdb-table = "*"
+google-cloud-bigtable = "*"
+google-cloud-core = "*"
 
 [requires]
 python_version = "3.6"

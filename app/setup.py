@@ -17,6 +17,7 @@ from flask_caching import Cache
 from flask_talisman import Talisman
 from flask_themes2 import Themes
 from flask_wtf.csrf import CSRFProtect
+from google.cloud import bigtable
 from sdc.crypto.key_store import KeyStore, validate_required_keys
 from structlog import get_logger
 
@@ -92,6 +93,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     setup_dynamodb(application)
 
     setup_cosmodb(application)
+
+    setup_bigtable(application)
 
     if application.config['EQ_RABBITMQ_ENABLED']:
         application.eq['submitter'] = RabbitMQSubmitter(
@@ -246,6 +249,14 @@ def setup_cosmodb(application):
         )
 
         application.eq['cosmosdb'] = service
+
+
+def setup_bigtable(application):
+    if application.config['EQ_STORAGE_BACKEND'] == 'bigtable':
+        client = bigtable.Client(application.config['EQ_BIGTABLE_PROJECT_ID'])
+        instance = client.instance(application.config['EQ_BIGTABLE_INSTANCE_ID'])
+
+        application.eq['bigtable'] = instance
 
 
 def setup_profiling(application):
