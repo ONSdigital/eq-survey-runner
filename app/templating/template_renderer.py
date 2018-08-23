@@ -19,6 +19,7 @@ class TemplateRenderer:
         env.globals['format_conditional_date'] = filters.format_conditional_date
         env.globals['format_currency'] = filters.format_currency
         env.filters['format_number'] = filters.format_number
+        env.globals['format_address_list'] = filters.format_address_list
         env.filters['get_currency_symbol'] = filters.get_currency_symbol
         env.globals['format_date_range'] = filters.format_date_range
         env.filters['concatenated_list'] = filters.concatenated_list

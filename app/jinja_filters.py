@@ -6,7 +6,7 @@ from datetime import datetime
 import flask
 import flask_babel
 from dateutil import relativedelta, tz
-from jinja2 import Markup, contextfunction, escape, evalcontextfilter, evalcontextfunction
+from jinja2 import Markup, contextfunction, escape, evalcontextfilter, evalcontextfunction, Undefined
 from jinja2.exceptions import UndefinedError
 
 from babel import units, numbers
@@ -56,6 +56,30 @@ def format_currency_for_input(value, decimal_places=0):
 @blueprint.app_template_filter()
 def format_percentage(value):
     return '{}%'.format(value)
+
+
+@blueprint.app_template_filter()
+def format_address_list(user_entered_address=None, metadata_address=None):
+    """
+        This function format_address_list accepts two addresses, a user submitted address and a metadata address
+        If all the items in address list are 'Undefined' (nothing in answer_store) then we retrieve the metadata.
+
+        :param user_entered_address user entered address which is a list of answer fields
+        :param metadata_address metadata address which is a list of answer fields passed to us
+        :return: the value of the address to be piped
+    """
+    if all(isinstance(field, Undefined) for field in user_entered_address) or \
+       all(field == '' for field in user_entered_address):
+        address = metadata_address
+    else:
+        address = user_entered_address
+
+    address_list = concatenated_list(list_items=address, delimiter='<br />')
+
+    if not address_list:
+        raise Exception('No valid address passed to format_address_list filter')
+
+    return address_list
 
 
 def format_unit(unit, value=''):
