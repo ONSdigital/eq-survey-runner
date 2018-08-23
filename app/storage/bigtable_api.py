@@ -33,8 +33,6 @@ def put(model, overwrite):
     row = table.row(getattr(model, key_field))
     item, _ = schema.dump(model)
     for k, v in item.items():
-        if isinstance(v, int):
-            v = str(v)
         row.set_cell('cf1', k, v)
 
     row.commit()  # FIXME support overwrite
@@ -51,8 +49,6 @@ def get_by_key(model_type, key_value):
     if row:
         entity = {k.decode('utf-8'): v[0].value.decode('utf-8') for k, v in row.cells['cf1'].items()}
         entity[key_field] = key_value
-        if 'version' in entity:
-            entity['version'] = int(entity['version'])  # FIXME get marshmallow to do this gemerically
         model, _ = schema.load(entity)
         return model
 
@@ -63,7 +59,7 @@ def delete(model):
     table = instance.table(type(model).__name__)
     key_field = config['key_field']
 
-    table.delete_row(getattr(model, key_field))  # FIXME
+    table.delete_row(getattr(model, key_field))
 
 
 def get_instance():
