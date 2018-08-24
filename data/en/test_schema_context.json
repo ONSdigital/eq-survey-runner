@@ -5,7 +5,6 @@
     "schema_version": "0.0.1",
     "survey_id": "144",
     "theme": "default",
-    "legal_basis": "Voluntary",
     "title": "Test Schema Context",
     "metadata": [{
         "name": "user_id",

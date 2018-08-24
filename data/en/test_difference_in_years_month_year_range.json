@@ -6,7 +6,6 @@
     "title": "Difference between two dates",
     "description": "A test schema for calculate age from date",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "metadata": [{
         "name": "user_id",
         "validator": "string"

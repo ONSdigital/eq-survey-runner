@@ -5,7 +5,6 @@
     "survey_id": "001",
     "title": "Test Routing Number Not Equals",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "description": "A test survey for routing based on a number not equals",
     "metadata": [{
         "name": "user_id",

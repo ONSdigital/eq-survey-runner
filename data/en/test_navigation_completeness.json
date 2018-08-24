@@ -6,7 +6,6 @@
     "title": "Test Navigation Completeness",
     "description": "",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "navigation": {
         "visible": true
     },

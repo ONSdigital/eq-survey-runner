@@ -6,7 +6,6 @@
     "title": "Test Survey - Checkbox and Radio option descriptions",
     "description": "",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "metadata": [{
         "name": "user_id",
         "validator": "string"

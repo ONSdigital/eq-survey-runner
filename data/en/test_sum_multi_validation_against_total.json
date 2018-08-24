@@ -5,7 +5,6 @@
     "survey_id": "0",
     "title": "Grouped validation against total test survey",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "description": "A survey that tests grouped and calculated answers against a total",
     "metadata": [{
         "name": "user_id",

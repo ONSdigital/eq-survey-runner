@@ -6,7 +6,6 @@
     "title": "Home Insurance",
     "description": "Home Insurance",
     "theme": "default",
-    "legal_basis": "Voluntary",
     "navigation": {
         "visible": true
     },

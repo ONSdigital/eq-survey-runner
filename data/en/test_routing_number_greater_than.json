@@ -5,7 +5,6 @@
     "survey_id": "001",
     "title": "Test Routing Number Greater Than",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "description": "A test survey for routing based on a number greater than",
     "metadata": [{
         "name": "user_id",

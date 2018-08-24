@@ -6,7 +6,7 @@
     "title": "Monthly Turnover Survey",
     "description": "MCI Description",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
+    "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
     "eq_id": "mci",
     "form_type": "transformation",
     "view_submitted_response": {

@@ -5,7 +5,6 @@
     "survey_id": "0",
     "title": "Total field test survey",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "description": "A survey that tests the totalling of percentage input fields",
     "metadata": [{
         "name": "user_id",

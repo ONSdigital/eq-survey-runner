@@ -5,7 +5,7 @@
     "theme": "default",
     "data_version": "0.0.1",
     "title": "Monthly Business Survey",
-    "legal_basis": "StatisticsOfTradeAct",
+    "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
     "description": "mbs",
     "view_submitted_response": {
         "enabled": true,

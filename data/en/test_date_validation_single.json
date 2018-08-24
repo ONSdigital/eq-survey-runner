@@ -6,7 +6,6 @@
     "title": "Date formats",
     "description": "A test schema for single date period validation",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "metadata": [{
         "name": "user_id",
         "validator": "string"

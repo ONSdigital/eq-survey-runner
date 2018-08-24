@@ -5,7 +5,6 @@
     "survey_id": "0",
     "title": "A test schema to validate a sum of answers are Less Than or Equal to a given total",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "description": "A survey that tests grouped and calculated answers against a total",
     "metadata": [{
         "name": "user_id",

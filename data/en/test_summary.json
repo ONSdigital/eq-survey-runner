@@ -5,7 +5,6 @@
     "survey_id": "0",
     "title": "Other input fields",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to demo radio field Other input.",
     "metadata": [{
         "name": "user_id",

@@ -5,7 +5,6 @@
     "survey_id": "001",
     "title": "Test Routing Number Less Than or Equal",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "description": "A test survey for routing based on a number less than or equal",
     "metadata": [{
         "name": "user_id",

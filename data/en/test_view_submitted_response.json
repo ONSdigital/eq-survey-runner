@@ -5,7 +5,6 @@
     "survey_id": "0",
     "title": "Test Submitted Answers Survey",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to demo radio field Other input.",
     "view_submitted_response": {
         "enabled": true,

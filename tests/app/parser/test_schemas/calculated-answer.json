@@ -5,7 +5,7 @@
     "survey_id": "0",
     "title": "Total field test survey",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
+    "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
     "description": "A survey that tests the totalling of percentage input fields",
     "messages": {
       "NUMBER_TOO_LARGE": "Number cannot be greater than one hundred",

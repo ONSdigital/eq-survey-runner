@@ -5,7 +5,6 @@
     "survey_id": "001",
     "title": "Test Routing Date Less Than",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "description": "A test survey for routing based on a Date less than",
     "metadata": [{
         "name": "user_id",

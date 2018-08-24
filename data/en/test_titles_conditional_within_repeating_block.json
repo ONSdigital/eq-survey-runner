@@ -6,7 +6,6 @@
     "title": "Test conditional within repeating group",
     "description": "Test conditional within repeating group",
     "theme": "default",
-    "legal_basis": "Voluntary",
     "form_type": "0",
     "navigation": {
         "visible": true

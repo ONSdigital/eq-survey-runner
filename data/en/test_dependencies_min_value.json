@@ -5,7 +5,6 @@
     "survey_id": "0",
     "title": "Minimum Answer Value Dependency Check",
     "theme": "default",
-    "legal_basis": "StatisticsOfTradeAct",
     "description": "A survey with an minimum validation dependency",
     "navigation": {
         "visible": true
