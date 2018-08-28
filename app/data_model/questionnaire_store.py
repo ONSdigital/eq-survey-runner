@@ -1,4 +1,5 @@
 import simplejson as json
+import zlib
 
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.location import Location
@@ -26,7 +27,9 @@ class QuestionnaireStore:
         return self.LATEST_VERSION
 
     def _deserialise(self, data):
+        data = zlib.decompress(data)
         json_data = json.loads(data, use_decimal=True)
+
         # pylint: disable=maybe-no-member
         completed_blocks = [Location.from_dict(location_dict=completed_block) for completed_block in
                             json_data.get('COMPLETED_BLOCKS', [])]
@@ -40,7 +43,9 @@ class QuestionnaireStore:
             'ANSWERS': self.answer_store.answers,
             'COMPLETED_BLOCKS': self.completed_blocks,
         }
-        return json.dumps(data, default=self._encode_questionnaire_store)
+        serialized_data = json.dumps(data, default=self._encode_questionnaire_store).encode('utf8')
+        serialized_data = zlib.compress(serialized_data)
+        return serialized_data
 
     def delete(self):
         self._storage.delete()

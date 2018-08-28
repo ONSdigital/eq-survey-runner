@@ -26,20 +26,20 @@ class TestEncryptedQuestionnaireStorage(AppContextTestCase):
         data = 'test'
         encrypted.add_or_update(data, QuestionnaireStore.LATEST_VERSION)
         # check we can decrypt the data
-        self.assertEqual(('test', QuestionnaireStore.LATEST_VERSION), encrypted.get_user_data())
+        self.assertEqual((b'test', QuestionnaireStore.LATEST_VERSION), encrypted.get_user_data())
 
     def test_store(self):
-        data = 'test'
+        data = b'test'
         self.assertIsNone(self.storage.add_or_update(data, QuestionnaireStore.LATEST_VERSION))
         self.assertIsNotNone(self.storage.get_user_data())  # pylint: disable=protected-access
 
     def test_get(self):
-        data = 'test'
+        data = b'test'
         self.storage.add_or_update(data, QuestionnaireStore.LATEST_VERSION)
         self.assertEqual((data, QuestionnaireStore.LATEST_VERSION), self.storage.get_user_data())
 
     def test_delete(self):
-        data = 'test'
+        data = b'test'
         self.storage.add_or_update(data, QuestionnaireStore.LATEST_VERSION)
         self.assertEqual((data, QuestionnaireStore.LATEST_VERSION), self.storage.get_user_data())
         self.storage.delete()

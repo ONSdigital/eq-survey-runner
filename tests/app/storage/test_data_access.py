@@ -15,7 +15,7 @@ class TestDataAccess(AppContextTestCase):
     def test_get_by_key(self):
         dynamo_item = QuestionnaireState(USER_ID, STATE_DATA, VERSION)
 
-        with mock.patch('app.storage.dynamo_api.get_by_key', return_value=dynamo_item) as get_by_key:
+        with mock.patch('app.storage.dynamodb_api.get_by_key', return_value=dynamo_item) as get_by_key:
             model = data_access.get_by_key(QuestionnaireState, USER_ID)
 
         self.assertEqual(get_by_key.call_args[0][0], QuestionnaireState)
@@ -28,7 +28,7 @@ class TestDataAccess(AppContextTestCase):
     def test_put(self):
         model = QuestionnaireState(USER_ID, STATE_DATA, VERSION)
 
-        with mock.patch('app.storage.dynamo_api.put') as put:
+        with mock.patch('app.storage.dynamodb_api.put') as put:
             data_access.put(model)
 
         self.assertEqual(put.call_args[0][0], model)
@@ -37,7 +37,7 @@ class TestDataAccess(AppContextTestCase):
     def test_delete(self):
         model = QuestionnaireState(USER_ID, STATE_DATA, VERSION)
 
-        with mock.patch('app.storage.dynamo_api.delete') as delete:
+        with mock.patch('app.storage.dynamodb_api.delete') as delete:
             data_access.delete(model)
 
         self.assertEqual(delete.call_args[0][0], model)

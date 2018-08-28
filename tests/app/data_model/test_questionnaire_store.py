@@ -2,6 +2,7 @@ from unittest import TestCase
 from unittest.mock import MagicMock
 
 import simplejson as json
+import zlib
 
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.questionnaire.location import Location
@@ -41,14 +42,14 @@ class TestQuestionnaireStore(TestCase):
         self.storage.get_user_data = MagicMock(side_effect=get_user_data)
         self.storage.add_or_update = MagicMock(side_effect=set_output_data)
 
-        self.input_data = '{}'
+        self.input_data = zlib.compress(b'{}')
         self.output_data = ''
         self.output_version = None
 
     def test_questionnaire_store_loads_json(self):
         # Given
         expected = get_basic_input()
-        self.input_data = json.dumps(expected)
+        self.input_data = zlib.compress(json.dumps(expected).encode('utf8')))
         # When
         store = QuestionnaireStore(self.storage)
         # Then
@@ -62,7 +63,7 @@ class TestQuestionnaireStore(TestCase):
         # Given
         expected = get_basic_input()
         expected['NOT_A_LEGAL_TOP_LEVEL_KEY'] = 'woop_woop_thats_the_sound_of_the_police'
-        self.input_data = json.dumps(expected)
+        self.input_data = zlib.compress(json.dumps(expected).encode('utf8'))
         # When
         store = QuestionnaireStore(self.storage)
         # Then
@@ -76,7 +77,7 @@ class TestQuestionnaireStore(TestCase):
         # Given
         expected = get_basic_input()
         del expected['COMPLETED_BLOCKS']
-        self.input_data = json.dumps(expected)
+        self.input_data = zlib.compress(json.dumps(expected).encode('utf8'))
         # When
         store = QuestionnaireStore(self.storage)
         # Then
@@ -96,7 +97,7 @@ class TestQuestionnaireStore(TestCase):
         store.add_or_update()  # See setUp - populates self.output_data
 
         # Then
-        self.assertEqual(expected, json.loads(self.output_data))
+        self.assertEqual(expected, json.loads(zlib.decompress(self.output_data)))
 
     def test_questionnaire_store_errors_on_invalid_object(self):
         # Given

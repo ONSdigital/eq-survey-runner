@@ -1,6 +1,7 @@
 from flask import g
 from mock import Mock, patch
 import simplejson as json
+import zlib
 
 from app.data_model.answer_store import Answer, AnswerStore
 from app.data_model.questionnaire_store import QuestionnaireStore
@@ -26,7 +27,8 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
             'ANSWERS': [],
             'COMPLETED_BLOCKS': []
         }
-        storage.get_user_data = Mock(return_value=(json.dumps(data), QuestionnaireStore.LATEST_VERSION))
+        compressed_data = zlib.compress(json.dumps(data, ensure_ascii=False).encode('gbk'))
+        storage.get_user_data = Mock(return_value=(compressed_data, QuestionnaireStore.LATEST_VERSION))
 
         self.question_store = QuestionnaireStore(storage)
 

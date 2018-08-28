@@ -41,7 +41,7 @@ class StorageEncryption:
         return jwk.JWK(**password)
 
     def encrypt_data(self, data):
-        if not isinstance(data, str):
+        if isinstance(data, dict):
             data = json.dumps(data)
 
         protected_header = {
@@ -56,9 +56,12 @@ class StorageEncryption:
 
         return jwe_token.serialize(compact=True)
 
-    def decrypt_data(self, encrypted_token):
+    def decrypt_data(self, encrypted_token, decode=True):
 
         jwe_token = jwe.JWE(algs=['dir', 'A256GCM'])
         jwe_token.deserialize(encrypted_token, self.key)
 
-        return base64url_decode(jwe_token.payload.decode()).decode()
+        data = base64url_decode(jwe_token.payload.decode())
+        if decode:
+            data = data.decode()
+        return data
