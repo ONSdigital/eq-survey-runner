@@ -320,6 +320,32 @@ def format_household_summary(context, names):
     return ''
 
 
+@evalcontextfilter
+@blueprint.app_template_filter()
+def format_repeating_summary(context, items, delimiter=' '):
+    """
+    Formats a summary from the input list using the provided delimiter
+    Input should be a list of lists.
+    If there is a third level of lists, these will be zipped together
+    e.g.
+    [['John', 'Smith'], [['Jane', 'Sarah'], ['Smith', 'Smith']]]
+    Should output a list for:
+    - John Smith
+    - Jane Smith
+    - Sarah Smith
+    """
+    if items:
+        intermediates = []
+        for item in items:
+            if item and isinstance(item[0], list):
+                intermediates.extend(list(map(list, zip(*item))))
+            else:
+                intermediates.append(item)
+        output = [concatenated_list(x, delimiter=delimiter) for x in intermediates]
+        return format_unordered_list(context, [output])
+    return ''
+
+
 @blueprint.app_template_filter()
 def format_number_to_alphabetic_letter(number):
     if 0 <= int(number) < 26:

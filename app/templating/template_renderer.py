@@ -29,6 +29,7 @@ class TemplateRenderer:
         env.filters['format_date_custom'] = filters.format_date_custom
         env.globals['format_date_range_no_repeated_month_year'] = filters.format_date_range_no_repeated_month_year
         env.globals['calculate_offset_from_weekday_in_last_whole_week'] = filters.calculate_offset_from_weekday_in_last_whole_week
+        env.filters['format_repeating_summary'] = filters.format_repeating_summary
         self.environment = env
 
     def render(self, renderable, **context):
