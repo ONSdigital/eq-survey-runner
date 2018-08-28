@@ -1,4 +1,4 @@
-import simplejson as json
+import ujson as json
 
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.location import Location
@@ -26,7 +26,7 @@ class QuestionnaireStore:
         return self.LATEST_VERSION
 
     def _deserialise(self, data):
-        json_data = json.loads(data, use_decimal=True)
+        json_data = json.loads(data)
         # pylint: disable=maybe-no-member
         completed_blocks = [Location.from_dict(location_dict=completed_block) for completed_block in
                             json_data.get('COMPLETED_BLOCKS', [])]
@@ -38,9 +38,9 @@ class QuestionnaireStore:
         data = {
             'METADATA': self.metadata,
             'ANSWERS': self.answer_store.answers,
-            'COMPLETED_BLOCKS': self.completed_blocks,
+            'COMPLETED_BLOCKS': [loc.to_dict() for loc in self.completed_blocks],
         }
-        return json.dumps(data, default=self._encode_questionnaire_store)
+        return json.dumps(data)
 
     def delete(self):
         self._storage.delete()
@@ -77,9 +77,3 @@ class QuestionnaireStore:
             self.completed_blocks = [completed_block for completed_block in self.completed_blocks
                                      if completed_block.group_id != group_id or
                                      completed_block.block_id != block_id]
-
-    def _encode_questionnaire_store(self, o):
-        if hasattr(o, 'to_dict'):
-            return o.to_dict()
-
-        return json.JSONEncoder.default(self, o)

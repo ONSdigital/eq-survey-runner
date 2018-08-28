@@ -3,7 +3,7 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 import humanize
-import simplejson as json
+import ujson as json
 from dateutil.tz import tzutc
 
 from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify

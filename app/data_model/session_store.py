@@ -1,5 +1,5 @@
 from structlog import get_logger
-import simplejson as json
+import ujson as json
 
 from app.data_model.app_models import EQSession
 from app.data_model.session_data import SessionData
@@ -69,7 +69,8 @@ class SessionStore:
                 session_data = StorageEncryption(self.user_id, self.user_ik, self.pepper)\
                     .decrypt_data(encrypted_session_data)
 
-                self.session_data = json.loads(session_data, object_hook=lambda d: SessionData(**d))
+                raw_session = json.loads(session_data)
+                self.session_data = SessionData(**raw_session)
 
             logger.debug('found matching eq_session for eq_session_id in database',
                          session_id=self._eq_session.eq_session_id,

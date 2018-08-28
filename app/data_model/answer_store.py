@@ -4,7 +4,6 @@ import re
 from collections import defaultdict
 from datetime import datetime
 from jinja2 import escape
-import simplejson as json
 
 
 class Answer:
@@ -237,7 +236,17 @@ class AnswerStore:
 
         :return: Return a unique hash value
         """
-        return hash(json.dumps(self.answers, sort_keys=True))
+        return hash(tuple(self._get_hash_value()))
+
+    def _get_hash_value(self):
+        for answer in self.answers:
+            for value in answer.values():
+                if isinstance(value, list):
+                    for v in value:
+                        yield v
+
+                else:
+                    yield value
 
     def upgrade(self, current_version, schema):
 
