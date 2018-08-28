@@ -1,4 +1,4 @@
-import simplejson as json
+import msgpack
 
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.location import Location
@@ -26,12 +26,13 @@ class QuestionnaireStore:
         return self.LATEST_VERSION
 
     def _deserialise(self, data):
-        json_data = json.loads(data, use_decimal=True)
+        # TODO: unpacking decimal values may not be supported as it is with use_decimal
+        loaded_data = msgpack.unpackb(data, raw=False)
         # pylint: disable=maybe-no-member
         completed_blocks = [Location.from_dict(location_dict=completed_block) for completed_block in
-                            json_data.get('COMPLETED_BLOCKS', [])]
-        self.metadata = json_data.get('METADATA', {})
-        self.answer_store.answers = json_data.get('ANSWERS', [])
+                            loaded_data.get('COMPLETED_BLOCKS', [])]
+        self.metadata = loaded_data.get('METADATA', {})
+        self.answer_store.answers = loaded_data.get('ANSWERS', [])
         self.completed_blocks = completed_blocks
 
     def _serialise(self):
@@ -40,7 +41,7 @@ class QuestionnaireStore:
             'ANSWERS': self.answer_store.answers,
             'COMPLETED_BLOCKS': self.completed_blocks,
         }
-        return json.dumps(data, default=self._encode_questionnaire_store)
+        return msgpack.packb(data, default=self._encode_questionnaire_store, use_bin_type=True)
 
     def delete(self):
         self._storage.delete()
@@ -82,4 +83,4 @@ class QuestionnaireStore:
         if hasattr(o, 'to_dict'):
             return o.to_dict()
 
-        return json.JSONEncoder.default(self, o)
+        return msgpack.packb(o)

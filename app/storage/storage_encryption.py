@@ -1,9 +1,8 @@
 import hashlib
-
+import json
 from jwcrypto import jwe, jwk
 from jwcrypto.common import base64url_encode, base64url_decode
 from structlog import get_logger
-import simplejson as json
 
 from app.utilities.strings import to_bytes
 from app.utilities.strings import to_str
@@ -41,8 +40,10 @@ class StorageEncryption:
         return jwk.JWK(**password)
 
     def encrypt_data(self, data):
-        if not isinstance(data, str):
+        try:
             data = json.dumps(data)
+        except TypeError:
+            pass
 
         protected_header = {
             'alg': 'dir',
@@ -56,9 +57,14 @@ class StorageEncryption:
 
         return jwe_token.serialize(compact=True)
 
-    def decrypt_data(self, encrypted_token):
+    def decrypt_data(self, encrypted_token, decode=True):
 
         jwe_token = jwe.JWE(algs=['dir', 'A256GCM'])
         jwe_token.deserialize(encrypted_token, self.key)
 
-        return base64url_decode(jwe_token.payload.decode()).decode()
+        data = base64url_decode(jwe_token.payload.decode())
+
+        if decode:
+            data = data.decode()
+
+        return data

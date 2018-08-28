@@ -38,7 +38,7 @@ class EncryptedQuestionnaireStorage:
             version = questionnaire_state.version or 0
 
             if 'data' in data:
-                decrypted_data = self.encrypter.decrypt_data(data['data'])
+                decrypted_data = self.encrypter.decrypt_data(data['data'], decode=False)
                 return decrypted_data, version
 
         return None, None

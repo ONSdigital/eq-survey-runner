@@ -1,5 +1,5 @@
+import json
 from structlog import get_logger
-import simplejson as json
 
 from app.data_model.app_models import EQSession
 from app.data_model.session_data import SessionData
