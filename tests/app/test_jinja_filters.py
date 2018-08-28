@@ -2,6 +2,7 @@
 from types import SimpleNamespace
 
 from datetime import datetime, timedelta
+from unittest.mock import patch
 
 from dateutil.relativedelta import relativedelta
 from jinja2 import Undefined, Markup
@@ -16,7 +17,8 @@ from app.jinja_filters import (
     format_household_member_name_possessive, concatenated_list,
     calculate_years_difference, get_current_date, as_london_tz, max_value,
     min_value, get_question_title, get_answer_label,
-    format_duration)
+    format_duration, calculate_offset_from_weekday_in_last_whole_week, format_date_custom,
+    format_date_range_no_repeated_month_year)
 from tests.app.app_context_test_case import AppContextTestCase
 
 
@@ -762,3 +764,70 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
 
         # Then
         self.assertEqual(answer_label, 'default_question_title')
+
+    def test_offset_date_from_day(self):
+        test_cases = [
+            # (Input Date, offset, day of week, expected output)
+            ('2018-08-10', {}, 'SU', '2018-08-05'), # Friday outputs previous Sunday
+            ('2018-08-05', {}, 'SU', '2018-07-29'), # Sunday outputs previous Sunday (Must be a full Sunday)
+            ('2018-08-06', {}, 'SU', '2018-08-05'), # Monday outputs previous Sunday
+            ('2018-08-06', {'days': -1}, 'SU', '2018-08-04'), # Previous sunday with -1 day offset
+            ('2018-08-05', {'weeks': 1}, 'SU', '2018-08-05'), # Previous sunday with +1 month offset, back to input
+            ('2018-08-10', {}, 'FR', '2018-08-03'), # Friday outputs previous Friday
+            ('2018-08-10T13:32:20.365665', {}, 'FR', '2018-08-03'), # Ensure we can handle datetime input
+            ('2018-08-10', {'weeks': 4}, 'FR', '2018-08-31'), # Friday outputs previous Friday + 4 weeks
+            ('2018-08-10', {'bad_period': 4}, 'FR', '2018-08-03'), # Friday outputs previous Friday + nothing
+            ('2018-08-10', {'years': 1}, 'FR', '2019-08-03'), # Friday outputs previous Friday + 1 year
+            ('2018-08-10', {'years': 1, 'weeks': 1, 'days': 1}, 'FR', '2019-08-11'), # Friday outputs previous Friday + 1 year + 1 week + 1 day
+        ]
+        for case in test_cases:
+            self.assertEqual(calculate_offset_from_weekday_in_last_whole_week(*case[0:3]), case[3])
+
+    def test_bad_day_of_week_offset_date_from_day(self):
+        with self.assertRaises(Exception):
+            calculate_offset_from_weekday_in_last_whole_week('2018-08-10', {}, 'BA')
+
+    def test_offset_date_defaults_to_now_if_date_not_passed(self):
+        with patch('app.jinja_filters.datetime') as mock_datetime:
+            # pylint: disable=unnecessary-lambda
+            mock_datetime.utcnow.return_value = datetime(2018, 8, 10)
+            mock_datetime.strftime.side_effect = lambda *args, **kw: datetime.strftime(*args, **kw)
+
+            result = calculate_offset_from_weekday_in_last_whole_week(None, {}, 'SU')
+            self.assertEqual(result, '2018-08-05')
+
+    def test_format_date_custom(self):
+        test_cases = [
+            # Input Date, date format, show year
+            ('2018-08-14', 'EEEE d MMMM YYYY', 'Tuesday 14 August 2018'),
+            ('2018-08-14', 'EEEE d MMMM', 'Tuesday 14 August'),
+            ('2018-08-14', 'EEEE d', 'Tuesday 14'),
+            ('2018-08-14', 'd MMMM YYYY', '14 August 2018'),
+        ]
+
+        with self.app_request_context('/'):
+            for case in test_cases:
+                self.assertEqual(
+                    format_date_custom(self.autoescape_context, *case[0:2]),
+                    "<span class='date'>{}</span>".format(case[2])
+                )
+
+    def test_format_date_range_no_repeated_month_year(self):
+        test_cases = [
+            # Start Date, End Date, Date Format, Output Expected First, Output Expected Second
+            ('2018-08-14', '2018-08-16', 'EEEE d MMMM YYYY', 'Tuesday 14', 'Thursday 16 August 2018'),
+            ('2018-07-31', '2018-08-16', 'EEEE d MMMM YYYY', 'Tuesday 31 July', 'Thursday 16 August 2018'),
+            ('2017-12-31', '2018-08-16', 'EEEE d MMMM YYYY', 'Sunday 31 December 2017', 'Thursday 16 August 2018'),
+            ('2017-12-31', '2018-08-16', 'MMMM YYYY', 'December 2017', 'August 2018'),
+            ('2018-08-14', '2018-08-16', 'MMMM YYYY', 'August 2018', 'August 2018'),
+            ('2017-12-31', '2018-08-16', 'YYYY', '2017', '2018'),
+            ('2017-07-31', '2018-08-16', 'YYYY', '2017', '2018'),
+            ('2018-08-14', '2018-08-16', 'EEEE d', 'Tuesday 14', 'Thursday 16')
+        ]
+
+        with self.app_request_context('/'):
+            for case in test_cases:
+                self.assertEqual(
+                    format_date_range_no_repeated_month_year(self.autoescape_context, *case[0:3]),
+                    "<span class='date'>{}</span> to <span class='date'>{}</span>".format(case[3], case[4])
+                )

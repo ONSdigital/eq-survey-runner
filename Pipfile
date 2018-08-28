@@ -24,6 +24,7 @@ httmock = "*"
 "flake8-tuple" = "*"
 moto = "*"
 google-compute-engine = "*"
+freezegun = "*"
 
 [packages]
 colorama = "*"

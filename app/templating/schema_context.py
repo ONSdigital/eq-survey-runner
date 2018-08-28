@@ -3,10 +3,11 @@ from collections import defaultdict
 from jinja2 import escape
 
 
-def build_schema_context(metadata, schema, answer_store, answer_ids_on_path, group_instance=0, group_instance_id=None):
+def build_schema_context(metadata, collection_metadata, schema, answer_store, answer_ids_on_path, group_instance=0, group_instance_id=None):
     """
     Build questionnaire schema context containing exercise and answers
     :param metadata: user metadata
+    :param collection_metadata: metadata for the collection of the questionnaire
     :param schema: Survey schema
     :param answer_store: all the answers for the given questionnaire
     :param answer_ids_on_path: a list of the answer ids on the routing path
@@ -16,6 +17,7 @@ def build_schema_context(metadata, schema, answer_store, answer_ids_on_path, gro
     """
     return {
         'metadata': build_schema_metadata(metadata, schema),
+        'collection_metadata': collection_metadata,
         'answers': _build_answers(answer_store, schema, answer_ids_on_path),
         'group_instances': _build_group_instances(answer_store, answer_ids_on_path),
         'group_instance': group_instance,

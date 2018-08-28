@@ -38,19 +38,22 @@ class TestBuildSchemaContext(TestCase):  # pylint: disable=too-many-public-metho
         self.answer_store = AnswerStore()
         self.metadata = get_metadata_sample()
         self.schema = get_test_schema()
+        self.collection_metadata = {'test': 'test'}
 
     def test_build_schema_context(self):
         # Given
         with patch('app.templating.schema_context.build_schema_metadata', return_value='schema_metadata'), \
                 patch('app.templating.schema_context._build_answers', return_value='answer_context'):
             # When
-            schema_context = build_schema_context(self.metadata, self.schema, self.answer_store, [])
+            schema_context = build_schema_context(self.metadata, self.collection_metadata, self.schema, self.answer_store, [])
 
         # Then
         self.assertIn('metadata', schema_context)
         self.assertEqual(schema_context['metadata'], 'schema_metadata')
         self.assertIn('answers', schema_context)
         self.assertEqual(schema_context['answers'], 'answer_context')
+        self.assertIn('collection_metadata', schema_context)
+        self.assertEqual(schema_context['collection_metadata'], self.collection_metadata)
 
 
 class TestBuildAnswersContext(TestCase):

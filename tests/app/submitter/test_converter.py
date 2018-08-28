@@ -1,6 +1,6 @@
 import copy
 import uuid
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 
 import dateutil.parser
 
@@ -125,28 +125,6 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
 
             self.assertEqual(answer_object['started_at'], self.collection_metadata['started_at'])
 
-    def test_started_at_comes_from_metadata_if_necessary(self):
-        """
-        This tests functionality that should be removed after collection_metadata changes are released
-        """
-        questionnaire = {
-            'survey_id': '021',
-            'data_version': '0.0.2'
-        }
-
-        # Remove started at from collection metadata and add it to metadata
-        collection_metadata = self.collection_metadata.copy()
-        metadata = self.metadata.copy()
-        metadata['started_at'] = collection_metadata['started_at']
-        del collection_metadata['started_at']
-
-        answer_object = convert_answers(
-            metadata, collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(), {}
-        )
-
-        self.assertEqual(answer_object['started_at'], metadata['started_at'])
-
-
     def test_started_at_should_not_be_set_in_payload_if_absent_in_metadata(self):
         with self._app.test_request_context():
 
@@ -175,7 +153,7 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
 
             answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), {})
 
-            self.assertLess(datetime.now(timezone.utc) - dateutil.parser.parse(answer_object['submitted_at']),
+            self.assertLess(datetime.utcnow() - dateutil.parser.parse(answer_object['submitted_at']),
                             timedelta(seconds=5))
 
     def test_case_id_should_be_set_in_payload(self):

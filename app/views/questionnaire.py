@@ -171,7 +171,7 @@ def post_block(routing_path, schema, metadata, collection_metadata, answer_store
 
     block = _get_block_json(current_location, schema, answer_store, metadata)
 
-    schema_context = _get_schema_context(routing_path, current_location, metadata, answer_store, schema)
+    schema_context = _get_schema_context(routing_path, current_location, metadata, collection_metadata, answer_store, schema)
 
     rendered_block = renderer.render(block, **schema_context)
 
@@ -181,7 +181,7 @@ def post_block(routing_path, schema, metadata, collection_metadata, answer_store
         return _save_sign_out(routing_path, current_location, form, schema, answer_store, metadata)
 
     if form.validate():
-        _set_started_at_metadata_if_required(form, collection_metadata, metadata)
+        _set_started_at_metadata_if_required(form, collection_metadata)
         _update_questionnaire_store(current_location, form, schema)
         next_location = path_finder.get_next_location(current_location=current_location)
 
@@ -288,7 +288,7 @@ def get_thank_you(schema, metadata, eq_id, form_type):  # pylint: disable=unused
 @post_submission_blueprint.route('view-submission', methods=['GET'])
 @login_required
 @with_schema
-def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-argument
+def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-argument, too-many-locals
 
     session_data = get_session_store().session_data
 
@@ -306,10 +306,11 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
             answer_store = AnswerStore(existing_answers=submitted_data.get('answers'))
 
             metadata = submitted_data.get('metadata')
+            collection_metadata = submitted_data.get('collection_metadata')
 
             routing_path = PathFinder(schema, answer_store, metadata, []).get_full_routing_path()
 
-            schema_context = _get_schema_context(routing_path, None, metadata, answer_store, schema)
+            schema_context = _get_schema_context(routing_path, None, metadata, collection_metadata, answer_store, schema)
             rendered_schema = renderer.render(schema.json, **schema_context)
             summary_rendered_context = build_summary_rendering_context(schema, rendered_schema['sections'], answer_store, metadata)
 
@@ -333,24 +334,13 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
     return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
 
 
-def _set_started_at_metadata_if_required(form, collection_metadata, metadata):
+def _set_started_at_metadata_if_required(form, collection_metadata):
     if not collection_metadata.get('started_at') and form.data:
         started_at = datetime.utcnow().isoformat()
 
-        # To avoid loss of in-flight data while collection_metadata is deployed.
-        # After deployment of collection metdata, remove from here to the next comment.
-
-        if metadata.get('started_at'):
-            logger.info('Found in-flight metadata started_at.')
-            started_at = metadata['started_at']
-
-        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-        questionnaire_store.set_metadata_key('started_at', started_at)
-
-        # After deployment of collection metadata, remove up to here.
-
         logger.info('Survey started. Writing started_at time to collection metadata',
                     started_at=started_at)
+
         collection_metadata['started_at'] = started_at
 
 
@@ -685,8 +675,10 @@ def _redirect_to_location(collection_id, eq_id, form_type, location):
 
 def _get_context(full_routing_path, block, current_location, schema, form=None):
     metadata = get_metadata(current_user)
+    collection_metadata = get_collection_metadata(current_user)
+
     answer_store = get_answer_store(current_user)
-    schema_context = _get_schema_context(full_routing_path, current_location, metadata, answer_store, schema)
+    schema_context = _get_schema_context(full_routing_path, current_location, metadata, collection_metadata, answer_store, schema)
     rendered_block = renderer.render(block, **schema_context)
 
     return build_view_context(block['type'], metadata, schema, answer_store, schema_context, rendered_block, current_location, form=form)
@@ -697,11 +689,12 @@ def _get_block_json(current_location, schema, answer_store, metadata):
     return _evaluate_skip_conditions(block_json, current_location, schema, answer_store, metadata)
 
 
-def _get_schema_context(full_routing_path, location, metadata, answer_store, schema):
+def _get_schema_context(full_routing_path, location, metadata, collection_metadata, answer_store, schema):
     answer_ids_on_path = get_answer_ids_on_routing_path(schema, full_routing_path)
     group_instance_id = get_group_instance_id(schema, answer_store, location) if location else None
 
     return build_schema_context(metadata=metadata,
+                                collection_metadata=collection_metadata,
                                 schema=schema,
                                 answer_store=answer_store,
                                 group_instance=location.group_instance if location else 0,
