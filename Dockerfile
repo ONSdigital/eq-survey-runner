@@ -7,6 +7,7 @@ WORKDIR /usr/src/app
 
 ENV AWS_DEFAULT_REGION eu-west-1
 ENV GUNICORN_WORKERS 3
+ENV $GUNICORN_WORKER_CLASS gevent
 
 COPY Pipfile Pipfile
 COPY Pipfile.lock Pipfile.lock

@@ -31,7 +31,7 @@ def put(model, overwrite):
     key_field = config['key_field']
 
     row = table.row(getattr(model, key_field))
-    item, _ = schema.dump(model)
+    item, _ = schema.dump(model)  # FIXME all fields need to be converted to str
     for k, v in item.items():
         row.set_cell('cf1', k, v)
 
