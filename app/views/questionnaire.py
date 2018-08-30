@@ -24,7 +24,7 @@ from app.helpers.schema_helpers import get_group_instance_id
 from app.helpers.schema_helpers import with_schema
 from app.helpers.session_helpers import with_answer_store, with_metadata, with_collection_metadata
 from app.helpers.template_helper import (with_session_timeout, with_metadata_context, with_analytics,
-                                         with_questionnaire_url_prefix, render_template)
+                                         with_questionnaire_url_prefix, with_legal_basis, render_template)
 
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
@@ -740,6 +740,7 @@ def _build_template(current_location, context, template, schema, answer_store, m
 @with_questionnaire_url_prefix
 @with_metadata_context
 @with_analytics
+@with_legal_basis
 def _render_template(context, current_location, template, front_end_navigation, previous_url, schema, metadata, answer_store, **kwargs):
     page_title = get_page_title_for_location(schema, current_location, metadata, answer_store)
 

@@ -5,7 +5,7 @@ class HappyPathHelperMixin():
     def _happy_path(self, form_type_id, eq_id):
         self.launchSurvey(eq_id, form_type_id)
 
-        # We are on the landing page
+        # We are on the introduction page
         self.assertInPage('>Start survey<')
         self.assertInPage('Monthly Business Survey - Retail Sales Index')
 

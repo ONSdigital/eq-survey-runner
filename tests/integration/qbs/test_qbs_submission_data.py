@@ -8,7 +8,7 @@ class TestQbsSubmissionData(IntegrationTestCase):
     def submission_data(self, eq_id, form_type_id):
         self.launchSurvey(eq_id, form_type_id, roles=['dumper'])
 
-        # We are on the landing page
+        # We are on the introduction page
         self.assertInPage('>Start survey<')
         self.assertInPage('Quarterly Business Survey')
 

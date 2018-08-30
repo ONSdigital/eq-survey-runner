@@ -59,8 +59,8 @@
             {% endif %}
 
             {%- if legal_basis -%}
-                <h2 class="neptune u-mb-xs">{{ _("Your response is legally required") }}</h2>
-                <p class="mars u-mb-m">{{ legal_basis }}</p>
+                <h2 class="neptune u-mb-xs" data-qa="legal-response">{{ _("Your response is legally required") }}</h2>
+                <p class="mars u-mb-m" data-qa="legal-basis">{{ legal_basis }}</p>
             {%- endif -%}
 
             {% block start_survey %}

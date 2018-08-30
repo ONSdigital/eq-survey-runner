@@ -7,7 +7,7 @@ class TestSubmissionWithErrors(IntegrationTestCase):
     def test_submission_with_errors(self):
         self.launchSurvey('test', '0205')
 
-        # We are on the landing page
+        # We are on the introduction page
         self.assertInPage('>Start survey<')
         self.assertInPage('Monthly Business Survey - Retail Sales Index')
 

@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const landingPage = require('./pages/landing.page');
+const introductionPage = require('./pages/introduction.page');
 const genericPage = require('./pages/surveys/generic.page');
 const generateToken = require('./jwt_helper');
 
@@ -16,7 +16,7 @@ const openCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-EN
 
 const startCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-ENG', language = 'en') => {
   return openCensusQuestionnaire(schema, sexualIdentity, region, language).then(() => {
-      return browser.click(landingPage.getStarted());
+      return browser.click(introductionPage.getStarted());
   });
 };
 
@@ -29,7 +29,7 @@ function openQuestionnaire(schema, userId = getRandomString(10), collectionId = 
 
 function startQuestionnaire(schema, userId = getRandomString(10), collectionId = getRandomString(10)) {
   return openQuestionnaire(schema, userId, collectionId).then(() => {
-      return browser.click(landingPage.getStarted());
+      return browser.click(introductionPage.getStarted());
   });
 }
 
@@ -122,7 +122,7 @@ function pressSubmit(numberOfTimes) {
  }
 
 module.exports = {
-  landingPage,
+  introductionPage,
   getUri,
   getRandomString,
   openCensusQuestionnaire,

@@ -8,7 +8,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
     def test_correct_invalid_date(self):
         self.launchSurvey('test', '0205')
 
-        # We are on the landing page
+        # We are on the introduction page
         self.assertInPage('>Start survey<')
         self.assertInPage('Monthly Business Survey - Retail Sales Index')
 
