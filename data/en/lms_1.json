@@ -21,7 +21,7 @@
         "name": "ru_name",
         "validator": "string"
     }, {
-        "name": "country_code",
+        "name": "country",
         "validator": "string"
     }, {
         "name": "display_address",
@@ -1379,7 +1379,7 @@
                                 ],
                                 "skip_conditions": [{
                                     "when": [{
-                                        "meta": "country_code",
+                                        "meta": "country",
                                         "condition": "equals",
                                         "value": "W"
                                     }]
@@ -1441,7 +1441,7 @@
                                 ],
                                 "skip_conditions": [{
                                     "when": [{
-                                        "meta": "country_code",
+                                        "meta": "country",
                                         "condition": "not equals",
                                         "value": "W"
                                     }]
@@ -1452,7 +1452,7 @@
                                 "goto": {
                                     "block": "understand-welsh",
                                     "when": [{
-                                        "meta": "country_code",
+                                        "meta": "country",
                                         "condition": "equals",
                                         "value": "W"
                                     }]
