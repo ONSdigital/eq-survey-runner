@@ -32,7 +32,7 @@
       {% endblock form_content %}
 
       {% block submit_button %}
-      <button class="btn" data-qa="btn-submit" type="submit" name="action[save_continue]">{{ _("Save and continue") }}</button>
+      <button class="btn" data-qa="btn-submit" type="submit" name="action[save_continue]">{% block submit_button_text %}{{ _("Save and continue") }}{% endblock submit_button_text %}</button>
       {% endblock %}
 
       <div class="u-mb-m">

@@ -1,5 +1,7 @@
 {% extends theme('layouts/_questionnaire.html') %}
 
+{% block submit_button_text %}{{ _("Continue") }}{% endblock %}
+
 {% block form_content %}
 {% if block['section_number'] %}
   <h1 class="saturn">Section {{block['section_number']}}: {{block['title']}}</h1>
