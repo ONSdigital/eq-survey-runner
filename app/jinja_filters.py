@@ -403,6 +403,11 @@ def max_value(a, b):
         raise Exception(msg)
 
 
+@blueprint.app_template_filter()
+def language_urls(languages, current_language):
+    return [language for language in languages if language[0] != current_language]
+
+
 @contextfunction
 @blueprint.app_template_filter()
 def get_question_title(context, question_id):
@@ -487,6 +492,11 @@ def format_currency_for_input_processor():
 @blueprint.app_context_processor
 def format_number_processor():
     return dict(format_number=format_number)
+
+
+@blueprint.app_context_processor
+def language_urls_processor():
+    return dict(language_urls=language_urls)
 
 
 def mark_safe(context, value):
