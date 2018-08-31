@@ -7,7 +7,7 @@ class TestEmptyComments(IntegrationTestCase):
     def test_empty_comments(self):
         self.launchSurvey('test', '0203')
 
-        # We are on the landing page
+        # We are on the introduction page
         self.assertInPage('>Start survey<')
         self.assertInPage('Monthly Business Survey - Retail Sales Index')
 

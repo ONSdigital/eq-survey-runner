@@ -7,7 +7,7 @@ class TestEmptyQuestionnaire(IntegrationTestCase):
     def test_empty_questionnaire(self):
         self.launchSurvey('test', '0205')
 
-        # We are on the landing page
+        # We are on the introduction page
         self.assertInPage('>Start survey<')
 
         # Submit the Introduction page to get the first question page

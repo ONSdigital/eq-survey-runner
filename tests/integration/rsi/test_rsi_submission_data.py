@@ -6,7 +6,7 @@ class TestRsiSubmissionData(IntegrationTestCase):
     def test_submission_data_1_0102(self):
         self.launchSurvey('test', '0102', roles=['dumper'])
 
-        # We are on the landing page
+        # We are on the introduction page
         self.assertInPage('>Start survey<')
         self.assertInPage('Monthly Business Survey - Retail Sales Index')
 
@@ -84,7 +84,7 @@ class TestRsiSubmissionData(IntegrationTestCase):
     def test_submission_data_1_0112(self):
         self.launchSurvey('test', '0112', roles=['dumper'])
 
-        # We are on the landing page
+        # We are on the introduction page
         self.assertInPage('>Start survey<')
         self.assertInPage('Monthly Business Survey - Retail Sales Index')
 

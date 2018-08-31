@@ -70,6 +70,14 @@ def with_questionnaire_url_prefix(func):
     return url_prefix_wrapper
 
 
+def with_legal_basis(func):
+    @wraps(func)
+    def legal_basis_wrapper(*args, **kwargs):
+        legal_basis = g.schema.json.get('legal_basis')
+        return func(*args, legal_basis=legal_basis, **kwargs)
+    return legal_basis_wrapper
+
+
 def render_template(template, **kwargs):
     theme = g.schema.json.get('theme')
     template = '{}.html'.format(template).lower()
