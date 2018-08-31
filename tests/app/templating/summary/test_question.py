@@ -60,7 +60,7 @@ class TestQuestion(TestCase):
             question = Question(question_schema, self.answer_store, self.metadata, self.schema)
 
         # Then
-        evaluate_when_rules.assert_called_once_with(title_when, self.schema, self.metadata, self.answer_store, 0)
+        evaluate_when_rules.assert_called_once_with(title_when, self.schema, self.metadata, self.answer_store, 0, group_instance_id=None)
         self.assertEqual(question.id, 'question_id')
         self.assertEqual(question.title, 'conditional_title')
         self.assertEqual(len(question.answers), 1)

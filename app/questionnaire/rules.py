@@ -92,7 +92,7 @@ def convert_to_datetime(value):
     return datetime.strptime(value, date_format) if value else None
 
 
-def evaluate_goto(goto_rule, schema, metadata, answer_store, group_instance):
+def evaluate_goto(goto_rule, schema, metadata, answer_store, group_instance, group_instance_id=None):
     """
     Determine whether a goto rule will be satisfied based on a given answer
     :param goto_rule: goto rule to evaluate
@@ -100,14 +100,15 @@ def evaluate_goto(goto_rule, schema, metadata, answer_store, group_instance):
     :param metadata: metadata for evaluating rules with metadata conditions
     :param answer_store: store of answers to evaluate
     :param group_instance: when evaluating a when rule for a repeating group, defaults to 0 for non-repeating groups
+    :param group_instance_id: The group instance ID to filter results by
     :return: True if the when condition has been met otherwise False
     """
     if 'when' in goto_rule.keys():
-        return evaluate_when_rules(goto_rule['when'], schema, metadata, answer_store, group_instance)
+        return evaluate_when_rules(goto_rule['when'], schema, metadata, answer_store, group_instance, group_instance_id)
     return True
 
 
-def evaluate_repeat(schema, repeat_rule, answer_store, answer_ids_on_path):
+def evaluate_repeat(repeat_rule, answer_store, answer_ids_on_path):
     """
     Returns the number of times repetition should occur based on answers
     """
@@ -116,13 +117,6 @@ def evaluate_repeat(schema, repeat_rule, answer_store, answer_ids_on_path):
         answers = list(answer_store.filter(answer_ids=[when['id']]))
         stop = bool(answers and evaluate_rule(when, answers[-1]['value']))
         no_of_repeats = len(answers) + (0 if stop else 1)
-    elif repeat_rule['type'] == 'group':
-        group_instances = set()
-        for group_id in repeat_rule['group_ids']:
-            answer_ids_in_group = schema.get_answer_ids_for_group(group_id)
-            group_instances |= {a['group_instance_id'] for a in answer_store.filter(answer_ids=answer_ids_in_group)}
-
-        no_of_repeats = len(group_instances)
     else:
         repeat_functions = {
             'answer_value': _get_answer_value,
@@ -130,12 +124,19 @@ def evaluate_repeat(schema, repeat_rule, answer_store, answer_ids_on_path):
             'answer_count_minus_one': _get_answer_count_minus_one,
         }
 
-        repeat_index = repeat_rule['answer_id']
+        repeat_indexes = []
 
-        answers = []
         # Only use answers that are on the routing path
-        if repeat_index in answer_ids_on_path:
-            answers = list(answer_store.filter(answer_ids=[repeat_index]))
+        if 'answer_id' in repeat_rule and repeat_rule['answer_id'] in answer_ids_on_path:
+            repeat_indexes.append(repeat_rule['answer_id'])
+
+        if 'answer_ids' in repeat_rule:
+            for answer_id in repeat_rule['answer_ids']:
+                # Only use answers that are on the routing path
+                if answer_id in answer_ids_on_path:
+                    repeat_indexes.append(answer_id)
+
+        answers = list(answer_store.filter(answer_ids=repeat_indexes))
 
         repeat_function = repeat_functions[repeat_rule['type']]
         no_of_repeats = repeat_function(answers)
@@ -155,7 +156,7 @@ def _get_answer_count_minus_one(filtered_answers):
     return min(max(len(filtered_answers) - 1, 0), MAX_REPEATS - 1)
 
 
-def evaluate_skip_conditions(skip_conditions, schema, metadata, answer_store, group_instance=0):
+def evaluate_skip_conditions(skip_conditions, schema, metadata, answer_store, group_instance=0, group_instance_id=None):
     """
     Determine whether a skip condition will be satisfied based on a given answer
     :param skip_conditions: skip_conditions rule to evaluate
@@ -163,6 +164,7 @@ def evaluate_skip_conditions(skip_conditions, schema, metadata, answer_store, gr
     :param metadata: metadata for evaluating rules with metadata conditions
     :param answer_store: store of answers to evaluate
     :param group_instance: when evaluating a when rule for a repeating group, defaults to 0 for non-repeating groups
+    :param group_instance_id: The group instance ID to filter results by
     :return: True if the when condition has been met otherwise False
     """
 
@@ -171,13 +173,13 @@ def evaluate_skip_conditions(skip_conditions, schema, metadata, answer_store, gr
         return False
 
     for when in skip_conditions:
-        condition = evaluate_when_rules(when['when'], schema, metadata, answer_store, group_instance)
+        condition = evaluate_when_rules(when['when'], schema, metadata, answer_store, group_instance, group_instance_id)
         if condition is True:
             return True
     return False
 
 
-def evaluate_when_rules(when_rules, schema, metadata, answer_store, group_instance):
+def evaluate_when_rules(when_rules, schema, metadata, answer_store, group_instance, group_instance_id):
     """
     Whether the skip condition has been met.
     :param when_rules: when rules to evaluate
@@ -186,13 +188,14 @@ def evaluate_when_rules(when_rules, schema, metadata, answer_store, group_instan
     :param answer_store: store of answers to evaluate
     :param group_instance: when evaluating a when rule for a repeating group
            this holds the group instance of the repeating group
+    :param group_instance_id: The group instance ID to filter results by
     :return: True if the when condition has been met otherwise False
     """
     for when_rule in when_rules:
         if 'id' in when_rule:
             if group_instance > 0 and not schema.answer_is_in_repeating_group(when_rule['id']):
                 group_instance = 0
-            value = get_answer_store_value(when_rule['id'], answer_store, group_instance)
+            value = get_answer_store_value(when_rule['id'], answer_store, group_instance, group_instance_id)
         elif 'meta' in when_rule:
             value = get_metadata_value(metadata, when_rule['meta'])
         elif 'answer_count' in when_rule:
@@ -210,8 +213,8 @@ def evaluate_when_rules(when_rules, schema, metadata, answer_store, group_instan
     return True
 
 
-def get_answer_store_value(answer_index, answer_store, group_instance):
-    filtered = answer_store.filter(answer_ids=[answer_index], group_instance=group_instance)
+def get_answer_store_value(answer_index, answer_store, group_instance, group_instance_id=None):
+    filtered = answer_store.filter(answer_ids=[answer_index], group_instance=group_instance, group_instance_id=group_instance_id)
 
     if filtered.count() > 1:
         raise Exception('Multiple answers ({:d}) found evaluating when rule for answer ({})'
@@ -225,7 +228,7 @@ def get_number_of_repeats(group, schema, routing_path, answer_store):
     if repeating_rule:
         answer_ids_on_path = get_answer_ids_on_routing_path(
             schema, routing_path)
-        return evaluate_repeat(schema, repeating_rule, answer_store, answer_ids_on_path)
+        return evaluate_repeat(repeating_rule, answer_store, answer_ids_on_path)
 
     return 1
 

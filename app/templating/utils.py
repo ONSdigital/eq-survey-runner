@@ -13,9 +13,9 @@ def get_question_title(question_schema, answer_store, schema, metadata, group_in
     return get_title_from_titles(metadata, schema, answer_store, titles, group_instance)
 
 
-def get_title_from_titles(metadata, schema, answer_store, titles, group_instance):
+def get_title_from_titles(metadata, schema, answer_store, titles, group_instance, group_instance_id=None):
     """returns a title from titles available by evaluating the when rules , if all fail returns default"""
     for when, value in ((title['when'], title['value']) for title in titles if 'when' in title):
-        if evaluate_when_rules(when, schema, metadata, answer_store, group_instance):
+        if evaluate_when_rules(when, schema, metadata, answer_store, group_instance, group_instance_id=group_instance_id):
             return value
     return titles[-1]['value']

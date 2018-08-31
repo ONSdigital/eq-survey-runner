@@ -1,3 +1,4 @@
+import uuid
 from unittest.mock import patch, MagicMock
 import pytest
 
@@ -782,6 +783,77 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
                 # Then
                 self.assertEqual(expected_path, actual_path)
+
+    def test_repeating_group_skip_when_driving_answer_in_repeat(self):
+        schema = load_schema_from_params('test', 'routing_on_answer_from_driving_repeating_group')
+
+        primary_group_instance_id = str(uuid.uuid4())
+        repeating_group_1_instance_id = str(uuid.uuid4())
+        repeating_group_2_instance_id = str(uuid.uuid4())
+
+        answer_store = AnswerStore({})
+        answer_store.add(Answer(
+            answer_id='primary-name',
+            value='Jon',
+            group_instance=0,
+            group_instance_id=primary_group_instance_id
+        ))
+        answer_store.add(Answer(
+            answer_id='primary-live-here',
+            value='No',
+            group_instance=0,
+            group_instance_id=primary_group_instance_id
+        ))
+        answer_store.add(Answer(
+            answer_id='repeating-anyone-else',
+            answer_instance=0,
+            value='Yes',
+            group_instance=0,
+        ))
+        answer_store.add(Answer(
+            answer_id='repeating-name',
+            answer_instance=0,
+            value='Adam',
+            group_instance=0,
+            group_instance_id=repeating_group_1_instance_id
+        ))
+        answer_store.add(Answer(
+            answer_id='repeating-anyone-else',
+            answer_instance=0,
+            value='Yes',
+            group_instance=1,
+        ))
+        answer_store.add(Answer(
+            answer_id='repeating-name',
+            answer_instance=0,
+            value='Ben',
+            group_instance=1,
+            group_instance_id=repeating_group_2_instance_id
+        ))
+        answer_store.add(Answer(
+            answer_id='repeating-anyone-else',
+            answer_instance=0,
+            value='No',
+            group_instance=2,
+        ))
+
+        completed_blocks = [
+            Location('primary-group', 0, 'primary-name-block'),
+            Location('primary-group', 0, 'primary-live-here-block'),
+            Location('repeating-group', 0, 'repeating-anyone-else-block'),
+            Location('repeating-group', 0, 'repeating-name-block'),
+            Location('repeating-group', 1, 'repeating-anyone-else-block'),
+            Location('repeating-group', 1, 'repeating-name-block'),
+            Location('repeating-group', 2, 'repeating-anyone-else-block'),
+        ]
+        expected_next_location = Location('sex-group', 1, 'sex-block')
+
+        path_finder = PathFinder(schema, answer_store, metadata={}, completed_blocks=completed_blocks)
+
+        path_finder.build_path()
+        next_location = path_finder.get_next_location(completed_blocks[-1])
+
+        self.assertEqual(expected_next_location, next_location)
 
     def test_excessive_repeating_groups_conditional_location_path(self):
         schema = load_schema_from_params('test', 'repeating_and_conditional_routing')

@@ -1,7 +1,6 @@
 const helpers = require('../helpers');
 
 const PrimaryNamePage = require('../pages/surveys/routing_repeat_until/primary-name-block.page.js');
-const PrimaryAnyoneElsePage = require('../pages/surveys/routing_repeat_until/primary-anyone-else-block.page.js');
 const RepeatingNamePage = require('../pages/surveys/routing_repeat_until/repeating-name-block.page.js');
 const RepeatingAnyoneElsePage = require('../pages/surveys/routing_repeat_until/repeating-anyone-else-block.page.js');
 const SexPage = require('../pages/surveys/routing_repeat_until/sex-block.page.js');
@@ -17,8 +16,8 @@ describe('Routing Repeat Until', function() {
         .setValue(PrimaryNamePage.answer(), 'Bob')
         .click(PrimaryNamePage.submit())
 
-        .click(PrimaryAnyoneElsePage.yes())
-        .click(PrimaryAnyoneElsePage.submit())
+        .click(RepeatingAnyoneElsePage.yes())
+        .click(RepeatingAnyoneElsePage.submit())
 
         .setValue(RepeatingNamePage.answer(), 'Alice')
         .click(RepeatingNamePage.submit())
@@ -47,8 +46,8 @@ describe('Routing Repeat Until', function() {
         .setValue(PrimaryNamePage.answer(), 'Bob')
         .click(PrimaryNamePage.submit())
 
-        .click(PrimaryAnyoneElsePage.yes())
-        .click(PrimaryAnyoneElsePage.submit())
+        .click(RepeatingAnyoneElsePage.yes())
+        .click(RepeatingAnyoneElsePage.submit())
 
         .setValue(RepeatingNamePage.answer(), 'Alice')
         .click(RepeatingNamePage.submit())
@@ -87,8 +86,8 @@ describe('Routing Repeat Until', function() {
         .setValue(PrimaryNamePage.answer(), 'Bob')
         .click(PrimaryNamePage.submit())
 
-        .click(PrimaryAnyoneElsePage.no())
-        .click(PrimaryAnyoneElsePage.submit())
+        .click(RepeatingAnyoneElsePage.no())
+        .click(RepeatingAnyoneElsePage.submit())
 
         .getText(SexPage.questionText()).should.eventually.contain('Bob')
         .click(SexPage.male())
