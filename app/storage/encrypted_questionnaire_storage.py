@@ -20,14 +20,7 @@ class EncryptedQuestionnaireStorage:
     def add_or_update(self, data, version):
         encrypted_data = self.encrypter.encrypt_data(data)
         encrypted_data_json = json.dumps({'data': encrypted_data})
-        questionnaire_state = self._find_questionnaire_state()
-        if questionnaire_state:
-            logger.debug('updating questionnaire data', user_id=self._user_id)
-            questionnaire_state.state_data = encrypted_data_json
-            questionnaire_state.version = version
-        else:
-            logger.debug('creating questionnaire data', user_id=self._user_id)
-            questionnaire_state = QuestionnaireState(self._user_id, encrypted_data_json, version)
+        questionnaire_state = QuestionnaireState(self._user_id, encrypted_data_json, version)
 
         data_access.put(questionnaire_state)
 
