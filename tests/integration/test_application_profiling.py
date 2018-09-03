@@ -1,4 +1,3 @@
-import os
 from unittest.mock import patch
 
 from app import settings
@@ -24,11 +23,12 @@ class TestApplicationProfilingDir(IntegrationTestCase):
         pass
 
     def test_profiling_directory_created(self):
-        # Given
-        profiling_dir = 'profiling'
-        os.rmdir(profiling_dir)
-        # When - setup the app
-        with patch('app.setup.settings.EQ_PROFILING', True):
+        """
+        Ensure that we try to create a profiling directory on startup (if enabled)
+        :return:
+        """
+        with patch('app.setup.settings.EQ_PROFILING', True), \
+             patch('app.setup.os.makedirs') as mkdir_mock, \
+             patch('app.setup.os.path.exists', return_value=False):
             super().setUp()
-        # Then
-        self.assertTrue(os.path.exists(profiling_dir))
+            self.assertEqual(mkdir_mock.called, True)
