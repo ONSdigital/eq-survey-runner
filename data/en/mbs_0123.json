@@ -198,7 +198,7 @@
                         "mandatory": true
                     }],
                     "id": "confirm-commission-and-fees-question",
-                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, the value of the total commission and fees was <em>{{answers['commission-and-fees-answer']|format_currency}}</em>, is this correct?"
+                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, the value of the total commission and fees was <em>{{format_currency(answers['commission-and-fees-answer'])}}</em>, is this correct?"
                 }],
                 "routing_rules": [{
                     "goto": {
