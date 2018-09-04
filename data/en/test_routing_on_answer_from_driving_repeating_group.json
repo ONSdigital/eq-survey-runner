@@ -134,6 +134,82 @@
                 ]
             },
             {
+                "id": "household-relationships",
+                "title": "Relationships",
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "primary-live-here",
+                        "condition": "equals",
+                        "value": "No"
+                    }]
+                }],
+                "routing_rules": [{
+                    "repeat": {
+                        "type": "answer_count_minus_one",
+                        "answer_ids": [
+                            "primary-name",
+                            "repeating-name"
+                        ]
+                    }
+                }],
+                "blocks": [{
+                    "type": "Question",
+                    "id": "relationships",
+                    "title": "Who lives here?",
+                    "questions": [{
+                        "id": "relationship-question",
+                        "title": "Describe how this person is related to the others",
+                        "description": "If members are not related, select the \u2018unrelated\u2019 option, including foster parents and foster children.",
+                        "type": "Relationship",
+                        "member_label": "answers['primary-name'] | default(answers['repeating-name'])",
+                        "answers": [{
+                            "id": "who-is-related",
+                            "label": "%(current_person)s is the &hellip; of %(other_person)s",
+                            "mandatory": false,
+                            "q_code": "2",
+                            "type": "Relationship",
+                            "options": [{
+                                    "label": "Husband or wife",
+                                    "value": "Husband or wife"
+                                },
+                                {
+                                    "label": "Partner",
+                                    "value": "Partner"
+                                },
+                                {
+                                    "label": "Mother or father",
+                                    "value": "Mother or father"
+                                },
+                                {
+                                    "label": "Son or daughter",
+                                    "value": "Son or daughter"
+                                },
+                                {
+                                    "label": "Brother or sister",
+                                    "value": "Brother or sister"
+                                },
+                                {
+                                    "label": "Relation - other",
+                                    "value": "Relation - other"
+                                },
+                                {
+                                    "label": "Grandparent",
+                                    "value": "Grandparent"
+                                },
+                                {
+                                    "label": "Grandchild",
+                                    "value": "Grandchild"
+                                },
+                                {
+                                    "label": "Unrelated",
+                                    "value": "Unrelated"
+                                }
+                            ]
+                        }]
+                    }]
+                }]
+            },
+            {
                 "id": "sex-group",
                 "title": "Household Member Details",
                 "skip_conditions": [{

@@ -68,8 +68,9 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def get_groups_that_repeat_with_answer_id(self, answer_id):
         for group in self.groups:
             repeating_rule = self.get_repeat_rule(group)
-            if repeating_rule and repeating_rule['answer_id'] == answer_id:
-                yield group
+            if repeating_rule:
+                if repeating_rule.get('answer_id') == answer_id:
+                    yield group
 
     def group_has_questions(self, group_id):
         for block in self.get_group(group_id)['blocks']:

@@ -5,6 +5,7 @@ const PrimaryLiveHereBlockPage = require('../pages/surveys/routing_on_answer_fro
 const RepeatingNamePage = require('../pages/surveys/routing_on_answer_from_driving_repeating_group/repeating-name-block.page.js');
 const RepeatingAnyoneElsePage = require('../pages/surveys/routing_on_answer_from_driving_repeating_group/repeating-anyone-else-block.page.js');
 const SexPage = require('../pages/surveys/routing_on_answer_from_driving_repeating_group/sex-block.page.js');
+const RelationshipsPage = require('../pages/surveys/routing_on_answer_from_driving_repeating_group/relationships.page.js');
 const SummaryPage = require('../pages/surveys/routing_on_answer_from_driving_repeating_group/summary.page.js');
 
 describe('Routing on Answer from repeat', function() {
@@ -34,6 +35,9 @@ describe('Routing on Answer from repeat', function() {
 
         .click(RepeatingAnyoneElsePage.no())
         .click(RepeatingAnyoneElsePage.submit())
+
+        .click(RelationshipsPage.relationship(0, 'Husband or wife'))
+        .click(RelationshipsPage.submit())
 
         .getText(SexPage.questionText()).should.eventually.contain('Alice')
         .click(SexPage.female())

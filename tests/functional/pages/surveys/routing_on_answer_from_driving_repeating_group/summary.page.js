@@ -27,6 +27,12 @@ class SummaryPage extends QuestionPage {
 
   repeatingGroupTitle() { return '#repeating-group'; }
 
+  whoIsRelated() { return '#who-is-related-answer'; }
+
+  whoIsRelatedEdit() { return '[data-qa="who-is-related-edit"]'; }
+
+  householdRelationshipsTitle() { return '#household-relationships'; }
+
   sexAnswer() { return '#sex-answer-answer'; }
 
   sexAnswerEdit() { return '[data-qa="sex-answer-edit"]'; }

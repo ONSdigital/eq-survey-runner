@@ -73,6 +73,18 @@ ANSWER_GETTER = Template(r"""  ${answerName}() {
 
 """)
 
+RELATIONSHIP_ANSWER_GETTER = Template(r"""  ${answerName}(instance) {
+    return '[name="${answerId}-' + instance + '"]';
+  }
+
+""")
+
+RELATIONSHIP_ANSWER_SETTER = Template(r"""  relationship(instance, answer) {
+    return '#${answerId}-' + instance + ' > [value="' + answer + '"]';
+  }
+
+""")
+
 HOUSEHOLD_ANSWER_GETTER = Template(r"""  ${answerName}(index = '') {
     return '#household-0-${answerId}' + index;
   }
@@ -196,7 +208,17 @@ def process_answer(question_type, answer, page_spec, long_names, page_name):
     elif answer['type'] in 'Duration':
         page_spec.write(_write_duration_answer(answer['id'], answer['units'], prefix))
 
-    elif answer['type'] in ('TextField', 'Number', 'TextArea', 'Currency', 'Percentage', 'Relationship', 'Unit', 'Dropdown'):
+    elif answer['type'] in 'Relationship':
+        answer_context = {
+            'answerName': camel_case(answer_name),
+            'answerId': answer['id']
+        }
+
+        page_spec.write(RELATIONSHIP_ANSWER_GETTER.substitute(answer_context))
+        page_spec.write(RELATIONSHIP_ANSWER_SETTER.substitute(answer_context))
+        page_spec.write(ANSWER_LABEL_GETTER.substitute(answer_context))
+
+    elif answer['type'] in ('TextField', 'Number', 'TextArea', 'Currency', 'Percentage', 'Unit', 'Dropdown'):
 
         answer_context = {
             'answerName': camel_case(answer_name),

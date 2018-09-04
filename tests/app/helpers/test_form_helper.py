@@ -1,4 +1,6 @@
 import unittest
+import uuid
+
 from werkzeug.datastructures import MultiDict
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -241,6 +243,147 @@ class TestFormHelper(AppContextTestCase):
 
             # With two people, we need to define 1 relationship
             self.assertEqual(len(field_list.entries), 1)
+
+            # Check the data matches what was passed from request
+            self.assertEqual(field_list.entries[0].data, '3')
+
+    def test_get_form_for_household_relationship_driven_by_multiple_answers(self):
+        with self.app_request_context():
+            schema = load_schema_from_params('test', 'routing_on_answer_from_driving_repeating_group')
+
+            block_json = schema.get_block('relationships')
+            location = Location('household-relationships', 0, 'relationships')
+            error_messages = schema.error_messages
+
+            primary_group_instance_id = str(uuid.uuid4())
+            repeating_group_1_instance_id = str(uuid.uuid4())
+            repeating_group_2_instance_id = str(uuid.uuid4())
+
+            answer_store = AnswerStore({})
+            answer_store.add(Answer(
+                answer_id='primary-name',
+                value='Jon',
+                group_instance=0,
+                group_instance_id=primary_group_instance_id
+            ))
+            answer_store.add(Answer(
+                answer_id='primary-live-here',
+                value='No',
+                group_instance=0,
+                group_instance_id=primary_group_instance_id
+            ))
+            answer_store.add(Answer(
+                answer_id='repeating-anyone-else',
+                answer_instance=0,
+                value='Yes',
+                group_instance=0,
+            ))
+            answer_store.add(Answer(
+                answer_id='repeating-name',
+                answer_instance=0,
+                value='Adam',
+                group_instance=0,
+                group_instance_id=repeating_group_1_instance_id
+            ))
+            answer_store.add(Answer(
+                answer_id='repeating-anyone-else',
+                answer_instance=0,
+                value='Yes',
+                group_instance=1,
+            ))
+            answer_store.add(Answer(
+                answer_id='repeating-name',
+                answer_instance=0,
+                value='Ben',
+                group_instance=1,
+                group_instance_id=repeating_group_2_instance_id
+            ))
+            answer_store.add(Answer(
+                answer_id='repeating-anyone-else',
+                answer_instance=0,
+                value='No',
+                group_instance=2,
+            ))
+
+            form = get_form_for_location(schema, block_json, location, answer_store, error_messages)
+
+            answer = schema.get_answers_for_block('relationships')[0]
+
+            self.assertTrue(hasattr(form, answer['id']))
+
+            field_list = getattr(form, answer['id'])
+
+            # With three people, we need to define 2 relationships
+            self.assertEqual(len(field_list.entries), 2)
+
+    def test_post_form_for_household_relationship_driven_by_multiple_answers(self):
+        with self.app_request_context():
+            schema = load_schema_from_params('test', 'routing_on_answer_from_driving_repeating_group')
+
+            block_json = schema.get_block('relationships')
+            location = Location('household-relationships', 0, 'relationships')
+
+            primary_group_instance_id = str(uuid.uuid4())
+            repeating_group_1_instance_id = str(uuid.uuid4())
+            repeating_group_2_instance_id = str(uuid.uuid4())
+
+            answer_store = AnswerStore({})
+            answer_store.add(Answer(
+                answer_id='primary-name',
+                value='Jon',
+                group_instance=0,
+                group_instance_id=primary_group_instance_id
+            ))
+            answer_store.add(Answer(
+                answer_id='primary-live-here',
+                value='No',
+                group_instance=0,
+                group_instance_id=primary_group_instance_id
+            ))
+            answer_store.add(Answer(
+                answer_id='repeating-anyone-else',
+                answer_instance=0,
+                value='Yes',
+                group_instance=0,
+            ))
+            answer_store.add(Answer(
+                answer_id='repeating-name',
+                answer_instance=0,
+                value='Adam',
+                group_instance=0,
+                group_instance_id=repeating_group_1_instance_id
+            ))
+            answer_store.add(Answer(
+                answer_id='repeating-anyone-else',
+                answer_instance=0,
+                value='Yes',
+                group_instance=1,
+            ))
+            answer_store.add(Answer(
+                answer_id='repeating-name',
+                answer_instance=0,
+                value='Ben',
+                group_instance=1,
+                group_instance_id=repeating_group_2_instance_id
+            ))
+            answer_store.add(Answer(
+                answer_id='repeating-anyone-else',
+                answer_instance=0,
+                value='No',
+                group_instance=2,
+            ))
+
+            answer = schema.get_answers_for_block('relationships')[0]
+
+            form = post_form_for_location(schema, block_json, location, answer_store, metadata=None,
+                                          request_form=MultiDict({'{answer_id}-0'.format(answer_id=answer['id']): '3'}))
+
+            self.assertTrue(hasattr(form, answer['id']))
+
+            field_list = getattr(form, answer['id'])
+
+            # With three people, we need to define 2 relationships
+            self.assertEqual(len(field_list.entries), 2)
 
             # Check the data matches what was passed from request
             self.assertEqual(field_list.entries[0].data, '3')

@@ -1,3 +1,5 @@
+import uuid
+
 from app.forms.household_relationship_form import build_relationship_choices, deserialise_relationship_answers, \
     serialise_relationship_answers, generate_relationship_form
 from app.data_model.answer_store import AnswerStore, Answer
@@ -12,41 +14,56 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
         return any(a_id == answer_id and msg in ordered_errors for a_id, ordered_errors in mapped_errors)
 
     def test_build_relationship_choices(self):
+
+        person_1 = str(uuid.uuid4())
+        person_2 = str(uuid.uuid4())
+        person_3 = str(uuid.uuid4())
+
         answer_store = AnswerStore([
             {
                 'answer_id': 'first-name',
                 'block_id': 'household-composition',
                 'value': 'Joe',
                 'answer_instance': 0,
+                'group_instance_id': person_1
             }, {
                 'answer_id': 'last-name',
                 'block_id': 'household-composition',
                 'value': 'Bloggs',
                 'answer_instance': 0,
+                'group_instance_id': person_1
             }, {
                 'answer_id': 'first-name',
                 'block_id': 'household-composition',
                 'value': 'Jane',
                 'answer_instance': 1,
+                'group_instance_id': person_2
             }, {
                 'answer_id': 'last-name',
                 'block_id': 'household-composition',
                 'value': 'Bloggs',
                 'answer_instance': 1,
+                'group_instance_id': person_2
             }, {
                 'answer_id': 'first-name',
                 'block_id': 'household-composition',
                 'value': 'Bob',
                 'answer_instance': 2,
+                'group_instance_id': person_3
             }, {
                 'answer_id': 'last-name',
                 'block_id': 'household-composition',
                 'value': '',
                 'answer_instance': 2,
+                'group_instance_id': person_3
             }
         ])
 
-        choices = build_relationship_choices(answer_store, 0)
+        answer_ids = ['first-name']
+
+        member_label = "[answers['first-name'], answers['last-name']] | format_household_name"
+
+        choices = build_relationship_choices(answer_ids, answer_store, 0, member_label)
 
         expected_choices = [
             ('Joe Bloggs', 'Jane Bloggs'),
@@ -56,7 +73,7 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
         self.assertEqual(expected_choices, choices)
 
         # Check each group is correct
-        choices = build_relationship_choices(answer_store, 1)
+        choices = build_relationship_choices(answer_ids, answer_store, 1, member_label)
 
         expected_choices = [
             ('Jane Bloggs', 'Bob'),
@@ -230,6 +247,8 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
                 value='Bloggs' + str(i),
             ))
 
-        choices = build_relationship_choices(answer_store, 0)
+            answer_ids = ['first-name']
+
+        choices = build_relationship_choices(answer_ids, answer_store, 0)
 
         self.assertEqual(len(choices), answer_store.EQ_MAX_NUM_REPEATS - 1)

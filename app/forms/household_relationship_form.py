@@ -5,55 +5,55 @@ from werkzeug.datastructures import MultiDict
 
 from app.forms.fields import build_choices, get_mandatory_validator
 from app.data_model.answer_store import Answer
-from app.jinja_filters import format_household_member_name
+from app.templating.template_renderer import renderer
 
 
-def build_relationship_choices(answer_store, group_instance):  # pylint: disable=too-many-locals
+def build_relationship_choices(answer_ids, answer_store, group_instance, member_label=None):  # pylint: disable=too-many-locals
     """
     A function to build a list of tuples of as yet undefined person relationships
 
+    :param answer_ids: The answers that drive the relationship matrix
     :param answer_store: The answer store to use for current answers
     :param group_instance: The instance of the group being iterated over
+    :param member_label: The label to override on the member name
     :return:
     """
-    household_first_name_answers = answer_store.filter(answer_ids=['first-name'],
-                                                       limit=True)
-    household_last_name_answers = answer_store.filter(answer_ids=['last-name'],
-                                                      limit=True)
-
-    first_names = []
-    last_names = []
-
-    for answer in household_first_name_answers:
-        first_names.append(answer['value'])
-
-    for answer in household_last_name_answers:
-        last_names.append(answer['value'])
-
     household_members = []
 
-    for first_name, last_name in zip(first_names, last_names):
-        household_members.append({
-            'first-name': first_name,
-            'last-name': last_name,
-        })
+    answers = list(answer_store.filter(answer_ids=answer_ids, limit=True))
+
+    for answer in answers:
+        if member_label:
+            context = {
+                'answers': _build_answers(answer_store, answer['group_instance_id']),
+            }
+
+            rendered_label = renderer.render('{{' + member_label + '}}', **context)
+
+            household_members.append(rendered_label)
+        else:
+            household_members.append(answer['value'])
+
     remaining_people = household_members[group_instance + 1:] if group_instance < len(household_members) else []
 
-    current_person_name = format_household_member_name([
-        household_members[group_instance]['first-name'],
-        household_members[group_instance]['last-name'],
-    ])
+    current_person_name = household_members[group_instance]
 
     choices = []
 
     for remaining_person in remaining_people:
-        other_person_name = format_household_member_name([
-            remaining_person['first-name'],
-            remaining_person['last-name'],
-        ])
+        other_person_name = remaining_person
         choices.append((current_person_name, other_person_name))
 
     return choices
+
+
+def _build_answers(answer_store, group_instance_id):
+    answers = {}
+
+    for answer in list(answer_store.filter(group_instance_id=group_instance_id, limit=True)):
+        answers[answer['answer_id']] = answer['value']
+
+    return answers
 
 
 def serialise_relationship_answers(answer_id, listfield_data, group_instance, group_instance_id):

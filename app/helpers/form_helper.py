@@ -40,11 +40,24 @@ def get_form_for_location(schema, block_json, location, answer_store, metadata, 
 
     if schema.block_has_question_type(location.block_id, 'Relationship'):
         answer_ids = schema.get_answer_ids_for_block(location.block_id)
+        group = schema.get_group(location.group_id)
         answers = answer_store.filter(answer_ids, location.group_instance)
 
         data = deserialise_relationship_answers(answers)
 
-        relationship_choices = build_relationship_choices(answer_store, location.group_instance)
+        # Relationship block only supports 1 question
+        question = schema.get_question(block_json['questions'][0]['id'])
+
+        answer_ids = []
+
+        repeat_rule = group['routing_rules'][0]['repeat']
+        if 'answer_ids' in repeat_rule:
+            for answer_id in repeat_rule['answer_ids']:
+                answer_ids.append(answer_id)
+        if 'answer_id' in repeat_rule:
+            answer_ids.append(repeat_rule['answer_id'])
+
+        relationship_choices = build_relationship_choices(answer_ids, answer_store, location.group_instance, question['member_label'])
 
         form = generate_relationship_form(schema, block_json, relationship_choices, data, location.group_instance, group_instance_id)
 
@@ -80,7 +93,18 @@ def post_form_for_location(schema, block_json, location, answer_store, metadata,
         return generate_household_composition_form(schema, block_json, request_form, metadata, location.group_instance)
 
     if schema.block_has_question_type(location.block_id, 'Relationship'):
-        relationship_choices = build_relationship_choices(answer_store, location.group_instance)
+        group = schema.get_group(location.group_id)
+
+        answer_ids = []
+
+        repeat_rule = group['routing_rules'][0]['repeat']
+        if 'answer_ids' in repeat_rule:
+            for answer_id in repeat_rule['answer_ids']:
+                answer_ids.append(answer_id)
+        if 'answer_id' in repeat_rule:
+            answer_ids.append(repeat_rule['answer_id'])
+
+        relationship_choices = build_relationship_choices(answer_ids, answer_store, location.group_instance)
         group_instance_id = get_group_instance_id(schema, answer_store, location)
         form = generate_relationship_form(schema, block_json, relationship_choices, request_form, location.group_instance, group_instance_id)
 
