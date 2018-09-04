@@ -348,6 +348,9 @@
                                 "label": "Value of acquisitions for improvements and construction work",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
                                 "decimal_places": 2,
+                                "min_value": {
+                                    "value": -999999999
+                                },
                                 "currency": "GBP"
                             }]
                         }]
@@ -432,6 +435,9 @@
                                     "q_code": "688",
                                     "label": "Value of acquisitions for transport assets and equipment",
                                     "decimal_places": 2,
+                                    "min_value": {
+                                        "value": -999999999
+                                    },
                                     "currency": "GBP"
                                 },
                                 {
@@ -441,6 +447,9 @@
                                     "q_code": "689",
                                     "label": "Value of proceeds from disposals for transport assets and equipment",
                                     "decimal_places": 2,
+                                    "min_value": {
+                                        "value": -999999999
+                                    },
                                     "currency": "GBP"
                                 }
                             ]
@@ -473,6 +482,9 @@
                                     "q_code": "695",
                                     "label": "Value of acquisitions for computers and peripheral devices (hardware)",
                                     "decimal_places": 2,
+                                    "min_value": {
+                                        "value": -999999999
+                                    },
                                     "currency": "GBP"
                                 },
                                 {
@@ -482,6 +494,9 @@
                                     "q_code": "696",
                                     "label": "Value of proceeds from disposals for computers and peripheral devices (hardware)",
                                     "decimal_places": 2,
+                                    "min_value": {
+                                        "value": -999999999
+                                    },
                                     "currency": "GBP"
                                 }
                             ]
@@ -522,6 +537,9 @@
                                     "q_code": "703",
                                     "label": "Value of acquisitions for computer software programs purchased or developed externally",
                                     "decimal_places": 2,
+                                    "min_value": {
+                                        "value": -999999999
+                                    },
                                     "currency": "GBP"
                                 },
                                 {
@@ -531,6 +549,9 @@
                                     "q_code": "704",
                                     "label": "Value of proceeds from disposals for computer software programs purchased or developed externally",
                                     "decimal_places": 2,
+                                    "min_value": {
+                                        "value": -999999999
+                                    },
                                     "currency": "GBP"
                                 }
                             ]
@@ -563,6 +584,9 @@
                                     "q_code": "707",
                                     "label": "Value of acquisitions for databases purchased or developed externally",
                                     "decimal_places": 2,
+                                    "min_value": {
+                                        "value": -999999999
+                                    },
                                     "currency": "GBP"
                                 },
                                 {
@@ -572,6 +596,9 @@
                                     "q_code": "708",
                                     "label": "Value of proceeds from disposals for databases purchased or developed externally",
                                     "decimal_places": 2,
+                                    "min_value": {
+                                        "value": -999999999
+                                    },
                                     "currency": "GBP"
                                 }
                             ]
@@ -605,6 +632,9 @@
                                     "q_code": "709",
                                     "label": "Value of acquisitions for telecommunication equipment",
                                     "decimal_places": 2,
+                                    "min_value": {
+                                        "value": -999999999
+                                    },
                                     "currency": "GBP"
                                 },
                                 {
@@ -614,6 +644,9 @@
                                     "q_code": "710",
                                     "label": "Value of proceeds from disposals for telecommunication equipment",
                                     "decimal_places": 2,
+                                    "min_value": {
+                                        "value": -999999999
+                                    },
                                     "currency": "GBP"
                                 }
                             ]
@@ -649,6 +682,9 @@
                                     "q_code": "711",
                                     "label": "Value of acquisitions for other machinery or equipment",
                                     "decimal_places": 2,
+                                    "min_value": {
+                                        "value": -999999999
+                                    },
                                     "currency": "GBP"
                                 },
                                 {
@@ -658,6 +694,9 @@
                                     "q_code": "712",
                                     "label": "Value of proceeds from disposals for other machinery or equipment",
                                     "decimal_places": 2,
+                                    "min_value": {
+                                        "value": -999999999
+                                    },
                                     "currency": "GBP"
                                 }
                             ]
