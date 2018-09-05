@@ -37,13 +37,6 @@ class QuestionnaireStore:
         self._metadata = to_set
         self.metadata = MappingProxyType(self._metadata)
 
-    def set_metadata_key(self, key, value):
-        """
-        Temporary method to allow setting a key on our 'immutable' metadata.
-        This should be removed after deployment of collection_metadata changes.
-        """
-        self._metadata[key] = value
-
     def ensure_latest_version(self, schema):
         """ If the code has been updated, the data being loaded may need
         transforming to match the latest code. """

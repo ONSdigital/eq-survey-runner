@@ -62,8 +62,6 @@ def convert_answers(metadata, collection_metadata, schema, answer_store, routing
     }
     if collection_metadata.get('started_at'):
         payload['started_at'] = collection_metadata['started_at']
-    elif metadata.get('started_at'):
-        payload['started_at'] = metadata['started_at']
     if metadata.get('case_id'):
         payload['case_id'] = metadata['case_id']
     if metadata.get('case_ref'):
