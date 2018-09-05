@@ -3,8 +3,8 @@
   {% set content_block = definition.content %}
   <div id="question-definition-{{question.id}}" class="definition js-details u-mb-s" data-hide-label="{{ _('Click to collapse') }}." data-show-label="{{ _('Click to expand') }}.">
 
-    <a href="#definition" class="definition__link mars js-details-trigger u-no-js-hide" aria-expanded="false" data-definition-title-index="{{loop.index}}" data-js-accordion-event-label="{{ definition.title }}" data-ga-label="definition-pattern-library" data-ga-action="Definition click" data-ga="click"
-      data-ga-category="Help">{{ definition.title }} <span class="u-vh js-details-label">{{ _("Click to expand") }}.</span></a>
+    <a href="#definition" class="definition__link icon--details js-details-trigger u-no-js-hide" aria-expanded="false" data-definition-title-index="{{loop.index}}" data-js-accordion-event-label="{{ definition.title }}" data-ga-label="definition-pattern-library" data-ga-action="Definition click" data-ga="click"
+            data-ga-category="Help">{{ definition.title }} <span class="u-vh js-details-label">{{ _("Click to expand") }}.</span></a>
 
     <h3 class="venus u-no-js-show u-mb-no">{{ definition.title }}</h3>
 

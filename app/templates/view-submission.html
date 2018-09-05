@@ -28,12 +28,15 @@
     </div>
 </div>
 
-<button class="btn btn--tertiary btn-print print__hidden u-no-js-hide">{{ _("Print this page") }} <span class="btn__icon btn__icon--print-link"></span></button>
+<button class="btn btn--secondary btn-print icon--print-link u-mt-s u-mb-l print__hidden u-no-js-hide">{{ _("Print this page") }} <span class="btn__icon btn__icon--print-link"></span></button>
 
 {% include theme('partials/summary/summary.html') %}
 
 {% endblock -%}
 
+{% block footer %}
+{% include theme('partials/footer-transactional.html') %}
+{% endblock %}
 
 {{ _("You are completing this for <span>%(ru_name)s</span> %(trad_as_open)s%(trad_as)s%(trad_as_close)s",
                     ru_name = metadata.ru_name,

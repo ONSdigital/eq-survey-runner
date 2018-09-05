@@ -275,14 +275,5 @@ describe('Census Individual', function() {
     });
   });
 
-  it('Given the census theme is selected, when I click the "help and support" button, then the help should be visible', function() {
-    return helpers.openCensusQuestionnaire('census_individual.json', true).then(() => {
-        return browser
-          .click('.js-help-btn')
-          .pause(5000)
-          .isVisible('.js-help-body').should.eventually.be.true;
-    });
-  });
-
 });
 
