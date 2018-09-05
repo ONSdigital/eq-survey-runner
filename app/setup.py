@@ -93,6 +93,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     setup_dynamodb(application)
 
+    setup_s3(application)
+
     setup_cosmodb(application)
 
     setup_bigtable(application)
@@ -242,6 +244,15 @@ def setup_dynamodb(application):
 
         application.eq['dynamodb'] = boto3.resource(
             'dynamodb', endpoint_url=application.config['EQ_DYNAMODB_ENDPOINT'], config=config)
+
+
+def setup_s3(application):
+    if application.config['EQ_STORAGE_BACKEND'] == 's3':
+        config = Config(
+            max_pool_connections=application.config['EQ_S3_MAX_POOL_CONNECTIONS'],
+        )
+
+        application.eq['s3'] = boto3.client('s3', config=config)
 
 
 def setup_cosmodb(application):
