@@ -1,4 +1,4 @@
-import json
+import ujson
 
 from botocore.exceptions import ClientError
 from flask import current_app
@@ -36,7 +36,7 @@ def put(model, overwrite):
     key = getattr(model, config['key_field'])
 
     item, _ = schema.dump(model)
-    get_s3_client().put_object(Bucket=table_name, Key=key, Body=json.dumps(item))
+    get_s3_client().put_object(Bucket=table_name, Key=key, Body=ujson.dumps(item))
 
 
 def get_by_key(model_type, key_value):
@@ -47,7 +47,7 @@ def get_by_key(model_type, key_value):
     try:
         response = get_s3_client().get_object(Bucket=table_name, Key=key_value)
         item = response.get('Body', None)
-        model, _ = schema.load(json.loads(item.read()))
+        model, _ = schema.load(ujson.loads(item.read()))
         return model
     except ClientError as e:
         if e.response['Error']['Code'] == 'NoSuchKey':
