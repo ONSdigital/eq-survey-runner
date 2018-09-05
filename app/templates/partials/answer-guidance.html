@@ -21,7 +21,7 @@
 {% set content_block = answer_guidance.schema_item.content %}
 
 <div class="guidance js-details" {{guidance|xmlattr}}>
-  <a class="guidance__link js-details-trigger js-details-label mars"
+  <a class="guidance__link icon--details js-details-trigger js-details-label"
     {{guidance_link|xmlattr}} {{helpers.track('click', 'Help', 'Guidance click', answer_guidance.id)}}>{{_(answer_guidance.schema_item.show_guidance)}}</a>
   <div class="guidance__main js-details-body" {{guidance_body|xmlattr}}>
     <div class="guidance__content mars">
