@@ -6,9 +6,9 @@ from structlog import get_logger
 from werkzeug.exceptions import NotFound
 
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema, DEFAULT_LANGUAGE_CODE
-from app.setup import cache
 
 logger = get_logger()
+schema_cache = {}
 
 DEFAULT_SCHEMA_DIR = 'data'
 
@@ -23,12 +23,18 @@ def load_schema_from_session_data(session_data):
     return load_schema_from_metadata(vars(session_data))
 
 
-@cache.memoize()
 def load_schema_from_params(eq_id, form_type, language_code=None):
+    cache_key = (eq_id, form_type)
+    cache_value = schema_cache.get(cache_key, None)
+    if cache_value is not None:
+        return cache_value
+
     language_code = language_code or DEFAULT_LANGUAGE_CODE
     schema_json = _load_schema_file('{}_{}.json'.format(eq_id, form_type), language_code)
 
-    return QuestionnaireSchema(schema_json, language_code)
+    schema = QuestionnaireSchema(schema_json, language_code)
+    schema_cache[cache_key] = schema
+    return schema
 
 
 def _load_schema_file(schema_file, language_code):
@@ -55,7 +61,6 @@ def _load_schema_file(schema_file, language_code):
         raise e
 
 
-@cache.memoize()
 def load_schema_from_url(survey_url, language_code):
     language_code = language_code or DEFAULT_LANGUAGE_CODE
     logger.info('loading schema from URL', survey_url=survey_url, language_code=language_code)
