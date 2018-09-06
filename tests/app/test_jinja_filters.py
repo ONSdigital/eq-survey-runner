@@ -49,14 +49,14 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         self.assertEqual(get_currency_symbol(''), '')
 
     def test_format_currency(self):
-        self.assertEqual(format_currency('11', 'GBP'), '£11.00')
-        self.assertEqual(format_currency('11.99', 'GBP'), '£11.99')
-        self.assertEqual(format_currency('11000', 'USD'), 'US$11,000.00')
-        self.assertEqual(format_currency(0), '£0.00')
-        self.assertEqual(format_currency(0.00), '£0.00')
-        self.assertEqual(format_currency('', ), '')
-        self.assertEqual(format_currency(None), '')
-        self.assertEqual(format_currency(Undefined()), '')
+        self.assertEqual(format_currency(self.autoescape_context, '11', 'GBP'), "<span class='date'>£11.00</span>")
+        self.assertEqual(format_currency(self.autoescape_context, '11.99', 'GBP'), "<span class='date'>£11.99</span>")
+        self.assertEqual(format_currency(self.autoescape_context, '11000', 'USD'), "<span class='date'>US$11,000.00</span>")
+        self.assertEqual(format_currency(self.autoescape_context, 0), "<span class='date'>£0.00</span>")
+        self.assertEqual(format_currency(self.autoescape_context, 0.00), "<span class='date'>£0.00</span>")
+        self.assertEqual(format_currency(self.autoescape_context, '', ), "<span class='date'></span>")
+        self.assertEqual(format_currency(self.autoescape_context, None), "<span class='date'></span>")
+        self.assertEqual(format_currency(self.autoescape_context, Undefined()), "<span class='date'></span>")
 
     def test_format_number(self):
         self.assertEqual(format_number(123), '123')

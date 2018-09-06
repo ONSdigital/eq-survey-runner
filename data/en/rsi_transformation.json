@@ -340,7 +340,7 @@
                         "mandatory": true
                     }],
                     "id": "online-sales-question",
-                    "title": "Of the <em>{{answers['retail-sales-answer']|format_currency}}</em> retail sales, how much were your <em>online sales</em>?",
+                    "title": "Of the <em>{{format_currency(answers['retail-sales-answer'])}}</em> retail sales, how much were your <em>online sales</em>?",
                     "description": "These are sales of goods made online, irrespective of the delivery method.",
                     "type": "General"
                 }],

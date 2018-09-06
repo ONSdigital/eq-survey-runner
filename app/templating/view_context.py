@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from app.jinja_filters import format_currency, format_number, format_unit, format_percentage
+from app.jinja_filters import get_formatted_currency, format_number, format_unit, format_percentage
 from app.helpers.form_helper import get_form_for_location
 from app.templating.summary_context import build_summary_rendering_context
 from app.templating.template_renderer import renderer
@@ -218,7 +218,7 @@ def _get_formatted_total(groups):
                     calculated_total += answer_value
 
     if answer_format['type'] == 'currency':
-        return format_currency(calculated_total, answer_format['currency'])
+        return get_formatted_currency(calculated_total, answer_format['currency'])
 
     if answer_format['type'] == 'unit':
         return format_unit(answer_format['unit'], calculated_total)

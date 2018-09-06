@@ -292,7 +292,7 @@
                     }],
                     "description": "",
                     "id": "total-sales-food-question",
-                    "title": "Of the <em>{{answers['total-retail-turnover']|format_currency}}</em> total retail turnover, what was the value of <em>food</em> sales?",
+                    "title": "Of the <em>{{format_currency(answers['total-retail-turnover'])}}</em> total retail turnover, what was the value of <em>food</em> sales?",
                     "type": "General"
                 }],
                 "title": "Retail turnover"
@@ -320,7 +320,7 @@
                     }],
                     "description": "",
                     "id": "total-sales-alcohol-question",
-                    "title": "Of the <em>{{answers['total-retail-turnover']|format_currency}}</em> total retail turnover, what was the value of <em>alcohol, confectionery and tobacco</em> sales?",
+                    "title": "Of the <em>{{format_currency(answers['total-retail-turnover'])}}</em> total retail turnover, what was the value of <em>alcohol, confectionery and tobacco</em> sales?",
                     "type": "General"
                 }],
                 "title": "Retail turnover"
@@ -348,7 +348,7 @@
                     }],
                     "description": "",
                     "id": "total-sales-clothing-question",
-                    "title": "Of the <em>{{answers['total-retail-turnover']|format_currency}}</em> total retail turnover, what was the value of <em>clothing and footwear</em> sales?",
+                    "title": "Of the <em>{{format_currency(answers['total-retail-turnover'])}}</em> total retail turnover, what was the value of <em>clothing and footwear</em> sales?",
                     "type": "General"
                 }],
                 "title": "Retail turnover"
@@ -377,7 +377,7 @@
                         }
                     }],
                     "id": "total-sales-household-goods-question",
-                    "title": "Of the <em>{{answers['total-retail-turnover']|format_currency}}</em> total retail turnover, what was the value of sales for <em>household goods</em>?",
+                    "title": "Of the <em>{{format_currency(answers['total-retail-turnover'])}}</em> total retail turnover, what was the value of sales for <em>household goods</em>?",
                     "type": "General"
                 }],
                 "title": "Retail turnover"
@@ -410,7 +410,7 @@
                     }],
                     "description": "",
                     "id": "total-sales-other-goods-question",
-                    "title": "Of the <em>{{answers['total-retail-turnover']|format_currency}}</em> total retail turnover, what was the value of <em>other</em> sales?",
+                    "title": "Of the <em>{{format_currency(answers['total-retail-turnover'])}}</em> total retail turnover, what was the value of <em>other</em> sales?",
                     "type": "General"
                 }],
                 "title": "Retail turnover"
@@ -438,7 +438,7 @@
                     }],
                     "description": "",
                     "id": "internet-sales-question",
-                    "title": "Of the <em>{{answers['total-retail-turnover']|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
+                    "title": "Of the <em>{{format_currency(answers['total-retail-turnover'])}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
                     "type": "General"
                 }],
                 "title": "Retail turnover"

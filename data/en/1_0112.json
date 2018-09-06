@@ -273,7 +273,7 @@
                         }
                     }],
                     "id": "internet-sales-question",
-                    "title": "Of the <em>{{answers['total-retail-turnover-answer']|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
+                    "title": "Of the <em>{{format_currency(answers['total-retail-turnover-answer'])}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
                     "type": "General"
                 }],
                 "title": "Retail turnover"

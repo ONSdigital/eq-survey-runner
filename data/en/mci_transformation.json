@@ -366,7 +366,7 @@
                 "title": "Retail sales including VAT",
                 "questions": [{
                     "id": "food-sales-question",
-                    "title": "Of the {{answers['retail-sales-answer']|format_currency}} retail sales, how much were your <em>food, drink and tobacco sales</em>?",
+                    "title": "Of the {{format_currency(answers['retail-sales-answer'])}} retail sales, how much were your <em>food, drink and tobacco sales</em>?",
                     "type": "General",
                     "guidance": {
                         "content": [{
@@ -396,7 +396,7 @@
                 "title": "Retail sales including VAT",
                 "questions": [{
                     "id": "clothing-sales-question",
-                    "title": "Of the {{answers['retail-sales-answer']|format_currency}} retail sales, how much were your <em>clothing and footwear sales</em>?",
+                    "title": "Of the {{format_currency(answers['retail-sales-answer'])}} retail sales, how much were your <em>clothing and footwear sales</em>?",
                     "type": "General",
                     "guidance": {
                         "content": [{
@@ -426,7 +426,7 @@
                 "title": "Retail sales including VAT",
                 "questions": [{
                     "id": "household-goods-sales-question",
-                    "title": "Of the {{answers['retail-sales-answer']|format_currency}} retail sales, how much were your sales of <em>household goods</em>?",
+                    "title": "Of the {{format_currency(answers['retail-sales-answer'])}} retail sales, how much were your sales of <em>household goods</em>?",
                     "type": "General",
                     "guidance": {
                         "content": [{
@@ -456,7 +456,7 @@
                 "title": "Retail sales including VAT",
                 "questions": [{
                     "id": "automotive-fuel-sales-question",
-                    "title": "Of the {{answers['retail-sales-answer']|format_currency}} retail sales, how much were your sales of <em>automotive fuel</em>?",
+                    "title": "Of the {{format_currency(answers['retail-sales-answer'])}} retail sales, how much were your sales of <em>automotive fuel</em>?",
                     "type": "General",
                     "guidance": {
                         "content": [{
@@ -486,7 +486,7 @@
                 "title": "Retail sales including VAT",
                 "questions": [{
                     "id": "other-goods-sales-question",
-                    "title": "Of the {{answers['retail-sales-answer']|format_currency}} retail sales, how much were your sales of <em>other goods</em>?",
+                    "title": "Of the {{format_currency(answers['retail-sales-answer'])}} retail sales, how much were your sales of <em>other goods</em>?",
                     "type": "General",
                     "guidance": {
                         "content": [{
@@ -516,7 +516,7 @@
                 "title": "Retail sales including VAT",
                 "questions": [{
                     "id": "online-sales-question",
-                    "title": "Of the <em>{{answers['retail-sales-answer']|format_currency}}</em> retail sales, how much were your <em>online sales</em>?",
+                    "title": "Of the <em>{{format_currency(answers['retail-sales-answer'])}}</em> retail sales, how much were your <em>online sales</em>?",
                     "description": "These are sales of goods made online, irrespective of the delivery method.",
                     "type": "General",
                     "guidance": {

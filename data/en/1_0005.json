@@ -376,7 +376,7 @@
                         }
                     }],
                     "id": "weekly-pay-breakdown-question",
-                    "title": "Of the <em>{{answers['weekly-pay-gross-pay-answer']|format_currency}}</em> paid to <em>weekly</em> paid employees in the last week of {{metadata['period_str']}}, what other amounts were paid? ",
+                    "title": "Of the <em>{{format_currency(answers['weekly-pay-gross-pay-answer'])}}</em> paid to <em>weekly</em> paid employees in the last week of {{metadata['period_str']}}, what other amounts were paid? ",
                     "type": "Calculated",
                     "calculations": [{
                         "calculation_type": "sum",
@@ -759,7 +759,7 @@
                         "answers_to_calculate": ["fortnightly-pay-breakdown-holiday-answer", "fortnightly-pay-breakdown-arrears-answer", "fortnightly-pay-breakdown-prp-answer"],
                         "conditions": ["less than", "equals"]
                     }],
-                    "title": "Of the <em>{{answers['fortnightly-pay-gross-pay-answer']|format_currency}}</em> paid to <em>fortnightly</em> paid employees in the last week of {{metadata['period_str']}}, what other amounts were paid?",
+                    "title": "Of the <em>{{format_currency(answers['fortnightly-pay-gross-pay-answer'])}}</em> paid to <em>fortnightly</em> paid employees in the last week of {{metadata['period_str']}}, what other amounts were paid?",
                     "guidance": {
                         "content": [{
                             "title": "Include:",
@@ -1124,7 +1124,7 @@
                         "answers_to_calculate": ["calendar-monthly-pay-breakdown-arrears-answer", "calendar-monthly-pay-breakdown-prp-answer"],
                         "conditions": ["less than"]
                     }],
-                    "title": "Of the <em>{{answers['calendar-monthly-pay-gross-pay-answer']|format_currency}}</em> paid to <em>calendar monthly</em> paid employees in {{metadata['period_str']}}, what other amounts were paid?",
+                    "title": "Of the <em>{{format_currency(answers['calendar-monthly-pay-gross-pay-answer'])}}</em> paid to <em>calendar monthly</em> paid employees in {{metadata['period_str']}}, what other amounts were paid?",
                     "guidance": {
                         "content": [{
                             "title": "Include:",
@@ -1489,7 +1489,7 @@
                         "answers_to_calculate": ["four-weekly-pay-breakdown-arrears-answer", "four-weekly-pay-breakdown-prp-answer"],
                         "conditions": ["less than"]
                     }],
-                    "title": "Of the <em>{{answers['four-weekly-pay-gross-pay-answer']|format_currency}}</em> paid to <em>four weekly</em> paid employees in {{metadata['period_str']}}, what other amounts were paid?",
+                    "title": "Of the <em>{{format_currency(answers['four-weekly-pay-gross-pay-answer'])}}</em> paid to <em>four weekly</em> paid employees in {{metadata['period_str']}}, what other amounts were paid?",
                     "guidance": {
                         "content": [{
                             "title": "Include:",
@@ -1854,7 +1854,7 @@
                         }
                     }],
                     "id": "five-weekly-pay-breakdown-question",
-                    "title": "Of the <em>{{answers['five-weekly-pay-gross-pay-answer']|format_currency}}</em> paid to <em>five weekly paid employees</em> in {{metadata['period_str']}}, what other amounts were paid?",
+                    "title": "Of the <em>{{format_currency(answers['five-weekly-pay-gross-pay-answer'])}}</em> paid to <em>five weekly paid employees</em> in {{metadata['period_str']}}, what other amounts were paid?",
                     "type": "Calculated",
                     "calculations": [{
                         "calculation_type": "sum",

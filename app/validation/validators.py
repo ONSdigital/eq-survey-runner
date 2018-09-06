@@ -11,7 +11,7 @@ from wtforms import validators
 from wtforms.compat import string_types
 from structlog import get_logger
 
-from app.jinja_filters import format_number, format_currency
+from app.jinja_filters import format_number, get_formatted_currency
 from app.settings import DEFAULT_LOCALE
 from app.validation.error_messages import error_messages
 from app.questionnaire.rules import convert_to_datetime
@@ -345,7 +345,7 @@ class SumCheck:
 
 def format_playback_value(value, currency=None):
     if currency:
-        return format_currency(value, currency)
+        return get_formatted_currency(value, currency)
     return format_number(value)
 
 

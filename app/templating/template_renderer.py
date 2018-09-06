@@ -17,7 +17,7 @@ class TemplateRenderer:
         env.filters['format_household_summary'] = filters.format_household_summary
         env.filters['format_unordered_list'] = filters.format_unordered_list
         env.globals['format_conditional_date'] = filters.format_conditional_date
-        env.filters['format_currency'] = filters.format_currency
+        env.globals['format_currency'] = filters.format_currency
         env.filters['format_number'] = filters.format_number
         env.filters['get_currency_symbol'] = filters.get_currency_symbol
         env.globals['format_date_range'] = filters.format_date_range

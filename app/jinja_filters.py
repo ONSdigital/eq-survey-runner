@@ -25,8 +25,14 @@ def format_number(value):
     return ''
 
 
-@blueprint.app_template_filter()
-def format_currency(value, currency='GBP'):
+@evalcontextfunction
+def format_currency(context, value, currency='GBP'):
+    currency_value = get_formatted_currency(value, currency)
+    result = "<span class='date'>{currency_value}</span>".format(currency_value=currency_value)
+    return mark_safe(context, result)
+
+
+def get_formatted_currency(value, currency='GBP'):
     if value or value == 0:
         return numbers.format_currency(number=value, currency=currency, locale=DEFAULT_LOCALE)
 
@@ -44,7 +50,7 @@ def format_currency_for_input(value, decimal_places=0):
         return ''
     if decimal_places is None or decimal_places == 0:
         return format_number(value)
-    return format_currency(value).replace(get_currency_symbol(), '')
+    return get_formatted_currency(value).replace(get_currency_symbol(), '')
 
 
 @blueprint.app_template_filter()
