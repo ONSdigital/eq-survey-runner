@@ -222,7 +222,8 @@
             "title": "Summary",
             "blocks": [{
                 "id": "summary",
-                "type": "Summary"
+                "type": "Summary",
+                "collapsible": true
             }]
         }]
     }]

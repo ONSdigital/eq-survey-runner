@@ -15,7 +15,7 @@ def build_view_context(block_type, metadata, schema, answer_store, schema_contex
     if block_type == 'Summary':
         form = form or FlaskForm()
         return build_view_context_for_final_summary(metadata, schema, answer_store, schema_context, block_type,
-                                                    variables, form.csrf_token)
+                                                    variables, form.csrf_token, rendered_block)
     if block_type == 'SectionSummary':
         form = form or FlaskForm()
         return build_view_context_for_section_summary(metadata, schema, answer_store, schema_context, block_type,
@@ -97,7 +97,7 @@ def build_view_context_for_question(metadata, schema, answer_store, current_loca
 
 
 def build_view_context_for_final_summary(metadata, schema, answer_store, schema_context,
-                                         block_type, variables, csrf_token):
+                                         block_type, variables, csrf_token, rendered_block):
     section_list = renderer.render(schema.json, **schema_context)['sections']
 
     context = build_view_context_for_summary(schema, section_list, answer_store, metadata,
@@ -105,6 +105,7 @@ def build_view_context_for_final_summary(metadata, schema, answer_store, schema_
 
     context['summary'].update({
         'is_view_submission_response_enabled': is_view_submitted_response_enabled(schema.json),
+        'collapsible': rendered_block.get('collapsible', False),
     })
 
     return context

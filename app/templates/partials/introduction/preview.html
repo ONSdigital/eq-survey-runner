@@ -18,18 +18,19 @@
 </div>
 {% if intro.questions %}
 <div class="accordion js-accordion">
-        <div class="mars accordion__controls">
-            <a class="accordion__control js-accordion-open-all u-hidden" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Show all" tabindex="0" aria-hidden="true">{{ _("Show all") }}</a>
-            <a class="accordion__control js-accordion-close-all u-hidden" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Hide all" tabindex="0" aria-hidden="true">{{ _("Hide all") }}</a>
+        <div class="accordion__controls">
+            <button class="btn btn--secondary btn--small accordion__control js-accordion-toggle-all u-wa--@xs" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Show all" data-close-all-label="{{ _("Hide all") }}" data-open-all-label="{{ _("Show all") }}" data-open="false" aria-hidden="true">{{ _("Show all") }}</button>
         </div>
-        <dl class="js-accordion-content">
+
+        <div class="js-accordion-content">
             {% for question in intro.questions %}
             {% set outer_loop = loop %}
-            <dt class="accordion__title venus js-accordion-title" data-js-accordion-event-label="{{question.question}}">
-                <span tabindex="0">{{question.question}}</span><span class="mars accordion__title-right accordion-unhide@m js-accordion-preview u-hidden " aria-hidden="true">{{ _("Show") }}</span><span class="mars accordion__title-right accordion-unhide@m js-accordion-close u-hidden" aria-hidden="true">{{ _("Hide") }}</span>
-            </dt>
+            <h3 class="accordion__title js-accordion-title u-cf icon--accordion" data-js-accordion-event-label="{{question.question}}">
+                <span class="accordion__title-text">{{question.question}}</span>
+                <button class="btn btn--secondary btn--small accordion__title-right accordion-unhide@m js-accordion-toggle u-wa--@xs" data-close-label="{{ _("Hide") }}" data-open-label="{{ _("Show") }}" aria-hidden="true">{{ _("Show") }}</button>
+            </h3>
 
-            <dd class="accordion__body mars js-accordion-body">
+            <div class="accordion__body mars js-accordion-body">
                 {% if question.content %}
                 {% for qc in question.content %}
                 <div class="u-mb-s">
@@ -49,9 +50,9 @@
                 </div>
                 {% endfor %}
                 {% endif %}
-            </dd>
+            </div>
 
             {% endfor %}
-        </dl>
+        </div>
 </div>
 {% endif %}

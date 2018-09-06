@@ -1,7 +1,7 @@
 // >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
 const QuestionPage = require('../question.page');
 
-class PropertyDetailsSummaryPage extends QuestionPage {
+class SummaryPage extends QuestionPage {
 
   constructor() {
     super('summary');
@@ -23,7 +23,7 @@ class PropertyDetailsSummaryPage extends QuestionPage {
 
   addressLengthTitle() { return '#address-length'; }
 
-  propertyDetailsSectionSummaryTitle() { return '#property-details-section-summary'; }
+  propertyDetailsSummaryGroupTitle() { return '#property-details-summary-group'; }
 
   houseTypeAnswer() { return '#house-type-answer-answer'; }
 
@@ -31,7 +31,7 @@ class PropertyDetailsSummaryPage extends QuestionPage {
 
   houseDetailsTitle() { return '#house-details'; }
 
-  householdDetailsSectionSummaryTitle() { return '#household-details-section-summary'; }
+  householdDetailsSummaryGroupTitle() { return '#household-details-summary-group'; }
 
   lastName() { return '#last-name-answer'; }
 
@@ -41,11 +41,5 @@ class PropertyDetailsSummaryPage extends QuestionPage {
 
   summaryGroupTitle() { return '#summary-group'; }
 
-  showAllButton() { return '[data-open-all-label="Show all"]'; }
-
-  propertyDetailsDropDownButton() { return '#property-details-button'; }
-
-  propertyDetailsDropDownChangeLink() { return '[data-qa="insurance-type-answer-edit"]'; }
-
 }
-module.exports = new PropertyDetailsSummaryPage();
+module.exports = new SummaryPage();
