@@ -2133,7 +2133,7 @@
                         "questions": [{
                             "id": "paid-job-question",
                             "titles": [{
-                                    "value": "Did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> have a paid job, either as an employee or self-employed, in the week Monday xxxx to Sunday xxxx?",
+                                    "value": "Did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> have a paid job, either as an employee or self-employed, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -2141,7 +2141,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Did you have a paid job, either as an employee or self-employed, in the week Monday xxxx to Sunday xxxx?"
+                                    "value": "Did you have a paid job, either as an employee or self-employed, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
                                 }
                             ],
                             "type": "General",
@@ -2622,7 +2622,7 @@
                         "questions": [{
                             "id": "not-working-casual-work-question",
                             "titles": [{
-                                    "value": "Did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> do any casual work for payment, even for an hour, in the week xxx to yyy?",
+                                    "value": "Did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> do any casual work for payment, even for an hour, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -2630,7 +2630,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Did you do any casual work for payment, even for an hour, in the week xxx to yyy?"
+                                    "value": "Did you do any casual work for payment, even for an hour, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
                                 }
                             ],
                             "type": "General",
@@ -2672,7 +2672,7 @@
                         "questions": [{
                             "id": "working-days-question",
                             "titles": [{
-                                    "value": "Starting on Monday xxxx, on which of the following days did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> do any work in their paid jobs or businesses?",
+                                    "value": "Starting on {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) | format_date_custom( 'EEEE d MMMM YYYY' ) }}, on which of the following days did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> do any work in their paid jobs or businesses?",
                                     "when": [{
                                             "id": "proxy-check-answer",
                                             "condition": "equals",
@@ -2686,7 +2686,7 @@
                                     ]
                                 },
                                 {
-                                    "value": "Starting on Monday xxxx, on which of the following days did you do any work in your paid jobs or businesses?",
+                                    "value": "Starting on {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) | format_date_custom( 'EEEE d MMMM YYYY' ) }}, on which of the following days did you do any work in your paid jobs or businesses?",
                                     "when": [{
                                             "id": "proxy-check-answer",
                                             "condition": "equals",
@@ -2700,7 +2700,7 @@
                                     ]
                                 },
                                 {
-                                    "value": "Starting on Monday xxxx, on which of the following days did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> do any work in their paid job or business?",
+                                    "value": "Starting on {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) | format_date_custom( 'EEEE d MMMM YYYY' ) }}, on which of the following days did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> do any work in their paid job or business?",
                                     "when": [{
                                             "id": "proxy-check-answer",
                                             "condition": "equals",
@@ -2714,7 +2714,7 @@
                                     ]
                                 },
                                 {
-                                    "value": "Starting on Monday xxxx, on which of the following days did you do any work in your paid job or business?"
+                                    "value": "Starting on {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) | format_date_custom( 'EEEE d MMMM YYYY' ) }}, on which of the following days did you do any work in your paid job or business?"
                                 }
                             ],
                             "type": "General",
@@ -3232,7 +3232,7 @@
                         "questions": [{
                             "id": "one-job-actual-hours-question",
                             "titles": [{
-                                    "value": "In the week Monday xxxx to Sunday XXXX, how many hours did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> actually work, excluding overtime?",
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> actually work, excluding overtime?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -3240,7 +3240,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the week Monday xxxx to Sunday XXXX, how many hours did you actually work, excluding overtime?"
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did you actually work, excluding overtime?"
 
                                 }
                             ],
@@ -3284,7 +3284,7 @@
                         "questions": [{
                             "id": "one-job-actual-hours-confirmation-question",
                             "titles": [{
-                                    "value": "In the week Monday xxx to Sunday xxx , you entered that <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> worked zero hours, excluding overtime.",
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY')}}, you entered that <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> worked zero hours, excluding overtime.",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -3292,7 +3292,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the week Monday xxx to Sunday xxx , you entered that you worked zero hours, excluding overtime."
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that you worked zero hours, excluding overtime."
                                 }
                             ],
                             "type": "General",
@@ -3495,7 +3495,7 @@
                         "questions": [{
                             "id": "two-jobs-j1-actual-hours-question",
                             "titles": [{
-                                    "value": "In the week Monday xxx to Sunday xxx , how many hours did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> actually work in their main job, excluding overtime?",
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> actually work in their main job, excluding overtime?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -3503,7 +3503,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the week Monday xxx to Sunday xxx , how many hours did you actually work in your main job, excluding overtime?"
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did you actually work in your main job, excluding overtime?"
                                 }
                             ],
                             "type": "General",
@@ -3546,7 +3546,7 @@
                         "questions": [{
                             "id": "two-jobs-j1-actual-hours-confirmation-question",
                             "titles": [{
-                                    "value": "In the week Monday xxx to Sunday xxx , you entered that <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> worked zero hours in their main job, excluding overtime.",
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> worked zero hours in their main job, excluding overtime.",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -3554,7 +3554,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the week Monday xxx to Sunday xxx , you entered that you worked zero hours in your main job, excluding overtime."
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that you worked zero hours in your main job, excluding overtime."
                                 }
                             ],
                             "type": "General",
@@ -3630,7 +3630,7 @@
                         "questions": [{
                             "id": "two-jobs-j2-actual-hours-question",
                             "titles": [{
-                                    "value": "In the week Monday xxx to Sunday xxx , how many hours did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> actually work in their second job, excluding overtime?",
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> actually work in their second job, excluding overtime?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -3638,7 +3638,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the week Monday xxx to Sunday xxx , how many hours did you actually work in your second job, excluding overtime?"
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did you actually work in your second job, excluding overtime?"
                                 }
                             ],
                             "type": "General",
@@ -3681,7 +3681,7 @@
                         "questions": [{
                             "id": "two-jobs-j2-actual-hours-confirmation-question",
                             "titles": [{
-                                    "value": "In the week Monday xxx to Sunday xxx , you entered that <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> worked zero hours in their second job, excluding overtime.",
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> worked zero hours in their second job, excluding overtime.",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -3689,7 +3689,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the week Monday xxx to Sunday xxx , you entered that you worked zero hours in your second job, excluding overtime."
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that you worked zero hours in your second job, excluding overtime."
                                 }
                             ],
                             "type": "General",
@@ -3733,7 +3733,7 @@
                         "questions": [{
                             "id": "casual-hours-question",
                             "titles": [{
-                                    "value": "In the week Monday xxxx to Sunday xxxx, how many hours did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> actually work, excluding overtime?",
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> actually work, excluding overtime?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -3741,7 +3741,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the week Monday xxxx to Sunday xxxx, how many hours did you actually work, excluding overtime?"
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did you actually work, excluding overtime?"
                                 }
                             ],
                             "type": "General",
@@ -3757,7 +3757,7 @@
                         "id": "hours-totalized-w13",
                         "type": "CalculatedSummary",
                         "titles": [{
-                                "value": "We calculate the total number of hours that <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> worked in their job, including overtime, to be %(total)s hours for the week Monday XXXX – Sunday XXXX September. Is this correct? ",
+                                "value": "We calculate the total number of hours that <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> worked in their job, including overtime, to be %(total)s hours for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct? ",
                                 "when": [{
                                     "id": "proxy-check-answer",
                                     "condition": "equals",
@@ -3765,7 +3765,7 @@
                                 }]
                             },
                             {
-                                "value": "We calculate the total number of hours that you worked in your job, including overtime, to be %(total)s hours for the week Monday XXXX – Sunday XXXX September. Is this correct? "
+                                "value": "We calculate the total number of hours that you worked in your job, including overtime, to be %(total)s hours for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct? "
                             }
                         ],
                         "calculation": {
@@ -3819,7 +3819,7 @@
                         "questions": [{
                             "id": "reason-why-fewer-hours-than-usual-self-employed-question",
                             "titles": [{
-                                    "value": "What was the main reason <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> worked fewer hours or days than usual in the week Monday xxxx to Sunday yyyy",
+                                    "value": "What was the main reason <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -3827,7 +3827,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "What was the main reason you worked fewer hours or days than usual in the week Monday xxxx to Sunday yyyy"
+                                    "value": "What was the main reason you worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
                                 }
                             ],
                             "type": "General",
@@ -3945,7 +3945,7 @@
                         "questions": [{
                             "id": "reason-why-fewer-hours-than-usual-employee-question",
                             "titles": [{
-                                    "value": "What was the main reason <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> worked fewer hours or days than usual in the week Monday xxxx to Sunday yyyy",
+                                    "value": "What was the main reason <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -3953,7 +3953,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "What was the main reason you worked fewer hours or days than usual in the week Monday xxxx to Sunday yyyy"
+                                    "value": "What was the main reason you worked fewer hours or days than usual in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
                                 }
                             ],
                             "type": "General",
@@ -4266,7 +4266,7 @@
                         "questions": [{
                             "id": "did-you-look-for-work-question",
                             "titles": [{
-                                    "value": "In the 4 weeks between Monday xxxx to Sunday xxxx did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> look for any paid work?",
+                                    "value": "In the 4 weeks between {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks': -3}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }} did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> look for any paid work?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -4274,7 +4274,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the 4 weeks between Monday xxxx to Sunday xxxx did you look for any paid work?"
+                                    "value": "In the 4 weeks between {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks': -3}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }} did you look for any paid work?"
                                 }
                             ],
                             "type": "General",
@@ -4343,7 +4343,7 @@
                         "questions": [{
                             "id": "if-offered-would-start-question",
                             "titles": [{
-                                    "value": "If <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> had been offered a job in the week starting Monday xxxx would they be able to start before Monday xxxx?",
+                                    "value": "If <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> had been offered a job in the week starting Monday {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) | format_date_custom( 'EEEE d MMMM' ) }} would they be able to start before {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks':2}) | format_date_custom( 'EEEE d MMMM' ) }}?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -4351,7 +4351,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "If you had been offered a job in the week starting Monday xxxx would you be able to start before Monday xxxx?"
+                                    "value": "If you had been offered a job in the week starting {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) | format_date_custom( 'EEEE d MMMM' ) }} would they be able to start before {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks':2}) | format_date_custom( 'EEEE d MMMM' ) }}?"
 
                                 }
                             ],
@@ -4575,7 +4575,7 @@
                         "questions": [{
                             "id": "unpaid-or-voluntary-work-question",
                             "titles": [{
-                                    "value": "Did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> do any unpaid or voluntary work in the week Monday XXXX to Sunday YYYY?",
+                                    "value": "Did <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> do any unpaid or voluntary work in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -4583,7 +4583,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Did you do any unpaid or voluntary work in the week Monday XXXX to Sunday YYYY?"
+                                    "value": "Did you do any unpaid or voluntary work in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) , calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
                                 }
                             ],
                             "type": "General",
