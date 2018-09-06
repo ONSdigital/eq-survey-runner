@@ -101,7 +101,7 @@ class TestCensusHouseholdSubmissionData(IntegrationTestCase):
             {'value': 'Husband or wife',
              'answer_id': 'household-relationships-answer',
              'answer_instance': 0,
-             'group_instance_id': None,
+             'group_instance_id': '2',
              'group_instance': 0},
             {'value': 'Whole house or bungalow',
              'answer_id': 'type-of-accommodation-answer',

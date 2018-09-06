@@ -220,7 +220,7 @@ class TestGetDependencies(unittest.TestCase):
         self.assertEqual(dependencies['group_drivers'], [])
         self.assertEqual(dependencies['block_drivers'], ['driving-block'])
 
-    def test_repeat_with_relationship_block_not_added_to_dependencies(self):
+    def test_repeat_with_relationship_block_added_to_dependencies(self):
         survey_json = {
             'sections': [{
                 'id': 'default-section',
@@ -267,9 +267,9 @@ class TestGetDependencies(unittest.TestCase):
         schema = QuestionnaireSchema(survey_json)
         dependencies = get_group_dependencies(schema)
 
-        self.assertEqual(len(dependencies), 0)
+        self.assertEqual(len(dependencies), 1)
         self.assertEqual(dependencies['group_drivers'], [])
-        self.assertEqual(dependencies['block_drivers'], [])
+        self.assertEqual(dependencies['block_drivers'], ['driving-block'])
 
     def test_repeat_with_answer_value_not_added_to_dependencies(self):
         survey_json = {

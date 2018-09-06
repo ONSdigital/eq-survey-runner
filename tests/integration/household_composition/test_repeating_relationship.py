@@ -1,3 +1,5 @@
+from mock import patch
+
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -23,9 +25,9 @@ class TestRepeatingRelationship(IntegrationTestCase):
         self.get(url=last_relationship_page)
         self.assertInPage('Describe how this person is related to the others')
 
-    def test_multiple_relationship_groups(self):
+    @patch('app.helpers.schema_helpers.uuid4', side_effect=range(100))
+    def test_multiple_relationship_groups(self, mock): # pylint: disable=unused-argument
         # Given
-
         household_form_data = {
             'household-0-first-name': 'Han',
             'household-1-first-name': 'Leia',
@@ -56,21 +58,21 @@ class TestRepeatingRelationship(IntegrationTestCase):
                 'answer_id': 'who-is-related',
                 'answer_instance': 0,
                 'group_instance': 0,
-                'group_instance_id': None,
+                'group_instance_id': '1',
                 'value': 'Husband or wife'
             },
             {
                 'answer_id': 'who-is-related',
                 'answer_instance': 1,
                 'group_instance': 0,
-                'group_instance_id': None,
+                'group_instance_id': '1',
                 'value': 'Relation - other'
             },
             {
                 'answer_id': 'who-is-related',
                 'answer_instance': 0,
                 'group_instance': 1,
-                'group_instance_id': None,
+                'group_instance_id': '2',
                 'value': 'Brother or sister'
             }
         ]

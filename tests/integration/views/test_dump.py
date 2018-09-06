@@ -54,8 +54,7 @@ class TestDumpAnswers(IntegrationTestCase):
         self.launchSurvey('test', 'radio_mandatory_with_mandatory_other', roles=['dumper'])
 
         # When I submit an answer
-        with patch('app.helpers.schema_helpers.uuid4', side_effect=range(10)):
-            self.post(post_data={'radio-mandatory-answer': 'Toast'})
+        self.post(post_data={'radio-mandatory-answer': 'Toast'})
 
         # And I attempt to dump the answer store
         self.get('/dump/answers')

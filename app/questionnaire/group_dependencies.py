@@ -61,7 +61,7 @@ def get_group_dependencies(schema):
     dependencies = GroupDependencies()
 
     for group in schema.groups:
-        if group.get('routing_rules') and not _group_has_relationship_type(schema, group['blocks']):
+        if group.get('routing_rules'):
             for routing_rule in group['routing_rules']:
                 if _routing_rule_has_repeat(routing_rule):
                     dependencies.update(_build_routing_dependencies(schema, routing_rule, group['id']))
@@ -125,14 +125,6 @@ def _get_dependency_driver_from_answer_id(schema, dependent_group_id, answer_id)
     dependencies.add(dependent_group_id, block_id, 'block')
 
     return dependencies
-
-
-def _group_has_relationship_type(schema, blocks):
-    for block in blocks:
-        if schema.block_has_question_type(block['id'], 'Relationship'):
-            return True
-
-    return False
 
 
 def _routing_rule_has_repeat(routing_rule):

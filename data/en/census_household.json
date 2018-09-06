@@ -326,6 +326,7 @@
                     "title": "How is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> related to the people below?",
                     "description": "If members are not related, select the \u2018unrelated\u2019 option.<br />If you are the parents of adopted children, select the \u2018Mother or father\u2019 option to show your relationship to them.<br />If you have foster children living with you, select the \u2018Unrelated\u2019 option.<br />Include half-brothers and half-sisters in the \u2018Step-brother or step-sister\u2019 category.<br />Same-sex civil partner is used to describe the relationship between two people who have legally registered a civil partnership.<br />If none of the options fully reflects your relationship, please select the one which you feel best describes your situation.",
                     "type": "Relationship",
+                    "member_label": "[answers['first-name'], answers['middle-names'], answers['last-name']] | format_household_name",
                     "answers": [{
                         "id": "household-relationships-answer",
                         "label": "%(current_person)s is %(other_person)s's",
