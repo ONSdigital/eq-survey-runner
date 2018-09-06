@@ -1,5 +1,4 @@
 const helpers = require('../helpers');
-const HouseTypePage = require('../pages/surveys/section_summary/house-type.page.js');
 const InsuranceAddressPage = require('../pages/surveys/section_summary/insurance-address.page.js');
 const InsuranceTypePage = require('../pages/surveys/section_summary/insurance-type.page.js');
 const AddressDurationPage = require('../pages/surveys/section_summary/address-duration.page.js');
@@ -55,6 +54,7 @@ describe('Section Summary', function() {
 
     it('When I select edit from Final Summary, Then I should be taken back to the Final Summary', function() {
       return browser
+        .click(FinalSummaryPage.showAllButton())
         .click(FinalSummaryPage.addressDurationAnswerEdit())
         .click(AddressDurationPage.no())
         .click(AddressDurationPage.submit())
@@ -63,14 +63,27 @@ describe('Section Summary', function() {
 
     it('When I edit from Final Summary but change routing, Then I should be taken back to the Section Summary', function() {
       return browser
+        .click(FinalSummaryPage.showAllButton())
         .click(FinalSummaryPage.insuranceTypeAnswerEdit())
         .click(InsuranceTypePage.buildings())
         .click(InsuranceTypePage.submit())
         .getUrl().should.eventually.contain(PropertyDetailsSummaryPage.pageName);
     });
+
+    it('When I click change an answer, Then I should go to that answer', function() {
+      return browser
+        .click(FinalSummaryPage.propertyDetailsDropDownButton())
+        .getText(FinalSummaryPage.insuranceTypeAnswer()).should.eventually.contain('Contents')
+        .click(FinalSummaryPage.propertyDetailsDropDownChangeLink())
+        .getUrl().should.eventually.contain(InsuranceTypePage.pageName)
+        .click(InsuranceTypePage.buildings())
+        .click(InsuranceTypePage.submit())
+        .getText(PropertyDetailsSummaryPage.insuranceTypeAnswer()).should.eventually.contain('Buildings');
+    });
   });
 
   describe('Given I start a Test Section Summary survey and complete to the first Section Summary', function() {
+
     it('When I select edit from Section Summary but change routing, Then I should be stepped through the section', function() {
       return helpers.openQuestionnaire('test_section_summary.json').then(() => {
         return browser
@@ -84,5 +97,4 @@ describe('Section Summary', function() {
       });
     });
   });
-
 });

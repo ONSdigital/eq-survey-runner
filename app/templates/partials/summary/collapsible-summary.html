@@ -1,0 +1,44 @@
+<div class="accordion js-accordion">
+    <div class="accordion__controls">
+        <button class="btn btn--secondary btn--small accordion__control js-accordion-toggle-all u-wa--@xs" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Show all" data-close-all-label="{{ _("Hide all") }}" data-open-all-label="{{ _("Show all") }}" data-open="false" aria-hidden="true">{{ _("Show all") }}</button>
+    </div>
+
+    <div class="js-accordion-content">
+        {%- for group in content.summary.groups -%}
+            {%- if group.title -%}
+            {%- set outer_loop = loop -%}
+                <h3 class="accordion__title js-accordion-title u-cf icon--accordion" data-js-accordion-event-label="{{group.title}}">
+                    <span class="accordion__title-text">{{group.title}}</span>
+                    <button class="btn btn--secondary btn--small accordion__title-right accordion-unhide@m js-accordion-toggle u-wa--@xs" id="{{ group.id }}-button" data-close-label="{{ _("Hide") }}" data-open-label="{{ _("Show") }}" aria-hidden="true">{{ _("Show") }}</button>
+                </h3>
+            {%- endif -%}
+
+            <div class="accordion__body mars js-accordion-body">
+                {%- for block in group.blocks -%}
+                    {%- for question in block.questions -%}
+                        {%- for answers in question.answers -%}
+
+                            {%- set has_multiple_answers = question.answers|length > 1 -%}
+
+                            {%- if has_multiple_answers -%}
+                                {%- include theme(['partials/summary/question-multiple-answers.html']) -%}
+                            {%- else -%}
+                                {%- include theme(['partials/summary/question-single-answer.html']) -%}
+                            {%- endif -%}
+
+                            <div class="u-mb-s">
+                                {%- if answers.list -%}
+                                    <ul>
+                                        {%- for li in answers.list -%}
+                                            <li>{{ li }}</li>
+                                        {%- endfor -%}
+                                    </ul>
+                                {%- endif -%}
+                            </div>
+                        {%- endfor -%}
+                    {%- endfor -%}
+                {%- endfor -%}
+            </div>
+        {%- endfor -%}
+    </div>
+</div>

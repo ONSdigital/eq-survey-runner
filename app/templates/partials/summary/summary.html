@@ -1,28 +1,30 @@
 <div class="summary">
-	{%- for group in content.summary.groups -%}
-        {%- if group.title -%}
-            <h2 class="summary__title neptune" id="{{ group.id }}">{{ group.title }}</h2>
-        {%- endif %}
+    {%- if content.summary.collapsible -%}
+        {%- include 'partials/summary/collapsible-summary.html' -%}
+    {%- else -%}
+        {%- for group in content.summary.groups -%}
+            {%- if group.title -%}
+                <h2 class="summary__title neptune" id="{{ group.id }}">{{ group.title }}</h2>
+            {%- endif -%}
 
-        <div class="summary__block u-mb-l">
-            {%- for block in group.blocks -%}
-                {%- for question in block.questions -%}
+            <div class="summary__block u-mb-l">
+                {%- for block in group.blocks -%}
+                    {%- for question in block.questions -%}
 
-                    {% set has_multiple_answers = question.answers|length > 1 %}
+                        {%- set has_multiple_answers = question.answers|length > 1 -%}
 
-                    {%- if has_multiple_answers -%}
-                        {%- include theme(['partials/summary/question-multiple-answers.html']) -%}
-                    {%- else -%}
-                        {%- include theme(['partials/summary/question-single-answer.html']) -%}
-                    {%- endif -%}
+                        {%- if has_multiple_answers -%}
+                            {%- include theme(['partials/summary/question-multiple-answers.html']) -%}
+                        {%- else -%}
+                            {%- include theme(['partials/summary/question-single-answer.html']) -%}
+                        {%- endif -%}
 
+                        {%- if content.summary.summary_type == 'CalculatedSummary' -%}
+                            {%- include theme(['partials/summary/calculated-summary-answer.html']) -%}
+                        {%- endif -%}
+                    {%- endfor -%}
                 {%- endfor -%}
-            {%- endfor -%}
-
-            {% if content.summary.summary_type == 'CalculatedSummary' %}
-                {%- include theme(['partials/summary/calculated-summary-answer.html']) -%}
-            {%- endif %}
-        </div>
-
-	{%- endfor -%}
+            </div>
+        {%- endfor -%}
+    {%- endif -%}
 </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-05 10:38+0100\n"
+"POT-Creation-Date: 2018-09-06 07:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -431,19 +431,23 @@ msgid "I don’t want to provide feedback"
 msgstr ""
 
 #: app/templates/partials/introduction/preview.html:22
-msgid "Show all"
-msgstr ""
-
-#: app/templates/partials/introduction/preview.html:23
+#: app/templates/partials/summary/collapsible-summary.html:3
 msgid "Hide all"
 msgstr ""
 
-#: app/templates/partials/introduction/preview.html:29
-msgid "Show"
+#: app/templates/partials/introduction/preview.html:22
+#: app/templates/partials/summary/collapsible-summary.html:3
+msgid "Show all"
 msgstr ""
 
-#: app/templates/partials/introduction/preview.html:29
+#: app/templates/partials/introduction/preview.html:30
+#: app/templates/partials/summary/collapsible-summary.html:12
 msgid "Hide"
+msgstr ""
+
+#: app/templates/partials/introduction/preview.html:30
+#: app/templates/partials/summary/collapsible-summary.html:12
+msgid "Show"
 msgstr ""
 
 #: app/templates/partials/introduction/start-survey.html:5
