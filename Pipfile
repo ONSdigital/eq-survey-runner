@@ -54,6 +54,7 @@ azure-cosmosdb-table = "*"
 google-cloud-bigtable = "*"
 google-cloud-core = "*"
 ujson = "*"
+redis = "*"
 
 [requires]
 python_version = "3.6"

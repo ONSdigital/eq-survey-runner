@@ -7,6 +7,7 @@ from datetime import timedelta
 from uuid import uuid4
 
 import boto3
+import redis
 import sqlalchemy
 import yaml
 from azure.cosmosdb.table import TableService
@@ -95,6 +96,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     setup_cosmodb(application)
 
     setup_bigtable(application)
+
+    setup_redis(application)
 
     if application.config['EQ_RABBITMQ_ENABLED']:
         application.eq['submitter'] = RabbitMQSubmitter(
@@ -244,6 +247,11 @@ def setup_s3(application):
         )
 
         application.eq['s3'] = boto3.client('s3', config=config)
+
+
+def setup_redis(application):
+    if application.config['EQ_STORAGE_BACKEND'] == 'redis':
+        application.eq['redis'] = [redis.StrictRedis(host=application.config['EQ_REDIS_HOST'], port=6379, db=i) for i in range(4)]
 
 
 def setup_cosmodb(application):
