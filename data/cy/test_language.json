@@ -4,7 +4,7 @@
     "data_version": "0.0.1",
     "survey_id": "0",
     "title": "Welsh Language Survey",
-    "theme": "default",
+    "theme": "social",
     "description": "A questionnaire to demonstrate welsh language",
     "metadata": [{
         "validator": "string",
@@ -12,9 +12,6 @@
     }, {
         "validator": "string",
         "name": "period_id"
-    }, {
-        "validator": "string",
-        "name": "ru_name"
     }],
     "sections": [{
         "id": "default-section",

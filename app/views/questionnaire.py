@@ -82,7 +82,14 @@ def before_questionnaire_request():
                        session_form_type=metadata['form_type'],
                        session_collection_id=metadata['collection_exercise_sid'])
 
-    session_data = get_session_store().session_data
+    session_store = get_session_store()
+    session_data = session_store.session_data
+
+    language_code = request.args.get('language_code')
+    if language_code:
+        session_data.language_code = language_code
+        session_store.save()
+
     g.schema = load_schema_from_session_data(session_data)
 
 
@@ -744,6 +751,9 @@ def _build_template(current_location, context, template, schema, answer_store, m
 def _render_template(context, current_location, template, front_end_navigation, previous_url, schema, metadata, answer_store, **kwargs):
     page_title = get_page_title_for_location(schema, current_location, metadata, answer_store)
 
+    session_store = get_session_store()
+    session_data = session_store.session_data
+
     return render_template(
         template,
         content=context,
@@ -752,6 +762,7 @@ def _render_template(context, current_location, template, front_end_navigation, 
         previous_location=previous_url,
         page_title=page_title,
         metadata=kwargs.pop('metadata_context'),  # `metadata_context` is used as `metadata` in the jinja templates
+        language_code=session_data.language_code,
         **kwargs
     )
 
