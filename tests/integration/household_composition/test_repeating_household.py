@@ -45,7 +45,7 @@ class TestRepeatingHousehold(IntegrationTestCase):
         # Then the details previously entered for the people should have been removed
         self.assertInPage('Joe Bloggs')
         self.assertInPage('What is their age')
-        self.assertNotInPage('9990')
+        self.assertNotInPage('data-qa="what-is-your-age-answer">9990</div>')
 
         self.post({'what-is-your-age': '34'})
         self.post({'what-is-your-shoe-size': '10'})

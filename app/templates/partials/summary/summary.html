@@ -19,11 +19,11 @@
                             {%- include theme(['partials/summary/question-single-answer.html']) -%}
                         {%- endif -%}
 
-                        {%- if content.summary.summary_type == 'CalculatedSummary' -%}
-                            {%- include theme(['partials/summary/calculated-summary-answer.html']) -%}
-                        {%- endif -%}
                     {%- endfor -%}
                 {%- endfor -%}
+                {%- if content.summary.summary_type == 'CalculatedSummary' -%}
+                    {%- include theme(['partials/summary/calculated-summary-answer.html']) -%}
+                {%- endif -%}
             </div>
         {%- endfor -%}
     {%- endif -%}
