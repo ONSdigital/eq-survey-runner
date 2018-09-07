@@ -18,7 +18,7 @@ from app.jinja_filters import (
     calculate_years_difference, get_current_date, as_london_tz, max_value,
     min_value, get_question_title, get_answer_label,
     format_duration, calculate_offset_from_weekday_in_last_whole_week, format_date_custom,
-    format_date_range_no_repeated_month_year, format_repeating_summary)
+    format_date_range_no_repeated_month_year, format_repeating_summary, format_address_list)
 from tests.app.app_context_test_case import AppContextTestCase
 
 
@@ -859,3 +859,39 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         self.autoescape_context = Mock(autoescape=True)
         output = format_repeating_summary(self.autoescape_context, [['', '51 Testing Gardens', '', 'Bristol', 'BS9 1AW']], delimiter=', ')
         self.assertEqual(output, '<ul><li>51 Testing Gardens, Bristol, BS9 1AW</li></ul>')
+
+    def test_format_address_list_undefined_values(self):
+        user_entered_address = [Undefined(), Undefined(), Undefined(), Undefined(), Undefined()]
+        metadata_address = ['123', 'Testy', 'Place', 'Newport', 'NP5 7AR']
+        self.assertEqual('123<br />Testy<br />Place<br />Newport<br />NP5 7AR',
+                         format_address_list(user_entered_address, metadata_address))
+
+    def test_format_address_list_missing_values(self):
+        user_entered_address = ['44', 'Testing', '', 'Swansea', '']
+        metadata_address = ['123', 'Testy', 'Place', 'Newport', 'NP5 7AR']
+        self.assertEqual('44<br />Testing<br />Swansea',
+                         format_address_list(user_entered_address, metadata_address))
+
+    def test_format_address_list_None_value(self):
+        user_entered_address = [None, None, None, None, None]
+        metadata_address = [None, None, None, None, None]
+        with self.assertRaises(Exception):
+            format_address_list(user_entered_address, metadata_address)
+
+    def test_format_address_list_no_values_in_answer(self):
+        user_entered_address = ['', '', '', '', '']
+        metadata_address = ['123', 'Testy', 'Place', 'Newport', 'NP5 7AR']
+        self.assertEqual('123<br />Testy<br />Place<br />Newport<br />NP5 7AR',
+                         format_address_list(user_entered_address, metadata_address))
+
+    def test_format_address_list_no_metadata(self):
+        user_entered_address = ['44', 'Testing', 'Gardens', 'Swansea', 'SA1 1AA']
+        metadata_address = []
+        self.assertEqual('44<br />Testing<br />Gardens<br />Swansea<br />SA1 1AA',
+                         format_address_list(user_entered_address, metadata_address))
+
+    def test_format_address_list(self):
+        user_entered_address = ['44', 'Testing', 'Gardens', 'Swansea', 'SA1 1AA']
+        metadata_address = ['123', 'Testy', 'Place', 'Newport', 'NP5 7AR']
+        self.assertEqual('44<br />Testing<br />Gardens<br />Swansea<br />SA1 1AA',
+                         format_address_list(user_entered_address, metadata_address))
