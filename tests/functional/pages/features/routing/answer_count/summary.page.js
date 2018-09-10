@@ -7,31 +7,31 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  lastName() { return '#last-name-answer'; }
+  lastName(index = 0) { return '#last-name-' + index + '-answer'; }
 
-  lastNameEdit() { return '[data-qa="last-name-edit"]'; }
+  lastNameEdit(index = 0) { return '[data-qa="last-name-' + index + '-edit"]'; }
 
-  multipleQuestionsGroupTitle() { return '#multiple-questions-group'; }
+  multipleQuestionsGroupTitle(index = 0) { return '#multiple-questions-group-' + index; }
 
-  groupLessThan2Answer() { return '#group-less-than-2-answer-answer'; }
+  groupLessThan2Answer(index = 0) { return '#group-less-than-2-answer-' + index + '-answer'; }
 
-  groupLessThan2AnswerEdit() { return '[data-qa="group-less-than-2-answer-edit"]'; }
+  groupLessThan2AnswerEdit(index = 0) { return '[data-qa="group-less-than-2-answer-' + index + '-edit"]'; }
 
-  groupLessThan2Title() { return '#group-less-than-2'; }
+  groupLessThan2Title(index = 0) { return '#group-less-than-2-' + index; }
 
-  groupEqual2Answer() { return '#group-equal-2-answer-answer'; }
+  groupEqual2Answer(index = 0) { return '#group-equal-2-answer-' + index + '-answer'; }
 
-  groupEqual2AnswerEdit() { return '[data-qa="group-equal-2-answer-edit"]'; }
+  groupEqual2AnswerEdit(index = 0) { return '[data-qa="group-equal-2-answer-' + index + '-edit"]'; }
 
-  groupEqual2Title() { return '#group-equal-2'; }
+  groupEqual2Title(index = 0) { return '#group-equal-2-' + index; }
 
-  groupGreaterThan2Answer() { return '#group-greater-than-2-answer-answer'; }
+  groupGreaterThan2Answer(index = 0) { return '#group-greater-than-2-answer-' + index + '-answer'; }
 
-  groupGreaterThan2AnswerEdit() { return '[data-qa="group-greater-than-2-answer-edit"]'; }
+  groupGreaterThan2AnswerEdit(index = 0) { return '[data-qa="group-greater-than-2-answer-' + index + '-edit"]'; }
 
-  groupGreaterThan2Title() { return '#group-greater-than-2'; }
+  groupGreaterThan2Title(index = 0) { return '#group-greater-than-2-' + index; }
 
-  summaryGroupTitle() { return '#summary-group'; }
+  summaryGroupTitle(index = 0) { return '#summary-group-' + index; }
 
 }
 module.exports = new SummaryPage();

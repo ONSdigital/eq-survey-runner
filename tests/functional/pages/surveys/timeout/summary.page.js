@@ -7,9 +7,9 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  timeoutAnswer() { return '#timeout-answer-answer'; }
+  timeoutAnswer(index = 0) { return '#timeout-answer-' + index + '-answer'; }
 
-  timeoutAnswerEdit() { return '[data-qa="timeout-answer-edit"]'; }
+  timeoutAnswerEdit(index = 0) { return '[data-qa="timeout-answer-' + index + '-edit"]'; }
 
 }
 module.exports = new SummaryPage();

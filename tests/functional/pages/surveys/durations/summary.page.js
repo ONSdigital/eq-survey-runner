@@ -7,31 +7,31 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  yearMonthAnswer() { return '#year-month-answer-answer'; }
+  yearMonthAnswer(index = 0) { return '#year-month-answer-' + index + '-answer'; }
 
-  yearMonthAnswerEdit() { return '[data-qa="year-month-answer-edit"]'; }
+  yearMonthAnswerEdit(index = 0) { return '[data-qa="year-month-answer-' + index + '-edit"]'; }
 
-  mandatoryYearMonthAnswer() { return '#mandatory-year-month-answer-answer'; }
+  mandatoryYearMonthAnswer(index = 0) { return '#mandatory-year-month-answer-' + index + '-answer'; }
 
-  mandatoryYearMonthAnswerEdit() { return '[data-qa="mandatory-year-month-answer-edit"]'; }
+  mandatoryYearMonthAnswerEdit(index = 0) { return '[data-qa="mandatory-year-month-answer-' + index + '-edit"]'; }
 
-  yearAnswer() { return '#year-answer-answer'; }
+  yearAnswer(index = 0) { return '#year-answer-' + index + '-answer'; }
 
-  yearAnswerEdit() { return '[data-qa="year-answer-edit"]'; }
+  yearAnswerEdit(index = 0) { return '[data-qa="year-answer-' + index + '-edit"]'; }
 
-  mandatoryYearAnswer() { return '#mandatory-year-answer-answer'; }
+  mandatoryYearAnswer(index = 0) { return '#mandatory-year-answer-' + index + '-answer'; }
 
-  mandatoryYearAnswerEdit() { return '[data-qa="mandatory-year-answer-edit"]'; }
+  mandatoryYearAnswerEdit(index = 0) { return '[data-qa="mandatory-year-answer-' + index + '-edit"]'; }
 
-  monthAnswer() { return '#month-answer-answer'; }
+  monthAnswer(index = 0) { return '#month-answer-' + index + '-answer'; }
 
-  monthAnswerEdit() { return '[data-qa="month-answer-edit"]'; }
+  monthAnswerEdit(index = 0) { return '[data-qa="month-answer-' + index + '-edit"]'; }
 
-  mandatoryMonthAnswer() { return '#mandatory-month-answer-answer'; }
+  mandatoryMonthAnswer(index = 0) { return '#mandatory-month-answer-' + index + '-answer'; }
 
-  mandatoryMonthAnswerEdit() { return '[data-qa="mandatory-month-answer-edit"]'; }
+  mandatoryMonthAnswerEdit(index = 0) { return '[data-qa="mandatory-month-answer-' + index + '-edit"]'; }
 
-  durationsTitle() { return '#durations'; }
+  durationsTitle(index = 0) { return '#durations-' + index; }
 
 }
 module.exports = new SummaryPage();

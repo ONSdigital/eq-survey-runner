@@ -7,15 +7,15 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  dateRangeFrom() { return '#date-range-from-answer'; }
+  dateRangeFrom(index = 0) { return '#date-range-from-' + index + '-answer'; }
 
-  dateRangeFromEdit() { return '[data-qa="date-range-from-edit"]'; }
+  dateRangeFromEdit(index = 0) { return '[data-qa="date-range-from-' + index + '-edit"]'; }
 
-  dateRangeTo() { return '#date-range-to-answer'; }
+  dateRangeTo(index = 0) { return '#date-range-to-' + index + '-answer'; }
 
-  dateRangeToEdit() { return '[data-qa="date-range-to-edit"]'; }
+  dateRangeToEdit(index = 0) { return '[data-qa="date-range-to-' + index + '-edit"]'; }
 
-  datesTitle() { return '#dates'; }
+  datesTitle(index = 0) { return '#dates-' + index; }
 
 }
 module.exports = new SummaryPage();

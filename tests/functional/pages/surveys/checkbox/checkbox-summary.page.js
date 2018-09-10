@@ -2,20 +2,20 @@ const QuestionPage = require('../question.page');
 
 class CheckboxSummaryPage extends QuestionPage {
 
-  mandatoryAnswer() {
-    return '#mandatory-checkbox-answer-answer';
+  mandatoryAnswer(index = 0) {
+    return '#mandatory-checkbox-answer-' + index + '-answer';
   }
 
-  nonMandatoryAnswer() {
-    return '#non-mandatory-checkbox-answer-answer';
+  nonMandatoryAnswer(index = 0) {
+    return '#non-mandatory-checkbox-answer-' + index + '-answer';
   }
 
-  mandatoryOtherAnswer() {
-    return '[data-qa="other-answer-mandatory-answer"]';
+  mandatoryOtherAnswer(index = 0) {
+    return '[data-qa="other-answer-mandatory-' + index + '-answer"]';
   }
 
-  nonMandatoryOtherAnswer() {
-    return '#other-answer-non-mandatory-answer';
+  nonMandatoryOtherAnswer(index = 0) {
+    return '#other-answer-non-mandatory-' + index + '-answer';
   }
 
 }

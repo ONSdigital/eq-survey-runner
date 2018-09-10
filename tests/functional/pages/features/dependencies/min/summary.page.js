@@ -7,17 +7,17 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  minAnswer() { return '#min-answer-answer'; }
+  minAnswer(index = 0) { return '#min-answer-' + index + '-answer'; }
 
-  minAnswerEdit() { return '[data-qa="min-answer-edit"]'; }
+  minAnswerEdit(index = 0) { return '[data-qa="min-answer-' + index + '-edit"]'; }
 
-  dependent1() { return '#dependent-1-answer'; }
+  dependent1(index = 0) { return '#dependent-1-' + index + '-answer'; }
 
-  dependent1Edit() { return '[data-qa="dependent-1-edit"]'; }
+  dependent1Edit(index = 0) { return '[data-qa="dependent-1-' + index + '-edit"]'; }
 
-  groupTitle() { return '#group'; }
+  groupTitle(index = 0) { return '#group-' + index; }
 
-  summaryGroupTitle() { return '#summary-group'; }
+  summaryGroupTitle(index = 0) { return '#summary-group-' + index; }
 
 }
 module.exports = new SummaryPage();

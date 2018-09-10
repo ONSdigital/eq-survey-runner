@@ -49,8 +49,9 @@ def get_group_instance_id(schema, answer_store, location, answer_instance=0):
         existing_answers = answer_store.filter(answer_ids=block_answer_ids, answer_instance=answer_instance)
 
     # If there are existing answers with a group_instance_id
-    if existing_answers and [x for x in existing_answers if x.get('group_instance_id')]:
-        return existing_answers[0]['group_instance_id']
+    existing_answers_with_group_instance_id = [answer for answer in existing_answers if answer.get('group_instance_id')]
+    if existing_answers_with_group_instance_id:
+        return existing_answers_with_group_instance_id[0]['group_instance_id']
 
     return str(uuid4())
 

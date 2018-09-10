@@ -7,17 +7,17 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  repeatingComparison1Answer() { return '#repeating-comparison-1-answer-answer'; }
+  repeatingComparison1Answer(index = 0) { return '#repeating-comparison-1-answer-' + index + '-answer'; }
 
-  repeatingComparison1AnswerEdit() { return '[data-qa="repeating-comparison-1-answer-edit"]'; }
+  repeatingComparison1AnswerEdit(index = 0) { return '[data-qa="repeating-comparison-1-answer-' + index + '-edit"]'; }
 
-  repeatingComparison2Answer() { return '#repeating-comparison-2-answer-answer'; }
+  repeatingComparison2Answer(index = 0) { return '#repeating-comparison-2-answer-' + index + '-answer'; }
 
-  repeatingComparison2AnswerEdit() { return '[data-qa="repeating-comparison-2-answer-edit"]'; }
+  repeatingComparison2AnswerEdit(index = 0) { return '[data-qa="repeating-comparison-2-answer-' + index + '-edit"]'; }
 
-  repeatingComparisonTitle() { return '#repeating-comparison'; }
+  repeatingComparisonTitle(index = 0) { return '#repeating-comparison-' + index; }
 
-  summaryGroupTitle() { return '#summary-group'; }
+  summaryGroupTitle(index = 0) { return '#summary-group-' + index; }
 
 }
 module.exports = new SummaryPage();

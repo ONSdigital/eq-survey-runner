@@ -7,12 +7,12 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  answer() {
-    return '#date-start-from-answer';
+  answer(index = 0) {
+    return '#date-start-from-' + index + '-answer';
   }
 
-  otheranswer() {
-    return '#date-test-answer-answer';
+  otheranswer(index = 0) {
+    return '#date-test-answer-' + index + '-answer';
   }
 
 }

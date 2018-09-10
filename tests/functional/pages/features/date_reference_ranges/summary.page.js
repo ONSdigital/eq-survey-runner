@@ -7,19 +7,19 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  manualRangeRadio() { return '#manual-range-radio-answer'; }
+  manualRangeRadio(index = 0) { return '#manual-range-radio-' + index + '-answer'; }
 
-  manualRangeRadioEdit() { return '[data-qa="manual-range-radio-edit"]'; }
+  manualRangeRadioEdit(index = 0) { return '[data-qa="manual-range-radio-' + index + '-edit"]'; }
 
-  dateSeparateRadio() { return '#date-separate-radio-answer'; }
+  dateSeparateRadio(index = 0) { return '#date-separate-radio-' + index + '-answer'; }
 
-  dateSeparateRadioEdit() { return '[data-qa="date-separate-radio-edit"]'; }
+  dateSeparateRadioEdit(index = 0) { return '[data-qa="date-separate-radio-' + index + '-edit"]'; }
 
-  dateRangeRadio() { return '#date-range-radio-answer'; }
+  dateRangeRadio(index = 0) { return '#date-range-radio-' + index + '-answer'; }
 
-  dateRangeRadioEdit() { return '[data-qa="date-range-radio-edit"]'; }
+  dateRangeRadioEdit(index = 0) { return '[data-qa="date-range-radio-' + index + '-edit"]'; }
 
-  datesTitle() { return '#dates'; }
+  datesTitle(index = 0) { return '#dates-' + index; }
 
 }
 module.exports = new SummaryPage();

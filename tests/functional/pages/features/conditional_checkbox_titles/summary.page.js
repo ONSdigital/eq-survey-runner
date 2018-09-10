@@ -7,19 +7,19 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  nameAnswer() { return '#name-answer-answer'; }
+  nameAnswer(index = 0) { return '#name-answer-' + index + '-answer'; }
 
-  nameAnswerEdit() { return '[data-qa="name-answer-edit"]'; }
+  nameAnswerEdit(index = 0) { return '[data-qa="name-answer-' + index + '-edit"]'; }
 
-  checkboxAnswer() { return '#checkbox-answer-answer'; }
+  checkboxAnswer(index = 0) { return '#checkbox-answer-' + index + '-answer'; }
 
-  checkboxAnswerEdit() { return '[data-qa="checkbox-answer-edit"]'; }
+  checkboxAnswerEdit(index = 0) { return '[data-qa="checkbox-answer-' + index + '-edit"]'; }
 
-  radioAnswer() { return '#radio-answer-answer'; }
+  radioAnswer(index = 0) { return '#radio-answer-' + index + '-answer'; }
 
-  radioAnswerEdit() { return '[data-qa="radio-answer-edit"]'; }
+  radioAnswerEdit(index = 0) { return '[data-qa="radio-answer-' + index + '-edit"]'; }
 
-  radioCheckboxDescriptioTitle() { return '#radio-checkbox-descriptio'; }
+  radioCheckboxDescriptioTitle(index = 0) { return '#radio-checkbox-descriptio-' + index; }
 
 }
 module.exports = new SummaryPage();

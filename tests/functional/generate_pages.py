@@ -107,24 +107,24 @@ REPEATING_ANSWER_LEGEND = r"""  personLegend(index = 1) {
   }
 """
 
-SECTION_SUMMARY_ANSWER_GETTER = Template(r"""  ${answerName}() { return '#${answerId}-answer'; }
+SECTION_SUMMARY_ANSWER_GETTER = Template(r"""  ${answerName}(index = 0) { return '#${answerId}-' + index + '-answer'; }
 
 """)
 
-SECTION_SUMMARY_ANSWER_EDIT_GETTER = Template(r"""  ${answerName}Edit() { return '[data-qa="${answerId}-edit"]'; }
+SECTION_SUMMARY_ANSWER_EDIT_GETTER = Template(r"""  ${answerName}Edit(index = 0) { return '[data-qa="${answerId}-' + index + '-edit"]'; }
 
 """)
 
-SUMMARY_ANSWER_GETTER = Template(r"""  ${answerName}() { return '#${answerId}-answer'; }
+SUMMARY_ANSWER_GETTER = Template(r"""  ${answerName}(index = 0) { return '#${answerId}-' + index + '-answer'; }
 
 """)
 
 
-SUMMARY_ANSWER_EDIT_GETTER = Template(r"""  ${answerName}Edit() { return '[data-qa="${answerId}-edit"]'; }
+SUMMARY_ANSWER_EDIT_GETTER = Template(r"""  ${answerName}Edit(index = 0) { return '[data-qa="${answerId}-' + index + '-edit"]'; }
 
 """)
 
-SUMMARY_TITLE_GETTER = Template(r"""  ${group_id_camel}Title() { return '#${group_id}'; }
+SUMMARY_TITLE_GETTER = Template(r"""  ${group_id_camel}Title(index = 0) { return '#${group_id}-' + index; }
 
 """)
 
@@ -136,7 +136,11 @@ ANSWER_SUMMARY_LABEL_GETTER = Template(r"""  ${answerName}Label(index = 1) { ret
 
 """)
 
-CALCULATED_SUMMARY_LABEL_GETTER = Template(r"""  ${answerName}Label() { return '#${answerId}-label'; } 
+SUMMARY_QUESTION_GETTER = Template(r"""  ${questionName}(index = 0) { return '#${questionId}-' + index; }
+
+""")
+
+CALCULATED_SUMMARY_LABEL_GETTER = Template(r"""  ${answerName}Label(index = 0) { return '#${answerId}-' + index + '-label'; } 
 
 """)
 
@@ -296,6 +300,10 @@ def process_summary(schema_data, page_spec):
         for group in section['groups']:
             for block in group['blocks']:
                 for question in block.get('questions', []):
+                    question_context = {
+                        'questionId': question['id'],
+                        'questionName': camel_case(generate_pascal_case_from_id(question['id']))
+                    }
                     for answer in question['answers']:
                         answer_name = generate_pascal_case_from_id(answer['id'])
                         answer_context = {
@@ -305,7 +313,7 @@ def process_summary(schema_data, page_spec):
                         if block['type'] == 'SectionSummary':
                             page_spec.write(SECTION_SUMMARY_ANSWER_GETTER.substitute(answer_context))
                             page_spec.write(SECTION_SUMMARY_ANSWER_EDIT_GETTER.substitute(answer_context))
-
+                    page_spec.write(SUMMARY_QUESTION_GETTER.substitute(question_context))
                     page_spec.write(SUMMARY_ANSWER_GETTER.substitute(answer_context))
                     page_spec.write(SUMMARY_ANSWER_EDIT_GETTER.substitute(answer_context))
 
@@ -313,8 +321,7 @@ def process_summary(schema_data, page_spec):
                 'group_id_camel': camel_case(generate_pascal_case_from_id(group['id'])),
                 'group_id': group['id']
             }
-            page_spec.write(
-                SUMMARY_TITLE_GETTER.substitute(group_context))
+            page_spec.write(SUMMARY_TITLE_GETTER.substitute(group_context))
 
 
 def long_names_required(question, num_questions):

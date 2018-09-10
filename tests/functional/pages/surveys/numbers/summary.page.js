@@ -7,33 +7,33 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  setMinimum() { return '#set-minimum-answer'; }
+  setMinimum(index = 0) { return '#set-minimum-' + index + '-answer'; }
 
-  setMinimumEdit() { return '[data-qa="set-minimum-edit"]'; }
+  setMinimumEdit(index = 0) { return '[data-qa="set-minimum-' + index + '-edit"]'; }
 
-  setMaximum() { return '#set-maximum-answer'; }
+  setMaximum(index = 0) { return '#set-maximum-' + index + '-answer'; }
 
-  setMaximumEdit() { return '[data-qa="set-maximum-edit"]'; }
+  setMaximumEdit(index = 0) { return '[data-qa="set-maximum-' + index + '-edit"]'; }
 
-  testRange() { return '#test-range-answer'; }
+  testRange(index = 0) { return '#test-range-' + index + '-answer'; }
 
-  testRangeEdit() { return '[data-qa="test-range-edit"]'; }
+  testRangeEdit(index = 0) { return '[data-qa="test-range-' + index + '-edit"]'; }
 
-  testMin() { return '#test-min-answer'; }
+  testMin(index = 0) { return '#test-min-' + index + '-answer'; }
 
-  testMinEdit() { return '[data-qa="test-min-edit"]'; }
+  testMinEdit(index = 0) { return '[data-qa="test-min-' + index + '-edit"]'; }
 
-  testMax() { return '#test-max-answer'; }
+  testMax(index = 0) { return '#test-max-' + index + '-answer'; }
 
-  testMaxEdit() { return '[data-qa="test-max-edit"]'; }
+  testMaxEdit(index = 0) { return '[data-qa="test-max-' + index + '-edit"]'; }
 
-  testPercent() { return '#test-percent-answer'; }
+  testPercent(index = 0) { return '#test-percent-' + index + '-answer'; }
 
-  testPercentEdit() { return '[data-qa="test-percent-edit"]'; }
+  testPercentEdit(index = 0) { return '[data-qa="test-percent-' + index + '-edit"]'; }
 
-  testDecimal() { return '#test-decimal-answer'; }
+  testDecimal(index = 0) { return '#test-decimal-' + index + '-answer'; }
 
-  testDecimalEdit() { return '[data-qa="test-decimal-edit"]'; }
+  testDecimalEdit(index = 0) { return '[data-qa="test-decimal-' + index + '-edit"]'; }
 
 }
 module.exports = new SummaryPage();

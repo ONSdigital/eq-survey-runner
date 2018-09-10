@@ -5,9 +5,9 @@
         {%- for group in content.summary.groups -%}
             {%- if group.title -%}
                 <h2 class="summary__title neptune" id="{{ group.id }}">{{ group.title }}</h2>
+                <div class="summary__block u-mb-l">
             {%- endif -%}
 
-            <div class="summary__block u-mb-l">
                 {%- for block in group.blocks -%}
                     {%- for question in block.questions -%}
 
@@ -24,7 +24,9 @@
                 {%- if content.summary.summary_type == 'CalculatedSummary' -%}
                     {%- include theme(['partials/summary/calculated-summary-answer.html']) -%}
                 {%- endif -%}
-            </div>
+            {%- if loop.last or loop.nextitem.title-%}
+                </div>
+            {%- endif -%}
         {%- endfor -%}
     {%- endif -%}
 </div>

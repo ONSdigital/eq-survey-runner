@@ -7,13 +7,13 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  radioNonMandatoryAnswer() { return '#radio-non-mandatory-answer-answer'; }
+  radioNonMandatoryAnswer(index = 0) { return '#radio-non-mandatory-answer-' + index + '-answer'; }
 
-  radioNonMandatoryAnswerEdit() { return '[data-qa="radio-non-mandatory-answer-edit"]'; }
+  radioNonMandatoryAnswerEdit(index = 0) { return '[data-qa="radio-non-mandatory-answer-' + index + '-edit"]'; }
 
-  otherAnswerNonMandatory() { return '#other-answer-non-mandatory-answer'; }
+  otherAnswerNonMandatory(index = 0) { return '#other-answer-non-mandatory-' + index + '-answer'; }
 
-  otherAnswerNonMandatoryEdit() { return '[data-qa="other-answer-non-mandatory-edit"]'; }
+  otherAnswerNonMandatoryEdit(index = 0) { return '[data-qa="other-answer-non-mandatory-' + index + '-edit"]'; }
 
 }
 module.exports = new SummaryPage();

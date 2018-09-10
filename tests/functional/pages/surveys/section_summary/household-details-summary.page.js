@@ -7,39 +7,39 @@ class HouseholdDetailsSummaryPage extends QuestionPage {
     super('household-details-summary');
   }
 
-  insuranceTypeAnswer() { return '#insurance-type-answer-answer'; }
+  insuranceTypeAnswer(index = 0) { return '#insurance-type-answer-' + index + '-answer'; }
 
-  insuranceTypeAnswerEdit() { return '[data-qa="insurance-type-answer-edit"]'; }
+  insuranceTypeAnswerEdit(index = 0) { return '[data-qa="insurance-type-answer-' + index + '-edit"]'; }
 
-  insuranceAddressAnswer() { return '#insurance-address-answer-answer'; }
+  insuranceAddressAnswer(index = 0) { return '#insurance-address-answer-' + index + '-answer'; }
 
-  insuranceAddressAnswerEdit() { return '[data-qa="insurance-address-answer-edit"]'; }
+  insuranceAddressAnswerEdit(index = 0) { return '[data-qa="insurance-address-answer-' + index + '-edit"]'; }
 
-  propertyDetailsTitle() { return '#property-details'; }
+  propertyDetailsTitle(index = 0) { return '#property-details-' + index; }
 
-  addressDurationAnswer() { return '#address-duration-answer-answer'; }
+  addressDurationAnswer(index = 0) { return '#address-duration-answer-' + index + '-answer'; }
 
-  addressDurationAnswerEdit() { return '[data-qa="address-duration-answer-edit"]'; }
+  addressDurationAnswerEdit(index = 0) { return '[data-qa="address-duration-answer-' + index + '-edit"]'; }
 
-  addressLengthTitle() { return '#address-length'; }
+  addressLengthTitle(index = 0) { return '#address-length-' + index; }
 
-  propertyDetailsSummaryGroupTitle() { return '#property-details-summary-group'; }
+  propertyDetailsSummaryGroupTitle(index = 0) { return '#property-details-summary-group-' + index; }
 
-  houseTypeAnswer() { return '#house-type-answer-answer'; }
+  houseTypeAnswer(index = 0) { return '#house-type-answer-' + index + '-answer'; }
 
-  houseTypeAnswerEdit() { return '[data-qa="house-type-answer-edit"]'; }
+  houseTypeAnswerEdit(index = 0) { return '[data-qa="house-type-answer-' + index + '-edit"]'; }
 
-  houseDetailsTitle() { return '#house-details'; }
+  houseDetailsTitle(index = 0) { return '#house-details-' + index; }
 
-  householdDetailsSummaryGroupTitle() { return '#household-details-summary-group'; }
+  householdDetailsSummaryGroupTitle(index = 0) { return '#household-details-summary-group-' + index; }
 
-  lastName() { return '#last-name-answer'; }
+  lastName(index = 0) { return '#last-name-' + index + '-answer'; }
 
-  lastNameEdit() { return '[data-qa="last-name-edit"]'; }
+  lastNameEdit(index = 0) { return '[data-qa="last-name-' + index + '-edit"]'; }
 
-  multipleQuestionsGroupTitle() { return '#multiple-questions-group'; }
+  multipleQuestionsGroupTitle(index = 0) { return '#multiple-questions-group-' + index; }
 
-  summaryGroupTitle() { return '#summary-group'; }
+  summaryGroupTitle(index = 0) { return '#summary-group-' + index; }
 
 }
 module.exports = new HouseholdDetailsSummaryPage();

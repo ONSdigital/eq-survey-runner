@@ -7,11 +7,11 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  answer() { return '#mandatory-checkbox-answer-answer'; }
+  answer(index = 0) { return '#mandatory-checkbox-answer-' + index + '-answer'; }
 
-  answerEdit() { return '[data-qa="mandatory-checkbox-answer-edit"]'; }
+  answerEdit(index = 0) { return '[data-qa="mandatory-checkbox-answer-' + index + '-edit"]'; }
 
-  checkboxesTitle() { return '#checkboxes'; }
+  checkboxesTitle(index = 0) { return '#checkboxes' + index; }
 
 }
 module.exports = new SummaryPage();
