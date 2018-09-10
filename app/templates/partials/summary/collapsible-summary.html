@@ -16,16 +16,15 @@
             <div class="accordion__body mars js-accordion-body">
                 {%- for block in group.blocks -%}
                     {%- for question in block.questions -%}
+                        {%- set has_multiple_answers = question.answers|length > 1 -%}
+
+                        {%- if has_multiple_answers -%}
+                            {%- include theme(['partials/summary/question-multiple-answers.html']) -%}
+                        {%- else -%}
+                            {%- include theme(['partials/summary/question-single-answer.html']) -%}
+                        {%- endif -%}
+
                         {%- for answers in question.answers -%}
-
-                            {%- set has_multiple_answers = question.answers|length > 1 -%}
-
-                            {%- if has_multiple_answers -%}
-                                {%- include theme(['partials/summary/question-multiple-answers.html']) -%}
-                            {%- else -%}
-                                {%- include theme(['partials/summary/question-single-answer.html']) -%}
-                            {%- endif -%}
-
                             <div class="u-mb-s">
                                 {%- if answers.list -%}
                                     <ul>
@@ -36,6 +35,7 @@
                                 {%- endif -%}
                             </div>
                         {%- endfor -%}
+
                     {%- endfor -%}
                 {%- endfor -%}
             </div>
