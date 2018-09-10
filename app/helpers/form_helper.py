@@ -57,7 +57,7 @@ def get_form_for_location(schema, block_json, location, answer_store, metadata, 
         if 'answer_id' in repeat_rule:
             answer_ids.append(repeat_rule['answer_id'])
 
-        relationship_choices = build_relationship_choices(answer_ids, answer_store, location.group_instance, question['member_label'])
+        relationship_choices = build_relationship_choices(answer_ids, answer_store, location.group_instance, question.get('member_label'))
 
         form = generate_relationship_form(schema, block_json, relationship_choices, data, location.group_instance, group_instance_id)
 
