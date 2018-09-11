@@ -256,7 +256,7 @@ class QuestionnaireForm(FlaskForm):
         return None
 
 
-def get_answer_fields(question, data, error_messages, schema, answer_store, metadata, group_instance):
+def get_answer_fields(question, data, error_messages, schema, answer_store, metadata, group_instance, group_instance_id):
     answer_fields = {}
     for answer in question.get('answers', []):
         if 'parent_answer_id' in answer and answer['parent_answer_id'] in data and \
@@ -264,7 +264,7 @@ def get_answer_fields(question, data, error_messages, schema, answer_store, meta
             answer['mandatory'] = \
                 next(a['mandatory'] for a in question['answers'] if a['id'] == answer['parent_answer_id'])
 
-        name = answer.get('label') or get_question_title(question, answer_store, schema, metadata, group_instance)
+        name = answer.get('label') or get_question_title(question, answer_store, schema, metadata, group_instance, group_instance_id)
         answer_fields[answer['id']] = get_field(answer, name, error_messages, answer_store, metadata)
     return answer_fields
 
@@ -295,7 +295,7 @@ def map_child_option_errors(errors, answer_json):
     return child_errors
 
 
-def generate_form(schema, block_json, answer_store, metadata, group_instance, data=None, formdata=None):
+def generate_form(schema, block_json, answer_store, metadata, group_instance, group_instance_id, data=None, formdata=None):
     class DynamicForm(QuestionnaireForm):
         pass
 
@@ -309,6 +309,7 @@ def generate_form(schema, block_json, answer_store, metadata, group_instance, da
             answer_store,
             metadata,
             group_instance,
+            group_instance_id,
         ))
 
     for answer_id, field in answer_fields.items():

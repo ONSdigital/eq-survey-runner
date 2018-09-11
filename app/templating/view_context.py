@@ -4,6 +4,7 @@ from app.helpers.form_helper import get_form_for_location
 from app.templating.summary_context import build_summary_rendering_context
 from app.templating.template_renderer import renderer
 from app.templating.utils import get_title_from_titles, get_question_title
+from app.helpers.schema_helpers import get_group_instance_id
 
 
 def build_view_context(block_type, metadata, schema, answer_store, schema_context, rendered_block, current_location,
@@ -44,7 +45,7 @@ def build_view_context_for_non_question(variables, csrf_token, rendered_block):
     }
 
 
-def build_view_context_for_question(metadata, schema, answer_store, current_location, variables, rendered_block, form):  # noqa: C901, E501  pylint: disable=too-complex,line-too-long
+def build_view_context_for_question(metadata, schema, answer_store, current_location, variables, rendered_block, form):  # noqa: C901, E501  pylint: disable=too-complex,line-too-long,too-many-locals
 
     context = {
         'variables': variables,
@@ -65,9 +66,11 @@ def build_view_context_for_question(metadata, schema, answer_store, current_loca
     answer_ids = []
     for question in rendered_block.get('questions'):
         if question.get('titles'):
+            group_instance_id = get_group_instance_id(schema, answer_store, current_location)
             context['question_titles'][question['id']] = get_title_from_titles(metadata, schema, answer_store,
                                                                                question['titles'],
-                                                                               current_location.group_instance)
+                                                                               current_location.group_instance,
+                                                                               group_instance_id)
         for answer in question['answers']:
             if current_location.block_id == 'household-composition':
                 for repeated_form in form.household:

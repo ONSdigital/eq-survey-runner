@@ -337,7 +337,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         }
         answer_store = AnswerStore({})
 
-        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0, None))
+        self.assertTrue(evaluate_when_rules(when['when'], get_schema_mock(), {}, answer_store, 0, None))
 
     def test_go_to_next_question_for_multiple_answers(self):
         # Given
@@ -506,13 +506,15 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         current_path = [Location('group-1', 0, 'block-1')]
         answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
 
-        self.assertEqual(evaluate_repeat(repeat, answer_store, answer_on_path), 1)
+        # The schema doesn't actually contain a repeat clause, so fake it.
+        with patch.object(schema, 'answer_is_in_repeating_group', return_value=True):
+            self.assertEqual(evaluate_repeat(schema, repeat, answer_store, answer_on_path), 1)
 
-        answer_store.add(Answer(answer_id='my_answer', value='Not Done', group_instance=0, group_instance_id='group-1-0'))
-        self.assertEqual(evaluate_repeat(repeat, answer_store, answer_on_path), 2)
+            answer_store.add(Answer(answer_id='my_answer', value='Not Done', group_instance=0, group_instance_id=None))
+            self.assertEqual(evaluate_repeat(schema, repeat, answer_store, answer_on_path), 2)
 
-        answer_store.add(Answer(answer_id='my_answer', value='Done', group_instance=1, group_instance_id='group-1-1'))
-        self.assertEqual(evaluate_repeat(repeat, answer_store, answer_on_path), 2)
+            answer_store.add(Answer(answer_id='my_answer', value='Done', group_instance=1, group_instance_id=None))
+            self.assertEqual(evaluate_repeat(schema, repeat, answer_store, answer_on_path), 2)
 
     def test_should_repeat_for_answer_answer_value(self):
         questionnaire = {
@@ -556,7 +558,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
+        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 3)
 
@@ -603,7 +605,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
+        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 2)
 
@@ -650,7 +652,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
+        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 1)
 
@@ -697,7 +699,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         # When
         answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(repeat, answer_store, answer_on_path)
+        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
 
         self.assertEqual(number_of_repeats, 24)
 
@@ -735,7 +737,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             evaluate_when_rules(when['when'], get_schema_mock(), None, answer_store, 0, None)
         self.assertEqual('Multiple answers (2) found evaluating when rule for answer (my_answers)', str(err.exception))
 
-    def test_id_when_rule_uses_passed_in_group_instance_if_present(self):  # pylint: disable=no-self-use
+    def test_id_when_rule_uses_passed_in_group_instance_if_present(self):
         when = [{'id': 'Some Id',
                  'group_instance': 0,
                  'condition': 'greater than',
@@ -744,7 +746,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         answer_store = AnswerStore({})
         with patch('app.questionnaire.rules.get_answer_store_value', return_value=False) as patch_val:
             evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 3, None)  # passed in group instance ignored if present in when
-            patch_val.assert_called_with('Some Id', answer_store, 0, None)
+            self.assertEqual(patch_val.call_args[0][3], 0)
 
     def test_id_when_rule_answer_count_equal_0(self):
         """Assert that an `answer_count` can be used in a when block and the
@@ -758,6 +760,50 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         answer_store = AnswerStore({})
         self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0, None))
+
+    def test_when_rule_comparing_answer_values(self):
+        answers = {
+            'low': Answer(answer_id='low', group_instance=0, value=1),
+            'medium': Answer(answer_id='medium', group_instance=0, value=5),
+            'high': Answer(answer_id='high', group_instance=0, value=10),
+            'list_answer': Answer(answer_id='list_answer', group_instance=0, value=['a', 'abc', 'cba']),
+            'text_answer': Answer(answer_id='small_string', group_instance=0, value='abc'),
+            'other_text_answer': Answer(answer_id='other_string', group_instance=0, value='xyz'),
+        }
+
+        # An answer that won't be added to the answer store.
+        missing_answer = Answer(answer_id='missing', group_instance=0, value=1)
+
+        param_list = [
+            (answers['medium'], 'equals', answers['medium'], 0, True),
+            (answers['medium'], 'equals', answers['low'], 0, False),
+            (answers['medium'], 'greater than', answers['low'], 0, True),
+            (answers['medium'], 'greater than', answers['high'], 0, False),
+            (answers['medium'], 'less than', answers['high'], 0, True),
+            (answers['medium'], 'less than', answers['low'], 0, False),
+            (answers['medium'], 'less than', answers['high'], 10, True),  # high group_instance non repeating group
+            (answers['medium'], 'less than', answers['low'], 10, False),  # high group_instance non repeating group
+            (answers['medium'], 'equals', missing_answer, 0, False),
+            (answers['list_answer'], 'not contains', answers['other_text_answer'], 0, True),
+            (answers['list_answer'], 'not contains', answers['text_answer'], 0, False),
+            (answers['list_answer'], 'contains', answers['text_answer'], 0, True),
+            (answers['list_answer'], 'contains', answers['other_text_answer'], 0, False),
+        ]
+
+        for lhs, comparison, rhs, group_instance, expected_result in param_list:
+
+            # Given
+            with self.subTest(lhs=lhs, comparison=comparison, rhs=rhs, group_instance=group_instance, expected_result=expected_result):
+                answer_store = AnswerStore({})
+                for answer in answers.values():
+                    answer_store.add(answer)
+
+                when = [{
+                    'id': lhs.answer_id,
+                    'condition': comparison,
+                    'comparison_id': rhs.answer_id
+                }]
+                self.assertEqual(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, group_instance, None), expected_result)
 
     def test_answer_count_when_rule_equal_1(self):
         """Assert that an `answer_count` can be used in a when block and the
@@ -837,6 +883,57 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0, None))
 
+    def test_evaluate_when_rule_raises_if_bad_when_condition(self):
+        when = {
+            'when': [
+                {
+                    'condition': 'not set'
+                }
+            ]
+        }
+        answer_store = AnswerStore({})
+        with self.assertRaises(Exception):
+            evaluate_when_rules(when['when'], get_schema_mock(), {}, answer_store, 0, None)
+
+    def test_repeating_group_comparison_with_itself(self):
+        """Assert that an `answer_count` can be used in a when block and the
+            value is correctly matched """
+        answer_group_id = 'repeated-answer'
+        when = [{
+            'id': answer_group_id,
+            'condition': 'equals',
+            'comparison_id': 'other'
+        }]
+
+        answer_store = AnswerStore({})
+        answer_store.add(Answer(
+            answer_id=answer_group_id,
+            group_instance=0,
+            group_instance_id='group-1-0',
+            value=2,
+        ))
+        answer_store.add(Answer(
+            answer_id=answer_group_id,
+            group_instance=1,
+            group_instance_id='group-1-1',
+            value=20,
+        ))
+        answer_store.add(Answer(
+            answer_id='other',
+            group_instance=0,
+            group_instance_id='group-1-0',
+            value=0,
+        ))
+        answer_store.add(Answer(
+            answer_id='other',
+            group_instance=1,
+            group_instance_id='group-1-1',
+            value=20,
+        ))
+
+        self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 1, 'group-1-1'))
+        self.assertFalse(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0, 'group-1-0'))
+
 class TestDateRules(AppContextTestCase):
 
     def test_evaluate_date_rule_equals_with_value_now(self):
@@ -850,11 +947,11 @@ class TestDateRules(AppContextTestCase):
         }
 
         answer_value = datetime.utcnow().strftime('%Y-%m-%d')
-        result = evaluate_date_rule(when, None, 0, None, answer_value)
+        result = evaluate_date_rule(when, None, get_schema_mock(), 0, None, answer_value)
         self.assertTrue(result)
 
         answer_value = '2000-01-01'
-        result = evaluate_date_rule(when, None, 0, None, answer_value)
+        result = evaluate_date_rule(when, None, get_schema_mock(), 0, None, answer_value)
         self.assertFalse(result)
 
     def test_evaluate_date_rule_equals_with_with_offset(self):
@@ -873,7 +970,7 @@ class TestDateRules(AppContextTestCase):
         }
 
         answer_value = '2020-05-01'
-        result = evaluate_date_rule(when, None, 0, None, answer_value)
+        result = evaluate_date_rule(when, None, get_schema_mock(), 0, None, answer_value)
         self.assertTrue(result)
 
         when = {
@@ -890,7 +987,7 @@ class TestDateRules(AppContextTestCase):
         }
 
         answer_value = '2020-02-29'
-        result = evaluate_date_rule(when, None, 0, None, answer_value)
+        result = evaluate_date_rule(when, None, get_schema_mock(), 0, None, answer_value)
         self.assertTrue(result)
 
     def test_evaluate_date_rule_not_equals_with_value_year_month(self):
@@ -904,11 +1001,11 @@ class TestDateRules(AppContextTestCase):
         }
 
         answer_value = '2018-02'
-        result = evaluate_date_rule(when, None, 0, None, answer_value)
+        result = evaluate_date_rule(when, None, get_schema_mock(), 0, None, answer_value)
         self.assertTrue(result)
 
         answer_value = '2018-01'
-        result = evaluate_date_rule(when, None, 0, None, answer_value)
+        result = evaluate_date_rule(when, None, get_schema_mock(), 0, None, answer_value)
         self.assertFalse(result)
 
     def test_evaluate_date_rule_less_than_meta(self):
@@ -923,11 +1020,11 @@ class TestDateRules(AppContextTestCase):
         }
 
         answer_value = '2016-06-11'
-        result = evaluate_date_rule(when, None, 0, metadata, answer_value)
+        result = evaluate_date_rule(when, None, get_schema_mock(), 0, metadata, answer_value)
         self.assertTrue(result)
 
         answer_value = '2016-06-12'
-        result = evaluate_date_rule(when, None, 0, metadata, answer_value)
+        result = evaluate_date_rule(when, None, get_schema_mock(), 0, metadata, answer_value)
         self.assertFalse(result)
 
     def test_evaluate_date_rule_greater_than_with_id(self):
@@ -944,11 +1041,11 @@ class TestDateRules(AppContextTestCase):
         answer_store.add(Answer(answer_id='compare_date_answer', value='2018-02-03'))
 
         answer_value = '2018-02-04'
-        result = evaluate_date_rule(when, answer_store, 0, None, answer_value)
+        result = evaluate_date_rule(when, answer_store, get_schema_mock(), 0, None, answer_value)
         self.assertTrue(result)
 
         answer_value = '2018-02-03'
-        result = evaluate_date_rule(when, answer_store, 0, None, answer_value)
+        result = evaluate_date_rule(when, answer_store, get_schema_mock(), 0, None, answer_value)
         self.assertFalse(result)
 
     def test_do_not_go_to_next_question_for_date_answer(self):

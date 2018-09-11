@@ -541,7 +541,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         with patch('app.data_model.answer_store.UPGRADE_TRANSFORMS', UPGRADE_TRANSFORMS):
             answer_store.upgrade(1, schema)
 
-        upgrade_0.assert_not_called(answer_store, schema)
+        upgrade_0.assert_not_called()
         upgrade_1.assert_called_once_with(answer_store, schema)
         upgrade_2.assert_called_once_with(answer_store, schema)
 

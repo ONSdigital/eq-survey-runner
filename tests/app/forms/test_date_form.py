@@ -212,7 +212,9 @@ class TestDateForm(AppContextTestCase):
 
         self.assertEqual(value, convert_to_datetime('2018-02-10'))
 
-    def test_get_referenced_offset_value_for_answer_id(self):
+    # pylint: disable=unused-argument
+    @patch('app.forms.date_form.load_schema_from_metadata')
+    def test_get_referenced_offset_value_for_answer_id(self, mock1):
         store = AnswerStore()
 
         test_answer_id = Answer(
@@ -243,7 +245,9 @@ class TestDateForm(AppContextTestCase):
 
         self.assertEqual(value, convert_to_datetime('2017-06-11'))
 
-    def test_minimum_and_maximum_offset_dates(self):
+    # pylint: disable=unused-argument
+    @patch('app.forms.date_form.load_schema_from_metadata')
+    def test_minimum_and_maximum_offset_dates(self, mock1):
         test_metadata = {'date': '2018-02-20'}
         store = AnswerStore()
 

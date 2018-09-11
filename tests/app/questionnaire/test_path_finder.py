@@ -638,14 +638,14 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         answer_2 = Answer(
             group_instance=0,
-            group_instance_id='group-0',
+            group_instance_id=None,
             answer_id='conditional-answer',
             value='Age and Shoe Size'
         )
 
         answer_3 = Answer(
             group_instance=1,
-            group_instance_id='group-1',
+            group_instance_id=None,
             answer_id='conditional-answer',
             value='Shoe Size Only'
         )
@@ -869,7 +869,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         for i in range(50):
             answers.add(Answer(
                 group_instance=i,
-                group_instance_id='group-1-{}'.format(i),
+                group_instance_id=None,
                 answer_id='conditional-answer',
                 value='Shoe Size Only'
             ))

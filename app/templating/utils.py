@@ -1,7 +1,7 @@
 from app.questionnaire.rules import evaluate_when_rules
 
 
-def get_question_title(question_schema, answer_store, schema, metadata, group_instance):
+def get_question_title(question_schema, answer_store, schema, metadata, group_instance, group_instance_id=None):
     """Return the value that should be used as the title to a question
     May be from question.title or question.titles"""
 
@@ -10,7 +10,7 @@ def get_question_title(question_schema, answer_store, schema, metadata, group_in
 
     titles = question_schema.get('titles')
 
-    return get_title_from_titles(metadata, schema, answer_store, titles, group_instance)
+    return get_title_from_titles(metadata, schema, answer_store, titles, group_instance, group_instance_id=group_instance_id)
 
 
 def get_title_from_titles(metadata, schema, answer_store, titles, group_instance, group_instance_id=None):

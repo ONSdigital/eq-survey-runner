@@ -28,6 +28,8 @@ class QuestionPage extends BasePage {
 
   saveSignOut() { return '[data-qa="btn-save-sign-out"]'; }
 
+  interstitialHeader() { return '#main > form > h1';}
+
   switchLanguage(language_code) { return '[data-qa="switch-language-' + language_code + '"]'; }
 
 }
