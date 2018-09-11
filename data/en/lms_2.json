@@ -3195,7 +3195,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "hours-totalized-w13",
+                                    "block": "one-job-hours-totalized-w13",
                                     "when": [{
                                         "id": "working-days-answer",
                                         "condition": "contains",
@@ -3258,7 +3258,7 @@
                             },
                             {
                                 "goto": {
-                                    "block": "hours-totalized-w13"
+                                    "block": "one-job-hours-totalized-w13"
                                 }
                             }
                         ]
@@ -3309,7 +3309,7 @@
                             },
                             {
                                 "goto": {
-                                    "block": "hours-totalized-w13"
+                                    "block": "one-job-hours-totalized-w13"
                                 }
                             }
                         ]
@@ -3663,7 +3663,7 @@
                             },
                             {
                                 "goto": {
-                                    "block": "hours-totalized-w13"
+                                    "block": "two-jobs-hours-totalized-w13-1"
                                 }
                             }
                         ]
@@ -3714,12 +3714,11 @@
                             },
                             {
                                 "goto": {
-                                    "block": "hours-totalized-w13"
+                                    "block": "two-jobs-hours-totalized-w13-1"
                                 }
                             }
                         ]
                     },
-
                     {
                         "id": "casual-hours-worked-casac",
                         "type": "Question",
@@ -3748,7 +3747,7 @@
                         }]
                     },
                     {
-                        "id": "hours-totalized-w13",
+                        "id": "one-job-hours-totalized-w13",
                         "type": "CalculatedSummary",
                         "titles": [{
                                 "value": "We calculate the total number of hours that <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> worked in their job, including overtime, to be %(total)s hours for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct? ",
@@ -3768,7 +3767,234 @@
                                 "one-job-actual-hours-answer",
                                 "paid-overtime-answer",
                                 "unpaid-overtime-answer",
-                                "casual-hours-answer",
+                                "casual-hours-answer"
+                            ],
+                            "titles": [{
+                                "value": "Total hours worked"
+                            }]
+                        },
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                        "id": "not-working-casual-work-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "two-jobs-hours-totalized-w13-1",
+                        "type": "CalculatedSummary",
+                        "titles": [{
+                                "value": "We calculate the total number of hours that <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> worked in their main and second jobs, including overtime, to be %(total)s hours for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct? ",
+                                "when": [{
+                                    "id": "proxy-check-answer",
+                                    "condition": "equals",
+                                    "value": "proxy"
+                                }]
+                            },
+                            {
+                                "value": "We calculate the total number of hours that you worked in your main and second jobs, including overtime, to be %(total)s hours for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct? "
+                            }
+                        ],
+                        "calculation": {
+                            "calculation_type": "sum",
+                            "answers_to_calculate": [
                                 "two-jobs-j1-actual-hours-answer",
                                 "two-jobs-j2-actual-hours-answer",
                                 "two-jobs-j1-paid-overtime-answer",
@@ -3782,27 +4008,194 @@
                         },
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
                                     "when": [{
-                                        "id": "one-job-emp-status-emp-or-self-answer",
-                                        "condition": "equals",
-                                        "value": "employee"
-                                    }]
+                                            "condition": "equals",
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "comparison_id": "two-jobs-j1-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "id": "two-jobs-j1-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "comparison_id": "two-jobs-j1-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "id": "two-jobs-j1-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "comparison_id": "two-jobs-j1-usual-hours-answer",
+                                            "condition": "equals",
+                                            "id": "two-jobs-j1-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "comparison_id": "two-jobs-j1-usual-hours-answer",
+                                            "condition": "equals",
+                                            "id": "two-jobs-j1-actual-hours-answer"
+                                        }
+                                    ]
                                 }
                             },
                             {
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "id": "one-job-emp-status-emp-or-self-proxy-answer",
-                                        "condition": "equals",
-                                        "value": "employee"
-                                    }]
+                                            "condition": "equals",
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "comparison_id": "two-jobs-j1-usual-hours-answer",
+                                            "condition": "less than",
+                                            "id": "two-jobs-j1-actual-hours-answer"
+                                        }
+                                    ]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp"
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "comparison_id": "two-jobs-j1-usual-hours-answer",
+                                            "condition": "less than",
+                                            "id": "two-jobs-j1-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "comparison_id": "two-jobs-j1-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "id": "two-jobs-j1-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "comparison_id": "two-jobs-j1-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "id": "two-jobs-j1-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "comparison_id": "two-jobs-j1-usual-hours-answer",
+                                            "condition": "equals",
+                                            "id": "two-jobs-j1-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "comparison_id": "two-jobs-j1-usual-hours-answer",
+                                            "condition": "equals",
+                                            "id": "two-jobs-j1-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "comparison_id": "two-jobs-j1-usual-hours-answer",
+                                            "condition": "less than",
+                                            "id": "two-jobs-j1-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "comparison_id": "two-jobs-j1-usual-hours-answer",
+                                            "condition": "less than",
+                                            "id": "two-jobs-j1-actual-hours-answer"
+                                        }
+                                    ]
                                 }
                             }
                         ]
