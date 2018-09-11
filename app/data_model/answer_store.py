@@ -41,11 +41,11 @@ class Answer:
         """
 
         return self.matches(Answer(
-            answer_dict['answer_id'],
-            answer_dict['value'],
-            answer_dict['group_instance_id'],
-            answer_dict['group_instance'],
-            answer_dict['answer_instance'],
+            answer_dict.get('answer_id'),
+            answer_dict.get('value'),
+            answer_dict.get('group_instance_id'),
+            answer_dict.get('group_instance', 0),
+            answer_dict.get('answer_instance', 0),
         ))
 
 
