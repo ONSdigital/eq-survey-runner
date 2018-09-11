@@ -11,6 +11,7 @@ from babel.dates import get_month_names
 from app.forms.custom_fields import CustomIntegerField
 from app.questionnaire.rules import get_metadata_value, get_answer_store_value, convert_to_datetime
 from app.validation.validators import DateCheck, OptionalForm, DateRequired, MonthYearCheck, YearCheck, SingleDatePeriodCheck
+from app.utilities.schema import load_schema_from_metadata
 
 logger = logging.getLogger(__name__)
 
@@ -282,7 +283,8 @@ def get_referenced_offset_value(answer_min_or_max, answer_store, metadata):
     elif 'meta' in answer_min_or_max:
         value = get_metadata_value(metadata, answer_min_or_max['meta'])
     elif 'answer_id' in answer_min_or_max:
-        value = get_answer_store_value(answer_min_or_max['answer_id'], answer_store, group_instance=0)
+        schema = load_schema_from_metadata(metadata)
+        value = get_answer_store_value(answer_min_or_max['answer_id'], answer_store, schema, group_instance=0)
 
     value = convert_to_datetime(value)
 

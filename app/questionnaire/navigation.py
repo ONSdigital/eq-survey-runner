@@ -82,7 +82,7 @@ class Navigation:
     def _build_repeating_navigation(self, repeating_rule, section, current_group_id, current_group_instance):
         groups = section['groups']
         answer_ids_on_path = get_answer_ids_on_routing_path(self.schema, self.routing_path)
-        no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store, answer_ids_on_path)
+        no_of_repeats = evaluate_repeat(self.schema, repeating_rule, self.answer_store, answer_ids_on_path)
 
         repeating_nav = []
         if repeating_rule['type'] == 'answer_count':

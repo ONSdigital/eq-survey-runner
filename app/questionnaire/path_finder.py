@@ -134,7 +134,13 @@ class PathFinder:
 
     def _evaluate_routing_rules(self, this_location, blocks, block, block_index, path):
         for rule in filter(is_goto_rule, block['routing_rules']):
-            should_goto = evaluate_goto(rule['goto'], self.schema, self.metadata, self.answer_store, this_location.group_instance)
+            group_instance_id = get_group_instance_id(self.schema, self.answer_store, this_location)
+            should_goto = evaluate_goto(rule['goto'],
+                                        self.schema,
+                                        self.metadata,
+                                        self.answer_store,
+                                        this_location.group_instance,
+                                        group_instance_id=group_instance_id)
 
             if should_goto:
                 return self._follow_routing_rule(this_location, rule, blocks, block_index, path)

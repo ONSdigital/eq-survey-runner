@@ -8,39 +8,63 @@ MAX_REPEATS = 25
 logger = logging.getLogger(__name__)
 
 
+def evaluate_comparison_rule(when, answer_value, comparison_value):
+    """
+    Determine whether a comparison rule will be satisfied based on an
+    answer value, and a value to compare it to.
+    :param when: The when clause to evaluate
+    :param answer_value: The value of the answer
+    :param comparison_value: The value to compare the answer to.
+    :return (bool): The result of the evaluation
+    """
+    condition = when['condition']
+
+    return evaluate_condition(condition, answer_value, comparison_value)
+
+
 def evaluate_rule(when, answer_value):
     """
     Determine whether a rule will be satisfied based on a given answer
-    :param when:
-    :param answer_value:
-    :return:
+    :param when: The when clause to evaluate
+    :param answer_value: The value of the answer
+    :return (bool): The result of the evaluation
     """
+
     match_value = when['value'] if 'value' in when else None
+
     condition = when['condition']
 
     # Evaluate the condition on the routing rule
-    return evaluate_condition(condition, match_value, answer_value)
+    return evaluate_condition(condition, answer_value, match_value)
 
 
-def evaluate_date_rule(when, answer_store, group_instance, metadata, answer_value):
+def evaluate_date_rule(when, answer_store, schema, group_instance, metadata, answer_value):
     date_comparison = when['date_comparison']
 
     answer_value = convert_to_datetime(answer_value)
-    match_value = get_date_match_value(date_comparison, answer_store, group_instance, metadata)
+    match_value = get_date_match_value(date_comparison, answer_store, schema, group_instance, metadata)
     condition = when.get('condition')
 
     if not answer_value or not match_value or not condition:
         return False
 
     # Evaluate the condition on the routing rule
-    return evaluate_condition(condition, match_value, answer_value)
+    return evaluate_condition(condition, answer_value, match_value)
 
 
-def evaluate_condition(condition, match_value, answer_value):
+def evaluate_condition(condition, answer_value, match_value):
+    """
+    :param condition: string representation of comparison operator
+    :param answer_value: the left hand operand in the comparison
+    :param match_value: the right hand operand in the comparison
+    :return: value of comparing lhs and rhs using the specified operator
+    """
     result = False
-    if condition == 'equals' and match_value == answer_value:
+    answer_and_match = answer_value is not None and match_value is not None
+
+    if condition == 'equals' and answer_value == match_value:
         result = True
-    elif condition == 'not equals' and match_value != answer_value:
+    elif condition == 'not equals' and answer_value != match_value:
         result = True
     elif condition == 'contains' and isinstance(answer_value, list) and match_value in answer_value:
         result = True
@@ -50,15 +74,15 @@ def evaluate_condition(condition, match_value, answer_value):
         result = answer_value is not None
     elif condition == 'not set':
         result = answer_value is None
-    elif condition == 'greater than' and answer_value and answer_value > match_value:
+    elif condition == 'greater than' and answer_and_match and answer_value > match_value:
         result = True
-    elif condition == 'less than' and answer_value and answer_value < match_value:
+    elif condition == 'less than' and answer_and_match and answer_value < match_value:
         result = True
 
     return result
 
 
-def get_date_match_value(date_comparison, answer_store, group_instance, metadata):
+def get_date_match_value(date_comparison, answer_store, schema, group_instance, metadata):
     match_value = None
 
     if 'value' in date_comparison:
@@ -67,7 +91,7 @@ def get_date_match_value(date_comparison, answer_store, group_instance, metadata
         else:
             match_value = date_comparison['value']
     elif 'id' in date_comparison:
-        match_value = get_answer_store_value(date_comparison['id'], answer_store, group_instance)
+        match_value = get_answer_store_value(date_comparison['id'], answer_store, schema, group_instance)
     elif 'meta' in date_comparison:
         match_value = get_metadata_value(metadata, date_comparison['meta'])
 
@@ -103,19 +127,21 @@ def evaluate_goto(goto_rule, schema, metadata, answer_store, group_instance, gro
     :param group_instance_id: The group instance ID to filter results by
     :return: True if the when condition has been met otherwise False
     """
-    if 'when' in goto_rule.keys():
+    if 'when' in goto_rule:
         return evaluate_when_rules(goto_rule['when'], schema, metadata, answer_store, group_instance, group_instance_id)
     return True
 
 
-def evaluate_repeat(repeat_rule, answer_store, answer_ids_on_path):
+def evaluate_repeat(schema, repeat_rule, answer_store, answer_ids_on_path):
     """
     Returns the number of times repetition should occur based on answers
     """
     if repeat_rule['type'] == 'until':
-        when = repeat_rule['when'][0]
-        answers = list(answer_store.filter(answer_ids=[when['id']]))
-        stop = bool(answers and evaluate_rule(when, answers[-1]['value']))
+        when = repeat_rule['when']
+        answers = list(answer_store.filter(answer_ids=[when[0]['id']]))
+        group_instance = max(len(answers) - 1, 0)
+        stop = answers and evaluate_when_rules(when, schema, {}, answer_store, group_instance, None)
+
         no_of_repeats = len(answers) + (0 if stop else 1)
     else:
         repeat_functions = {
@@ -156,6 +182,18 @@ def _get_answer_count_minus_one(filtered_answers):
     return min(max(len(filtered_answers) - 1, 0), MAX_REPEATS - 1)
 
 
+def _get_comparison_id_value(when_rule, answer_store, schema, group_instance, group_instance_id):
+    """
+        Gets the value of an answer specified as an operand in a comparator ( i.e right hand argument ,
+        or rhs in if lhs>rhs ) In a when clause
+        If the comparison answer is not in a repeating group, we may have the wrong group_instance
+        If it has a group_instance_id, we should match the group_instance_id to the current one.
+    """
+    answer_id = when_rule['comparison_id']
+
+    return get_answer_store_value(answer_id, answer_store, schema, group_instance=group_instance, group_instance_id=group_instance_id)
+
+
 def evaluate_skip_conditions(skip_conditions, schema, metadata, answer_store, group_instance=0, group_instance_id=None):
     """
     Determine whether a skip condition will be satisfied based on a given answer
@@ -179,7 +217,25 @@ def evaluate_skip_conditions(skip_conditions, schema, metadata, answer_store, gr
     return False
 
 
-def evaluate_when_rules(when_rules, schema, metadata, answer_store, group_instance, group_instance_id):
+def _get_when_rule_value(when_rule, group_instance, answer_store, schema, metadata, group_instance_id=None):
+    """
+    Get the value from a when rule.
+    :raises: Exception if none of `id`, `meta`, or `answer_count` are provided.
+    :return: The value to use in a when rule
+    """
+    if 'id' in when_rule:
+        value = get_answer_store_value(when_rule['id'], answer_store, schema, group_instance, group_instance_id)
+    elif 'meta' in when_rule:
+        value = get_metadata_value(metadata, when_rule['meta'])
+    elif 'answer_count' in when_rule:
+        value = answer_store.filter(answer_ids=[when_rule['answer_count']]).count()
+    else:
+        raise Exception('The when rule is invalid')
+
+    return value
+
+
+def evaluate_when_rules(when_rules, schema, metadata, answer_store, group_instance, group_instance_id=None):
     """
     Whether the skip condition has been met.
     :param when_rules: when rules to evaluate
@@ -191,20 +247,20 @@ def evaluate_when_rules(when_rules, schema, metadata, answer_store, group_instan
     :param group_instance_id: The group instance ID to filter results by
     :return: True if the when condition has been met otherwise False
     """
+
     for when_rule in when_rules:
         if 'id' in when_rule:
             if group_instance > 0 and not schema.answer_is_in_repeating_group(when_rule['id']):
                 group_instance = 0
-            value = get_answer_store_value(when_rule['id'], answer_store, group_instance, group_instance_id)
-        elif 'meta' in when_rule:
-            value = get_metadata_value(metadata, when_rule['meta'])
-        elif 'answer_count' in when_rule:
-            value = answer_store.filter(answer_ids=[when_rule['answer_count']]).count()
-        else:
-            return True
+
+        value = _get_when_rule_value(when_rule, group_instance, answer_store, schema, metadata, group_instance_id)
 
         if 'date_comparison' in when_rule:
-            if not evaluate_date_rule(when_rule, answer_store, group_instance, metadata, value):
+            if not evaluate_date_rule(when_rule, answer_store, schema, group_instance, metadata, value):
+                return False
+        elif 'comparison_id' in when_rule:
+            comparison_id_value = _get_comparison_id_value(when_rule, answer_store, schema, group_instance, group_instance_id)
+            if not evaluate_comparison_rule(when_rule, value, comparison_id_value):
                 return False
         else:
             if not evaluate_rule(when_rule, value):
@@ -213,12 +269,31 @@ def evaluate_when_rules(when_rules, schema, metadata, answer_store, group_instan
     return True
 
 
-def get_answer_store_value(answer_index, answer_store, group_instance, group_instance_id=None):
-    filtered = answer_store.filter(answer_ids=[answer_index], group_instance=group_instance, group_instance_id=group_instance_id)
+def get_answer_store_value(answer_id, answer_store, schema, group_instance, group_instance_id=None):
+    filtered = answer_store.filter(answer_ids=[answer_id])
+
+    if not filtered.count():
+        return None
+
+    if all([answer.get('group_instance_id') for answer in filtered.answers]) and group_instance_id:
+        # If all of the matching answers have a group_instance_id, then we know the answer has this group_instance_id
+        group_instance = None
+    else:
+        # We don't have group_instance_ids everywhere, so filter on the group_instance
+        if group_instance > 0 and not schema.answer_is_in_repeating_group(answer_id):
+            # If we're comparing to answer outside repeating group we may have an incorrect group_instance
+            group_instance = 0
+
+        group_instance_id = None
+
+    filtered = filtered.filter(answer_ids=[answer_id],
+                               group_instance=group_instance,
+                               group_instance_id=group_instance_id)
 
     if filtered.count() > 1:
         raise Exception('Multiple answers ({:d}) found evaluating when rule for answer ({})'
-                        .format(filtered.count(), answer_index))
+                        .format(filtered.count(), answer_id))
+
     return filtered[0]['value'] if filtered.count() == 1 else None
 
 
@@ -228,7 +303,7 @@ def get_number_of_repeats(group, schema, routing_path, answer_store):
     if repeating_rule:
         answer_ids_on_path = get_answer_ids_on_routing_path(
             schema, routing_path)
-        return evaluate_repeat(repeating_rule, answer_store, answer_ids_on_path)
+        return evaluate_repeat(schema, repeating_rule, answer_store, answer_ids_on_path)
 
     return 1
 

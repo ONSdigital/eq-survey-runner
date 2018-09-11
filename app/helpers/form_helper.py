@@ -71,7 +71,7 @@ def get_form_for_location(schema, block_json, location, answer_store, metadata, 
         block_id=location.block_id,
     )
 
-    return generate_form(schema, block_json, answer_store, metadata, location.group_instance, data=mapped_answers)
+    return generate_form(schema, block_json, answer_store, metadata, location.group_instance, group_instance_id, data=mapped_answers)
 
 
 def post_form_for_location(schema, block_json, location, answer_store, metadata, request_form, disable_mandatory=False):
@@ -86,11 +86,14 @@ def post_form_for_location(schema, block_json, location, answer_store, metadata,
     :param error_messages: The default error messages to use within the form
     :param disable_mandatory: Make mandatory answers optional
     """
+
     if disable_mandatory:
         block_json = disable_mandatory_answers(block_json)
 
     if location.block_id == 'household-composition':
         return generate_household_composition_form(schema, block_json, request_form, metadata, location.group_instance)
+
+    group_instance_id = get_group_instance_id(schema, answer_store, location)
 
     if schema.block_has_question_type(location.block_id, 'Relationship'):
         group = schema.get_group(location.group_id)
@@ -105,13 +108,12 @@ def post_form_for_location(schema, block_json, location, answer_store, metadata,
             answer_ids.append(repeat_rule['answer_id'])
 
         relationship_choices = build_relationship_choices(answer_ids, answer_store, location.group_instance)
-        group_instance_id = get_group_instance_id(schema, answer_store, location)
         form = generate_relationship_form(schema, block_json, relationship_choices, request_form, location.group_instance, group_instance_id)
 
         return form
 
     data = clear_other_text_field(request_form, schema.get_questions_for_block(block_json))
-    return generate_form(schema, block_json, answer_store, metadata, location.group_instance, formdata=data)
+    return generate_form(schema, block_json, answer_store, metadata, location.group_instance, group_instance_id, formdata=data)
 
 
 def disable_mandatory_answers(block_json):

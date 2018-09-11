@@ -23,7 +23,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
             block_json = schema.get_block('reporting-period')
 
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0)
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None)
 
             for answer in schema.get_answers_for_block('reporting-period'):
                 self.assertTrue(hasattr(form, answer['id']))
@@ -48,7 +48,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'period-from': '2016-03-01',
                 'period-to': '2016-03-31'
             }
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             self.assertEqual(form.data, expected_form_data)
 
@@ -72,7 +72,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'period-from': '2016-12-25',
                 'period-to': '2016-12-25'
             }
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -99,7 +99,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'period-from': '2016-12-25',
                 'period-to': '2016-12-24'
             }
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -126,7 +126,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-from': '2016-12-25',
                 'date-range-to': '2017-12-24'
             }
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -153,7 +153,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-from': '2016-12-25',
                 'date-range-to': '2016-12-26'
             }
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -180,7 +180,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-from': '2016-12-25',
                 'date-range-to': '2017-01-26'
             }
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -210,7 +210,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-from': '2017-01-01',
                 'date-range-to': '2017-03-14'
             }
-            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -245,7 +245,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-from': '2017-01-01',
                 'date-range-to': '2017-01-10'
             }
-            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -277,7 +277,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-from': '2017-01-01',
                 'date-range-to': '2017-02-21'
             }
-            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -307,7 +307,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-from': '2016-11',
                 'date-range-to': '2017-06'
             }
-            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -340,7 +340,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-from': '2017-01',
                 'date-range-to': '2017-02'
             }
-            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -370,7 +370,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-from': '2017-01',
                 'date-range-to': '2017-05'
             }
-            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -392,7 +392,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-from': '2015',
                 'date-range-to': '2021'
             }
-            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -417,7 +417,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-from': '2016',
                 'date-range-to': '2017'
             }
-            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -439,7 +439,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-from': '2016',
                 'date-range-to': '2020'
             }
-            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -487,7 +487,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-to-year': '2018'
             }
 
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             with patch('app.questionnaire.questionnaire_schema.QuestionnaireSchema.get_questions_for_block',
                        return_value=[question_json]):
@@ -542,7 +542,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-to-year': '2018'
             }
 
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             with self.assertRaises(Exception) as ite:
                 with patch('app.questionnaire.questionnaire_schema.QuestionnaireSchema.get_questions_for_block',
@@ -598,7 +598,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-to-year': '2018'
             }
 
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             with self.assertRaises(Exception) as ite:
                 with patch('app.questionnaire.questionnaire_schema.QuestionnaireSchema.get_questions_for_block',
@@ -658,7 +658,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-to-year': '2018'
             }
 
-            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             with self.assertRaises(Exception) as ite:
                 with patch('app.questionnaire.questionnaire_schema.QuestionnaireSchema.get_questions_for_block',
@@ -713,7 +713,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'breakdown-2': '5',
             }
 
-            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             with self.assertRaises(Exception) as ite:
                 with patch('app.questionnaire.questionnaire_schema.QuestionnaireSchema.get_questions_for_block',
@@ -773,7 +773,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'breakdown-2': '5',
             }
 
-            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             with patch('app.questionnaire.questionnaire_schema.QuestionnaireSchema.get_questions_for_block',
                        return_value=[question_json]):
@@ -811,7 +811,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'breakdown-3': Decimal('4'),
                 'breakdown-4': None
             }
-            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -849,7 +849,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'breakdown-3': Decimal('4'),
                 'breakdown-4': Decimal('1')
             }
-            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -885,7 +885,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'breakdown-3': None,
                 'breakdown-4': None
             }
-            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -917,7 +917,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             }
 
             # With no answers question validation should pass
-            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, group_instance_id=None, formdata=data)
             form.validate()
 
             self.assertEqual(len(form.question_errors), 0)
@@ -925,7 +925,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             # With the data equaling the total question validation should pass
             data['breakdown-1'] = '10'
 
-            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, group_instance_id=None, formdata=data)
             form.validate()
 
             self.assertEqual(len(form.question_errors), 0)
@@ -933,7 +933,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             # With the data not equaling zero or the total, question validation should fail
             data['breakdown-1'] = '1'
 
-            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, formdata=data)
+            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, group_instance_id=None, formdata=data)
             form.validate()
 
             self.assertEqual(form.question_errors['breakdown-question'],
@@ -972,7 +972,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'sure-answer': 'yes'
             }
             with patch('app.questionnaire.path_finder.evaluate_goto', return_value=False):
-                form = generate_form(schema, block_json, store, metadata={}, group_instance=0, formdata=data)
+                form = generate_form(schema, block_json, store, metadata={}, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
@@ -983,7 +983,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
             block_json = schema.get_block('total-retail-turnover')
 
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0)
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None)
 
             form.validate()
             mapped_errors = form.map_errors()
@@ -998,7 +998,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
             block_json = schema.get_block('reporting-period')
 
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0)
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None)
 
             form.validate()
             mapped_errors = form.map_errors()
@@ -1012,7 +1012,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
             block_json = schema.get_block('radio-mandatory')
 
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata={
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={
                 'radio-mandatory-answer': 'Other'
             })
 
@@ -1026,7 +1026,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
             block_json = schema.get_block('radio-mandatory')
 
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata={
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={
                 'radio-mandatory-answer': 'Other'
             })
 
@@ -1044,7 +1044,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
             block_json = schema.get_block('number-of-employees')
 
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata={
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={
                 'total-number-employees': '-1'
             })
 
@@ -1058,7 +1058,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             schema = load_schema_from_params('test', 'checkbox')
             block_json = schema.get_block('mandatory-checkbox')
 
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata={})
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={})
 
             self.assertFalse(form.option_has_other('mandatory-checkbox-answer', 1))
             self.assertTrue(form.option_has_other('mandatory-checkbox-answer', 6))
@@ -1067,7 +1067,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             schema = load_schema_from_params('test', 'checkbox_mutually_exclusive')
             block_json = schema.get_block('mandatory-checkbox')
 
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata={})
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={})
 
             self.assertFalse(form.option_has_other('mandatory-checkbox-answer', 1))
             self.assertTrue(form.option_has_other('mandatory-checkbox-answer', 5))
@@ -1078,7 +1078,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             schema = load_schema_from_params('test', 'checkbox')
             block_json = schema.get_block('mandatory-checkbox')
 
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata={
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={
                 'other-answer-mandatory': 'Some data'
             })
 
@@ -1090,7 +1090,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             schema = load_schema_from_params('test', 'checkbox_mutually_exclusive')
             block_json = schema.get_block('mandatory-checkbox')
 
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata={
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={
                 'other-answer-mandatory': 'Some data'
             })
 
@@ -1104,7 +1104,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             schema = load_schema_from_params('test', 'checkbox')
             block_json = schema.get_block('mandatory-checkbox')
 
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata={
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={
                 'other-answer-mandatory': 'Some data'
             })
 
@@ -1116,7 +1116,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             schema = load_schema_from_params('test', 'checkbox_mutually_exclusive')
             block_json = schema.get_block('mandatory-checkbox')
 
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, formdata={
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={
                 'other-answer-mandatory': 'Some data'
             })
 
