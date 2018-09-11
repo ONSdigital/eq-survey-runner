@@ -1670,14 +1670,7 @@
                     "type": "General"
                 }],
                 "title": "Four Weekly Pay",
-                "type": "Question",
-                "skip_conditions": [{
-                    "when": [{
-                        "id": "four-weekly-pay-significant-changes-other-answer",
-                        "condition": "equals",
-                        "value": "No"
-                    }]
-                }]
+                "type": "Question"
             }],
             "id": "four-weekly-pay",
             "title": "Four Weekly Pay",
@@ -2042,14 +2035,7 @@
                     "type": "General"
                 }],
                 "title": "Five Weekly Pay",
-                "type": "Question",
-                "skip_conditions": [{
-                    "when": [{
-                        "id": "five-weekly-pay-significant-changes-other-answer",
-                        "condition": "equals",
-                        "value": "No"
-                    }]
-                }]
+                "type": "Question"
             }],
             "id": "five-weekly-pay",
             "title": "Five Weekly Pay",
