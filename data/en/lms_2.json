@@ -2995,7 +2995,8 @@
                             "answers": [{
                                 "id": "one-job-no-days-worked-no-overtime-answer",
                                 "mandatory": false,
-                                "type": "Number"
+                                "type": "Unit",
+                                "unit": "duration-hour"
                             }]
                         }],
                         "routing_rules": [{
@@ -3046,7 +3047,8 @@
                             "answers": [{
                                 "id": "two-jobs-j1-no-days-worked-no-overtime-answer",
                                 "mandatory": false,
-                                "type": "Number"
+                                "type": "Unit",
+                                "unit": "duration-hour"
                             }]
                         }]
                     },
@@ -3071,7 +3073,8 @@
                             "answers": [{
                                 "id": "two-jobs-j2-no-days-worked-no-overtime-answer",
                                 "mandatory": false,
-                                "type": "Number"
+                                "type": "Unit",
+                                "unit": "duration-hour"
                             }]
                         }],
                         "routing_rules": [{
@@ -3124,7 +3127,8 @@
                             "answers": [{
                                 "id": "unpaid-overtime-answer",
                                 "mandatory": false,
-                                "type": "Number",
+                                "type": "Unit",
+                                "unit": "duration-hour",
                                 "label": "Unpaid overtime hours"
                             }]
                         }],
@@ -3173,7 +3177,8 @@
                             "answers": [{
                                 "id": "paid-overtime-answer",
                                 "mandatory": false,
-                                "type": "Number",
+                                "type": "Unit",
+                                "unit": "duration-hour",
                                 "label": "Paid overtime hours"
                             }]
                         }]
@@ -3201,7 +3206,8 @@
                             "answers": [{
                                 "id": "one-job-usual-hours-answer",
                                 "mandatory": false,
-                                "type": "Number"
+                                "type": "Unit",
+                                "unit": "duration-hour"
                             }],
                             "guidance": {
                                 "content": [{
@@ -3248,7 +3254,8 @@
                             "answers": [{
                                 "id": "one-job-actual-hours-answer",
                                 "mandatory": false,
-                                "type": "Number",
+                                "type": "Unit",
+                                "unit": "duration-hour",
                                 "label": "Actual hours"
                             }]
                         }],
@@ -3351,7 +3358,8 @@
                                 "id": "two-jobs-j1-unpaid-overtime-answer",
                                 "label": "Unpaid overtime hours, main job",
                                 "mandatory": false,
-                                "type": "Number"
+                                "type": "Unit",
+                                "unit": "duration-hour"
                             }]
                         }]
                     },
@@ -3376,7 +3384,8 @@
                             "answers": [{
                                 "id": "two-jobs-j2-unpaid-overtime-answer",
                                 "mandatory": false,
-                                "type": "Number",
+                                "type": "Unit",
+                                "unit": "duration-hour",
                                 "label": "Unpaid overtime hours, second job"
                             }]
                         }],
@@ -3418,7 +3427,8 @@
                             "answers": [{
                                 "id": "two-jobs-j1-paid-overtime-answer",
                                 "mandatory": false,
-                                "type": "Number",
+                                "type": "Unit",
+                                "unit": "duration-hour",
                                 "label": "Paid overtime hours, main job"
                             }]
                         }]
@@ -3451,7 +3461,8 @@
                             "answers": [{
                                 "id": "two-jobs-j2-paid-overtime-answer",
                                 "mandatory": false,
-                                "type": "Number",
+                                "type": "Unit",
+                                "unit": "duration-hour",
                                 "label": "Paid overtime hours, second job"
                             }]
                         }]
@@ -3479,7 +3490,8 @@
                             "answers": [{
                                 "id": "two-jobs-j1-usual-hours-answer",
                                 "mandatory": false,
-                                "type": "Number",
+                                "type": "Unit",
+                                "unit": "duration-hour",
                                 "label": "Hours"
                             }],
                             "guidance": {
@@ -3510,7 +3522,8 @@
                             "answers": [{
                                 "id": "two-jobs-j1-actual-hours-answer",
                                 "mandatory": false,
-                                "type": "Number",
+                                "type": "Unit",
+                                "unit": "duration-hour",
                                 "label": "Actual hours main job"
                             }]
                         }],
@@ -3614,7 +3627,8 @@
                             "answers": [{
                                 "id": "two-jobs-j2-usual-hours-answer",
                                 "mandatory": false,
-                                "type": "Number",
+                                "type": "Unit",
+                                "unit": "duration-hour",
                                 "label": "Hours"
                             }],
                             "guidance": {
@@ -3645,7 +3659,8 @@
                             "answers": [{
                                 "id": "two-jobs-j2-actual-hours-answer",
                                 "mandatory": false,
-                                "type": "Number",
+                                "type": "Unit",
+                                "unit": "duration-hour",
                                 "label": "Actual hours, second job"
                             }]
                         }],
@@ -3748,7 +3763,8 @@
                             "answers": [{
                                 "id": "casual-hours-answer",
                                 "mandatory": false,
-                                "type": "Number",
+                                "type": "Unit",
+                                "unit": "duration-hour",
                                 "label": "Casual hours"
                             }]
                         }]
