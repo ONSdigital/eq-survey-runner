@@ -41,8 +41,8 @@
             "id": "qcas-section",
             "title": "QCAS",
             "groups": [{
-                "id": "introduction-group",
-                "title": "Introduction",
+                "id": "qcas",
+                "title": "",
                 "blocks": [{
                         "type": "Introduction",
                         "id": "introduction-block",
