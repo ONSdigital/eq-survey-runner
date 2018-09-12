@@ -48,6 +48,46 @@ class TestAnswer(unittest.TestCase):
         self.assertEqual(answer_1.matches_dict(answer_2), True)
 
 
+    def test_matches_answer_dict_missing_key(self):
+        # No group_instance_id
+        answer_1 = Answer(
+            answer_id='4',
+            answer_instance=1,
+            group_instance=1,
+            value=25,
+        )
+        # No group_instance_id
+        answer_2 = {
+            'answer_id': '4',
+            'answer_instance': 1,
+            'group_instance': 1,
+            'value': 25,
+        }
+
+        self.assertEqual(answer_1.matches_dict(answer_2), True)
+
+
+    def test_matches_new_answer_against_old_answer(self):
+        # Has group_instance_id
+        answer_1 = Answer(
+            answer_id='4',
+            answer_instance=1,
+            group_instance=1,
+            group_instance_id=None,
+            value=25,
+        )
+
+        # No group_instance_id
+        answer_2 = {
+            'answer_id': '4',
+            'answer_instance': 1,
+            'group_instance': 1,
+            'value': 25,
+        }
+
+        self.assertEqual(answer_1.matches_dict(answer_2), True)
+
+
 class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-methods
     def setUp(self):
         self.store = AnswerStore()
