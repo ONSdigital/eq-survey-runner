@@ -706,7 +706,7 @@
                         "type": "CalculatedSummary",
                         "id": "acquisitions-playback",
                         "titles": [{
-                            "value": "We calculate the total value of acquisitions entered to be %(total)s. Is this correct?"
+                            "value": "We calculate the total value of acquisitions entered (excluding construction) to be %(total)s. Is this correct?"
                         }],
                         "calculation": {
                             "calculation_type": "sum",
