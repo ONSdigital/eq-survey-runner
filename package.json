@@ -133,6 +133,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^5.1.1",
     "events": "^1.1.1",
+    "fibers": "^3.0.0",
     "ie9-oninput-polyfill": "^1.1.1",
     "lodash": "^4.17.4",
     "whatwg-fetch": "^2.0.2"

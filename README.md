@@ -231,6 +231,27 @@ To create the gaelic language files, use the following:
 pybabel init -i app/translations/messages.pot -d app/translations -l gd
 ```
 
+### Getting text translated
+
+Our current language translation service requires a .csv rather than a .po file. To convert a .po file to a .csv you'll need to install the Python translate-toolkit:
+```
+brew install translate-toolkit
+```
+
+To generate the .csv file:
+```
+po2csv app/translations/cy/LC_MESSAGES/messages.po cy.csv
+```
+
+To convert back to a .po file:
+```
+csv2po cy.csv app/translations/cy/LC_MESSAGES/messages.po
+```
+
+*Important:* There are some encoding issues when opening the .csv file in Excel. For now, opening in Google sheets and saving as a .xslx file is the least work solution. 
+
+### Compiling the translations
+
 To compile the language files for use in the application, use the following:
 
 ```
