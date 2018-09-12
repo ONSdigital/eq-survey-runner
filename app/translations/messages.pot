@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 08:13+0100\n"
+"POT-Creation-Date: 2018-09-25 10:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -180,7 +180,7 @@ msgstr ""
 msgid "Please review your answers and confirm these are correct"
 msgstr ""
 
-#: app/templates/summary.html:50
+#: app/templates/summary.html:54
 msgid ""
 "You will have the opportunity to view and print a copy of your answers "
 "after submitting this survey"
@@ -512,14 +512,23 @@ msgstr ""
 msgid "Selecting this will add a new set of fields to enter another person"
 msgstr ""
 
+#: app/templates/partials/summary/answer-summary.html:22
+#: app/templates/partials/summary/edit-link.html:6
+msgid "Change"
+msgstr ""
+
+#: app/templates/partials/summary/answer-summary.html:24
+msgid "Change your answer for"
+msgstr ""
+
+#: app/templates/partials/summary/answer-summary.html:24
+msgid "The current value is"
+msgstr ""
+
 #: app/templates/partials/summary/answer.html:2
 #: app/templates/partials/summary/checkbox.html:7
 #: app/templates/partials/summary/radio.html:6
 msgid "No answer provided"
-msgstr ""
-
-#: app/templates/partials/summary/edit-link.html:6
-msgid "Change"
 msgstr ""
 
 #: app/templates/partials/summary/edit-link.html:7

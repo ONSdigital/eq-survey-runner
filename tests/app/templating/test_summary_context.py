@@ -1,9 +1,12 @@
+import uuid
+
 from mock import patch
 from app.data_model.answer_store import AnswerStore, Answer
 from app.questionnaire.location import Location
 from app.templating.summary_context import build_summary_rendering_context
 from app.templating.view_context import build_view_context_for_final_summary, \
-    build_view_context_for_section_summary, build_view_context_for_calculated_summary
+    build_view_context_for_section_summary, build_view_context_for_calculated_summary, \
+    build_view_context
 from app.utilities.schema import load_schema_from_params
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -35,8 +38,6 @@ class TestStandardSummaryContext(AppContextTestCase):
         for key_value in ('groups', 'answers_are_editable', 'summary_type'):
             self.assertTrue(key_value in summary_context,
                             "Key value {} missing from context['summary']".format(key_value))
-
-        self.check_summary_rendering_context(summary_context['groups'])
 
     def check_summary_rendering_context(self, summary_rendering_context):
         for group in summary_rendering_context:
@@ -101,6 +102,7 @@ class TestSummaryContext(TestStandardSummaryContext):
                                                        self.rendered_block)
 
         self.check_context(context)
+        self.check_summary_rendering_context(context['summary']['groups'])
         self.assertEqual(len(context['summary']), 5)
         self.assertTrue('is_view_submission_response_enabled' in context['summary'])
         self.assertTrue('collapsible' in context['summary'])
@@ -140,6 +142,7 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
                                                          csrf_token, current_location.group_id)
 
         self.check_context(context)
+        self.check_summary_rendering_context(context['summary']['groups'])
         self.assertEqual(len(context['summary']), 4)
         self.assertTrue('title' in context['summary'])
 
@@ -187,6 +190,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
                                                             variables, csrf_token, current_location)
 
         self.check_context(context)
+        self.check_summary_rendering_context(context['summary']['groups'])
         self.assertEqual(len(context['summary']), 5)
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
@@ -216,6 +220,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
                                                             variables, csrf_token, current_location)
 
         self.check_context(context)
+        self.check_summary_rendering_context(context['summary']['groups'])
         self.assertEqual(len(context['summary']), 5)
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
@@ -242,6 +247,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
                                                             variables, csrf_token, current_location)
 
         self.check_context(context)
+        self.check_summary_rendering_context(context['summary']['groups'])
         self.assertEqual(len(context['summary']), 5)
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
@@ -267,6 +273,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
                                                             variables, csrf_token, current_location)
 
         self.check_context(context)
+        self.check_summary_rendering_context(context['summary']['groups'])
         self.assertEqual(len(context['summary']), 5)
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
@@ -292,6 +299,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
                                                             variables, csrf_token, current_location)
 
         self.check_context(context)
+        self.check_summary_rendering_context(context['summary']['groups'])
         self.assertEqual(len(context['summary']), 5)
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
@@ -325,6 +333,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
                                                                 variables, csrf_token, current_location)
 
         self.check_context(context)
+        self.check_summary_rendering_context(context['summary']['groups'])
         self.assertEqual(len(context['summary']), 5)
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
@@ -334,3 +343,45 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         self.assertTrue('calculated_question' in context_summary)
         self.assertEqual(context_summary['calculated_question']['title'], 'Grand total of previous values')
         self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '30')
+
+
+class TestAnswerSummaryContext(TestStandardSummaryContext):
+
+    def setUp(self):
+        super().setUp()
+        self.schema = load_schema_from_params('test', 'answer_summary')
+        self.answer_store = AnswerStore()
+        self.block_type = 'AnswerSummary'
+
+    def test_build_view_context_for_answer_summary(self):
+        primary_uuid = uuid.uuid4()
+        repeating_0_uuid = uuid.uuid4()
+        repeating_1_uuid = uuid.uuid4()
+        self.answer_store.add(Answer('primary-first-name', 'Bob', primary_uuid, 0, 0))
+        self.answer_store.add(Answer('primary-last-name', 'Smith', primary_uuid, 0, 0))
+        self.answer_store.add(Answer('primary-anyone-else', 'Yes', primary_uuid, 0, 0))
+        self.answer_store.add(Answer('repeating-first-name', 'Mary', repeating_0_uuid, 0, 0))
+        self.answer_store.add(Answer('repeating-last-name', 'Smith', repeating_0_uuid, 0, 0))
+        self.answer_store.add(Answer('repeating-anyone-else', 'Yes', repeating_0_uuid, 0, 0))
+        self.answer_store.add(Answer('repeating-first-name', 'Sally', repeating_1_uuid, 1, 0))
+        self.answer_store.add(Answer('repeating-last-name', 'Smith', repeating_1_uuid, 1, 0))
+
+        current_location = Location(
+            block_id='household-summary',
+            group_id='household-summary-group',
+            group_instance=0,
+        )
+
+        with self.app_request_context('/'):
+            context = build_view_context(self.block_type, self.metadata, self.schema, self.answer_store,
+                                         None, None, current_location, None)
+
+        self.check_context(context)
+        self.assertEqual(len(context['summary']), 6)
+        self.assertTrue('title' in context['summary'])
+        self.assertTrue('icon' in context['summary'])
+        self.assertEqual('person', context['summary']['icon'])
+        self.assertEqual(1, len(context['summary']['groups']))
+        self.assertEqual('Bob Smith', context['summary']['groups'][0]['answers'][0]['label'])
+        self.assertEqual('Mary Smith', context['summary']['groups'][0]['answers'][1]['label'])
+        self.assertEqual('Sally Smith', context['summary']['groups'][0]['answers'][2]['label'])

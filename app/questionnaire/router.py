@@ -48,7 +48,7 @@ class Router:
 
     def _get_section_redirect_location(self):
         """
-        Ensure that the user can't access the section summary if the section is not complete.
+        Ensure that the user can't access the section or answer summary if the section is not complete.
         :return: Location to direct to if current location is not accessible.
         """
         if not self._is_current_location_valid():
@@ -59,7 +59,7 @@ class Router:
         block = self._schema.get_block(self._current_location.block_id)
         cannot_access_section_summary = self._current_location != expected_location
 
-        if block['type'] == 'SectionSummary' and cannot_access_section_summary:
+        if block['type'] in ('SectionSummary', 'AnswerSummary') and cannot_access_section_summary:
             return expected_location
 
     def _get_survey_redirect_location(self):

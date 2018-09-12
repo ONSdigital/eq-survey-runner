@@ -4,7 +4,7 @@
 
 {% block submit_button %}
 
-{% if content.summary and content.summary.summary_type == 'SectionSummary' %}
+{% if content.summary and content.summary.summary_type in ('SectionSummary', 'AnswerSummary') %}
     <button class="btn btn--loader u-mb-s js-btn-submit" data-qa="btn-submit">{{ _("Continue") }}</button>
 {% elif content.summary and content.summary.summary_type == 'CalculatedSummary' %}
     <button class="btn btn--loader u-mb-s js-btn-submit" data-qa="btn-submit">{{ _("Yes, I confirm these are correct") }}</button>
