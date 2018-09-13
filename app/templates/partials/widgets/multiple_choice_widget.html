@@ -44,16 +44,16 @@
     <div class="field__item js-focusable-box">
       <input {{input|xmlattr}}>
       <label {{label|xmlattr}}>
-          {% if not exclusive or (exclusive and not loop.last) %}
-            {{option.label.text}}
-          {% endif %}
+        {% if not exclusive or (exclusive and not loop.last) %}
+          {{option.label.text}}
+        {% endif %}
+        {% if exclusive and loop.last %}
+          <span class="u-vh">{{ _("Or") }}, </span>{{option.label.text}}<span class="u-vh">. {{ _("Selecting this will uncheck all other checkboxes") }}</span>
+        {% endif %}
         {% if answer.options[loop.index0].description %}
           <br />
           <span class="label__description label__inner pluto">{{answer.options[loop.index0].description}}</span>
         {% endif %}
-          {% if exclusive and loop.last %}
-            <span class="u-vh">{{ _("Or") }}, </span>{{option.label.text}}<span class="u-vh">. {{ _("Selecting this will uncheck all other checkboxes") }}</span>
-          {% endif %}
       </label>
         {% if exclusive and loop.last %}
             <span class="js-exclusive-checkbox-alert u-vh" role="alert" aria-live="polite" data-adjective='{{ _("deselected") }}'></span>
