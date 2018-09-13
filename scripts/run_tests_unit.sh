@@ -26,5 +26,5 @@ source ${DIR}/dev_settings.sh
 echo "Environment variables in use:"
 env | grep EQ_
 
-py.test --cov=app --cov-report html "$@"
+py.test -n auto --cov=app --cov-report html "$@"
 display_result $? 3 "Unit tests"
