@@ -308,6 +308,26 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
         self.assertEqual('Invalid validator for schema metadata - invalidValidator', ite.exception.args[0])
 
+    def test_optional_metadata(self):
+        metadata = {
+            'jti': str(uuid.uuid4()),
+            'user_id': '1',
+            'form_type': 'a',
+            'collection_exercise_sid': 'test-sid',
+            'eq_id': '2',
+            'period_id': '3',
+            'ru_ref': '2016-04-04',
+            'period_str': 'May 2016',
+            'case_id': str(uuid.uuid4())
+        }
+
+        self.schema_metadata.append({'name': 'address_line1', 'validator': 'string', 'optional': True})
+        validate_metadata(metadata, self.schema_metadata)
+
+        metadata['address_line1'] = '123 awesome place'
+        validate_metadata(metadata, self.schema_metadata)
+
+
     def test_clean_leading_trailing_spaces(self):
         metadata = self.metadata.copy()
         metadata['trad_as'] = ' '
