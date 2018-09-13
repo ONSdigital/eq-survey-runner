@@ -2111,7 +2111,8 @@
         "groups": [{
             "blocks": [{
                 "type": "Summary",
-                "id": "summary"
+                "id": "summary",
+                "collapsible": true
             }],
             "id": "summary-group",
             "title": "Summary"

@@ -3,7 +3,7 @@
     <div class="group">
         <div class="feedback__field">
             <label id="feedback-message-label" class="label venus" for="feedback-message">{{ _("How can we improve this survey") }}?</label>
-            <textarea class="input input--textarea js-charlimit-input js-feedback-message" name="message" id="feedback-message" rows="8" cols="60" maxlength="2000"></textarea>
+            <textarea class="input input--textarea js-charlimit-input js-feedback-message" name="message" id="feedback-message" data-char-limit-ref="feedback-message-remaining" rows="8" cols="60" maxlength="2000"></textarea>
             <div id="feedback-message-remaining" class="input__limit u-mt-xs mercury">{{ _("Characters remaining") }}: <span>-</span></div>
         </div>
         <div class="feedback__field">
