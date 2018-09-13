@@ -29,6 +29,31 @@
             "validator": "string"
         },
         {
+            "name": "address_line1",
+            "validator": "string",
+            "optional": true
+        },
+        {
+            "name": "address_line2",
+            "validator": "string",
+            "optional": true
+        },
+        {
+            "name": "locality",
+            "validator": "string",
+            "optional": true
+        },
+        {
+            "name": "town_name",
+            "validator": "string",
+            "optional": true
+        },
+        {
+            "name": "postcode",
+            "validator": "string",
+            "optional": true
+        },
+        {
             "name": "display_address",
             "validator": "string"
         }
