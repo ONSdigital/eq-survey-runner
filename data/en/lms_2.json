@@ -2974,7 +2974,8 @@
                                 "id": "one-job-no-days-worked-no-overtime-answer",
                                 "mandatory": false,
                                 "type": "Unit",
-                                "unit": "duration-hour"
+                                "unit": "duration-hour",
+                                "label": "Usual hours"
                             }]
                         }],
                         "routing_rules": [{
@@ -2983,7 +2984,8 @@
                                     "when": [{
                                         "id": "one-job-emp-status-emp-or-self-answer",
                                         "condition": "equals",
-                                        "value": "employee"
+                                        "value": "employee",
+                                        "label": "Usual hours"
                                     }]
                                 }
                             },
@@ -3026,7 +3028,8 @@
                                 "id": "two-jobs-j1-no-days-worked-no-overtime-answer",
                                 "mandatory": false,
                                 "type": "Unit",
-                                "unit": "duration-hour"
+                                "unit": "duration-hour",
+                                "label": "Usual hours"
                             }]
                         }]
                     },
@@ -3052,7 +3055,8 @@
                                 "id": "two-jobs-j2-no-days-worked-no-overtime-answer",
                                 "mandatory": false,
                                 "type": "Unit",
-                                "unit": "duration-hour"
+                                "unit": "duration-hour",
+                                "label": "Usual hours"
                             }]
                         }],
                         "routing_rules": [{
@@ -3471,7 +3475,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
-                                "label": "Hours"
+                                "label": "Usual hours"
                             }],
                             "guidance": {
                                 "content": [{
@@ -3608,7 +3612,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
-                                "label": "Hours"
+                                "label": "Usual hours"
                             }],
                             "guidance": {
                                 "content": [{
