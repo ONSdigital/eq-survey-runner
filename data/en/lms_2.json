@@ -3185,7 +3185,8 @@
                                 "id": "one-job-usual-hours-answer",
                                 "mandatory": false,
                                 "type": "Unit",
-                                "unit": "duration-hour"
+                                "unit": "duration-hour",
+                                "label": "Usual hours"
                             }],
                             "guidance": {
                                 "content": [{
@@ -3793,7 +3794,7 @@
                                         },
                                         {
                                             "id": "one-job-usual-hours-answer",
-                                            "condition": "greater than",
+                                            "condition": "less than",
                                             "comparison_id": "one-job-actual-hours-answer"
                                         }
                                     ]
@@ -3809,7 +3810,7 @@
                                         },
                                         {
                                             "id": "one-job-usual-hours-answer",
-                                            "condition": "greater than",
+                                            "condition": "less than",
                                             "comparison_id": "one-job-actual-hours-answer"
                                         }
                                     ]
@@ -3857,7 +3858,7 @@
                                         },
                                         {
                                             "id": "one-job-usual-hours-answer",
-                                            "condition": "less than",
+                                            "condition": "greater than",
                                             "comparison_id": "one-job-actual-hours-answer"
                                         }
                                     ]
@@ -3873,7 +3874,7 @@
                                         },
                                         {
                                             "id": "one-job-usual-hours-answer",
-                                            "condition": "less than",
+                                            "condition": "greater than",
                                             "comparison_id": "one-job-actual-hours-answer"
                                         }
                                     ]
@@ -3889,7 +3890,7 @@
                                         },
                                         {
                                             "id": "one-job-usual-hours-answer",
-                                            "condition": "greater than",
+                                            "condition": "less than",
                                             "comparison_id": "one-job-actual-hours-answer"
                                         }
                                     ]
@@ -3905,7 +3906,7 @@
                                         },
                                         {
                                             "id": "one-job-usual-hours-answer",
-                                            "condition": "greater than",
+                                            "condition": "less than",
                                             "comparison_id": "one-job-actual-hours-answer"
                                         }
                                     ]
@@ -3953,7 +3954,7 @@
                                         },
                                         {
                                             "id": "one-job-usual-hours-answer",
-                                            "condition": "less than",
+                                            "condition": "greater than",
                                             "comparison_id": "one-job-actual-hours-answer"
                                         }
                                     ]
@@ -3969,7 +3970,7 @@
                                         },
                                         {
                                             "id": "one-job-usual-hours-answer",
-                                            "condition": "less than",
+                                            "condition": "greater than",
                                             "comparison_id": "one-job-actual-hours-answer"
                                         }
                                     ]
@@ -4016,7 +4017,7 @@
                                         },
                                         {
                                             "comparison_id": "two-jobs-j1-usual-hours-answer",
-                                            "condition": "greater than",
+                                            "condition": "less than",
                                             "id": "two-jobs-j1-actual-hours-answer"
                                         }
                                     ]
@@ -4032,7 +4033,7 @@
                                         },
                                         {
                                             "comparison_id": "two-jobs-j1-usual-hours-answer",
-                                            "condition": "greater than",
+                                            "condition": "less than",
                                             "id": "two-jobs-j1-actual-hours-answer"
                                         }
                                     ]
@@ -4080,7 +4081,7 @@
                                         },
                                         {
                                             "comparison_id": "two-jobs-j1-usual-hours-answer",
-                                            "condition": "less than",
+                                            "condition": "greater than",
                                             "id": "two-jobs-j1-actual-hours-answer"
                                         }
                                     ]
@@ -4096,7 +4097,7 @@
                                         },
                                         {
                                             "comparison_id": "two-jobs-j1-usual-hours-answer",
-                                            "condition": "less than",
+                                            "condition": "greater than",
                                             "id": "two-jobs-j1-actual-hours-answer"
                                         }
                                     ]
@@ -4112,7 +4113,7 @@
                                         },
                                         {
                                             "comparison_id": "two-jobs-j1-usual-hours-answer",
-                                            "condition": "greater than",
+                                            "condition": "less than",
                                             "id": "two-jobs-j1-actual-hours-answer"
                                         }
                                     ]
@@ -4128,7 +4129,7 @@
                                         },
                                         {
                                             "comparison_id": "two-jobs-j1-usual-hours-answer",
-                                            "condition": "greater than",
+                                            "condition": "less than",
                                             "id": "two-jobs-j1-actual-hours-answer"
                                         }
                                     ]
@@ -4176,7 +4177,7 @@
                                         },
                                         {
                                             "comparison_id": "two-jobs-j1-usual-hours-answer",
-                                            "condition": "less than",
+                                            "condition": "greater than",
                                             "id": "two-jobs-j1-actual-hours-answer"
                                         }
                                     ]
@@ -4192,7 +4193,7 @@
                                         },
                                         {
                                             "comparison_id": "two-jobs-j1-usual-hours-answer",
-                                            "condition": "less than",
+                                            "condition": "greater than",
                                             "id": "two-jobs-j1-actual-hours-answer"
                                         }
                                     ]
