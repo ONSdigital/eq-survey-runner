@@ -158,6 +158,13 @@ class TestTemplateRenderer(AppContextTestCase):
 
         self.assertEqual(safe_content, 'Is … correct?')
 
+    def test_should_replace_jinja_template_variable_containing_curly_braces(self):
+        content = 'Is {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata[started_at], {}, SU) }} correct?'
+
+        safe_content = TemplateRenderer.safe_content(content)
+
+        self.assertEqual(safe_content, 'Is … correct?')
+
     def test_should_replace_jinja_template_condtional_dates(self):
         content = 'Is {{ format_condtional_date(metadata.ref_p_start_date, metadata.ref_p_end_date)}} correct?'
 
