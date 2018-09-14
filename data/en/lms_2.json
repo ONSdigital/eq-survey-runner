@@ -2984,8 +2984,7 @@
                                     "when": [{
                                         "id": "one-job-emp-status-emp-or-self-answer",
                                         "condition": "equals",
-                                        "value": "employee",
-                                        "label": "Usual hours"
+                                        "value": "employee"
                                     }]
                                 }
                             },
