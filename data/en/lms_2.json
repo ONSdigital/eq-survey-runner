@@ -431,7 +431,7 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "date-of-birth-check",
+                                    "block": "date-of-birth-age",
                                     "when": [{
                                         "id": "date-of-birth-answer",
                                         "condition": "not set"
@@ -447,11 +447,12 @@
                     },
                     {
                         "type": "ConfirmationQuestion",
-                        "id": "date-of-birth-check",
+                        "id": "date-of-birth-age",
                         "questions": [{
-                            "id": "dob-check-question",
+                            "id": "dob-age-question",
                             "titles": [{
-                                    "value": "Is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> aged 16 or over?",
+                                    "description": "About <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em>",
+                                    "value": "What is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em>'s age?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -459,42 +460,21 @@
                                     }]
                                 },
                                 {
-                                    "value": "Are you aged 16 or over?"
+                                    "value": "What is your age?"
                                 }
                             ],
                             "type": "General",
                             "answers": [{
-                                "id": "dob-check-answer",
-                                "mandatory": false,
-                                "type": "Radio",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ]
+                                "id": "dob-age-answer",
+                                "type": "Number",
+                                "mandatory": false
                             }]
                         }],
                         "routing_rules": [{
-                                "goto": {
-                                    "block": "sex",
-                                    "when": [{
-                                        "id": "dob-check-answer",
-                                        "condition": "equals",
-                                        "value": "Yes"
-                                    }]
-
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "household-member-completed"
-                                }
+                            "goto": {
+                                "block": "sex"
                             }
-                        ]
+                        }]
                     },
                     {
                         "type": "Question",
@@ -530,35 +510,33 @@
                             }]
                         }],
                         "routing_rules": [{
-                                "goto": {
-                                    "block": "marital-status",
-                                    "when": [{
-                                        "id": "date-of-birth-answer",
-                                        "condition": "less than",
-                                        "date_comparison": {
-                                            "value": "now",
-                                            "offset_by": {
-                                                "years": -16
-                                            }
+                            "goto": {
+                                "block": "nationality",
+                                "when": [{
+                                    "id": "date-of-birth-answer",
+                                    "condition": "greater than",
+                                    "date_comparison": {
+                                        "value": "now",
+                                        "offset_by": {
+                                            "years": -16
                                         }
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "marital-status",
-                                    "when": [{
-                                        "id": "date-of-birth-answer",
-                                        "condition": "not set"
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "nationality"
-                                }
+                                    }
+                                }]
                             }
-                        ]
+                        }, {
+                            "goto": {
+                                "block": "nationality",
+                                "when": [{
+                                    "id": "dob-age-answer",
+                                    "condition": "less than",
+                                    "value": 16
+                                }]
+                            }
+                        }, {
+                            "goto": {
+                                "block": "marital-status"
+                            }
+                        }]
                     },
                     {
                         "type": "Question",
