@@ -658,11 +658,16 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 'date-range-to-year': '2018'
             }
 
-            form = generate_form(schema, block_json, store, metadata=None, group_instance=0, group_instance_id=None, formdata=data)
+            metadata = {
+                'eq_id': 'test',
+                'form_type': 'date_validation_range'
+            }
+
+            form = generate_form(schema, block_json, store, metadata=metadata, group_instance=0, group_instance_id=None, formdata=data)
+
 
             with self.assertRaises(Exception) as ite:
-                with patch('app.questionnaire.questionnaire_schema.QuestionnaireSchema.get_questions_for_block',
-                           return_value=[question_json]):
+                with patch('app.questionnaire.questionnaire_schema.QuestionnaireSchema.get_questions_for_block', return_value=[question_json]):
                     form.validate()
                     self.assertEqual('The schema has invalid date answer limits for date-range-question', str(ite.exception))
 
