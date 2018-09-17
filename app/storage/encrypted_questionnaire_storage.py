@@ -1,4 +1,4 @@
-import simplejson as json
+import snappy
 
 from structlog import get_logger
 
@@ -18,21 +18,18 @@ class EncryptedQuestionnaireStorage:
         self.encrypter = StorageEncryption(user_id, user_ik, pepper)
 
     def add_or_update(self, data, version):
-        encrypted_data = self.encrypter.encrypt_data(data)
-        encrypted_data_json = json.dumps({'data': encrypted_data})
-        questionnaire_state = QuestionnaireState(self._user_id, encrypted_data_json, version)
+        encrypted_data = self.encrypter.encrypt_data(snappy.compress(data))
+        questionnaire_state = QuestionnaireState(self._user_id, encrypted_data, version)
 
         data_access.put(questionnaire_state)
 
     def get_user_data(self):
         questionnaire_state = self._find_questionnaire_state()
         if questionnaire_state:
-            data = json.loads(questionnaire_state.state_data)
             version = questionnaire_state.version or 0
 
-            if 'data' in data:
-                decrypted_data = self.encrypter.decrypt_data(data['data'])
-                return decrypted_data, version
+            decrypted_data = snappy.uncompress(self.encrypter.decrypt_data(questionnaire_state.state_data))
+            return decrypted_data, version
 
         return None, None
 
