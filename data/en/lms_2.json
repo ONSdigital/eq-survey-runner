@@ -705,6 +705,16 @@
                             }]
                         }],
                         "routing_rules": [{
+                                "goto": {
+                                    "block": "nationality",
+                                    "when": [{
+                                        "id": "dob-age-answer",
+                                        "condition": "not set"
+                                    }]
+                                }
+
+                            },
+                            {
 
                                 "goto": {
                                     "block": "nationality",
@@ -737,7 +747,14 @@
                                     }]
                                 }
 
+                            },
+                            {
+                                "goto": {
+                                    "block": "marital-status"
+                                }
+
                             }
+
                         ]
                     },
 
@@ -1557,6 +1574,11 @@
                                         "condition": "not set"
                                     }]
                                 }
+                            },
+                            {
+                                "goto": {
+                                    "block": "national-identity"
+                                }
                             }
                         ]
                     },
@@ -2153,6 +2175,17 @@
                                 }
                             }, {
                                 "goto": {
+                                    "block": "household-member-completed",
+                                    "when": [{
+                                        "id": "dob-age-answer",
+                                        "condition": "not set"
+                                    }, {
+                                        "id": "date-of-birth-answer",
+                                        "condition": "not set"
+                                    }]
+                                }
+                            }, {
+                                "goto": {
                                     "block": "religion",
                                     "when": [{
                                         "id": "date-of-birth-answer",
@@ -2257,6 +2290,17 @@
                                         "value": 16
                                     }]
                                 }
+                            }, {
+                                "goto": {
+                                    "block": "household-member-completed",
+                                    "when": [{
+                                        "id": "dob-age-answer",
+                                        "condition": "not set"
+                                    }, {
+                                        "id": "date-of-birth-answer",
+                                        "condition": "not set"
+                                    }]
+                                }
                             },
                             {
                                 "goto": {
@@ -2337,6 +2381,17 @@
                                         "id": "dob-age-answer",
                                         "condition": "less than",
                                         "value": 16
+                                    }]
+                                }
+                            }, {
+                                "goto": {
+                                    "block": "household-member-completed",
+                                    "when": [{
+                                        "id": "dob-age-answer",
+                                        "condition": "not set"
+                                    }, {
+                                        "id": "date-of-birth-answer",
+                                        "condition": "not set"
                                     }]
                                 }
                             },
@@ -2425,6 +2480,17 @@
                                         "value": 16
                                     }]
                                 }
+                            }, {
+                                "goto": {
+                                    "block": "household-member-completed",
+                                    "when": [{
+                                        "id": "dob-age-answer",
+                                        "condition": "not set"
+                                    }, {
+                                        "id": "date-of-birth-answer",
+                                        "condition": "not set"
+                                    }]
+                                }
                             },
                             {
                                 "goto": {
@@ -2503,6 +2569,17 @@
                                         "value": 16
                                     }]
                                 }
+                            }, {
+                                "goto": {
+                                    "block": "household-member-completed",
+                                    "when": [{
+                                        "id": "dob-age-answer",
+                                        "condition": "not set"
+                                    }, {
+                                        "id": "date-of-birth-answer",
+                                        "condition": "not set"
+                                    }]
+                                }
                             },
                             {
                                 "goto": {
@@ -2575,6 +2652,17 @@
                                         "id": "dob-age-answer",
                                         "condition": "less than",
                                         "value": 16
+                                    }]
+                                }
+                            }, {
+                                "goto": {
+                                    "block": "household-member-completed",
+                                    "when": [{
+                                        "id": "dob-age-answer",
+                                        "condition": "not set"
+                                    }, {
+                                        "id": "date-of-birth-answer",
+                                        "condition": "not set"
                                     }]
                                 }
                             },
@@ -2675,8 +2763,6 @@
                             }
                         ]
                     },
-
-
                     {
                         "id": "paid-job-q1",
                         "type": "Question",
@@ -3080,7 +3166,56 @@
                             }
                         }]
                     },
-
+                    {
+                        "id": "not-working-casual-work-nw-2",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "not-working-casual-work-question",
+                            "titles": [{
+                                    "value": "Did they do any casual work for payment, even for an hour, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
+                                    "when": [{
+                                        "id": "proxy-check-answer",
+                                        "condition": "equals",
+                                        "value": "proxy"
+                                    }]
+                                },
+                                {
+                                    "value": "Did you do any casual work for payment, even for an hour, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
+                                }
+                            ],
+                            "type": "General",
+                            "answers": [{
+                                "id": "not-working-casual-work-answer",
+                                "mandatory": false,
+                                "type": "Radio",
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "working-hours-flex10",
+                                    "when": [{
+                                        "id": "not-working-casual-work-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "did-you-look-for-paid-work-nw3"
+                                }
+                            }
+                        ]
+                    },
                     {
                         "id": "working-hours-flex10",
                         "type": "Question",
@@ -3161,56 +3296,6 @@
                             }
                         }]
 
-                    },
-                    {
-                        "id": "not-working-casual-work-nw-2",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "not-working-casual-work-question",
-                            "titles": [{
-                                    "value": "Did they do any casual work for payment, even for an hour, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?",
-                                    "when": [{
-                                        "id": "proxy-check-answer",
-                                        "condition": "equals",
-                                        "value": "proxy"
-                                    }]
-                                },
-                                {
-                                    "value": "Did you do any casual work for payment, even for an hour, in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
-                                }
-                            ],
-                            "type": "General",
-                            "answers": [{
-                                "id": "not-working-casual-work-answer",
-                                "mandatory": false,
-                                "type": "Radio",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "working-days-w5",
-                                    "when": [{
-                                        "id": "not-working-casual-work-answer",
-                                        "condition": "equals",
-                                        "value": "Yes"
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "did-you-look-for-paid-work-nw3"
-                                }
-                            }
-                        ]
                     },
                     {
                         "id": "working-days-w5",
@@ -3302,48 +3387,7 @@
                                     }
                                 ]
                             }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "casual-hours-worked-casac",
-                                    "when": [{
-                                            "id": "working-hours-answer",
-                                            "condition": "set"
-                                        },
-                                        {
-                                            "id": "working-hours-answer",
-                                            "condition": "contains",
-                                            "value": "Casual working"
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "casual-hours-worked-casac",
-                                    "when": [{
-                                            "id": "not-working-casual-work-answer",
-                                            "condition": "set"
-                                        },
-                                        {
-                                            "id": "not-working-casual-work-answer",
-                                            "condition": "equals",
-                                            "value": "Yes"
-                                        },
-                                        {
-                                            "id": "paid-job-answer",
-                                            "condition": "equals",
-                                            "value": "No"
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "overtime-w6"
-                                }
-                            }
-                        ]
+                        }]
                     },
                     {
                         "id": "overtime-w6",
@@ -3384,92 +3428,221 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "one-job-no-days-worked-no-overtime",
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                            "id": "overtime-answer",
-                                            "condition": "equals",
-                                            "value": "No overtime"
-                                        },
-                                        {
-                                            "id": "working-days-answer",
-                                            "condition": "contains",
-                                            "value": "Did not work this week"
-                                        },
-                                        {
-                                            "id": "second-job-answer",
-                                            "condition": "equals",
-                                            "value": "No"
-                                        }
-                                    ]
+                                        "id": "not-working-casual-work-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }, {
+                                        "id": "working-days-answer",
+                                        "condition": "not set"
+                                    }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "two-jobs-j1-no-days-worked-no-overtime",
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                            "id": "overtime-answer",
-                                            "condition": "equals",
-                                            "value": "No overtime"
-                                        },
-                                        {
-                                            "id": "working-days-answer",
-                                            "condition": "contains",
-                                            "value": "Did not work this week"
-                                        },
-                                        {
-                                            "id": "second-job-answer",
-                                            "condition": "equals",
-                                            "value": "Yes"
-                                        }
-                                    ]
+                                        "id": "not-working-casual-work-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }, {
+                                        "id": "working-days-answer",
+                                        "condition": "contains",
+                                        "value": "Did not work this week"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "one-job-usual-hours-w12",
+                                    "when": [{
+                                        "id": "second-job-answer",
+                                        "condition": "equals",
+                                        "value": "No"
+                                    }, {
+                                        "id": "working-days-answer",
+                                        "condition": "contains",
+                                        "value": "Did not work this week"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "one-job-usual-hours-w12",
+                                    "when": [{
+                                        "id": "second-job-answer",
+                                        "condition": "equals",
+                                        "value": "No"
+                                    }, {
+                                        "id": "working-days-answer",
+                                        "condition": "not set"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "two-jobs-j1-usual-hours-w12-1",
+                                    "when": [{
+                                        "id": "second-job-answer",
+                                        "condition": "equals",
+                                        "value": "yes"
+                                    }, {
+                                        "id": "working-days-answer",
+                                        "condition": "contains",
+                                        "value": "did not work this week"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "two-jobs-j1-usual-hours-w12-1",
+                                    "when": [{
+                                        "id": "second-job-answer",
+                                        "condition": "equals",
+                                        "value": "yes"
+                                    }, {
+                                        "id": "working-days-answer",
+                                        "condition": "not set"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "unpaid-overtime-w10",
+                                    "when": [{
+                                        "id": "second-job-answer",
+                                        "condition": "equals",
+                                        "value": "No"
+                                    }, {
+                                        "id": "overtime-answer",
+                                        "condition": "equals",
+                                        "value": "Unpaid overtime"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "unpaid-overtime-w10",
+                                    "when": [{
+                                        "id": "second-job-answer",
+                                        "condition": "equals",
+                                        "value": "No"
+                                    }, {
+                                        "id": "overtime-answer",
+                                        "condition": "equals",
+                                        "value": "Paid and unpaid overtime"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "two-jobs-j1-unpaid-overtime-w-10-1",
+                                    "when": [{
+                                        "id": "second-job-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }, {
+                                        "id": "overtime-answer",
+                                        "condition": "equals",
+                                        "value": "unpaid overtime"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "two-jobs-j1-unpaid-overtime-w-10-1",
+                                    "when": [{
+                                        "id": "second-job-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }, {
+                                        "id": "overtime-answer",
+                                        "condition": "equals",
+                                        "value": "Paid and unpaid overtime"
+                                    }]
                                 }
                             },
                             {
                                 "goto": {
                                     "block": "paid-overtime-w-11",
                                     "when": [{
-                                            "id": "overtime-answer",
-                                            "condition": "equals",
-                                            "value": "Paid overtime"
-                                        },
-                                        {
-                                            "id": "second-job-answer",
-                                            "condition": "equals",
-                                            "value": "No"
-                                        }
-                                    ]
+                                        "id": "second-job-answer",
+                                        "condition": "equals",
+                                        "value": "No"
+                                    }, {
+                                        "id": "overtime-answer",
+                                        "condition": "equals",
+                                        "value": "Paid overtime"
+                                    }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "unpaid-overtime-w10",
+                                    "block": "two-jobs-j1-paid-overtime-w-11-1",
                                     "when": [{
-                                            "id": "overtime-answer",
-                                            "condition": "equals",
-                                            "value": "Unpaid overtime"
-                                        },
-                                        {
-                                            "id": "second-job-answer",
-                                            "condition": "equals",
-                                            "value": "No"
-                                        }
-                                    ]
+                                        "id": "second-job-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }, {
+                                        "id": "overtime-answer",
+                                        "condition": "equals",
+                                        "value": "Paid overtime"
+                                    }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "unpaid-overtime-w10",
+                                    "block": "one-job-usual-hours-w12",
                                     "when": [{
-                                            "id": "overtime-answer",
-                                            "condition": "equals",
-                                            "value": "Paid and unpaid overtime"
-                                        },
-                                        {
-                                            "id": "second-job-answer",
-                                            "condition": "equals",
-                                            "value": "No"
-                                        }
-                                    ]
+                                        "id": "second-job-answer",
+                                        "condition": "equals",
+                                        "value": "No"
+                                    }, {
+                                        "id": "overtime-answer",
+                                        "condition": "equals",
+                                        "value": "No overtime"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "two-jobs-j1-usual-hours-w12-1",
+                                    "when": [{
+                                        "id": "second-job-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }, {
+                                        "id": "overtime-answer",
+                                        "condition": "equals",
+                                        "value": "No overtime"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "one-job-usual-hours-w12",
+                                    "when": [{
+                                        "id": "second-job-answer",
+                                        "condition": "equals",
+                                        "value": "No"
+                                    }, {
+                                        "id": "overtime-answer",
+                                        "condition": "not set"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "two-jobs-j1-usual-hours-w12-1",
+                                    "when": [{
+                                        "id": "second-job-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }, {
+                                        "id": "overtime-answer",
+                                        "condition": "not set"
+                                    }]
                                 }
                             },
                             {
@@ -3484,180 +3657,21 @@
                             },
                             {
                                 "goto": {
-                                    "block": "two-jobs-j1-paid-overtime-w-11-1",
+                                    "block": "two-jobs-j1-usual-hours-w12-1",
                                     "when": [{
-                                        "id": "overtime-answer",
+                                        "id": "second-job-answer",
                                         "condition": "equals",
-                                        "value": "Paid overtime"
+                                        "value": "Yes"
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "two-jobs-j1-unpaid-overtime-w-10-1",
-                                    "when": [{
-                                        "id": "overtime-answer",
-                                        "condition": "equals",
-                                        "value": "Unpaid overtime"
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "two-jobs-j1-unpaid-overtime-w-10-1",
-                                    "when": [{
-                                        "id": "overtime-answer",
-                                        "condition": "equals",
-                                        "value": "Paid and unpaid overtime"
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "two-jobs-j1-usual-hours-w12-1"
+                                    "block": "one-job-usual-hours-w12"
                                 }
                             }
                         ]
                     },
-
-                    {
-                        "id": "one-job-no-days-worked-no-overtime",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "one-job-no-days-worked-no-overtime-question",
-                            "titles": [{
-                                    "value": "Many jobs or businesses have usual hours. Not including {{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }} overtime, how many hours do they <em>usually</em> work in a week in their job or business?",
-                                    "when": [{
-                                        "id": "proxy-check-answer",
-                                        "condition": "equals",
-                                        "value": "proxy"
-                                    }]
-                                },
-                                {
-                                    "value": "Many jobs or businesses have usual hours. Not including your overtime, how many hours do you <em>usually</em> work in a week in your job or business?"
-                                }
-                            ],
-                            "type": "General",
-                            "answers": [{
-                                "id": "one-job-no-days-worked-no-overtime-answer",
-                                "mandatory": false,
-                                "type": "Unit",
-                                "unit": "duration-hour",
-                                "unit_length": "long",
-                                "label": "Usual hours"
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
-                                    "when": [{
-                                        "id": "one-job-emp-status-emp-or-self-answer",
-                                        "condition": "equals",
-                                        "value": "employee"
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
-                                    "when": [{
-                                        "id": "one-job-emp-status-emp-or-self-proxy-answer",
-                                        "condition": "equals",
-                                        "value": "employee"
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "two-jobs-j1-no-days-worked-no-overtime",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "two-jobs-j1-no-days-worked-no-overtime-question",
-                            "titles": [{
-                                    "value": "Many jobs or businesses have usual hours. Not including {{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }} overtime, how many hours do they <em>usually</em> work in a week in their <em>main</em> job or business?",
-                                    "when": [{
-                                        "id": "proxy-check-answer",
-                                        "condition": "equals",
-                                        "value": "proxy"
-                                    }]
-                                },
-                                {
-                                    "value": "Many jobs or businesses have usual hours. Not including your overtime, how many hours do you <em>usually</em> work in a week in your <em>main</em> job or business??"
-                                }
-                            ],
-                            "type": "General",
-                            "answers": [{
-                                "id": "two-jobs-j1-no-days-worked-no-overtime-answer",
-                                "mandatory": false,
-                                "type": "Unit",
-                                "unit": "duration-hour",
-                                "unit_length": "long",
-                                "label": "Usual hours"
-                            }]
-                        }]
-                    },
-                    {
-                        "id": "two-jobs-j2-no-days-worked-no-overtime",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "two-jobs-j2-no-days-worked-no-overtime-question",
-                            "titles": [{
-                                    "value": "Many jobs or businesses have usual hours. Not including {{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }} overtime, how many hours do they <em>usually</em> work in a week in their <em>second</em> job or business?",
-                                    "when": [{
-                                        "id": "proxy-check-answer",
-                                        "condition": "equals",
-                                        "value": "proxy"
-                                    }]
-                                },
-                                {
-                                    "value": "Many jobs or businesses have usual hours. Not including your overtime, how many hours do you <em>usually</em> work in a week in your <em>second</em> job or business??"
-                                }
-                            ],
-                            "type": "General",
-                            "answers": [{
-                                "id": "two-jobs-j2-no-days-worked-no-overtime-answer",
-                                "mandatory": false,
-                                "type": "Unit",
-                                "unit": "duration-hour",
-                                "unit_length": "long",
-                                "label": "Usual hours"
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
-                                    "when": [{
-                                        "id": "two-jobs-j2-emp-status-emp-or-self-answer",
-                                        "condition": "equals",
-                                        "value": "employee"
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
-                                    "when": [{
-                                        "id": "two-jobs-j2-emp-status-emp-or-self-proxy-answer",
-                                        "condition": "equals",
-                                        "value": "employee"
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp"
-                                }
-                            }
-
-                        ]
-                    },
-
                     {
                         "id": "unpaid-overtime-w10",
                         "type": "Question",
@@ -3697,7 +3711,24 @@
                             },
                             {
                                 "goto": {
-                                    "block": "one-job-actual-hours-w12"
+
+                                    "block": "casual-hours-worked-casac",
+                                    "when": [{
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "unpaid overtime"
+                                        },
+                                        {
+                                            "id": "not-working-casual-work-answer",
+                                            "condition": "equals",
+                                            "value": "Yes"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "one-job-usual-hours-w12"
                                 }
                             }
                         ]
@@ -3735,7 +3766,24 @@
                                 "unit_length": "long",
                                 "label": "Paid overtime hours"
                             }]
-                        }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+
+                                    "block": "casual-hours-worked-casac",
+                                    "when": [{
+                                        "id": "not-working-casual-work-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "one-job-usual-hours-w12"
+                                }
+                            }
+                        ]
                     },
 
                     {
@@ -3753,7 +3801,6 @@
                                 },
                                 {
                                     "value": "Many jobs or businesses have usual hours. Not including your overtime, How many hours do you <em>usually</em> work in your job or business?"
-
                                 }
                             ],
                             "type": "General",
@@ -3768,11 +3815,140 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "one-job-hours-totalized-w13",
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
                                         "id": "working-days-answer",
                                         "condition": "contains",
                                         "value": "Did not work this week"
+                                    }, {
+                                        "id": "one-job-emp-status-emp-or-self-answer",
+                                        "condition": "equals",
+                                        "value": "employee"
+                                    }]
+                                }
+                            }, {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "id": "working-days-answer",
+                                            "condition": "contains",
+                                            "value": "Did not work this week"
+                                        }, {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            }, {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                        "id": "working-days-answer",
+                                        "condition": "contains",
+                                        "value": "Did not work this week"
+                                    }, {
+                                        "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                        "condition": "equals",
+                                        "value": "employee"
+                                    }]
+                                }
+                            }, {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                        "id": "working-days-answer",
+                                        "condition": "contains",
+                                        "value": "Did not work this week"
+                                    }, {
+                                        "id": "one-job-emp-status-emp-or-self-answer",
+                                        "condition": "equals",
+                                        "value": "Self-employed"
+                                    }]
+                                }
+                            }, {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                        "id": "working-days-answer",
+                                        "condition": "contains",
+                                        "value": "Did not work this week"
+                                    }, {
+                                        "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                        "condition": "equals",
+                                        "value": "Self-employed"
+                                    }]
+                                }
+                            }, {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "id": "working-days-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "equals",
+                                            "value": "employee"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                        "id": "working-days-answer",
+                                        "condition": "not set"
+                                    }, {
+                                        "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                        "condition": "equals",
+                                        "value": "employee"
+                                    }]
+                                }
+                            }, {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "id": "working-days-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                        "id": "working-days-answer",
+                                        "condition": "not set"
+                                    }, {
+                                        "id": "one-job-emp-status-emp-or-self-answer",
+                                        "condition": "equals",
+                                        "value": "Self-employed"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                        "id": "working-days-answer",
+                                        "condition": "not set"
+                                    }, {
+                                        "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                        "condition": "equals",
+                                        "value": "Self-employed"
                                     }]
                                 }
                             },
@@ -3829,6 +4005,642 @@
                                         "value": 0
                                     }]
                                 }
+                            }, {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                        "id": "not-working-casual-work-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "condition": "not set",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer"
+                                        }, {
+                                            "condition": "not set",
+                                            "id": "one-job-emp-status-emp-or-self-answer"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
                             },
                             {
                                 "goto": {
@@ -3843,7 +4655,7 @@
                         "questions": [{
                             "id": "one-job-actual-hours-confirmation-question",
                             "titles": [{
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY')}}, you entered that {{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }} worked <em>zero hours</em>, excluding overtime.",
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY')}}, you entered that <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> worked zero hours, excluding overtime.",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -3851,7 +4663,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that you worked <em>zero hours</em>, excluding overtime."
+                                    "value": "In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, you entered that you worked zero hours, excluding overtime."
                                 }
                             ],
                             "type": "General",
@@ -3879,6 +4691,643 @@
                                         "condition": "equals",
                                         "value": "No"
                                     }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                        "id": "not-working-casual-work-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "no overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "no overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
                                 }
                             },
                             {
@@ -4393,6 +5842,24 @@
                                 "goto": {
                                     "block": "main-job-when-start-working-current-business-red6-emp",
                                     "when": [{
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
                                             "condition": "equals",
                                             "id": "one-job-emp-status-emp-or-self-answer",
                                             "value": "employee"
@@ -4423,6 +5890,24 @@
                             },
                             {
                                 "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
                                             "condition": "equals",
@@ -4444,6 +5929,24 @@
                                             "condition": "equals",
                                             "id": "one-job-emp-status-emp-or-self-proxy-answer",
                                             "value": "employee"
+                                        },
+                                        {
+                                            "id": "one-job-usual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "one-job-actual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
                                         },
                                         {
                                             "id": "one-job-usual-hours-answer",
@@ -4547,6 +6050,11 @@
                                             "comparison_id": "one-job-actual-hours-answer"
                                         }
                                     ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp"
                                 }
                             }
                         ]
@@ -4616,6 +6124,24 @@
                                 "goto": {
                                     "block": "main-job-when-start-working-current-business-red6-emp",
                                     "when": [{
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "two-jobs-j1-actual-hours-answer",
+                                            "condition": "greater than",
+                                            "comparison_id": "two-jobs-j1-usual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
                                             "condition": "equals",
                                             "id": "two-jobs-j1-emp-status-emp-or-self-answer",
                                             "value": "employee"
@@ -4635,6 +6161,24 @@
                                             "condition": "equals",
                                             "id": "two-jobs-j1-emp-status-emp-or-self-proxy-answer",
                                             "value": "employee"
+                                        },
+                                        {
+                                            "id": "two-jobs-j1-actual-hours-answer",
+                                            "condition": "equals",
+                                            "comparison_id": "two-jobs-j1-usual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
                                         },
                                         {
                                             "id": "two-jobs-j1-actual-hours-answer",
@@ -4667,6 +6211,24 @@
                                             "condition": "equals",
                                             "id": "two-jobs-j1-emp-status-emp-or-self-proxy-answer",
                                             "value": "employee"
+                                        },
+                                        {
+                                            "id": "two-jobs-j1-actual-hours-answer",
+                                            "condition": "less than",
+                                            "comparison_id": "two-jobs-j1-usual-hours-answer"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }, {
+                                            "id": "two-jobs-j1-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
                                         },
                                         {
                                             "id": "two-jobs-j1-actual-hours-answer",
@@ -4771,6 +6333,11 @@
                                         }
                                     ]
                                 }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp"
+                                }
                             }
                         ]
                     },
@@ -4832,23 +6399,7 @@
                                     "label": "Please describe"
                                 }
                             ]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "how-long-have-you-been-looking-before-start-dur2",
-                                    "when": [{
-                                        "id": "reason-why-fewer-hours-than-usual-self-employed-answer",
-                                        "condition": "equals",
-                                        "value": "Business not set up yet"
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "when-start-working-current-business-red6-semp"
-                                }
-                            }
-                        ]
+                        }]
                     },
                     {
                         "id": "when-start-working-current-business-red6-semp",
@@ -5491,6 +7042,14 @@
                         }],
                         "routing_rules": [{
                             "goto": {
+                                "block": "how-long-have-you-been-looking-before-start-dur2",
+                                "when": [{
+                                    "id": "not-be-able-to-start-answer",
+                                    "condition": "equals",
+                                    "value": "Waiting to start a job recently accepted"
+                                }]
+                            },
+                            "goto": {
                                 "block": "unpaid-or-voluntary-work-nw7"
                             }
                         }]
@@ -5963,8 +7522,7 @@
                     }
                 ]
             }]
-        },
-        {
+        }, {
             "id": "submit-answers",
             "title": "Submit answers",
             "groups": [{
