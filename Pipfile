@@ -25,6 +25,7 @@ httmock = "*"
 moto = "==1.3.4"
 freezegun = "*"
 pytest-xdist = "*"
+pytest-sugar = "*"
 
 [packages]
 colorama = "*"
