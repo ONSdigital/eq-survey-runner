@@ -69,6 +69,7 @@
                                 "label": "Second answer label in unit total",
                                 "mandatory": true,
                                 "type": "Unit",
+                                "unit_length": "short",
                                 "unit": "length-centimeter"
                             },
                             {
@@ -109,6 +110,7 @@
                                 "label": "Third answer label in unit total",
                                 "mandatory": true,
                                 "type": "Unit",
+                                "unit_length": "short",
                                 "unit": "length-centimeter"
                             }]
                         }

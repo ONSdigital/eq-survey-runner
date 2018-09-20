@@ -82,8 +82,21 @@ def format_address_list(user_entered_address=None, metadata_address=None):
     return address_list
 
 
-def format_unit(unit, value=''):
-    return units.format_unit(value=value, measurement_unit=unit, length='short', locale=DEFAULT_LOCALE)
+def format_unit(unit, value, length='short'):
+    return units.format_unit(value=value, measurement_unit=unit, length=length, locale=DEFAULT_LOCALE)
+
+
+def format_unit_input_label(unit, unit_length='short'):
+    """
+    This function is used to only get the unit of measurement text.  If the unit_length
+    is long then only the plural form of the word is returned (e.g., Hours, Years, etc).
+
+    :param (str) unit unit of measurement
+    :param (str) unit_length length of unit text, can be one of short/long/narrow
+    """
+    if unit_length == 'long':
+        return units.format_unit(value=2, measurement_unit=unit, length=unit_length, locale=DEFAULT_LOCALE).replace('2 ', '')
+    return units.format_unit(value='', measurement_unit=unit, length=unit_length, locale=DEFAULT_LOCALE).strip()
 
 
 def format_duration(value):
@@ -471,6 +484,11 @@ def conditional_dates_check():
 @blueprint.app_context_processor
 def format_unit_processor():
     return dict(format_unit=format_unit)
+
+
+@blueprint.app_context_processor
+def format_unit_input_label_processor():
+    return dict(format_unit_input_label=format_unit_input_label)
 
 
 @blueprint.app_context_processor

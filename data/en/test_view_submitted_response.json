@@ -85,6 +85,7 @@
                         "label": "Kilometres Square",
                         "mandatory": false,
                         "type": "Unit",
+                        "unit_length": "short",
                         "unit": "area-square-kilometer"
                     }, {
                         "id": "test-decimal",

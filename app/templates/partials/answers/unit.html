@@ -22,6 +22,6 @@
         'id': answer.id
         } %}
         {% include 'partials/forms/input.html' %}
-        <span class="input-type__type" id="{{answer.id}}-type">{{ format_unit(answer.unit) }}</span>
+        <span class="input-type__type" id="{{answer.id}}-type">{{ format_unit_input_label(answer.unit, unit_length=answer.unit_length) }}</span>
     </div>
 </div>
