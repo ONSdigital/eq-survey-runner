@@ -466,8 +466,8 @@
                             "type": "General",
                             "answers": [{
                                 "id": "dob-age-answer",
-                                "units": ["years"],
-                                "type": "Duration",
+                                "unit": "duration-year",
+                                "type": "Unit",
                                 "mandatory": false
                             }]
                         }],

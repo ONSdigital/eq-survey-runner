@@ -456,6 +456,8 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         self.assertEqual(format_unit('volume-hectoliter', 100), '100 hl')
         self.assertEqual(format_unit('volume-megaliter', 100), '100 Ml')
         self.assertEqual(format_unit('duration-hour', 100), '100 hrs')
+        self.assertEqual(format_unit('length-kilometer', 100, 'long'), '100 kilometres')
+        self.assertEqual(format_unit('duration-year', 100, 'long'), '100 years')
 
     def test_format_year_month_duration(self):
         with self.app_request_context('/'):
