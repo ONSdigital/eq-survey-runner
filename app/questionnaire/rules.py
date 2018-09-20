@@ -294,6 +294,9 @@ def get_answer_store_value(answer_id, answer_store, schema, group_instance, grou
         raise Exception('Multiple answers ({:d}) found evaluating when rule for answer ({})'
                         .format(filtered.count(), answer_id))
 
+    if filtered.answers and isinstance(filtered.answers[0]['value'], dict):
+        return filtered.answers[0]['value']['years']
+
     return filtered[0]['value'] if filtered.count() == 1 else None
 
 
