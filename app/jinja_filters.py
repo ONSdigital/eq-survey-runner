@@ -82,8 +82,8 @@ def format_address_list(user_entered_address=None, metadata_address=None):
     return address_list
 
 
-def format_unit(unit, value=''):
-    return units.format_unit(value=value, measurement_unit=unit, length='short', locale=DEFAULT_LOCALE)
+def format_unit(unit, value='', length='short'):
+    return units.format_unit(value=value, measurement_unit=unit, length=length, locale=DEFAULT_LOCALE)
 
 
 def format_duration(value):
