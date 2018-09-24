@@ -32,6 +32,7 @@ def build_metadata_context_for_survey_completed(session_data):
         'tx_id': convert_tx_id(session_data.tx_id),
         'ru_ref': session_data.ru_ref,
         'trad_as': session_data.trad_as,
+        'account_service_url': session_data.account_service_url,
     }
 
     if session_data.period_str:

@@ -80,8 +80,6 @@ EQ_USED_JTI_CLAIM_TABLE_NAME = get_env_or_fail('EQ_USED_JTI_CLAIM_TABLE_NAME')
 EQ_USED_JTI_CLAIM_DYNAMO_READ = parse_mode(os.getenv('EQ_USED_JTI_CLAIM_DYNAMO_READ', 'False'))
 EQ_USED_JTI_CLAIM_DYNAMO_WRITE = parse_mode(os.getenv('EQ_USED_JTI_CLAIM_DYNAMO_WRITE', 'False'))
 
-RESPONDENT_ACCOUNT_URL = os.getenv('RESPONDENT_ACCOUNT_URL', 'https://survey.ons.gov.uk/')
-
 EQ_DEV_MODE = parse_mode(os.getenv('EQ_DEV_MODE', 'False'))
 EQ_ENABLE_CACHE = parse_mode(os.getenv('EQ_ENABLE_CACHE', 'True'))
 EQ_ENABLE_FLASK_DEBUG_TOOLBAR = parse_mode(os.getenv('EQ_ENABLE_FLASK_DEBUG_TOOLBAR', 'False'))
@@ -94,4 +92,3 @@ SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
 
 USER_IK = 'user_ik'
 EQ_SESSION_ID = 'eq-session-id'
-ACCOUNT_URL = 'account_url'
