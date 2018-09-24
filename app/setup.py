@@ -394,6 +394,13 @@ def add_safe_health_check(application):
         }
         return json.dumps(data)
 
+    @application.route('/')
+    def safe_health_check_root():  # pylint: disable=unused-variable
+        data = {
+            'status': 'OK'
+        }
+        return json.dumps(data)
+
 
 def versioned_url_for(endpoint, **values):
 
