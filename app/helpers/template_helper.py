@@ -1,6 +1,6 @@
 from functools import wraps
 
-from flask import current_app, g
+from flask import current_app, g, session as cookie_session
 from flask_login import current_user
 from flask_themes2 import render_theme_template
 from structlog import get_logger
@@ -86,6 +86,7 @@ def render_template(template, **kwargs):
         theme,
         template,
         survey_title=TemplateRenderer.safe_content(g.schema.json['title']),
+        account_service_url=cookie_session.get('account_service_url'),
         survey_id=g.schema.json['survey_id'],
         **kwargs
     )

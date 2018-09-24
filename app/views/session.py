@@ -1,7 +1,8 @@
 from datetime import datetime
 
 from dateutil.tz import tzutc
-from flask import Blueprint, redirect, request, g, session as cookie_session
+from flask import Blueprint, current_app, redirect, request, g, session as cookie_session
+from flask_themes2 import render_theme_template
 from flask_login import current_user, login_required, logout_user
 from sdc.crypto.exceptions import InvalidTokenException
 
@@ -14,10 +15,10 @@ from app.authentication.jti_claim_storage import JtiTokenUsed, use_jti_claim
 from app.globals import get_completeness
 from app.helpers.path_finder_helper import path_finder
 from app.questionnaire.router import Router
-from app.settings import ACCOUNT_URL
 from app.storage.metadata_parser import validate_metadata, parse_runner_claims
 from app.utilities.schema import load_schema_from_metadata
 from app.views.errors import render_template
+from app.templating.template_renderer import TemplateRenderer
 
 logger = get_logger()
 
@@ -70,7 +71,7 @@ def login():
     cookie_session['survey_title'] = g.schema.json['title']
 
     if 'account_service_url' in claims and claims.get('account_service_url'):
-        cookie_session[ACCOUNT_URL] = claims.get('account_service_url')
+        cookie_session['account_service_url'] = claims.get('account_service_url')
 
     routing_path = path_finder.get_full_routing_path()
     completeness = get_completeness(current_user)
@@ -120,4 +121,8 @@ def get_session_expired():
 def get_sign_out():
     logout_user()
 
-    return render_template('signed-out.html')
+    return render_theme_template(cookie_session.get('theme', 'default'),
+                                 template_name='signed-out.html',
+                                 analytics_ua_id=current_app.config['EQ_UA_ID'],
+                                 account_service_url=cookie_session.get('account_service_url'),
+                                 survey_title=TemplateRenderer.safe_content(cookie_session.get('survey_title', '')))

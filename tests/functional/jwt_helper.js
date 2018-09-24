@@ -48,7 +48,8 @@ module.exports = function generateToken(schema, userId, collectionId, periodId =
     return_by: '2017-03-01',
     region_code: regionCode,
     language_code: languageCode,
-    sexual_identity: sexualIdentity
+    sexual_identity: sexualIdentity,
+    account_service_url: 'http://localhost:8000'
   };
 
   // Sign JWT, password=616161

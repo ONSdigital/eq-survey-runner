@@ -6,7 +6,7 @@ import humanize
 import simplejson as json
 from dateutil.tz import tzutc
 
-from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify
+from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify, session as cookie_session
 from flask_login import current_user, login_required, logout_user
 from flask_themes2 import render_theme_template
 from sdc.crypto.encrypter import encrypt
@@ -259,7 +259,7 @@ def post_household_composition(routing_path, schema, metadata, answer_store, **k
 @login_required
 @with_metadata
 @with_schema
-def get_thank_you(schema, metadata, eq_id, form_type):  # pylint: disable=unused-argument
+def get_thank_you(schema, metadata, eq_id, form_type):
     session_data = get_session_store().session_data
     completeness = get_completeness(current_user)
 
@@ -280,6 +280,7 @@ def get_thank_you(schema, metadata, eq_id, form_type):  # pylint: disable=unused
                                      survey_title=TemplateRenderer.safe_content(schema.json['title']),
                                      is_view_submitted_response_enabled=is_view_submitted_response_enabled(schema.json),
                                      view_submission_url=view_submission_url,
+                                     account_service_url=cookie_session.get('account_service_url'),
                                      view_submission_duration=view_submission_duration)
 
     routing_path = path_finder.get_full_routing_path()

@@ -6,6 +6,9 @@ class QuestionPage extends BasePage {
     super(pageName);
     this.questions = [];
   }
+
+  myAccountLink() { return '#my-account'; }
+
   summaryQuestionText() { return '[data-qa="summary-question-title"]'; }
 
   questionText() { return '[data-qa="question-title"]'; }
@@ -16,7 +19,7 @@ class QuestionPage extends BasePage {
 
   errorHeader() { return '#main > div.panel.panel--error.u-mb-s > div.panel__header > h1'; }
 
-  errorNumber(number = 1) { return 'ul > li:nth-child(' + number + ') > a'; }
+  errorNumber(number = 1) { return '[data-qa="error-body"] ul > li:nth-child(' + number + ') > a'; }
 
   previous() { return 'a[id="top-previous"]'; }
 

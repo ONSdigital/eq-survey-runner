@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-06 07:33+0100\n"
+"POT-Creation-Date: 2018-09-19 13:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,21 +17,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: app/jinja_filters.py:63 app/validation/validators.py:297
+#: app/jinja_filters.py:93 app/validation/validators.py:297
 #, python-format
 msgid "%(num)s year"
 msgid_plural "%(num)s years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/jinja_filters.py:65 app/validation/validators.py:299
+#: app/jinja_filters.py:95 app/validation/validators.py:299
 #, python-format
 msgid "%(num)s month"
 msgid_plural "%(num)s months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/forms/date_form.py:214
+#: app/forms/date_form.py:215
 msgid "Select month"
 msgstr ""
 
@@ -122,7 +122,7 @@ msgstr ""
 msgid "To help protect your information we have signed you out"
 msgstr ""
 
-#: app/templates/session-expired.html:16 app/templates/signed-out.html:12
+#: app/templates/session-expired.html:16 app/templates/signed-out.html:13
 msgid "Return to your account"
 msgstr ""
 
@@ -303,7 +303,7 @@ msgstr ""
 msgid "How can we improve this survey"
 msgstr ""
 
-#: app/templates/partials/answers/textarea.html:31
+#: app/templates/partials/answers/textarea.html:32
 #: app/templates/partials/feedback_form.html:7
 msgid "Characters remaining"
 msgstr ""
@@ -375,6 +375,10 @@ msgstr ""
 
 #: app/templates/partials/footer.html:37
 msgid "News"
+msgstr ""
+
+#: app/templates/partials/header.html:19
+msgid "My account"
 msgstr ""
 
 #: app/templates/partials/navigation.html:3
@@ -503,11 +507,11 @@ msgid "Select all that apply"
 msgstr ""
 
 #: app/templates/partials/widgets/multiple_choice_widget.html:20
-#: app/templates/partials/widgets/multiple_choice_widget.html:55
+#: app/templates/partials/widgets/multiple_choice_widget.html:51
 msgid "Or"
 msgstr ""
 
-#: app/templates/partials/widgets/multiple_choice_widget.html:55
+#: app/templates/partials/widgets/multiple_choice_widget.html:51
 msgid "Selecting this will uncheck all other checkboxes"
 msgstr ""
 
