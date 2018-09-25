@@ -248,7 +248,7 @@ To convert back to a .po file:
 csv2po cy.csv app/translations/cy/LC_MESSAGES/messages.po
 ```
 
-*Important:* There are some encoding issues when opening the .csv file in Excel. For now, opening in Google sheets and saving as a .xslx file is the least work solution. 
+*Important:* There are some encoding issues when opening the .csv file in Excel. Opening in Google sheets and saving as a .xslx file resolves this.
 
 ### Compiling the translations
 
