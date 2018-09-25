@@ -46,7 +46,7 @@ class TestThankYou(IntegrationTestCase):
 
         # check we're on the thank you page and that the trading as is displayed
         self.assertInUrl('thank-you')
-        self.assertInPage('(<span class="trad_as">Integration Tests</span>)')
+        self.assertInPage('(Integration Tests)')
 
     def test_thank_you_page_does_not_show_empty_parenthesis_if_trading_as_if_not_present(self):
 
@@ -109,8 +109,8 @@ class TestThankYou(IntegrationTestCase):
 
             # check we're on the thank you page and that the trading as parenthesis are not displayed
             self.assertInUrl('thank-you')
-            self.assertNotInPage('(<span class="trad_as">Integration Tests</span>)')
-            self.assertNotInPage('(<span class="trad_as"></span>)')
+            self.assertNotInPage('(Integration Tests)')
+            self.assertNotInPage('()')
 
     def test_thank_you_page_my_account_link_uses_url_from_payload(self):
         account_service_url_supplied = self.example_payload.copy()

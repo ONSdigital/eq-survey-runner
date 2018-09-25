@@ -372,7 +372,9 @@ class MutuallyExclusive:
         if len(non_exclusive_values) == 1:
             return non_exclusive_values[0]
 
-        return '{} {} {}'.format(', '.join(non_exclusive_values[:-1]), _('and'), _(non_exclusive_values[-1]))
+        return _('%(list_of_answers)s and %(last_answer)s',
+                 list_of_answers=', '.join(non_exclusive_values[:-1]),
+                 last_answer=_(non_exclusive_values[-1]))
 
     @staticmethod
     def _get_value_labels(options):

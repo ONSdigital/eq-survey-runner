@@ -185,11 +185,10 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
     def test_format_date_time_in_bst(self):
         # Given
         date_time = '2018-03-29T11:59:13.528680'
-        date_format = "d MMMM YYYY 'at' HH:mm"
 
         # When
         with self.app_request_context('/'):
-            format_value = format_datetime(self.autoescape_context, date_time, date_format)
+            format_value = format_datetime(self.autoescape_context, date_time)
 
         # Then
         self.assertEqual(format_value, "<span class='date'>29 March 2018 at 12:59</span>")
@@ -197,14 +196,13 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
     def test_format_date_time_in_gmt(self):
         # Given
         date_time = '2018-10-28T11:59:13.528680'
-        date_format = "d MMMM YYYY 'at' HH:mm:ss"
 
         # When
         with self.app_request_context('/'):
-            format_value = format_datetime(self.autoescape_context, date_time, date_format)
+            format_value = format_datetime(self.autoescape_context, date_time)
 
         # Then
-        self.assertEqual(format_value, "<span class='date'>28 October 2018 at 11:59:13</span>")
+        self.assertEqual(format_value, "<span class='date'>28 October 2018 at 11:59</span>")
 
     def test_format_conditional_date_not_date(self):
         # Given       no test for integers this check was removed from jinja_filters
@@ -250,24 +248,25 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
                 self.assertEqual(format_value, "<span class='date'>{date}</span>".format(date=triple[2]))
 
     def test_calculate_years_difference(self):
-        # Given
-        ten_years_ago = (datetime.today()+relativedelta(years=-10)).strftime('%Y-%m-%d')
+        with patch('app.setup.get_session_store', return_value=None):
+            # Given
+            ten_years_ago = (datetime.today()+relativedelta(years=-10)).strftime('%Y-%m-%d')
 
-        date_list = [('2017-01-30', '2018-01-30', '1 year'),
-                     ('2015-02-02', '2018-02-01', '2 years'),
-                     ('2016-02-29', '2017-02-28', '1 year'),
-                     ('2016-02-29', '2020-02-28', '3 years'),
-                     (ten_years_ago, 'now', '10 years')]
+            date_list = [('2017-01-30', '2018-01-30', '1 year'),
+                         ('2015-02-02', '2018-02-01', '2 years'),
+                         ('2016-02-29', '2017-02-28', '1 year'),
+                         ('2016-02-29', '2020-02-28', '3 years'),
+                         (ten_years_ago, 'now', '10 years')]
 
-        for dates in date_list:
-            start_date = dates[0]
-            end_date = dates[1]
+            for dates in date_list:
+                start_date = dates[0]
+                end_date = dates[1]
 
-            # When
-            calculated_value = calculate_years_difference(start_date, end_date)
+                # When
+                calculated_value = calculate_years_difference(start_date, end_date)
 
-            # Then
-            self.assertEqual(calculated_value, dates[2])
+                # Then
+                self.assertEqual(calculated_value, dates[2])
 
     def test_calculate_years_difference_none(self):
         # Given

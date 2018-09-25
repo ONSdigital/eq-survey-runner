@@ -153,11 +153,15 @@ def format_date_custom(context, value, date_format='EEEE d MMMM YYYY'):
 
 @evalcontextfilter
 @blueprint.app_template_filter()
-def format_datetime(context, value, date_format="d MMMM YYYY 'at' HH:mm"):
+def format_datetime(context, value):
 
     london_date_time = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
-    result = "<span class='date'>{date}</span>".format(date=flask_babel.format_datetime(london_date_time,
-                                                                                        format=date_format))
+    formatted_date = flask_babel.format_date(london_date_time, format='d MMMM YYYY')
+    formatted_time = flask_babel.format_time(london_date_time, format='HH:mm')
+
+    result = "<span class='date'>{date}</span>".format(
+        date=flask_babel.gettext('%(date)s at %(time)s', date=formatted_date, time=formatted_time),
+    )
     return mark_safe(context, result)
 
 
@@ -229,16 +233,17 @@ def calculate_years_difference(from_str, to_str):
     to_date = datetime.now() if to_str == 'now' else convert_to_datetime(to_str)
     from_date = convert_to_datetime(from_str)
     difference = relativedelta.relativedelta(to_date, from_date)
-    year_string = '{} year' if difference.years == 1 else '{} years'
+    year_string = flask_babel.ngettext('%(num)s year', '%(num)s years', difference.years)
 
-    return year_string.format(difference.years)
+    return year_string
 
 
 @evalcontextfunction
 def format_date_range(context, start_date, end_date=None):
     if end_date:
-        result = '{from_date} to {to_date}'.format(from_date=format_date(context, start_date),
-                                                   to_date=format_date(context, end_date))
+        result = flask_babel.gettext('%(from_date)s to %(to_date)s',
+                                     from_date=format_date(context, start_date),
+                                     to_date=format_date(context, end_date))
     else:
         result = format_date(context, start_date)
 
@@ -284,10 +289,9 @@ def format_date_range_no_repeated_month_year(context, start_date, end_date, date
         # If the date format was entirely removed, leave it alone
         first_date_format = date_format
 
-    output = '{} to {}'.format(
-        format_date_custom(context, start_date, first_date_format),
-        format_date_custom(context, end_date, date_format),
-    )
+    output = flask_babel.gettext('%(from_date)s to %(to_date)s',
+                                 from_date=format_date_custom(context, start_date, first_date_format),
+                                 to_date=format_date_custom(context, end_date, date_format))
 
     return mark_safe(context, output)
 

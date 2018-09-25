@@ -20,20 +20,18 @@
 
     {% block business_details %}
 
-        {% if metadata.trad_as %}
-            {% set  trading_as = metadata.trad_as %}
-            {% set  trad_as_open = '<span class="trading_as"> (<span class="trad_as">' %}
-            {% set  trad_as_close = '</span>)</span>' %}
-        {% endif %}
-
         <div class="grid">
             <div class="grid__col col-7@m">
 
-                <h2 class="saturn">{{ _("You are completing this for <span>%(ru_name)s</span>%(trad_as_open)s%(trad_as)s%(trad_as_close)s",
-                    ru_name = metadata.ru_name,
-                    trad_as_open = trad_as_open,
-                    trad_as = trading_as,
-                    trad_as_close = trad_as_close) }}
+                <h2 class="saturn">
+                    {% if metadata.trad_as %}
+                        {{ _("You are completing this for <span>%(ru_name)s</span> (%(trading_as_name)s)",
+                        ru_name = metadata.ru_name,
+                        trading_as_name = metadata.trad_as) }}
+                    {% else %}
+                        {{ _("You are completing this for <span>%(ru_name)s</span>", ru_name = metadata.ru_name) }}
+                    {% endif %}
+
                 </h2>
 
                 <p class="mars">{{ _("If the company details or structure have changed contact us on %(telephone_number)s or email %(email_address)s",

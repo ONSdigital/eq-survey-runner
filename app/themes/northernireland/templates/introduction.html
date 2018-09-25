@@ -17,15 +17,16 @@
         <div class="grid">
             <div class="grid__col col-7@m">
 
-                <h2 class="saturn">You are completing this for
-                    <span>{{ metadata.ru_name }}</span>
+                <h2 class="saturn">
                     {% if metadata.trad_as %}
-                        <span class="trading_as">(<span class="trad_as">{{ metadata.trad_as }}</span>)</span>
+                        {{ _("You are completing this for <span>%(ru_name)s</span> (%(trading_as_name)s)",
+                        ru_name = metadata.ru_name,
+                        trading_as_name = metadata.trad_as) }}
+                    {% else %}
+                        {{ _("You are completing this for <span>%(ru_name)s</span>", ru_name = metadata.ru_name) }}
                     {% endif %}
-                </h2>
 
-                <p class="mars">If the company details or structure have changed contact us on {{ helpers.telephone_number() }}
-                    or email {{ helpers.email_address('details-changed-title', subject="Change of details reference " + metadata.ru_ref) }}.
+                <p class="mars">If the company details or structure have changed contact us on {{ helpers.telephone_number() }} or email {{ helpers.email_address('details-changed-title', subject="Change of details reference " + metadata.ru_ref) }}.
                 </p>
 
             </div>

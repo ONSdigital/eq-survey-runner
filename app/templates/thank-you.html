@@ -8,20 +8,19 @@
     <h1 class="saturn" data-qa="submission-successful-title">{{ _("Submission successful") }}</h1>
 </div>
 
-{% if metadata.trad_as %}
-    {% set  trading_as = metadata.trad_as %}
-    {% set  trad_as_open = '<span class="trading_as"> (<span class="trad_as">' %}
-    {% set  trad_as_close = '</span>)</span>' %}
-{% endif %}
-
 <div class="u-mb-s">
     <div class="panel panel--simple panel--success panel--spacious">
-        <p class="mars">{{ _("Your answers were submitted for <span>%(ru_name)s</span>%(trad_as_open)s%(trad_as)s%(trad_as_close)s on %(submitted_time)s",
-            ru_name = metadata.ru_name,
-            trad_as_open = trad_as_open,
-            trad_as = trading_as,
-            trad_as_close = trad_as_close,
-            submitted_time=metadata.submitted_time|format_datetime) }}
+        <p class="mars">
+            {% if metadata.trad_as %}
+                {{ _("Your answers were submitted for <span>%(ru_name)s</span> (%(trading_as_name)s) on %(submitted_date_time)s",
+                ru_name = metadata.ru_name,
+                trading_as_name = metadata.trad_as,
+                submitted_date_time=metadata.submitted_time|format_datetime) }}
+            {% else %}
+                {{ _("Your answers were submitted for <span>%(ru_name)s</span> on %(submitted_date_time)s",
+                ru_name = metadata.ru_name,
+                submitted_date_time=metadata.submitted_time|format_datetime) }}
+            {% endif %}
         </p>
         <p class="mars">{{ _("Transaction ID") }}: <b>{{metadata.tx_id}}</b></p>
     </div>
