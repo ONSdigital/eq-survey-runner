@@ -88,6 +88,10 @@ def _validate_metadata_is_present(metadata, required_metadata):
     :param required_metadata:
     """
     for metadata_field in required_metadata:
+        # If the field is optional then skip validation on field
+        if metadata_field.get('optional') is True:
+            continue
+
         name = metadata_field['name']
         if name == 'trad_as_or_ru_name':
             # either of 'trad_as' or 'ru_name' is required
