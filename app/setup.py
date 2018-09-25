@@ -18,6 +18,7 @@ from flask_talisman import Talisman
 from flask_themes2 import Themes
 from flask_wtf.csrf import CSRFProtect
 from google.cloud import bigtable
+from google.cloud import storage
 from sdc.crypto.key_store import KeyStore, validate_required_keys
 from structlog import get_logger
 
@@ -96,6 +97,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     setup_cosmodb(application)
 
     setup_bigtable(application)
+
+    setup_gcs(application)
 
     setup_redis(application)
 
@@ -270,6 +273,14 @@ def setup_bigtable(application):
         instance = client.instance(application.config['EQ_BIGTABLE_INSTANCE_ID'])
 
         application.eq['bigtable'] = instance
+
+
+def setup_gcs(application):
+    if application.config['EQ_STORAGE_BACKEND'] == 'gcs':
+        client = storage.Client()
+        bucket = client.get_bucket(application.config['EQ_GCS_BUCKET_ID'])
+
+        application.eq['gcsbucket'] = bucket
 
 
 def setup_profiling(application):
