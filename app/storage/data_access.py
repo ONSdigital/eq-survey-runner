@@ -1,6 +1,6 @@
 from flask import current_app
 
-from app.storage import dynamodb_api, sql_api, cosmos_api, bigtable_api, s3_api, redis_api
+from app.storage import dynamodb_api, sql_api, cosmos_api, bigtable_api, s3_api, redis_api, gcs_api
 
 STORAGE_BACKENDS = {
     'dynamodb': dynamodb_api,
@@ -8,7 +8,8 @@ STORAGE_BACKENDS = {
     'sql': sql_api,
     'cosmosdb': cosmos_api,
     'bigtable': bigtable_api,
-    'redis': redis_api
+    'redis': redis_api,
+    'gcs': gcs_api,
 }
 
 
