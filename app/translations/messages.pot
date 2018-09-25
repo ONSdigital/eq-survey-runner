@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-20 09:56+0100\n"
+"POT-Creation-Date: 2018-09-25 08:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -136,7 +136,7 @@ msgstr ""
 msgid "To help protect your information we have signed you out"
 msgstr ""
 
-#: app/templates/session-expired.html:16 app/templates/signed-out.html:12
+#: app/templates/session-expired.html:16 app/templates/signed-out.html:13
 msgid "Return to your account"
 msgstr ""
 
@@ -330,7 +330,7 @@ msgstr ""
 msgid "How can we improve this survey"
 msgstr ""
 
-#: app/templates/partials/answers/textarea.html:31
+#: app/templates/partials/answers/textarea.html:32
 #: app/templates/partials/feedback_form.html:7
 msgid "Characters remaining"
 msgstr ""
@@ -404,8 +404,9 @@ msgstr ""
 msgid "News"
 msgstr ""
 
-#: app/templates/partials/navigation.html:3
-msgid "Sections"
+#: app/templates/partials/main-navigation.html:5
+#: app/templates/partials/services-navigation.html:4
+msgid "My account"
 msgstr ""
 
 #: app/templates/partials/previous-link.html:5
@@ -423,6 +424,10 @@ msgstr ""
 
 #: app/templates/partials/question-definition.html:19
 msgid "Hide this"
+msgstr ""
+
+#: app/templates/partials/section-navigation.html:3
+msgid "Sections"
 msgstr ""
 
 #: app/templates/partials/timeout.html:12
@@ -527,11 +532,11 @@ msgid "Select all that apply"
 msgstr ""
 
 #: app/templates/partials/widgets/multiple_choice_widget.html:20
-#: app/templates/partials/widgets/multiple_choice_widget.html:55
+#: app/templates/partials/widgets/multiple_choice_widget.html:51
 msgid "Or"
 msgstr ""
 
-#: app/templates/partials/widgets/multiple_choice_widget.html:55
+#: app/templates/partials/widgets/multiple_choice_widget.html:51
 msgid "Selecting this will uncheck all other checkboxes"
 msgstr ""
 

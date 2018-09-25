@@ -12,7 +12,8 @@
   <div class="panel panel--simple panel--success panel--spacious u-mb-s">
     <p>{{ _("To help protect your information we have signed you out") }}.</p>
   </div>
-
-    <a href="{{respondent_account_url}}">{{ _("Return to your account") }}</a>
+  {% if account_service_url %}
+    <a href="{{account_service_url}}">{{ _("Return to your account") }}</a>
+  {% endif %}
 
 {% endblock %}

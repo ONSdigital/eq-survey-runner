@@ -6,6 +6,10 @@ class IntroductionPage extends BasePage {
     super('introduction-page');
   }
 
+  myAccountLink() {
+    return '#my-account';
+  }
+
   getStarted() {
     return '.qa-btn-get-started';
   }
