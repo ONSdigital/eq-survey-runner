@@ -4,7 +4,7 @@ from structlog import get_logger
 
 from app.questionnaire.completeness import Completeness
 from app.questionnaire.location import Location
-from app.questionnaire.rules import evaluate_repeat, get_answer_ids_on_routing_path
+from app.questionnaire.rules import evaluate_repeat
 
 logger = get_logger()
 
@@ -81,8 +81,7 @@ class Navigation:
 
     def _build_repeating_navigation(self, repeating_rule, section, current_group_id, current_group_instance):
         groups = section['groups']
-        answer_ids_on_path = get_answer_ids_on_routing_path(self.schema, self.routing_path)
-        no_of_repeats = evaluate_repeat(self.schema, repeating_rule, self.answer_store, answer_ids_on_path)
+        no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store, self.schema, self.routing_path)
 
         repeating_nav = []
         if repeating_rule['type'] == 'answer_count':

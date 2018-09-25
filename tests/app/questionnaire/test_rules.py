@@ -1,11 +1,12 @@
+import uuid
 from unittest.mock import Mock, patch
-from datetime import datetime
 
 from app.data_model.answer_store import AnswerStore, Answer
 from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
-from app.questionnaire.rules import evaluate_rule, evaluate_date_rule, evaluate_goto, evaluate_repeat, \
-    evaluate_skip_conditions, evaluate_when_rules, get_answer_ids_on_routing_path
+from app.questionnaire.rules import evaluate_rule, evaluate_goto, evaluate_repeat, \
+    evaluate_skip_conditions, evaluate_when_rules
+from app.utilities.schema import load_schema_from_params
 from tests.app.app_context_test_case import AppContextTestCase
 
 
@@ -504,17 +505,16 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         answer_store = AnswerStore({})
         current_path = [Location('group-1', 0, 'block-1')]
-        answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
 
         # The schema doesn't actually contain a repeat clause, so fake it.
         with patch.object(schema, 'answer_is_in_repeating_group', return_value=True):
-            self.assertEqual(evaluate_repeat(schema, repeat, answer_store, answer_on_path), 1)
+            self.assertEqual(evaluate_repeat(repeat, answer_store, schema, current_path), 1)
 
             answer_store.add(Answer(answer_id='my_answer', value='Not Done', group_instance=0, group_instance_id=None))
-            self.assertEqual(evaluate_repeat(schema, repeat, answer_store, answer_on_path), 2)
+            self.assertEqual(evaluate_repeat(repeat, answer_store, schema, current_path), 2)
 
             answer_store.add(Answer(answer_id='my_answer', value='Done', group_instance=1, group_instance_id=None))
-            self.assertEqual(evaluate_repeat(schema, repeat, answer_store, answer_on_path), 2)
+            self.assertEqual(evaluate_repeat(repeat, answer_store, schema, current_path), 2)
 
     def test_should_repeat_for_answer_answer_value(self):
         questionnaire = {
@@ -557,8 +557,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         current_path = [Location('group-1', 0, 'block-1')]
 
         # When
-        answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
+        number_of_repeats = evaluate_repeat(repeat, answer_store, schema, current_path)
 
         self.assertEqual(number_of_repeats, 3)
 
@@ -604,8 +603,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         current_path = [Location('group-1', 0, 'block-1')]
 
         # When
-        answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
+        number_of_repeats = evaluate_repeat(repeat, answer_store, schema, current_path)
 
         self.assertEqual(number_of_repeats, 2)
 
@@ -651,8 +649,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         current_path = [Location('group-1', 0, 'block-1')]
 
         # When
-        answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
+        number_of_repeats = evaluate_repeat(repeat, answer_store, schema, current_path)
 
         self.assertEqual(number_of_repeats, 1)
 
@@ -698,8 +695,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         current_path = [Location('group-1', 0, 'block-1')]
 
         # When
-        answer_on_path = get_answer_ids_on_routing_path(schema, current_path)
-        number_of_repeats = evaluate_repeat(schema, repeat, answer_store, answer_on_path)
+        number_of_repeats = evaluate_repeat(repeat, answer_store, schema, current_path)
 
         self.assertEqual(number_of_repeats, 24)
 
@@ -934,134 +930,69 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 1, 'group-1-1'))
         self.assertFalse(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0, 'group-1-0'))
 
-class TestDateRules(AppContextTestCase):
+    def test_repeat_on_answer_count_when_not_all_answers_on_path(self):
+        schema = load_schema_from_params('test', 'routing_repeat_until')
 
-    def test_evaluate_date_rule_equals_with_value_now(self):
-
-        when = {
-            'id': 'date-answer',
-            'condition': 'equals',
-            'date_comparison': {
-                'value': 'now'
-            }
-        }
-
-        answer_value = datetime.utcnow().strftime('%Y-%m-%d')
-        result = evaluate_date_rule(when, None, get_schema_mock(), 0, None, answer_value)
-        self.assertTrue(result)
-
-        answer_value = '2000-01-01'
-        result = evaluate_date_rule(when, None, get_schema_mock(), 0, None, answer_value)
-        self.assertFalse(result)
-
-    def test_evaluate_date_rule_equals_with_with_offset(self):
-
-        when = {
-            'id': 'date-answer',
-            'condition': 'equals',
-            'date_comparison': {
-                'value': '2019-03-31',
-                'offset_by': {
-                    'days': 1,
-                    'months': 1,
-                    'years': 1
-                }
-            }
-        }
-
-        answer_value = '2020-05-01'
-        result = evaluate_date_rule(when, None, get_schema_mock(), 0, None, answer_value)
-        self.assertTrue(result)
-
-        when = {
-            'id': 'date-answer',
-            'condition': 'equals',
-            'date_comparison': {
-                'value': '2021-04-01',
-                'offset_by': {
-                    'days': -1,
-                    'months': -1,
-                    'years': -1
-                }
-            }
-        }
-
-        answer_value = '2020-02-29'
-        result = evaluate_date_rule(when, None, get_schema_mock(), 0, None, answer_value)
-        self.assertTrue(result)
-
-    def test_evaluate_date_rule_not_equals_with_value_year_month(self):
-
-        when = {
-            'id': 'date-answer',
-            'condition': 'not equals',
-            'date_comparison': {
-                'value': '2018-01'
-            }
-        }
-
-        answer_value = '2018-02'
-        result = evaluate_date_rule(when, None, get_schema_mock(), 0, None, answer_value)
-        self.assertTrue(result)
-
-        answer_value = '2018-01'
-        result = evaluate_date_rule(when, None, get_schema_mock(), 0, None, answer_value)
-        self.assertFalse(result)
-
-    def test_evaluate_date_rule_less_than_meta(self):
-
-        metadata = {'return_by': '2016-06-12'}
-        when = {
-            'id': 'date-answer',
-            'condition': 'less than',
-            'date_comparison': {
-                'meta': 'return_by'
-            }
-        }
-
-        answer_value = '2016-06-11'
-        result = evaluate_date_rule(when, None, get_schema_mock(), 0, metadata, answer_value)
-        self.assertTrue(result)
-
-        answer_value = '2016-06-12'
-        result = evaluate_date_rule(when, None, get_schema_mock(), 0, metadata, answer_value)
-        self.assertFalse(result)
-
-    def test_evaluate_date_rule_greater_than_with_id(self):
-
-        when = {
-            'id': 'date-answer',
-            'condition': 'greater than',
-            'date_comparison': {
-                'id': 'compare_date_answer'
-            }
-        }
+        primary_group_instance_id = str(uuid.uuid4())
+        repeating_group_1_instance_id = str(uuid.uuid4())
+        repeating_group_2_instance_id = str(uuid.uuid4())
 
         answer_store = AnswerStore({})
-        answer_store.add(Answer(answer_id='compare_date_answer', value='2018-02-03'))
+        answer_store.add(Answer(
+            answer_id='primary-name',
+            value='Jon',
+            group_instance=0,
+            group_instance_id=primary_group_instance_id
+        ))
+        answer_store.add(Answer(
+            answer_id='repeating-anyone-else',
+            answer_instance=0,
+            value='Yes',
+            group_instance=0,
+        ))
+        answer_store.add(Answer(
+            answer_id='repeating-name',
+            answer_instance=0,
+            value='Adam',
+            group_instance=0,
+            group_instance_id=repeating_group_1_instance_id
+        ))
+        answer_store.add(Answer(
+            answer_id='repeating-anyone-else',
+            answer_instance=0,
+            value='No',
+            group_instance=1,
+        ))
+        answer_store.add(Answer(
+            answer_id='repeating-name',
+            answer_instance=0,
+            value='Ben',
+            group_instance=1,
+            group_instance_id=repeating_group_2_instance_id
+        ))
+        answer_store.add(Answer(
+            answer_id='repeating-anyone-else',
+            answer_instance=0,
+            value='No',
+            group_instance=2,
+        ))
 
-        answer_value = '2018-02-04'
-        result = evaluate_date_rule(when, answer_store, get_schema_mock(), 0, None, answer_value)
-        self.assertTrue(result)
+        routing_path = [
+            Location('primary-group', 0, 'primary-name-block'),
+            Location('repeating-group', 0, 'repeating-anyone-else-block'),
+            Location('repeating-group', 0, 'repeating-name-block'),
+            Location('repeating-group', 1, 'repeating-anyone-else-block'),
+        ]
 
-        answer_value = '2018-02-03'
-        result = evaluate_date_rule(when, answer_store, get_schema_mock(), 0, None, answer_value)
-        self.assertFalse(result)
-
-    def test_do_not_go_to_next_question_for_date_answer(self):
-
-        goto_rule = {
-            'id': 'next-question',
-            'when': [{
-                'id': 'date-answer',
-                'condition': 'equals',
-                'date_comparison': {
-                    'value': '2018-01'
-                }
-            }]
+        repeat = {
+            'type': 'answer_count',
+            'answer_ids': [
+                'primary-name',
+                'repeating-name'
+            ]
         }
 
-        answer_store = AnswerStore({})
-        answer_store.add(Answer(answer_id='date_answer', value='2018-02-01'))
+        # When
+        number_of_repeats = evaluate_repeat(repeat, answer_store, schema, routing_path)
 
-        self.assertFalse(evaluate_goto(goto_rule, get_schema_mock(), {}, answer_store, 0))
+        self.assertEqual(number_of_repeats, 2)

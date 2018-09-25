@@ -3,6 +3,8 @@ import re
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
+from app.questionnaire.location import Location
+
 MAX_REPEATS = 25
 
 logger = logging.getLogger(__name__)
@@ -132,17 +134,22 @@ def evaluate_goto(goto_rule, schema, metadata, answer_store, group_instance, gro
     return True
 
 
-def evaluate_repeat(schema, repeat_rule, answer_store, answer_ids_on_path):
+def evaluate_repeat(repeat_rule, answer_store, schema, routing_path):
     """
     Returns the number of times repetition should occur based on answers
     """
     if repeat_rule['type'] == 'until':
         when = repeat_rule['when']
         answers = list(answer_store.filter(answer_ids=[when[0]['id']]))
-        group_instance = max(len(answers) - 1, 0)
-        stop = answers and evaluate_when_rules(when, schema, {}, answer_store, group_instance, None)
 
-        no_of_repeats = len(answers) + (0 if stop else 1)
+        no_of_repeats = 1
+
+        for answer in answers:
+            group_instance = answer['group_instance']
+            if evaluate_when_rules(when, schema, {}, answer_store, group_instance, None):
+                break
+
+            no_of_repeats = no_of_repeats + 1
     else:
         repeat_functions = {
             'answer_value': _get_answer_value,
@@ -150,19 +157,7 @@ def evaluate_repeat(schema, repeat_rule, answer_store, answer_ids_on_path):
             'answer_count_minus_one': _get_answer_count_minus_one,
         }
 
-        repeat_indexes = []
-
-        # Only use answers that are on the routing path
-        if 'answer_id' in repeat_rule and repeat_rule['answer_id'] in answer_ids_on_path:
-            repeat_indexes.append(repeat_rule['answer_id'])
-
-        if 'answer_ids' in repeat_rule:
-            for answer_id in repeat_rule['answer_ids']:
-                # Only use answers that are on the routing path
-                if answer_id in answer_ids_on_path:
-                    repeat_indexes.append(answer_id)
-
-        answers = list(answer_store.filter(answer_ids=repeat_indexes))
+        answers = _get_answers_on_routing_path(schema, routing_path, answer_store, repeat_rule)
 
         repeat_function = repeat_functions[repeat_rule['type']]
         no_of_repeats = repeat_function(answers)
@@ -172,6 +167,44 @@ def evaluate_repeat(schema, repeat_rule, answer_store, answer_ids_on_path):
         no_of_repeats = MAX_REPEATS
 
     return no_of_repeats
+
+
+def _get_answers_on_routing_path(schema, routing_path, answer_store, repeat_rule):
+    repeat_indexes = []
+
+    answer_ids_on_path = get_answer_ids_on_routing_path(
+        schema, routing_path)
+
+    # Only use answers that are on the routing path
+    if 'answer_id' in repeat_rule and repeat_rule['answer_id'] in answer_ids_on_path:
+        repeat_indexes.append(repeat_rule['answer_id'])
+
+    if 'answer_ids' in repeat_rule:
+        for answer_id in repeat_rule['answer_ids']:
+            # Only use answers that are on the routing path
+            if answer_id in answer_ids_on_path:
+                repeat_indexes.append(answer_id)
+
+    answers = list(answer_store.filter(answer_ids=repeat_indexes))
+
+    # Exclude answers that are not on the routing path from repeat function
+    answers_to_remove = []
+    for answer in answers:
+        if not _is_answer_on_path(schema, answer, routing_path):
+            answers_to_remove.append(answer)
+
+    for answer in answers_to_remove:
+        answers.remove(answer)
+
+    return answers
+
+
+def _is_answer_on_path(schema, answer, routing_path):
+    answer_schema = schema.get_answer(answer['answer_id'])
+    question_schema = schema.get_question(answer_schema['parent_id'])
+    block_schema = schema.get_block(question_schema['parent_id'])
+    location = Location(block_schema['parent_id'], answer['group_instance'], block_schema['id'])
+    return location in routing_path
 
 
 def _get_answer_value(filtered_answers):
@@ -301,9 +334,7 @@ def get_number_of_repeats(group, schema, routing_path, answer_store):
     repeating_rule = schema.get_repeat_rule(group)
 
     if repeating_rule:
-        answer_ids_on_path = get_answer_ids_on_routing_path(
-            schema, routing_path)
-        return evaluate_repeat(schema, repeating_rule, answer_store, answer_ids_on_path)
+        return evaluate_repeat(repeating_rule, answer_store, schema, routing_path)
 
     return 1
 

@@ -715,9 +715,9 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answer_store = AnswerStore()
 
         # Set up some first names
-        answer_store.add(Answer(answer_id='first-name', value='aaa', group_instance=0, group_instance_id='group-1-0'))
-        answer_store.add(Answer(answer_id='first-name', value='bbb', group_instance=1, group_instance_id='group-1-1'))
-        answer_store.add(Answer(answer_id='first-name', value='ccc', group_instance=2, group_instance_id='group-1-2'))
+        answer_store.add(Answer(answer_id='first-name', value='aaa', answer_instance=0, group_instance_id='group-1-0'))
+        answer_store.add(Answer(answer_id='first-name', value='bbb', answer_instance=1, group_instance_id='group-1-1'))
+        answer_store.add(Answer(answer_id='first-name', value='ccc', answer_instance=2, group_instance_id='group-1-2'))
 
         # Set up the independent answer
         answer_store.add(Answer(answer_id='an-independent-answer', value=independent_answer, group_instance=0, group_instance_id='group-1-0'))
@@ -763,10 +763,10 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
                 # Set up some first names
 
-                answer_store.add(Answer(answer_id='first-name', value='aaa', group_instance=0, group_instance_id='group-1-0'))
-                answer_store.add(Answer(answer_id='first-name', value='bbb', group_instance=1, group_instance_id='group-1-1'))
-                answer_store.add(Answer(answer_id='first-name', value='ccc', group_instance=2, group_instance_id='group-1-2'))
-                answer_store.add(Answer(answer_id='first-name', value='ddd', group_instance=3, group_instance_id='group-1-3'))
+                answer_store.add(Answer(answer_id='first-name', value='aaa', answer_instance=0, group_instance_id='group-1-0'))
+                answer_store.add(Answer(answer_id='first-name', value='bbb', answer_instance=1, group_instance_id='group-1-1'))
+                answer_store.add(Answer(answer_id='first-name', value='ccc', answer_instance=2, group_instance_id='group-1-2'))
+                answer_store.add(Answer(answer_id='first-name', value='ddd', answer_instance=3, group_instance_id='group-1-3'))
 
                 # Now set a date of birth for the two group instances
 
