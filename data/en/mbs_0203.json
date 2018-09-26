@@ -151,6 +151,7 @@
                         "mandatory": true,
                         "q_code": "110",
                         "type": "Unit",
+                        "unit_length": "short",
                         "label": "Total volume of potable water that was supplied to customers, in megalitres",
                         "unit": "volume-megaliter"
                     }]

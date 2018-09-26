@@ -13,7 +13,7 @@ from app.jinja_filters import (
     format_multilined_string, format_percentage, format_date_range,
     format_household_member_name, format_datetime,
     format_number_to_alphabetic_letter, format_unit, format_currency_for_input,
-    format_number, format_unordered_list,
+    format_number, format_unordered_list, format_unit_input_label,
     format_household_member_name_possessive, concatenated_list,
     calculate_years_difference, get_current_date, as_london_tz, max_value,
     min_value, get_question_title, get_answer_label,
@@ -455,6 +455,30 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         self.assertEqual(format_unit('volume-hectoliter', 100), '100 hl')
         self.assertEqual(format_unit('volume-megaliter', 100), '100 Ml')
         self.assertEqual(format_unit('duration-hour', 100), '100 hrs')
+        self.assertEqual(format_unit('duration-hour', 100, 'long'), '100 hours')
+        self.assertEqual(format_unit('duration-year', 100, 'long'), '100 years')
+
+    def test_format_unit_input_label(self):
+        self.assertEqual(format_unit_input_label('length-meter'), 'm')
+        self.assertEqual(format_unit_input_label('length-centimeter'), 'cm')
+        self.assertEqual(format_unit_input_label('length-mile'), 'mi')
+        self.assertEqual(format_unit_input_label('length-kilometer'), 'km')
+        self.assertEqual(format_unit_input_label('area-square-meter'), 'm²')
+        self.assertEqual(format_unit_input_label('area-square-centimeter'), 'cm²')
+        self.assertEqual(format_unit_input_label('area-square-kilometer'), 'km²')
+        self.assertEqual(format_unit_input_label('area-square-mile'), 'sq mi')
+        self.assertEqual(format_unit_input_label('area-hectare'), 'ha')
+        self.assertEqual(format_unit_input_label('area-acre'), 'ac')
+        self.assertEqual(format_unit_input_label('volume-cubic-meter'), 'm³')
+        self.assertEqual(format_unit_input_label('volume-cubic-centimeter'), 'cm³')
+        self.assertEqual(format_unit_input_label('volume-liter'), 'l')
+        self.assertEqual(format_unit_input_label('volume-hectoliter'), 'hl')
+        self.assertEqual(format_unit_input_label('volume-megaliter'), 'Ml')
+        self.assertEqual(format_unit_input_label('duration-hour'), 'hr')
+        self.assertEqual(format_unit_input_label('duration-hour', 'long'), 'hours')
+        self.assertEqual(format_unit_input_label('duration-year'), 'yr')
+        self.assertEqual(format_unit_input_label('duration-year', 'long'), 'years')
+
 
     def test_format_year_month_duration(self):
         with self.app_request_context('/'):

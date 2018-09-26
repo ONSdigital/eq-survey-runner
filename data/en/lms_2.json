@@ -466,7 +466,9 @@
                             "type": "General",
                             "answers": [{
                                 "id": "dob-age-answer",
-                                "type": "Number",
+                                "unit": "duration-year",
+                                "type": "Unit",
+                                "unit_length": "long",
                                 "mandatory": false
                             }]
                         }],
@@ -3255,6 +3257,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
+                                "unit_length": "long",
                                 "label": "Usual hours"
                             }]
                         }],
@@ -3308,6 +3311,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
+                                "unit_length": "long",
                                 "label": "Usual hours"
                             }]
                         }]
@@ -3335,6 +3339,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
+                                "unit_length": "long",
                                 "label": "Usual hours"
                             }]
                         }],
@@ -3390,6 +3395,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
+                                "unit_length": "long",
                                 "label": "Unpaid overtime hours"
                             }]
                         }],
@@ -3440,6 +3446,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
+                                "unit_length": "long",
                                 "label": "Paid overtime hours"
                             }]
                         }]
@@ -3469,6 +3476,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
+                                "unit_length": "long",
                                 "label": "Usual hours"
                             }],
                             "guidance": {
@@ -3518,6 +3526,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
+                                "unit_length": "long",
                                 "label": "Actual hours"
                             }]
                         }],
@@ -3621,7 +3630,9 @@
                                 "label": "Unpaid overtime hours, main job",
                                 "mandatory": false,
                                 "type": "Unit",
-                                "unit": "duration-hour"
+                                "unit": "duration-hour",
+                                "unit_length": "long"
+
                             }]
                         }]
                     },
@@ -3648,6 +3659,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
+                                "unit_length": "long",
                                 "label": "Unpaid overtime hours, second job"
                             }]
                         }],
@@ -3691,6 +3703,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
+                                "unit_length": "long",
                                 "label": "Paid overtime hours, main job"
                             }]
                         }]
@@ -3725,6 +3738,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
+                                "unit_length": "long",
                                 "label": "Paid overtime hours, second job"
                             }]
                         }]
@@ -3754,6 +3768,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
+                                "unit_length": "long",
                                 "label": "Usual hours"
                             }],
                             "guidance": {
@@ -3786,6 +3801,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
+                                "unit_length": "long",
                                 "label": "Actual hours main job"
                             }]
                         }],
@@ -3891,6 +3907,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
+                                "unit_length": "long",
                                 "label": "Usual hours"
                             }],
                             "guidance": {
@@ -3923,6 +3940,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
+                                "unit_length": "long",
                                 "label": "Actual hours, second job"
                             }]
                         }],
@@ -4026,6 +4044,7 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
+                                "unit_length": "long",
                                 "label": "Casual hours"
                             }]
                         }]
