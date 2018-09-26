@@ -287,6 +287,7 @@ def _get_formatted_total(groups):
                         answer_format = {
                             'type': answer['type'],
                             'unit': answer.get('unit'),
+                            'unit_length': answer.get('unit_length'),
                             'currency': answer.get('currency'),
                         }
                     answer_value = answer.get('value') or 0
@@ -296,7 +297,7 @@ def _get_formatted_total(groups):
         return get_formatted_currency(calculated_total, answer_format['currency'])
 
     if answer_format['type'] == 'unit':
-        return format_unit(answer_format['unit'], calculated_total)
+        return format_unit(answer_format['unit'], calculated_total, answer_format['unit_length'])
 
     if answer_format['type'] == 'percentage':
         return format_percentage(calculated_total)
