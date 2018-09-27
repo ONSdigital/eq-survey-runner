@@ -1,3 +1,4 @@
+from flask import url_for
 from flask_wtf import FlaskForm
 from app.jinja_filters import get_formatted_currency, format_number, format_unit, format_percentage
 from app.helpers.form_helper import get_form_for_location
@@ -26,6 +27,11 @@ def build_view_context(block_type, metadata, schema, answer_store, schema_contex
         form = form or FlaskForm()
         return build_view_context_for_calculated_summary(metadata, schema, answer_store, schema_context, block_type,
                                                          variables, form.csrf_token, current_location)
+
+    if block_type == 'AnswerSummary':
+        form = form or FlaskForm()
+        return build_view_context_for_answer_summary(metadata, schema, answer_store, block_type,
+                                                     variables, form.csrf_token, current_location)
 
     if block_type in ('Question', 'ConfirmationQuestion'):
         form = form or get_form_for_location(schema, rendered_block, current_location, answer_store, metadata)
@@ -146,6 +152,69 @@ def build_view_context_for_calculated_summary(metadata, schema, answer_store, sc
                                     current_location.group_instance) % dict(total=formatted_total),
     })
     return context
+
+
+def build_view_context_for_answer_summary(metadata, schema, answer_store, block_type,  # pylint: disable=too-many-locals
+                                          variables, csrf_token, current_location):
+    summary_block = schema.get_block(current_location.block_id)
+
+    group = {
+        'answers': [],
+    }
+
+    for answer in answer_store.filter(answer_ids=summary_block.get('answer_ids')):
+        question_id = schema.get_answer(answer['answer_id']).get('parent_id')
+        block_id = schema.get_question(question_id).get('parent_id')
+        group_id = schema.get_block(block_id).get('parent_id')
+
+        link = url_for('questionnaire.get_block',
+                       eq_id=metadata['eq_id'],
+                       form_type=metadata['form_type'],
+                       collection_id=metadata['collection_exercise_sid'],
+                       group_id=group_id,
+                       group_instance=answer['group_instance'],
+                       block_id=block_id)
+
+        label = answer['value']
+
+        if summary_block.get('answer_label'):
+            render_context = {
+                'answers': _build_answers(answer_store, answer.get('group_instance_id')),
+            }
+
+            label = renderer.render('{{' + summary_block.get('answer_label') + '}}', **render_context)
+
+        view_answer = {
+            'id': answer['answer_id'],
+            'label': label,
+            'block': {
+                'link': link,
+            },
+        }
+
+        group['answers'].append(view_answer)
+
+    return {
+        'csrf_token': csrf_token,
+        'summary': {
+            'title': summary_block.get('title'),
+            'label': summary_block.get('label'),
+            'groups': [group],
+            'answers_are_editable': True,
+            'summary_type': block_type,
+            'icon': summary_block.get('icon'),
+        },
+        'variables': variables,
+    }
+
+
+def _build_answers(answer_store, group_instance_id):
+    answers = {}
+
+    for answer in list(answer_store.filter(group_instance_id=group_instance_id, limit=True)):
+        answers[answer['answer_id']] = answer['value']
+
+    return answers
 
 
 def build_view_context_for_summary(schema, section_list, answer_store, metadata,

@@ -128,6 +128,14 @@ SUMMARY_TITLE_GETTER = Template(r"""  ${group_id_camel}Title() { return '#${grou
 
 """)
 
+ANSWER_SUMMARY_EDIT_GETTER = Template(r"""  ${answerName}Edit(index = 1) { return '[data-qa="${answerId}-' + index + '-edit"]'; }
+
+""")
+
+ANSWER_SUMMARY_LABEL_GETTER = Template(r"""  ${answerName}Label(index = 1) { return '[data-qa="${answerId}-' + index + '-label"]'; } 
+
+""")
+
 CALCULATED_SUMMARY_LABEL_GETTER = Template(r"""  ${answerName}Label() { return '#${answerId}-label'; } 
 
 """)
@@ -257,6 +265,7 @@ def process_question(question, page_spec, num_questions, page_name):
     for answer in question['answers']:
         process_answer(question_type, answer, page_spec, long_names, page_name)
 
+
 def process_calculated_summary(answers, page_spec):
     for answer in answers:
         answer_name = generate_pascal_case_from_id(answer)
@@ -268,6 +277,19 @@ def process_calculated_summary(answers, page_spec):
         page_spec.write(SUMMARY_ANSWER_GETTER.substitute(answer_context))
         page_spec.write(SUMMARY_ANSWER_EDIT_GETTER.substitute(answer_context))
         page_spec.write(CALCULATED_SUMMARY_LABEL_GETTER.substitute(answer_context))
+
+
+def process_answer_summary(block, page_spec):
+    for answer_id in block.get('answer_ids'):
+        answer_name = generate_pascal_case_from_id(answer_id)
+        answer_context = {
+            'answerName': camel_case(answer_name),
+            'answerId': answer_id
+        }
+
+        page_spec.write(ANSWER_SUMMARY_EDIT_GETTER.substitute(answer_context))
+        page_spec.write(ANSWER_SUMMARY_LABEL_GETTER.substitute(answer_context))
+
 
 def process_summary(schema_data, page_spec):
     for section in schema_data['sections']:
@@ -374,6 +396,8 @@ def process_block(block, dir_out, schema_data, spec_file, relative_require='..')
         page_spec.write(CONSTRUCTOR.substitute(block_context))
         if block['type'] in ('Summary', 'SectionSummary'):
             process_summary(schema_data, page_spec)
+        elif block['type'] in ('AnswerSummary'):
+            process_answer_summary(block, page_spec)
         elif block['type'] in ('CalculatedSummary'):
             process_calculated_summary(block['calculation']['answers_to_calculate'], page_spec)
         else:

@@ -25,7 +25,7 @@
     <p>{{ _("You can check your answers below") }}</p>
   </div>
 </div>
-{% elif content.summary.summary_type == 'SectionSummary' %}
+{% elif content.summary.summary_type in ('SectionSummary', 'AnswerSummary') %}
 <div>
     {% set group = content.summary.groups %}
     <h1 class="saturn">{{content.summary.title}}</h1>
@@ -43,7 +43,11 @@
 </div>
 {% endif %}
 
-{% include theme('partials/summary/summary.html') %}
+{% if content.summary.summary_type == 'AnswerSummary' %}
+  {% include theme('partials/summary/answer-summary.html') %}
+{% else %}
+  {% include theme('partials/summary/summary.html') %}
+{% endif %}
 
 {% if content.summary.is_view_submission_response_enabled %}
   <div class="u-mb-s u-mb-m@s" data-qa="view-submission-text">
