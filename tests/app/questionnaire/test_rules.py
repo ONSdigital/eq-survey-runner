@@ -86,6 +86,34 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         self.assertFalse(evaluate_rule(when, ''))
         self.assertFalse(evaluate_rule(when, 'some text'))
 
+    def test_evaluate_rule_not_set_on_empty_list_should_be_true(self):
+        when = {
+            'condition': 'not set'
+        }
+
+        self.assertTrue(evaluate_rule(when, []))
+
+    def test_evaluate_rule_not_set_on_list_with_data_should_be_false(self):
+        when = {
+            'condition': 'not set'
+        }
+
+        self.assertFalse(evaluate_rule(when, ['123']))
+
+    def test_evaluate_rule_set_on_list_with_data_should_be_true(self):
+        when = {
+            'condition': 'set'
+        }
+
+        self.assertTrue(evaluate_rule(when, ['123']))
+
+    def test_evaluate_rule_set_on_empty_list_should_be_false(self):
+        when = {
+            'condition': 'set'
+        }
+
+        self.assertFalse(evaluate_rule(when, []))
+
     def test_evaluate_rule_equals_with_number(self):
         when = {
             'value': 0,
