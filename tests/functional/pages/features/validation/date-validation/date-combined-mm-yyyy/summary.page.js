@@ -7,11 +7,11 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  dateRange() { return '#date-range-from-answer'; }
+  dateRange(index = 0) { return '#date-range-from-' + index + '-answer'; }
 
-  dateRangeEdit() { return '[data-qa="date-range-from-edit"]'; }
+  dateRangeEdit(index = 0) { return '[data-qa="date-range-from-' + index + '-edit"]'; }
 
-  datesTitle() { return '#dates'; }
+  datesTitle(index = 0) { return '#dates-' + index; }
 
 }
 module.exports = new SummaryPage();

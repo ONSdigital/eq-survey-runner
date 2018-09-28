@@ -7,49 +7,49 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  building() { return '#building-answer'; }
+  building(index = 0) { return '#building-' + index + '-answer'; }
 
-  buildingEdit() { return '[data-qa="building-edit"]'; }
+  buildingEdit(index = 0) { return '[data-qa="building-' + index + '-edit"]'; }
 
-  addressLine1() { return '#address-line-1-answer'; }
+  addressLine1(index = 0) { return '#address-line-1-' + index + '-answer'; }
 
-  addressLine1Edit() { return '[data-qa="address-line-1-edit"]'; }
+  addressLine1Edit(index = 0) { return '[data-qa="address-line-1-' + index + '-edit"]'; }
 
-  addressLine2() { return '#address-line-2-answer'; }
+  addressLine2(index = 0) { return '#address-line-2-' + index + '-answer'; }
 
-  addressLine2Edit() { return '[data-qa="address-line-2-edit"]'; }
+  addressLine2Edit(index = 0) { return '[data-qa="address-line-2-' + index + '-edit"]'; }
 
-  addressLine3() { return '#address-line-3-answer'; }
+  addressLine3(index = 0) { return '#address-line-3-' + index + '-answer'; }
 
-  addressLine3Edit() { return '[data-qa="address-line-3-edit"]'; }
+  addressLine3Edit(index = 0) { return '[data-qa="address-line-3-' + index + '-edit"]'; }
 
-  townCity() { return '#town-city-answer'; }
+  townCity(index = 0) { return '#town-city-' + index + '-answer'; }
 
-  townCityEdit() { return '[data-qa="town-city-edit"]'; }
+  townCityEdit(index = 0) { return '[data-qa="town-city-' + index + '-edit"]'; }
 
-  county() { return '#county-answer'; }
+  county(index = 0) { return '#county-' + index + '-answer'; }
 
-  countyEdit() { return '[data-qa="county-edit"]'; }
+  countyEdit(index = 0) { return '[data-qa="county-' + index + '-edit"]'; }
 
-  postcode() { return '#postcode-answer'; }
+  postcode(index = 0) { return '#postcode-' + index + '-answer'; }
 
-  postcodeEdit() { return '[data-qa="postcode-edit"]'; }
+  postcodeEdit(index = 0) { return '[data-qa="postcode-' + index + '-edit"]'; }
 
-  country() { return '#country-answer'; }
+  country(index = 0) { return '#country-' + index + '-answer'; }
 
-  countryEdit() { return '[data-qa="country-edit"]'; }
+  countryEdit(index = 0) { return '[data-qa="country-' + index + '-edit"]'; }
 
-  firstText() { return '#first-text-answer'; }
+  firstText(index = 0) { return '#first-text-' + index + '-answer'; }
 
-  firstTextEdit() { return '[data-qa="first-text-edit"]'; }
+  firstTextEdit(index = 0) { return '[data-qa="first-text-' + index + '-edit"]'; }
 
-  secondText() { return '#second-text-answer'; }
+  secondText(index = 0) { return '#second-text-' + index + '-answer'; }
 
-  secondTextEdit() { return '[data-qa="second-text-edit"]'; }
+  secondTextEdit(index = 0) { return '[data-qa="second-text-' + index + '-edit"]'; }
 
-  multiplePipingAnswer() { return '#multiple-piping-answer-answer'; }
+  multiplePipingAnswer(index = 0) { return '#multiple-piping-answer-' + index + '-answer'; }
 
-  multiplePipingAnswerEdit() { return '[data-qa="multiple-piping-answer-edit"]'; }
+  multiplePipingAnswerEdit(index = 0) { return '[data-qa="multiple-piping-answer-' + index + '-edit"]'; }
 
 }
 module.exports = new SummaryPage();

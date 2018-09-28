@@ -7,9 +7,9 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  dropdownMandatoryAnswer() { return '#dropdown-mandatory-answer-answer'; }
+  dropdownMandatoryAnswer(index = 0) { return '#dropdown-mandatory-answer-' + index + '-answer'; }
 
-  dropdownMandatoryAnswerEdit() { return '[data-qa="dropdown-mandatory-answer-edit"]'; }
+  dropdownMandatoryAnswerEdit(index = 0) { return '[data-qa="dropdown-mandatory-answer-' + index + '-edit"]'; }
 
 }
 module.exports = new SummaryPage();

@@ -7,17 +7,17 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  comparison1Answer() { return '#comparison-1-answer-answer'; }
+  comparison1Answer(index = 0) { return '#comparison-1-answer-' + index + '-answer'; }
 
-  comparison1AnswerEdit() { return '[data-qa="comparison-1-answer-edit"]'; }
+  comparison1AnswerEdit(index = 0) { return '[data-qa="comparison-1-answer-' + index + '-edit"]'; }
 
-  comparison2Answer() { return '#comparison-2-answer-answer'; }
+  comparison2Answer(index = 0) { return '#comparison-2-answer-' + index + '-answer'; }
 
-  comparison2AnswerEdit() { return '[data-qa="comparison-2-answer-edit"]'; }
+  comparison2AnswerEdit(index = 0) { return '[data-qa="comparison-2-answer-' + index + '-edit"]'; }
 
-  skipGroupTitle() { return '#skip-group'; }
+  skipGroupTitle(index = 0) { return '#skip-group-' + index; }
 
-  summaryGroupTitle() { return '#summary-group'; }
+  summaryGroupTitle(index = 0) { return '#summary-group-' + index; }
 
 }
 module.exports = new SummaryPage();

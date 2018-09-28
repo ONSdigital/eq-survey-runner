@@ -34,6 +34,13 @@ describe('Routing Repeat Until', function() {
         .click(SexPage.submit())
 
         .getUrl().should.eventually.contain(SummaryPage.pageName)
+
+        .getText(SummaryPage.primaryGroupTitle(0)).should.eventually.contain("Your Details")
+        .getText(SummaryPage.primaryName(0)).should.eventually.contain("Bob")
+
+        .getText(SummaryPage.repeatingGroupTitle(0)).should.eventually.contain("Other Household Members")
+        .getText(SummaryPage.repeatingName(0)).should.eventually.contain("Alice")
+
         .click(SummaryPage.submit());
     });
   });
@@ -74,6 +81,20 @@ describe('Routing Repeat Until', function() {
         .click(SexPage.submit())
 
         .getUrl().should.eventually.contain(SummaryPage.pageName)
+
+        .getText(SummaryPage.primaryGroupTitle(0)).should.eventually.contain("Your Details")
+        .getText(SummaryPage.primaryName(0)).should.eventually.contain("Bob")
+
+        .getText(SummaryPage.repeatingGroupTitle(0)).should.eventually.contain("Other Household Members")
+        .getText(SummaryPage.repeatingName(0)).should.eventually.contain("Alice")
+
+        .getText(SummaryPage.repeatingGroupTitle(0)).should.eventually.contain("Other Household Members")
+        .getText(SummaryPage.repeatingName(1)).should.eventually.contain("John")
+
+        .getText(SummaryPage.sexAnswer(0)).should.eventually.contain("Male")
+        .getText(SummaryPage.sexAnswer(1)).should.eventually.contain("Female")
+        .getText(SummaryPage.sexAnswer(2)).should.eventually.contain("Male")
+
         .click(SummaryPage.submit());
     });
   });

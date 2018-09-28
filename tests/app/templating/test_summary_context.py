@@ -1,6 +1,5 @@
 import uuid
 
-from mock import patch
 from app.data_model.answer_store import AnswerStore, Answer
 from app.questionnaire.location import Location
 from app.templating.summary_context import build_summary_rendering_context
@@ -76,22 +75,9 @@ class TestSummaryContext(TestStandardSummaryContext):
     def test_build_summary_rendering_context(self):
         sections = self.schema.sections
         summary_rendering_context = build_summary_rendering_context(self.schema, sections, self.answer_store,
-                                                                    self.metadata)
+                                                                    self.metadata, self.schema_context)
         self.check_summary_rendering_context(summary_rendering_context)
 
-    def test_summary_context_html_encodes_answers(self):
-        sections = self.schema.sections
-        answer_store = AnswerStore([{
-            'answer_id': 'dessert',
-            'block_id': 'dessert-block',
-            'value': """<>"'&""",
-            'answer_instance': 0,
-        }])
-
-        summary_rendering_context = build_summary_rendering_context(self.schema, sections, answer_store, self.metadata)
-
-        answer = summary_rendering_context[1]['blocks'][0]['questions'][0]['answers'][0]
-        self.assertEqual(answer['value'], '&lt;&gt;&#34;&#39;&amp;')
 
     def test_build_view_context_for_summary(self):
         csrf_token = None
@@ -124,7 +110,7 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
     def test_build_summary_rendering_context(self):
         sections = [self.schema.get_section('property-details-section')]
         summary_rendering_context = build_summary_rendering_context(self.schema, sections, self.answer_store,
-                                                                    self.metadata)
+                                                                    self.metadata, self.schema_context)
         self.check_summary_rendering_context(summary_rendering_context)
 
     def test_build_view_context_for_section_summary(self):
@@ -291,7 +277,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         current_location = Location(
             block_id='number-total-playback',
             group_id='group',
-            group_instance=2,
+            group_instance=0,
         )
 
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
@@ -310,39 +296,138 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         self.assertEqual(context_summary['calculated_question']['title'], 'Grand total of previous values')
         self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '22')
 
-    def test_build_view_context_for_calculated_summary_repeating_group(self):
-        csrf_token = None
-        variables = None
-        group_instance = 2
+
+class TestRepeatingSummaryContext(TestStandardSummaryContext):
+
+    def setUp(self):
+        super().setUp()
+        self.schema = load_schema_from_params('test', 'repeat_until_summaries')
+        self.csrf_token = None
+        self. variables = None
 
         answers = [
-            {'value': 10, 'answer_id': 'fifth-number-answer', 'group_instance': group_instance, 'answer_instance': 0},
-            {'value': 20, 'answer_id': 'sixth-number-answer', 'group_instance': group_instance, 'answer_instance': 0},
+            {'group_instance': 0, 'answer_instance': 0, 'answer_id': 'primary-name',
+             'group_instance_id': 'aaa-group-instance-id', 'value': 'Aaa'},
+            {'group_instance': 0, 'answer_instance': 0, 'answer_id': 'repeating-anyone-else',
+             'group_instance_id': None, 'value': 'Yes'},
+            {'group_instance': 0, 'answer_instance': 0, 'answer_id': 'repeating-name',
+             'group_instance_id': 'bbb-group-instance-id', 'value': 'Bbb'},
+            {'group_instance': 1, 'answer_instance': 0, 'answer_id': 'repeating-anyone-else',
+             'group_instance_id': None, 'value': 'Yes'},
+            {'group_instance': 1, 'answer_instance': 0, 'answer_id': 'repeating-name',
+             'group_instance_id': 'ccc-group-instance-id', 'value': 'Ccc'},
+            {'group_instance': 2, 'answer_instance': 0, 'answer_id': 'repeating-anyone-else',
+             'group_instance_id': None, 'value': 'No'},
+            {'group_instance': 0, 'answer_instance': 0, 'answer_id': 'first-number-answer',
+             'group_instance_id': 'aaa-group-instance-id', 'value': 1},
+            {'group_instance': 0, 'answer_instance': 0, 'answer_id': 'second-number-answer',
+             'group_instance_id': 'aaa-group-instance-id', 'value': 11},
+            {'group_instance': 1, 'answer_instance': 0, 'answer_id': 'first-number-answer',
+             'group_instance_id': 'bbb-group-instance-id', 'value': 2},
+            {'group_instance': 1, 'answer_instance': 0, 'answer_id': 'second-number-answer',
+             'group_instance_id': 'bbb-group-instance-id', 'value': 22},
+            {'group_instance': 2, 'answer_instance': 0, 'answer_id': 'first-number-answer',
+             'group_instance_id': 'ccc-group-instance-id', 'value': 3},
+            {'group_instance': 2, 'answer_instance': 0, 'answer_id': 'second-number-answer',
+             'group_instance_id': 'ccc-group-instance-id', 'value': 33}
         ]
-        answer_store = AnswerStore(answers)
+        self.answer_store = AnswerStore(answers)
 
-        current_location = Location(
-            block_id='number-total-playback',
-            group_id='group',
-            group_instance=group_instance,
-        )
+        self.schema_context = {
+            'answers': {
+                'repeating-name': ['Bbb', 'Ccc'],
+                'repeating-anyone-else': ['Yes', 'Yes', 'No'],
+                'first-number-answer': [1, 2, 3],
+                'second-number-answer': [11, 22, 33],
+                'primary-name': 'Aaa'
+            },
+            'group_instance': 0,
+            'group_instance_id': None,
+            'group_instances': {
+                'aaa-group-instance-id': {'first-number-answer': 1, 'second-number-answer': 11, 'primary-name': 'Aaa'},
+                'bbb-group-instance-id': {'repeating-name': 'Bbb', 'first-number-answer': 2, 'second-number-answer': 22},
+                'ccc-group-instance-id': {'repeating-name': 'Ccc', 'first-number-answer': 3, 'second-number-answer': 33},
+                None: {'repeating-anyone-else': 'No'},
+            },
+            'metadata': self.metadata
+        }
 
-        with patch('app.questionnaire.questionnaire_schema.QuestionnaireSchema.answer_is_in_repeating_group', return_value=True):
-            context = build_view_context_for_calculated_summary(self.metadata, self.schema, answer_store,
-                                                                self.schema_context, self.block_type,
-                                                                variables, csrf_token, current_location)
+    def test_build_view_context_for_section_summary_for_repeating_group(self):
+        block_type = 'SectionSummary'
+        group_id = 'household-summary-group'
+
+        context = build_view_context_for_section_summary(self.metadata, self.schema, self.answer_store, self.schema_context,
+                                                         block_type, self.variables, self.csrf_token, group_id)
 
         self.check_context(context)
-        self.check_summary_rendering_context(context['summary']['groups'])
-        self.assertEqual(len(context['summary']), 5)
-        context_summary = context['summary']
-        self.assertTrue('title' in context_summary)
-        self.assertEqual(context_summary['title'],
-                         'We calculate the total of number values entered to be 30. Is this correct?')
 
-        self.assertTrue('calculated_question' in context_summary)
-        self.assertEqual(context_summary['calculated_question']['title'], 'Grand total of previous values')
-        self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '30')
+        context_summary = context['summary']
+
+        self.assertEqual(len(context_summary['groups']), 3)
+        self.assertTrue('title' in context_summary)
+
+        self.assertEqual(context_summary['groups'][0]['title'], 'Your Details')
+        self.assertEqual(context_summary['groups'][1]['title'], 'Other Household Members')
+        self.assertIsNone(context_summary['groups'][2]['title'])
+
+        self.assertEqual(context_summary['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['value'], 'Aaa')
+        self.assertEqual(context_summary['groups'][1]['blocks'][0]['questions'][0]['answers'][0]['value'], 'Bbb')
+        self.assertEqual(context_summary['groups'][2]['blocks'][0]['questions'][0]['answers'][0]['value'], 'Ccc')
+
+
+    def test_build_view_context_for_calculated_summary_for_repeating_group(self):
+        block_type = 'CalculatedSummary'
+        schema_context = self.schema_context
+        schema_context['group_instance_id'] = 'bbb-group-instance-id'
+        current_location = Location('member-group', 1, 'currency-total-playback')
+
+        context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store, schema_context, block_type,
+                                                            self.variables, self.csrf_token, current_location)
+
+        self.check_context(context)
+
+        context_summary = context['summary']
+
+        self.assertEqual(len(context_summary['groups']), 1)
+        self.assertEqual(context_summary['title'], 'We calculate the total of currency values entered for Bbb to be £24.00. Is this correct?')
+        self.assertEqual(context_summary['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['value'], 2)
+        self.assertEqual(context_summary['groups'][0]['blocks'][1]['questions'][0]['answers'][0]['value'], 22)
+
+
+    def test_build_view_context_for_final_summary_for_repeating_group(self):
+        block_type = 'Summary'
+        block = self.schema.get_block('summary')
+
+        context = build_view_context_for_final_summary(self.metadata, self.schema, self.answer_store, self.schema_context,
+                                                       block_type, self.variables, self.csrf_token, block)
+
+        self.check_context(context)
+
+        context_summary = context['summary']
+
+        self.assertEqual(len(context_summary['groups']), 6)
+
+        self.assertEqual(context_summary['groups'][0]['title'], 'Your Details')
+        self.assertEqual(context_summary['groups'][1]['title'], 'Other Household Members')
+        self.assertIsNone(context_summary['groups'][2]['title'])
+        self.assertEqual(context_summary['groups'][3]['title'], 'Aaa')
+        self.assertEqual(context_summary['groups'][4]['title'], 'Bbb')
+        self.assertEqual(context_summary['groups'][5]['title'], 'Ccc')
+
+        self.assertEqual(context_summary['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['value'], 'Aaa')
+        self.assertEqual(context_summary['groups'][1]['blocks'][0]['questions'][0]['answers'][0]['value'], 'Bbb')
+        self.assertEqual(context_summary['groups'][2]['blocks'][0]['questions'][0]['answers'][0]['value'], 'Ccc')
+
+        self.assertEqual(context_summary['groups'][3]['blocks'][0]['questions'][0]['title'].endswith('Aaa'), True)
+        self.assertEqual(context_summary['groups'][4]['blocks'][0]['questions'][0]['title'].endswith('Bbb'), True)
+        self.assertEqual(context_summary['groups'][5]['blocks'][0]['questions'][0]['title'].endswith('Ccc'), True)
+
+        self.assertEqual(context_summary['groups'][3]['blocks'][0]['questions'][0]['answers'][0]['value'], 1)
+        self.assertEqual(context_summary['groups'][3]['blocks'][1]['questions'][0]['answers'][0]['value'], 11)
+        self.assertEqual(context_summary['groups'][4]['blocks'][0]['questions'][0]['answers'][0]['value'], 2)
+        self.assertEqual(context_summary['groups'][4]['blocks'][1]['questions'][0]['answers'][0]['value'], 22)
+        self.assertEqual(context_summary['groups'][5]['blocks'][0]['questions'][0]['answers'][0]['value'], 3)
+        self.assertEqual(context_summary['groups'][5]['blocks'][1]['questions'][0]['answers'][0]['value'], 33)
 
 
 class TestAnswerSummaryContext(TestStandardSummaryContext):

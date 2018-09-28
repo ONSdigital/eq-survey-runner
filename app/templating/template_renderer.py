@@ -1,8 +1,8 @@
 # coding: utf-8
 
-import json
-
 import re
+import simplejson as json
+
 from jinja2 import Environment
 
 import app.jinja_filters as filters

@@ -7,41 +7,41 @@ class CurrencyTotalPlaybackPage extends CalculatedSummaryPage {
     super('currency-total-playback');
   }
 
-  firstNumberAnswer() { return '#first-number-answer-answer'; }
+  firstNumberAnswer(index = 0) { return '#first-number-answer-' + index + '-answer'; }
 
-  firstNumberAnswerEdit() { return '[data-qa="first-number-answer-edit"]'; }
+  firstNumberAnswerEdit(index = 0) { return '[data-qa="first-number-answer-' + index + '-edit"]'; }
 
-  firstNumberAnswerLabel() { return '#first-number-answer-label'; } 
+  firstNumberAnswerLabel(index = 0) { return '#first-number-answer-' + index + '-label'; }
 
-  secondNumberAnswer() { return '#second-number-answer-answer'; }
+  secondNumberAnswer(index = 0) { return '#second-number-answer-' + index + '-answer'; }
 
-  secondNumberAnswerEdit() { return '[data-qa="second-number-answer-edit"]'; }
+  secondNumberAnswerEdit(index = 0) { return '[data-qa="second-number-answer-' + index + '-edit"]'; }
 
-  secondNumberAnswerLabel() { return '#second-number-answer-label'; } 
+  secondNumberAnswerLabel(index = 0) { return '#second-number-answer-' + index + '-label'; }
 
-  secondNumberAnswerAlsoInTotal() { return '#second-number-answer-also-in-total-answer'; }
+  secondNumberAnswerAlsoInTotal(index = 0) { return '#second-number-answer-also-in-total-' + index + '-answer'; }
 
-  secondNumberAnswerAlsoInTotalEdit() { return '[data-qa="second-number-answer-also-in-total-edit"]'; }
+  secondNumberAnswerAlsoInTotalEdit(index = 0) { return '[data-qa="second-number-answer-also-in-total-' + index + '-edit"]'; }
 
-  secondNumberAnswerAlsoInTotalLabel() { return '#second-number-answer-also-in-total-label'; } 
+  secondNumberAnswerAlsoInTotalLabel(index = 0) { return '#second-number-answer-also-in-total-' + index + '-label'; }
 
-  thirdNumberAnswer() { return '#third-number-answer-answer'; }
+  thirdNumberAnswer(index = 0) { return '#third-number-answer-' + index + '-answer'; }
 
-  thirdNumberAnswerEdit() { return '[data-qa="third-number-answer-edit"]'; }
+  thirdNumberAnswerEdit(index = 0) { return '[data-qa="third-number-answer-' + index + '-edit"]'; }
 
-  thirdNumberAnswerLabel() { return '#third-number-answer-label'; } 
+  thirdNumberAnswerLabel(index = 0) { return '#third-number-answer-' + index + '-label'; }
 
-  fourthNumberAnswer() { return '#fourth-number-answer-answer'; }
+  fourthNumberAnswer(index = 0) { return '#fourth-number-answer-' + index + '-answer'; }
 
-  fourthNumberAnswerEdit() { return '[data-qa="fourth-number-answer-edit"]'; }
+  fourthNumberAnswerEdit(index = 0) { return '[data-qa="fourth-number-answer-' + index + '-edit"]'; }
 
-  fourthNumberAnswerLabel() { return '#fourth-number-answer-label'; } 
+  fourthNumberAnswerLabel(index = 0) { return '#fourth-number-answer-' + index + '-label'; }
 
-  fourthNumberAnswerAlsoInTotal() { return '#fourth-number-answer-also-in-total-answer'; }
+  fourthNumberAnswerAlsoInTotal(index = 0) { return '#fourth-number-answer-also-in-total-' + index + '-answer'; }
 
-  fourthNumberAnswerAlsoInTotalEdit() { return '[data-qa="fourth-number-answer-also-in-total-edit"]'; }
+  fourthNumberAnswerAlsoInTotalEdit(index = 0) { return '[data-qa="fourth-number-answer-also-in-total-' + index + '-edit"]'; }
 
-  fourthNumberAnswerAlsoInTotalLabel() { return '#fourth-number-answer-also-in-total-label'; } 
+  fourthNumberAnswerAlsoInTotalLabel(index = 0) { return '#fourth-number-answer-also-in-total-' + index + '-label'; }
 
 }
 module.exports = new CurrencyTotalPlaybackPage();

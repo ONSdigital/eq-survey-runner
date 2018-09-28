@@ -7,20 +7,20 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  dateRangeFromAnswer() {
-    return '#date-range-from-answer';
+  dateRangeFromAnswer(index = 0) {
+    return '#date-range-from-' + index + '-answer';
   }
 
-  monthYearAnswer() {
-    return '#month-year-answer-answer';
+  monthYearAnswer(index = 0) {
+    return '#month-year-answer-' + index + '-answer';
   }
 
-  singleDateAnswer() {
-    return '#single-date-answer-answer';
+  singleDateAnswer(index = 0) {
+    return '#single-date-answer-' + index + '-answer';
   }
 
-  nonMandatoryDateAnswer() {
-    return '#non-mandatory-date-answer-answer';
+  nonMandatoryDateAnswer(index = 0) {
+    return '#non-mandatory-date-answer-' + index + '-answer';
   }
 
 }

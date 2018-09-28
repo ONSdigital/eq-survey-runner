@@ -7,17 +7,17 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  maxAnswer() { return '#max-answer-answer'; }
+  maxAnswer(index = 0) { return '#max-answer-' + index + '-answer'; }
 
-  maxAnswerEdit() { return '[data-qa="max-answer-edit"]'; }
+  maxAnswerEdit(index = 0) { return '[data-qa="max-answer-' + index + '-edit"]'; }
 
-  dependent1() { return '#dependent-1-answer'; }
+  dependent1(index = 0) { return '#dependent-1-' + index + '-answer'; }
 
-  dependent1Edit() { return '[data-qa="dependent-1-edit"]'; }
+  dependent1Edit(index = 0) { return '[data-qa="dependent-1-' + index + '-edit"]'; }
 
-  groupTitle() { return '#group'; }
+  groupTitle(index = 0) { return '#group-' + index; }
 
-  summaryGroupTitle() { return '#summary-group'; }
+  summaryGroupTitle(index = 0) { return '#summary-group-' + index; }
 
 }
 module.exports = new SummaryPage();

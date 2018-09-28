@@ -7,25 +7,25 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  favColourAnswer() { return '#fav-colour-answer-answer'; }
+  favColourAnswer(index = 0) { return '#fav-colour-answer-' + index + '-answer'; }
 
-  favColourAnswerEdit() { return '[data-qa="fav-colour-answer-edit"]'; }
+  favColourAnswerEdit(index = 0) { return '[data-qa="fav-colour-answer-' + index + '-edit"]'; }
 
-  colourGroupTitle() { return '#colour-group'; }
+  colourGroupTitle(index = 0) { return '#colour-group-' + index; }
 
-  firstName() { return '#first-name-answer'; }
+  firstName(index = 0) { return '#first-name-' + index + '-answer'; }
 
-  firstNameEdit() { return '[data-qa="first-name-edit"]'; }
+  firstNameEdit(index = 0) { return '[data-qa="first-name-' + index + '-edit"]'; }
 
-  groupTitle() { return '#group'; }
+  groupTitle(index = 0) { return '#group-' + index; }
 
-  confirmAnswer() { return '#confirm-answer-answer'; }
+  confirmAnswer(index = 0) { return '#confirm-answer-' + index + '-answer'; }
 
-  confirmAnswerEdit() { return '[data-qa="confirm-answer-edit"]'; }
+  confirmAnswerEdit(index = 0) { return '[data-qa="confirm-answer-' + index + '-edit"]'; }
 
-  repeatingGroupTitle() { return '#repeating-group'; }
+  repeatingGroupTitle(index = 0) { return '#repeating-group-' + index; }
 
-  summaryGroupTitle() { return '#summary-group'; }
+  summaryGroupTitle(index = 0) { return '#summary-group-' + index; }
 
 }
 module.exports = new SummaryPage();

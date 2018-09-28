@@ -7,21 +7,21 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  coffeeAnswer() { return '#coffee-answer-answer'; }
+  coffeeAnswer(index = 0) { return '#coffee-answer-' + index + '-answer'; }
 
-  coffeeAnswerEdit() { return '[data-qa="coffee-answer-edit"]'; }
+  coffeeAnswerEdit(index = 0) { return '[data-qa="coffee-answer-' + index + '-edit"]'; }
 
-  responseYesNumberOfCups() { return '#response-yes-number-of-cups-answer'; }
+  responseYesNumberOfCups(index = 0) { return '#response-yes-number-of-cups-' + index + '-answer'; }
 
-  responseYesNumberOfCupsEdit() { return '[data-qa="response-yes-number-of-cups-edit"]'; }
+  responseYesNumberOfCupsEdit(index = 0) { return '[data-qa="response-yes-number-of-cups-' + index + '-edit"]'; }
 
-  responseNoNumberOfCups() { return '#response-no-number-of-cups-answer'; }
+  responseNoNumberOfCups(index = 0) { return '#response-no-number-of-cups-' + index + '-answer'; }
 
-  responseNoNumberOfCupsEdit() { return '[data-qa="response-no-number-of-cups-edit"]'; }
+  responseNoNumberOfCupsEdit(index = 0) { return '[data-qa="response-no-number-of-cups-' + index + '-edit"]'; }
 
-  toastAnswer() { return '#toast-answer-answer'; }
+  toastAnswer(index = 0) { return '#toast-answer-' + index + '-answer'; }
 
-  toastAnswerEdit() { return '[data-qa="toast-answer-edit"]'; }
+  toastAnswerEdit(index = 0) { return '[data-qa="toast-answer-' + index + '-edit"]'; }
 
 }
 module.exports = new SummaryPage();

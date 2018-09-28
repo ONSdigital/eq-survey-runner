@@ -319,8 +319,8 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
             routing_path = PathFinder(schema, answer_store, metadata, []).get_full_routing_path()
 
             schema_context = _get_schema_context(routing_path, None, metadata, collection_metadata, answer_store, schema)
-            rendered_schema = renderer.render(schema.json, **schema_context)
-            summary_rendered_context = build_summary_rendering_context(schema, rendered_schema['sections'], answer_store, metadata)
+            section_list = schema.json['sections']
+            summary_rendered_context = build_summary_rendering_context(schema, section_list, answer_store, metadata, schema_context)
 
             context = {
                 'summary': {

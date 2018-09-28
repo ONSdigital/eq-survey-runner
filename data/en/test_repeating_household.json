@@ -59,7 +59,7 @@
         }]
     }, {
         "id": "first-names-section",
-        "title_from_answers": ["first-name"],
+        "title_from_answers": ["first-name", "last-name"],
         "groups": [{
             "blocks": [{
                 "type": "Question",

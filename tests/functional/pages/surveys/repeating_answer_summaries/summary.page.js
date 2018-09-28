@@ -7,27 +7,27 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  primaryLastName() { return '#primary-last-name-answer'; }
+  primaryLastName(index = 0) { return '#primary-last-name-' + index + '-answer'; }
 
-  primaryLastNameEdit() { return '[data-qa="primary-last-name-edit"]'; }
+  primaryLastNameEdit(index = 0) { return '[data-qa="primary-last-name-' + index + '-edit"]'; }
 
-  primaryAnyoneElse() { return '#primary-anyone-else-answer'; }
+  primaryAnyoneElse(index = 0) { return '#primary-anyone-else-' + index + '-answer'; }
 
-  primaryAnyoneElseEdit() { return '[data-qa="primary-anyone-else-edit"]'; }
+  primaryAnyoneElseEdit(index = 0) { return '[data-qa="primary-anyone-else-' + index + '-edit"]'; }
 
-  primaryGroupTitle() { return '#primary-group'; }
+  primaryGroupTitle(index = 0) { return '#primary-group-' + index; }
 
-  repeatingLastName() { return '#repeating-last-name-answer'; }
+  repeatingLastName(index = 0) { return '#repeating-last-name-' + index + '-answer'; }
 
-  repeatingLastNameEdit() { return '[data-qa="repeating-last-name-edit"]'; }
+  repeatingLastNameEdit(index = 0) { return '[data-qa="repeating-last-name-' + index + '-edit"]'; }
 
-  repeatingAnyoneElse() { return '#repeating-anyone-else-answer'; }
+  repeatingAnyoneElse(index = 0) { return '#repeating-anyone-else-' + index + '-answer'; }
 
-  repeatingAnyoneElseEdit() { return '[data-qa="repeating-anyone-else-edit"]'; }
+  repeatingAnyoneElseEdit(index = 0) { return '[data-qa="repeating-anyone-else-' + index + '-edit"]'; }
 
-  repeatingGroupTitle() { return '#repeating-group'; }
+  repeatingGroupTitle(index = 0) { return '#repeating-group-' + index; }
 
-  summaryGroupTitle() { return '#summary-group'; }
+  summaryGroupTitle(index = 0) { return '#summary-group-' + index; }
 
 }
 module.exports = new SummaryPage();

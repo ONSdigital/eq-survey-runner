@@ -107,10 +107,10 @@ def build_view_context_for_question(metadata, schema, answer_store, current_loca
 
 def build_view_context_for_final_summary(metadata, schema, answer_store, schema_context,
                                          block_type, variables, csrf_token, rendered_block):
-    section_list = renderer.render(schema.json, **schema_context)['sections']
+    section_list = schema.json['sections']
 
     context = build_view_context_for_summary(schema, section_list, answer_store, metadata,
-                                             csrf_token, block_type, variables)
+                                             csrf_token, block_type, variables, schema_context)
 
     context['summary'].update({
         'is_view_submission_response_enabled': is_view_submitted_response_enabled(schema.json),
@@ -124,11 +124,10 @@ def build_view_context_for_section_summary(metadata, schema, answer_store, schem
                                            block_type, variables, csrf_token, group_id):
     section_id = schema.get_group(group_id)['parent_id']
     section = schema.get_section(section_id)
-    section_list = [renderer.render(section, **schema_context)]
-    title = section['title']
+    title = section.get('title')
 
-    context = build_view_context_for_summary(schema, section_list, answer_store, metadata,
-                                             csrf_token, block_type, variables)
+    context = build_view_context_for_summary(schema, [section], answer_store, metadata,
+                                             csrf_token, block_type, variables, schema_context)
 
     context['summary'].update({
         'title': title,
@@ -138,13 +137,17 @@ def build_view_context_for_section_summary(metadata, schema, answer_store, schem
 
 def build_view_context_for_calculated_summary(metadata, schema, answer_store, schema_context, block_type,
                                               variables, csrf_token, current_location):
-    rendered_block = renderer.render(schema.get_block(current_location.block_id), **schema_context)
-    section_list = _build_calculated_summary_section_list(schema, rendered_block, current_location.group_id)
+    block = schema.get_block(current_location.block_id)
+    section_list = _build_calculated_summary_section_list(schema, block, current_location.group_id)
 
     context = build_view_context_for_summary(schema, section_list, answer_store, metadata,
-                                             csrf_token, block_type, variables)
+                                             csrf_token, block_type, variables, schema_context)
 
+    context['summary']['groups'] = [context['summary']['groups'][current_location.group_instance]]
+    schema_context['group_instance_id'] = get_group_instance_id(schema, answer_store, current_location)
+    rendered_block = renderer.render(block, **schema_context)
     formatted_total = _get_formatted_total(context['summary'].get('groups', []))
+
     context['summary'].update({
         'calculated_question': _get_calculated_question(rendered_block['calculation'], answer_store, schema,
                                                         metadata, current_location.group_instance, formatted_total),
@@ -218,8 +221,8 @@ def _build_answers(answer_store, group_instance_id):
 
 
 def build_view_context_for_summary(schema, section_list, answer_store, metadata,
-                                   csrf_token, block_type, variables):
-    summary_rendering_context = build_summary_rendering_context(schema, section_list, answer_store, metadata)
+                                   csrf_token, block_type, variables, schema_context):
+    summary_rendering_context = build_summary_rendering_context(schema, section_list, answer_store, metadata, schema_context)
 
     context = {
         'csrf_token': csrf_token,

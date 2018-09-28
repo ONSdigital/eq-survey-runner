@@ -7,11 +7,11 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  monthYearAnswer() { return '#month-year-answer-answer'; }
+  monthYearAnswer(index = 0) { return '#month-year-answer-' + index + '-answer'; }
 
-  monthYearAnswerEdit() { return '[data-qa="month-year-answer-edit"]'; }
+  monthYearAnswerEdit(index = 0) { return '[data-qa="month-year-answer-' + index + '-edit"]'; }
 
-  languageGroupTitle() { return '#language-group'; }
+  languageGroupTitle(index = 0) { return '#language-group-' + index; }
 
 }
 module.exports = new SummaryPage();

@@ -7,17 +7,17 @@ class UnitTotalPlaybackPage extends CalculatedSummaryPage {
     super('unit-total-playback');
   }
 
-  secondNumberAnswerUnitTotal() { return '#second-number-answer-unit-total-answer'; }
+  secondNumberAnswerUnitTotal(index = 0) { return '#second-number-answer-unit-total-' + index + '-answer'; }
 
-  secondNumberAnswerUnitTotalEdit() { return '[data-qa="second-number-answer-unit-total-edit"]'; }
+  secondNumberAnswerUnitTotalEdit(index = 0) { return '[data-qa="second-number-answer-unit-total-' + index + '-edit"]'; }
 
-  secondNumberAnswerUnitTotalLabel() { return '#second-number-answer-unit-total-label'; } 
+  secondNumberAnswerUnitTotalLabel(index = 0) { return '#second-number-answer-unit-total-' + index + '-label'; }
 
-  thirdNumberAnswerUnitTotal() { return '#third-number-answer-unit-total-answer'; }
+  thirdNumberAnswerUnitTotal(index = 0) { return '#third-number-answer-unit-total-' + index + '-answer'; }
 
-  thirdNumberAnswerUnitTotalEdit() { return '[data-qa="third-number-answer-unit-total-edit"]'; }
+  thirdNumberAnswerUnitTotalEdit(index = 0) { return '[data-qa="third-number-answer-unit-total-' + index + '-edit"]'; }
 
-  thirdNumberAnswerUnitTotalLabel() { return '#third-number-answer-unit-total-label'; } 
+  thirdNumberAnswerUnitTotalLabel(index = 0) { return '#third-number-answer-unit-total-' + index + '-label'; }
 
 }
 module.exports = new UnitTotalPlaybackPage();

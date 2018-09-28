@@ -1,7 +1,7 @@
 class Answer:
 
-    def __init__(self, answer_schema, answer, child_answer_value=None):
-        self.id = answer_schema['id']
+    def __init__(self, answer_schema, answer, group_instance, child_answer_value=None):
+        self.id = answer_schema['id'] + '-' + str(group_instance)
         self.label = answer_schema.get('label')
         self.value = answer
         self.type = answer_schema['type'].lower()

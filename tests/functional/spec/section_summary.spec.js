@@ -72,13 +72,13 @@ describe('Section Summary', function() {
 
     it('When I click change an answer, Then I should go to that answer', function() {
       return browser
-        .click(FinalSummaryPage.propertyDetailsDropDownButton())
+        .click(FinalSummaryPage.showAllButton())
         .getText(FinalSummaryPage.insuranceTypeAnswer()).should.eventually.contain('Contents')
         .click(FinalSummaryPage.propertyDetailsDropDownChangeLink())
         .getUrl().should.eventually.contain(InsuranceTypePage.pageName)
         .click(InsuranceTypePage.buildings())
         .click(InsuranceTypePage.submit())
-        .getText(PropertyDetailsSummaryPage.insuranceTypeAnswer()).should.eventually.contain('Buildings');
+        .getText(FinalSummaryPage.insuranceTypeAnswer()).should.eventually.contain('Buildings');
     });
   });
 

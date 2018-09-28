@@ -7,21 +7,21 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  noOfRepeatsAnswer() { return '#no-of-repeats-answer-answer'; }
+  noOfRepeatsAnswer(index = 0) { return '#no-of-repeats-answer-' + index + '-answer'; }
 
-  noOfRepeatsAnswerEdit() { return '[data-qa="no-of-repeats-answer-edit"]'; }
+  noOfRepeatsAnswerEdit(index = 0) { return '[data-qa="no-of-repeats-answer-' + index + '-edit"]'; }
 
-  conditionalAnswer() { return '#conditional-answer-answer'; }
+  conditionalAnswer(index = 0) { return '#conditional-answer-' + index + '-answer'; }
 
-  conditionalAnswerEdit() { return '[data-qa="conditional-answer-edit"]'; }
+  conditionalAnswerEdit(index = 0) { return '[data-qa="conditional-answer-' + index + '-edit"]'; }
 
-  whatIsYourAge() { return '#what-is-your-age-answer'; }
+  whatIsYourAge(index = 0) { return '#what-is-your-age-' + index + '-answer'; }
 
-  whatIsYourAgeEdit() { return '[data-qa="what-is-your-age-edit"]'; }
+  whatIsYourAgeEdit(index = 0) { return '[data-qa="what-is-your-age-' + index + '-edit"]'; }
 
-  whatIsYourShoeSize() { return '#what-is-your-shoe-size-answer'; }
+  whatIsYourShoeSize(index = 0) { return '#what-is-your-shoe-size-' + index + '-answer'; }
 
-  whatIsYourShoeSizeEdit() { return '[data-qa="what-is-your-shoe-size-edit"]'; }
+  whatIsYourShoeSizeEdit(index = 0) { return '[data-qa="what-is-your-shoe-size-' + index + '-edit"]'; }
 
 }
 module.exports = new SummaryPage();

@@ -7,33 +7,33 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  radioAnswer() { return '#radio-answer-answer'; }
+  radioAnswer(index = 0) { return '#radio-answer-' + index + '-answer'; }
 
-  radioAnswerEdit() { return '[data-qa="radio-answer-edit"]'; }
+  radioAnswerEdit(index = 0) { return '[data-qa="radio-answer-' + index + '-edit"]'; }
 
-  otherAnswerMandatory() { return '#other-answer-mandatory-answer'; }
+  otherAnswerMandatory(index = 0) { return '#other-answer-mandatory-' + index + '-answer'; }
 
-  otherAnswerMandatoryEdit() { return '[data-qa="other-answer-mandatory-edit"]'; }
+  otherAnswerMandatoryEdit(index = 0) { return '[data-qa="other-answer-mandatory-' + index + '-edit"]'; }
 
-  testCurrency() { return '#test-currency-answer'; }
+  testCurrency(index = 0) { return '#test-currency-' + index + '-answer'; }
 
-  testCurrencyEdit() { return '[data-qa="test-currency-edit"]'; }
+  testCurrencyEdit(index = 0) { return '[data-qa="test-currency-' + index + '-edit"]'; }
 
-  squareKilometres() { return '#square-kilometres-answer'; }
+  squareKilometres(index = 0) { return '#square-kilometres-' + index + '-answer'; }
 
-  squareKilometresEdit() { return '[data-qa="square-kilometres-edit"]'; }
+  squareKilometresEdit(index = 0) { return '[data-qa="square-kilometres-' + index + '-edit"]'; }
 
-  testDecimal() { return '#test-decimal-answer'; }
+  testDecimal(index = 0) { return '#test-decimal-' + index + '-answer'; }
 
-  testDecimalEdit() { return '[data-qa="test-decimal-edit"]'; }
+  testDecimalEdit(index = 0) { return '[data-qa="test-decimal-' + index + '-edit"]'; }
 
-  summaryGroupTitle() { return '#summary-group'; }
+  summaryGroupTitle(index = 0) { return '#summary-group-' + index; }
 
-  dessert() { return '#dessert-answer'; }
+  dessert(index = 0) { return '#dessert-' + index + '-answer'; }
 
-  dessertEdit() { return '[data-qa="dessert-edit"]'; }
+  dessertEdit(index = 0) { return '[data-qa="dessert-' + index + '-edit"]'; }
 
-  dessertGroupTitle() { return '#dessert-group'; }
+  dessertGroupTitle(index = 0) { return '#dessert-group-' + index; }
 
 }
 module.exports = new SummaryPage();

@@ -7,23 +7,23 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  numberOfEmployeesTotal() { return '#number-of-employees-total-answer'; }
+  numberOfEmployeesTotal(index = 0) { return '#number-of-employees-total-' + index + '-answer'; }
 
-  numberOfEmployeesTotalEdit() { return '[data-qa="number-of-employees-total-edit"]'; }
+  numberOfEmployeesTotalEdit(index = 0) { return '[data-qa="number-of-employees-total-' + index + '-edit"]'; }
 
-  confirmZeroEmployeesAnswer() { return '#confirm-zero-employees-answer-answer'; }
+  confirmZeroEmployeesAnswer(index = 0) { return '#confirm-zero-employees-answer-' + index + '-answer'; }
 
-  confirmZeroEmployeesAnswerEdit() { return '[data-qa="confirm-zero-employees-answer-edit"]'; }
+  confirmZeroEmployeesAnswerEdit(index = 0) { return '[data-qa="confirm-zero-employees-answer-' + index + '-edit"]'; }
 
-  numberOfEmployeesMaleMore30Hours() { return '#number-of-employees-male-more-30-hours-answer'; }
+  numberOfEmployeesMaleMore30Hours(index = 0) { return '#number-of-employees-male-more-30-hours-' + index + '-answer'; }
 
-  numberOfEmployeesMaleMore30HoursEdit() { return '[data-qa="number-of-employees-male-more-30-hours-edit"]'; }
+  numberOfEmployeesMaleMore30HoursEdit(index = 0) { return '[data-qa="number-of-employees-male-more-30-hours-' + index + '-edit"]'; }
 
-  numberOfEmployeesFemaleMore30Hours() { return '#number-of-employees-female-more-30-hours-answer'; }
+  numberOfEmployeesFemaleMore30Hours(index = 0) { return '#number-of-employees-female-more-30-hours-' + index + '-answer'; }
 
-  numberOfEmployeesFemaleMore30HoursEdit() { return '[data-qa="number-of-employees-female-more-30-hours-edit"]'; }
+  numberOfEmployeesFemaleMore30HoursEdit(index = 0) { return '[data-qa="number-of-employees-female-more-30-hours-' + index + '-edit"]'; }
 
-  confirmationBlockTitle() { return '#confirmation-block'; }
+  confirmationBlockTitle(index = 0) { return '#confirmation-block-' + index; }
 
 }
 module.exports = new SummaryPage();

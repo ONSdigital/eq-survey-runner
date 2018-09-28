@@ -7,17 +7,17 @@ class PercentageTotalPlaybackPage extends CalculatedSummaryPage {
     super('percentage-total-playback');
   }
 
-  fifthPercentAnswer() { return '#fifth-percent-answer-answer'; }
+  fifthPercentAnswer(index = 0) { return '#fifth-percent-answer-' + index + '-answer'; }
 
-  fifthPercentAnswerEdit() { return '[data-qa="fifth-percent-answer-edit"]'; }
+  fifthPercentAnswerEdit(index = 0) { return '[data-qa="fifth-percent-answer-' + index + '-edit"]'; }
 
-  fifthPercentAnswerLabel() { return '#fifth-percent-answer-label'; } 
+  fifthPercentAnswerLabel(index = 0) { return '#fifth-percent-answer-' + index + '-label'; }
 
-  sixthPercentAnswer() { return '#sixth-percent-answer-answer'; }
+  sixthPercentAnswer(index = 0) { return '#sixth-percent-answer-' + index + '-answer'; }
 
-  sixthPercentAnswerEdit() { return '[data-qa="sixth-percent-answer-edit"]'; }
+  sixthPercentAnswerEdit(index = 0) { return '[data-qa="sixth-percent-answer-' + index + '-edit"]'; }
 
-  sixthPercentAnswerLabel() { return '#sixth-percent-answer-label'; } 
+  sixthPercentAnswerLabel(index = 0) { return '#sixth-percent-answer-' + index + '-label'; }
 
 }
 module.exports = new PercentageTotalPlaybackPage();

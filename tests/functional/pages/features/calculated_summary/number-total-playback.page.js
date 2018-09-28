@@ -7,17 +7,17 @@ class NumberTotalPlaybackPage extends CalculatedSummaryPage {
     super('number-total-playback');
   }
 
-  fifthNumberAnswer() { return '#fifth-number-answer-answer'; }
+  fifthNumberAnswer(index = 0) { return '#fifth-number-answer-' + index + '-answer'; }
 
-  fifthNumberAnswerEdit() { return '[data-qa="fifth-number-answer-edit"]'; }
+  fifthNumberAnswerEdit(index = 0) { return '[data-qa="fifth-number-answer-' + index + '-edit"]'; }
 
-  fifthNumberAnswerLabel() { return '#fifth-number-answer-label'; } 
+  fifthNumberAnswerLabel(index = 0) { return '#fifth-number-answer-' + index + '-label'; }
 
-  sixthNumberAnswer() { return '#sixth-number-answer-answer'; }
+  sixthNumberAnswer(index = 0) { return '#sixth-number-answer-' + index + '-answer'; }
 
-  sixthNumberAnswerEdit() { return '[data-qa="sixth-number-answer-edit"]'; }
+  sixthNumberAnswerEdit(index = 0) { return '[data-qa="sixth-number-answer-' + index + '-edit"]'; }
 
-  sixthNumberAnswerLabel() { return '#sixth-number-answer-label'; } 
+  sixthNumberAnswerLabel(index = 0) { return '#sixth-number-answer-' + index + '-label'; }
 
 }
 module.exports = new NumberTotalPlaybackPage();

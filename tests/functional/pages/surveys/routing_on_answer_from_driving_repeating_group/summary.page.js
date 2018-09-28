@@ -7,39 +7,39 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  primaryName() { return '#primary-name-answer'; }
+  primaryName(index = 0) { return '#primary-name-' + index + 'answer'; }
 
-  primaryNameEdit() { return '[data-qa="primary-name-edit"]'; }
+  primaryNameEdit(index = 0) { return '[data-qa="primary-name-' + index + '-edit"]'; }
 
-  primaryLiveHere() { return '#primary-live-here-answer'; }
+  primaryLiveHere(index = 0) { return '#primary-live-here-' + index + '-answer'; }
 
-  primaryLiveHereEdit() { return '[data-qa="primary-live-here-edit"]'; }
+  primaryLiveHereEdit(index = 0) { return '[data-qa="primary-live-here-' + index + '-edit"]'; }
 
-  primaryGroupTitle() { return '#primary-group'; }
+  primaryGroupTitle(index = 0) { return '#primary-group-' + index; }
 
-  repeatingAnyoneElse() { return '#repeating-anyone-else-answer'; }
+  repeatingAnyoneElse(index = 0) { return '#repeating-anyone-else-' + index + '-answer'; }
 
-  repeatingAnyoneElseEdit() { return '[data-qa="repeating-anyone-else-edit"]'; }
+  repeatingAnyoneElseEdit(index = 0) { return '[data-qa="repeating-anyone-else-' + index + '-edit"]'; }
 
-  repeatingName() { return '#repeating-name-answer'; }
+  repeatingName(index = 0) { return '#repeating-name-' + index + '-answer'; }
 
-  repeatingNameEdit() { return '[data-qa="repeating-name-edit"]'; }
+  repeatingNameEdit(index = 0) { return '[data-qa="repeating-name-' + index + '-edit"]'; }
 
-  repeatingGroupTitle() { return '#repeating-group'; }
+  repeatingGroupTitle(index = 0) { return '#repeating-group-' + index; }
 
-  whoIsRelated() { return '#who-is-related-answer'; }
+  whoIsRelated(index = 0) { return '#who-is-related-' + index + '-answer'; }
 
-  whoIsRelatedEdit() { return '[data-qa="who-is-related-edit"]'; }
+  whoIsRelatedEdit(index = 0) { return '[data-qa="who-is-related-' + index + '-edit"]'; }
 
-  householdRelationshipsTitle() { return '#household-relationships'; }
+  householdRelationshipsTitle(index = 0) { return '#household-relationships-' + index; }
 
-  sexAnswer() { return '#sex-answer-answer'; }
+  sexAnswer(index = 0) { return '#sex-answer-answer-' + index; }
 
-  sexAnswerEdit() { return '[data-qa="sex-answer-edit"]'; }
+  sexAnswerEdit(index = 0) { return '[data-qa="sex-answer-' + index + '-edit"]'; }
 
-  sexGroupTitle() { return '#sex-group'; }
+  sexGroupTitle(index = 0) { return '#sex-group-' + index; }
 
-  summaryGroupTitle() { return '#summary-group'; }
+  summaryGroupTitle(index = 0) { return '#summary-group-' + index; }
 
 }
 module.exports = new SummaryPage();

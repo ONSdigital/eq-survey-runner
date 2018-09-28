@@ -7,15 +7,15 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  foodAnswer() { return '#food-answer-answer'; }
+  foodAnswer(index = 0) { return '#food-answer-' + index + '-answer'; }
 
-  foodAnswerEdit() { return '[data-qa="food-answer-edit"]'; }
+  foodAnswerEdit(index = 0) { return '[data-qa="food-answer-' + index + '-edit"]'; }
 
-  drinkAnswer() { return '#drink-answer-answer'; }
+  drinkAnswer(index = 0) { return '#drink-answer-' + index + '-answer'; }
 
-  drinkAnswerEdit() { return '[data-qa="drink-answer-edit"]'; }
+  drinkAnswerEdit(index = 0) { return '[data-qa="drink-answer-' + index + '-edit"]'; }
 
-  breakfastTitle() { return '#breakfast'; }
+  breakfastTitle(index = 0) { return '#breakfast-' + index; }
 
 }
 module.exports = new SummaryPage();

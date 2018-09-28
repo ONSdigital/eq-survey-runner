@@ -7,16 +7,16 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  answer() {
-    return '#first-name-answer-answer';
+  answer(index = 0) {
+    return '#first-name-answer-' + index + '-answer';
   }
 
-  otherAnswer() {
-    return '#surname-answer-answer';
+  otherAnswer(index = 0) {
+    return '#surname-answer-' + index + '-answer';
   }
 
-  editFirstName() {
-     return '[data-qa="first-name-answer-edit"]';
+  editFirstName(index = 0) {
+     return '[data-qa="first-name-answer-' + index + '-edit"]';
   }
 
 

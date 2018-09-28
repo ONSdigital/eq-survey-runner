@@ -7,9 +7,9 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  dropdownMandatoryWithLabelAnswer() { return '#dropdown-mandatory-with-label-answer-answer'; }
+  dropdownMandatoryWithLabelAnswer(index = 0) { return '#dropdown-mandatory-with-label-answer-' + index + '-answer'; }
 
-  dropdownMandatoryWithLabelAnswerEdit() { return '[data-qa="dropdown-mandatory-with-label-answer-edit"]'; }
+  dropdownMandatoryWithLabelAnswerEdit(index = 0) { return '[data-qa="dropdown-mandatory-with-label-answer-' + index + '-edit"]'; }
 
 }
 module.exports = new SummaryPage();

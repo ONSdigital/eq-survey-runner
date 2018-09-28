@@ -67,9 +67,34 @@ describe('Household Repeating', function() {
           .click(RepeatingBlock3Page.yes())
           .click(RepeatingBlock3Page.submit())
 
-          .getUrl().should.eventually.contain(SummaryPage.pageName);
+          .then(checkSummaryBlockPage);
     });
   });
-
 });
 
+
+function checkSummaryBlockPage() {
+  return browser
+    .getUrl().should.eventually.contain(SummaryPage.pageName)
+
+    .getText(SummaryPage.multipleQuestionsGroupTitle()).should.eventually.contain("Group 1")
+
+    .getText(SummaryPage.firstName()).should.eventually.contain("Alpha")
+    .getText(SummaryPage.middleNames()).should.eventually.contain("No answer provided")
+    .getText(SummaryPage.lastName()).should.eventually.contain("One")
+
+    .getText(SummaryPage.repeatingGroupTitle()).should.eventually.contain("Alpha One")
+    .getText(SummaryPage.whatIsYourAge()).should.eventually.contain("60")
+    .getText(SummaryPage.whatIsYourShoeSize()).should.eventually.contain("10")
+    .getText(SummaryPage.confirmAnswer()).should.eventually.contain("Yes")
+
+    .getText(SummaryPage.repeatingGroupTitle(1)).should.eventually.contain("Bravo Two")
+    .getText(SummaryPage.whatIsYourAge(1)).should.eventually.contain("50")
+    .getText(SummaryPage.whatIsYourShoeSize(1)).should.eventually.contain("11")
+    .getText(SummaryPage.confirmAnswer(1)).should.eventually.contain("Yes")
+
+    .getText(SummaryPage.repeatingGroupTitle(2)).should.eventually.contain("Charlie Three")
+    .getText(SummaryPage.whatIsYourAge(2)).should.eventually.contain("40")
+    .getText(SummaryPage.whatIsYourShoeSize(2)).should.eventually.contain("12")
+    .getText(SummaryPage.confirmAnswer(2)).should.eventually.contain("Yes");
+}

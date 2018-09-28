@@ -7,11 +7,11 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  answer() { return '#answer-answer'; }
+  answer(index = 0) { return '#answer-' + index + '-answer'; }
 
-  answerEdit() { return '[data-qa="answer-edit"]'; }
+  answerEdit(index = 0) { return '[data-qa="answer-' + index + '-edit"]'; }
 
-  groupTitle() { return '#group'; }
+  groupTitle(index = 0) { return '#group-' + index; }
 
 }
 module.exports = new SummaryPage();

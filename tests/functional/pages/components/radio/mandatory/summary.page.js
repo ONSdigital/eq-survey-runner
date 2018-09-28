@@ -7,9 +7,9 @@ class SummaryPage extends QuestionPage {
     super('summary');
   }
 
-  radioMandatoryAnswer() { return '#radio-mandatory-answer-answer'; }
+  radioMandatoryAnswer(index = 0) { return '#radio-mandatory-answer-' + index + '-answer'; }
 
-  radioMandatoryAnswerEdit() { return '[data-qa="radio-mandatory-answer-edit"]'; }
+  radioMandatoryAnswerEdit(index = 0) { return '[data-qa="radio-mandatory-answer-' + index + '-edit"]'; }
 
 }
 module.exports = new SummaryPage();
