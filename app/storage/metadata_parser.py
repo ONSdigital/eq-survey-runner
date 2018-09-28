@@ -16,14 +16,21 @@ def uuid_4_parser(plain_string):
 
 
 def boolean_parser(boolean_value):
-    """Strict matching of boolean values from JWT claims.
-    :param metadata:
-    :raises: TypeError - when a non boolean value has been loaded from the JWT.
-    :returns: A boolean value
-    """
     if not isinstance(boolean_value, bool):
         raise TypeError('Claim was not of type `bool`')
     return boolean_value
+
+
+def string_parser(string_value):
+    if not isinstance(string_value, str) or string_value == '':
+        raise TypeError('Claim not a valid string value')
+    return string_value
+
+
+def optional_string_parser(optional_string_value):
+    if not isinstance(optional_string_value, str):
+        raise TypeError('Claim not a valid/empty string')
+    return optional_string_value
 
 
 def clean_leading_trailing_spaces(metadata):
@@ -38,7 +45,8 @@ VALIDATORS = {
     'date': iso_8601_date_parser,
     'uuid': uuid_4_parser,
     'boolean': boolean_parser,
-    'string': lambda *args: None,
+    'string': string_parser,
+    'optional_string': optional_string_parser,
 }
 
 MANDATORY_METADATA = [
@@ -77,30 +85,7 @@ def parse_runner_claims(claims):
 
 
 def validate_metadata(claims, required_metadata):
-    _validate_metadata_is_present(claims, required_metadata)
     _validate_metadata_values_are_valid(claims, required_metadata)
-
-
-def _validate_metadata_is_present(metadata, required_metadata):
-    """
-    Validate that JWT claims contain the required metadata (both eq-runner and survey specific required metadata).
-    :param metadata:
-    :param required_metadata:
-    """
-    for metadata_field in required_metadata:
-        name = metadata_field['name']
-        if name == 'trad_as_or_ru_name':
-            # either of 'trad_as' or 'ru_name' is required
-            valid = bool(metadata.get('trad_as') or metadata.get('ru_name'))
-        else:
-            # Validate that the value is one of:
-            # a) A boolean value
-            # b) A non empty value
-            value = metadata.get(name)
-            valid = isinstance(value, bool) or bool(value)
-
-        if not valid:
-            raise InvalidTokenException('Missing key/value for {}'.format(name))
 
 
 def _validate_metadata_values_are_valid(claims, required_metadata):
@@ -114,13 +99,17 @@ def _validate_metadata_values_are_valid(claims, required_metadata):
         for metadata_field in required_metadata:
             name = metadata_field['name']
             claim = claims.get(name)
-            if claim:
-                logger.debug('parsing metadata', key=name, value=claim)
-                VALIDATORS[metadata_field['validator']](claim)
+            if name == 'trad_as_or_ru_name':
+                claim = claims.get('ru_name') or claims.get('trad_as')
+            elif name not in claims:
+                raise InvalidTokenException('Missing required key {} from claims'.format(name))
+
+            logger.debug('parsing metadata', key=name, value=claim)
+            VALIDATORS[metadata_field['validator']](claim)
 
     except (RuntimeError, ValueError, TypeError) as error:
         logger.error('Unable to parse metadata', key=name, value=claim, exc_info=error)
-        raise InvalidTokenException('incorrect data in token') from error
+        raise InvalidTokenException('incorrect data in token for {}'.format(name)) from error
     except KeyError as key_error:
         error_msg = 'Invalid validator for schema metadata - {}'.format(key_error.args[0])
         logger.error(error_msg, exc_info=key_error)

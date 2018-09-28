@@ -939,3 +939,12 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         metadata_address = ['123', 'Testy', 'Place', 'Newport', 'NP5 7AR']
         self.assertEqual('44<br />Testing<br />Gardens<br />Swansea<br />SA1 1AA',
                          format_address_list(user_entered_address, metadata_address))
+
+    def test_format_address_list_concatenated_list_no_values(self):
+        answer_address = ['', '', '']
+        metadata_address = ['', '', '']
+
+        with self.assertRaises(Exception) as error:
+            format_address_list(answer_address, metadata_address)
+
+        self.assertEqual('No valid address passed to format_address_list filter', error.exception.args[0])
