@@ -6,6 +6,7 @@ class Answer:
         self.value = answer
         self.type = answer_schema['type'].lower()
         self.unit = answer_schema.get('unit')
+        self.unit_length = answer_schema.get('unit_length')
         self.parent_answer_id = answer_schema.get('parent_answer_id')
         self.child_answer_value = child_answer_value
         self.currency = answer_schema.get('currency')
@@ -17,6 +18,7 @@ class Answer:
             'value': self.value,
             'type': self.type,
             'unit': self.unit,
+            'unit_length': self.unit_length,
             'parent_answer_id': self.parent_answer_id,
             'child_answer_value': self.child_answer_value,
             'currency': self.currency,

@@ -4034,7 +4034,7 @@
                         "id": "one-job-hours-totalized-w13",
                         "type": "CalculatedSummary",
                         "titles": [{
-                                "value": "We calculate the total number of hours that <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> worked in their job, including overtime, to be %(total)s hours for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct? ",
+                                "value": "We calculate the total number of hours that <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}}</em> worked in their job, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct? ",
                                 "when": [{
                                     "id": "proxy-check-answer",
                                     "condition": "equals",
@@ -4042,7 +4042,7 @@
                                 }]
                             },
                             {
-                                "value": "We calculate the total number of hours that you worked in your job, including overtime, to be %(total)s hours for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct? "
+                                "value": "We calculate the total number of hours that you worked in your job, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct? "
                             }
                         ],
                         "calculation": {
