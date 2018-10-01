@@ -73,9 +73,9 @@ def evaluate_condition(condition, answer_value, match_value):
     elif condition == 'not contains' and isinstance(answer_value, list) and match_value not in answer_value:
         result = True
     elif condition == 'set':
-        result = answer_value is not None
+        result = answer_value is not None and answer_value != []
     elif condition == 'not set':
-        result = answer_value is None
+        result = answer_value is None or answer_value == []
     elif condition == 'greater than' and answer_and_match and answer_value > match_value:
         result = True
     elif condition == 'less than' and answer_and_match and answer_value < match_value:
