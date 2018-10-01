@@ -733,6 +733,9 @@ class TestNavigation(AppContextTestCase):
 
         answer_store.update(change_answer)
 
+        # create navigation object again as completeness state is cached
+        navigation = _create_navigation(schema, answer_store, metadata, completed_blocks, [])
+
         user_navigation = navigation.build_navigation('property-details', 0)
 
         link_names = [d['link_name'] for d in user_navigation]

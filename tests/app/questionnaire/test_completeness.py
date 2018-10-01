@@ -498,4 +498,4 @@ class TestCompleteness(AppContextTestCase): # pylint: disable=too-many-public-me
         """
         with patch('app.questionnaire.completeness.Completeness.get_state_for_group', side_effect=['SKIPPED', 'INVALID']):
             completeness = Completeness([], [], [], [], [])
-            self.assertEqual(completeness.get_state_for_section({'groups': [1, 1]}), 'SKIPPED')
+            self.assertEqual(completeness.get_state_for_section({'id': 'section_id', 'groups': [1, 1]}), 'SKIPPED')
