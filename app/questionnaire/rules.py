@@ -158,7 +158,7 @@ def evaluate_repeat(repeat_rule, answer_store, schema, routing_path):
                                    group_instance_id=(answer['group_instance_id'] or None)):
                 break
 
-            no_of_repeats = no_of_repeats + 1
+            no_of_repeats += 1
     else:
         repeat_functions = {
             'answer_value': _get_answer_value,
@@ -211,7 +211,7 @@ def _get_answers_on_path(answers, schema, routing_path) -> AnswerStore:
     answers_on_path = answers.copy()
 
     for answer in answers_to_remove:
-        answers_on_path.answers.remove(answer)
+        answers_on_path.remove_answer(answer)
 
     return answers_on_path
 
@@ -225,7 +225,7 @@ def _is_answer_on_path(schema, answer, routing_path):
 
 
 def _get_answer_value(filtered_answers):
-    return int(filtered_answers[0]['value'] if len(filtered_answers) == 1 and filtered_answers[0]['value'] else 0)
+    return int(filtered_answers.values()[0] if len(filtered_answers) == 1 and filtered_answers.values()[0] else 0)
 
 
 def _get_answer_count_minus_one(filtered_answers):
@@ -332,7 +332,7 @@ def get_answer_store_value(answer_id, answer_store, schema, group_instance, grou
     if not answers_on_path.count():
         return None
 
-    if all([answer.get('group_instance_id') for answer in answers_on_path.answers]) and group_instance_id:
+    if all([answer.get('group_instance_id') for answer in answers_on_path]) and group_instance_id:
         # If all of the matching answers have a group_instance_id, then we know the answer has this group_instance_id
         group_instance = None
         answer_block_id = schema.get_block_id_for_answer_id(answer_id)
@@ -355,7 +355,7 @@ def get_answer_store_value(answer_id, answer_store, schema, group_instance, grou
         raise Exception('Multiple answers ({:d}) found evaluating when rule for answer ({})'
                         .format(filtered.count(), answer_id))
 
-    return filtered[0]['value'] if filtered.count() == 1 else None
+    return next(iter(filtered))['value'] if filtered.count() == 1 else None
 
 
 def get_number_of_repeats(group, schema, routing_path, answer_store):

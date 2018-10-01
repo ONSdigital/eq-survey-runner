@@ -1,10 +1,9 @@
+import re
 from collections import OrderedDict
 
 from structlog import get_logger
 from werkzeug.datastructures import MultiDict
 
-
-from app.data_model.answer_store import natural_order
 from app.forms.household_composition_form import generate_household_composition_form, deserialise_composition_answers
 from app.forms.household_relationship_form import build_relationship_choices, deserialise_relationship_answers, generate_relationship_form
 from app.forms.questionnaire_form import generate_form
@@ -170,4 +169,23 @@ def get_mapped_answers(schema, answer_store, block_id, group_instance, group_ins
 
         result[answer_id] = answer['value']
 
-    return OrderedDict(sorted(result.items(), key=lambda t: natural_order(t[0])))
+    return OrderedDict(sorted(result.items(), key=lambda t: answer_instance_order(t[0])))
+
+
+def number_else_string(text):
+    """
+    Converts number to an integer if possible.
+    :param text: Text to be converted
+    :return: Integer representation of text if a number.  Otherwise, it returns the text as is
+    """
+    return int(text) if text.isdigit() else text
+
+
+def answer_instance_order(key):
+    """
+    Returns a list of integers or string to be used for ordering
+
+    :param key:
+    :return:
+    """
+    return [number_else_string(c) for c in re.split(r'(\d+)', key)]

@@ -92,7 +92,7 @@ class TestNavigation(AppContextTestCase):
             answer_id='insurance-type-answer'
         )
 
-        answer_store.add(answer_1)
+        answer_store.add_or_update(answer_1)
 
         completed_blocks = [
             Location('property-details', 0, 'insurance-type'),
@@ -181,12 +181,10 @@ class TestNavigation(AppContextTestCase):
             Location('skip-payment-group', 0, 'skip-payment')
         ]
 
-        navigation = _create_navigation(schema, AnswerStore(), metadata, completed_blocks, routing_path)
-
         person1_uuid = uuid.uuid4()
         person2_uuid = uuid.uuid4()
 
-        navigation.answer_store.answers = [
+        answer_store = AnswerStore(existing_answers=[
             {
                 'group_instance': 0,
                 'answer_instance': 0,
@@ -229,7 +227,9 @@ class TestNavigation(AppContextTestCase):
                 'value': None,
                 'group_instance_id': person2_uuid,
             }
-        ]
+        ])
+
+        navigation = _create_navigation(schema, answer_store, metadata, completed_blocks, routing_path)
 
         user_navigation = [
             {
@@ -282,7 +282,9 @@ class TestNavigation(AppContextTestCase):
                 'link_url': Location('final-section-routed-group', 0, 'final-interstitial').url(metadata)
             }
         ]
-        self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
+
+        built_navigation = navigation.build_navigation('property-details', 0)
+        self.assertEqual(built_navigation, user_navigation)
 
     def test_navigation_repeating_group_extra_answered_not_completed(self):
         schema = load_schema_from_params('test', 'navigation')
@@ -326,9 +328,9 @@ class TestNavigation(AppContextTestCase):
             group_instance_id=person2_uuid
         )
 
-        answer_store.add(answer_1)
-        answer_store.add(answer_2)
-        answer_store.add(answer_3)
+        answer_store.add_or_update(answer_1)
+        answer_store.add_or_update(answer_2)
+        answer_store.add_or_update(answer_3)
 
         routing_path = [
             Location('property-details', 0, 'insurance-type'),
@@ -458,11 +460,11 @@ class TestNavigation(AppContextTestCase):
             answer_instance=0
         )
 
-        answer_store.add(answer_1)
-        answer_store.add(answer_2)
-        answer_store.add(answer_3)
-        answer_store.add(answer_4)
-        answer_store.add(answer_5)
+        answer_store.add_or_update(answer_1)
+        answer_store.add_or_update(answer_2)
+        answer_store.add_or_update(answer_3)
+        answer_store.add_or_update(answer_4)
+        answer_store.add_or_update(answer_5)
 
         routing_path = [
             Location('property-details', 0, 'insurance-type'),
@@ -571,10 +573,10 @@ class TestNavigation(AppContextTestCase):
             group_instance_id=person2_uuid
         )
 
-        answer_store.add(answer_1)
-        answer_store.add(answer_2)
-        answer_store.add(answer_3)
-        answer_store.add(answer_4)
+        answer_store.add_or_update(answer_1)
+        answer_store.add_or_update(answer_2)
+        answer_store.add_or_update(answer_3)
+        answer_store.add_or_update(answer_4)
 
         routing_path = [
             Location('property-details', 0, 'insurance-type'),
@@ -659,7 +661,7 @@ class TestNavigation(AppContextTestCase):
             answer_id='insurance-type-answer'
         )
 
-        answer_store.add(answer_1)
+        answer_store.add_or_update(answer_1)
         navigation = _create_navigation(schema, answer_store, metadata, completed_blocks, [])
         user_navigation = navigation.build_navigation('property-details', 0)
         link_names = [d['link_name'] for d in user_navigation]
@@ -686,7 +688,7 @@ class TestNavigation(AppContextTestCase):
             answer_id='insurance-type-answer'
         )
 
-        answer_store.add(answer_1)
+        answer_store.add_or_update(answer_1)
 
         navigation = _create_navigation(schema, answer_store, metadata, completed_blocks, [])
 
@@ -716,7 +718,7 @@ class TestNavigation(AppContextTestCase):
             answer_id='insurance-type-answer'
         )
 
-        answer_store.add(answer_1)
+        answer_store.add_or_update(answer_1)
         navigation = _create_navigation(schema, answer_store, metadata, completed_blocks, [])
 
         user_navigation = navigation.build_navigation('property-details', 0)
@@ -731,8 +733,9 @@ class TestNavigation(AppContextTestCase):
             answer_id='insurance-type-answer'
         )
 
-        answer_store.update(change_answer)
+        answer_store.add_or_update(change_answer)
 
+        navigation = _create_navigation(schema, answer_store, metadata, completed_blocks, [])
         user_navigation = navigation.build_navigation('property-details', 0)
 
         link_names = [d['link_name'] for d in user_navigation]
@@ -1261,28 +1264,28 @@ class TestNavigation(AppContextTestCase):
         person1_uuid = uuid.uuid4()
         person2_uuid = uuid.uuid4()
 
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_instance=0,
             answer_id='first-name',
             group_instance=0,
             value='Person1',
             group_instance_id=person1_uuid
             ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_instance=1,
             answer_id='first-name',
             group_instance=0,
             value='Person2',
             group_instance_id=person2_uuid
             ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_instance=0,
             answer_id='what-is-your-age',
             group_instance=0,
             value=42,
             group_instance_id=person1_uuid
             ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_instance=0,
             answer_id='what-is-your-shoe-size',
             group_instance=0,
@@ -1474,7 +1477,7 @@ class TestNavigation(AppContextTestCase):
 
         answer_store = AnswerStore()
 
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_instance=0,
             answer_id='insurance-type-answer',
             group_instance=0,

@@ -3,8 +3,10 @@ from unittest.mock import MagicMock
 
 import simplejson as json
 
+from app.data_model.answer_store import AnswerStore
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.questionnaire.location import Location
+
 
 def get_basic_input():
     return {
@@ -12,9 +14,33 @@ def get_basic_input():
             'test': True
         },
         'ANSWERS': [{
-            'answer-id': 'test',
+            'answer_id': 'test',
             'value': 'test',
         }],
+        'COMPLETED_BLOCKS': [
+            {
+                'group_id': 'a-test-group',
+                'group_instance': 0,
+                'block_id': 'a-test-block',
+            }
+        ],
+        'COLLECTION_METADATA': {
+            'test-meta': 'test'
+        },
+    }
+
+
+def get_input_answers_dict():
+    return {
+        'METADATA': {
+            'test': True
+        },
+        'ANSWERS': {
+            'test': [{
+                'answer_id': 'test',
+                'value': 'test'
+            }]
+        },
         'COMPLETED_BLOCKS': [
             {
                 'group_id': 'a-test-group',
@@ -57,7 +83,21 @@ class TestQuestionnaireStore(TestCase):
         # Then
         self.assertEqual(store.metadata.copy(), expected['METADATA'])
         self.assertEqual(store.collection_metadata, expected['COLLECTION_METADATA'])
-        self.assertEqual(store.answer_store.answers, expected['ANSWERS'])
+        self.assertEqual(store.answer_store, AnswerStore(expected['ANSWERS']))
+        expected_location = expected['COMPLETED_BLOCKS'][0]
+        self.assertEqual(len(store.completed_blocks), 1)
+        self.assertEqual(store.completed_blocks[0], Location.from_dict(location_dict=expected_location))
+
+    def test_questionnaire_store_loads_answers_as_dict(self):
+        # Given
+        expected = get_input_answers_dict()
+        self.input_data = json.dumps(expected)
+        # When
+        store = QuestionnaireStore(self.storage, 3)
+        # Then
+        self.assertEqual(store.metadata.copy(), expected['METADATA'])
+        self.assertEqual(store.collection_metadata, expected['COLLECTION_METADATA'])
+        self.assertEqual(store.answer_store, AnswerStore(expected['ANSWERS']))
         expected_location = expected['COMPLETED_BLOCKS'][0]
         self.assertEqual(len(store.completed_blocks), 1)
         self.assertEqual(store.completed_blocks[0], Location.from_dict(location_dict=expected_location))
@@ -72,7 +112,7 @@ class TestQuestionnaireStore(TestCase):
         # Then
         self.assertEqual(store.metadata.copy(), expected['METADATA'])
         self.assertEqual(store.collection_metadata, expected['COLLECTION_METADATA'])
-        self.assertEqual(store.answer_store.answers, expected['ANSWERS'])
+        self.assertEqual(store.answer_store, AnswerStore(expected['ANSWERS']))
         expected_location = expected['COMPLETED_BLOCKS'][0]
         self.assertEqual(len(store.completed_blocks), 1)
         self.assertEqual(store.completed_blocks[0], Location.from_dict(location_dict=expected_location))
@@ -87,7 +127,7 @@ class TestQuestionnaireStore(TestCase):
         # Then
         self.assertEqual(store.metadata.copy(), expected['METADATA'])
         self.assertEqual(store.collection_metadata, expected['COLLECTION_METADATA'])
-        self.assertEqual(store.answer_store.answers, expected['ANSWERS'])
+        self.assertEqual(store.answer_store, AnswerStore(expected['ANSWERS']))
         self.assertEqual(len(store.completed_blocks), 0)
 
     def test_questionnaire_store_updates_storage(self):
@@ -95,7 +135,7 @@ class TestQuestionnaireStore(TestCase):
         expected = get_basic_input()
         store = QuestionnaireStore(self.storage)
         store.set_metadata(expected['METADATA'])
-        store.answer_store.answers = expected['ANSWERS']
+        store.answer_store = AnswerStore(expected['ANSWERS'])
         store.collection_metadata = expected['COLLECTION_METADATA']
         store.completed_blocks = [Location.from_dict(expected['COMPLETED_BLOCKS'][0])]
 
@@ -118,7 +158,7 @@ class TestQuestionnaireStore(TestCase):
         store = QuestionnaireStore(self.storage)
         store.set_metadata(non_serializable_metadata)
         store.collection_metadata = expected['COLLECTION_METADATA']
-        store.answer_store.answers = expected['ANSWERS']
+        store.answer_store = AnswerStore(expected['ANSWERS'])
         store.completed_blocks = [Location.from_dict(expected['COMPLETED_BLOCKS'][0])]
 
         # When / Then
@@ -130,7 +170,7 @@ class TestQuestionnaireStore(TestCase):
         store = QuestionnaireStore(self.storage)
         store.set_metadata(expected['METADATA'])
         store.collection_metadata = expected['COLLECTION_METADATA']
-        store.answer_store.answers = expected['ANSWERS']
+        store.answer_store = AnswerStore(expected['ANSWERS'])
         store.completed_blocks = [Location.from_dict(expected['COMPLETED_BLOCKS'][0])]
 
         # When

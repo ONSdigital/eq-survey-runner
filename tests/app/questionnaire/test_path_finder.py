@@ -88,8 +88,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         )
 
         answers = AnswerStore()
-        answers.add(answer_1)
-        answers.add(answer_2)
+        answers.add_or_update(answer_1)
+        answers.add_or_update(answer_2)
 
         current_location = expected_path[1]
         expected_next_location = expected_path[2]
@@ -163,8 +163,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         )
 
         answers = AnswerStore()
-        answers.add(answer_1)
-        answers.add(answer_2)
+        answers.add_or_update(answer_1)
+        answers.add_or_update(answer_2)
         schema.answer_is_in_repeating_group = MagicMock(return_value=False)
 
         # When
@@ -200,8 +200,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         )
 
         answers = AnswerStore()
-        answers.add(answer_1)
-        answers.add(answer_2)
+        answers.add_or_update(answer_1)
+        answers.add_or_update(answer_2)
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
@@ -256,8 +256,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         )
 
         answers = AnswerStore()
-        answers.add(answer_1)
-        answers.add(answer_2)
+        answers.add_or_update(answer_1)
+        answers.add_or_update(answer_2)
 
         current_location = expected_path[3]
         expected_previous_location = expected_path[2]
@@ -300,8 +300,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         )
 
         answers = AnswerStore()
-        answers.add(answer_1)
-        answers.add(answer_2)
+        answers.add_or_update(answer_1)
+        answers.add_or_update(answer_2)
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
@@ -324,7 +324,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             value='I prefer Star Trek',
         )
         answers = AnswerStore()
-        answers.add(answer)
+        answers.add_or_update(answer)
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
         current_location = expected_path[1]
@@ -354,8 +354,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         )
 
         answers = AnswerStore()
-        answers.add(answer_1)
-        answers.add(answer_2)
+        answers.add_or_update(answer_1)
+        answers.add_or_update(answer_2)
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
@@ -391,7 +391,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             value='2'
         )
         answers = AnswerStore()
-        answers.add(answer)
+        answers.add_or_update(answer)
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
@@ -416,7 +416,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             value='0'
         )
         answers = AnswerStore()
-        answers.add(answer)
+        answers.add_or_update(answer)
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
         self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
@@ -461,9 +461,9 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         answers = AnswerStore()
 
-        answers.add(answer)
-        answers.add(answer_2)
-        answers.add(answer_3)
+        answers.add_or_update(answer)
+        answers.add_or_update(answer_2)
+        answers.add_or_update(answer_3)
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
@@ -500,8 +500,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         answers = AnswerStore()
 
-        answers.add(answer)
-        answers.add(answer_2)
+        answers.add_or_update(answer)
+        answers.add_or_update(answer_2)
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
@@ -556,8 +556,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         answers = AnswerStore()
 
-        answers.add(answer)
-        answers.add(answer_2)
+        answers.add_or_update(answer)
+        answers.add_or_update(answer_2)
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
@@ -592,8 +592,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         current_location = expected_path[-1]
 
         answers = AnswerStore()
-        answers.add(answer)
-        answers.add(answer_2)
+        answers.add_or_update(answer)
+        answers.add_or_update(answer_2)
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
@@ -636,9 +636,9 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         )
 
         answers = AnswerStore()
-        answers.add(answer_1)
-        answers.add(answer_2)
-        answers.add(answer_3)
+        answers.add_or_update(answer_1)
+        answers.add_or_update(answer_2)
+        answers.add_or_update(answer_3)
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
@@ -662,12 +662,12 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answer_store = AnswerStore()
 
         # Set up some first names
-        answer_store.add(Answer(answer_id='first-name', value='aaa', group_instance=0, group_instance_id='group-1-0'))
-        answer_store.add(Answer(answer_id='first-name', value='bbb', group_instance=1, group_instance_id='group-1-1'))
-        answer_store.add(Answer(answer_id='first-name', value='ccc', group_instance=2, group_instance_id='group-1-2'))
+        answer_store.add_or_update(Answer(answer_id='first-name', value='aaa', group_instance=0, group_instance_id='group-1-0'))
+        answer_store.add_or_update(Answer(answer_id='first-name', value='bbb', group_instance=1, group_instance_id='group-1-1'))
+        answer_store.add_or_update(Answer(answer_id='first-name', value='ccc', group_instance=2, group_instance_id='group-1-2'))
 
         # Set up the independent answer
-        answer_store.add(Answer(answer_id='an-independent-answer', value=independent_answer, group_instance=0, group_instance_id='group-1-0'))
+        answer_store.add_or_update(Answer(answer_id='an-independent-answer', value=independent_answer, group_instance=0, group_instance_id='group-1-0'))
 
         path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
 
@@ -700,12 +700,12 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answer_store = AnswerStore()
 
         # Set up some first names
-        answer_store.add(Answer(answer_id='first-name', value='aaa', answer_instance=0, group_instance_id='group-1-0'))
-        answer_store.add(Answer(answer_id='first-name', value='bbb', answer_instance=1, group_instance_id='group-1-1'))
-        answer_store.add(Answer(answer_id='first-name', value='ccc', answer_instance=2, group_instance_id='group-1-2'))
+        answer_store.add_or_update(Answer(answer_id='first-name', value='aaa', answer_instance=0, group_instance_id='group-1-0'))
+        answer_store.add_or_update(Answer(answer_id='first-name', value='bbb', answer_instance=1, group_instance_id='group-1-1'))
+        answer_store.add_or_update(Answer(answer_id='first-name', value='ccc', answer_instance=2, group_instance_id='group-1-2'))
 
         # Set up the independent answer
-        answer_store.add(Answer(answer_id='an-independent-answer', value=independent_answer, group_instance=0, group_instance_id='group-1-0'))
+        answer_store.add_or_update(Answer(answer_id='an-independent-answer', value=independent_answer, group_instance=0, group_instance_id='group-1-0'))
 
         # When
         with patch('app.questionnaire.path_finder.evaluate_skip_conditions', return_value=False):
@@ -748,17 +748,17 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
                 # Set up some first names
 
-                answer_store.add(Answer(answer_id='first-name', value='aaa', answer_instance=0, group_instance_id='group-1-0'))
-                answer_store.add(Answer(answer_id='first-name', value='bbb', answer_instance=1, group_instance_id='group-1-1'))
-                answer_store.add(Answer(answer_id='first-name', value='ccc', answer_instance=2, group_instance_id='group-1-2'))
-                answer_store.add(Answer(answer_id='first-name', value='ddd', answer_instance=3, group_instance_id='group-1-3'))
+                answer_store.add_or_update(Answer(answer_id='first-name', value='aaa', answer_instance=0, group_instance_id='group-1-0'))
+                answer_store.add_or_update(Answer(answer_id='first-name', value='bbb', answer_instance=1, group_instance_id='group-1-1'))
+                answer_store.add_or_update(Answer(answer_id='first-name', value='ccc', answer_instance=2, group_instance_id='group-1-2'))
+                answer_store.add_or_update(Answer(answer_id='first-name', value='ddd', answer_instance=3, group_instance_id='group-1-3'))
 
                 # Now set a date of birth for the two group instances
 
-                answer_store.add(Answer(answer_id='date-of-birth-answer', value='01-01-1980',
-                                        group_instance=first_group_instance, group_instance_id='group-1-{}'.format(first_group_instance)))
-                answer_store.add(Answer(answer_id='date-of-birth-answer', value='01-01-1980',
-                                        group_instance=second_group_instance, group_instance_id='group-1-{}'.format(second_group_instance)))
+                answer_store.add_or_update(Answer(answer_id='date-of-birth-answer', value='01-01-1980',
+                                                  group_instance=first_group_instance, group_instance_id='group-1-{}'.format(first_group_instance)))
+                answer_store.add_or_update(Answer(answer_id='date-of-birth-answer', value='01-01-1980',
+                                                  group_instance=second_group_instance, group_instance_id='group-1-{}'.format(second_group_instance)))
 
                 path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
 
@@ -777,45 +777,45 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         repeating_group_2_instance_id = str(uuid.uuid4())
 
         answer_store = AnswerStore({})
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id='primary-name',
             value='Jon',
             group_instance=0,
             group_instance_id=primary_group_instance_id
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id='primary-live-here',
             value='No',
             group_instance=0,
             group_instance_id=primary_group_instance_id
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id='repeating-anyone-else',
             answer_instance=0,
             value='Yes',
             group_instance=0,
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id='repeating-name',
             answer_instance=0,
             value='Adam',
             group_instance=0,
             group_instance_id=repeating_group_1_instance_id
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id='repeating-anyone-else',
             answer_instance=0,
             value='Yes',
             group_instance=1,
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id='repeating-name',
             answer_instance=0,
             value='Ben',
             group_instance=1,
             group_instance_id=repeating_group_2_instance_id
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id='repeating-anyone-else',
             answer_instance=0,
             value='No',
@@ -846,13 +846,13 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         answers = AnswerStore()
 
-        answers.add(Answer(
+        answers.add_or_update(Answer(
             answer_id='no-of-repeats-answer',
             value='10000'
         ))
 
         for i in range(50):
-            answers.add(Answer(
+            answers.add_or_update(Answer(
                 group_instance=i,
                 group_instance_id=None,
                 answer_id='conditional-answer',
@@ -938,9 +938,9 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             value='No'
         )
 
-        answers.add(answer_1)
-        answers.add(answer_2)
-        answers.add(answer_3)
+        answers.add_or_update(answer_1)
+        answers.add_or_update(answer_2)
+        answers.add_or_update(answer_3)
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
@@ -984,9 +984,9 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             value='Yes'
         )
 
-        answers.add(answer_1)
-        answers.add(answer_2)
-        answers.add(answer_3)
+        answers.add_or_update(answer_1)
+        answers.add_or_update(answer_2)
+        answers.add_or_update(answer_3)
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
@@ -998,8 +998,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         schema = load_schema_from_params('test', 'skip_condition_block')
         current_location = Location('do-you-want-to-skip-group', 0, 'do-you-want-to-skip')
         answer_store = AnswerStore()
-        answer_store.add(Answer(answer_id='do-you-want-to-skip-answer',
-                                value='Yes'))
+        answer_store.add_or_update(Answer(answer_id='do-you-want-to-skip-answer',
+                                          value='Yes'))
 
         # When
         path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
@@ -1015,8 +1015,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         schema = load_schema_from_params('test', 'skip_condition_group')
         current_location = Location('do-you-want-to-skip-group', 0, 'do-you-want-to-skip')
         answer_store = AnswerStore()
-        answer_store.add(Answer(answer_id='do-you-want-to-skip-answer',
-                                value='Yes'))
+        answer_store.add_or_update(Answer(answer_id='do-you-want-to-skip-answer',
+                                          value='Yes'))
 
         # When
         path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
@@ -1032,8 +1032,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         schema = load_schema_from_params('test', 'skip_condition_group')
         current_location = Location('do-you-want-to-skip-group', 0, 'do-you-want-to-skip')
         answer_store = AnswerStore()
-        answer_store.add(Answer(answer_id='do-you-want-to-skip-answer',
-                                value='No'))
+        answer_store.add_or_update(Answer(answer_id='do-you-want-to-skip-answer',
+                                          value='No'))
 
         # When
         path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
@@ -1048,8 +1048,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         # Given
         schema = load_schema_from_params('test', 'skip_condition_group')
         answer_store = AnswerStore()
-        answer_store.add(Answer(answer_id='do-you-want-to-skip-answer',
-                                value='Yes'))
+        answer_store.add_or_update(Answer(answer_id='do-you-want-to-skip-answer',
+                                          value='Yes'))
 
         # When
         path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
@@ -1077,8 +1077,8 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         schema.answer_is_in_repeating_group = MagicMock(return_value=False)
 
         answer_store = AnswerStore()
-        answer_store.add(Answer(answer_id='which-group-answer',
-                                value='group2'))
+        answer_store.add_or_update(Answer(answer_id='which-group-answer',
+                                          value='group2'))
 
         # When i build the path
         path_finder = PathFinder(schema, answer_store=answer_store, metadata={}, completed_blocks=[])
@@ -1099,9 +1099,9 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ]
 
         answer_store = AnswerStore()
-        answer_store.add(Answer(answer_id='radio-answer', value='Bacon'))
-        answer_store.add(Answer(answer_id='test-currency', value='123'))
-        answer_store.add(Answer(answer_id='dessert', value='Cake'))
+        answer_store.add_or_update(Answer(answer_id='radio-answer', value='Bacon'))
+        answer_store.add_or_update(Answer(answer_id='test-currency', value='123'))
+        answer_store.add_or_update(Answer(answer_id='dessert', value='Cake'))
 
         summary_location = Location('dessert-group', 0, 'summary')
 
@@ -1121,9 +1121,9 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ]
 
         answer_store = AnswerStore()
-        answer_store.add(Answer(answer_id='insurance-type-answer', value='Contents'))
-        answer_store.add(Answer(answer_id='insurance-address-answer', value='123 Test Road'))
-        answer_store.add(Answer(answer_id='address-duration-answer', value='No'))
+        answer_store.add_or_update(Answer(answer_id='insurance-type-answer', value='Contents'))
+        answer_store.add_or_update(Answer(answer_id='insurance-address-answer', value='123 Test Road'))
+        answer_store.add_or_update(Answer(answer_id='address-duration-answer', value='No'))
 
         summary_location = Location('property-details-summary-group', 0, 'property-details-summary')
 
@@ -1144,9 +1144,9 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ]
 
         answer_store = AnswerStore()
-        answer_store.add(Answer(answer_id='insurance-type-answer', value='Both'))
-        answer_store.add(Answer(answer_id='insurance-address-answer', value='123 Test Road'))
-        answer_store.add(Answer(answer_id='address-duration-answer', value='No'))
+        answer_store.add_or_update(Answer(answer_id='insurance-type-answer', value='Both'))
+        answer_store.add_or_update(Answer(answer_id='insurance-address-answer', value='123 Test Road'))
+        answer_store.add_or_update(Answer(answer_id='address-duration-answer', value='No'))
 
         second_section_location = Location('house-details', 0, 'house-type')
 
@@ -1167,17 +1167,17 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answer_store = AnswerStore()
         number_of_employees_answer = Answer(answer_id='number-of-employees-total', value=0)
         confirm_zero_answer = Answer(answer_id='confirm-zero-employees-answer', value='No')
-        answer_store.add(number_of_employees_answer)
-        answer_store.add(confirm_zero_answer)
+        answer_store.add_or_update(number_of_employees_answer)
+        answer_store.add_or_update(confirm_zero_answer)
 
         path_finder = PathFinder(schema, answer_store, metadata={}, completed_blocks=completed_blocks)
         self.assertEqual(len(path_finder.completed_blocks), 2)
-        self.assertEqual(len(path_finder.answer_store.answers), 2)
+        self.assertEqual(len(path_finder.answer_store), 2)
 
         self.assertEqual(path_finder.get_next_location(current_location=completed_blocks[1]), completed_blocks[0])
 
         self.assertEqual(path_finder.completed_blocks, [completed_blocks[0]])
-        self.assertEqual(len(path_finder.answer_store.answers), 1)
+        self.assertEqual(len(path_finder.answer_store), 1)
 
     def test_route_based_on_answer_count(self):
         schema = load_schema_from_params('test', 'routing_answer_count')
@@ -1185,12 +1185,12 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         answer_group_id = 'first-name'
 
         answer_store = AnswerStore({})
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id=answer_group_id,
             answer_instance=0,
             value='alice',
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id=answer_group_id,
             answer_instance=1,
             value='bob',

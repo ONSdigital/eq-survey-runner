@@ -38,9 +38,9 @@ class TestNumberRangeValidator(unittest.TestCase):
             value='cat',
         )
 
-        self.store.add(answer1)
-        self.store.add(answer2)
-        self.store.add(answer3)
+        self.store.add_or_update(answer1)
+        self.store.add_or_update(answer2)
+        self.store.add_or_update(answer3)
 
     def tearDown(self):
         self.store.clear()

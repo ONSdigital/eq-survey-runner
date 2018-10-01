@@ -260,45 +260,45 @@ class TestFormHelper(AppContextTestCase):
             repeating_group_2_instance_id = str(uuid.uuid4())
 
             answer_store = AnswerStore({})
-            answer_store.add(Answer(
+            answer_store.add_or_update(Answer(
                 answer_id='primary-name',
                 value='Jon',
                 group_instance=0,
                 group_instance_id=primary_group_instance_id
             ))
-            answer_store.add(Answer(
+            answer_store.add_or_update(Answer(
                 answer_id='primary-live-here',
                 value='No',
                 group_instance=0,
                 group_instance_id=primary_group_instance_id
             ))
-            answer_store.add(Answer(
+            answer_store.add_or_update(Answer(
                 answer_id='repeating-anyone-else',
                 answer_instance=0,
                 value='Yes',
                 group_instance=0,
             ))
-            answer_store.add(Answer(
+            answer_store.add_or_update(Answer(
                 answer_id='repeating-name',
                 answer_instance=0,
                 value='Adam',
                 group_instance=0,
                 group_instance_id=repeating_group_1_instance_id
             ))
-            answer_store.add(Answer(
+            answer_store.add_or_update(Answer(
                 answer_id='repeating-anyone-else',
                 answer_instance=0,
                 value='Yes',
                 group_instance=1,
             ))
-            answer_store.add(Answer(
+            answer_store.add_or_update(Answer(
                 answer_id='repeating-name',
                 answer_instance=0,
                 value='Ben',
                 group_instance=1,
                 group_instance_id=repeating_group_2_instance_id
             ))
-            answer_store.add(Answer(
+            answer_store.add_or_update(Answer(
                 answer_id='repeating-anyone-else',
                 answer_instance=0,
                 value='No',
@@ -328,45 +328,45 @@ class TestFormHelper(AppContextTestCase):
             repeating_group_2_instance_id = str(uuid.uuid4())
 
             answer_store = AnswerStore({})
-            answer_store.add(Answer(
+            answer_store.add_or_update(Answer(
                 answer_id='primary-name',
                 value='Jon',
                 group_instance=0,
                 group_instance_id=primary_group_instance_id
             ))
-            answer_store.add(Answer(
+            answer_store.add_or_update(Answer(
                 answer_id='primary-live-here',
                 value='No',
                 group_instance=0,
                 group_instance_id=primary_group_instance_id
             ))
-            answer_store.add(Answer(
+            answer_store.add_or_update(Answer(
                 answer_id='repeating-anyone-else',
                 answer_instance=0,
                 value='Yes',
                 group_instance=0,
             ))
-            answer_store.add(Answer(
+            answer_store.add_or_update(Answer(
                 answer_id='repeating-name',
                 answer_instance=0,
                 value='Adam',
                 group_instance=0,
                 group_instance_id=repeating_group_1_instance_id
             ))
-            answer_store.add(Answer(
+            answer_store.add_or_update(Answer(
                 answer_id='repeating-anyone-else',
                 answer_instance=0,
                 value='Yes',
                 group_instance=1,
             ))
-            answer_store.add(Answer(
+            answer_store.add_or_update(Answer(
                 answer_id='repeating-name',
                 answer_instance=0,
                 value='Ben',
                 group_instance=1,
                 group_instance_id=repeating_group_2_instance_id
             ))
-            answer_store.add(Answer(
+            answer_store.add_or_update(Answer(
                 answer_id='repeating-anyone-else',
                 answer_instance=0,
                 value='No',
@@ -513,8 +513,8 @@ class TestGetMappedAnswers(unittest.TestCase):
             value=65,
         )
 
-        self.store.add(answer_1)
-        self.store.add(answer_2)
+        self.store.add_or_update(answer_1)
+        self.store.add_or_update(answer_2)
 
         expected_answers = {
             'answer1_1': 65
@@ -556,11 +556,11 @@ class TestGetMappedAnswers(unittest.TestCase):
         for i in range(0, 100):
             answer.answer_instance = i
 
-            self.store.add(answer)
+            self.store.add_or_update(answer)
 
         last_instance = -1
 
-        self.assertEqual(len(self.store.answers), 100)
+        self.assertEqual(len(self.store), 100)
 
         mapped = get_mapped_answers(schema, self.store, block_id='block1', group_instance=1, group_instance_id='group-1')
 

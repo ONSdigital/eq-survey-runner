@@ -189,7 +189,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         }
         answer_store = AnswerStore({})
 
-        answer_store.add(Answer(answer_id='my_answer', value='Yes'))
+        answer_store.add_or_update(Answer(answer_id='my_answer', value='Yes'))
 
         self.assertTrue(evaluate_goto(goto, get_schema_mock(), {}, answer_store, 0))
 
@@ -207,7 +207,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         }
         answer_store = AnswerStore({})
 
-        answer_store.add(Answer(answer_id='my_answer', value='No'))
+        answer_store.add_or_update(Answer(answer_id='my_answer', value='No'))
 
         self.assertFalse(evaluate_goto(goto_rule, get_schema_mock(), {}, answer_store, 0))
 
@@ -224,7 +224,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             ]
         }
         answer_store = AnswerStore({})
-        answer_store.add(Answer(answer_id='my_answers', value=['answer1', 'answer2', 'answer3']))
+        answer_store.add_or_update(Answer(answer_id='my_answers', value=['answer1', 'answer2', 'answer3']))
 
         self.assertTrue(evaluate_goto(goto, get_schema_mock(), {}, answer_store, 0))
 
@@ -241,7 +241,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             ]
         }
         answer_store = AnswerStore({})
-        answer_store.add(Answer(answer_id='my_answers', value=['answer2', 'answer3']))
+        answer_store.add_or_update(Answer(answer_id='my_answers', value=['answer2', 'answer3']))
 
         self.assertTrue(evaluate_goto(goto, get_schema_mock(), {}, answer_store, 0))
 
@@ -268,7 +268,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             }
         ]
         answer_store = AnswerStore({})
-        answer_store.add(Answer(answer_id='this', value='value'))
+        answer_store.add_or_update(Answer(answer_id='this', value='value'))
 
         # When
         condition = evaluate_skip_conditions(skip_conditions, get_schema_mock(), {}, answer_store)
@@ -300,7 +300,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         ]
         answer_store = AnswerStore({})
 
-        answer_store.add(Answer(answer_id='that', value='other value'))
+        answer_store.add_or_update(Answer(answer_id='that', value='other value'))
 
         self.assertTrue(evaluate_skip_conditions(skip_conditions, get_schema_mock(), {}, answer_store))
 
@@ -327,8 +327,8 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             }
         ]
         answer_store = AnswerStore({})
-        answer_store.add(Answer(answer_id='this', value='value'))
-        answer_store.add(Answer(answer_id='that', value='other value'))
+        answer_store.add_or_update(Answer(answer_id='this', value='value'))
+        answer_store.add_or_update(Answer(answer_id='that', value='other value'))
 
         # When
         condition = evaluate_skip_conditions(skip_conditions, get_schema_mock(), {}, answer_store)
@@ -359,8 +359,8 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             }
         ]
         answer_store = AnswerStore({})
-        answer_store.add(Answer(answer_id='this', value='not correct'))
-        answer_store.add(Answer(answer_id='that', value='not correct'))
+        answer_store.add_or_update(Answer(answer_id='this', value='not correct'))
+        answer_store.add_or_update(Answer(answer_id='that', value='not correct'))
 
         # When
         condition = evaluate_skip_conditions(skip_conditions, get_schema_mock(), {}, answer_store)
@@ -409,8 +409,8 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             ]
         }
         answer_store = AnswerStore({})
-        answer_store.add(Answer(answer_id='my_answer', value='Yes'))
-        answer_store.add(Answer(answer_id='my_other_answer', value='2'))
+        answer_store.add_or_update(Answer(answer_id='my_answer', value='Yes'))
+        answer_store.add_or_update(Answer(answer_id='my_other_answer', value='2'))
 
         self.assertTrue(evaluate_goto(goto, get_schema_mock(), {}, answer_store, 0))
 
@@ -432,7 +432,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             ]
         }
         answer_store = AnswerStore({})
-        answer_store.add(Answer(answer_id='my_answer', value='No'))
+        answer_store.add_or_update(Answer(answer_id='my_answer', value='No'))
 
         self.assertFalse(evaluate_goto(goto_rule, get_schema_mock(), {}, answer_store, 0))
 
@@ -454,7 +454,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             ]
         }
         answer_store = AnswerStore({})
-        answer_store.add(Answer(answer_id='my_answer', value='Yes'))
+        answer_store.add_or_update(Answer(answer_id='my_answer', value='Yes'))
         metadata = {'sexual_identity': True}
 
         # When
@@ -476,7 +476,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             ]
         }
         answer_store = AnswerStore({})
-        answer_store.add(Answer(answer_id='my_answer', value='Yes'))
+        answer_store.add_or_update(Answer(answer_id='my_answer', value='Yes'))
         metadata = {'varient_flags': {'sexual_identity': True}}
 
         # When
@@ -503,7 +503,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             ]
         }
         answer_store = AnswerStore({})
-        answer_store.add(Answer(answer_id='my_answer', value='Yes'))
+        answer_store.add_or_update(Answer(answer_id='my_answer', value='Yes'))
         metadata = {'sexual_identity': True}
 
         # When
@@ -561,10 +561,10 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         with patch.object(schema, 'answer_is_in_repeating_group', return_value=True):
             self.assertEqual(evaluate_repeat(repeat, answer_store, schema, current_path), 1)
 
-            answer_store.add(Answer(answer_id='my_answer', value='Not Done', group_instance=0, group_instance_id=None))
+            answer_store.add_or_update(Answer(answer_id='my_answer', value='Not Done', group_instance=0, group_instance_id=None))
             self.assertEqual(evaluate_repeat(repeat, answer_store, schema, current_path), 2)
 
-            answer_store.add(Answer(answer_id='my_answer', value='Done', group_instance=1, group_instance_id=None))
+            answer_store.add_or_update(Answer(answer_id='my_answer', value='Done', group_instance=1, group_instance_id=None))
             self.assertEqual(evaluate_repeat(repeat, answer_store, schema, current_path), 2)
 
     def test_should_repeat_for_answer_answer_value(self):
@@ -603,7 +603,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             'type': 'answer_value'
         }
         answer_store = AnswerStore({})
-        answer_store.add(Answer(answer_id='my_answer', value='3'))
+        answer_store.add_or_update(Answer(answer_id='my_answer', value='3'))
 
         current_path = [Location('group-1', 0, 'block-1')]
 
@@ -648,8 +648,8 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             'type': 'answer_count'
         }
         answer_store = AnswerStore({})
-        answer_store.add(Answer(answer_id='my_answer', value='3'))
-        answer_store.add(Answer(answer_id='my_answer', value='4', answer_instance=1))
+        answer_store.add_or_update(Answer(answer_id='my_answer', value='3'))
+        answer_store.add_or_update(Answer(answer_id='my_answer', value='4', answer_instance=1))
 
         current_path = [Location('group-1', 0, 'block-1')]
 
@@ -694,8 +694,8 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             'type': 'answer_count_minus_one'
         }
         answer_store = AnswerStore({})
-        answer_store.add(Answer(answer_id='my_answer', value='3'))
-        answer_store.add(Answer(answer_id='my_answer', value='4', answer_instance=1))
+        answer_store.add_or_update(Answer(answer_id='my_answer', value='3'))
+        answer_store.add_or_update(Answer(answer_id='my_answer', value='4', answer_instance=1))
 
         current_path = [Location('group-1', 0, 'block-1')]
 
@@ -741,7 +741,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         }
         answer_store = AnswerStore({})
         for i in range(27):
-            answer_store.add(Answer(answer_id='my_answer', value='3', answer_instance=i))
+            answer_store.add_or_update(Answer(answer_id='my_answer', value='3', answer_instance=i))
 
         current_path = [Location('group-1', 0, 'block-1')]
 
@@ -765,8 +765,8 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             value=20,
         )
         answer_store = AnswerStore({})
-        answer_store.add(answer_1)
-        answer_store.add(answer_2)
+        answer_store.add_or_update(answer_1)
+        answer_store.add_or_update(answer_2)
 
         when = {
             'id': 'next-question',
@@ -844,7 +844,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             with self.subTest(lhs=lhs, comparison=comparison, rhs=rhs, group_instance=group_instance, expected_result=expected_result):
                 answer_store = AnswerStore({})
                 for answer in answers.values():
-                    answer_store.add(answer)
+                    answer_store.add_or_update(answer)
 
                 when = [{
                     'id': lhs.answer_id,
@@ -865,7 +865,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         }]
 
         answer_store = AnswerStore({})
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id=answer_group_id,
             group_instance=0,
             value=10,
@@ -885,13 +885,13 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         }]
 
         answer_store = AnswerStore({})
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id=answer_group_id,
             group_instance=0,
             group_instance_id='group-1-0',
             value=10,
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id=answer_group_id,
             group_instance=1,
             group_instance_id='group-1-1',
@@ -926,7 +926,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             'value': 10,
         }]
         answer_store = AnswerStore({})
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id=ref_id,
             group_instance=0,
             value=10,
@@ -975,25 +975,25 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         }]
 
         answer_store = AnswerStore({})
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id=answer_group_id,
             group_instance=0,
             group_instance_id='group-1-0',
             value=2,
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id=answer_group_id,
             group_instance=1,
             group_instance_id='group-1-1',
             value=20,
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id='other',
             group_instance=0,
             group_instance_id='group-1-0',
             value=0,
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id='other',
             group_instance=1,
             group_instance_id='group-1-1',
@@ -1011,39 +1011,39 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         repeating_group_2_instance_id = str(uuid.uuid4())
 
         answer_store = AnswerStore({})
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id='primary-name',
             value='Jon',
             group_instance=0,
             group_instance_id=primary_group_instance_id
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id='repeating-anyone-else',
             answer_instance=0,
             value='Yes',
             group_instance=0,
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id='repeating-name',
             answer_instance=0,
             value='Adam',
             group_instance=0,
             group_instance_id=repeating_group_1_instance_id
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id='repeating-anyone-else',
             answer_instance=0,
             value='No',
             group_instance=1,
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id='repeating-name',
             answer_instance=0,
             value='Ben',
             group_instance=1,
             group_instance_id=repeating_group_2_instance_id
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id='repeating-anyone-else',
             answer_instance=0,
             value='No',
@@ -1081,7 +1081,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             ]
         }
         answer_store = AnswerStore({})
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_id='some-answer',
             value='some value',
             group_instance=0,

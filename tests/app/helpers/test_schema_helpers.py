@@ -73,8 +73,8 @@ class TestFormHelper(AppContextTestCase):
         )
 
         store = AnswerStore(None)
-        store.add(answer_1)
-        store.add(answer_2)
+        store.add_or_update(answer_1)
+        store.add_or_update(answer_2)
 
         location = Location('group2', 0, 'block2')
         self.assertEqual(get_group_instance_id(schema, store, location), 'group1-aaa')

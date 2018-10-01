@@ -44,7 +44,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
 
     def test_create_question_with_conditional_title(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_1',
             value='Han',
         ))
@@ -82,11 +82,11 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
 
     def test_create_question_with_multiple_answers(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_1',
             value='Han',
         ))
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_2',
             value='Solo',
         ))
@@ -160,11 +160,11 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
 
     def test_merge_date_range_answers(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_1',
             value='13/02/2016',
         ))
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_2',
             value='13/09/2016',
         ))
@@ -184,19 +184,19 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
 
     def test_merge_multiple_date_range_answers(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_1',
             value='13/02/2016',
         ))
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_2',
             value='13/09/2016',
         ))
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_3',
             value='13/03/2016',
         ))
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_4',
             value='13/10/2016',
         ))
@@ -220,7 +220,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
 
     def test_checkbox_button_options(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_1',
             value=['Light Side', 'Dark Side'],
         ))
@@ -246,7 +246,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
 
     def test_checkbox_button_other_option_empty(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_1',
             value=['other', ''],
         ))
@@ -275,11 +275,11 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
 
     def test_checkbox_answer_with_other_value_returns_the_value(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_1',
             value=['Light Side', 'Other'],
         ))
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='child_answer',
             value='Test',
         ))
@@ -315,11 +315,11 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
 
     def test_checkbox_button_other_option_text(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_1',
             value=['Light Side', 'other'],
         ))
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='child_answer',
             value='Neither',
         ))
@@ -345,7 +345,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
 
     def test_checkbox_button_none_selected_should_be_none(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_1',
             value=[],
         ))
@@ -365,7 +365,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
 
     def test_radio_button_other_option_empty(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_1',
             value='',
         ))
@@ -391,7 +391,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
 
     def test_radio_button_other_option_text(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_1',
             value='I want to be on the dark side',
         ))
@@ -433,11 +433,11 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
 
     def test_radio_answer_with_other_value_returns_the_value(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_1',
             value='Other',
         ))
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='child_answer',
             value='Test',
         ))
@@ -468,17 +468,17 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
 
     def test_build_answers_repeating_answers(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer',
             value='Value',
         ))
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer',
             value='Value 2',
             group_instance=1,
             group_instance_id='group-1',
         ))
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer',
             value='Value 3',
             group_instance=2,
@@ -533,7 +533,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         answer_schema = {'id': 'answer_1', 'label': 'Which side?', 'type': 'Dropdown', 'options': options}
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_1',
             value='Dark Side',
         ))

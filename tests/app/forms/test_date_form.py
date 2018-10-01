@@ -223,7 +223,7 @@ class TestDateForm(AppContextTestCase):
             group_instance=0,
             value='2018-03-20',
         )
-        store.add(test_answer_id)
+        store.add_or_update(test_answer_id)
 
         answer_maximum = {
             'answer_id': 'date',
@@ -257,7 +257,7 @@ class TestDateForm(AppContextTestCase):
             group_instance=0,
             value='2018-03-20',
         )
-        store.add(test_answer_id)
+        store.add_or_update(test_answer_id)
 
         answer = {
             'id': 'date_answer',

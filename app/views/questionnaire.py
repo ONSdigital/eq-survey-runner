@@ -1,4 +1,3 @@
-import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 from functools import wraps
@@ -308,7 +307,7 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
             encrypter = StorageEncryption(current_user.user_id, current_user.user_ik, pepper)
 
             submitted_data = json.loads(encrypter.decrypt_data(submitted_data.data))
-            answer_store = AnswerStore(existing_answers=submitted_data.get('answers'))
+            answer_store = AnswerStore(submitted_data.get('answers'))
 
             metadata = submitted_data.get('metadata')
             collection_metadata = submitted_data.get('collection_metadata')
@@ -417,7 +416,7 @@ def submit_answers(routing_path, eq_id, form_type, schema):
     _store_submitted_time_in_session(submitted_time)
 
     if is_view_submitted_response_enabled(schema.json):
-        _store_viewable_submission(answer_store.answers, metadata, submitted_time)
+        _store_viewable_submission(answer_store.answer_map, metadata, submitted_time)
 
     get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
 
@@ -499,17 +498,10 @@ def _household_answers_changed(answer_store, schema):
         del stripped_form[k]
     if household_answers.count() != len(stripped_form):
         return True
-    for answer in request.form:
-        answer_id, answer_index = extract_answer_id_and_instance(answer)
+    for household_answer in household_answers:
+        answer = get_answer_instance_id(household_answer.get('answer_id'), household_answer.get('answer_instance', 0))
 
-        try:
-            stored_answer = household_answers.filter(
-                answer_ids=[answer_id],
-                answer_instance=answer_index)[0]
-        except IndexError:
-            stored_answer = None
-
-        if stored_answer and (stored_answer['value'] or '') != request.form[answer]:
+        if household_answer and (household_answer['value'] or '') != request.form[answer]:
             return True
 
     return False
@@ -659,16 +651,8 @@ def _evaluate_skip_conditions(block_json, location, schema, answer_store, metada
     return block_json
 
 
-def extract_answer_id_and_instance(answer_instance_id):
-    matches = re.match(r'^household-(\d+)-(first-name|middle-names|last-name)$', answer_instance_id)
-
-    if matches:
-        index, answer_id = matches.groups()
-    else:
-        answer_id = answer_instance_id
-        index = 0
-
-    return answer_id, int(index)
+def get_answer_instance_id(answer_id, answer_index):
+    return 'household-{}-{}'.format(answer_index, answer_id)
 
 
 def _redirect_to_location(collection_id, eq_id, form_type, location):

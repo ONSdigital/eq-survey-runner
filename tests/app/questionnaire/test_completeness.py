@@ -423,17 +423,17 @@ class TestCompleteness(AppContextTestCase): # pylint: disable=too-many-public-me
         ]
 
         answer_store = AnswerStore()
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_instance=0,
             answer_id='first-name',
             value='Person1'
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_instance=1,
             answer_id='first-name',
             value='Person2'
         ))
-        answer_store.add(Answer(
+        answer_store.add_or_update(Answer(
             answer_instance=0,
             answer_id='extra-cover-answer',
             value=2

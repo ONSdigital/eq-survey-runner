@@ -1,52 +1,14 @@
-import re
+import itertools
 
+from collections import defaultdict
 from datetime import datetime
 from jinja2 import escape
-import simplejson as json
 from structlog import get_logger
+import simplejson as json
+
+from app.data_model.answer import Answer
 
 logger = get_logger()
-
-
-class Answer:
-    def __init__(self, answer_id, value, group_instance_id=None, group_instance=0, answer_instance=0):
-        if answer_id is None or value is None:
-            raise ValueError("Both 'answer_id' and 'value' must be set for Answer")
-
-        self.answer_id = answer_id
-        self.group_instance_id = group_instance_id
-        self.group_instance = group_instance
-        self.answer_instance = answer_instance
-        self.value = value
-
-    def matches(self, answer):
-        """
-        Check to see if two answers match.
-        Two answers are considered to match if they share the same answer_id, answer_instance and group_instance_id.
-
-        :param answer: An answer to compare
-        :return: True if both answers match, otherwise False.
-        """
-        return self.answer_id == answer.answer_id and \
-            self.group_instance_id == answer.group_instance_id and \
-            self.group_instance == answer.group_instance and \
-            self.answer_instance == answer.answer_instance
-
-    def matches_dict(self, answer_dict):
-        """
-        Check to see if a dict describes an answer the same as this object.
-
-        :param answer_dict: A dictionary representation of the answer.
-        :return: True if both answers match, otherwise False.
-        """
-
-        return self.matches(Answer(
-            answer_dict.get('answer_id'),
-            answer_dict.get('value'),
-            answer_dict.get('group_instance_id'),
-            answer_dict.get('group_instance', 0),
-            answer_dict.get('answer_instance', 0),
-        ))
 
 
 class AnswerStore:
@@ -58,55 +20,39 @@ class AnswerStore:
     EQ_MAX_NUM_REPEATS = 25
 
     def __init__(self, existing_answers=None):
-        self.answers = existing_answers or []
+        if isinstance(existing_answers, list):
+            self.answer_map = self._build_map(existing_answers or [])
+        else:
+            self.answer_map = existing_answers or defaultdict(list)
 
     def __iter__(self):
-        return iter(self.answers)
-
-    def __getitem__(self, key):
-        return self.answers[key]
+        return iter((answer for answers in self.answer_map.values() for answer in answers))
 
     def __len__(self):
-        return len(self.answers)
+        return sum(len(answers) for answers in self.answer_map.values())
+
+    def __eq__(self, other):
+        return self.answer_map == other.answer_map
+
+    @staticmethod
+    def _build_map(answers):
+        answer_map = defaultdict(list)
+
+        for answer in answers:
+            answer_map[answer['answer_id']].append(answer)
+
+        return answer_map
 
     @staticmethod
     def _validate(answer):
         if not isinstance(answer, Answer):
             raise TypeError('Method only supports Answer argument type')
 
-    def add(self, answer):
-        """
-        Add a new answer into the answer store.
-
-        :param answer: A dict of flattened answer details.
-        """
-        self._validate(answer)
-
-        answer_to_add = answer.__dict__.copy()
-
-        if self.find(answer) is not None:
-            raise ValueError('Answer instance already exists in store')
-        else:
-            self.answers.append(answer_to_add)
-
     def copy(self):
         """
         Create a new instance of answer_store with the same values.
         """
-        return self.__class__(existing_answers=self.answers.copy())
-
-    def update(self, answer):
-        """
-        Update the value of an answer already in the answer store.
-
-        :param answer: A dict of flattened answer details.
-        """
-        position = self.find(answer)
-
-        if position is None:
-            raise ValueError('Answer instance does not exist in store')
-        else:
-            self.answers[position]['value'] = answer.value
+        return self.__class__(self.answer_map.copy())
 
     def add_or_update(self, answer):
         """
@@ -114,10 +60,14 @@ class AnswerStore:
 
         :param answer: An answer object.
         """
-        try:
-            self.update(answer)
-        except ValueError:
-            self.add(answer)
+        self._validate(answer)
+        position = self.find(answer)
+
+        if position is None:
+            answer_to_add = vars(answer).copy()
+            self.answer_map[answer_to_add['answer_id']].append(answer_to_add)
+        else:
+            self.answer_map[answer.answer_id][position]['value'] = answer.value
 
     def find(self, answer):
         """
@@ -128,9 +78,10 @@ class AnswerStore:
         """
         self._validate(answer)
 
-        for index, existing in enumerate(self.answers):
-            if answer.matches_dict(existing):
-                return index
+        if answer.answer_id in self.answer_map:
+            for index, existing in enumerate(self.answer_map[answer.answer_id]):
+                if answer.matches_dict(existing):
+                    return index
 
         return None
 
@@ -151,7 +102,7 @@ class AnswerStore:
 
         :return: Return a list of answer values
         """
-        return [answer['value'] for answer in self.answers]
+        return [answer['value'] for answer in self]
 
     def escaped(self):
         """
@@ -160,7 +111,7 @@ class AnswerStore:
         :return: Return a new AnswerStore object with escaped answers for chaining
         """
         escaped = []
-        for answer in self.answers:
+        for answer in self:
             answer = answer.copy()
             if isinstance(answer['value'], str):
                 answer['value'] = escape(answer['value'])
@@ -188,7 +139,12 @@ class AnswerStore:
             'group_instance': group_instance,
         }
 
-        for answer in self.answers:
+        if answer_ids:
+            answers = itertools.chain.from_iterable(self.answer_map.get(answer_id, []) for answer_id in answer_ids)
+        else:
+            answers = self
+
+        for answer in answers:
             matches = all(
                 answer[key] in value if isinstance(value, list) else answer[key] == value
                 for key, value in filter_vars.items()
@@ -198,13 +154,14 @@ class AnswerStore:
                 filtered.append(answer)
                 if limit and len(filtered) == self.EQ_MAX_NUM_REPEATS:
                     break
+
         return self.__class__(existing_answers=filtered)
 
     def clear(self):
         """
         Clears answers *in place*
         """
-        self.answers.clear()
+        self.answer_map.clear()
 
     def remove(self, answer_ids=None, group_instance=None, answer_instance=None):
         """
@@ -215,7 +172,17 @@ class AnswerStore:
         :param group_instance: The group instance to filter results to remove
         """
         for answer in self.filter(answer_ids, group_instance=group_instance, answer_instance=answer_instance):
-            self.answers.remove(answer)
+            self.answer_map[answer['answer_id']].remove(answer)
+
+    def remove_answer(self, answer):
+        """
+        Removes answer *in place* from the answer store.
+
+        :param answer: The answer ids to filter results to remove
+        """
+
+        if answer in self.answer_map[answer['answer_id']]:
+            self.answer_map[answer['answer_id']].remove(answer)
 
     def get_hash(self):
         """
@@ -223,7 +190,7 @@ class AnswerStore:
 
         :return: Return a unique hash value
         """
-        return hash(json.dumps(self.answers, sort_keys=True))
+        return hash(json.dumps(self.answer_map, sort_keys=True))
 
     def upgrade(self, current_version, schema):
         """
@@ -240,28 +207,9 @@ class AnswerStore:
             transform(self, schema)
 
 
-def number_else_string(text):
-    """
-    Converts number to an integer if possible.
-    :param text: Text to be converted
-    :return: Integer representation of text if a number.  Otherwise, it returns the text as is
-    """
-    return int(text) if text.isdigit() else text
-
-
-def natural_order(key):
-    """
-    Orders a set of items according to
-
-    :param key:
-    :return:
-    """
-    return [number_else_string(c) for c in re.split(r'(\d+)', key)]
-
-
 def upgrade_0_to_1_update_date_formats(answer_store, schema):
     """ Updates the date format """
-    for answer in answer_store.answers:
+    for answer in answer_store:
         answer_schema = schema.get_answer(answer['answer_id'])
 
         if answer_schema:
@@ -279,7 +227,7 @@ def upgrade_1_to_2_add_group_instance_id(answer_store, schema):
     from app.questionnaire.location import Location
     from app.helpers.schema_helpers import get_group_instance_id
 
-    for answer in answer_store.answers:
+    for answer in answer_store:
         # Happily, parent_id's are patched on to the schema for each nested level, so we can
         # retrieve the block_id and group_id for the answer we're processing here.
         answer_schema = schema.get_answer(answer['answer_id'])

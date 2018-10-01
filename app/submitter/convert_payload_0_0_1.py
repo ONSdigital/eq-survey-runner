@@ -72,7 +72,7 @@ def _get_checkbox_answer_data(answer_store, answer_schema, value):
 
                 # if the user has selected 'other' we need to find the child value it refers to.
                 # the child value can be empty, in this case we just use the main value (e.g. other)
-                user_answer = filtered[0]['value'] or user_answer
+                user_answer = filtered.values()[0] or user_answer
 
             qcodes_and_values.append((option.get('q_code'), user_answer))
 

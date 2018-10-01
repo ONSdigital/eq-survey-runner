@@ -42,7 +42,7 @@ def _build_answers(answer_store, schema, answer_ids_on_path):
             value = _create_answers_list(matching_answers, 'group_instance')
 
         elif matching_answers:
-            value = json_and_html_safe(matching_answers[0]['value'])
+            value = json_and_html_safe(next(iter(matching_answers))['value'])
         else:
             value = ''
 

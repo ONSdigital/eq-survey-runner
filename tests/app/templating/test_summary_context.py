@@ -451,14 +451,14 @@ class TestAnswerSummaryContext(TestStandardSummaryContext):
         primary_uuid = uuid.uuid4()
         repeating_0_uuid = uuid.uuid4()
         repeating_1_uuid = uuid.uuid4()
-        self.answer_store.add(Answer('primary-first-name', 'Bob', primary_uuid, 0, 0))
-        self.answer_store.add(Answer('primary-last-name', 'Smith', primary_uuid, 0, 0))
-        self.answer_store.add(Answer('primary-anyone-else', 'Yes', primary_uuid, 0, 0))
-        self.answer_store.add(Answer('repeating-first-name', 'Mary', repeating_0_uuid, 0, 0))
-        self.answer_store.add(Answer('repeating-last-name', 'Smith', repeating_0_uuid, 0, 0))
-        self.answer_store.add(Answer('repeating-anyone-else', 'Yes', repeating_0_uuid, 0, 0))
-        self.answer_store.add(Answer('repeating-first-name', 'Sally', repeating_1_uuid, 1, 0))
-        self.answer_store.add(Answer('repeating-last-name', 'Smith', repeating_1_uuid, 1, 0))
+        self.answer_store.add_or_update(Answer('primary-first-name', 'Bob', primary_uuid, 0, 0))
+        self.answer_store.add_or_update(Answer('primary-last-name', 'Smith', primary_uuid, 0, 0))
+        self.answer_store.add_or_update(Answer('primary-anyone-else', 'Yes', primary_uuid, 0, 0))
+        self.answer_store.add_or_update(Answer('repeating-first-name', 'Mary', repeating_0_uuid, 0, 0))
+        self.answer_store.add_or_update(Answer('repeating-last-name', 'Smith', repeating_0_uuid, 0, 0))
+        self.answer_store.add_or_update(Answer('repeating-anyone-else', 'Yes', repeating_0_uuid, 0, 0))
+        self.answer_store.add_or_update(Answer('repeating-first-name', 'Sally', repeating_1_uuid, 1, 0))
+        self.answer_store.add_or_update(Answer('repeating-last-name', 'Smith', repeating_1_uuid, 1, 0))
 
         current_location = Location(
             block_id='household-summary',
@@ -476,6 +476,9 @@ class TestAnswerSummaryContext(TestStandardSummaryContext):
         self.assertTrue('icon' in context['summary'])
         self.assertEqual('person', context['summary']['icon'])
         self.assertEqual(1, len(context['summary']['groups']))
-        self.assertEqual('Bob Smith', context['summary']['groups'][0]['answers'][0]['label'])
-        self.assertEqual('Mary Smith', context['summary']['groups'][0]['answers'][1]['label'])
-        self.assertEqual('Sally Smith', context['summary']['groups'][0]['answers'][2]['label'])
+
+        summary_answers = context['summary']['groups'][0]['answers']
+        labels = [summary_answer['label'] for summary_answer in summary_answers]
+        self.assertIn('Bob Smith', labels)
+        self.assertIn('Mary Smith', labels)
+        self.assertIn('Sally Smith', labels)

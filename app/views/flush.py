@@ -45,7 +45,7 @@ def _submit_data(user):
 
     answer_store = get_answer_store(user)
 
-    if answer_store.answers:
+    if answer_store:
         metadata = get_metadata(user)
         collection_metadata = get_collection_metadata(user)
         schema = load_schema_from_metadata(metadata)
