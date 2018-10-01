@@ -20,4 +20,4 @@ class TestLocation(AppContextTestCase):
     def test_location_hash(self):
         location = Location('some-group', 0, 'some-block')
 
-        self.assertEqual(hash(location), hash(location.__dict__.values()))
+        self.assertEqual(hash(location), hash(frozenset(location.__dict__.values())))

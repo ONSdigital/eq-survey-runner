@@ -20,7 +20,7 @@ class Location:
         return isinstance(other, Location) and self.__dict__ == other.__dict__
 
     def __hash__(self):
-        return hash(self.__dict__.values())
+        return hash(frozenset(self.__dict__.values()))
 
     def __str__(self):
         """
