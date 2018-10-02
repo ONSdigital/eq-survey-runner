@@ -363,16 +363,18 @@ class TestRepeatingSummaryContext(TestStandardSummaryContext):
 
         context_summary = context['summary']
 
-        self.assertEqual(len(context_summary['groups']), 3)
+        self.assertEqual(len(context_summary['groups']), 4)
         self.assertTrue('title' in context_summary)
 
         self.assertEqual(context_summary['groups'][0]['title'], 'Your Details')
         self.assertEqual(context_summary['groups'][1]['title'], 'Other Household Members')
         self.assertIsNone(context_summary['groups'][2]['title'])
+        self.assertIsNone(context_summary['groups'][3]['title'])
 
         self.assertEqual(context_summary['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['value'], 'Aaa')
         self.assertEqual(context_summary['groups'][1]['blocks'][0]['questions'][0]['answers'][0]['value'], 'Bbb')
         self.assertEqual(context_summary['groups'][2]['blocks'][0]['questions'][0]['answers'][0]['value'], 'Ccc')
+        self.assertEqual(context_summary['groups'][3]['blocks'], [])
 
 
     def test_build_view_context_for_calculated_summary_for_repeating_group(self):
@@ -405,29 +407,30 @@ class TestRepeatingSummaryContext(TestStandardSummaryContext):
 
         context_summary = context['summary']
 
-        self.assertEqual(len(context_summary['groups']), 6)
+        self.assertEqual(len(context_summary['groups']), 7)
 
         self.assertEqual(context_summary['groups'][0]['title'], 'Your Details')
         self.assertEqual(context_summary['groups'][1]['title'], 'Other Household Members')
         self.assertIsNone(context_summary['groups'][2]['title'])
-        self.assertEqual(context_summary['groups'][3]['title'], 'Aaa')
-        self.assertEqual(context_summary['groups'][4]['title'], 'Bbb')
-        self.assertEqual(context_summary['groups'][5]['title'], 'Ccc')
+        self.assertIsNone(context_summary['groups'][3]['title'])
+        self.assertEqual(context_summary['groups'][4]['title'], 'Aaa')
+        self.assertEqual(context_summary['groups'][5]['title'], 'Bbb')
+        self.assertEqual(context_summary['groups'][6]['title'], 'Ccc')
 
         self.assertEqual(context_summary['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['value'], 'Aaa')
         self.assertEqual(context_summary['groups'][1]['blocks'][0]['questions'][0]['answers'][0]['value'], 'Bbb')
         self.assertEqual(context_summary['groups'][2]['blocks'][0]['questions'][0]['answers'][0]['value'], 'Ccc')
 
-        self.assertEqual(context_summary['groups'][3]['blocks'][0]['questions'][0]['title'].endswith('Aaa'), True)
-        self.assertEqual(context_summary['groups'][4]['blocks'][0]['questions'][0]['title'].endswith('Bbb'), True)
-        self.assertEqual(context_summary['groups'][5]['blocks'][0]['questions'][0]['title'].endswith('Ccc'), True)
+        self.assertEqual(context_summary['groups'][4]['blocks'][0]['questions'][0]['title'].endswith('Aaa'), True)
+        self.assertEqual(context_summary['groups'][5]['blocks'][0]['questions'][0]['title'].endswith('Bbb'), True)
+        self.assertEqual(context_summary['groups'][6]['blocks'][0]['questions'][0]['title'].endswith('Ccc'), True)
 
-        self.assertEqual(context_summary['groups'][3]['blocks'][0]['questions'][0]['answers'][0]['value'], 1)
-        self.assertEqual(context_summary['groups'][3]['blocks'][1]['questions'][0]['answers'][0]['value'], 11)
-        self.assertEqual(context_summary['groups'][4]['blocks'][0]['questions'][0]['answers'][0]['value'], 2)
-        self.assertEqual(context_summary['groups'][4]['blocks'][1]['questions'][0]['answers'][0]['value'], 22)
-        self.assertEqual(context_summary['groups'][5]['blocks'][0]['questions'][0]['answers'][0]['value'], 3)
-        self.assertEqual(context_summary['groups'][5]['blocks'][1]['questions'][0]['answers'][0]['value'], 33)
+        self.assertEqual(context_summary['groups'][4]['blocks'][0]['questions'][0]['answers'][0]['value'], 1)
+        self.assertEqual(context_summary['groups'][4]['blocks'][1]['questions'][0]['answers'][0]['value'], 11)
+        self.assertEqual(context_summary['groups'][5]['blocks'][0]['questions'][0]['answers'][0]['value'], 2)
+        self.assertEqual(context_summary['groups'][5]['blocks'][1]['questions'][0]['answers'][0]['value'], 22)
+        self.assertEqual(context_summary['groups'][6]['blocks'][0]['questions'][0]['answers'][0]['value'], 3)
+        self.assertEqual(context_summary['groups'][6]['blocks'][1]['questions'][0]['answers'][0]['value'], 33)
 
 
 class TestAnswerSummaryContext(TestStandardSummaryContext):
