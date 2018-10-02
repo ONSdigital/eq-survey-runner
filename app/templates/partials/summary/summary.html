@@ -2,7 +2,7 @@
     {%- if content.summary.collapsible -%}
         {%- include 'partials/summary/collapsible-summary.html' -%}
     {%- else -%}
-        {%- for group in content.summary.groups -%}
+        {%- for group in content.summary.groups if group.blocks -%}
             {%- if group.title -%}
                 <h2 class="summary__title neptune" id="{{ group.id }}">{{ group.title }}</h2>
                 <div class="summary__block u-mb-l">
@@ -26,7 +26,7 @@
                 {%- if content.summary.summary_type == 'CalculatedSummary' -%}
                     {%- include theme(['partials/summary/calculated-summary-answer.html']) -%}
                 {%- endif -%}
-            {%- if loop.last or loop.nextitem.title-%}
+            {%- if loop.last or loop.nextitem.title -%}
                 </div>
             {%- endif -%}
         {%- endfor -%}

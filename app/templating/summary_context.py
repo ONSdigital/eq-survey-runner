@@ -31,8 +31,7 @@ def build_summary_rendering_context(schema, sections, answer_store, metadata, sc
             repeating_groups = []
             for instance_idx in range(0, no_of_repeats):
                 summary_group = Group(group, path, answer_store, metadata, schema, instance_idx, schema_context).serialize()
-                if summary_group['blocks']:
-                    repeating_groups.extend([summary_group])
+                repeating_groups.append(summary_group)
             groups.extend(repeating_groups)
 
     return groups
