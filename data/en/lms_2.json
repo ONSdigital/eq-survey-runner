@@ -5,7 +5,7 @@
     "survey_id": "lms",
     "title": "Online Household Study",
     "description": "Online Household Study Schema",
-    "theme": "default",
+    "theme": "social",
     "legal_basis": "Voluntary",
     "eq_id": "lms",
     "form_type": "1",

@@ -1,4 +1,4 @@
-from flask import Blueprint, current_app
+from flask import Blueprint, current_app, session as cookie_session
 from flask_themes2 import render_theme_template
 from structlog import get_logger
 
@@ -21,7 +21,7 @@ def contact():
         schema = load_schema_from_session_data(session)
         survey_id = schema.json['survey_id']
 
-    contact_template = render_theme_template(theme='default',
+    contact_template = render_theme_template(theme=cookie_session.get('theme', 'default'),
                                              template_name='static/contact-us.html',
                                              session=session,
                                              survey_id=survey_id,
@@ -31,7 +31,7 @@ def contact():
 
 @contact_blueprint.route('/cookies-privacy', methods=['GET'])
 def legal():
-    cookie_template = render_theme_template(theme='default',
+    cookie_template = render_theme_template(theme=cookie_session.get('theme', 'default'),
                                             template_name='static/cookies-privacy.html',
                                             analytics_ua_id=current_app.config['EQ_UA_ID'])
     return cookie_template
