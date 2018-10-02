@@ -12,7 +12,6 @@ from wtforms.compat import string_types
 from structlog import get_logger
 
 from app.jinja_filters import format_number, get_formatted_currency
-from app.settings import DEFAULT_LOCALE
 from app.validation.error_messages import error_messages
 from app.questionnaire.rules import convert_to_datetime
 
@@ -28,7 +27,7 @@ class NumberCheck:
 
     def __call__(self, form, field):
         try:
-            Decimal(field.raw_data[0].replace(numbers.get_group_symbol(DEFAULT_LOCALE), ''))
+            Decimal(field.raw_data[0].replace(numbers.get_group_symbol(flask_babel.get_locale()), ''))
         except (ValueError, TypeError, InvalidOperation, AttributeError):
             raise validators.StopValidation(self.message)
 
@@ -131,8 +130,8 @@ class DecimalPlaces:
         self.messages = messages or error_messages
 
     def __call__(self, form, field):
-        data = field.raw_data[0].replace(numbers.get_group_symbol(DEFAULT_LOCALE), '').replace(' ', '')
-        decimal_symbol = numbers.get_decimal_symbol(DEFAULT_LOCALE)
+        data = field.raw_data[0].replace(numbers.get_group_symbol(flask_babel.get_locale()), '').replace(' ', '')
+        decimal_symbol = numbers.get_decimal_symbol(flask_babel.get_locale())
         if data and decimal_symbol in data:
             if self.max_decimals == 0:
                 raise validators.ValidationError(self.messages['INVALID_INTEGER'])

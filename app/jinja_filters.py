@@ -12,7 +12,6 @@ from jinja2.exceptions import UndefinedError
 from babel import units, numbers
 
 from app.questionnaire.rules import convert_to_datetime
-from app.settings import DEFAULT_LOCALE
 
 blueprint = flask.Blueprint('filters', __name__)
 
@@ -20,7 +19,7 @@ blueprint = flask.Blueprint('filters', __name__)
 @blueprint.app_template_filter()
 def format_number(value):
     if value or value == 0:
-        return numbers.format_decimal(value, locale=DEFAULT_LOCALE)
+        return numbers.format_decimal(value, locale=flask_babel.get_locale())
 
     return ''
 
@@ -34,14 +33,14 @@ def format_currency(context, value, currency='GBP'):
 
 def get_formatted_currency(value, currency='GBP'):
     if value or value == 0:
-        return numbers.format_currency(number=value, currency=currency, locale=DEFAULT_LOCALE)
+        return numbers.format_currency(number=value, currency=currency, locale=flask_babel.get_locale())
 
     return ''
 
 
 @blueprint.app_template_filter()
 def get_currency_symbol(currency='GBP'):
-    return numbers.get_currency_symbol(currency, locale=DEFAULT_LOCALE)
+    return numbers.get_currency_symbol(currency, locale=flask_babel.get_locale())
 
 
 @blueprint.app_template_filter()
@@ -83,7 +82,7 @@ def format_address_list(user_entered_address=None, metadata_address=None):
 
 
 def format_unit(unit, value, length='short'):
-    return units.format_unit(value=value, measurement_unit=unit, length=length, locale=DEFAULT_LOCALE)
+    return units.format_unit(value=value, measurement_unit=unit, length=length, locale=flask_babel.get_locale())
 
 
 def format_unit_input_label(unit, unit_length='short'):
@@ -95,8 +94,8 @@ def format_unit_input_label(unit, unit_length='short'):
     :param (str) unit_length length of unit text, can be one of short/long/narrow
     """
     if unit_length == 'long':
-        return units.format_unit(value=2, measurement_unit=unit, length=unit_length, locale=DEFAULT_LOCALE).replace('2 ', '')
-    return units.format_unit(value='', measurement_unit=unit, length=unit_length, locale=DEFAULT_LOCALE).strip()
+        return units.format_unit(value=2, measurement_unit=unit, length=unit_length, locale=flask_babel.get_locale()).replace('2 ', '')
+    return units.format_unit(value='', measurement_unit=unit, length=unit_length, locale=flask_babel.get_locale()).strip()
 
 
 def format_duration(value):

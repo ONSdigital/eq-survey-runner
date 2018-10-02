@@ -27,6 +27,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         self.autoescape_context = Mock(autoescape=True)
         super(TestJinjaFilters, self).setUp()
 
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_format_currency_for_input(self):
         self.assertEqual(format_currency_for_input('100', 2), '100.00')
         self.assertEqual(format_currency_for_input('100.0', 2), '100.00')
@@ -41,6 +42,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         self.assertEqual(format_currency_for_input(None), '')
         self.assertEqual(format_currency_for_input(Undefined()), '')
 
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_get_currency_symbol(self):
         self.assertEqual(get_currency_symbol('GBP'), '£')
         self.assertEqual(get_currency_symbol('EUR'), '€')
@@ -48,6 +50,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         self.assertEqual(get_currency_symbol('JPY'), 'JP¥')
         self.assertEqual(get_currency_symbol(''), '')
 
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_format_currency(self):
         self.assertEqual(format_currency(self.autoescape_context, '11', 'GBP'), "<span class='date'>£11.00</span>")
         self.assertEqual(format_currency(self.autoescape_context, '11.99', 'GBP'), "<span class='date'>£11.99</span>")
@@ -58,6 +61,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         self.assertEqual(format_currency(self.autoescape_context, None), "<span class='date'></span>")
         self.assertEqual(format_currency(self.autoescape_context, Undefined()), "<span class='date'></span>")
 
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_format_number(self):
         self.assertEqual(format_number(123), '123')
         self.assertEqual(format_number('123.4'), '123.4')
@@ -438,6 +442,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         self.assertEqual(format_number_to_alphabetic_letter(25), 'z')
         self.assertEqual(format_number_to_alphabetic_letter(-1), '')
 
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_format_unit(self):
         self.assertEqual(format_unit('length-meter', 100), '100 m')
         self.assertEqual(format_unit('length-centimeter', 100), '100 cm')
@@ -458,6 +463,14 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         self.assertEqual(format_unit('duration-hour', 100, 'long'), '100 hours')
         self.assertEqual(format_unit('duration-year', 100, 'long'), '100 years')
 
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='cy'))
+    def test_format_unit_welsh(self):
+        self.assertEqual(format_unit('duration-hour', 100), '100 awr')
+        self.assertEqual(format_unit('duration-year', 100), '100 bl')
+        self.assertEqual(format_unit('duration-hour', 100, 'long'), '100 awr')
+        self.assertEqual(format_unit('duration-year', 100, 'long'), '100 mlynedd')
+
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_format_unit_input_label(self):
         self.assertEqual(format_unit_input_label('length-meter'), 'm')
         self.assertEqual(format_unit_input_label('length-centimeter'), 'cm')
@@ -478,6 +491,13 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         self.assertEqual(format_unit_input_label('duration-hour', 'long'), 'hours')
         self.assertEqual(format_unit_input_label('duration-year'), 'yr')
         self.assertEqual(format_unit_input_label('duration-year', 'long'), 'years')
+
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='cy'))
+    def test_format_unit_input_label_welsh(self):
+        self.assertEqual(format_unit_input_label('duration-hour'), 'awr')
+        self.assertEqual(format_unit_input_label('duration-hour', 'long'), 'awr')
+        self.assertEqual(format_unit_input_label('duration-year'), 'bl')
+        self.assertEqual(format_unit_input_label('duration-year', 'long'), 'flynedd')
 
 
     def test_format_year_month_duration(self):

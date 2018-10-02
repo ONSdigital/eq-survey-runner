@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 from wtforms.validators import StopValidation, ValidationError
 
 from app.validation.error_messages import error_messages
@@ -9,6 +9,7 @@ from app.data_model.answer_store import AnswerStore
 
 
 # pylint: disable=no-member
+@patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
 class TestNumberValidator(unittest.TestCase):
     """
     Number validator uses the raw data from the input, which is in a list
