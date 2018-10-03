@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 10:32+0100\n"
+"POT-Creation-Date: 2018-10-03 10:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: app/jinja_filters.py:93 app/jinja_filters.py:236
+#: app/jinja_filters.py:106 app/jinja_filters.py:249
 #: app/validation/validators.py:297
 #, python-format
 msgid "%(num)s year"
@@ -25,19 +25,19 @@ msgid_plural "%(num)s years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/jinja_filters.py:95 app/validation/validators.py:299
+#: app/jinja_filters.py:108 app/validation/validators.py:299
 #, python-format
 msgid "%(num)s month"
 msgid_plural "%(num)s months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/jinja_filters.py:163
+#: app/jinja_filters.py:176
 #, python-format
 msgid "%(date)s at %(time)s"
 msgstr ""
 
-#: app/jinja_filters.py:246 app/jinja_filters.py:294
+#: app/jinja_filters.py:259 app/jinja_filters.py:307
 #, python-format
 msgid "%(from_date)s to %(to_date)s"
 msgstr ""
@@ -71,6 +71,7 @@ msgid "Thank you for your feedback"
 msgstr ""
 
 #: app/templates/feedback_sent.html:8 app/templates/thank-you.html:8
+#: app/themes/social/templates/thank-you.html:8
 msgid "Submission successful"
 msgstr ""
 
@@ -79,11 +80,13 @@ msgid "It is now safe to close this window"
 msgstr ""
 
 #: app/templates/introduction.html:28
+#: app/themes/northernireland/templates/introduction.html:22
 #, python-format
 msgid "You are completing this for <span>%(ru_name)s</span> (%(trading_as_name)s)"
 msgstr ""
 
 #: app/templates/introduction.html:32
+#: app/themes/northernireland/templates/introduction.html:26
 #, python-format
 msgid "You are completing this for <span>%(ru_name)s</span>"
 msgstr ""
@@ -186,7 +189,7 @@ msgid ""
 "after submitting this survey"
 msgstr ""
 
-#: app/templates/thank-you.html:3
+#: app/templates/thank-you.html:3 app/themes/social/templates/thank-you.html:3
 msgid "We've received your answers"
 msgstr ""
 
@@ -217,10 +220,12 @@ msgid "We may contact you to query your answers via phone or secure message"
 msgstr ""
 
 #: app/templates/thank-you.html:38
+#: app/themes/social/templates/thank-you.html:19
 msgid "View and print a copy of your answers"
 msgstr ""
 
 #: app/templates/thank-you.html:39
+#: app/themes/social/templates/thank-you.html:20
 #, python-format
 msgid ""
 "Your answers will only be available for <b>%(duration)s</b> to keep them "
@@ -228,10 +233,12 @@ msgid ""
 msgstr ""
 
 #: app/templates/thank-you.html:44
+#: app/themes/social/templates/thank-you.html:25
 msgid "You are no longer able to view and print your answers"
 msgstr ""
 
 #: app/templates/thank-you.html:45
+#: app/themes/social/templates/thank-you.html:26
 msgid "The link expires to maintain the security of your information"
 msgstr ""
 
@@ -356,16 +363,29 @@ msgstr ""
 #: app/templates/partials/footer-transactional.html:8
 #: app/templates/partials/footer.html:20
 #: app/templates/static/contact-us.html:26
+#: app/themes/census/templates/partials/footer-transactional.html:12
+#: app/themes/census/templates/partials/footer.html:24
+#: app/themes/northernireland/templates/partials/footer-transactional.html:12
+#: app/themes/northernireland/templates/partials/footer.html:24
+#: app/themes/social/templates/static/contact-us.html:26
 msgid "Contact us"
 msgstr ""
 
 #: app/templates/partials/footer-transactional.html:11
 #: app/templates/partials/footer.html:9
+#: app/themes/census/templates/partials/footer-transactional.html:15
+#: app/themes/census/templates/partials/footer.html:13
+#: app/themes/northernireland/templates/partials/footer-transactional.html:15
+#: app/themes/northernireland/templates/partials/footer.html:13
 msgid "Cookies and privacy"
 msgstr ""
 
 #: app/templates/partials/footer-transactional.html:17
 #: app/templates/partials/footer.html:43
+#: app/themes/census/templates/partials/footer-transactional.html:21
+#: app/themes/census/templates/partials/footer.html:47
+#: app/themes/northernireland/templates/partials/footer-transactional.html:21
+#: app/themes/northernireland/templates/partials/footer.html:47
 #, python-format
 msgid ""
 "All content is available under the %(class_open)sOpen Government Licence "
@@ -373,34 +393,50 @@ msgid ""
 msgstr ""
 
 #: app/templates/partials/footer.html:6
+#: app/themes/census/templates/partials/footer.html:10
+#: app/themes/northernireland/templates/partials/footer.html:10
 msgid "Legal information"
 msgstr ""
 
 #: app/templates/partials/footer.html:14
+#: app/themes/census/templates/partials/footer.html:18
+#: app/themes/northernireland/templates/partials/footer.html:18
 msgid "About ONS"
 msgstr ""
 
 #: app/templates/partials/footer.html:17
+#: app/themes/census/templates/partials/footer.html:21
+#: app/themes/northernireland/templates/partials/footer.html:21
 msgid "What we do"
 msgstr ""
 
 #: app/templates/partials/footer.html:23
+#: app/themes/census/templates/partials/footer.html:27
+#: app/themes/northernireland/templates/partials/footer.html:27
 msgid "Accessibility"
 msgstr ""
 
 #: app/templates/partials/footer.html:28
+#: app/themes/census/templates/partials/footer.html:32
+#: app/themes/northernireland/templates/partials/footer.html:32
 msgid "Statistics"
 msgstr ""
 
 #: app/templates/partials/footer.html:31
+#: app/themes/census/templates/partials/footer.html:35
+#: app/themes/northernireland/templates/partials/footer.html:35
 msgid "UK Statistics Authority"
 msgstr ""
 
 #: app/templates/partials/footer.html:34
+#: app/themes/census/templates/partials/footer.html:38
+#: app/themes/northernireland/templates/partials/footer.html:38
 msgid "Release calendar"
 msgstr ""
 
 #: app/templates/partials/footer.html:37
+#: app/themes/census/templates/partials/footer.html:41
+#: app/themes/northernireland/templates/partials/footer.html:41
 msgid "News"
 msgstr ""
 
@@ -512,28 +548,21 @@ msgstr ""
 msgid "Selecting this will add a new set of fields to enter another person"
 msgstr ""
 
-#: app/templates/partials/summary/answer-summary.html:22
+#: app/templates/partials/summary/answer-summary.html:20
 #: app/templates/partials/summary/edit-link.html:6
 msgid "Change"
 msgstr ""
 
-#: app/templates/partials/summary/answer-summary.html:24
-msgid "Change your answer for"
-msgstr ""
-
-#: app/templates/partials/summary/answer-summary.html:24
-msgid "The current value is"
+#: app/templates/partials/summary/answer-summary.html:22
+#: app/templates/partials/summary/edit-link.html:7
+#, python-format
+msgid "Change your answer for: %(title)s. The current value is: %(value)s"
 msgstr ""
 
 #: app/templates/partials/summary/answer.html:2
 #: app/templates/partials/summary/checkbox.html:7
 #: app/templates/partials/summary/radio.html:6
 msgid "No answer provided"
-msgstr ""
-
-#: app/templates/partials/summary/edit-link.html:7
-#, python-format
-msgid "Change your answer for: %(title)s. The current value is: %(value)s"
 msgstr ""
 
 #: app/templates/partials/widgets/multiple_choice_widget.html:14
@@ -561,6 +590,7 @@ msgstr ""
 #: app/templates/static/cookies-privacy.html:233
 #: app/templates/static/cookies-privacy.html:389
 #: app/templates/static/cookies-privacy.html:398
+#: app/themes/social/templates/static/contact-us.html:30
 msgid "Telephone"
 msgstr ""
 
@@ -577,6 +607,7 @@ msgid "Your Survey ID is <b>%(survey_id)s</b>."
 msgstr ""
 
 #: app/templates/static/contact-us.html:44
+#: app/themes/social/templates/static/contact-us.html:37
 msgid "Opening hours"
 msgstr ""
 
@@ -589,6 +620,7 @@ msgid "Friday 8:30am - 4:30pm"
 msgstr ""
 
 #: app/templates/static/contact-us.html:50
+#: app/themes/social/templates/static/contact-us.html:44
 msgid "This office is closed during public holidays"
 msgstr ""
 
@@ -596,16 +628,19 @@ msgstr ""
 #: app/templates/static/cookies-privacy.html:233
 #: app/templates/static/cookies-privacy.html:389
 #: app/templates/static/cookies-privacy.html:398
+#: app/themes/social/templates/static/contact-us.html:46
 msgid "Email"
 msgstr ""
 
 #: app/templates/static/contact-us.html:58
+#: app/themes/social/templates/static/contact-us.html:52
 msgid "Post"
 msgstr ""
 
 #: app/templates/static/contact-us.html:62
 #: app/templates/static/cookies-privacy.html:231
 #: app/templates/static/cookies-privacy.html:388
+#: app/themes/social/templates/static/contact-us.html:56
 msgid "Office for National Statistics"
 msgstr ""
 
@@ -1308,6 +1343,50 @@ msgstr ""
 msgid ""
 "The Information Commissioner’s Office provides guidance to the public on "
 "raising a concern with an organisation at the following location"
+msgstr ""
+
+#: app/themes/census/templates/introduction.html:25
+msgid "Help finding your access code"
+msgstr ""
+
+#: app/themes/census/templates/introduction.html:38
+msgid "Need help? More information about the Census"
+msgstr ""
+
+#: app/themes/social/templates/thank-you.html:12
+msgid "Your information has been submitted. You can now close this page"
+msgstr ""
+
+#: app/themes/social/templates/thank-you.html:35
+msgid "More information on how we use data we have collected"
+msgstr ""
+
+#: app/themes/social/templates/static/contact-us.html:4
+msgid "ONS Social Surveys"
+msgstr ""
+
+#: app/themes/social/templates/static/contact-us.html:39
+msgid "Monday to Thursday 9am – 9pm"
+msgstr ""
+
+#: app/themes/social/templates/static/contact-us.html:40
+msgid "Friday 9am - 8pm"
+msgstr ""
+
+#: app/themes/social/templates/static/contact-us.html:41
+msgid "Saturday 9am - 1pm"
+msgstr ""
+
+#: app/themes/social/templates/static/contact-us.html:57
+msgid "Segensworth Road"
+msgstr ""
+
+#: app/themes/social/templates/static/contact-us.html:58
+msgid "Titchfield"
+msgstr ""
+
+#: app/themes/social/templates/static/contact-us.html:59
+msgid "Fareham"
 msgstr ""
 
 #: app/validation/error_messages.py:5 app/validation/error_messages.py:6
