@@ -1,6 +1,8 @@
+from datetime import datetime, timedelta
 from uuid import uuid4
 
 from blinker import ANY
+from dateutil.tz import tzutc
 from flask import session as cookie_session, current_app
 from flask_login import LoginManager, user_logged_out, login_user
 from sdc.crypto.decrypter import decrypt
@@ -11,7 +13,6 @@ from app.authentication.user import User
 from app.data_model.session_data import SessionData
 from app.globals import get_questionnaire_store, get_session_store, create_session_store
 from app.keys import KEY_PURPOSE_AUTHENTICATION
-
 from app.settings import EQ_SESSION_ID, USER_IK
 
 logger = get_logger()
@@ -40,14 +41,43 @@ def when_user_logged_out(sender_app, user):  # pylint: disable=unused-argument
     cookie_session.pop(USER_IK, None)
 
 
+def _extend_session_expiry(session_store):
+    """
+    Extends the expiration time of the session
+    :param session_store:
+    """
+    session_timeout = cookie_session.get('expires_in')
+    if session_timeout:
+        session_store.expiration_time = datetime.now(tz=tzutc()) + timedelta(seconds=session_timeout)
+        session_store.save()
+
+        logger.debug('session expiry extended')
+
+
+def _is_session_valid(session_store):
+    """
+    Checks that the user's session has not expired
+    :param session_store:
+    :return: True if the session is valid else False
+    """
+
+    if session_store.expiration_time and \
+            session_store.expiration_time < datetime.now(tz=tzutc()):
+        return False
+
+    return True
+
+
 def load_user():
     """
     Checks for the present of the JWT in the users sessions
     :return: A user object if a JWT token is available in the session
     """
     session_store = get_session_store()
-    if session_store and session_store.user_id:
+
+    if session_store and session_store.user_id and _is_session_valid(session_store):
         logger.debug('session exists')
+
         user_id = session_store.user_id
         user_ik = cookie_session.get(USER_IK)
         user = User(user_id, user_ik)
@@ -55,9 +85,13 @@ def load_user():
         if session_store.session_data.tx_id:
             logger.bind(tx_id=session_store.session_data.tx_id)
 
+        _extend_session_expiry(session_store)
+
         return user
 
     logger.info('session does not exist')
+
+    cookie_session.pop(USER_IK, None)
     return None
 
 

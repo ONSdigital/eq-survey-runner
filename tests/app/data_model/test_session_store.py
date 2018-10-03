@@ -12,6 +12,7 @@ class SessionStoreTest(AppContextTestCase):
         super().setUp()
         self._app.permanent_session_lifetime = timedelta(seconds=1)
         self.session_store = SessionStore('user_ik', 'pepper')
+        self.expires_at = datetime.utcnow() + timedelta(seconds=1)
         self.session_data = SessionData(
             tx_id='tx_id',
             eq_id='eq_id',
@@ -31,27 +32,38 @@ class SessionStoreTest(AppContextTestCase):
 
     def test_create(self):
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', self.session_data)
+            self.session_store.create('eq_session_id', 'test', self.session_data, self.expires_at)
             self.assertEqual('eq_session_id', self.session_store.eq_session_id)
             self.assertEqual('test', self.session_store.user_id)
             self.assertEqual(self.session_data, self.session_store.session_data)
 
     def test_save(self):
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', self.session_data).save()
+            self.session_store.create('eq_session_id', 'test', self.session_data, self.expires_at).save()
             session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
             self.assertEqual(session_store.session_data.tx_id, 'tx_id')
 
     def test_delete(self):
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', self.session_data).save()
+            self.session_store.create('eq_session_id', 'test', self.session_data, self.expires_at).save()
             self.assertEqual('test', self.session_store.user_id)
+            self.session_store.delete()
+            self.assertEqual(self.session_store.user_id, None)
+
+    def test_create_save_delete_with_no_expiry(self):
+        with self._app.test_request_context():
+            self.session_store.create('eq_session_id', 'test', self.session_data).save()
+            self.assertEqual('eq_session_id', self.session_store.eq_session_id)
+            self.assertEqual('test', self.session_store.user_id)
+            self.assertEqual(self.session_data, self.session_store.session_data)
+            self.assertIsNone(self.session_store.expiration_time)
+
             self.session_store.delete()
             self.assertEqual(self.session_store.user_id, None)
 
     def test_add_data_to_session(self):
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', self.session_data).save()
+            self.session_store.create('eq_session_id', 'test', self.session_data, self.expires_at).save()
             current_time = datetime.utcnow().isoformat()
             self.session_store.session_data.submitted_time = current_time
             self.session_store.save()
@@ -85,7 +97,7 @@ class SessionStoreTest(AppContextTestCase):
         session_data.additional_value = 'some cool new value you do not know about yet'
 
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', session_data).save()
+            self.session_store.create('eq_session_id', 'test', session_data, self.expires_at).save()
 
             session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
@@ -108,7 +120,7 @@ class SessionStoreTest(AppContextTestCase):
         session_data.second_additional_value = 'some other not so cool value'
 
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', session_data).save()
+            self.session_store.create('eq_session_id', 'test', session_data, self.expires_at).save()
 
             session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
@@ -129,7 +141,7 @@ class SessionStoreTest(AppContextTestCase):
             case_id='case_id'
         )
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', session_data).save()
+            self.session_store.create('eq_session_id', 'test', session_data, self.expires_at).save()
 
             session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
@@ -148,7 +160,7 @@ class SessionStoreTest(AppContextTestCase):
             case_id='case_id'
         )
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', session_data).save()
+            self.session_store.create('eq_session_id', 'test', session_data, self.expires_at).save()
 
             session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
@@ -168,7 +180,7 @@ class SessionStoreTest(AppContextTestCase):
         )
         delattr(old_session_data, 'trad_as')   # Make class look like old style class
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', old_session_data).save()
+            self.session_store.create('eq_session_id', 'test', old_session_data, self.expires_at).save()
 
             session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
@@ -230,7 +242,7 @@ class SessionStoreTest(AppContextTestCase):
         with self._app.test_request_context():
 
             with patch('app.data_model.session_store.json.loads', old_json_loader):  # patch json.loads to use old_json_loader above
-                self.session_store.create('eq_session_id', 'test', session_data).save()
+                self.session_store.create('eq_session_id', 'test', session_data, self.expires_at).save()
 
                 session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 

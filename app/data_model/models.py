@@ -2,6 +2,7 @@ import datetime
 
 from flask_sqlalchemy import SQLAlchemy
 from structlog import get_logger
+
 from app.data_model import app_models
 
 logger = get_logger()
@@ -41,21 +42,23 @@ class EQSession(db.Model):
     session_data = db.Column('session_data', db.String)
     created_at = db.Column('created_at', db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column('updated_at', db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+    expires_at = db.Column('expires_at', db.DateTime)
 
-    def __init__(self, eq_session_id, user_id, session_data=None):
+    def __init__(self, eq_session_id, user_id, session_data=None, expires_at=None):
         self.eq_session_id = eq_session_id
         self.user_id = user_id
         self.session_data = session_data
+        self.expires_at = expires_at
 
     def to_app_model(self):
-        model = app_models.EQSession(self.eq_session_id, self.user_id, self.session_data)
+        model = app_models.EQSession(self.eq_session_id, self.user_id, self.session_data, self.expires_at)
         model.created_at = self.created_at
         model.updated_at = self.updated_at
         return model
 
     @classmethod
     def from_app_model(cls, model):
-        return cls(model.eq_session_id, model.user_id, model.session_data)
+        return cls(model.eq_session_id, model.user_id, model.session_data, model.expires_at)
 
 
 # pylint: disable=maybe-no-member

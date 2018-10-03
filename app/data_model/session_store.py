@@ -1,5 +1,5 @@
-from structlog import get_logger
 import simplejson as json
+from structlog import get_logger
 
 from app.data_model.app_models import EQSession
 from app.data_model.session_data import SessionData
@@ -21,14 +21,32 @@ class SessionStore:
         if eq_session_id:
             self._load()
 
-    def create(self, eq_session_id, user_id, session_data):
+    @property
+    def expiration_time(self):
+        """
+        Checking if expires_at is available can be removed soon after deployment,
+        it is only needed to cater for in-flight sessions.
+        """
+        if self._eq_session and self._eq_session.expires_at:
+            return self._eq_session.expires_at
+
+    @expiration_time.setter
+    def expiration_time(self, expires_at):
+        """
+        Checking if expires_at is available can be removed soon after deployment,
+        it is only needed to cater for in-flight sessions.
+        """
+        if self._eq_session and self._eq_session.expires_at:
+            self._eq_session.expires_at = expires_at
+
+    def create(self, eq_session_id, user_id, session_data, expires_at=None):
         """
         Create a new eq_session and associate it with the user_id specified
         """
         self.eq_session_id = eq_session_id
         self.user_id = user_id
         self.session_data = session_data
-        self._eq_session = EQSession(self.eq_session_id, self.user_id)
+        self._eq_session = EQSession(self.eq_session_id, self.user_id, expires_at=expires_at)
 
         return self
 
@@ -62,11 +80,12 @@ class SessionStore:
         self._eq_session = data_access.get_by_key(EQSession, self.eq_session_id)
 
         if self._eq_session:
+
             self.user_id = self._eq_session.user_id
 
             if self._eq_session.session_data:
                 encrypted_session_data = self._eq_session.session_data
-                session_data = StorageEncryption(self.user_id, self.user_ik, self.pepper)\
+                session_data = StorageEncryption(self.user_id, self.user_ik, self.pepper) \
                     .decrypt_data(encrypted_session_data)
 
                 self.session_data = json.loads(session_data, object_hook=lambda d: SessionData(**d))

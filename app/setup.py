@@ -10,7 +10,7 @@ import boto3
 import sqlalchemy
 import yaml
 from botocore.config import Config
-from flask import Flask, url_for
+from flask import Flask, url_for, session as cookie_session
 from flask_babel import Babel
 from flask_caching import Cache
 from flask_talisman import Talisman
@@ -143,6 +143,11 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     @application.before_request
     def before_request():  # pylint: disable=unused-variable
+
+        # While True the session lives for permanent_session_lifetime seconds
+        # Needed to be able to set the client-side cookie expiration
+        cookie_session.permanent = True
+
         request_id = str(uuid4())
         logger.new(request_id=request_id)
 
@@ -220,6 +225,9 @@ def check_database():
 
     if 'session_data' not in session_table.c:  # pragma: no cover
         raise Exception('Database patch "pr-1391-apply.sql" has not been run')
+
+    if 'expires_at' not in session_table.c:  # pragma: no cover
+        raise Exception('Database patch "pr-1797-apply.sql" has not been run')
 
 
 def setup_dynamodb(application):
