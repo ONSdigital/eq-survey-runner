@@ -1,7 +1,6 @@
-from collections import defaultdict
-
 from structlog import get_logger
 
+from app.helpers.schema_helpers import get_group_instance_id
 from app.questionnaire.completeness import Completeness
 from app.questionnaire.location import Location
 from app.questionnaire.rules import evaluate_repeat
@@ -85,12 +84,10 @@ class Navigation:
 
         repeating_nav = []
         if repeating_rule['type'] == 'answer_count':
-            link_names = self._generate_link_names(section['title_from_answers'])
 
             for group in groups:
                 is_current_group = group['id'] == current_group_id
-                repeating_nav += self._generate_repeated_items(
-                    link_names, group, no_of_repeats, is_current_group, current_group_instance)
+                repeating_nav += self._generate_repeated_items(section['title_from_answers'], group, no_of_repeats, is_current_group, current_group_instance)
 
         elif no_of_repeats > 0:
             target_location = self._get_location_for_section(section, groups)
@@ -105,7 +102,7 @@ class Navigation:
         is_completed = self.completeness.is_section_complete(section)
         return self._generate_item(section['title'], is_completed, target_location, is_highlighted)
 
-    def _generate_repeated_items(self, link_names, group, no_of_repeats, is_current_group,
+    def _generate_repeated_items(self, title_from_answers, group, no_of_repeats, is_current_group,
                                  current_group_instance):
         """
         Generates a lists of navigation items
@@ -126,8 +123,10 @@ class Navigation:
             is_current_group_instance = is_current_group and i == current_group_instance
             is_completed = self.completeness.is_group_complete(group, group_instance=i)
 
+            link_name = self._generate_link_name(title_from_answers, location)
+
             nav_item = self._generate_item(
-                name=link_names.get(i),
+                name=link_name,
                 completed=is_completed,
                 location=location,
                 highlight=is_current_group_instance,
@@ -146,18 +145,17 @@ class Navigation:
             'repeating': repeating,
         }
 
-    def _generate_link_names(self, label_answer_ids):
-        link_names = defaultdict(list)
+    def _generate_link_name(self, label_answer_ids, location):
+        link_names = []
+
+        group_instance_id = get_group_instance_id(self.schema, self.answer_store, location)
 
         for answer_id in label_answer_ids:
-            for answer in self.answer_store.filter(answer_ids=[answer_id]).escaped():
+            for answer in self.answer_store.filter(answer_ids=[answer_id], group_instance_id=group_instance_id).escaped():
                 if answer['value']:
-                    link_names[answer['answer_instance']].append(answer['value'])
+                    link_names.append(answer['value'])
 
-        for link_name in link_names:
-            link_names[link_name] = ' '.join(link_names[link_name])
-
-        return link_names
+        return ' '.join(link_names)
 
     def _get_location_for_section(self, section, groups):
         section_completeness = self.completeness.get_state_for_section(section)

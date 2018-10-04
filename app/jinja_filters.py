@@ -351,7 +351,9 @@ def format_unordered_list(context, list_items):
 
 @blueprint.app_template_filter()
 def concatenated_list(list_items, delimiter=', '):
-    return Markup(delimiter).join(item.strip() for item in list_items if item)
+    stripped_items = list(item.strip() for item in list_items if item)
+    if stripped_items:
+        return Markup(delimiter).join(stripped_items)
 
 
 @evalcontextfilter
@@ -387,7 +389,7 @@ def format_repeating_summary(context, items, delimiter=' '):
                 intermediates.extend(list(map(list, zip(*item))))
             else:
                 intermediates.append(item)
-        output = [concatenated_list(x, delimiter=delimiter) for x in intermediates]
+        output = [name for name in (concatenated_list(x, delimiter=delimiter) for x in intermediates) if name]
         return format_unordered_list(context, [output])
     return ''
 
