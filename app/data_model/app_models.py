@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 
 from dateutil.tz import tzutc
 from marshmallow import Schema, fields, post_load, pre_dump
@@ -9,17 +9,24 @@ class QuestionnaireState:
         self.user_id = user_id
         self.state_data = state_data
         self.version = version
-        self.created_at = datetime.datetime.now(tz=tzutc())
-        self.updated_at = datetime.datetime.now(tz=tzutc())
+        self.created_at = datetime.now(tz=tzutc())
+        self.updated_at = datetime.now(tz=tzutc())
 
 
 class EQSession:
-    def __init__(self, eq_session_id, user_id, session_data=None):
+    def __init__(self, eq_session_id, user_id, session_data=None, expires_at=None):
         self.eq_session_id = eq_session_id
         self.user_id = user_id
         self.session_data = session_data
-        self.created_at = datetime.datetime.now(tz=tzutc())
-        self.updated_at = datetime.datetime.now(tz=tzutc())
+        self.created_at = datetime.now(tz=tzutc())
+        self.updated_at = datetime.now(tz=tzutc())
+        self.expires_at = expires_at
+
+        # Needed only when data is read from Postgres.
+        # The Timestamp() class already handles this when reading from Dynamo.
+        # Can be removed once only Dynamo is used.
+        if expires_at:
+            self.expires_at = expires_at.replace(tzinfo=tzutc())
 
 
 class UsedJtiClaim:
@@ -39,10 +46,14 @@ class SubmittedResponse:
 # pylint: disable=no-self-use
 class Timestamp(fields.Field):
     def _serialize(self, value, attr, obj):
-        return int(value.strftime('%s'))
+        if value:
+            # Timezone aware datetime to timestamp
+            return int(value.replace(tzinfo=tzutc()).strftime('%s'))
 
     def _deserialize(self, value, attr, data):
-        return datetime.datetime.utcfromtimestamp(value).replace(tzinfo=tzutc())
+        if value:
+            # Timestamp to timezone aware datetime
+            return datetime.utcfromtimestamp(value).replace(tzinfo=tzutc())
 
 
 class DateTimeSchemaMixin:
@@ -51,7 +62,7 @@ class DateTimeSchemaMixin:
 
     @pre_dump
     def set_date(self, data):
-        data.updated_at = datetime.datetime.now(tz=tzutc())
+        data.updated_at = datetime.now(tz=tzutc())
         return data
 
 
@@ -74,6 +85,7 @@ class EQSessionSchema(Schema, DateTimeSchemaMixin):
     eq_session_id = fields.Str()
     user_id = fields.Str()
     session_data = fields.Str()
+    expires_at = Timestamp(allow_none=True)  # To cater in flight data (Should never actually be None)
 
     @post_load
     def make_model(self, data):

@@ -2,23 +2,21 @@ from datetime import datetime
 
 from dateutil.tz import tzutc
 from flask import Blueprint, current_app, redirect, request, g, session as cookie_session
-from flask_themes2 import render_theme_template
 from flask_login import current_user, login_required, logout_user
+from flask_themes2 import render_theme_template
 from sdc.crypto.exceptions import InvalidTokenException
-
-from werkzeug.exceptions import Unauthorized
-
 from structlog import get_logger
+from werkzeug.exceptions import Unauthorized
 
 from app.authentication.authenticator import store_session, decrypt_token
 from app.authentication.jti_claim_storage import JtiTokenUsed, use_jti_claim
-from app.globals import get_completeness
+from app.globals import get_completeness, get_session_timeout_in_seconds
 from app.helpers.path_finder_helper import path_finder
 from app.questionnaire.router import Router
 from app.storage.metadata_parser import validate_metadata, parse_runner_claims
+from app.templating.template_renderer import TemplateRenderer
 from app.utilities.schema import load_schema_from_metadata
 from app.views.errors import render_template
-from app.templating.template_renderer import TemplateRenderer
 
 logger = get_logger()
 
@@ -69,6 +67,7 @@ def login():
 
     cookie_session['theme'] = g.schema.json['theme']
     cookie_session['survey_title'] = g.schema.json['title']
+    cookie_session['expires_in'] = get_session_timeout_in_seconds(g.schema)
 
     if 'account_service_url' in claims and claims.get('account_service_url'):
         cookie_session['account_service_url'] = claims.get('account_service_url')
@@ -106,12 +105,12 @@ def get_timeout_continue():
 @login_required
 def post_expire_session():
     logout_user()
+
     return get_session_expired()
 
 
 @session_blueprint.route('/session-expired', methods=['GET'])
 def get_session_expired():
-
     logout_user()
 
     return render_template('session-expired.html')

@@ -1,23 +1,24 @@
-from functools import wraps
 import re
 from collections import defaultdict
 from datetime import datetime, timedelta
+from functools import wraps
+
 import humanize
 import simplejson as json
 from dateutil.tz import tzutc
-
-from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify, session as cookie_session
+from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify
+from flask import session as cookie_session
 from flask_login import current_user, login_required, logout_user
 from flask_themes2 import render_theme_template
 from sdc.crypto.encrypter import encrypt
-
 from structlog import get_logger
 
-from app.globals import get_session_store, get_completeness
+from app.authentication.no_token_exception import NoTokenException
 from app.data_model.answer_store import Answer, AnswerStore
 from app.data_model.app_models import SubmittedResponse
 from app.globals import (get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store,
                          get_collection_metadata)
+from app.globals import get_session_store, get_completeness
 from app.helpers.form_helper import post_form_for_location
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required
 from app.helpers.schema_helpers import get_group_instance_id
@@ -25,15 +26,13 @@ from app.helpers.schema_helpers import with_schema
 from app.helpers.session_helpers import with_answer_store, with_metadata, with_collection_metadata
 from app.helpers.template_helper import (with_session_timeout, with_metadata_context, with_analytics,
                                          with_questionnaire_url_prefix, with_legal_basis, render_template)
-
+from app.keys import KEY_PURPOSE_SUBMISSION
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
 from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.router import Router
-from app.questionnaire.rules import get_answer_ids_on_routing_path
 from app.questionnaire.rules import evaluate_skip_conditions
-
-from app.keys import KEY_PURPOSE_SUBMISSION
+from app.questionnaire.rules import get_answer_ids_on_routing_path
 from app.storage import data_access
 from app.storage.storage_encryption import StorageEncryption
 from app.submitter.converter import convert_answers
@@ -42,12 +41,10 @@ from app.templating.metadata_context import build_metadata_context_for_survey_co
 from app.templating.schema_context import build_schema_context
 from app.templating.summary_context import build_summary_rendering_context
 from app.templating.template_renderer import renderer, TemplateRenderer
-from app.templating.view_context import build_view_context
 from app.templating.utils import get_question_title
-
+from app.templating.view_context import build_view_context
 from app.utilities.schema import load_schema_from_session_data
 from app.views.errors import MultipleSurveyError
-from app.authentication.no_token_exception import NoTokenException
 
 END_BLOCKS = 'Summary', 'Confirmation'
 
@@ -95,11 +92,11 @@ def before_questionnaire_request():
 
 @post_submission_blueprint.before_request
 def before_post_submission_request():
-    session = get_session_store()
-    if not session or not session.session_data:
+    session_store = get_session_store()
+    if not session_store or not session_store.session_data:
         raise NoTokenException(401)
 
-    session_data = session.session_data
+    session_data = session_store.session_data
     g.schema = load_schema_from_session_data(session_data)
 
     logger.bind(tx_id=session_data.tx_id)

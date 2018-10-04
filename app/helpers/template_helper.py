@@ -5,7 +5,7 @@ from flask_login import current_user
 from flask_themes2 import render_theme_template
 from structlog import get_logger
 
-from app.globals import get_metadata
+from app.globals import get_metadata, get_session_timeout_in_seconds
 from app.templating.metadata_context import build_metadata_context
 from app.templating.template_renderer import TemplateRenderer
 
@@ -15,14 +15,8 @@ logger = get_logger()
 def with_session_timeout(func):
     @wraps(func)
     def session_wrapper(*args, **kwargs):
-        session_timeout = current_app.config['EQ_SESSION_TIMEOUT_SECONDS']
-        schema_session_timeout = g.schema.json.get('session_timeout_in_seconds')
-        if schema_session_timeout is not None and \
-           schema_session_timeout < current_app.config['EQ_SESSION_TIMEOUT_SECONDS']:
-            session_timeout = schema_session_timeout
-
-        session_timeout_prompt = g.schema.json.get('session_prompt_in_seconds') or \
-            current_app.config['EQ_SESSION_TIMEOUT_PROMPT_SECONDS']
+        session_timeout_prompt = g.schema.json.get('session_prompt_in_seconds') or current_app.config['EQ_SESSION_TIMEOUT_PROMPT_SECONDS']
+        session_timeout = get_session_timeout_in_seconds(g.schema, with_grace_period=False)
 
         return func(
             *args,
