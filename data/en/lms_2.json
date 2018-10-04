@@ -3455,6 +3455,75 @@
                             },
                             {
                                 "goto": {
+                                    "block": "unpaid-overtime-w10",
+                                    "when": [{
+                                        "id": "not-working-casual-work-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }, {
+                                        "id": "overtime-answer",
+                                        "condition": "equals",
+                                        "value": "Paid and unpaid overtime"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "paid-overtime-w-11",
+                                    "when": [{
+                                        "id": "not-working-casual-work-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }, {
+                                        "id": "overtime-answer",
+                                        "condition": "equals",
+                                        "value": "Paid overtime"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "unpaid-overtime-w10",
+                                    "when": [{
+                                        "id": "not-working-casual-work-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }, {
+                                        "id": "overtime-answer",
+                                        "condition": "equals",
+                                        "value": "Unpaid overtime"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                        "id": "not-working-casual-work-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }, {
+                                        "id": "overtime-answer",
+                                        "condition": "equals",
+                                        "value": "No overtime"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [{
+                                        "id": "not-working-casual-work-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }, {
+                                        "id": "overtime-answer",
+                                        "condition": "not set"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
                                     "block": "one-job-usual-hours-w12",
                                     "when": [{
                                         "id": "second-job-answer",
@@ -3545,7 +3614,7 @@
                                     }, {
                                         "id": "overtime-answer",
                                         "condition": "equals",
-                                        "value": "unpaid overtime"
+                                        "value": "Unpaid overtime"
                                     }]
                                 }
                             },
@@ -3711,19 +3780,12 @@
                             },
                             {
                                 "goto": {
-
                                     "block": "casual-hours-worked-casac",
                                     "when": [{
-                                            "id": "overtime-answer",
-                                            "condition": "equals",
-                                            "value": "unpaid overtime"
-                                        },
-                                        {
-                                            "id": "not-working-casual-work-answer",
-                                            "condition": "equals",
-                                            "value": "Yes"
-                                        }
-                                    ]
+                                        "id": "not-working-casual-work-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }]
                                 }
                             },
                             {
@@ -3731,6 +3793,7 @@
                                     "block": "one-job-usual-hours-w12"
                                 }
                             }
+
                         ]
                     },
                     {
@@ -3974,7 +4037,6 @@
                                 },
                                 {
                                     "value": "You usually work {{answers['one-job-usual-hours-answer'][group_instance]}} hours in your job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did you <em>actually</em> work, excluding overtime?"
-
                                 }
                             ],
                             "type": "General",
@@ -5766,6 +5828,16 @@
                                 "unit": "duration-hour",
                                 "unit_length": "long",
                                 "label": "Actual hours"
+                            }]
+                        }],
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "working-days-answer",
+                                "condition": "equals",
+                                "value": "Did not work this week"
+                            }, {
+                                "id": "working-days-answer",
+                                "condition": "not set"
                             }]
                         }]
                     },
