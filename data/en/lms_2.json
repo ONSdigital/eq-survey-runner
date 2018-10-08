@@ -3710,31 +3710,27 @@
                                 "goto": {
                                     "block": "two-jobs-j1-usual-hours-w12-1",
                                     "when": [{
-                                            "id": "second-job-answer",
-                                            "condition": "equals",
-                                            "value": "yes"
-                                        },
-                                        {
-                                            "id": "working-days-answer",
-                                            "condition": "contains",
-                                            "value": "did not work this week"
-                                        }
-                                    ]
+                                        "id": "second-job-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }, {
+                                        "id": "working-days-answer",
+                                        "condition": "contains",
+                                        "value": "Did not work this week"
+                                    }]
                                 }
                             },
                             {
                                 "goto": {
                                     "block": "two-jobs-j1-usual-hours-w12-1",
                                     "when": [{
-                                            "id": "second-job-answer",
-                                            "condition": "equals",
-                                            "value": "yes"
-                                        },
-                                        {
-                                            "id": "working-days-answer",
-                                            "condition": "not set"
-                                        }
-                                    ]
+                                        "id": "second-job-answer",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }, {
+                                        "id": "working-days-answer",
+                                        "condition": "not set"
+                                    }]
                                 }
                             },
                             {
@@ -5776,7 +5772,31 @@
                                 "unit_length": "long",
                                 "label": "Usual hours, main job"
                             }]
-                        }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "two-jobs-j2-usual-hours-w12-2",
+                                    "when": [{
+                                        "id": "working-days-answer",
+                                        "condition": "not set"
+                                    }]
+                                }
+                            }, {
+                                "goto": {
+                                    "block": "two-jobs-j2-usual-hours-w12-2",
+                                    "when": [{
+                                        "id": "working-days-answer",
+                                        "condition": "contains",
+                                        "value": "Did not work this week"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "two-jobs-j1-actual-hours-w12-1-1"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "two-jobs-j1-actual-hours-w12-1-1",
@@ -5907,7 +5927,92 @@
                                 "unit_length": "long",
                                 "label": "Usual hours, second job"
                             }]
-                        }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "working-days-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "working-days-answer",
+                                            "condition": "contains",
+                                            "value": "did not work this week"
+                                        }
+                                    ]
+                                }
+                            }, {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "working-days-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [{
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "equals",
+                                            "value": "employee"
+                                        },
+                                        {
+                                            "id": "working-days-answer",
+                                            "condition": "contains",
+                                            "value": "did not work this week"
+                                        }
+                                    ]
+                                }
+                            }, {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                        "id": "working-days-answer",
+                                        "condition": "not set"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [{
+                                        "id": "working-days-answer",
+                                        "condition": "contains",
+                                        "value": "Did not work this week"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "two-jobs-j2-actual-hours-w12-22"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "two-jobs-j2-actual-hours-w12-22",
