@@ -1,4 +1,4 @@
-<select class='input input--select' id='{{select.name}}' name='{{select.name}}'>
+<select class='input input--select {{ exclusive_class }}' id='{{select.name}}' name='{{select.name}}'>
 
   {%- for option_value, option in select.choices -%}
 

@@ -1,11 +1,11 @@
 from wtforms import validators, StringField, FormField, SelectField, SelectMultipleField
 
+from app.data_model.answer_store import AnswerStore
 from app.forms.custom_fields import MaxTextAreaField
 from app.forms.date_form import DateField, MonthYearField, YearField
 from app.forms.fields import CustomIntegerField, CustomDecimalField, get_field, get_mandatory_validator, get_length_validator, _coerce_str_unless_none
 from app.validation.error_messages import error_messages
-from app.validation.validators import ResponseRequired, MutuallyExclusive
-from app.data_model.answer_store import AnswerStore
+from app.validation.validators import ResponseRequired
 from tests.app.app_context_test_case import AppContextTestCase
 
 
@@ -366,54 +366,6 @@ class TestFields(AppContextTestCase):
         self.assertEqual(unbound_field.kwargs['description'], checkbox_json['guidance'])
         self.assertEqual(unbound_field.kwargs['choices'], expected_choices)
         self.assertEqual(len(unbound_field.kwargs['validators']), 1)
-
-
-    def test_mutually_exclusive_checkbox_field(self):
-        checkbox_json = {
-            'guidance': '',
-            'id': 'opening-crawler-answer',
-            'label': '',
-            'mandatory': False,
-            'options': [
-                {
-                    'label': 'Luke Skywalker',
-                    'value': 'Luke Skywalker'
-                },
-                {
-                    'label': 'Han Solo',
-                    'value': 'Han Solo'
-                },
-                {
-                    'label': 'The Emperor',
-                    'value': 'The Emperor'
-                },
-                {
-                    'label': 'R2D2',
-                    'value': 'R2D2'
-                },
-                {
-                    'label': 'Senator Amidala',
-                    'value': 'Senator Amidala'
-                },
-                {
-                    'label': 'I prefer star trek',
-                    'value': 'None'
-                }
-            ],
-            'type': 'MutuallyExclusiveCheckbox'
-        }
-
-        unbound_field = get_field(checkbox_json, checkbox_json['label'], error_messages, self.answer_store,
-                                  self.metadata)
-
-        expected_choices = [(option['value'], option['label']) for option in checkbox_json['options']]
-
-        self.assertEqual(unbound_field.field_class, SelectMultipleField)
-        self.assertEqual(unbound_field.kwargs['label'], checkbox_json['label'])
-        self.assertEqual(unbound_field.kwargs['description'], checkbox_json['guidance'])
-        self.assertEqual(unbound_field.kwargs['choices'], expected_choices)
-        self.assertEqual(type(unbound_field.kwargs['validators'][1]), MutuallyExclusive)
-
 
     def test_integer_field(self):
         integer_json = {

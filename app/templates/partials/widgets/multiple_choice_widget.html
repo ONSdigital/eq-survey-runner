@@ -1,31 +1,23 @@
 <fieldset>
-    {% set answer_label = get_answer_label(answer.id, question.id) %}
+  {% set answer_label = get_answer_label(answer.id, question.id) %}
   <legend class="field__legend mars {{'u-vh' if answer.label|length == 0}}">
     {{answer_label}}
+
     {%- if answer_label and answer.description -%}
       <br />
     {%- endif -%}
+
     {%- if answer.description -%}
       <span class="label__description pluto">{{answer.description}}</span>
     {%- endif -%}
   </legend>
 
-  {% if widget_type == "checkbox" %}
-    <div class="field__label mars">{{ _("Select all that apply") }}:</div>
-  {% endif %}
+  {{ checkbox_labels }}
 
   {% for option in form.fields[answer.id] %}
 
-    {% if exclusive and loop.last %}
-      <div class="field__label u-mt-s venus" aria-hidden="true">{{ _("Or") }}</div>
-    {% endif %}
-
-    {% if exclusive %}
-        {% set exclusive_class = "js-exclusive-checkbox" if loop.last else "js-exclusive-group" %}
-    {% endif %}
-
     {% set input = {
-      "class": "input input--" ~ widget_type ~ " js-focusable " ~ exclusive_class ~ "",
+      "class": "input input--" ~ widget_type ~ " js-focusable " ~ exclusive_class,
       "type": widget_type,
       "value": option.data,
       "name": option.name,
@@ -44,20 +36,13 @@
     <div class="field__item js-focusable-box">
       <input {{input|xmlattr}}>
       <label {{label|xmlattr}}>
-        {% if not exclusive or (exclusive and not loop.last) %}
-          {{option.label.text}}
-        {% endif %}
-        {% if exclusive and loop.last %}
-          <span class="u-vh">{{ _("Or") }}, </span>{{option.label.text}}<span class="u-vh">. {{ _("Selecting this will uncheck all other checkboxes") }}</span>
-        {% endif %}
+        <span class="u-vh u-mt-s">{{ _("Or") }}, </span>{{option.label.text}}<span class="u-vh">. {{ _("Selecting this will uncheck all other answers") }}</span>
         {% if answer.options[loop.index0].description %}
           <br />
           <span class="label__description label__inner pluto">{{answer.options[loop.index0].description}}</span>
         {% endif %}
       </label>
-        {% if exclusive and loop.last %}
-            <span class="js-exclusive-alert u-vh" role="alert" aria-live="polite" data-adjective='{{ _("deselected") }}'></span>
-        {% endif %}
+        <span class="js-exclusive-alert u-vh" role="alert" aria-live="polite" data-adjective='{{ _("deselected") }}'></span>
 
       {% if answer.id in form.other_answer and form.other_answer[answer.id][loop.index0] != None %}
         {% set other_answer = form.other_answer[answer.id][loop.index0] %}
@@ -68,7 +53,7 @@
         } %}
 
         {% set other_input = {
-          "class": "input js-focusable",
+          "class": "input js-focusable " ~ exclusive_class,
           "type": "text",
           "name": other_answer.name,
           "id": other_answer.id,

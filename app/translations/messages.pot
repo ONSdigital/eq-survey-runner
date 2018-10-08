@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 14:04+0100\n"
+"POT-Creation-Date: 2018-10-17 15:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,14 +18,14 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 
 #: app/jinja_filters.py:105 app/jinja_filters.py:248
-#: app/validation/validators.py:296
+#: app/validation/validators.py:294
 #, python-format
 msgid "%(num)s year"
 msgid_plural "%(num)s years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/jinja_filters.py:107 app/validation/validators.py:298
+#: app/jinja_filters.py:107 app/validation/validators.py:296
 #, python-format
 msgid "%(num)s month"
 msgid_plural "%(num)s months"
@@ -80,13 +80,11 @@ msgid "It is now safe to close this window"
 msgstr ""
 
 #: app/templates/introduction.html:26
-#: app/themes/northernireland/templates/introduction.html:22
 #, python-format
 msgid "You are completing this for <span>%(ru_name)s</span> (%(trading_as_name)s)"
 msgstr ""
 
 #: app/templates/introduction.html:30
-#: app/themes/northernireland/templates/introduction.html:26
 #, python-format
 msgid "You are completing this for <span>%(ru_name)s</span>"
 msgstr ""
@@ -468,15 +466,24 @@ msgstr ""
 msgid "Save and sign out"
 msgstr ""
 
-#: app/templates/partials/answers/date.html:5
+#: app/templates/partials/answers/checkbox.html:8
+#: app/templates/partials/widgets/multiple_choice_widget.html:39
+msgid "Or"
+msgstr ""
+
+#: app/templates/partials/answers/checkbox.html:10
+msgid "Select all that apply"
+msgstr ""
+
+#: app/templates/partials/answers/date.html:6
 msgid "Day"
 msgstr ""
 
-#: app/templates/partials/answers/date.html:13
+#: app/templates/partials/answers/date.html:14
 msgid "Month"
 msgstr ""
 
-#: app/templates/partials/answers/date.html:21
+#: app/templates/partials/answers/date.html:22
 msgid "Year"
 msgstr ""
 
@@ -560,20 +567,11 @@ msgstr ""
 msgid "No answer provided"
 msgstr ""
 
-#: app/templates/partials/widgets/multiple_choice_widget.html:14
-msgid "Select all that apply"
+#: app/templates/partials/widgets/multiple_choice_widget.html:39
+msgid "Selecting this will uncheck all other answers"
 msgstr ""
 
-#: app/templates/partials/widgets/multiple_choice_widget.html:20
-#: app/templates/partials/widgets/multiple_choice_widget.html:51
-msgid "Or"
-msgstr ""
-
-#: app/templates/partials/widgets/multiple_choice_widget.html:51
-msgid "Selecting this will uncheck all other checkboxes"
-msgstr ""
-
-#: app/templates/partials/widgets/multiple_choice_widget.html:59
+#: app/templates/partials/widgets/multiple_choice_widget.html:45
 msgid "deselected"
 msgstr ""
 
@@ -1518,135 +1516,129 @@ msgid ""
 msgstr ""
 
 #: app/validation/error_messages.py:5 app/validation/error_messages.py:6
-#: app/validation/error_messages.py:7
+#: app/validation/error_messages.py:7 app/validation/error_messages.py:8
 msgid "Enter an answer to continue."
 msgstr ""
 
-#: app/validation/error_messages.py:8 app/validation/error_messages.py:9
+#: app/validation/error_messages.py:9 app/validation/error_messages.py:10
 msgid "Select an answer to continue."
 msgstr ""
 
-#: app/validation/error_messages.py:10
+#: app/validation/error_messages.py:11
 msgid "Select all that apply to continue."
 msgstr ""
 
-#: app/validation/error_messages.py:11
+#: app/validation/error_messages.py:12
 msgid "Enter a date to continue."
 msgstr ""
 
-#: app/validation/error_messages.py:12
-msgid "Enter a duration to continue."
-msgstr ""
-
 #: app/validation/error_messages.py:13
-#, python-format
-msgid "Enter an answer more than or equal to %(min)s."
+msgid "Enter a duration to continue."
 msgstr ""
 
 #: app/validation/error_messages.py:14
 #, python-format
-msgid "Enter an answer less than or equal to %(max)s."
+msgid "Enter an answer more than or equal to %(min)s."
 msgstr ""
 
 #: app/validation/error_messages.py:15
 #, python-format
-msgid "Enter an answer more than %(min)s."
+msgid "Enter an answer less than or equal to %(max)s."
 msgstr ""
 
 #: app/validation/error_messages.py:16
 #, python-format
-msgid "Enter an answer less than %(max)s."
+msgid "Enter an answer more than %(min)s."
 msgstr ""
 
 #: app/validation/error_messages.py:17
 #, python-format
-msgid "Enter answers that add up to %(total)s"
+msgid "Enter an answer less than %(max)s."
 msgstr ""
 
 #: app/validation/error_messages.py:18
 #, python-format
-msgid "Enter answers that add up to or are less than %(total)s"
+msgid "Enter answers that add up to %(total)s"
 msgstr ""
 
 #: app/validation/error_messages.py:19
 #, python-format
-msgid "Enter answers that add up to less than %(total)s"
+msgid "Enter answers that add up to or are less than %(total)s"
 msgstr ""
 
 #: app/validation/error_messages.py:20
 #, python-format
-msgid "Enter answers that add up to greater than %(total)s"
+msgid "Enter answers that add up to less than %(total)s"
 msgstr ""
 
 #: app/validation/error_messages.py:21
 #, python-format
-msgid "Enter answers that add up to or are greater than %(total)s"
+msgid "Enter answers that add up to greater than %(total)s"
 msgstr ""
 
 #: app/validation/error_messages.py:22
-msgid "Enter a number."
+#, python-format
+msgid "Enter answers that add up to or are greater than %(total)s"
 msgstr ""
 
 #: app/validation/error_messages.py:23
-msgid "Enter a whole number."
+msgid "Enter a number."
 msgstr ""
 
 #: app/validation/error_messages.py:24
-#, python-format
-msgid "Enter a number rounded to %(max)d decimal places."
+msgid "Enter a whole number."
 msgstr ""
 
 #: app/validation/error_messages.py:25
 #, python-format
-msgid "Your answer is too long, it has to be less than %(max)d characters."
+msgid "Enter a number rounded to %(max)d decimal places."
 msgstr ""
 
 #: app/validation/error_messages.py:26
-msgid "Enter a valid date."
+#, python-format
+msgid "Your answer is too long, it has to be less than %(max)d characters."
 msgstr ""
 
 #: app/validation/error_messages.py:27
-msgid "Enter a 'period to' date later than the 'period from' date."
+msgid "Enter a valid date."
 msgstr ""
 
 #: app/validation/error_messages.py:28
-msgid "Enter a valid duration."
+msgid "Enter a 'period to' date later than the 'period from' date."
 msgstr ""
 
 #: app/validation/error_messages.py:29
-#, python-format
-msgid "Enter a reporting period greater than or equal to %(min)s."
+msgid "Enter a valid duration."
 msgstr ""
 
 #: app/validation/error_messages.py:30
 #, python-format
-msgid "Enter a reporting period less than or equal to %(max)s."
+msgid "Enter a reporting period greater than or equal to %(min)s."
 msgstr ""
 
 #: app/validation/error_messages.py:31
 #, python-format
-msgid "Enter a date after %(min)s."
+msgid "Enter a reporting period less than or equal to %(max)s."
 msgstr ""
 
 #: app/validation/error_messages.py:32
 #, python-format
-msgid "Enter a date before %(max)s."
+msgid "Enter a date after %(min)s."
 msgstr ""
 
 #: app/validation/error_messages.py:33
 #, python-format
-msgid "Uncheck %(non_exclusives)s or \"%(exclusive)s\" to continue"
+msgid "Enter a date before %(max)s."
 msgstr ""
 
-#: app/validation/validators.py:301
+#: app/validation/error_messages.py:34
+msgid "Remove an answer to continue."
+msgstr ""
+
+#: app/validation/validators.py:299
 #, python-format
 msgid "%(num)s day"
 msgid_plural "%(num)s days"
 msgstr[0] ""
 msgstr[1] ""
-
-#: app/validation/validators.py:375
-#, python-format
-msgid "%(list_of_answers)s and %(last_answer)s"
-msgstr ""
 

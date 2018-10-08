@@ -1,14 +1,16 @@
-{% set question_answers %}
- <div class="question__answers">
-   {%- for answer in question.answers -%}
-     {% if not answer.parent_answer_id %}
-      <div class="question__answer">
-       {% include theme('partials/answer.html') %}
-      </div>
-     {% endif %}
-   {%- endfor -%}
- </div>
-{% endset %}
+{% if not question_answers %}
+  {% set question_answers %}
+    <div class="question__answers">
+      {%- for answer in question.answers -%}
+        {% if not answer.parent_answer_id %}
+          <div class="question__answer">
+            {% include theme('partials/answer.html') %}
+          </div>
+        {% endif %}
+      {%- endfor -%}
+    </div>
+  {% endset %}
+{% endif %}
 
 <div class="question" id="{{question.id}}">
 

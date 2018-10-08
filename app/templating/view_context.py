@@ -84,7 +84,7 @@ def build_view_context_for_question(metadata, schema, answer_store, current_loca
             else:
                 answer_ids.append(answer['id'])
 
-            if answer['type'] in ('Checkbox', 'MutuallyExclusiveCheckbox', 'Radio'):
+            if answer['type'] in ('Checkbox', 'Radio'):
                 options = answer['options']
                 context['form']['other_answer'][answer['id']] = []
                 for index in range(len(options)):

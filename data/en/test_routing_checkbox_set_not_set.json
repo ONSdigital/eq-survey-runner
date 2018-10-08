@@ -115,7 +115,7 @@
                                     "value": "No cheese"
                                 }
                             ],
-                            "type": "MutuallyExclusiveCheckbox"
+                            "type": "Checkbox"
                         }],
                         "id": "optional-mutually-exclusive-question",
                         "title": "What is your favourite cheese?",

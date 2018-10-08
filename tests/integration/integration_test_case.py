@@ -205,6 +205,10 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
     def assertInPage(self, content, message=None):
         self.assertIn(member=str(content), container=self.getResponseData(), msg=str(message))
 
+    # Extra Helper Assertions
+    def assertInBody(self, content):
+        self.assertInSelector(content, name='body')
+
     def assertInSelector(self, content, **selectors):
         data = self.getHtmlSoup().find(**selectors)
         message = '\n{} not in \n{}'.format(content, data)

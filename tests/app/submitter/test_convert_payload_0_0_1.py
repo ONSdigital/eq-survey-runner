@@ -1,8 +1,8 @@
 from app.data_model.answer_store import AnswerStore
-from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.location import Location
-from app.submitter.converter import convert_answers
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.submitter.convert_payload_0_0_1 import convert_answers_to_payload_0_0_1
+from app.submitter.converter import convert_answers
 from tests.app.submitter.schema import make_schema
 from tests.app.submitter.test_converter import TestConverter, create_answer
 
@@ -197,14 +197,6 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                 }
             ])
 
-        #  STANDARD CHECKBOX
-        with self.assertRaises(Exception) as err:
-            convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
-        self.assertEqual('Multiple answers found for {}'.format('other-answer-mandatory'), str(err.exception))
-
-
-        #  MUTUALLY EXCLUSIVE CHECKBOX
-        questionnaire['sections'][0]['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['type'] = 'MutuallyExclusiveCheckbox'
         with self.assertRaises(Exception) as err:
             convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
         self.assertEqual('Multiple answers found for {}'.format('other-answer-mandatory'), str(err.exception))
@@ -260,18 +252,8 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                 }
             ])
 
-            # When STANDARD CHECKBOX
+            # When
             answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
-
-            # Then
-            self.assertEqual(len(answer_object['data']), 2)
-            self.assertEqual(answer_object['data']['1'], 'Ready salted')
-            self.assertEqual(answer_object['data']['2'], 'Sweet chilli')
-
-            # when MUTUALLY EXCLUSIVE CHECKBOX
-            questionnaire['sections'][0]['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['type'] = 'MutuallyExclusiveCheckbox'
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers),
-                                            routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 2)
@@ -331,18 +313,8 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                 }
             ])
 
-            # When STANDARD CHECKBOX
+            # When
             answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
-
-            # Then
-            self.assertEqual(len(answer_object['data']), 2)
-            self.assertEqual(answer_object['data']['1'], 'Ready salted')
-            self.assertEqual(answer_object['data']['4'], 'Bacon')
-
-            # when MUTUALLY EXCLUSIVE CHECKBOX
-            questionnaire['sections'][0]['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['type'] = 'MutuallyExclusiveCheckbox'
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers),
-                                            routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 2)
@@ -402,18 +374,8 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                 }
             ])
 
-            # When STANDARD CHECKBOX
+            # When
             answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
-
-            # Then
-            self.assertEqual(len(answer_object['data']), 2)
-            self.assertEqual(answer_object['data']['1'], 'Ready salted')
-            self.assertEqual(answer_object['data']['4'], 'Other')
-
-            # when MUTUALLY EXCLUSIVE CHECKBOX
-            questionnaire['sections'][0]['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['type'] = 'MutuallyExclusiveCheckbox'
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers),
-                                            routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 2)

@@ -2,6 +2,7 @@ from flask_babel import lazy_gettext as _
 
 # Set up default error and warning messages
 error_messages = {
+    'MANDATORY_QUESTION': _('Enter an answer to continue.'),
     'MANDATORY_TEXTFIELD': _('Enter an answer to continue.'),
     'MANDATORY_NUMBER': _('Enter an answer to continue.'),
     'MANDATORY_TEXTAREA': _('Enter an answer to continue.'),
@@ -30,5 +31,5 @@ error_messages = {
     'DATE_PERIOD_TOO_LARGE': _('Enter a reporting period less than or equal to %(max)s.'),
     'SINGLE_DATE_PERIOD_TOO_EARLY': _('Enter a date after %(min)s.'),
     'SINGLE_DATE_PERIOD_TOO_LATE': _('Enter a date before %(max)s.'),
-    'MUTUALLY_EXCLUSIVE': _('Uncheck %(non_exclusives)s or "%(exclusive)s" to continue'),
+    'MUTUALLY_EXCLUSIVE': _('Remove an answer to continue.'),
 }

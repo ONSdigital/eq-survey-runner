@@ -1,4 +1,5 @@
 {% set subfields %}
+ <div class="fieldgroup fieldgroup--date" data-qa="widget-date">
   <div class="fieldgroup__fields">
     {% if form.fields[answer['id']]['day'] %}
     <div class="field field--input field--day">
@@ -25,11 +26,13 @@
     </div>
     {% endif %}
   </div>
+ </div>
 {% endset %}
 
 {% if answer.label %}
-  <fieldset class="fieldgroup fieldgroup--date" data-qa="widget-date">
-    <legend class="fieldgroup__title venus">{{answer.label}}</legend>
+  <fieldset class="field">
+    <legend class="field__legend mars u-vh">{{ question.title }}</legend>
+    <div class="field__label venus">{{ answer.label }}:</div>
     {{subfields}}
   </fieldset>
 {% else %}

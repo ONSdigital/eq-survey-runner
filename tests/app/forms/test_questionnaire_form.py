@@ -1059,8 +1059,8 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
     def test_option_has_other(self):
         with self.app_request_context():
-            # STANDARD CHECKBOX
             schema = load_schema_from_params('test', 'checkbox')
+
             block_json = schema.get_block('mandatory-checkbox')
 
             form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={})
@@ -1068,19 +1068,10 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             self.assertFalse(form.option_has_other('mandatory-checkbox-answer', 1))
             self.assertTrue(form.option_has_other('mandatory-checkbox-answer', 6))
 
-            # MUTUALLY EXCLUSIVE CHECKBOX
-            schema = load_schema_from_params('test', 'checkbox_mutually_exclusive')
-            block_json = schema.get_block('mandatory-checkbox')
-
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={})
-
-            self.assertFalse(form.option_has_other('mandatory-checkbox-answer', 1))
-            self.assertTrue(form.option_has_other('mandatory-checkbox-answer', 5))
-
     def test_get_other_answer(self):
         with self.app_request_context():
-            # STANDARD CHECKBOX
             schema = load_schema_from_params('test', 'checkbox')
+
             block_json = schema.get_block('mandatory-checkbox')
 
             form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={
@@ -1091,22 +1082,10 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
             self.assertEqual('Some data', field.data)
 
-            # MUTUALLY EXCLUSIVE CHECKBOX
-            schema = load_schema_from_params('test', 'checkbox_mutually_exclusive')
-            block_json = schema.get_block('mandatory-checkbox')
-
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={
-                'other-answer-mandatory': 'Some data'
-            })
-
-            field = form.get_other_answer('mandatory-checkbox-answer', 5)
-
-            self.assertEqual('Some data', field.data)
-
     def test_get_other_answer_invalid(self):
         with self.app_request_context():
-            # STANDARD CHECKBOX
             schema = load_schema_from_params('test', 'checkbox')
+
             block_json = schema.get_block('mandatory-checkbox')
 
             form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={
@@ -1117,14 +1096,76 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
             self.assertEqual(None, field)
 
-            # MUTUALLY EXCLUSIVE CHECKBOX
-            schema = load_schema_from_params('test', 'checkbox_mutually_exclusive')
-            block_json = schema.get_block('mandatory-checkbox')
+    def test_mandatory_mutually_exclusive_question_raises_error_when_not_answered(self):
+        with self.app_request_context():
+            schema = load_schema_from_params('test', 'mutually_exclusive')
 
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={
-                'other-answer-mandatory': 'Some data'
-            })
+            block_json = schema.get_block('mutually-exclusive-checkbox')
 
-            field = form.get_other_answer('mandatory-checkbox-answer', 4)
+            question_json = {
+                'id': 'mutually-exclusive-checkbox-question',
+                'type': 'MutuallyExclusive',
+                'title': 'What is your nationality?',
+                'mandatory': True,
+                'answers': [{
+                    'id': 'checkbox-answer',
+                    'label': 'Select an answer',
+                    'type': 'Checkbox',
+                    'mandatory': False,
+                    'options': [{'label': 'British', 'value': 'British'},
+                                {'label': 'Irish', 'value': 'Irish'}, {
+                                    'label': 'Other',
+                                    'description': 'Choose any other topping',
+                                    'value': 'Other',
+                                    'child_answer_id': 'checkbox-child-other-answer',
+                                }],
+                }, {
+                    'id': 'checkbox-exclusive-answer',
+                    'mandatory': False,
+                    'type': 'Checkbox',
+                    'options': [{'label': 'I prefer not to say',
+                                 'value': 'I prefer not to say'}],
+                }],
+            }
 
-            self.assertEqual(None, field)
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={})
+            form.validate_mutually_exclusive_question(question_json)
+
+            self.assertEqual(form.question_errors['mutually-exclusive-checkbox-question'], 'Enter an answer to continue.')
+
+    def test_mutually_exclusive_question_raises_error_when_both_answered(self):
+        with self.app_request_context():
+            schema = load_schema_from_params('test', 'mutually_exclusive')
+
+            block_json = schema.get_block('mutually-exclusive-date')
+
+            question_json = {
+                'id': 'mutually-exclusive-date-question',
+                'type': 'MutuallyExclusive',
+                'title': 'When did you leave your last paid job?',
+                'mandatory': False,
+                'answers': [{
+                    'id': 'date-answer',
+                    'label': 'Enter a date',
+                    'mandatory': False,
+                    'type': 'Date',
+                }, {
+                    'id': 'date-exclusive-answer',
+                    'mandatory': False,
+                    'type': 'Checkbox',
+                    'options': [{'label': 'I prefer not to say',
+                                 'value': 'I prefer not to say'}],
+                }],
+            }
+
+            data = {
+                'date-answer-day': '17',
+                'date-answer-month': '9',
+                'date-answer-year': '2018',
+                'date-exclusive-answer': 'I prefer not to say',
+            }
+
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata=data)
+            form.validate_mutually_exclusive_question(question_json)
+
+            self.assertEqual(form.question_errors['mutually-exclusive-date-question'], 'Remove an answer to continue.')
