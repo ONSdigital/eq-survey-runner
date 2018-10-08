@@ -1,31 +1,13 @@
-{% import 'macros/helpers.html' as helpers %}
-
-{% set guidance = {
-  "data-show-label": _(answer_guidance.schema_item.show_guidance),
-  "data-hide-label": _(answer_guidance.schema_item.hide_guidance)
-} %}
-
-{% set guidance_link = {
-  "href": "#guidance-" ~ answer_guidance.id,
-  "id": "guidance-" ~ answer_guidance.id ~ "-trigger",
-  "aria-controls": "guidance-" ~ answer_guidance.id ~ "-body",
-  "aria-expanded": 'false',
-  "data-guidance-trigger": 'true'
-} %}
-
-{% set guidance_body = {
-  "id": "guidance-" ~ answer_guidance.id ~ "-body",
-  "aria-hidden": "true"
-} %}
-
 {% set content_block = answer_guidance.schema_item.content %}
 
-<div class="guidance js-details" {{guidance|xmlattr}}>
-  <a class="guidance__link icon--details js-details-trigger js-details-label"
-    {{guidance_link|xmlattr}} {{helpers.track('click', 'Help', 'Guidance click', answer_guidance.id)}}>{{_(answer_guidance.schema_item.show_guidance)}}</a>
-  <div class="guidance__main js-details-body" {{guidance_body|xmlattr}}>
-    <div class="guidance__content mars">
-      {% include 'partials/content-block.html' %}
+<div class="collapsible collapsible--simple js-collapsible js-collapsible-simple u-mt-s">
+    <div class="js-collapsible-content">
+        <h3 class="collapsible__title js-collapsible-title icon--collapsible-simple venus" data-ga="click" data-ga-category="Answer guidance" data-ga-action="Open panel" data-ga-label="{{_(answer_guidance.schema_item.show_guidance)}}">{{_(answer_guidance.schema_item.show_guidance)}}</h3>
+        <div class="collapsible__body js-collapsible-body">
+            <div class="u-mt-s">
+                {% include 'partials/content-block.html' %}
+            </div>
+            <button class="btn--secondary btn--small js-collapsible-close u-no-js-hide" data-ga="click" data-ga-category="Answer guidance" data-ga-action="Close panel" data-ga-label="{{_(answer_guidance.schema_item.show_guidance)}}">{{ _("Hide this") }}</button>
+        </div>
     </div>
-  </div>
 </div>

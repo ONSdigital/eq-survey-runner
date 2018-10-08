@@ -2,7 +2,7 @@
 class FeedbackForm {
 
   display() {
-    return '#feedback-display';
+    return '[data-qa="a-feedback-open"]';
   }
 
   open() {

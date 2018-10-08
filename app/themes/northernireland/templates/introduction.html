@@ -69,3 +69,9 @@
     {% endblock intro_content %}
 
 {% endblock %}
+{% block footer %}
+<div class="container u-mt-xl u-pt-l">
+    {% include theme('partials/feedback/expandable_inline.html') %}
+</div>
+{{super()}}
+{% endblock %}

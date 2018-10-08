@@ -1,23 +1,13 @@
 
 {% for definition in question.definitions %}
-  {% set content_block = definition.content %}
-  <div id="question-definition-{{question.id}}" class="definition js-details u-mb-s" data-hide-label="{{ _('Click to collapse') }}." data-show-label="{{ _('Click to expand') }}.">
-
-    <a href="#definition" class="definition__link icon--details js-details-trigger u-no-js-hide" aria-expanded="false" data-definition-title-index="{{loop.index}}" data-js-accordion-event-label="{{ definition.title }}" data-ga-label="definition-pattern-library" data-ga-action="Definition click" data-ga="click"
-            data-ga-category="Help">{{ definition.title }} <span class="u-vh js-details-label">{{ _("Click to expand") }}.</span></a>
-
-    <h3 class="venus u-no-js-show u-mb-no">{{ definition.title }}</h3>
-
-    <div id="definition" class="definition__main js-details-body">
-      <div class="definition__content mars" data-definition-content-index="{{loop.index}}">
-        <aside>
-          <div>
-            {% include 'partials/content-block.html' %}
-          </div>
-        </aside>
+{% set content_block = definition.content %}
+<div class="collapsible collapsible--simple js-collapsible js-collapsible-simple u-mt-s u-mb-s">
+  <div class="js-collapsible-content">
+      <h3 class="collapsible__title js-collapsible-title icon--collapsible-simple venus" data-definition-title-index="{{loop.index}}" data-ga="click" data-ga-category="Question definition" data-ga-action="Open panel" data-ga-label="{{ definition.title }}">{{ definition.title }}</h3>
+      <div class="collapsible__body js-collapsible-body" data-definition-content-index="{{loop.index}}">
+          {% include 'partials/content-block.html' %}
+          <button class="btn--secondary btn--small js-collapsible-close u-no-js-hide" data-definition-hide-button-index="{{loop.index}}" data-ga="click" data-ga-category="Question definition" data-ga-action="Close panel" data-ga-label="{{ definition.title }}">{{ _("Hide this") }}</button>
       </div>
-      <button class="btn btn--secondary btn--small definition__content-close-trigger js-details-trigger u-no-js-hide" data-definition-hide-button-index="{{loop.index}}">{{ _("Hide this") }}</button>
-    </div>
-
   </div>
+</div>
 {% endfor %}

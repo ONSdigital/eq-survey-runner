@@ -4,8 +4,6 @@
 {% block page_title %}{{page_title}}{% endblock %}
 
 {% block subheader %}
-    {% include theme('partials/feedback_call_to_action.html') %}
-    {% include theme('partials/feedback/expandable_inline.html') %}
     {{super()}}
 {% endblock subheader %}
 
@@ -39,8 +37,10 @@
         <button class="btn btn--secondary js-btn-save" data-qa="btn-save-sign-out" type="submit" name="action[save_sign_out]" {{helpers.track('click', 'Navigation', 'Save and complete later click')}}>{% block save_sign_out_button_text %}{{ _("Save and complete later") }}{% endblock %}</button>
       </div>
     </form>
-
 {% endblock main %}
 {% block footer %}
+<div class="container u-mt-xl u-pt-l">
+{% include theme('partials/feedback/expandable_inline.html') %}
+</div>
 {% include theme('partials/footer-transactional.html') %}
 {% endblock %}
