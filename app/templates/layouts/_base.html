@@ -1,5 +1,5 @@
 <!doctype html>
-{% set cdn_hash = "v1.5.6" %}
+{% set cdn_hash = "v1.6.2" %}
 {% set cdn_url_prefix = "https://cdn.ons.gov.uk/sdc/"~cdn_hash %}
 <!--[if lt IE 7]>      <html lang="en-gb" dir="ltr" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en-gb" dir="ltr" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
@@ -85,26 +85,23 @@
         {% endblock %}
 
         {% block subheader_container %}
-        <div class="page__subheader">
-          <div class="container">
+          <div class="container u-cf">
             {% block subheader %}
               {% with position = 'top' %}{% include 'partials/previous-link.html' %}{% endwith %}
               {% if navigation %}
-              <div class="page__menubtn">
-              <button class="btn btn--menu js-menu-btn " data-close-label="{{_('Hide sections')}}" type="button" id="menu-btn" aria-expanded="false" aria-controls="section-nav" aria-label="Toggle section menu" aria-haspopup="true">{{_('View sections')}}</button>
+              <div class="page__menubtn{{ ' u-mb-s' if previous_location }}">
+                <button class="btn btn--menu js-menu-btn" data-close-label="{{_('Hide sections')}}" type="button" id="menu-btn" aria-expanded="false" aria-controls="section-nav" aria-label="Toggle section menu" aria-haspopup="true">{{_('View sections')}}</button>
               </div>
               {% endif %}
             {% endblock subheader %}
           </div>
-        </div>
         {% endblock subheader_container %}
-        <div class="page__container container">
+        <div class="page__container container{{ ' u-mt-s' if not previous_location }}">
           {% block content %}
           {% with position = 'bottom' %}{% include 'partials/previous-link.html' %}{% endwith %}
           {% endblock %}
         </div>
       </div>
-
       <footer class="page__footer">
         {% block footer %}
           {% include theme('partials/footer.html') %}

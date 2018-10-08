@@ -7,8 +7,6 @@
 {% endblock %}
 
 {% block subheader %}
-    {% include theme('partials/feedback_call_to_action.html') %}
-    {% include theme('partials/feedback/expandable_inline.html') %}
     {{super()}}
 {% endblock subheader %}
 
@@ -79,4 +77,10 @@
         </div>
     {% endblock intro_content %}
 
+{% endblock %}
+{% block footer %}
+<div class="container u-mt-xl u-pt-l">
+    {% include theme('partials/feedback/expandable_inline.html') %}
+</div>
+{{super()}}
 {% endblock %}

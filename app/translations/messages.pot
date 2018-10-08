@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-03 10:27+0100\n"
+"POT-Creation-Date: 2018-10-04 11:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,7 +62,7 @@ msgstr ""
 msgid "Submitting"
 msgstr ""
 
-#: app/templates/feedback.html:2 app/templates/feedback.html:8
+#: app/templates/feedback.html:2 app/templates/feedback.html:7
 msgid "Survey feedback"
 msgstr ""
 
@@ -79,26 +79,26 @@ msgstr ""
 msgid "It is now safe to close this window"
 msgstr ""
 
-#: app/templates/introduction.html:28
+#: app/templates/introduction.html:26
 #: app/themes/northernireland/templates/introduction.html:22
 #, python-format
 msgid "You are completing this for <span>%(ru_name)s</span> (%(trading_as_name)s)"
 msgstr ""
 
-#: app/templates/introduction.html:32
+#: app/templates/introduction.html:30
 #: app/themes/northernireland/templates/introduction.html:26
 #, python-format
 msgid "You are completing this for <span>%(ru_name)s</span>"
 msgstr ""
 
-#: app/templates/introduction.html:37
+#: app/templates/introduction.html:35
 #, python-format
 msgid ""
 "If the company details or structure have changed contact us on "
 "%(telephone_number)s or email %(email_address)s"
 msgstr ""
 
-#: app/templates/introduction.html:59
+#: app/templates/introduction.html:57
 msgid "Your response is legally required"
 msgstr ""
 
@@ -280,11 +280,11 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
-#: app/templates/layouts/_base.html:94
+#: app/templates/layouts/_base.html:93
 msgid "Hide sections"
 msgstr ""
 
-#: app/templates/layouts/_base.html:94
+#: app/templates/layouts/_base.html:93
 msgid "View sections"
 msgstr ""
 
@@ -309,53 +309,52 @@ msgstr ""
 msgid "Your system information"
 msgstr ""
 
-#: app/templates/layouts/_questionnaire.html:35
+#: app/templates/layouts/_questionnaire.html:33
 msgid "Save and continue"
 msgstr ""
 
-#: app/templates/layouts/_questionnaire.html:39
+#: app/templates/layouts/_questionnaire.html:37
 msgid "Save and complete later"
+msgstr ""
+
+#: app/templates/partials/answer-guidance.html:10
+#: app/templates/partials/question-definition.html:9
+msgid "Hide this"
 msgstr ""
 
 #: app/templates/partials/block.html:6
 msgid "Section"
 msgstr ""
 
-#: app/templates/partials/feedback_call_to_action.html:1
-msgid "This is a new service"
-msgstr ""
-
-#: app/templates/partials/feedback_call_to_action.html:1
-msgid "Help us improve it"
-msgstr ""
-
-#: app/templates/partials/feedback_call_to_action.html:2
-msgid "Thanks for your feedback"
-msgstr ""
-
+#: app/templates/partials/feedback/js_feedback_form.html:5
 #: app/templates/partials/feedback_form.html:5
 msgid "How can we improve this survey"
 msgstr ""
 
 #: app/templates/partials/answers/textarea.html:32
+#: app/templates/partials/feedback/js_feedback_form.html:7
 #: app/templates/partials/feedback_form.html:7
 msgid "Characters remaining"
 msgstr ""
 
+#: app/templates/partials/feedback/js_feedback_form.html:12
 #: app/templates/partials/feedback_form.html:12
 msgid "Name (optional)"
 msgstr ""
 
+#: app/templates/partials/feedback/js_feedback_form.html:14
 #: app/templates/partials/feedback_form.html:14
 msgid ""
 "Please include your name and email address if you’re interested in taking"
 " part in further research to improve this survey"
 msgstr ""
 
+#: app/templates/partials/feedback/js_feedback_form.html:20
 #: app/templates/partials/feedback_form.html:20
 msgid "Email address (optional)"
 msgstr ""
 
+#: app/templates/partials/feedback/js_feedback_form.html:24
 #: app/templates/partials/feedback_form.html:24
 msgid "Send feedback"
 msgstr ""
@@ -449,19 +448,6 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-#: app/templates/partials/question-definition.html:4
-msgid "Click to collapse"
-msgstr ""
-
-#: app/templates/partials/question-definition.html:4
-#: app/templates/partials/question-definition.html:7
-msgid "Click to expand"
-msgstr ""
-
-#: app/templates/partials/question-definition.html:19
-msgid "Hide this"
-msgstr ""
-
 #: app/templates/partials/section-navigation.html:3
 msgid "Sections"
 msgstr ""
@@ -494,8 +480,16 @@ msgstr ""
 msgid "Year"
 msgstr ""
 
+#: app/templates/partials/feedback/expandable_inline.html:1
+msgid "Thanks for your feedback"
+msgstr ""
+
 #: app/templates/partials/feedback/expandable_inline.html:4
-msgid "I don’t want to provide feedback"
+msgid "Is there anything wrong with this page"
+msgstr ""
+
+#: app/templates/partials/feedback/expandable_inline.html:7
+msgid "I don't want to provide feedback"
 msgstr ""
 
 #: app/templates/partials/introduction/preview.html:22
@@ -504,16 +498,17 @@ msgid "Hide all"
 msgstr ""
 
 #: app/templates/partials/introduction/preview.html:22
+#: app/templates/partials/introduction/preview.html:23
 #: app/templates/partials/summary/collapsible-summary.html:3
 msgid "Show all"
 msgstr ""
 
-#: app/templates/partials/introduction/preview.html:30
+#: app/templates/partials/introduction/preview.html:31
 #: app/templates/partials/summary/collapsible-summary.html:12
 msgid "Hide"
 msgstr ""
 
-#: app/templates/partials/introduction/preview.html:30
+#: app/templates/partials/introduction/preview.html:31
 #: app/templates/partials/summary/collapsible-summary.html:12
 msgid "Show"
 msgstr ""

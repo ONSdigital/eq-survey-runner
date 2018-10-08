@@ -168,7 +168,7 @@ describe('Census Household', function () {
             .click(WhatIsYourAddress.submit())
             .click(WhoLivesHereSection.submit())
             .click(PermanentOrFamilyHome.yes())
-            .click(PermanentOrFamilyHome.submit())
+            .click(PermanentOrFamilyHome.submit())  
             .click(HouseholdComposition.submit())
             .click(HouseholdComposition.addPerson())
             .$$('.js-household-person .js-has-errors').should.eventually.have.lengthOf(1);

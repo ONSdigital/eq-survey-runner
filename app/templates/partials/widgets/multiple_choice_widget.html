@@ -21,7 +21,7 @@
     {% endif %}
 
     {% if exclusive %}
-        {% set exclusive_class = "js-exclusive-checkbox" if loop.last else "js-exclusive-checkbox-group" %}
+        {% set exclusive_class = "js-exclusive-checkbox" if loop.last else "js-exclusive-group" %}
     {% endif %}
 
     {% set input = {
@@ -56,7 +56,7 @@
         {% endif %}
       </label>
         {% if exclusive and loop.last %}
-            <span class="js-exclusive-checkbox-alert u-vh" role="alert" aria-live="polite" data-adjective='{{ _("deselected") }}'></span>
+            <span class="js-exclusive-alert u-vh" role="alert" aria-live="polite" data-adjective='{{ _("deselected") }}'></span>
         {% endif %}
 
       {% if answer.id in form.other_answer and form.other_answer[answer.id][loop.index0] != None %}

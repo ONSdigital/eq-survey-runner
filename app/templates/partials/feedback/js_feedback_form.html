@@ -1,9 +1,9 @@
-<form id="feedback-form" method="POST">
+<form id="feedback-form" method="POST" class="js-form-submitter">
     {{ content.csrf_token }}
     <div class="group u-mt-s">
         <div class="u-mb-s">
             <label id="feedback-message-label" class="label venus" for="feedback-message">{{ _("How can we improve this survey") }}?</label>
-            <textarea class="input input--textarea js-charlimit-input" name="message" id="feedback-message" data-char-limit-ref="feedback-message-remaining" rows="8" cols="60" maxlength="2000"></textarea>
+            <textarea class="input input--textarea js-charlimit-input js-form-message" name="message" id="feedback-message" data-char-limit-ref="feedback-message-remaining" rows="8" cols="60" maxlength="2000"></textarea>
             <div id="feedback-message-remaining" class="input__limit u-mt-xs mercury">{{ _("Characters remaining") }}: <span>-</span></div>
         </div>
         <div class="u-mb-s">
@@ -14,12 +14,12 @@
                     <span class="label__description pluto">{{ _("Please include your name and email address if you’re interested in taking part in further research to improve this survey") }}</span>
                 </div>
             </label>
-            <input type="text" class="input" name="name" id="feedback-name" value=""/>
+            <input type="text" class="input js-feedback-name" name="name" id="feedback-name" value=""/>
         </div>
         <div class="u-mb-s">
             <label id="feedback-email-label" class="label venus" for="feedback-email">{{ _("Email address (optional)") }}</label>
-            <input type="text" class="input" name="email" id="feedback-email" value=""/>
+            <input type="text" class="input js-feedback-email" name="email" id="feedback-email" value=""/>
         </div>
     </div>
-    <button class="btn u-mb-s u-mr-xs" type="submit" name="action[send_feedback]" data-qa="btn-feedback-submit" data-ga="click" data-ga-category="Feedback" data-ga-action="Send">{{ _("Send feedback") }}</button>
+    <button class="btn u-mb-s js-form-submit js-collapsible-close u-mr-xs" type="submit" name="action[send_feedback]" data-endpoint="/feedback" data-qa="btn-feedback-submit" data-ga="click" data-ga-category="Feedback" data-ga-action="Send">{{ _("Send feedback") }}</button>
 </form>
