@@ -21,11 +21,31 @@
             "validator": "string"
         },
         {
-            "name": "ru_name",
+            "name": "country",
             "validator": "string"
         },
         {
-            "name": "country",
+            "name": "address_line1",
+            "validator": "optional_string"
+        },
+        {
+            "name": "address_line2",
+            "validator": "optional_string"
+        },
+        {
+            "name": "locality",
+            "validator": "optional_string"
+        },
+        {
+            "name": "town_name",
+            "validator": "optional_string"
+        },
+        {
+            "name": "postcode",
+            "validator": "optional_string"
+        },
+        {
+            "name": "display_address",
             "validator": "string"
         }
     ],
@@ -38,7 +58,7 @@
                     "blocks": [{
                             "type": "Interstitial",
                             "id": "about-household",
-                            "title": "About you and people who live at {{ metadata['ru_name'] }}",
+                            "title": "About you and people who live at {{ metadata['display_address'] }}",
                             "description": "In this section, we’re going to ask about you, and the people that live with you.",
                             "content": [{
                                 "title": "Information you need",
@@ -51,16 +71,15 @@
                         {
                             "type": "Question",
                             "id": "address-check-block",
-                            "title": "Your address:",
-                            "description": "{{metadata['ru_name']}}",
+                            "description": "",
                             "questions": [{
                                 "id": "address-check-question",
-                                "title": "Is the address above your main residence?",
-                                "description": "",
+                                "title": "Is this address your main residence?",
+                                "description": "{{ format_address_list ([metadata['address_line1'], metadata['address_line2'], metadata['locality'], metadata['town_name'], metadata['postcode']]) }}",
                                 "type": "General",
                                 "answers": [{
                                     "id": "address-check-answer",
-                                    "mandatory": false,
+                                    "mandatory": true,
                                     "options": [{
                                             "label": "Yes",
                                             "value": "Yes",
@@ -104,7 +123,7 @@
                         {
                             "type": "Question",
                             "id": "address-type-check-block",
-                            "title": "You said {{ metadata['ru_name'] }} is not your main residence",
+                            "title": "You said {{ metadata['display_address'] }} is not your main residence",
                             "description": "",
                             "questions": [{
                                 "id": "address-type-check-question",
@@ -112,7 +131,7 @@
                                 "type": "General",
                                 "answers": [{
                                         "id": "address-type-check-answer",
-                                        "mandatory": false,
+                                        "mandatory": true,
                                         "type": "Radio",
                                         "options": [{
                                                 "label": "A previous address from which mail has been redirected",
@@ -161,7 +180,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "household-composition-question",
-                                "title": "What are the names of everyone who lives in the <em>{{ metadata['ru_name'] }}</em> household?",
+                                "title": "What are the names of everyone who lives in the <em>{{ metadata['display_address'] }}</em> household?",
                                 "type": "RepeatingAnswer",
                                 "answers": [{
                                         "id": "first-name",
@@ -537,7 +556,7 @@
                         "questions": [{
                             "id": "time-away-question",
                             "titles": [{
-                                    "value": "Is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> currently away from {{ metadata['ru_name'] }} for a continuous period of 6 months or more?",
+                                    "value": "Is <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name }}</em> currently away from {{ metadata['display_address'] }} for a continuous period of 6 months or more?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -545,7 +564,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Are you currently away from {{ metadata['ru_name'] }} for a continuous period of 6 months or more?"
+                                    "value": "Are you currently away from {{ metadata['display_address'] }} for a continuous period of 6 months or more?"
                                 }
                             ],
                             "type": "General",
