@@ -1,4 +1,5 @@
 import uuid
+from unittest.mock import Mock, patch
 
 from app.data_model.answer_store import AnswerStore, Answer
 from app.questionnaire.location import Location
@@ -161,6 +162,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         }
         self.block_type = 'CalculatedSummary'
 
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_currency_calculated_summary_no_skip(self):
         csrf_token = None
         variables = None
@@ -189,6 +191,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '£27.00')
 
 
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_currency_calculated_summary_with_skip(self):
         csrf_token = None
         variables = None
@@ -218,6 +221,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         self.assertEqual(context_summary['calculated_question']['title'], 'Grand total of previous values')
         self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '£12.00')
 
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_unit_calculated_summary(self):
         csrf_token = None
         variables = None
@@ -270,6 +274,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         self.assertEqual(context_summary['calculated_question']['title'], 'Grand total of previous values')
         self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '20%')
 
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_number_calculated_summary(self):
         csrf_token = None
         variables = None
@@ -377,6 +382,7 @@ class TestRepeatingSummaryContext(TestStandardSummaryContext):
         self.assertEqual(context_summary['groups'][3]['blocks'], [])
 
 
+    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_calculated_summary_for_repeating_group(self):
         block_type = 'CalculatedSummary'
         schema_context = self.schema_context

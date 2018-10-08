@@ -36,7 +36,7 @@ before_install:
     - pyenv install --skip-existing
     - pyenv rehash
     - pyenv global $(cat .python-version)
-    - pip install -U pip pipenv wheel
+    - pip install -U pip pipenv==2018.5.18 wheel
     - pipenv install --dev --deploy
     - pipenv check -i '36333 '
 cache:

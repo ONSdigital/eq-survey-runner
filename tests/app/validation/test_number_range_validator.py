@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 from wtforms.validators import ValidationError
 
 from app.jinja_filters import format_number
@@ -10,6 +10,7 @@ from app.data_model.answer_store import Answer, AnswerStore
 
 
 # pylint: disable=no-member
+@patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
 class TestNumberRangeValidator(unittest.TestCase):
     """
     Number range validator uses the data, which is already known as integer

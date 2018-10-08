@@ -73,6 +73,12 @@ ANSWER_GETTER = Template(r"""  ${answerName}() {
 
 """)
 
+ANSWER_UNIT_TYPE_GETTER = Template(r"""  ${answerName}Unit() {
+    return '#${answerId}-type';
+  }
+
+""")
+
 RELATIONSHIP_ANSWER_GETTER = Template(r"""  ${answerName}(instance) {
     return '[name="${answerId}-' + instance + '"]';
   }
@@ -243,6 +249,9 @@ def process_answer(question_type, answer, page_spec, long_names, page_name):
             page_spec.write(ANSWER_GETTER.substitute(answer_context))
             page_spec.write(ANSWER_LABEL_GETTER.substitute(answer_context))
 
+        if answer['type'] == 'Unit':
+            page_spec.write(ANSWER_UNIT_TYPE_GETTER.substitute(answer_context))
+
     else:
         raise Exception('Answer type {} not configured'.format(answer['type']))
 
@@ -313,9 +322,11 @@ def process_summary(schema_data, page_spec):
                         if block['type'] == 'SectionSummary':
                             page_spec.write(SECTION_SUMMARY_ANSWER_GETTER.substitute(answer_context))
                             page_spec.write(SECTION_SUMMARY_ANSWER_EDIT_GETTER.substitute(answer_context))
+
+                        page_spec.write(SUMMARY_ANSWER_GETTER.substitute(answer_context))
+                        page_spec.write(SUMMARY_ANSWER_EDIT_GETTER.substitute(answer_context))
+
                     page_spec.write(SUMMARY_QUESTION_GETTER.substitute(question_context))
-                    page_spec.write(SUMMARY_ANSWER_GETTER.substitute(answer_context))
-                    page_spec.write(SUMMARY_ANSWER_EDIT_GETTER.substitute(answer_context))
 
             group_context = {
                 'group_id_camel': camel_case(generate_pascal_case_from_id(group['id'])),
