@@ -1,6 +1,6 @@
 {% extends 'layouts/_twocol.html' %}
 
-{% set survey_title  = _("ONS Business Surveys") %}
+{% set survey_title  = _("ONS Social Surveys") %}
 
 {% block header %}
 {% include theme('partials/header.html') %}
@@ -26,9 +26,9 @@
                                 {{ _("Cookies and Privacy") }}
                             </h1>
 
-                            <p>{{ _("The Office for National Statistics (ONS) has created this cookies and privacy statement in order to demonstrate our firm commitment to privacy.") }}</p>
+                            <p>{{ _("The Office for National Statistics (ONS) has created this cookies and privacy statement to demonstrate our firm commitment to privacy.") }}</p>
 
-                            <p>{{ _("The following is a description of what data is collected when you use the Survey Data Collection (SDC) service, how it is stored and what it is used for.") }}</p>
+                            <p>{{ _("The following is a description of what data is collected when you complete one of our online studies, how the data is stored and what it is used for.") }}</p>
 
                             <div class="question">
                                 <h2 class="question__title neptune">
@@ -36,7 +36,7 @@
                                 </h2>
 
                                 <div class="question__description mars">
-                                    <p>{{ _("Your privacy is very important to us. We comply with confidentiality requirements set out in the Statistics and Registration Service Act 2007 and the Data Protection Act 1998.") }}</p>
+                                    <p>{{ _("Your privacy is very important to us. We comply with confidentiality requirements set out in the Statistics and Registration Service Act 2007 and the Data Protection Act 2018.") }}</p>
 
                                     <p>{{ _("We can only use your information for research and statistical purposes. None of your personal information is disclosed through our statistics.") }}</p>
 
@@ -94,11 +94,6 @@
                                     <p>{{ _("The information we collect through our cookies does not include personal details such as your name, age, telephone number, postal address or email address, nor does it allow personal identification of a user.") }}</p>
 
                                     <p>{{ _("You can manage these small files yourself and learn more about them through <a %(href)s>internet browser cookies – what they are and how to manage them.</a>", href='href="https://www.aboutcookies.org/"') }}</p>
-
-                                    <p><b>{{ _("Find out more information") }}</b></p>
-
-                                    <p>{{ _("If you have any questions about this privacy statement, you can contact us at %(email_link)s",
-                                      email_link='<a href="mailto:surveys@ons.gov.uk" target="_top">surveys@ons.gov.uk</a>') }}</p>
                                 </div>
                                 <br>
                                 <h2 class="question__title neptune">
@@ -157,90 +152,21 @@
                                 <br>
 
                                 <h2 class="question__title neptune">
-                                    {{ _("Your account") }} (surveys.ons.gov.uk)
-                                </h2>
-
-                                <table class="table">
-                                    <thead class="table--head">
-                                    <tr>
-                                        <th class="table--header--cell">{{ _("Name") }}</th>
-                                        <th class="table--header--cell">{{ _("Purpose") }}</th>
-                                        <th class="table--header--cell">{{ _("Expires") }}</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td class="table--cell">COOKIE_SUPPORT</td>
-                                        <td class="table--cell">{{ _("To check that your browser can support cookies") }}</td>
-                                        <td class="table--cell">{{ _("When a user closes the browser or when their cookie cache is cleared") }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table--cell">GUEST_LANGUAGE_ID</td>
-                                        <td class="table--cell">{{ _("To store your preferred language so that certain content can be displayed in your own language") }}
-                                        </td>
-                                        <td class="table--cell">{{ _("When a user closes the browser or when their cookie cache is cleared") }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table--cell">JSESSIONID</td>
-                                        <td class="table--cell">{{ _("To keep your session active when using your account to access portfolio and messages" ) }}
-                                        </td>
-                                        <td class="table--cell">{{ _("When a user closes the browser or when their cookie cache is cleared") }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table--cell">ID</td>
-                                        <td class="table--cell">{{ _("To store an encrypted identifier which is used to retrieve the information associated to your account") }}
-                                        </td>
-                                        <td class="table--cell">{{ _("When a user logs out or closes the browser or when their cookie cache is cleared") }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table--cell">COMPANY_ID</td>
-                                        <td class="table--cell">{{ _("To store an identifier which is used to retrieve the permissions associated to your account") }}
-                                        </td>
-                                        <td class="table--cell">{{ _("When a user logs out or closes the browser or when their cookie cache is cleared") }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table--cell">USER_UUID</td>
-                                        <td class="table--cell">{{ _("To store the universally unique identifier created for your account") }}
-                                        </td>
-                                        <td class="table--cell">{{ _("When a user closes the browser or when their cookie cache is cleared") }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table--cell">LFR_SESSION_STATE_*</td>
-                                        <td class="table--cell">{{ _("To store the timestamp of the last request so that the session expiry warning message can be displayed") }}
-                                        </td>
-                                        <td class="table--cell">{{ _("When a user closes the browser or when their cookie cache is cleared") }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table--cell">csfcfc</td>
-                                        <td class="table--cell">{{ _("To store the flash object identifier for the most recent action you have performed") }}
-                                        </td>
-                                        <td class="table--cell">{{ _("When a user closes the browser or when their cookie cache is cleared") }}
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <h2 class="question__title neptune">
                                     {{ _("Data controller") }}
                                 </h2>
                                 <div class="question__description mars">
-                                    <p>{{ _("The Data Controller for ONS Surveys is") }}:</p><p>Office for National Statistics<br>Government Buildings<br>Cardiff Road<br>Newport<br>South Wales<br>NP10 8XG</p>
+                                    <p>{{ _("The Data Controller for ONS Surveys is") }}:</p>
+                                    <p>Office for National Statistics<br>Government Buildings<br>Cardiff Road<br>Newport<br>South Wales<br>NP10 8XG</p>
                                     <p>{{ _("For questions regarding the Survey Data Collection service please contact us on") }}:</p>
-                                    <p>{{ _("Telephone") }}: 0300 1234 931<br>{{ _("Email") }}: <a href="mailto:surveys@ons.gov.uk">surveys@ons.gov.uk</a></p>
+                                    <p>{{ _("Telephone") }}: 0800 085 7376</p>
                                 </div>
                                 <h2 class="question__title neptune">
                                     {{ _("Why we collect your data") }}
                                 </h2>
                                 <div class="question__description mars">
                                     <p>{{ _("The Survey Data Collection service is used as the online collection mechanism for a number of our surveys. More surveys will be offered via this service over time.") }}</p>
-                                    <p>{{ _("Individual survey teams are responsible for the content (the questions asked) and form (Excel spreadsheet to download, complete and return; or online questionnaire) of their respective surveys. Survey Data Collection does need some personal data in its own right for the functioning of the platform.") }}</p>
-                                    <p>{{ _("The lawful reason for which your personal data is collected through the Survey Data Collection platform is Public task. The processing is necessary for us to perform a task in the public interest or for our official functions, and the task or function has a clear basis in law.") }}</p>
+                                    <p>{{ _("Individual survey teams are responsible for the content (the questions asked) of their respective surveys. Survey Data Collection does need some personal data in its own right for the functioning of the platform.") }}</p>
+                                    <p>{{ _("UK legislation allows us to collect and process your data to produce statistics for the public good. Your information will be treated as confidential by the Code of Practice for Official Statistics.") }}</p>
                                 </div>
                                 <h2 class="question__title neptune">
                                     {{ _("When we collect your data") }}
@@ -248,7 +174,7 @@
                                 <div class="question__description mars">
                                     <p>{{ _("Your data is collected when") }}:</p>
                                     <ul>
-                                        <li>{{ _("you create an account and sign in to the ONS Surveys platform") }}</li>
+                                        <li>{{ _("you sign in to the ONS Surveys platform") }}</li>
                                         <li>{{ _("you complete a survey") }}</li>
                                         <li>{{ _("you contact us by any means") }}</li>
                                         <li>{{ _("you visit a website that comprises the Survey Data Collection platform") }}</li>
@@ -269,21 +195,6 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td class="table--cell">{{ _("Email address") }}</td>
-                                                <td class="table--cell">
-                                                    <p>{{ _("Survey Data Collection captures and stores the email address of those who register with the platform. Registration is required in order to complete a survey return.") }}</p>
-                                                    <p>{{ _("Email address is used as a unique user identifier. Once registered the email address and password created is required to identify you each time you use the service.") }}</p>
-                                                    <p>{{ _("Additionally, the email address is used to send communications for purposes of account management and reminders of survey responses.") }}</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="table--cell">{{ _("Business Name") }}</td>
-                                                <td class="table--cell">
-                                                    <p>{{ _("Business names are pre-loaded into the Survey Data Collection platform as part of a business having been selected for a survey.") }}</p>
-                                                    <p>{{ _("The name of the business that has been selected for a given survey will have been provided to Survey Data Collection by another part of the Office for National Statistics responsible for the survey in question. Survey Data Collection stores and processes this.") }}</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <td class="table--cell">{{ _("IP address") }}</td>
                                                 <td class="table--cell">
                                                     <p>{{ _("Internet Protocol address") }}</p>
@@ -296,14 +207,16 @@
 
                                     <p>{{ _("Surveys that are conducted on the Survey Data Collection platform may collect additional items of personal data.") }}</p>
 
-                                    <h3 class="mars"><strong>{{ _("Business surveys that require personal data") }}</strong></h3>
-                                    <p><a href="https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/annualsurveyofhoursandearningsashe">{{ _("Annual Survey of Hours and Earnings") }}</a>
-                                        <br>{{ _("The legal basis for undertaking the Annual Survey of Hours and Earnings (ASHE) is the Statistics of Trade Act 1947. This means the General Data Protection Regulation has not changed the fact that this is mandatory for the organisations selected to be part of the sample. The personal data an organisation returns as part of this submission does not require the permission of the employees who form the data subjects and the subjects do not have any option to opt-out. The ASHE survey collects the following items of personal data") }}:</p>
                                     <ul>
-                                        <li>{{ _("National insurance number") }}</li>
-                                        <li>{{ _("Date of birth") }}</li>
-                                        <li>{{ _("Postcode") }}</li>
+                                      <li>{{ _("Online Household Study") }}</li>
+                                        <ul>
+                                            <li>{{ _("The Online Household Study is a UK-wide online study which covers a range of topics including work, retirement, higher education, unemployment and looking after the family or home. The study collects the following items of personal data") }}:</li>
+                                            <ul>
+                                              <li>{{ _("Date of birth") }}</li>
+                                            </ul>
+                                        </ul>
                                     </ul>
+                                    <p>{{ _("Participating in the study, as well as specific questions within the study, is voluntary.") }}</p>
 
                                     <h3 class="mars"><strong>{{ _("Communication outside of the Survey Data Collection Platform") }}</strong></h3>
                                     <p>{{ _("The Survey Data Collection platform contains both a telephone number and email address which can be used for both queries and issues with the platform and survey hosted on the platform.") }}</p>
@@ -343,12 +256,8 @@
                                                 <td class="table--cell">{{ _("Used to support the platform on which the Survey Data Collection service runs.") }}</td>
                                             </tr>
                                             <tr>
-                                                <td class="table--cell">{{ _("Email notification service") }}</td>
-                                                <td class="table--cell">{{ _("A service used to send email messages to the active accounts registered to the Survey Data Collection service.") }}</td>
-                                            </tr>
-                                            <tr>
                                                 <td class="table--cell">{{ _("Secure file transfer") }}</td>
-                                                <td class="table--cell">{{ _("This is used for the behind the scenes transfer of data that identify the businesses that have been selected for participation in a given survey.") }}</td>
+                                                <td class="table--cell">{{ _("This is used for the behind the scenes transfer of data that identify the households that have been selected for participation in a given survey.") }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -360,8 +269,7 @@
                                 <div class="question__description mars">
                                     <h3 class="mars"><strong>{{ _("Log Retention") }}</strong></h3>
                                     <p>{{ _("Standard logs from the Survey Data Collection service are retained for a period of 30 days. Exceptional events may be retained for longer.") }}</p>
-                                    <p>{{ _("Our general retention period for data collected via annual surveys is 3 years.") }}</p>
-                                    <p>{{ _("Personal data used for account access will be retained as long as the account is active.") }}</p>
+                                    <p>{{ _("Our general retention period for data collected via social surveys is 5 years.") }}</p>
                                 </div>
 
                                 <h2 class="question__title neptune">
