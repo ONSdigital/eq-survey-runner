@@ -15,9 +15,6 @@
     }, {
         "name": "ru_name",
         "validator": "string"
-    }, {
-        "name": "language_code",
-        "validator": "string"
     }],
     "sections": [{
         "id": "default-section",
