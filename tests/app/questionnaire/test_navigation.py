@@ -1,3 +1,4 @@
+import uuid
 from unittest.mock import MagicMock
 
 from app.data_model.answer_store import AnswerStore, Answer
@@ -158,42 +159,51 @@ class TestNavigation(AppContextTestCase):
 
         navigation = _create_navigation(schema, AnswerStore(), metadata, completed_blocks, routing_path)
 
+        person1_uuid = uuid.uuid4()
+        person2_uuid = uuid.uuid4()
+
         navigation.answer_store.answers = [
             {
                 'group_instance': 0,
                 'answer_instance': 0,
                 'answer_id': 'first-name',
                 'value': 'Jim',
+                'group_instance_id': person1_uuid,
             },
             {
                 'group_instance': 0,
                 'answer_instance': 1,
                 'answer_id': 'first-name',
                 'value': 'Ben',
+                'group_instance_id': person2_uuid,
             },
             {
                 'group_instance': 0,
                 'answer_instance': 0,
                 'answer_id': 'what-is-your-age',
                 'value': None,
+                'group_instance_id': person1_uuid,
             },
             {
                 'group_instance': 0,
                 'answer_instance': 0,
                 'answer_id': 'what-is-your-shoe-size',
                 'value': None,
+                'group_instance_id': person1_uuid,
             },
             {
                 'group_instance': 1,
                 'answer_instance': 0,
                 'answer_id': 'what-is-your-age',
                 'value': None,
+                'group_instance_id': person2_uuid,
             },
             {
                 'group_instance': 1,
                 'answer_instance': 0,
                 'answer_id': 'what-is-your-shoe-size',
                 'value': None,
+                'group_instance_id': person2_uuid,
             }
         ]
 
@@ -260,23 +270,29 @@ class TestNavigation(AppContextTestCase):
 
         answer_store = AnswerStore()
 
+        person1_uuid = uuid.uuid4()
+        person2_uuid = uuid.uuid4()
+
         answer_1 = Answer(
             answer_instance=0,
             answer_id='first-name',
             group_instance=0,
-            value='Person1'
+            value='Person1',
+            group_instance_id=person1_uuid
         )
         answer_2 = Answer(
             answer_instance=1,
             answer_id='first-name',
             group_instance=0,
-            value='Person2'
+            value='Person2',
+            group_instance_id=person2_uuid
         )
         answer_3 = Answer(
             answer_instance=1,
             answer_id='extra-cover-answer',
             group_instance=0,
-            value=2
+            value=2,
+            group_instance_id=person2_uuid
         )
 
         answer_store.add(answer_1)
@@ -478,29 +494,36 @@ class TestNavigation(AppContextTestCase):
 
         answer_store = AnswerStore()
 
+        person1_uuid = uuid.uuid4()
+        person2_uuid = uuid.uuid4()
+
         answer_1 = Answer(
             answer_instance=0,
             answer_id='first-name',
             group_instance=0,
-            value='Joe'
+            value='Joe',
+            group_instance_id=person1_uuid
         )
         answer_2 = Answer(
             answer_instance=0,
             answer_id='last-name',
             group_instance=0,
-            value='Bloggs'
+            value='Bloggs',
+            group_instance_id=person1_uuid
         )
         answer_3 = Answer(
             answer_instance=1,
             answer_id='first-name',
             group_instance=0,
-            value='Jane'
+            value='Jane',
+            group_instance_id=person2_uuid
         )
         answer_4 = Answer(
             answer_instance=1,
             answer_id='last-name',
             group_instance=0,
-            value='Doe'
+            value='Doe',
+            group_instance_id=person2_uuid
         )
 
         answer_store.add(answer_1)
@@ -1184,29 +1207,36 @@ class TestNavigation(AppContextTestCase):
 
         answer_store = AnswerStore()
 
+        person1_uuid = uuid.uuid4()
+        person2_uuid = uuid.uuid4()
+
         answer_store.add(Answer(
             answer_instance=0,
             answer_id='first-name',
             group_instance=0,
-            value='Person1'
+            value='Person1',
+            group_instance_id=person1_uuid
             ))
         answer_store.add(Answer(
             answer_instance=1,
             answer_id='first-name',
             group_instance=0,
-            value='Person2'
+            value='Person2',
+            group_instance_id=person2_uuid
             ))
         answer_store.add(Answer(
             answer_instance=0,
             answer_id='what-is-your-age',
             group_instance=0,
-            value=42
+            value=42,
+            group_instance_id=person1_uuid
             ))
         answer_store.add(Answer(
             answer_instance=0,
             answer_id='what-is-your-shoe-size',
             group_instance=0,
-            value='Employed'
+            value='Employed',
+            group_instance_id=person1_uuid
             ))
 
         routing_path = [
