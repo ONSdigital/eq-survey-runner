@@ -35,7 +35,7 @@ describe('Component: Mutually Exclusive Dropdown With Single Checkbox Override',
     });
   });
 
-  describe('Given the user has clicked the mutually exclusive checkbox answer', function() {
+  describe.skip('Given the user has clicked the mutually exclusive checkbox answer', function() {
     it('When the user enters a value for the non-exclusive dropdown answer and removes focus, Then only the non-exclusive dropdown answer should be answered.', function() {
 
       return browser

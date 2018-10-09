@@ -1,6 +1,5 @@
 <div class="field">
-  <div class="input-type input-type--unit">
-
+  <div class="input-type input-type--unit input-type--group">
     {% set args = {
       'class': 'input input--number input--with-unit input--block ' ~ exclusive_class,
       'pattern': '[0-9]*',
@@ -8,6 +7,6 @@
     } %}
 
     {{ input(**args) }}
-    <abbr title="{{ _(input.label.text) }}" class="input-type__type input-type__type--period" id="{{input.id}}-label">{{ _(input.label.text) }}</abbr>
+    <abbr title="{{ _(input.label.text) }}" class="input-type__type" id="{{input.id}}-label">{{ format_unit_input_label(unit, unit_length='long') | capitalize }}</abbr>
   </div>
 </div>
