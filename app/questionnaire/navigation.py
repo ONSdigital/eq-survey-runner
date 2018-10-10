@@ -122,7 +122,7 @@ class Navigation:
 
             group_instance_id = get_group_instance_id(self.schema, self.answer_store,
                                                       Location(group_id=group['id'], group_instance=i,
-                                                               block_id=""))
+                                                               block_id=''))
 
             if self.completeness.get_state_for_group(group, group_instance=i, group_instance_id=group_instance_id) == Completeness.SKIPPED:
                 continue

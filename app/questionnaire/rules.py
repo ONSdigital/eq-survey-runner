@@ -282,17 +282,18 @@ def evaluate_when_rules(when_rules, schema, metadata, answer_store, group_instan
     """
 
     for when_rule in when_rules:
+        group_instance_something = group_instance
         if 'id' in when_rule:
             if group_instance > 0 and not schema.answer_is_in_repeating_group(when_rule['id']):
-                group_instance = 0
+                group_instance_something = 0
 
-        value = _get_when_rule_value(when_rule, group_instance, answer_store, schema, metadata, group_instance_id)
+        value = _get_when_rule_value(when_rule, group_instance_something, answer_store, schema, metadata, group_instance_id)
 
         if 'date_comparison' in when_rule:
-            if not evaluate_date_rule(when_rule, answer_store, schema, group_instance, metadata, value):
+            if not evaluate_date_rule(when_rule, answer_store, schema, group_instance_something, metadata, value):
                 return False
         elif 'comparison_id' in when_rule:
-            comparison_id_value = _get_comparison_id_value(when_rule, answer_store, schema, group_instance, group_instance_id)
+            comparison_id_value = _get_comparison_id_value(when_rule, answer_store, schema, group_instance_something, group_instance_id)
             if not evaluate_comparison_rule(when_rule, value, comparison_id_value):
                 return False
         else:

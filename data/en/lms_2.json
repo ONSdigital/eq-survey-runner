@@ -287,36 +287,7 @@
                                         }
                                     ]
                                 }]
-                            }],
-                            "routing_rules": [{
-                                    "goto": {
-                                        "group": "share-group",
-                                        "when": [{
-                                            "id": "other-household-member-anyone-else",
-                                            "condition": "equals",
-                                            "value": "No"
-                                        }, {
-                                            "id": "address-type-answer",
-                                            "condition": "equals",
-                                            "value": "Student accommodation rented through a private landlord"
-                                        }]
-                                    }
-                                }, {
-                                    "goto": {
-                                        "group": "student-household-member-group",
-                                        "when": [{
-                                            "id": "other-household-member-anyone-else",
-                                            "condition": "equals",
-                                            "value": "No"
-                                        }]
-                                    }
-                                },
-                                {
-                                    "goto": {
-                                        "block": "other-household-member-name-block"
-                                    }
-                                }
-                            ]
+                            }]
                         },
                         {
                             "type": "Question",
@@ -363,6 +334,16 @@
                             }]
                         }
                     }],
+                    "skip_conditions": [
+                        {
+                            "when": [
+                                {
+                                    "id": "address-type-answer",
+                                    "condition": "equals",
+                                    "value": "Student accommodation rented through a private landlord"
+                                }
+                            ]
+                        }],
                     "blocks": [{
                             "type": "Question",
                             "id": "student-household-member-anyone-else-block",
