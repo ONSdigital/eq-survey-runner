@@ -230,6 +230,20 @@
                                 },
                                 {
                                     "goto": {
+                                        "group": "share-group",
+                                        "when": [{
+                                            "id": "household-check-answer",
+                                            "condition": "equals",
+                                            "value": "No"
+                                        }, {
+                                            "id": "address-type-answer",
+                                            "condition": "equals",
+                                            "value": "Student accommodation rented through a private landlord"
+                                        }]
+                                    }
+                                },
+                                {
+                                    "goto": {
                                         "group": "household-relationships-group"
                                     }
                                 }

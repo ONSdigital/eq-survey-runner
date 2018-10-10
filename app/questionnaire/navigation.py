@@ -43,22 +43,22 @@ class Navigation:
         navigation = []
 
         for section in self.schema.sections:
-            non_skipped_groups = self._get_non_skipped_groups(section)
-            if not non_skipped_groups:
-                continue
-
-            target_location = self._get_location_for_section(section, non_skipped_groups)
-
             # if the first group in a section is a repeating group then repeat the section
             # navigation link for each repeat instead of rendering the section title
             repeating_rule = None
-            if len(non_skipped_groups) == 1:
-                repeating_rule = self.schema.get_repeat_rule(non_skipped_groups[0])
+            if len(section['groups']) == 1:
+                repeating_rule = self.schema.get_repeat_rule(section['groups'][0])
 
             if repeating_rule:
                 navigation.extend(self._build_repeating_navigation(repeating_rule, section, current_group_id,
                                                                    current_group_instance))
             else:
+                non_skipped_groups = self._get_non_skipped_groups(section)
+                if not non_skipped_groups:
+                    continue
+
+                target_location = self._get_location_for_section(section, section['groups'])
+
                 navigation.append(
                     self._build_single_navigation(
                         section, current_group_id, target_location))
@@ -119,6 +119,14 @@ class Navigation:
         nav_items = []
 
         for i in range(no_of_repeats):
+
+            group_instance_id = get_group_instance_id(self.schema, self.answer_store,
+                                                      Location(group_id=group['id'], group_instance=i,
+                                                               block_id=""))
+
+            if self.completeness.get_state_for_group(group, group_instance=i, group_instance_id=group_instance_id) == Completeness.SKIPPED:
+                continue
+
             location = self._get_location_for_group(group, group_instance=i)
             is_current_group_instance = is_current_group and i == current_group_instance
             is_completed = self.completeness.is_group_complete(group, group_instance=i)
