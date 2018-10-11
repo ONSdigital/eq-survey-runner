@@ -379,29 +379,13 @@
                                         ]
                                     },
                                     {
-                                        "parent_answer_id": "address-type-answer",
+                                        "parent_answer_id": "address-type-answer-no-primary",
                                         "id": "address-type-answer-other-no-primary",
                                         "mandatory": false,
                                         "type": "TextField"
                                     }
                                 ]
-                            }],
-                            "routing_rules": [{
-                                    "goto": {
-                                        "group": "other-household-member-group-no-primary",
-                                        "when": [{
-                                            "id": "address-type-answer",
-                                            "condition": "equals",
-                                            "value": "Student accommodation rented through a private landlord"
-                                        }]
-                                    }
-                                },
-                                {
-                                    "goto": {
-                                        "block": "household-check-block-no-primary"
-                                    }
-                                }
-                            ]
+                            }]
                         },
                         {
                             "type": "Question",
@@ -477,6 +461,29 @@
                     }],
                     "blocks": [{
                             "type": "Question",
+                            "id": "other-household-member-name-block-no-primary",
+                            "questions": [{
+                                "id": "other-household-member-name-question-no-primary",
+                                "title": "Who do you need to add to {{ metadata['display_address'] }}",
+                                "description": "{{ [[answers['other-household-member-first-name-no-primary'], answers['other-household-member-last-name-no-primary']], [answers['student-household-member-first-name-no-primary'], answers['student-household-member-last-name-no-primary']]] | format_repeating_summary }}",
+                                "type": "General",
+                                "answers": [{
+                                        "id": "other-household-member-first-name-no-primary",
+                                        "label": "First or given name",
+                                        "mandatory": true,
+                                        "type": "TextField"
+                                    },
+                                    {
+                                        "id": "other-household-member-last-name-no-primary",
+                                        "label": "Surname or family name",
+                                        "mandatory": true,
+                                        "type": "TextField"
+                                    }
+                                ]
+                            }]
+                        },
+                        {
+                            "type": "Question",
                             "id": "other-household-member-anyone-else-block-no-primary",
                             "questions": [{
                                 "type": "General",
@@ -499,36 +506,6 @@
                                     ]
                                 }]
                             }]
-                        },
-                        {
-                            "type": "Question",
-                            "id": "other-household-member-name-block-no-primary",
-                            "questions": [{
-                                "id": "other-household-member-name-question-no-primary",
-                                "title": "Who do you need to add to {{ metadata['display_address'] }}",
-                                "description": "{{ [[answers['other-household-member-first-name-no-primary'], answers['other-household-member-last-name-no-primary']], [answers['student-household-member-first-name-no-primary'], answers['student-household-member-last-name-no-primary']]] | format_repeating_summary }}",
-                                "type": "General",
-                                "answers": [{
-                                        "id": "other-household-member-first-name-no-primary",
-                                        "label": "First or given name",
-                                        "mandatory": true,
-                                        "type": "TextField"
-                                    },
-                                    {
-                                        "id": "other-household-member-last-name-no-primary",
-                                        "label": "Surname or family name",
-                                        "mandatory": true,
-                                        "type": "TextField"
-                                    }
-                                ]
-                            }],
-                            "skip_conditions": [{
-                                "when": [{
-                                    "id": "other-household-member-anyone-else-no-primary",
-                                    "condition": "equals",
-                                    "value": "No"
-                                }]
-                            }]
                         }
                     ]
                 },
@@ -536,20 +513,18 @@
                     "id": "student-household-member-group-no-primary",
                     "title": "Student Household Members",
                     "skip_conditions": [{
-                        "when": [{
-                            "id": "primary-household-member-address-check-answer",
-                            "condition": "equals",
-                            "value": "Yes"
-                        }]
-                    },
-                    {
-                            "when": [
-                                {
-                                    "id": "address-type-answer-no-primary",
-                                    "condition": "equals",
-                                    "value": "Student accommodation rented through a private landlord"
-                                }
-                            ]
+                            "when": [{
+                                "id": "primary-household-member-address-check-answer",
+                                "condition": "equals",
+                                "value": "Yes"
+                            }]
+                        },
+                        {
+                            "when": [{
+                                "id": "address-type-answer-no-primary",
+                                "condition": "equals",
+                                "value": "Student accommodation rented through a private landlord"
+                            }]
                         }
                     ],
                     "routing_rules": [{
