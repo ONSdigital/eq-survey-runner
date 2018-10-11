@@ -66,7 +66,7 @@
                                 "answers": [{
                                         "id": "primary-household-member-first-name",
                                         "description": "",
-                                        "label": "My First Name or Given Name",
+                                        "label": "My First or Given Name",
                                         "mandatory": true,
                                         "type": "TextField"
                                     },
@@ -92,13 +92,13 @@
                                     "id": "primary-household-member-address-check-answer",
                                     "mandatory": true,
                                     "options": [{
-                                            "label": "Yes, the above address is my main residence",
+                                            "label": "The address is my main residence",
                                             "value": "Yes"
                                         },
                                         {
-                                            "label": "No, the above address is not my main residence",
+                                            "label": "The address is not my main residence",
                                             "value": "No",
-                                            "description": "For examples it is my old address, second home, holiday home, business address or is not familiar to me"
+                                            "description": "For example it is my old address, second home, holiday home, business address or is not familiar to me"
                                         }
                                     ],
                                     "type": "Radio"
@@ -313,13 +313,13 @@
                                 "type": "General",
                                 "answers": [{
                                         "id": "other-household-member-first-name",
-                                        "label": "First Name",
+                                        "label": "First or Given Name",
                                         "mandatory": true,
                                         "type": "TextField"
                                     },
                                     {
                                         "id": "other-household-member-last-name",
-                                        "label": "Last Name",
+                                        "label": "Surname or Family Name",
                                         "mandatory": true,
                                         "type": "TextField"
                                     }
@@ -382,13 +382,13 @@
                                 "type": "General",
                                 "answers": [{
                                         "id": "student-household-member-first-name",
-                                        "label": "First Name",
+                                        "label": "First or Given Name",
                                         "mandatory": true,
                                         "type": "TextField"
                                     },
                                     {
                                         "id": "student-household-member-last-name",
-                                        "label": "Last Name",
+                                        "label": "Surname or Family Name",
                                         "mandatory": true,
                                         "type": "TextField"
                                     }
@@ -1694,7 +1694,7 @@
                         "questions": [{
                             "id": "camyr2-question",
                             "titles": [{
-                                    "value": "When did {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name}} <em>most recently</em> arrive in the United Kingdom?",
+                                    "value": "When did {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name}} <em>most recently</em> arrive in the UK?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -1702,7 +1702,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "When did you <em>most recently</em> arrive in the United Kingdom?"
+                                    "value": "When did you <em>most recently</em> arrive in the UK?"
                                 }
                             ],
                             "type": "General",
@@ -2278,8 +2278,8 @@
                                         "description": "Includes any White background"
                                     },
                                     {
-                                        "label": "Mixed or multiple ethnic groups",
-                                        "value": "Mixed or multiple ethnic groups",
+                                        "label": "Mixed or Multiple ethnic groups",
+                                        "value": "Mixed or Multiple ethnic groups",
                                         "description": "Includes White and Black Caribbean, White and Black African, White and Asian or any other Mixed ethnic group"
                                     },
                                     {
@@ -2316,7 +2316,7 @@
                                     "when": [{
                                         "id": "ethnic-group-answer",
                                         "condition": "equals",
-                                        "value": "Mixed or multiple ethnic groups"
+                                        "value": "Mixed or Multiple ethnic groups"
                                     }]
                                 }
                             },
@@ -2523,7 +2523,7 @@
                         "questions": [{
                             "id": "mixed-ethnic-group-question",
                             "titles": [{
-                                    "value": "Which one best describes <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name_possessive}}</em> Mixed, multiple ethnic group or background?",
+                                    "value": "Which one best describes <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name_possessive}}</em> Mixed or Multiple ethnic group or background?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -2531,7 +2531,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Which one best describes your Mixed, multiple ethnic group or background?"
+                                    "value": "Which one best describes your Mixed or Multiple ethnic group or background?"
                                 }
                             ],
                             "type": "General",
@@ -2551,7 +2551,7 @@
                                             "value": "White and Asian"
                                         },
                                         {
-                                            "label": "Any other Mixed or multiple ethnic background",
+                                            "label": "Any other Mixed or Multiple ethnic background",
                                             "value": "Other",
                                             "child_answer_id": "mixed-ethnic-group-answer-other"
                                         }
@@ -2619,7 +2619,7 @@
                         "questions": [{
                             "id": "asian-ethnic-group-question",
                             "titles": [{
-                                    "value": "Which one best describes <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name_possessive}}</em> Asian, Asian British ethnic group or background?",
+                                    "value": "Which one best describes <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name_possessive}}</em> Asian or Asian British ethnic group or background?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -2627,7 +2627,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Which one best describes your Asian, Asian British ethnic group or background?"
+                                    "value": "Which one best describes your Asian or Asian British ethnic group or background?"
                                 }
                             ],
                             "type": "General",
@@ -2719,7 +2719,7 @@
                         "questions": [{
                             "id": "black-ethnic-group-question",
                             "titles": [{
-                                    "value": "Which one best describes <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name_possessive}}</em> Black, African, Caribbean, Black British ethnic group or background?",
+                                    "value": "Which one best describes <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name_possessive}}</em> Black, African, Caribbean or Black British ethnic group or background?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -2727,7 +2727,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Which one best describes your Black, African, Caribbean, Black British ethnic group or background?"
+                                    "value": "Which one best describes your Black, African, Caribbean or Black British ethnic group or background?"
                                 }
                             ],
                             "type": "General",
@@ -3204,7 +3204,7 @@
                         "questions": [{
                             "id": "two-jobs-j1-emp-status-emp-or-self-proxy-question",
                             "titles": [{
-                                "value": "<em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name_possessive}}</em> employment status"
+                                "value": "{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name_possessive}} employment status in <em>main</em> job"
                             }],
                             "type": "General",
                             "answers": [{
@@ -3246,7 +3246,7 @@
                         "questions": [{
                             "id": "two-jobs-j2-emp-status-proxy-question",
                             "titles": [{
-                                "value": "<em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name_possessive}}</em> employment status"
+                                "value": "{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name_possessive}} employment status in <em>second</em> job"
                             }],
                             "type": "General",
                             "answers": [{
@@ -3340,7 +3340,7 @@
                         "questions": [{
                             "id": "one-job-emp-status-proxy-question",
                             "titles": [{
-                                "value": "<em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name_possessive}}</em> employment status"
+                                "value": "{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name_possessive}} employment status in main job"
                             }],
                             "type": "General",
                             "answers": [{
@@ -4041,7 +4041,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Many jobs or businesses have usual hours. Not including your overtime, How many hours do you <em>usually</em> work in your job or business?"
+                                    "value": "Many jobs or businesses have usual hours. Not including your overtime, how many hours do you <em>usually</em> work in your job or business?"
                                 }
                             ],
                             "type": "General",
@@ -7843,7 +7843,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Are you currently enrolled on any formal education courses"
+                                    "value": "Are you currently enrolled on any formal education courses?"
                                 }
                             ],
                             "type": "General",
