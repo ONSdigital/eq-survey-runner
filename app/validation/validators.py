@@ -204,10 +204,9 @@ class MonthYearCheck:
     def __call__(self, form, field):
         try:
             datestr = '{}-{:02d}'.format(int(form.year.data or 0), int(form.month.data or 0))
-
             datetime.strptime(datestr, '%Y-%m')
         except ValueError:
-            raise validators.ValidationError(self.message)
+            raise validators.StopValidation(self.message)
 
 
 class YearCheck:
