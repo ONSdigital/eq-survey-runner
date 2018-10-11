@@ -1312,19 +1312,13 @@ class TestNavigation(AppContextTestCase):
         }
 
         # add group to extra-cover-items-section
-        schema.json['sections'][6]['groups'].insert(0, {
-            'id': 'extra-cover-items-intro',
-            'skip_conditions': [{
+        extra_cover_items = schema.json['sections'][6]['groups'][0]
+        extra_cover_items['skip_conditions'] = [{
                 'when': [{
                     'id': 'extra-cover-answer',
-                    'condition': 'not set'
+                    'condition': 'not set',
                 }]
-            }],
-            'blocks': [{
-                'id': 'household-full-names-intro-block',
-                'type': 'Interstitial'
             }]
-        })
 
         completed_blocks = [
             Location('property-details', 0, 'insurance-type'),
