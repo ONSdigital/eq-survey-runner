@@ -1,6 +1,6 @@
 from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
-from app.questionnaire.rules import evaluate_skip_conditions, get_number_of_repeats
+from app.questionnaire.rules import evaluate_skip_conditions, evaluate_repeat
 
 
 class Completeness:
@@ -135,11 +135,13 @@ class Completeness:
         return next(incomplete_locations, None)
 
     def _get_block_states_for_group(self, group, group_instance=0):
-        if group_instance is not None:
-            start_instance = max_instance = group_instance
-        else:
-            max_instance = get_number_of_repeats(group, self.schema, self.routing_path, self.answer_store) - 1
+        repeating_rule = self.schema.get_repeat_rule(group)
+
+        if repeating_rule:
+            max_instance = evaluate_repeat(repeating_rule, self.answer_store, self.schema, self.routing_path) - 1
             start_instance = 0
+        else:
+            start_instance = max_instance = group_instance
 
         for current_instance in range(start_instance, max_instance + 1):
             for block in group['blocks']:
