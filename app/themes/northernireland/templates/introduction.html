@@ -26,7 +26,7 @@
                         {{ _("You are completing this for <span>%(ru_name)s</span>", ru_name = metadata.ru_name) }}
                     {% endif %}
 
-                <p class="mars">If the company details or structure have changed contact us on {{ helpers.telephone_number() }} or email {{ helpers.email_address('details-changed-title', subject="Change of details reference " + metadata.ru_ref) }}.
+                <p class="mars">If the company details or structure have changed contact us on {{ helpers.telephone_number() }} or email {{ helpers.email_address(aria-describedby='details-changed-title', subject="Change of details reference " + metadata.ru_ref) }}.
                 </p>
 
             </div>

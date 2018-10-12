@@ -14,7 +14,7 @@
         {%- endfor -%}
       </ul>
     {%- endif -%}
-    <p class="u-mb-no">{{ _("If the problem continues please call %(tel_num)s", tel_num = helpers.telephone_number('survey-help')) }}</p>
+    <p class="u-mb-no">{{ _("If the problem continues please call %(tel_num)s", tel_num = helpers.telephone_number(aria_describedby='survey-help')) }}</p>
   </div>
 
   {{answer_guidance}}
