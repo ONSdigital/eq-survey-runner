@@ -131,7 +131,7 @@ class Navigation:
             is_current_group_instance = is_current_group and i == current_group_instance
             is_completed = self.completeness.is_group_complete(group, group_instance=i)
 
-            link_name = self._generate_link_name(title_from_answers, location)
+            link_name = self._generate_link_name(title_from_answers, group_instance_id)
 
             nav_item = self._generate_item(
                 name=link_name,
@@ -153,10 +153,8 @@ class Navigation:
             'repeating': repeating,
         }
 
-    def _generate_link_name(self, label_answer_ids, location):
+    def _generate_link_name(self, label_answer_ids, group_instance_id):
         link_names = []
-
-        group_instance_id = get_group_instance_id(self.schema, self.answer_store, location)
 
         for answer_id in label_answer_ids:
             for answer in self.answer_store.filter(answer_ids=[answer_id], group_instance_id=group_instance_id).escaped():
