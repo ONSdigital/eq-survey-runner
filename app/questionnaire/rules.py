@@ -4,6 +4,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 from app.questionnaire.location import Location
+from app.data_model.answer_store import AnswerStore
 
 MAX_REPEATS = 25
 
@@ -118,7 +119,7 @@ def convert_to_datetime(value):
     return datetime.strptime(value, date_format) if value else None
 
 
-def evaluate_goto(goto_rule, schema, metadata, answer_store, group_instance, group_instance_id=None):
+def evaluate_goto(goto_rule, schema, metadata, answer_store, group_instance, group_instance_id=None, routing_path=None):
     """
     Determine whether a goto rule will be satisfied based on a given answer
     :param goto_rule: goto rule to evaluate
@@ -130,7 +131,15 @@ def evaluate_goto(goto_rule, schema, metadata, answer_store, group_instance, gro
     :return: True if the when condition has been met otherwise False
     """
     if 'when' in goto_rule:
-        return evaluate_when_rules(goto_rule['when'], schema, metadata, answer_store, group_instance, group_instance_id)
+        return evaluate_when_rules(
+            goto_rule['when'],
+            schema,
+            metadata,
+            answer_store,
+            group_instance,
+            group_instance_id=group_instance_id,
+            routing_path=routing_path,
+        )
     return True
 
 
@@ -140,13 +149,16 @@ def evaluate_repeat(repeat_rule, answer_store, schema, routing_path):
     """
     if repeat_rule['type'] == 'until':
         when = repeat_rule['when']
-        answers = list(answer_store.filter(answer_ids=[when[0]['id']]))
+        when_ids = [rule['id'] for rule in when]
+
+        answers = list(answer_store.filter(answer_ids=when_ids))
 
         no_of_repeats = 1
 
         for answer in answers:
             group_instance = answer['group_instance']
-            if evaluate_when_rules(when, schema, {}, answer_store, group_instance, None):
+            if evaluate_when_rules(when, schema, {}, answer_store, group_instance,
+                                   group_instance_id=(answer['group_instance_id'] or None)):
                 break
 
             no_of_repeats = no_of_repeats + 1
@@ -157,7 +169,7 @@ def evaluate_repeat(repeat_rule, answer_store, schema, routing_path):
             'answer_count_minus_one': _get_answer_count_minus_one,
         }
 
-        answers = _get_answers_on_routing_path(schema, routing_path, answer_store, repeat_rule)
+        answers = _get_answers_on_routing_path_with_repeats(schema, routing_path, answer_store, repeat_rule)
 
         repeat_function = repeat_functions[repeat_rule['type']]
         no_of_repeats = repeat_function(answers)
@@ -169,7 +181,7 @@ def evaluate_repeat(repeat_rule, answer_store, schema, routing_path):
     return no_of_repeats
 
 
-def _get_answers_on_routing_path(schema, routing_path, answer_store, repeat_rule):
+def _get_answers_on_routing_path_with_repeats(schema, routing_path, answer_store, repeat_rule):
     repeat_indexes = []
 
     answer_ids_on_path = get_answer_ids_on_routing_path(
@@ -185,18 +197,26 @@ def _get_answers_on_routing_path(schema, routing_path, answer_store, repeat_rule
             if answer_id in answer_ids_on_path:
                 repeat_indexes.append(answer_id)
 
-    answers = list(answer_store.filter(answer_ids=repeat_indexes))
+    answers = answer_store.filter(answer_ids=repeat_indexes)
 
     # Exclude answers that are not on the routing path from repeat function
-    answers_to_remove = []
-    for answer in answers:
-        if not _is_answer_on_path(schema, answer, routing_path):
-            answers_to_remove.append(answer)
+    answers_on_path = _get_answers_on_path(answers, schema, routing_path)
+
+    return answers_on_path
+
+
+def _get_answers_on_path(answers, schema, routing_path) -> AnswerStore:
+    """
+    Get any answers that are on the routing path and return an answer store.
+    """
+    answers_to_remove = [answer for answer in answers if not _is_answer_on_path(schema, answer, routing_path)]
+
+    answers_on_path = answers.copy()
 
     for answer in answers_to_remove:
-        answers.remove(answer)
+        answers_on_path.answers.remove(answer)
 
-    return answers
+    return answers_on_path
 
 
 def _is_answer_on_path(schema, answer, routing_path):
@@ -227,7 +247,7 @@ def _get_comparison_id_value(when_rule, answer_store, schema, group_instance, gr
     return get_answer_store_value(answer_id, answer_store, schema, group_instance=group_instance, group_instance_id=group_instance_id)
 
 
-def evaluate_skip_conditions(skip_conditions, schema, metadata, answer_store, group_instance=0, group_instance_id=None):
+def evaluate_skip_conditions(skip_conditions, schema, metadata, answer_store, group_instance=0, group_instance_id=None, routing_path=None):
     """
     Determine whether a skip condition will be satisfied based on a given answer
     :param skip_conditions: skip_conditions rule to evaluate
@@ -244,20 +264,21 @@ def evaluate_skip_conditions(skip_conditions, schema, metadata, answer_store, gr
         return False
 
     for when in skip_conditions:
-        condition = evaluate_when_rules(when['when'], schema, metadata, answer_store, group_instance, group_instance_id)
+        condition = evaluate_when_rules(when['when'], schema, metadata, answer_store,
+                                        group_instance, group_instance_id, routing_path)
         if condition is True:
             return True
     return False
 
 
-def _get_when_rule_value(when_rule, group_instance, answer_store, schema, metadata, group_instance_id=None):
+def _get_when_rule_value(when_rule, group_instance, answer_store, schema, metadata, group_instance_id=None, routing_path=None):
     """
     Get the value from a when rule.
     :raises: Exception if none of `id`, `meta`, or `answer_count` are provided.
     :return: The value to use in a when rule
     """
     if 'id' in when_rule:
-        value = get_answer_store_value(when_rule['id'], answer_store, schema, group_instance, group_instance_id)
+        value = get_answer_store_value(when_rule['id'], answer_store, schema, group_instance, group_instance_id, routing_path=routing_path)
     elif 'meta' in when_rule:
         value = get_metadata_value(metadata, when_rule['meta'])
     elif 'answer_count' in when_rule:
@@ -268,7 +289,7 @@ def _get_when_rule_value(when_rule, group_instance, answer_store, schema, metada
     return value
 
 
-def evaluate_when_rules(when_rules, schema, metadata, answer_store, group_instance, group_instance_id=None):
+def evaluate_when_rules(when_rules, schema, metadata, answer_store, group_instance, group_instance_id=None, routing_path=None):
     """
     Whether the skip condition has been met.
     :param when_rules: when rules to evaluate
@@ -278,15 +299,15 @@ def evaluate_when_rules(when_rules, schema, metadata, answer_store, group_instan
     :param group_instance: when evaluating a when rule for a repeating group
            this holds the group instance of the repeating group
     :param group_instance_id: The group instance ID to filter results by
+    :param routing_path: The routing path to use when filtering answer_store
     :return: True if the when condition has been met otherwise False
     """
-
     for when_rule in when_rules:
         if 'id' in when_rule:
             if group_instance > 0 and not schema.answer_is_in_repeating_group(when_rule['id']):
                 group_instance = 0
 
-        value = _get_when_rule_value(when_rule, group_instance, answer_store, schema, metadata, group_instance_id)
+        value = _get_when_rule_value(when_rule, group_instance, answer_store, schema, metadata, group_instance_id, routing_path=routing_path)
 
         if 'date_comparison' in when_rule:
             if not evaluate_date_rule(when_rule, answer_store, schema, group_instance, metadata, value):
@@ -302,13 +323,19 @@ def evaluate_when_rules(when_rules, schema, metadata, answer_store, group_instan
     return True
 
 
-def get_answer_store_value(answer_id, answer_store, schema, group_instance, group_instance_id=None):
+def get_answer_store_value(answer_id, answer_store, schema, group_instance, group_instance_id=None, routing_path=None):
+
     filtered = answer_store.filter(answer_ids=[answer_id])
 
-    if not filtered.count():
+    if routing_path:
+        answers_on_path = _get_answers_on_path(filtered, schema, routing_path)
+    else:
+        answers_on_path = filtered
+
+    if not answers_on_path.count():
         return None
 
-    if all([answer.get('group_instance_id') for answer in filtered.answers]) and group_instance_id:
+    if all([answer.get('group_instance_id') for answer in answers_on_path.answers]) and group_instance_id:
         # If all of the matching answers have a group_instance_id, then we know the answer has this group_instance_id
         group_instance = None
     else:
@@ -319,9 +346,9 @@ def get_answer_store_value(answer_id, answer_store, schema, group_instance, grou
 
         group_instance_id = None
 
-    filtered = filtered.filter(answer_ids=[answer_id],
-                               group_instance=group_instance,
-                               group_instance_id=group_instance_id)
+    filtered = answers_on_path.filter(answer_ids=[answer_id],
+                                      group_instance=group_instance,
+                                      group_instance_id=group_instance_id)
 
     if filtered.count() > 1:
         raise Exception('Multiple answers ({:d}) found evaluating when rule for answer ({})'
