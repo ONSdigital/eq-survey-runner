@@ -34,6 +34,9 @@ class IntroductionPage extends BasePage {
     return '[data-qa="intro-basic-description"]';
   }
 
+  introTitleDescription() {
+    return '[data-qa="details-changed-title"]';
+  }
 }
 
 module.exports = new IntroductionPage();

@@ -13,7 +13,8 @@ describe('Introduction page', function() {
         .getText(IntroductionPage.useOfInformation()).should.eventually.contain('What you need to do next')
         .getText(IntroductionPage.legalResponse()).should.eventually.contain('Your response is legally required')
         .getText(IntroductionPage.legalBasis()).should.eventually.contain('Notice is given under section 999 of the Test Act 2000')
-        .getText(IntroductionPage.introDescription()).should.eventually.contain('To take part, all you need to do is check that you have the information you need to answer the survey questions.');
+        .getText(IntroductionPage.introDescription()).should.eventually.contain('To take part, all you need to do is check that you have the information you need to answer the survey questions.')
+        .getText(IntroductionPage.introTitleDescription()).should.eventually.contain('If the company details or structure have changed contact us on 0300 1234 931 or email surveys@ons.gov.uk');
     });
   });
 });
