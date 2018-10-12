@@ -11,6 +11,53 @@ describe('Feature: Combined question level and single validation for MM-YYYY dat
   describe('Period Validation', function () {
     describe('Given I enter dates', function() {
 
+      it('When I enter a month but no year, Then I should see only a single invalid date error', function() {
+        return browser
+         .setValue(DateRangePage.dateRangeFromyear(), 2018)
+
+         .selectByValue(DateRangePage.dateRangeTomonth(), 4)
+         .setValue(DateRangePage.dateRangeToyear(), 2017)
+         .click(DateRangePage.submit())
+         .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a valid date')
+         .isExisting(DateRangePage.errorNumber(2)).should.eventually.be.false;
+      });
+
+      it('When I enter a year but no month, Then I should see only a single invalid date error', function() {
+        return browser
+         .selectByValue(DateRangePage.dateRangeFrommonth(), 10)
+         .setValue(DateRangePage.dateRangeFromyear(), '')
+
+         .selectByValue(DateRangePage.dateRangeTomonth(), 4)
+         .setValue(DateRangePage.dateRangeToyear(), 2017)
+         .click(DateRangePage.submit())
+         .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a valid date')
+         .isExisting(DateRangePage.errorNumber(2)).should.eventually.be.false;
+      });
+
+      it('When I enter a year of 0, Then I should see only a single invalid date error', function() {
+        return browser
+         .selectByValue(DateRangePage.dateRangeFrommonth(), 10)
+         .setValue(DateRangePage.dateRangeFromyear(), 0)
+
+         .selectByValue(DateRangePage.dateRangeTomonth(), 4)
+         .setValue(DateRangePage.dateRangeToyear(), 2017)
+         .click(DateRangePage.submit())
+         .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a valid date')
+         .isExisting(DateRangePage.errorNumber(2)).should.eventually.be.false;
+      });
+
+      it('When I enter a year that contains more than 4 characters, Then I should see only a single invalid date error', function() {
+        return browser
+         .selectByValue(DateRangePage.dateRangeFrommonth(), 10)
+         .setValue(DateRangePage.dateRangeFromyear(), 10001)
+
+         .selectByValue(DateRangePage.dateRangeTomonth(), 4)
+         .setValue(DateRangePage.dateRangeToyear(), 2017)
+         .click(DateRangePage.submit())
+         .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a valid date')
+         .isExisting(DateRangePage.errorNumber(2)).should.eventually.be.false;
+      });
+
       it('When I enter a single dates that are too early/late, Then I should see a single validation errors', function() {
         return browser
          .selectByValue(DateRangePage.dateRangeFrommonth(), 10)
