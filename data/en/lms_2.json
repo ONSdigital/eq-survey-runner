@@ -851,6 +851,9 @@
                                 "type": "Date",
                                 "maximum": {
                                     "value": "now"
+                                },
+                                "minimum": {
+                                    "value": "1900-01-01"
                                 }
                             }]
                         }],
@@ -891,7 +894,6 @@
                         "questions": [{
                             "id": "dob-age-question",
                             "titles": [{
-                                    "description": "About <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name}}</em>",
                                     "value": "What is <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name_possessive}}</em> age?",
                                     "when": [{
                                         "id": "proxy-check-answer",
@@ -909,7 +911,10 @@
                                 "unit": "duration-year",
                                 "type": "Unit",
                                 "unit_length": "long",
-                                "mandatory": false
+                                "mandatory": false,
+                                "max_value": {
+                                    "value": 118
+                                }
                             }]
                         }],
                         "routing_rules": [{
@@ -1526,6 +1531,9 @@
                                 "type": "YearDate",
                                 "maximum": {
                                     "value": "now"
+                                },
+                                "minimum": {
+                                    "answer_id": "date-of-birth-answer"
                                 }
                             }]
                         }],
@@ -1712,6 +1720,9 @@
                                 "type": "MonthYearDate",
                                 "maximum": {
                                     "value": "now"
+                                },
+                                "minimum": {
+                                    "answer_id": "first-arrive-in-uk-answer"
                                 }
                             }]
                         }],
@@ -3940,7 +3951,10 @@
                                 "type": "Unit",
                                 "unit": "duration-hour",
                                 "unit_length": "long",
-                                "label": "Unpaid overtime hours"
+                                "label": "Unpaid overtime hours",
+                                "max_value": {
+                                    "value": 168
+                                }
                             }]
                         }],
                         "routing_rules": [{
@@ -4007,7 +4021,10 @@
                                 "type": "Unit",
                                 "unit": "duration-hour",
                                 "unit_length": "long",
-                                "label": "Paid overtime hours"
+                                "label": "Paid overtime hours",
+                                "max_value": {
+                                    "value": 168
+                                }
                             }]
                         }],
                         "routing_rules": [{
@@ -4051,7 +4068,10 @@
                                 "type": "Unit",
                                 "unit": "duration-hour",
                                 "unit_length": "long",
-                                "label": "Usual hours"
+                                "label": "Usual hours",
+                                "max_value": {
+                                    "value": 168
+                                }
                             }]
                         }],
                         "routing_rules": [{
@@ -4246,7 +4266,10 @@
                                 "type": "Unit",
                                 "unit": "duration-hour",
                                 "unit_length": "long",
-                                "label": "Actual hours"
+                                "label": "Actual hours",
+                                "max_value": {
+                                    "value": 168
+                                }
                             }]
                         }],
                         "routing_rules": [{
@@ -5635,7 +5658,10 @@
                                 "mandatory": false,
                                 "type": "Unit",
                                 "unit": "duration-hour",
-                                "unit_length": "long"
+                                "unit_length": "long",
+                                "max_value": {
+                                    "value": 168
+                                }
                             }]
                         }]
                     },
@@ -5663,7 +5689,10 @@
                                 "type": "Unit",
                                 "unit": "duration-hour",
                                 "unit_length": "long",
-                                "label": "Unpaid overtime hours, second job"
+                                "label": "Unpaid overtime hours, second job",
+                                "max_value": {
+                                    "value": 168
+                                }
                             }]
                         }],
                         "routing_rules": [{
@@ -5707,7 +5736,10 @@
                                 "type": "Unit",
                                 "unit": "duration-hour",
                                 "unit_length": "long",
-                                "label": "Paid overtime hours, main job"
+                                "label": "Paid overtime hours, main job",
+                                "max_value": {
+                                    "value": 168
+                                }
                             }]
                         }]
                     },
@@ -5742,7 +5774,10 @@
                                 "type": "Unit",
                                 "unit": "duration-hour",
                                 "unit_length": "long",
-                                "label": "Paid overtime hours, second job"
+                                "label": "Paid overtime hours, second job",
+                                "max_value": {
+                                    "value": 168
+                                }
                             }]
                         }]
                     },
@@ -5770,7 +5805,10 @@
                                 "type": "Unit",
                                 "unit": "duration-hour",
                                 "unit_length": "long",
-                                "label": "Usual hours, main job"
+                                "label": "Usual hours, main job",
+                                "max_value": {
+                                    "value": 168
+                                }
                             }]
                         }],
                         "routing_rules": [{
@@ -5822,7 +5860,10 @@
                                 "type": "Unit",
                                 "unit": "duration-hour",
                                 "unit_length": "long",
-                                "label": "Actual hours, main job"
+                                "label": "Actual hours, main job",
+                                "max_value": {
+                                    "value": 168
+                                }
                             }]
                         }],
                         "routing_rules": [{
@@ -5925,7 +5966,10 @@
                                 "type": "Unit",
                                 "unit": "duration-hour",
                                 "unit_length": "long",
-                                "label": "Usual hours, second job"
+                                "label": "Usual hours, second job",
+                                "max_value": {
+                                    "value": 168
+                                }
                             }]
                         }],
                         "routing_rules": [{
@@ -6038,7 +6082,10 @@
                                 "type": "Unit",
                                 "unit": "duration-hour",
                                 "unit_length": "long",
-                                "label": "Actual hours, second job"
+                                "label": "Actual hours, second job",
+                                "max_value": {
+                                    "value": 168
+                                }
                             }]
                         }],
                         "routing_rules": [{
@@ -6141,7 +6188,10 @@
                                 "type": "Unit",
                                 "unit": "duration-hour",
                                 "unit_length": "long",
-                                "label": "Actual hours"
+                                "label": "Actual hours",
+                                "max_value": {
+                                    "value": 168
+                                }
                             }]
                         }]
                     },
