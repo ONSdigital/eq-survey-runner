@@ -66,14 +66,14 @@
                                 "answers": [{
                                         "id": "primary-household-member-first-name",
                                         "description": "",
-                                        "label": "My First or Given Name",
+                                        "label": "My first or given name",
                                         "mandatory": true,
                                         "type": "TextField"
                                     },
                                     {
                                         "id": "primary-household-member-last-name",
                                         "description": "",
-                                        "label": "My Surname or Family Name",
+                                        "label": "My surname or family name",
                                         "mandatory": true,
                                         "type": "TextField"
                                     }
@@ -92,13 +92,14 @@
                                     "id": "primary-household-member-address-check-answer",
                                     "mandatory": true,
                                     "options": [{
-                                            "label": "The address is my main residence",
-                                            "value": "Yes"
+                                            "label": "Yes",
+                                            "value": "Yes",
+                                            "description": "This is my main residence"
                                         },
                                         {
-                                            "label": "The address is not my main residence",
+                                            "label": "No",
                                             "value": "No",
-                                            "description": "For example it is my old address, second home, holiday home, business address or is not familiar to me"
+                                            "description": "This address is not my main residence. For example it is my old address, second home, holiday home, business address or is not familiar to me"
                                         }
                                     ],
                                     "type": "Radio"
@@ -313,13 +314,13 @@
                                 "type": "General",
                                 "answers": [{
                                         "id": "other-household-member-first-name",
-                                        "label": "First or Given Name",
+                                        "label": "First or given name",
                                         "mandatory": true,
                                         "type": "TextField"
                                     },
                                     {
                                         "id": "other-household-member-last-name",
-                                        "label": "Surname or Family Name",
+                                        "label": "Surname or family name",
                                         "mandatory": true,
                                         "type": "TextField"
                                     }
@@ -382,13 +383,13 @@
                                 "type": "General",
                                 "answers": [{
                                         "id": "student-household-member-first-name",
-                                        "label": "First or Given Name",
+                                        "label": "First or given name",
                                         "mandatory": true,
                                         "type": "TextField"
                                     },
                                     {
                                         "id": "student-household-member-last-name",
-                                        "label": "Surname or Family Name",
+                                        "label": "Surname or family name",
                                         "mandatory": true,
                                         "type": "TextField"
                                     }
@@ -3351,7 +3352,7 @@
                         "questions": [{
                             "id": "one-job-emp-status-proxy-question",
                             "titles": [{
-                                "value": "{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name_possessive}} employment status in main job"
+                                "value": "<em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name_possessive}}</em> employment status"
                             }],
                             "type": "General",
                             "answers": [{
