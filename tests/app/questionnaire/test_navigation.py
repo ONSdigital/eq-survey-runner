@@ -1314,11 +1314,11 @@ class TestNavigation(AppContextTestCase):
         # add group to extra-cover-items-section
         extra_cover_items = schema.json['sections'][6]['groups'][0]
         extra_cover_items['skip_conditions'] = [{
-                'when': [{
-                    'id': 'extra-cover-answer',
-                    'condition': 'not set',
-                }]
+            'when': [{
+                'id': 'extra-cover-answer',
+                'condition': 'not set',
             }]
+        }]
 
         completed_blocks = [
             Location('property-details', 0, 'insurance-type'),
