@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import Mock
-from wtforms.validators import ValidationError
+from wtforms.validators import StopValidation
 
 from app.validation.error_messages import error_messages
 from app.validation.validators import YearCheck
@@ -15,7 +15,7 @@ class TestYearValidator(unittest.TestCase):
 
         mock_field = Mock()
 
-        with self.assertRaises(ValidationError) as ite:
+        with self.assertRaises(StopValidation) as ite:
             validator(mock_form, mock_field)
 
         self.assertEqual(error_messages['INVALID_DATE'], str(ite.exception))
@@ -29,7 +29,7 @@ class TestYearValidator(unittest.TestCase):
 
         mock_field = Mock()
 
-        with self.assertRaises(ValidationError) as ite:
+        with self.assertRaises(StopValidation) as ite:
             validator(mock_form, mock_field)
 
         self.assertEqual(error_messages['INVALID_DATE'], str(ite.exception))
@@ -42,7 +42,7 @@ class TestYearValidator(unittest.TestCase):
 
         mock_field = Mock()
 
-        with self.assertRaises(ValidationError) as ite:
+        with self.assertRaises(StopValidation) as ite:
             validator(mock_form, mock_field)
 
         self.assertEqual(error_messages['INVALID_DATE'], str(ite.exception))
@@ -55,7 +55,7 @@ class TestYearValidator(unittest.TestCase):
 
         mock_field = Mock()
 
-        with self.assertRaises(ValidationError) as ite:
+        with self.assertRaises(StopValidation) as ite:
             validator(mock_form, mock_field)
 
         self.assertEqual(error_messages['INVALID_DATE'], str(ite.exception))
@@ -70,5 +70,5 @@ class TestYearValidator(unittest.TestCase):
 
         try:
             validator(mock_form, mock_field)
-        except ValidationError:
+        except StopValidation:
             self.fail('Valid date raised ValidationError')

@@ -216,7 +216,7 @@ class YearCheck:
     def __call__(self, form, field):
         # Must be 4 digits long
         if not re.match(r'\d{4}$', str(form.year.data)):
-            raise validators.ValidationError(self.message)
+            raise validators.StopValidation(self.message)
 
 
 class SingleDatePeriodCheck:
