@@ -89,6 +89,12 @@ class AnswerStore:
         else:
             self.answers.append(answer_to_add)
 
+    def copy(self):
+        """
+        Create a new instance of answer_store with the same values.
+        """
+        return self.__class__(existing_answers=self.answers.copy())
+
     def update(self, answer):
         """
         Update the value of an answer already in the answer store.
