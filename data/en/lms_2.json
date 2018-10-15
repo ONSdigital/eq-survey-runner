@@ -3412,7 +3412,7 @@
                             ],
                             "type": "General",
                             "answers": [{
-                                "id": "not-working-casual-work-answer",
+                                "id": "working-casual-work-answer",
                                 "mandatory": false,
                                 "type": "Radio",
                                 "options": [{
@@ -3430,7 +3430,7 @@
                                 "goto": {
                                     "block": "working-hours-flex10",
                                     "when": [{
-                                        "id": "not-working-casual-work-answer",
+                                        "id": "working-casual-work-answer",
                                         "condition": "equals",
                                         "value": "Yes"
                                     }]
@@ -3660,7 +3660,7 @@
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                            "id": "not-working-casual-work-answer",
+                                            "id": "working-casual-work-answer",
                                             "condition": "equals",
                                             "value": "Yes"
                                         },
@@ -3675,7 +3675,7 @@
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                            "id": "not-working-casual-work-answer",
+                                            "id": "working-casual-work-answer",
                                             "condition": "equals",
                                             "value": "Yes"
                                         },
@@ -3683,6 +3683,70 @@
                                             "id": "working-days-answer",
                                             "condition": "contains",
                                             "value": "Did not work this week"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "unpaid-overtime-w10",
+                                    "when": [{
+                                            "id": "working-casual-work-answer",
+                                            "condition": "equals",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "Unpaid overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "unpaid-overtime-w10",
+                                    "when": [{
+                                            "id": "working-casual-work-answer",
+                                            "condition": "equals",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "Paid and unpaid overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "paid-overtime-w-11",
+                                    "when": [{
+                                            "id": "working-casual-work-answer",
+                                            "condition": "equals",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "Paid overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "casual-hours-worked-casac",
+                                    "when": [{
+                                            "id": "working-casual-work-answer",
+                                            "condition": "equals",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
                                         }
                                     ]
                                 }
@@ -3977,7 +4041,7 @@
                                             "value": "unpaid overtime"
                                         },
                                         {
-                                            "id": "not-working-casual-work-answer",
+                                            "id": "working-casual-work-answer",
                                             "condition": "equals",
                                             "value": "Yes"
                                         }
@@ -4032,7 +4096,7 @@
                                 "goto": {
                                     "block": "casual-hours-worked-casac",
                                     "when": [{
-                                        "id": "not-working-casual-work-answer",
+                                        "id": "working-casual-work-answer",
                                         "condition": "equals",
                                         "value": "Yes"
                                     }]
@@ -4296,7 +4360,7 @@
                                 "goto": {
                                     "block": "main-job-when-start-working-current-business-red6-emp",
                                     "when": [{
-                                        "id": "not-working-casual-work-answer",
+                                        "id": "working-casual-work-answer",
                                         "condition": "equals",
                                         "value": "Yes"
                                     }]
@@ -4989,7 +5053,7 @@
                                 "goto": {
                                     "block": "main-job-when-start-working-current-business-red6-emp",
                                     "when": [{
-                                        "id": "not-working-casual-work-answer",
+                                        "id": "working-casual-work-answer",
                                         "condition": "equals",
                                         "value": "Yes"
                                     }]
@@ -6227,7 +6291,7 @@
                                 "goto": {
                                     "block": "main-job-when-start-working-current-business-red6-emp",
                                     "when": [{
-                                        "id": "not-working-casual-work-answer",
+                                        "id": "working-casual-work-answer",
                                         "condition": "equals",
                                         "value": "Yes"
                                     }]
@@ -6969,36 +7033,6 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "receiving-half-salary-w15",
-                                    "when": [{
-                                        "id": "reason-why-fewer-hours-than-usual-employee-answer",
-                                        "condition": "equals",
-                                        "value": "Illness or disability expected to last for 4 weeks or longer"
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "receiving-half-salary-w15",
-                                    "when": [{
-                                        "id": "reason-why-fewer-hours-than-usual-employee-answer",
-                                        "condition": "equals",
-                                        "value": "Maternity or paternity leave"
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "receiving-half-salary-w15",
-                                    "when": [{
-                                        "id": "reason-why-fewer-hours-than-usual-employee-answer",
-                                        "condition": "equals",
-                                        "value": "Parental leave"
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
                                     "block": "receiving-half-salary-w15-proxy",
                                     "when": [{
                                             "id": "reason-why-fewer-hours-than-usual-employee-answer",
@@ -7043,6 +7077,36 @@
                                             "value": "proxy"
                                         }
                                     ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "receiving-half-salary-w15",
+                                    "when": [{
+                                        "id": "reason-why-fewer-hours-than-usual-employee-answer",
+                                        "condition": "equals",
+                                        "value": "Illness or disability expected to last for 4 weeks or longer"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "receiving-half-salary-w15",
+                                    "when": [{
+                                        "id": "reason-why-fewer-hours-than-usual-employee-answer",
+                                        "condition": "equals",
+                                        "value": "Maternity or paternity leave"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "receiving-half-salary-w15",
+                                    "when": [{
+                                        "id": "reason-why-fewer-hours-than-usual-employee-answer",
+                                        "condition": "equals",
+                                        "value": "Parental leave"
+                                    }]
                                 }
                             },
                             {
@@ -7505,18 +7569,21 @@
                             ]
                         }],
                         "routing_rules": [{
-                            "goto": {
-                                "block": "how-long-have-you-been-looking-before-start-dur2",
-                                "when": [{
-                                    "id": "not-be-able-to-start-answer",
-                                    "condition": "equals",
-                                    "value": "Waiting to start a job recently accepted"
-                                }]
+                                "goto": {
+                                    "block": "how-long-have-you-been-looking-before-start-dur2",
+                                    "when": [{
+                                        "id": "not-be-able-to-start-answer",
+                                        "condition": "equals",
+                                        "value": "Waiting to start a job recently accepted"
+                                    }]
+                                }
                             },
-                            "goto": {
-                                "block": "unpaid-or-voluntary-work-nw7"
+                            {
+                                "goto": {
+                                    "block": "unpaid-or-voluntary-work-nw7"
+                                }
                             }
-                        }]
+                        ]
                     },
                     {
                         "id": "not-looking-for-work-reason-nw4",
