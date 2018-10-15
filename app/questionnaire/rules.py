@@ -282,18 +282,18 @@ def evaluate_when_rules(when_rules, schema, metadata, answer_store, group_instan
     """
 
     for when_rule in when_rules:
-        group_instance_something = group_instance
+        group_instance_to_use = group_instance
         if 'id' in when_rule:
-            if group_instance > 0 and not schema.answer_is_in_repeating_group(when_rule['id']):
-                group_instance_something = 0
+            if (not group_instance or group_instance > 0) and not schema.answer_is_in_repeating_group(when_rule['id']):
+                group_instance_to_use = 0
 
-        value = _get_when_rule_value(when_rule, group_instance_something, answer_store, schema, metadata, group_instance_id)
+        value = _get_when_rule_value(when_rule, group_instance_to_use, answer_store, schema, metadata, group_instance_id)
 
         if 'date_comparison' in when_rule:
-            if not evaluate_date_rule(when_rule, answer_store, schema, group_instance_something, metadata, value):
+            if not evaluate_date_rule(when_rule, answer_store, schema, group_instance_to_use, metadata, value):
                 return False
         elif 'comparison_id' in when_rule:
-            comparison_id_value = _get_comparison_id_value(when_rule, answer_store, schema, group_instance_something, group_instance_id)
+            comparison_id_value = _get_comparison_id_value(when_rule, answer_store, schema, group_instance_to_use, group_instance_id)
             if not evaluate_comparison_rule(when_rule, value, comparison_id_value):
                 return False
         else:
@@ -306,22 +306,25 @@ def evaluate_when_rules(when_rules, schema, metadata, answer_store, group_instan
 def get_answer_store_value(answer_id, answer_store, schema, group_instance, group_instance_id=None):
     filtered = answer_store.filter(answer_ids=[answer_id])
 
+    group_instance_to_use = group_instance
+
     if not filtered.count():
         return None
 
     if all([answer.get('group_instance_id') for answer in filtered.answers]) and group_instance_id:
         # If all of the matching answers have a group_instance_id, then we know the answer has this group_instance_id
-        group_instance = None
+        group_instance_to_use = None
     else:
+
         # We don't have group_instance_ids everywhere, so filter on the group_instance
-        if group_instance > 0 and not schema.answer_is_in_repeating_group(answer_id):
+        if (not group_instance or group_instance > 0) and not schema.answer_is_in_repeating_group(answer_id):
             # If we're comparing to answer outside repeating group we may have an incorrect group_instance
-            group_instance = 0
+            group_instance_to_use = 0
 
         group_instance_id = None
 
     filtered = filtered.filter(answer_ids=[answer_id],
-                               group_instance=group_instance,
+                               group_instance=group_instance_to_use,
                                group_instance_id=group_instance_id)
 
     if filtered.count() > 1:

@@ -122,7 +122,7 @@ class Completeness:
         )
         return next(filter(None, incomplete_locations), None)
 
-    def get_first_incomplete_location_in_group(self, group, group_instance=0):
+    def get_first_incomplete_location_in_group(self, group, group_instance=None):
         if self._should_skip(group, group_instance):
             return
 
@@ -137,9 +137,12 @@ class Completeness:
     def _get_block_states_for_group(self, group, group_instance=0):
         repeating_rule = self.schema.get_repeat_rule(group)
 
-        if repeating_rule:
+        if repeating_rule and group_instance is None:
             max_instance = evaluate_repeat(repeating_rule, self.answer_store, self.schema, self.routing_path) - 1
             start_instance = 0
+        elif group_instance is None:
+            start_instance = 0
+            max_instance = 1
         else:
             start_instance = max_instance = group_instance
 
