@@ -66,7 +66,7 @@ class Completeness:
 
         return section_state
 
-    def get_state_for_group(self, group, group_instance=0, group_instance_id=None):
+    def get_state_for_group(self, group, group_instance=None, group_instance_id=None):
         if isinstance(group, str):
             # lookup group by group ID
             group = self.schema.get_group(group)
