@@ -173,7 +173,7 @@ class TestCompleteness(AppContextTestCase): # pylint: disable=too-many-public-me
 
         progress = Completeness(
             schema, AnswerStore(), [], routing_path, metadata={})
-        progress_value = progress.get_state_for_group('repeating-group')
+        progress_value = progress.get_state_for_group('repeating-group', None)
         self.assertEqual(Completeness.SKIPPED, progress_value)
 
     def test_repeating_skipped_section(self):
@@ -213,7 +213,6 @@ class TestCompleteness(AppContextTestCase): # pylint: disable=too-many-public-me
             Location('extra-cover-items-group', 0, 'extra-cover-items'),
             Location('confirmation-group', 0, 'confirmation'),
         ]
-
 
         progress = Completeness(
             schema, AnswerStore(), completed_blocks, routing_path, metadata={})

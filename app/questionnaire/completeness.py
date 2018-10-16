@@ -66,7 +66,7 @@ class Completeness:
 
         return section_state
 
-    def get_state_for_group(self, group, group_instance=None):
+    def get_state_for_group(self, group, group_instance=None, group_instance_id=None):
         if isinstance(group, str):
             # lookup group by group ID
             group = self.schema.get_group(group)
@@ -78,7 +78,7 @@ class Completeness:
             # show as complete
             return self.NOT_STARTED if self.all_sections_complete() else self.SKIPPED
 
-        if self._should_skip(group):
+        if self._should_skip(group, group_instance, group_instance_id):
             return self.SKIPPED
 
         block_states = [
@@ -117,13 +117,13 @@ class Completeness:
 
     def get_first_incomplete_location_in_section(self, section):
         incomplete_locations = (
-            self.get_first_incomplete_location_in_group(group)
+            self.get_first_incomplete_location_in_group(group, None)
             for group in section['groups']
         )
         return next(filter(None, incomplete_locations), None)
 
-    def get_first_incomplete_location_in_group(self, group, group_instance=None):
-        if self._should_skip(group):
+    def get_first_incomplete_location_in_group(self, group, group_instance):
+        if self._should_skip(group, group_instance):
             return
 
         incomplete_locations = (
@@ -134,18 +134,19 @@ class Completeness:
         )
         return next(incomplete_locations, None)
 
-    def _get_block_states_for_group(self, group, group_instance=None):
+    def _get_block_states_for_group(self, group, group_instance):
+
         if group_instance is not None:
             start_instance = max_instance = group_instance
         else:
-            max_instance = get_number_of_repeats(group, self.schema, self.routing_path, self.answer_store) - 1
             start_instance = 0
+            max_instance = get_number_of_repeats(group, self.schema, self.routing_path, self.answer_store) - 1
 
         for current_instance in range(start_instance, max_instance + 1):
             for block in group['blocks']:
                 location = Location(group['id'], current_instance, block['id'])
 
-                if self._should_skip(block):
+                if self._should_skip(block, group_instance):
                     state = self.SKIPPED
                 elif self._is_valid_for_completeness(block, location):
                     state = self.COMPLETED if self.is_block_complete(location) else self.NOT_STARTED
@@ -169,10 +170,10 @@ class Completeness:
                 QuestionnaireSchema.is_confirmation_section(section))
         )
 
-    def _should_skip(self, group_or_block):
+    def _should_skip(self, group_or_block, group_instance, group_instance_id=None):
         return (
             'skip_conditions' in group_or_block and
-            evaluate_skip_conditions(group_or_block['skip_conditions'], self.schema, self.metadata, self.answer_store)
+            evaluate_skip_conditions(group_or_block['skip_conditions'], self.schema, self.metadata, self.answer_store, group_instance, group_instance_id)
         )
 
     def _is_valid_for_completeness(self, block, location):
