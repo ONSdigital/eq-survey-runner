@@ -778,7 +778,8 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             correct value is fetched. """
         answer_group_id = 'repeated-answer'
         when = [{
-            'answer_count': answer_group_id,
+            'type': 'answer_count',
+            'answer_ids': [answer_group_id],
             'condition': 'equals',
             'value': 0,
         }]
@@ -835,7 +836,8 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             correct value is fetched. """
         answer_group_id = 'repeated-answer'
         when = [{
-            'answer_count': answer_group_id,
+            'type': 'answer_count',
+            'answer_ids': [answer_group_id],
             'condition': 'equals',
             'value': 1,
         }]
@@ -854,7 +856,8 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             value is correctly matched """
         answer_group_id = 'repeated-answer'
         when = [{
-            'answer_count': answer_group_id,
+            'type': 'answer_count',
+            'answer_ids': [answer_group_id],
             'condition': 'equals',
             'value': 2,
         }]
@@ -875,12 +878,13 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0, None))
 
-    def test_answer_count_when_rule_not_equal(self):  # pylint: disable=no-self-use
+    def test_answer_count_when_rule_not_equal(self):
         """Assert that an `answer_count` can be used in a when block and the
             False is returned when the values do not match. """
         answer_group_id = 'repeated-answer'
         when = [{
-            'answer_count': answer_group_id,
+            'type': 'answer_count',
+            'answer_ids': [answer_group_id],
             'condition': 'equals',
             'value': 1,
         }]
@@ -907,6 +911,24 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         ))
 
         self.assertTrue(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, 0, None))
+
+    def test_evaluate_when_rule_raises_exception_if_invalid(self):
+        """If there isn't an id, meta key, or a type with value answer_count when attempting to
+        get the value of the when condition, an exception is thrown"""
+        when = {
+            'when': [
+                {
+                    'type': 'answer_countinvalid',
+                    'answer_ids': ['id'],
+                    'condition': 'equals',
+                    'value': 1,
+                }
+            ]
+        }
+        answer_store = AnswerStore({})
+        with self.assertRaises(Exception) as err:
+            evaluate_when_rules(when['when'], get_schema_mock(), {}, answer_store, 0, None)
+            self.assertEqual('The when rule is invalid', str(err.exception))
 
     def test_evaluate_when_rule_raises_if_bad_when_condition(self):
         when = {

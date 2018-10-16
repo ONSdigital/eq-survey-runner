@@ -47,7 +47,8 @@
                     "goto": {
                         "group": "group-equal-2",
                         "when": [{
-                            "answer_count": "first-name",
+                            "type": "answer_count",
+                            "answer_ids": ["first-name"],
                             "condition": "equals",
                             "value": 2
                         }]
@@ -56,7 +57,8 @@
                     "goto": {
                         "group": "group-greater-than-2",
                         "when": [{
-                            "answer_count": "first-name",
+                            "type": "answer_count",
+                            "answer_ids": ["first-name"],
                             "condition": "greater than",
                             "value": 2
                         }]
