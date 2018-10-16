@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-24 10:11+0100\n"
+"POT-Creation-Date: 2018-10-24 12:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -498,15 +498,15 @@ msgstr ""
 msgid "Year"
 msgstr ""
 
-#: app/templates/partials/feedback/expandable_inline.html:1
+#: app/templates/partials/feedback/expandable_inline.html:6
 msgid "Thanks for your feedback"
 msgstr ""
 
-#: app/templates/partials/feedback/expandable_inline.html:4
-msgid "Is there anything wrong with this page"
+#: app/templates/partials/feedback/expandable_inline.html:9
+msgid "Give feedback and help us improve this service"
 msgstr ""
 
-#: app/templates/partials/feedback/expandable_inline.html:7
+#: app/templates/partials/feedback/expandable_inline.html:12
 msgid "I don't want to provide feedback"
 msgstr ""
 

@@ -445,15 +445,15 @@ msgstr "Mis"
 msgid "Year"
 msgstr "Blwyddyn"
 
-#: app/templates/partials/feedback/expandable_inline.html:1
+#: app/templates/partials/feedback/expandable_inline.html:6
 msgid "Thanks for your feedback"
 msgstr "Diolch am eich adborth"
 
-#: app/templates/partials/feedback/expandable_inline.html:4
-msgid "Is there anything wrong with this page"
-msgstr "Oes rhywbeth o'i le gyda'r dudalen hon"
+#: app/templates/partials/feedback/expandable_inline.html:9
+msgid "Give feedback and help us improve this service"
+msgstr "Rhannwch eich adborth i’n helpu i wella’r gwasanaeth hwn"
 
-#: app/templates/partials/feedback/expandable_inline.html:7
+#: app/templates/partials/feedback/expandable_inline.html:12
 msgid "I don't want to provide feedback"
 msgstr "Nid wyf yn dymuno rhoi adborth"
 
