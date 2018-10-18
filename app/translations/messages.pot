@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-17 15:30+0100\n"
+"POT-Creation-Date: 2018-10-18 15:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -550,15 +550,19 @@ msgstr ""
 msgid "Selecting this will add a new set of fields to enter another person"
 msgstr ""
 
-#: app/templates/partials/summary/answer-summary.html:20
+#: app/templates/partials/summary/answer-summary.html:21
 #: app/templates/partials/summary/edit-link.html:6
 msgid "Change"
 msgstr ""
 
-#: app/templates/partials/summary/answer-summary.html:22
+#: app/templates/partials/summary/answer-summary.html:23
 #: app/templates/partials/summary/edit-link.html:7
 #, python-format
 msgid "Change your answer for: %(title)s. The current value is: %(value)s"
+msgstr ""
+
+#: app/templates/partials/summary/answer-summary.html:37
+msgid "Add"
 msgstr ""
 
 #: app/templates/partials/summary/answer.html:2
