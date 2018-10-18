@@ -30,6 +30,16 @@ class PathFinder:
                      b['group_instance'] == location.group_instance),
                     None)
 
+    @staticmethod
+    def _build_blocks_for_group(group, instance_idx):
+        for block in group['blocks']:
+
+            yield {
+                'group_id': group['id'],
+                'group_instance': instance_idx,
+                'block': block,
+            }
+
     def build_path(self):
         """
         Visits all the blocks from a location forwards and returns path
@@ -60,7 +70,8 @@ class PathFinder:
                     group_instance_id = get_group_instance_id(self.schema, self.answer_store, Location(group['id'], group_instance, first_block_in_group))
 
                     if evaluate_skip_conditions(group['skip_conditions'], self.schema, self.metadata,
-                                                self.answer_store, group_instance, group_instance_id):
+                                                self.answer_store, group_instance, group_instance_id,
+                                                routing_path=path):
                         continue
 
                 group_blocks = list(self._build_blocks_for_group(group, group_instance))
@@ -81,19 +92,6 @@ class PathFinder:
 
         return path
 
-    def _build_blocks_for_group(self, group, instance_idx):
-        for block in group['blocks']:
-            skip_conditions = block.get('skip_conditions')
-            if skip_conditions and evaluate_skip_conditions(
-                    skip_conditions, self.schema, self.metadata, self.answer_store, instance_idx):
-                continue
-
-            yield {
-                'group_id': group['id'],
-                'group_instance': instance_idx,
-                'block': block,
-            }
-
     def _get_first_group_in_section(self):
         return [
             section['groups'][0]['id']
@@ -109,10 +107,22 @@ class PathFinder:
             if block_index is None:
                 return path, prev_block_index
 
+            block = blocks[block_index]['block']
+
+            if block.get('skip_conditions') and \
+                    evaluate_skip_conditions(block['skip_conditions'], self.schema, self.metadata,
+                                             self.answer_store, this_location.group_instance, routing_path=path):
+
+                if block_index == len(blocks) - 1:
+                    return path, block_index
+
+                this_location = Location(blocks[block_index + 1]['group_id'],
+                                         blocks[block_index + 1]['group_instance'],
+                                         blocks[block_index + 1]['block']['id'])
+                continue
+
             if this_location not in path:
                 path.append(this_location)
-
-            block = blocks[block_index]['block']
 
             # If routing rules exist then a rule must match (i.e. default goto)
             if 'routing_rules' in block and block['routing_rules']:
@@ -140,7 +150,8 @@ class PathFinder:
                                         self.metadata,
                                         self.answer_store,
                                         this_location.group_instance,
-                                        group_instance_id=group_instance_id)
+                                        group_instance_id=group_instance_id,
+                                        routing_path=path)
 
             if should_goto:
                 return self._follow_routing_rule(this_location, rule, blocks, block_index, path)

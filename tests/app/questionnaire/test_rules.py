@@ -1024,3 +1024,29 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         number_of_repeats = evaluate_repeat(repeat, answer_store, schema, routing_path)
 
         self.assertEqual(number_of_repeats, 2)
+
+    def test_routing_ignores_answers_not_on_path(self):
+        when = {
+            'when': [
+                {
+                    'id': 'some-answer',
+                    'condition': 'equals',
+                    'value': 'some value'
+                }
+            ]
+        }
+        answer_store = AnswerStore({})
+        answer_store.add(Answer(
+            answer_id='some-answer',
+            value='some value',
+            group_instance=0,
+        ))
+
+        routing_path = [
+            Location('test', 0, 'test_block_id')
+        ]
+        with patch('app.questionnaire.rules._get_answers_on_path', return_value=answer_store):
+            self.assertTrue(evaluate_when_rules(when['when'], get_schema_mock(), {}, answer_store, 0, None))
+
+        with patch('app.questionnaire.rules._is_answer_on_path', return_value=False):
+            self.assertFalse(evaluate_when_rules(when['when'], get_schema_mock(), {}, answer_store, 0, None, routing_path=routing_path))
