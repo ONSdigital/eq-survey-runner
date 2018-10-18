@@ -1,6 +1,18 @@
 {% set widget_type = "checkbox" %}
 {% set input = form.fields[answer['id']] %}
 
-<div class="field field--checkbox field--multiplechoice {{'field--cols' if use_grid}}">
+{% set checkbox_labels %}
+  {% if not answer.label %}
+
+    {% if is_exclusive_checkbox %}
+      <div class="field__label u-mt-s venus">{{ _("Or") }}</div>
+    {% else %}
+      <div class="field__label mars">{{ _("Select all that apply") }}:</div>
+    {% endif %}
+
+  {% endif %}
+{% endset %}
+
+<div class="field field--checkbox field--multiplechoice {{'field--exclusive' if is_mutually_exclusive }} {{'field--cols' if use_grid}}">
   {% include 'partials/widgets/multiple_choice_widget.html' %}
 </div>

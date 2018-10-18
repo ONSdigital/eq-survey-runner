@@ -1,19 +1,17 @@
+import itertools
 import logging
 from datetime import datetime, timedelta
-
 from decimal import Decimal
 
-import itertools
-
 from dateutil.relativedelta import relativedelta
+from flask_wtf import FlaskForm
 from werkzeug.datastructures import MultiDict
 from wtforms import validators
-from flask_wtf import FlaskForm
 
-from app.forms.fields import get_field
 from app.forms.date_form import get_dates_for_single_date_period_validation
+from app.forms.fields import get_field
 from app.templating.utils import get_question_title
-from app.validation.validators import DateRangeCheck, SumCheck
+from app.validation.validators import DateRangeCheck, SumCheck, MutuallyExclusiveCheck
 
 logger = logging.getLogger(__name__)
 
@@ -32,24 +30,23 @@ class QuestionnaireForm(FlaskForm):
 
     def validate(self):
         """
-        Validate this form as usual and check for any form-level date-range/calculated validation errors
-        :return:
+        Validate this form as usual and check for any form-level validation errors based on question type
+        :return: boolean
         """
         valid_fields = FlaskForm.validate(self)
         valid_date_range_form = True
         valid_calculated_form = True
+        valid_mutually_exclusive_form = True
 
         for question in self.schema.get_questions_for_block(self.block_json):
-            if question['type'] == 'DateRange':
-                valid_date_range = self.validate_date_range_question(question)
-                if valid_date_range_form:
-                    valid_date_range_form = valid_date_range
-            elif question['type'] == 'Calculated':
-                valid_calculated = self.validate_calculated_question(question)
-                if valid_calculated_form:
-                    valid_calculated_form = valid_calculated
+            if question['type'] == 'DateRange' and valid_date_range_form:
+                valid_date_range_form = self.validate_date_range_question(question)
+            elif question['type'] == 'Calculated' and valid_calculated_form:
+                valid_calculated_form = self.validate_calculated_question(question)
+            elif question['type'] == 'MutuallyExclusive' and valid_mutually_exclusive_form and valid_fields:
+                valid_mutually_exclusive_form = self.validate_mutually_exclusive_question(question)
 
-        return valid_calculated_form and valid_date_range_form and valid_fields
+        return valid_fields and valid_date_range_form and valid_calculated_form and valid_mutually_exclusive_form
 
     def validate_date_range_question(self, question):
         date_from = question['answers'][0]
@@ -65,9 +62,11 @@ class QuestionnaireForm(FlaskForm):
                 # Check every field on each form has populated data
                 if self.is_date_form_populated(getattr(self, date_from['id']), getattr(self, date_to['id'])):
                     self.validate_date_range_with_single_date_limits(question['id'], period_range)
+
         period_from_id = date_from['id']
         period_to_id = date_to['id']
         messages = None
+
         if 'validation' in question:
             messages = question['validation'].get('messages')
 
@@ -90,6 +89,21 @@ class QuestionnaireForm(FlaskForm):
                 return True
 
         return False
+
+    def validate_mutually_exclusive_question(self, question):
+        is_mandatory = question.get('mandatory')
+        messages = question['validation'].get('messages') if 'validation' in question else None
+        answers = (getattr(self, answer['id']).data for answer in question['answers'] if 'parent_answer_id' not in answer)
+
+        validator = MutuallyExclusiveCheck(messages=messages)
+
+        try:
+            validator(answers, is_mandatory)
+        except validators.ValidationError as e:
+            self.question_errors[question['id']] = str(e)
+            return False
+
+        return True
 
     def _get_target_total_and_currency(self, calculation, question):
         if 'value' in calculation:

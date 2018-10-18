@@ -1,7 +1,0 @@
-{% set widget_type = "checkbox" %}
-{% set input = form.fields[answer['id']] %}
-{% set exclusive = true %}
-
-<div class="field field--checkbox field--multiplechoice field--exclusive {{'field--cols' if use_grid}}">
-  {% include 'partials/widgets/multiple_choice_widget.html' %}
-</div>

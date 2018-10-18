@@ -26,7 +26,7 @@ def convert_answers_to_payload_0_0_1(answer_store, schema, routing_path):
             value = answer['value']
 
             if answer_schema is not None and value is not None and 'parent_answer_id' not in answer_schema:
-                if answer_schema['type'] in ['Checkbox', 'MutuallyExclusiveCheckbox']:
+                if answer_schema['type'] == 'Checkbox':
                     data.update(_get_checkbox_answer_data(answer_store, answer_schema, value))
                 elif 'q_code' in answer_schema:
                     answer_data = _get_answer_data(data, answer_schema['q_code'], value)

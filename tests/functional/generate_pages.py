@@ -214,7 +214,7 @@ def process_answer(question_type, answer, page_spec, long_names, page_name):
         logger.debug('\t\tSkipping Child Answer: %s', answer['id'])
         return
 
-    elif answer['type'] in ('Radio', 'Checkbox', 'MutuallyExclusiveCheckbox'):
+    elif answer['type'] in ('Radio', 'Checkbox'):
         process_options(answer['id'], answer['options'], page_spec, prefix)
 
     elif answer['type'] in 'Date':

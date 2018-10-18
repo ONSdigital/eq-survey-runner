@@ -9,7 +9,7 @@
     {% set input = form.fields[answer['id']] %}
 
     {% set attr = {
-      "class": "input input--textarea js-charlimit-input",
+      "class": "input input--textarea js-charlimit-input " ~ exclusive_class,
       "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ answer.id ~ "-trigger",
       "name": input.name,
       "id": answer.id,

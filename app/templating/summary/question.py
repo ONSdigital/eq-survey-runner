@@ -11,12 +11,12 @@ class Question:
         self.id = question_schema['id'] + '-' + str(group_instance)
         self.type = question_schema['type']
         self.schema = schema
-        answer_schemas = iter(question_schema['answers'])
+        self.answer_schemas = iter(question_schema['answers'])
 
         self.title = (get_question_title(question_schema, answer_store, schema, metadata, group_instance=group_instance) or
                       question_schema['answers'][0]['label'])
         self.number = question_schema.get('number', None)
-        self.answers = self._build_answers(answer_store, question_schema, answer_schemas, group_instance)
+        self.answers = self._build_answers(answer_store, question_schema, group_instance)
 
     @staticmethod
     def _get_answers(answer_store, answer_id, group_instance):
@@ -27,23 +27,35 @@ class Question:
     def _get_answer(self, answer_store, answer_id, group_instance):
         return self._get_answers(answer_store, answer_id, group_instance)[0]
 
-    def _build_answers(self, answer_store, question_schema, answer_schemas, group_instance):
+    def _build_answers(self, answer_store, question_schema, group_instance):
         summary_answers = []
-        for answer_schema in answer_schemas:
+
+        for answer_schema in self.answer_schemas:
             if 'parent_answer_id' in answer_schema:
                 continue
             else:
                 answer_values = self._get_answers(answer_store, answer_schema['id'], group_instance)
                 for answer_value in answer_values:
-                    answer = self._build_answer(answer_store, question_schema, answer_schema, answer_schemas,
+
+                    answer = self._build_answer(answer_store, question_schema, answer_schema,
                                                 group_instance, answer_value)
+
                     child_answer_value = self._find_other_value_in_answers(answer_store, answer_schema, answer, group_instance)
                     summary_answer = Answer(answer_schema, answer, group_instance, child_answer_value).serialize()
+
                     if summary_answer['type'] == 'relationship':
                         summary_answer['label'] = self._relationship_answer_label(summary_answer['label'], question_schema['parent_id'],
-                                                                                  answer_store, group_instance, question_schema.get('member_label'),
+                                                                                  answer_store, group_instance,
+                                                                                  question_schema.get('member_label'),
                                                                                   answer_values.index(answer_value))
+
                     summary_answers.append(summary_answer)
+
+        if question_schema['type'] == 'MutuallyExclusive':
+            exclusive_option = summary_answers[-1]['value']
+            if exclusive_option:
+                return summary_answers[-1:]
+            return summary_answers[:-1]
 
         return summary_answers
 
@@ -71,18 +83,22 @@ class Question:
                         return self._get_answer(answer_store, option['child_answer_id'], group_instance)
         return None
 
-    def _build_answer(self, answer_store, question_schema, answer_schema, answer_schemas, group_instance, answer_value=None):
+    def _build_answer(self, answer_store, question_schema, answer_schema, group_instance, answer_value=None):
         if answer_value is None:
             return None
+
         if question_schema['type'] == 'DateRange':
-            return self._build_date_range_answer(answer_store, answer_value, answer_schemas, group_instance)
-        if answer_schema['type'] in ['Checkbox', 'MutuallyExclusiveCheckbox']:
-            checkbox_answers = self._build_checkbox_answers(answer_value, answer_schema)
-            return checkbox_answers or None
-        if answer_schema['type'] == 'Radio':
-            return self._build_radio_answer(answer_value, answer_schema)
-        if answer_schema['type'] == 'Dropdown':
-            return self._build_dropdown_answer(answer_value, answer_schema)
+            return self._build_date_range_answer(answer_store, answer_value, group_instance)
+
+        answer_builder = {
+            'Checkbox': self._build_checkbox_answers,
+            'Radio': self._build_radio_answer,
+            'Dropdown': self._build_dropdown_answer,
+        }
+
+        if answer_schema['type'] in answer_builder.keys():
+            return answer_builder[answer_schema['type']](answer_value, answer_schema)
+
         return answer_value
 
     @staticmethod
@@ -98,10 +114,10 @@ class Question:
                 else:
                     multiple_answers.append(CheckboxSummaryAnswer(label=option['label'],
                                                                   should_display_other=False))
-        return multiple_answers
+        return multiple_answers or None
 
-    def _build_date_range_answer(self, answer_store, answer, answer_schemas, group_instance):
-        next_answer = next(answer_schemas)
+    def _build_date_range_answer(self, answer_store, answer, group_instance):
+        next_answer = next(self.answer_schemas)
         to_date = self._get_answer(answer_store, next_answer['id'], group_instance)
         return {
             'from': answer,

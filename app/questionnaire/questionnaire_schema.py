@@ -3,10 +3,9 @@ from collections import OrderedDict
 
 from flask_babel import force_locale
 
-from app.validation.error_messages import error_messages
 from app.questionnaire.answer_dependencies import get_answer_dependencies
 from app.questionnaire.group_dependencies import get_group_dependencies
-
+from app.validation.error_messages import error_messages
 
 DEFAULT_LANGUAGE_CODE = 'en'
 
@@ -130,7 +129,7 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         options_with_children = {}
 
         for answer_json in self.get_answers_for_block(block_id):
-            if answer_json['type'] in ['Checkbox', 'MutuallyExclusiveCheckbox', 'Radio']:
+            if answer_json['type'] in ['Checkbox', 'Radio']:
                 answer_options_with_children = {
                     answer_json['id']: {
                         'index': index,
@@ -210,7 +209,7 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def is_repeating_answer_type(self, answer_id):
         answer = self.get_answer(answer_id)
         question = self.get_question(answer['parent_id'])
-        return answer.get('type') in ['Checkbox', 'MutuallyExclusiveCheckbox'] or question['type'] == 'RepeatingAnswer'
+        return answer.get('type') == 'Checkbox' or question['type'] == 'RepeatingAnswer'
 
     def answer_is_in_repeating_group(self, answer_id):
         answer = self.get_answer(answer_id)

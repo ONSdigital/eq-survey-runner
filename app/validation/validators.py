@@ -1,19 +1,18 @@
-from decimal import Decimal, InvalidOperation
-from datetime import datetime
-
 import re
+from datetime import datetime
+from decimal import Decimal, InvalidOperation
 
 import flask_babel
-from flask_babel import lazy_gettext as _, ngettext
+from flask_babel import ngettext
 from babel import numbers
 from dateutil.relativedelta import relativedelta
+from structlog import get_logger
 from wtforms import validators
 from wtforms.compat import string_types
-from structlog import get_logger
 
 from app.jinja_filters import format_number, get_formatted_currency
-from app.validation.error_messages import error_messages
 from app.questionnaire.rules import convert_to_datetime
+from app.validation.error_messages import error_messages
 
 logger = get_logger()
 
@@ -347,35 +346,13 @@ def format_playback_value(value, currency=None):
     return format_number(value)
 
 
-class MutuallyExclusive:
-    def __init__(self, options, messages=None):
-        self.exclusive_value = options[-1]['value']
-        self.value_labels = self._get_value_labels(options)
+class MutuallyExclusiveCheck:
+    def __init__(self, messages=None):
         self.messages = messages or error_messages
 
-    def __call__(self, form, field):
-        values = field.data
-        if len(values) > 1 and self.exclusive_value in values:
-            non_exclusives = self._build_non_exclusives(values)
-            raise validators.ValidationError(self.messages['MUTUALLY_EXCLUSIVE'] %
-                                             dict(non_exclusives=non_exclusives,
-                                                  exclusive=self.value_labels[self.exclusive_value]))
-
-    def _build_non_exclusives(self, values):
-        non_exclusive_values = [
-            '"{}"'.format(_(self.value_labels[value]))
-            for value in values
-            if value != self.exclusive_value
-        ]
-        if len(non_exclusive_values) == 1:
-            return non_exclusive_values[0]
-
-        return _('%(list_of_answers)s and %(last_answer)s',
-                 list_of_answers=', '.join(non_exclusive_values[:-1]),
-                 last_answer=_(non_exclusive_values[-1]))
-
-    @staticmethod
-    def _get_value_labels(options):
-        return {
-            option['value']: option['label'] for option in options
-        }
+    def __call__(self, answer_values, is_mandatory):
+        total_answered = sum(1 for value in answer_values if value)
+        if total_answered > 1:
+            raise validators.ValidationError(self.messages['MUTUALLY_EXCLUSIVE'])
+        elif is_mandatory and total_answered < 1:
+            raise validators.ValidationError(self.messages['MANDATORY_QUESTION'])

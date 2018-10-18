@@ -1,14 +1,14 @@
 from decimal import Decimal
 
+from structlog import get_logger
 from wtforms import FormField, SelectField, SelectMultipleField, StringField
 from wtforms import validators
-from structlog import get_logger
 
 from app.forms.custom_fields import MaxTextAreaField, CustomIntegerField, CustomDecimalField
 from app.forms.date_form import MonthYearField, YearField, \
     DateField
 from app.forms.duration_form import get_duration_form
-from app.validation.validators import NumberCheck, NumberRange, ResponseRequired, DecimalPlaces, MutuallyExclusive
+from app.validation.validators import NumberCheck, NumberRange, ResponseRequired, DecimalPlaces
 
 MAX_LENGTH = 2000
 MAX_NUMBER = 9999999999
@@ -28,7 +28,7 @@ def get_field(answer, label, error_messages, answer_store, metadata):
         field = get_month_year_field(answer, label, guidance, error_messages, answer_store, metadata)
     elif answer['type'] == 'YearDate':
         field = get_year_field(answer, label, guidance, error_messages, answer_store, metadata)
-    elif answer['type'] in ['Checkbox', 'MutuallyExclusiveCheckbox']:
+    elif answer['type'] == 'Checkbox':
         field = get_select_multiple_field(answer, label, guidance, error_messages)
     else:
         field = {
@@ -151,11 +151,6 @@ def get_duration_field(answer, label, guidance, error_messages):
 
 def get_select_multiple_field(answer, label, guidance, error_messages):
     validate_with = get_mandatory_validator(answer, error_messages, 'MANDATORY_CHECKBOX')
-
-    if answer['type'] == 'MutuallyExclusiveCheckbox':
-        validate_with.append(
-            MutuallyExclusive(answer.get('options'), error_messages),
-        )
 
     return SelectMultipleField(
         label=label,

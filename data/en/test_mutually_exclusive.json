@@ -1,0 +1,549 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "0",
+    "title": "Mutually Exclusive",
+    "theme": "default",
+    "description": "A questionnaire to demo mutually exclusive answers with single checkbox override",
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
+    "navigation": {
+        "visible": true
+    },
+    "sections": [{
+            "id": "mutually-exclusive-checkbox-section",
+            "title": "Checkbox",
+            "groups": [{
+                "id": "mutually-exclusive-mandatory-group",
+                "title": "Mutually Exclusive With Single Checkbox Override - Mandatory",
+                "blocks": [{
+                    "type": "Question",
+                    "id": "mutually-exclusive-checkbox",
+                    "title": "Mutually Exclusive With Single Checkbox Override - Mandatory",
+                    "questions": [{
+                        "id": "mutually-exclusive-checkbox-question",
+                        "type": "MutuallyExclusive",
+                        "title": "What is your nationality?",
+                        "mandatory": true,
+                        "answers": [{
+                            "id": "checkbox-answer",
+                            "label": "Select an answer",
+                            "type": "Checkbox",
+                            "mandatory": false,
+                            "options": [{
+                                    "label": "British",
+                                    "value": "British"
+                                }, {
+                                    "label": "Irish",
+                                    "value": "Irish"
+                                },
+                                {
+                                    "label": "Other",
+                                    "description": "Choose any other topping",
+                                    "value": "Other",
+                                    "child_answer_id": "checkbox-child-other-answer"
+                                }
+                            ]
+                        }, {
+                            "parent_answer_id": "checkbox-answer",
+                            "mandatory": false,
+                            "id": "checkbox-child-other-answer",
+                            "label": "Please specify other",
+                            "type": "TextField"
+                        }, {
+                            "id": "checkbox-exclusive-answer",
+                            "mandatory": false,
+                            "type": "Checkbox",
+                            "options": [{
+                                "label": "I prefer not to say",
+                                "value": "I prefer not to say"
+                            }]
+                        }]
+                    }]
+                }]
+            }, {
+                "id": "mandatory-mutually-exclusive-summary-group",
+                "title": "",
+                "blocks": [{
+                    "type": "SectionSummary",
+                    "id": "mandatory-section-summary"
+                }]
+            }]
+        },
+        {
+            "id": "mutually-exclusive-date-section",
+            "title": "Date",
+            "groups": [{
+                "id": "mutually-exclusive-date-group",
+                "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                "blocks": [{
+                    "type": "Question",
+                    "id": "mutually-exclusive-date",
+                    "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                    "questions": [{
+                        "id": "mutually-exclusive-date-question",
+                        "type": "MutuallyExclusive",
+                        "title": "When did you leave your last paid job?",
+                        "mandatory": false,
+                        "answers": [{
+                            "id": "date-answer",
+                            "label": "Enter a date",
+                            "mandatory": false,
+                            "type": "Date"
+                        }, {
+                            "id": "date-exclusive-answer",
+                            "mandatory": false,
+                            "type": "Checkbox",
+                            "options": [{
+                                "label": "I prefer not to say",
+                                "value": "I prefer not to say"
+                            }]
+                        }]
+                    }]
+                }]
+            }, {
+                "id": "mutually-exclusive-date-section-summary",
+                "title": "",
+                "blocks": [{
+                    "type": "SectionSummary",
+                    "id": "optional-date-section-summary"
+                }]
+            }]
+        }, {
+            "id": "mutually-exclusive-currency-section",
+            "title": "Currency",
+            "groups": [{
+                "id": "mutually-exclusive-currency-group",
+                "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                "blocks": [{
+                    "type": "Question",
+                    "id": "mutually-exclusive-currency",
+                    "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                    "questions": [{
+                        "id": "mutually-exclusive-currency-question",
+                        "type": "MutuallyExclusive",
+                        "title": "What is your annual income before tax?",
+                        "mandatory": false,
+                        "answers": [{
+                            "id": "currency-answer",
+                            "label": "Enter your income",
+                            "mandatory": false,
+                            "type": "Currency",
+                            "currency": "GBP"
+                        }, {
+                            "id": "currency-exclusive-answer",
+                            "mandatory": false,
+                            "type": "Checkbox",
+                            "options": [{
+                                "label": "I prefer not to say",
+                                "value": "I prefer not to say"
+                            }]
+                        }]
+                    }]
+                }]
+            }, {
+                "id": "mutually-exclusive-currency-section-summary",
+                "title": "",
+                "blocks": [{
+                    "type": "SectionSummary",
+                    "id": "optional-currency-section-summary"
+                }]
+            }]
+        }, {
+            "id": "mutually-exclusive-number-section",
+            "title": "Number",
+            "groups": [{
+                "id": "mutually-exclusive-number-group",
+                "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                "blocks": [{
+                    "type": "Question",
+                    "id": "mutually-exclusive-number",
+                    "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                    "questions": [{
+                        "id": "mutually-exclusive-number-question",
+                        "type": "MutuallyExclusive",
+                        "title": "What is your favourite number?",
+                        "mandatory": false,
+                        "answers": [{
+                            "id": "number-answer",
+                            "label": "Enter your favourite number",
+                            "mandatory": false,
+                            "type": "Number",
+                            "decimal_places": 2
+                        }, {
+                            "id": "number-exclusive-answer",
+                            "mandatory": false,
+                            "type": "Checkbox",
+                            "options": [{
+                                "label": "I prefer not to say",
+                                "value": "I prefer not to say"
+                            }]
+                        }]
+                    }]
+                }]
+            }, {
+                "id": "mutually-exclusive-number-section-summary",
+                "title": "",
+                "blocks": [{
+                    "type": "SectionSummary",
+                    "id": "optional-number-section-summary"
+                }]
+            }]
+        },
+        {
+            "id": "mutually-exclusive-percentage-section",
+            "title": "Percentage",
+            "groups": [{
+                "id": "mutually-exclusive-percentage-group",
+                "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                "blocks": [{
+                    "type": "Question",
+                    "id": "mutually-exclusive-percentage",
+                    "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                    "questions": [{
+                        "id": "mutually-exclusive-percentage-question",
+                        "type": "MutuallyExclusive",
+                        "title": "What was the percentage increase in your annual income this tax year?",
+                        "mandatory": false,
+                        "answers": [{
+                            "id": "percentage-answer",
+                            "label": "Enter the percentage increase of your income",
+                            "mandatory": false,
+                            "type": "Percentage",
+                            "max_value": {
+                                "value": 100
+                            }
+                        }, {
+                            "id": "percentage-exclusive-answer",
+                            "mandatory": false,
+                            "type": "Checkbox",
+                            "options": [{
+                                "label": "I prefer not to say",
+                                "value": "I prefer not to say"
+                            }]
+                        }]
+                    }]
+                }]
+            }, {
+                "id": "mutually-exclusive-percentage-section-summary",
+                "title": "",
+                "blocks": [{
+                    "type": "SectionSummary",
+                    "id": "optional-percentage-section-summary"
+                }]
+            }]
+        }, {
+            "id": "mutually-exclusive-textfield-section",
+            "title": "Textfield",
+            "groups": [{
+                "id": "mutually-exclusive-textfield-group",
+                "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                "blocks": [{
+                    "type": "Question",
+                    "id": "mutually-exclusive-textfield",
+                    "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                    "questions": [{
+                        "id": "mutually-exclusive-textfield-question",
+                        "type": "MutuallyExclusive",
+                        "title": "What is your favourite colour?",
+                        "mandatory": false,
+                        "answers": [{
+                            "id": "textfield-answer",
+                            "label": "Enter your favourite colour",
+                            "mandatory": false,
+                            "type": "TextField"
+                        }, {
+                            "id": "textfield-exclusive-answer",
+                            "mandatory": false,
+                            "type": "Checkbox",
+                            "options": [{
+                                "label": "I prefer not to say",
+                                "value": "I prefer not to say"
+                            }]
+                        }]
+                    }]
+                }]
+            }, {
+                "id": "mutually-exclusive-textfield-section-summary",
+                "title": "",
+                "blocks": [{
+                    "type": "SectionSummary",
+                    "id": "optional-textfield-section-summary"
+                }]
+            }]
+        }, {
+            "id": "mutually-exclusive-month-year-date-section",
+            "title": "Month Year Date",
+            "groups": [{
+                "id": "mutually-exclusive-month-year-date-group",
+                "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                "blocks": [{
+                    "type": "Question",
+                    "id": "mutually-exclusive-month-year-date",
+                    "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                    "questions": [{
+                        "id": "mutually-exclusive-month-year-date-question",
+                        "type": "MutuallyExclusive",
+                        "title": "When did you leave your last paid job?",
+                        "mandatory": false,
+                        "answers": [{
+                            "id": "month-year-date-answer",
+                            "label": "Enter a date",
+                            "mandatory": false,
+                            "type": "MonthYearDate",
+                            "maximum": {
+                                "value": "now"
+                            }
+                        }, {
+                            "id": "month-year-date-exclusive-answer",
+                            "mandatory": false,
+                            "type": "Checkbox",
+                            "options": [{
+                                "label": "I prefer not to say",
+                                "value": "I prefer not to say"
+                            }]
+                        }]
+                    }]
+                }]
+            }, {
+                "id": "mutually-exclusive-month-year-section-summary",
+                "title": "",
+                "blocks": [{
+                    "type": "SectionSummary",
+                    "id": "optional-month-year-section-summary"
+                }]
+            }]
+        }, {
+            "id": "mutually-exclusive-year-date-section",
+            "title": "Year Date",
+            "groups": [{
+                "id": "mutually-exclusive-year-date-group",
+                "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                "blocks": [{
+                    "type": "Question",
+                    "id": "mutually-exclusive-year-date",
+                    "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                    "questions": [{
+                        "id": "mutually-exclusive-year-date-question",
+                        "type": "MutuallyExclusive",
+                        "title": "When did you leave your last paid job?",
+                        "mandatory": false,
+                        "answers": [{
+                            "id": "year-date-answer",
+                            "label": "Enter a date",
+                            "mandatory": false,
+                            "type": "YearDate",
+                            "maximum": {
+                                "value": "now"
+                            }
+                        }, {
+                            "id": "year-date-exclusive-answer",
+                            "mandatory": false,
+                            "type": "Checkbox",
+                            "options": [{
+                                "label": "I prefer not to say",
+                                "value": "I prefer not to say"
+                            }]
+                        }]
+                    }]
+                }]
+            }, {
+                "id": "mutually-exclusive-year-section-summary",
+                "title": "",
+                "blocks": [{
+                    "type": "SectionSummary",
+                    "id": "optional-year-section-summary"
+                }]
+            }]
+        }, {
+            "id": "mutually-exclusive-unit-section",
+            "title": "Unit",
+            "groups": [{
+                "id": "mutually-exclusive-unit-group",
+                "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                "blocks": [{
+                    "type": "Question",
+                    "id": "mutually-exclusive-unit",
+                    "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                    "questions": [{
+                        "id": "mutually-exclusive-unit-question",
+                        "type": "MutuallyExclusive",
+                        "title": "How many years have you been in the UK?",
+                        "mandatory": false,
+                        "answers": [{
+                            "id": "unit-answer",
+                            "label": "Enter the number of years you have lived in the UK",
+                            "unit": "duration-year",
+                            "type": "Unit",
+                            "unit_length": "long",
+                            "mandatory": false
+                        }, {
+                            "id": "unit-exclusive-answer",
+                            "mandatory": false,
+                            "type": "Checkbox",
+                            "options": [{
+                                "label": "I prefer not to say",
+                                "value": "I prefer not to say"
+                            }]
+                        }]
+                    }]
+                }]
+            }, {
+                "id": "mutually-exclusive-unit-section-summary",
+                "title": "",
+                "blocks": [{
+                    "type": "SectionSummary",
+                    "id": "optional-unit-section-summary"
+                }]
+            }]
+        }, {
+            "id": "mutually-exclusive-dropdown-section",
+            "title": "Dropdown",
+            "groups": [{
+                "id": "mutually-exclusive-dropdown-group",
+                "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                "blocks": [{
+                    "type": "Question",
+                    "id": "mutually-exclusive-dropdown",
+                    "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                    "questions": [{
+                        "id": "mutually-exclusive-dropdown-question",
+                        "type": "MutuallyExclusive",
+                        "title": "Who is your favourite football club?",
+                        "mandatory": false,
+                        "answers": [{
+                            "id": "dropdown-answer",
+                            "label": "Select your favourite team",
+                            "type": "Dropdown",
+                            "mandatory": false,
+                            "options": [{
+                                "label": "Liverpool",
+                                "value": "Liverpool"
+                            }, {
+                                "label": "Chelsea",
+                                "value": "Chelsea"
+                            }, {
+                                "label": "Rugby is better!",
+                                "value": "Rugby is better!"
+                            }]
+                        }, {
+                            "id": "dropdown-exclusive-answer",
+                            "mandatory": false,
+                            "type": "Checkbox",
+                            "options": [{
+                                "label": "I prefer not to say",
+                                "value": "I prefer not to say"
+                            }]
+                        }]
+                    }]
+                }]
+            }, {
+                "id": "mutually-exclusive-dropdown-section-summary",
+                "title": "",
+                "blocks": [{
+                    "type": "SectionSummary",
+                    "id": "optional-dropdown-section-summary"
+                }]
+            }]
+        }, {
+            "id": "mutually-exclusive-duration-section",
+            "title": "Duration",
+            "groups": [{
+                "id": "mutually-exclusive-duration-group",
+                "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                "blocks": [{
+                    "type": "Question",
+                    "id": "mutually-exclusive-duration",
+                    "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                    "questions": [{
+                        "id": "mutually-exclusive-duration-question",
+                        "type": "MutuallyExclusive",
+                        "title": "How long have you been employed for?",
+                        "mandatory": false,
+                        "answers": [{
+                            "id": "duration-answer",
+                            "label": "Years and Months",
+                            "mandatory": false,
+                            "units": ["years", "months"],
+                            "type": "Duration"
+                        }, {
+                            "id": "duration-exclusive-answer",
+                            "mandatory": false,
+                            "type": "Checkbox",
+                            "options": [{
+                                "label": "I prefer not to say",
+                                "value": "I prefer not to say"
+                            }]
+                        }]
+                    }]
+                }]
+            }, {
+                "id": "mutually-exclusive-duration-section-summary",
+                "title": "",
+                "blocks": [{
+                    "type": "SectionSummary",
+                    "id": "optional-duration-section-summary"
+                }]
+            }]
+        }, {
+            "id": "mutually-exclusive-textarea-section",
+            "title": "TextArea",
+            "groups": [{
+                "id": "mutually-exclusive-textarea-group",
+                "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                "blocks": [{
+                    "type": "Question",
+                    "id": "mutually-exclusive-textarea",
+                    "title": "Mutually Exclusive With Single Checkbox Override - Optional",
+                    "questions": [{
+                        "id": "mutually-exclusive-textarea-question",
+                        "type": "MutuallyExclusive",
+                        "title": "Why did you leave you last job?",
+                        "mandatory": false,
+                        "answers": [{
+                            "id": "textarea-answer",
+                            "mandatory": false,
+                            "type": "TextArea"
+                        }, {
+                            "id": "textarea-exclusive-answer",
+                            "mandatory": false,
+                            "type": "Checkbox",
+                            "options": [{
+                                "label": "I prefer not to say",
+                                "value": "I prefer not to say"
+                            }]
+                        }]
+                    }]
+                }]
+            }, {
+                "id": "mutually-exclusive-textarea-section-summary",
+                "title": "",
+                "blocks": [{
+                    "type": "SectionSummary",
+                    "id": "optional-textarea-section-summary"
+                }]
+            }]
+        }, {
+            "id": "summary-section",
+            "title": "Summary",
+            "groups": [{
+                "id": "summary-group",
+                "title": "Summary",
+                "blocks": [{
+                    "id": "summary",
+                    "type": "Summary",
+                    "collapsible": true
+                }]
+            }]
+        }
+    ]
+}

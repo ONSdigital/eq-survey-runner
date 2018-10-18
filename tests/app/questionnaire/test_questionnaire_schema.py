@@ -79,7 +79,6 @@ class TestQuestionnaireSchema(AppContextTestCase):
         self.assertEqual(len(groups), 1)
 
     def test_get_parent_options_for_block(self):
-        # STANDARD CHECKBOX
         schema = load_schema_from_params('test', 'checkbox')
 
         parent_options = schema.get_parent_options_for_block('mandatory-checkbox')
@@ -87,20 +86,6 @@ class TestQuestionnaireSchema(AppContextTestCase):
         expected = {
             'mandatory-checkbox-answer': {
                 'index': 6,
-                'child_answer_id': 'other-answer-mandatory'
-            }
-        }
-
-        self.assertEqual(parent_options, expected)
-
-        # MUTUALLY EXCLUSIVE CHECKBOX
-        schema = load_schema_from_params('test', 'checkbox_mutually_exclusive')
-
-        parent_options = schema.get_parent_options_for_block('mandatory-checkbox')
-
-        expected = {
-            'mandatory-checkbox-answer': {
-                'index': 5,
                 'child_answer_id': 'other-answer-mandatory'
             }
         }
@@ -311,13 +296,6 @@ class TestQuestionnaireSchema(AppContextTestCase):
             }]
         }
 
-        # STANDARD CHECKBOX
-        schema = QuestionnaireSchema(survey_json)
-
-        self.assertTrue(schema.is_repeating_answer_type('frequency-answer'))
-
-        # MUTUALLY EXCLUSIVE CHECKBOX
-        survey_json['sections'][0]['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['type'] = 'MutuallyExclusiveCheckbox'
         schema = QuestionnaireSchema(survey_json)
 
         self.assertTrue(schema.is_repeating_answer_type('frequency-answer'))
