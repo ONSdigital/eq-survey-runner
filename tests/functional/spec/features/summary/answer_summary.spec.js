@@ -78,5 +78,22 @@ describe('Answer Summary', function () {
           .getUrl().should.eventually.contain(HouseholdSummaryPage.pageName)
           .getText(HouseholdSummaryPage.repeatingFirstNameLabel(3)).should.eventually.contain('Jillian Smith');
       });
+
+      it('When I click add person link, Then I should go to the anyone else page and be able to add additional people', function () {
+        return browser
+          .click(HouseholdSummaryPage.addPersonLink())
+          .getUrl().should.eventually.contain(RepeatingAnyoneElseBlockPage.pageName)
+          .click(RepeatingAnyoneElseBlockPage.yes())
+          .click(RepeatingAnyoneElseBlockPage.submit())
+
+          .setValue(RepeatingNameBlockPage.repeatingFirstName(), 'Dave')
+          .setValue(RepeatingNameBlockPage.repeatingLastName(), 'Smith')
+          .click(RepeatingNameBlockPage.submit())
+          .click(RepeatingAnyoneElseBlockPage.no())
+          .click(RepeatingAnyoneElseBlockPage.submit())
+
+          .getUrl().should.eventually.contain(HouseholdSummaryPage.pageName)
+          .getText(HouseholdSummaryPage.repeatingFirstNameLabel(4)).should.eventually.contain('Dave Smith');
+      });
   });
 });
