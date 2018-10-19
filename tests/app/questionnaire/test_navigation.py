@@ -9,6 +9,15 @@ from app.utilities.schema import load_schema_from_params
 
 from tests.app.app_context_test_case import AppContextTestCase
 
+standard_routing_path = [
+    Location('property-details', 0, 'insurance-type'),
+    Location('property-details', 0, 'insurance-address'),
+    Location('multiple-questions-group', 0, 'household-composition'),
+    Location('extra-cover', 0, 'extra-cover-block'),
+    Location('skip-payment-group', 0, 'skip-payment'),
+    Location('final-section-routed-group', 0, 'final-interstitial'),
+    Location('summary-group', 0, 'summary')
+]
 
 # pylint: disable=R0904,C0302
 class TestNavigation(AppContextTestCase):
@@ -22,7 +31,8 @@ class TestNavigation(AppContextTestCase):
             'form_type': 'some_form'
         }
 
-        navigation = _create_navigation(schema, AnswerStore(), metadata, [], [])
+
+        navigation = _create_navigation(schema, AnswerStore(), metadata, [], standard_routing_path)
 
         user_navigation = [
             {
@@ -52,6 +62,13 @@ class TestNavigation(AppContextTestCase):
                 'repeating': False,
                 'completed': False,
                 'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata)
+            },
+            {
+                'link_name': 'Final section',
+                'highlight': False,
+                'repeating': False,
+                'completed': False,
+                'link_url': Location('final-section-routed-group', 0, 'final-interstitial').url(metadata)
             }
         ]
         self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
@@ -124,6 +141,13 @@ class TestNavigation(AppContextTestCase):
                 'repeating': False,
                 'completed': False,
                 'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata)
+            },
+            {
+                'link_name': 'Final section',
+                'highlight': False,
+                'repeating': False,
+                'completed': False,
+                'link_url': Location('final-section-routed-group', 0, 'final-interstitial').url(metadata)
             }
 
         ]
@@ -249,6 +273,13 @@ class TestNavigation(AppContextTestCase):
                 'completed': False,
                 'highlight': False,
                 'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata)
+            },
+            {
+                'link_name': 'Final section',
+                'highlight': False,
+                'repeating': False,
+                'completed': False,
+                'link_url': Location('final-section-routed-group', 0, 'final-interstitial').url(metadata)
             }
         ]
         self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
@@ -358,6 +389,13 @@ class TestNavigation(AppContextTestCase):
                 'repeating': False,
                 'link_name': 'Payment Details',
                 'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata),
+            },
+            {
+                'link_name': 'Final section',
+                'highlight': False,
+                'repeating': False,
+                'completed': False,
+                'link_url': Location('final-section-routed-group', 0, 'final-interstitial').url(metadata)
             }
         ]
 
@@ -473,6 +511,13 @@ class TestNavigation(AppContextTestCase):
                 'completed': False,
                 'link_name': 'Payment Details',
                 'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata)
+            },
+            {
+                'link_name': 'Final section',
+                'highlight': False,
+                'repeating': False,
+                'completed': False,
+                'link_url': Location('final-section-routed-group', 0, 'final-interstitial').url(metadata)
             }
         ]
 
@@ -581,6 +626,13 @@ class TestNavigation(AppContextTestCase):
                 'repeating': False,
                 'completed': False,
                 'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata)
+            },
+            {
+                'link_name': 'Final section',
+                'highlight': False,
+                'repeating': False,
+                'completed': False,
+                'link_url': Location('final-section-routed-group', 0, 'final-interstitial').url(metadata)
             }
         ]
 
@@ -774,7 +826,7 @@ class TestNavigation(AppContextTestCase):
             Location('multiple-questions-group', 0, 'household-composition'),
         ]
 
-        navigation = _create_navigation(schema, AnswerStore(), metadata, completed_blocks, [])
+        navigation = _create_navigation(schema, AnswerStore(), metadata, completed_blocks, standard_routing_path)
 
         confirmation_link = {
             'link_name': 'Summary',
@@ -786,7 +838,7 @@ class TestNavigation(AppContextTestCase):
 
         navigation_links = navigation.build_navigation('property-details', 0)
         self.assertNotIn(confirmation_link, navigation_links)
-        self.assertEqual(len(navigation_links), 4)
+        self.assertEqual(len(navigation_links), 5)
 
     def test_build_navigation_summary_link_visible_when_all_sections_complete(self):
         schema = load_schema_from_params('test', 'navigation')
@@ -849,7 +901,7 @@ class TestNavigation(AppContextTestCase):
 
         navigation_links = navigation.build_navigation('property-details', 0)
         self.assertIn(confirmation_link, navigation_links)
-        self.assertEqual(len(navigation_links), 5)
+        self.assertEqual(len(navigation_links), 6)
 
     def test_build_navigation_submit_answers_link_not_visible_for_survey_with_summary(self):
         schema = load_schema_from_params('test', 'navigation')
@@ -878,7 +930,7 @@ class TestNavigation(AppContextTestCase):
             Location('extra-cover-items-group', 0, 'extra-cover-items'),
         ]
 
-        navigation = _create_navigation(schema, AnswerStore(), metadata, completed_blocks, [])
+        navigation = _create_navigation(schema, AnswerStore(), metadata, completed_blocks, standard_routing_path)
 
         confirmation_link = {
             'link_name': 'Submit answers',
@@ -890,7 +942,7 @@ class TestNavigation(AppContextTestCase):
 
         navigation_links = navigation.build_navigation('property-details', 0)
         self.assertNotIn(confirmation_link, navigation_links)
-        self.assertEqual(len(navigation_links), 4)
+        self.assertEqual(len(navigation_links), 5)
 
     def test_build_navigation_submit_answers_link_hidden_when_no_sections_completed(self):
         schema = load_schema_from_params('test', 'navigation_confirmation')
@@ -1057,9 +1109,8 @@ class TestNavigation(AppContextTestCase):
         }
 
         completed_blocks = []
-        routing_path = []
 
-        navigation = _create_navigation(schema, AnswerStore(), metadata, completed_blocks, routing_path)
+        navigation = _create_navigation(schema, AnswerStore(), metadata, completed_blocks, standard_routing_path)
 
         confirmation_link = {
             'link_name': 'Summary',
@@ -1071,7 +1122,7 @@ class TestNavigation(AppContextTestCase):
 
         navigation_links = navigation.build_navigation('property-details', 0)
         self.assertNotIn(confirmation_link, navigation_links)
-        self.assertEqual(len(navigation_links), 4)
+        self.assertEqual(len(navigation_links), 5)
 
     def test_build_navigation_summary_link_hidden_when_not_on_routing_path(self):
         schema = load_schema_from_params('test', 'navigation')
@@ -1130,7 +1181,7 @@ class TestNavigation(AppContextTestCase):
 
         navigation_links = navigation.build_navigation('property-details', 0)
         self.assertNotIn(confirmation_link, navigation_links)
-        self.assertEqual(len(navigation_links), 4)
+        self.assertEqual(len(navigation_links), 5)
 
     def test_build_navigation_summary_link_shown_when_invalid_section_present(self):
         schema = load_schema_from_params('test', 'navigation')
@@ -1184,7 +1235,7 @@ class TestNavigation(AppContextTestCase):
         navigation_links = navigation.build_navigation('skip-payment', 0)
 
         self.assertIn(confirmation_link, navigation_links)
-        self.assertEqual(len(navigation_links), 6)
+        self.assertEqual(len(navigation_links), 7)
 
     def test_build_navigation_repeated_blocks_independent_completeness(self):
         schema = load_schema_from_params('test', 'navigation')
@@ -1296,6 +1347,13 @@ class TestNavigation(AppContextTestCase):
                 'repeating': False,
                 'link_name': 'Payment Details',
                 'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata),
+            },
+            {
+                'link_name': 'Final section',
+                'highlight': False,
+                'repeating': False,
+                'completed': False,
+                'link_url': Location('final-section-routed-group', 0, 'final-interstitial').url(metadata)
             }
         ]
 
@@ -1376,6 +1434,13 @@ class TestNavigation(AppContextTestCase):
                 'repeating': False,
                 'link_name': 'Payment Details',
                 'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata),
+            },
+            {
+                'link_name': 'Final section',
+                'highlight': False,
+                'repeating': False,
+                'completed': False,
+                'link_url': Location('final-section-routed-group', 0, 'final-interstitial').url(metadata)
             }
         ]
         self.assertEqual(navigation.build_navigation(
@@ -1459,6 +1524,13 @@ class TestNavigation(AppContextTestCase):
                 'repeating': False,
                 'link_name': 'Payment Details',
                 'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata),
+            },
+            {
+                'link_name': 'Final section',
+                'highlight': False,
+                'repeating': False,
+                'completed': False,
+                'link_url': Location('final-section-routed-group', 0, 'final-interstitial').url(metadata)
             }
         ]
 

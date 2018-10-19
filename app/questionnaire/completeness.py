@@ -49,6 +49,9 @@ class Completeness:
         def eval_state(state_to_compare):
             return (state == state_to_compare for state in group_states)
 
+        def eval_state_in(state_to_compare):
+            return (state in state_to_compare for state in group_states)
+
         section_state = self.NOT_STARTED
 
         if group_states:
@@ -60,6 +63,9 @@ class Completeness:
 
             elif any(eval_state(self.STARTED)):
                 section_state = self.STARTED
+
+            elif all(eval_state_in((self.SKIPPED, self.INVALID))):
+                section_state = self.SKIPPED
 
             elif all(state in self.COMPLETED_STATES for state in group_states):
                 section_state = self.COMPLETED

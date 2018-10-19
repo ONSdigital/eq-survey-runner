@@ -846,7 +846,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
             Location('repeating-group', 1, 'repeating-name-block'),
             Location('repeating-group', 2, 'repeating-anyone-else-block'),
         ]
-        expected_next_location = Location('household-relationships', 1, 'relationships')
+        expected_next_location = Location('household-relationships-no-primary', 0, 'relationships-no-primary')
 
         path_finder = PathFinder(schema, answer_store, metadata={}, completed_blocks=completed_blocks)
 

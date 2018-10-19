@@ -13,6 +13,7 @@ from tests.app.app_context_test_case import AppContextTestCase
 def get_schema_mock(answer_is_in_repeating_group=False):
     schema = QuestionnaireSchema({})
     schema.answer_is_in_repeating_group = Mock(return_value=answer_is_in_repeating_group)
+    schema.get_block_id_for_answer_id = Mock(return_value='answer_block')
     return schema
 
 class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
