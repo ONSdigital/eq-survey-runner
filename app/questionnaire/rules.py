@@ -60,29 +60,26 @@ def evaluate_condition(condition, answer_value, match_value):
     :param condition: string representation of comparison operator
     :param answer_value: the left hand operand in the comparison
     :param match_value: the right hand operand in the comparison
-    :return: value of comparing lhs and rhs using the specified operator
+    :return: boolean value of comparing lhs and rhs using the specified operator
     """
-    result = False
     answer_and_match = answer_value is not None and match_value is not None
 
-    if condition == 'equals' and answer_value == match_value:
-        result = True
-    elif condition == 'not equals' and answer_value != match_value:
-        result = True
-    elif condition == 'contains' and isinstance(answer_value, list) and match_value in answer_value:
-        result = True
-    elif condition == 'not contains' and isinstance(answer_value, list) and match_value not in answer_value:
-        result = True
-    elif condition == 'set':
-        result = answer_value is not None and answer_value != []
-    elif condition == 'not set':
-        result = answer_value is None or answer_value == []
-    elif condition == 'greater than' and answer_and_match and answer_value > match_value:
-        result = True
-    elif condition == 'less than' and answer_and_match and answer_value < match_value:
-        result = True
+    comparison_operators = {
+        'equals': lambda answer_value, match_value: answer_value == match_value,
+        'not equals': lambda answer_value, match_value: answer_value != match_value,
+        'contains': lambda answer_value, match_value: isinstance(answer_value, list) and match_value in answer_value,
+        'not contains': lambda answer_value, match_value: isinstance(answer_value, list) and match_value not in answer_value,
+        'set': lambda answer_value, _: answer_value is not None and answer_value != [],
+        'not set': lambda answer_value, _: answer_value is None or answer_value == [],
+        'greater than': lambda answer_value, match_value: answer_and_match and answer_value > match_value,
+        'greater than or equal to': lambda answer_value, match_value: answer_and_match and answer_value >= match_value,
+        'less than': lambda answer_value, match_value: answer_and_match and answer_value < match_value,
+        'less than or equal to': lambda answer_value, match_value: answer_and_match and answer_value <= match_value,
+    }
 
-    return result
+    match_function = comparison_operators[condition]
+
+    return match_function(answer_value, match_value)
 
 
 def get_date_match_value(date_comparison, answer_store, schema, group_instance, metadata):
