@@ -489,3 +489,13 @@ class TestCompleteness(AppContextTestCase): # pylint: disable=too-many-public-me
             schema, AnswerStore(), completed_blocks, routing_path, metadata={})
         with patch('app.questionnaire.path_finder.evaluate_goto', return_value=False):
             self.assertFalse(progress.get_first_incomplete_location_in_survey())
+
+    def test_get_state_for_section(self):
+        """
+        This is a bad test that is really only for coverage.
+        The test navigation schema should be changed to include a situation where all groups
+        in a section are 'invalid' AND 'skipped'
+        """
+        with patch('app.questionnaire.completeness.Completeness.get_state_for_group', side_effect=['SKIPPED', 'INVALID']):
+            completeness = Completeness([], [], [], [], [])
+            self.assertEqual(completeness.get_state_for_section({'groups': [1, 1]}), 'SKIPPED')

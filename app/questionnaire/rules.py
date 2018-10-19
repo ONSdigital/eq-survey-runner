@@ -338,6 +338,10 @@ def get_answer_store_value(answer_id, answer_store, schema, group_instance, grou
     if all([answer.get('group_instance_id') for answer in answers_on_path.answers]) and group_instance_id:
         # If all of the matching answers have a group_instance_id, then we know the answer has this group_instance_id
         group_instance = None
+        answer_block_id = schema.get_block_id_for_answer_id(answer_id)
+        if not schema.answer_is_in_repeating_group(answer_id) and schema.block_drives_multiple_groups(answer_block_id):
+            group_instance_id = None
+
     else:
         # We don't have group_instance_ids everywhere, so filter on the group_instance
         if group_instance > 0 and not schema.answer_is_in_repeating_group(answer_id):

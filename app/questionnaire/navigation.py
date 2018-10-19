@@ -43,9 +43,10 @@ class Navigation:
         navigation = []
 
         for section in self.schema.sections:
-            non_skipped_groups = self._get_non_skipped_groups(section)
-            if not non_skipped_groups:
+            if self.completeness.get_state_for_section(section) == self.completeness.SKIPPED:
                 continue
+
+            non_skipped_groups = self._get_non_skipped_groups(section)
 
             target_location = self._get_location_for_section(section, non_skipped_groups)
 
@@ -200,7 +201,7 @@ class Navigation:
             # if it's been started then get the first incomplete block within that section
             location = first_incomplete
         else:
-            if completeness_state == Completeness.NOT_STARTED or last_block['type'] != 'SectionSummary':
+            if completeness_state == Completeness.NOT_STARTED or last_block['type'] not in ['SectionSummary', 'AnswerSummary']:
                 # if the section hasn't been started or it is complete but has no section summary
                 # go to the first block
                 target_group, target_block = first_group, first_block

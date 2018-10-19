@@ -15,6 +15,7 @@ const SecurityCodeInterstitialPage = require('../pages/surveys/navigation/securi
 const SkipInterstitialPage = require('../pages/surveys/navigation/skip-interstitial.page.js');
 const SkipPaymentPage = require('../pages/surveys/navigation/skip-payment.page.js');
 const SummaryPage = require('../pages/surveys/navigation/summary.page.js');
+const FinalInterstitial = require('../pages/surveys/navigation/final-interstitial.page.js');
 const GenericPage = require('../pages/surveys/generic.page.js');
 
 const CoffeePage = require('../pages/surveys/navigation/completeness/coffee.page.js');
@@ -201,6 +202,7 @@ describe('Navigation', function() {
     .click(SkipInterstitialPage.no())
     .click(SkipInterstitialPage.submit())
     .click(SecurityCodeInterstitialPage.submit())
+    .click(FinalInterstitial.submit())
     .then(helpers.isSectionComplete('Payment Details')).should.eventually.be.true;
   }
 
