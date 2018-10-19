@@ -395,6 +395,15 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
 
         self.assertEqual(format_value, 'John Doe\u2019s')
 
+    def test_format_household_member_name_possessive_with_no_names(self):
+        # Given
+        name = [Undefined(), Undefined()]
+
+        # When
+        format_value = format_household_member_name_possessive(name)
+
+        self.assertIsNone(format_value)
+
     def test_format_household_member_name_possessive_trailing_s(self):
         # Given
         name = ['John', 'Does']
