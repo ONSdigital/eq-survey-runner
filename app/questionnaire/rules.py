@@ -79,7 +79,11 @@ def evaluate_condition(condition, answer_value, match_value):
         result = answer_value is None or answer_value == []
     elif condition == 'greater than' and answer_and_match and answer_value > match_value:
         result = True
+    elif condition == 'greater than or equal to' and answer_and_match and (answer_value > match_value or answer_value == match_value):
+        result = True
     elif condition == 'less than' and answer_and_match and answer_value < match_value:
+        result = True
+    elif condition == 'less than or equal to' and answer_and_match and (answer_value < match_value or answer_value == match_value):
         result = True
 
     return result

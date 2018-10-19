@@ -147,6 +147,40 @@ describe('Feature: Routing on a Number', function () {
           .getUrl().should.eventually.contain(IncorrectAnswerPage.pageName);
       });
     });
+
+    describe('Given I start number routing greater then or equal single condition survey', function () {
+
+      var NumberQuestionPage = require('../../../pages/features/routing/number/greater_than_or_equal/number-question.page');
+      var CorrectAnswerPage = require('../../../pages/features/routing/number/greater_than_or_equal/correct-answer.page');
+      var IncorrectAnswerPage = require('../../../pages/features/routing/number/greater_than_or_equal/incorrect-answer.page');
+
+      before(function () {
+        return helpers.openQuestionnaire('test_routing_number_greater_than_or_equal_single_condition.json');
+      });
+
+      it('When I enter a greater number, Then I should be routed to the correct page', function () {
+        return browser
+          .setValue(NumberQuestionPage.answer(), 555)
+          .click(NumberQuestionPage.submit())
+          .getUrl().should.eventually.contain(CorrectAnswerPage.pageName);
+      });
+
+      it('When I enter an equal number, Then I should be routed to the correct page', function () {
+        return browser
+          .click(CorrectAnswerPage.previous())
+          .setValue(NumberQuestionPage.answer(), 123)
+          .click(NumberQuestionPage.submit())
+          .getUrl().should.eventually.contain(CorrectAnswerPage.pageName);
+      });
+
+      it('When I enter a smaller number, Then I should be routed to the incorrect page', function () {
+        return browser
+          .click(CorrectAnswerPage.previous())
+          .setValue(NumberQuestionPage.answer(), 2)
+          .click(NumberQuestionPage.submit())
+          .getUrl().should.eventually.contain(IncorrectAnswerPage.pageName);
+      });
+    });
   });
 
   describe('Less Than or Equal', function () {
@@ -158,6 +192,40 @@ describe('Feature: Routing on a Number', function () {
 
       before(function () {
         return helpers.openQuestionnaire('test_routing_number_less_than_or_equal.json');
+      });
+
+      it('When I enter a less number, Then I should be routed to the correct page', function () {
+        return browser
+          .setValue(NumberQuestionPage.answer(), 23)
+          .click(NumberQuestionPage.submit())
+          .getUrl().should.eventually.contain(CorrectAnswerPage.pageName);
+      });
+
+      it('When I enter an equal number, Then I should be routed to the correct page', function () {
+        return browser
+          .click(CorrectAnswerPage.previous())
+          .setValue(NumberQuestionPage.answer(), 123)
+          .click(NumberQuestionPage.submit())
+          .getUrl().should.eventually.contain(CorrectAnswerPage.pageName);
+      });
+
+      it('When I enter a greater number, Then I should be routed to the incorrect page', function () {
+        return browser
+          .click(CorrectAnswerPage.previous())
+          .setValue(NumberQuestionPage.answer(), 546)
+          .click(NumberQuestionPage.submit())
+          .getUrl().should.eventually.contain(IncorrectAnswerPage.pageName);
+      });
+    });
+
+    describe('Given I start number routing less then or equal single condition survey', function () {
+
+      var NumberQuestionPage = require('../../../pages/features/routing/number/less_than_or_equal/number-question.page');
+      var CorrectAnswerPage = require('../../../pages/features/routing/number/less_than_or_equal/correct-answer.page');
+      var IncorrectAnswerPage = require('../../../pages/features/routing/number/less_than_or_equal/incorrect-answer.page');
+
+      before(function () {
+        return helpers.openQuestionnaire('test_routing_number_less_than_or_equal_single_condition.json');
       });
 
       it('When I enter a less number, Then I should be routed to the correct page', function () {
