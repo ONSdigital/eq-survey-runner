@@ -279,7 +279,7 @@ def get_answer_fields(question, data, error_messages, schema, answer_store, meta
                 next(a['mandatory'] for a in question['answers'] if a['id'] == answer['parent_answer_id'])
 
         name = answer.get('label') or get_question_title(question, answer_store, schema, metadata, group_instance, group_instance_id)
-        answer_fields[answer['id']] = get_field(answer, name, error_messages, answer_store, metadata)
+        answer_fields[answer['id']] = get_field(answer, name, error_messages, answer_store, metadata, group_instance=group_instance)
     return answer_fields
 
 

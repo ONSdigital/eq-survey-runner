@@ -17,7 +17,7 @@ MAX_DECIMAL_PLACES = 6
 logger = get_logger()
 
 
-def get_field(answer, label, error_messages, answer_store, metadata):
+def get_field(answer, label, error_messages, answer_store, metadata, group_instance=0):
     guidance = answer.get('guidance', '')
 
     if answer['type'] in ['Number', 'Currency', 'Percentage', 'Unit']:
@@ -25,9 +25,9 @@ def get_field(answer, label, error_messages, answer_store, metadata):
     elif answer['type'] == 'Date':
         field = get_date_field(answer, label, guidance, error_messages, answer_store, metadata)
     elif answer['type'] == 'MonthYearDate':
-        field = get_month_year_field(answer, label, guidance, error_messages, answer_store, metadata)
+        field = get_month_year_field(answer, label, guidance, error_messages, answer_store, metadata, group_instance=group_instance)
     elif answer['type'] == 'YearDate':
-        field = get_year_field(answer, label, guidance, error_messages, answer_store, metadata)
+        field = get_year_field(answer, label, guidance, error_messages, answer_store, metadata, group_instance=group_instance)
     elif answer['type'] == 'Checkbox':
         field = get_select_multiple_field(answer, label, guidance, error_messages)
     else:
@@ -119,7 +119,7 @@ def get_date_field(answer, label, guidance, error_messages, answer_store, metada
     )
 
 
-def get_month_year_field(answer, label, guidance, error_messages, answer_store, metadata):
+def get_month_year_field(answer, label, guidance, error_messages, answer_store, metadata, group_instance=0):
     return MonthYearField(
         answer,
         answer_store,
@@ -127,10 +127,11 @@ def get_month_year_field(answer, label, guidance, error_messages, answer_store, 
         error_messages,
         label=label,
         description=guidance,
+        group_instance=group_instance,
     )
 
 
-def get_year_field(answer, label, guidance, error_messages, answer_store, metadata):
+def get_year_field(answer, label, guidance, error_messages, answer_store, metadata, group_instance=0):
     return YearField(
         answer,
         answer_store,
@@ -138,6 +139,7 @@ def get_year_field(answer, label, guidance, error_messages, answer_store, metada
         error_messages,
         label=label,
         description=guidance,
+        group_instance=group_instance,
     )
 
 
