@@ -316,11 +316,12 @@ def format_household_member_name(names):
 @blueprint.app_template_filter()
 def format_household_member_name_possessive(names):
     name = format_household_member_name(names)
-    last_char = name[-1:]
-    if last_char.lower() == 's':
-        return name + '’'
+    if name:
+        last_char = name[-1:]
+        if last_char.lower() == 's':
+            return name + '’'
 
-    return name + '’s'
+        return name + '’s'
 
 
 @blueprint.app_template_filter()

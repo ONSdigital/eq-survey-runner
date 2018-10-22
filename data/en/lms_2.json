@@ -4591,10 +4591,6 @@
                                             "condition": "not set"
                                         },
                                         {
-                                            "id": "working-days-answer-exclusive",
-                                            "condition": "not set"
-                                        },
-                                        {
                                             "id": "one-job-emp-status-emp-or-self-answer",
                                             "condition": "equals",
                                             "value": "employee"
@@ -4607,10 +4603,6 @@
                                     "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
                                             "id": "working-days-answer",
-                                            "condition": "not set"
-                                        },
-                                        {
-                                            "id": "working-days-answer-exclusive",
                                             "condition": "not set"
                                         },
                                         {
@@ -11758,6 +11750,10 @@
                                             "value": "No"
                                         },
                                         {
+                                            "id": "no-primary-working-days-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
                                             "id": "no-primary-working-days-answer-exclusive",
                                             "condition": "not set"
                                         }
@@ -12218,6 +12214,10 @@
                                 "goto": {
                                     "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
+                                            "id": "no-primary-working-days-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
                                             "id": "no-primary-working-days-answer-exclusive",
                                             "condition": "not set"
                                         },
