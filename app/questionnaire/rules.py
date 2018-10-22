@@ -281,8 +281,8 @@ def _get_when_rule_value(when_rule, group_instance, answer_store, schema, metada
         value = get_answer_store_value(when_rule['id'], answer_store, schema, group_instance, group_instance_id, routing_path=routing_path)
     elif 'meta' in when_rule:
         value = get_metadata_value(metadata, when_rule['meta'])
-    elif 'answer_count' in when_rule:
-        value = answer_store.filter(answer_ids=[when_rule['answer_count']]).count()
+    elif when_rule['type'] == 'answer_count':
+        value = answer_store.filter(answer_ids=when_rule['answer_ids']).count()
     else:
         raise Exception('The when rule is invalid')
 
