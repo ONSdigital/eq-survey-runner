@@ -1851,18 +1851,29 @@
                                 }
                             ],
                             "description": "Please exclude holidays and short visits to the UK",
-                            "type": "General",
+                            "type": "MutuallyExclusive",
+                            "mandatory": false,
                             "answers": [{
-                                "id": "first-arrive-in-uk-answer",
-                                "mandatory": false,
-                                "type": "YearDate",
-                                "maximum": {
-                                    "value": "now"
+                                    "id": "first-arrive-in-uk-answer",
+                                    "mandatory": false,
+                                    "type": "YearDate",
+                                    "maximum": {
+                                        "value": "now"
+                                    },
+                                    "minimum": {
+                                        "answer_id": "date-of-birth-answer"
+                                    }
                                 },
-                                "minimum": {
-                                    "answer_id": "date-of-birth-answer"
+                                {
+                                    "id": "first-arrive-in-uk-answer-exclusive",
+                                    "type": "Checkbox",
+                                    "mandatory": false,
+                                    "options": [{
+                                        "label": "I was born in the UK",
+                                        "value": "I was born in the UK"
+                                    }]
                                 }
-                            }]
+                            ]
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -1870,6 +1881,18 @@
                                     "when": [{
                                         "id": "first-arrive-in-uk-answer",
                                         "condition": "not set"
+                                    }, {
+                                        "id": "first-arrive-in-uk-answer-exclusive",
+                                        "condition": "not set"
+                                    }]
+                                }
+                            }, {
+                                "goto": {
+                                    "block": "national-identity",
+                                    "when": [{
+                                        "id": "first-arrive-in-uk-answer-exclusive",
+                                        "condition": "contains",
+                                        "value": "I was born in the UK"
                                     }]
                                 }
                             },
@@ -8165,56 +8188,6 @@
                         }]
                     },
                     {
-                        "id": "ever-had-a-paid-job-red-1",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "ever-had-a-paid-job-question",
-                            "titles": [{
-                                    "value": "Has <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> ever had a paid job?",
-                                    "when": [{
-                                        "id": "proxy-check-answer",
-                                        "condition": "equals",
-                                        "value": "proxy"
-                                    }]
-                                },
-                                {
-                                    "value": "Have you ever had a paid job?"
-                                }
-                            ],
-                            "type": "General",
-                            "answers": [{
-                                "id": "ever-had-a-paid-job-answer",
-                                "mandatory": false,
-                                "type": "Radio",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "when-left-last-paid-job-red-1-1",
-                                    "when": [{
-                                        "id": "ever-had-a-paid-job-answer",
-                                        "condition": "equals",
-                                        "value": "Yes"
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "enrolled-education-course-qe1"
-                                }
-                            }
-                        ]
-                    },
-                    {
                         "id": "when-left-last-paid-job-red-1-1",
                         "type": "Question",
                         "questions": [{
@@ -8231,7 +8204,8 @@
                                     "value": "When did you leave your last paid job?"
                                 }
                             ],
-                            "type": "General",
+                            "type": "MutuallyExclusive",
+                            "mandatory": false,
                             "answers": [{
                                 "id": "when-left-last-paid-job-answer",
                                 "type": "MonthYearDate",
@@ -8239,9 +8213,33 @@
                                 "maximum": {
                                     "value": "now"
                                 }
+                            }, {
+                                "id": "when-left-last-paid-job-answer-exclusive",
+                                "type": "Checkbox",
+                                "mandatory": false,
+                                "options": [{
+                                    "label": "I have never had a paid job",
+                                    "value": "I have never had a paid job"
+                                }]
                             }]
                         }],
                         "routing_rules": [{
+                            "goto": {
+                                "block": "reason-leaving-paid-job-red4",
+                                "when": [{
+                                    "id": "when-left-last-paid-job-answer",
+                                    "condition": "set"
+                                }]
+                            }
+                        }, {
+                            "goto": {
+                                "block": "enrolled-education-course-qe1",
+                                "when": [{
+                                    "id": "when-left-last-paid-job-answer-exclusive",
+                                    "condition": "set"
+                                }]
+                            }
+                        }, {
                             "goto": {
                                 "block": "reason-leaving-paid-job-red4"
                             }
@@ -9482,7 +9480,8 @@
                                 }
                             ],
                             "description": "Please exclude holidays and short visits to the UK",
-                            "type": "General",
+                            "type": "MutuallyExclusive",
+                            "mandatory": false,
                             "answers": [{
                                 "id": "no-primary-first-arrive-in-uk-answer",
                                 "mandatory": false,
@@ -9493,6 +9492,14 @@
                                 "minimum": {
                                     "answer_id": "no-primary-date-of-birth-answer"
                                 }
+                            }, {
+                                "id": "no-primary-first-arrive-in-uk-answer-exclusive",
+                                "type": "Checkbox",
+                                "mandatory": false,
+                                "options": [{
+                                    "label": "I was born in the UK",
+                                    "value": "I was born in the UK"
+                                }]
                             }]
                         }],
                         "routing_rules": [{
@@ -9501,6 +9508,18 @@
                                     "when": [{
                                         "id": "no-primary-first-arrive-in-uk-answer",
                                         "condition": "not set"
+                                    }, {
+                                        "id": "no-primary-first-arrive-in-uk-answer-exclusive",
+                                        "condition": "not set"
+                                    }]
+                                }
+                            }, {
+                                "goto": {
+                                    "block": "no-primary-national-identity",
+                                    "when": [{
+                                        "id": "no-primary-first-arrive-in-uk-answer-exclusive",
+                                        "condition": "contains",
+                                        "value": "I was born in the UK"
                                     }]
                                 }
                             },
@@ -15794,56 +15813,6 @@
                         }]
                     },
                     {
-                        "id": "no-primary-ever-had-a-paid-job-red-1",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "no-primary-ever-had-a-paid-job-question",
-                            "titles": [{
-                                    "value": "Has <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> ever had a paid job?",
-                                    "when": [{
-                                        "id": "no-primary-proxy-check-answer",
-                                        "condition": "equals",
-                                        "value": "proxy"
-                                    }]
-                                },
-                                {
-                                    "value": "Have you ever had a paid job?"
-                                }
-                            ],
-                            "type": "General",
-                            "answers": [{
-                                "id": "no-primary-ever-had-a-paid-job-answer",
-                                "mandatory": false,
-                                "type": "Radio",
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ]
-                            }]
-                        }],
-                        "routing_rules": [{
-                                "goto": {
-                                    "block": "no-primary-when-left-last-paid-job-red-1-1",
-                                    "when": [{
-                                        "id": "no-primary-ever-had-a-paid-job-answer",
-                                        "condition": "equals",
-                                        "value": "Yes"
-                                    }]
-                                }
-                            },
-                            {
-                                "goto": {
-                                    "block": "no-primary-enrolled-education-course-qe1"
-                                }
-                            }
-                        ]
-                    },
-                    {
                         "id": "no-primary-when-left-last-paid-job-red-1-1",
                         "type": "Question",
                         "questions": [{
@@ -15860,7 +15829,8 @@
                                     "value": "When did you leave your last paid job?"
                                 }
                             ],
-                            "type": "General",
+                            "type": "MutuallyExclusive",
+                            "mandatory": false,
                             "answers": [{
                                 "id": "no-primary-when-left-last-paid-job-answer",
                                 "type": "MonthYearDate",
@@ -15868,9 +15838,33 @@
                                 "maximum": {
                                     "value": "now"
                                 }
+                            }, {
+                                "id": "no-primary-when-left-last-paid-job-answer-exclusive",
+                                "type": "Checkbox",
+                                "mandatory": false,
+                                "options": [{
+                                    "label": "I have never had a paid job",
+                                    "value": "I have never had a paid job"
+                                }]
                             }]
                         }],
                         "routing_rules": [{
+                            "goto": {
+                                "block": "no-primary-reason-leaving-paid-job-red4",
+                                "when": [{
+                                    "id": "no-primary-when-left-last-paid-job-answer",
+                                    "condition": "set"
+                                }]
+                            }
+                        }, {
+                            "goto": {
+                                "block": "no-primary-enrolled-education-course-qe1",
+                                "when": [{
+                                    "id": "no-primary-when-left-last-paid-job-answer-exclusive",
+                                    "condition": "set"
+                                }]
+                            }
+                        }, {
                             "goto": {
                                 "block": "no-primary-reason-leaving-paid-job-red4"
                             }
