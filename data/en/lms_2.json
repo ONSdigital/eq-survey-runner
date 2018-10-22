@@ -90,7 +90,7 @@
                         "questions": [{
                             "id": "address-check-question",
                             "title": "Is this address your main residence?",
-                            "description": "",
+                            "description": "{{ format_address_list ([metadata['address_line1'], metadata['address_line2'], metadata['locality'], metadata['town_name'], metadata['postcode']]) }}",
                             "type": "General",
                             "answers": [{
                                 "id": "primary-household-member-address-check-answer",
