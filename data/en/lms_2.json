@@ -6901,16 +6901,247 @@
                                 }
                             }]
                         }],
-                        "routing_rules": [{
-                            "goto": {
-                                "block": "",
-                                "when": [{
-                                    "id": "",
-                                    "condition": "",
-                                    "value": ""
-                                }]
+                        "routing_rules": [
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [
+                                        {
+                                            "id": "casual-hours-answer",
+                                            "condition": "equals",
+                                            "value": 0
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [
+                                        {
+                                            "id": "casual-hours-answer",
+                                            "condition": "equals",
+                                            "value": 0
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "equals",
+                                            "value": "employee"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [
+                                        {
+                                            "id": "casual-hours-answer",
+                                            "condition": "equals",
+                                            "value": 0
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "equals",
+                                            "value": "employee"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [
+                                        {
+                                            "id": "casual-hours-answer",
+                                            "condition": "equals",
+                                            "value": 0
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [
+                                        {
+                                            "id": "casual-hours-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [
+                                        {
+                                            "id": "casual-hours-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "equals",
+                                            "value": "employee"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [
+                                        {
+                                            "id": "casual-hours-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "equals",
+                                            "value": "employee"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [
+                                        {
+                                            "id": "casual-hours-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "condition": "equals",
+                                            "value": "employee"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "main-job-when-start-working-current-business-red6-emp",
+                                    "when": [
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "equals",
+                                            "value": "employee"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "when-start-working-current-business-red6-semp",
+                                    "when": [
+                                        {
+                                            "id": "overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "one-job-hours-totalized-w13"
+                                }
                             }
-                        }]
+                        ]
                     },
                     {
                         "id": "one-job-hours-totalized-w13",
@@ -14738,7 +14969,248 @@
                                     "value": 168
                                 }
                             }]
-                        }]
+                        }],
+                        "routing_rules": [
+                            {
+                                "goto": {
+                                    "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [
+                                        {
+                                            "id": "no-primary-casual-hours-answer",
+                                            "condition": "equals",
+                                            "value": 0
+                                        },
+                                        {
+                                            "id": "no-primary-overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [
+                                        {
+                                            "id": "no-primary-casual-hours-answer",
+                                            "condition": "equals",
+                                            "value": 0
+                                        },
+                                        {
+                                            "id": "no-primary-overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-answer",
+                                            "condition": "equals",
+                                            "value": "employee"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [
+                                        {
+                                            "id": "no-primary-casual-hours-answer",
+                                            "condition": "equals",
+                                            "value": 0
+                                        },
+                                        {
+                                            "id": "no-primary-overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "equals",
+                                            "value": "employee"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "no-primary-reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [
+                                        {
+                                            "id": "no-primary-casual-hours-answer",
+                                            "condition": "equals",
+                                            "value": 0
+                                        },
+                                        {
+                                            "id": "no-primary-overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [
+                                        {
+                                            "id": "no-primary-casual-hours-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "no-primary-overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [
+                                        {
+                                            "id": "no-primary-casual-hours-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "no-primary-overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-answer",
+                                            "condition": "equals",
+                                            "value": "employee"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
+                                    "when": [
+                                        {
+                                            "id": "no-primary-casual-hours-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "no-primary-overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "equals",
+                                            "value": "employee"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "no-primary-reason-why-fewer-hours-than-usual-self-employed-w14-semp",
+                                    "when": [
+                                        {
+                                            "id": "no-primary-casual-hours-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "no-primary-overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "no-primary-main-job-when-start-working-current-business-red6-emp",
+                                    "when": [
+                                        {
+                                            "id": "no-primary-overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-answer",
+                                            "condition": "not set"
+                                        },
+                                        {
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "no-primary-main-job-when-start-working-current-business-red6-emp",
+                                    "when": [
+                                        {
+                                            "id": "no-primary-overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-answer",
+                                            "condition": "equals",
+                                            "value": "employee"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "no-primary-main-job-when-start-working-current-business-red6-emp",
+                                    "when": [
+                                        {
+                                            "id": "no-primary-overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        },
+                                        {
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "equals",
+                                            "value": "employee"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "no-primary-when-start-working-current-business-red6-semp",
+                                    "when": [
+                                        {
+                                            "id": "no-primary-overtime-answer",
+                                            "condition": "equals",
+                                            "value": "No overtime"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "no-primary-one-job-hours-totalized-w13"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "no-primary-one-job-hours-totalized-w13",
