@@ -589,6 +589,17 @@
                                 "id": "primary-household-member-address-check-answer",
                                 "condition": "not set"
                             }]
+                        }, {
+                            "when": [{
+                                "answer_ids": [
+                                    "primary-household-member-first-name",
+                                    "other-household-member-first-name",
+                                    "student-household-member-first-name"
+                                ],
+                                "type": "answer_count",
+                                "condition": "less than",
+                                "value": 2
+                            }]
                         }
                     ],
                     "blocks": [{
@@ -655,6 +666,16 @@
                             "when": [{
                                 "id": "primary-household-member-address-check-answer",
                                 "condition": "not set"
+                            }]
+                        }, {
+                            "when": [{
+                                "answer_ids": [
+                                    "other-household-member-first-name-no-primary",
+                                    "student-household-member-first-name-no-primary"
+                                ],
+                                "type": "answer_count",
+                                "condition": "less than",
+                                "value": 2
                             }]
                         }
                     ],
