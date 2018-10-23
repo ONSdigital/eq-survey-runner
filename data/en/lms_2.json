@@ -4438,7 +4438,7 @@
                                     "when": [{
                                             "id": "overtime-answer",
                                             "condition": "equals",
-                                            "value": "unpaid overtime"
+                                            "value": "Unpaid overtime"
                                         },
                                         {
                                             "id": "working-casual-work-answer",
@@ -12507,7 +12507,7 @@
                                     "when": [{
                                             "id": "no-primary-overtime-answer",
                                             "condition": "equals",
-                                            "value": "unpaid overtime"
+                                            "value": "Unpaid overtime"
                                         },
                                         {
                                             "id": "no-primary-working-casual-work-answer",
