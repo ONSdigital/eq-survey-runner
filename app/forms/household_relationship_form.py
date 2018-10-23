@@ -125,6 +125,7 @@ def generate_relationship_form(schema, block_json, relationship_choices, data, g
     field = FieldList(RelationshipSelectField(
         label=labels,
         choices=choices,
+        default='',
         validators=get_mandatory_validator(answer, schema.error_messages, 'MANDATORY_TEXTFIELD'),
     ), min_entries=len(relationship_choices))
 
