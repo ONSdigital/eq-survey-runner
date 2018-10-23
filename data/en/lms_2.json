@@ -15802,7 +15802,8 @@
                                     "value": "Did you do any unpaid or voluntary work in the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) , calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}?"
                                 }
                             ],
-                            "type": "General",
+                            "type": "MutuallyExclusive",
+                            "mandatory": false,
                             "answers": [{
                                     "id": "no-primary-unpaid-or-voluntary-work-answer",
                                     "mandatory": false,
