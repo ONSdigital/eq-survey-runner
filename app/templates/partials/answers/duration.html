@@ -5,10 +5,12 @@
   <div class="fieldgroup__fields">
     {% if form.fields[answer.id].years %}
       {% set input = form.fields[answer.id].years %}
+      {% set unit = 'duration-year' %}
       {% include 'partials/answers/duration_unit.html' %}
     {% endif %}
     {% if form.fields[answer.id].months %}
       {% set input = form.fields[answer.id].months %}
+      {% set unit = 'duration-month' %}
       {% include 'partials/answers/duration_unit.html' %}
     {% endif %}
   </div>
