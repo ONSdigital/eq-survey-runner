@@ -998,7 +998,6 @@
                             "value": 1
                         }
                     }],
-                    "description": "<p>If there are two pay days in the same month only give details for one.</p>",
                     "guidance": {
                         "content": [{
                             "title": "Include:",
