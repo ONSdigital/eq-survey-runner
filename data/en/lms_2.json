@@ -762,28 +762,44 @@
                                 "mandatory": true,
                                 "type": "Relationship",
                                 "options": [{
-                                        "label": "Husband or wife",
-                                        "value": "Husband or wife"
+                                        "label": "Husband, wife or same sex civil partner",
+                                        "value": "Husband, wife or same sex civil partner"
                                     },
                                     {
                                         "label": "Partner",
                                         "value": "Partner"
                                     },
                                     {
-                                        "label": "Mother or father",
-                                        "value": "Mother or father"
+                                        "label": "Parent, including adoptive parent",
+                                        "value": "Parent, including adoptive parent"
                                     },
                                     {
-                                        "label": "Son or daughter",
-                                        "value": "Son or daughter"
+                                        "label": "Stepparent",
+                                        "value": "Stepparent"
+                                    },
+                                    {
+                                        "label": "Parent-in-law",
+                                        "value": "Parent-in-law"
+                                    },
+                                    {
+                                        "label": "Son or daughter, including adopted son or daughter",
+                                        "value": "Son or daughter, including adopted son or daughter"
+                                    },
+                                    {
+                                        "label": "Stepson or stepdaughter",
+                                        "value": "Stepson or stepdaughter"
+                                    },
+                                    {
+                                        "label": "Son-in-law or daughter-in-law",
+                                        "value": "Son-in-law or daughter-in-law"
                                     },
                                     {
                                         "label": "Brother or sister",
                                         "value": "Brother or sister"
                                     },
                                     {
-                                        "label": "Relation - other",
-                                        "value": "Relation - other"
+                                        "label": "Stepbrother or stepsister",
+                                        "value": "Stepbrother or stepsister"
                                     },
                                     {
                                         "label": "Grandparent",
@@ -794,8 +810,12 @@
                                         "value": "Grandchild"
                                     },
                                     {
-                                        "label": "Unrelated",
-                                        "value": "Unrelated"
+                                        "label": "Other relative",
+                                        "value": "Other relative"
+                                    },
+                                    {
+                                        "label": "Other non-relative, including foster child or foster parent",
+                                        "value": "Other non-relative, including foster child or foster parent"
                                     }
                                 ]
                             }]
@@ -838,28 +858,44 @@
                                 "mandatory": true,
                                 "type": "Relationship",
                                 "options": [{
-                                        "label": "Husband or wife",
-                                        "value": "Husband or wife"
+                                        "label": "Husband, wife or same sex civil partner",
+                                        "value": "Husband, wife or same sex civil partner"
                                     },
                                     {
                                         "label": "Partner",
                                         "value": "Partner"
                                     },
                                     {
-                                        "label": "Mother or father",
-                                        "value": "Mother or father"
+                                        "label": "Parent, including adoptive parent",
+                                        "value": "Parent, including adoptive parent"
                                     },
                                     {
-                                        "label": "Son or daughter",
-                                        "value": "Son or daughter"
+                                        "label": "Stepparent",
+                                        "value": "Stepparent"
+                                    },
+                                    {
+                                        "label": "Parent-in-law",
+                                        "value": "Parent-in-law"
+                                    },
+                                    {
+                                        "label": "Son or daughter, including adopted son or daughter",
+                                        "value": "Son or daughter, including adopted son or daughter"
+                                    },
+                                    {
+                                        "label": "Stepson or stepdaughter",
+                                        "value": "Stepson or stepdaughter"
+                                    },
+                                    {
+                                        "label": "Son-in-law or daughter-in-law",
+                                        "value": "Son-in-law or daughter-in-law"
                                     },
                                     {
                                         "label": "Brother or sister",
                                         "value": "Brother or sister"
                                     },
                                     {
-                                        "label": "Relation - other",
-                                        "value": "Relation - other"
+                                        "label": "Stepbrother or stepsister",
+                                        "value": "Stepbrother or stepsister"
                                     },
                                     {
                                         "label": "Grandparent",
@@ -870,8 +906,12 @@
                                         "value": "Grandchild"
                                     },
                                     {
-                                        "label": "Unrelated",
-                                        "value": "Unrelated"
+                                        "label": "Other relative",
+                                        "value": "Other relative"
+                                    },
+                                    {
+                                        "label": "Other non-relative, including foster child or foster parent",
+                                        "value": "Other non-relative, including foster child or foster parent"
                                     }
                                 ]
                             }]
