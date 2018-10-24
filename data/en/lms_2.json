@@ -4811,10 +4811,10 @@
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "one-job-emp-status-emp-or-self-answer",
-                                        "value": "employee"
-                                    },
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
                                         {
                                             "id": "one-job-usual-hours-answer",
                                             "condition": "not set"
@@ -4852,10 +4852,10 @@
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "one-job-emp-status-emp-or-self-proxy-answer",
-                                        "value": "employee"
-                                    },
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
                                         {
                                             "id": "one-job-usual-hours-answer",
                                             "condition": "not set"
@@ -4896,9 +4896,9 @@
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "id": "one-job-emp-status-emp-or-self-proxy-answer",
-                                        "condition": "not set"
-                                    },
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        },
                                         {
                                             "id": "one-job-emp-status-emp-or-self-answer",
                                             "condition": "not set"
@@ -5051,10 +5051,10 @@
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "one-job-emp-status-emp-or-self-answer",
-                                        "value": "Self-employed"
-                                    },
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
                                         {
                                             "id": "one-job-usual-hours-answer",
                                             "condition": "not set"
@@ -5092,10 +5092,10 @@
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "one-job-emp-status-emp-or-self-proxy-answer",
-                                        "value": "Self-employed"
-                                    },
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
                                         {
                                             "id": "one-job-usual-hours-answer",
                                             "condition": "not set"
@@ -5217,10 +5217,10 @@
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "one-job-emp-status-emp-or-self-answer",
-                                        "value": "employee"
-                                    },
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
                                         {
                                             "id": "one-job-usual-hours-answer",
                                             "condition": "not set"
@@ -5256,10 +5256,10 @@
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "one-job-emp-status-emp-or-self-proxy-answer",
-                                        "value": "employee"
-                                    },
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
                                         {
                                             "id": "one-job-usual-hours-answer",
                                             "condition": "not set"
@@ -5295,9 +5295,9 @@
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "id": "one-job-emp-status-emp-or-self-proxy-answer",
-                                        "condition": "not set"
-                                    },
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        },
                                         {
                                             "id": "one-job-emp-status-emp-or-self-answer",
                                             "condition": "not set"
@@ -5466,10 +5466,10 @@
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "one-job-emp-status-emp-or-self-answer",
-                                        "value": "Self-employed"
-                                    },
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
                                         {
                                             "id": "one-job-usual-hours-answer",
                                             "condition": "not set"
@@ -5505,10 +5505,10 @@
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "one-job-emp-status-emp-or-self-proxy-answer",
-                                        "value": "Self-employed"
-                                    },
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
                                         {
                                             "id": "one-job-usual-hours-answer",
                                             "condition": "not set"
@@ -5684,10 +5684,10 @@
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "one-job-emp-status-emp-or-self-answer",
-                                        "value": "employee"
-                                    },
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
                                         {
                                             "id": "overtime-answer",
                                             "condition": "equals",
@@ -5700,10 +5700,10 @@
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "one-job-emp-status-emp-or-self-proxy-answer",
-                                        "value": "employee"
-                                    },
+                                            "condition": "equals",
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
                                         {
                                             "id": "overtime-answer",
                                             "condition": "equals",
@@ -5716,9 +5716,9 @@
                                 "goto": {
                                     "block": "main-job-when-start-working-current-business-red6-emp",
                                     "when": [{
-                                        "id": "one-job-emp-status-emp-or-self-proxy-answer",
-                                        "condition": "not set"
-                                    },
+                                            "id": "one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        },
                                         {
                                             "id": "one-job-emp-status-emp-or-self-answer",
                                             "condition": "not set"
@@ -5734,13 +5734,11 @@
                             {
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-self-employed-w14-semp",
-                                    "when": [
-                                        {
-                                            "id": "overtime-answer",
-                                            "condition": "equals",
-                                            "value": "No overtime"
-                                        }
-                                    ]
+                                    "when": [{
+                                        "id": "overtime-answer",
+                                        "condition": "equals",
+                                        "value": "No overtime"
+                                    }]
                                 }
                             },
                             {
@@ -6331,12 +6329,10 @@
                                 }
                             }]
                         }],
-                        "routing_rules": [
-                            {
+                        "routing_rules": [{
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
-                                    "when": [
-                                        {
+                                    "when": [{
                                             "id": "casual-hours-answer",
                                             "condition": "equals",
                                             "value": 0
@@ -6352,8 +6348,7 @@
                             {
                                 "goto": {
                                     "block": "reason-why-fewer-hours-than-usual-employee-w14-emp",
-                                    "when": [
-                                        {
+                                    "when": [{
                                             "id": "casual-hours-answer",
                                             "condition": "not set"
                                         },
@@ -6368,13 +6363,11 @@
                             {
                                 "goto": {
                                     "block": "main-job-when-start-working-current-business-red6-emp",
-                                    "when": [
-                                        {
-                                            "id": "overtime-answer",
-                                            "condition": "equals",
-                                            "value": "No overtime"
-                                        }
-                                    ]
+                                    "when": [{
+                                        "id": "overtime-answer",
+                                        "condition": "equals",
+                                        "value": "No overtime"
+                                    }]
                                 }
                             },
                             {
@@ -12121,10 +12114,10 @@
                                 "goto": {
                                     "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "no-primary-one-job-emp-status-emp-or-self-answer",
-                                        "value": "employee"
-                                    },
+                                            "condition": "equals",
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
                                         {
                                             "id": "no-primary-one-job-usual-hours-answer",
                                             "condition": "not set"
@@ -12162,10 +12155,10 @@
                                 "goto": {
                                     "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
-                                        "value": "employee"
-                                    },
+                                            "condition": "equals",
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
                                         {
                                             "id": "no-primary-one-job-usual-hours-answer",
                                             "condition": "not set"
@@ -12206,9 +12199,9 @@
                                 "goto": {
                                     "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
-                                        "condition": "not set"
-                                    },
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        },
                                         {
                                             "id": "no-primary-one-job-emp-status-emp-or-self-answer",
                                             "condition": "not set"
@@ -12361,10 +12354,10 @@
                                 "goto": {
                                     "block": "no-primary-reason-why-fewer-hours-than-usual-self-employed-w14-semp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "no-primary-one-job-emp-status-emp-or-self-answer",
-                                        "value": "Self-employed"
-                                    },
+                                            "condition": "equals",
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
                                         {
                                             "id": "no-primary-one-job-usual-hours-answer",
                                             "condition": "not set"
@@ -12402,10 +12395,10 @@
                                 "goto": {
                                     "block": "no-primary-reason-why-fewer-hours-than-usual-self-employed-w14-semp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
-                                        "value": "Self-employed"
-                                    },
+                                            "condition": "equals",
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
                                         {
                                             "id": "no-primary-one-job-usual-hours-answer",
                                             "condition": "not set"
@@ -12527,10 +12520,10 @@
                                 "goto": {
                                     "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "no-primary-one-job-emp-status-emp-or-self-answer",
-                                        "value": "employee"
-                                    },
+                                            "condition": "equals",
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
                                         {
                                             "id": "no-primary-one-job-usual-hours-answer",
                                             "condition": "not set"
@@ -12566,10 +12559,10 @@
                                 "goto": {
                                     "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
-                                        "value": "employee"
-                                    },
+                                            "condition": "equals",
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
                                         {
                                             "id": "no-primary-one-job-usual-hours-answer",
                                             "condition": "not set"
@@ -12605,9 +12598,9 @@
                                 "goto": {
                                     "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
-                                        "condition": "not set"
-                                    },
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        },
                                         {
                                             "id": "no-primary-one-job-emp-status-emp-or-self-answer",
                                             "condition": "not set"
@@ -12776,10 +12769,10 @@
                                 "goto": {
                                     "block": "no-primary-reason-why-fewer-hours-than-usual-self-employed-w14-semp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "no-primary-one-job-emp-status-emp-or-self-answer",
-                                        "value": "Self-employed"
-                                    },
+                                            "condition": "equals",
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-answer",
+                                            "value": "Self-employed"
+                                        },
                                         {
                                             "id": "no-primary-one-job-usual-hours-answer",
                                             "condition": "not set"
@@ -12815,10 +12808,10 @@
                                 "goto": {
                                     "block": "no-primary-reason-why-fewer-hours-than-usual-self-employed-w14-semp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
-                                        "value": "Self-employed"
-                                    },
+                                            "condition": "equals",
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "Self-employed"
+                                        },
                                         {
                                             "id": "no-primary-one-job-usual-hours-answer",
                                             "condition": "not set"
@@ -12971,15 +12964,15 @@
                             }]
                         }],
                         "routing_rules": [{
-                            "goto": {
-                                "block": "no-primary-one-job-actual-hours-w12",
-                                "when": [{
-                                    "id": "no-primary-one-job-actual-hours-confirmation-answer",
-                                    "condition": "equals",
-                                    "value": "No"
-                                }]
-                            }
-                        },
+                                "goto": {
+                                    "block": "no-primary-one-job-actual-hours-w12",
+                                    "when": [{
+                                        "id": "no-primary-one-job-actual-hours-confirmation-answer",
+                                        "condition": "equals",
+                                        "value": "No"
+                                    }]
+                                }
+                            },
                             {
                                 "goto": {
                                     "block": "no-primary-main-job-when-start-working-current-business-red6-emp",
@@ -12994,10 +12987,10 @@
                                 "goto": {
                                     "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "no-primary-one-job-emp-status-emp-or-self-answer",
-                                        "value": "employee"
-                                    },
+                                            "condition": "equals",
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-answer",
+                                            "value": "employee"
+                                        },
                                         {
                                             "id": "no-primary-overtime-answer",
                                             "condition": "equals",
@@ -13010,10 +13003,10 @@
                                 "goto": {
                                     "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
                                     "when": [{
-                                        "condition": "equals",
-                                        "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
-                                        "value": "employee"
-                                    },
+                                            "condition": "equals",
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
+                                            "value": "employee"
+                                        },
                                         {
                                             "id": "no-primary-overtime-answer",
                                             "condition": "equals",
@@ -13026,9 +13019,9 @@
                                 "goto": {
                                     "block": "no-primary-main-job-when-start-working-current-business-red6-emp",
                                     "when": [{
-                                        "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
-                                        "condition": "not set"
-                                    },
+                                            "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
+                                            "condition": "not set"
+                                        },
                                         {
                                             "id": "no-primary-one-job-emp-status-emp-or-self-answer",
                                             "condition": "not set"
@@ -13044,13 +13037,11 @@
                             {
                                 "goto": {
                                     "block": "no-primary-reason-why-fewer-hours-than-usual-self-employed-w14-semp",
-                                    "when": [
-                                        {
-                                            "id": "no-primary-overtime-answer",
-                                            "condition": "equals",
-                                            "value": "No overtime"
-                                        }
-                                    ]
+                                    "when": [{
+                                        "id": "no-primary-overtime-answer",
+                                        "condition": "equals",
+                                        "value": "No overtime"
+                                    }]
                                 }
                             },
                             {
@@ -13641,12 +13632,10 @@
                                 }
                             }]
                         }],
-                        "routing_rules": [
-                            {
+                        "routing_rules": [{
                                 "goto": {
                                     "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
-                                    "when": [
-                                        {
+                                    "when": [{
                                             "id": "no-primary-casual-hours-answer",
                                             "condition": "equals",
                                             "value": 0
@@ -13662,8 +13651,7 @@
                             {
                                 "goto": {
                                     "block": "no-primary-reason-why-fewer-hours-than-usual-employee-w14-emp",
-                                    "when": [
-                                        {
+                                    "when": [{
                                             "id": "no-primary-casual-hours-answer",
                                             "condition": "not set"
                                         },
@@ -13678,13 +13666,11 @@
                             {
                                 "goto": {
                                     "block": "no-primary-main-job-when-start-working-current-business-red6-emp",
-                                    "when": [
-                                        {
-                                            "id": "no-primary-overtime-answer",
-                                            "condition": "equals",
-                                            "value": "No overtime"
-                                        }
-                                    ]
+                                    "when": [{
+                                        "id": "no-primary-overtime-answer",
+                                        "condition": "equals",
+                                        "value": "No overtime"
+                                    }]
                                 }
                             },
                             {
