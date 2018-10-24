@@ -16211,7 +16211,7 @@
                         "questions": [{
                             "id": "thank-you-question",
                             "title": "Diolch, bron â gorffen.",
-                            "description": "Mae eich cyfraniad hyd yma wedi bod yn werthfawr iawn. Cyn i chi gyflwyno eich atebion, rhowch gyfeiriad e-bost ac/neu rif ffôn - efallai y byddwn yn cysylltu â chi eto i gymryd rhan mewn ymchwil yn y dyfodol i’n helpu i wella’r gwasanaeth hwn.",
+                            "description": "Mae eich cyfraniad hyd at hyn wedi fod un gwerthfawr. Cyn i chi gyflawni eich atebion, a all ni gofyn i chi rhoi eich gyfeiriad e-bost a/neu rhif ffôn, mae yna siawns byddwn yn gofyn i chi cymrud rhan mewn ymchwil at ryw bryd cyn 2024, ar ôl hyn bydd eich manylion yn cael ei dileu.",
                             "type": "General",
                             "answers": [{
                                     "id": "phone-number",
