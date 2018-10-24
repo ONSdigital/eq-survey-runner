@@ -299,8 +299,9 @@ class TestFields(AppContextTestCase):
             ]
         }
 
-        unbound_field = get_field(dropdown_json, dropdown_json['label'], error_messages, self.answer_store,
-                                  self.metadata)
+        with self.app_request_context('/'):
+            unbound_field = get_field(dropdown_json, dropdown_json['label'], error_messages, self.answer_store,
+                                      self.metadata)
 
         expected_choices = [('', 'Select an answer')] + \
                            [(option['label'], option['value']) for option in dropdown_json['options']]

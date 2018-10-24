@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-18 15:21+0100\n"
+"POT-Creation-Date: 2018-10-24 10:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,8 +42,16 @@ msgstr ""
 msgid "%(from_date)s to %(to_date)s"
 msgstr ""
 
-#: app/forms/date_form.py:215
+#: app/forms/date_form.py:216
 msgid "Select month"
+msgstr ""
+
+#: app/forms/fields.py:180
+msgid "Select an answer"
+msgstr ""
+
+#: app/forms/household_relationship_form.py:119
+msgid "Select relationship"
 msgstr ""
 
 #: app/templates/confirmation.html:3 app/templates/confirmation.html:12
@@ -80,16 +88,19 @@ msgid "It is now safe to close this window"
 msgstr ""
 
 #: app/templates/introduction.html:26
+#: app/themes/northernireland/templates/introduction.html:22
 #, python-format
 msgid "You are completing this for <span>%(ru_name)s</span> (%(trading_as_name)s)"
 msgstr ""
 
 #: app/templates/introduction.html:30
+#: app/themes/northernireland/templates/introduction.html:26
 #, python-format
 msgid "You are completing this for <span>%(ru_name)s</span>"
 msgstr ""
 
 #: app/templates/introduction.html:35
+#: app/themes/northernireland/templates/introduction.html:30
 #, python-format
 msgid ""
 "If the company details or structure have changed contact us on "

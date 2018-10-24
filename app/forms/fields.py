@@ -1,5 +1,5 @@
 from decimal import Decimal
-
+from flask_babel import gettext as _
 from structlog import get_logger
 from wtforms import FormField, SelectField, SelectMultipleField, StringField
 from wtforms import validators
@@ -177,7 +177,7 @@ def get_dropdown_field(answer, label, guidance, error_messages):
     return SelectField(
         label=label,
         description=guidance,
-        choices=[('', 'Select an answer')] + build_choices(answer['options']),
+        choices=[('', _('Select an answer'))] + build_choices(answer['options']),
         default='',
         validators=validate_with,
     )

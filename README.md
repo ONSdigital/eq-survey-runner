@@ -212,7 +212,7 @@ eb open
 We use flask-babel to do internationalisation.  To extract messages from source, in the project root run the following command.
 
 ```
-pybabel extract -F babel.cfg -o app/translations/messages.pot .
+pipenv run pybabel extract -F babel.cfg -o app/translations/messages.pot .
 ```
 
 This will extract messages and place them in the translations/messages.pot file ready for translation.
@@ -222,13 +222,13 @@ You should only need to create the language files once.
 To create Welsh language files, run the following command
 
 ```
-pybabel init -i app/translations/messages.pot -d app/translations -l cy
+pipenv run pybabel init -i app/translations/messages.pot -d app/translations -l cy
 ```
 
 To create the gaelic language files, use the following:
 
 ```
-pybabel init -i app/translations/messages.pot -d app/translations -l gd
+pipenv run pybabel init -i app/translations/messages.pot -d app/translations -l gd
 ```
 
 ### Getting text translated
@@ -240,12 +240,12 @@ brew install translate-toolkit
 
 To generate the .csv file:
 ```
-po2csv app/translations/cy/LC_MESSAGES/messages.po cy.csv
+po2csv app/translations/cy/LC_MESSAGES/messages.po app.translations/static-cy.csv
 ```
 
 To convert back to a .po file:
 ```
-csv2po cy.csv app/translations/cy/LC_MESSAGES/messages.po
+csv2po app.translations/static-cy.csv app/translations/cy/LC_MESSAGES/messages.po
 ```
 
 *Important:* There are some encoding issues when opening the .csv file in Excel. Opening in Google sheets and saving as a .xslx file resolves this.
@@ -255,14 +255,14 @@ csv2po cy.csv app/translations/cy/LC_MESSAGES/messages.po
 To compile the language files for use in the application, use the following:
 
 ```
-pybabel compile -d app/translations
+pipenv run pybabel compile -d app/translations
 ```
 
 As strings are added to the application, you will need to update but not overwrite the translations for the various languages.
 To update the language strings, use:
 
 ```
-pybabel update -i app/translations/messages.pot -d app/translations
+pipenv run pybabel update -i app/translations/messages.pot -d app/translations
 ```
 
 ## Environment Variables

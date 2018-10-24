@@ -1,3 +1,4 @@
+from flask_babel import gettext as _
 from flask_wtf import FlaskForm
 from wtforms import FieldList, SelectField, Label
 from wtforms.compat import text_type
@@ -115,7 +116,7 @@ def generate_relationship_form(schema, block_json, relationship_choices, data, g
 
             return serialise_relationship_answers(answer['id'], list_field.data, group_instance, group_instance_id)
 
-    choices = [('', 'Select relationship')] + build_choices(answer['options'])
+    choices = [('', _('Select relationship'))] + build_choices(answer['options'])
 
     labels = []
 
