@@ -16191,7 +16191,7 @@
                         "questions": [{
                             "id": "thank-you-question",
                             "title": "Thank you, you're almost done.",
-                            "description": "Your contribution so far has been invaluable. Before you submit your answers, please provide an email address and/or a phone number - you may be re-contacted to take part in future research to help us to improve this service.",
+                            "description": "Your contribution so far has been invaluable. Before you submit your answers, please provide an email address and/or phone number. We may use these details to ask you to take part in future research at some point before 2024, after which the details will be deleted.",
                             "type": "General",
                             "answers": [{
                                     "id": "phone-number",
