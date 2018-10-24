@@ -66,14 +66,14 @@
                             "answers": [{
                                     "id": "primary-household-member-first-name",
                                     "description": "",
-                                    "label": "Fy nghyfenw neu enw teulu:",
+                                    "label": "Fy enw cyntaf neu fy enw bedydd",
                                     "mandatory": true,
                                     "type": "TextField"
                                 },
                                 {
                                     "id": "primary-household-member-last-name",
                                     "description": "",
-                                    "label": "Fy nghyfenw neu enw teulu:",
+                                    "label": "Fy nghyfenw neu enw teulu",
                                     "mandatory": true,
                                     "type": "TextField"
                                 }
@@ -764,28 +764,44 @@
                                 "mandatory": true,
                                 "type": "Relationship",
                                 "options": [{
-                                        "label": "Gŵr neu wraig",
-                                        "value": "Husband or wife"
+                                        "label": "Gŵr, gwraig neu bartner sifil o’r un rhyw",
+                                        "value": "Husband, wife or same sex civil partner"
                                     },
                                     {
                                         "label": "Partner",
                                         "value": "Partner"
                                     },
                                     {
-                                        "label": "Mam neu dad",
-                                        "value": "Mother or father"
+                                        "label": "Rhiant, yn cynnwys rhiant mabwysiadol",
+                                        "value": "Parent, including adoptive parent"
                                     },
                                     {
-                                        "label": "Mab neu ferch",
-                                        "value": "Son or daughter"
+                                        "label": "Llys-riant",
+                                        "value": "Stepparent"
+                                    },
+                                    {
+                                        "label": "Rhiant-yng-nghyfraith",
+                                        "value": "Parent-in-law"
+                                    },
+                                    {
+                                        "label": "Mab neu ferch, yn cynnwys mabwysiedig",
+                                        "value": "Son or daughter, including adopted son or daughter"
+                                    },
+                                    {
+                                        "label": "Llysfab neu lysferch",
+                                        "value": "Stepson or stepdaughter"
+                                    },
+                                    {
+                                        "label": "Mab-yng-nghyfraith neu ferch-yng-nghyfraith",
+                                        "value": "Son-in-law or daughter-in-law"
                                     },
                                     {
                                         "label": "Brawd neu chwaer",
                                         "value": "Brother or sister"
                                     },
                                     {
-                                        "label": "Perthynas arall",
-                                        "value": "Relation - other"
+                                        "label": "Llysfrawd neu lyschwaer",
+                                        "value": "Stepbrother or stepsister"
                                     },
                                     {
                                         "label": "Nain neu daid / mam-gu neu dad-cu",
@@ -796,8 +812,12 @@
                                         "value": "Grandchild"
                                     },
                                     {
-                                        "label": "Rhywun arall nad yw’n berthynas",
-                                        "value": "Unrelated"
+                                        "label": "Perthynas arall",
+                                        "value": "Other relative"
+                                    },
+                                    {
+                                        "label": "Rhywun arall nad yw’n berthynas, yn cynnwys plentyn maeth neu riant maeth",
+                                        "value": "Other non-relative, including foster child or foster parent"
                                     }
                                 ]
                             }]
@@ -840,28 +860,44 @@
                                 "mandatory": true,
                                 "type": "Relationship",
                                 "options": [{
-                                        "label": "Gŵr neu wraig",
-                                        "value": "Husband or wife"
+                                        "label": "Gŵr, gwraig neu bartner sifil o’r un rhyw",
+                                        "value": "Husband, wife or same sex civil partner"
                                     },
                                     {
                                         "label": "Partner",
                                         "value": "Partner"
                                     },
                                     {
-                                        "label": "Mam neu dad",
-                                        "value": "Mother or father"
+                                        "label": "Rhiant, yn cynnwys rhiant mabwysiadol",
+                                        "value": "Parent, including adoptive parent"
                                     },
                                     {
-                                        "label": "Mab neu ferch",
-                                        "value": "Son or daughter"
+                                        "label": "Llys-riant",
+                                        "value": "Stepparent"
+                                    },
+                                    {
+                                        "label": "Rhiant-yng-nghyfraith",
+                                        "value": "Parent-in-law"
+                                    },
+                                    {
+                                        "label": "Mab neu ferch, yn cynnwys mabwysiedig",
+                                        "value": "Son or daughter, including adopted son or daughter"
+                                    },
+                                    {
+                                        "label": "Llysfab neu lysferch",
+                                        "value": "Stepson or stepdaughter"
+                                    },
+                                    {
+                                        "label": "Mab-yng-nghyfraith neu ferch-yng-nghyfraith",
+                                        "value": "Son-in-law or daughter-in-law"
                                     },
                                     {
                                         "label": "Brawd neu chwaer",
                                         "value": "Brother or sister"
                                     },
                                     {
-                                        "label": "Perthynas arall",
-                                        "value": "Relation - other"
+                                        "label": "Llysfrawd neu lyschwaer",
+                                        "value": "Stepbrother or stepsister"
                                     },
                                     {
                                         "label": "Nain neu daid / mam-gu neu dad-cu",
@@ -872,8 +908,12 @@
                                         "value": "Grandchild"
                                     },
                                     {
-                                        "label": "Rhywun arall nad yw’n berthynas",
-                                        "value": "Unrelated"
+                                        "label": "Perthynas arall",
+                                        "value": "Other relative"
+                                    },
+                                    {
+                                        "label": "Rhywun arall nad yw’n berthynas, yn cynnwys plentyn maeth neu riant maeth",
+                                        "value": "Other non-relative, including foster child or foster parent"
                                     }
                                 ]
                             }]
@@ -1891,7 +1931,7 @@
                                     "type": "Checkbox",
                                     "mandatory": false,
                                     "options": [{
-                                        "label": "I was born in the UK",
+                                        "label": "Cefais fy ngeni yn y DU",
                                         "value": "I was born in the UK"
                                     }]
                                 }
@@ -3285,7 +3325,7 @@
                         "questions": [{
                             "id": "religion-question",
                             "titles": [{
-                                    "value": "Beth yw crefydd<em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name_possessive}}</em> ?",
+                                    "value": "Beth yw crefydd <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name_possessive}}</em> ?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -3732,7 +3772,7 @@
                             "answers": [{
                                     "id": "one-job-emp-status-emp-or-self-proxy-answer",
                                     "mandatory": false,
-                                    "label": "Are they an employee or self-employed?",
+                                    "label": "A ydynt yn gyflogai neu’n hunangyflogedig?",
                                     "type": "Radio",
                                     "options": [{
                                             "label": "Cyflogai",
@@ -3823,7 +3863,7 @@
                         "questions": [{
                             "id": "working-hours-question",
                             "titles": [{
-                                    "value": "These are specific working arrangements that only apply to some people. Does <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> have any of the following?",
+                                    "value": "Mae’r rhain yn drefniadau gwaith penodol sydd ddim ond yn berthnasol i rai pobl. A oes gan <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> unrhyw un o’r canlynol…",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -6130,7 +6170,7 @@
                         "questions": [{
                             "id": "two-jobs-j1-unpaid-overtime-question",
                             "titles": [{
-                                    "value": "In their <em>main</em> job, how many hours of <em>unpaid</em> overtime did {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} actually work in that week?",
+                                    "value": "Yn ei <em>brif/phrif</em> swydd, sawl awr o oramser <em>di-dâl</em> wnaeth {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} ei weithio yn ystod yr wythnos honno?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -7003,7 +7043,7 @@
                         "id": "two-jobs-hours-totalized-w13-1",
                         "type": "CalculatedSummary",
                         "titles": [{
-                                "value": "We calculate the total number of hours that <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked in their main and second jobs, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct?",
+                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithiodd <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> yn ei brif/phrif swydd ac ail swydd, yn cynnwys goramser, yn %(total)s ar gyfer yr wythnos {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. A yw hyn yn gywir?",
                                 "when": [{
                                     "id": "proxy-check-answer",
                                     "condition": "equals",
@@ -8244,7 +8284,7 @@
                                     "type": "Checkbox",
                                     "mandatory": false,
                                     "options": [{
-                                        "label": "I have never had a paid job",
+                                        "label": "Nid wyf erioed wedi cael swydd sy’n talu",
                                         "value": "I have never had a paid job"
                                     }]
                                 }
@@ -9528,7 +9568,7 @@
                                     "type": "Checkbox",
                                     "mandatory": false,
                                     "options": [{
-                                        "label": "I was born in the UK",
+                                        "label": "Cefais fy ngeni yn y DU",
                                         "value": "I was born in the UK"
                                     }]
                                 }
@@ -10922,7 +10962,7 @@
                         "questions": [{
                             "id": "no-primary-religion-question",
                             "titles": [{
-                                    "value": "Beth yw crefydd<em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name_possessive}}</em> ?",
+                                    "value": "Beth yw crefydd <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name_possessive}}</em> ?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -11369,7 +11409,7 @@
                             "answers": [{
                                     "id": "no-primary-one-job-emp-status-emp-or-self-proxy-answer",
                                     "mandatory": false,
-                                    "label": "Are they an employee or self-employed?",
+                                    "label": "A ydynt yn gyflogai neu’n hunangyflogedig?",
                                     "type": "Radio",
                                     "options": [{
                                             "label": "Cyflogai",
@@ -14355,7 +14395,7 @@
                                 }]
                             },
                             {
-                                "value": "We calculate the total number of hours that you worked in your job, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct?"
+                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithioch chi yn eich swydd, yn cynnwys goramser, yn %(total)s awr ar gyfer {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. <br/>A yw hyn yn gywir?"
                             }
                         ],
                         "calculation": {
@@ -14640,7 +14680,7 @@
                         "id": "no-primary-two-jobs-hours-totalized-w13-1",
                         "type": "CalculatedSummary",
                         "titles": [{
-                                "value": "We calculate the total number of hours that <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> worked in their main and second jobs, including overtime, to be %(total)s for the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. Is this correct?",
+                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithiodd <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> yn ei brif/phrif swydd ac ail swydd, yn cynnwys goramser, yn %(total)s ar gyfer yr wythnos {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. A yw hyn yn gywir?",
                                 "when": [{
                                     "id": "no-primary-proxy-check-answer",
                                     "condition": "equals",
@@ -15881,7 +15921,7 @@
                                     "type": "Checkbox",
                                     "mandatory": false,
                                     "options": [{
-                                        "label": "I have never had a paid job",
+                                        "label": "Nid wyf erioed wedi cael swydd sy’n talu",
                                         "value": "I have never had a paid job"
                                     }]
                                 }
