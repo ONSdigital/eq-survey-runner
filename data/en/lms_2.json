@@ -1929,8 +1929,8 @@
                                     "type": "Checkbox",
                                     "mandatory": false,
                                     "options": [{
-                                        "label": "I was born in the UK",
-                                        "value": "I was born in the UK"
+                                        "label": "Born in the UK",
+                                        "value": "Born in the UK"
                                     }]
                                 }
                             ]
@@ -1952,7 +1952,7 @@
                                     "when": [{
                                         "id": "first-arrive-in-uk-answer-exclusive",
                                         "condition": "contains",
-                                        "value": "I was born in the UK"
+                                        "value": "Born in the UK"
                                     }]
                                 }
                             },
@@ -8278,8 +8278,8 @@
                                 "type": "Checkbox",
                                 "mandatory": false,
                                 "options": [{
-                                    "label": "I have never had a paid job",
-                                    "value": "I have never had a paid job"
+                                    "label": "Never had a paid job",
+                                    "value": "Never had a paid job"
                                 }]
                             }]
                         }],
@@ -9557,8 +9557,8 @@
                                 "type": "Checkbox",
                                 "mandatory": false,
                                 "options": [{
-                                    "label": "I was born in the UK",
-                                    "value": "I was born in the UK"
+                                    "label": "Born in the UK",
+                                    "value": "Born in the UK"
                                 }]
                             }]
                         }],
@@ -9579,7 +9579,7 @@
                                     "when": [{
                                         "id": "no-primary-first-arrive-in-uk-answer-exclusive",
                                         "condition": "contains",
-                                        "value": "I was born in the UK"
+                                        "value": "Born in the UK"
                                     }]
                                 }
                             },
@@ -15905,8 +15905,8 @@
                                 "type": "Checkbox",
                                 "mandatory": false,
                                 "options": [{
-                                    "label": "I have never had a paid job",
-                                    "value": "I have never had a paid job"
+                                    "label": "Never had a paid job",
+                                    "value": "Never had a paid job"
                                 }]
                             }]
                         }],

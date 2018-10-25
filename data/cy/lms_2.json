@@ -500,13 +500,13 @@
                                 "type": "General",
                                 "answers": [{
                                         "id": "student-household-member-first-name-no-primary",
-                                        "label": "Fy enw cyntaf neu fy enw bedydd",
+                                        "label": "Enw cyntaf neu fy enw bedydd",
                                         "mandatory": true,
                                         "type": "TextField"
                                     },
                                     {
                                         "id": "student-household-member-last-name-no-primary",
-                                        "label": "Fy nghyfenw neu enw teulu",
+                                        "label": "Cyfenw neu enw teulu",
                                         "mandatory": true,
                                         "type": "TextField"
                                     }
@@ -808,7 +808,7 @@
                                         "value": "Grandparent"
                                     },
                                     {
-                                        "label": "ŵyr/wyres",
+                                        "label": "Ŵyr/wyres",
                                         "value": "Grandchild"
                                     },
                                     {
@@ -904,7 +904,7 @@
                                         "value": "Grandparent"
                                     },
                                     {
-                                        "label": "ŵyr/wyres",
+                                        "label": "Ŵyr/wyres",
                                         "value": "Grandchild"
                                     },
                                     {
@@ -1005,7 +1005,7 @@
                         "questions": [{
                             "id": "alternative-address-question",
                             "titles": [{
-                                    "value": "A yw <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> yn byw mewn unrhyw gyfeiriadau eraill am ran o’r flwyddyn ar hyn o bryd??",
+                                    "value": "A yw <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> yn byw mewn unrhyw gyfeiriadau eraill am ran o’r flwyddyn ar hyn o bryd?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -1183,7 +1183,7 @@
                         "questions": [{
                             "id": "sex-question",
                             "titles": [{
-                                    "value": "Beth yw rhyme <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name_possessive}}</em>?",
+                                    "value": "Beth yw rhyw <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name_possessive}}</em>?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -1931,8 +1931,8 @@
                                     "type": "Checkbox",
                                     "mandatory": false,
                                     "options": [{
-                                        "label": "Cefais fy ngeni yn y DU",
-                                        "value": "I was born in the UK"
+                                        "label": "Ganed yn y DU",
+                                        "value": "Born in the UK"
                                     }]
                                 }
                             ]
@@ -1957,7 +1957,7 @@
                                     "when": [{
                                         "id": "first-arrive-in-uk-answer-exclusive",
                                         "condition": "contains",
-                                        "value": "I was born in the UK"
+                                        "value": "Born in the UK"
                                     }]
                                 }
                             },
@@ -1982,7 +1982,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Ar wahân i wyliau ac ymweliadau byr dramor, a ydych chi wedi byd yn barhaus yn y Deyrnas Unedig ers {{ answers['first-arrive-in-uk-answer'][group_instance]|format_date }}?"
+                                    "value": "Ar wahân i wyliau ac ymweliadau byr dramor, a ydych chi wedi byw yn barhaus yn y Deyrnas Unedig ers {{ answers['first-arrive-in-uk-answer'][group_instance]|format_date }}?"
                                 }
                             ],
                             "type": "General",
@@ -3636,7 +3636,7 @@
                             "answers": [{
                                     "id": "two-jobs-j1-emp-status-emp-or-self-proxy-answer",
                                     "mandatory": false,
-                                    "label": "Yn eu <em>prif</em> a ydynt yn gyflogai neu’n hunangyflogedig?",
+                                    "label": "Yn eu <em>prif</em> swydd a ydynt yn gyflogai neu’n hunangyflogedig?",
                                     "type": "Radio",
                                     "options": [{
                                             "label": "Gyflogai",
@@ -4513,7 +4513,7 @@
                         "questions": [{
                             "id": "paid-overtime-question",
                             "titles": [{
-                                    "value": "How many hours of <em>paid</em> overtime did {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} <em>actually</em> work in that week?",
+                                    "value": "Sawl awr o waith goramser <em>â thâl</em> a weithiodd {{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} <em>mewn gwirionedd</em> yr wythnos honno?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -4521,7 +4521,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Faint o oriau o oramser <em>am dâl</em> wnaethoch chi weithio <em>mewn gwirionedd</em>?"
+                                    "value": "Faint o oriau o oramser <em>â thâl</em> wnaethoch chi weithio <em>mewn gwirionedd</em>?"
                                 }
                             ],
                             "type": "General",
@@ -6209,7 +6209,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Yn eich <em>ail</em> swydd, faint o oriau o oramser <em>am dâl</em> wnaethoch chi weithio mewn gwirionedd  yr wythnos honno?"
+                                    "value": "Yn eich <em>ail</em> swydd, faint o oriau o oramser <em>di-dâl</em> wnaethoch chi weithio mewn gwirionedd  yr wythnos honno?"
                                 }
                             ],
                             "type": "General",
@@ -6248,7 +6248,7 @@
                         "questions": [{
                             "id": "two-jobs-j1-paid-overtime-question",
                             "titles": [{
-                                    "value": "Ym <em>mhrif</em> swydd {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}, faint o oriau o oramser <em>am dâl</em> a weithiodd mewn gwirionedd yr wythnos honno?",
+                                    "value": "Ym <em>mhrif</em> swydd {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}, faint o oriau o oramser <em>â thâl</em> a weithiodd mewn gwirionedd yr wythnos honno?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -6256,7 +6256,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Yn eich <em>prif</em> swydd, faint o oriau o oramser <em>am dâl</em> wnaethoch chi weithio mewn gwirionedd yr wythnos honno?"
+                                    "value": "Yn eich <em>prif</em> swydd, faint o oriau o oramser <em>â thâl</em> wnaethoch chi weithio mewn gwirionedd yr wythnos honno?"
                                 }
                             ],
                             "type": "General",
@@ -6286,7 +6286,7 @@
                         "questions": [{
                             "id": "two-jobs-j2-paid-overtime-question",
                             "titles": [{
-                                    "value": "Yn <em>ail</em> swydd  <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em>, faint o oriau o oramser <em>am dâl</em> a weithiodd mewn gwirionedd yr wythnos honno?",
+                                    "value": "Yn <em>ail</em> swydd  <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em>, faint o oriau o oramser <em>â thâl</em> a weithiodd mewn gwirionedd yr wythnos honno?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -6294,7 +6294,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Yn eich <em>ail</em> swydd, faint o oriau o oramser <em>am dâl</em>} wnaethoch chi weithio </em>mewn gwirionedd</em> yr wythnos honno ?"
+                                    "value": "Yn eich <em>ail</em> swydd, faint o oriau o oramser <em>â thâl</em> wnaethoch chi weithio </em>mewn gwirionedd</em> yr wythnos honno ?"
                                 }
                             ],
                             "type": "General",
@@ -6750,7 +6750,7 @@
                         "id": "one-job-hours-totalized-w13",
                         "type": "CalculatedSummary",
                         "titles": [{
-                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithiodd <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> yn ei swydd, yn cynnwys goramser, yn %(total)s awr ar gyfer {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. <br/>A yw hyn yn gywir?",
+                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithiodd <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> yn ei swydd, yn cynnwys goramser, yw %(total)s ar gyfer {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. <br/>A yw hyn yn gywir?",
                                 "when": [{
                                     "id": "proxy-check-answer",
                                     "condition": "equals",
@@ -6758,7 +6758,7 @@
                                 }]
                             },
                             {
-                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithioch yn eich swydd, yn cynnwys goramser, yn %(total)s oriau ar gyfer  {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. <br/>A yw hyn yn gywir?"
+                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithioch yn eich swydd, yn cynnwys goramser, yw %(total)s ar gyfer  {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. <br/>A yw hyn yn gywir?"
                             }
                         ],
                         "calculation": {
@@ -7043,7 +7043,7 @@
                         "id": "two-jobs-hours-totalized-w13-1",
                         "type": "CalculatedSummary",
                         "titles": [{
-                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithiodd <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> yn ei brif/phrif swydd ac ail swydd, yn cynnwys goramser, yn %(total)s ar gyfer yr wythnos {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. A yw hyn yn gywir?",
+                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithiodd <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> yn ei brif/phrif swydd ac ail swydd, yn cynnwys goramser, yw %(total)s ar gyfer yr wythnos {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. A yw hyn yn gywir?",
                                 "when": [{
                                     "id": "proxy-check-answer",
                                     "condition": "equals",
@@ -7051,7 +7051,7 @@
                                 }]
                             },
                             {
-                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithioch yn eich prif swydd ac ail swyddi, yn cynnwys goramser, yn %(total)s oriau ar gyfer  {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. <br/>A yw hyn yn gywir?"
+                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithioch yn eich prif swydd ac ail swyddi, yn cynnwys goramser, yw %(total)s ar gyfer  {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. <br/>A yw hyn yn gywir?"
                             }
                         ],
                         "calculation": {
@@ -7944,7 +7944,7 @@
                         "questions": [{
                             "id": "if-offered-would-start-question",
                             "titles": [{
-                                    "value": "Pe byddai <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> wedi cael cynnig swydd yn yr wythnos yn cychwyn [{{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) | format_date_custom( 'EEEE d MMMM' ) }} a fyddai wedi gallu cychwyn cyn {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks':2}) | format_date_custom( 'EEEE d MMMM' ) }}?",
+                                    "value": "Pe byddai <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> wedi cael cynnig swydd yn yr wythnos yn cychwyn {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) | format_date_custom( 'EEEE d MMMM' ) }} a fyddai wedi gallu cychwyn cyn {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks':2}) | format_date_custom( 'EEEE d MMMM' ) }}?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -8098,7 +8098,7 @@
                                             "value": "Retired from paid work"
                                         },
                                         {
-                                            "label": "Dwi’n astudio",
+                                            "label": "Astudio",
                                             "value": "Studying"
                                         },
                                         {
@@ -8122,7 +8122,7 @@
                                             "value": "Illness or injury expected to last fewer than 4 weeks"
                                         },
                                         {
-                                            "label": "Aros i gychwyn swydd a dderbyniais yn ddiweddar",
+                                            "label": "Aros i gychwyn swydd a dderbyniwyd yn ddiweddar",
                                             "value": "Waiting to start a job recently accepted"
                                         },
                                         {
@@ -8138,7 +8138,7 @@
                                             "value": "Not yet started looking"
                                         },
                                         {
-                                            "label": "Doeddwn i ddim angen gwaith",
+                                            "label": "Nid oedd angen gwaith",
                                             "value": "Did not need employment"
                                         },
                                         {
@@ -8284,8 +8284,8 @@
                                     "type": "Checkbox",
                                     "mandatory": false,
                                     "options": [{
-                                        "label": "Nid wyf erioed wedi cael swydd sy’n talu",
-                                        "value": "I have never had a paid job"
+                                        "label": "Erioed wedi cael swydd sy’n talu",
+                                        "value": "Never had a paid job"
                                     }]
                                 }
                             ]
@@ -8642,7 +8642,7 @@
                         "questions": [{
                             "id": "no-primary-alternative-address-question",
                             "titles": [{
-                                    "value": "A yw <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> yn byw mewn unrhyw gyfeiriadau eraill am ran o’r flwyddyn ar hyn o bryd??",
+                                    "value": "A yw <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> yn byw mewn unrhyw gyfeiriadau eraill am ran o’r flwyddyn ar hyn o bryd?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -9568,8 +9568,8 @@
                                     "type": "Checkbox",
                                     "mandatory": false,
                                     "options": [{
-                                        "label": "Cefais fy ngeni yn y DU",
-                                        "value": "I was born in the UK"
+                                        "label": "Ganed yn y DU",
+                                        "value": "Born in the UK"
                                     }]
                                 }
                             ]
@@ -9594,7 +9594,7 @@
                                     "when": [{
                                         "id": "no-primary-first-arrive-in-uk-answer-exclusive",
                                         "condition": "contains",
-                                        "value": "I was born in the UK"
+                                        "value": "Born in the UK"
                                     }]
                                 }
                             },
@@ -9619,7 +9619,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Ar wahân i wyliau ac ymweliadau byr dramor, a ydych chi wedi byd yn barhaus yn y Deyrnas Unedig ers {{ answers['no-primary-first-arrive-in-uk-answer'][group_instance]|format_date }}?"
+                                    "value": "Ar wahân i wyliau ac ymweliadau byr dramor, a ydych chi wedi byw yn barhaus yn y Deyrnas Unedig ers {{ answers['no-primary-first-arrive-in-uk-answer'][group_instance]|format_date }}?"
                                 }
                             ],
                             "type": "General",
@@ -11273,7 +11273,7 @@
                             "answers": [{
                                     "id": "no-primary-two-jobs-j1-emp-status-emp-or-self-proxy-answer",
                                     "mandatory": false,
-                                    "label": "Yn eu <em>prif</em> a ydynt yn gyflogai neu’n hunangyflogedig?",
+                                    "label": "Yn eu <em>prif</em> swydd a ydynt yn gyflogai neu’n hunangyflogedig?",
                                     "type": "Radio",
                                     "options": [{
                                             "label": "Cyflogai",
@@ -12150,7 +12150,7 @@
                         "questions": [{
                             "id": "no-primary-paid-overtime-question",
                             "titles": [{
-                                    "value": "Sawl awr o waith goramser <em>am dâl</em> a weithiodd {{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} <em>mewn gwirionedd</em> yr wythnos honno?",
+                                    "value": "Sawl awr o waith goramser <em>â thâl</em> a weithiodd {{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} <em>mewn gwirionedd</em> yr wythnos honno?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -12158,7 +12158,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Faint o oriau o oramser <em>am dâl</em> wnaethoch chi weithio <em>mewn gwirionedd</em>?"
+                                    "value": "Faint o oriau o oramser <em>â thâl</em> wnaethoch chi weithio <em>mewn gwirionedd</em>?"
                                 }
                             ],
                             "type": "General",
@@ -13846,7 +13846,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Yn eich <em>ail</em> swydd, faint o oriau o oramser <em>am dâl</em> wnaethoch chi weithio mewn gwirionedd  yr wythnos honno?"
+                                    "value": "Yn eich <em>ail</em> swydd, faint o oriau o oramser <em>di-dâl</em> wnaethoch chi weithio mewn gwirionedd  yr wythnos honno?"
                                 }
                             ],
                             "type": "General",
@@ -13885,7 +13885,7 @@
                         "questions": [{
                             "id": "no-primary-two-jobs-j1-paid-overtime-question",
                             "titles": [{
-                                    "value": "Ym <em>mhrif</em> swydd {{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}, faint o oriau o oramser <em>am dâl</em> a weithiodd mewn gwirionedd yr wythnos honno?",
+                                    "value": "Ym <em>mhrif</em> swydd {{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}, faint o oriau o oramser <em>â thâl</em> a weithiodd mewn gwirionedd yr wythnos honno?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -13893,7 +13893,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Yn eich <em>prif</em> swydd, faint o oriau o oramser <em>am dâl</em> wnaethoch chi weithio mewn gwirionedd yr wythnos honno?"
+                                    "value": "Yn eich <em>prif</em> swydd, faint o oriau o oramser <em>â thâl</em> wnaethoch chi weithio mewn gwirionedd yr wythnos honno?"
                                 }
                             ],
                             "type": "General",
@@ -13923,7 +13923,7 @@
                         "questions": [{
                             "id": "no-primary-two-jobs-j2-paid-overtime-question",
                             "titles": [{
-                                    "value": "Yn <em>ail</em> swydd  <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em>, faint o oriau o oramser <em>am dâl</em> a weithiodd mewn gwirionedd yr wythnos honno?",
+                                    "value": "Yn <em>ail</em> swydd  <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em>, faint o oriau o oramser <em>â thâl</em> a weithiodd mewn gwirionedd yr wythnos honno?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -13931,7 +13931,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Yn eich <em>ail</em> swydd, faint o oriau o oramser <em>am dâl</em>} wnaethoch chi weithio </em>mewn gwirionedd</em> yr wythnos honno ?"
+                                    "value": "Yn eich <em>ail</em> swydd, faint o oriau o oramser <em>â thâl</em> wnaethoch chi weithio </em>mewn gwirionedd</em> yr wythnos honno ?"
                                 }
                             ],
                             "type": "General",
@@ -14387,7 +14387,7 @@
                         "id": "no-primary-one-job-hours-totalized-w13",
                         "type": "CalculatedSummary",
                         "titles": [{
-                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithiodd <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> yn ei swydd, yn cynnwys goramser, yn %(total)s awr ar gyfer {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. <br/>A yw hyn yn gywir?",
+                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithiodd <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> yn ei swydd, yn cynnwys goramser, yw %(total)s awr ar gyfer {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. <br/>A yw hyn yn gywir?",
                                 "when": [{
                                     "id": "no-primary-proxy-check-answer",
                                     "condition": "equals",
@@ -14395,7 +14395,7 @@
                                 }]
                             },
                             {
-                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithioch chi yn eich swydd, yn cynnwys goramser, yn %(total)s awr ar gyfer {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. <br/>A yw hyn yn gywir?"
+                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithioch chi yn eich swydd, yn cynnwys goramser, yw %(total)s awr ar gyfer {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. <br/>A yw hyn yn gywir?"
                             }
                         ],
                         "calculation": {
@@ -14680,7 +14680,7 @@
                         "id": "no-primary-two-jobs-hours-totalized-w13-1",
                         "type": "CalculatedSummary",
                         "titles": [{
-                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithiodd <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> yn ei brif/phrif swydd ac ail swydd, yn cynnwys goramser, yn %(total)s ar gyfer yr wythnos {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. A yw hyn yn gywir?",
+                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithiodd <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> yn ei brif/phrif swydd ac ail swydd, yn cynnwys goramser, yw %(total)s ar gyfer yr wythnos {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. A yw hyn yn gywir?",
                                 "when": [{
                                     "id": "no-primary-proxy-check-answer",
                                     "condition": "equals",
@@ -14688,7 +14688,7 @@
                                 }]
                             },
                             {
-                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithioch yn eich prif swydd ac ail swyddi, yn cynnwys goramser, yn %(total)s oriau ar gyfer  {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. <br/>A yw hyn yn gywir?"
+                                "value": "Rydym yn cyfrifo bod cyfanswm yr oriau a weithioch yn eich prif swydd ac ail swyddi, yn cynnwys goramser, yw %(total)s oriau ar gyfer  {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}. <br/>A yw hyn yn gywir?"
                             }
                         ],
                         "calculation": {
@@ -15581,7 +15581,7 @@
                         "questions": [{
                             "id": "no-primary-if-offered-would-start-question",
                             "titles": [{
-                                    "value": "Pe byddai <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> wedi cael cynnig swydd yn yr wythnos yn cychwyn [{{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) | format_date_custom( 'EEEE d MMMM' ) }} a fyddai wedi gallu cychwyn cyn {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks':2}) | format_date_custom( 'EEEE d MMMM' ) }}?",
+                                    "value": "Pe byddai <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> wedi cael cynnig swydd yn yr wythnos yn cychwyn {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) | format_date_custom( 'EEEE d MMMM' ) }} a fyddai wedi gallu cychwyn cyn {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks':2}) | format_date_custom( 'EEEE d MMMM' ) }}?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
@@ -15735,7 +15735,7 @@
                                             "value": "Retired from paid work"
                                         },
                                         {
-                                            "label": "Dwi’n astudio",
+                                            "label": "Astudio",
                                             "value": "Studying"
                                         },
                                         {
@@ -15759,7 +15759,7 @@
                                             "value": "Illness or injury expected to last fewer than 4 weeks"
                                         },
                                         {
-                                            "label": "Aros i gychwyn swydd a dderbyniais yn ddiweddar",
+                                            "label": "Aros i gychwyn swydd a dderbyniwyd yn ddiweddar",
                                             "value": "Waiting to start a job recently accepted"
                                         },
                                         {
@@ -15775,7 +15775,7 @@
                                             "value": "Not yet started looking"
                                         },
                                         {
-                                            "label": "Doeddwn i ddim angen gwaith",
+                                            "label": "Nid oedd angen gwaith",
                                             "value": "Did not need employment"
                                         },
                                         {
@@ -15921,8 +15921,8 @@
                                     "type": "Checkbox",
                                     "mandatory": false,
                                     "options": [{
-                                        "label": "Nid wyf erioed wedi cael swydd sy’n talu",
-                                        "value": "I have never had a paid job"
+                                        "label": "Erioed wedi cael swydd sy’n talu",
+                                        "value": "Never had a paid job"
                                     }]
                                 }
                             ]

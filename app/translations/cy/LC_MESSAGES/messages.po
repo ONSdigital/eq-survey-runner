@@ -173,7 +173,7 @@ msgstr "Gallwch wirio eich atebion isod"
 
 #: app/templates/summary.html:33
 msgid "This section is now complete"
-msgstr "Mae'r adran hon nawr wedi'I chwblhau"
+msgstr "Mae'r adran hon nawr wedi'i chwblhau"
 
 #: app/templates/summary.html:34
 msgid "You can review your answers below"
@@ -445,6 +445,10 @@ msgstr "Mis"
 msgid "Year"
 msgstr "Blwyddyn"
 
+#: app/templates/partials/answers/date.html:24
+msgid "YYYY"
+msgstr "BBBB"
+
 #: app/templates/partials/feedback/expandable_inline.html:6
 msgid "Thanks for your feedback"
 msgstr "Diolch am eich adborth"
@@ -509,6 +513,10 @@ msgstr "Newid"
 #: app/templates/partials/summary/answer-summary.html:22+app/templates/partials/summary/edit-link.html:7
 msgid "Change your answer for: %(title)s. The current value is: %(value)s"
 msgstr "Newid eich ateb i: %(title)s. Y gwerth cyfredol yw: %(value)s"
+
+#: app/templates/partials/summary/answer-summary.html:37
+msgid "Add"
+msgstr "Ychwanegu"
 
 #: app/templates/partials/summary/answer.html:2+app/templates/partials/summary/checkbox.html:7+app/templates/partials/summary/radio.html:6
 msgid "No answer provided"
