@@ -36,8 +36,8 @@ class Answer:
         """
         Check to see if a dict describes an answer the same as this object.
 
-        :param answer_dict: A dict providing
-        :return:
+        :param answer_dict: A dictionary representation of the answer.
+        :return: True if both answers match, otherwise False.
         """
 
         return self.matches(Answer(
@@ -241,6 +241,11 @@ class AnswerStore:
 
 
 def number_else_string(text):
+    """
+    Converts number to an integer if possible.
+    :param text: Text to be converted
+    :return: Integer representation of text if a number.  Otherwise, it returns the text as is
+    """
     return int(text) if text.isdigit() else text
 
 
