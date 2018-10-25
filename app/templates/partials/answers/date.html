@@ -21,7 +21,7 @@
     <div class="field field--input field--year">
       <label class="label mercury" for="{{answer['id']}}-year" id="label-{{answer['id']}}-year" data-qa="label-year">{{ _("Year") }}</label>
       {% set input = form.fields[answer['id']]['year'] %}
-      {% set input_placeholder = "YYYY" %}
+      {% set input_placeholder = _("YYYY") %}
       {% include 'partials/forms/input.html' %}
     </div>
     {% endif %}
