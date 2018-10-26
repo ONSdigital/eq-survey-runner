@@ -83,12 +83,7 @@
                     }
                 }, {
                     "goto": {
-                        "block": "shoe-size-block",
-                        "when": [{
-                            "id": "conditional-answer",
-                            "condition": "equals",
-                            "value": "Shoe Size Only"
-                        }]
+                        "block": "shoe-size-block"
                     }
                 }]
             }, {

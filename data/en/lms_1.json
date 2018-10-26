@@ -937,12 +937,7 @@
                             },
                             {
                                 "goto": {
-                                    "block": "arrive-in-uk",
-                                    "when": [{
-                                        "id": "arrive-date-in-uk-invalid-answer",
-                                        "condition": "equals",
-                                        "value": "change arrival"
-                                    }]
+                                    "block": "arrive-in-uk"
                                 }
                             }
                         ]
@@ -1184,12 +1179,7 @@
                             },
                             {
                                 "goto": {
-                                    "block": "camyr2-block",
-                                    "when": [{
-                                        "id": "first-arrive-date-in-uk-invalid-answer",
-                                        "condition": "equals",
-                                        "value": "change first arrival"
-                                    }]
+                                    "block": "camyr2-block"
                                 }
                             }
                         ]

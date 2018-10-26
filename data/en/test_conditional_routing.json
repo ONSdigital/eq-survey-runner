@@ -57,12 +57,7 @@
                     }
                 }, {
                     "goto": {
-                        "block": "response-no",
-                        "when": [{
-                            "id": "conditional-routing-answer",
-                            "condition": "equals",
-                            "value": "no"
-                        }]
+                        "block": "response-no"
                     }
                 }]
             }, {

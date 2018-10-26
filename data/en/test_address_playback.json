@@ -75,12 +75,7 @@
                     }
                 }, {
                     "goto": {
-                        "block": "address-check-block",
-                        "when": [{
-                            "id": "confirm-address-answer",
-                            "condition": "equals",
-                            "value": "Yes"
-                        }]
+                        "block": "address-check-block"
                     }
                 }]
             }, {

@@ -366,21 +366,6 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
         self.assertEqual(next_location, expected_next_location)
 
-    def test_interstitial_post_blocks(self):
-        schema = load_schema_from_params('0', 'star_wars')
-
-        answer = Answer(
-            answer_id='choose-your-side-answer',
-            value='Light Side'
-        )
-
-        answers = AnswerStore()
-        answers.add(answer)
-
-        path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
-
-        self.assertFalse(Location('star-wars', 0, 'summary') in path_finder.get_full_routing_path())
-
     def test_repeating_groups(self):
         schema = load_schema_from_params('test', 'repeating_household')
         schema.answer_is_in_repeating_group = MagicMock(return_value=False)
