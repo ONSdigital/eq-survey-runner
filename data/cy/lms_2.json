@@ -615,11 +615,11 @@
                                     "id": "share-cooking-answer",
                                     "mandatory": false,
                                     "options": [{
-                                            "label": "Ydyn",
+                                            "label": "Oes",
                                             "value": "Yes"
                                         },
                                         {
-                                            "label": "Nac ydyn",
+                                            "label": "Nac oes",
                                             "value": "No"
                                         }
                                     ],
@@ -639,11 +639,11 @@
                                     "id": "share-living-answer",
                                     "mandatory": false,
                                     "options": [{
-                                            "label": "Ydyn",
+                                            "label": "Ydynt",
                                             "value": "Yes"
                                         },
                                         {
-                                            "label": "Nac ydyn",
+                                            "label": "Nac ydynt",
                                             "value": "No"
                                         }
                                     ],
@@ -693,11 +693,11 @@
                                     "id": "share-cooking-answer-no-primary",
                                     "mandatory": false,
                                     "options": [{
-                                            "label": "Ydyn",
+                                            "label": "Oes",
                                             "value": "Yes"
                                         },
                                         {
-                                            "label": "Nac ydyn",
+                                            "label": "Nac oes",
                                             "value": "No"
                                         }
                                     ],
@@ -717,11 +717,11 @@
                                     "id": "share-living-answer-no-primary",
                                     "mandatory": false,
                                     "options": [{
-                                            "label": "Ydyn",
+                                            "label": "Ydynt",
                                             "value": "Yes"
                                         },
                                         {
-                                            "label": "Nac ydyn",
+                                            "label": "Nac ydynt",
                                             "value": "No"
                                         }
                                     ],
@@ -3630,7 +3630,7 @@
                         "questions": [{
                             "id": "two-jobs-j1-emp-status-emp-or-self-proxy-question",
                             "titles": [{
-                                "value": "<em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> statws cyflogaeth"
+                                "value": "Statws cyflogaeth <em>{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em>"
                             }],
                             "type": "General",
                             "answers": [{
@@ -6378,7 +6378,7 @@
                         "questions": [{
                             "id": "two-jobs-j1-actual-hours-question",
                             "titles": [{
-                                    "value": "Mae {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} fel arfer yn gweithio {{answers['two-jobs-j1-usual-hours-answer'][group_instance]}} yn ei prif swydd. Yn yr wythnos {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, faint o oriau wnaeth e/hi weithio <em>mewn gwirionedd</em> yn ei <em>prif</em> swydd, ac eithrio goramser?",
+                                    "value": "Mae {{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} fel arfer yn gweithio {{answers['two-jobs-j1-usual-hours-answer'][group_instance]}} o oriau yn ei prif swydd. Yn yr wythnos {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, faint o oriau wnaeth e/hi weithio <em>mewn gwirionedd</em> yn ei <em>prif</em> swydd, ac eithrio goramser?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -11267,7 +11267,7 @@
                         "questions": [{
                             "id": "no-primary-two-jobs-j1-emp-status-emp-or-self-proxy-question",
                             "titles": [{
-                                "value": "<em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em> statws cyflogaeth"
+                                "value": "Statws cyflogaeth <em>{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}}</em>"
                             }],
                             "type": "General",
                             "answers": [{
@@ -14015,7 +14015,7 @@
                         "questions": [{
                             "id": "no-primary-two-jobs-j1-actual-hours-question",
                             "titles": [{
-                                    "value": "Mae {{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} fel arfer yn gweithio {{answers['no-primary-two-jobs-j1-usual-hours-answer'][group_instance]}} yn ei prif swydd. Yn yr wythnos {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, faint o oriau wnaeth e/hi weithio <em>mewn gwirionedd</em> yn ei <em>prif</em> swydd, ac eithrio goramser?",
+                                    "value": "Mae {{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} fel arfer yn gweithio {{answers['no-primary-two-jobs-j1-usual-hours-answer'][group_instance]}} o oriau yn ei prif swydd. Yn yr wythnos {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, faint o oriau wnaeth e/hi weithio <em>mewn gwirionedd</em> yn ei <em>prif</em> swydd, ac eithrio goramser?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",

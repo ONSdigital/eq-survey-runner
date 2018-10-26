@@ -4563,7 +4563,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Many jobs or businesses have usual hours. Not including your overtime, how many hours do you <em>usually</em> work in your job or business?"
+                                    "value": "Many jobs or businesses have usual hours. Not including your overtime, how many hours do you <em>usually</em> work a week in your job or business?"
                                 }
                             ],
                             "type": "General",
@@ -6373,7 +6373,7 @@
                         "questions": [{
                             "id": "two-jobs-j1-actual-hours-question",
                             "titles": [{
-                                    "value": "{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} usually works {{answers['two-jobs-j1-usual-hours-answer'][group_instance]}} in their main job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did they <em>actually</em> work in their <em>main</em> job, excluding overtime?",
+                                    "value": "{{[group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} usually works {{answers['two-jobs-j1-usual-hours-answer'][group_instance]}} hours in their main job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did they <em>actually</em> work in their <em>main</em> job, excluding overtime?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -12190,7 +12190,7 @@
                                     }]
                                 },
                                 {
-                                    "value": "Many jobs or businesses have usual hours. Not including your overtime, how many hours do you <em>usually</em> work in your job or business?"
+                                    "value": "Many jobs or businesses have usual hours. Not including your overtime, how many hours do you <em>usually</em> work a week in your job or business?"
                                 }
                             ],
                             "type": "General",
@@ -14000,7 +14000,7 @@
                         "questions": [{
                             "id": "no-primary-two-jobs-j1-actual-hours-question",
                             "titles": [{
-                                    "value": "{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} usually works {{answers['no-primary-two-jobs-j1-usual-hours-answer'][group_instance]}} in their main job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did they <em>actually</em> work in their <em>main</em> job, excluding overtime?",
+                                    "value": "{{[ group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name}} usually works {{answers['no-primary-two-jobs-j1-usual-hours-answer'][group_instance]}} hours in their main job. In the week {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU'), 'EEEE d MMMM YYYY') }}, how many hours did they <em>actually</em> work in their <em>main</em> job, excluding overtime?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
