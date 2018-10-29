@@ -69,6 +69,10 @@
                             "value": "question2"
                         }]
                     }
+                }, {
+                    "goto": {
+                        "block": "question2"
+                    }
                 }]
             }, {
                 "type": "Question",

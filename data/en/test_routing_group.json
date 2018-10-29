@@ -58,12 +58,7 @@
                     }
                 }, {
                     "goto": {
-                        "group": "group2",
-                        "when": [{
-                            "id": "which-group-answer",
-                            "condition": "equals",
-                            "value": "group2"
-                        }]
+                        "group": "group2"
                     }
                 }]
             }]

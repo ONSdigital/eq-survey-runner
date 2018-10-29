@@ -165,12 +165,7 @@
                     }
                 }, {
                     "goto": {
-                        "block": "star-wars-trivia",
-                        "when": [{
-                            "id": "light-side-pick-ship-answer",
-                            "condition": "equals",
-                            "value": "No"
-                        }]
+                        "block": "star-wars-trivia"
                     }
                 }]
             }, {
@@ -235,21 +230,16 @@
                     }
                 }, {
                     "goto": {
-                        "block": "star-wars-trivia",
-                        "when": [{
-                            "id": "dark-side-pick-ship-answer",
-                            "condition": "equals",
-                            "value": "No"
-                        }]
-                    }
-                }, {
-                    "goto": {
                         "block": "light-side-ship-type",
                         "when": [{
                             "id": "dark-side-pick-ship-answer",
                             "condition": "equals",
                             "value": "Can I be a pain and have a goodies ship"
                         }]
+                    }
+                }, {
+                    "goto": {
+                        "block": "star-wars-trivia"
                     }
                 }]
             }, {

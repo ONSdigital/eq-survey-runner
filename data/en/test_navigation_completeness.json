@@ -61,12 +61,7 @@
                     }
                 }, {
                     "goto": {
-                        "block": "response-no",
-                        "when": [{
-                            "id": "coffee-answer",
-                            "condition": "equals",
-                            "value": "no"
-                        }]
+                        "block": "response-no"
                     }
                 }]
             }, {

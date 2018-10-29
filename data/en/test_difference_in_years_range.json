@@ -74,12 +74,7 @@
                     }
                 }, {
                     "goto": {
-                        "block": "summary",
-                        "when": [{
-                            "id": "date-test-answer",
-                            "condition": "equals",
-                            "value": "Yes"
-                        }]
+                        "block": "summary"
                     }
                 }]
             }, {

@@ -142,12 +142,7 @@
                     }
                 }, {
                     "goto": {
-                        "block": "else-permanent-or-family-home",
-                        "when": [{
-                            "id": "permanent-or-family-home-answer",
-                            "condition": "equals",
-                            "value": "No"
-                        }]
+                        "block": "else-permanent-or-family-home"
                     }
                 }]
             }, {
@@ -187,12 +182,7 @@
                     }
                 }, {
                     "goto": {
-                        "block": "overnight-visitors",
-                        "when": [{
-                            "id": "else-permanent-or-family-home-answer",
-                            "condition": "equals",
-                            "value": "No one lives here as their permanent home"
-                        }]
+                        "block": "overnight-visitors"
                     }
                 }]
             }, {

@@ -86,12 +86,7 @@
                     }
                 }, {
                     "goto": {
-                        "block": "orson-krennic-like-this-page",
-                        "when": [{
-                            "id": "character-answer",
-                            "condition": "equals",
-                            "value": "Orson Krennic"
-                        }]
+                        "block": "orson-krennic-like-this-page"
                     }
                 }]
             }, {

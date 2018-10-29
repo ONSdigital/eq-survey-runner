@@ -440,12 +440,7 @@
                     }
                 }, {
                     "goto": {
-                        "group": "weekly-pay-summary-group",
-                        "when": [{
-                            "id": "weekly-pay-significant-changes-paid-employees-answer",
-                            "condition": "equals",
-                            "value": "No"
-                        }]
+                        "group": "weekly-pay-summary-group"
                     }
                 }]
             }, {
@@ -816,12 +811,7 @@
                     }
                 }, {
                     "goto": {
-                        "group": "fortnightly-pay-summary-group",
-                        "when": [{
-                            "id": "fortnightly-pay-significant-changes-paid-employees-answer",
-                            "condition": "equals",
-                            "value": "No"
-                        }]
+                        "group": "fortnightly-pay-summary-group"
                     }
                 }]
             }, {
@@ -1180,12 +1170,7 @@
                     }
                 }, {
                     "goto": {
-                        "group": "calendar-monthly-pay-summary-group",
-                        "when": [{
-                            "id": "calendar-monthly-pay-significant-changes-paid-employees-answer",
-                            "condition": "equals",
-                            "value": "No"
-                        }]
+                        "group": "calendar-monthly-pay-summary-group"
                     }
                 }]
             }, {
@@ -1545,12 +1530,7 @@
                     }
                 }, {
                     "goto": {
-                        "group": "four-weekly-pay-summary-group",
-                        "when": [{
-                            "id": "four-weekly-pay-significant-changes-paid-employees-answer",
-                            "condition": "equals",
-                            "value": "No"
-                        }]
+                        "group": "four-weekly-pay-summary-group"
                     }
                 }]
             }, {
@@ -1910,12 +1890,7 @@
                     }
                 }, {
                     "goto": {
-                        "group": "five-weekly-pay-summary-group",
-                        "when": [{
-                            "id": "five-weekly-pay-significant-changes-paid-employees-answer",
-                            "condition": "equals",
-                            "value": "No"
-                        }]
+                        "group": "five-weekly-pay-summary-group"
                     }
                 }]
             }, {

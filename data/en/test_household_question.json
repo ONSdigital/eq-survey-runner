@@ -96,12 +96,7 @@
                     }
                 }, {
                     "goto": {
-                        "block": "summary",
-                        "when": [{
-                            "id": "household-composition-add-another",
-                            "condition": "equals",
-                            "value": "Yes"
-                        }]
+                        "block": "summary"
                     }
                 }],
                 "id": "household-summary",
