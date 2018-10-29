@@ -2216,7 +2216,7 @@
                         "questions": [{
                             "id": "why-uk-question",
                             "titles": [{
-                                    "value": "Beth oedd prif reswm <em>{{ [answers['primary-household-member-first-name'][group_instance], answers['primary-household-member-last-name'][group_instance]] | format_household_name}}</em>  dros ddod i fyw yn y Deyrnas Unedig yn {{ answers['first-arrive-in-uk-answer'][group_instance]|format_date }} ?",
+                                    "value": "Beth oedd prif reswm <em>{{ [group_instances[group_instance_id]['primary-household-member-first-name'], group_instances[group_instance_id]['primary-household-member-last-name'], group_instances[group_instance_id]['other-household-member-first-name'], group_instances[group_instance_id]['other-household-member-last-name'], group_instances[group_instance_id]['student-household-member-first-name'], group_instances[group_instance_id]['student-household-member-last-name']] | format_household_name }}</em> dros ddod i fyw yn y Deyrnas Unedig yn {{ answers['first-arrive-in-uk-answer'][group_instance]|format_date }} ?",
                                     "when": [{
                                         "id": "proxy-check-answer",
                                         "condition": "equals",
@@ -9853,7 +9853,7 @@
                         "questions": [{
                             "id": "no-primary-why-uk-question",
                             "titles": [{
-                                    "value": "Beth oedd prif reswm <em>{{ [answers['primary-household-member-first-name'][group_instance], answers['primary-household-member-last-name'][group_instance]] | format_household_name}}</em>  dros ddod i fyw yn y Deyrnas Unedig yn {{ answers['no-primary-first-arrive-in-uk-answer'][group_instance]|format_date }} ?",
+                                    "value": "Beth oedd prif reswm <em>{{ [group_instances[group_instance_id]['other-household-member-first-name-no-primary'], group_instances[group_instance_id]['other-household-member-last-name-no-primary'], group_instances[group_instance_id]['student-household-member-first-name-no-primary'], group_instances[group_instance_id]['student-household-member-last-name-no-primary']] | format_household_name }}</em> dros ddod i fyw yn y Deyrnas Unedig yn {{ answers['no-primary-first-arrive-in-uk-answer'][group_instance]|format_date }} ?",
                                     "when": [{
                                         "id": "no-primary-proxy-check-answer",
                                         "condition": "equals",
