@@ -49,7 +49,6 @@ class QuestionnaireStore:
 
     def _deserialise(self, data):
         json_data = json.loads(data, use_decimal=True)
-        # pylint: disable=maybe-no-member
         completed_blocks = [Location.from_dict(location_dict=completed_block) for completed_block in
                             json_data.get('COMPLETED_BLOCKS', [])]
         self.set_metadata(json_data.get('METADATA', {}))
