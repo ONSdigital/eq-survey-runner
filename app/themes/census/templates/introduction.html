@@ -42,9 +42,13 @@ public transport. </p>
 {% endblock main %}
 {% block footer %}
 <div class="pre-footer">
-    <div class="container">
-      {% include theme('partials/feedback/expandable_inline.html') %}
+  <div class="container u-mt-xl u-pt-l">
+    <div class="grid">
+      <div class="grid__col col-7@m">
+        {% include theme('partials/feedback/expandable_inline.html') %}
+      </div>
     </div>
+  </div>
 </div>
 {{super()}}
 {% endblock %}
