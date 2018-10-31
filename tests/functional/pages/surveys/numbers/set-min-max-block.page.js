@@ -13,11 +13,15 @@ class SetMinMaxBlockPage extends QuestionPage {
 
   setMinimumLabel() { return '#label-set-minimum'; }
 
+  setMinimumLabelDescription() { return '#label-set-minimum > .label__description'; }
+
   setMaximum() {
     return '#set-maximum';
   }
 
   setMaximumLabel() { return '#label-set-maximum'; }
+
+  setMaximumLabelDescription() { return '#label-set-maximum > .label__description'; }
 
 }
 module.exports = new SetMinMaxBlockPage();

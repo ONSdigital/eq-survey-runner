@@ -26,8 +26,8 @@
                 "questions": [{
                     "answers": [{
                         "id": "set-minimum",
-                        "description": "",
                         "label": "Minimum Value",
+                        "description": "This is a description of the minimum value",
                         "mandatory": true,
                         "type": "Number",
                         "decimal_places": 2,
@@ -39,7 +39,7 @@
                         }
                     }, {
                         "id": "set-maximum",
-                        "description": "",
+                        "description": "This is a description of the maximum value",
                         "label": "Maximum Value",
                         "mandatory": true,
                         "type": "Number",

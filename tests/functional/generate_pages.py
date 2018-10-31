@@ -67,6 +67,10 @@ ANSWER_LABEL_GETTER = Template(r"""  ${answerName}Label() { return '#label-${ans
 
 """)
 
+ANSWER_LABEL_DESCRIPTION_GETTER = Template(r"""  ${answerName}LabelDescription() { return '#label-${answerId} > .label__description'; }
+
+""")
+
 ANSWER_GETTER = Template(r"""  ${answerName}() {
     return '#${answerId}';
   }
@@ -248,6 +252,7 @@ def process_answer(question_type, answer, page_spec, long_names, page_name):
         else:
             page_spec.write(ANSWER_GETTER.substitute(answer_context))
             page_spec.write(ANSWER_LABEL_GETTER.substitute(answer_context))
+            page_spec.write(ANSWER_LABEL_DESCRIPTION_GETTER.substitute(answer_context))
 
         if answer['type'] == 'Unit':
             page_spec.write(ANSWER_UNIT_TYPE_GETTER.substitute(answer_context))
