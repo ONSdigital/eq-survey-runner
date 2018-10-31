@@ -231,15 +231,13 @@ class SingleDatePeriodCheck:
         if self.minimum_date:
             if date < self.minimum_date:
                 raise validators.ValidationError(self.messages['SINGLE_DATE_PERIOD_TOO_EARLY'] %
-                                                 dict(min=self._format_playback_date(self.minimum_date +
-                                                                                     relativedelta(days=-1),
+                                                 dict(min=self._format_playback_date(self.minimum_date + relativedelta(days=-1),
                                                                                      self.date_format)))
 
         if self.maximum_date:
             if date > self.maximum_date:
                 raise validators.ValidationError(self.messages['SINGLE_DATE_PERIOD_TOO_LATE'] %
-                                                 dict(max=self._format_playback_date(self.maximum_date +
-                                                                                     relativedelta(days=+1),
+                                                 dict(max=self._format_playback_date(self.maximum_date + relativedelta(days=+1),
                                                                                      self.date_format)))
 
     @staticmethod

@@ -385,8 +385,7 @@ def _next_location_url(location):
 
 def _is_end_of_questionnaire(block, next_location):
     return (
-        block['type'] in END_BLOCKS and
-        next_location is None
+        block['type'] in END_BLOCKS and next_location is None
     )
 
 

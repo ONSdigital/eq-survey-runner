@@ -25,9 +25,9 @@ class PathFinder:
 
     @staticmethod
     def _block_index_for_location(blocks, location):
-        return next((index for (index, b) in enumerate(blocks) if b['block']['id'] == location.block_id and
-                     b['group_id'] == location.group_id and
-                     b['group_instance'] == location.group_instance),
+        return next((index for (index, b) in enumerate(blocks) if b['block']['id'] == location.block_id
+                     and b['group_id'] == location.group_id
+                     and b['group_instance'] == location.group_instance),
                     None)
 
     @staticmethod

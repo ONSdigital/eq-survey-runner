@@ -204,8 +204,8 @@ def validate_mandatory_date(error_messages, answer):
 
 
 def get_bespoke_message(answer, message_type):
-    if ('validation' in answer and 'messages' in answer['validation'] and
-            message_type in answer['validation']['messages']):
+    if ('validation' in answer and 'messages' in answer['validation']
+            and message_type in answer['validation']['messages']):
         return answer['validation']['messages'][message_type]
 
     return None
