@@ -13,10 +13,10 @@ from app.jinja_filters import (
     format_multilined_string, format_percentage, format_date_range,
     format_household_member_name, format_datetime,
     format_number_to_alphabetic_letter, format_unit, format_currency_for_input,
-    format_number, format_unordered_list, format_unit_input_label,
-    format_household_member_name_possessive, concatenated_list,
-    calculate_years_difference, get_current_date, as_london_tz, max_value,
-    min_value, get_question_title, get_answer_label,
+    format_number, format_unordered_list, format_unordered_list_missing_items,
+    format_unit_input_label, format_household_member_name_possessive,
+    concatenated_list, calculate_years_difference, get_current_date, as_london_tz,
+    max_value, min_value, get_question_title, get_answer_label,
     format_duration, calculate_offset_from_weekday_in_last_whole_week, format_date_custom,
     format_date_range_no_repeated_month_year, format_repeating_summary, format_address_list)
 from tests.app.app_context_test_case import AppContextTestCase
@@ -549,6 +549,44 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         list_items = [[]]
 
         formatted_value = format_unordered_list(self.autoescape_context, list_items)
+
+        self.assertEqual('', formatted_value)
+
+    def test_format_unordered_list_missing_items(self):
+        possible_items = ['item 1', 'item 2', 'item 3', 'item 4']
+        list_items = [['item 1', 'item 3']]
+
+        formatted_value = format_unordered_list_missing_items(self.autoescape_context, possible_items, list_items)
+
+        expected_value = '<ul><li>item 2</li><li>item 4</li></ul>'
+
+        self.assertEqual(expected_value, formatted_value)
+
+    def test_format_unordered_list_missing_items_with_no_input(self):
+        possible_items = ['item 1', 'item 2']
+        list_items = []
+
+        formatted_value = format_unordered_list_missing_items(self.autoescape_context, possible_items, list_items)
+
+        expected_value = '<ul><li>item 1</li><li>item 2</li></ul>'
+
+        self.assertEqual(expected_value, formatted_value)
+
+    def test_format_unordered_list_missing_items_with_empty_list(self):
+        possible_items = ['item 1', 'item 2']
+        list_items = [[]]
+
+        formatted_value = format_unordered_list_missing_items(self.autoescape_context, possible_items, list_items)
+
+        expected_value = '<ul><li>item 1</li><li>item 2</li></ul>'
+
+        self.assertEqual(expected_value, formatted_value)
+
+    def test_format_unordered_list_missing_items_with_all_selected(self):
+        possible_items = ['item 1', 'item 2']
+        list_items = [['item 1', 'item 2']]
+
+        formatted_value = format_unordered_list_missing_items(self.autoescape_context, possible_items, list_items)
 
         self.assertEqual('', formatted_value)
 
