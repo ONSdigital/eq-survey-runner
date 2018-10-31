@@ -350,6 +350,17 @@ def format_unordered_list(context, list_items):
     return mark_safe(context, summary_list)
 
 
+@evalcontextfunction
+def format_unordered_list_missing_items(context, possible_items, list_items):
+
+    if list_items and list_items[0]:
+        missing_items = [item for item in possible_items if item not in list_items[0]]
+    else:
+        missing_items = possible_items
+
+    return format_unordered_list(context, [missing_items])
+
+
 @blueprint.app_template_filter()
 def concatenated_list(list_items, delimiter=', '):
     stripped_items = list(item.strip() for item in list_items if item)

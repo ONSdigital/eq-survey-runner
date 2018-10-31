@@ -16,6 +16,7 @@ class TemplateRenderer:
         env.filters['format_household_name_possessive'] = filters.format_household_member_name_possessive
         env.filters['format_household_summary'] = filters.format_household_summary
         env.filters['format_unordered_list'] = filters.format_unordered_list
+        env.globals['format_unordered_list_missing_items'] = filters.format_unordered_list_missing_items
         env.globals['format_conditional_date'] = filters.format_conditional_date
         env.globals['format_currency'] = filters.format_currency
         env.filters['format_number'] = filters.format_number
