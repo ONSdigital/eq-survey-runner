@@ -1,0 +1,482 @@
+{
+    "eq_id": "294",
+    "form_type": "294",
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "294",
+    "title": "MTS 1.2",
+    "sections": [
+        {
+            "id": "section745",
+            "title": "MTS-RSI",
+            "groups": [
+                {
+                    "id": "group745",
+                    "title": "MTS-RSI",
+                    "blocks": [
+                        {
+                            "id": "block2864",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question2864",
+                                    "title": "Are you able to report for the calendar month of {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
+                                    "description": "",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer3746",
+                                            "mandatory": true,
+                                            "type": "Radio",
+                                            "label": "",
+                                            "description": "",
+                                            "options": [
+                                                {
+                                                    "label": "Yes, I am able to report for this period",
+                                                    "value": "Yes, I am able to report for this period"
+                                                },
+                                                {
+                                                    "label": "No, I need to provide figures for a different period",
+                                                    "value": "No, I need to provide figures for a different period"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "block2941",
+                                        "when": [
+                                            {
+                                                "id": "answer3746",
+                                                "condition": "not equals",
+                                                "value": "Yes, I am able to report for this period"
+                                            },
+                                            {
+                                                "id": "answer3746",
+                                                "condition": "set"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "block2934"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block2941",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question2941",
+                                    "title": "What are the dates for the period that you will be reporting for?  ",
+                                    "description": "",
+                                    "type": "DateRange",
+                                    "answers": [
+                                        {
+                                            "id": "answer4170from",
+                                            "mandatory": true,
+                                            "type": "Date",
+                                            "label": "From"
+                                        },
+                                        {
+                                            "id": "answer4170to",
+                                            "mandatory": true,
+                                            "type": "Date",
+                                            "label": "To"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block2934",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question2934",
+                                    "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, how much were your <em>retail sales including VAT</em>? ",
+                                    "guidance": {
+                                        "content": [
+                                            {
+                                                "description": " <strong>Include</strong>"
+                                            },
+                                            {
+                                                "list": [
+                                                    "VAT ",
+                                                    "online sales  "
+                                                ]
+                                            },
+                                            {
+                                                "description": "<strong>Exclude</strong>"
+                                            },
+                                            {
+                                                "list": [
+                                                    "revenue from mobile phone network commission and top-up",
+                                                    "sales from catering facilities used by customers (for example, in-store cafes) ",
+                                                    "lottery sales and commission from lottery sales",
+                                                    "sales of car accessories and motor vehicles",
+                                                    "NHS receipts"
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "description": " These are sales of goods to the general public (not businesses) for personal or household use. ",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer3815",
+                                            "mandatory": true,
+                                            "type": "Currency",
+                                            "label": "Retail sales including VAT",
+                                            "description": "",
+                                            "min_value": {
+                                                "value": 0,
+                                                "exclusive": false
+                                            },
+                                            "decimal_places": 0,
+                                            "currency": "GBP"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block2935",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question2935",
+                                    "title": "Of the {{ format_currency(answers['answer3815'], 'GBP') }} retail sales, how much were <em>online sales</em>? ",
+                                    "guidance": {
+                                        "content": [
+                                            {
+                                                "description": " <strong>Include</strong>"
+                                            },
+                                            {
+                                                "list": [
+                                                    "VAT ",
+                                                    "sales of goods paid for online by the customer, irrespective of the delivery method  "
+                                                ]
+                                            },
+                                            {
+                                                "description": "<strong>Exclude</strong>"
+                                            },
+                                            {
+                                                "list": [
+                                                    "&#x2018;reserve and pay in store&#x2019; orders      "
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "description": "",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer3816",
+                                            "mandatory": true,
+                                            "type": "Currency",
+                                            "label": "Online sales including VAT",
+                                            "description": "",
+                                            "max_value": {
+                                                "answer_id": "answer3815",
+                                                "exclusive": false
+                                            },
+                                            "decimal_places": 0,
+                                            "currency": "GBP"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block2936",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question2936",
+                                    "title": "Did any significant changes occur to the <em>retail sales</em> for {{ metadata['trad_as'] }}? ",
+                                    "guidance": {
+                                        "content": [
+                                            {
+                                                "description": " <strong>For example</strong>"
+                                            },
+                                            {
+                                                "list": [
+                                                    "in-store/ online promotions ",
+                                                    "special events (for example, sporting events)  ",
+                                                    "calendar events (for example, bank holidays and religious events)  ",
+                                                    "weather  ",
+                                                    "store closures/openings  "
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "description": "What constitutes a &#x2018;significant change&#x2019; is dependent on your own interpretation in relation to Essential Ltd&#x2019;s figures from the previous reporting period and the same reporting period last year. ",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer3817",
+                                            "mandatory": true,
+                                            "type": "Radio",
+                                            "label": "",
+                                            "description": "",
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "block2937",
+                                        "when": [
+                                            {
+                                                "id": "answer3817",
+                                                "condition": "not equals",
+                                                "value": "No"
+                                            },
+                                            {
+                                                "id": "answer3817",
+                                                "condition": "set"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "block": "block2939"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block2937",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question2937",
+                                    "title": "Please indicate the reasons for any changes in the <em>retail sales</em> for {{ metadata['trad_as'] }}  ",
+                                    "description": "",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer3818",
+                                            "mandatory": true,
+                                            "type": "Checkbox",
+                                            "label": "",
+                                            "description": "",
+                                            "options": [
+                                                {
+                                                    "label": "Instore/online promotions",
+                                                    "value": "Instore/online promotions"
+                                                },
+                                                {
+                                                    "label": "Special events (for example, sporting events)",
+                                                    "value": "Special events (for example, sporting events)"
+                                                },
+                                                {
+                                                    "label": "Calendar events (for example, bank holidays and religious events)",
+                                                    "value": "Calendar events (for example, bank holidays and religious events)"
+                                                },
+                                                {
+                                                    "label": "Weather",
+                                                    "value": "Weather"
+                                                },
+                                                {
+                                                    "label": "Store closures",
+                                                    "value": "Store closures"
+                                                },
+                                                {
+                                                    "label": "Store openings",
+                                                    "value": "Store openings"
+                                                },
+                                                {
+                                                    "label": "Other",
+                                                    "value": "Other"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block2938",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question2938",
+                                    "title": "Please describe the changes in <em>retail sales</em> for {{ metadata['trad_as'] }} in more detail.",
+                                    "description": "We rely on your commentary to &#x2018;tell the story&#x2019; behind changes in figures. By commenting here, it will reduce the need for us to call you.  ",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer3819",
+                                            "mandatory": true,
+                                            "type": "TextArea",
+                                            "label": "Comments",
+                                            "description": ""
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block2939",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question2939",
+                                    "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, did {{ metadata['trad_as'] }} have turnover from <em>any activities other than retail sales</em>?   ",
+                                    "description": "<strong>Why are we asking? </strong>",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer3820",
+                                            "mandatory": true,
+                                            "type": "Radio",
+                                            "label": "",
+                                            "description": "",
+                                            "options": [
+                                                {
+                                                    "label": "Yes, there was turnover from other activities",
+                                                    "value": "Yes, there was turnover from other activities"
+                                                },
+                                                {
+                                                    "label": "No, turnover was only from retail sales",
+                                                    "value": "No, turnover was only from retail sales"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "routing_rules": [
+                                {
+                                    "goto": {
+                                        "block": "block2940",
+                                        "when": [
+                                            {
+                                                "id": "answer3820",
+                                                "condition": "not equals",
+                                                "value": "No, turnover was only from retail sales"
+                                            },
+                                            {
+                                                "id": "answer3820",
+                                                "condition": "set"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "goto": {
+                                        "group": "summary-group"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "block2940",
+                            "type": "Question",
+                            "questions": [
+                                {
+                                    "id": "question2940",
+                                    "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} {{ metadata['ref_p_end_date'] | format_date }}, approximately what <em>percentage </em>of {{ metadata['trad_as'] }} turnover was  <em>from other activities</em>?   ",
+                                    "guidance": {
+                                        "content": [
+                                            {
+                                                "description": " Exclude:"
+                                            },
+                                            {
+                                                "list": [
+                                                    "Retail activity "
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "description": "",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "answer3821",
+                                            "mandatory": true,
+                                            "type": "Number",
+                                            "label": "Approximate  percentage from non-retail activities",
+                                            "description": "",
+                                            "max_value": {
+                                                "value": 100,
+                                                "exclusive": true
+                                            },
+                                            "decimal_places": 0
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "summary-group",
+                    "title": "Summary",
+                    "blocks": [
+                        {
+                            "type": "Summary",
+                            "id": "summary-block"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "navigation": {
+        "visible": false
+    },
+    "metadata": [
+        {
+            "name": "user_id",
+            "validator": "string"
+        },
+        {
+            "name": "period_id",
+            "validator": "string"
+        },
+        {
+            "name": "ru_name",
+            "validator": "string"
+        },
+        {
+            "name": "trad_as",
+            "validator": "string"
+        },
+        {
+            "name": "ref_p_start_date",
+            "validator": "date"
+        },
+        {
+            "name": "period_str",
+            "validator": "string"
+        },
+        {
+            "name": "ref_p_end_date",
+            "validator": "date"
+        }
+    ]
+}
