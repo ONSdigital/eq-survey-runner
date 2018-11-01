@@ -210,7 +210,7 @@
                                 "title": "For the period {{ format_conditional_date (answers['period-from-answer'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to-answer'], metadata['ref_p_end_date'])}}, how much were your <em>retail sales including VAT</em>? ",
                                 "guidance": {
                                     "content": [{
-                                            "description": " <strong>Include</strong>"
+                                            "description": "<strong>Include</strong>"
                                         },
                                         {
                                             "list": [
@@ -232,7 +232,7 @@
                                         }
                                     ]
                                 },
-                                "description": " These are sales of goods to the general public (not businesses) for personal or household use. ",
+                                "description": "These are sales of goods to the general public (not businesses) for personal or household use.",
                                 "type": "General",
                                 "answers": [{
                                     "id": "retail-sales-answer",
@@ -299,7 +299,7 @@
                                 "title": "Of the {{ format_currency(answers['retail-sales-answer'], 'GBP') }} retail sales, how much were <em>online sales</em>? ",
                                 "guidance": {
                                     "content": [{
-                                            "description": " <strong>Include</strong>"
+                                            "description": "<strong>Include</strong>"
                                         },
                                         {
                                             "list": [
@@ -384,7 +384,7 @@
                                 "title": "Did any significant changes occur to the <em>retail sales</em> for {{ metadata['trad_as_or_ru_name'] }}? ",
                                 "guidance": {
                                     "content": [{
-                                            "description": " <strong>For example</strong>"
+                                            "description": "<strong>For example</strong>"
                                         },
                                         {
                                             "list": [
@@ -570,7 +570,7 @@
                                 "title": "For the period {{ format_conditional_date (answers['period-from-answer'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to-answer'], metadata['ref_p_end_date'])}}, approximately what <em>percentage </em>of {{ metadata['trad_as_or_ru_name'] }} turnover was  <em>from other activities</em>?   ",
                                 "guidance": {
                                     "content": [{
-                                            "description": " Exclude:"
+                                            "description": "Exclude:"
                                         },
                                         {
                                             "list": [
