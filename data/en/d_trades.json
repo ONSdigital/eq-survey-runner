@@ -164,7 +164,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "question2941",
-                                "title": "What are the dates for the period that you will be reporting for?  ",
+                                "title": "What are the dates for the period that you will be reporting for?",
                                 "description": "",
                                 "type": "DateRange",
                                 "answers": [{
@@ -214,8 +214,8 @@
                                         },
                                         {
                                             "list": [
-                                                "VAT ",
-                                                "online sales  "
+                                                "VAT",
+                                                "online sales"
                                             ]
                                         },
                                         {
@@ -224,7 +224,7 @@
                                         {
                                             "list": [
                                                 "revenue from mobile phone network commission and top-up",
-                                                "sales from catering facilities used by customers (for example, in-store cafes) ",
+                                                "sales from catering facilities used by customers (for example, in-store cafes)",
                                                 "lottery sales and commission from lottery sales",
                                                 "sales of car accessories and motor vehicles",
                                                 "NHS receipts"
@@ -303,8 +303,8 @@
                                         },
                                         {
                                             "list": [
-                                                "VAT ",
-                                                "sales of goods paid for online by the customer, irrespective of the delivery method  "
+                                                "VAT",
+                                                "sales of goods paid for online by the customer, irrespective of the delivery method"
                                             ]
                                         },
                                         {
@@ -312,7 +312,7 @@
                                         },
                                         {
                                             "list": [
-                                                "&#x2018;reserve and pay in store&#x2019; orders      "
+                                                "&#x2018;reserve and pay in store&#x2019; orders"
                                             ]
                                         }
                                     ]
@@ -381,23 +381,23 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "question2936",
-                                "title": "Did any significant changes occur to the <em>retail sales</em> for {{ metadata['trad_as_or_ru_name'] }}? ",
+                                "title": "Did any significant changes occur to the <em>retail sales</em> for {{ metadata['trad_as_or_ru_name'] }}?",
                                 "guidance": {
                                     "content": [{
                                             "description": "<strong>For example</strong>"
                                         },
                                         {
                                             "list": [
-                                                "in-store/ online promotions ",
-                                                "special events (for example, sporting events)  ",
-                                                "calendar events (for example, bank holidays and religious events)  ",
-                                                "weather  ",
-                                                "store closures/openings  "
+                                                "in-store/ online promotions",
+                                                "special events (for example, sporting events)",
+                                                "calendar events (for example, bank holidays and religious events)",
+                                                "weather",
+                                                "store closures/openings"
                                             ]
                                         }
                                     ]
                                 },
-                                "description": "What constitutes a &#x2018;significant change&#x2019; is dependent on your own interpretation in relation to Essential Ltd&#x2019;s figures from the previous reporting period and the same reporting period last year. ",
+                                "description": "What constitutes a &#x2018;significant change&#x2019; is dependent on your own interpretation in relation to Essential Ltd&#x2019;s figures from the previous reporting period and the same reporting period last year.",
                                 "type": "General",
                                 "answers": [{
                                     "id": "answer3817",
@@ -443,7 +443,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "question2937",
-                                "title": "Please indicate the reasons for any changes in the <em>retail sales</em> for {{ metadata['trad_as_or_ru_name'] }}  ",
+                                "title": "Please indicate the reasons for any changes in the <em>retail sales</em> for {{ metadata['trad_as_or_ru_name'] }}",
                                 "description": "",
                                 "type": "General",
                                 "answers": [{
@@ -490,7 +490,7 @@
                             "questions": [{
                                 "id": "question2938",
                                 "title": "Please describe the changes in <em>retail sales</em> for {{ metadata['trad_as_or_ru_name'] }} in more detail.",
-                                "description": "We rely on your commentary to &#x2018;tell the story&#x2019; behind changes in figures. By commenting here, it will reduce the need for us to call you.  ",
+                                "description": "We rely on your commentary to &#x2018;tell the story&#x2019; behind changes in figures. By commenting here, it will reduce the need for us to call you.",
                                 "type": "General",
                                 "answers": [{
                                     "id": "answer3819",
@@ -574,7 +574,7 @@
                                         },
                                         {
                                             "list": [
-                                                "Retail activity "
+                                                "Retail activity"
                                             ]
                                         }
                                     ]
