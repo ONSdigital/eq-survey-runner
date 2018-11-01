@@ -287,6 +287,13 @@
                         {
                             "id": "online-sales-block",
                             "type": "Question",
+                            "skip_conditions": [{
+                                "when": [{
+                                    "id": "retail-sales-answer",
+                                    "condition": "equals",
+                                    "value": 0
+                                }]
+                            }],
                             "questions": [{
                                 "id": "question2935",
                                 "title": "Of the {{ format_currency(answers['retail-sales-answer'], 'GBP') }} retail sales, how much were <em>online sales</em>? ",
@@ -330,6 +337,13 @@
                             "type": "ConfirmationQuestion",
                             "title": "Online sales including VAT",
                             "id": "confirm-online-sales-block",
+                            "skip_conditions": [{
+                                "when": [{
+                                    "id": "retail-sales-answer",
+                                    "condition": "equals",
+                                    "value": 0
+                                }]
+                            }],
                             "questions": [{
                                 "type": "General",
                                 "answers": [{
