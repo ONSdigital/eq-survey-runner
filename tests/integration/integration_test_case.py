@@ -2,9 +2,12 @@ import os
 import re
 import unittest
 import json
+import zlib
 
 from bs4 import BeautifulSoup
 from moto import mock_dynamodb2
+
+from itsdangerous import base64_decode
 
 from sdc.crypto.key_store import KeyStore
 
@@ -193,6 +196,15 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         """
         return self.last_response.get_data(True)
 
+    def getCookie(self):
+        """
+            Returns the last received response cookie session
+        """
+        cookie = self.last_response.headers['Set-Cookie']
+        cookie_session = cookie.split('session=.')[1].split(';')[0]
+        decoded_cookie_session = decode_flask_cookie(cookie_session)
+        return json.loads(decoded_cookie_session)
+
     def getHtmlSoup(self):
         """
         Returns the last received response data as a BeautifulSoup HTML object
@@ -268,3 +280,11 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
             self.assertRegex(text=self.last_url, expected_regex=regex)
         else:
             self.fail('last_url is invalid')
+
+
+def decode_flask_cookie(cookie):
+    """Decode a Flask cookie."""
+    data = cookie.split('.')[0]
+    data = base64_decode(data)
+    data = zlib.decompress(data)
+    return data.decode('utf-8')
