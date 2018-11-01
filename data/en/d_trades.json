@@ -252,13 +252,6 @@
                             "type": "ConfirmationQuestion",
                             "title": "Retail sales including VAT",
                             "id": "confirm-zero-retail-sales-block",
-                            "skip_conditions": [{
-                                "when": [{
-                                    "id": "retail-sales-answer",
-                                    "condition": "greater than",
-                                    "value": 0
-                                }]
-                            }],
                             "questions": [{
                                 "type": "General",
                                 "answers": [{
@@ -274,7 +267,7 @@
                                     "mandatory": true
                                 }],
                                 "id": "confirm-zero-retail-sales-question",
-                                "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, the value of retail sales was <em>\u00a30</em>, is this correct?"
+                                "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, the value of retail sales was {{ format_currency(answers['retail-sales-answer'], 'GBP') }}, is this correct?"
                             }],
                             "routing_rules": [{
                                 "goto": {
@@ -514,7 +507,7 @@
                             "questions": [{
                                 "id": "question2939",
                                 "title": "For the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}, did {{ metadata['trad_as_or_ru_name'] }} have turnover from <em>any activities other than retail sales</em>?   ",
-                                "description": "<strong>Why are we asking? </strong><br /><br />We want to understand if we are missing any turnover from other activities for {{ metadata['trad_as_or_ru_name'] }} outside of retail sales",
+                                "description": "<p><strong>Why are we asking? </strong></p>We want to understand if we are missing any turnover from other activities for {{ metadata['trad_as_or_ru_name'] }} outside of retail sales",
                                 "type": "General",
                                 "answers": [{
                                     "id": "answer3820",
