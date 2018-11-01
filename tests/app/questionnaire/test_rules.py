@@ -133,6 +133,28 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         self.assertTrue(evaluate_rule(when, 2))
         self.assertFalse(evaluate_rule(when, 0))
 
+    def test_evaluate_rule_greater_than_or_equals_with_number(self):
+        when = {
+            'value': 4,
+            'condition': 'greater than or equal to'
+        }
+
+        self.assertTrue(evaluate_rule(when, 4))
+        self.assertTrue(evaluate_rule(when, 5))
+        self.assertFalse(evaluate_rule(when, 3))
+        self.assertFalse(evaluate_rule(when, None))
+
+    def test_evaluate_rule_less_than_or_equals_with_number(self):
+        when = {
+            'value': 4,
+            'condition': 'less than or equal to'
+        }
+
+        self.assertTrue(evaluate_rule(when, 4))
+        self.assertTrue(evaluate_rule(when, 3))
+        self.assertFalse(evaluate_rule(when, 5))
+        self.assertFalse(evaluate_rule(when, None))
+
     def test_evaluate_rule_greater_than_with_number(self):
         when = {
             'value': 5,
