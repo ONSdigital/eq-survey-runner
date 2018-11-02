@@ -8,7 +8,7 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
         self.launchSurvey('test', 'final_confirmation')
         # When we open the introduction
         # Then previous link does not appear
-        self.assertNotInPage('Previous')
+        self.assertNotInBody('Previous')
 
     def test_previous_link_doesnt_appear_on_page_following_introduction(self):
         # Given
@@ -16,10 +16,10 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
 
         # When we proceed through the questionnaire
         self.post(action='start_questionnaire')
-        self.assertInPage('Previous')
+        self.assertInBody('Previous')
         self.post({'breakfast-answer': 'Bacon'})
         self.assertNotInUrl('thank-you')
-        self.assertNotInPage('Previous')
+        self.assertNotInBody('Previous')
 
     def test_previous_link_doesnt_appear_on_thank_you(self):
         # Given
@@ -59,7 +59,7 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
         self.post({'overnight-visitors-answer': '0'})
 
         # Then there should be a previous link on all repeating household blocks.
-        self.assertInPage('Previous')
+        self.assertInBody('Previous')
 
         self.get('questionnaire/census/household/789/who-lives-here-relationship/1/household-relationships')
-        self.assertInPage('Previous')
+        self.assertInBody('Previous')

@@ -25,10 +25,10 @@ class TestPageErrors(StarWarsTestCase):
         # We submit the form
         self.post(url=first_page, post_data=form_data)
 
-        self.assertInPage('href="#container-tie-fighter-sound-answer"')
+        self.assertInBody('href="#container-tie-fighter-sound-answer"')
 
         # We DO NOT have the error from page two
-        self.assertNotInPage('href="chewbacca-medal-answer"')
+        self.assertNotInBody('href="chewbacca-medal-answer"')
 
     def test_skip_question_errors(self):
         # Given on the page with skip question with skip condition
@@ -41,8 +41,8 @@ class TestPageErrors(StarWarsTestCase):
 
         # Then errors exists on page
         self.assertStatusOK()
-        self.assertInPage('This page has an error')
-        self.assertInPage('This <strong>must be corrected</strong> to continue.')
+        self.assertInBody('This page has an error')
+        self.assertInBody('This <strong>must be corrected</strong> to continue.')
 
     def test_mutliple_validation_errors(self):
         # Given on the page with two mandatory fields
@@ -54,5 +54,5 @@ class TestPageErrors(StarWarsTestCase):
 
         # Then errors exists on page
         self.assertStatusOK()
-        self.assertInPage('This page has 2 errors')
-        self.assertInPage('These <strong>must be corrected</strong> to continue.')
+        self.assertInBody('This page has 2 errors')
+        self.assertInBody('These <strong>must be corrected</strong> to continue.')

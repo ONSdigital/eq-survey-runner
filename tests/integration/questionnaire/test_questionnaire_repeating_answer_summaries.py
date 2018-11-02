@@ -22,7 +22,7 @@ class TestHouseholdWhenRouting(IntegrationTestCase):
 
         self.post(form_data)
 
-        self.assertInPage('Joe Bloggs')
+        self.assertInBody('Joe Bloggs')
 
         self.post({'primary-anyone-else': 'Yes'})
 
@@ -34,8 +34,8 @@ class TestHouseholdWhenRouting(IntegrationTestCase):
 
         self.post(form_data)
 
-        self.assertInPage('Joe Bloggs')
-        self.assertInPage('Jonny Jones')
+        self.assertInBody('Joe Bloggs')
+        self.assertInBody('Jonny Jones')
 
         self.post({'repeating-anyone-else': 'Yes'})
 
@@ -47,6 +47,6 @@ class TestHouseholdWhenRouting(IntegrationTestCase):
 
         self.post(form_data)
 
-        self.assertInPage('Joe Bloggs')
-        self.assertInPage('Jonny Jones')
-        self.assertInPage('Jane Mary Sarah Davies')
+        self.assertInBody('Joe Bloggs')
+        self.assertInBody('Jonny Jones')
+        self.assertInBody('Jane Mary Sarah Davies')

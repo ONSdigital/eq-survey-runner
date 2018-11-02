@@ -7,16 +7,16 @@ class TestRsiSubmissionData(IntegrationTestCase):
         self.launchSurvey('test', '0102', roles=['dumper'])
 
         # We are on the introduction page
-        self.assertInPage('>Start survey<')
-        self.assertInPage('Monthly Business Survey - Retail Sales Index')
+        self.assertInBody('>Start survey<')
+        self.assertInBody('Monthly Business Survey - Retail Sales Index')
 
         # We proceed to the questionnaire
         self.post(action='start_questionnaire')
 
         # We are in the Questionnaire
-        self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
-        self.assertInPage('What are the dates of the period that you will be reporting for?')
-        self.assertInPage('>Save and continue<')
+        self.assertInBody('>Monthly Business Survey - Retail Sales Index</')
+        self.assertInBody('What are the dates of the period that you will be reporting for?')
+        self.assertInBody('>Save and continue<')
 
         # When I submit an answer
         form_data = {
@@ -37,10 +37,10 @@ class TestRsiSubmissionData(IntegrationTestCase):
 
         # There are no validation errors (we're on the summary screen)
         self.assertInUrl('summary')
-        self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
-        self.assertInPage('>Check your answers and submit<')
-        self.assertInPage('You can check your answers below')
-        self.assertInPage('>Submit answers<')
+        self.assertInBody('>Monthly Business Survey - Retail Sales Index</')
+        self.assertInBody('>Check your answers and submit<')
+        self.assertInBody('You can check your answers below')
+        self.assertInBody('>Submit answers<')
 
         # And the JSON response contains the data I submitted
         actual = self.dumpSubmission()
@@ -85,16 +85,16 @@ class TestRsiSubmissionData(IntegrationTestCase):
         self.launchSurvey('test', '0112', roles=['dumper'])
 
         # We are on the introduction page
-        self.assertInPage('>Start survey<')
-        self.assertInPage('Monthly Business Survey - Retail Sales Index')
+        self.assertInBody('>Start survey<')
+        self.assertInBody('Monthly Business Survey - Retail Sales Index')
 
         # We proceed to the questionnaire
         self.post(action='start_questionnaire')
 
         # We are in the Questionnaire
-        self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
-        self.assertInPage('What are the dates of the period that you will be reporting for?')
-        self.assertInPage('>Save and continue<')
+        self.assertInBody('>Monthly Business Survey - Retail Sales Index</')
+        self.assertInBody('What are the dates of the period that you will be reporting for?')
+        self.assertInBody('>Save and continue<')
 
         # When I submit an answer
         form_data = {
@@ -127,10 +127,10 @@ class TestRsiSubmissionData(IntegrationTestCase):
 
         # There are no validation errors (we're on the summary screen)
         self.assertInUrl('summary')
-        self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
-        self.assertInPage('>Check your answers and submit<')
-        self.assertInPage('You can check your answers below')
-        self.assertInPage('>Submit answers<')
+        self.assertInBody('>Monthly Business Survey - Retail Sales Index</')
+        self.assertInBody('>Check your answers and submit<')
+        self.assertInBody('You can check your answers below')
+        self.assertInBody('>Submit answers<')
 
         # And the JSON response contains the data I submitted
         actual = self.dumpSubmission()

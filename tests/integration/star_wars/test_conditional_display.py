@@ -22,8 +22,8 @@ class TestConditionalDisplay(StarWarsTestCase):
         self.assertInUrl(star_wars_test_urls.STAR_WARS_TRIVIA_PART_2)
 
         # Check we are on the next page
-        self.assertInPage('The force is strong with you, young Jedi')
-        self.assertInPage('What else did the Bothan spies steal for the Rebel Alliance?')
+        self.assertInBody('The force is strong with you, young Jedi')
+        self.assertInBody('What else did the Bothan spies steal for the Rebel Alliance?')
 
         # Our answers
         form_data = STAR_WARS_TRIVIA_PART_2_DEFAULT_ANSWERS.copy()
@@ -34,7 +34,7 @@ class TestConditionalDisplay(StarWarsTestCase):
 
         self.post(form_data)
 
-        self.assertInPage('What is the name of Jar Jar Binks')
+        self.assertInBody('What is the name of Jar Jar Binks')
 
         self.post(STAR_WARS_TRIVIA_PART_3_DEFAULT_ANSWERS)
 
@@ -42,9 +42,9 @@ class TestConditionalDisplay(StarWarsTestCase):
         self.assertRegexUrl(star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
 
         # We are on the summary page
-        self.assertInPage('>Star Wars</')
-        self.assertInPage('>Check your answers and submit<')
-        self.assertInPage('What is the name of Jar Jar Binks')
+        self.assertInBody('>Star Wars</')
+        self.assertInBody('>Check your answers and submit<')
+        self.assertInBody('What is the name of Jar Jar Binks')
 
     def test_conditional_display_questions_non_present(self):
 
@@ -59,8 +59,8 @@ class TestConditionalDisplay(StarWarsTestCase):
         self.assertInUrl(star_wars_test_urls.STAR_WARS_TRIVIA_PART_2)
 
         # Check we are on the next page
-        self.assertNotInPage('The force is strong with you, young Jedi')
-        self.assertNotInPage('What else did the Bothan spies steal for the Rebel Alliance?')
+        self.assertNotInBody('The force is strong with you, young Jedi')
+        self.assertNotInBody('What else did the Bothan spies steal for the Rebel Alliance?')
 
         # Our answers
         form_data = STAR_WARS_TRIVIA_PART_2_DEFAULT_ANSWERS.copy()
@@ -71,7 +71,7 @@ class TestConditionalDisplay(StarWarsTestCase):
 
         self.post(form_data)
 
-        self.assertNotInPage('What is the name of Jar Jar Binks')
+        self.assertNotInBody('What is the name of Jar Jar Binks')
 
         # final answers
         self.post({'favourite-film-answer': '5'})
@@ -80,6 +80,6 @@ class TestConditionalDisplay(StarWarsTestCase):
         self.assertRegexUrl(star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
 
         # We are on the review answers page
-        self.assertInPage('>Star Wars</')
-        self.assertInPage('>Check your answers and submit<')
-        self.assertNotInPage('What is the name of Jar Jar Binks')
+        self.assertInBody('>Star Wars</')
+        self.assertInBody('>Check your answers and submit<')
+        self.assertNotInBody('What is the name of Jar Jar Binks')

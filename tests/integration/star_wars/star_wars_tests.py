@@ -24,21 +24,21 @@ class StarWarsTestCase(IntegrationTestCase):
         self.post({'light-side-ship-type-answer': 'Millennium Falcon'})
 
     def routing_pick_your_character_light_side(self):
-        self.assertInPage('A wise choice young Jedi. Pick your hero')
-        self.assertInPage('light-side-pick-character-answer')
-        self.assertInPage('Do you want to pick a ship?')
-        self.assertInPage('light-side-pick-ship-answer')
+        self.assertInBody('A wise choice young Jedi. Pick your hero')
+        self.assertInBody('light-side-pick-character-answer')
+        self.assertInBody('Do you want to pick a ship?')
+        self.assertInBody('light-side-pick-ship-answer')
 
     def routing_select_your_ship_light_side(self):
-        self.assertInPage('Which ship do you want?')
-        self.assertInPage('Millennium Falcon')
-        self.assertInPage('X-wing')
-        self.assertInPage('light-side-ship-type-answer')
+        self.assertInBody('Which ship do you want?')
+        self.assertInBody('Millennium Falcon')
+        self.assertInBody('X-wing')
+        self.assertInBody('light-side-ship-type-answer')
 
     def check_second_quiz_page(self):
         # Pipe Test for section title
-        self.assertInPage("On <span class='date'>2 June 1983</span> how many were employed?")
+        self.assertInBody('On <span class="date">2 June 1983</span> how many were employed?')
 
         # Textarea question
-        self.assertInPage("Why doesn't Chewbacca receive a medal at the end of A New Hope?")
-        self.assertInPage('chewbacca-medal-answer')
+        self.assertInBody("Why doesn't Chewbacca receive a medal at the end of A New Hope?")
+        self.assertInBody('chewbacca-medal-answer')

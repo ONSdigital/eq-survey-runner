@@ -27,16 +27,16 @@ class TestDownstreamDataTyping(StarWarsTestCase):
 
         # Form submission with no errors
         self.post(STAR_WARS_TRIVIA_PART_1_DEFAULT_ANSWERS)
-        self.assertInPage("On <span class='date'>2 June 1983</span> how many were employed?")
-        self.assertInPage("Why doesn't Chewbacca receive a medal at the end of A New Hope?")
-        self.assertInPage('chewbacca-medal-answer')
+        self.assertInBody('On <span class="date">2 June 1983</span> how many were employed?')
+        self.assertInBody("Why doesn't Chewbacca receive a medal at the end of A New Hope?")
+        self.assertInBody('chewbacca-medal-answer')
 
         self.post({
             'chewbacca-medal-answer': 'Wookiees don’t place value in material rewards and refused the medal initially',
             'confirm-chewbacca-age-answer': 'Yes',
         })
 
-        self.assertInPage('Finally, which  is your favourite film?')
+        self.assertInBody('Finally, which  is your favourite film?')
 
         self.post({
             'jar-jar-binks-planet-answer': 'Naboo',

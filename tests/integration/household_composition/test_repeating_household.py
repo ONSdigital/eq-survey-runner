@@ -43,18 +43,18 @@ class TestRepeatingHousehold(IntegrationTestCase):
         self.post(form_data)
 
         # Then the details previously entered for the people should have been removed
-        self.assertInPage('Joe Bloggs')
-        self.assertInPage('What is their age')
-        self.assertNotInPage('data-qa="what-is-your-age-answer">9990</div>')
+        self.assertInBody('Joe Bloggs')
+        self.assertInBody('What is their age')
+        self.assertNotInBody('data-qa="what-is-your-age-answer">9990</div>')
 
         self.post({'what-is-your-age': '34'})
         self.post({'what-is-your-shoe-size': '10'})
 
         self.post({'confirm-answer': 'Yes'})
 
-        self.assertInPage('Jane Doe')
-        self.assertInPage('What is their age')
-        self.assertNotInPage('9992')
+        self.assertInBody('Jane Doe')
+        self.assertInBody('What is their age')
+        self.assertNotInBody('9992')
 
     def test_no_change_repeat_answer_keeps_repeated_groups(self):
         # Given I add some people
@@ -75,6 +75,6 @@ class TestRepeatingHousehold(IntegrationTestCase):
         self.post(household_data)
 
         # Then the details previously entered for the people should have been kept
-        self.assertInPage('Joe Bloggs')
-        self.assertInPage('What is their age')
-        self.assertInPage('18')
+        self.assertInBody('Joe Bloggs')
+        self.assertInBody('What is their age')
+        self.assertInBody('18')

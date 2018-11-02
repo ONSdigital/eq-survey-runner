@@ -13,7 +13,7 @@ class TestPiping(StarWarsTestCase):
         self.post(STAR_WARS_TRIVIA_PART_1_DEFAULT_ANSWERS)
 
         # We are in the Questionnaire
-        self.assertInPage("On <span class='date'>2 June 1983</span> how many were employed?")
+        self.assertInBody('On <span class="date">2 June 1983</span> how many were employed?')
 
     def test_piping_an_answer(self):
         self.launchSurvey()
@@ -25,11 +25,11 @@ class TestPiping(StarWarsTestCase):
         self.assertInUrl('star-wars-trivia-part-2')
 
         # Pipe Test for section title
-        self.assertInPage("On <span class='date'>2 June 1983</span> how many were employed?")
+        self.assertInBody('On <span class="date">2 June 1983</span> how many were employed?')
 
         # Textarea question
-        self.assertInPage("Why doesn't Chewbacca receive a medal at the end of A New Hope?")
-        self.assertInPage('chewbacca-medal-answer')
+        self.assertInBody("Why doesn't Chewbacca receive a medal at the end of A New Hope?")
+        self.assertInBody('chewbacca-medal-answer')
 
         # Check Cheewies Age has been correctly piped into the question text
-        self.assertInPage('Do you really think that Chewbacca is 234 years old?')
+        self.assertInBody('Do you really think that Chewbacca is 234 years old?')

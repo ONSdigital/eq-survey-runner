@@ -9,16 +9,16 @@ class TestQbsSubmissionData(IntegrationTestCase):
         self.launchSurvey(eq_id, form_type_id, roles=['dumper'])
 
         # We are on the introduction page
-        self.assertInPage('>Start survey<')
-        self.assertInPage('Quarterly Business Survey')
+        self.assertInBody('>Start survey<')
+        self.assertInBody('Quarterly Business Survey')
 
         # We proceed to the questionnaire
         self.post(action='start_questionnaire')
 
         # We are in the Questionnaire
-        self.assertInPage('>Quarterly Business Survey</')
-        self.assertInPage('what was the number of employees for Integration Tests?')
-        self.assertInPage('>Save and continue<')
+        self.assertInBody('>Quarterly Business Survey</')
+        self.assertInBody('what was the number of employees for Integration Tests?')
+        self.assertInBody('>Save and continue<')
 
         # When I submit answers
         self.post(post_data={'number-of-employees-total': '10'})
@@ -30,10 +30,10 @@ class TestQbsSubmissionData(IntegrationTestCase):
 
         # There are no validation errors (we're on the summary screen)
         self.assertInUrl('summary')
-        self.assertInPage('>Quarterly Business Survey</')
-        self.assertInPage('>Check your answers and submit<')
-        self.assertInPage('You can check your answers below')
-        self.assertInPage('>Submit answers<')
+        self.assertInBody('>Quarterly Business Survey</')
+        self.assertInBody('>Check your answers and submit<')
+        self.assertInBody('You can check your answers below')
+        self.assertInBody('>Submit answers<')
 
         # And the JSON response contains the data I submitted
         actual = self.dumpSubmission()

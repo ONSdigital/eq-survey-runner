@@ -214,12 +214,20 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         return BeautifulSoup(self.getResponseData(), 'html.parser')
 
     # Extra Helper Assertions
-    def assertInPage(self, content, message=None):
-        self.assertIn(member=str(content), container=self.getResponseData(), msg=str(message))
+    def assertInHead(self, content):
+        self.assertInSelector(content, name='head')
 
     # Extra Helper Assertions
     def assertInBody(self, content):
         self.assertInSelector(content, name='body')
+
+    # Extra Helper Assertions
+    def assertNotInHead(self, content):
+        self.assertNotInSelector(content, name='head')
+
+    # Extra Helper Assertions
+    def assertNotInBody(self, content):
+        self.assertNotInSelector(content, name='body')
 
     def assertInSelector(self, content, **selectors):
         data = self.getHtmlSoup().find(**selectors)
@@ -227,6 +235,13 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
         # intentionally not using assertIn to avoid duplicating the output message
         self.assertTrue(content in str(data), msg=message)
+
+    def assertNotInSelector(self, content, **selectors):
+        data = self.getHtmlSoup().find(**selectors)
+        message = '\n{} in \n{}'.format(content, data)
+
+        # intentionally not using assertIn to avoid duplicating the output message
+        self.assertFalse(content in str(data), msg=message)
 
     def assertNotInPage(self, content, message=None):
 

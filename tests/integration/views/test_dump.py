@@ -28,7 +28,7 @@ class TestDumpAnswers(IntegrationTestCase):
         self.assertStatusForbidden()
 
         # And the response data contains Forbidden
-        self.assertInPage('Error 403')
+        self.assertInBody('Error 403')
 
     def test_dump_answers_authenticated_with_role_no_answers(self):
         # Given I am an authenticated user who has launched a survey
@@ -113,7 +113,7 @@ class TestDumpSubmission(IntegrationTestCase):
         self.assertStatusForbidden()
 
         # And the response data contains Forbidden
-        self.assertInPage('Error 403')
+        self.assertInBody('Error 403')
 
     def test_dump_submission_authenticated_with_role_no_answers(self):
         # Given I am an authenticated user who has launched a survey
@@ -229,7 +229,7 @@ class TestDumpSubmission(IntegrationTestCase):
         self.post(form_data)
 
         # Check that's submitted correctly, else we don't have `group_instance > 0` on any answers
-        self.assertInPage('Is that everyone?')
+        self.assertInBody('Is that everyone?')
 
         # And I attempt to dump the submission payload
         self.get('/dump/submission')

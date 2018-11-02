@@ -24,10 +24,10 @@ class TestHappyPath(IntegrationTestCase):
         self.post(action='start_questionnaire')
 
         # We are in the Questionnaire
-        self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
-        self.assertInPage('What are the dates of the sales period you are reporting for?')
-        self.assertInPage('1 April 2016')
-        self.assertInPage('30 April 2016')
+        self.assertInBody('>Monthly Business Survey - Retail Sales Index</')
+        self.assertInBody('What are the dates of the sales period you are reporting for?')
+        self.assertInBody('1 April 2016')
+        self.assertInBody('30 April 2016')
 
     def try_another_date(self, form_type_id, eq_id):
         # Try another date
@@ -39,7 +39,7 @@ class TestHappyPath(IntegrationTestCase):
         self.post(action='start_questionnaire')
 
         # We are in the Questionnaire
-        self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
-        self.assertInPage('What are the dates of the sales period you are reporting for?')
-        self.assertInPage('1 August 2017')
-        self.assertInPage('31 August 2017')
+        self.assertInBody('>Monthly Business Survey - Retail Sales Index</')
+        self.assertInBody('What are the dates of the sales period you are reporting for?')
+        self.assertInBody('1 August 2017')
+        self.assertInBody('31 August 2017')

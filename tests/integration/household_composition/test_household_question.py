@@ -8,7 +8,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
     def setUp(self):
         super().setUp()
         self.launchSurvey('test', 'household_question')
-        self.assertInPage('Welcome to the Census Test.')
+        self.assertInBody('Welcome to the Census Test.')
         self.post(action='start_questionnaire')
 
     def test_add_answer(self):
@@ -31,10 +31,10 @@ class TestHouseholdQuestion(IntegrationTestCase):
         self.post({'household-composition-add-another': 'Yes'})
 
         # Check content on summary page
-        self.assertInPage('John')
-        self.assertInPage('Jane')
-        self.assertInPage('Joe')
-        self.assertInPage('Bran')
+        self.assertInBody('John')
+        self.assertInBody('Jane')
+        self.assertInBody('Joe')
+        self.assertInBody('Bran')
 
     def test_can_return_to_composition_and_add_entries(self):
         self.add_answers()
@@ -58,10 +58,10 @@ class TestHouseholdQuestion(IntegrationTestCase):
         form_data.add('household-2-last-name', '')
         self.post(post_data=form_data)
 
-        self.assertInPage('household-summary')
-        self.assertInPage('John')
-        self.assertInPage('Jane')
-        self.assertInPage('Joe')
+        self.assertInBody('household-summary')
+        self.assertInBody('John')
+        self.assertInBody('Jane')
+        self.assertInBody('Joe')
 
     def test_composition_complete_progresses_to_summary(self):
         self.add_answers()
@@ -76,7 +76,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
     def test_save_sign_out_with_household_question(self):
         self.add_answers()
         self.post(action='save_sign_out')
-        self.assertInPage('Your survey answers have been saved')
+        self.assertInBody('Your survey answers have been saved')
         self.assertInUrl('signed-out')
 
     def remove_answer(self):
@@ -89,7 +89,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
                   action_value='1'  # Remove Jane.
                  )
 
-        self.assertNotInPage('first-name_1')
+        self.assertNotInBody('first-name_1')
 
     def add_answers(self):
         # Add three people
@@ -103,6 +103,6 @@ class TestHouseholdQuestion(IntegrationTestCase):
         )
 
         self.assertStatusOK()
-        self.assertInPage('household-0-first-name')
-        self.assertInPage('household-1-first-name')
-        self.assertInPage('household-2-first-name')
+        self.assertInBody('household-0-first-name')
+        self.assertInBody('household-1-first-name')
+        self.assertInBody('household-2-first-name')

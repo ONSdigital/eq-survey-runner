@@ -26,7 +26,7 @@ class TestRepeatingHouseholdRouting(IntegrationTestCase):
         form_data.add('household-1-middle-names', '')
         form_data.add('household-1-last-name', 'Doe')
         self.post(form_data)
-        self.assertInPage('Is that everyone?')
+        self.assertInBody('Is that everyone?')
         self.post({'everyone-at-address-confirmation-answer': 'Yes'})
 
         # Then provide details for each member
@@ -66,13 +66,13 @@ class TestRepeatingHouseholdRouting(IntegrationTestCase):
         form_data.add('household-1-middle-names', '')
         form_data.add('household-1-last-name', 'Doe')
         self.post(form_data)
-        self.assertInPage('Is that everyone?')
+        self.assertInBody('Is that everyone?')
         self.post({'everyone-at-address-confirmation-answer': 'Yes'})
 
         # Then provide details for each member while skipping DoB
         # question for the first member
         self.post(action='save_continue')
-        self.assertInPage('Is Joe Bloggs aged 16 or over?')
+        self.assertInBody('Is Joe Bloggs aged 16 or over?')
         self.post({'dob-check-answer': 'Yes'})
         self.post({'sex-answer': 'Male'})
         self.post(action='save_continue')
@@ -104,7 +104,7 @@ class TestRepeatingHouseholdRouting(IntegrationTestCase):
         form_data.add('household-1-middle-names', '')
         form_data.add('household-1-last-name', 'Doe')
         self.post(form_data)
-        self.assertInPage('Is that everyone?')
+        self.assertInBody('Is that everyone?')
         self.post({'everyone-at-address-confirmation-answer': 'Yes'})
 
         # Then provide details for the first member
@@ -119,9 +119,9 @@ class TestRepeatingHouseholdRouting(IntegrationTestCase):
 
         # When I skip DoB for second member and answer remaining questions
         self.post(action='save_continue')
-        self.assertInPage('Is Jane Doe aged 16 or over?')
+        self.assertInBody('Is Jane Doe aged 16 or over?')
         self.post({'dob-check-answer': 'Yes'})
-        self.assertInPage('What is Jane Doe’s sex?')
+        self.assertInBody('What is Jane Doe’s sex?')
         self.post({'sex-answer': 'Female'})
 
         # The survey answers should still contain the first occupant's DoB
@@ -158,7 +158,7 @@ class TestHouseholdWhenRouting(IntegrationTestCase):
         form_data.add('household-1-last-name', 'Doe')
         self.post(form_data)
 
-        self.assertInPage('This is Group 1 - you answered "2"')
+        self.assertInBody('This is Group 1 - you answered "2"')
 
     def test_routes_based_on_answer_count_false_condition(self):
         """Asserts that the goto is ignored when the condition is false
@@ -169,4 +169,4 @@ class TestHouseholdWhenRouting(IntegrationTestCase):
         form_data.add('household-0-last-name', 'Bloggs')
         self.post(form_data)
 
-        self.assertInPage('This is Group 0 - You answered less than "2"')
+        self.assertInBody('This is Group 0 - You answered less than "2"')

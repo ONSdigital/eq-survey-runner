@@ -29,7 +29,7 @@ class TestNonMandatoryErrorToEmptyValue(IntegrationTestCase):
         self.post(form_data)
 
         # Get the page content
-        self.assertInPage(error_messages['INVALID_NUMBER'])
+        self.assertInBody(str(error_messages['INVALID_NUMBER']))
 
         # We remove the non-mandatory field value
         form_data = {

@@ -9,8 +9,8 @@ class TestInvalidDateNumber(IntegrationTestCase):
         self.launchSurvey('test', '0205')
 
         # We are on the introduction page
-        self.assertInPage('>Start survey<')
-        self.assertInPage('Monthly Business Survey - Retail Sales Index')
+        self.assertInBody('>Start survey<')
+        self.assertInBody('Monthly Business Survey - Retail Sales Index')
 
         # We proceed to the questionnaire
         self.post(action='start_questionnaire')
@@ -30,7 +30,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         # We submit the form with the dates the same
         self.post(form_data)
-        self.assertInPage(error_messages['INVALID_DATE_RANGE'])
+        self.assertInBody(str(error_messages['INVALID_DATE_RANGE']))
 
         form_data = {
             # Start Date
@@ -52,9 +52,9 @@ class TestInvalidDateNumber(IntegrationTestCase):
         self.assertInUrl(mci_test_urls.MCI_0205_SUMMARY)
 
         # We are on the review answers page
-        self.assertInPage('>Check your answers and submit<')
-        self.assertInPage('You can check your answers below')
-        self.assertInPage('>Submit answers<')
+        self.assertInBody('>Check your answers and submit<')
+        self.assertInBody('You can check your answers below')
+        self.assertInBody('>Submit answers<')
 
         # We submit our answers
         self.post(action=None)
@@ -81,7 +81,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         # We submit the form with the dates the same
         self.post(form_data)
-        self.assertInPage(error_messages['INVALID_DATE_RANGE'])
+        self.assertInBody(str(error_messages['INVALID_DATE_RANGE']))
 
     def test_invalid_date_range(self):
         self.launchSurvey('test', '0205')
@@ -102,7 +102,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         # We submit the form with the front date later then the to date
         self.post(form_data)
-        self.assertInPage(error_messages['INVALID_DATE_RANGE'])
+        self.assertInBody(str(error_messages['INVALID_DATE_RANGE']))
 
     def test_invalid_year(self):
         self.launchSurvey('test', '0205')
@@ -123,7 +123,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         # We submit the form without a valid 2nd date
         self.post(form_data)
-        self.assertInPage(error_messages['INVALID_DATE'])
+        self.assertInBody(str(error_messages['INVALID_DATE']))
 
     def test_invalid_integer(self):
         self.launchSurvey('test', '0205')
@@ -144,7 +144,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         # We submit the form without a valid turnover value
         self.post(form_data)
-        self.assertInPage(error_messages['INVALID_NUMBER'])
+        self.assertInBody(str(error_messages['INVALID_NUMBER']))
 
     def test_invalid_date_number(self):
         self.launchSurvey('test', '0205')
@@ -165,4 +165,4 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         # We submit the form with an invalid date
         self.post(form_data)
-        self.assertInPage(error_messages['INVALID_DATE'])
+        self.assertInBody(str(error_messages['INVALID_DATE']))

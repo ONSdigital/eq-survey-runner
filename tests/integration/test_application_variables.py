@@ -21,14 +21,14 @@ class TestApplicationVariables(IntegrationTestCase):
     def test_flask_toolbar_is_displayed(self):
         self.launchSurvey('0', 'star_wars')
         self.assertStatusOK()
-        self.assertInPage('flDebugToolbarHandle', 'The page does not contain the Flask toolbar')
+        self.assertInBody('flDebugToolbarHandle')
 
     def test_google_analytics_code_is_present(self):
         self.launchSurvey('0', 'star_wars')
         self.assertStatusOK()
-        self.assertInPage('GoogleAnalyticsObject', 'The page does not contain the GoogleAnalyticsObject')
+        self.assertInHead('GoogleAnalyticsObject')
 
     def test_livereload_script_rendered(self):
         self.launchSurvey('0', 'star_wars')
         self.assertStatusOK()
-        self.assertInPage('__bs_script__', 'The page does not contain the browsersync script')
+        self.assertTrue('__bs_script__' in self.getResponseData())

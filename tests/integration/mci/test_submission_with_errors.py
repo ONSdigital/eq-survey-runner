@@ -8,16 +8,16 @@ class TestSubmissionWithErrors(IntegrationTestCase):
         self.launchSurvey('test', '0205')
 
         # We are on the introduction page
-        self.assertInPage('>Start survey<')
-        self.assertInPage('Monthly Business Survey - Retail Sales Index')
+        self.assertInBody('>Start survey<')
+        self.assertInBody('Monthly Business Survey - Retail Sales Index')
 
         # We proceed to the questionnaire
         self.post(action='start_questionnaire')
 
         # We are in the Questionnaire
-        self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
-        self.assertInPage('What are the dates of the sales period you are reporting for?')
-        self.assertInPage('>Save and continue<')
+        self.assertInBody('>Monthly Business Survey - Retail Sales Index</')
+        self.assertInBody('What are the dates of the sales period you are reporting for?')
+        self.assertInBody('>Save and continue<')
 
         form_data = {
             # Start Date
@@ -32,9 +32,9 @@ class TestSubmissionWithErrors(IntegrationTestCase):
 
         self.post(form_data)
         self.assertInUrl('reporting-period')
-        self.assertInPage('This page has 3 errors')
+        self.assertInBody('This page has 3 errors')
 
         # We try to submit our answers; we'll be re-directed back
         self.post(url=mci_test_urls.MCI_0205_SUMMARY, action=None)
         self.assertInUrl('reporting-period')
-        self.assertNotInPage('This page has 3 errors')
+        self.assertNotInBody('This page has 3 errors')

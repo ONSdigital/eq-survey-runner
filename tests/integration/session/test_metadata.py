@@ -20,8 +20,8 @@ class TestMetadataValidation(IntegrationTestCase):
         # Then
         self.assertStatusOK()
         # Assert that all the metadata is formatted in the page
-        for name, value in metadata.items():
-            self.assertInPage(value, 'No value for `{}`, expected `{}`'.format(name, value))
+        for _, value in metadata.items():
+            self.assertInBody(str(value))
 
     def test_invalid_uuid_in_survey(self):
         # Given

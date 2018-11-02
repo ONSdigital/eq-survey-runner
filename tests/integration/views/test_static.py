@@ -13,13 +13,13 @@ class TestStatic(IntegrationTestCase):
         mock_contact.return_value = data
         self.launchSurvey('test', '0205')
         self.get('/contact-us')
-        self.assertInPage('123456789012A')
+        self.assertInBody('123456789012A')
 
     def test_contact_with_no_session(self):
         self.get('/contact-us')
-        self.assertNotInPage('Please quote the reference')
-        self.assertInPage('Opening hours')
+        self.assertNotInBody('Please quote the reference')
+        self.assertInBody('Opening hours')
 
     def test_cookies_and_privacy(self):
         self.get('/cookies-privacy')
-        self.assertInPage('We can only use your information for research and statistical purposes. ')
+        self.assertInBody('We can only use your information for research and statistical purposes. ')

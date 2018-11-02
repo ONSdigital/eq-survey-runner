@@ -14,13 +14,13 @@ class TestAnswerComparisonsSkips(IntegrationTestCase):
         self.post(action='start_questionnaire')
 
         # We are in the Questionnaire
-        self.assertInPage('Enter your first number')
+        self.assertInBody('Enter your first number')
 
         self.post({
             'comparison-1-answer': 2
         })
 
-        self.assertInPage('Enter your second number')
+        self.assertInBody('Enter your second number')
 
         second_page = self.last_url
 
@@ -28,21 +28,21 @@ class TestAnswerComparisonsSkips(IntegrationTestCase):
             'comparison-2-answer': 3
         })
 
-        self.assertInPage('First less than second')
+        self.assertInBody('First less than second')
 
         # Go back to the second question and change the answer
         self.post({
             'comparison-2-answer': 2
         }, url=second_page)
 
-        self.assertInPage('Second equal first')
+        self.assertInBody('Second equal first')
 
         # Go back to the second question and change the answer
         self.post({
             'comparison-2-answer': 1
         }, url=second_page)
 
-        self.assertInPage('First greater than second')
+        self.assertInBody('First greater than second')
 
 class TestAnswerComparisonsRoutes(IntegrationTestCase):
     """
@@ -55,13 +55,13 @@ class TestAnswerComparisonsRoutes(IntegrationTestCase):
         self.post(action='start_questionnaire')
 
         # We are in the Questionnaire
-        self.assertInPage('Enter your first number')
+        self.assertInBody('Enter your first number')
 
         self.post({
             'route-comparison-1-answer': 2
         })
 
-        self.assertInPage('Enter a higher number to skip')
+        self.assertInBody('Enter a higher number to skip')
 
         second_page = self.last_url
 
@@ -70,14 +70,14 @@ class TestAnswerComparisonsRoutes(IntegrationTestCase):
             'route-comparison-2-answer': 3
         })
 
-        self.assertInPage('Your second number was higher')
+        self.assertInBody('Your second number was higher')
 
         # Go back to the second question and change the answer to a lower one
         self.post({
             'route-comparison-2-answer': 1
         }, url=second_page)
 
-        self.assertInPage('Your second number was lower or equal')
+        self.assertInBody('Your second number was lower or equal')
 
 
 class TestAnswerComparisonsRepeating(IntegrationTestCase):
@@ -92,34 +92,34 @@ class TestAnswerComparisonsRepeating(IntegrationTestCase):
         self.post(action='start_questionnaire')
 
         # We are in the Questionnaire
-        self.assertInPage('Enter a number')
+        self.assertInBody('Enter a number')
 
         self.post({
             'repeating-comparison-1-answer': 2
         })
 
-        self.assertInPage('Enter the same number to stop')
+        self.assertInBody('Enter the same number to stop')
 
         # Enter a different number, the question should repeat
         self.post({
             'repeating-comparison-2-answer': 3
         })
 
-        self.assertInPage('Enter a number')
+        self.assertInBody('Enter a number')
 
         # The question should have repeated
         self.post({
             'repeating-comparison-1-answer': 1
         })
 
-        self.assertInPage('Enter the same number to stop')
+        self.assertInBody('Enter the same number to stop')
 
         # Enter the same number, the summary should appear
         self.post({
             'repeating-comparison-2-answer': 1
         })
 
-        self.assertInPage('Check your answers and submit')
+        self.assertInBody('Check your answers and submit')
 
 
 class TestRepeatingAnswerComparisonToNormalAnswer(IntegrationTestCase):
@@ -133,38 +133,38 @@ class TestRepeatingAnswerComparisonToNormalAnswer(IntegrationTestCase):
         self.post(action='start_questionnaire')
 
         # We are in the Questionnaire
-        self.assertInPage('Enter a number')
+        self.assertInBody('Enter a number')
 
         self.post({
             'primary-answer': 10
         })
 
-        self.assertInPage('Enter a different number to repeat this question')
+        self.assertInBody('Enter a different number to repeat this question')
 
         # Enter a different number, the question should repeat
         self.post({
             'repeating-comparison-1-answer': 3
         })
 
-        self.assertInPage('Enter a different number to repeat this question')
+        self.assertInBody('Enter a different number to repeat this question')
 
         # The question should have repeated
         self.post({
             'repeating-comparison-1-answer': 1
         })
 
-        self.assertInPage('Enter a different number to repeat this question')
+        self.assertInBody('Enter a different number to repeat this question')
 
         # The question should have repeated
         self.post({
             'repeating-comparison-1-answer': 7
         })
 
-        self.assertInPage('Enter a different number to repeat this question')
+        self.assertInBody('Enter a different number to repeat this question')
 
         # Enter the same number, the summary should appear
         self.post({
             'repeating-comparison-1-answer': 10
         })
 
-        self.assertInPage('Check your answers and submit')
+        self.assertInBody('Check your answers and submit')

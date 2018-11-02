@@ -12,9 +12,9 @@ class TestHappyPath(IntegrationTestCase):
         self.post(action='start_questionnaire')
 
         # We are in the Questionnaire
-        self.assertInPage('Did you have a paid job, either as an employee or self-employed, in the week')
-        self.assertInPage('Monday 1 October 2018')
-        self.assertInPage('Sunday 7 October 2018')
+        self.assertInBody('Did you have a paid job, either as an employee or self-employed, in the week')
+        self.assertInBody('Monday 1 October 2018')
+        self.assertInBody('Sunday 7 October 2018')
 
         self.post({
             'manual-range-radio': 'Yes'
@@ -22,9 +22,9 @@ class TestHappyPath(IntegrationTestCase):
 
         # We're on the second question
 
-        self.assertInPage('If you had been offered a job in the week starting')
-        self.assertInPage('Monday 1 October')
-        self.assertInPage('Monday 15 October')
+        self.assertInBody('If you had been offered a job in the week starting')
+        self.assertInBody('Monday 1 October')
+        self.assertInBody('Monday 15 October')
 
 
         self.post({
@@ -33,6 +33,6 @@ class TestHappyPath(IntegrationTestCase):
 
         # We're on the third question
 
-        self.assertInPage('In the 4 weeks between')
-        self.assertInPage('10 September')
-        self.assertInPage('7 October 2018')
+        self.assertInBody('In the 4 weeks between')
+        self.assertInBody('10 September')
+        self.assertInBody('7 October 2018')

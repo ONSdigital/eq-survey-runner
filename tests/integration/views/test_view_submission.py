@@ -9,7 +9,7 @@ class TestViewSubmission(IntegrationTestCase):
         self.launchSurvey('test', 'view_submitted_response')
 
         # check we're on first page
-        self.assertInPage('What is your favourite breakfast food')
+        self.assertInBody('What is your favourite breakfast food')
 
         # We fill in our answer
         form_data = {
@@ -21,7 +21,7 @@ class TestViewSubmission(IntegrationTestCase):
         self.post(form_data)
 
         # check we're on second page
-        self.assertInPage('Please enter test values (none mandatory)')
+        self.assertInBody('Please enter test values (none mandatory)')
 
         # We fill in our answers
         form_data = {
@@ -38,37 +38,37 @@ class TestViewSubmission(IntegrationTestCase):
         self.assertInUrl('summary')
 
         # check we're on the review answers page
-        self.assertInPage('You can check your answers below')
+        self.assertInBody('You can check your answers below')
 
         # Submit answers
         self.post(action=None)
 
         # check we're on the thank you page and view submission link is available
         self.assertInUrl('thank-you')
-        self.assertInPage('View and print a copy of your answers')
+        self.assertInBody('View and print a copy of your answers')
 
         # go to the view submission page
         self.get('questionnaire/test/view_submitted_response/view-submission')
 
         # check we're on the view submission page
         self.assertInUrl('view-submission')
-        self.assertInPage('Submitted answers')
+        self.assertInBody('Submitted answers')
 
         # check answers are on page
         self.assertStatusOK()
-        self.assertInPage('Bacon')
-        self.assertInPage('12')
-        self.assertInPage('345')
-        self.assertInPage('67.89')
+        self.assertInBody('Bacon')
+        self.assertInBody('12')
+        self.assertInBody('345')
+        self.assertInBody('67.89')
 
         # check edit links are not on page
-        self.assertNotInPage('data-ga-action="Edit click"')
+        self.assertNotInBody('data-ga-action="Edit click"')
 
     def test_try_view_submission_when_not_available(self):
         self.launchSurvey('test', 'currency')
 
         # check we're on first page
-        self.assertInPage('Currency Input Test')
+        self.assertInBody('Currency Input Test')
 
         # We fill in our answers
         form_data = {
@@ -90,7 +90,7 @@ class TestViewSubmission(IntegrationTestCase):
 
         # check we're on the thank you page and view submission link is not available
         self.assertInUrl('thank-you')
-        self.assertNotInPage('View and print a copy of your answers')
+        self.assertNotInBody('View and print a copy of your answers')
 
         # try go to the view submission page anyway
         self.get('questionnaire/test/currency/view-submission')
@@ -102,19 +102,19 @@ class TestViewSubmission(IntegrationTestCase):
         self.launchSurvey('test', 'view_submitted_response')
 
         # check we're on first page
-        self.assertInPage('What is your favourite breakfast food')
+        self.assertInBody('What is your favourite breakfast food')
 
         # try to get the view-submission page
         self.get('questionnaire/test/view_submitted_response/view-submission')
 
         # check we're redirected back to first page
-        self.assertInPage('What is your favourite breakfast food')
+        self.assertInBody('What is your favourite breakfast food')
 
     def test_view_submission_shows_trading_as_if_present(self):
         self.launchSurvey('test', 'view_submitted_response')
 
         # check we're on first page
-        self.assertInPage('What is your favourite breakfast food')
+        self.assertInBody('What is your favourite breakfast food')
 
         # We fill in our answer
         form_data = {
@@ -126,7 +126,7 @@ class TestViewSubmission(IntegrationTestCase):
         self.post(form_data)
 
         # check we're on second page
-        self.assertInPage('Please enter test values (none mandatory)')
+        self.assertInBody('Please enter test values (none mandatory)')
 
         # We fill in our answers
         form_data = {
@@ -147,7 +147,7 @@ class TestViewSubmission(IntegrationTestCase):
 
         # check we're on the view submission page, and trading as value is displayed
         self.assertInUrl('view-submission')
-        self.assertInPage('(Integration Tests)')
+        self.assertInBody('(Integration Tests)')
 
     def test_view_submission_does_not_show_parenthesis_if_no_trading_as(self):
         no_trading_as_payload = {
@@ -169,7 +169,7 @@ class TestViewSubmission(IntegrationTestCase):
             self.launchSurvey('test', 'view_submitted_response')
 
             # check we're on first page
-            self.assertInPage('What is your favourite breakfast food')
+            self.assertInBody('What is your favourite breakfast food')
 
             # We fill in our answer
             form_data = {
@@ -181,7 +181,7 @@ class TestViewSubmission(IntegrationTestCase):
             self.post(form_data)
 
             # check we're on second page
-            self.assertInPage('Please enter test values (none mandatory)')
+            self.assertInBody('Please enter test values (none mandatory)')
 
             # We fill in our answers
             form_data = {
@@ -202,8 +202,8 @@ class TestViewSubmission(IntegrationTestCase):
 
             # check we're on the view submission page, and trading as value is displayed
             self.assertInUrl('view-submission')
-            self.assertNotInPage('(Integration Tests)')
-            self.assertNotInPage('()')
+            self.assertNotInBody('(Integration Tests)')
+            self.assertNotInBody('()')
 
     def test_view_submission_does_not_show_parenthesis_trading_as_is_empty_string(self):
         no_trading_as_payload = {
@@ -226,7 +226,7 @@ class TestViewSubmission(IntegrationTestCase):
             self.launchSurvey('test', 'view_submitted_response')
 
             # check we're on first page
-            self.assertInPage('What is your favourite breakfast food')
+            self.assertInBody('What is your favourite breakfast food')
 
             # We fill in our answer
             form_data = {
@@ -238,7 +238,7 @@ class TestViewSubmission(IntegrationTestCase):
             self.post(form_data)
 
             # check we're on second page
-            self.assertInPage('Please enter test values (none mandatory)')
+            self.assertInBody('Please enter test values (none mandatory)')
 
             # We fill in our answers
             form_data = {
@@ -259,5 +259,5 @@ class TestViewSubmission(IntegrationTestCase):
 
             # check we're on the view submission page, and trading as value is displayed
             self.assertInUrl('view-submission')
-            self.assertNotInPage('(Integration Tests)')
-            self.assertNotInPage('()')
+            self.assertNotInBody('(Integration Tests)')
+            self.assertNotInBody('()')

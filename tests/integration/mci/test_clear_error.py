@@ -12,19 +12,19 @@ class TestClearError(IntegrationTestCase):
         self.launchSurvey('test', '0205')
 
         # We are on the introduction page
-        self.assertInPage('>Start survey<')
-        self.assertInPage('Monthly Business Survey - Retail Sales Index')
+        self.assertInBody('>Start survey<')
+        self.assertInBody('Monthly Business Survey - Retail Sales Index')
 
         # We proceed to the questionnaire
         self.post(action='start_questionnaire')
 
         # We are in the Questionnaire
-        self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
-        self.assertInPage('What are the dates of the sales period you are reporting for?')
-        self.assertInPage('>Save and continue<')
+        self.assertInBody('>Monthly Business Survey - Retail Sales Index</')
+        self.assertInBody('What are the dates of the sales period you are reporting for?')
+        self.assertInBody('>Save and continue<')
 
         # check with have some guidance
-        self.assertInPage('alcoholic drink')
+        self.assertInBody('alcoholic drink')
 
         # We fill in our answers using an incorrect date range
         form_data = {
@@ -42,7 +42,7 @@ class TestClearError(IntegrationTestCase):
 
         # We submit the form
         self.post(form_data)
-        self.assertInPage(error_messages['INVALID_DATE_RANGE'])
+        self.assertInBody(str(error_messages['INVALID_DATE_RANGE']))
 
         # Fill the dates in correctly, but this time miss out the required value
         form_data = {
@@ -62,5 +62,5 @@ class TestClearError(IntegrationTestCase):
         self.post(form_data)
 
         # Check the page content again
-        self.assertInPage('Enter an answer to continue.')
-        self.assertNotInPage(error_messages['INVALID_DATE_RANGE'])
+        self.assertInBody('Enter an answer to continue.')
+        self.assertNotInBody(str(error_messages['INVALID_DATE_RANGE']))
