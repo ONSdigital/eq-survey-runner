@@ -38,7 +38,7 @@ before_install:
     - pyenv global $(cat .python-version)
     - pip install -U pip pipenv==2018.5.18 wheel
     - pipenv install --dev --deploy
-    - pipenv check -i '36333 '
+    - pipenv check
 cache:
     - yarn
     - pip

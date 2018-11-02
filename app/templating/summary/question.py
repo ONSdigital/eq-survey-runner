@@ -13,8 +13,8 @@ class Question:
         self.schema = schema
         self.answer_schemas = iter(question_schema['answers'])
 
-        self.title = (get_question_title(question_schema, answer_store, schema, metadata, group_instance=group_instance) or
-                      question_schema['answers'][0]['label'])
+        self.title = (get_question_title(question_schema, answer_store, schema, metadata, group_instance=group_instance)
+                      or question_schema['answers'][0]['label'])
         self.number = question_schema.get('number', None)
         self.answers = self._build_answers(answer_store, question_schema, group_instance)
 

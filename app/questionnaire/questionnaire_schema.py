@@ -150,10 +150,10 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         return self.group_dependencies['block_drivers']
 
     def location_requires_group_instance(self, location):
-        return bool(self.group_dependencies.get(location.group_id) or
-                    location.group_id in self.get_group_dependencies_group_drivers() or
-                    location.block_id in self.get_group_dependencies_group_drivers() or
-                    location.block_id in self.get_group_dependencies_block_drivers())
+        return bool(self.group_dependencies.get(location.group_id)
+                    or location.group_id in self.get_group_dependencies_group_drivers()
+                    or location.block_id in self.get_group_dependencies_group_drivers()
+                    or location.block_id in self.get_group_dependencies_block_drivers())
 
     def block_has_question_type(self, block_id, question_type):
         block = self.get_block(block_id)

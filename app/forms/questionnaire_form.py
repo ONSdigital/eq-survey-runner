@@ -71,9 +71,9 @@ class QuestionnaireForm(FlaskForm):
             messages = question['validation'].get('messages')
 
         if not (
-                self.answers_all_valid([period_from_id, period_to_id]) and
-                self._validate_date_range_question(question['id'], period_from_id, period_to_id, messages,
-                                                   question.get('period_limits'))):
+                self.answers_all_valid([period_from_id, period_to_id])
+                and self._validate_date_range_question(question['id'], period_from_id, period_to_id, messages,
+                                                       question.get('period_limits'))):
             return False
 
         return True
@@ -81,8 +81,8 @@ class QuestionnaireForm(FlaskForm):
     def validate_calculated_question(self, question):
         for calculation in question['calculations']:
             target_total, currency = self._get_target_total_and_currency(calculation, question)
-            if (self.answers_all_valid(calculation['answers_to_calculate']) and
-                    self._validate_calculated_question(calculation, question, target_total, currency)):
+            if (self.answers_all_valid(calculation['answers_to_calculate'])
+                    and self._validate_calculated_question(calculation, question, target_total, currency)):
                 # Remove any previous question errors if it passes this OR before returning True
                 if question['id'] in self.question_errors:
                     self.question_errors.pop(question['id'])

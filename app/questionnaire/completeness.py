@@ -77,8 +77,8 @@ class Completeness:
             # lookup group by group ID
             group = self.schema.get_group(group)
 
-        if (QuestionnaireSchema.is_confirmation_group(group) or
-                QuestionnaireSchema.is_summary_group(group)):
+        if (QuestionnaireSchema.is_confirmation_group(group)
+                or QuestionnaireSchema.is_summary_group(group)):
             # summary/confirmations are special cases as we don't want to
             # render until the whole survey is complete. They're also never
             # show as complete
@@ -171,14 +171,14 @@ class Completeness:
         return (
             section for section in self.schema.sections
             if not (
-                QuestionnaireSchema.is_summary_section(section) or
-                QuestionnaireSchema.is_confirmation_section(section))
+                QuestionnaireSchema.is_summary_section(section)
+                or QuestionnaireSchema.is_confirmation_section(section))
         )
 
     def _should_skip(self, group_or_block):
         return (
-            'skip_conditions' in group_or_block and
-            evaluate_skip_conditions(group_or_block['skip_conditions'], self.schema, self.metadata, self.answer_store)
+            'skip_conditions' in group_or_block
+            and evaluate_skip_conditions(group_or_block['skip_conditions'], self.schema, self.metadata, self.answer_store)
         )
 
     def _is_valid_for_completeness(self, block, location):

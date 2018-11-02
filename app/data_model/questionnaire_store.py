@@ -99,8 +99,8 @@ class QuestionnaireStore:
                 raise KeyError('Both group_id and block_id required')
 
             self.completed_blocks = [completed_block for completed_block in self.completed_blocks
-                                     if completed_block.group_id != group_id or
-                                     completed_block.block_id != block_id]
+                                     if completed_block.group_id != group_id
+                                     or completed_block.block_id != block_id]
 
     def _encode_questionnaire_store(self, o):
         if hasattr(o, 'to_dict'):
