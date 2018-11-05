@@ -1,6 +1,6 @@
 const helpers = require('../helpers');
-const WantToSkipPage = require('../pages/surveys/skip_condition_group/do-you-want-to-skip.page');
-const LastGroupPage = require('../pages/surveys/skip_condition_group/last-group-block.page');
+const WantToSkipPage = require('../generated_pages/skip_condition_group/do-you-want-to-skip.page');
+const LastGroupPage = require('../generated_pages/skip_condition_group/last-group-block.page');
 
 describe('Skip Condition Group', function() {
 

@@ -1,9 +1,9 @@
 const helpers = require('../../../../helpers');
+const DatePage = require('../../../../generated_pages/date_validation_single/date-block.page');
+const DatePeriodPage = require('../../../../generated_pages/date_validation_single/date-range-block.page');
+const SummaryPage = require('../../../../generated_pages/date_validation_single/summary.page');
 
 describe('Feature: Validation for single date periods', function() {
-  var DatePage = require('../../../../pages/features/validation/date-validation/date-single/date-block.page');
-  var DatePeriodPage = require('../../../../pages/features/validation/date-validation/date-single/date-range-block.page');
-  var SummaryPage = require('../../../../pages/features/validation/date-validation/date-single/summary.page');
 
   beforeEach(function() {
      return helpers.openQuestionnaire('test_date_validation_single.json')

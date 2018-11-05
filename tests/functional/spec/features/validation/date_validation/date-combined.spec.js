@@ -1,6 +1,6 @@
 const helpers = require('../../../../helpers');
-const DateRangePage = require('../../../../pages/features/validation/date-validation/date-combined/date-range-block.page');
-var SummaryPage = require('../../../../pages/features/validation/date-validation/date-combined/summary.page');
+const DateRangePage = require('../../../../generated_pages/date_validation_combined/date-range-block.page');
+var SummaryPage = require('../../../../generated_pages/date_validation_combined/summary.page');
 
 describe('Feature: Combined question level and single validation for dates', function() {
 
@@ -62,15 +62,15 @@ describe('Feature: Combined question level and single validation for dates', fun
          .selectByValue(DateRangePage.dateRangeTomonth(), 1)
          .setValue(DateRangePage.dateRangeToyear(), 2017)
          .click(DateRangePage.submit())
-         .getText(SummaryPage.dateRange()).should.eventually.contain('1 January 2017 to 11 January 2017')
+         .getText(SummaryPage.dateRangeFrom()).should.eventually.contain('1 January 2017 to 11 January 2017')
 
          // Max range
-         .click(SummaryPage.dateRangeEdit())
+         .click(SummaryPage.dateRangeFromEdit())
          .setValue(DateRangePage.dateRangeToday(), 20)
          .selectByValue(DateRangePage.dateRangeTomonth(), 2)
          .setValue(DateRangePage.dateRangeToyear(), 2017)
          .click(DateRangePage.submit())
-         .getText(SummaryPage.dateRange()).should.eventually.contain('1 January 2017 to 20 February 2017');
+         .getText(SummaryPage.dateRangeFrom()).should.eventually.contain('1 January 2017 to 20 February 2017');
       });
 
     });

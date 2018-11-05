@@ -25,13 +25,13 @@
                 "description": "",
                 "questions": [{
                     "answers": [{
-                        "id": "date-range-from",
+                        "id": "date-range-from-answer",
                         "label": "Period from",
                         "mandatory": true,
                         "q_code": "11",
                         "type": "Date"
                     }, {
-                        "id": "date-range-to",
+                        "id": "date-range-to-answer",
                         "label": "Period to",
                         "mandatory": true,
                         "q_code": "12",
@@ -98,7 +98,7 @@
                 "description": "",
                 "content": [{
                     "title": "",
-                    "list": ["The most recent Date Range value entered was <em>{{ max_value(answers['date-range-from'], answers['date-range-to'])|format_date }}</em>", "The least recent Date Range value entered was <em>{{ min_value(answers['date-range-from'], answers['date-range-to'])|format_date }}</em>", "The most recent of the dates <em>Date with month and year</em> and <em>Period From</em> is <em>{{ max_value(answers['date-range-from'], answers['month-year-answer'])|format_date }}</em>", "The most recent of the dates <em>Single date</em> and <em>Non-mandatory date</em>: <em>{{ max_value(answers['single-date-answer'], answers['non-mandatory-date-answer']) }}</em>", "The least recent of the dates <em>Single date</em> and <em>Non-mandatory date</em> (if non-mandatory date is unset this will be blank): <em>{{ min_value(answers['single-date-answer'], answers['non-mandatory-date-answer']) }}</em>"]
+                    "list": ["The most recent Date Range value entered was <em>{{ max_value(answers['date-range-from-answer'], answers['date-range-to-answer'])|format_date }}</em>", "The least recent Date Range value entered was <em>{{ min_value(answers['date-range-from-answer'], answers['date-range-to-answer'])|format_date }}</em>", "The most recent of the dates <em>Date with month and year</em> and <em>Period From</em> is <em>{{ max_value(answers['date-range-from-answer'], answers['month-year-answer'])|format_date }}</em>", "The most recent of the dates <em>Single date</em> and <em>Non-mandatory date</em>: <em>{{ max_value(answers['single-date-answer'], answers['non-mandatory-date-answer']) }}</em>", "The least recent of the dates <em>Single date</em> and <em>Non-mandatory date</em> (if non-mandatory date is unset this will be blank): <em>{{ min_value(answers['single-date-answer'], answers['non-mandatory-date-answer']) }}</em>"]
                 }]
             }, {
                 "type": "Summary",

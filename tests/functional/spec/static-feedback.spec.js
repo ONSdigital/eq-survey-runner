@@ -1,5 +1,5 @@
 const helpers = require('../helpers');
-const form = require('../pages/feedback-form');
+const form = require('../base_pages/feedback-form');
 
 describe('Feedback Form', function() {
   const schema = 'test_textfield.json';

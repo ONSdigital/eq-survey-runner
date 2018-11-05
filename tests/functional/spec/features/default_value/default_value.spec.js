@@ -1,7 +1,7 @@
 const helpers = require('../../../helpers');
 
-const QuestionPage = require('../../../pages/features/default_value/number-question.page.js');
-const Summary = require('../../../pages/features/default_value/summary.page.js');
+const QuestionPage = require('../../../generated_pages/default/number-question.page.js');
+const Summary = require('../../../generated_pages/default/summary.page.js');
 
 describe('Feature: Default Value', function() {
 

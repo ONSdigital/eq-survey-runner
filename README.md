@@ -123,11 +123,12 @@ There are a few additional npm tasks:
 
 Command                                    | Task
 -------------------------------------------|----------------------
-`yarn compile`                          | Build the assets (js, css, img) into `/static`
+`yarn compile`                          | Build the assets (js, css, img) into `/static`.
 `yarn dev`                              | Build assets and watch for changes. Runs Browsersync.
-`yarn test`                             | Runs the unit tests through Karma and the functional tests through a local Selenium instance
-`yarn test_unit`                        | Watches the unit tests via Karma
-`yarn test_functional`                  | Runs the functional tests through ChimpJS (requires app running on localhost:5000)
+`yarn test`                             | Runs the unit tests through Karma and the functional tests through a local Selenium instance.
+`yarn test_unit`                        | Watches the unit tests via Karma.
+`yarn test_functional`                  | Runs the functional tests through ChimpJS (requires app running on localhost:5000 and generated pages).
+`yarn generate_pages`                   | Generates the functional test pages.
 `yarn lint`                             | Lints the JS, reporting errors/warnings.
 `yarn format`                           | Format the json schemas.
 
@@ -142,17 +143,27 @@ Upgrade usage of the pattern library
 
 ## Functional test options
 
-To create functional test pages from a schema use the following command.
+The functional tests use a set of selectors that are generated from each of the test schemas. These make it quick to add new functional tests.
 
-`generate_pages.py <schema.json> <page_directory>`
+To run the functional tests use the script:
 
-This can combined with `-spec_file=<spec_file_path>` to provide a populated template for the functional tests spec file.
-and/or `-require_path='../..` To provide a relative path from a page file to the directory containing the base/parent page classes. Defaults to ".."
+`./scripts/run_tests_functional.sh`
 
-For example:
-`./generate_pages.py ../../data/en/test_navigation.json ./pages/surveys/navigation --spec_file=./spec/navigation.spec.js`
+This will delete the `tests/functional/generated_pages` directory and regenerate all the files in it from the schemas.
 
-The functional tests can be executed with:
+You can also individually run the `generate_pages` and `test_functional` yarn scripts:
+
+`yarn generate_pages; yarn test_functional`
+
+To generate the pages manually you can run the `generate_pages` scripts with the schema directory. Run it from the `tests/functional` directory as follows:
+
+`./generate_pages.py ../../data/en/ ./generated_pages -r "../../base_pages"`
+
+To generate a spec file with the imports included, you can use the `generate_pages.py` script on a single schema with the `-s` argument.
+
+`./generate_pages.py ../../data/en/test_multiple_piping.json ./temp_directory -r "../../base_pages" -s spec/test_multiple_piping.spec.js`
+
+If you have already built the generated pages, then the functional tests can be executed with:
 
 `yarn test_functional`
 
@@ -164,8 +175,8 @@ To run a single test, add `@watch` into the name of any `describe` or `it` funct
 
 `yarn test_functional --watch`
 
-An example of adding `@watch` looks like this:  
-`describe('@watch Skip Conditions', function() {...}` or  
+An example of adding `@watch` looks like this:
+`describe('@watch Skip Conditions', function() {...}` or
 `it('@watch Given this is a test', function() {...}`
 
 To run the tests against a remote deployment you will need to specify the environment variable of EQ_FUNCTIONAL_TEST_ENV eg:

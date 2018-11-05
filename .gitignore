@@ -90,3 +90,6 @@ secrets.yml
 requirements.txt
 
 .screenshots
+
+# Ignore any generated pages for the functional tests
+tests/functional/generated_pages

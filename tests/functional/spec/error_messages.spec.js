@@ -1,6 +1,6 @@
 const helpers = require('../helpers');
 
-const TestErrorsPage = require('../pages/surveys/error_messages/test-errors.page.js');
+const TestErrorsPage = require('../generated_pages/error_messages/test-errors.page.js');
 
 describe('Error Messages', function() {
 
@@ -37,9 +37,9 @@ describe('Error Messages', function() {
           .setValue(TestErrorsPage.testCurrency(), '123.456')
           .click(TestErrorsPage.submit())
 
-          .getText(TestErrorsPage.checkError('number')).should.eventually.contain('Enter a number.')
-          .getText(TestErrorsPage.checkError('percent')).should.eventually.contain('Enter an answer less than or equal to 100.')
-          .getText(TestErrorsPage.checkError('currency')).should.eventually.contain('Enter a number rounded to 2 decimal places.');
+          .getText(TestErrorsPage.testNumberErrorItem()).should.eventually.contain('Enter a number.')
+          .getText(TestErrorsPage.testPercentErrorItem()).should.eventually.contain('Enter an answer less than or equal to 100.')
+          .getText(TestErrorsPage.testCurrencyErrorItem()).should.eventually.contain('Enter a number rounded to 2 decimal places.');
     });
   });
 

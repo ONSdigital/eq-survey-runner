@@ -1,10 +1,10 @@
 const helpers = require('../helpers');
 
-const NoOfRepeatsPage = require('../pages/surveys/repeating_groups/no-of-repeats.page.js');
-const RepeatedBlockPage = require('../pages/surveys/repeating_groups/repeated-block.page.js');
-const AgeBlockPage = require('../pages/surveys/repeating_groups/age-block.page.js');
-const ShoeSizeBlockPage = require('../pages/surveys/repeating_groups/shoe-size-block.page.js');
-const SummaryPage = require('../pages/surveys/repeating_groups/summary.page.js');
+const NoOfRepeatsPage = require('../generated_pages/repeating_and_conditional_routing/no-of-repeats.page.js');
+const RepeatedBlockPage = require('../generated_pages/repeating_and_conditional_routing/repeated-block.page.js');
+const AgeBlockPage = require('../generated_pages/repeating_and_conditional_routing/age-block.page.js');
+const ShoeSizeBlockPage = require('../generated_pages/repeating_and_conditional_routing/shoe-size-block.page.js');
+const SummaryPage = require('../generated_pages/repeating_and_conditional_routing/summary.page.js');
 
 describe('Repeating Groups', function() {
 
@@ -99,9 +99,9 @@ describe('Repeating Groups', function() {
         return browser
           .click(RepeatedBlockPage.ageAndShoeSize())
           .click(RepeatedBlockPage.submit())
-          .setValue(AgeBlockPage.answer(), i+20)
+          .setValue(AgeBlockPage.whatIsYourAge(), i+20)
           .click(AgeBlockPage.submit())
-          .setValue(ShoeSizeBlockPage.answer(), i+8)
+          .setValue(ShoeSizeBlockPage.whatIsYourShoeSize(), i+8)
           .click(ShoeSizeBlockPage.submit());
 
       });

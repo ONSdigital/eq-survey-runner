@@ -1,7 +1,7 @@
 const helpers = require('../helpers');
-const ConditionalRoutingPage = require('../pages/surveys/conditional-routing/conditional-routing-block.page');
-const ResponseYesPage = require('../pages/surveys/conditional-routing/response-yes.page');
-const ResponseNoPage = require('../pages/surveys/conditional-routing/response-no.page');
+const ConditionalRoutingPage = require('../generated_pages/conditional_routing/conditional-routing-block.page');
+const ResponseYesPage = require('../generated_pages/conditional_routing/response-yes.page');
+const ResponseNoPage = require('../generated_pages/conditional_routing/response-no.page');
 
 describe('Conditional routing.', function() {
 

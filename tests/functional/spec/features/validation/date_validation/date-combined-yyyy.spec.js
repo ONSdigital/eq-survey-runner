@@ -1,6 +1,6 @@
 const helpers = require('../../../../helpers');
-const DateRangePage = require('../../../../pages/features/validation/date-validation/date-combined-yyyy/date-range-block.page');
-var SummaryPage = require('../../../../pages/features/validation/date-validation/date-combined-yyyy/summary.page');
+const DateRangePage = require('../../../../generated_pages/date_validation_yyyy_combined/date-range-block.page');
+var SummaryPage = require('../../../../generated_pages/date_validation_yyyy_combined/summary.page');
 
 describe('Feature: Combined question level and single validation for MM-YYYY dates', function() {
 
@@ -13,8 +13,8 @@ describe('Feature: Combined question level and single validation for MM-YYYY dat
 
       it('When I enter a single dates that are too early/late, Then I should see a single validation errors', function() {
         return browser
-         .setValue(DateRangePage.dateRangeFromyear(), 2015)
-         .setValue(DateRangePage.dateRangeToyear(), 2021)
+         .setValue(DateRangePage.dateRangeFromYear(), 2015)
+         .setValue(DateRangePage.dateRangeToYear(), 2021)
          .click(DateRangePage.submit())
          .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a date after 2015.')
          .getText(DateRangePage.errorNumber(2)).should.eventually.contain('Enter a date before 2021.');
@@ -22,24 +22,24 @@ describe('Feature: Combined question level and single validation for MM-YYYY dat
 
       it('When I enter a range too large, Then I should see a range validation error', function() {
         return browser
-         .setValue(DateRangePage.dateRangeFromyear(), 2016)
-         .setValue(DateRangePage.dateRangeToyear(), 2020)
+         .setValue(DateRangePage.dateRangeFromYear(), 2016)
+         .setValue(DateRangePage.dateRangeToYear(), 2020)
          .click(DateRangePage.submit())
          .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a reporting period less than or equal to 3 years.');
       });
 
       it('When I enter a range too small, Then I should see a range validation error', function() {
         return browser
-         .setValue(DateRangePage.dateRangeFromyear(), 2016)
-         .setValue(DateRangePage.dateRangeToyear(), 2017)
+         .setValue(DateRangePage.dateRangeFromYear(), 2016)
+         .setValue(DateRangePage.dateRangeToYear(), 2017)
          .click(DateRangePage.submit())
          .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a reporting period greater than or equal to 2 years.');
       });
 
       it('When I enter an invalid year, Then I should see a single validation error', function() {
         return browser
-         .setValue(DateRangePage.dateRangeFromyear(), 2016)
-         .setValue(DateRangePage.dateRangeToyear(), 20167)
+         .setValue(DateRangePage.dateRangeFromYear(), 2016)
+         .setValue(DateRangePage.dateRangeToYear(), 20167)
          .click(DateRangePage.submit())
          .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a valid date.')
          .isExisting(DateRangePage.errorNumber(2)).should.eventually.be.false;
@@ -47,17 +47,17 @@ describe('Feature: Combined question level and single validation for MM-YYYY dat
 
       it('When I enter valid dates, Then I should see the summary page', function() {
         return browser
-         .setValue(DateRangePage.dateRangeFromyear(), 2016)
+         .setValue(DateRangePage.dateRangeFromYear(), 2016)
          // Min range
-         .setValue(DateRangePage.dateRangeToyear(), 2018)
+         .setValue(DateRangePage.dateRangeToYear(), 2018)
          .click(DateRangePage.submit())
-         .getText(SummaryPage.dateRange()).should.eventually.contain('2016 to 2018')
+         .getText(SummaryPage.dateRangeFrom()).should.eventually.contain('2016 to 2018')
 
          // Max range
-         .click(SummaryPage.dateRangeEdit())
-         .setValue(DateRangePage.dateRangeToyear(), 2019)
+         .click(SummaryPage.dateRangeFromEdit())
+         .setValue(DateRangePage.dateRangeToYear(), 2019)
          .click(DateRangePage.submit())
-         .getText(SummaryPage.dateRange()).should.eventually.contain('2016 to 2019');
+         .getText(SummaryPage.dateRangeFrom()).should.eventually.contain('2016 to 2019');
       });
 
     });

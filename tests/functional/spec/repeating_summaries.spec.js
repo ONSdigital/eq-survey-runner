@@ -1,15 +1,15 @@
 const helpers = require('../helpers');
 
-const PrimaryNameBlockPage = require('../pages/surveys/repeating_summaries/primary-name-block.page.js');
-const RepeatingAnyoneElseBlockPage = require('../pages/surveys/repeating_summaries/repeating-anyone-else-block.page.js');
-const RepeatingNameBlockPage = require('../pages/surveys/repeating_summaries/repeating-name-block.page.js');
-const HouseholdSummaryBlockPage = require('../pages/surveys/repeating_summaries/household-summary-block.page.js');
-const FirstNumberBlockPage = require('../pages/surveys/repeating_summaries/first-number-block.page.js');
-const SecondNumberBlockPage = require('../pages/surveys/repeating_summaries/second-number-block.page.js');
-const CurrencyTotalPlaybackPage = require('../pages/surveys/repeating_summaries/currency-total-playback.page.js');
-const MemberSummaryBlockPage = require('../pages/surveys/repeating_summaries/member-summary-block.page.js');
-const SummaryPage = require('../pages/surveys/repeating_summaries/summary.page.js');
-const ThankYouPage = require('../pages/thank-you.page.js');
+const PrimaryNameBlockPage = require('../generated_pages/repeat_until_summaries/primary-name-block.page.js');
+const RepeatingAnyoneElseBlockPage = require('../generated_pages/repeat_until_summaries/repeating-anyone-else-block.page.js');
+const RepeatingNameBlockPage = require('../generated_pages/repeat_until_summaries/repeating-name-block.page.js');
+const HouseholdSummaryBlockPage = require('../generated_pages/repeat_until_summaries/household-summary-block.page.js');
+const FirstNumberBlockPage = require('../generated_pages/repeat_until_summaries/first-number-block.page.js');
+const SecondNumberBlockPage = require('../generated_pages/repeat_until_summaries/second-number-block.page.js');
+const CurrencyTotalPlaybackPage = require('../generated_pages/repeat_until_summaries/currency-total-playback.page.js');
+const MemberSummaryBlockPage = require('../generated_pages/repeat_until_summaries/member-summary-block.page.js');
+const SummaryPage = require('../generated_pages/repeat_until_summaries/summary.page.js');
+const ThankYouPage = require('../base_pages/thank-you.page.js');
 
 describe('Repeat Until Summaries', function() {
 
@@ -19,17 +19,17 @@ describe('Repeat Until Summaries', function() {
 
   it('Given I complete the Household Section, When I get to see the section summary, Then I should see all answers in that section', function() {
     return browser
-      .setValue(PrimaryNameBlockPage.answer(), 'Aaa')
+      .setValue(PrimaryNameBlockPage.primaryName(), 'Aaa')
       .click(PrimaryNameBlockPage.submit())
       .click(RepeatingAnyoneElseBlockPage.yes())
       .click(RepeatingAnyoneElseBlockPage.submit())
 
-      .setValue(RepeatingNameBlockPage.answer(), 'Bbb')
+      .setValue(RepeatingNameBlockPage.repeatingName(), 'Bbb')
       .click(RepeatingNameBlockPage.submit())
       .click(RepeatingAnyoneElseBlockPage.yes())
       .click(RepeatingAnyoneElseBlockPage.submit())
 
-      .setValue(RepeatingNameBlockPage.answer(), 'Ccc')
+      .setValue(RepeatingNameBlockPage.repeatingName(), 'Ccc')
       .click(RepeatingNameBlockPage.submit())
       .click(RepeatingAnyoneElseBlockPage.no())
       .click(RepeatingAnyoneElseBlockPage.submit())
@@ -43,9 +43,9 @@ describe('Repeat Until Summaries', function() {
   it("Given I complete the First Member group, When I get to see the calculation summary, Then I should see the correct total for the first member", function () {
     return browser
 
-      .setValue(FirstNumberBlockPage.answer(), '1')
+      .setValue(FirstNumberBlockPage.firstNumber(), '1')
       .click(FirstNumberBlockPage.submit())
-      .setValue(SecondNumberBlockPage.answer(), '10')
+      .setValue(SecondNumberBlockPage.secondNumber(), '10')
       .click(SecondNumberBlockPage.submit())
 
       .getUrl().should.eventually.contain(CurrencyTotalPlaybackPage.pageName)
@@ -60,9 +60,9 @@ describe('Repeat Until Summaries', function() {
   it("Given I complete the Second Member group, When I get to see the calculation summary, Then I should see the correct total for the second member", function () {
     return browser
 
-      .setValue(FirstNumberBlockPage.answer(), '2')
+      .setValue(FirstNumberBlockPage.firstNumber(), '2')
       .click(FirstNumberBlockPage.submit())
-      .setValue(SecondNumberBlockPage.answer(), '20')
+      .setValue(SecondNumberBlockPage.secondNumber(), '20')
       .click(SecondNumberBlockPage.submit())
 
       .getUrl().should.eventually.contain(CurrencyTotalPlaybackPage.pageName)
@@ -77,9 +77,9 @@ describe('Repeat Until Summaries', function() {
   it("Given I complete the Third Member group, When I get to see the calculation summary, Then I should see the correct total for the third member", function () {
     return browser
 
-      .setValue(FirstNumberBlockPage.answer(), '3')
+      .setValue(FirstNumberBlockPage.firstNumber(), '3')
       .click(FirstNumberBlockPage.submit())
-      .setValue(SecondNumberBlockPage.answer(), '30')
+      .setValue(SecondNumberBlockPage.secondNumber(), '30')
       .click(SecondNumberBlockPage.submit())
 
       .getUrl().should.eventually.contain(CurrencyTotalPlaybackPage.pageName)

@@ -1,7 +1,7 @@
 const helpers = require('../../../../helpers');
 
-const TextFieldPage = require('../../../../pages/components/checkbox/mutually-exclusive/mutually-exclusive-textfield.page');
-const SummaryPage = require('../../../../pages/components/checkbox/mutually-exclusive/optional-textfield-section-summary.page');
+const TextFieldPage = require('../../../../generated_pages/mutually_exclusive/mutually-exclusive-textfield.page');
+const SummaryPage = require('../../../../generated_pages/mutually_exclusive/optional-textfield-section-summary.page');
 
 describe('Component: Mutually Exclusive Textfield With Single Checkbox Override', function() {
 

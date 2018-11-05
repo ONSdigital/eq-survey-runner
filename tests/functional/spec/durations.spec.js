@@ -1,7 +1,7 @@
 const helpers = require('../helpers');
 
-const DurationPage = require('../pages/surveys/durations/duration-block.page.js');
-const SummaryPage = require('../pages/surveys/durations/summary.page.js');
+const DurationPage = require('../generated_pages/durations/duration-block.page.js');
+const SummaryPage = require('../generated_pages/durations/summary.page.js');
 
 describe('Durations', function() {
 

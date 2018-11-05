@@ -1,10 +1,10 @@
 const helpers = require('../../../helpers');
 
-const PrimaryNameBlockPage = require('../../../pages/surveys/answer_summary/primary-name-block.page.js');
-const PrimaryAnyoneElseBlockPage = require('../../../pages/surveys/answer_summary/primary-anyone-else-block.page.js');
-const RepeatingNameBlockPage = require('../../../pages/surveys/answer_summary/repeating-name-block.page.js');
-const RepeatingAnyoneElseBlockPage = require('../../../pages/surveys/answer_summary/repeating-anyone-else-block.page.js');
-const HouseholdSummaryPage = require('../../../pages/surveys/answer_summary/household-summary.page.js');
+const PrimaryNameBlockPage = require('../../../generated_pages/answer_summary/primary-name-block.page.js');
+const PrimaryAnyoneElseBlockPage = require('../../../generated_pages/answer_summary/primary-anyone-else-block.page.js');
+const RepeatingNameBlockPage = require('../../../generated_pages/answer_summary/repeating-name-block.page.js');
+const RepeatingAnyoneElseBlockPage = require('../../../generated_pages/answer_summary/repeating-anyone-else-block.page.js');
+const HouseholdSummaryPage = require('../../../generated_pages/answer_summary/household-summary.page.js');
 
 describe('Answer Summary', function () {
 

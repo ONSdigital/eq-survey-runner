@@ -1,7 +1,7 @@
 const helpers = require('../helpers');
-const AddressPage = require('../pages/surveys/multiple_piping/what-is-your-address.page');
-const TextfieldPage = require('../pages/surveys/multiple_piping/textfield.page');
-const MultiplePipingPage = require('../pages/surveys/multiple_piping/piping-question.page');
+const AddressPage = require('../generated_pages/multiple_piping/what-is-your-address.page');
+const TextfieldPage = require('../generated_pages/multiple_piping/textfield.page');
+const MultiplePipingPage = require('../generated_pages/multiple_piping/piping-question.page');
 
 describe('Piping', function() {
 

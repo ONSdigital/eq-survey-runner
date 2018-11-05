@@ -1,7 +1,7 @@
 const helpers = require('../../../../helpers');
 
-const PercentagePage = require('../../../../pages/components/checkbox/mutually-exclusive/mutually-exclusive-percentage.page');
-const SummaryPage = require('../../../../pages/components/checkbox/mutually-exclusive/optional-percentage-section-summary.page');
+const PercentagePage = require('../../../../generated_pages/mutually_exclusive/mutually-exclusive-percentage.page');
+const SummaryPage = require('../../../../generated_pages/mutually_exclusive/optional-percentage-section-summary.page');
 
 describe('Component: Mutually Exclusive Percentage With Single Checkbox Override', function() {
 

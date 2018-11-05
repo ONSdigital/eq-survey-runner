@@ -1,10 +1,10 @@
 const helpers = require('../helpers');
-const InsuranceAddressPage = require('../pages/surveys/section_summary/insurance-address.page.js');
-const InsuranceTypePage = require('../pages/surveys/section_summary/insurance-type.page.js');
-const AddressDurationPage = require('../pages/surveys/section_summary/address-duration.page.js');
-const PropertyDetailsSummaryPage = require('../pages/surveys/section_summary/property-details-summary.page.js');
-const HouseHoldCompositionPage = require('../pages/surveys/section_summary/household-composition.page.js');
-const FinalSummaryPage = require('../pages/surveys/section_summary/final-summary.page.js');
+const InsuranceAddressPage = require('../generated_pages/section_summary/insurance-address.page.js');
+const InsuranceTypePage = require('../generated_pages/section_summary/insurance-type.page.js');
+const AddressDurationPage = require('../generated_pages/section_summary/address-duration.page.js');
+const PropertyDetailsSummaryPage = require('../generated_pages/section_summary/property-details-summary.page.js');
+const HouseHoldCompositionPage = require('../generated_pages/section_summary/household-composition.page.js');
+const FinalSummaryPage = require('../generated_pages/section_summary/summary.page.js');
 
 describe('Section Summary', function() {
 
@@ -54,7 +54,7 @@ describe('Section Summary', function() {
 
     it('When I select edit from Final Summary, Then I should be taken back to the Final Summary', function() {
       return browser
-        .click(FinalSummaryPage.showAllButton())
+        .click(FinalSummaryPage.summaryShowAllButton())
         .click(FinalSummaryPage.addressDurationAnswerEdit())
         .click(AddressDurationPage.no())
         .click(AddressDurationPage.submit())
@@ -63,7 +63,7 @@ describe('Section Summary', function() {
 
     it('When I edit from Final Summary but change routing, Then I should be taken back to the Section Summary', function() {
       return browser
-        .click(FinalSummaryPage.showAllButton())
+        .click(FinalSummaryPage.summaryShowAllButton())
         .click(FinalSummaryPage.insuranceTypeAnswerEdit())
         .click(InsuranceTypePage.buildings())
         .click(InsuranceTypePage.submit())
@@ -72,9 +72,9 @@ describe('Section Summary', function() {
 
     it('When I click change an answer, Then I should go to that answer', function() {
       return browser
-        .click(FinalSummaryPage.showAllButton())
+        .click(FinalSummaryPage.summaryShowAllButton())
         .getText(FinalSummaryPage.insuranceTypeAnswer()).should.eventually.contain('Contents')
-        .click(FinalSummaryPage.propertyDetailsDropDownChangeLink())
+        .click(FinalSummaryPage.insuranceTypeAnswerEdit())
         .getUrl().should.eventually.contain(InsuranceTypePage.pageName)
         .click(InsuranceTypePage.buildings())
         .click(InsuranceTypePage.submit())

@@ -9,12 +9,12 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
         self.launchSurvey('test', 'dates')
 
         post_data = {
-            'date-range-from-day': '1',
-            'date-range-from-month': '1',
-            'date-range-from-year': '2017',
-            'date-range-to-day': '2',
-            'date-range-to-month': '1',
-            'date-range-to-year': '2017',
+            'date-range-from-answer-day': '1',
+            'date-range-from-answer-month': '1',
+            'date-range-from-answer-year': '2017',
+            'date-range-to-answer-day': '2',
+            'date-range-to-answer-month': '1',
+            'date-range-to-answer-year': '2017',
             'month-year-answer-month': '1',
             'month-year-answer-year': '2016',
             'single-date-answer-day': '1',
@@ -38,12 +38,12 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
         self.get('questionnaire/test/dates/789/dates/0/date-block')
 
         post_data = {
-            'date-range-from-day': '1',
-            'date-range-from-month': '1',
-            'date-range-from-year': '2017',
-            'date-range-to-day': '2',
-            'date-range-to-month': '1',
-            'date-range-to-year': '2017',
+            'date-range-from-answer-day': '1',
+            'date-range-from-answer-month': '1',
+            'date-range-from-answer-year': '2017',
+            'date-range-to-answer-day': '2',
+            'date-range-to-answer-month': '1',
+            'date-range-to-answer-year': '2017',
             'month-year-answer-month': '1',
             'month-year-answer-year': '2016',
             'single-date-answer-day': '1',

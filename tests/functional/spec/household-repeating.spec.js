@@ -1,10 +1,10 @@
 const helpers = require('../helpers');
 
-const HouseholdCompositionPage = require('../pages/surveys/household/household-composition.page.js');
-const RepeatingBlock1Page = require('../pages/surveys/household/repeating-block-1.page.js');
-const RepeatingBlock2Page = require('../pages/surveys/household/repeating-block-2.page.js');
-const RepeatingBlock3Page = require('../pages/surveys/household/repeating-block-3.page.js');
-const SummaryPage = require('../pages/surveys/household/summary.page.js');
+const HouseholdCompositionPage = require('../generated_pages/repeating_household/household-composition.page.js');
+const RepeatingBlock1Page = require('../generated_pages/repeating_household/repeating-block-1.page.js');
+const RepeatingBlock2Page = require('../generated_pages/repeating_household/repeating-block-2.page.js');
+const RepeatingBlock3Page = require('../generated_pages/repeating_household/repeating-block-3.page.js');
+const SummaryPage = require('../generated_pages/repeating_household/summary.page.js');
 
 describe('Household Repeating', function() {
 
@@ -15,7 +15,7 @@ describe('Household Repeating', function() {
           .setValue(HouseholdCompositionPage.lastName(),'One')
           .click(HouseholdCompositionPage.submit())
           .getText(RepeatingBlock1Page.displayedDescription()).should.eventually.contain("Alpha One")
-          .setValue(RepeatingBlock1Page.answer(),'99')
+          .setValue(RepeatingBlock1Page.whatIsYourAge(),'99')
           .click(RepeatingBlock1Page.submit())
           .getText(RepeatingBlock2Page.displayedName()).should.eventually.contain("Alpha One");
     });
@@ -35,10 +35,10 @@ describe('Household Repeating', function() {
           .click(HouseholdCompositionPage.submit())
 
           .getText(RepeatingBlock1Page.displayedDescription()).should.eventually.contain("Alpha One")
-          .setValue(RepeatingBlock1Page.answer(),'60')
+          .setValue(RepeatingBlock1Page.whatIsYourAge(),'60')
           .click(RepeatingBlock1Page.submit())
           .getText(RepeatingBlock2Page.displayedName()).should.eventually.contain("Alpha One")
-          .setValue(RepeatingBlock2Page.answer(),'10')
+          .setValue(RepeatingBlock2Page.whatIsYourShoeSize(),'10')
           .click(RepeatingBlock2Page.submit())
           .getText(RepeatingBlock3Page.questionText()).should.eventually.contain("60")
           .getText(RepeatingBlock3Page.questionText()).should.eventually.contain("10")
@@ -46,10 +46,10 @@ describe('Household Repeating', function() {
           .click(RepeatingBlock3Page.submit())
 
           .getText(RepeatingBlock1Page.displayedDescription()).should.eventually.contain("Bravo Two")
-          .setValue(RepeatingBlock1Page.answer(),'50')
+          .setValue(RepeatingBlock1Page.whatIsYourAge(),'50')
           .click(RepeatingBlock1Page.submit())
           .getText(RepeatingBlock2Page.displayedName()).should.eventually.contain("Bravo Two")
-          .setValue(RepeatingBlock2Page.answer(),'11')
+          .setValue(RepeatingBlock2Page.whatIsYourShoeSize(),'11')
           .click(RepeatingBlock2Page.submit())
           .getText(RepeatingBlock3Page.questionText()).should.eventually.contain("50")
           .getText(RepeatingBlock3Page.questionText()).should.eventually.contain("11")
@@ -57,10 +57,10 @@ describe('Household Repeating', function() {
           .click(RepeatingBlock3Page.submit())
 
           .getText(RepeatingBlock1Page.displayedDescription()).should.eventually.contain("Charlie Three")
-          .setValue(RepeatingBlock1Page.answer(),'40')
+          .setValue(RepeatingBlock1Page.whatIsYourAge(),'40')
           .click(RepeatingBlock1Page.submit())
           .getText(RepeatingBlock2Page.displayedName()).should.eventually.contain("Charlie Three")
-          .setValue(RepeatingBlock2Page.answer(),'12')
+          .setValue(RepeatingBlock2Page.whatIsYourShoeSize(),'12')
           .click(RepeatingBlock2Page.submit())
           .getText(RepeatingBlock3Page.questionText()).should.eventually.contain("40")
           .getText(RepeatingBlock3Page.questionText()).should.eventually.contain("12")
