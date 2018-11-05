@@ -28,16 +28,8 @@
             "validator": "string"
         },
         {
-            "name": "trad_as",
-            "validator": "string"
-        },
-        {
             "name": "ref_p_start_date",
             "validator": "date"
-        },
-        {
-            "name": "period_str",
-            "validator": "string"
         },
         {
             "name": "ref_p_end_date",
@@ -54,7 +46,7 @@
                     "primary_content": [{
                         "id": "get-started",
                         "content": [{
-                            "list": ["On average it takes ten minutes to complete this survey once you’ve collected the information.", "Data should relate to all sites in England, Scotland, Wales and Northern Ireland.", "You can provide informed estimates if actual figures aren’t available.", "We will treat your data securely and confidentially."]
+                            "list": ["On average it takes five minutes to complete this survey once you’ve collected the information.", "Data should relate to all sites in England, Scotland, Wales and Northern Ireland.", "You can provide informed estimates if actual figures aren’t available.", "We will treat your data securely and confidentially."]
                         }]
                     }],
                     "preview_content": {
@@ -71,7 +63,7 @@
                                 "list": ["VAT", "online sales"]
                             }, {
                                 "description": "Exclude:",
-                                "list": ["sales from catering facilities used by customers (for example, in-store cafes)", "revenue from mobile phone network commission and top-up", "NHS receipts", "lottery sales and commission from lottery sales", "sales of car accessories and motor vehicles"]
+                                "list": ["revenue from mobile phone network commission and top-up", "sales from catering facilities used by customers (for example, in-store cafes)", "lottery sales and commission from lottery sales", "sales of car accessories and motor vehicles", "NHS receipts"]
                             }]
                         }, {
                             "question": "Online Sales including VAT",
@@ -246,7 +238,7 @@
                                         "value": 0,
                                         "exclusive": false
                                     },
-                                    "decimal_places": 0,
+                                    "decimal_places": 2,
                                     "currency": "GBP"
                                 }]
                             }]
@@ -330,7 +322,7 @@
                                         "answer_id": "retail-sales-answer",
                                         "exclusive": false
                                     },
-                                    "decimal_places": 0,
+                                    "decimal_places": 2,
                                     "currency": "GBP"
                                 }]
                             }]
@@ -521,10 +513,15 @@
                             "questions": [{
                                 "id": "question2939",
                                 "title": "For the period {{ format_conditional_date (answers['period-from-answer'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to-answer'], metadata['ref_p_end_date'])}}, did {{ metadata['trad_as_or_ru_name'] }} have turnover from <em>any activities other than retail sales</em>?",
-                                "description": "<p><strong>Why are we asking?</strong></p>We want to understand if we are missing any turnover from other activities for {{ metadata['trad_as_or_ru_name'] }} outside of retail sales",
                                 "type": "General",
                                 "answers": [{
                                     "id": "answer3820",
+                                    "guidance": {
+                                        "show_guidance": "Why your answer is important",
+                                        "content": [{
+                                            "description": "We want to understand if we are missing any turnover from other activities for {{ metadata['trad_as_or_ru_name'] }} outside of retail sales"
+                                        }]
+                                    },
                                     "mandatory": true,
                                     "type": "Radio",
                                     "label": "",
