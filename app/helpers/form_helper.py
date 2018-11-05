@@ -118,7 +118,7 @@ def post_form_for_location(schema, block_json, location, answer_store, metadata,
 
 def disable_mandatory_answers(block_json):
     for question_json in block_json.get('questions', []):
-        for answer_json in question_json['answers']:
+        for answer_json in question_json.get('answers', []):
             if 'mandatory' in answer_json and answer_json['mandatory'] is True:
                 answer_json['mandatory'] = False
     return block_json
