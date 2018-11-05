@@ -8,7 +8,7 @@ class TestEmptyQuestionnaire(IntegrationTestCase):
         self.launchSurvey('test', '0205')
 
         # We are on the introduction page
-        self.assertInPage('>Start survey<')
+        self.assertInBody('>Start survey<')
 
         # Submit the Introduction page to get the first question page
         self.post(action='start_questionnaire')

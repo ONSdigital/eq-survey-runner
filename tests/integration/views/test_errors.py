@@ -25,22 +25,22 @@ class TestErrors(IntegrationTestCase):
     def test_errors_404(self):
         self.get('/hfjdskahfjdkashfsa')
         self.assertStatusNotFound()
-        self.assertInPage('Error 404')
+        self.assertInBody('Error 404')
 
         # Test that my account link does not show
-        self.assertNotInPage('My account')
-        self.assertNotInPage('http://correct.place')
+        self.assertNotInBody('My account')
+        self.assertNotInBody('http://correct.place')
 
     def test_errors_404_with_payload(self):
         with patch('tests.integration.create_token.PAYLOAD', self.example_payload):
             self.launchSurvey('test', 'percentage')
             self.get('/hfjdskahfjdkashfsa')
             self.assertStatusNotFound()
-            self.assertInPage('Error 404')
+            self.assertInBody('Error 404')
 
             # Test that my account link uses account_service_url that's passed in via the payload
-            self.assertInPage('My account')
-            self.assertInPage('href="http://correct.place"')
+            self.assertInBody('My account')
+            self.assertInBody('href="http://correct.place"')
 
     def test_errors_500(self):
         # Given
@@ -51,11 +51,11 @@ class TestErrors(IntegrationTestCase):
         with patch('app.views.questionnaire.Router', side_effect=Exception('You broked it')):
             self.post({'answer': '5000000'})
             self.assertStatusCode(500)
-            self.assertInPage('500')
+            self.assertInBody('500')
 
             # Test that my account link doesn't show as it wasn't passed in via the payload.
-            self.assertNotInPage('My account')
-            self.assertNotInPage('href="http://correct.place"')
+            self.assertNotInBody('My account')
+            self.assertNotInBody('href="http://correct.place"')
 
     def test_errors_500_with_payload(self):
         # Given
@@ -67,8 +67,8 @@ class TestErrors(IntegrationTestCase):
             with patch('app.views.questionnaire.Router', side_effect=Exception('You broked it')):
                 self.post({'answer': '5000000'})
                 self.assertStatusCode(500)
-                self.assertInPage('500')
+                self.assertInBody('500')
 
                 # Test that my account link uses account_service_url that's passed in via the payload
-                self.assertInPage('My account')
-                self.assertInPage('href="http://correct.place"')
+                self.assertInBody('My account')
+                self.assertInBody('href="http://correct.place"')

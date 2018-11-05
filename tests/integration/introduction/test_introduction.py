@@ -18,7 +18,7 @@ class TestIntroduction(IntegrationTestCase):
 
         # When on the introduction page
         # Then description should be displayed
-        self.assertInPage('qa-intro-description')
+        self.assertInBody('qa-intro-description')
 
     def test_intro_description_not_displayed(self):
         # Given survey without introduction description
@@ -26,7 +26,7 @@ class TestIntroduction(IntegrationTestCase):
 
         # When on the introduction page
         # Then description should not be displayed
-        self.assertNotInPage('qa-intro-description')
+        self.assertNotInBody('qa-intro-description')
 
     def test_intro_basis_for_completion_displayed(self):
         # Given survey with basis for completion
@@ -34,7 +34,7 @@ class TestIntroduction(IntegrationTestCase):
 
         # When on the introduction page
         # Then basis for completion should be displayed
-        self.assertInPage('Information you need')
+        self.assertInBody('Information you need')
 
     def test_intro_basis_for_completion_not_displayed(self):
         # Given survey without basis for completion
@@ -42,7 +42,7 @@ class TestIntroduction(IntegrationTestCase):
 
         # When on the introduction page
         # Then basis for completion should not be displayed
-        self.assertNotInPage('basis-for-completion')
+        self.assertNotInBody('basis-for-completion')
 
     def test_start_survey_sets_started_at(self):
         # Given survey with a start survey button
@@ -64,7 +64,7 @@ class TestIntroduction(IntegrationTestCase):
 
         # When on the introduction page
         # Then legal_basis should be displayed
-        self.assertInPage('Your response is legally required')
+        self.assertInBody('Your response is legally required')
 
     def test_legal_basis_northern_ireland(self):
         # Given northernireland survey with legal_basis
@@ -72,4 +72,4 @@ class TestIntroduction(IntegrationTestCase):
 
         # When on the introduction page
         # Then legal_basis should be displayed
-        self.assertInPage('Your response is legally required')
+        self.assertInBody('Your response is legally required')

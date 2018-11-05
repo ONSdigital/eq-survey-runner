@@ -19,16 +19,16 @@ class TestLightSidePath(StarWarsTestCase):
         self.assertInUrl('star-wars-trivia-part-2')
 
         # Pipe Test for section title
-        self.assertInPage("On <span class='date'>2 June 1983</span> how many were employed?")
+        self.assertInBody('On <span class="date">2 June 1983</span> how many were employed?')
 
         # Textarea question
-        self.assertInPage("Why doesn't Chewbacca receive a medal at the end of A New Hope?")
-        self.assertInPage('chewbacca-medal-answer')
+        self.assertInBody("Why doesn't Chewbacca receive a medal at the end of A New Hope?")
+        self.assertInBody('chewbacca-medal-answer')
 
         self.post(STAR_WARS_TRIVIA_PART_2_DEFAULT_ANSWERS)
 
         # third page
-        self.assertInPage('Finally, which  is your favourite film?')
+        self.assertInBody('Finally, which  is your favourite film?')
 
         self.post(STAR_WARS_TRIVIA_PART_3_DEFAULT_ANSWERS)
 
@@ -36,8 +36,8 @@ class TestLightSidePath(StarWarsTestCase):
         self.assertInUrl(star_wars_test_urls.STAR_WARS_SUMMARY)
 
         # We are on the review answers page
-        self.assertInPage('>Star Wars</')
-        self.assertInPage('>Check your answers and submit<')
+        self.assertInBody('>Star Wars</')
+        self.assertInBody('>Check your answers and submit<')
         self.assertRegexPage('(?s)How old is Chewy?.*?234')
         self.assertRegexPage('(?s)How many Octillions do Nasa reckon it would cost to build a death star?.*?£40')
         self.assertRegexPage('(?s)How hot is a lightsaber in degrees C?.*?1,370')
@@ -51,8 +51,8 @@ class TestLightSidePath(StarWarsTestCase):
         self.assertRegexPage('(?s)What was the total number of Ewoks?.*?')
         self.assertRegexPage("(?s)Why doesn't Chewbacca receive a medal at the end of A New Hope?.*?"
                              'Wookiees don’t place value in material rewards and refused the medal initially')
-        self.assertInPage('You can check your answers below')
-        self.assertInPage('>Submit answers<')
+        self.assertInBody('You can check your answers below')
+        self.assertInBody('>Submit answers<')
 
         # Post answers
         self.post(action=None)

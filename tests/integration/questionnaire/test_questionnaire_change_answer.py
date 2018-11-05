@@ -29,10 +29,10 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
         }
 
         self.post(post_data)
-        self.assertInPage('Application of min and max filters to dates')
+        self.assertInBody('Application of min and max filters to dates')
         self.post(action='save_continue')
-        self.assertInPage('22 February 2099')
-        self.assertNotInPage('No answer provided')
+        self.assertInBody('22 February 2099')
+        self.assertNotInBody('No answer provided')
 
         # When we change the non-mandatory date from answered to not answered
         self.get('questionnaire/test/dates/789/dates/0/date-block')
@@ -59,5 +59,5 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
         self.post(post_data)
 
         # Then the original value is replaced with 'No answer provided' on the summary page
-        self.assertNotInPage('22 February 2099')
-        self.assertInPage('No answer provided')
+        self.assertNotInBody('22 February 2099')
+        self.assertInBody('No answer provided')

@@ -6,19 +6,19 @@ class TestQuestionnaireLanguage(IntegrationTestCase):
         # When: load a cy survey
         self.launchSurvey('test', 'language', language_code='cy')
         # Then: welsh
-        self.assertInPage('Holiadur Cymraeg')
+        self.assertInBody('Holiadur Cymraeg')
 
     def test_load_non_existant_lang_fallback(self):
         # When: load a hindi survey
         self.launchSurvey('test', 'language', language_code='hi')
         # Then: Falls back to english
-        self.assertInPage('English Questionnaire')
+        self.assertInBody('English Questionnaire')
 
     def test_language_switch_in_flight(self):
         # load a english survey
         self.launchSurvey('test', 'language', language_code='en')
         # The language is english
-        self.assertInPage('English Questionnaire')
+        self.assertInBody('English Questionnaire')
         # Switch the language to welsh
         self.get('{}?language_code=cy'.format(self.last_url))
-        self.assertInPage('Holiadur Cymraeg')
+        self.assertInBody('Holiadur Cymraeg')

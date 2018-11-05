@@ -23,7 +23,7 @@ class TestRepeatingRelationship(IntegrationTestCase):
         # Then
         last_relationship_page = 'questionnaire/test/relationship_household/789/household-relationships/23/relationships'
         self.get(url=last_relationship_page)
-        self.assertInPage('Describe how this person is related to the others')
+        self.assertInBody('Describe how this person is related to the others')
 
     @patch('app.helpers.schema_helpers.uuid4', side_effect=range(100))
     def test_multiple_relationship_groups(self, mock): # pylint: disable=unused-argument

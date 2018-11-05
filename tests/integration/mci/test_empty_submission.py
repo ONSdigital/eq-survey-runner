@@ -11,15 +11,15 @@ class TestEmptySubmission(IntegrationTestCase):
         self.launchSurvey(eq_id, form_type_id)
 
         # We are on the introduction page
-        self.assertInPage('>Start survey<')
-        self.assertInPage('Monthly Business Survey - Retail Sales Index')
+        self.assertInBody('>Start survey<')
+        self.assertInBody('Monthly Business Survey - Retail Sales Index')
 
         # We proceed to the questionnaire
         self.post(action='start_questionnaire')
 
         # We are in the Questionnaire
-        self.assertInPage('What are the dates of the sales period you are reporting for?')
-        self.assertInPage('>Save and continue<')
+        self.assertInBody('What are the dates of the sales period you are reporting for?')
+        self.assertInBody('>Save and continue<')
 
         form_data = {
             # Start Date
@@ -36,12 +36,12 @@ class TestEmptySubmission(IntegrationTestCase):
 
         # We submit the form without data
         self.post(form_data)
-        self.assertInPage('Enter a date to continue.')
-        self.assertInPage('Enter an answer to continue.')
+        self.assertInBody('Enter a date to continue.')
+        self.assertInBody('Enter an answer to continue.')
 
         # We try to access the submission page without correction
         self.get(mci_test_urls.MCI_0205_SUMMARY)
-        self.assertInPage('What are the dates of the sales period you are reporting for?')
+        self.assertInBody('What are the dates of the sales period you are reporting for?')
 
         form_data = {
             # Start Date
@@ -63,9 +63,9 @@ class TestEmptySubmission(IntegrationTestCase):
         self.assertInUrl(mci_test_urls.MCI_0205_SUMMARY)
 
         # We are on the review answers page
-        self.assertInPage('>Check your answers and submit<')
-        self.assertInPage('You can check your answers below')
-        self.assertInPage('>Submit answers<')
+        self.assertInBody('>Check your answers and submit<')
+        self.assertInBody('You can check your answers below')
+        self.assertInBody('>Submit answers<')
 
         # We submit our answers
         self.post(action=None)

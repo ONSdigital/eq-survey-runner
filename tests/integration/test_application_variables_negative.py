@@ -12,9 +12,9 @@ class TestApplicationVariablesNegative(IntegrationTestCase):
     def test_flask_toolbar_is_not_displayed(self):
         self.launchSurvey('0', 'star_wars')
         self.assertStatusOK()
-        self.assertNotInPage('flDebugToolbarHandle', 'The page contains the Flask toolbar')
+        self.assertNotInBody('flDebugToolbarHandle')
 
     def test_livereload_script_not_rendered(self):
         self.launchSurvey('0', 'star_wars')
         self.assertStatusOK()
-        self.assertNotInPage('__bs_script__', 'The page contains the browsersync script')
+        self.assertFalse('__bs_script__' in self.getResponseData())

@@ -13,4 +13,4 @@ class TestThemeSelection(StarWarsTestCase):
         self.start_questionnaire_and_navigate_routing()
 
         # We are in the Questionnaire
-        self.assertInPage('Theme selected: Star Wars')
+        self.assertInBody('Theme selected: Star Wars')

@@ -19,11 +19,11 @@ class TestEmptyCheckBoxes(StarWarsTestCase):
         self.post(form_data)
 
         # We stay on the current page
-        self.assertInPage('Star Wars Quiz')
-        self.assertInPage('May the force be with you young EQ developer')
-        self.assertInPage('This page has an error')
-        self.assertInPage('This <strong>must be corrected</strong> to continue.')
-        self.assertInPage('Select all that apply to continue.')
+        self.assertInBody('Star Wars Quiz')
+        self.assertInBody('May the force be with you young EQ developer')
+        self.assertInBody('This page has an error')
+        self.assertInBody('This <strong>must be corrected</strong> to continue.')
+        self.assertInBody('Select all that apply to continue.')
 
         # We correct the error
         self.post(STAR_WARS_TRIVIA_PART_1_DEFAULT_ANSWERS)

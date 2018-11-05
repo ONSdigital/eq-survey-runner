@@ -42,19 +42,19 @@ class TestConfirmationPage(IntegrationTestCase):
         self.assertRegexPage('(?s)Rogue One')
 
     def rogue_one_check_character_page(self):
-        self.assertInPage('Who do you want to know more about?')
-        self.assertInPage('Jyn Erso')
-        self.assertInPage('character-answer-3')
+        self.assertInBody('Who do you want to know more about?')
+        self.assertInBody('Jyn Erso')
+        self.assertInBody('character-answer-3')
 
     def rogue_one_check_description_page(self):
-        self.assertInPage('An accomplished Rebel Alliance Intelligence Officer')
-        self.assertInPage('Do you like this page?')
-        self.assertInPage('cassian-andor-like-this-page-answer-1')
+        self.assertInBody('An accomplished Rebel Alliance Intelligence Officer')
+        self.assertInBody('Do you like this page?')
+        self.assertInBody('cassian-andor-like-this-page-answer-1')
 
     def rogue_one_check_takings_page(self):
-        self.assertInPage('In millions, how much do you think this film will take?')
-        self.assertInPage('film-takings-answer')
+        self.assertInBody('In millions, how much do you think this film will take?')
+        self.assertInBody('film-takings-answer')
 
     def rogue_one_check_confirmation_page(self):
-        self.assertInPage('Summary')
-        self.assertInPage('You can check your answers below')
+        self.assertInBody('Summary')
+        self.assertInBody('You can check your answers below')

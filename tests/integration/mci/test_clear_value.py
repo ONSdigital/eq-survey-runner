@@ -12,19 +12,19 @@ class TestClearValue(IntegrationTestCase):
         self.launchSurvey('test', '0205')
 
         # We are on the introduction page
-        self.assertInPage('>Start survey<')
-        self.assertInPage('Monthly Business Survey - Retail Sales Index')
+        self.assertInBody('>Start survey<')
+        self.assertInBody('Monthly Business Survey - Retail Sales Index')
 
         # We proceed to the questionnaire
         self.post(action='start_questionnaire')
 
         # We are in the Questionnaire
-        self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
-        self.assertInPage('What are the dates of the sales period you are reporting for?')
-        self.assertInPage('>Save and continue<')
+        self.assertInBody('>Monthly Business Survey - Retail Sales Index</')
+        self.assertInBody('What are the dates of the sales period you are reporting for?')
+        self.assertInBody('>Save and continue<')
 
         # check with have some guidance
-        self.assertInPage('alcoholic drink')
+        self.assertInBody('alcoholic drink')
 
         # We fill in our answers using an incorrect date range
         # This is to ensure that our valid retail total gets stored
@@ -44,7 +44,7 @@ class TestClearValue(IntegrationTestCase):
 
         # We submit the form
         self.post(form_data)
-        self.assertInPage(error_messages['INVALID_DATE_RANGE'])
+        self.assertInBody(str(error_messages['INVALID_DATE_RANGE']))
 
         # Fill the dates incorrectly again, but this time supply an invalid value for retail total
         form_data = {
@@ -64,10 +64,10 @@ class TestClearValue(IntegrationTestCase):
         self.post(form_data)
 
         # Get the page content again
-        self.assertInPage(error_messages['INVALID_DATE_RANGE'])
-        self.assertInPage(error_messages['INVALID_NUMBER'])
-        self.assertNotInPage('100000')  # We have cleared the valid value
-        self.assertInPage('Invalid Retail Total')  # Our invalid value is redisplayed
+        self.assertInBody(str(error_messages['INVALID_DATE_RANGE']))
+        self.assertInBody(str(error_messages['INVALID_NUMBER']))
+        self.assertNotInBody('100000')  # We have cleared the valid value
+        self.assertInBody('Invalid Retail Total')  # Our invalid value is redisplayed
 
         # Fill the dates incorrectly again, but this time supply an valid value for retail total
         form_data = {
@@ -86,7 +86,7 @@ class TestClearValue(IntegrationTestCase):
         # We submit the form
         self.post(form_data)
 
-        self.assertInPage(error_messages['INVALID_DATE_RANGE'])
-        self.assertNotInPage(error_messages['INVALID_INTEGER'])  # Our message has gone
-        self.assertNotInPage('Invalid Retail Total')  # Our invalid value has gone
-        self.assertInPage('1000')  # Our new valid value is redisplayed
+        self.assertInBody(str(error_messages['INVALID_DATE_RANGE']))
+        self.assertNotInBody(str(error_messages['INVALID_INTEGER'])) # Our message has gone
+        self.assertNotInBody('Invalid Retail Total')  # Our invalid value has gone
+        self.assertInBody('1000')  # Our new valid value is redisplayed

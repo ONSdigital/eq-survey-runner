@@ -38,7 +38,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
 
         # Then
         self.assertStatusOK()
-        self.assertInPage('What is your favourite breakfast food')
+        self.assertInBody('What is your favourite breakfast food')
 
     def test_given_answered_question_when_change_answer_with_invalid_csrf_token_then_answers_not_saved(self):
         # Given

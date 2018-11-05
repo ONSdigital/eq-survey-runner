@@ -29,6 +29,6 @@ class MultipleSurveysOpen(IntegrationTestCase):
         }
 
         self.post(url=first_url, post_data=form_data)
-        self.assertInPage('Information')
-        self.assertInPage('Unfortunately you can only complete one survey at a time.')
-        self.assertInPage('Close this window to continue with your current survey.')
+        self.assertInBody('Information')
+        self.assertInBody('Unfortunately you can only complete one survey at a time.')
+        self.assertInBody('Close this window to continue with your current survey.')

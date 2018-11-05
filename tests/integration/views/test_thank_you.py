@@ -24,7 +24,7 @@ class TestThankYou(IntegrationTestCase):
         self.launchSurvey('test', 'currency')
 
         # check we're on first page
-        self.assertInPage('Currency Input Test')
+        self.assertInBody('Currency Input Test')
 
         # We fill in our answers
         form_data = {
@@ -46,7 +46,7 @@ class TestThankYou(IntegrationTestCase):
 
         # check we're on the thank you page and that the trading as is displayed
         self.assertInUrl('thank-you')
-        self.assertInPage('(Integration Tests)')
+        self.assertInBody('(Integration Tests)')
 
     def test_thank_you_page_does_not_show_empty_parenthesis_if_trading_as_if_not_present(self):
 
@@ -54,7 +54,7 @@ class TestThankYou(IntegrationTestCase):
             self.launchSurvey('test', 'currency')
 
             # check we're on first page
-            self.assertInPage('Currency Input Test')
+            self.assertInBody('Currency Input Test')
 
             # We fill in our answers
             form_data = {
@@ -76,8 +76,8 @@ class TestThankYou(IntegrationTestCase):
 
             # check we're on the thank you page and that the trading as parenthesis are not displayed
             self.assertInUrl('thank-you')
-            self.assertNotInPage('(Integration Tests)')
-            self.assertNotInPage('()')
+            self.assertNotInBody('(Integration Tests)')
+            self.assertNotInBody('()')
 
     def test_thank_you_page_does_not_show_empty_parenthesis_if_trading_as_is_empty(self):
         empty_trading_as_payload = self.example_payload.copy()
@@ -87,7 +87,7 @@ class TestThankYou(IntegrationTestCase):
             self.launchSurvey('test', 'currency')
 
             # check we're on first page
-            self.assertInPage('Currency Input Test')
+            self.assertInBody('Currency Input Test')
 
             # We fill in our answers
             form_data = {
@@ -109,8 +109,8 @@ class TestThankYou(IntegrationTestCase):
 
             # check we're on the thank you page and that the trading as parenthesis are not displayed
             self.assertInUrl('thank-you')
-            self.assertNotInPage('(Integration Tests)')
-            self.assertNotInPage('()')
+            self.assertNotInBody('(Integration Tests)')
+            self.assertNotInBody('()')
 
     def test_thank_you_page_my_account_link_uses_url_from_payload(self):
         account_service_url_supplied = self.example_payload.copy()
@@ -120,7 +120,7 @@ class TestThankYou(IntegrationTestCase):
             self.launchSurvey('test', 'currency')
 
             # check we're on first page
-            self.assertInPage('Currency Input Test')
+            self.assertInBody('Currency Input Test')
 
             # We fill in our answers
             form_data = {
@@ -142,5 +142,5 @@ class TestThankYou(IntegrationTestCase):
 
             # check the 'My account' link is on the thank you page with the correct url
             self.assertInUrl('thank-you')
-            self.assertInPage('My account</a>')
-            self.assertInPage('href="http://correct.place"')
+            self.assertInBody('My account</a>')
+            self.assertInBody('href="http://correct.place"')

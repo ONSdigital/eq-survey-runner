@@ -8,16 +8,16 @@ class TestEmptyComments(IntegrationTestCase):
         self.launchSurvey('test', '0203')
 
         # We are on the introduction page
-        self.assertInPage('>Start survey<')
-        self.assertInPage('Monthly Business Survey - Retail Sales Index')
+        self.assertInBody('>Start survey<')
+        self.assertInBody('Monthly Business Survey - Retail Sales Index')
 
         # We proceed to the questionnaire
         self.post(action='start_questionnaire')
 
         # We are in the Questionnaire
-        self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
-        self.assertInPage('What are the dates of the sales period you are reporting for?')
-        self.assertInPage('>Save and continue<')
+        self.assertInBody('>Monthly Business Survey - Retail Sales Index</')
+        self.assertInBody('What are the dates of the sales period you are reporting for?')
+        self.assertInBody('>Save and continue<')
 
         # We fill in our answers
         form_data = {
@@ -42,10 +42,10 @@ class TestEmptyComments(IntegrationTestCase):
         self.assertInUrl(mci_test_urls.MCI_0203_SUMMARY)
 
         # We are on the review answers page
-        self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
-        self.assertInPage('>Check your answers and submit<')
-        self.assertInPage('You can check your answers below')
-        self.assertInPage('>Submit answers<')
+        self.assertInBody('>Monthly Business Survey - Retail Sales Index</')
+        self.assertInBody('>Check your answers and submit<')
+        self.assertInBody('You can check your answers below')
+        self.assertInBody('>Submit answers<')
 
         # We submit our answers
         self.post(action=None)
