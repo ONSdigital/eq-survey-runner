@@ -5,7 +5,7 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.2",
     "survey_id": "281",
-    "title": "Monthly Turnover Survey – Retail Sales",
+    "title": "Monthly Turnover Survey",
     "theme": "default",
     "legal_basis": "Notice is given under section 1 of the Statistics of Trade Act 1947.",
     "navigation": {
@@ -389,7 +389,16 @@
                                         }
                                     ]
                                 },
-                                "description": "<p>What constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{ metadata['trad_as_or_ru_name'] }}’s figures from the previous reporting period and the same reporting period last year.</p><p>This information will help us to validate your data and should reduce the need for us to query any figures with you.</p>",
+                                "definitions": [{
+                                    "title": "What constitutes a significant change?",
+                                    "content": [{
+                                            "description": "What constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{ metadata['trad_as_or_ru_name'] }}’s figures from the previous reporting period and the same reporting period last year."
+                                        },
+                                        {
+                                            "description": "This information will help us to validate your data and should reduce the need for us to query any figures with you."
+                                        }
+                                    ]
+                                }],
                                 "type": "General",
                                 "answers": [{
                                     "id": "answer3817",
@@ -498,10 +507,10 @@
                                             "description": "“Offer on wine for the whole month. The promotion was available in-store and online, contributing to an increase in both in-store and online sales.”"
                                         }, {
                                             "title": "‘Special events (for example, sporting events)’",
-                                            "description": "“This was the month before the start of World Cup 2018 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.”"
+                                            "description": "“This was the month before the start of World Cup 2018 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales.”"
                                         }, {
                                             "title": "‘Weather’",
-                                            "description": "“The bad weather has decreased our sales of summer clothing. This has led to a reduction in retail sales and online sales this month.”"
+                                            "description": "“The bad weather has decreased our sales of summer clothing. This has led to a reduction in retail sales, including online sales, this month.”"
                                         }]
                                     }
                                 }]
@@ -564,7 +573,7 @@
                             "type": "Question",
                             "questions": [{
                                 "id": "question2940",
-                                "title": "For the period {{ format_conditional_date (answers['period-from-answer'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to-answer'], metadata['ref_p_end_date'])}}, approximately what <em>percentage </em>of {{ metadata['trad_as_or_ru_name'] }} turnover was <em>from other activities</em>?",
+                                "title": "For the period {{ format_conditional_date (answers['period-from-answer'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to-answer'], metadata['ref_p_end_date'])}}, <em>approximately what percentage</em> of {{ metadata['trad_as_or_ru_name'] }} turnover was <em>from other activities</em>?",
                                 "guidance": {
                                     "content": [{
                                             "description": "Exclude:"
