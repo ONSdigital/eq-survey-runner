@@ -11,6 +11,10 @@
     "navigation": {
         "visible": false
     },
+    "view_submitted_response": {
+        "enabled": true,
+        "duration": 900
+    },
     "metadata": [{
             "name": "user_id",
             "validator": "string"
