@@ -1,11 +1,11 @@
 const helpers = require('../../../helpers');
+const DefaultTitlePage = require('../../../generated_pages/titles/single-title-block.page');
+const SingleTitlePage = require('../../../generated_pages/titles/who-is-answering-block.page');
+const ConditionalTitlePage = require('../../../generated_pages/titles/multiple-question-versions-block.page');
+const SummaryPage = require('../../../generated_pages/titles/summary.page');
 
 
 describe('Feature: Conditional question title', function() {
-  var DefaultTitlePage = require('../../../pages/features/conditional_question_title/single-title-block.page');
-  var SingleTitlePage = require('../../../pages/features/conditional_question_title/who-is-answering-block.page');
-  var ConditionalTitlePage = require('../../../pages/features/conditional_question_title/multiple-question-versions-block.page');
-  var SummaryPage = require('../../../pages/features/conditional_question_title/summary.page');
 
   beforeEach(function() {
       return helpers.openQuestionnaire('test_titles.json');

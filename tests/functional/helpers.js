@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const introductionPage = require('./pages/introduction.page');
-const genericPage = require('./pages/surveys/generic.page');
+const introductionPage = require('./base_pages/introduction.page');
+const genericPage = require('./base_pages/generic.page');
 const generateToken = require('./jwt_helper');
 
 const getUri = uri => browser.options.baseUrl + uri;

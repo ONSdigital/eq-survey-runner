@@ -1,7 +1,7 @@
 const helpers = require('../helpers');
-const TextFieldPage = require('../pages/surveys/textfield/block.page.js');
-const TextAreaPage = require('../pages/surveys/textarea/textarea-block.page.js');
-const TextAreaSummaryPage = require('../pages/surveys/textarea/textarea-summary.page.js');
+const TextFieldPage = require('../generated_pages/textfield/name-block.page');
+const TextAreaPage = require('../generated_pages/textarea/textarea-block.page.js');
+const TextAreaSummaryPage = require('../generated_pages/textarea/textarea-summary.page.js');
 
 describe('Given the user launches two surveys', function() {
   beforeEach('Launch two surveys', function() {

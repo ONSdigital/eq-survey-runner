@@ -4,8 +4,8 @@ describe('Component: Dropdown', function() {
   //Mandatory
   describe('Given I start a Mandatory Dropdown survey', function() {
 
-    const DropdownMandatoryPage = require('../../../pages/components/dropdown/mandatory/dropdown-mandatory.page');
-    const DropdownSummaryPage = require('../../../pages/components/dropdown/mandatory/summary.page');
+    const DropdownMandatoryPage = require('../../../generated_pages/dropdown_mandatory/dropdown-mandatory.page');
+    const DropdownSummaryPage = require('../../../generated_pages/dropdown_mandatory/summary.page');
     const schema = 'test_dropdown_mandatory.json';
 
     it('When I have selected a dropdown option, Then the selected option should be displayed in the summary', function() {
@@ -80,7 +80,7 @@ describe('Component: Dropdown', function() {
 
   describe('Given I start a Mandatory With Overridden Error Dropdown survey', function() {
 
-    const DropdownMandatoryPage = require('../../../pages/components/dropdown/mandatory_with_overridden_error/dropdown-mandatory-with-overridden-error.page');
+    const DropdownMandatoryPage = require('../../../generated_pages/dropdown_mandatory_with_overridden_error/dropdown-mandatory-with-overridden-error.page');
 
     before(function() {
       return helpers.openQuestionnaire('test_dropdown_mandatory_with_overridden_error.json');
@@ -96,8 +96,8 @@ describe('Component: Dropdown', function() {
   //Optional
   describe('Given I start a Optional Dropdown survey', function() {
 
-    const DropdownOptionalPage = require('../../../pages/components/dropdown/optional/dropdown-optional.page');
-    const DropdownSummaryPage = require('../../../pages/components/dropdown/optional/summary.page');
+    const DropdownOptionalPage = require('../../../generated_pages/dropdown_optional/dropdown-optional.page');
+    const DropdownSummaryPage = require('../../../generated_pages/dropdown_optional/summary.page');
     const schema = 'test_dropdown_optional.json';
 
     it('When I have not selected a dropdown option, Then the summary should display "No answer provided"', function() {

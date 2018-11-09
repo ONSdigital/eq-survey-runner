@@ -1,10 +1,10 @@
 const helpers = require('../../helpers');
 
-const SetLengthUnitsBlockPage = require('../../pages/features/units/set-length-units-block.page.js');
-const SetDurationUnitsBlockPage = require('../../pages/features/units/set-duration-units-block.page.js');
-const SetAreaUnitsBlockPage = require('../../pages/features/units/set-area-units-block.page.js');
-const SetVolumeUnitsBlockPage = require('../../pages/features/units/set-volume-units-block.page.js');
-const SummaryPage = require('../../pages/features/units/summary.page.js');
+const SetLengthUnitsBlockPage = require('../../generated_pages/unit_patterns/set-length-units-block.page.js');
+const SetDurationUnitsBlockPage = require('../../generated_pages/unit_patterns/set-duration-units-block.page.js');
+const SetAreaUnitsBlockPage = require('../../generated_pages/unit_patterns/set-area-units-block.page.js');
+const SetVolumeUnitsBlockPage = require('../../generated_pages/unit_patterns/set-volume-units-block.page.js');
+const SummaryPage = require('../../generated_pages/unit_patterns/summary.page.js');
 
 describe('Units', function() {
 

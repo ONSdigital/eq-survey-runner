@@ -7,27 +7,34 @@ import os
 import re
 from string import Template
 
-
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 parser = argparse.ArgumentParser(description='Generate a bag of DOM selectors, organised by page, '
                                              'to make writing webdriver tests easier')
-parser.add_argument('SCHEMA', type=argparse.FileType('r'),
-                    help='The path to the schema file you want to generate pages for.')
 
-parser.add_argument('OUT_DIRECTORY', help='The path to the directory where the pages should be written.')
+parser.add_argument('SCHEMA',
+                    help='The path to the schema file you want to generate pages for.'
+                         'If this path is a directory, then all files matching --test_schema_prefix'
+                         'will be used to generate pages')
 
-parser.add_argument('-s', '--spec_file', help='The file where the template spec should be written.')
+parser.add_argument('OUT_DIRECTORY', help='The path to the directory where the pages should be written.'
+                                          'If a schema directory is used, subdirectories will be created for each schema')
 
-parser.add_argument('-r', '--require_path', default='..',
+parser.add_argument('-s', '--spec_file', help='The file where the template spec should be written.'
+                                              'This flag has no effect when using a schema directory')
+
+parser.add_argument('-r', '--require_path', default='../../base_pages',
                     help='The relative path from a page file to the directory containing the base/parent page classes. '
                          'Defaults to ".."')
+
+parser.add_argument('-p', '--test_schema_prefix', default='test_',
+                    help='The prefix of schemas which should be used to generate pages in the passed in directory')
 
 
 SPEC_PAGE_HEADER = "const helpers = require('../helpers');\n\n"
 
-SPEC_PAGE_IMPORT = Template(r"""const ${pageName}Page = require('../pages/${pageDir}/${pageFile}');
+SPEC_PAGE_IMPORT = Template(r"""const ${pageName}Page = require('../generated_pages/${pageDir}/${pageFile}');
 """)
 
 SPEC_EXAMPLE_TEST = Template(r"""
@@ -63,7 +70,15 @@ QUESTION_DEFINITION_BUTTON_GETTER = Template(r"""  definitionButton${definitionI
 
 """)
 
-ANSWER_LABEL_GETTER = Template(r"""  ${answerName}Label() { return '#label-${answerId}'; }
+ANSWER_LABEL_GETTER = Template(r"""  ${answerName}Label() { 
+    return '#label-${answerId}';
+  }
+
+""")
+
+ANSWER_ERROR_GETTER = Template(r"""  ${answerName}ErrorItem() { 
+    return '#container-${answerId} > aside > div.panel__header > ul > li';
+  }
 
 """)
 
@@ -73,6 +88,12 @@ ANSWER_LABEL_DESCRIPTION_GETTER = Template(r"""  ${answerName}LabelDescription()
 
 ANSWER_GETTER = Template(r"""  ${answerName}() {
     return '#${answerId}';
+  }
+
+""")
+
+BLOCK_DESCRIPTION = Template(r"""  ${block_name}Description() {
+    return 'div.block__description';
   }
 
 """)
@@ -106,7 +127,7 @@ REPEATING_ANSWER_ADD_REMOVE = r"""  addPerson() {
   }
 
   removePerson(index = 0) {
-    return 'div.question__answer:nth-child('+ (index+1) + ') > h3 > small > span > button';
+    return 'div.question__answer:nth-child('+ (index+1) + ') > h3 button';
     // Have to check whether it's visible in test code
   }
 
@@ -138,11 +159,19 @@ SUMMARY_TITLE_GETTER = Template(r"""  ${group_id_camel}Title(index = 0) { return
 
 """)
 
+SUMMARY_SHOW_ALL_BUTTON = Template(r"""  summaryShowAllButton() { return 'div.collapsible__controls > button'; }
+
+""")
+
 ANSWER_SUMMARY_EDIT_GETTER = Template(r"""  ${answerName}Edit(index = 1) { return '[data-qa="${answerId}-' + index + '-edit"]'; }
 
 """)
 
 ANSWER_SUMMARY_LABEL_GETTER = Template(r"""  ${answerName}Label(index = 1) { return '[data-qa="${answerId}-' + index + '-label"]'; } 
+
+""")
+
+ANSWER_SUMMARY_ADD_LINK_GETTER = Template(r"""  addPersonLink() { return '#add-person-link'; }
 
 """)
 
@@ -172,7 +201,10 @@ def generate_pascal_case_from_id(id_str):
 
 
 def camel_case(s):
-    return s[0].lower() + s[1:]
+    if s:
+        return s[0].lower() + s[1:]
+    else:
+        return
 
 
 def process_options(answer_id, options, page_spec, base_prefix):
@@ -198,21 +230,21 @@ def process_options(answer_id, options, page_spec, base_prefix):
         if 'child_answer_id' in option:
             option_context = {
                 'answerId': option['child_answer_id'],
-                'answerName': prefix + option_name + 'Text'
+                'answerName': option_name + 'Text'
             }
-
             page_spec.write(ANSWER_GETTER.substitute(option_context))
 
 
 def process_answer(question_type, answer, page_spec, long_names, page_name):
 
-    # If there's only one answer on the page shortcut the name space to improve
-    # the quality of life of spec authors
-    answer_name = generate_pascal_case_from_id(answer['id']) if long_names else 'answer'
+    answer_name = generate_pascal_case_from_id(answer['id'])
     answer_name = answer_name.replace(page_name, '')
     answer_name = answer_name.replace('Answer', '')
-    answer_name_length = len(answer_name)
-    prefix = camel_case(answer_name) if answer_name_length > 0 and long_names else ''
+
+    prefix = camel_case(answer_name) if answer_name and long_names else ''
+
+    if answer_name is None or answer_name == '':
+        answer_name = 'answer'
 
     if 'parent_answer_id' in answer:
         logger.debug('\t\tSkipping Child Answer: %s', answer['id'])
@@ -241,11 +273,11 @@ def process_answer(question_type, answer, page_spec, long_names, page_name):
         page_spec.write(ANSWER_LABEL_GETTER.substitute(answer_context))
 
     elif answer['type'] in ('TextField', 'Number', 'TextArea', 'Currency', 'Percentage', 'Unit', 'Dropdown'):
-
         answer_context = {
             'answerName': camel_case(answer_name),
             'answerId': answer['id']
         }
+
 
         if question_type in ['RepeatingAnswer']:
             page_spec.write(HOUSEHOLD_ANSWER_GETTER.substitute(answer_context))
@@ -253,6 +285,7 @@ def process_answer(question_type, answer, page_spec, long_names, page_name):
             page_spec.write(ANSWER_GETTER.substitute(answer_context))
             page_spec.write(ANSWER_LABEL_GETTER.substitute(answer_context))
             page_spec.write(ANSWER_LABEL_DESCRIPTION_GETTER.substitute(answer_context))
+            page_spec.write(ANSWER_ERROR_GETTER.substitute(answer_context))
 
         if answer['type'] == 'Unit':
             page_spec.write(ANSWER_UNIT_TYPE_GETTER.substitute(answer_context))
@@ -280,7 +313,7 @@ def process_question(question, page_spec, num_questions, page_name):
             page_spec.write(QUESTION_DEFINITION_CONTENT_GETTER.substitute(definition_context))
             page_spec.write(QUESTION_DEFINITION_BUTTON_GETTER.substitute(definition_context))
 
-    for answer in question['answers']:
+    for answer in question.get('answers', []):
         process_answer(question_type, answer, page_spec, long_names, page_name)
 
 
@@ -307,6 +340,7 @@ def process_answer_summary(block, page_spec):
 
         page_spec.write(ANSWER_SUMMARY_EDIT_GETTER.substitute(answer_context))
         page_spec.write(ANSWER_SUMMARY_LABEL_GETTER.substitute(answer_context))
+        page_spec.write(ANSWER_SUMMARY_ADD_LINK_GETTER.substitute(answer_context))
 
 
 def process_summary(schema_data, page_spec):
@@ -318,7 +352,7 @@ def process_summary(schema_data, page_spec):
                         'questionId': question['id'],
                         'questionName': camel_case(generate_pascal_case_from_id(question['id']))
                     }
-                    for answer in question['answers']:
+                    for answer in question.get('answers', []):
                         answer_name = generate_pascal_case_from_id(answer['id'])
                         answer_context = {
                             'answerName': camel_case(answer_name),
@@ -333,6 +367,9 @@ def process_summary(schema_data, page_spec):
 
                     page_spec.write(SUMMARY_QUESTION_GETTER.substitute(question_context))
 
+                if block['type'] == 'SectionSummary':
+                    page_spec.write(SUMMARY_SHOW_ALL_BUTTON.substitute())
+
             group_context = {
                 'group_id_camel': camel_case(generate_pascal_case_from_id(group['id'])),
                 'group_id': group['id']
@@ -344,9 +381,7 @@ def long_names_required(question, num_questions):
     if num_questions > 1:
         return True
     else:
-        num_answers = len(question['answers'])
-        if num_answers == 2 and 'other' in question['answers'][1]['id']:
-            num_answers = 1
+        num_answers = len(question.get('answers', []))
 
         if num_answers > 1:
             return True
@@ -355,17 +390,21 @@ def long_names_required(question, num_questions):
 
 
 def _write_date_answer(answer_id, prefix):
-
     return \
         ANSWER_GETTER.substitute({'answerName': prefix + 'day', 'answerId': answer_id + '-day'}) + \
         ANSWER_GETTER.substitute({'answerName': prefix + 'month', 'answerId': answer_id + '-month'}) + \
-        ANSWER_GETTER.substitute({'answerName': prefix + 'year', 'answerId': answer_id + '-year'})
+        ANSWER_GETTER.substitute({'answerName': prefix + 'year', 'answerId': answer_id + '-year'}) + \
+        ANSWER_LABEL_GETTER.substitute({'answerName': prefix + 'day', 'answerId': answer_id + '-day'}) + \
+        ANSWER_LABEL_GETTER.substitute({'answerName': prefix + 'month', 'answerId': answer_id + '-month'}) + \
+        ANSWER_LABEL_GETTER.substitute({'answerName': prefix + 'year', 'answerId': answer_id + '-year'})
 
 
 def _write_month_year_date_answer(answer_id, prefix):
     return \
         ANSWER_GETTER.substitute({'answerName': prefix + 'Month', 'answerId': answer_id + '-month'}) + \
-        ANSWER_GETTER.substitute({'answerName': prefix + 'Year', 'answerId': answer_id + '-year'})
+        ANSWER_GETTER.substitute({'answerName': prefix + 'Year', 'answerId': answer_id + '-year'}) + \
+        ANSWER_LABEL_GETTER.substitute({'answerName': prefix + 'Month', 'answerId': answer_id + '-month'}) + \
+        ANSWER_LABEL_GETTER.substitute({'answerName': prefix + 'Year', 'answerId': answer_id + '-year'})
 
 
 def _write_duration_answer(answer_id, units, prefix):
@@ -408,9 +447,10 @@ def process_block(block, dir_out, schema_data, spec_file, relative_require='..')
             'pageName': page_name,
             'basePage': base_page,
             'basePageFile': base_page_file,
-            'pageDir': dir_out.split('pages/')[1],
+            'pageDir': dir_out.split('/')[-1],
             'pageFile': page_filename,
             'block_id': block['id'],
+            'block_name': camel_case(generate_pascal_case_from_id(block['id'])),
             'relativeRequirePath': relative_require
         }
 
@@ -424,6 +464,9 @@ def process_block(block, dir_out, schema_data, spec_file, relative_require='..')
         elif block['type'] in ('CalculatedSummary'):
             process_calculated_summary(block['calculation']['answers_to_calculate'], page_spec)
         else:
+            if block.get('description'):
+                page_spec.write(BLOCK_DESCRIPTION.substitute(block_context))
+
             num_questions = len(block.get('questions', []))
 
             for question in block.get('questions', []):
@@ -438,7 +481,7 @@ def process_block(block, dir_out, schema_data, spec_file, relative_require='..')
 
 def process_schema(in_schema, out_dir, spec_file, require_path='..'):
 
-    data = json.loads(in_schema.read())
+    data = json.loads(open(in_schema).read())
 
     try:
         os.stat(out_dir)
@@ -456,7 +499,11 @@ if __name__ == '__main__':
 
     template_spec_file = args.spec_file
 
+    os.makedirs(args.OUT_DIRECTORY, exist_ok=True)
+
+
     if template_spec_file:
+        os.makedirs(os.path.dirname(template_spec_file), exist_ok=True)
         with open(template_spec_file, 'w') as template_spec:
             template_spec.write(SPEC_PAGE_HEADER)
             template_spec.close()
@@ -464,7 +511,16 @@ if __name__ == '__main__':
             process_schema(args.SCHEMA, args.OUT_DIRECTORY, template_spec_file, args.require_path)
 
             with open(template_spec_file, 'a') as template_spec:
-                schema_name = {'schema': args.SCHEMA.name.split('/').pop()}
+                schema_name = {'schema': os.path.basename(args.SCHEMA)}
                 template_spec.write(SPEC_EXAMPLE_TEST.substitute(schema_name))
     else:
-        process_schema(args.SCHEMA, args.OUT_DIRECTORY, template_spec_file, args.require_path)
+        if os.path.isdir(args.SCHEMA):
+            for root, dirs, files in os.walk(args.SCHEMA):
+                for file in [os.path.join(root, file) for file in files if file.startswith(args.test_schema_prefix)]:
+                    output_dir = os.path.join(args.OUT_DIRECTORY, os.path.basename(file).split('.')[0].replace('test_', ''))
+                    if not os.path.exists(output_dir):
+                        os.makedirs(output_dir)
+                    process_schema(file, output_dir, None, args.require_path)
+
+        else:
+            process_schema(args.SCHEMA, args.OUT_DIRECTORY, template_spec_file, args.require_path)

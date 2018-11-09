@@ -1,10 +1,10 @@
 const helpers = require('../helpers');
 
-const PrimaryNamePage = require('../pages/surveys/routing_repeat_until/primary-name-block.page.js');
-const RepeatingNamePage = require('../pages/surveys/routing_repeat_until/repeating-name-block.page.js');
-const RepeatingAnyoneElsePage = require('../pages/surveys/routing_repeat_until/repeating-anyone-else-block.page.js');
-const SexPage = require('../pages/surveys/routing_repeat_until/sex-block.page.js');
-const SummaryPage = require('../pages/surveys/routing_repeat_until/summary.page.js');
+const PrimaryNamePage = require('../generated_pages/routing_repeat_until/primary-name-block.page.js');
+const RepeatingNamePage = require('../generated_pages/routing_repeat_until/repeating-name-block.page.js');
+const RepeatingAnyoneElsePage = require('../generated_pages/routing_repeat_until/repeating-anyone-else-block.page.js');
+const SexPage = require('../generated_pages/routing_repeat_until/sex-block.page.js');
+const SummaryPage = require('../generated_pages/routing_repeat_until/summary.page.js');
 
 describe('Routing Repeat Until', function() {
 
@@ -13,13 +13,13 @@ describe('Routing Repeat Until', function() {
     return helpers.openQuestionnaire('test_routing_repeat_until.json').then(() => {
 
       return browser
-        .setValue(PrimaryNamePage.answer(), 'Bob')
+        .setValue(PrimaryNamePage.primaryName(), 'Bob')
         .click(PrimaryNamePage.submit())
 
         .click(RepeatingAnyoneElsePage.yes())
         .click(RepeatingAnyoneElsePage.submit())
 
-        .setValue(RepeatingNamePage.answer(), 'Alice')
+        .setValue(RepeatingNamePage.repeatingName(), 'Alice')
         .click(RepeatingNamePage.submit())
 
         .click(RepeatingAnyoneElsePage.no())
@@ -50,19 +50,19 @@ describe('Routing Repeat Until', function() {
     return helpers.openQuestionnaire('test_routing_repeat_until.json').then(() => {
 
       return browser
-        .setValue(PrimaryNamePage.answer(), 'Bob')
+        .setValue(PrimaryNamePage.primaryName(), 'Bob')
         .click(PrimaryNamePage.submit())
 
         .click(RepeatingAnyoneElsePage.yes())
         .click(RepeatingAnyoneElsePage.submit())
 
-        .setValue(RepeatingNamePage.answer(), 'Alice')
+        .setValue(RepeatingNamePage.repeatingName(), 'Alice')
         .click(RepeatingNamePage.submit())
 
         .click(RepeatingAnyoneElsePage.yes())
         .click(RepeatingAnyoneElsePage.submit())
 
-        .setValue(RepeatingNamePage.answer(), 'John')
+        .setValue(RepeatingNamePage.repeatingName(), 'John')
         .click(RepeatingNamePage.submit())
 
         .click(RepeatingAnyoneElsePage.no())
@@ -104,7 +104,7 @@ describe('Routing Repeat Until', function() {
     return helpers.openQuestionnaire('test_routing_repeat_until.json').then(() => {
 
       return browser
-        .setValue(PrimaryNamePage.answer(), 'Bob')
+        .setValue(PrimaryNamePage.primaryName(), 'Bob')
         .click(PrimaryNamePage.submit())
 
         .click(RepeatingAnyoneElsePage.no())

@@ -1,9 +1,9 @@
 const helpers = require('../helpers');
 
-const RadioPage = require('../pages/surveys/summary_screen/radio.page.js');
-const TestNumberPage = require('../pages/surveys/summary_screen/test-number-block.page.js');
-const DessertBlockPage = require('../pages/surveys/summary_screen/dessert-block.page.js');
-const SummaryPage = require('../pages/surveys/summary_screen/summary.page.js');
+const RadioPage = require('../generated_pages/summary/radio.page.js');
+const TestNumberPage = require('../generated_pages/summary/test-number-block.page.js');
+const DessertBlockPage = require('../generated_pages/summary/dessert-block.page.js');
+const SummaryPage = require('../generated_pages/summary/summary.page.js');
 
 describe('Summary Screen', function() {
 
@@ -99,7 +99,7 @@ describe('Summary Screen', function() {
       .setValue(TestNumberPage.squareKilometres(), '123456')
       .setValue(TestNumberPage.testDecimal(), '123456.78')
       .click(TestNumberPage.submit())
-      .setValue(DessertBlockPage.answer(), 'Crème Brûlée')
+      .setValue(DessertBlockPage.dessert(), 'Crème Brûlée')
       .click(DessertBlockPage.submit())
       .getUrl().should.eventually.contain(SummaryPage.pageName);
   }

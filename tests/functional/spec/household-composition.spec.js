@@ -1,7 +1,7 @@
 const helpers = require('../helpers');
 
-const HouseholdCompositionPage = require('../pages/surveys/household/household-composition.page.js');
-const HouseholdSummaryPage = require('../pages/surveys/household/household-summary.page.js');
+const HouseholdCompositionPage = require('../generated_pages/household_question/household-composition.page.js');
+const HouseholdSummaryPage = require('../generated_pages/household_question/household-summary.page.js');
 
 describe('Household Composition', function() {
 
@@ -11,7 +11,7 @@ describe('Household Composition', function() {
           .setValue(HouseholdCompositionPage.firstName(),'Alpha')
           .setValue(HouseholdCompositionPage.lastName(),'One')
           .click(HouseholdCompositionPage.submit())
-          .getText(HouseholdSummaryPage.houseIncludes()).should.eventually.contain('Alpha One');
+          .getText(HouseholdSummaryPage.householdSummaryDescription()).should.eventually.contain('Alpha One');
     });
   });
 
@@ -38,9 +38,9 @@ describe('Household Composition', function() {
           .setValue(HouseholdCompositionPage.firstName('_2'),'Charlie')
           .setValue(HouseholdCompositionPage.lastName('_2'),'Three')
           .click(HouseholdCompositionPage.submit())
-          .getText(HouseholdSummaryPage.houseIncludes()).should.eventually.contain('Alpha One')
-          .getText(HouseholdSummaryPage.houseIncludes(2)).should.eventually.contain('Bravo Two Zero')
-          .getText(HouseholdSummaryPage.houseIncludes(3)).should.eventually.contain('Charlie Three');
+          .getText(HouseholdSummaryPage.householdSummaryDescription()).should.eventually.contain('Alpha One')
+          .getText(HouseholdSummaryPage.householdSummaryDescription()).should.eventually.contain('Bravo Two Zero')
+          .getText(HouseholdSummaryPage.householdSummaryDescription()).should.eventually.contain('Charlie Three');
     });
   });
 
@@ -55,8 +55,8 @@ describe('Household Composition', function() {
           .click(HouseholdCompositionPage.removePerson(1))
           .waitForExist(HouseholdCompositionPage.removePerson(1), 2000, true)
           .click(HouseholdCompositionPage.submit())
-          .getText(HouseholdSummaryPage.houseIncludes()).should.eventually.contain('Alpha One')
-          .isExisting(HouseholdSummaryPage.houseIncludes(2)).should.eventually.be.false;
+          .getText(HouseholdSummaryPage.householdSummaryDescription()).should.eventually.contain('Alpha One')
+          .getText(HouseholdSummaryPage.householdSummaryDescription()).should.not.eventually.contain('Bravo Two');
     });
   });
 
@@ -74,9 +74,9 @@ describe('Household Composition', function() {
           .click(HouseholdCompositionPage.removePerson(1))
           .waitForExist(HouseholdCompositionPage.removePerson(2), 2000, true)
           .click(HouseholdCompositionPage.submit())
-          .getText(HouseholdSummaryPage.houseIncludes()).should.eventually.contain('Alpha One')
-          .getText(HouseholdSummaryPage.houseIncludes(2)).should.eventually.contain('Charlie Three')
-          .isExisting(HouseholdSummaryPage.houseIncludes(3)).should.eventually.be.false;
+          .getText(HouseholdSummaryPage.householdSummaryDescription()).should.eventually.contain('Alpha One')
+          .getText(HouseholdSummaryPage.householdSummaryDescription()).should.eventually.contain('Charlie Three')
+          .getText(HouseholdSummaryPage.householdSummaryDescription()).should.not.eventually.contain('Bravo Two');
     });
   });
 
@@ -90,8 +90,8 @@ describe('Household Composition', function() {
           .setValue(HouseholdCompositionPage.middleNames('_1'),'Two')
           .setValue(HouseholdCompositionPage.lastName('_1'),'Zero')
           .keys('\uE006')
-          .getText(HouseholdSummaryPage.houseIncludes()).should.eventually.contain('Alpha One')
-          .getText(HouseholdSummaryPage.houseIncludes(2)).should.eventually.contain('Bravo Two Zero');
+          .getText(HouseholdSummaryPage.householdSummaryDescription()).should.eventually.contain('Alpha One')
+          .getText(HouseholdSummaryPage.householdSummaryDescription()).should.eventually.contain('Bravo Two Zero');
     });
   });
 
@@ -105,8 +105,8 @@ describe('Household Composition', function() {
           .setValue(HouseholdCompositionPage.middleNames('_1'),'Two')
           .setValue(HouseholdCompositionPage.lastName('_1'),'Zero')
           .keys('\uE007')
-          .getText(HouseholdSummaryPage.houseIncludes()).should.eventually.contain('Alpha One')
-          .getText(HouseholdSummaryPage.houseIncludes(2)).should.eventually.contain('Bravo Two Zero');
+          .getText(HouseholdSummaryPage.householdSummaryDescription()).should.eventually.contain('Alpha One')
+          .getText(HouseholdSummaryPage.householdSummaryDescription()).should.eventually.contain('Bravo Two Zero');
     });
   });
 
@@ -131,7 +131,7 @@ describe('Household Composition', function() {
           .click(HouseholdSummaryPage.previous())
           .setValue(HouseholdCompositionPage.lastName(),'Zero')
           .keys('\uE007')
-          .getText(HouseholdSummaryPage.houseIncludes()).should.eventually.contain('Bravo Two Zero');
+          .getText(HouseholdSummaryPage.householdSummaryDescription()).should.eventually.contain('Bravo Two Zero');
     });
   });
 

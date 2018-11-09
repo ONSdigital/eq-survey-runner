@@ -1,7 +1,7 @@
 const helpers = require('../helpers');
-const FoodPage = require('../pages/surveys/skip_conditions_not_set/food-block.page');
-const DrinkPage = require('../pages/surveys/skip_conditions_not_set/drink-block.page');
-const SummaryPage = require('../pages/surveys/skip_conditions_not_set/summary.page');
+const FoodPage = require('../generated_pages/skip_condition_not_set/food-block.page');
+const DrinkPage = require('../generated_pages/skip_condition_not_set/drink-block.page');
+const SummaryPage = require('../generated_pages/skip_condition_not_set/summary.page');
 
 describe('Skip Conditions - Not Set', function() {
   it('Given I do not complete the first page, Then I should see the summary page', function() {

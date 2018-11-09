@@ -1,9 +1,9 @@
 const helpers = require('../../../helpers');
 
-const RouteComparison1Page = require('../../../pages/features/answer_comparison/routing/route-comparison-1.page.js');
-const RouteComparison2Page = require('../../../pages/features/answer_comparison/routing/route-comparison-2.page.js');
-const RouteComparison3Page = require('../../../pages/features/answer_comparison/routing/route-comparison-3.page.js');
-const RouteComparison4Page = require('../../../pages/features/answer_comparison/routing/route-comparison-4.page.js');
+const RouteComparison1Page = require('../../../generated_pages/routing_answer_comparison/route-comparison-1.page.js');
+const RouteComparison2Page = require('../../../generated_pages/routing_answer_comparison/route-comparison-2.page.js');
+const RouteComparison3Page = require('../../../generated_pages/routing_answer_comparison/route-comparison-3.page.js');
+const RouteComparison4Page = require('../../../generated_pages/routing_answer_comparison/route-comparison-4.page.js');
 
 describe('Test routing skip', function() {
 

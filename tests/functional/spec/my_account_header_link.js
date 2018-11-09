@@ -1,9 +1,9 @@
 const helpers = require('../helpers');
 
-const IntroductionPage = require('../pages/introduction.page');
-const GenericPage = require('../pages/surveys/generic.page');
-const SummaryPage = require('../pages/summary.page');
-const ThankYouPage = require('../pages/thank-you.page');
+const IntroductionPage = require('../base_pages/introduction.page');
+const QuestionPage = require('../base_pages/generic.page');
+const SummaryPage = require('../base_pages/summary.page');
+const ThankYouPage = require('../base_pages/thank-you.page');
 
 describe('Introduction page', function() {
 
@@ -14,8 +14,8 @@ describe('Introduction page', function() {
         .getText(IntroductionPage.myAccountLink()).should.eventually.contain('My account')
         .click(IntroductionPage.getStarted())
         .getUrl().should.eventually.contain('general-business-information-completed')
-        .getText(GenericPage.myAccountLink()).should.eventually.contain('My account')
-        .click(GenericPage.submit())
+        .getText(QuestionPage.myAccountLink()).should.eventually.contain('My account')
+        .click(QuestionPage.submit())
         .getUrl().should.eventually.contain('confirmation')
         .getText(SummaryPage.myAccountLink()).should.eventually.contain('My account')
         .click(SummaryPage.submit())

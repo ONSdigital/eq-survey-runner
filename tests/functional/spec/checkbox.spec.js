@@ -1,8 +1,8 @@
 const helpers = require('../helpers');
 
-const MandatoryCheckboxPage = require('../pages/surveys/checkbox/mandatory-checkbox.page');
-const NonMandatoryCheckboxPage = require('../pages/surveys/checkbox/non-mandatory-checkbox.page');
-const SummaryPage = require('../pages/surveys/checkbox/checkbox-summary.page');
+const MandatoryCheckboxPage = require('../generated_pages/checkbox/mandatory-checkbox.page');
+const NonMandatoryCheckboxPage = require('../generated_pages/checkbox/non-mandatory-checkbox.page');
+const SummaryPage = require('../generated_pages/checkbox/summary.page');
 
 describe('Checkbox with "other" option', function() {
 
@@ -55,7 +55,7 @@ describe('Checkbox with "other" option', function() {
         .click(MandatoryCheckboxPage.submit())
         .click(NonMandatoryCheckboxPage.submit())
       // Then
-        .getText(SummaryPage.nonMandatoryAnswer()).should.eventually.equal('No answer provided');
+        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.equal('No answer provided');
     });
   });
 
@@ -70,7 +70,7 @@ describe('Checkbox with "other" option', function() {
         .click(NonMandatoryCheckboxPage.other())
         .click(NonMandatoryCheckboxPage.submit())
       // Then
-        .getText(SummaryPage.nonMandatoryAnswer()).should.eventually.have.string('Other');
+        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.have.string('Other');
     });
 
   });
@@ -87,7 +87,7 @@ describe('Checkbox with "other" option', function() {
         .setValue(NonMandatoryCheckboxPage.otherText(), 'The other value')
         .click(NonMandatoryCheckboxPage.submit())
       // Then
-        .getText(SummaryPage.nonMandatoryAnswer()).should.eventually.have.string('The other value');
+        .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.have.string('The other value');
 
     });
 
@@ -122,7 +122,7 @@ describe('Checkbox with "other" option', function() {
         .click(MandatoryCheckboxPage.submit())
         .click(NonMandatoryCheckboxPage.submit())
       // Then
-        .element(SummaryPage.mandatoryAnswer()).elements('li').then(result => result.value).should.eventually.be.empty;
+        .element(SummaryPage.mandatoryCheckboxAnswer()).elements('li').then(result => result.value).should.eventually.be.empty;
     });
   });
 
@@ -136,7 +136,7 @@ describe('Checkbox with "other" option', function() {
         .click(MandatoryCheckboxPage.submit())
         .click(NonMandatoryCheckboxPage.submit())
       // Then
-        .element(SummaryPage.mandatoryAnswer()).elements('li').then(result => result.value.length).should.eventually.be.equal(2);
+        .element(SummaryPage.mandatoryCheckboxAnswer()).elements('li').then(result => result.value.length).should.eventually.be.equal(2);
     });
   });
 

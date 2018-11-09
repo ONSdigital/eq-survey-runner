@@ -1,5 +1,5 @@
 const helpers = require('../helpers');
-const DefinitionPage = require('../pages/surveys/question_definitions/definition-block.page');
+const DefinitionPage = require('../generated_pages/question_definition/definition-block.page');
 
 describe('Component: Definition', function() {
   describe('Given I start a survey which contains question definition', function() {

@@ -1,7 +1,7 @@
 const helpers = require('../../../../helpers');
 
-const DropdownPage = require('../../../../pages/components/checkbox/mutually-exclusive/mutually-exclusive-dropdown.page');
-const SummaryPage = require('../../../../pages/components/checkbox/mutually-exclusive/optional-dropdown-section-summary.page');
+const DropdownPage = require('../../../../generated_pages/mutually_exclusive/mutually-exclusive-dropdown.page');
+const SummaryPage = require('../../../../generated_pages/mutually_exclusive/optional-dropdown-section-summary.page');
 
 describe('Component: Mutually Exclusive Dropdown With Single Checkbox Override', function() {
 

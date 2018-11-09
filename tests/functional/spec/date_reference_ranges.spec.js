@@ -1,9 +1,9 @@
 const helpers = require('../helpers');
 
-const ManualRangeBlockPage = require('../pages/features/date_reference_ranges/manual-range-block.page.js');
-const DateSeparateBlockPage = require('../pages/features/date_reference_ranges/date-separate-block.page.js');
-const DateRangeBlockPage = require('../pages/features/date_reference_ranges/date-range-block.page.js');
-const SummaryPage = require('../pages/features/date_reference_ranges/summary.page.js');
+const ManualRangeBlockPage = require('../generated_pages/date_reference_ranges/manual-range-block.page.js');
+const DateSeparateBlockPage = require('../generated_pages/date_reference_ranges/date-separate-block.page.js');
+const DateRangeBlockPage = require('../generated_pages/date_reference_ranges/date-range-block.page.js');
+const SummaryPage = require('../generated_pages/date_reference_ranges/summary.page.js');
 
 describe('Reference Date Range Checks', function() {
   // We have no way to mock out started_at, the unit and integration tests cover the date values

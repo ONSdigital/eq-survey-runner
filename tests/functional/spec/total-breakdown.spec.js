@@ -1,6 +1,8 @@
 const helpers = require('../helpers');
 
-const BreakDownPage = require('../pages/surveys/total_breakdown/block.page.js');
+const BreakDownPage = require('../generated_pages/total_breakdown/block.page.js');
+
+const highlightedInput = '[class$=input--has-error]';
 
 describe('Total Breakdown', function() {
 
@@ -72,15 +74,15 @@ describe('Total Breakdown', function() {
       .setValue(BreakDownPage.percentage3(), '3')
       .setValue(BreakDownPage.percentage4(), '4')
       .click(BreakDownPage.totalPercentageLabel())
-      .isExisting(BreakDownPage.highlightedTotal())
+      .isExisting(highlightedInput)
 
       .setValue(BreakDownPage.percentage4(), '100')
       .click(BreakDownPage.totalPercentageLabel())
-      .isExisting(BreakDownPage.highlightedTotal())
+      .isExisting(highlightedInput)
 
       .setValue(BreakDownPage.percentage4(), '94')
       .click(BreakDownPage.totalPercentageLabel())
-      .isExisting(BreakDownPage.highlightedTotal()).should.eventually.be.false;
+      .isExisting(highlightedInput);
     });
   });
 

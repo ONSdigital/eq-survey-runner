@@ -1,7 +1,7 @@
 const helpers = require('../../../../helpers');
 
-const UnitPage = require('../../../../pages/components/checkbox/mutually-exclusive/mutually-exclusive-unit.page');
-const SummaryPage = require('../../../../pages/components/checkbox/mutually-exclusive/optional-unit-section-summary.page');
+const UnitPage = require('../../../../generated_pages/mutually_exclusive/mutually-exclusive-unit.page');
+const SummaryPage = require('../../../../generated_pages/mutually_exclusive/optional-unit-section-summary.page');
 
 describe('Component: Mutually Exclusive Unit With Single Checkbox Override', function() {
 

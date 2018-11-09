@@ -1,7 +1,7 @@
 const helpers = require('../helpers');
 
-const TimeoutBlockPage = require('../pages/surveys/timeout/timeout-block.page.js');
-const SummaryPage = require('../pages/surveys/timeout/summary.page.js');
+const TimeoutBlockPage = require('../generated_pages/timeout/timeout-block.page.js');
+const SummaryPage = require('../generated_pages/timeout/summary.page.js');
 
 const dialog = '#dialog';
 
@@ -30,7 +30,7 @@ describe('Timeout', function() {
     const collectionId = helpers.getRandomString(10);
     return helpers.openQuestionnaire('test_timeout.json', 'testUser', collectionId).then(() => {
       return browser
-        .setValue(TimeoutBlockPage.answer(), 'foo')
+        .setValue(TimeoutBlockPage.timeout(), 'foo')
         .waitForVisible(dialog,5000)
         .click('.js-timeout-save')
         .getUrl().should.eventually.contain('signed-out');
@@ -40,7 +40,7 @@ describe('Timeout', function() {
     })
     .then(() => {
       return browser
-        .getValue(TimeoutBlockPage.answer()).should.eventually.equal('foo');
+        .getValue(TimeoutBlockPage.timeout()).should.eventually.equal('foo');
     });
   });
 
@@ -48,7 +48,7 @@ describe('Timeout', function() {
     const collectionId = helpers.getRandomString(10);
     return helpers.openQuestionnaire('test_timeout.json', 'testUser', collectionId).then(() => {
       return browser
-        .setValue(TimeoutBlockPage.answer(), 'foo')
+        .setValue(TimeoutBlockPage.timeout(), 'foo')
         .click(TimeoutBlockPage.submit())
         .waitUntil(() => browser.getUrl().should.eventually.contain('session-expired'), 7000);
     })
@@ -65,7 +65,7 @@ describe('Timeout', function() {
   it('Given I am on the summary page, when I click save and sign out, then I will be signed out and redirected to a page confirming I have been signed out', function() {
     return helpers.openQuestionnaire('test_timeout.json').then(() => {
       return browser
-        .setValue(TimeoutBlockPage.answer(), 'foo')
+        .setValue(TimeoutBlockPage.timeout(), 'foo')
         .click(TimeoutBlockPage.submit())
         .getUrl().should.eventually.contain('summary')
         .waitForVisible(dialog,5000)

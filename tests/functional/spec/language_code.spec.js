@@ -1,8 +1,8 @@
 const helpers = require('../helpers');
 
-const LanguagePage = require('../pages/surveys/language_code/language-block.page');
-const SummaryPage = require('../pages/surveys/language_code/summary.page');
-const ThankYouPage = require('../pages/thank-you.page.js');
+const LanguagePage = require('../generated_pages/language/language-block.page');
+const SummaryPage = require('../generated_pages/language/summary.page');
+const ThankYouPage = require('../base_pages/thank-you.page.js');
 
 describe('Language Code', function() {
 

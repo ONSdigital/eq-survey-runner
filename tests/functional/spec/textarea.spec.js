@@ -1,6 +1,6 @@
 const helpers = require('../helpers');
-const TextareaBlock = require('../pages/surveys/textarea/textarea-block.page.js');
-const TextareaSummary = require('../pages/surveys/textarea/textarea-summary.page.js');
+const TextareaBlock = require('../generated_pages/textarea/textarea-block.page.js');
+const TextareaSummary = require('../generated_pages/textarea/textarea-summary.page.js');
 
 describe('Textarea', function() {
 

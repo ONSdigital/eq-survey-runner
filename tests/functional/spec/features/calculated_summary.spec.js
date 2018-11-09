@@ -1,18 +1,18 @@
 const helpers = require('../../helpers');
 
-const FirstNumberBlockPage = require('../../pages/features/calculated_summary/first-number-block.page.js');
-const SecondNumberBlockPage = require('../../pages/features/calculated_summary/second-number-block.page.js');
-const ThirdNumberBlockPage = require('../../pages/features/calculated_summary/third-number-block.page.js');
-const SkipFourthBlockPage = require('../../pages/features/calculated_summary/skip-fourth-block.page.js');
-const FourthNumberBlockPage = require('../../pages/features/calculated_summary/fourth-number-block.page.js');
-const FifthNumberBlockPage = require('../../pages/features/calculated_summary/fifth-number-block.page.js');
-const SixthNumberBlockPage = require('../../pages/features/calculated_summary/sixth-number-block.page.js');
-const CurrencyTotalPlaybackPage = require('../../pages/features/calculated_summary/currency-total-playback.page.js');
-const UnitTotalPlaybackPage = require('../../pages/features/calculated_summary/unit-total-playback.page.js');
-const PercentageTotalPlaybackPage = require('../../pages/features/calculated_summary/percentage-total-playback.page.js');
-const NumberTotalPlaybackPage = require('../../pages/features/calculated_summary/number-total-playback.page.js');
-const SummaryPage = require('../../pages/summary.page.js');
-const ThankYouPage = require('../../pages/thank-you.page.js');
+const FirstNumberBlockPage = require('../../generated_pages/calculated_summary/first-number-block.page.js');
+const SecondNumberBlockPage = require('../../generated_pages/calculated_summary/second-number-block.page.js');
+const ThirdNumberBlockPage = require('../../generated_pages/calculated_summary/third-number-block.page.js');
+const SkipFourthBlockPage = require('../../generated_pages/calculated_summary/skip-fourth-block.page.js');
+const FourthNumberBlockPage = require('../../generated_pages/calculated_summary/fourth-number-block.page.js');
+const FifthNumberBlockPage = require('../../generated_pages/calculated_summary/fifth-number-block.page.js');
+const SixthNumberBlockPage = require('../../generated_pages/calculated_summary/sixth-number-block.page.js');
+const CurrencyTotalPlaybackPage = require('../../generated_pages/calculated_summary/currency-total-playback.page.js');
+const UnitTotalPlaybackPage = require('../../generated_pages/calculated_summary/unit-total-playback.page.js');
+const PercentageTotalPlaybackPage = require('../../generated_pages/calculated_summary/percentage-total-playback.page.js');
+const NumberTotalPlaybackPage = require('../../generated_pages/calculated_summary/number-total-playback.page.js');
+const SummaryPage = require('../../base_pages/summary.page.js');
+const ThankYouPage = require('../../base_pages/thank-you.page.js');
 
 describe('Feature: Calculated Summary', function() {
 
@@ -21,7 +21,7 @@ describe('Feature: Calculated Summary', function() {
     before('Get to Calculated Summary', function () {
       return helpers.openQuestionnaire('test_calculated_summary.json').then(() => {
         return browser
-          .setValue(FirstNumberBlockPage.answer(), 1.23)
+          .setValue(FirstNumberBlockPage.firstNumber(), 1.23)
         .click(FirstNumberBlockPage.submit())
 
         .setValue(SecondNumberBlockPage.secondNumber(), 4.56)

@@ -3,8 +3,8 @@ const helpers = require('../../../helpers');
 describe('Component: Radio', function() {
   describe('Given I start a Mandatory Radio survey', function() {
 
-    var RadioMandatoryPage = require('../../../pages/components/radio/mandatory/radio-mandatory.page');
-    var RadioSummaryPage = require('../../../pages/components/radio/mandatory/summary.page');
+    var RadioMandatoryPage = require('../../../generated_pages/radio_mandatory/radio-mandatory.page');
+    var RadioSummaryPage = require('../../../generated_pages/radio_mandatory/summary.page');
 
     before(function() {
       return helpers.openQuestionnaire('test_radio_mandatory.json');
@@ -21,8 +21,8 @@ describe('Component: Radio', function() {
 
   describe('Given I start a Mandatory Radio Other survey', function() {
 
-    var RadioMandatoryPage = require('../../../pages/components/radio/mandatory_with_mandatory_other/radio-mandatory.page');
-    var RadioSummaryPage = require('../../../pages/components/radio/mandatory_with_mandatory_other/summary.page');
+    var RadioMandatoryPage = require('../../../generated_pages/radio_mandatory_with_mandatory_other/radio-mandatory.page');
+    var RadioSummaryPage = require('../../../generated_pages/radio_mandatory_with_mandatory_other/summary.page');
 
     before(function() {
       return helpers.openQuestionnaire('test_radio_mandatory_with_mandatory_other.json');
@@ -40,7 +40,7 @@ describe('Component: Radio', function() {
 
   describe('Given I start a Mandatory Radio Other Overridden Error survey ', function() {
 
-    var RadioMandatoryPage = require('../../../pages/components/radio/mandatory_with_mandatory_other_overridden_error/radio-mandatory.page');
+    var RadioMandatoryPage = require('../../../generated_pages/radio_mandatory_with_mandatory_other_overridden_error/radio-mandatory.page');
 
     before(function() {
       return helpers.openQuestionnaire('test_radio_mandatory_with_mandatory_other_overridden_error.json');
@@ -57,8 +57,8 @@ describe('Component: Radio', function() {
 
   describe('Given I start a Mandatory Radio Other survey ', function() {
 
-    var RadioMandatoryPage = require('../../../pages/components/radio/mandatory_with_optional_other/radio-mandatory.page');
-    var RadioSummaryPage = require('../../../pages/components/radio/mandatory_with_optional_other/summary.page');
+    var RadioMandatoryPage = require('../../../generated_pages/radio_mandatory_with_optional_other/radio-mandatory.page');
+    var RadioSummaryPage = require('../../../generated_pages/radio_mandatory_with_optional_other/summary.page');
 
     before(function() {
       return helpers.openQuestionnaire('test_radio_mandatory_with_optional_other.json');
@@ -75,7 +75,7 @@ describe('Component: Radio', function() {
 
   describe('Given I start a Mandatory Radio Other Overridden error survey  ', function() {
 
-    var RadioMandatoryPage = require('../../../pages/components/radio/mandatory_with_overridden_error/radio-mandatory.page');
+    var RadioMandatoryPage = require('../../../generated_pages/radio_mandatory_with_overridden_error/radio-mandatory.page');
 
     before(function() {
       return helpers.openQuestionnaire('test_radio_mandatory_with_overridden_error.json');
@@ -90,8 +90,8 @@ describe('Component: Radio', function() {
 
   describe('Given I start a Optional survey', function() {
 
-    var RadioNonMandatoryPage = require('../../../pages/components/radio/optional/radio-non-mandatory.page');
-    var RadioSummaryPage = require('../../../pages/components/radio/optional/summary.page');
+    var RadioNonMandatoryPage = require('../../../generated_pages/radio_optional/radio-non-mandatory.page');
+    var RadioSummaryPage = require('../../../generated_pages/radio_optional/summary.page');
 
     before(function() {
       return helpers.openQuestionnaire('test_radio_optional.json');
@@ -107,7 +107,7 @@ describe('Component: Radio', function() {
 
   describe('Given I start a Optional Other Overridden error survey', function() {
 
-    var RadioNonMandatoryPage = require('../../../pages/components/radio/optional_other_overridden_error_message_with_mandatory_other/radio-non-mandatory.page');
+    var RadioNonMandatoryPage = require('../../../generated_pages/radio_optional_with_mandatory_other_overridden_error/radio-non-mandatory.page');
 
     before(function() {
       return helpers.openQuestionnaire('test_radio_optional_with_mandatory_other_overridden_error.json');
@@ -124,8 +124,8 @@ describe('Component: Radio', function() {
 
   describe('Given I Start a Optional Mandatory Other survey', function() {
 
-    var RadioNonMandatoryPage = require('../../../pages/components/radio/optional_with_mandatory_other/radio-non-mandatory.page');
-    var RadioSummaryPage = require('../../../pages/components/radio/optional_with_mandatory_other/summary.page');
+    var RadioNonMandatoryPage = require('../../../generated_pages/radio_optional_with_mandatory_other/radio-non-mandatory.page');
+    var RadioSummaryPage = require('../../../generated_pages/radio_optional_with_mandatory_other/summary.page');
 
     before(function() {
       return helpers.openQuestionnaire('test_radio_optional_with_mandatory_other.json');
@@ -143,8 +143,8 @@ describe('Component: Radio', function() {
 
   describe('Given I start a Optional other Optional survey', function() {
 
-    var RadioNonMandatoryPage = require('../../../pages/components/radio/optional_with_optional_other/radio-non-mandatory.page');
-    var RadioSummaryPage = require('../../../pages/components/radio/optional_with_optional_other/summary.page');
+    var RadioNonMandatoryPage = require('../../../generated_pages/radio_optional_with_optional_other/radio-non-mandatory.page');
+    var RadioSummaryPage = require('../../../generated_pages/radio_optional_with_optional_other/summary.page');
 
     before(function() {
       return helpers.openQuestionnaire('test_radio_optional_with_optional_other.json');

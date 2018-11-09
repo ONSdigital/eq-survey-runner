@@ -1,7 +1,7 @@
 const helpers = require('../helpers');
-const SetMinMax = require('../pages/surveys/numbers/set-min-max-block.page.js');
-const TestMinMax = require('../pages/surveys/numbers/test-min-max-block.page.js');
-const SummaryPage = require('../pages/surveys/skip_conditions/summary.page');
+const SetMinMax = require('../generated_pages/numbers/set-min-max-block.page.js');
+const TestMinMax = require('../generated_pages/numbers/test-min-max-block.page.js');
+const SummaryPage = require('../generated_pages/numbers/summary.page');
 
 describe('SaveSignOut', function() {
 

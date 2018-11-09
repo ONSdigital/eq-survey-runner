@@ -1,10 +1,10 @@
 const helpers = require('../../../helpers');
+const FavouriteColourPage = require('../../../generated_pages/titles_repeating_non_repeating_dependency/favourite-colour.page');
+const HouseholdCompositionPage = require('../../../generated_pages/titles_repeating_non_repeating_dependency/household-composition.page');
+const RepeatingBlockPage = require('../../../generated_pages/titles_repeating_non_repeating_dependency/repeating-block-3.page');
+const SummaryPage = require('../../../generated_pages/titles_repeating_non_repeating_dependency/summary.page');
 
 describe('Feature: Use of conditional Titles in Repeating blocks with condition dependant on non repeating answer', function() {
-  var FavouriteColourPage = require('../../../pages/features/conditional_question_title/repeating_dependant_on_non_repeating/favourite-colour.page');
-  var HouseholdCompositionPage = require('../../../pages/features/conditional_question_title/repeating_dependant_on_non_repeating/household-composition.page');
-  var RepeatingBlockPage = require('../../../pages/features/conditional_question_title/repeating_dependant_on_non_repeating/repeating-block-3.page');
-  var SummaryPage = require('../../../pages/features/conditional_question_title/repeating_dependant_on_non_repeating/summary.page');
 
   beforeEach(function() {
       return helpers.openQuestionnaire('test_titles_repeating_non_repeating_dependency.json');
@@ -15,11 +15,11 @@ describe('Feature: Use of conditional Titles in Repeating blocks with condition 
       return browser
         .click(FavouriteColourPage.blue())
         .click(FavouriteColourPage.submit())
-        .setValue(HouseholdCompositionPage.answer(),'Peter')
+        .setValue(HouseholdCompositionPage.firstName(),'Peter')
         .click(HouseholdCompositionPage.addPerson())
-        .setValue(HouseholdCompositionPage.answer('_1'),'Paul')
+        .setValue(HouseholdCompositionPage.firstName('_1'),'Paul')
         .click(HouseholdCompositionPage.addPerson())
-        .setValue(HouseholdCompositionPage.answer('_2'),'Mary')
+        .setValue(HouseholdCompositionPage.firstName('_2'),'Mary')
         .click(HouseholdCompositionPage.submit())
         .getText(RepeatingBlockPage.questionText()).should.eventually.contain("Peter's favourite colour is Blue")
         .click(RepeatingBlockPage.yes())
@@ -38,11 +38,11 @@ describe('Feature: Use of conditional Titles in Repeating blocks with condition 
       return browser
         .click(FavouriteColourPage.blue())
         .click(FavouriteColourPage.submit())
-        .setValue(HouseholdCompositionPage.answer(),'Peter')
+        .setValue(HouseholdCompositionPage.firstName(),'Peter')
         .click(HouseholdCompositionPage.addPerson())
-        .setValue(HouseholdCompositionPage.answer('_1'),'Paul')
+        .setValue(HouseholdCompositionPage.firstName('_1'),'Paul')
         .click(HouseholdCompositionPage.addPerson())
-        .setValue(HouseholdCompositionPage.answer('_2'),'Mary')
+        .setValue(HouseholdCompositionPage.firstName('_2'),'Mary')
         .click(HouseholdCompositionPage.submit())
         .getText(RepeatingBlockPage.questionText()).should.eventually.contain("Peter's favourite colour is Blue")
         .click(RepeatingBlockPage.yes())

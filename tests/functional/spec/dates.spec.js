@@ -1,7 +1,7 @@
 const helpers = require('../helpers');
-const DatesPage = require('../pages/surveys/dates/date-block.page');
-const MinMaxBlockPage = require('../pages/surveys/dates/min-max-block.page');
-const SummaryPage = require('../pages/surveys/dates/summary.page');
+const DatesPage = require('../generated_pages/dates/date-block.page');
+const MinMaxBlockPage = require('../generated_pages/dates/min-max-block.page');
+const SummaryPage = require('../generated_pages/dates/summary.page');
 
 describe('Date checks', function() {
 
@@ -207,7 +207,7 @@ describe('Date checks', function() {
       return browser
 
          // When a user clicks the day label
-         .click(DatesPage.dayLabel())
+         .click(DatesPage.singleDatedayLabel())
 
          // Then the day subfield should gain the focus
          .hasFocus(DatesPage.singleDateday());

@@ -1,8 +1,8 @@
 const helpers = require('../helpers');
 
-const HouseholdCompositionPage = require('../pages/surveys/household/household-composition.page.js');
-const RelationshipsPage = require('../pages/surveys/household/relationships.page.js');
-const SummaryPage = require('../pages/surveys/household/summary.page.js');
+const HouseholdCompositionPage = require('../generated_pages/relationship_household/household-composition.page.js');
+const RelationshipsPage = require('../generated_pages/relationship_household/relationships.page.js');
+const SummaryPage = require('../generated_pages/relationship_household/summary.page.js');
 
 describe('Household Relationship', function() {
 
@@ -49,8 +49,8 @@ describe('Household Relationship', function() {
           .click(RelationshipsPage.relationship(1, 'Brother or sister'))
           .click(RelationshipsPage.submit())
           .back()
-          .getValue(RelationshipsPage.answer(0)).should.eventually.equal("Partner")
-          .getValue(RelationshipsPage.answer(1)).should.eventually.equal("Brother or sister");
+          .getValue(RelationshipsPage.whoIsRelated(0)).should.eventually.equal("Partner")
+          .getValue(RelationshipsPage.whoIsRelated(1)).should.eventually.equal("Brother or sister");
     });
   });
 

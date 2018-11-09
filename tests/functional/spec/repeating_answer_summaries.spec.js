@@ -1,9 +1,9 @@
 const helpers = require('../helpers');
 
-const PrimaryNamePage = require('../pages/surveys/repeating_answer_summaries/primary-name-block.page.js');
-const PrimaryAnyoneElsePage = require('../pages/surveys/repeating_answer_summaries/primary-anyone-else-block.page.js');
-const RepeatingNamePage = require('../pages/surveys/repeating_answer_summaries/repeating-name-block.page.js');
-const RepeatingAnyoneElsePage = require('../pages/surveys/repeating_answer_summaries/repeating-anyone-else-block.page.js');
+const PrimaryNamePage = require('../generated_pages/repeating_answer_summaries/primary-name-block.page.js');
+const PrimaryAnyoneElsePage = require('../generated_pages/repeating_answer_summaries/primary-anyone-else-block.page.js');
+const RepeatingNamePage = require('../generated_pages/repeating_answer_summaries/repeating-name-block.page.js');
+const RepeatingAnyoneElsePage = require('../generated_pages/repeating_answer_summaries/repeating-anyone-else-block.page.js');
 
 describe('Routing Repeat Until', function() {
 

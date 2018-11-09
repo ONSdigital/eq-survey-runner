@@ -92,7 +92,7 @@ class TestMultipleLogin(MultipleClientTestCase):
 
         # user A inputs an answer
         self.launchSurvey(self.client_a, 'test', 'textfield')
-        self.post(self.client_a, {'answer': input_data})
+        self.post(self.client_a, {'name-answer': input_data})
 
         # user B gets taken straight to summary as survey is complete
         self.launchSurvey(self.client_b, 'test', 'textfield')
@@ -110,7 +110,7 @@ class TestMultipleLogin(MultipleClientTestCase):
         self.post(self.client_a, action=None)
 
         # user B tries to submit value
-        self.post(self.client_b, {'answer': 'bar baz'})
+        self.post(self.client_b, {'name-answer': 'bar baz'})
         last_response_b = self.cache[self.client_b]['last_response']
         self.assertEqual(last_response_b.status_code, 401)
 
