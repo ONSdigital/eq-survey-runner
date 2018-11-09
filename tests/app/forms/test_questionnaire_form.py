@@ -615,7 +615,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                 group_instance=0,
                 value='2017-03-20',
             )
-            store.add(test_answer_id)
+            store.add_or_update(test_answer_id)
 
             schema = load_schema_from_params('test', 'date_validation_range')
 
@@ -681,7 +681,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             value=10,
         )
 
-        store.add(answer_total)
+        store.add_or_update(answer_total)
 
         with self.app_request_context():
             schema = load_schema_from_params('test', 'sum_equal_validation_against_total')
@@ -736,7 +736,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             value=10,
         )
 
-        store.add(answer_total)
+        store.add_or_update(answer_total)
 
         with self.app_request_context():
             schema = load_schema_from_params('test', 'sum_equal_validation_against_total')
@@ -795,7 +795,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             value=10,
         )
 
-        store.add(answer_total)
+        store.add_or_update(answer_total)
 
         with self.app_request_context():
             schema = load_schema_from_params('test', 'sum_equal_validation_against_total')
@@ -833,7 +833,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             value=10,
         )
 
-        store.add(answer_total)
+        store.add_or_update(answer_total)
 
         with self.app_request_context():
             schema = load_schema_from_params('test', 'sum_equal_validation_against_total')
@@ -869,7 +869,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             value=10,
         )
 
-        store.add(answer_total)
+        store.add_or_update(answer_total)
 
         with self.app_request_context():
             schema = load_schema_from_params('test', 'sum_equal_validation_against_total')
@@ -907,7 +907,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             value=10,
         )
 
-        store.add(answer_total)
+        store.add_or_update(answer_total)
 
         with self.app_request_context():
             schema = load_schema_from_params('test', 'sum_multi_validation_against_total')
@@ -957,7 +957,7 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             value='chad',
         )
 
-        store.add(conditional_answer)
+        store.add_or_update(conditional_answer)
 
         with self.app_request_context():
             schema = load_schema_from_params('test', 'titles')

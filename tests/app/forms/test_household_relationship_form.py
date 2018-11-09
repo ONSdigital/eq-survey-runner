@@ -236,12 +236,12 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
         answer_store = AnswerStore()
 
         for i in range(0, 50):
-            answer_store.add(Answer(
+            answer_store.add_or_update(Answer(
                 answer_id='first-name',
                 answer_instance=i,
                 value='Joe' + str(i),
             ))
-            answer_store.add(Answer(
+            answer_store.add_or_update(Answer(
                 answer_id='last-name',
                 answer_instance=i,
                 value='Bloggs' + str(i),

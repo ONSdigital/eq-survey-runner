@@ -165,7 +165,17 @@ def build_view_context_for_answer_summary(metadata, schema, answer_store, block_
         'answers': [],
     }
 
-    for answer in answer_store.filter(answer_ids=summary_block.get('answer_ids')):
+    def group_instance(answer):
+        return answer['group_instance']
+
+    summary_answers = []
+
+    for answer_id in summary_block.get('answer_ids'):
+        answers = list(answer_store.filter(answer_ids=[answer_id]))
+        answers.sort(key=group_instance)
+        summary_answers.extend(answers)
+
+    for answer in summary_answers:
         question_id = schema.get_answer(answer['answer_id']).get('parent_id')
         block_id = schema.get_question(question_id).get('parent_id')
         group_id = schema.get_block(block_id).get('parent_id')

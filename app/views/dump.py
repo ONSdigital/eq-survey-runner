@@ -18,7 +18,7 @@ dump_blueprint = Blueprint('dump', __name__)
 @login_required
 @role_required('dumper')
 def dump_answers():
-    response = {'answers': get_answer_store(current_user).answers or []}
+    response = {'answers': list(get_answer_store(current_user)) or []}
     return jsonify(response), 200
 
 

@@ -54,7 +54,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
             'answer_id': 'total-retail-turnover-answer',
             'answer_instance': 0,
             'value': '1000'
-        }, self.question_store.answer_store.answers)
+        }, self.question_store.answer_store)
 
     def test_update_questionnaire_store_with_default_value(self):
 
@@ -78,7 +78,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
             'answer_id': 'answer',
             'answer_instance': 0,
             'value': 0
-        }, self.question_store.answer_store.answers)
+        }, self.question_store.answer_store)
 
     def test_update_questionnaire_store_with_answer_data(self):
         schema = load_schema_from_params('census', 'household')
@@ -125,7 +125,7 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         self.assertEqual(self.question_store.completed_blocks, [location])
 
         for answer in answers:
-            self.assertIn(answer.__dict__, self.question_store.answer_store.answers)
+            self.assertIn(answer.__dict__, self.question_store.answer_store)
 
     def test_remove_empty_household_members_from_answer_store(self):
         schema = load_schema_from_params('census', 'household')

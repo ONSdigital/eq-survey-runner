@@ -65,7 +65,7 @@ class TestBuildAnswersContext(TestCase):
 
     def test_build_answers(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='first_name',
             value='Joe Bloggs',
         ))
@@ -80,16 +80,16 @@ class TestBuildAnswersContext(TestCase):
 
     def test_build_answers_context_repeating_answers(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='full_name_answer',
             value='Person One',
         ))
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='full_name_answer',
             value='Person Two',
             answer_instance=1,
         ))
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='full_name_answer',
             value='Person One',
             answer_instance=2
@@ -107,7 +107,7 @@ class TestBuildAnswersContext(TestCase):
 
     def test_build_answers_single_answer_should_not_return_list(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='full_name_answer',
             value='Person One',
         ))
@@ -122,7 +122,7 @@ class TestBuildAnswersContext(TestCase):
 
     def test_build_answers_alias_for_repeating_answer_returns_list(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='repeating_answer_id',
             value='Some Value',
         ))
@@ -137,7 +137,7 @@ class TestBuildAnswersContext(TestCase):
 
     def test_alias_for_non_repeating_answer_returns_string(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='non_repeating_answer_id',
             value='Some Value',
         ))
@@ -152,7 +152,7 @@ class TestBuildAnswersContext(TestCase):
 
     def test_alias_for_answer_in_repeating_group_returns_list(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='answer_id',
             value='Some Value',
         ))
@@ -168,7 +168,7 @@ class TestBuildAnswersContext(TestCase):
     def test_maximum_answers_must_be_limited_to_system_max(self):
         # Given
         for instance in range(26):
-            self.answer_store.add(Answer(
+            self.answer_store.add_or_update(Answer(
                 answer_id='repeating_answer_id',
                 value='Some Value',
                 answer_instance=instance,
@@ -185,7 +185,7 @@ class TestBuildAnswersContext(TestCase):
 
     def test_given_quotes_in_answers_when_create_context_quotes_then_are_html_encoded(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='first_name',
             value='"'
         ))
@@ -200,7 +200,7 @@ class TestBuildAnswersContext(TestCase):
 
     def test_given_backslash_in_answers_when_create_context_then_backslash_are_escaped(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='first_name',
             value='\\'
         ))
@@ -215,11 +215,11 @@ class TestBuildAnswersContext(TestCase):
 
     def test_build_answers_excludes_answers_not_in_routing_path(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='first_name',
             value='Joe',
         ))
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='lastname',
             value='Bloggs',
         ))
@@ -237,7 +237,7 @@ class TestBuildAnswersContext(TestCase):
         correct position
         """
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='first_name',
             value='Joe',
             group_instance=1,
@@ -258,7 +258,7 @@ class TestBuildAnswersContext(TestCase):
         correct position
         """
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='first_name',
             value='Joe',
             answer_instance=1,
@@ -275,12 +275,12 @@ class TestBuildAnswersContext(TestCase):
 
     def test_build_answers_puts_answers_in_repeating_group(self):
         # Given
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='first_name',
             value='Bloggs',
             answer_instance=1,
         ))
-        self.answer_store.add(Answer(
+        self.answer_store.add_or_update(Answer(
             answer_id='first_name',
             value='Joe',
             answer_instance=0, # answer_instance deliberately in inverse order

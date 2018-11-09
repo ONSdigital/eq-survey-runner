@@ -52,14 +52,14 @@ class QuestionnaireStore:
         completed_blocks = [Location.from_dict(location_dict=completed_block) for completed_block in
                             json_data.get('COMPLETED_BLOCKS', [])]
         self.set_metadata(json_data.get('METADATA', {}))
-        self.answer_store.answers = json_data.get('ANSWERS', [])
+        self.answer_store = AnswerStore(json_data.get('ANSWERS'))
         self.completed_blocks = completed_blocks
         self.collection_metadata = json_data.get('COLLECTION_METADATA', {})
 
     def _serialise(self):
         data = {
             'METADATA': self._metadata,
-            'ANSWERS': self.answer_store.answers,
+            'ANSWERS': list(self.answer_store),
             'COMPLETED_BLOCKS': self.completed_blocks,
             'COLLECTION_METADATA': self.collection_metadata,
         }

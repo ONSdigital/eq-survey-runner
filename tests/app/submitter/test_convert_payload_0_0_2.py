@@ -327,7 +327,26 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
                             'type': 'Date'
                         }
                     ]
-                },
+                }
+            ])
+
+            # When
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+
+            # Then
+            self.assertEqual(len(answer_object['data']), 1)
+
+            self.assertEqual(answer_object['data'][0]['value'], '01-01-1990')
+            self.assertEqual(answer_object['data'][0]['group_instance'], 0)
+            self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
+
+    def test_month_year_date_answer(self):
+        with self._app.test_request_context():
+            routing_path = [Location(group_id='date-group', group_instance=0, block_id='date-block')]
+            user_answer = [create_answer('single-date-answer', '01-01-1990', group_id='date-group', block_id='date-block'),
+                           create_answer('month-year-answer', '01-1990', group_id='date-group', block_id='date-block')]
+
+            questionnaire = make_schema('0.0.2', 'section-1', 'date-group', 'date-block', [
                 {
                     'id': 'month-year-question',
                     'answers': [
@@ -343,14 +362,11 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
 
             # Then
-            self.assertEqual(len(answer_object['data']), 2)
-            self.assertEqual(answer_object['data'][0]['value'], '01-01-1990')
+            self.assertEqual(len(answer_object['data']), 1)
+
+            self.assertEqual(answer_object['data'][0]['value'], '01-1990')
             self.assertEqual(answer_object['data'][0]['group_instance'], 0)
             self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
-
-            self.assertEqual(answer_object['data'][1]['value'], '01-1990')
-            self.assertEqual(answer_object['data'][1]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][1]['answer_instance'], 0)
 
     def test_unit_answer(self):
         with self._app.test_request_context():

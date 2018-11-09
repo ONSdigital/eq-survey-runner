@@ -14,7 +14,7 @@ class TestConfirmationPage(AppContextTestCase):
             value='Orson Krennic',
         )
         answer_store = AnswerStore()
-        answer_store.add(answer)
+        answer_store.add_or_update(answer)
 
         schema = load_schema_from_params('0', 'rogue_one')
         navigator = PathFinder(schema, answer_store, {}, [])

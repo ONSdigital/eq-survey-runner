@@ -99,8 +99,9 @@ class TestLogin(IntegrationTestCase):
 
         answers = dumped['answers']
 
-        # Then
-        for i in range(0, 6, 2):
-            self.assertIsNotNone(
-                answers[i]['group_instance_id']
-            )
+        for answer in answers:
+            if answer['answer_id'] in ('primary-name', 'repeating-name'):
+                # Then
+                self.assertIsNotNone(
+                    answer['group_instance_id']
+                )
