@@ -157,8 +157,11 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     @application.after_request
     def apply_caching(response):  # pylint: disable=unused-variable
-        for k, v in CACHE_HEADERS.items():
-            response.headers[k] = v
+        if 'text/html' in response.content_type:
+            for k, v in CACHE_HEADERS.items():
+                response.headers[k] = v
+        else:
+            response.headers['Cache-Control'] = 'max-age=2628000, public'
 
         return response
 
