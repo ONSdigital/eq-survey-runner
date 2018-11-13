@@ -1,4 +1,5 @@
 import simplejson as json
+from jwcrypto.common import base64url_decode
 from structlog import get_logger
 
 from app.data_model.app_models import EQSession
@@ -87,6 +88,14 @@ class SessionStore:
                 encrypted_session_data = self._eq_session.session_data
                 session_data = StorageEncryption(self.user_id, self.user_ik, self.pepper) \
                     .decrypt_data(encrypted_session_data)
+
+                session_data = session_data.decode()
+                # for backwards compatibility
+                # session data used to be base64 encoded before encryption
+                try:
+                    session_data = base64url_decode(session_data).decode()
+                except ValueError:
+                    pass
 
                 self.session_data = json.loads(session_data, object_hook=lambda d: SessionData(**d))
 

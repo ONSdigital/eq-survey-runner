@@ -1,6 +1,11 @@
-from mock import patch
+import simplejson as json
 
+from jwcrypto import jwe
+from jwcrypto.common import base64url_decode, base64url_encode
+from mock import patch
 from tests.integration.integration_test_case import IntegrationTestCase
+
+from app.storage.storage_encryption import StorageEncryption
 
 
 class TestViewSubmission(IntegrationTestCase):
@@ -261,3 +266,64 @@ class TestViewSubmission(IntegrationTestCase):
             self.assertInUrl('view-submission')
             self.assertNotInBody('(Integration Tests)')
             self.assertNotInBody('()')
+
+
+class TestViewSubmissionLegacyFallback(IntegrationTestCase):
+
+    def test_legacy_submitted_response_data(self):
+        """These submitted responses used to be base64 encoded. Testing compatibility
+        """
+        # setup
+        with patch(
+                'app.views.questionnaire.StorageEncryption',
+                wraps=_LegacyStorageEncryption):
+            self.launchSurvey('test', 'view_submitted_response')
+
+            form_data = {
+                'radio-answer': 'Bacon',
+            }
+            self.post(form_data)
+
+            form_data = {
+                'test-currency': '12',
+                'square-kilometres': '345',
+                'test-decimal': '67.89',
+            }
+            self.post(form_data)
+
+            self.post(action=None)
+
+        # go to the view submission page
+        self.get('questionnaire/test/view_submitted_response/view-submission')
+
+        # check we're on the view submission page
+        self.assertInUrl('view-submission')
+        self.assertInBody('Submitted answers')
+        self.assertStatusOK()
+
+
+class _LegacyStorageEncryption(StorageEncryption):
+    """Legacy encrypter class to replicate the base64 encoding that data used to go
+    through prior to encryption
+    """
+    def encrypt_data(self, data):
+        if isinstance(data, dict):
+            data = json.dumps(data)
+
+        protected_header = {
+            'alg': 'dir',
+            'enc': 'A256GCM',
+            'kid': '1,1',
+        }
+
+        jwe_token = jwe.JWE(
+            plaintext=base64url_encode(data),
+            protected=protected_header,
+            recipient=self.key,
+        )
+
+        return jwe_token.serialize(compact=True)
+
+    def decrypt_data(self, encrypted_token):
+        payload = super().decrypt_data(encrypted_token)
+        return base64url_decode(payload.decode()).decode()
