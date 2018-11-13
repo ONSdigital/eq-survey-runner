@@ -6,6 +6,7 @@ addons:
       - google-chrome
     packages:
       - google-chrome-stable
+      - libsnappy-dev
 language: node_js
 node_js: 6
 env:

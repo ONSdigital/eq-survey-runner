@@ -52,6 +52,7 @@ blinker = "*"
 humanize = "*"
 flask-talisman = "*"
 marshmallow = "*"
+python-snappy = "*"
 
 [requires]
 python_version = "3.4"

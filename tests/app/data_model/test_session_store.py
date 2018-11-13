@@ -1,10 +1,15 @@
-from datetime import timedelta, datetime
-import simplejson
-from mock import patch
+import json
+from datetime import datetime, timedelta
 
-from app.data_model.session_store import SessionStore
-from app.data_model.session_data import SessionData
+from jwcrypto import jwe
+from jwcrypto.common import base64url_encode
+from mock import patch
 from tests.app.app_context_test_case import AppContextTestCase
+
+from app.data_model.app_models import EQSession
+from app.data_model.session_data import SessionData
+from app.data_model.session_store import SessionStore
+from app.storage import data_access, storage_encryption
 
 
 class SessionStoreTest(AppContextTestCase):
@@ -190,7 +195,7 @@ class SessionStoreTest(AppContextTestCase):
         """This test simulates the case where a session is created using a new session store that holds trading as
             but this gets read in an old session that does NOT support trading as """
 
-        original_loads_func = simplejson.loads
+        original_loads_func = json.loads
 
         class OldSessionData:
             """class representing what old sessions expect ( no trading as) """
@@ -247,3 +252,56 @@ class SessionStoreTest(AppContextTestCase):
                 session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
                 self.assertFalse(hasattr(session_store.session_data, 'trad_as'))
+
+
+class TestLegacySessionStore(AppContextTestCase):
+    """Session data used to be base64-encoded. For performance reasons the base64 encoding was removed.
+    """
+    def setUp(self):
+        super().setUp()
+        self.user_id = 'user_id'
+        self.user_ik = 'user_ik'
+        self.pepper = 'pepper'
+        self.session_id = 'session_id'
+        self.session_data = SessionData(
+            tx_id='tx_id',
+            eq_id='eq_id',
+            form_type='form_type',
+            period_str='period_str',
+            language_code=None,
+            survey_url=None,
+            ru_name='ru_name',
+            ru_ref='ru_ref',
+            trad_as='trading_as_name',
+            case_id='case_id'
+        )
+
+        # pylint: disable=protected-access
+        self.key = storage_encryption.StorageEncryption._generate_key(
+            self.user_id, self.user_ik, self.pepper)
+        self._save_legacy_state_data(self.session_id, self.user_id, self.session_data)
+
+    def test_load(self):
+        session_store = SessionStore(self.user_ik, self.pepper, self.session_id)
+        self.assertEqual(session_store.session_data.tx_id, self.session_data.tx_id)
+
+    def _save_legacy_state_data(self, session_id, user_id, data):
+        raw_data = json.dumps(vars(data))
+        protected_header = {
+            'alg': 'dir',
+            'enc': 'A256GCM',
+            'kid': '1,1',
+        }
+
+        jwe_token = jwe.JWE(
+            plaintext=base64url_encode(raw_data),
+            protected=protected_header,
+            recipient=self.key
+        )
+
+        session_model = EQSession(
+            session_id,
+            user_id,
+            jwe_token.serialize(compact=True)
+        )
+        data_access.put(session_model)

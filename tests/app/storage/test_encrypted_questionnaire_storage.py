@@ -1,6 +1,11 @@
 import unittest
+import json
+from jwcrypto import jwe
+from jwcrypto.common import base64url_encode
 
+from app.data_model.app_models import QuestionnaireState
 from app.data_model.questionnaire_store import QuestionnaireStore
+from app.storage import data_access
 from app.storage.encrypted_questionnaire_storage import EncryptedQuestionnaireStorage
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -44,6 +49,55 @@ class TestEncryptedQuestionnaireStorage(AppContextTestCase):
         self.assertEqual((data, QuestionnaireStore.LATEST_VERSION), self.storage.get_user_data())
         self.storage.delete()
         self.assertEqual((None, None), self.storage.get_user_data())  # pylint: disable=protected-access
+
+
+class TestLegacyEncryptedQuestionnaireStorage(AppContextTestCase):
+    """Compression didn't used to be applied to the questionnaire store data. It also
+    used to be base64-encoded. For performance reasons the base64 encoding was removed
+    and compression applied using the snappy lib
+    """
+    LEGACY_DATA_STORE_VERSION = 2
+
+    def setUp(self):
+        super().setUp()
+        user_id = 'user_id'
+        self.storage = EncryptedQuestionnaireStorage(user_id, 'user_ik', 'pepper')
+        self._save_legacy_state_data(user_id, 'test')
+
+    def test_get(self):
+        """Tests that the legacy data is correctly decrypted
+        """
+        data = 'test'
+        self.assertEqual((data, self.LEGACY_DATA_STORE_VERSION), self.storage.get_user_data())
+
+    def test_legacy_migrated_to_latest(self):
+        """Tests that the legacy data is correctly saved as latest
+        """
+        data = 'test update'
+        self.storage.add_or_update(data, QuestionnaireStore.LATEST_VERSION)
+        self.assertEqual((data, QuestionnaireStore.LATEST_VERSION), self.storage.get_user_data())
+
+    def _save_legacy_state_data(self, user_id, data):
+        protected_header = {
+            'alg': 'dir',
+            'enc': 'A256GCM',
+            'kid': '1,1',
+        }
+
+        jwe_token = jwe.JWE(
+            plaintext=base64url_encode(data),
+            protected=protected_header,
+            recipient=self.storage.encrypter.key
+        )
+
+        legacy_state_data = json.dumps({'data': jwe_token.serialize(compact=True)})
+
+        questionnaire_state = QuestionnaireState(
+            user_id,
+            legacy_state_data,
+            self.LEGACY_DATA_STORE_VERSION
+        )
+        data_access.put(questionnaire_state)
 
 
 if __name__ == '__main__':

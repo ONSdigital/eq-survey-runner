@@ -2,8 +2,10 @@ from unittest.mock import patch, MagicMock
 
 import simplejson as json
 
+from app.data_model.questionnaire_store import QuestionnaireStore
 from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.create_token import PAYLOAD
+
 
 def get_mocked_questionnaire_store(data, version):
     """Returns a mocked version of the questionnaire storage, which allows
@@ -21,22 +23,23 @@ def get_mocked_questionnaire_store(data, version):
     mocked_store.get_user_data = MagicMock(return_value=(json_data, version))
     return patch('app.storage.encrypted_questionnaire_storage.EncryptedQuestionnaireStorage', return_value=mocked_store)
 
+
 class TestLogin(IntegrationTestCase):
 
     def test_questionnaire_store_is_upgraded(self):
         # Given
 
-        # Creates a QuestionnaireStore with a version of 0
-        with patch('app.data_model.questionnaire_store.QuestionnaireStore.get_latest_version_number', return_value=0):
-            self.launchSurvey('test', '0205')
+        # Creates a QuestionnaireStore with latest version
+        self.launchSurvey('test', '0205')
 
-        # LATEST_VERSION is now > 0 (it was 1 at time of writing), so the `upgrade` method
-        # of answer_store should be called when fetching the questionnaire_store
-        with patch('app.data_model.questionnaire_store.AnswerStore.upgrade') as upgrade:
-            self.post(action='start_questionnaire')
+        # Increment LATEST_VERSION so the `upgrade` method of answer_store is called when fetching
+        # the questionnaire_store
+        next_version = QuestionnaireStore.LATEST_VERSION + 1
+        with patch('app.data_model.questionnaire_store.QuestionnaireStore.get_latest_version_number', return_value=next_version):
+            with patch('app.data_model.questionnaire_store.AnswerStore.upgrade') as upgrade:
+                self.post(action='start_questionnaire')
 
         upgrade.assert_called_once()
-
 
     def test_questionnaire_store_answer_store_group_instance_id_added(self):
         """ Simulates loading version 1 of an answer_store and seeing that it gets upgraded to version 2 """

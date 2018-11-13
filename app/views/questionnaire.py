@@ -10,6 +10,8 @@ from flask import session as cookie_session
 from flask_login import current_user, login_required, logout_user
 from flask_themes2 import render_theme_template
 from sdc.crypto.encrypter import encrypt
+from jwcrypto.common import base64url_decode
+
 from structlog import get_logger
 
 from app.authentication.no_token_exception import NoTokenException
@@ -304,9 +306,18 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
             metadata_context = build_metadata_context_for_survey_completed(session_data)
 
             pepper = current_app.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
-            encrypter = StorageEncryption(current_user.user_id, current_user.user_ik, pepper)
 
-            submitted_data = json.loads(encrypter.decrypt_data(submitted_data.data))
+            encrypter = StorageEncryption(current_user.user_id, current_user.user_ik, pepper)
+            submitted_data = encrypter.decrypt_data(submitted_data.data)
+
+            # for backwards compatibility
+            # submitted data used to be base64 encoded before encryption
+            try:
+                submitted_data = base64url_decode(submitted_data.decode()).decode()
+            except ValueError:
+                pass
+
+            submitted_data = json.loads(submitted_data)
             answer_store = AnswerStore(submitted_data.get('answers'))
 
             metadata = submitted_data.get('metadata')
