@@ -1,7 +1,7 @@
 import simplejson as json
+import snappy
 
 from jwcrypto import jwe
-from jwcrypto.common import base64url_decode, base64url_encode
 from mock import patch
 from tests.integration.integration_test_case import IntegrationTestCase
 
@@ -268,15 +268,15 @@ class TestViewSubmission(IntegrationTestCase):
             self.assertNotInBody('()')
 
 
-class TestViewSubmissionLegacyFallback(IntegrationTestCase):
+class TestViewSubmissionCompression(IntegrationTestCase):
 
-    def test_legacy_submitted_response_data(self):
-        """These submitted responses used to be base64 encoded. Testing compatibility
+    def test_compressed_submitted_response_data(self):
+        """Compressed storage will be introduced in the next release
         """
         # setup
         with patch(
                 'app.views.questionnaire.StorageEncryption',
-                wraps=_LegacyStorageEncryption):
+                wraps=_CompressedStorageEncryption):
             self.launchSurvey('test', 'view_submitted_response')
 
             form_data = {
@@ -293,19 +293,17 @@ class TestViewSubmissionLegacyFallback(IntegrationTestCase):
 
             self.post(action=None)
 
-        # go to the view submission page
-        self.get('questionnaire/test/view_submitted_response/view-submission')
+            # go to the view submission page
+            self.get('questionnaire/test/view_submitted_response/view-submission')
 
-        # check we're on the view submission page
-        self.assertInUrl('view-submission')
-        self.assertInBody('Submitted answers')
-        self.assertStatusOK()
+            # check we're on the view submission page
+            self.assertInUrl('view-submission')
+            self.assertInBody('Submitted answers')
+            self.assertStatusOK()
 
 
-class _LegacyStorageEncryption(StorageEncryption):
-    """Legacy encrypter class to replicate the base64 encoding that data used to go
-    through prior to encryption
-    """
+class _CompressedStorageEncryption(StorageEncryption):
+
     def encrypt_data(self, data):
         if isinstance(data, dict):
             data = json.dumps(data)
@@ -316,8 +314,10 @@ class _LegacyStorageEncryption(StorageEncryption):
             'kid': '1,1',
         }
 
+        data = snappy.compress(data)
+
         jwe_token = jwe.JWE(
-            plaintext=base64url_encode(data),
+            plaintext=data,
             protected=protected_header,
             recipient=self.key,
         )
@@ -326,4 +326,4 @@ class _LegacyStorageEncryption(StorageEncryption):
 
     def decrypt_data(self, encrypted_token):
         payload = super().decrypt_data(encrypted_token)
-        return base64url_decode(payload.decode()).decode()
+        return snappy.uncompress(payload)
