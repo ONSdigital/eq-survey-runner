@@ -114,13 +114,6 @@ def before_post_submission_request():
                        session_collection_id='')
 
 
-@questionnaire_blueprint.after_request
-def add_cache_control(response):
-    response.cache_control.no_cache = True
-
-    return response
-
-
 def save_questionnaire_store(func):
     @wraps(func)
     def save_questionnaire_store_wrapper(*args, **kwargs):
