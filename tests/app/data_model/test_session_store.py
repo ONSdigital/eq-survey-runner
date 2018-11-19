@@ -254,8 +254,9 @@ class SessionStoreTest(AppContextTestCase):
                 self.assertFalse(hasattr(session_store.session_data, 'trad_as'))
 
 
-class TestLegacySessionStore(AppContextTestCase):
-    """Session data used to be base64-encoded. For performance reasons the base64 encoding was removed.
+class TestSessionStoreEncoding(AppContextTestCase):
+    """Session data used to be base64-encoded. For performance reasons the
+    base64 encoding is being removed.
     """
     def setUp(self):
         super().setUp()
@@ -279,13 +280,18 @@ class TestLegacySessionStore(AppContextTestCase):
         # pylint: disable=protected-access
         self.key = storage_encryption.StorageEncryption._generate_key(
             self.user_id, self.user_ik, self.pepper)
-        self._save_legacy_state_data(self.session_id, self.user_id, self.session_data)
 
-    def test_load(self):
+    def test_legacy_load(self):
+        self._save_session(self.session_id, self.user_id, self.session_data, legacy=True)
         session_store = SessionStore(self.user_ik, self.pepper, self.session_id)
         self.assertEqual(session_store.session_data.tx_id, self.session_data.tx_id)
 
-    def _save_legacy_state_data(self, session_id, user_id, data):
+    def test_load(self):
+        self._save_session(self.session_id, self.user_id, self.session_data)
+        session_store = SessionStore(self.user_ik, self.pepper, self.session_id)
+        self.assertEqual(session_store.session_data.tx_id, self.session_data.tx_id)
+
+    def _save_session(self, session_id, user_id, data, legacy=False):
         raw_data = json.dumps(vars(data))
         protected_header = {
             'alg': 'dir',
@@ -293,8 +299,13 @@ class TestLegacySessionStore(AppContextTestCase):
             'kid': '1,1',
         }
 
+        if legacy:
+            plaintext = base64url_encode(raw_data)
+        else:
+            plaintext = raw_data
+
         jwe_token = jwe.JWE(
-            plaintext=base64url_encode(raw_data),
+            plaintext=plaintext,
             protected=protected_header,
             recipient=self.key
         )

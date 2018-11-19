@@ -1,5 +1,7 @@
 import unittest
 import json
+import snappy
+
 from jwcrypto import jwe
 from jwcrypto.common import base64url_encode
 
@@ -51,31 +53,37 @@ class TestEncryptedQuestionnaireStorage(AppContextTestCase):
         self.assertEqual((None, None), self.storage.get_user_data())  # pylint: disable=protected-access
 
 
-class TestLegacyEncryptedQuestionnaireStorage(AppContextTestCase):
+class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
     """Compression didn't used to be applied to the questionnaire store data. It also
-    used to be base64-encoded. For performance reasons the base64 encoding was removed
-    and compression applied using the snappy lib
+    used to be base64-encoded. For performance reasons the base64 encoding is being
+    removed and compression applied using the snappy lib
     """
     LEGACY_DATA_STORE_VERSION = 2
 
     def setUp(self):
         super().setUp()
-        user_id = 'user_id'
-        self.storage = EncryptedQuestionnaireStorage(user_id, 'user_ik', 'pepper')
-        self._save_legacy_state_data(user_id, 'test')
+        self.user_id = 'user_id'
+        self.storage = EncryptedQuestionnaireStorage(self.user_id, 'user_ik', 'pepper')
 
-    def test_get(self):
+    def test_legacy_get(self):
         """Tests that the legacy data is correctly decrypted
         """
-        data = 'test'
-        self.assertEqual((data, self.LEGACY_DATA_STORE_VERSION), self.storage.get_user_data())
+        self._save_legacy_state_data(self.user_id, 'test')
+        self.assertEqual(('test', self.LEGACY_DATA_STORE_VERSION), self.storage.get_user_data())
 
     def test_legacy_migrated_to_latest(self):
         """Tests that the legacy data is correctly saved as latest
         """
+        self._save_legacy_state_data(self.user_id, 'test')
         data = 'test update'
         self.storage.add_or_update(data, QuestionnaireStore.LATEST_VERSION)
         self.assertEqual((data, QuestionnaireStore.LATEST_VERSION), self.storage.get_user_data())
+
+    def test_get(self):
+        """Tests compressed state
+        """
+        self._save_state_data(self.user_id, 'test')
+        self.assertEqual(('test', QuestionnaireStore.LATEST_VERSION + 1), self.storage.get_user_data())
 
     def _save_legacy_state_data(self, user_id, data):
         protected_header = {
@@ -96,6 +104,28 @@ class TestLegacyEncryptedQuestionnaireStorage(AppContextTestCase):
             user_id,
             legacy_state_data,
             self.LEGACY_DATA_STORE_VERSION
+        )
+        data_access.put(questionnaire_state)
+
+    def _save_state_data(self, user_id, data):
+        protected_header = {
+            'alg': 'dir',
+            'enc': 'A256GCM',
+            'kid': '1,1',
+        }
+
+        jwe_token = jwe.JWE(
+            plaintext=snappy.compress(data),
+            protected=protected_header,
+            recipient=self.storage.encrypter.key
+        )
+
+        state_data = jwe_token.serialize(compact=True)
+
+        questionnaire_state = QuestionnaireState(
+            user_id,
+            state_data,
+            QuestionnaireStore.LATEST_VERSION + 1
         )
         data_access.put(questionnaire_state)
 

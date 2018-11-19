@@ -420,7 +420,7 @@ def submit_answers(routing_path, eq_id, form_type, schema):
     _store_submitted_time_in_session(submitted_time)
 
     if is_view_submitted_response_enabled(schema.json):
-        _store_viewable_submission(answer_store.answer_map, metadata, submitted_time)
+        _store_viewable_submission(list(answer_store), metadata, submitted_time)
 
     get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
 
