@@ -86,15 +86,15 @@ describe('Total Breakdown', function() {
     });
   });
 
-  it('Given four percentage fields, When floating point numbers entered, Then total should be integer', function() {
+  it('Given four percentage fields, When floating point numbers entered, Then total should be a floating point number', function() {
   return helpers.openQuestionnaire('test_total_breakdown.json').then(() => {
     return browser
-      .setValue(BreakDownPage.percentage1(), '1.234')
-      .setValue(BreakDownPage.percentage2(), '2.345')
-      .setValue(BreakDownPage.percentage3(), '3.456')
-      .setValue(BreakDownPage.percentage4(), '4.567')
+      .setValue(BreakDownPage.percentage1(), '1.23')
+      .setValue(BreakDownPage.percentage2(), '2.35')
+      .setValue(BreakDownPage.percentage3(), '3.45')
+      .setValue(BreakDownPage.percentage4(), '4.56')
       .click(BreakDownPage.totalPercentageLabel())
-      .getValue(BreakDownPage.totalPercentage()).should.eventually.contain('10');
+      .getValue(BreakDownPage.totalPercentage()).should.eventually.contain('11.59');
     });
   });
 

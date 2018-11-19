@@ -18,7 +18,7 @@ domready(() => {
     for (let i = 0; i < breakdownFields.length; i++) {
       let percentage = breakdownFields[i].value
 
-      let value = parseInt(percentage)
+      let value = parseFloat(percentage)
       if (isNaN(value)) {
         continue
       } else if (value > 0) {
@@ -52,7 +52,7 @@ domready(() => {
   }
 
   const updateTotal = (value) => {
-    totalField.value = value
+    totalField.value = value.toFixed(2)
     if (value === 100) {
       // good
       removeHighlight()
@@ -65,7 +65,7 @@ domready(() => {
   if (totalField) {
     fieldSet.addEventListener('change', onAnswerChanged)
     totalField.setAttribute('readonly', 'readonly')
-    let initialValue = parseInt(totalField.value)
+    let initialValue = parseFloat(totalField.value)
     if (!isNaN(initialValue)) {
       updateTotal(initialValue)
     }
