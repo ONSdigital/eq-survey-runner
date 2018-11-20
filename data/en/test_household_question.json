@@ -38,7 +38,12 @@
                         "label": "First Name",
                         "mandatory": true,
                         "q_code": "1",
-                        "type": "TextField"
+                        "type": "TextField",
+                        "validation": {
+                            "messages": {
+                                "MANDATORY_TEXTFIELD": "Please enter a name or remove the person to continue"
+                            }
+                        }
                     }, {
                         "id": "middle-names",
                         "label": "Middle Names",
@@ -105,7 +110,7 @@
                 "type": "Summary",
                 "id": "summary"
             }],
-            "id": "multiple-questions-group",
+            "id": "who-lives-here",
             "title": ""
         }]
     }]

@@ -84,9 +84,9 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
     def test_generate_relationship_form_creates_empty_form(self):
         with self.app_request_context():
             schema = load_schema_from_params('test', 'relationship_household')
-            block_json = schema.get_block('relationships')
+            block_json = schema.get_block('household-relationships')
 
-            answer = schema.get_answers_for_block('relationships')[0]
+            answer = schema.get_answers_for_block('household-relationships')[0]
 
             relationship_choices = [['a', 'b'], ['c', 'd'], ['e', 'f']]
 
@@ -98,9 +98,9 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
     def test_generate_relationship_form_creates_form_from_data(self):
         with self.app_request_context():
             schema = load_schema_from_params('test', 'relationship_household')
-            block_json = schema.get_block('relationships')
+            block_json = schema.get_block('household-relationships')
 
-            answer = schema.get_answers_for_block('relationships')[0]
+            answer = schema.get_answers_for_block('household-relationships')[0]
 
             relationship_choices = [['a', 'b'], ['c', 'd'], ['e', 'f']]
 
@@ -118,9 +118,9 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
     def test_generate_relationship_form_errors_are_correctly_mapped(self):
         with self.app_request_context():
             schema = load_schema_from_params('test', 'relationship_household')
-            block_json = schema.get_block('relationships')
+            block_json = schema.get_block('household-relationships')
 
-            answer = schema.get_answers_for_block('relationships')[0]
+            answer = schema.get_answers_for_block('household-relationships')[0]
 
             relationship_choices = [['a', 'b'], ['c', 'd'], ['e', 'f']]
 

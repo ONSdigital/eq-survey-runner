@@ -1,7 +1,8 @@
 const helpers = require('../helpers');
 
 const HouseholdCompositionPage = require('../generated_pages/relationship_household/household-composition.page.js');
-const RelationshipsPage = require('../generated_pages/relationship_household/relationships.page.js');
+const RelationshipsPage = require('../generated_pages/relationship_household/household-relationships.page.js');
+const VisitorsPage = require('../generated_pages/relationship_household/overnight-visitors.page.js');
 const SummaryPage = require('../generated_pages/relationship_household/summary.page.js');
 
 describe('Household Relationship', function() {
@@ -12,6 +13,8 @@ describe('Household Relationship', function() {
           .setValue(HouseholdCompositionPage.firstName(),'Alpha')
           .setValue(HouseholdCompositionPage.lastName(),'One')
           .click(HouseholdCompositionPage.submit())
+          .setValue(VisitorsPage.answer(), '0')
+          .click(VisitorsPage.submit())
           .getUrl().should.eventually.contain(SummaryPage.pageName);
     });
   });
@@ -28,6 +31,8 @@ describe('Household Relationship', function() {
           .setValue(HouseholdCompositionPage.firstName('_2'),'Charlie')
           .setValue(HouseholdCompositionPage.lastName('_2'),'Three')
           .click(HouseholdCompositionPage.submit())
+          .setValue(VisitorsPage.answer(), '0')
+          .click(VisitorsPage.submit())
           .click(RelationshipsPage.relationship(0, 'Husband or wife'))
           .click(RelationshipsPage.relationship(1, 'Son or daughter'));
     });
@@ -45,6 +50,8 @@ describe('Household Relationship', function() {
           .setValue(HouseholdCompositionPage.firstName('_2'),'Charlie')
           .setValue(HouseholdCompositionPage.lastName('_2'),'Three')
           .click(HouseholdCompositionPage.submit())
+          .setValue(VisitorsPage.answer(), '0')
+          .click(VisitorsPage.submit())
           .click(RelationshipsPage.relationship(0, 'Partner'))
           .click(RelationshipsPage.relationship(1, 'Brother or sister'))
           .click(RelationshipsPage.submit())

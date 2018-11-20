@@ -387,13 +387,13 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
 
     def test_given_jinja_variable_question_title_when_get_page_title_then_replace_with_ellipsis(self):
         # Given
-        schema = load_schema_from_params('census', 'household')
+        schema = load_schema_from_params('test', 'relationship_household')
 
         # When
         page_title = get_page_title_for_location(schema, Location('who-lives-here-relationship', 0, 'household-relationships'), {}, AnswerStore())
 
         # Then
-        self.assertEqual(page_title, 'How is … related to the people below? - 2017 Census Test')
+        self.assertEqual(page_title, 'How is … related to the people below? - Household relationship')
 
     def test_updating_questionnaire_store_removes_completed_block_for_min_dependencies(self):
 

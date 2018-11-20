@@ -21,12 +21,12 @@ class TestRepeatingRelationship(IntegrationTestCase):
         self.post(twenty_six_people)
 
         # Then
-        last_relationship_page = 'questionnaire/test/relationship_household/789/household-relationships/23/relationships'
+        last_relationship_page = 'questionnaire/test/relationship_household/789/who-lives-here-relationship/23/household-relationships'
         self.get(url=last_relationship_page)
-        self.assertInBody('Describe how this person is related to the others')
+        self.assertInBody('How is Joe_23 related to the people below?')
 
     @patch('app.helpers.schema_helpers.uuid4', side_effect=range(100))
-    def test_multiple_relationship_groups(self, mock): # pylint: disable=unused-argument
+    def test_multiple_relationship_groups(self, mock):  # pylint: disable=unused-argument
         # Given
         household_form_data = {
             'household-0-first-name': 'Han',
@@ -34,6 +34,12 @@ class TestRepeatingRelationship(IntegrationTestCase):
             'household-2-first-name': 'Luke'
         }
         self.post(household_form_data)
+
+        visitors_form_data = {
+            'overnight-visitors-answer': 0
+        }
+
+        self.post(visitors_form_data)
 
         # When
         relationship_form_data_1 = {

@@ -57,7 +57,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         self.assertIn('introduction', blocks)
 
     def test_introduction_not_in_path_when_not_in_schema(self):
-        schema = load_schema_from_params('census', 'individual')
+        schema = load_schema_from_params('test', 'checkbox')
 
         path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
 
@@ -508,7 +508,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         self.assertEqual(expected_path, path_finder.get_full_routing_path())
 
     def test_repeating_groups_previous_location_first_instance(self):
-        schema = load_schema_from_params('census', 'household')
+        schema = load_schema_from_params('test', 'relationship_household')
 
         expected_path = [
             Location('who-lives-here', 0, 'overnight-visitors'),
@@ -518,7 +518,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         self.assertEqual(path_finder.get_previous_location(current_location=expected_path[1]), expected_path[0])
 
     def test_repeating_groups_previous_location_second_instance(self):
-        schema = load_schema_from_params('census', 'household')
+        schema = load_schema_from_params('test', 'relationship_household')
 
         expected_path = [
             Location('who-lives-here-relationship', 0, 'household-relationships'),
@@ -905,10 +905,10 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         schema = load_schema_from_params('test', 'household_question')
 
         expected_path = [
-            Location('multiple-questions-group', 0, 'introduction'),
-            Location('multiple-questions-group', 0, 'household-composition'),
-            Location('multiple-questions-group', 0, 'household-summary'),
-            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('who-lives-here', 0, 'introduction'),
+            Location('who-lives-here', 0, 'household-composition'),
+            Location('who-lives-here', 0, 'household-summary'),
+            Location('who-lives-here', 0, 'household-composition'),
         ]
 
         current_location = expected_path[2]
@@ -951,10 +951,10 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         schema = load_schema_from_params('test', 'household_question')
 
         expected_path = [
-            Location('multiple-questions-group', 0, 'introduction'),
-            Location('multiple-questions-group', 0, 'household-composition'),
-            Location('multiple-questions-group', 0, 'household-summary'),
-            Location('multiple-questions-group', 0, 'summary'),
+            Location('who-lives-here', 0, 'introduction'),
+            Location('who-lives-here', 0, 'household-composition'),
+            Location('who-lives-here', 0, 'household-summary'),
+            Location('who-lives-here', 0, 'summary'),
         ]
 
         current_location = expected_path[2]
@@ -1197,7 +1197,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         ))
 
         completed_blocks = [
-            Location('multiple-questions-group', 0, 'household-composition')
+            Location('who-lives-here', 0, 'household-composition')
         ]
         expected_next_location = Location('group-equal-2', 0, 'group-equal-2-block')
         should_not_be_present = Location('group-less-than-2', 0, 'group-less-than-2-block')

@@ -32,34 +32,14 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
         self.assertInUrl('thank-you')
         self.assertNotInUrl('Previous')
 
-    def test_previous_link_on_relationship(self):
+    def test_previous_link_appears_on_questions_preceded_by_another_question(self):
 
-        # Given the census questionnaire.
-        self.launchSurvey('census', 'household', sexual_identity=False)
-        self.post(action='start_questionnaire')
+        # Given a survey with multiple questions
+        self.launchSurvey('test', 'checkbox')
 
-        # When we complete the who lives here section and the other questions needed to build the path.
-        self.post({'address-line-1': '44 hill side'})
-        self.post({'permanent-or-family-home-answer': 'Yes'})
+        # When I answer a question
+        self.assertInUrl('checkboxes/0/mandatory-checkbox')
+        self.post({'mandatory-checkbox-answer': 'None'})
 
-        post_data = {
-            'household-0-first-name': 'Joe',
-            'household-0-middle-names': '',
-            'household-0-last-name': 'Bloggs',
-            'household-1-first-name': 'Jane',
-            'household-1-middle-names': '',
-            'household-1-last-name': 'Bloggs',
-            'household-2-first-name': 'Holly',
-            'household-2-middle-names': '',
-            'household-2-last-name': 'Bloggs',
-        }
-
-        self.post(post_data)
-
-        self.post({'overnight-visitors-answer': '0'})
-
-        # Then there should be a previous link on all repeating household blocks.
-        self.assertInBody('Previous')
-
-        self.get('questionnaire/census/household/789/who-lives-here-relationship/1/household-relationships')
+        # Then there should be a previous link on the current page
         self.assertInBody('Previous')

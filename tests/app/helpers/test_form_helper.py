@@ -108,7 +108,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_for_household_composition(self):
         with self.app_request_context():
-            schema = load_schema_from_params('census', 'household')
+            schema = load_schema_from_params('test', 'household_question')
 
             block_json = schema.get_block('household-composition')
             location = Location('who-lives-here', 0, 'household-composition')
@@ -127,7 +127,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_for_household_composition(self):
         with self.app_request_context():
-            schema = load_schema_from_params('census', 'household')
+            schema = load_schema_from_params('test', 'household_question')
 
             block_json = schema.get_block('household-composition')
             location = Location('who-lives-here', 0, 'household-composition')
@@ -153,7 +153,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_for_household_relationship(self):
         with self.app_request_context():
-            schema = load_schema_from_params('census', 'household')
+            schema = load_schema_from_params('test', 'relationship_household')
 
             block_json = schema.get_block('household-relationships')
             location = Location('who-lives-here-relationship', 0, 'household-relationships')
@@ -199,7 +199,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_for_household_relationship(self):
         with self.app_request_context():
-            schema = load_schema_from_params('census', 'household')
+            schema = load_schema_from_params('test', 'relationship_household')
 
             block_json = schema.get_block('household-relationships')
             location = Location('who-lives-here-relationship', 0, 'household-relationships')
