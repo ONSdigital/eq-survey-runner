@@ -4216,6 +4216,7 @@
                                     "label": "Total",
                                     "mandatory": false,
                                     "type": "Percentage",
+                                    "decimal_places": 2,
                                     "max_value": {
                                         "value": 100
                                     },

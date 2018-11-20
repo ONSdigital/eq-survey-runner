@@ -1975,6 +1975,7 @@
                                     "label": "Total",
                                     "mandatory": false,
                                     "type": "Percentage",
+                                    "decimal_places": 2,
                                     "min_value": {
                                         "value": 100
                                     },
