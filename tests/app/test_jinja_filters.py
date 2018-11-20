@@ -144,6 +144,19 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         # Then
         self.assertEqual(format_value, "<span class='date'>1 January 2017</span>")
 
+    def test_format_old_date_does_not_change_timezone(self):
+        """ Flask Babel shows some strange behaviour with dates prior to 1902.
+        This appears to be because of a bug in pytz relating to 32 bit time_t types
+        To avoid it, `datetimes` are converted to `date` objects before being passed
+        to `flask_babel.format_date()`.
+        """
+        date = '1901-01-01'
+
+        with self.app_request_context('/'):
+            format_value = format_date(self.autoescape_context, date)
+
+        assert format_value.striptags() == '1 January 1901'
+
     def test_format_date_month_year(self):
         # Given
         date = '2017-01'
@@ -187,7 +200,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         self.assertIsNone(format_value)
 
     def test_format_date_time_in_bst(self):
-        # Given
+        # Given a date after DST started
         date_time = '2018-03-29T11:59:13.528680'
 
         # When
