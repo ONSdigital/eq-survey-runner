@@ -31,7 +31,7 @@
             "validator": "string"
         }
     ],
-    "title": "E-Commerce",
+    "title": "E-commerce",
     "sections": [{
             "id": "introduction-section",
             "title": "Introduction",
@@ -84,7 +84,7 @@
                                 }]
                             },
                             {
-                                "question": "E-Commerce",
+                                "question": "E-commerce",
                                 "content": [{
                                     "description": "Include information on percentage of turnover that comes from online orders and where these orders originate from."
                                 }]
@@ -1749,23 +1749,23 @@
         },
         {
             "id": "section368",
-            "title": "E-Commerce",
+            "title": "E-commerce",
             "groups": [{
                 "id": "group368",
-                "title": "E-Commerce",
+                "title": "E-commerce",
                 "blocks": [{
                         "type": "Interstitial",
                         "id": "e-commerce-introduction",
-                        "title": "E-Commerce",
-                        "description": "The next section covers e-Commerce.",
+                        "title": "E-commerce",
+                        "description": "The next section covers e-commerce.",
                         "content": [{
-                                "description": "E-Commerce is the sale or purchase of goods or services conducted over computer networks by methods specifically designed for the purpose of receiving or placing of orders."
+                                "description": "E-commerce is the sale or purchase of goods or services conducted over computer networks by methods specifically designed for the purpose of receiving or placing of orders."
                             },
                             {
                                 "description": "The payment and the delivery of the goods or services do not have to be conducted online."
                             },
                             {
-                                "description": "E-Commerce transactions exclude orders made by manually typed emails."
+                                "description": "E-commerce transactions exclude orders made by manually typed emails."
                             }
                         ]
                     }, {
