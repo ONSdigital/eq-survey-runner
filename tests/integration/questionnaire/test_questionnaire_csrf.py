@@ -56,20 +56,21 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         answers = json.loads(self.getResponseData())
         self.assertEqual('Muesli', answers['answers'][0]['value'])
 
-    def test_given_valid_answers_on_household_composition_when_answer_with_invalid_csrf_token_then_answers_not_saved(self):
+    def test_given_valid_answer_when_answer_with_invalid_csrf_token_then_answer_not_saved(self):
         # Given
-        self.launchSurvey('census', 'household', sexual_identity=False, roles=['dumper'])
-        post_data = {'first_name': 'Joe'}
+        self.launchSurvey('test', 'checkbox', roles=['dumper'])
+        self.post({'mandatory-checkbox-answer': 'Other',
+                   'other-answer-mandatory': 'No reason'})
 
         # When
         self.last_csrf_token = 'made-up-token'
-        self.post(url='/questionnaire/census/household/789/who-lives-here/0/household-composition', post_data=post_data)
+        self.post({'non-mandatory-checkbox-answer': 'None'})
 
         # Then
         self.assertStatusCode(401)
         self.get('/dump/answers')
         answers = json.loads(self.getResponseData())
-        self.assertEqual(0, len(answers['answers']))
+        self.assertEqual(2, len(answers['answers']))
 
     def test_given_valid_answers_when_save_and_sign_out_with_invalid_csrf_token_then_answers_not_saved(self):
         # Given

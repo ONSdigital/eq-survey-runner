@@ -13,8 +13,8 @@ class TestHouseholdCompositionForm(AppContextTestCase):
 
         # Schema is loaded through metadata
         self.metadata = {
-            'eq_id': 'census',
-            'form_type': 'household',
+            'eq_id': 'test',
+            'form_type': 'household_question',
         }
         self.schema = load_schema_from_metadata(self.metadata)
         self.block_json = self.schema.get_block('household-composition')

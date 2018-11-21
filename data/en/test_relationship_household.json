@@ -49,7 +49,32 @@
                 }]
             }]
         }, {
-            "id": "household-relationships",
+            "id": "who-lives-here",
+            "title": "Visitors",
+            "blocks": [{
+                "type": "Question",
+                "id": "overnight-visitors",
+                "questions": [{
+                    "id": "overnight-visitors-question",
+                    "title": "How many visitors are staying overnight on 8th February 2018?",
+                    "type": "General",
+                    "answers": [{
+                        "guidance": {
+                            "show_guidance": "Why your answer is important",
+                            "hide_guidance": "Why your answer is important",
+                            "content": [{
+                                "description": "Visitor information is collected to ensure that everyone is counted, in order to produce accurate estimates of the population, to facilitate effective planning and funding decisions."
+                            }]
+                        },
+                        "id": "overnight-visitors-answer",
+                        "label": "Number of visitors (enter 0 if no visitors)",
+                        "mandatory": true,
+                        "type": "Number"
+                    }]
+                }]
+            }]
+        }, {
+            "id": "who-lives-here-relationship",
             "title": "Relationships",
             "routing_rules": [{
                 "repeat": {
@@ -59,12 +84,12 @@
             }],
             "blocks": [{
                 "type": "Question",
-                "id": "relationships",
+                "id": "household-relationships",
                 "title": "Who lives here?",
                 "description": "",
                 "questions": [{
                     "id": "relationship-question",
-                    "title": "Describe how this person is related to the others",
+                    "title": "How is {{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}} related to the people below?",
                     "description": "If members are not related, select the \u2018unrelated\u2019 option, including foster parents and foster children.",
                     "type": "Relationship",
                     "member_label": "[answers['first-name'], answers['middle-names'], answers['last-name']] | format_household_name",
