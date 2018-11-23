@@ -147,8 +147,10 @@ def format_date(context, value):
         date_format = 'MMMM YYYY'
     if value and re.match(r'\d{4}$', value):
         date_format = 'YYYY'
+
+    date_to_format = convert_to_datetime(value).date()
     result = "<span class='date'>{date}</span>".format(
-        date=flask_babel.format_date(convert_to_datetime(value), format=date_format))
+        date=flask_babel.format_date(date_to_format, format=date_format))
 
     return mark_safe(context, result)
 
@@ -168,7 +170,8 @@ def format_date_custom(context, value, date_format='EEEE d MMMM YYYY'):
 def format_datetime(context, value):
 
     london_date_time = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
-    formatted_date = flask_babel.format_date(london_date_time, format='d MMMM YYYY')
+    london_date = london_date_time.date()
+    formatted_date = flask_babel.format_date(london_date, format='d MMMM YYYY')
     formatted_time = flask_babel.format_time(london_date_time, format='HH:mm')
 
     result = "<span class='date'>{date}</span>".format(

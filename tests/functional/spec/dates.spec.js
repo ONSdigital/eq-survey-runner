@@ -14,8 +14,8 @@ describe('Date checks', function() {
 
         // When dates are entered
         .setValue(DatesPage.dateRangeFromday(), 1)
-        .selectByValue(DatesPage.dateRangeFrommonth(), 3)
-        .setValue(DatesPage.dateRangeFromyear(), 2016)
+        .selectByValue(DatesPage.dateRangeFrommonth(), 1)
+        .setValue(DatesPage.dateRangeFromyear(), 1901)
 
         .setValue(DatesPage.dateRangeToday(), 3)
         .selectByValue(DatesPage.dateRangeTomonth(), 5)
@@ -34,7 +34,7 @@ describe('Date checks', function() {
         .getUrl().should.eventually.contain(SummaryPage.pageName)
 
         // Then the summary screen shows the dates entered formatted
-        .getText(SummaryPage.dateRangeFromAnswer()).should.eventually.contain('1 March 2016 to 3 May 2017')
+        .getText(SummaryPage.dateRangeFromAnswer()).should.eventually.contain('1 January 1901 to 3 May 2017')
         .getText(SummaryPage.monthYearAnswer()).should.eventually.contain('April 2018')
         .getText(SummaryPage.singleDateAnswer()).should.eventually.contain('4 January 1999')
         .getText(SummaryPage.nonMandatoryDateAnswer()).should.eventually.contain('No answer provided');
