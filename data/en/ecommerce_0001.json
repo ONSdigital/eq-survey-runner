@@ -33,93 +33,85 @@
     ],
     "title": "E-commerce",
     "sections": [{
-            "id": "introduction-section",
-            "title": "Introduction",
-            "groups": [{
-                "id": "introduction-group",
-                "title": "Introduction",
-                "blocks": [{
-                    "type": "Introduction",
-                    "id": "introduction",
-                    "primary_content": [{
-                        "id": "get-started",
-                        "content": [{
-                            "list": ["Data should relate to all sites in the UK (including foreign owned businesses) unless otherwise stated. The UK consists of England, Wales, Scotland, and Northern Ireland and excludes the Channel Islands and the Isle of Man.", "You can provide informed estimates if actual figures aren’t available.", "We will treat your data securely and confidentially."]
-                        }]
-                    }],
-                    "preview_content": {
-                        "id": "preview",
-                        "title": "Information you need",
-                        "content": [{
-                            "title": "Read the detailed guidance for completing the survey"
-                        }],
-                        "questions": [{
-                                "question": "Use of Computers",
-                                "content": [{
-                                    "description": "Include information on percentage of people in the business who use computers."
-                                }]
-                            },
-                            {
-                                "question": "ICT Specialists and Skills",
-                                "content": [{
-                                    "description": "Include information on employment and training of ICT specialists."
-                                }]
-                            },
-                            {
-                                "question": "Access and Use of the Internet",
-                                "content": [{
-                                    "description": "Include information on percentage of people in the business who use computers, type of connection and download speed, use of portable devices, website, and social media."
-                                }]
-                            },
-                            {
-                                "question": "Sharing of Information Electronically within the Business",
-                                "content": [{
-                                    "description": "Include information on use of Enterprise Resource Planning (ERP) and Customer Relationship Management (CRM) software within the business."
-                                }]
-                            },
-                            {
-                                "question": "ICT Security",
-                                "content": [{
-                                    "description": "Include information on ICT security procedures, training, documentation, policies and issues."
-                                }]
-                            },
-                            {
-                                "question": "E-commerce",
-                                "content": [{
-                                    "description": "Include information on percentage of turnover that comes from online orders and where these orders originate from."
-                                }]
-                            },
-                            {
-                                "question": "Comments",
-                                "content": [{
-                                    "description": "Include any further information"
-                                }]
-                            }
-                        ]
-                    },
-                    "secondary_content": [{
-                            "id": "detailed-guidance",
-                            "content": [{
-                                "description": "<p><a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/ecommercesurvey'>Read more information about this survey</a></p>"
-                            }]
-                        },
-                        {
-                            "id": "how-we-use-your-data-2",
-                            "title": "How we use your data",
-                            "content": [{
-                                "list": ["You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.", "The information you provide is used to measure how businesses are adopting new technology and engaging in e-commerce, as part of the digital economy."]
-                            }]
-                        }
-                    ]
-                }]
-            }]
-        }, {
             "id": "section358",
             "title": "Use of Computers",
             "groups": [{
                 "id": "group358",
                 "title": "Use of Computers",
                 "blocks": [{
+                        "type": "Introduction",
+                        "id": "introduction",
+                        "primary_content": [{
+                            "id": "get-started",
+                            "content": [{
+                                "list": ["Data should relate to all sites in the UK (including foreign owned businesses) unless otherwise stated. The UK consists of England, Wales, Scotland, and Northern Ireland and excludes the Channel Islands and the Isle of Man.", "You can provide informed estimates if actual figures aren’t available.", "We will treat your data securely and confidentially."]
+                            }]
+                        }],
+                        "preview_content": {
+                            "id": "preview",
+                            "title": "Information you need",
+                            "content": [{
+                                "title": "Read the detailed guidance for completing the survey"
+                            }],
+                            "questions": [{
+                                    "question": "Use of Computers",
+                                    "content": [{
+                                        "description": "Include information on percentage of people in the business who use computers."
+                                    }]
+                                },
+                                {
+                                    "question": "ICT Specialists and Skills",
+                                    "content": [{
+                                        "description": "Include information on employment and training of ICT specialists."
+                                    }]
+                                },
+                                {
+                                    "question": "Access and Use of the Internet",
+                                    "content": [{
+                                        "description": "Include information on percentage of people in the business who use computers, type of connection and download speed, use of portable devices, website, and social media."
+                                    }]
+                                },
+                                {
+                                    "question": "Sharing of Information Electronically within the Business",
+                                    "content": [{
+                                        "description": "Include information on use of Enterprise Resource Planning (ERP) and Customer Relationship Management (CRM) software within the business."
+                                    }]
+                                },
+                                {
+                                    "question": "ICT Security",
+                                    "content": [{
+                                        "description": "Include information on ICT security procedures, training, documentation, policies and issues."
+                                    }]
+                                },
+                                {
+                                    "question": "E-commerce",
+                                    "content": [{
+                                        "description": "Include information on percentage of turnover that comes from online orders and where these orders originate from."
+                                    }]
+                                },
+                                {
+                                    "question": "Comments",
+                                    "content": [{
+                                        "description": "Include any further information"
+                                    }]
+                                }
+                            ]
+                        },
+                        "secondary_content": [{
+                                "id": "detailed-guidance",
+                                "content": [{
+                                    "description": "<p><a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/ecommercesurvey'>Read more information about this survey</a></p>"
+                                }]
+                            },
+                            {
+                                "id": "how-we-use-your-data-2",
+                                "title": "How we use your data",
+                                "content": [{
+                                    "list": ["You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.", "The information you provide is used to measure how businesses are adopting new technology and engaging in e-commerce, as part of the digital economy."]
+                                }]
+                            }
+                        ]
+                    }, {
                         "id": "block1355",
                         "type": "Question",
                         "questions": [{
@@ -409,8 +401,8 @@
                 "skip_conditions": [{
                     "when": [{
                         "id": "answer1821",
-                        "condition": "equals",
-                        "value": "No"
+                        "condition": "not equals",
+                        "value": "Yes"
                     }]
                 }]
             }]
@@ -1192,8 +1184,8 @@
                 "skip_conditions": [{
                     "when": [{
                         "id": "answer1821",
-                        "condition": "equals",
-                        "value": "No"
+                        "condition": "not equals",
+                        "value": "Yes"
                     }]
                 }]
             }]
@@ -1209,7 +1201,8 @@
                         "id": "ict-security-introduction",
                         "title": "ICT Security",
                         "description": "The next section covers ICT security."
-                    }, {
+                    },
+                    {
                         "id": "block1390",
                         "type": "Question",
                         "questions": [{
@@ -1741,8 +1734,8 @@
                 "skip_conditions": [{
                     "when": [{
                         "id": "answer1821",
-                        "condition": "equals",
-                        "value": "No"
+                        "condition": "not equals",
+                        "value": "Yes"
                     }]
                 }]
             }]
@@ -1768,7 +1761,8 @@
                                 "description": "E-commerce transactions exclude orders made by manually typed emails."
                             }
                         ]
-                    }, {
+                    },
+                    {
                         "id": "block1397",
                         "type": "Question",
                         "questions": [{
@@ -2283,8 +2277,8 @@
                 "skip_conditions": [{
                     "when": [{
                         "id": "answer1821",
-                        "condition": "equals",
-                        "value": "No"
+                        "condition": "not equals",
+                        "value": "Yes"
                     }]
                 }]
             }]
