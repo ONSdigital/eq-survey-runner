@@ -44,7 +44,7 @@ class TestRouting(IntegrationTestCase):
             # We need to assert the answer is on the page
             self.assertInBody(answer['answer'])
             # We also need to prepare the assertions for the summary page
-            rule_assertions.append(answer['user_answer'])
+            rule_assertions.append(answer.get('display_answer') or answer['user_answer'])
             rule_assertions.append(answer['answer'])
 
         return form_data, rule_assertions

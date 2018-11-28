@@ -195,7 +195,8 @@ QUIZ_PAGE_1 = [
             {
                 'answer': 'When was The Empire Strikes Back released?',
                 'answer_id': 'empire-strikes-back-from-answer-month',
-                'user_answer': '5'
+                'user_answer': '5',
+                'display_answer': 'May'
             },
             {
                 'answer': 'When was The Empire Strikes Back released?',
@@ -210,7 +211,8 @@ QUIZ_PAGE_1 = [
             {
                 'answer': 'When was The Empire Strikes Back released?',
                 'answer_id': 'empire-strikes-back-to-answer-month',
-                'user_answer': '5'
+                'user_answer': '5',
+                'display_answer': 'May'
             },
             {
                 'answer': 'When was The Empire Strikes Back released?',
