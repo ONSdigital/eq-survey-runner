@@ -99,9 +99,7 @@ def _validate_metadata_values_are_valid(claims, required_metadata):
         for metadata_field in required_metadata:
             name = metadata_field['name']
             claim = claims.get(name)
-            if name == 'trad_as_or_ru_name':
-                claim = claims.get('ru_name') or claims.get('trad_as')
-            elif name not in claims:
+            if name not in claims:
                 raise InvalidTokenException('Missing required key {} from claims'.format(name))
 
             logger.debug('parsing metadata', key=name, value=claim)

@@ -5,11 +5,10 @@ from datetime import datetime
 
 import flask
 import flask_babel
+from babel import units, numbers
 from dateutil import relativedelta, tz
 from jinja2 import Markup, contextfunction, escape, evalcontextfilter, evalcontextfunction, Undefined
 from jinja2.exceptions import UndefinedError
-
-from babel import units, numbers
 
 from app.questionnaire.rules import convert_to_datetime
 
@@ -182,23 +181,14 @@ def format_datetime(context, value):
 
 @evalcontextfunction
 @blueprint.app_template_filter()
-def format_conditional_date(context, date1=None, date2=None):
+def format_conditional_date(context, *dates):
     """
-    This function format_conditional_date accepts two dates, a user submitted date and a metadata date
-
-    :param date1 user entered date
-    :param date2 is metadata date
-    :return: the value of the date to be piped
+    This is to be used when passing multiple dates as multiple arguments.
+    :param dates: tuple of dates
+    :return: a formatted date used for piping
     """
-    if date1:
-        date = date1
-    else:
-        date = date2
-
-    if date is None:
-        raise Exception('No valid dates passed to format_conditional_dates filter')
-
-    return format_date(context, date)
+    first_valid_date = _get_first_non_empty_item(dates)
+    return format_date(context, first_valid_date)
 
 
 @blueprint.app_template_filter()
@@ -309,6 +299,43 @@ def format_date_range_no_repeated_month_year(context, start_date, end_date, date
                                  to_date=format_date_custom(context, end_date, date_format))
 
     return mark_safe(context, output)
+
+
+def _get_first_non_empty_item(items):
+    """
+    :param items: anything that is iterable
+    :return: first non empty value
+
+    In this filter the following values are considered non empty:
+    - None
+    - any empty sequence, for example, '', (), [].
+    - any empty mapping, for example, {}.
+
+     Note: to guarantee the returned element is actually the first non empty element in the iterable,
+    'items' must be a data structure that preserves order, ie tuple, list etc.
+    If order is not important, this can be reused to return `one of` the elements which is non empty.
+
+    This filter will treat zero of any numeric type for example, 0, 0.0, 0j and boolean 'False'
+    as a valid item since they are naturally 'falsy' in Python but not empty.
+
+    Note: Booleans are a subtype of integers. Zero of any numeric type 'is not False' but 'equals False'.
+    Reference: https://docs.python.org/release/3.4.2/library/stdtypes.html?highlight=boolean#boolean-values
+    """
+    for item in items:
+        if item or item is False or item == 0:
+            return item
+
+    raise Exception('No valid items provided.')
+
+
+@evalcontextfunction
+def first_non_empty_item(context, *items):
+    """
+    :param items: tuple of items
+    :return: mark safe version of the first non empty item
+    """
+    non_empty_item = _get_first_non_empty_item(items)
+    return mark_safe(context, non_empty_item)
 
 
 @blueprint.app_template_filter()
@@ -535,6 +562,11 @@ def format_number_processor():
 @blueprint.app_context_processor
 def language_urls_processor():
     return dict(language_urls=language_urls)
+
+
+@blueprint.app_context_processor
+def format_conditional_item_processor():
+    return dict(first_non_empty_item=first_non_empty_item)
 
 
 def mark_safe(context, value):

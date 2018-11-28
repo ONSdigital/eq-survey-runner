@@ -22,9 +22,6 @@
         "name": "trad_as",
         "validator": "string"
     }, {
-        "name": "trad_as_or_ru_name",
-        "validator": "string"
-    }, {
         "name": "ref_p_start_date",
         "validator": "date"
     }, {
@@ -56,8 +53,6 @@
                         "title": "ru_name: {{ metadata['ru_name'] }}"
                     }, {
                         "title": "trad_as: {{ metadata['trad_as'] }}"
-                    }, {
-                        "title": "trad_as_or_ru_name: {{ metadata['trad_as_or_ru_name'] }}"
                     }, {
                         "title": "ref_p_start_date: {{ metadata['ref_p_start_date'] }}"
                     }, {

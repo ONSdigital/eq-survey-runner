@@ -30,8 +30,8 @@
         "name": "ref_p_end_date",
         "validator": "date"
     }, {
-        "name": "trad_as_or_ru_name",
-        "validator": "string"
+        "name": "trad_as",
+        "validator": "optional_string"
     }],
     "sections": [{
         "id": "default-section",
@@ -182,7 +182,7 @@
                         "default": 0
                     }],
                     "id": "total-turnover-question",
-                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{metadata['trad_as_or_ru_name']}}\u2019s <em>total retail turnover</em>?",
+                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s <em>total retail turnover</em>?",
                     "type": "General"
                 }],
                 "title": "Retail Turnover"
@@ -295,13 +295,13 @@
                     "definitions": [{
                         "title": "What constitutes a significant change?",
                         "content": [{
-                            "description": "What constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{metadata['trad_as_or_ru_name']}}\u2019s figures from the previous reporting period and the same reporting period last year."
+                            "description": "What constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s figures from the previous reporting period and the same reporting period last year."
                         }, {
                             "description": "This information will help us to validate your data and should reduce the need to query any figures with you."
                         }]
                     }],
                     "id": "significant-change-question",
-                    "title": "Did any significant changes occur to the total retail turnover for {{metadata['trad_as_or_ru_name']}}?",
+                    "title": "Did any significant changes occur to the total retail turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
                     "type": "General"
                 }],
                 "title": "Changes in total retail turnover",
@@ -345,7 +345,7 @@
                         "type": "Checkbox"
                     }],
                     "id": "reason-for-change-question",
-                    "title": "Please indicate the reasons for any changes in the total retail turnover for {{metadata['trad_as_or_ru_name']}}",
+                    "title": "Please indicate the reasons for any changes in the total retail turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}",
                     "type": "General"
                 }],
                 "title": "Changes in total retail turnover"
@@ -378,7 +378,7 @@
                     }],
                     "description": "We rely on your commentary to \u2018tell the story\u2019 behind changes in figures. By commenting here it will reduce the need for us to call you.",
                     "id": "change-comment-question",
-                    "title": "Please describe the changes in total retail turnover for {{metadata['trad_as_or_ru_name']}} in more detail",
+                    "title": "Please describe the changes in total retail turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} in more detail",
                     "type": "General"
                 }],
                 "title": "Changes in total retail turnover"

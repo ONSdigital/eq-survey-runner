@@ -32,8 +32,8 @@
         "name": "employment_date",
         "validator": "date"
     }, {
-        "name": "trad_as_or_ru_name",
-        "validator": "string"
+        "name": "trad_as",
+        "validator": "optional_string"
     }],
     "sections": [{
         "id": "section",
@@ -214,7 +214,7 @@
                         "mandatory": true
                     }],
                     "type": "General",
-                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{metadata['trad_as_or_ru_name']}}\u2019s <em>turnover</em>, excluding VAT?"
+                    "title": "For the period {{ format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s <em>turnover</em>, excluding VAT?"
                 }],
                 "title": "Turnover"
             }, {
@@ -319,7 +319,7 @@
                         }]
                     },
                     "id": "number-of-employees-total-question",
-                    "title": "On {{metadata['employment_date']|format_date}}, what was the number of employees for {{metadata['trad_as_or_ru_name']}}?",
+                    "title": "On {{metadata['employment_date']|format_date}}, what was the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
                     "type": "General"
                 }],
                 "title": "Employees",
@@ -351,7 +351,7 @@
                         "mandatory": true
                     }],
                     "id": "confirm-zero-employees-question",
-                    "title": "On {{metadata['employment_date']|format_date}}, the number of employees for {{metadata['trad_as_or_ru_name']}} was <em>0</em>, is this correct?"
+                    "title": "On {{metadata['employment_date']|format_date}}, the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was <em>0</em>, is this correct?"
                 }],
                 "routing_rules": [{
                     "goto": {
@@ -437,12 +437,12 @@
                 "id": "changes-in-turnover-block",
                 "type": "Question",
                 "questions": [{
-                    "title": "Did any significant changes occur to the turnover for {{metadata['trad_as_or_ru_name']}}?",
+                    "title": "Did any significant changes occur to the turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
                     "id": "changes-in-turnover-question",
                     "definitions": [{
                         "title": "What constitutes a significant change?",
                         "content": [{
-                            "description": "What constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{metadata['trad_as_or_ru_name']}}\u2019s figures from the previous reporting period and the same reporting period last year."
+                            "description": "What constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s figures from the previous reporting period and the same reporting period last year."
                         }, {
                             "description": "This information will help us to validate your data and should reduce the need to query any figures with you."
                         }]
@@ -487,7 +487,7 @@
                 "id": "changes-in-turnover-block-2",
                 "type": "Question",
                 "questions": [{
-                    "title": "Please indicate the reasons for any changes in the turnover for {{metadata['trad_as_or_ru_name']}}",
+                    "title": "Please indicate the reasons for any changes in the turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}",
                     "answers": [{
                         "options": [{
                             "q_code": "146a",
@@ -533,7 +533,7 @@
                 "questions": [{
                     "type": "General",
                     "id": "changes-in-turnover-question-3",
-                    "title": "Please describe the changes in turnover for {{metadata['trad_as_or_ru_name']}} in more detail",
+                    "title": "Please describe the changes in turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} in more detail",
                     "answers": [{
                         "guidance": {
                             "hide_guidance": "Hide examples of commentary on changes to turnover",

@@ -1,7 +1,6 @@
 # coding: utf-8
-from types import SimpleNamespace
-
 from datetime import datetime, timedelta
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from dateutil.relativedelta import relativedelta
@@ -18,7 +17,7 @@ from app.jinja_filters import (
     concatenated_list, calculate_years_difference, get_current_date, as_london_tz,
     max_value, min_value, get_question_title, get_answer_label,
     format_duration, calculate_offset_from_weekday_in_last_whole_week, format_date_custom,
-    format_date_range_no_repeated_month_year, format_repeating_summary, format_address_list)
+    format_date_range_no_repeated_month_year, format_repeating_summary, format_address_list, first_non_empty_item)
 from tests.app.app_context_test_case import AppContextTestCase
 
 
@@ -233,7 +232,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
             date2 = nonsense[1]
             with self.assertRaises(Exception) as exception:
                 format_conditional_date(self.autoescape_context, date1, date2)
-        # Then
+            # Then
             self.assertIn("does not match format '%Y-%m'", str(exception.exception))
 
     def test_format_conditional_date_not_set(self):
@@ -244,7 +243,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
             format_conditional_date(self.autoescape_context, None, None)
 
         # Then
-        self.assertIn('No valid dates passed to format_conditional_dates filter', str(exception.exception))
+        self.assertIn('No valid items provided.', str(exception.exception))
 
     def test_format_conditional_date(self):
         # Given
@@ -267,7 +266,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
     def test_calculate_years_difference(self):
         with patch('app.setup.get_session_store', return_value=None):
             # Given
-            ten_years_ago = (datetime.today()+relativedelta(years=-10)).strftime('%Y-%m-%d')
+            ten_years_ago = (datetime.today() + relativedelta(years=-10)).strftime('%Y-%m-%d')
 
             date_list = [('2017-01-30', '2018-01-30', '1 year'),
                          ('2015-02-02', '2018-02-01', '2 years'),
@@ -288,7 +287,6 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
     def test_calculate_years_difference_none(self):
         # Given
         with self.assertRaises(Exception) as e:
-
             # When
             calculate_years_difference(None, '2017-01-17')
 
@@ -520,7 +518,6 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         self.assertEqual(format_unit_input_label('duration-hour', 'long'), 'awr')
         self.assertEqual(format_unit_input_label('duration-year'), 'bl')
         self.assertEqual(format_unit_input_label('duration-year', 'long'), 'flynedd')
-
 
     def test_format_year_month_duration(self):
         with self.app_request_context('/'):
@@ -872,17 +869,17 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
     def test_offset_date_from_day(self):
         test_cases = [
             # (Input Date, offset, day of week, expected output)
-            ('2018-08-10', {}, 'SU', '2018-08-05'), # Friday outputs previous Sunday
-            ('2018-08-05', {}, 'SU', '2018-07-29'), # Sunday outputs previous Sunday (Must be a full Sunday)
-            ('2018-08-06', {}, 'SU', '2018-08-05'), # Monday outputs previous Sunday
-            ('2018-08-06', {'days': -1}, 'SU', '2018-08-04'), # Previous sunday with -1 day offset
-            ('2018-08-05', {'weeks': 1}, 'SU', '2018-08-05'), # Previous sunday with +1 month offset, back to input
-            ('2018-08-10', {}, 'FR', '2018-08-03'), # Friday outputs previous Friday
-            ('2018-08-10T13:32:20.365665', {}, 'FR', '2018-08-03'), # Ensure we can handle datetime input
-            ('2018-08-10', {'weeks': 4}, 'FR', '2018-08-31'), # Friday outputs previous Friday + 4 weeks
-            ('2018-08-10', {'bad_period': 4}, 'FR', '2018-08-03'), # Friday outputs previous Friday + nothing
-            ('2018-08-10', {'years': 1}, 'FR', '2019-08-03'), # Friday outputs previous Friday + 1 year
-            ('2018-08-10', {'years': 1, 'weeks': 1, 'days': 1}, 'FR', '2019-08-11'), # Friday outputs previous Friday + 1 year + 1 week + 1 day
+            ('2018-08-10', {}, 'SU', '2018-08-05'),  # Friday outputs previous Sunday
+            ('2018-08-05', {}, 'SU', '2018-07-29'),  # Sunday outputs previous Sunday (Must be a full Sunday)
+            ('2018-08-06', {}, 'SU', '2018-08-05'),  # Monday outputs previous Sunday
+            ('2018-08-06', {'days': -1}, 'SU', '2018-08-04'),  # Previous sunday with -1 day offset
+            ('2018-08-05', {'weeks': 1}, 'SU', '2018-08-05'),  # Previous sunday with +1 month offset, back to input
+            ('2018-08-10', {}, 'FR', '2018-08-03'),  # Friday outputs previous Friday
+            ('2018-08-10T13:32:20.365665', {}, 'FR', '2018-08-03'),  # Ensure we can handle datetime input
+            ('2018-08-10', {'weeks': 4}, 'FR', '2018-08-31'),  # Friday outputs previous Friday + 4 weeks
+            ('2018-08-10', {'bad_period': 4}, 'FR', '2018-08-03'),  # Friday outputs previous Friday + nothing
+            ('2018-08-10', {'years': 1}, 'FR', '2019-08-03'),  # Friday outputs previous Friday + 1 year
+            ('2018-08-10', {'years': 1, 'weeks': 1, 'days': 1}, 'FR', '2019-08-11'),  # Friday outputs previous Friday + 1 year + 1 week + 1 day
         ]
         for case in test_cases:
             self.assertEqual(calculate_offset_from_weekday_in_last_whole_week(*case[0:3]), case[3])
@@ -937,7 +934,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
                 )
 
     @patch('app.jinja_filters.format_unordered_list')
-    def test_format_repeated_summaries_unformatted(self, patched_format): # pylint: disable=no-self-use
+    def test_format_repeated_summaries_unformatted(self, patched_format):  # pylint: disable=no-self-use
 
         test_cases = [
             # (input list, expected output)
@@ -1008,3 +1005,53 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
             format_address_list(answer_address, metadata_address)
 
         self.assertEqual('No valid address passed to format_address_list filter', error.exception.args[0])
+
+    def test_first_non_empty_item_filter_returns_first_non_empty_item(self):
+        # Given
+        expected_actual_scenarios = [
+            ['only value', (Markup('only value'),)],
+            ['first valid value', (Markup('first valid value'), Markup('second valid value'))],
+            ['first valid value', (Markup('first valid value'), Markup('second valid value'), '')],
+            ['first valid value', (Markup('first valid value'), Markup('second valid value'), Undefined())],
+            ['first valid value', (Markup('first valid value'), Markup('second valid value'), None)],
+            ['first valid value', (Markup(''), Markup('first valid value'))],
+            ['first valid value', (Undefined(), Markup('first valid value'))],
+            ['first valid value', (None, Markup('first valid value'))],
+            ['first valid value', (Markup(''), Undefined(), None, Markup('first valid value'))],
+            ['False', (None, False, [], {}, (), '', set(), b'', Markup('first valid value'))],
+            ['0', (Markup(''), Undefined(), None, Markup('0'))],
+            ['0', (0, Markup(''), Undefined(), None, Markup('0'))],
+            ['0.0', (0.00, 0, None, Markup('0'))],
+            ['0j', ('', 0j, None, Undefined())],
+            ['False', ('', False, None, Undefined())]
+        ]
+
+        # When
+        for scenario in expected_actual_scenarios:
+            with self.app_request_context('/'):
+                value = first_non_empty_item(self.autoescape_context, *scenario[1])
+
+            # Then
+            assert scenario[0] == value
+
+    def test_first_non_empty_item_filter_raises_exception_when_all_empty(self):
+        # Given
+        scenarios = [
+            [(Undefined())],
+            [(Undefined(), Undefined())],
+            [(None, None)],
+            [('', '')],
+            [(Undefined(), None, '')],
+            [(Undefined(), None, '')],
+            [(None, '')],
+            [(None, [], {}, (), '', set(), b'')]
+        ]
+
+        # When
+        for scenario in scenarios:
+            with self.assertRaises(Exception) as exception:
+                with self.app_request_context('/'):
+                    first_non_empty_item(self.autoescape_context, *scenario[0])
+
+            # Then
+            assert 'No valid items provided.' in str(exception.exception)

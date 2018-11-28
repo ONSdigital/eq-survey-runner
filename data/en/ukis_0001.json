@@ -27,8 +27,8 @@
             "validator": "string"
         },
         {
-            "name": "trad_as_or_ru_name",
-            "validator": "string"
+            "name": "trad_as",
+            "validator": "optional_string"
         }
     ],
     "sections": [{
@@ -44,7 +44,7 @@
                         "id": "get-started",
                         "content": [{
                                 "list": [
-                                    "Please complete this voluntary questionnaire for {{ metadata.trad_as_or_ru_name }}.",
+                                    "Please complete this voluntary questionnaire for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}.",
                                     "If this business is part of an enterprise group, please answer all questions for this business in the UK only.",
                                     "Do not include results for subsidiaries or parent enterprises.",
                                     "You can provide informed estimates if actual figures aren’t available.",
@@ -56,7 +56,7 @@
                                 "list": [
                                     "Innovation, for the purpose of this survey, is defined as <strong>new</strong> or <strong>significantly improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all goods or services that has introduced, regardless of their origin.",
                                     "These innovations may be new to you or new to the market.",
-                                    "Investments for future innovation and changes that {{ metadata.trad_as_or_ru_name }} has introduced at a <strong>strategic</strong> level (in organisation and practices) are also covered."
+                                    "Investments for future innovation and changes that {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} has introduced at a <strong>strategic</strong> level (in organisation and practices) are also covered."
                                 ]
                             },
                             {
@@ -90,7 +90,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2396",
-                            "title": "In which geographic markets did {{ metadata.trad_as_or_ru_name }} offer goods and/or services?",
+                            "title": "In which geographic markets did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} offer goods and/or services?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -124,7 +124,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2397",
-                            "title": "Did any of the following significant events or changes occur to {{ metadata.trad_as_or_ru_name }}?",
+                            "title": "Did any of the following significant events or changes occur to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
                             "description": "",
                             "type": "MutuallyExclusive",
                             "mandatory": false,
@@ -135,8 +135,8 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
-                                            "label": "{{ metadata.trad_as_or_ru_name }} was established",
-                                            "value": "{{ metadata.trad_as_or_ru_name }} was established"
+                                            "label": "{{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was established",
+                                            "value": "{{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was established"
                                         },
                                         {
                                             "label": "Turnover increased by at least 10% due to merger with another business or part of it",
@@ -182,7 +182,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2400",
-                            "title": "Did {{ metadata.trad_as_or_ru_name }} make changes in any of the following areas?",
+                            "title": "Did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} make changes in any of the following areas?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -283,7 +283,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2428",
-                            "title": "Did {{ metadata.trad_as_or_ru_name }} invest in <em>internal Research and Development</em> for the purposes of current or future innovation?",
+                            "title": "Did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} invest in <em>internal Research and Development</em> for the purposes of current or future innovation?",
                             "description": "",
                             "type": "General",
                             "definitions": [{
@@ -331,7 +331,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2426",
-                            "title": "In which of the following years did {{ metadata.trad_as_or_ru_name }} invest in <em>internal Research & Development?</em>",
+                            "title": "In which of the following years did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} invest in <em>internal Research & Development?</em>",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -411,7 +411,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2430",
-                            "title": "Did {{ metadata.trad_as_or_ru_name }} invest in the <em>acquisition of Research and Development</em> for the purposes of current or future innovation?",
+                            "title": "Did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} invest in the <em>acquisition of Research and Development</em> for the purposes of current or future innovation?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -498,7 +498,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2437",
-                            "title": "Did {{ metadata.trad_as_or_ru_name }} invest in <em>acquisition of advanced machinery, equipment or software</em> for the purposes of current or future innovation?",
+                            "title": "Did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} invest in <em>acquisition of advanced machinery, equipment or software</em> for the purposes of current or future innovation?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -540,7 +540,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2438",
-                            "title": "Which of the following did {{ metadata.trad_as_or_ru_name }} invest in for the purposes of current or future innovation?",
+                            "title": "Which of the following did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} invest in for the purposes of current or future innovation?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -604,7 +604,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2440",
-                            "title": "Did {{ metadata.trad_as_or_ru_name }} invest in the <em>acquisition of existing knowledge</em> for the purposes of current or future innovation?",
+                            "title": "Did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} invest in the <em>acquisition of existing knowledge</em> for the purposes of current or future innovation?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include: </strong>"
@@ -664,7 +664,7 @@
                                     },
                                     {
                                         "list": [
-                                            "internal costs and purchase from outside {{ metadata.trad_as_or_ru_name }}."
+                                            "internal costs and purchase from outside {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}."
                                         ]
                                     }
                                 ]
@@ -691,7 +691,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2442",
-                            "title": "Did {{ metadata.trad_as_or_ru_name }} invest in <em>training for innovative activities</em> for the purposes of current or future innovation?",
+                            "title": "Did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} invest in <em>training for innovative activities</em> for the purposes of current or future innovation?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -778,7 +778,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2444",
-                            "title": "Did {{ metadata.trad_as_or_ru_name }} invest in <em>any form of design activity</em> for the purposes of current or future innovation?",
+                            "title": "Did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} invest in <em>any form of design activity</em> for the purposes of current or future innovation?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -865,7 +865,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2446",
-                            "title": "Did {{ metadata.trad_as_or_ru_name }} invest in <em>market introduction of innovations</em> for the purposes of current or future innovation?",
+                            "title": "Did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} invest in <em>market introduction of innovations</em> for the purposes of current or future innovation?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -907,7 +907,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2447",
-                            "title": "Which of the following did {{ metadata.trad_as_or_ru_name }} invest in for the purposes of current or future innovation?",
+                            "title": "Which of the following did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} invest in for the purposes of current or future innovation?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -997,7 +997,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2449",
-                            "title": "Did {{ metadata.trad_as_or_ru_name }} introduce new or significantly improved <em>goods</em>?",
+                            "title": "Did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} introduce new or significantly improved <em>goods</em>?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -1090,7 +1090,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2451",
-                            "title": "Did {{ metadata.trad_as_or_ru_name }} introduce new or significantly improved <em>services</em>?",
+                            "title": "Did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} introduce new or significantly improved <em>services</em>?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -1247,7 +1247,7 @@
                         }],
                         "questions": [{
                             "id": "question2454",
-                            "title": "Were any of your <em>goods and services innovations</em> only new to {{ metadata.trad_as_or_ru_name }}?",
+                            "title": "Were any of your <em>goods and services innovations</em> only new to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -1302,7 +1302,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2466",
-                            "title": "Did {{ metadata.trad_as_or_ru_name }} introduce any new or significantly improved <em>processes</em> for producing or supplying goods or services?",
+                            "title": "Did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} introduce any new or significantly improved <em>processes</em> for producing or supplying goods or services?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -1387,7 +1387,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2467",
-                            "title": "Did {{ metadata.trad_as_or_ru_name }} introduce any new or significantly improved processes for producing or supplying goods or services which were new to your industry?",
+                            "title": "Did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} introduce any new or significantly improved processes for producing or supplying goods or services which were new to your industry?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -1428,7 +1428,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2469",
-                            "title": "Did {{ metadata.trad_as_or_ru_name }} have any innovation activities that were abandoned, scaled back or ongoing at the end of 2018?",
+                            "title": "Did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have any innovation activities that were abandoned, scaled back or ongoing at the end of 2018?",
                             "description": "",
                             "type": "MutuallyExclusive",
                             "mandatory": false,
@@ -1472,7 +1472,7 @@
                         "questions": [{
                             "id": "question2471",
                             "title": "How important was any excessive perceived economic risk in constraining innovation activities?",
-                            "description": "What constitutes an answer of ‘high’, ‘medium’, ‘low’ or ‘not important’ is dependent on your own interpretation in relation to {{ metadata.trad_as_or_ru_name }}.",
+                            "description": "What constitutes an answer of ‘high’, ‘medium’, ‘low’ or ‘not important’ is dependent on your own interpretation in relation to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}.",
                             "type": "General",
                             "answers": [{
                                 "id": "answer3218",
@@ -2086,7 +2086,7 @@
                         ],
                         "questions": [{
                             "id": "question2483",
-                            "title": "If {{ metadata.trad_as_or_ru_name }} had no innovation activity, why has it not been necessary or possible to innovate?",
+                            "title": "If {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} had no innovation activity, why has it not been necessary or possible to innovate?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -2690,7 +2690,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2497",
-                            "title": "How important to {{ metadata.trad_as_or_ru_name }}’s innovation activities was information from <em>within your business or enterprise group</em>?",
+                            "title": "How important to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s innovation activities was information from <em>within your business or enterprise group</em>?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -2724,7 +2724,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2498",
-                            "title": "How important to {{ metadata.trad_as_or_ru_name }}’s innovation activities was information from <em>suppliers of equipment, materials, services or software</em>?",
+                            "title": "How important to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s innovation activities was information from <em>suppliers of equipment, materials, services or software</em>?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -2758,7 +2758,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2499",
-                            "title": "How important to {{ metadata.trad_as_or_ru_name }}’s innovation activities was information from <em>clients or customers from the public sector</em>?",
+                            "title": "How important to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s innovation activities was information from <em>clients or customers from the public sector</em>?",
                             "description": "",
                             "type": "General",
                             "definitions": [{
@@ -2798,7 +2798,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2500",
-                            "title": "How important to {{ metadata.trad_as_or_ru_name }}’s innovation activities was information from <em>clients or customers from the private sector</em>?",
+                            "title": "How important to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s innovation activities was information from <em>clients or customers from the private sector</em>?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -2832,7 +2832,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2501",
-                            "title": "How important to {{ metadata.trad_as_or_ru_name }}’s innovation activities was information from <em>competitors or other businesses in your industry</em>?",
+                            "title": "How important to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s innovation activities was information from <em>competitors or other businesses in your industry</em>?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -2866,7 +2866,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2496",
-                            "title": "How important to {{ metadata.trad_as_or_ru_name }}’s innovation activities was information from <em>consultants, commercial labs or private Research and Development institutes</em>?",
+                            "title": "How important to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s innovation activities was information from <em>consultants, commercial labs or private Research and Development institutes</em>?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -2900,7 +2900,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2502",
-                            "title": "How important to {{ metadata.trad_as_or_ru_name }}’s innovation activities was information from <em>universities or other higher education institutes</em>?",
+                            "title": "How important to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s innovation activities was information from <em>universities or other higher education institutes</em>?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -2934,7 +2934,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2503",
-                            "title": "How important to {{ metadata.trad_as_or_ru_name }}’s innovation activities was information from <em>government or public research institutes</em>?",
+                            "title": "How important to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s innovation activities was information from <em>government or public research institutes</em>?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -2968,7 +2968,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2504",
-                            "title": "How important to {{ metadata.trad_as_or_ru_name }}’s innovation activities was information from <em>conferences, trade fairs or exhibitions</em>?",
+                            "title": "How important to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s innovation activities was information from <em>conferences, trade fairs or exhibitions</em>?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -3002,7 +3002,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2505",
-                            "title": "How important to {{ metadata.trad_as_or_ru_name }}’s innovation activities was information from <em>professional and industry associations</em>?",
+                            "title": "How important to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s innovation activities was information from <em>professional and industry associations</em>?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -3036,7 +3036,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2506",
-                            "title": "How important to {{ metadata.trad_as_or_ru_name }}’s innovation activities was information from <em>technical, industry or service standards</em>?",
+                            "title": "How important to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s innovation activities was information from <em>technical, industry or service standards</em>?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -3070,7 +3070,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2507",
-                            "title": "How important to {{ metadata.trad_as_or_ru_name }}’s innovation activities was information from <em>scientific journals and trade or technical publications</em>?",
+                            "title": "How important to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s innovation activities was information from <em>scientific journals and trade or technical publications</em>?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -3192,7 +3192,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2528",
-                            "title": "If {{ metadata.trad_as_or_ru_name }} co-operated on any innovation activities with <em>other businesses within your enterprise group</em>, what was their location?",
+                            "title": "If {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} co-operated on any innovation activities with <em>other businesses within your enterprise group</em>, what was their location?",
                             "description": "",
                             "type": "MutuallyExclusive",
                             "mandatory": false,
@@ -3239,7 +3239,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2529",
-                            "title": "If {{ metadata.trad_as_or_ru_name }} co-operated on innovation activities with <em>suppliers of equipment, materials, services or software</em>, what was their location?",
+                            "title": "If {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} co-operated on innovation activities with <em>suppliers of equipment, materials, services or software</em>, what was their location?",
                             "description": "",
                             "type": "MutuallyExclusive",
                             "mandatory": false,
@@ -3286,7 +3286,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2530",
-                            "title": "If {{ metadata.trad_as_or_ru_name }} co-operated on any innovation activities with <em>clients or customers from the private sector</em>, what was their location?",
+                            "title": "If {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} co-operated on any innovation activities with <em>clients or customers from the private sector</em>, what was their location?",
                             "description": "",
                             "type": "MutuallyExclusive",
                             "mandatory": false,
@@ -3333,7 +3333,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2531",
-                            "title": "If {{ metadata.trad_as_or_ru_name }} co-operated on any innovation activities with <em>clients or customers from the public sector</em>, what was their location?",
+                            "title": "If {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} co-operated on any innovation activities with <em>clients or customers from the public sector</em>, what was their location?",
                             "description": "",
                             "type": "MutuallyExclusive",
                             "mandatory": false,
@@ -3386,7 +3386,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2532",
-                            "title": "If {{ metadata.trad_as_or_ru_name }} co-operated on any innovation activities with <em>competitors or other businesses in your industry</em>, what was their location?",
+                            "title": "If {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} co-operated on any innovation activities with <em>competitors or other businesses in your industry</em>, what was their location?",
                             "description": "",
                             "type": "MutuallyExclusive",
                             "mandatory": false,
@@ -3433,7 +3433,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2533",
-                            "title": "If {{ metadata.trad_as_or_ru_name }} co-operated on any innovation activities with <em>consultants, commercial labs or private research and development institutes</em>, what was their location?",
+                            "title": "If {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} co-operated on any innovation activities with <em>consultants, commercial labs or private research and development institutes</em>, what was their location?",
                             "description": "",
                             "type": "MutuallyExclusive",
                             "mandatory": false,
@@ -3480,7 +3480,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2534",
-                            "title": "If {{ metadata.trad_as_or_ru_name }} co-operated on any innovation activities with <em>universities or other higher education institutions</em>, what was their location?",
+                            "title": "If {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} co-operated on any innovation activities with <em>universities or other higher education institutions</em>, what was their location?",
                             "description": "",
                             "type": "MutuallyExclusive",
                             "mandatory": false,
@@ -3527,7 +3527,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2535",
-                            "title": "If {{ metadata.trad_as_or_ru_name }} co-operated on any innovation activities with <em>government or public research institutes</em>, what was their location?",
+                            "title": "If {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} co-operated on any innovation activities with <em>government or public research institutes</em>, what was their location?",
                             "description": "",
                             "type": "MutuallyExclusive",
                             "mandatory": false,
@@ -3574,7 +3574,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question9-9",
-                            "title": "If {{ metadata.trad_as_or_ru_name }} co-operated on any innovation activities with <em>other businesses outside your enterprise group</em>, what was their location?",
+                            "title": "If {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} co-operated on any innovation activities with <em>other businesses outside your enterprise group</em>, what was their location?",
                             "description": "",
                             "type": "MutuallyExclusive",
                             "mandatory": false,
@@ -3621,7 +3621,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question9-10",
-                            "title": "If {{ metadata.trad_as_or_ru_name }} co-operated on any innovation activities with <em>Non-profit organisations</em>, what was their location?",
+                            "title": "If {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} co-operated on any innovation activities with <em>Non-profit organisations</em>, what was their location?",
                             "description": "",
                             "type": "MutuallyExclusive",
                             "mandatory": false,
@@ -3929,7 +3929,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2515",
-                            "title": "Did {{ metadata.trad_as_or_ru_name }} receive public financial support for innovation activities from the following levels of government?",
+                            "title": "Did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} receive public financial support for innovation activities from the following levels of government?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -4008,7 +4008,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2516",
-                            "title": "What kind of financial support was received by {{ metadata.trad_as_or_ru_name }} from <em>UK central government</em>?",
+                            "title": "What kind of financial support was received by {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} from <em>UK central government</em>?",
                             "description": "",
                             "type": "MutuallyExclusive",
                             "mandatory": false,
@@ -4067,7 +4067,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2518",
-                            "title": "What was {{ metadata.trad_as_or_ru_name }}’s estimated total turnover for the calendar years 2016 and 2018, excluding VAT?",
+                            "title": "What was {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s estimated total turnover for the calendar years 2016 and 2018, excluding VAT?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -4130,7 +4130,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2455",
-                            "title": "What was the estimated percentage of {{ metadata.trad_as_or_ru_name }}’s <em>total turnover</em> in <em>2018</em> from goods and services for each of the following definitions?",
+                            "title": "What was the estimated percentage of {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s <em>total turnover</em> in <em>2018</em> from goods and services for each of the following definitions?",
                             "guidance": {
                                 "content": [{
                                         "description": "<strong>Include:</strong>"
@@ -4138,7 +4138,7 @@
                                     {
                                         "list": [
                                             "turnover for goods and services introduced during the calendar year 2018 only",
-                                            "100% in the ‘Unchanged or only marginally modified’ answer field if {{ metadata.trad_as_or_ru_name }} did not introduce any new or significantly improved goods or services"
+                                            "100% in the ‘Unchanged or only marginally modified’ answer field if {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} did not introduce any new or significantly improved goods or services"
                                         ]
                                     }
                                 ]
@@ -4235,7 +4235,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2520",
-                            "title": "What was {{ metadata.trad_as_or_ru_name }}’s total estimated value of exports for the <em>calendar year 2018 only</em>, excluding VAT?",
+                            "title": "What was {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s total estimated value of exports for the <em>calendar year 2018 only</em>, excluding VAT?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -4273,7 +4273,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2523",
-                            "title": "What was {{ metadata.trad_as_or_ru_name }}’s estimated number of employees for the <em>calendar years 2016 and 2018</em>?",
+                            "title": "What was {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s estimated number of employees for the <em>calendar years 2016 and 2018</em>?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -4351,7 +4351,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2524",
-                            "title": "Did {{ metadata.trad_as_or_ru_name }} employ individuals in-house with the following skills at any level, or obtain these skills from external sources?",
+                            "title": "Did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} employ individuals in-house with the following skills at any level, or obtain these skills from external sources?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -4475,7 +4475,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2527",
-                            "title": "Would {{ metadata.trad_as_or_ru_name }} be willing to be approached by telephone by the Department for Business, Energy and Industrial Strategy or its appointed agents, to ask some further questions about innovation?",
+                            "title": "Would {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} be willing to be approached by telephone by the Department for Business, Energy and Industrial Strategy or its appointed agents, to ask some further questions about innovation?",
                             "description": "",
                             "type": "General",
                             "answers": [{

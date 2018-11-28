@@ -313,35 +313,6 @@ class TestBuildSchemaMetadata(TestCase):
         self.assertEqual('2016-10-19', metadata_context['employment_date'])
         self.assertEqual('Steve', metadata_context['user_id'])
 
-    def test_metadata_display_name_is_trad_as_when_trad_as_supplied(self):
-        # Given
-
-        # When
-        metadata_context = build_schema_metadata(self.metadata, self.schema)
-
-        # Then
-        self.assertEqual(metadata_context['trad_as_or_ru_name'], self.metadata['trad_as'])
-
-    def test_metadata_display_name_is_ru_name_as_when_trad_as_not_supplied(self):
-        # Given
-        self.metadata['trad_as'] = None
-
-        # When
-        metadata_context = build_schema_metadata(self.metadata, self.schema)
-
-        # Then
-        self.assertEqual(metadata_context['trad_as_or_ru_name'], self.metadata['ru_name'])
-
-    def test_metadata_display_name_is_ru_name_as_when_trad_as_empty(self):
-        # Given
-        self.metadata['trad_as'] = ''
-
-        # When
-        metadata_context = build_schema_metadata(self.metadata, self.schema)
-
-        # Then
-        self.assertEqual(metadata_context['trad_as_or_ru_name'], self.metadata['ru_name'])
-
     def test_given_quotes_in_trading_name_when_create_context_then_quotes_are_html_encoded(self):
         # Given
         self.metadata['trad_as'] = '\"trading name\"'
@@ -381,24 +352,3 @@ class TestBuildSchemaMetadata(TestCase):
 
         # Then
         self.assertEqual(metadata_context['ru_name'], r'\\ru name\\')
-
-    def test_given_quotes_in_ru_name_or_trading_name_when_create_context_then_quotes_are_html_encoded(self):
-        # Given
-        self.metadata['ru_name'] = '\"ru_name\"'
-        self.metadata['trad_as'] = None
-
-        # When
-        metadata_context = build_schema_metadata(self.metadata, self.schema)
-
-        # Then
-        self.assertEqual(metadata_context['trad_as_or_ru_name'], r'&#34;ru_name&#34;')
-
-    def test_given_backslash_in_ru_name_or_trading_name_when_create_context_then_backslash_are_escaped(self):
-        # Given
-        self.metadata['trad_as'] = '\\trading name\\'
-
-        # When
-        metadata_context = build_schema_metadata(self.metadata, self.schema)
-
-        # Then
-        self.assertEqual(metadata_context['trad_as_or_ru_name'], r'\\trading name\\')
