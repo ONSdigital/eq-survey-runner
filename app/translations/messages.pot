@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-25 13:12+0100\n"
+"POT-Creation-Date: 2018-11-28 11:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,27 +17,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: app/jinja_filters.py:105 app/jinja_filters.py:248
-#: app/validation/validators.py:294
+#: app/jinja_filters.py:105 app/jinja_filters.py:251
+#: app/validation/validators.py:292
 #, python-format
 msgid "%(num)s year"
 msgid_plural "%(num)s years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/jinja_filters.py:107 app/validation/validators.py:296
+#: app/jinja_filters.py:107 app/validation/validators.py:294
 #, python-format
 msgid "%(num)s month"
 msgid_plural "%(num)s months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/jinja_filters.py:175
+#: app/jinja_filters.py:178
 #, python-format
 msgid "%(date)s at %(time)s"
 msgstr ""
 
-#: app/jinja_filters.py:258 app/jinja_filters.py:306
+#: app/jinja_filters.py:261 app/jinja_filters.py:309
 #, python-format
 msgid "%(from_date)s to %(to_date)s"
 msgstr ""
@@ -340,10 +340,16 @@ msgstr ""
 msgid "How can we improve this survey"
 msgstr ""
 
+#: app/templates/partials/answers/textarea.html:31
+#: app/templates/partials/feedback/js_feedback_form.html:7
+#: app/templates/partials/feedback_form.html:7
+msgid "You have {x} character remaining"
+msgstr ""
+
 #: app/templates/partials/answers/textarea.html:32
 #: app/templates/partials/feedback/js_feedback_form.html:7
 #: app/templates/partials/feedback_form.html:7
-msgid "Characters remaining"
+msgid "You have {x} characters remaining"
 msgstr ""
 
 #: app/templates/partials/feedback/js_feedback_form.html:12
@@ -1654,7 +1660,7 @@ msgstr ""
 msgid "Remove an answer to continue."
 msgstr ""
 
-#: app/validation/validators.py:299
+#: app/validation/validators.py:297
 #, python-format
 msgid "%(num)s day"
 msgid_plural "%(num)s days"
