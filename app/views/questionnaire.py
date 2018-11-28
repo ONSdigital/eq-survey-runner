@@ -47,6 +47,8 @@ from app.views.errors import MultipleSurveyError
 
 END_BLOCKS = 'Summary', 'Confirmation'
 
+EMPTY_ANSWER_VALUES = (None, [], "")
+
 logger = get_logger()
 
 questionnaire_blueprint = Blueprint(name='questionnaire',
@@ -580,11 +582,11 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
     for answer_id, answer_value in answer_dict.items():
 
         # If answer is not answered then check for a schema specified default
-        if answer_value is None:
+        if answer_value in EMPTY_ANSWER_VALUES:
             answer_value = schema.get_answer(answer_id).get('default')
 
         if answer_id in survey_answer_ids or location.block_id == 'household-composition':
-            if answer_value is not None:
+            if answer_value not in EMPTY_ANSWER_VALUES:
                 answer = Answer(answer_id=answer_id,
                                 value=answer_value,
                                 group_instance_id=get_group_instance_id(schema, questionnaire_store.answer_store, location),

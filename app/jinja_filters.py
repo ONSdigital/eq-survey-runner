@@ -8,6 +8,7 @@ import flask_babel
 from dateutil import relativedelta, tz
 from jinja2 import Markup, contextfunction, escape, evalcontextfilter, evalcontextfunction, Undefined
 from jinja2.exceptions import UndefinedError
+from itertools import zip_longest
 
 from babel import units, numbers
 
@@ -396,12 +397,15 @@ def format_repeating_summary(context, items, delimiter=' '):
     - John Smith
     - Jane Smith
     - Sarah Smith
+
+    If any of the lists are shorter than others, lists will be padded with `None`
     """
     if items:
         intermediates = []
         for item in items:
             if item and isinstance(item[0], list):
-                intermediates.extend(list(map(list, zip(*item))))
+
+                intermediates.extend(list(map(list, zip_longest(*item))))
             else:
                 intermediates.append(item)
         output = [name for name in (concatenated_list(x, delimiter=delimiter) for x in intermediates) if name]

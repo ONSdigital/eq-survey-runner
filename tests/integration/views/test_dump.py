@@ -67,13 +67,6 @@ class TestDumpAnswers(IntegrationTestCase):
         expected = {
             'answers': [
                 {
-                    'value': '',
-                    'answer_instance': 0,
-                    'group_instance': 0,
-                    'group_instance_id': None,
-                    'answer_id': 'other-answer-mandatory',
-                },
-                {
                     'value': 'Toast',
                     'answer_instance': 0,
                     'group_instance': 0,
