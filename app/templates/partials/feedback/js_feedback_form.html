@@ -4,7 +4,7 @@
         <div class="u-mb-s">
             <label id="feedback-message-label" class="label venus" for="feedback-message">{{ _("How can we improve this survey") }}?</label>
             <textarea class="input input--textarea js-charlimit-input js-form-message" name="message" id="feedback-message" data-char-limit-ref="feedback-message-remaining" rows="8" cols="60" maxlength="2000"></textarea>
-            <div id="feedback-message-remaining" class="input__limit u-mt-xs mercury">{{ _("Characters remaining") }}: <span>-</span></div>
+            <div id="feedback-message-remaining" class="input__limit u-mt-xs mercury" data-charcount-singular="{{ _('You have {x} character remaining') }}" data-charcount-plural="{{ _('You have {x} characters remaining') }}"></div>
         </div>
         <div class="u-mb-s">
             <label id="feedback-name-label" class="label venus" for="feedback-name">

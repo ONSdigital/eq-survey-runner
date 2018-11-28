@@ -27,7 +27,9 @@
     {% set remainingAttr = {
       "id": answer.id ~ "-remaining",
       "class": "input__limit u-mt-xs mercury",
-      "data-qa": "textarea-with-limit"
+      "data-qa": "textarea-with-limit",
+      "data-charcount-singular": _("You have {x} character remaining"),
+      "data-charcount-plural": _("You have {x} characters remaining")
     } %}
-    <div {{remainingAttr|xmlattr}}>{{ _("Characters remaining") }}: <span>-</span></div>
+    <div {{remainingAttr|xmlattr}}></div>
 </div>
