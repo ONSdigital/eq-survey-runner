@@ -2,13 +2,13 @@
 import re
 import string
 from datetime import datetime
+from itertools import zip_longest
 
 import flask
 import flask_babel
 from dateutil import relativedelta, tz
 from jinja2 import Markup, contextfunction, escape, evalcontextfilter, evalcontextfunction, Undefined
 from jinja2.exceptions import UndefinedError
-from itertools import zip_longest
 
 from babel import units, numbers
 

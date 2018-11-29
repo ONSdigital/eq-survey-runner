@@ -244,7 +244,8 @@ def upgrade_1_to_2_add_group_instance_id(answer_store, schema):
         # `get_group_instance_id` handles providing a consistent group_instance_id
         answer['group_instance_id'] = get_group_instance_id(schema, answer_store, location, answer['answer_instance'])
 
-def upgrade_2_to_3_remove_empty_answers(answer_store, schema):
+
+def upgrade_2_to_3_remove_empty_answers(answer_store, schema):  # pylint: disable=unused-argument
     """ Previously, we stored [] and '' as answer values for unanswered, but completed answers.
 
     This was changed to avoid storing unanswered values entirely, so this upgrade will
