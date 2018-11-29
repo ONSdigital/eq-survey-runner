@@ -178,7 +178,7 @@ class AnswerStore:
         """
         Removes answer *in place* from the answer store.
 
-        :param answer: The answer ids to filter results to remove
+        :param answer: The answer to remove
         """
 
         if answer in self.answer_map[answer['answer_id']]:
@@ -244,8 +244,23 @@ def upgrade_1_to_2_add_group_instance_id(answer_store, schema):
         # `get_group_instance_id` handles providing a consistent group_instance_id
         answer['group_instance_id'] = get_group_instance_id(schema, answer_store, location, answer['answer_instance'])
 
+def upgrade_2_to_3_remove_empty_answers(answer_store, schema):
+    """ Previously, we stored [] and '' as answer values for unanswered, but completed answers.
+
+    This was changed to avoid storing unanswered values entirely, so this upgrade will
+    remove any answers in the store that have 'empty' answer values
+    """
+    answer_store_copy = answer_store.copy()
+
+    for answer in answer_store:
+        if answer['value'] in ('', [], None):
+            answer_store_copy.remove_answer(answer)
+
+    answer_store = answer_store_copy
+
 
 UPGRADE_TRANSFORMS = (
     upgrade_0_to_1_update_date_formats,
     upgrade_1_to_2_add_group_instance_id,
+    upgrade_2_to_3_remove_empty_answers,
 )
