@@ -54,7 +54,6 @@ class TestStorageEncryption(TestCase):
         self.assertIsInstance(encrypted_data, str)
 
         decrypted_data = self.encrypter.decrypt_data(encrypted_data)
-        decrypted_data = base64url_decode(decrypted_data.decode()).decode()
         decrypted_data = json.loads(decrypted_data)
         self.assertEqual(data, decrypted_data)
 

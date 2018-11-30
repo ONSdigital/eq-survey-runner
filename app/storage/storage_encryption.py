@@ -50,7 +50,7 @@ class StorageEncryption:
         }
 
         jwe_token = jwe.JWE(
-            plaintext=base64url_encode(data),
+            plaintext=data,
             protected=protected_header,
             recipient=self.key,
         )
