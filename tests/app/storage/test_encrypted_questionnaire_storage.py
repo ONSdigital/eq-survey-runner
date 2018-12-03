@@ -9,7 +9,21 @@ from app.data_model.app_models import QuestionnaireState
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.storage import data_access
 from app.storage.encrypted_questionnaire_storage import EncryptedQuestionnaireStorage
+from app.storage.storage_encryption import StorageEncryption
 from tests.app.app_context_test_case import AppContextTestCase
+
+
+def _save_state_data(user_id, data, state_version=QuestionnaireStore.LATEST_VERSION):
+    encryption = StorageEncryption(user_id, 'mock', 'mock')
+
+    state_data = encryption.encrypt_data(data)
+
+    questionnaire_state = QuestionnaireState(
+        user_id,
+        state_data,
+        state_version
+    )
+    data_access.put(questionnaire_state)
 
 
 class TestEncryptedQuestionnaireStorage(AppContextTestCase):
@@ -79,10 +93,23 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
         self.storage.add_or_update(data, QuestionnaireStore.LATEST_VERSION)
         self.assertEqual((data, QuestionnaireStore.LATEST_VERSION), self.storage.get_user_data())
 
+    def test_newer_data_saved_as_current_latest_version(self):
+        """
+        If we encounter data newer than we can write, it should be written with the latest version
+        that this application version can write.
+        e.g. we can read version 3, but can only write version 2. Data should be saved as version 2.
+        """
+        current_version = QuestionnaireStore.LATEST_VERSION
+        newer_version = current_version + 1
+        _save_state_data(self.user_id, 'test', state_version=newer_version)
+        data = 'test_newer_data_saved_as_current_latest_version'
+        self.storage.add_or_update(data, current_version)
+        self.assertEqual((data, current_version), self.storage.get_user_data())
+
     def test_get(self):
         """Tests compressed state
         """
-        self._save_state_data(self.user_id, 'test')
+        self._save_compressed_state_data(self.user_id, 'test')
         self.assertEqual(('test', QuestionnaireStore.LATEST_VERSION + 1), self.storage.get_user_data())
 
     def _save_legacy_state_data(self, user_id, data):
@@ -107,7 +134,7 @@ class TestEncryptedQuestionnaireStorageEncoding(AppContextTestCase):
         )
         data_access.put(questionnaire_state)
 
-    def _save_state_data(self, user_id, data):
+    def _save_compressed_state_data(self, user_id, data):
         protected_header = {
             'alg': 'dir',
             'enc': 'A256GCM',
