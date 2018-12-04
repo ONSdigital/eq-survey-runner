@@ -48,7 +48,7 @@ class QuestionnaireStore:
         new_version = self.get_latest_version_number()
         if self.version < new_version:
             self.answer_store.upgrade(self.version, schema)
-            self.version = new_version
+        self.version = new_version
 
         return self
 
