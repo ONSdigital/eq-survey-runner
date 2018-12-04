@@ -17,7 +17,7 @@
   {% for option in form.fields[answer.id] %}
 
     {% set input = {
-      "class": "input input--" ~ widget_type ~ " js-focusable " ~ exclusive_class,
+      "class": "input input--" ~ widget_type ~ exclusive_class,
       "type": widget_type,
       "value": option.data,
       "name": option.name,
@@ -32,7 +32,7 @@
     } %}
 
 
-    <div class="field__item js-focusable-box">
+    <div class="field__item">
       <input {{input|xmlattr}}>
       <label {{label|xmlattr}}>
         <span class="u-vh u-mt-s">{{ _("Or") }}, </span>{{option.label.text}}<span class="u-vh">. {{ _("Selecting this will uncheck all other answers") }}</span>
@@ -52,7 +52,7 @@
         } %}
 
         {% set other_input = {
-          "class": "input js-focusable " ~ exclusive_class,
+          "class": "input " ~ exclusive_class,
           "type": "text",
           "name": detail_answer.name,
           "id": detail_answer.id,
