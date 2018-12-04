@@ -1,27 +1,27 @@
 {% set subfields %}
- <div class="fieldgroup fieldgroup--date" data-qa="widget-date">
+ <div class="fieldgroup fieldgroup--inline" data-qa="widget-date">
   <div class="fieldgroup__fields">
     {% if form.fields[answer['id']]['day'] %}
-    <div class="field field--input field--day">
-      <label class="label u-fs-s--b" for="{{answer['id']}}-day" id="label-{{answer['id']}}-day" data-qa="label-day">{{ _("Day") }}</label>
+    <div class="field field--input">
+      <label class="label u-fs-r" for="{{answer['id']}}-day" id="label-{{answer['id']}}-day" data-qa="label-day">{{ _("Day") }}</label>
       {% set input = form.fields[answer['id']]['day'] %}
-      {% set input_placeholder = "DD" %}
+      {% set exclusive_class = "input--w-2" %}
       {% include 'partials/forms/input.html' %}
     </div>
     {% endif %}
     {% if form.fields[answer['id']]['month'] %}
-    <div class="field field--select field--month">
-      <label class="label u-fs-s--b" for="{{answer['id']}}-month" id="label-{{answer['id']}}-month" data-qa="label-month">{{ _("Month") }}</label>
-      {% set select = form.fields[answer['id']]['month'] %}
-
-      {% include 'partials/forms/select.html' %}
+    <div class="field field--select">
+      <label class="label u-fs-r" for="{{answer['id']}}-month" id="label-{{answer['id']}}-month" data-qa="label-month">{{ _("Month") }}</label>
+      {% set input = form.fields[answer['id']]['month'] %}
+      {% set exclusive_class = "input--w-2" %}
+      {% include 'partials/forms/input.html' %}
     </div>
     {% endif %}
     {% if form.fields[answer['id']]['year'] %}
-    <div class="field field--input field--year">
-      <label class="label u-fs-s--b" for="{{answer['id']}}-year" id="label-{{answer['id']}}-year" data-qa="label-year">{{ _("Year") }}</label>
+    <div class="field field--input">
+      <label class="label u-fs-r" for="{{answer['id']}}-year" id="label-{{answer['id']}}-year" data-qa="label-year">{{ _("Year") }}</label>
       {% set input = form.fields[answer['id']]['year'] %}
-      {% set input_placeholder = _("YYYY") %}
+      {% set exclusive_class = "input--w-4" %}
       {% include 'partials/forms/input.html' %}
     </div>
     {% endif %}

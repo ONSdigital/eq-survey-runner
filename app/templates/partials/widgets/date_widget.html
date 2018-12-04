@@ -1,26 +1,29 @@
 {% set subfields %}
   <div class="fieldgroup__fields">
     {% if fields['day'] %}
-    <div class="field field--input field--day">
+    <div class="field field--input">
       {% set label = fields['day'].label %}
-      <label class="label u-fs-s--b" for="input-{{label.for}}" id="label-{{label.for}}" data-qa="label-day">{{label.text}}</label>
+      <label class="label u-fs-r" for="input-{{label.for}}" id="label-{{label.for}}" data-qa="label-day">{{label.text}}</label>
       {% set input = fields['day'].input %}
+      {% set exclusive_class = "input--w-2" %}
       {% include 'partials/forms/input.html' %}
     </div>
     {% endif %}
     {% if fields['month'] %}
-    <div class="field field--select field--month">
+    <div class="field field--select">
       {% set label = fields['month'].label %}
-      <label class="label u-fs-s--b" for="input-{{label.for}}" id="label-{{label.for}}" data-qa="label-month">{{label.text}}</label>
+      <label class="label u-fs-r" for="input-{{label.for}}" id="label-{{label.for}}" data-qa="label-month">{{label.text}}</label>
       {% set select = fields['month'].select %}
+      {% set exclusive_class = "input--w-auto" %}
       {% include 'partials/forms/select.html' %}
     </div>
     {% endif %}
     {% if fields['year'] %}
-    <div class="field field--input field--year">
+    <div class="field field--input">
       {% set label = fields['year'].label %}
-      <label class="label u-fs-s--b" for="input-{{label.for}}" id="label-{{label.for}}" data-qa="label-year">{{label.text}}</label>
+      <label class="label u-fs-r" for="input-{{label.for}}" id="label-{{label.for}}" data-qa="label-year">{{label.text}}</label>
       {% set input = fields['year'].input %}
+      {% set exclusive_class = "input--w-4" %}
       {% include 'partials/forms/input.html' %}
     </div>
     {% endif %}
@@ -28,12 +31,12 @@
 {% endset %}
 
 {% if legend %}
-  <fieldset class="fieldgroup fieldgroup--date" data-qa="widget-date">
+  <fieldset class="fieldgroup fieldgroup--inline" data-qa="widget-date">
     <legend class="fieldgroup__title u-fs-r--b">{{legend}}</legend>
     {{subfields}}
   </fieldset>
 {% else %}
-  <div class="fieldgroup fieldgroup--date">
+  <div class="fieldgroup fieldgroup--inline">
     {{subfields}}
   </div>
 {% endif %}
