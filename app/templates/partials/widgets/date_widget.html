@@ -6,6 +6,7 @@
       <label class="label u-fs-r" for="input-{{label.for}}" id="label-{{label.for}}" data-qa="label-day">{{label.text}}</label>
       {% set input = fields['day'].input %}
       {% set exclusive_class = "input--w-2" %}
+      {% set type = "number" %}
       {% include 'partials/forms/input.html' %}
     </div>
     {% endif %}
@@ -15,6 +16,7 @@
       <label class="label u-fs-r" for="input-{{label.for}}" id="label-{{label.for}}" data-qa="label-month">{{label.text}}</label>
       {% set select = fields['month'].select %}
       {% set exclusive_class = "input--w-auto" %}
+      {% set type = "number" %}
       {% include 'partials/forms/select.html' %}
     </div>
     {% endif %}
@@ -24,6 +26,7 @@
       <label class="label u-fs-r" for="input-{{label.for}}" id="label-{{label.for}}" data-qa="label-year">{{label.text}}</label>
       {% set input = fields['year'].input %}
       {% set exclusive_class = "input--w-4" %}
+      {% set type = "number" %}
       {% include 'partials/forms/input.html' %}
     </div>
     {% endif %}

@@ -8,7 +8,7 @@
   "checked": "checked" if input.checked,
   "data-qa": "input-" ~ input.type,
   "maxlength": input.maxlength,
-  "pattern": ("[0-9]*" if input.type == "number"),
+  "pattern": ("[0-9]*" if input.type == "number" or type == "number"),
 } %}
 
 <input {{attr|xmlattr}} />
