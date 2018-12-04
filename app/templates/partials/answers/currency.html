@@ -8,10 +8,7 @@
 
     {% include 'partials/forms/label.html' %}
 
-    <div class="input-type input-type--currency">
-
-      <span class="input-type__type" id="{{answer.id}}-type">{{ get_currency_symbol(answer.currency) }}</span>
-
+    <div class="input-type input-type--prefix">
         {% set input = {
             'type': 'text',
             'classes': 'input-type__input',
@@ -24,5 +21,6 @@
 
         {% include 'partials/forms/input.html' %}
 
+        <abbr title="{{answer.currency}}" class="input-type__type" id="{{answer.id}}-type">{{ get_currency_symbol(answer.currency) }}</abbr>
     </div>
 </div>
