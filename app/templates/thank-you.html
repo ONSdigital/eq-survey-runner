@@ -4,12 +4,12 @@
 
 {% block main %}
 <div class="u-mb-s">
-    <h1 class="saturn" data-qa="submission-successful-title">{{ _("Submission successful") }}</h1>
+    <h1 class="u-fs-l" data-qa="submission-successful-title">{{ _("Submission successful") }}</h1>
 </div>
 
 <div class="u-mb-s">
     <div class="panel panel--simple panel--success panel--spacious">
-        <p class="mars">
+        <p class="u-fs-r">
             {% if metadata.trad_as %}
                 {{ _("Your answers were submitted for <span>%(ru_name)s</span> (%(trading_as_name)s) on %(submitted_date_time)s",
                 ru_name = metadata.ru_name,
@@ -21,7 +21,7 @@
                 submitted_date_time=metadata.submitted_time|format_datetime) }}
             {% endif %}
         </p>
-        <p class="mars">{{ _("Transaction ID") }}: <b>{{metadata.tx_id}}</b></p>
+        <p class="u-fs-r">{{ _("Transaction ID") }}: <b>{{metadata.tx_id}}</b></p>
     </div>
 </div>
 
@@ -34,8 +34,8 @@
 {% if is_view_submitted_response_enabled %}
     <div class="u-mb-s">
     {% if view_submission_url %}
-        <p class="u-mb-m@s mars" data-qa="view-submission"><a href={{view_submission_url}}>{{ _("View and print a copy of your answers") }}</a></p>
-        <p class="u-mb-s mars">{{ _("Your answers will only be available for <b>%(duration)s</b> to keep them secure.",
+        <p class="u-mb-m@s u-fs-r" data-qa="view-submission"><a href={{view_submission_url}}>{{ _("View and print a copy of your answers") }}</a></p>
+        <p class="u-mb-s u-fs-r">{{ _("Your answers will only be available for <b>%(duration)s</b> to keep them secure.",
                                                                                         duration=view_submission_duration) }}</p>
     {% else %}
         <div class="panel panel--simple panel--info" data-qa="view-submission-expired">
@@ -50,8 +50,8 @@
 {% endblock %}
 
 <div class="u-mb-s">
-    <div class="mars">{{ _("For more information on how we use this data") }}.</div>
-    <p class="u-mb-m@s mars"><a href="https://www.ons.gov.uk/surveys">https://www.ons.gov.uk/surveys</a></p>
+    <div class="u-fs-r">{{ _("For more information on how we use this data") }}.</div>
+    <p class="u-mb-m@s u-fs-r"><a href="https://www.ons.gov.uk/surveys">https://www.ons.gov.uk/surveys</a></p>
 </div>
 
 {% endblock %}

@@ -85,8 +85,8 @@ $header-bp: 36em;
     }
   }
   @include mq(xs, s) {
-    .mars,
-    .venus {
+    .u-fs-r,
+    .u-fs-r--b {
       font-size: 0.8rem;
     }
   }

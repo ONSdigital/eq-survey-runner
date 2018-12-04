@@ -53,7 +53,7 @@
             }, {
                 "type": "Question",
                 "id": "everyone-at-address-confirmation",
-                "description": "<h2 class='neptune'>You have added some people...</h2> ",
+                "description": "<h2 class='u-fs-m'>You have added some people...</h2> ",
                 "questions": [{
                     "id": "everyone-at-address-confirmation-question",
                     "title": "Is that everyone?",

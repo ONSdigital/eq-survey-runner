@@ -51,7 +51,7 @@
                 }]
             }, {
                 "type": "Question",
-                "description": "<h2 class='neptune'>Does anybody else live at 3 Sunny Villas?</h2> {{ [[answers['primary-first-name'], answers['primary-middle-names'], answers['primary-last-name']]] | format_repeating_summary }}",
+                "description": "<h2 class='u-fs-m'>Does anybody else live at 3 Sunny Villas?</h2> {{ [[answers['primary-first-name'], answers['primary-middle-names'], answers['primary-last-name']]] | format_repeating_summary }}",
                 "id": "primary-anyone-else-block",
                 "questions": [{
                     "type": "General",
@@ -121,7 +121,7 @@
             }, {
                 "type": "Question",
                 "id": "repeating-anyone-else-block",
-                "description": "<h2 class='neptune'>Does anybody else live at 3 Sunny Villas?</h2> {{ [[answers['primary-first-name'], answers['primary-middle-names'], answers['primary-last-name']], [answers['repeating-first-name'], answers['repeating-middle-names'], answers['repeating-last-name']]] | format_repeating_summary }}",
+                "description": "<h2 class='u-fs-m'>Does anybody else live at 3 Sunny Villas?</h2> {{ [[answers['primary-first-name'], answers['primary-middle-names'], answers['primary-last-name']], [answers['repeating-first-name'], answers['repeating-middle-names'], answers['repeating-last-name']]] | format_repeating_summary }}",
                 "questions": [{
                     "type": "General",
                     "id": "repeating-anyone-else-question",

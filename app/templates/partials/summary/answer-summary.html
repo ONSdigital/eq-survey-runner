@@ -1,13 +1,13 @@
 <div class="summary">
-  <h2 class="summary__title neptune">{{ content.summary.label }}</h2>
+  <h2 class="summary__title u-fs-m">{{ content.summary.label }}</h2>
   {%- for group in content.summary.groups -%}
 
   <div class="summary__block u-mb-xs">
     {%- for answer in group.answers -%}
     <div class="summary__item">
       <div class="grid">
-        <div class="grid__col col-8@xs mars {{ 'col-10@m' }}">
-          <div class="summary__label mars" id="{{ answer.id }}-{{ loop.index }}-label"
+        <div class="grid__col col-8@xs u-fs-r {{ 'col-10@m' }}">
+          <div class="summary__label u-fs-r" id="{{ answer.id }}-{{ loop.index }}-label"
                data-qa="{{ answer.id }}-{{ loop.index }}-label">
             <p class="icon--{{content.summary.icon}}" data-qa="{{ answer.id }}-{{ loop.index }}">
               {{ answer.label|striptags }}
@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="grid__col col-4@xs col-2@m">
-          <div class="summary__link mars">
+          <div class="summary__link u-fs-r">
             <a href="{{ answer.block.link }}#{{ answer.id }}" class="summary__edit-link"
                aria-describedby="{{ answer.id }} {{ answer.id }}-answer" data-qa="{{ answer.id }}-{{ loop.index }}-edit"
                {{helpers.track('click', 'Summary', 'Edit click') }}>{{ _("Change")}}

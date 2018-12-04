@@ -22,14 +22,14 @@
                     <div class="'group" id="rsi">
                         <div class="block" id>
                             <section class="section id">
-                                <h1 class="section__title saturn">
+                                <h1 class="section__title u-fs-l">
                                     {{ _("Contact us") }}
                                 </h1>
                                 <div class="question">
-                                    <h2 class="question__title neptune">
+                                    <h2 class="question__title u-fs-m">
                                         {{ _("Telephone") }}
                                     </h2>
-                                    <div class="question__description mars">
+                                    <div class="question__description u-fs-r">
                                         <p>{{helpers.telephone_number()}}</p>
                                     </div>
                                     {% if session %}
@@ -40,24 +40,24 @@
                                         {{ _("Your Survey ID is <b>%(survey_id)s</b>.", survey_id=survey_id) }}
                                     </p>
                                     {% endif %}
-                                    <div class="question__description mars">
-                                        <h3 class="question__title venus">{{ _("Opening hours") }}:</h3>
+                                    <div class="question__description u-fs-r">
+                                        <h3 class="question__title u-fs-r--b">{{ _("Opening hours") }}:</h3>
                                         <p>
                                             {{ _("Monday to Thursday 8:30am – 5:00pm") }}<br>
                                             {{ _("Friday 8:30am - 4:30pm") }}
                                         </p>
                                     </div>
                                     <p>{{ _("This office is closed during public holidays") }}</p>
-                                    <h2 class="question__title neptune">
+                                    <h2 class="question__title u-fs-m">
                                         {{ _("Email") }}
                                     </h2>
-                                    <div class="question__description mars">
+                                    <div class="question__description u-fs-r">
                                         <p>{{helpers.email_address(subject=session.ru_ref)}}</p>
                                     </div>
-                                    <h2 class="question__title neptune">
+                                    <h2 class="question__title u-fs-m">
                                         {{ _("Post") }}
                                     </h2>
-                                    <div class="question__description mars">
+                                    <div class="question__description u-fs-r">
                                         <p>Office for National Statistics<br>Government Buildings<br>Cardiff Road<br>Newport<br>South Wales<br>NP10 8XG</p>
                                     </div>
                                 </div>

@@ -1,6 +1,6 @@
 <div class="question question--repeatinganswer" id="{{question.id}}">
 
-  <h1 class="question__title saturn">
+  <h1 class="question__title u-fs-l">
     {%- if question_number -%}
       <span class="question__number">{{question_number}}. </span>
     {% endif %}
@@ -14,7 +14,7 @@
   <div class="question__answers u-mb-s">
     {% for name_form in form.household %}
       <div class="question__answer u-mb-no u-mt-m js-household-person" data-remove="{{ _('Remove') }}" data-index="{{loop.index}}">
-        <h3 class="neptune">{{ _('Person ') }}<span class="js-household-loopindex">{{ loop.index }}</span>
+        <h3 class="u-fs-m">{{ _('Person ') }}<span class="js-household-loopindex">{{ loop.index }}</span>
           {%- if loop.index == 1 -%}
             <small><span class="js-household-action"> ({{ _('You') }})</span></small>
           {%- else -%}

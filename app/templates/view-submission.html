@@ -6,12 +6,12 @@
 {% block main -%}
 
 <div>
-  <h1 class="saturn">{{ _("Submitted answers") }}</h1>
+  <h1 class="u-fs-l">{{ _("Submitted answers") }}</h1>
 </div>
 
 <div class="u-mb-s">
     <div class="panel panel--simple panel--success panel--spacious">
-        <p class="mars">
+        <p class="u-fs-r">
             {% if metadata.trad_as %}
                 {{ _("Your answers were submitted for <span>%(ru_name)s</span> (%(trading_as_name)s) on %(submitted_time)s",
                 ru_name = metadata.ru_name,
@@ -23,7 +23,7 @@
                 submitted_time=metadata.submitted_time|format_datetime) }}
             {% endif %}
         </p>
-        <p class="mars">{{ _("Transaction ID") }}: <b>{{metadata.tx_id}}</b></p>
+        <p class="u-fs-r">{{ _("Transaction ID") }}: <b>{{metadata.tx_id}}</b></p>
     </div>
 </div>
 
