@@ -17,7 +17,7 @@
   {% for option in form.fields[answer.id] %}
 
     {% set input = {
-      "class": "input input--" ~ widget_type ~ exclusive_class,
+      "class": "input input--" ~ widget_type ~ " " ~ exclusive_class,
       "type": widget_type,
       "value": option.data,
       "name": option.name,
