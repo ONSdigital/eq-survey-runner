@@ -10,7 +10,7 @@ describe('Units', function() {
 
   it('Given we do not set a language code and run the questionnaire, when we enter values for durations, they should be displayed on the summary with their units.', function() {
     //return helpers.openQuestionnaire('test_unit_patterns.json').then(() => {
-    return helpers.openQuestionnaire('test_unit_patterns.json', helpers.getRandomString(10), helpers.getRandomString(10), '201605', 'May 2016', 'GB-ENG', 'en').then(() => {
+    return helpers.openQuestionnaire('test_unit_patterns.json', { language: 'en' }).then(() => {
         return browser
           .click(SetLengthUnitsBlockPage.submit())
           .getText(SetDurationUnitsBlockPage.durationHourUnit()).should.eventually.equal('hours')
@@ -26,7 +26,7 @@ describe('Units', function() {
     });
 
   it('Given we set a language code for welsh and run the questionnaire, when we enter values for durations, they should be displayed on the summary with their units.', function() {
-    return helpers.openQuestionnaire('test_unit_patterns.json', helpers.getRandomString(10), helpers.getRandomString(10), '201605', 'May 2016', 'GB-ENG', 'cy').then(() => {
+    return helpers.openQuestionnaire('test_unit_patterns.json', { language: 'cy' }).then(() => {
         return browser
           .click(SetLengthUnitsBlockPage.submit())
           .getText(SetDurationUnitsBlockPage.durationHourUnit()).should.eventually.equal('awr')

@@ -12,6 +12,7 @@ logger = getLogger()
 
 FEEDBACK_FORM_URL = '/feedback'
 FEEDBACK_THANKYOU_URL = '/feedback/thank-you'
+SIGNED_OUT_URL = '/signed-out'
 
 
 class Feedback(IntegrationTestCase):
@@ -145,6 +146,16 @@ class Feedback(IntegrationTestCase):
 
         # pylint: disable=no-member
         return decrypt(self.instance.send_message.call_args[0][0], self._key_store, KEY_PURPOSE_SUBMISSION)
+
+    def test_feedback_post_redirects_to_signed_out_page(self):
+        self.post(url=FEEDBACK_FORM_URL, post_data='', action='sign_out')
+        self.assertStatusOK()
+        self.assertEqualUrl(SIGNED_OUT_URL)
+
+    def test_feedback_thankyou_post_redirects_to_signed_out_page(self):
+        self.post(url=FEEDBACK_THANKYOU_URL, post_data='', action='sign_out')
+        self.assertStatusOK()
+        self.assertEqualUrl(SIGNED_OUT_URL)
 
 
 def validate_json_with_schema(data, schema):

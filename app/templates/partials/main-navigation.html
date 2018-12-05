@@ -3,6 +3,7 @@
         <nav class="nav nav--horizontal nav--light nav--main nav--h-m js-main-nav" aria-label="Main menu" id="main-nav">
             <ul class="nav__list" aria-label="Navigation menu" role="menubar">
                 <li class="nav__item u-d-no--@s" role="menuitem"><a href="{{account_service_url}}" id="my-account" class="nav__link">{{ _("My account") }}</a></li>
+                {% include 'partials/sign-out-button-navigation.html' %}
             </ul>
         </nav>
     </div>

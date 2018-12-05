@@ -1,6 +1,7 @@
 <!doctype html>
 {% set cdn_hash = "v1.8.4" %}
 {% set cdn_url_prefix = "https://cdn.ons.gov.uk/sdc/"~cdn_hash %}
+{% import 'macros/helpers.html' as helpers %}
 <!--[if lt IE 7]>      <html lang="en-gb" dir="ltr" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en-gb" dir="ltr" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en-gb" dir="ltr" class="no-js lt-ie10 lt-ie9"> <![endif]-->
@@ -79,28 +80,31 @@
         <div class="skip">
           <a class="skip__link" href="#main">{{ _("Skip to content") }}</a>
         </div>
-
-        {% block header %}
-          {% include theme('partials/header.html') %}
-        {% endblock %}
-
-        {% block subheader_container %}
-          <div class="container u-cf">
-            {% block subheader %}
-              {% with position = 'top' %}{% include 'partials/previous-link.html' %}{% endwith %}
-              {% if navigation %}
-              <div class="page__menubtn{{ ' u-mb-s' if previous_location }}">
-                <button class="btn btn--menu js-menu-btn" data-close-label="{{_('Hide sections')}}" type="button" id="menu-btn" aria-expanded="false" aria-controls="section-nav" aria-label="Toggle section menu" aria-haspopup="true">{{_('View sections')}}</button>
-              </div>
-              {% endif %}
-            {% endblock subheader %}
-          </div>
-        {% endblock subheader_container %}
-        <div class="page__container container{{ ' u-mt-s' if not previous_location }}">
-          {% block content %}
-          {% with position = 'bottom' %}{% include 'partials/previous-link.html' %}{% endwith %}
+        <form class="form qa-questionnaire-form" role="form" method="POST" autocomplete="off" novalidate>
+          <input id="csrf_token" name="csrf_token" type="hidden" value="{{ csrf_token() }}"/>
+          <button class="u-vh" tabindex="-1" type="submit" name="action[save_continue]">{{_('Save and continue')}}</button>
+          {% block header %}
+            {% include theme('partials/header.html') %}
           {% endblock %}
-        </div>
+
+          {% block subheader_container %}
+            <div class="container u-cf">
+              {% block subheader %}
+                {% with position = 'top' %}{% include 'partials/previous-link.html' %}{% endwith %}
+                {% if navigation %}
+                <div class="page__menubtn{{ ' u-mb-s' if previous_location }}">
+                  <button class="btn btn--menu js-menu-btn" data-close-label="{{_('Hide sections')}}" type="button" id="menu-btn" aria-expanded="false" aria-controls="section-nav" aria-label="Toggle section menu" aria-haspopup="true">{{_('View sections')}}</button>
+                </div>
+                {% endif %}
+              {% endblock subheader %}
+            </div>
+          {% endblock subheader_container %}
+          <div class="page__container container{{ ' u-mt-s' if not previous_location }}">
+            {% block content %}
+            {% with position = 'bottom' %}{% include 'partials/previous-link.html' %}{% endwith %}
+            {% endblock %}
+          </div>
+        </form>
       </div>
       <footer class="page__footer u-mt-xl u-pt-l">
         {% block footer %}

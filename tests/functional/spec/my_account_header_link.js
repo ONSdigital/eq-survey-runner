@@ -1,11 +1,11 @@
 const helpers = require('../helpers');
 
-const IntroductionPage = require('../base_pages/introduction.page');
+const IntroductionPage = require('../generated_pages/introduction/introduction.page');
 const QuestionPage = require('../base_pages/generic.page');
 const SummaryPage = require('../base_pages/summary.page');
 const ThankYouPage = require('../base_pages/thank-you.page');
 
-describe('Introduction page', function() {
+describe('My Account header link', function() {
 
   it('Given I start a survey, When I go through every page then I should see the "My account" button on each page', function() {
     return helpers.openQuestionnaire('test_introduction.json').then(() => {

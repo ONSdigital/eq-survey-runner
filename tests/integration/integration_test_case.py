@@ -187,7 +187,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
     @staticmethod
     def _extract_csrf_token(html):
-        match = re.search(r'<input id="csrf_token" name="csrf_token" type="hidden" value="(.+?)">', html)
+        match = re.search(r'<input id="csrf_token" name="csrf_token" type="hidden" value="(.+?)"/>', html)
         return (match.group(1) or None) if match else None
 
     def getResponseData(self):

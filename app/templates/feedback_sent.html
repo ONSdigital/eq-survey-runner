@@ -3,7 +3,6 @@
 {% block page_title %}{{_("Thank you for your feedback")}}{% endblock %}
 
 {% block main %}
-
 <div class="u-mb-s">
     <h1 class="saturn">{{ _("Submission successful") }}</h1>
     <p>{{ _("Thank you for your feedback") }}.</p>
@@ -12,5 +11,9 @@
 <div class="u-mt-s">
     <p class="mars">{{ _("It is now safe to close this window") }}.</p>
 </div>
+
+{% if account_service_url %}
+    <a href="{{account_service_url}}">{{ _("Return to your account") }}</a>
+{% endif %}
 
 {% endblock %}

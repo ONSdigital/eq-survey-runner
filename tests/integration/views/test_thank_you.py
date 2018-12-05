@@ -144,3 +144,26 @@ class TestThankYou(IntegrationTestCase):
             self.assertInUrl('thank-you')
             self.assertInBody('My account</a>')
             self.assertInBody('href="http://correct.place"')
+
+    def test_thank_you_page_sign_out(self):
+        self.launchSurvey('test', 'currency')
+
+        # We fill in our answers
+        form_data = {
+            'answer': '12',
+            'answer-usd': '345',
+            'answer-eur': '67.89',
+            'answer-jpy': '0',
+        }
+
+        # We submit the form
+        self.post(form_data)
+        # Submit answers
+        self.post(action=None)
+
+        # check we're on the thank you page
+        self.assertInUrl('thank-you')
+
+        # sign out and check we're on the signed out page
+        self.post(action='sign_out')
+        self.assertEqualUrl('/signed-out')

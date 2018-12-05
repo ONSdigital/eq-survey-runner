@@ -27,3 +27,23 @@
   } %}
 <a href="mailto:{{email}}{% if subject %}?subject={{ subject|urlencode }}{% endif %}" {{attr|xmlattr}}>{{email}}</a>
 {%- endmacro -%}
+
+{%- macro save_signout_button(button_text) -%}
+  {% set attr = {
+      "class": "btn btn--ghost print__hidden js-btn-save",
+      "data-qa": "btn-save-sign-out",
+      "name": "action[save_sign_out]",
+    } %}
+  {% set analytics = track('click', 'Navigation', 'Save and sign out click') %}
+  <button type="submit" {{attr|xmlattr}} {{analytics}}>{{ button_text }}</button>
+{%- endmacro -%}
+
+{%- macro signout_button(button_text) -%}
+  {% set attr = {
+      "class": "btn btn--ghost print__hidden",
+      "data-qa": "btn-sign-out",
+      "name": "action[sign_out]",
+    } %}
+  {% set analytics = track('click', 'Navigation', 'Sign out click') %}
+  <button type="submit" {{attr|xmlattr}} {{analytics}}>{{ button_text }}</button>
+{%- endmacro -%}

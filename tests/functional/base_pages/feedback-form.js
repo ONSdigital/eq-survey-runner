@@ -1,5 +1,9 @@
 class FeedbackForm {
 
+  url() {
+    return '/feedback';
+  }
+
   display() {
     return '[data-qa="a-feedback-open"]';
   }
@@ -46,6 +50,10 @@ class FeedbackForm {
 
   emailLabel() {
     return '#feedback-email-label';
+  }
+
+  signOut() {
+    return '[data-qa="btn-sign-out"]';
   }
 }
 

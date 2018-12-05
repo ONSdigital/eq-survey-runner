@@ -29,8 +29,8 @@ class TestStandardSummaryContext(AppContextTestCase):
         }
 
     def check_context(self, context):
-        self.assertEqual(len(context), 3)
-        for key_value in ('csrf_token', 'summary', 'variables'):
+        self.assertEqual(len(context), 2)
+        for key_value in ('summary', 'variables'):
             self.assertTrue(key_value in context,
                             'Key value {} missing from context'.format(key_value))
 
@@ -81,11 +81,10 @@ class TestSummaryContext(TestStandardSummaryContext):
 
 
     def test_build_view_context_for_summary(self):
-        csrf_token = None
         variables = None
 
         context = build_view_context_for_final_summary(self.metadata, self.schema, self.answer_store,
-                                                       self.schema_context, self.block_type, variables, csrf_token,
+                                                       self.schema_context, self.block_type, variables,
                                                        self.rendered_block)
 
         self.check_context(context)
@@ -115,7 +114,6 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
         self.check_summary_rendering_context(summary_rendering_context)
 
     def test_build_view_context_for_section_summary(self):
-        csrf_token = None
         variables = None
 
         current_location = Location(
@@ -126,7 +124,7 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
 
         context = build_view_context_for_section_summary(self.metadata, self.schema, self.answer_store,
                                                          self.schema_context, self.block_type, variables,
-                                                         csrf_token, current_location.group_id)
+                                                         current_location.group_id)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -164,7 +162,6 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_currency_calculated_summary_no_skip(self):
-        csrf_token = None
         variables = None
 
         current_location = Location(
@@ -175,7 +172,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
                                                             self.schema_context, self.block_type,
-                                                            variables, csrf_token, current_location)
+                                                            variables, current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -193,7 +190,6 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_currency_calculated_summary_with_skip(self):
-        csrf_token = None
         variables = None
 
         current_location = Location(
@@ -206,7 +202,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         self.answer_store.add_or_update(skip_answer)
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
                                                             self.schema_context, self.block_type,
-                                                            variables, csrf_token, current_location)
+                                                            variables, current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -223,7 +219,6 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_unit_calculated_summary(self):
-        csrf_token = None
         variables = None
 
         current_location = Location(
@@ -234,7 +229,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
                                                             self.schema_context, self.block_type,
-                                                            variables, csrf_token, current_location)
+                                                            variables, current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -249,7 +244,6 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '9 cm')
 
     def test_build_view_context_for_percentage_calculated_summary(self):
-        csrf_token = None
         variables = None
 
         current_location = Location(
@@ -260,7 +254,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
                                                             self.schema_context, self.block_type,
-                                                            variables, csrf_token, current_location)
+                                                            variables, current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -276,7 +270,6 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_number_calculated_summary(self):
-        csrf_token = None
         variables = None
 
         current_location = Location(
@@ -287,7 +280,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
                                                             self.schema_context, self.block_type,
-                                                            variables, csrf_token, current_location)
+                                                            variables, current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -307,7 +300,6 @@ class TestRepeatingSummaryContext(TestStandardSummaryContext):
     def setUp(self):
         super().setUp()
         self.schema = load_schema_from_params('test', 'repeat_until_summaries')
-        self.csrf_token = None
         self. variables = None
 
         answers = [
@@ -362,7 +354,7 @@ class TestRepeatingSummaryContext(TestStandardSummaryContext):
         group_id = 'household-summary-group'
 
         context = build_view_context_for_section_summary(self.metadata, self.schema, self.answer_store, self.schema_context,
-                                                         block_type, self.variables, self.csrf_token, group_id)
+                                                         block_type, self.variables, group_id)
 
         self.check_context(context)
 
@@ -390,7 +382,7 @@ class TestRepeatingSummaryContext(TestStandardSummaryContext):
         current_location = Location('member-group', 1, 'currency-total-playback')
 
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store, schema_context, block_type,
-                                                            self.variables, self.csrf_token, current_location)
+                                                            self.variables, current_location)
 
         self.check_context(context)
 
@@ -407,7 +399,7 @@ class TestRepeatingSummaryContext(TestStandardSummaryContext):
         block = self.schema.get_block('summary')
 
         context = build_view_context_for_final_summary(self.metadata, self.schema, self.answer_store, self.schema_context,
-                                                       block_type, self.variables, self.csrf_token, block)
+                                                       block_type, self.variables, block)
 
         self.check_context(context)
 

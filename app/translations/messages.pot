@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-28 11:40+0000\n"
+"POT-Creation-Date: 2018-11-30 12:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,37 +54,42 @@ msgstr ""
 msgid "Select relationship"
 msgstr ""
 
-#: app/templates/confirmation.html:3 app/templates/confirmation.html:12
+#: app/templates/confirmation.html:5 app/templates/confirmation.html:14
 msgid "Submit answers"
 msgstr ""
 
-#: app/templates/confirmation.html:8 app/templates/interstitial.html:3
+#: app/templates/confirmation.html:10 app/templates/interstitial.html:5
 msgid "Continue"
 msgstr ""
 
-#: app/templates/confirmation.html:10
+#: app/templates/confirmation.html:12
 msgid "Yes, I confirm these are correct"
 msgstr ""
 
-#: app/templates/confirmation.html:12
+#: app/templates/confirmation.html:14
 msgid "Submitting"
 msgstr ""
 
-#: app/templates/feedback.html:2 app/templates/feedback.html:7
+#: app/templates/feedback.html:2 app/templates/feedback.html:6
 msgid "Survey feedback"
 msgstr ""
 
-#: app/templates/feedback_sent.html:3 app/templates/feedback_sent.html:9
+#: app/templates/feedback_sent.html:3 app/templates/feedback_sent.html:8
 msgid "Thank you for your feedback"
 msgstr ""
 
-#: app/templates/feedback_sent.html:8 app/templates/thank-you.html:8
+#: app/templates/feedback_sent.html:7 app/templates/thank-you.html:7
 #: app/themes/social/templates/thank-you.html:8
 msgid "Submission successful"
 msgstr ""
 
-#: app/templates/feedback_sent.html:13
+#: app/templates/feedback_sent.html:12
 msgid "It is now safe to close this window"
+msgstr ""
+
+#: app/templates/feedback_sent.html:16 app/templates/session-expired.html:16
+#: app/templates/signed-out.html:12
+msgid "Return to your account"
 msgstr ""
 
 #: app/templates/introduction.html:26
@@ -123,14 +128,14 @@ msgstr ""
 msgid "Close this window to continue with your current survey"
 msgstr ""
 
-#: app/templates/question.html:9
+#: app/templates/question.html:11
 #, python-format
 msgid "This page has an error"
 msgid_plural "This page has %(num)s errors"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/templates/question.html:12
+#: app/templates/question.html:14
 msgid "This <strong>must be corrected</strong> to continue"
 msgid_plural "These <strong>must be corrected</strong> to continue"
 msgstr[0] ""
@@ -148,51 +153,47 @@ msgstr ""
 msgid "To help protect your information we have signed you out"
 msgstr ""
 
-#: app/templates/session-expired.html:16 app/templates/signed-out.html:13
-msgid "Return to your account"
-msgstr ""
-
 #: app/templates/signed-out.html:3
 msgid "Signed out"
 msgstr ""
 
-#: app/templates/signed-out.html:9
+#: app/templates/signed-out.html:8
 msgid "Your survey answers have been saved. You are now signed out"
 msgstr ""
 
-#: app/templates/summary.html:4
+#: app/templates/summary.html:6
 msgid "Summary"
 msgstr ""
 
-#: app/templates/summary.html:19
+#: app/templates/summary.html:21
 msgid "Check your answers and submit"
 msgstr ""
 
-#: app/templates/summary.html:21
+#: app/templates/summary.html:23
 msgid "Please remember to submit these answers"
 msgstr ""
 
-#: app/templates/summary.html:24
+#: app/templates/summary.html:26
 msgid "Please submit this survey to complete it"
 msgstr ""
 
-#: app/templates/summary.html:25
+#: app/templates/summary.html:27
 msgid "You can check your answers below"
 msgstr ""
 
-#: app/templates/summary.html:33
+#: app/templates/summary.html:35
 msgid "This section is now complete"
 msgstr ""
 
-#: app/templates/summary.html:34
+#: app/templates/summary.html:36
 msgid "You can review your answers below"
 msgstr ""
 
-#: app/templates/summary.html:41
+#: app/templates/summary.html:43
 msgid "Please review your answers and confirm these are correct"
 msgstr ""
 
-#: app/templates/summary.html:54
+#: app/templates/summary.html:56
 msgid ""
 "You will have the opportunity to view and print a copy of your answers "
 "after submitting this survey"
@@ -202,38 +203,38 @@ msgstr ""
 msgid "We've received your answers"
 msgstr ""
 
-#: app/templates/thank-you.html:15
+#: app/templates/thank-you.html:14
 #, python-format
 msgid ""
 "Your answers were submitted for <span>%(ru_name)s</span> "
 "(%(trading_as_name)s) on %(submitted_date_time)s"
 msgstr ""
 
-#: app/templates/thank-you.html:20
+#: app/templates/thank-you.html:19
 #, python-format
 msgid ""
 "Your answers were submitted for <span>%(ru_name)s</span> on "
 "%(submitted_date_time)s"
 msgstr ""
 
-#: app/templates/thank-you.html:25 app/templates/view-submission.html:26
+#: app/templates/thank-you.html:24 app/templates/view-submission.html:26
 msgid "Transaction ID"
 msgstr ""
 
-#: app/templates/thank-you.html:30
+#: app/templates/thank-you.html:29
 msgid "Your answers will be processed in the next few weeks"
 msgstr ""
 
-#: app/templates/thank-you.html:31
+#: app/templates/thank-you.html:30
 msgid "We may contact you to query your answers via phone or secure message"
 msgstr ""
 
-#: app/templates/thank-you.html:38
+#: app/templates/thank-you.html:37
 #: app/themes/social/templates/thank-you.html:19
 msgid "View and print a copy of your answers"
 msgstr ""
 
-#: app/templates/thank-you.html:39
+#: app/templates/thank-you.html:38
 #: app/themes/social/templates/thank-you.html:20
 #, python-format
 msgid ""
@@ -241,17 +242,17 @@ msgid ""
 "secure."
 msgstr ""
 
-#: app/templates/thank-you.html:44
+#: app/templates/thank-you.html:43
 #: app/themes/social/templates/thank-you.html:25
 msgid "You are no longer able to view and print your answers"
 msgstr ""
 
-#: app/templates/thank-you.html:45
+#: app/templates/thank-you.html:44
 #: app/themes/social/templates/thank-you.html:26
 msgid "The link expires to maintain the security of your information"
 msgstr ""
 
-#: app/templates/thank-you.html:54
+#: app/templates/thank-you.html:53
 msgid "For more information on how we use this data"
 msgstr ""
 
@@ -281,19 +282,24 @@ msgstr ""
 msgid "Print this page"
 msgstr ""
 
-#: app/templates/layouts/_base.html:13
+#: app/templates/layouts/_base.html:14
 msgid "ONS Survey"
 msgstr ""
 
-#: app/templates/layouts/_base.html:80
+#: app/templates/layouts/_base.html:81
 msgid "Skip to content"
 msgstr ""
 
-#: app/templates/layouts/_base.html:93
+#: app/templates/layouts/_base.html:85
+#: app/templates/layouts/_questionnaire.html:30
+msgid "Save and continue"
+msgstr ""
+
+#: app/templates/layouts/_base.html:96
 msgid "Hide sections"
 msgstr ""
 
-#: app/templates/layouts/_base.html:93
+#: app/templates/layouts/_base.html:96
 msgid "View sections"
 msgstr ""
 
@@ -316,14 +322,6 @@ msgstr ""
 
 #: app/templates/layouts/_error.html:23
 msgid "Your system information"
-msgstr ""
-
-#: app/templates/layouts/_questionnaire.html:33
-msgid "Save and continue"
-msgstr ""
-
-#: app/templates/layouts/_questionnaire.html:37
-msgid "Save and complete later"
 msgstr ""
 
 #: app/templates/partials/answer-guidance.html:10
@@ -459,12 +457,28 @@ msgstr ""
 msgid "My account"
 msgstr ""
 
-#: app/templates/partials/previous-link.html:5
+#: app/templates/partials/previous-link.html:6
 msgid "Previous"
 msgstr ""
 
 #: app/templates/partials/section-navigation.html:3
 msgid "Sections"
+msgstr ""
+
+#: app/templates/partials/sign-out-button-navigation.html:7
+#: app/templates/partials/sign-out-button.html:7
+#: app/templates/partials/timeout.html:28
+msgid "Save and sign out"
+msgstr ""
+
+#: app/templates/partials/sign-out-button-navigation.html:9
+#: app/templates/partials/sign-out-button.html:9
+msgid "Sign out"
+msgstr ""
+
+#: app/templates/partials/sign-out-button-navigation.html:13
+#: app/templates/partials/sign-out-button.html:13
+msgid "Save and complete later"
 msgstr ""
 
 #: app/templates/partials/timeout.html:12
@@ -477,10 +491,6 @@ msgstr ""
 
 #: app/templates/partials/timeout.html:26
 msgid "Continue survey"
-msgstr ""
-
-#: app/templates/partials/timeout.html:28
-msgid "Save and sign out"
 msgstr ""
 
 #: app/templates/partials/answers/checkbox.html:8
@@ -541,7 +551,7 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: app/templates/partials/introduction/start-survey.html:5
+#: app/templates/partials/introduction/start-survey.html:1
 msgid "Start survey"
 msgstr ""
 
@@ -1443,7 +1453,7 @@ msgstr ""
 msgid "Help finding your access code"
 msgstr ""
 
-#: app/themes/census/templates/introduction.html:38
+#: app/themes/census/templates/introduction.html:35
 msgid "Need help? More information about the Census"
 msgstr ""
 

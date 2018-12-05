@@ -1,6 +1,6 @@
 const helpers = require('../helpers');
 
-const IntroductionPage = require('../base_pages/introduction.page');
+const IntroductionPage = require('../generated_pages/introduction/introduction.page');
 
 describe('Introduction page', function() {
 

@@ -1,5 +1,7 @@
 {% extends theme('layouts/_questionnaire.html') %}
 
+{% set save_on_signout = true %}
+
 {% block submit_button_text %}{{ _("Continue") }}{% endblock %}
 
 {% block form_content %}

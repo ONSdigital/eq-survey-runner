@@ -8,7 +8,7 @@ describe('Language Code', function() {
 
   it('Given the language code cy is specified I should see Welsh text', function() {
 
-    return helpers.openQuestionnaire('test_language.json', helpers.getRandomString(10), helpers.getRandomString(10), '201605', 'May 2016', 'GB-ENG', 'cy').then(() => {
+    return helpers.openQuestionnaire('test_language.json', { language: 'cy' }).then(() => {
 
       return browser
         .getText(LanguagePage.displayedName()).should.eventually.equal('Holiadur Cymraeg')
@@ -28,7 +28,7 @@ describe('Language Code', function() {
 
   it('Given the language code en is specified I should see English text', function() {
 
-    return helpers.openQuestionnaire('test_language.json', helpers.getRandomString(10), helpers.getRandomString(10), '201605', 'May 2016', 'GB-ENG', 'en').then(() => {
+    return helpers.openQuestionnaire('test_language.json', { language: 'en' }).then(() => {
 
       return browser
         .getText(LanguagePage.displayedName()).should.eventually.equal('English Questionnaire')
@@ -47,7 +47,7 @@ describe('Language Code', function() {
 
   it('Given the language code en, When I select Cymraeg lanuage, Then the language should be switched to Welsh', function() {
 
-    return helpers.openQuestionnaire('test_language.json', helpers.getRandomString(10), helpers.getRandomString(10), '201605', 'May 2016', 'GB-ENG', 'en').then(() => {
+    return helpers.openQuestionnaire('test_language.json', { language: 'en' }).then(() => {
 
       return browser
         .getText(LanguagePage.displayedName()).should.eventually.equal('English Questionnaire')
@@ -68,7 +68,7 @@ describe('Language Code', function() {
 
   it('Given the language code cy, When I select English lanuage, Then the language should be switched to English', function() {
 
-    return helpers.openQuestionnaire('test_language.json', helpers.getRandomString(10), helpers.getRandomString(10), '201605', 'May 2016', 'GB-ENG', 'cy').then(() => {
+    return helpers.openQuestionnaire('test_language.json', { language: 'cy' }).then(() => {
 
       return browser
         .getText(LanguagePage.displayedName()).should.eventually.equal('Holiadur Cymraeg')

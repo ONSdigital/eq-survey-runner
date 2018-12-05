@@ -16,7 +16,7 @@ const encryptionKeyString = fs.readFileSync(encryptionKey, 'utf8');  // get publ
 
 const schemaRegEx = /^([a-z0-9]+)_(\w+)\.json/;
 
-module.exports = function generateToken(schema, userId, collectionId, periodId = '201605', periodStr = 'May 2016', regionCode = 'GB-ENG', languageCode = 'en', sexualIdentity = false) {
+module.exports = function generateToken(schema, userId, collectionId, periodId = '201605', periodStr = 'May 2016', regionCode = 'GB-ENG', languageCode = 'en', sexualIdentity = false, includeLogoutUrl = true) {
   let schemaParts = schemaRegEx.exec(schema);
 
   // Header
@@ -51,6 +51,10 @@ module.exports = function generateToken(schema, userId, collectionId, periodId =
     sexual_identity: sexualIdentity,
     account_service_url: 'http://localhost:8000'
   };
+
+  if (includeLogoutUrl) {
+    oPayload['account_service_log_out_url'] = 'http://localhost:8000';
+  }
 
   // Sign JWT, password=616161
   let sHeader = JSON.stringify(oHeader);

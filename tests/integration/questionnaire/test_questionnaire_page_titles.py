@@ -44,14 +44,6 @@ class TestQuestionnairePageTitles(IntegrationTestCase):
         # Then
         self.assertEqualPageTitle("We\'ve received your answers - Final confirmation to submit")
 
-    def test_should_have_survey_in_page_title_when_sign_out(self):
-        # Given
-        self.launchSurvey('test', 'final_confirmation')
-        # When
-        self.get('/signed-out')
-        # Then
-        self.assertEqualPageTitle('Signed out - Final confirmation to submit')
-
     def test_session_expired_page_title(self):
         # Given
         self.launchSurvey('test', 'final_confirmation')

@@ -28,15 +28,15 @@ describe('Timeout', function() {
 
   it('Given the timeout pop-up has appeared, when I choose to "Save and sign out", then I am redirected to a page confirming I have been signed out and that all data saved will be retained', function() {
     const collectionId = helpers.getRandomString(10);
-    return helpers.openQuestionnaire('test_timeout.json', 'testUser', collectionId).then(() => {
+    return helpers.openQuestionnaire('test_timeout.json', { userId: 'testUser', collectionId: collectionId }).then(() => {
       return browser
         .setValue(TimeoutBlockPage.timeout(), 'foo')
         .waitForVisible(dialog,5000)
         .click('.js-timeout-save')
-        .getUrl().should.eventually.contain('signed-out');
+        .getUrl().should.eventually.contain('localhost');
     })
     .then(() => {
-      return helpers.openQuestionnaire('test_timeout.json', 'testUser', collectionId);
+      return helpers.openQuestionnaire('test_timeout.json', { userId: 'testUser', collectionId: collectionId });
     })
     .then(() => {
       return browser
@@ -46,14 +46,14 @@ describe('Timeout', function() {
 
   it('Given the timeout pop-up has appeared, when I ignore it, then I will be signed out and redirected to a page confirming I have been signed out and that all data saved will be retained', function() {
     const collectionId = helpers.getRandomString(10);
-    return helpers.openQuestionnaire('test_timeout.json', 'testUser', collectionId).then(() => {
+    return helpers.openQuestionnaire('test_timeout.json', { userId: 'testUser', collectionId: collectionId }).then(() => {
       return browser
         .setValue(TimeoutBlockPage.timeout(), 'foo')
         .click(TimeoutBlockPage.submit())
         .waitUntil(() => browser.getUrl().should.eventually.contain('session-expired'), 7000);
     })
     .then(() => {
-      return helpers.openQuestionnaire('test_timeout.json', 'testUser', collectionId);
+      return helpers.openQuestionnaire('test_timeout.json', { userId: 'testUser', collectionId: collectionId });
     })
     .then(() => {
       return browser
@@ -70,7 +70,7 @@ describe('Timeout', function() {
         .getUrl().should.eventually.contain('summary')
         .waitForVisible(dialog,5000)
         .click('.js-timeout-save')
-        .getUrl().should.eventually.contain('signed-out');
+        .getUrl().should.eventually.contain('localhost');
     });
   });
 
