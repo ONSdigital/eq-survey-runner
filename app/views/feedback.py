@@ -49,6 +49,10 @@ def get_form():
 @feedback_blueprint.route('', methods=['POST'])
 @login_required
 def send_feedback():
+
+    if 'action[sign_out]' in request.form:
+        return redirect(url_for('session.get_sign_out'))
+
     form = FeedbackForm()
 
     if form.validate():
@@ -82,6 +86,12 @@ def send_feedback():
 @login_required
 def thank_you():
     return _render_template('feedback_sent')
+
+
+@feedback_blueprint.route('/thank-you', methods=['POST'])
+@login_required
+def post_thank_you():
+    return redirect(url_for('session.get_sign_out'))
 
 
 @template_helper.with_session_timeout

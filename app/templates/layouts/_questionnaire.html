@@ -20,9 +20,6 @@
 
     {% block form_errors %}{% endblock %}
 
-    <form class="form qa-questionnaire-form" role="form" method="POST" autocomplete="off" novalidate>
-      {{ content.csrf_token }}
-
       {% block form_content %}
         <div class="group" id="{{current_location.group_id}}">
             {% include 'partials/block.html' %}
@@ -33,10 +30,6 @@
       <button class="btn u-mb-s" data-qa="btn-submit" type="submit" name="action[save_continue]">{% block submit_button_text %}{{ _("Save and continue") }}{% endblock submit_button_text %}</button>
       {% endblock %}
 
-      <div class="u-mb-m">
-        <button class="btn btn--secondary js-btn-save" data-qa="btn-save-sign-out" type="submit" name="action[save_sign_out]" {{helpers.track('click', 'Navigation', 'Save and complete later click')}}>{% block save_sign_out_button_text %}{{ _("Save and complete later") }}{% endblock %}</button>
-      </div>
-    </form>
 {% endblock main %}
 {% block footer %}
 <div class="pre-footer">

@@ -22,8 +22,7 @@ from app.globals import (get_answer_store, get_completed_blocks, get_metadata, g
 from app.globals import get_session_store, get_completeness
 from app.helpers.form_helper import post_form_for_location
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required
-from app.helpers.schema_helpers import get_group_instance_id
-from app.helpers.schema_helpers import with_schema
+from app.helpers.schema_helpers import get_group_instance_id, with_schema
 from app.helpers.session_helpers import with_answer_store, with_metadata, with_collection_metadata
 from app.helpers.template_helper import (with_session_timeout, with_metadata_context, with_analytics,
                                          with_questionnaire_url_prefix, with_legal_basis, render_template)
@@ -32,8 +31,7 @@ from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
 from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.router import Router
-from app.questionnaire.rules import evaluate_skip_conditions
-from app.questionnaire.rules import get_answer_ids_on_routing_path
+from app.questionnaire.rules import evaluate_skip_conditions, get_answer_ids_on_routing_path
 from app.storage import data_access
 from app.storage.storage_encryption import StorageEncryption
 from app.submitter.converter import convert_answers
@@ -178,6 +176,9 @@ def post_block(routing_path, schema, metadata, collection_metadata, answer_store
     if 'action[save_sign_out]' in request.form:
         return _save_sign_out(routing_path, current_location, form, schema, answer_store, metadata)
 
+    if 'action[sign_out]' in request.form:
+        return redirect(url_for('session.get_sign_out'))
+
     if form.validate():
         _set_started_at_metadata_if_required(form, collection_metadata)
         _update_questionnaire_store(current_location, form, schema)
@@ -272,6 +273,7 @@ def get_thank_you(schema, metadata, eq_id, form_type):
                                      is_view_submitted_response_enabled=is_view_submitted_response_enabled(schema.json),
                                      view_submission_url=view_submission_url,
                                      account_service_url=cookie_session.get('account_service_url'),
+                                     account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
                                      view_submission_duration=view_submission_duration)
 
     routing_path = path_finder.get_full_routing_path()
@@ -282,6 +284,12 @@ def get_thank_you(schema, metadata, eq_id, form_type):
     next_location = router.get_next_location()
 
     return _redirect_to_location(collection_id, metadata.get('eq_id'), metadata.get('form_type'), next_location)
+
+
+@post_submission_blueprint.route('thank-you', methods=['POST'])
+@login_required
+def post_thank_you(eq_id, form_type):  # pylint: disable=unused-argument
+    return redirect(url_for('session.get_sign_out'))
 
 
 @post_submission_blueprint.route('view-submission', methods=['GET'])
@@ -337,9 +345,17 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
                                          analytics_ua_id=current_app.config['EQ_UA_ID'],
                                          survey_id=schema.json['survey_id'],
                                          survey_title=TemplateRenderer.safe_content(schema.json['title']),
+                                         account_service_url=cookie_session.get('account_service_url'),
+                                         account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
                                          content=context)
 
     return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
+
+
+@post_submission_blueprint.route('view-submission', methods=['POST'])
+@login_required
+def post_view_submission(eq_id, form_type):  # pylint: disable=unused-argument
+    return redirect(url_for('session.get_sign_out'))
 
 
 def _set_started_at_metadata_if_required(form, collection_metadata):

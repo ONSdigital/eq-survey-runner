@@ -4,13 +4,12 @@
 
 {% block main %}
 
-
-<div class="u-mb-s">
+ <div class="u-mb-s">
     <h1 class="saturn">{{ _("Your survey answers have been saved. You are now signed out") }}.</h1>
 </div>
 
 {% if account_service_url %}
-    <a href="{{account_service_url}}">{{ _("Return to your account") }}</a>
+<a href="{{account_service_url}}">{{ _("Return to your account") }}</a>
 {% endif %}
 
 {% endblock %}

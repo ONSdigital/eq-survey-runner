@@ -18,5 +18,9 @@ class ThankYouPage extends QuestionPage {
     return '[data-qa="view-submission-expired"]';
   }
 
+  signOut() {
+    return '[data-qa="btn-sign-out"]';
+  }
+
 }
 module.exports = new ThankYouPage();

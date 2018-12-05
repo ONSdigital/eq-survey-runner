@@ -1,7 +1,9 @@
 const _ = require('lodash');
-const introductionPage = require('./base_pages/introduction.page');
+const IntroductionPage = require('./base_pages/introduction.page');
 const genericPage = require('./base_pages/generic.page');
 const generateToken = require('./jwt_helper');
+
+const introductionPage = new IntroductionPage('introduction');
 
 const getUri = uri => browser.options.baseUrl + uri;
 
@@ -20,8 +22,8 @@ const startCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-E
   });
 };
 
-function openQuestionnaire(schema, userId = getRandomString(10), collectionId = getRandomString(10), periodId = '201605', periodStr = 'May 2016', region = 'GB-ENG', language = 'en') {
-  return generateToken(schema, userId, collectionId, periodId, periodStr, region, language)
+function openQuestionnaire(schema, { userId = getRandomString(10), collectionId = getRandomString(10), periodId = '201605', periodStr = 'May 2016', region = 'GB-ENG', language = 'en', sexualIdentity = false, includeLogoutUrl = false } = {}) {
+  return generateToken(schema, userId, collectionId, periodId, periodStr, region, language, sexualIdentity, includeLogoutUrl)
     .then(function(token) {
       return browser.url('/session?token=' + token);
     });

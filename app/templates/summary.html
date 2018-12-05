@@ -1,6 +1,8 @@
 {% import 'macros/helpers.html' as helpers %}
 {% extends theme('confirmation.html') -%}
 
+{% set save_on_signout = true %}
+
 {% block page_title -%}{{_("Summary")}} - {{survey_title}}{% endblock -%}
 
 {% block sidebar %}

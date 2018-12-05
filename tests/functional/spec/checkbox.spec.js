@@ -93,7 +93,7 @@ describe('Checkbox with "other" option', function() {
 
   });
 
-  it('Given I have previously added text in other texfiled and saved, when I uncheck other options and select a different checkbox as answer, then the text entered in other field must be wiped.', function() {
+  it('Given I have previously added text in other textfield and saved, when I uncheck other options and select a different checkbox as answer, then the text entered in other field must be wiped.', function() {
     // Given
     return helpers.openQuestionnaire(checkbox_schema).then(() => {
       return browser

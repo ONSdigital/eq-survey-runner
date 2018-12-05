@@ -1,6 +1,8 @@
 {% extends theme('layouts/_questionnaire.html') %}
 {% import 'macros/helpers.html' as helpers %}
 
+{% set save_on_signout = true %}
+
 {% block form_errors %}
   {% if form and (form.errors or form.question_errors) %}
 

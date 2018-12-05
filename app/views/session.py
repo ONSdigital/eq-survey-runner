@@ -69,8 +69,11 @@ def login():
     cookie_session['survey_title'] = g.schema.json['title']
     cookie_session['expires_in'] = get_session_timeout_in_seconds(g.schema)
 
-    if 'account_service_url' in claims and claims.get('account_service_url'):
+    if claims.get('account_service_url'):
         cookie_session['account_service_url'] = claims.get('account_service_url')
+
+    if claims.get('account_service_log_out_url'):
+        cookie_session['account_service_log_out_url'] = claims.get('account_service_log_out_url')
 
     routing_path = path_finder.get_full_routing_path()
     completeness = get_completeness(current_user)
@@ -118,7 +121,15 @@ def get_session_expired():
 
 @session_blueprint.route('/signed-out', methods=['GET'])
 def get_sign_out():
+    """
+    Signs the user first out of eq, then the account service by hitting the account services'
+    logout url.
+    """
+    account_service_log_out_url = cookie_session.get('account_service_log_out_url')
     logout_user()
+
+    if account_service_log_out_url:
+        return redirect(account_service_log_out_url)
 
     return render_theme_template(cookie_session.get('theme', 'default'),
                                  template_name='signed-out.html',

@@ -10,43 +10,27 @@ from app.storage.storage_encryption import StorageEncryption
 
 class TestViewSubmission(IntegrationTestCase):
 
-    def test_view_submission(self):
+    def setUp(self):
+        super().setUp()
+
         self.launchSurvey('test', 'view_submitted_response')
 
-        # check we're on first page
-        self.assertInBody('What is your favourite breakfast food')
-
-        # We fill in our answer
         form_data = {
-            # Food choice
             'radio-answer': 'Bacon',
         }
-
-        # We submit the form
         self.post(form_data)
 
-        # check we're on second page
-        self.assertInBody('Please enter test values (none mandatory)')
-
-        # We fill in our answers
         form_data = {
-            # Food choice
             'test-currency': '12',
             'square-kilometres': '345',
             'test-decimal': '67.89',
         }
-
-        # We submit the form
         self.post(form_data)
-
-        # There are no validation errors
-        self.assertInUrl('summary')
-
-        # check we're on the review answers page
-        self.assertInBody('You can check your answers below')
 
         # Submit answers
         self.post(action=None)
+
+    def test_view_submission(self):
 
         # check we're on the thank you page and view submission link is available
         self.assertInUrl('thank-you')
@@ -68,6 +52,15 @@ class TestViewSubmission(IntegrationTestCase):
 
         # check edit links are not on page
         self.assertNotInBody('data-ga-action="Edit click"')
+
+    def test_view_submission_sign_out(self):
+        self.get('questionnaire/test/view_submitted_response/view-submission')
+
+        self.post(action='sign_out')
+        self.assertEqualUrl('/signed-out')
+
+
+class TestCantViewSubmission(IntegrationTestCase):
 
     def test_try_view_submission_when_not_available(self):
         self.launchSurvey('test', 'currency')
@@ -114,6 +107,9 @@ class TestViewSubmission(IntegrationTestCase):
 
         # check we're redirected back to first page
         self.assertInBody('What is your favourite breakfast food')
+
+
+class TestViewSubmissionTradingAs(IntegrationTestCase):
 
     def test_view_submission_shows_trading_as_if_present(self):
         self.launchSurvey('test', 'view_submitted_response')

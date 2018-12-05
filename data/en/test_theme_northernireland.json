@@ -1,0 +1,60 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "0",
+    "title": "Test Northern Ireland Survey",
+    "theme": "northernireland",
+    "description": "A questionnaire to demo the northernireland survey theme",
+    "view_submitted_response": {
+        "enabled": true,
+        "duration": 5
+    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
+    "sections": [{
+        "id": "section",
+        "groups": [{
+            "blocks": [{
+                "type": "Question",
+                "id": "radio",
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "radio-answer",
+                        "mandatory": false,
+                        "options": [{
+                            "label": "Bacon",
+                            "value": "Bacon"
+                        }, {
+                            "label": "Eggs",
+                            "value": "Eggs"
+                        }, {
+                            "label": "Sausage",
+                            "value": "Sausage"
+                        }],
+                        "q_code": "20",
+                        "type": "Radio"
+                    }],
+                    "id": "radio-question",
+                    "title": "What is your favourite breakfast food?",
+                    "type": "General"
+                }],
+                "title": "Favourite breakfast food"
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }],
+            "id": "group",
+            "title": "Northern Ireland Theme Test"
+        }]
+    }]
+}

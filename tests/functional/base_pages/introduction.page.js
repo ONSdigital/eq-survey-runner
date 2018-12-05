@@ -2,12 +2,16 @@ const BasePage = require('./base.page');
 
 class IntroductionPage extends BasePage {
 
-  constructor() {
-    super('introduction-page');
+  constructor(pageName) {
+    super(pageName);
   }
 
   myAccountLink() {
     return '#my-account';
+  }
+
+  signOut() {
+    return '[data-qa="btn-sign-out"]';
   }
 
   getStarted() {
@@ -39,4 +43,4 @@ class IntroductionPage extends BasePage {
   }
 }
 
-module.exports = new IntroductionPage();
+module.exports = IntroductionPage;

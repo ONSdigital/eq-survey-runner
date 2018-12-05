@@ -19,7 +19,7 @@ describe('Skip Conditions', function() {
   });
 
   it('Given metadata is choosing to skip, When I complete all questions, Then I should see the summary page', function() {
-    return helpers.openQuestionnaire('test_skip_condition_question.json', 'Skip').then(() => {
+    return helpers.openQuestionnaire('test_skip_condition_question.json', { userId: 'Skip' }).then(() => {
       return browser
         .click(ShouldSkipPage.firstNo())
         .click(ShouldSkipPage.secondNo())
@@ -31,7 +31,7 @@ describe('Skip Conditions', function() {
   });
 
   it('Given first question is choosing to skip, When I complete all questions, Then I should see the summary page', function() {
-    return helpers.openQuestionnaire('test_skip_condition_question.json').then(() => {
+    return helpers.openQuestionnaire('test_skip_condition_question.json', { userId: 'Skip' }).then(() => {
       return browser
         .click(ShouldSkipPage.firstYes())
         .click(ShouldSkipPage.secondNo())

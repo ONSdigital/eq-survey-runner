@@ -1,5 +1,7 @@
 {% extends theme('layouts/_questionnaire.html') %}
 
+{% set save_on_signout = true %}
+
 {% block page_title %}{{_("Submit answers")}} - {{survey_title}}{% endblock %}
 
 {% block submit_button %}

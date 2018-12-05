@@ -12,6 +12,7 @@ class SessionData:
                  case_id,
                  case_ref=None,
                  account_service_url=None,
+                 account_service_log_out_url=None,
                  submitted_time=None,
                  trad_as=None,
                  **_):                  # pylint: disable=too-many-locals
@@ -28,3 +29,4 @@ class SessionData:
         self.case_ref = case_ref
         self.trad_as = trad_as
         self.account_service_url = account_service_url
+        self.account_service_log_out_url = account_service_log_out_url

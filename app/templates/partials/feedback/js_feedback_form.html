@@ -1,5 +1,5 @@
 <form id="feedback-form" method="POST" class="js-form-submitter">
-    {{ content.csrf_token }}
+    <input id="csrf_token" name="csrf_token" type="hidden" value="{{ csrf_token() }}"/>
     <div class="group u-mt-s">
         <div class="u-mb-s">
             <label id="feedback-message-label" class="label venus" for="feedback-message">{{ _("How can we improve this survey") }}?</label>

@@ -441,7 +441,10 @@ def process_block(block, dir_out, schema_data, spec_file, relative_require='..')
         if block['type'] == 'CalculatedSummary':
             base_page = 'CalculatedSummaryPage'
             base_page_file = 'calculated-summary.page'
-            relative_require = relative_require.replace('/surveys', '')
+
+        if block['type'] == 'Introduction':
+            base_page = 'IntroductionPageBase'
+            base_page_file = 'introduction.page'
 
         block_context = {
             'pageName': page_name,

@@ -1,5 +1,4 @@
 from flask import url_for
-from flask_wtf import FlaskForm
 from app.jinja_filters import get_formatted_currency, format_number, format_unit, format_percentage
 from app.helpers.form_helper import get_form_for_location
 from app.templating.summary_context import build_summary_rendering_context
@@ -15,23 +14,19 @@ def build_view_context(block_type, metadata, schema, answer_store, schema_contex
         variables = renderer.render(schema.json.get('variables'), **schema_context)
 
     if block_type == 'Summary':
-        form = form or FlaskForm()
         return build_view_context_for_final_summary(metadata, schema, answer_store, schema_context, block_type,
-                                                    variables, form.csrf_token, rendered_block)
+                                                    variables, rendered_block)
     if block_type == 'SectionSummary':
-        form = form or FlaskForm()
         return build_view_context_for_section_summary(metadata, schema, answer_store, schema_context, block_type,
-                                                      variables, form.csrf_token, current_location.group_id)
+                                                      variables, current_location.group_id)
 
     if block_type == 'CalculatedSummary':
-        form = form or FlaskForm()
         return build_view_context_for_calculated_summary(metadata, schema, answer_store, schema_context, block_type,
-                                                         variables, form.csrf_token, current_location)
+                                                         variables, current_location)
 
     if block_type == 'AnswerSummary':
-        form = form or FlaskForm()
         return build_view_context_for_answer_summary(metadata, schema, answer_store, block_type,
-                                                     variables, form.csrf_token, current_location)
+                                                     variables, current_location)
 
     if block_type in ('Question', 'ConfirmationQuestion'):
         form = form or get_form_for_location(schema, rendered_block, current_location, answer_store, metadata)
@@ -39,15 +34,13 @@ def build_view_context(block_type, metadata, schema, answer_store, schema_contex
                                                rendered_block, form)
 
     if block_type in ('Introduction', 'Interstitial', 'Confirmation'):
-        form = form or FlaskForm()
-        return build_view_context_for_non_question(variables, form.csrf_token, rendered_block)
+        return build_view_context_for_non_question(variables, rendered_block)
 
 
-def build_view_context_for_non_question(variables, csrf_token, rendered_block):
+def build_view_context_for_non_question(variables, rendered_block):
     return {
         'variables': variables,
         'block': rendered_block,
-        'csrf_token': csrf_token,
     }
 
 
@@ -56,7 +49,6 @@ def build_view_context_for_question(metadata, schema, answer_store, current_loca
     context = {
         'variables': variables,
         'block': rendered_block,
-        'csrf_token': form.csrf_token,
         'question_titles': {},
         'form': {
             'errors': form.errors,
@@ -106,11 +98,11 @@ def build_view_context_for_question(metadata, schema, answer_store, current_loca
 
 
 def build_view_context_for_final_summary(metadata, schema, answer_store, schema_context,
-                                         block_type, variables, csrf_token, rendered_block):
+                                         block_type, variables, rendered_block):
     section_list = schema.json['sections']
 
     context = build_view_context_for_summary(schema, section_list, answer_store, metadata,
-                                             csrf_token, block_type, variables, schema_context)
+                                             block_type, variables, schema_context)
 
     context['summary'].update({
         'is_view_submission_response_enabled': is_view_submitted_response_enabled(schema.json),
@@ -121,13 +113,13 @@ def build_view_context_for_final_summary(metadata, schema, answer_store, schema_
 
 
 def build_view_context_for_section_summary(metadata, schema, answer_store, schema_context,
-                                           block_type, variables, csrf_token, group_id):
+                                           block_type, variables, group_id):
     section_id = schema.get_group(group_id)['parent_id']
     section = schema.get_section(section_id)
     title = section.get('title')
 
     context = build_view_context_for_summary(schema, [section], answer_store, metadata,
-                                             csrf_token, block_type, variables, schema_context)
+                                             block_type, variables, schema_context)
 
     context['summary'].update({
         'title': title,
@@ -136,12 +128,12 @@ def build_view_context_for_section_summary(metadata, schema, answer_store, schem
 
 
 def build_view_context_for_calculated_summary(metadata, schema, answer_store, schema_context, block_type,
-                                              variables, csrf_token, current_location):
+                                              variables, current_location):
     block = schema.get_block(current_location.block_id)
     section_list = _build_calculated_summary_section_list(schema, block, current_location.group_id)
 
     context = build_view_context_for_summary(schema, section_list, answer_store, metadata,
-                                             csrf_token, block_type, variables, schema_context)
+                                             block_type, variables, schema_context)
 
     context['summary']['groups'] = [context['summary']['groups'][current_location.group_instance]]
     schema_context['group_instance_id'] = get_group_instance_id(schema, answer_store, current_location)
@@ -158,7 +150,7 @@ def build_view_context_for_calculated_summary(metadata, schema, answer_store, sc
 
 
 def build_view_context_for_answer_summary(metadata, schema, answer_store, block_type,  # pylint: disable=too-many-locals
-                                          variables, csrf_token, current_location):
+                                          variables, current_location):
     summary_block = schema.get_block(current_location.block_id)
 
     group = {
@@ -208,7 +200,6 @@ def build_view_context_for_answer_summary(metadata, schema, answer_store, block_
         group['answers'].append(view_answer)
 
     return {
-        'csrf_token': csrf_token,
         'summary': {
             'title': summary_block.get('title'),
             'label': summary_block.get('label'),
@@ -231,11 +222,10 @@ def _build_answers(answer_store, group_instance_id):
 
 
 def build_view_context_for_summary(schema, section_list, answer_store, metadata,
-                                   csrf_token, block_type, variables, schema_context):
+                                   block_type, variables, schema_context):
     summary_rendering_context = build_summary_rendering_context(schema, section_list, answer_store, metadata, schema_context)
 
     context = {
-        'csrf_token': csrf_token,
         'summary': {
             'groups': summary_rendering_context,
             'answers_are_editable': True,
