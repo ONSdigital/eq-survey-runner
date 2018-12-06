@@ -199,11 +199,15 @@ class AnswerStore:
             :param current_version: The current version integer of the answer store
             :param schema: The new schema
         """
-        desired_version = len(UPGRADE_TRANSFORMS)
+        desired_version = max(UPGRADE_TRANSFORMS) + 1
 
-        for version in range(current_version, desired_version):
-            transform = UPGRADE_TRANSFORMS[version]
-            logger.info('Upgrading answer store version', current_version=current_version, new_version=version, transform=transform.__name__)
+        for upgrade_from_version in range(current_version, desired_version):
+            if upgrade_from_version not in UPGRADE_TRANSFORMS:
+                continue
+
+            transform = UPGRADE_TRANSFORMS[upgrade_from_version]
+            upgrade_to_version = upgrade_from_version + 1
+            logger.info('Upgrading answer store version', current_version=current_version, new_version=upgrade_to_version, transform=transform.__name__)
             transform(self, schema)
 
 
@@ -245,7 +249,7 @@ def upgrade_1_to_2_add_group_instance_id(answer_store, schema):
         answer['group_instance_id'] = get_group_instance_id(schema, answer_store, location, answer['answer_instance'])
 
 
-def upgrade_2_to_3_remove_empty_answers(answer_store, schema):  # pylint: disable=unused-argument
+def upgrade_3_to_4_remove_empty_answers(answer_store, schema):  # pylint: disable=unused-argument
     """ Previously, we stored [] and '' as answer values for unanswered, but completed answers.
 
     This was changed to avoid storing unanswered values entirely, so this upgrade will
@@ -260,8 +264,9 @@ def upgrade_2_to_3_remove_empty_answers(answer_store, schema):  # pylint: disabl
     answer_store = answer_store_copy
 
 
-UPGRADE_TRANSFORMS = (
-    upgrade_0_to_1_update_date_formats,
-    upgrade_1_to_2_add_group_instance_id,
-    upgrade_2_to_3_remove_empty_answers,
-)
+# Dictionary specifying upgrade methods. Key should be the version to upgrade from. It is assumed that each transform only upgrades the version by 1.
+UPGRADE_TRANSFORMS = {
+    0: upgrade_0_to_1_update_date_formats,
+    1: upgrade_1_to_2_add_group_instance_id,
+    3: upgrade_3_to_4_remove_empty_answers,
+}
