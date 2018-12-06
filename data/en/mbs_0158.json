@@ -32,8 +32,8 @@
         "name": "employment_date",
         "validator": "date"
     }, {
-        "name": "trad_as_or_ru_name",
-        "validator": "string"
+        "name": "trad_as",
+        "validator": "optional_string"
     }],
     "sections": [{
         "id": "section",
@@ -187,7 +187,7 @@
                 "title": "Total turnover",
                 "questions": [{
                     "type": "General",
-                    "title": "For the period {{format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{metadata['trad_as_or_ru_name']}}\u2019s <em>total turnover</em>, excluding VAT?",
+                    "title": "For the period {{format_conditional_date (answers['period-from'], metadata['ref_p_start_date'])}} to {{format_conditional_date (answers['period-to'], metadata['ref_p_end_date'])}}, what was the value of {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s <em>total turnover</em>, excluding VAT?",
                     "guidance": {
                         "content": [{
                             "title": "Include:",
@@ -251,7 +251,7 @@
                 "type": "Question",
                 "questions": [{
                     "id": "number-of-employees-total-question",
-                    "title": "On {{metadata['employment_date']|format_date}}, what was the number of employees for {{metadata['trad_as_or_ru_name']}}?",
+                    "title": "On {{metadata['employment_date']|format_date}}, what was the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
                     "type": "General",
                     "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
                     "answers": [{
@@ -286,7 +286,7 @@
                 "questions": [{
                     "type": "General",
                     "id": "confirm-zero-employees-question",
-                    "title": "On {{metadata['employment_date']|format_date}}, the number of employees for {{metadata['trad_as_or_ru_name']}} was <em>0</em>, is this correct?",
+                    "title": "On {{metadata['employment_date']|format_date}}, the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was <em>0</em>, is this correct?",
                     "answers": [{
                         "type": "Radio",
                         "id": "confirm-zero-employees-answer",
@@ -387,12 +387,12 @@
                 "title": "Changes in total turnover",
                 "questions": [{
                     "type": "General",
-                    "title": "Did any significant changes occur to the total turnover for {{metadata['trad_as_or_ru_name']}}?",
+                    "title": "Did any significant changes occur to the total turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
                     "id": "changes-in-turnover-question",
                     "definitions": [{
                         "title": "What constitutes a significant change?",
                         "content": [{
-                            "description": "What constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{metadata['trad_as_or_ru_name']}}\u2019s figures from the previous reporting period and the same reporting period last year."
+                            "description": "What constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}\u2019s figures from the previous reporting period and the same reporting period last year."
                         }, {
                             "description": "This information will help us to validate your data and should reduce the need to query any figures with you."
                         }]
@@ -438,7 +438,7 @@
                 "questions": [{
                     "type": "General",
                     "id": "changes-in-turnover-question-2",
-                    "title": "Please indicate the reasons for any changes in the total turnover for {{metadata['trad_as_or_ru_name']}}",
+                    "title": "Please indicate the reasons for any changes in the total turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}",
                     "answers": [{
                         "id": "changes-in-turnover-answer-2",
                         "type": "Checkbox",
@@ -481,7 +481,7 @@
                 "questions": [{
                     "type": "General",
                     "id": "changes-in-turnover-question-3",
-                    "title": "Please describe the changes in total turnover for {{metadata['trad_as_or_ru_name']}} in more detail",
+                    "title": "Please describe the changes in total turnover for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} in more detail",
                     "description": "<p>We rely on your commentary to \u2018tell the story\u2019 behind changes in figures. By commenting here it will reduce the need for us to call you.</p>",
                     "answers": [{
                         "type": "TextArea",

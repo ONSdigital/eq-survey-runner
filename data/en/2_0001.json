@@ -18,8 +18,8 @@
         "name": "ref_p_start_date",
         "validator": "date"
     }, {
-        "name": "trad_as_or_ru_name",
-        "validator": "string"
+        "name": "trad_as",
+        "validator": "optional_string"
     }],
     "sections": [{
         "id": "default-section",
@@ -73,7 +73,7 @@
                         }]
                     },
                     "id": "number-of-employees-total-question",
-                    "title": "On {{metadata['ref_p_start_date']|format_date}}, what was the number of employees for {{metadata['trad_as_or_ru_name']}}?",
+                    "title": "On {{metadata['ref_p_start_date']|format_date}}, what was the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
                     "type": "General"
                 }],
                 "title": "Quarterly Business Survey",
@@ -105,7 +105,7 @@
                         "mandatory": true
                     }],
                     "id": "confirm-zero-employees-question",
-                    "title": "On {{metadata['ref_p_start_date']|format_date}}, the number of employees for {{metadata['trad_as_or_ru_name']}} was <em>0</em>, is this correct?"
+                    "title": "On {{metadata['ref_p_start_date']|format_date}}, the number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was <em>0</em>, is this correct?"
                 }],
                 "routing_rules": [{
                     "goto": {
