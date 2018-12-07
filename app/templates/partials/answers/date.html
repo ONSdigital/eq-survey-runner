@@ -1,11 +1,11 @@
 {% set subfields %}
- <div class="fieldgroup fieldgroup--inline" data-qa="widget-date">
+ <div class="fieldgroup fieldgroup--inline fieldgroup--date" data-qa="widget-date">
   <div class="fieldgroup__fields">
     {% if form.fields[answer['id']]['day'] %}
     <div class="field field--input">
       <label class="label u-fs-r" for="{{answer['id']}}-day" id="label-{{answer['id']}}-day" data-qa="label-day">{{ _("Day") }}</label>
       {% set input = form.fields[answer['id']]['day'] %}
-      {% set exclusive_class = "input--w-2" %}
+      {% set width_class = "input--w-2" %}
       {% set type = "number" %}
       {% include 'partials/forms/input.html' %}
     </div>
@@ -13,17 +13,16 @@
     {% if form.fields[answer['id']]['month'] %}
     <div class="field field--select">
       <label class="label u-fs-r" for="{{answer['id']}}-month" id="label-{{answer['id']}}-month" data-qa="label-month">{{ _("Month") }}</label>
-      {% set input = form.fields[answer['id']]['month'] %}
-      {% set exclusive_class = "input--w-2" %}
-      {% set type = "number" %}
-      {% include 'partials/forms/input.html' %}
+      {% set select = form.fields[answer['id']]['month'] %}
+      {% set width_class = "input--w-auto" %}
+      {% include 'partials/forms/select.html' %}
     </div>
     {% endif %}
     {% if form.fields[answer['id']]['year'] %}
     <div class="field field--input">
       <label class="label u-fs-r" for="{{answer['id']}}-year" id="label-{{answer['id']}}-year" data-qa="label-year">{{ _("Year") }}</label>
       {% set input = form.fields[answer['id']]['year'] %}
-      {% set exclusive_class = "input--w-4" %}
+      {% set width_class = "input--w-4" %}
       {% set type = "number" %}
       {% include 'partials/forms/input.html' %}
     </div>
