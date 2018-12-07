@@ -1,7 +1,7 @@
-from wtforms import validators, StringField, FormField, SelectField, SelectMultipleField
+from wtforms import validators, StringField, FormField, SelectField
 
 from app.data_model.answer_store import AnswerStore
-from app.forms.custom_fields import MaxTextAreaField
+from app.forms.custom_fields import MaxTextAreaField, CustomSelectMultipleField, CustomSelectField
 from app.forms.date_form import DateField, MonthYearField, YearField
 from app.forms.fields import CustomIntegerField, CustomDecimalField, get_field, get_mandatory_validator, get_length_validator, _coerce_str_unless_none
 from app.validation.error_messages import error_messages
@@ -268,9 +268,9 @@ class TestFields(AppContextTestCase):
         unbound_field = get_field(radio_json, radio_json['label'], error_messages, self.answer_store,
                                   self.metadata)
 
-        expected_choices = [(option['label'], option['value']) for option in radio_json['options']]
+        expected_choices = [(option['label'], option['value'], None) for option in radio_json['options']]
 
-        self.assertEqual(unbound_field.field_class, SelectField)
+        self.assertEqual(unbound_field.field_class, CustomSelectField)
         self.assertTrue(unbound_field.kwargs['coerce'], _coerce_str_unless_none)
         self.assertEqual(unbound_field.kwargs['label'], radio_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], radio_json['guidance'])
@@ -360,9 +360,9 @@ class TestFields(AppContextTestCase):
         unbound_field = get_field(checkbox_json, checkbox_json['label'], error_messages, self.answer_store,
                                   self.metadata)
 
-        expected_choices = [(option['value'], option['label']) for option in checkbox_json['options']]
+        expected_choices = [(option['value'], option['label'], None) for option in checkbox_json['options']]
 
-        self.assertEqual(unbound_field.field_class, SelectMultipleField)
+        self.assertEqual(unbound_field.field_class, CustomSelectMultipleField)
         self.assertEqual(unbound_field.kwargs['label'], checkbox_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], checkbox_json['guidance'])
         self.assertEqual(unbound_field.kwargs['choices'], expected_choices)

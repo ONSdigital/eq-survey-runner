@@ -140,7 +140,7 @@ class TestNumberValidator(unittest.TestCase):
         label = answer['label']
         returned_error_messages = answer['validation']['messages']
 
-        decimal_field = get_number_field(answer, label, '', returned_error_messages, AnswerStore())
+        decimal_field = get_number_field(answer, label, '', returned_error_messages, AnswerStore(), False)
 
         self.assertTrue(decimal_field.field_class == CustomDecimalField)
 
@@ -180,7 +180,7 @@ class TestNumberValidator(unittest.TestCase):
         returned_error_messages = answer['validation']['messages']
 
         with self.assertRaises(Exception) as ite:
-            get_number_field(answer, label, '', returned_error_messages, AnswerStore())
+            get_number_field(answer, label, '', returned_error_messages, AnswerStore(), False)
 
             self.assertEqual(str(ite.exception), 'decimal_places: 10 > system maximum: {} for answer id: test-range'
                              .format(MAX_DECIMAL_PLACES))

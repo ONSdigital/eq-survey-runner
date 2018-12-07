@@ -27,7 +27,8 @@
                     "answers": [{
                         "id": "answer",
                         "mandatory": true,
-                        "type": "Number"
+                        "type": "Number",
+                        "label": "123"
                     }],
                     "id": "question",
                     "title": "Enter the number 123",

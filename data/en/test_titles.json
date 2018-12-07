@@ -158,7 +158,8 @@
                     "answers": [{
                         "type": "Number",
                         "id": "age-answer",
-                        "mandatory": true
+                        "mandatory": true,
+                        "label": "Your age"
                     }]
                 }, {
                     "id": "sure-question",

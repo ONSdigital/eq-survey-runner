@@ -734,40 +734,37 @@
                                 }]
                             },
                             "answers": [{
-                                    "id": "number-of-vehicles-answer",
-                                    "mandatory": true,
-                                    "options": [{
-                                            "label": "None",
-                                            "value": "None"
-                                        },
-                                        {
-                                            "label": "1",
-                                            "value": "1"
-                                        },
-                                        {
-                                            "label": "2",
-                                            "value": "2"
-                                        },
-                                        {
-                                            "label": "3",
-                                            "value": "3"
-                                        },
-                                        {
-                                            "label": "4 or more",
-                                            "value": "4 or more",
-                                            "child_answer_id": "number-of-vehicles-answer-other"
+                                "id": "number-of-vehicles-answer",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "None",
+                                        "value": "None"
+                                    },
+                                    {
+                                        "label": "1",
+                                        "value": "1"
+                                    },
+                                    {
+                                        "label": "2",
+                                        "value": "2"
+                                    },
+                                    {
+                                        "label": "3",
+                                        "value": "3"
+                                    },
+                                    {
+                                        "label": "4 or more",
+                                        "value": "4 or more",
+                                        "detail_answer": {
+                                            "id": "number-of-vehicles-answer-other",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify number of cars or vans"
                                         }
-                                    ],
-                                    "type": "Radio"
-                                },
-                                {
-                                    "id": "number-of-vehicles-answer-other",
-                                    "parent_answer_id": "number-of-vehicles-answer",
-                                    "type": "TextField",
-                                    "mandatory": false,
-                                    "label": "Please specify number of cars or vans"
-                                }
-                            ]
+                                    }
+                                ],
+                                "type": "Radio"
+                            }]
                         }]
                     },
                     {
@@ -1241,32 +1238,29 @@
                             }],
                             "description": "This could be more than 30 days in a row, or divided across the year",
                             "answers": [{
-                                    "id": "another-address-answer",
-                                    "mandatory": true,
-                                    "options": [{
-                                            "label": "No",
-                                            "value": "No"
-                                        },
-                                        {
-                                            "label": "Yes, an address within the UK",
-                                            "value": "Yes, an address within the UK"
-                                        },
-                                        {
-                                            "label": "Yes, an address outside the UK",
-                                            "value": "Other",
-                                            "child_answer_id": "another-address-answer-other"
+                                "id": "another-address-answer",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "No",
+                                        "value": "No"
+                                    },
+                                    {
+                                        "label": "Yes, an address within the UK",
+                                        "value": "Yes, an address within the UK"
+                                    },
+                                    {
+                                        "label": "Yes, an address outside the UK",
+                                        "value": "Other",
+                                        "detail_answer": {
+                                            "id": "another-address-answer-other",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify a country"
                                         }
-                                    ],
-                                    "type": "Radio"
-                                },
-                                {
-                                    "id": "another-address-answer-other",
-                                    "parent_answer_id": "another-address-answer",
-                                    "type": "TextField",
-                                    "mandatory": false,
-                                    "label": "Please specify a country"
-                                }
-                            ]
+                                    }
+                                ],
+                                "type": "Radio"
+                            }]
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -1847,44 +1841,41 @@
                                 ],
                                 "type": "General",
                                 "answers": [{
-                                        "id": "country-of-birth-england-answer",
-                                        "mandatory": true,
-                                        "options": [{
-                                                "label": "England",
-                                                "value": "England"
-                                            },
-                                            {
-                                                "label": "Wales",
-                                                "value": "Wales"
-                                            },
-                                            {
-                                                "label": "Scotland",
-                                                "value": "Scotland"
-                                            },
-                                            {
-                                                "label": "Northern Ireland",
-                                                "value": "Northern Ireland"
-                                            },
-                                            {
-                                                "label": "Republic of Ireland",
-                                                "value": "Republic of Ireland"
-                                            },
-                                            {
-                                                "label": "Elsewhere",
-                                                "value": "Other",
-                                                "child_answer_id": "country-of-birth-england-answer-other"
+                                    "id": "country-of-birth-england-answer",
+                                    "mandatory": true,
+                                    "options": [{
+                                            "label": "England",
+                                            "value": "England"
+                                        },
+                                        {
+                                            "label": "Wales",
+                                            "value": "Wales"
+                                        },
+                                        {
+                                            "label": "Scotland",
+                                            "value": "Scotland"
+                                        },
+                                        {
+                                            "label": "Northern Ireland",
+                                            "value": "Northern Ireland"
+                                        },
+                                        {
+                                            "label": "Republic of Ireland",
+                                            "value": "Republic of Ireland"
+                                        },
+                                        {
+                                            "label": "Elsewhere",
+                                            "value": "Other",
+                                            "detail_answer": {
+                                                "id": "country-of-birth-england-answer-other",
+                                                "type": "TextField",
+                                                "mandatory": false,
+                                                "label": "Please specify current name of country"
                                             }
-                                        ],
-                                        "type": "Radio"
-                                    },
-                                    {
-                                        "id": "country-of-birth-england-answer-other",
-                                        "parent_answer_id": "country-of-birth-england-answer",
-                                        "type": "TextField",
-                                        "mandatory": false,
-                                        "label": "Please specify current name of country"
-                                    }
-                                ],
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                }],
                                 "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
@@ -1909,44 +1900,41 @@
                                 ],
                                 "type": "General",
                                 "answers": [{
-                                        "id": "country-of-birth-wales-answer",
-                                        "mandatory": true,
-                                        "options": [{
-                                                "label": "Wales",
-                                                "value": "Wales"
-                                            },
-                                            {
-                                                "label": "England",
-                                                "value": "England"
-                                            },
-                                            {
-                                                "label": "Scotland",
-                                                "value": "Scotland"
-                                            },
-                                            {
-                                                "label": "Northern Ireland",
-                                                "value": "Northern Ireland"
-                                            },
-                                            {
-                                                "label": "Republic of Ireland",
-                                                "value": "Republic of Ireland"
-                                            },
-                                            {
-                                                "label": "Elsewhere",
-                                                "value": "Other",
-                                                "child_answer_id": "country-of-birth-wales-answer-other"
+                                    "id": "country-of-birth-wales-answer",
+                                    "mandatory": true,
+                                    "options": [{
+                                            "label": "Wales",
+                                            "value": "Wales"
+                                        },
+                                        {
+                                            "label": "England",
+                                            "value": "England"
+                                        },
+                                        {
+                                            "label": "Scotland",
+                                            "value": "Scotland"
+                                        },
+                                        {
+                                            "label": "Northern Ireland",
+                                            "value": "Northern Ireland"
+                                        },
+                                        {
+                                            "label": "Republic of Ireland",
+                                            "value": "Republic of Ireland"
+                                        },
+                                        {
+                                            "label": "Elsewhere",
+                                            "value": "Other",
+                                            "detail_answer": {
+                                                "id": "country-of-birth-wales-answer-other",
+                                                "type": "TextField",
+                                                "mandatory": false,
+                                                "label": "Please specify current name of country"
                                             }
-                                        ],
-                                        "type": "Radio"
-                                    },
-                                    {
-                                        "id": "country-of-birth-wales-answer-other",
-                                        "parent_answer_id": "country-of-birth-wales-answer",
-                                        "type": "TextField",
-                                        "mandatory": false,
-                                        "label": "Please specify current name of country"
-                                    }
-                                ],
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                }],
                                 "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
@@ -2360,44 +2348,41 @@
                                     }]
                                 }],
                                 "answers": [{
-                                        "id": "national-identity-england-answer",
-                                        "mandatory": true,
-                                        "options": [{
-                                                "label": "English",
-                                                "value": "English"
-                                            },
-                                            {
-                                                "label": "Welsh",
-                                                "value": "Welsh"
-                                            },
-                                            {
-                                                "label": "Scottish",
-                                                "value": "Scottish"
-                                            },
-                                            {
-                                                "label": "Northern Irish",
-                                                "value": "Northern Irish"
-                                            },
-                                            {
-                                                "label": "British",
-                                                "value": "British"
-                                            },
-                                            {
-                                                "label": "Other",
-                                                "value": "Other",
-                                                "child_answer_id": "national-identity-england-answer-other"
+                                    "id": "national-identity-england-answer",
+                                    "mandatory": true,
+                                    "options": [{
+                                            "label": "English",
+                                            "value": "English"
+                                        },
+                                        {
+                                            "label": "Welsh",
+                                            "value": "Welsh"
+                                        },
+                                        {
+                                            "label": "Scottish",
+                                            "value": "Scottish"
+                                        },
+                                        {
+                                            "label": "Northern Irish",
+                                            "value": "Northern Irish"
+                                        },
+                                        {
+                                            "label": "British",
+                                            "value": "British"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "detail_answer": {
+                                                "id": "national-identity-england-answer-other",
+                                                "type": "TextField",
+                                                "mandatory": false,
+                                                "label": "Please describe your national identity"
                                             }
-                                        ],
-                                        "type": "Checkbox"
-                                    },
-                                    {
-                                        "id": "national-identity-england-answer-other",
-                                        "parent_answer_id": "national-identity-england-answer",
-                                        "type": "TextField",
-                                        "mandatory": false,
-                                        "label": "Please describe your national identity"
-                                    }
-                                ],
+                                        }
+                                    ],
+                                    "type": "Checkbox"
+                                }],
                                 "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
@@ -2428,45 +2413,42 @@
                                     }]
                                 }],
                                 "answers": [{
-                                        "id": "national-identity-wales-answer",
-                                        "label": "Select all that apply",
-                                        "mandatory": true,
-                                        "options": [{
-                                                "label": "Welsh",
-                                                "value": "Welsh"
-                                            },
-                                            {
-                                                "label": "English",
-                                                "value": "English"
-                                            },
-                                            {
-                                                "label": "Scottish",
-                                                "value": "Scottish"
-                                            },
-                                            {
-                                                "label": "Northern Irish",
-                                                "value": "Northern Irish"
-                                            },
-                                            {
-                                                "label": "British",
-                                                "value": "British"
-                                            },
-                                            {
-                                                "label": "Other",
-                                                "value": "Other",
-                                                "child_answer_id": "national-identity-wales-answer-other"
+                                    "id": "national-identity-wales-answer",
+                                    "label": "Select all that apply",
+                                    "mandatory": true,
+                                    "options": [{
+                                            "label": "Welsh",
+                                            "value": "Welsh"
+                                        },
+                                        {
+                                            "label": "English",
+                                            "value": "English"
+                                        },
+                                        {
+                                            "label": "Scottish",
+                                            "value": "Scottish"
+                                        },
+                                        {
+                                            "label": "Northern Irish",
+                                            "value": "Northern Irish"
+                                        },
+                                        {
+                                            "label": "British",
+                                            "value": "British"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "detail_answer": {
+                                                "id": "national-identity-wales-answer-other",
+                                                "type": "TextField",
+                                                "mandatory": false,
+                                                "label": "Please describe your national identity"
                                             }
-                                        ],
-                                        "type": "Checkbox"
-                                    },
-                                    {
-                                        "id": "national-identity-wales-answer-other",
-                                        "parent_answer_id": "national-identity-wales-answer",
-                                        "type": "TextField",
-                                        "mandatory": false,
-                                        "label": "Please describe your national identity"
-                                    }
-                                ],
+                                        }
+                                    ],
+                                    "type": "Checkbox"
+                                }],
                                 "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
@@ -2725,40 +2707,37 @@
                                 ],
                                 "type": "General",
                                 "answers": [{
-                                        "id": "white-ethnic-group-england-answer",
-                                        "mandatory": true,
-                                        "options": [{
-                                                "label": "English, Welsh, Scottish, Northern Irish or British",
-                                                "value": "English, Welsh, Scottish, Northern Irish or British"
-                                            },
-                                            {
-                                                "label": "Irish",
-                                                "value": "Irish"
-                                            },
-                                            {
-                                                "label": "Gypsy or Irish Traveller",
-                                                "value": "Gypsy or Irish Traveller"
-                                            },
-                                            {
-                                                "label": "Roma",
-                                                "value": "Roma"
-                                            },
-                                            {
-                                                "label": "Any other White background",
-                                                "value": "Other",
-                                                "child_answer_id": "white-ethnic-group-england-answer-other"
+                                    "id": "white-ethnic-group-england-answer",
+                                    "mandatory": true,
+                                    "options": [{
+                                            "label": "English, Welsh, Scottish, Northern Irish or British",
+                                            "value": "English, Welsh, Scottish, Northern Irish or British"
+                                        },
+                                        {
+                                            "label": "Irish",
+                                            "value": "Irish"
+                                        },
+                                        {
+                                            "label": "Gypsy or Irish Traveller",
+                                            "value": "Gypsy or Irish Traveller"
+                                        },
+                                        {
+                                            "label": "Roma",
+                                            "value": "Roma"
+                                        },
+                                        {
+                                            "label": "Any other White background",
+                                            "value": "Other",
+                                            "detail_answer": {
+                                                "id": "white-ethnic-group-england-answer-other",
+                                                "type": "TextField",
+                                                "mandatory": false,
+                                                "label": "Please specify White background"
                                             }
-                                        ],
-                                        "type": "Radio"
-                                    },
-                                    {
-                                        "id": "white-ethnic-group-england-answer-other",
-                                        "parent_answer_id": "white-ethnic-group-england-answer",
-                                        "type": "TextField",
-                                        "mandatory": false,
-                                        "label": "Please specify White background"
-                                    }
-                                ],
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                }],
                                 "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
@@ -2783,40 +2762,37 @@
                                 ],
                                 "type": "General",
                                 "answers": [{
-                                        "id": "white-ethnic-group-wales-answer",
-                                        "mandatory": true,
-                                        "options": [{
-                                                "label": "Welsh, English, Scottish, Northern Irish or British",
-                                                "value": "Welsh, English, Scottish, Northern Irish or British"
-                                            },
-                                            {
-                                                "label": "Irish",
-                                                "value": "Irish"
-                                            },
-                                            {
-                                                "label": "Gypsy or Irish Traveller",
-                                                "value": "Gypsy or Irish Traveller"
-                                            },
-                                            {
-                                                "label": "Roma",
-                                                "value": "Roma"
-                                            },
-                                            {
-                                                "label": "Any other White background",
-                                                "value": "Other",
-                                                "child_answer_id": "white-ethnic-group-wales-question-other"
+                                    "id": "white-ethnic-group-wales-answer",
+                                    "mandatory": true,
+                                    "options": [{
+                                            "label": "Welsh, English, Scottish, Northern Irish or British",
+                                            "value": "Welsh, English, Scottish, Northern Irish or British"
+                                        },
+                                        {
+                                            "label": "Irish",
+                                            "value": "Irish"
+                                        },
+                                        {
+                                            "label": "Gypsy or Irish Traveller",
+                                            "value": "Gypsy or Irish Traveller"
+                                        },
+                                        {
+                                            "label": "Roma",
+                                            "value": "Roma"
+                                        },
+                                        {
+                                            "label": "Any other White background",
+                                            "value": "Other",
+                                            "detail_answer": {
+                                                "id": "white-ethnic-group-wales-question-other",
+                                                "type": "TextField",
+                                                "mandatory": false,
+                                                "label": "Please specify White background"
                                             }
-                                        ],
-                                        "type": "Radio"
-                                    },
-                                    {
-                                        "id": "white-ethnic-group-wales-question-other",
-                                        "parent_answer_id": "white-ethnic-group-wales-answer",
-                                        "type": "TextField",
-                                        "mandatory": false,
-                                        "label": "Please specify White background"
-                                    }
-                                ],
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                }],
                                 "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
@@ -2898,36 +2874,33 @@
                             ],
                             "type": "General",
                             "answers": [{
-                                    "id": "mixed-ethnic-group-answer",
-                                    "mandatory": true,
-                                    "options": [{
-                                            "label": "White and Black Caribbean",
-                                            "value": "White and Black Caribbean"
-                                        },
-                                        {
-                                            "label": "White and Black African",
-                                            "value": "White and Black African"
-                                        },
-                                        {
-                                            "label": "White and Asian",
-                                            "value": "White and Asian"
-                                        },
-                                        {
-                                            "label": "Any other Mixed or Multiple background",
-                                            "value": "Other",
-                                            "child_answer_id": "mixed-ethnic-group-answer-other"
+                                "id": "mixed-ethnic-group-answer",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "White and Black Caribbean",
+                                        "value": "White and Black Caribbean"
+                                    },
+                                    {
+                                        "label": "White and Black African",
+                                        "value": "White and Black African"
+                                    },
+                                    {
+                                        "label": "White and Asian",
+                                        "value": "White and Asian"
+                                    },
+                                    {
+                                        "label": "Any other Mixed or Multiple background",
+                                        "value": "Other",
+                                        "detail_answer": {
+                                            "id": "mixed-ethnic-group-answer-other",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify Mixed or Multiple background"
                                         }
-                                    ],
-                                    "type": "Radio"
-                                },
-                                {
-                                    "id": "mixed-ethnic-group-answer-other",
-                                    "parent_answer_id": "mixed-ethnic-group-answer",
-                                    "type": "TextField",
-                                    "mandatory": false,
-                                    "label": "Please specify Mixed or Multiple background"
-                                }
-                            ]
+                                    }
+                                ],
+                                "type": "Radio"
+                            }]
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -3001,40 +2974,37 @@
                             ],
                             "type": "General",
                             "answers": [{
-                                    "id": "asian-ethnic-group-answer",
-                                    "mandatory": true,
-                                    "options": [{
-                                            "label": "Indian",
-                                            "value": "Indian"
-                                        },
-                                        {
-                                            "label": "Pakistani",
-                                            "value": "Pakistani"
-                                        },
-                                        {
-                                            "label": "Bangladeshi",
-                                            "value": "Bangladeshi"
-                                        },
-                                        {
-                                            "label": "Chinese",
-                                            "value": "Chinese"
-                                        },
-                                        {
-                                            "label": "Any other Asian background",
-                                            "value": "Other",
-                                            "child_answer_id": "asian-ethnic-group-answer-other"
+                                "id": "asian-ethnic-group-answer",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Indian",
+                                        "value": "Indian"
+                                    },
+                                    {
+                                        "label": "Pakistani",
+                                        "value": "Pakistani"
+                                    },
+                                    {
+                                        "label": "Bangladeshi",
+                                        "value": "Bangladeshi"
+                                    },
+                                    {
+                                        "label": "Chinese",
+                                        "value": "Chinese"
+                                    },
+                                    {
+                                        "label": "Any other Asian background",
+                                        "value": "Other",
+                                        "detail_answer": {
+                                            "id": "asian-ethnic-group-answer-other",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify Asian background"
                                         }
-                                    ],
-                                    "type": "Radio"
-                                },
-                                {
-                                    "id": "asian-ethnic-group-answer-other",
-                                    "parent_answer_id": "asian-ethnic-group-answer",
-                                    "type": "TextField",
-                                    "mandatory": false,
-                                    "label": "Please specify Asian background"
-                                }
-                            ]
+                                    }
+                                ],
+                                "type": "Radio"
+                            }]
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -3108,32 +3078,29 @@
                             ],
                             "type": "General",
                             "answers": [{
-                                    "id": "black-ethnic-group-answer",
-                                    "mandatory": true,
-                                    "options": [{
-                                            "label": "African",
-                                            "value": "African"
-                                        },
-                                        {
-                                            "label": "Caribbean",
-                                            "value": "Caribbean"
-                                        },
-                                        {
-                                            "label": "Any other Black, African or Caribbean background",
-                                            "value": "Other",
-                                            "child_answer_id": "black-ethnic-group-answer-other"
+                                "id": "black-ethnic-group-answer",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "African",
+                                        "value": "African"
+                                    },
+                                    {
+                                        "label": "Caribbean",
+                                        "value": "Caribbean"
+                                    },
+                                    {
+                                        "label": "Any other Black, African or Caribbean background",
+                                        "value": "Other",
+                                        "detail_answer": {
+                                            "id": "black-ethnic-group-answer-other",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify Black, African or Caribbean background"
                                         }
-                                    ],
-                                    "type": "Radio"
-                                },
-                                {
-                                    "id": "black-ethnic-group-answer-other",
-                                    "parent_answer_id": "black-ethnic-group-answer",
-                                    "type": "TextField",
-                                    "mandatory": false,
-                                    "label": "Please specify Black, African or Caribbean background"
-                                }
-                            ]
+                                    }
+                                ],
+                                "type": "Radio"
+                            }]
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -3207,28 +3174,25 @@
                             ],
                             "type": "General",
                             "answers": [{
-                                    "id": "other-ethnic-group-answer",
-                                    "mandatory": true,
-                                    "options": [{
-                                            "label": "Arab",
-                                            "value": "Arab"
-                                        },
-                                        {
-                                            "label": "Any other ethnic group",
-                                            "value": "Other",
-                                            "child_answer_id": "other-ethnic-group-answer-other"
+                                "id": "other-ethnic-group-answer",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Arab",
+                                        "value": "Arab"
+                                    },
+                                    {
+                                        "label": "Any other ethnic group",
+                                        "value": "Other",
+                                        "detail_answer": {
+                                            "id": "other-ethnic-group-answer-other",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify other ethnic group"
                                         }
-                                    ],
-                                    "type": "Radio"
-                                },
-                                {
-                                    "id": "other-ethnic-group-answer-other",
-                                    "parent_answer_id": "other-ethnic-group-answer",
-                                    "type": "TextField",
-                                    "mandatory": false,
-                                    "label": "Please specify other ethnic group"
-                                }
-                            ]
+                                    }
+                                ],
+                                "type": "Radio"
+                            }]
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -3291,40 +3255,37 @@
                             "title": "Which of the following best describes your sexual orientation?",
                             "type": "General",
                             "answers": [{
-                                    "id": "sexual-identity-answer",
-                                    "mandatory": true,
-                                    "options": [{
-                                            "label": "Straight or Heterosexual",
-                                            "value": "Straight or Heterosexual"
-                                        },
-                                        {
-                                            "label": "Gay or Lesbian",
-                                            "value": "Gay or Lesbian"
-                                        },
-                                        {
-                                            "label": "Bisexual",
-                                            "value": "Bisexual"
-                                        },
-                                        {
-                                            "label": "Other sexual orientation",
-                                            "value": "Other sexual orientation",
-                                            "child_answer_id": "sexual-identity-answer-other"
-                                        },
-                                        {
-                                            "label": "Prefer not to say",
-                                            "value": "Prefer not to say"
+                                "id": "sexual-identity-answer",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Straight or Heterosexual",
+                                        "value": "Straight or Heterosexual"
+                                    },
+                                    {
+                                        "label": "Gay or Lesbian",
+                                        "value": "Gay or Lesbian"
+                                    },
+                                    {
+                                        "label": "Bisexual",
+                                        "value": "Bisexual"
+                                    },
+                                    {
+                                        "label": "Other sexual orientation",
+                                        "value": "Other sexual orientation",
+                                        "detail_answer": {
+                                            "id": "sexual-identity-answer-other",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify your sexual orientation"
                                         }
-                                    ],
-                                    "type": "Radio"
-                                },
-                                {
-                                    "id": "sexual-identity-answer-other",
-                                    "parent_answer_id": "sexual-identity-answer",
-                                    "type": "TextField",
-                                    "mandatory": false,
-                                    "label": "Please specify your sexual orientation"
-                                }
-                            ]
+                                    },
+                                    {
+                                        "label": "Prefer not to say",
+                                        "value": "Prefer not to say"
+                                    }
+                                ],
+                                "type": "Radio"
+                            }]
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -3366,40 +3327,37 @@
                             "title": "Which of the following best describes <em>{{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name_possessive}}</em> sexual orientation?",
                             "type": "General",
                             "answers": [{
-                                    "id": "sexual-identity-answer-proxy",
-                                    "mandatory": true,
-                                    "options": [{
-                                            "label": "Straight or Heterosexual",
-                                            "value": "Straight or Heterosexual"
-                                        },
-                                        {
-                                            "label": "Gay or Lesbian",
-                                            "value": "Gay or Lesbian"
-                                        },
-                                        {
-                                            "label": "Bisexual",
-                                            "value": "Bisexual"
-                                        },
-                                        {
-                                            "label": "Other sexual orientation",
-                                            "value": "Other sexual orientation",
-                                            "child_answer_id": "sexual-identity-answer-other-proxy"
-                                        },
-                                        {
-                                            "label": "Prefer not to say",
-                                            "value": "Prefer not to say"
+                                "id": "sexual-identity-answer-proxy",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Straight or Heterosexual",
+                                        "value": "Straight or Heterosexual"
+                                    },
+                                    {
+                                        "label": "Gay or Lesbian",
+                                        "value": "Gay or Lesbian"
+                                    },
+                                    {
+                                        "label": "Bisexual",
+                                        "value": "Bisexual"
+                                    },
+                                    {
+                                        "label": "Other sexual orientation",
+                                        "value": "Other sexual orientation",
+                                        "detail_answer": {
+                                            "id": "sexual-identity-answer-other-proxy",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify their sexual orientation"
                                         }
-                                    ],
-                                    "type": "Radio"
-                                },
-                                {
-                                    "id": "sexual-identity-answer-other-proxy",
-                                    "parent_answer_id": "sexual-identity-answer-proxy",
-                                    "type": "TextField",
-                                    "mandatory": false,
-                                    "label": "Please specify their sexual orientation"
-                                }
-                            ]
+                                    },
+                                    {
+                                        "label": "Prefer not to say",
+                                        "value": "Prefer not to say"
+                                    }
+                                ],
+                                "type": "Radio"
+                            }]
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -3452,32 +3410,29 @@
                             ],
                             "type": "General",
                             "answers": [{
-                                    "id": "birth-gender-answer",
-                                    "mandatory": true,
-                                    "options": [{
-                                            "label": "Yes",
-                                            "value": "Yes"
-                                        },
-                                        {
-                                            "label": "No",
-                                            "value": "No",
-                                            "child_answer_id": "birth-gender-answer-other"
-                                        },
-                                        {
-                                            "label": "Prefer not to say",
-                                            "value": "Prefer not to say"
+                                "id": "birth-gender-answer",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No",
+                                        "detail_answer": {
+                                            "id": "birth-gender-answer-other",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify gender"
                                         }
-                                    ],
-                                    "type": "Radio"
-                                },
-                                {
-                                    "id": "birth-gender-answer-other",
-                                    "parent_answer_id": "birth-gender-answer",
-                                    "type": "TextField",
-                                    "mandatory": false,
-                                    "label": "Please specify gender"
-                                }
-                            ]
+                                    },
+                                    {
+                                        "label": "Prefer not to say",
+                                        "value": "Prefer not to say"
+                                    }
+                                ],
+                                "type": "Radio"
+                            }]
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -3575,29 +3530,26 @@
                                     }]
                                 }],
                                 "answers": [{
-                                        "id": "language-england-answer",
-                                        "mandatory": true,
-                                        "options": [{
-                                                "label": "English",
-                                                "value": "English"
-                                            },
-                                            {
-                                                "label": "Other",
-                                                "value": "Other",
-                                                "description": "Including British Sign Language",
-                                                "child_answer_id": "language-england-answer-other"
+                                    "id": "language-england-answer",
+                                    "mandatory": true,
+                                    "options": [{
+                                            "label": "English",
+                                            "value": "English"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "description": "Including British Sign Language",
+                                            "detail_answer": {
+                                                "id": "language-england-answer-other",
+                                                "type": "TextField",
+                                                "mandatory": false,
+                                                "label": "Please specify main language"
                                             }
-                                        ],
-                                        "type": "Radio"
-                                    },
-                                    {
-                                        "id": "language-england-answer-other",
-                                        "parent_answer_id": "language-england-answer",
-                                        "type": "TextField",
-                                        "mandatory": false,
-                                        "label": "Please specify main language"
-                                    }
-                                ],
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                }],
                                 "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
@@ -3628,29 +3580,26 @@
                                     }]
                                 }],
                                 "answers": [{
-                                        "id": "language-welsh-answer",
-                                        "mandatory": true,
-                                        "options": [{
-                                                "label": "English or Welsh",
-                                                "value": "English or Welsh"
-                                            },
-                                            {
-                                                "label": "Other",
-                                                "value": "Other",
-                                                "description": "Including British Sign Language",
-                                                "child_answer_id": "language-welsh-answer-other"
+                                    "id": "language-welsh-answer",
+                                    "mandatory": true,
+                                    "options": [{
+                                            "label": "English or Welsh",
+                                            "value": "English or Welsh"
+                                        },
+                                        {
+                                            "label": "Other",
+                                            "value": "Other",
+                                            "description": "Including British Sign Language",
+                                            "detail_answer": {
+                                                "id": "language-welsh-answer-other",
+                                                "type": "TextField",
+                                                "mandatory": false,
+                                                "label": "Please specify main language"
                                             }
-                                        ],
-                                        "type": "Radio"
-                                    },
-                                    {
-                                        "id": "language-welsh-answer-other",
-                                        "parent_answer_id": "language-welsh-answer",
-                                        "type": "TextField",
-                                        "mandatory": false,
-                                        "label": "Please specify main language"
-                                    }
-                                ],
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                }],
                                 "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
@@ -3749,54 +3698,51 @@
                             "description": "This question is voluntary",
                             "type": "General",
                             "answers": [{
-                                    "id": "religion-answer",
-                                    "mandatory": false,
-                                    "label": "Select one option only",
-                                    "options": [{
-                                            "label": "No religion",
-                                            "value": "No religion"
-                                        },
-                                        {
-                                            "label": "Christian",
-                                            "value": "Christian",
-                                            "description": "Including Church of England, Catholic, Protestant and all other Christian denominations"
-                                        },
-                                        {
-                                            "label": "Buddhist",
-                                            "value": "Buddhist"
-                                        },
-                                        {
-                                            "label": "Hindu",
-                                            "value": "Hindu"
-                                        },
-                                        {
-                                            "label": "Jewish",
-                                            "value": "Jewish"
-                                        },
-                                        {
-                                            "label": "Muslim",
-                                            "value": "Muslim"
-                                        },
-                                        {
-                                            "label": "Sikh",
-                                            "value": "Sikh"
-                                        },
-                                        {
-                                            "label": "Any other religion",
-                                            "value": "Other",
-                                            "child_answer_id": "religion-answer-other"
+                                "id": "religion-answer",
+                                "mandatory": false,
+                                "label": "Select one option only",
+                                "options": [{
+                                        "label": "No religion",
+                                        "value": "No religion"
+                                    },
+                                    {
+                                        "label": "Christian",
+                                        "value": "Christian",
+                                        "description": "Including Church of England, Catholic, Protestant and all other Christian denominations"
+                                    },
+                                    {
+                                        "label": "Buddhist",
+                                        "value": "Buddhist"
+                                    },
+                                    {
+                                        "label": "Hindu",
+                                        "value": "Hindu"
+                                    },
+                                    {
+                                        "label": "Jewish",
+                                        "value": "Jewish"
+                                    },
+                                    {
+                                        "label": "Muslim",
+                                        "value": "Muslim"
+                                    },
+                                    {
+                                        "label": "Sikh",
+                                        "value": "Sikh"
+                                    },
+                                    {
+                                        "label": "Any other religion",
+                                        "value": "Other",
+                                        "detail_answer": {
+                                            "id": "religion-answer-other",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify other religion"
                                         }
-                                    ],
-                                    "type": "Checkbox"
-                                },
-                                {
-                                    "id": "religion-answer-other",
-                                    "parent_answer_id": "religion-answer",
-                                    "type": "TextField",
-                                    "mandatory": false,
-                                    "label": "Please specify other religion"
-                                }
-                            ]
+                                    }
+                                ],
+                                "type": "Checkbox"
+                            }]
                         }]
                     },
                     {
@@ -3819,36 +3765,33 @@
                             "type": "General",
                             "description": "If they had no usual address one year ago, state the address where they were staying",
                             "answers": [{
-                                    "id": "past-usual-address-answer",
-                                    "mandatory": true,
-                                    "options": [{
-                                            "label": "{{answers['address-line-1']}}, {{answers['address-line-2']}}",
-                                            "value": "householdaddress"
-                                        },
-                                        {
-                                            "label": "Student term time or boarding school address in the UK",
-                                            "value": "Student term time or boarding school address in the UK"
-                                        },
-                                        {
-                                            "label": "Another address in the UK",
-                                            "value": "Another address in the UK"
-                                        },
-                                        {
-                                            "label": "An address outside the UK",
-                                            "value": "Other",
-                                            "child_answer_id": "past-usual-address-answer-other"
+                                "id": "past-usual-address-answer",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "{{answers['address-line-1']}}, {{answers['address-line-2']}}",
+                                        "value": "householdaddress"
+                                    },
+                                    {
+                                        "label": "Student term time or boarding school address in the UK",
+                                        "value": "Student term time or boarding school address in the UK"
+                                    },
+                                    {
+                                        "label": "Another address in the UK",
+                                        "value": "Another address in the UK"
+                                    },
+                                    {
+                                        "label": "An address outside the UK",
+                                        "value": "Other",
+                                        "detail_answer": {
+                                            "id": "past-usual-address-answer-other",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please enter the country"
                                         }
-                                    ],
-                                    "type": "Radio"
-                                },
-                                {
-                                    "id": "past-usual-address-answer-other",
-                                    "parent_answer_id": "past-usual-address-answer",
-                                    "type": "TextField",
-                                    "mandatory": false,
-                                    "label": "Please enter the country"
-                                }
-                            ]
+                                    }
+                                ],
+                                "type": "Radio"
+                            }]
                         }],
                         "routing_rules": [{
                                 "goto": {
@@ -3963,16 +3906,14 @@
                                         {
                                             "label": "Other",
                                             "value": "Other",
-                                            "child_answer_id": "passport-answer-other"
+                                            "detail_answer": {
+                                                "id": "passport-answer-other",
+                                                "type": "TextField",
+                                                "mandatory": false,
+                                                "label": "Please specify the passports held"
+                                            }
                                         }
                                     ]
-                                },
-                                {
-                                    "id": "passport-answer-other",
-                                    "parent_answer_id": "passports-answer",
-                                    "type": "TextField",
-                                    "mandatory": false,
-                                    "label": "Please specify the passports held"
                                 },
                                 {
                                     "id": "passports-answer-exclusive",
@@ -6201,28 +6142,25 @@
                                 "title": "Does this person usually live in the United Kingdom?",
                                 "type": "General",
                                 "answers": [{
-                                        "id": "visitor-uk-resident-answer",
-                                        "mandatory": false,
-                                        "options": [{
-                                                "label": "Yes, usually lives in the United Kingdom",
-                                                "value": "Yes, usually lives in the United Kingdom"
-                                            },
-                                            {
-                                                "label": "No, usually lives outside the United Kingdom (please specify)",
-                                                "value": "Other",
-                                                "child_answer_id": "visitor-uk-resident-answer-other"
+                                    "id": "visitor-uk-resident-answer",
+                                    "mandatory": false,
+                                    "options": [{
+                                            "label": "Yes, usually lives in the United Kingdom",
+                                            "value": "Yes, usually lives in the United Kingdom"
+                                        },
+                                        {
+                                            "label": "No, usually lives outside the United Kingdom (please specify)",
+                                            "value": "Other",
+                                            "detail_answer": {
+                                                "id": "visitor-uk-resident-answer-other",
+                                                "type": "TextField",
+                                                "mandatory": false,
+                                                "label": "Please specify country"
                                             }
-                                        ],
-                                        "type": "Radio"
-                                    },
-                                    {
-                                        "id": "visitor-uk-resident-answer-other",
-                                        "parent_answer_id": "visitor-uk-resident-answer",
-                                        "type": "TextField",
-                                        "mandatory": false,
-                                        "label": "Please specify country"
-                                    }
-                                ]
+                                        }
+                                    ],
+                                    "type": "Radio"
+                                }]
                             }],
                             "routing_rules": [{
                                     "goto": {

@@ -31,7 +31,7 @@ describe('Component: Radio', function() {
     it('When I have selected a other text field, Then the selected option should be displayed in the summary', function() {
       return browser
        .click(RadioMandatoryPage.other())
-       .setValue(RadioMandatoryPage.otherText(), 'Hello World')
+       .setValue(RadioMandatoryPage.otherDetail(), 'Hello World')
        .click(RadioMandatoryPage.submit())
        .getUrl().should.eventually.contain(RadioSummaryPage.pageName)
        .getText(RadioSummaryPage.radioMandatoryAnswer()).should.eventually.contain('Hello World');
@@ -134,28 +134,11 @@ describe('Component: Radio', function() {
     it('When I submit data in the other text field it should be persisted and Then displayed on the summary', function() {
       return browser
        .click(RadioNonMandatoryPage.other())
-       .setValue(RadioNonMandatoryPage.otherText(), 'Hello World')
+       .setValue(RadioNonMandatoryPage.otherDetail(), 'Hello World')
        .click(RadioNonMandatoryPage.submit())
        .getUrl().should.eventually.contain(RadioSummaryPage.pageName)
        .getText(RadioSummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('Hello World');
     });
-  });
-
-  describe('Given I start a Optional other Optional survey', function() {
-
-    var RadioNonMandatoryPage = require('../../../generated_pages/radio_optional_with_optional_other/radio-non-mandatory.page');
-    var RadioSummaryPage = require('../../../generated_pages/radio_optional_with_optional_other/summary.page');
-
-    before(function() {
-      return helpers.openQuestionnaire('test_radio_optional_with_optional_other.json');
-    });
-
-    it('When I select no option I should be directed to the summary and Then answer should be displayed on the summary', function() {
-      return browser
-       .click(RadioNonMandatoryPage.other())
-       .click(RadioNonMandatoryPage.submit())
-       .getText(RadioSummaryPage.radioNonMandatoryAnswer()).should.eventually.contain('No answer provided');
-     });
   });
 
 });

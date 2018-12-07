@@ -28,6 +28,7 @@
                         "id": "answer",
                         "mandatory": false,
                         "type": "Number",
+                        "label": "Leave blank",
                         "default": 0
                     }],
                     "id": "question",

@@ -435,19 +435,17 @@ class TestFormHelper(AppContextTestCase):
                 },
                 {
                     'answer_id': 'other-answer-mandatory',
-                    'block_id': 'block-1',
+                    'block_id': 'radio-mandatory',
                     'value': 'Other text field value',
                     'answer_instance': 0,
                 }
             ])
 
-            radio_answer = schema.get_answers_for_block('radio-mandatory')[0]
-            text_answer = 'other-answer-mandatory'
-
-            form = post_form_for_location(schema, block_json, location, answer_store, metadata=None, request_form=MultiDict({
-                '{answer_id}'.format(answer_id=radio_answer['id']): 'Other',
-                '{answer_id}'.format(answer_id=text_answer): 'Other text field value',
-            }))
+            request_form = MultiDict({
+                'radio-mandatory-answer': 'Other',
+                'other-answer-mandatory': 'Other text field value',
+            })
+            form = post_form_for_location(schema, block_json, location, answer_store, metadata=None, request_form=request_form)
 
             other_text_field = getattr(form, 'other-answer-mandatory')
             self.assertEqual(other_text_field.data, 'Other text field value')

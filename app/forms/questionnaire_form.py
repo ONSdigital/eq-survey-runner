@@ -24,7 +24,7 @@ class QuestionnaireForm(FlaskForm):
         self.answer_store = answer_store
         self.metadata = metadata
         self.question_errors = {}
-        self.options_with_children = {}
+        self.options_with_detail_answer = {}
 
         super().__init__(**kwargs)
 
@@ -93,7 +93,7 @@ class QuestionnaireForm(FlaskForm):
     def validate_mutually_exclusive_question(self, question):
         is_mandatory = question.get('mandatory')
         messages = question['validation'].get('messages') if 'validation' in question else None
-        answers = (getattr(self, answer['id']).data for answer in question['answers'] if 'parent_answer_id' not in answer)
+        answers = (getattr(self, answer['id']).data for answer in question['answers'])
 
         validator = MutuallyExclusiveCheck(messages=messages)
 
@@ -239,10 +239,10 @@ class QuestionnaireForm(FlaskForm):
                 ordered_errors += [(question_json['id'], self.question_errors[question_json['id']])]
 
             for answer_json in question_json['answers']:
-                if answer_json['id'] in self.errors and 'parent_answer_id' not in answer_json:
+                if answer_json['id'] in self.errors:
                     ordered_errors += map_subfield_errors(self.errors, answer_json['id'])
-                if 'options' in answer_json and 'parent_answer_id' not in answer_json:
-                    ordered_errors += map_child_option_errors(self.errors, answer_json)
+                if 'options' in answer_json:
+                    ordered_errors += map_detail_answer_errors(self.errors, answer_json)
 
         return ordered_errors
 
@@ -253,33 +253,26 @@ class QuestionnaireForm(FlaskForm):
         attr = getattr(self, answer_id)
         return attr.raw_data[0] if attr.raw_data else ''
 
-    def option_has_other(self, answer_id, option_index):
-        if not self.options_with_children:
-            self.options_with_children = self.schema.get_parent_options_for_block(self.block_json['id'])
-
-        if answer_id in self.options_with_children and self.options_with_children[answer_id]['index'] == option_index:
-            return True
-        return False
-
-    def get_other_answer(self, answer_id, option_index):
-        if not self.options_with_children:
-            self.options_with_children = self.schema.get_parent_options_for_block(self.block_json['id'])
-
-        if answer_id in self.options_with_children and self.options_with_children[answer_id]['index'] == option_index:
-            return getattr(self, self.options_with_children[answer_id]['child_answer_id'])
-        return None
-
 
 def get_answer_fields(question, data, error_messages, schema, answer_store, metadata, group_instance, group_instance_id):
     answer_fields = {}
     for answer in question.get('answers', []):
-        if 'parent_answer_id' in answer and answer['parent_answer_id'] in data and \
-                data[answer['parent_answer_id']] == 'Other':
-            answer['mandatory'] = \
-                next(a['mandatory'] for a in question['answers'] if a['id'] == answer['parent_answer_id'])
+
+        for option in answer.get('options', []):
+            disable_validation = False
+            if 'detail_answer' in option:
+                detail_answer = option['detail_answer']
+                detail_answer_error_messages = detail_answer['validation']['messages'] if detail_answer.get('validation') else error_messages
+                if option['value'] not in dict(data).get(answer['id'], []):
+                    disable_validation = True
+
+                answer_fields[detail_answer['id']] = get_field(detail_answer, detail_answer.get('label'),
+                                                               detail_answer_error_messages, answer_store, metadata,
+                                                               group_instance=group_instance, disable_validation=disable_validation)
 
         name = answer.get('label') or get_question_title(question, answer_store, schema, metadata, group_instance, group_instance_id)
         answer_fields[answer['id']] = get_field(answer, name, error_messages, answer_store, metadata, group_instance=group_instance)
+
     return answer_fields
 
 
@@ -297,16 +290,15 @@ def map_subfield_errors(errors, answer_id):
     return subfield_errors
 
 
-def map_child_option_errors(errors, answer_json):
-    child_errors = []
-    options_with_children = [o for o in answer_json['options'] if
-                             'child_answer_id' in o and o['child_answer_id'] in errors]
+def map_detail_answer_errors(errors, answer_json):
+    detail_answer_errors = []
 
-    for option_with_child in options_with_children:
-        for error in errors[option_with_child['child_answer_id']]:
-            child_errors.append((answer_json['id'], error))
+    for option in answer_json['options']:
+        if 'detail_answer' in option and option['detail_answer']['id'] in errors:
+            for error in errors[option['detail_answer']['id']]:
+                detail_answer_errors.append((answer_json['id'], error))
 
-    return child_errors
+    return detail_answer_errors
 
 
 def generate_form(schema, block_json, answer_store, metadata, group_instance, group_instance_id, data=None, formdata=None):

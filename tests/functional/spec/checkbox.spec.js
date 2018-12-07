@@ -13,7 +13,7 @@ describe('Checkbox with "other" option', function() {
       return browser
         .getText(MandatoryCheckboxPage.otherLabel()).should.eventually.have.string('Choose any other topping')
         .click(MandatoryCheckboxPage.other())
-        .isVisible(MandatoryCheckboxPage.otherText()).should.eventually.be.true;
+        .isVisible(MandatoryCheckboxPage.otherDetail()).should.eventually.be.true;
     });
   });
 
@@ -38,7 +38,7 @@ describe('Checkbox with "other" option', function() {
         .isVisible(MandatoryCheckboxPage.error()).should.eventually.be.true
 
       // When
-        .setValue(MandatoryCheckboxPage.otherText(), 'Other Text')
+        .setValue(MandatoryCheckboxPage.otherDetail(), 'Other Text')
         .click(MandatoryCheckboxPage.submit())
         .getUrl().should.eventually.contain(NonMandatoryCheckboxPage.pageName);
     });
@@ -51,7 +51,7 @@ describe('Checkbox with "other" option', function() {
       return browser
       // When
         .click(MandatoryCheckboxPage.other())
-        .setValue(MandatoryCheckboxPage.otherText(), 'Other value')
+        .setValue(MandatoryCheckboxPage.otherDetail(), 'Other value')
         .click(MandatoryCheckboxPage.submit())
         .click(NonMandatoryCheckboxPage.submit())
       // Then
@@ -65,7 +65,7 @@ describe('Checkbox with "other" option', function() {
       return browser
       // When
         .click(MandatoryCheckboxPage.other())
-        .setValue(MandatoryCheckboxPage.otherText(), 'Other value')
+        .setValue(MandatoryCheckboxPage.otherDetail(), 'Other value')
         .click(MandatoryCheckboxPage.submit())
         .click(NonMandatoryCheckboxPage.other())
         .click(NonMandatoryCheckboxPage.submit())
@@ -81,10 +81,10 @@ describe('Checkbox with "other" option', function() {
       return browser
       // When
         .click(MandatoryCheckboxPage.other())
-        .setValue(MandatoryCheckboxPage.otherText(), 'Other value')
+        .setValue(MandatoryCheckboxPage.otherDetail(), 'Other value')
         .click(MandatoryCheckboxPage.submit())
         .click(NonMandatoryCheckboxPage.other())
-        .setValue(NonMandatoryCheckboxPage.otherText(), 'The other value')
+        .setValue(NonMandatoryCheckboxPage.otherDetail(), 'The other value')
         .click(NonMandatoryCheckboxPage.submit())
       // Then
         .getText(SummaryPage.nonMandatoryCheckboxAnswer()).should.eventually.have.string('The other value');
@@ -99,7 +99,7 @@ describe('Checkbox with "other" option', function() {
       return browser
       // When
         .click(MandatoryCheckboxPage.other())
-        .setValue(MandatoryCheckboxPage.otherText(), 'Other value')
+        .setValue(MandatoryCheckboxPage.otherDetail(), 'Other value')
         .click(MandatoryCheckboxPage.submit())
         .click(NonMandatoryCheckboxPage.previous())
         .click(MandatoryCheckboxPage.other())
@@ -108,7 +108,7 @@ describe('Checkbox with "other" option', function() {
         .click(NonMandatoryCheckboxPage.previous())
       // Then
         .click(MandatoryCheckboxPage.other())
-        .getValue(MandatoryCheckboxPage.otherText()).should.eventually.be.equal('');
+        .getValue(MandatoryCheckboxPage.otherDetail()).should.eventually.be.equal('');
     });
 
   });
