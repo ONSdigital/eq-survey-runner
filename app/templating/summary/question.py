@@ -31,25 +31,21 @@ class Question:
         summary_answers = []
 
         for answer_schema in self.answer_schemas:
-            if 'parent_answer_id' in answer_schema:
-                continue
-            else:
-                answer_values = self._get_answers(answer_store, answer_schema['id'], group_instance)
-                for answer_value in answer_values:
+            answer_values = self._get_answers(answer_store, answer_schema['id'], group_instance)
+            for answer_value in answer_values:
 
-                    answer = self._build_answer(answer_store, question_schema, answer_schema,
-                                                group_instance, answer_value)
+                answer = self._build_answer(answer_store, question_schema, answer_schema,
+                                            group_instance, answer_value)
 
-                    child_answer_value = self._find_other_value_in_answers(answer_store, answer_schema, answer, group_instance)
-                    summary_answer = Answer(answer_schema, answer, group_instance, child_answer_value).serialize()
+                summary_answer = Answer(answer_schema, answer, group_instance).serialize()
 
-                    if summary_answer['type'] == 'relationship':
-                        summary_answer['label'] = self._relationship_answer_label(summary_answer['label'], question_schema['parent_id'],
-                                                                                  answer_store, group_instance,
-                                                                                  question_schema.get('member_label'),
-                                                                                  answer_values.index(answer_value))
+                if summary_answer['type'] == 'relationship':
+                    summary_answer['label'] = self._relationship_answer_label(summary_answer['label'], question_schema['parent_id'],
+                                                                              answer_store, group_instance,
+                                                                              question_schema.get('member_label'),
+                                                                              answer_values.index(answer_value))
 
-                    summary_answers.append(summary_answer)
+                summary_answers.append(summary_answer)
 
         if question_schema['type'] == 'MutuallyExclusive':
             exclusive_option = summary_answers[-1]['value']
@@ -74,15 +70,6 @@ class Question:
         label = answer_label % dict(current_person=choice[0], other_person=choice[1])
         return label
 
-    def _find_other_value_in_answers(self, answer_store, answer_schema, answer, group_instance):
-        if answer is not None and 'options' in answer_schema:
-            options = answer_schema['options']
-            for option in options:
-                if option['label'] in [a[0] for a in answer] or option['label'] == answer:
-                    if 'child_answer_id' in option:
-                        return self._get_answer(answer_store, option['child_answer_id'], group_instance)
-        return None
-
     def _build_answer(self, answer_store, question_schema, answer_schema, group_instance, answer_value=None):
         if answer_value is None:
             return None
@@ -90,30 +77,29 @@ class Question:
         if question_schema['type'] == 'DateRange':
             return self._build_date_range_answer(answer_store, answer_value, group_instance)
 
+        if answer_schema['type'] == 'Dropdown':
+            return self._build_dropdown_answer(answer_value, answer_schema)
+
         answer_builder = {
             'Checkbox': self._build_checkbox_answers,
             'Radio': self._build_radio_answer,
-            'Dropdown': self._build_dropdown_answer,
         }
 
         if answer_schema['type'] in answer_builder.keys():
-            return answer_builder[answer_schema['type']](answer_value, answer_schema)
+            return answer_builder[answer_schema['type']](answer_value, answer_schema, answer_store, group_instance)
 
         return answer_value
 
-    @staticmethod
-    def _build_checkbox_answers(answer, answer_schema):
+    def _build_checkbox_answers(self, answer, answer_schema, answer_store, group_instance):
         multiple_answers = []
-        CheckboxSummaryAnswer = collections.namedtuple('CheckboxSummaryAnswer', 'label should_display_other')
+        CheckboxSummaryAnswer = collections.namedtuple('CheckboxSummaryAnswer', 'label detail_answer_value')
         for option in answer_schema['options']:
             if option['value'] in answer:
-                if option['value'].lower() == 'other':
-                    summary_option_display_value = option['label']
-                    multiple_answers.append(CheckboxSummaryAnswer(label=summary_option_display_value,
-                                                                  should_display_other=True))
-                else:
-                    multiple_answers.append(CheckboxSummaryAnswer(label=option['label'],
-                                                                  should_display_other=False))
+                detail_answer_value = self._get_detail_answer_value(option, answer_store, group_instance)
+
+                multiple_answers.append(CheckboxSummaryAnswer(label=option['label'],
+                                                              detail_answer_value=detail_answer_value))
+
         return multiple_answers or None
 
     def _build_date_range_answer(self, answer_store, answer, group_instance):
@@ -124,13 +110,18 @@ class Question:
             'to': to_date,
         }
 
-    @staticmethod
-    def _build_radio_answer(answer, answer_schema):
+    def _build_radio_answer(self, answer, answer_schema, answer_store, group_instance):
         for option in answer_schema['options']:
-            if option['value'].lower() == 'other' and answer != option['value']:
-                return answer if answer else option['label']
             if answer == option['value']:
-                return option['label']
+                detail_answer_value = self._get_detail_answer_value(option, answer_store, group_instance)
+                return {
+                    'label': option['label'],
+                    'detail_answer_value': detail_answer_value,
+                }
+
+    def _get_detail_answer_value(self, option, answer_store, group_instance):
+        if 'detail_answer' in option:
+            return self._get_answer(answer_store, option['detail_answer']['id'], group_instance)
 
     @staticmethod
     def _build_dropdown_answer(answer, answer_schema):

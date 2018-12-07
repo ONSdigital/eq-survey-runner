@@ -125,7 +125,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         label = answer['label']
         returned_error_messages = answer['validation']['messages']
 
-        integer_field = get_number_field(answer, label, '', returned_error_messages, self.store)
+        integer_field = get_number_field(answer, label, '', returned_error_messages, self.store, False)
 
         self.assertTrue(integer_field.field_class == CustomIntegerField)
 
@@ -167,7 +167,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         label = answer['label']
         returned_error_messages = answer['validation']['messages']
 
-        integer_field = get_number_field(answer, label, '', returned_error_messages, self.store)
+        integer_field = get_number_field(answer, label, '', returned_error_messages, self.store, False)
 
         self.assertTrue(integer_field.field_class == CustomIntegerField)
 
@@ -203,7 +203,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         label = answer['label']
         error_message = error_messages['NUMBER_TOO_LARGE'] % dict(max=max_value)
 
-        integer_field = get_number_field(answer, label, '', error_messages, self.store)
+        integer_field = get_number_field(answer, label, '', error_messages, self.store, False)
 
         self.assertTrue(integer_field.field_class == CustomIntegerField)
 
@@ -239,7 +239,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         label = answer['label']
         error_message = error_messages['NUMBER_TOO_SMALL'] % dict(min=min_value)
 
-        integer_field = get_number_field(answer, label, '', error_messages, self.store)
+        integer_field = get_number_field(answer, label, '', error_messages, self.store, False)
 
         self.assertTrue(integer_field.field_class == CustomIntegerField)
 
@@ -284,7 +284,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         label = answer['label']
         returned_error_messages = answer['validation']['messages']
 
-        integer_field = get_number_field(answer, label, '', error_messages, self.store)
+        integer_field = get_number_field(answer, label, '', error_messages, self.store, False)
 
         self.assertTrue(integer_field.field_class == CustomIntegerField)
 
@@ -332,7 +332,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         label = answer['label']
         returned_error_messages = answer['validation']['messages']
 
-        integer_field = get_number_field(answer, label, '', returned_error_messages, self.store)
+        integer_field = get_number_field(answer, label, '', returned_error_messages, self.store, False)
 
         self.assertTrue(integer_field.field_class == CustomIntegerField)
 
@@ -374,7 +374,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         label = answer['label']
         returned_error_messages = answer['validation']['messages']
 
-        integer_field = get_number_field(answer, label, '', returned_error_messages, self.store)
+        integer_field = get_number_field(answer, label, '', returned_error_messages, self.store, False)
 
         for validator in integer_field.kwargs['validators']:
             if isinstance(validator, NumberRange):
@@ -405,7 +405,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         returned_error_messages = answer['validation']['messages']
 
         with self.assertRaises(Exception) as ite:
-            get_number_field(answer, label, '', returned_error_messages, self.store)
+            get_number_field(answer, label, '', returned_error_messages, self.store, False)
 
         self.assertEqual(str(ite.exception),
                          'min_value: -1000000000 < system minimum: -999999999 for answer id: test-range')
@@ -432,7 +432,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         returned_error_messages = answer['validation']['messages']
 
         with self.assertRaises(Exception) as ite:
-            get_number_field(answer, label, '', returned_error_messages, self.store)
+            get_number_field(answer, label, '', returned_error_messages, self.store, False)
 
         self.assertEqual(str(ite.exception),
                          'max_value: 10000000000 > system maximum: 9999999999 for answer id: test-range')
@@ -462,7 +462,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         returned_error_messages = answer['validation']['messages']
 
         with self.assertRaises(Exception) as ite:
-            get_number_field(answer, label, '', returned_error_messages, self.store)
+            get_number_field(answer, label, '', returned_error_messages, self.store, False)
 
         self.assertEqual(str(ite.exception), 'min_value: 20 > max_value: 10 for answer id: test-range')
 
@@ -489,7 +489,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         returned_error_messages = answer['validation']['messages']
 
         with self.assertRaises(Exception) as ite:
-            get_number_field(answer, label, '', returned_error_messages, self.store)
+            get_number_field(answer, label, '', returned_error_messages, self.store, False)
 
         self.assertEqual(str(ite.exception),
                          'answer: set-maximum-cat value: cat for answer id: test-range is not a valid number')
@@ -515,7 +515,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         label = answer['label']
         returned_error_messages = answer['validation']['messages']
 
-        integer_field = get_number_field(answer, label, '', error_messages, self.store)
+        integer_field = get_number_field(answer, label, '', error_messages, self.store, False)
 
         self.assertTrue(integer_field.field_class == CustomIntegerField)
 
@@ -558,7 +558,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         label = answer['label']
         returned_error_messages = answer['validation']['messages']
 
-        integer_field = get_number_field(answer, label, '', returned_error_messages, self.store)
+        integer_field = get_number_field(answer, label, '', returned_error_messages, self.store, False)
 
         self.assertTrue(integer_field.field_class == CustomIntegerField)
 

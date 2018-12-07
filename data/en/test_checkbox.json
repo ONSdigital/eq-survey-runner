@@ -62,18 +62,17 @@
                             "q_code": "6",
                             "description": "Choose any other topping",
                             "value": "Other",
-                            "child_answer_id": "other-answer-mandatory"
+                            "detail_answer": {
+                                "mandatory": true,
+                                "id": "other-answer-mandatory",
+                                "label": "Please specify other",
+                                "type": "TextField"
+                            }
                         }],
                         "type": "Checkbox",
                         "validation": {
                             "messages": {}
                         }
-                    }, {
-                        "parent_answer_id": "mandatory-checkbox-answer",
-                        "mandatory": false,
-                        "id": "other-answer-mandatory",
-                        "label": "Please specify other",
-                        "type": "TextField"
                     }],
                     "description": "",
                     "id": "mandatory-checkbox-question",
@@ -113,19 +112,18 @@
                             "label": "Other",
                             "value": "Other",
                             "description": "Choose any other topping",
-                            "child_answer_id": "other-answer-non-mandatory"
+                            "detail_answer": {
+                                "mandatory": false,
+                                "id": "other-answer-non-mandatory",
+                                "label": "Please specify other",
+                                "type": "TextField"
+                            }
                         }],
                         "q_code": "20",
                         "type": "Checkbox",
                         "validation": {
                             "messages": {}
                         }
-                    }, {
-                        "parent_answer_id": "non-mandatory-checkbox-answer",
-                        "mandatory": false,
-                        "id": "other-answer-non-mandatory",
-                        "label": "Please specify other",
-                        "type": "TextField"
                     }],
                     "description": "",
                     "id": "non-mandatory-checkbox-question",

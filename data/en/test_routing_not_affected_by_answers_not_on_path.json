@@ -64,6 +64,7 @@
                     "answers": [{
                         "id": "invalid-path-answer",
                         "mandatory": true,
+                        "label": "Number",
                         "type": "Number"
                     }],
                     "id": "invalid-path-question",
@@ -89,7 +90,8 @@
                     "answers": [{
                         "id": "valid-path-answer",
                         "mandatory": true,
-                        "type": "Number"
+                        "type": "Number",
+                        "label": "Number"
                     }],
                     "id": "valid-path-question",
                     "title": "Enter a number and continue",

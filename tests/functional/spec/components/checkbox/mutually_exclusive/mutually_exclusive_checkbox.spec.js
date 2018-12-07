@@ -17,12 +17,12 @@ describe('Component: Mutually Exclusive Checkbox With Single Checkbox Override',
         .click(MandatoryCheckboxPage.checkboxBritish())
         .click(MandatoryCheckboxPage.checkboxIrish())
         .click(MandatoryCheckboxPage.checkboxOther())
-        .setValue(MandatoryCheckboxPage.checkboxOtherText(), 'The other option')
+        .setValue(MandatoryCheckboxPage.checkboxOtherDetail(), 'The other option')
 
         .isSelected(MandatoryCheckboxPage.checkboxBritish()).should.eventually.be.true
         .isSelected(MandatoryCheckboxPage.checkboxIrish()).should.eventually.be.true
         .isSelected(MandatoryCheckboxPage.checkboxOther()).should.eventually.be.true
-        .getValue(MandatoryCheckboxPage.checkboxOtherText()).should.eventually.contain('The other option')
+        .getValue(MandatoryCheckboxPage.checkboxOtherDetail()).should.eventually.contain('The other option')
 
         // When
         .click(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay())
@@ -32,7 +32,7 @@ describe('Component: Mutually Exclusive Checkbox With Single Checkbox Override',
         .isSelected(MandatoryCheckboxPage.checkboxBritish()).should.eventually.be.false
         .isSelected(MandatoryCheckboxPage.checkboxIrish()).should.eventually.be.false
         .isSelected(MandatoryCheckboxPage.checkboxOther()).should.eventually.be.false
-        .getValue(MandatoryCheckboxPage.checkboxOtherText()).should.eventually.contain('')
+        .getValue(MandatoryCheckboxPage.checkboxOtherDetail()).should.eventually.contain('')
 
         .click(MandatoryCheckboxPage.submit())
 

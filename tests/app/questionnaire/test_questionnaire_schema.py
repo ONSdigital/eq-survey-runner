@@ -78,20 +78,6 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
         self.assertEqual(len(groups), 1)
 
-    def test_get_parent_options_for_block(self):
-        schema = load_schema_from_params('test', 'checkbox')
-
-        parent_options = schema.get_parent_options_for_block('mandatory-checkbox')
-
-        expected = {
-            'mandatory-checkbox-answer': {
-                'index': 6,
-                'child_answer_id': 'other-answer-mandatory'
-            }
-        }
-
-        self.assertEqual(parent_options, expected)
-
     def test_get_summary_and_confirmation_blocks_returns_only_summary(self):
         survey_json = {
             'sections': [{

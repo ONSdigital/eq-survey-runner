@@ -38,19 +38,18 @@
                             "label": "Other",
                             "description": "An answer is required.",
                             "value": "Other",
-                            "child_answer_id": "other-answer-mandatory"
-                        }]
-                    }, {
-                        "parent_answer_id": "radio-mandatory-answer",
-                        "mandatory": true,
-                        "id": "other-answer-mandatory",
-                        "label": "Please specify other",
-                        "type": "TextField",
-                        "validation": {
-                            "messages": {
-                                "MANDATORY_TEXTFIELD": "Test error message is overridden"
+                            "detail_answer": {
+                                "mandatory": true,
+                                "id": "other-answer-mandatory",
+                                "label": "Please specify other",
+                                "type": "TextField",
+                                "validation": {
+                                    "messages": {
+                                        "MANDATORY_TEXTFIELD": "Test error message is overridden"
+                                    }
+                                }
                             }
-                        }
+                        }]
                     }]
                 }]
             }, {

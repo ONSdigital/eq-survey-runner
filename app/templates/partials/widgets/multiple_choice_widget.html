@@ -22,8 +22,7 @@
       "value": option.data,
       "name": option.name,
       "id": option.id,
-      "checked": "checked" if option['checked'],
-      "data-qa": "has-other-option" if answer.id in form.other_answer and form.other_answer[answer.id][loop.index0] != None
+      "checked": "checked" if option['checked']
     } %}
 
     {% set label = {
@@ -44,25 +43,24 @@
       </label>
         <span class="js-exclusive-alert u-vh" role="alert" aria-live="polite" data-adjective='{{ _("deselected") }}'></span>
 
-      {% if answer.id in form.other_answer and form.other_answer[answer.id][loop.index0] != None %}
-        {% set other_answer = form.other_answer[answer.id][loop.index0] %}
+      {% if option.detail_answer_id %}
+        {% set detail_answer = form.fields[option.detail_answer_id] %}
 
         {% set other_label = {
           "class": "label mercury",
-          "for": other_answer.id
+          "for": detail_answer.id
         } %}
 
         {% set other_input = {
           "class": "input js-focusable " ~ exclusive_class,
           "type": "text",
-          "name": other_answer.name,
-          "id": other_answer.id,
-          "value": other_answer.data,
-          "data-qa": "other-option"
+          "name": detail_answer.name,
+          "id": detail_answer.id,
+          "value": detail_answer.data
         } %}
 
         <div class="field__other">
-          <label {{other_label|xmlattr}}>{{other_answer.label.text}}</label>
+          <label {{other_label|xmlattr}}>{{detail_answer.label.text}}</label>
           <input {{other_input|xmlattr}}>
         </div>
 

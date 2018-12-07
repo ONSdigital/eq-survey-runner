@@ -60,10 +60,7 @@
                             "value": "I prefer Star Trek"
                         }, {
                             "label": "Other",
-                            "value": "other",
-                            "other": {
-                                "label": "Please specify other"
-                            }
+                            "value": "other"
                         }],
                         "q_code": "20",
                         "type": "Radio"

@@ -163,7 +163,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
 
             self.assertEqual(len(answer_object['data']), 0)
 
-    def test_get_checkbox_answer_with_duplicate_child_answer_ids(self):
+    def test_get_checkbox_answer_with_duplicate_detail_answer_ids(self):
         with self._app.test_request_context():
             routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
             answers = [create_answer('crisps-answer', [
@@ -189,7 +189,7 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                                     'q_code': '4',
                                     'description': 'Choose any other flavour',
                                     'value': 'Other',
-                                    'child_answer_id': 'other-answer-mandatory'
+                                    'detail_answer': {'id': 'other-answer-mandatory'}
                                 }
                             ]
                         }
@@ -237,16 +237,14 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                                     'q_code': '4',
                                     'description': 'Choose any other flavour',
                                     'value': 'Other',
-                                    'child_answer_id': 'other-answer-mandatory'
+                                    'detail_answer': {
+                                        'mandatory': True,
+                                        'id': 'other-answer-mandatory',
+                                        'label': 'Please specify other',
+                                        'type': 'TextField'
+                                    }
                                 }
                             ]
-                        },
-                        {
-                            'parent_answer_id': 'crisps-answer',
-                            'mandatory': True,
-                            'id': 'other-answer-mandatory',
-                            'label': 'Please specify other',
-                            'type': 'TextField'
                         }
                     ]
                 }
@@ -298,16 +296,14 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                                     'q_code': '4',
                                     'description': 'Choose any other flavour',
                                     'value': 'Other',
-                                    'child_answer_id': 'other-answer-mandatory'
+                                    'detail_answer':  {
+                                        'mandatory': True,
+                                        'id': 'other-answer-mandatory',
+                                        'label': 'Please specify other',
+                                        'type': 'TextField'
+                                    }
                                 }
                             ]
-                        },
-                        {
-                            'parent_answer_id': 'crisps-answer',
-                            'mandatory': True,
-                            'id': 'other-answer-mandatory',
-                            'label': 'Please specify other',
-                            'type': 'TextField'
                         }
                     ]
                 }
@@ -359,16 +355,14 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                                     'q_code': '4',
                                     'description': 'Choose any other flavour',
                                     'value': 'Other',
-                                    'child_answer_id': 'other-answer-mandatory'
+                                    'detail_answer': {
+                                        'mandatory': True,
+                                        'id': 'other-answer-mandatory',
+                                        'label': 'Please specify other',
+                                        'type': 'TextField'
+                                    }
                                 }
                             ]
-                        },
-                        {
-                            'parent_answer_id': 'crisps-answer',
-                            'mandatory': True,
-                            'id': 'other-answer-mandatory',
-                            'label': 'Please specify other',
-                            'type': 'TextField'
                         }
                     ]
                 }

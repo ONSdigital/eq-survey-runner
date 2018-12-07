@@ -38,14 +38,13 @@
                             "label": "Other",
                             "description": "This is optional.",
                             "value": "Other",
-                            "child_answer_id": "other-answer-non-mandatory"
+                            "detail_answer": {
+                                "mandatory": false,
+                                "id": "other-answer-non-mandatory",
+                                "label": "Please specify other",
+                                "type": "TextField"
+                            }
                         }]
-                    }, {
-                        "parent_answer_id": "radio-non-mandatory-answer",
-                        "mandatory": false,
-                        "id": "other-answer-non-mandatory",
-                        "label": "Please specify other",
-                        "type": "TextField"
                     }]
                 }]
             }, {

@@ -2,11 +2,9 @@
   {% set question_answers %}
     <div class="question__answers">
       {%- for answer in question.answers -%}
-        {% if not answer.parent_answer_id %}
-          <div class="question__answer">
-            {% include theme('partials/answer.html') %}
-          </div>
-        {% endif %}
+        <div class="question__answer">
+          {% include theme('partials/answer.html') %}
+        </div>
       {%- endfor -%}
     </div>
   {% endset %}

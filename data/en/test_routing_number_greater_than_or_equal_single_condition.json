@@ -30,7 +30,8 @@
                         "answers": [{
                             "id": "answer",
                             "mandatory": true,
-                            "type": "Number"
+                            "type": "Number",
+                            "label": "123 or greater"
                         }],
                         "id": "question",
                         "title": "Enter the number greater than or equal to 123",

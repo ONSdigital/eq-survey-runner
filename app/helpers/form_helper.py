@@ -111,7 +111,7 @@ def post_form_for_location(schema, block_json, location, answer_store, metadata,
 
         return form
 
-    data = clear_other_text_field(request_form, schema.get_questions_for_block(block_json))
+    data = clear_detail_answer_field(request_form, schema.get_questions_for_block(block_json))
     return generate_form(schema, block_json, answer_store, metadata, location.group_instance, group_instance_id, formdata=data)
 
 
@@ -123,10 +123,10 @@ def disable_mandatory_answers(block_json):
     return block_json
 
 
-def clear_other_text_field(data, questions_for_block):
+def clear_detail_answer_field(data, questions_for_block):
     """
     Checks the submitted answers and in the case of both checkboxes and radios,
-    removes the text entered into the other text field if the Other option is not
+    removes the text entered into the detail answer field if the associated option is not
     selected.
     :param data: the submitted form data.
     :param questions_for_block: a list of questions from the block schema.
@@ -135,12 +135,10 @@ def clear_other_text_field(data, questions_for_block):
     form_data = MultiDict(data)
     for question in questions_for_block:
         for answer in question.get('answers', []):
-            if 'parent_answer_id' in answer and \
-                    answer['parent_answer_id'] in data and \
-                    'Other' not in form_data.getlist(answer['parent_answer_id']) and \
-                    form_data.get(answer['id']):
-
-                form_data[answer['id']] = ''
+            for option in answer.get('options', []):
+                if 'detail_answer' in option:
+                    if option['value'] not in form_data.getlist(answer['id']):
+                        form_data[option['detail_answer']['id']] = ''
 
     return form_data
 

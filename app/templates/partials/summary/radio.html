@@ -1,12 +1,8 @@
-{{answer.value}}
-{%- if answer.child_answer_value is not none -%}
+{{answer.value.label}}
+{%- if answer.value.detail_answer_value -%}
     <ul>
         <li>
-            {%- if answer.child_answer_value == ''  -%}
-                {{ _("No answer provided") }}
-            {%- else -%}
-                {{ answer.child_answer_value }}
-            {%- endif -%}
+          {{ answer.value.detail_answer_value }}
         </li>
     </ul>
 {%- endif -%}
