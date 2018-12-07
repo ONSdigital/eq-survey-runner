@@ -25,15 +25,9 @@
                     <h1 class="header__title header__title--nav-adj">{{ survey_title }}</h1>
                 </div>
                 {% include 'partials/sign-out-button.html' %}
-
-                {% if account_service_url %}
-                    {% include 'partials/mobile-navigation-button.html' %}                
-                {% endif %}
-
+                {% include 'partials/mobile-navigation-button.html' %}
             </div>
         </div>
     </div>
-    {% if account_service_url %}
-        {% include 'partials/main-navigation.html' %}
-    {% endif %}
+    {% include 'partials/main-navigation.html' %}
 </header>
