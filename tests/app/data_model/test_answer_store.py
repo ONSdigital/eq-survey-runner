@@ -522,9 +522,11 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         upgrade_2 = MagicMock()
         upgrade_2.__name__ = 'upgrade_2'
 
-        UPGRADE_TRANSFORMS = (
-            upgrade_0, upgrade_1, upgrade_2
-        )
+        UPGRADE_TRANSFORMS = {
+            0: upgrade_0,
+            1: upgrade_1,
+            2: upgrade_2
+        }
 
         schema = MagicMock()
 
@@ -546,9 +548,11 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         upgrade_2 = MagicMock()
         upgrade_2.__name__ = 'upgrade_2'
 
-        UPGRADE_TRANSFORMS = (
-            upgrade_0, upgrade_1, upgrade_2
-        )
+        UPGRADE_TRANSFORMS = {
+            0: upgrade_0,
+            1: upgrade_1,
+            2: upgrade_2
+        }
 
         schema = MagicMock()
 
