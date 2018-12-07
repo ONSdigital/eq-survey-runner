@@ -175,7 +175,6 @@
                         }]
                     }, {
                         "id": "religion-answer-other",
-                        "parent_answer_id": "religion-answer",
                         "type": "TextField",
                         "mandatory": false,
                         "label": "Please enter religion"

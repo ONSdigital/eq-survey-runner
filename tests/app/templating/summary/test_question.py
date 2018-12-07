@@ -244,7 +244,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         self.assertEqual(question.answers[0]['value'][0].label, 'Light Side label')
         self.assertEqual(question.answers[0]['value'][1].label, 'Dark Side label')
 
-    def test_checkbox_button_other_option_empty(self):
+    def test_checkbox_button_detail_answer_empty(self):
         # Given
         self.answer_store.add_or_update(Answer(
             answer_id='answer_1',
@@ -271,9 +271,9 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         # Then
         self.assertEqual(len(question.answers[0]['value']), 1)
         self.assertEqual(question.answers[0]['value'][0].label, 'Other option label')
-        self.assertEqual(question.answers[0]['value'][0].should_display_other, True)
+        self.assertEqual(question.answers[0]['value'][0].detail_answer_value, None)
 
-    def test_checkbox_answer_with_other_value_returns_the_value(self):
+    def test_checkbox_answer_with_detail_answer_returns_the_value(self):
         # Given
         self.answer_store.add_or_update(Answer(
             answer_id='answer_1',
@@ -290,17 +290,16 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         }, {
             'label': 'Other',
             'value': 'Other',
-            'child_answer_id': 'child_answer'
+            'detail_answer': {
+                'id': 'child_answer',
+                'type': 'TextField'
+            }
         }]
         answer_schema = [{
             'id': 'answer_1',
             'label': 'Which side?',
             'type': 'Checkbox',
             'options': options
-        }, {
-            'parent_answer_id': 'answer_1',
-            'id': 'child_answer',
-            'type': 'TextField'
         }]
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL',
                            'answers': answer_schema}
@@ -311,7 +310,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
 
         # Then
         self.assertEqual(len(question.answers[0]['value']), 2)
-        self.assertEqual(question.answers[0]['child_answer_value'], 'Test')
+        self.assertEqual(question.answers[0]['value'][1].detail_answer_value, 'Test')
 
     def test_checkbox_button_other_option_text(self):
         # Given
@@ -329,7 +328,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         }, {
             'label': 'other',
             'value': 'other',
-            'child_answer_id': 'child_answer'
+            'detail_answer': {'id': 'child_answer'}
         }]
         answer_schema = {'id': 'answer_1', 'label': 'Which side?', 'type': 'Checkbox', 'options': options}
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
@@ -341,7 +340,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         # Then
         self.assertEqual(len(question.answers[0]['value']), 2)
         self.assertEqual(question.answers[0]['value'][0].label, 'Light Side')
-        self.assertEqual(question.answers[0]['child_answer_value'], 'Neither')
+        self.assertEqual(question.answers[0]['value'][1].detail_answer_value, 'Neither')
 
     def test_checkbox_button_none_selected_should_be_none(self):
         # Given
@@ -363,58 +362,6 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         # Then
         self.assertEqual(question.answers[0]['value'], None)
 
-    def test_radio_button_other_option_empty(self):
-        # Given
-        self.answer_store.add_or_update(Answer(
-            answer_id='answer_1',
-            value='',
-        ))
-        options = [{
-            'label': 'Light Side',
-            'value': 'Light Side',
-        }, {
-            'label': 'Other option label',
-            'value': 'other',
-            'other': {
-                'label': 'Please specify other'
-            }
-        }]
-        answer_schema = {'id': 'answer_1', 'label': 'Which side?', 'type': 'Radio', 'options': options}
-        question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
-
-        # When
-        with patch('app.templating.summary.question.get_question_title', return_value=False):
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema, 0)
-
-        # Then
-        self.assertEqual(question.answers[0]['value'], 'Other option label')
-
-    def test_radio_button_other_option_text(self):
-        # Given
-        self.answer_store.add_or_update(Answer(
-            answer_id='answer_1',
-            value='I want to be on the dark side',
-        ))
-        options = [{
-            'label': 'Light Side',
-            'value': 'Light Side',
-        }, {
-            'label': 'Other option label',
-            'value': 'other',
-            'other': {
-                'label': 'Please specify other'
-            }
-        }]
-        answer_schema = {'id': 'answer_1', 'label': 'Which side?', 'type': 'Radio', 'options': options}
-        question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
-
-        # When
-        with patch('app.templating.summary.question.get_question_title', return_value=False):
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema, 0)
-
-        # Then
-        self.assertEqual(question.answers[0]['value'], 'I want to be on the dark side')
-
     def test_radio_button_none_selected_should_be_none(self):
         # Given
         options = [{
@@ -431,7 +378,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         # Then
         self.assertEqual(question.answers[0]['value'], None)
 
-    def test_radio_answer_with_other_value_returns_the_value(self):
+    def test_radio_answer_with_detail_answer_returns_the_value(self):
         # Given
         self.answer_store.add_or_update(Answer(
             answer_id='answer_1',
@@ -444,17 +391,16 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         options = [{
             'label': 'Other',
             'value': 'Other',
-            'child_answer_id': 'child_answer'
+            'detail_answer': {
+                'id': 'child_answer',
+                'type': 'TextField'
+            }
         }]
         answer_schema = [{
             'id': 'answer_1',
             'label': 'Which side?',
             'type': 'Radio',
             'options': options
-        }, {
-            'parent_answer_id': 'answer_1',
-            'id': 'child_answer',
-            'type': 'TextField'
         }]
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL',
                            'answers': answer_schema}
@@ -464,7 +410,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
             question = Question(question_schema, self.answer_store, self.metadata, self.schema, 0)
 
         # Then
-        self.assertEqual(question.answers[0]['child_answer_value'], 'Test')
+        self.assertEqual(question.answers[0]['value']['detail_answer_value'], 'Test')
 
     def test_build_answers_repeating_answers(self):
         # Given

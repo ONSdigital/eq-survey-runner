@@ -33,8 +33,8 @@
             "validator": "date"
         },
         {
-            "name": "trad_as_or_ru_name",
-            "validator": "string"
+            "name": "trad_as",
+            "validator": "optional_string"
         }
     ],
     "sections": [{
@@ -749,11 +749,11 @@
                         "type": "Question",
                         "questions": [{
                             "id": "any-significant-changes-question",
-                            "title": "Did any significant changes occur to the total investment for {{ metadata['trad_as_or_ru_name'] }}?",
+                            "title": "Did any significant changes occur to the total investment for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
                             "definitions": [{
                                 "title": "What constitutes a significant change?",
                                 "content": [{
-                                    "description": "What constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{ metadata['trad_as_or_ru_name'] }}’s figures from the previous reporting period and the same reporting period last year."
+                                    "description": "What constitutes a ‘significant change’ is dependent on your own interpretation in relation to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}’s figures from the previous reporting period and the same reporting period last year."
                                 }]
                             }],
                             "type": "General",
@@ -796,7 +796,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "significant-changes-reason-question-1",
-                            "title": "Please indicate the reasons for any changes in the total investment for {{ metadata['trad_as_or_ru_name'] }}",
+                            "title": "Please indicate the reasons for any changes in the total investment for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}",
                             "type": "General",
                             "answers": [{
                                 "id": "significant-changes-reason-answer",
@@ -862,7 +862,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "significant-changes-reason-question-2",
-                            "title": "Please describe the changes in total investment for {{ metadata['trad_as_or_ru_name'] }} in more detail.",
+                            "title": "Please describe the changes in total investment for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} in more detail.",
                             "description": "We rely on your commentary to ‘tell the story’ behind changes in figures. By commenting here it will reduce the need for us to call you.",
                             "type": "General",
                             "answers": [{

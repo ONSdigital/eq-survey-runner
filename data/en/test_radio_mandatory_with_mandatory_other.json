@@ -6,52 +6,58 @@
     "title": "Radio Mandatory with Mandatory Other",
     "theme": "default",
     "metadata": [{
-        "name": "user_id",
-        "validator": "string"
-    }, {
-        "name": "period_id",
-        "validator": "string"
-    }, {
-        "name": "ru_name",
-        "validator": "string"
-    }],
+            "name": "user_id",
+            "validator": "string"
+        },
+        {
+            "name": "period_id",
+            "validator": "string"
+        },
+        {
+            "name": "ru_name",
+            "validator": "string"
+        }
+    ],
     "sections": [{
         "id": "default-section",
         "groups": [{
             "id": "radio",
             "title": "Radio Mandatory with Mandatory Other",
             "blocks": [{
-                "type": "Question",
-                "id": "radio-mandatory",
-                "questions": [{
-                    "type": "General",
-                    "id": "radio-mandatory-question",
-                    "title": "What is you favourite breakfast item?",
-                    "answers": [{
-                        "type": "Radio",
-                        "id": "radio-mandatory-answer",
-                        "mandatory": true,
-                        "options": [{
-                            "label": "Toast",
-                            "value": "Toast"
-                        }, {
-                            "label": "Other",
-                            "description": "An answer is required.",
-                            "value": "Other",
-                            "child_answer_id": "other-answer-mandatory"
+                    "type": "Question",
+                    "id": "radio-mandatory",
+                    "questions": [{
+                        "type": "General",
+                        "id": "radio-mandatory-question",
+                        "title": "What is you favourite breakfast item?",
+                        "answers": [{
+                            "type": "Radio",
+                            "id": "radio-mandatory-answer",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "Toast",
+                                    "value": "Toast"
+                                },
+                                {
+                                    "label": "Other",
+                                    "description": "An answer is required.",
+                                    "value": "Other",
+                                    "detail_answer": {
+                                        "mandatory": true,
+                                        "id": "other-answer-mandatory",
+                                        "label": "Please specify other",
+                                        "type": "TextField"
+                                    }
+                                }
+                            ]
                         }]
-                    }, {
-                        "parent_answer_id": "radio-mandatory-answer",
-                        "mandatory": false,
-                        "id": "other-answer-mandatory",
-                        "label": "Please specify other",
-                        "type": "TextField"
                     }]
-                }]
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }]
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ]
         }]
     }]
 }

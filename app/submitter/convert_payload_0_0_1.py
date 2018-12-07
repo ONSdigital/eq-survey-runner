@@ -25,7 +25,7 @@ def convert_answers_to_payload_0_0_1(answer_store, schema, routing_path):
 
             value = answer['value']
 
-            if answer_schema is not None and value is not None and 'parent_answer_id' not in answer_schema:
+            if answer_schema is not None and value is not None:
                 if answer_schema['type'] == 'Checkbox':
                     data.update(_get_checkbox_answer_data(answer_store, answer_schema, value))
                 elif 'q_code' in answer_schema:
@@ -64,14 +64,14 @@ def _get_checkbox_answer_data(answer_store, answer_schema, value):
         option = next((option for option in answer_schema['options'] if option['value'] == user_answer), None)
 
         if option:
-            if 'child_answer_id' in option:
-                filtered = answer_store.filter(answer_ids=[option['child_answer_id']])
+            if 'detail_answer' in option:
+                filtered = answer_store.filter(answer_ids=[option['detail_answer']['id']])
 
                 if filtered.count() > 1:
-                    raise Exception('Multiple answers found for {}'.format(option['child_answer_id']))
+                    raise Exception('Multiple answers found for {}'.format(option['detail_answer']['id']))
 
-                # if the user has selected 'other' we need to find the child value it refers to.
-                # the child value can be empty, in this case we just use the main value (e.g. other)
+                # if the user has selected an option with a detail answer we need to find the detail answer value it refers to.
+                # the detail answer value can be empty, in this case we just use the main value (e.g. other)
                 user_answer = filtered.values()[0] or user_answer
 
             qcodes_and_values.append((option.get('q_code'), user_answer))

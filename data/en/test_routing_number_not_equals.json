@@ -27,7 +27,8 @@
                     "answers": [{
                         "id": "answer",
                         "mandatory": true,
-                        "type": "Number"
+                        "type": "Number",
+                        "label": "Not 123"
                     }],
                     "id": "question",
                     "title": "Enter the number that isn't 123",

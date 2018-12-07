@@ -44,7 +44,7 @@ def build_view_context_for_non_question(variables, rendered_block):
     }
 
 
-def build_view_context_for_question(metadata, schema, answer_store, current_location, variables, rendered_block, form):  # noqa: C901, E501  pylint: disable=too-complex,line-too-long,too-many-locals
+def build_view_context_for_question(metadata, schema, answer_store, current_location, variables, rendered_block, form):  # noqa: C901, E501  pylint: disable=too-complex,line-too-long,too-many-locals,too-many-branches
 
     context = {
         'variables': variables,
@@ -56,7 +56,6 @@ def build_view_context_for_question(metadata, schema, answer_store, current_loca
             'mapped_errors': form.map_errors(),
             'answer_errors': {},
             'data': {},
-            'other_answer': {},
             'fields': {},
         },
     }
@@ -77,10 +76,9 @@ def build_view_context_for_question(metadata, schema, answer_store, current_loca
                 answer_ids.append(answer['id'])
 
             if answer['type'] in ('Checkbox', 'Radio'):
-                options = answer['options']
-                context['form']['other_answer'][answer['id']] = []
-                for index in range(len(options)):
-                    context['form']['other_answer'][answer['id']].append(form.get_other_answer(answer['id'], index))
+                for option in answer['options']:
+                    if 'detail_answer' in option:
+                        answer_ids.append(option['detail_answer']['id'])
 
     for answer_id in answer_ids:
         context['form']['answer_errors'][answer_id] = form.answer_errors(answer_id)

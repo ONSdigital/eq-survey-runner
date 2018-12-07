@@ -227,10 +227,10 @@ def process_options(answer_id, options, page_spec, base_prefix):
 
         # Add a selector for an option which exposes another input, e.g.
         # an 'Other' option which exposes a text input for the user to fill in
-        if 'child_answer_id' in option:
+        if 'detail_answer' in option:
             option_context = {
-                'answerId': option['child_answer_id'],
-                'answerName': option_name + 'Text'
+                'answerId': option['detail_answer']['id'],
+                'answerName': option_name + 'Detail'
             }
             page_spec.write(ANSWER_GETTER.substitute(option_context))
 
@@ -246,11 +246,7 @@ def process_answer(question_type, answer, page_spec, long_names, page_name):
     if answer_name is None or answer_name == '':
         answer_name = 'answer'
 
-    if 'parent_answer_id' in answer:
-        logger.debug('\t\tSkipping Child Answer: %s', answer['id'])
-        return
-
-    elif answer['type'] in ('Radio', 'Checkbox'):
+    if answer['type'] in ('Radio', 'Checkbox'):
         process_options(answer['id'], answer['options'], page_spec, prefix)
 
     elif answer['type'] in 'Date':

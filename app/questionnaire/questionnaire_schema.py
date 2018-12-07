@@ -1,4 +1,3 @@
-import itertools
 from collections import OrderedDict
 
 from flask_babel import force_locale
@@ -94,14 +93,14 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def get_answers_by_id_for_block(self, block_id):
         block = self.get_block(block_id)
         if block:
-            answer_lists = (
-                question.get('answers', [])
-                for question in block.get('questions', [])
-            )
-            return {
-                answer['id']: answer
-                for answer in itertools.chain.from_iterable(answer_lists)
-            }
+            answers_by_id = {}
+            for question in block.get('questions', []):
+                for answer in question.get('answers', []):
+                    answers_by_id.update({answer['id']: answer})
+                    for option in answer.get('options', []):
+                        if 'detail_answer' in option:
+                            answers_by_id.update({option['detail_answer']['id']: option['detail_answer']})
+            return answers_by_id
 
         return {}
 
@@ -124,21 +123,6 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
             block['id'] for block in self.blocks
             if block['type'] in ('Summary', 'Confirmation')
         ]
-
-    def get_parent_options_for_block(self, block_id):
-        options_with_children = {}
-
-        for answer_json in self.get_answers_for_block(block_id):
-            if answer_json['type'] in ['Checkbox', 'Radio']:
-                answer_options_with_children = {
-                    answer_json['id']: {
-                        'index': index,
-                        'child_answer_id': o['child_answer_id'],
-                    }
-                    for index, o in enumerate(answer_json['options']) if 'child_answer_id' in o}
-
-                options_with_children.update(answer_options_with_children)
-        return options_with_children
 
     def get_group_dependencies(self, group_id):
         return self.group_dependencies.get(group_id)
@@ -295,5 +279,10 @@ def get_nested_schema_objects(parent_object, list_key):
             # patch the ID of the parent onto the object
             child_list_object['parent_id'] = parent_id
             nested_objects[child_list_object['id']] = child_list_object
+
+            for option in child_list_object.get('options', []):
+                if 'detail_answer' in option:
+                    option['detail_answer']['parent_id'] = parent_id
+                    nested_objects[option['detail_answer']['id']] = option['detail_answer']
 
     return nested_objects

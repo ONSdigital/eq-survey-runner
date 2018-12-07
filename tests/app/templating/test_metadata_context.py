@@ -61,6 +61,5 @@ class TestMetadataContext(AppContextTestCase):
         self.assertEqual(escaped_bad_characters, metadata_context['ru_ref'])
         self.assertEqual(escaped_bad_characters, metadata_context['ru_name'])
         self.assertEqual(escaped_bad_characters, metadata_context['trad_as'])
-        self.assertEqual(escaped_bad_characters, metadata_context['trad_as_or_ru_name'])
         self.assertEqual(escaped_bad_characters, metadata_context['region_code'])
         self.assertEqual(escaped_bad_characters, metadata_context['collection_id'])

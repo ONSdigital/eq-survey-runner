@@ -64,19 +64,9 @@ def _build_group_instances(answer_store, answer_ids_on_path):
 
 
 def build_schema_metadata(metadata, schema):
-
     schema_metadata = schema.json['metadata']
     parsed = {metadata_field['name']: json_and_html_safe(metadata[metadata_field['name']])
               for metadata_field in schema_metadata if metadata_field['name'] in metadata}
-    parsed_schema_metadata = [metadata_field['name'] for metadata_field in schema_metadata]
-    trad_as = json_and_html_safe(metadata.get('trad_as'))
-    ru_name = json_and_html_safe(metadata.get('ru_name'))
-
-    if trad_as:
-        parsed['trad_as'] = trad_as
-
-    if 'trad_as_or_ru_name' in parsed_schema_metadata:
-        parsed['trad_as_or_ru_name'] = trad_as or ru_name
 
     return parsed
 

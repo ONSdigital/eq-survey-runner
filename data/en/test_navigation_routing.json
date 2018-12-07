@@ -87,7 +87,8 @@
                     "answers": [{
                         "id": "question1-answer",
                         "mandatory": false,
-                        "type": "TextField"
+                        "type": "TextField",
+                        "label": "Question 1"
                     }]
                 }]
             }, {
@@ -103,7 +104,8 @@
                     "answers": [{
                         "id": "question2-answer",
                         "mandatory": false,
-                        "type": "TextField"
+                        "type": "TextField",
+                        "label": "Question 2"
                     }]
                 }]
             }]

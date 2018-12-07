@@ -27,7 +27,8 @@
                     "answers": [{
                         "id": "answer",
                         "mandatory": true,
-                        "type": "Number"
+                        "type": "Number",
+                        "label": "Less than 123"
                     }],
                     "id": "question",
                     "title": "Enter the number less than 123",

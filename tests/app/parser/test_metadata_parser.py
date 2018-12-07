@@ -236,28 +236,6 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
         self.assertEqual('incorrect data in token for return_by', str(ite_value.exception))
 
-    def test_required_metadata_trad_as_or_ru_name_in_token(self):
-        metadata = {
-            'jti': str(uuid.uuid4()),
-            'user_id': '1',
-            'form_type': 'a',
-            'collection_exercise_sid': 'test-sid',
-            'eq_id': '2',
-            'period_id': '3',
-            'ru_ref': '2016-04-04'
-        }
-
-        self.schema_metadata.append({'name': 'trad_as_or_ru_name', 'validator': 'string'})
-
-        metadata['ru_name'] = 'ESSENTIAL ENTERPRISE LIMITED'
-        validate_metadata(metadata, self.schema_metadata)
-
-        metadata['trad_as_or_ru_name'] = ''
-        metadata['ru_name'] = ''
-        with self.assertRaises(InvalidTokenException) as ite:
-            validate_metadata(metadata, self.schema_metadata)
-        self.assertEqual('incorrect data in token for trad_as_or_ru_name', ite.exception.args[0])
-
     def test_invalid_required_ref_p_start_date(self):
         metadata = {
             'jti': str(uuid.uuid4()),

@@ -48,17 +48,16 @@
                             "label": "Other",
                             "description": "An answer is required.",
                             "value": "Other",
-                            "child_answer_id": "other-answer-mandatory"
+                            "detail_answer": {
+                                "mandatory": false,
+                                "id": "other-answer-mandatory",
+                                "label": "Please specify other",
+                                "q_code": "20",
+                                "type": "TextField"
+                            }
                         }],
                         "q_code": "20",
                         "type": "Radio"
-                    }, {
-                        "parent_answer_id": "radio-answer",
-                        "mandatory": false,
-                        "id": "other-answer-mandatory",
-                        "label": "Please specify other",
-                        "q_code": "20",
-                        "type": "TextField"
                     }],
                     "description": "",
                     "id": "radio-question",

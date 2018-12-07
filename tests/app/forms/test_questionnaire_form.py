@@ -1011,21 +1011,29 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             self.assertTrue(self._error_exists('period-to', schema.error_messages['MANDATORY_DATE'], mapped_errors))
             self.assertTrue(self._error_exists('period-from', schema.error_messages['MANDATORY_DATE'], mapped_errors))
 
-    def test_answer_with_child_inherits_mandatory_from_parent(self):
+    def test_detail_answer_mandatory_only_checked_if_option_selected(self):
+        # The detail_answer can only be mandatory if the option it is associated with is answered
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'radio_mandatory_with_mandatory_other')
+            schema = load_schema_from_params('test', 'checkbox_multiple_detail_answers')
 
-            block_json = schema.get_block('radio-mandatory')
+            block_json = schema.get_block('mandatory-checkbox')
 
+            #  Option is selected therefore the detail answer should be mandatory (schema defined)
             form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={
-                'radio-mandatory-answer': 'Other'
+                'mandatory-checkbox-answer': 'Your choice'
             })
 
-            child_field = getattr(form, 'other-answer-mandatory')
+            detail_answer_field = getattr(form, 'your-choice-answer-mandatory')
+            self.assertIsInstance(detail_answer_field.validators[0], ResponseRequired)
 
-            self.assertIsInstance(child_field.validators[0], ResponseRequired)
+            #  Option not selected therefore the detail answer should not be mandatory
+            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0,
+                                 group_instance_id=None, formdata={'mandatory-checkbox-answer': 'Ham'})
 
-    def test_answer_with_child_errors_are_correctly_mapped(self):
+            detail_answer_field = getattr(form, 'your-choice-answer-mandatory')
+            self.assertEqual(detail_answer_field.validators, [])
+
+    def test_answer_with_detail_answer_errors_are_correctly_mapped(self):
         with self.app_request_context():
             schema = load_schema_from_params('test', 'radio_mandatory_with_mandatory_other')
 
@@ -1057,45 +1065,6 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
             answer_errors = form.answer_errors('total-number-employees')
             self.assertIn(schema.error_messages['NUMBER_TOO_SMALL'] % dict(min='0'), answer_errors)
 
-    def test_option_has_other(self):
-        with self.app_request_context():
-            schema = load_schema_from_params('test', 'checkbox')
-
-            block_json = schema.get_block('mandatory-checkbox')
-
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={})
-
-            self.assertFalse(form.option_has_other('mandatory-checkbox-answer', 1))
-            self.assertTrue(form.option_has_other('mandatory-checkbox-answer', 6))
-
-    def test_get_other_answer(self):
-        with self.app_request_context():
-            schema = load_schema_from_params('test', 'checkbox')
-
-            block_json = schema.get_block('mandatory-checkbox')
-
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={
-                'other-answer-mandatory': 'Some data'
-            })
-
-            field = form.get_other_answer('mandatory-checkbox-answer', 6)
-
-            self.assertEqual('Some data', field.data)
-
-    def test_get_other_answer_invalid(self):
-        with self.app_request_context():
-            schema = load_schema_from_params('test', 'checkbox')
-
-            block_json = schema.get_block('mandatory-checkbox')
-
-            form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={
-                'other-answer-mandatory': 'Some data'
-            })
-
-            field = form.get_other_answer('mandatory-checkbox-answer', 4)
-
-            self.assertEqual(None, field)
-
     def test_mandatory_mutually_exclusive_question_raises_error_when_not_answered(self):
         with self.app_request_context():
             schema = load_schema_from_params('test', 'mutually_exclusive')
@@ -1117,7 +1086,6 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
                                     'label': 'Other',
                                     'description': 'Choose any other topping',
                                     'value': 'Other',
-                                    'child_answer_id': 'checkbox-child-other-answer',
                                 }],
                 }, {
                     'id': 'checkbox-exclusive-answer',

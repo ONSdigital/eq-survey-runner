@@ -18,10 +18,6 @@
             "validator": "string"
         },
         {
-            "name": "trad_as_or_ru_name",
-            "validator": "string"
-        },
-        {
             "name": "ru_name",
             "validator": "string"
         },
@@ -43,9 +39,6 @@
                     "primary_content": [{
                         "content": [{
                                 "title": "(String) trad_as: {{ metadata['trad_as'] }}"
-                            },
-                            {
-                                "title": "(Computed String) trad_as_or_ru_name: {{ metadata['trad_as_or_ru_name'] }}"
                             },
                             {
                                 "title": "(Date) ref_p_start_date: {{ metadata['ref_p_start_date'] }}"

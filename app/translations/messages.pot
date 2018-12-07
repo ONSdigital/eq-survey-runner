@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-30 12:40+0000\n"
+"POT-Creation-Date: 2018-12-06 10:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,11 +42,15 @@ msgstr ""
 msgid "%(from_date)s to %(to_date)s"
 msgstr ""
 
+#: app/forms/custom_fields.py:108
+msgid "Not a valid choice"
+msgstr ""
+
 #: app/forms/date_form.py:216
 msgid "Select month"
 msgstr ""
 
-#: app/forms/fields.py:180
+#: app/forms/fields.py:194
 msgid "Select an answer"
 msgstr ""
 
@@ -597,8 +601,6 @@ msgid "Add"
 msgstr ""
 
 #: app/templates/partials/summary/answer.html:2
-#: app/templates/partials/summary/checkbox.html:7
-#: app/templates/partials/summary/radio.html:6
 msgid "No answer provided"
 msgstr ""
 

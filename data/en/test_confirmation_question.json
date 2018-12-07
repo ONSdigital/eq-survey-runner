@@ -23,8 +23,8 @@
         "name": "ru_name",
         "validator": "string"
     }, {
-        "name": "trad_as_or_ru_name",
-        "validator": "string"
+        "name": "trad_as",
+        "validator": "optional_string"
     }],
     "sections": [{
         "id": "default-section",
@@ -44,7 +44,7 @@
                         "default": 0
                     }],
                     "id": "number-of-employees-total-question",
-                    "title": "How many employees work at {{metadata['trad_as_or_ru_name']}}?",
+                    "title": "How many employees work at {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
                     "type": "General"
                 }],
                 "type": "Question"
@@ -75,7 +75,7 @@
                         "q_code": "d50"
                     }],
                     "id": "confirm-zero-employees-question",
-                    "title": "The current number of employees for {{metadata['trad_as_or_ru_name']}} is <em>0</em>, is this correct?"
+                    "title": "The current number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} is <em>0</em>, is this correct?"
                 }],
                 "routing_rules": [{
                     "goto": {
