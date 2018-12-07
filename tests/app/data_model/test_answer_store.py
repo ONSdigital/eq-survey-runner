@@ -2,8 +2,8 @@
 import unittest
 from unittest.mock import patch, MagicMock
 
-from app.data_model.answer_store import (Answer, AnswerStore, upgrade_0_to_1_update_date_formats, upgrade_1_to_2_add_group_instance_id,
-                                         upgrade_3_to_4_remove_empty_answers)
+from app.data_model.answer_store import (Answer, AnswerStore, upgrade_to_1_update_date_formats, upgrade_to_2_add_group_instance_id,
+                                         upgrade_to_4_remove_empty_answers)
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 
 
@@ -336,7 +336,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.store = AnswerStore(existing_answers=answers)
 
-        upgrade_0_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
+        upgrade_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.values()[0], '2017-12-25')
 
@@ -375,7 +375,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.store = AnswerStore(existing_answers=answers)
 
-        upgrade_0_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
+        upgrade_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.values()[0], '2017-12')
 
@@ -410,7 +410,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.store = AnswerStore(existing_answers=answers)
 
-        upgrade_0_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
+        upgrade_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.values()[0], '12/2017')
 
@@ -438,7 +438,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.store = AnswerStore(existing_answers=answers)
 
-        upgrade_0_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
+        upgrade_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.values()[0], '12/2017')
 
@@ -504,7 +504,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         answer_store = AnswerStore(existing_answers)
 
-        upgrade_1_to_2_add_group_instance_id(answer_store, QuestionnaireSchema(survey))
+        upgrade_to_2_add_group_instance_id(answer_store, QuestionnaireSchema(survey))
 
         filtered = iter(answer_store.filter(answer_ids=['answer1']))
         first_group_instance_id = next(filtered)['group_instance_id']
@@ -592,7 +592,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         upgrade_2.assert_called_once_with(answer_store, schema)
         upgrade_3.assert_called_once_with(answer_store, schema)
 
-    def test_upgrade_from_3_to_4(self):
+    def test_upgrade_to_4(self):
         """ The upgrade to version 4 should ensure that we don't store unanswered answers inc. empty answers
         """
         invalid_answer_values = ('', [])
@@ -609,7 +609,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         assert answer_store.count() == len(answer_values)
 
-        upgrade_3_to_4_remove_empty_answers(answer_store, MagicMock())
+        upgrade_to_4_remove_empty_answers(answer_store, MagicMock())
 
         assert answer_store.count() == len(valid_answer_values)
 
