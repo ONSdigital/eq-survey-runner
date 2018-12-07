@@ -10,9 +10,9 @@ class QuestionnaireStore:
     The QuestionnaireStore is versioned to provide a way to migrate existing state. Versions are:
     1 - Reformat date answers from d/m/y to y-m-d
     2 - Add group_instance_id to all answers
-    3 - Remove empty answer values from the answer store
+    4 - Remove empty answer values from the answer store
     """
-    LATEST_VERSION = 3
+    LATEST_VERSION = 4
 
     def __init__(self, storage, version=None):
         self._storage = storage
