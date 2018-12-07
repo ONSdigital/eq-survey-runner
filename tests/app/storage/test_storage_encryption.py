@@ -1,5 +1,4 @@
 from unittest import TestCase
-from jwcrypto.common import base64url_decode
 import simplejson as json
 
 from app.storage.storage_encryption import StorageEncryption
