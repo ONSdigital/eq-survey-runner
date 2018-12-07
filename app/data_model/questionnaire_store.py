@@ -10,6 +10,8 @@ class QuestionnaireStore:
     The QuestionnaireStore is versioned to provide a way to migrate existing state. Versions are:
     1 - Reformat date answers from d/m/y to y-m-d
     2 - Add group_instance_id to all answers
+    3 - Compress state using snappy before encryption. Also removes base64 encoding and
+        unnecessary json wrapper around encrypted data.
     4 - Remove empty answer values from the answer store
     """
     LATEST_VERSION = 4

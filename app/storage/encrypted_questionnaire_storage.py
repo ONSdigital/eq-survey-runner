@@ -20,8 +20,8 @@ class EncryptedQuestionnaireStorage:
         self.encrypter = StorageEncryption(user_id, user_ik, pepper)
 
     def add_or_update(self, data, version):
-        encrypted_data = self.encrypter.encrypt_data(data)
-        encrypted_data = json.dumps({'data': encrypted_data})
+        compressed_data = snappy.compress(data)
+        encrypted_data = self.encrypter.encrypt_data(compressed_data)
         questionnaire_state = self._find_questionnaire_state()
         if questionnaire_state:
             logger.debug('updating questionnaire data', user_id=self._user_id)
@@ -38,7 +38,7 @@ class EncryptedQuestionnaireStorage:
         if questionnaire_state and questionnaire_state.state_data:
             version = questionnaire_state.version or 0
 
-            if version <= 2:
+            if version < 3:
                 decrypted_data = self._get_base64_encoded_data(questionnaire_state.state_data)
             else:
                 decrypted_data = self._get_snappy_compressed_data(questionnaire_state.state_data)

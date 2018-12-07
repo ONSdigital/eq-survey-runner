@@ -6,7 +6,7 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
     def test_change_non_mandatory_date_from_answered_to_not_answered(self):
 
         # Given the test_dates questionnaire with a non-mandatory date answered.
-        self.launchSurvey('test', 'dates')
+        self.launchSurvey('test', 'dates', roles=['dumper'])
 
         post_data = {
             'date-range-from-answer-day': '1',
@@ -33,6 +33,11 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
         self.post(action='save_continue')
         self.assertInBody('22 February 2099')
         self.assertNotInBody('No answer provided')
+
+        answers = self.dumpAnswers()['answers']
+        non_mandatory_answer = [answer for answer in answers if answer.get('value') == '2099-02-22']
+
+        assert len(non_mandatory_answer) == 1
 
         # When we change the non-mandatory date from answered to not answered
         self.get('questionnaire/test/dates/789/dates/0/date-block')
@@ -61,3 +66,9 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
         # Then the original value is replaced with 'No answer provided' on the summary page
         self.assertNotInBody('22 February 2099')
         self.assertInBody('No answer provided')
+
+        answers = self.dumpAnswers()['answers']
+        non_mandatory_answer = [answer for answer in answers if answer.get('value') == '2099-02-22']
+
+        assert not non_mandatory_answer
+

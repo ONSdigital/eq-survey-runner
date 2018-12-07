@@ -1,7 +1,8 @@
 import unittest
 from unittest.mock import patch, MagicMock
 
-from app.data_model.answer_store import Answer, AnswerStore, upgrade_0_to_1_update_date_formats, upgrade_1_to_2_add_group_instance_id
+from app.data_model.answer_store import (Answer, AnswerStore, upgrade_0_to_1_update_date_formats, upgrade_1_to_2_add_group_instance_id,
+                                         upgrade_3_to_4_remove_empty_answers)
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 
 
@@ -562,6 +563,54 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         upgrade_0.assert_not_called()
         upgrade_1.assert_called_once_with(answer_store, schema)
         upgrade_2.assert_called_once_with(answer_store, schema)
+
+    def test_upgrade_skipped_version(self):
+        """ Ensure skipping an answer store version does not affect the upgrade path.
+        """
+        answer_store = AnswerStore()
+
+        upgrade_0 = MagicMock()
+        upgrade_0.__name__ = 'upgrade_0'
+        upgrade_2 = MagicMock()
+        upgrade_2.__name__ = 'upgrade_2'
+        upgrade_3 = MagicMock()
+        upgrade_3.__name__ = 'upgrade_3'
+
+        UPGRADE_TRANSFORMS = {
+            0: upgrade_0,
+            2: upgrade_2,
+            3: upgrade_3
+        }
+
+        schema = MagicMock()
+
+        with patch('app.data_model.answer_store.UPGRADE_TRANSFORMS', UPGRADE_TRANSFORMS):
+            answer_store.upgrade(0, schema)
+
+        upgrade_0.assert_called_once_with(answer_store, schema)
+        upgrade_2.assert_called_once_with(answer_store, schema)
+        upgrade_3.assert_called_once_with(answer_store, schema)
+
+    def test_upgrade_from_3_to_4(self):
+        """ The upgrade to version 4 should ensure that we don't store unanswered answers inc. empty answers
+        """
+        invalid_answer_values = ('', [])
+        valid_answer_values = ('None', 'VALID', 0)
+        answer_values = invalid_answer_values + valid_answer_values
+
+        answer_store = AnswerStore()
+        for i, answer_value in enumerate(answer_values):
+            print(i, answer_value)
+        answers = [Answer(answer_id=str(i), value=answer_value) for i, answer_value in enumerate(answer_values)]
+
+        for answer in answers:
+            answer_store.add_or_update(answer)
+
+        assert answer_store.count() == len(answer_values)
+
+        upgrade_3_to_4_remove_empty_answers(answer_store, MagicMock())
+
+        assert answer_store.count() == len(valid_answer_values)
 
     def test_remove_all_answers(self):
         answer_1 = Answer(

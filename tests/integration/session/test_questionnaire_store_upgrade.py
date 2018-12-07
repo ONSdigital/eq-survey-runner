@@ -28,15 +28,15 @@ class TestLogin(IntegrationTestCase):
 
     def test_questionnaire_store_is_upgraded(self):
         # Given
-        previous_version = QuestionnaireStore.LATEST_VERSION - 1
 
-        # Creates a QuestionnaireStore with previous version
-        with patch('app.data_model.questionnaire_store.QuestionnaireStore.get_latest_version_number', return_value=previous_version):
-            self.launchSurvey('test', '0205')
+        self.launchSurvey('test', '0205')
 
-        # On a subsequent request the `upgrade` method of answer_store should be called
-        with patch('app.data_model.questionnaire_store.AnswerStore.upgrade') as upgrade:
-            self.post(action='start_questionnaire')
+        # Increment the LATEST_VERSION so the `upgrade` method of answer_store is called when fetching
+        # the questionnaire store.
+        next_version = QuestionnaireStore.LATEST_VERSION + 1
+        with patch('app.data_model.questionnaire_store.QuestionnaireStore.get_latest_version_number', return_value=next_version):
+            with patch('app.data_model.questionnaire_store.AnswerStore.upgrade') as upgrade:
+                self.post(action='start_questionnaire')
 
         upgrade.assert_called_once()
 
