@@ -210,7 +210,7 @@ class AnswerStore:
             transform(self, schema)
 
 
-def upgrade_0_to_1_update_date_formats(answer_store, schema):
+def upgrade_to_1_update_date_formats(answer_store, schema):
     """ Updates the date format """
     for answer in answer_store:
         answer_schema = schema.get_answer(answer['answer_id'])
@@ -225,7 +225,7 @@ def upgrade_0_to_1_update_date_formats(answer_store, schema):
                 continue
 
 
-def upgrade_1_to_2_add_group_instance_id(answer_store, schema):
+def upgrade_to_2_add_group_instance_id(answer_store, schema):
     """ Answers should have a `group_instance_id` ready for more complex group repeat rules. """
     from app.questionnaire.location import Location
     from app.helpers.schema_helpers import get_group_instance_id
@@ -248,7 +248,7 @@ def upgrade_1_to_2_add_group_instance_id(answer_store, schema):
         answer['group_instance_id'] = get_group_instance_id(schema, answer_store, location, answer['answer_instance'])
 
 
-def upgrade_3_to_4_remove_empty_answers(answer_store, schema):  # pylint: disable=unused-argument
+def upgrade_to_4_remove_empty_answers(answer_store, schema):  # pylint: disable=unused-argument
     """ Previously, we stored [] and '' as answer values for unanswered, but completed answers.
 
     This was changed to avoid storing unanswered values entirely, so this upgrade will
@@ -265,7 +265,7 @@ def upgrade_3_to_4_remove_empty_answers(answer_store, schema):  # pylint: disabl
 
 # Dictionary specifying upgrade methods. Key should be the version to upgrade to.
 UPGRADE_TRANSFORMS = {
-    1: upgrade_0_to_1_update_date_formats,
-    2: upgrade_1_to_2_add_group_instance_id,
-    4: upgrade_3_to_4_remove_empty_answers,
+    1: upgrade_to_1_update_date_formats,
+    2: upgrade_to_2_add_group_instance_id,
+    4: upgrade_to_4_remove_empty_answers,
 }
