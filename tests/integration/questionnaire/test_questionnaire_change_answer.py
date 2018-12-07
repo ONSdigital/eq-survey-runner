@@ -71,4 +71,3 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
         non_mandatory_answer = [answer for answer in answers if answer.get('value') == '2099-02-22']
 
         assert not non_mandatory_answer
-

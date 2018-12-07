@@ -1,3 +1,4 @@
+# pylint: disable=no-self-use
 import unittest
 from unittest.mock import patch, MagicMock
 
@@ -512,7 +513,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         self.assertNotEqual(first_group_instance_id, next(filtered)['group_instance_id'])
 
 
-    def test_upgrade_multiple_versions(self):  # pylint: disable=no-self-use
+    def test_upgrade_multiple_versions(self):
 
         answer_store = AnswerStore()
 
@@ -524,9 +525,9 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         upgrade_2.__name__ = 'upgrade_2'
 
         UPGRADE_TRANSFORMS = {
-            0: upgrade_0,
-            1: upgrade_1,
-            2: upgrade_2
+            1: upgrade_0,
+            2: upgrade_1,
+            3: upgrade_2
         }
 
         schema = MagicMock()
@@ -538,7 +539,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         upgrade_1.assert_called_once_with(answer_store, schema)
         upgrade_2.assert_called_once_with(answer_store, schema)
 
-    def test_upgrade_multiple_versions_skipping_already_run(self):  # pylint: disable=no-self-use
+    def test_upgrade_multiple_versions_skipping_already_run(self):
 
         answer_store = AnswerStore()
 
@@ -550,9 +551,9 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         upgrade_2.__name__ = 'upgrade_2'
 
         UPGRADE_TRANSFORMS = {
-            0: upgrade_0,
-            1: upgrade_1,
-            2: upgrade_2
+            1: upgrade_0,
+            2: upgrade_1,
+            3: upgrade_2
         }
 
         schema = MagicMock()
@@ -577,9 +578,9 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         upgrade_3.__name__ = 'upgrade_3'
 
         UPGRADE_TRANSFORMS = {
-            0: upgrade_0,
-            2: upgrade_2,
-            3: upgrade_3
+            1: upgrade_0,
+            3: upgrade_2,
+            4: upgrade_3
         }
 
         schema = MagicMock()

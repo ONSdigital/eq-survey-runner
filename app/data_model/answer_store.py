@@ -199,14 +199,13 @@ class AnswerStore:
             :param current_version: The current version integer of the answer store
             :param schema: The new schema
         """
-        desired_version = max(UPGRADE_TRANSFORMS) + 1
+        versions = sorted(list(UPGRADE_TRANSFORMS.keys()))
 
-        for upgrade_from_version in range(current_version, desired_version):
-            if upgrade_from_version not in UPGRADE_TRANSFORMS:
-                continue
+        # Find the next version in the list after the current version
+        versions_to_upgrade_to = [v for v in versions if v > current_version]
 
-            transform = UPGRADE_TRANSFORMS[upgrade_from_version]
-            upgrade_to_version = upgrade_from_version + 1
+        for upgrade_to_version in versions_to_upgrade_to:
+            transform = UPGRADE_TRANSFORMS[upgrade_to_version]
             logger.info('Upgrading answer store version', current_version=current_version, new_version=upgrade_to_version, transform=transform.__name__)
             transform(self, schema)
 
@@ -264,9 +263,9 @@ def upgrade_3_to_4_remove_empty_answers(answer_store, schema):  # pylint: disabl
     answer_store = answer_store_copy
 
 
-# Dictionary specifying upgrade methods. Key should be the version to upgrade from. It is assumed that each transform only upgrades the version by 1.
+# Dictionary specifying upgrade methods. Key should be the version to upgrade to.
 UPGRADE_TRANSFORMS = {
-    0: upgrade_0_to_1_update_date_formats,
-    1: upgrade_1_to_2_add_group_instance_id,
-    3: upgrade_3_to_4_remove_empty_answers,
+    1: upgrade_0_to_1_update_date_formats,
+    2: upgrade_1_to_2_add_group_instance_id,
+    4: upgrade_3_to_4_remove_empty_answers,
 }
