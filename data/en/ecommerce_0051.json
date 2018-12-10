@@ -1,6 +1,6 @@
 {
     "eq_id": "ecommerce",
-    "form_type": "0041",
+    "form_type": "0051",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
@@ -290,7 +290,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1359",
-                            "title": "During 2018, did the business provide any type of training to develop ICT or IT related skill of it’s employees?",
+                            "title": "During 2018, did the business provide any type of training to develop ICT or IT related skill of its employees?",
                             "description": "",
                             "type": "MutuallyExclusive",
                             "mandatory": true,
@@ -580,7 +580,7 @@
                             "type": "General",
                             "answers": [{
                                 "id": "answer1831",
-                                "mandatory": true,
+                                "mandatory": false,
                                 "type": "Radio",
                                 "q_code": "r1",
                                 "label": "",
@@ -607,7 +607,65 @@
                                     }
                                 ]
                             }]
-                        }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "contracted-speed-dont-know-confirmation",
+                                    "when": [{
+                                        "id": "answer1831",
+                                        "condition": "not set"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block1366"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "contracted-speed-dont-know-confirmation",
+                        "type": "Question",
+                        "questions": [{
+                            "id": "contracted-speed-dont-know-confirmation-question",
+                            "title": "Do you know your maximum contracted download speed?",
+                            "description": "",
+                            "type": "General",
+                            "answers": [{
+                                "id": "contracted-speed-dont-know-confirmation-answer",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "q_code": "r2",
+                                "label": "",
+                                "description": "",
+                                "options": [{
+                                        "label": "No, I don’t know the download speed",
+                                        "value": "No, I don’t know the download speed"
+                                    },
+                                    {
+                                        "label": "Yes, I know the download speed",
+                                        "value": "Yes, I know the download speed"
+                                    }
+                                ]
+                            }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block1365",
+                                    "when": [{
+                                        "id": "contracted-speed-dont-know-confirmation-answer",
+                                        "condition": "equals",
+                                        "value": "Yes, I know the download speed"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block1366"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "block1366",
@@ -621,7 +679,8 @@
                                     },
                                     {
                                         "list": [
-                                            "Portable computers or other portable devices such as mobile phones or smart phones, laptops, tablets or similar portable devices."
+                                            "Portable computers or other portable devices such as mobile phones or smart phones, laptops, tablets or similar portable devices",
+                                            "Portable devices provided by the businesses which pay for all or part of the subscription and usage costs"
                                         ]
                                     }
                                 ]
@@ -668,14 +727,14 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1367",
-                            "title": "What percentage of people employed by the business use portable devices provided by the business that allow a mobile telephone connection to the internet for business purposes?",
+                            "title": "What percentage of people employed by the business use portable devices provided by the business that allow a mobile telephone network connection to the internet for business purposes?",
                             "guidance": {
                                 "content": [{
                                         "title": "Include"
                                     },
                                     {
                                         "list": [
-                                            "Portable computers or other portable devices such as mobile phones or smart phones, laptops, tablets or similar portable devices."
+                                            "Portable computers or other portable devices such as mobile phones or smart phones, laptops, tablets or similar portable devices"
                                         ]
                                     }
                                 ]
@@ -705,7 +764,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1368",
-                            "title": "Does {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have a website, either it’s own or third party?",
+                            "title": "Does {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have a website, either its own or third party?",
                             "guidance": {
                                 "content": [{
                                     "title": "Exclude any online directory listings"
@@ -961,6 +1020,11 @@
                         "questions": [{
                             "id": "question1371",
                             "title": "How does the business use social media?",
+                            "guidance": {
+                                "content": [{
+                                    "title": "Exclude sponsored or paid for adverts"
+                                }]
+                            },
                             "description": "Examples of social media include Facebook, Twitter, YouTube, LinkedIn",
                             "type": "General",
                             "answers": [{
@@ -1211,9 +1275,9 @@
                             "description": "",
                             "type": "General",
                             "definitions": [{
-                                "title": "Definition of ICT (Information and Communication Technology)",
+                                "title": "Definition of ICT Security",
                                 "content": [{
-                                    "description": "Technology that provides access to information through telecommunications. It is similar to Information Technology (IT), but focuses primarily on communication technologies. This includes the internet, wireless networks, mobile phones, and other communication media."
+                                    "description": "ICT security refers to measures, controls and procedures applied to ICT systems in order to ensure integrity, authenticity, availability and confidentiality of data and systems."
                                 }]
                             }],
                             "answers": [{
@@ -1418,7 +1482,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1887",
-                            "title": "During 2018, did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} make it’s employees aware of their obligations in ICT security issues by <em>voluntary training or internally available information</em>?",
+                            "title": "During 2018, did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} make its employees aware of their obligations in ICT security issues by <em>voluntary training or internally available information</em>?",
                             "description": "For example, information on the intranet.",
                             "type": "General",
                             "answers": [{
@@ -1445,7 +1509,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question1888",
-                            "title": "During 2018, did the business make it’s employees aware of their obligations in ICT security issues by <em>compulsory training or presentations</em>?",
+                            "title": "During 2018, did the business make its employees aware of their obligations in ICT security issues by <em>compulsory training or presentations</em>?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -1603,7 +1667,7 @@
                                 "id": "answer1865",
                                 "mandatory": true,
                                 "type": "Radio",
-                                "q_code": "r2",
+                                "q_code": "r3",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1854,7 +1918,23 @@
                                 },
                                 "decimal_places": 2
                             }]
-                        }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "block1399",
+                                    "when": [{
+                                        "id": "answer1869",
+                                        "condition": "greater than",
+                                        "value": 0
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "block1400"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "block1399",
