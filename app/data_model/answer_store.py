@@ -195,19 +195,21 @@ class AnswerStore:
     def upgrade(self, current_version, schema):
         """
             Upgrade the answer_store to the latest version
-
             :param current_version: The current version integer of the answer store
             :param schema: The new schema
         """
-        desired_version = len(UPGRADE_TRANSFORMS)
+        versions = sorted(list(UPGRADE_TRANSFORMS.keys()))
 
-        for version in range(current_version, desired_version):
-            transform = UPGRADE_TRANSFORMS[version]
-            logger.info('Upgrading answer store version', current_version=current_version, new_version=version, transform=transform.__name__)
+        # Find the next version in the list after the current version
+        versions_to_upgrade_to = [v for v in versions if v > current_version]
+
+        for upgrade_to_version in versions_to_upgrade_to:
+            transform = UPGRADE_TRANSFORMS[upgrade_to_version]
+            logger.info('Upgrading answer store version', current_version=current_version, new_version=upgrade_to_version, transform=transform.__name__)
             transform(self, schema)
 
 
-def upgrade_0_to_1_update_date_formats(answer_store, schema):
+def upgrade_to_1_update_date_formats(answer_store, schema):
     """ Updates the date format """
     for answer in answer_store:
         answer_schema = schema.get_answer(answer['answer_id'])
@@ -222,7 +224,7 @@ def upgrade_0_to_1_update_date_formats(answer_store, schema):
                 continue
 
 
-def upgrade_1_to_2_add_group_instance_id(answer_store, schema):
+def upgrade_to_2_add_group_instance_id(answer_store, schema):
     """ Answers should have a `group_instance_id` ready for more complex group repeat rules. """
     from app.questionnaire.location import Location
     from app.helpers.schema_helpers import get_group_instance_id
@@ -245,7 +247,8 @@ def upgrade_1_to_2_add_group_instance_id(answer_store, schema):
         answer['group_instance_id'] = get_group_instance_id(schema, answer_store, location, answer['answer_instance'])
 
 
-UPGRADE_TRANSFORMS = (
-    upgrade_0_to_1_update_date_formats,
-    upgrade_1_to_2_add_group_instance_id,
-)
+# Dictionary specifying upgrade methods. Key should be the version to upgrade to.
+UPGRADE_TRANSFORMS = {
+    1: upgrade_to_1_update_date_formats,
+    2: upgrade_to_2_add_group_instance_id,
+}
