@@ -257,7 +257,7 @@ def upgrade_to_4_remove_empty_answers(answer_store, schema):  # pylint: disable=
     answer_store_copy = answer_store.copy()
 
     for answer in answer_store:
-        if answer['value'] in ('', [], None):
+        if answer['value'] in ('', []):
             answer_store_copy.remove_answer(answer)
 
     answer_store = answer_store_copy

@@ -47,7 +47,7 @@ from app.views.errors import MultipleSurveyError
 
 END_BLOCKS = 'Summary', 'Confirmation'
 
-EMPTY_ANSWER_VALUES = (None, [], '')
+EMPTY_ANSWER_VALUES = ([], '')
 
 logger = get_logger()
 

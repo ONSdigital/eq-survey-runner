@@ -431,7 +431,6 @@ def format_repeating_summary(context, items, delimiter=' '):
         intermediates = []
         for item in items:
             if item and isinstance(item[0], list):
-
                 intermediates.extend(list(map(list, zip_longest(*item))))
             else:
                 intermediates.append(item)

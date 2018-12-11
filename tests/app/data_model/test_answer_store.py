@@ -598,11 +598,9 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         invalid_answer_values = ('', [])
         valid_answer_values = ('None', 'VALID', 0)
         answer_values = invalid_answer_values + valid_answer_values
+        answers = [Answer(answer_id=str(i), value=answer_value) for i, answer_value in enumerate(answer_values)]
 
         answer_store = AnswerStore()
-        for i, answer_value in enumerate(answer_values):
-            print(i, answer_value)
-        answers = [Answer(answer_id=str(i), value=answer_value) for i, answer_value in enumerate(answer_values)]
 
         for answer in answers:
             answer_store.add_or_update(answer)
