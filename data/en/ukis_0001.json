@@ -4144,7 +4144,18 @@
                                 ]
                             },
                             "description": "Estimates are acceptable and percentages must <strong>total 100%</strong>",
-                            "type": "General",
+                            "type": "Calculated",
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "value": 0,
+                                "answers_to_calculate": ["answer3207", "answer3208", "answer3209", "answer3211"],
+                                "conditions": ["equals"]
+                            }, {
+                                "calculation_type": "sum",
+                                "value": 100,
+                                "answers_to_calculate": ["answer3207", "answer3208", "answer3209", "answer3211"],
+                                "conditions": ["equals"]
+                            }],
                             "answers": [{
                                     "id": "answer3207",
                                     "mandatory": false,
@@ -4208,24 +4219,6 @@
                                         "exclusive": false
                                     },
                                     "decimal_places": 0
-                                },
-                                {
-                                    "calculated": true,
-                                    "description": "The total percentages should be 100%",
-                                    "id": "total-percentage",
-                                    "label": "Total",
-                                    "mandatory": false,
-                                    "type": "Percentage",
-                                    "decimal_places": 2,
-                                    "max_value": {
-                                        "value": 100
-                                    },
-                                    "validation": {
-                                        "messages": {
-                                            "NUMBER_TOO_SMALL": "The total percentages should equal %(min)s",
-                                            "NUMBER_TOO_LARGE": "The total percentages should equal %(max)s"
-                                        }
-                                    }
                                 }
                             ]
                         }]
