@@ -514,11 +514,24 @@ def _household_answers_changed(answer_store, schema):
     answer_ids = schema.get_answer_ids_for_block('household-composition')
     household_answers = answer_store.filter(answer_ids)
 
+    stripped_form = request.form.copy()
+    del stripped_form['csrf_token']
+    to_remove = [k for k in stripped_form if 'action[' in k]
+    for k in to_remove:
+        del stripped_form[k]
+
     for household_answer in household_answers:
         answer = get_answer_instance_id(household_answer.get('answer_id'), household_answer.get('answer_instance', 0))
 
         if household_answer and (household_answer['value'] or '') != request.form[answer]:
             return True
+
+    for full_answer_id in stripped_form:
+        answer_id, answer_instance = get_answer_id_and_instance(full_answer_id)
+        matching_answers = household_answers.filter(answer_ids=[answer_id], answer_instance=answer_instance)
+        if request.form[full_answer_id] not in EMPTY_ANSWER_VALUES:
+            if not matching_answers or next(iter(matching_answers))['value'] != request.form[full_answer_id]:
+                return True
 
     return False
 
@@ -670,6 +683,12 @@ def _evaluate_skip_conditions(block_json, location, schema, answer_store, metada
 
 def get_answer_instance_id(answer_id, answer_index):
     return 'household-{}-{}'.format(answer_index, answer_id)
+
+def get_answer_id_and_instance(full_id):
+    id_parts = full_id.split('-')
+    answer_id = '-'.join(id_parts[2:])
+    answer_instance = int(id_parts[1])
+    return answer_id, answer_instance
 
 
 def _redirect_to_location(collection_id, eq_id, form_type, location):
