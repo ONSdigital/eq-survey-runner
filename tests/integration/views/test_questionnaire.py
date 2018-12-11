@@ -125,7 +125,10 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         self.assertEqual(self.question_store.completed_blocks, [location])
 
         for answer in answers:
-            self.assertIn(answer.__dict__, self.question_store.answer_store)
+            if answer.value:
+                self.assertIn(answer.__dict__, self.question_store.answer_store)
+            else:
+                self.assertNotIn(answer.__dict__, self.question_store.answer_store)
 
     def test_remove_empty_household_members_from_answer_store(self):
         schema = load_schema_from_params('census', 'household')

@@ -513,13 +513,7 @@ def _save_sign_out(routing_path, current_location, form, schema, answer_store, m
 def _household_answers_changed(answer_store, schema):
     answer_ids = schema.get_answer_ids_for_block('household-composition')
     household_answers = answer_store.filter(answer_ids)
-    stripped_form = request.form.copy()
-    del stripped_form['csrf_token']
-    remove = [k for k in stripped_form if 'action[' in k]
-    for k in remove:
-        del stripped_form[k]
-    if household_answers.count() != len(stripped_form):
-        return True
+
     for household_answer in household_answers:
         answer = get_answer_instance_id(household_answer.get('answer_id'), household_answer.get('answer_instance', 0))
 
@@ -648,7 +642,8 @@ def update_questionnaire_store_with_answer_data(questionnaire_store, location, a
 
     for answer in [a for a in answers if a.answer_id in survey_answer_ids]:
         answer.group_instance_id = get_group_instance_id(schema, questionnaire_store.answer_store, location, answer.answer_instance)
-        questionnaire_store.answer_store.add_or_update(answer)
+        if answer.value not in EMPTY_ANSWER_VALUES:
+            questionnaire_store.answer_store.add_or_update(answer)
 
     if location not in questionnaire_store.completed_blocks:
         questionnaire_store.completed_blocks.append(location)
