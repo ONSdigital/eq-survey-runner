@@ -1,7 +1,8 @@
+# pylint: disable=no-self-use
 import unittest
 from unittest.mock import patch, MagicMock
 
-from app.data_model.answer_store import Answer, AnswerStore, upgrade_0_to_1_update_date_formats, upgrade_1_to_2_add_group_instance_id
+from app.data_model.answer_store import Answer, AnswerStore, upgrade_to_1_update_date_formats, upgrade_to_2_add_group_instance_id
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 
 
@@ -334,7 +335,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.store = AnswerStore(existing_answers=answers)
 
-        upgrade_0_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
+        upgrade_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.values()[0], '2017-12-25')
 
@@ -373,7 +374,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.store = AnswerStore(existing_answers=answers)
 
-        upgrade_0_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
+        upgrade_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.values()[0], '2017-12')
 
@@ -408,7 +409,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.store = AnswerStore(existing_answers=answers)
 
-        upgrade_0_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
+        upgrade_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.values()[0], '12/2017')
 
@@ -436,7 +437,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.store = AnswerStore(existing_answers=answers)
 
-        upgrade_0_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
+        upgrade_to_1_update_date_formats(self.store, QuestionnaireSchema(questionnaire))
 
         self.assertEqual(self.store.values()[0], '12/2017')
 
@@ -502,7 +503,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         answer_store = AnswerStore(existing_answers)
 
-        upgrade_1_to_2_add_group_instance_id(answer_store, QuestionnaireSchema(survey))
+        upgrade_to_2_add_group_instance_id(answer_store, QuestionnaireSchema(survey))
 
         filtered = iter(answer_store.filter(answer_ids=['answer1']))
         first_group_instance_id = next(filtered)['group_instance_id']
@@ -511,7 +512,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         self.assertNotEqual(first_group_instance_id, next(filtered)['group_instance_id'])
 
 
-    def test_upgrade_multiple_versions(self):  # pylint: disable=no-self-use
+    def test_upgrade_multiple_versions(self):
 
         answer_store = AnswerStore()
 
@@ -522,9 +523,11 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         upgrade_2 = MagicMock()
         upgrade_2.__name__ = 'upgrade_2'
 
-        UPGRADE_TRANSFORMS = (
-            upgrade_0, upgrade_1, upgrade_2
-        )
+        UPGRADE_TRANSFORMS = {
+            1: upgrade_0,
+            2: upgrade_1,
+            3: upgrade_2
+        }
 
         schema = MagicMock()
 
@@ -535,7 +538,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         upgrade_1.assert_called_once_with(answer_store, schema)
         upgrade_2.assert_called_once_with(answer_store, schema)
 
-    def test_upgrade_multiple_versions_skipping_already_run(self):  # pylint: disable=no-self-use
+    def test_upgrade_multiple_versions_skipping_already_run(self):
 
         answer_store = AnswerStore()
 
@@ -546,9 +549,11 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         upgrade_2 = MagicMock()
         upgrade_2.__name__ = 'upgrade_2'
 
-        UPGRADE_TRANSFORMS = (
-            upgrade_0, upgrade_1, upgrade_2
-        )
+        UPGRADE_TRANSFORMS = {
+            1: upgrade_0,
+            2: upgrade_1,
+            3: upgrade_2
+        }
 
         schema = MagicMock()
 
@@ -558,6 +563,33 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
         upgrade_0.assert_not_called()
         upgrade_1.assert_called_once_with(answer_store, schema)
         upgrade_2.assert_called_once_with(answer_store, schema)
+
+    def test_upgrade_skipped_version(self):
+        """ Ensure skipping an answer store version does not affect the upgrade path.
+        """
+        answer_store = AnswerStore()
+
+        upgrade_0 = MagicMock()
+        upgrade_0.__name__ = 'upgrade_0'
+        upgrade_2 = MagicMock()
+        upgrade_2.__name__ = 'upgrade_2'
+        upgrade_3 = MagicMock()
+        upgrade_3.__name__ = 'upgrade_3'
+
+        UPGRADE_TRANSFORMS = {
+            1: upgrade_0,
+            3: upgrade_2,
+            4: upgrade_3
+        }
+
+        schema = MagicMock()
+
+        with patch('app.data_model.answer_store.UPGRADE_TRANSFORMS', UPGRADE_TRANSFORMS):
+            answer_store.upgrade(0, schema)
+
+        upgrade_0.assert_called_once_with(answer_store, schema)
+        upgrade_2.assert_called_once_with(answer_store, schema)
+        upgrade_3.assert_called_once_with(answer_store, schema)
 
     def test_remove_all_answers(self):
         answer_1 = Answer(
