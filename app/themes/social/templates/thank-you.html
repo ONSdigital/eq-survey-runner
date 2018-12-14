@@ -5,7 +5,7 @@
 {% block main %}
 
 <div class="u-mb-s">
-    <h1 class="saturn" data-qa="submission-successful-title">{{ _("Submission successful") }}</h1>
+    <h1 class="u-fs-l" data-qa="submission-successful-title">{{ _("Submission successful") }}</h1>
 </div>
 
 <div class="u-mb-s">
@@ -16,8 +16,8 @@
 {% if is_view_submitted_response_enabled %}
     <div class="u-mb-s">
     {% if view_submission_url %}
-        <p class="u-mb-m@s mars" data-qa="view-submission"><a href={{view_submission_url}}>{{ _("View and print a copy of your answers") }}</a></p>
-        <p class="u-mb-s mars">{{ _("Your answers will only be available for <b>%(duration)s</b> to keep them secure.",
+        <p class="u-mb-m@s u-fs-r" data-qa="view-submission"><a href={{view_submission_url}}>{{ _("View and print a copy of your answers") }}</a></p>
+        <p class="u-mb-s u-fs-r">{{ _("Your answers will only be available for <b>%(duration)s</b> to keep them secure.",
                                                                                         duration=view_submission_duration) }}</p>
     {% else %}
         <div class="panel panel--simple panel--info" data-qa="view-submission-expired">
@@ -32,8 +32,8 @@
 {% endblock %}
 
 <div class="u-mb-s">
-    <div class="mars">{{ _("More information on how we use data we have collected") }}.</div>
-    <p class="u-mb-m@s mars"><a href="https://www.ons.gov.uk/surveys">https://www.ons.gov.uk/surveys</a></p>
+    <div class="u-fs-r">{{ _("More information on how we use data we have collected") }}.</div>
+    <p class="u-mb-m@s u-fs-r"><a href="https://www.ons.gov.uk/surveys">https://www.ons.gov.uk/surveys</a></p>
 </div>
 
 {% endblock %}

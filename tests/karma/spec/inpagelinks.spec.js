@@ -2,12 +2,12 @@ import { inPageLink, applyInPageLink, classTrigger, classDetails, attrInputId } 
 
 const strTemplate = `<div class="panel panel--error">
   <div class="panel__header">
-    <div class="panel__title"><h1 class="panel__title venus">This page has 1 errors</h1> </div>
+    <div class="panel__title"><h1 class="panel__title u-fs-r--b">This page has 1 errors</h1> </div>
   </div>
   <div class="panel__body">
-    <p class="mars">These <strong>must be corrected</strong> to continue.</p>
+    <p class="u-fs-r">These <strong>must be corrected</strong> to continue.</p>
     <ul class="list list--bare">
-        <li class="list__item mars">
+        <li class="list__item u-fs-r">
           1) <a class="${classTrigger}" href="#ea08f977-33a8-4933-ad7b-c497997107cf">Please provide a value, even if your value is 0.</a>
         </li>
     </ul>
@@ -17,14 +17,14 @@ const strTemplate = `<div class="panel panel--error">
   <div class="panel__header">
     <div class="panel__title">
         <ul class="list list--bare">
-          <li class="list__item mars" data-error-msg="Please provide a value, even if your value is 0." data-error="true" data-error-id="7a4b1aee-d6b9-4581-ab18-1191e5ebb94d">Please provide a value, even if your value is 0.</li>
+          <li class="list__item u-fs-r" data-error-msg="Please provide a value, even if your value is 0." data-error="true" data-error-id="7a4b1aee-d6b9-4581-ab18-1191e5ebb94d">Please provide a value, even if your value is 0.</li>
         </ul>
       </div>
   </div>
   <div class="panel__body">
     <div class="field">
       <label class="label " for="ea08f977-33a8-4933-ad7b-c497997107cf" id="label-ea08f977-33a8-4933-ad7b-c497997107cf">
-        <span class="label__inner venus">Total retail turnover</span>
+        <span class="label__inner u-fs-r--b">Total retail turnover</span>
       </label>
       <div class="input-type input-type--currency" data-type="£">
         <input class="input input--currency" id="ea08f977-33a8-4933-ad7b-c497997107cf" name="ea08f977-33a8-4933-ad7b-c497997107cf" type="text">

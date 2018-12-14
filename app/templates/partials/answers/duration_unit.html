@@ -1,8 +1,8 @@
 <div class="field">
-  <div class="input-type input-type--unit input-type--group">
+  <div class="input-type">
     {% set args = {
-      'class': 'input input--number input--with-unit input--block ' ~ exclusive_class,
-      'pattern': '[0-9]*',
+      'type': 'number',
+      'class': 'input input-type__input input--w-2 ' ~ exclusive_class,
       'aria-labelledby': 'duration-label ' + input.id + '-label'
     } %}
 

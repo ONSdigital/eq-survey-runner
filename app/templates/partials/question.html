@@ -11,7 +11,7 @@
 
 {% set question_titles %}
   {%- if question_title -%}
-    <h1 class="question__title saturn" data-qa="question-title">
+    <h1 class="question__title u-fs-l" data-qa="question-title">
       {%- if question_number -%}
         <span class="question__number">{{question_number}}. </span>
       {% endif %}
@@ -20,13 +20,13 @@
 
   {%- endif %}
   {%- if question_subtitle -%}
-    <h3 class="question__subtitle mars">{{question_subtitle}}</h3>
+    <h3 class="question__subtitle u-fs-r">{{question_subtitle}}</h3>
   {%- endif -%}
 {% endset %}
 
 {% set question_description %}
   {%- if question.description -%}
-    <div class="question__description mars" id="description-{{question.id}}">
+    <div class="question__description u-fs-r" id="description-{{question.id}}">
       {{question.description}}
     </div>
   {% endif %}

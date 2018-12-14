@@ -8,8 +8,8 @@
   <div class="dialog__body" role="dialog" aria-labelledby="dialog-title">
     <div role="document">
 
-      <div class="mars u-mb-s">{{survey_title}}</div>
-      <h1 class="saturn dialog__title" id="dialog-title" tabindex="0">{{ _("Your session is about to expire") }}</h1>
+      <div class="u-fs-r u-mb-s">{{survey_title}}</div>
+      <h1 class="u-fs-l dialog__title" id="dialog-title" tabindex="0">{{ _("Your session is about to expire") }}</h1>
 
       <div class="time js-timeout">
 
@@ -18,7 +18,7 @@
           <circle class="time__circle js-timeout-circle" cx="{{width}}" cy="{{width}}" r="{{width}}" transform="rotate(-90 {{width}} {{width}})" fill="none" stroke="red" stroke-width="6" stroke-linecap="round"></circle>
         </svg>
 
-        <div class="time__text venus js-timeout-time">0:00</div>
+        <div class="time__text u-fs-r--b js-timeout-time">0:00</div>
 
       </div>
 
