@@ -256,7 +256,7 @@ class SessionStoreTest(AppContextTestCase):
 
 class TestSessionStoreEncoding(AppContextTestCase):
     """Session data used to be base64-encoded. For performance reasons the
-    base64 encoding is being removed.
+    base64 encoding was removed.
     """
     def setUp(self):
         super().setUp()
