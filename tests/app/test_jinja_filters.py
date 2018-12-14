@@ -10,10 +10,10 @@ from mock import Mock
 from app.jinja_filters import (
     format_date, format_conditional_date, format_currency, get_currency_symbol,
     format_multilined_string, format_percentage, format_date_range,
-    format_household_member_name, format_datetime,
-    format_number_to_alphabetic_letter, format_unit, format_currency_for_input,
+    format_household_name, format_datetime,
+    format_number_to_alphabetic_letter, format_unit,
     format_number, format_unordered_list, format_unordered_list_missing_items,
-    format_unit_input_label, format_household_member_name_possessive,
+    format_unit_input_label, format_household_name_possessive, format_household_summary,
     concatenated_list, calculate_years_difference, get_current_date, as_london_tz,
     max_value, min_value, get_question_title, get_answer_label,
     format_duration, calculate_offset_from_weekday_in_last_whole_week, format_date_custom,
@@ -25,21 +25,6 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
     def setUp(self):
         self.autoescape_context = Mock(autoescape=True)
         super(TestJinjaFilters, self).setUp()
-
-    @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
-    def test_format_currency_for_input(self):
-        self.assertEqual(format_currency_for_input('100', 2), '100.00')
-        self.assertEqual(format_currency_for_input('100.0', 2), '100.00')
-        self.assertEqual(format_currency_for_input('100.00', 2), '100.00')
-        self.assertEqual(format_currency_for_input('1000'), '1,000')
-        self.assertEqual(format_currency_for_input('10000'), '10,000')
-        self.assertEqual(format_currency_for_input('100000000'), '100,000,000')
-        self.assertEqual(format_currency_for_input('100000000', 2), '100,000,000.00')
-        self.assertEqual(format_currency_for_input(0, 2), '0.00')
-        self.assertEqual(format_currency_for_input(0), '0')
-        self.assertEqual(format_currency_for_input(''), '')
-        self.assertEqual(format_currency_for_input(None), '')
-        self.assertEqual(format_currency_for_input(Undefined()), '')
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_get_currency_symbol(self):
@@ -316,113 +301,131 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         # Then
         self.assertEqual(format_value, "<span class='date'>1 January 2017</span>")
 
-    def test_format_household_member_name(self):
+    def test_format_household_name(self):
         # Given
         name = ['John', 'Doe']
 
         # When
-        format_value = format_household_member_name(name)
+        format_value = format_household_name(name)
 
         self.assertEqual(format_value, 'John Doe')
 
-    def test_format_household_member_name_no_surname(self):
+    def test_format_household_name_no_surname(self):
         # Given
         name = ['John', '']
 
         # When
-        format_value = format_household_member_name(name)
+        format_value = format_household_name(name)
 
         self.assertEqual(format_value, 'John')
 
-    def test_format_household_member_name_surname_is_none(self):
+    def test_format_household_name_surname_is_none(self):
         # Given
         name = ['John', None]
 
         # When
-        format_value = format_household_member_name(name)
+        format_value = format_household_name(name)
 
         self.assertEqual(format_value, 'John')
 
-    def test_format_household_member_name_no_first_name(self):
+    def test_format_household_name_no_first_name(self):
         # Given
         name = ['', 'Doe']
 
         # When
-        format_value = format_household_member_name(name)
+        format_value = format_household_name(name)
 
         self.assertEqual(format_value, 'Doe')
 
-    def test_format_household_member_name_first_name_is_none(self):
+    def test_format_household_name_first_name_is_none(self):
         # Given
         name = [None, 'Doe']
 
         # When
-        format_value = format_household_member_name(name)
+        format_value = format_household_name(name)
 
         self.assertEqual(format_value, 'Doe')
 
-    def test_format_household_member_name_first_middle_and_last(self):
+    def test_format_household_name_first_middle_and_last(self):
         # Given
         name = ['John', 'J', 'Doe']
 
         # When
-        format_value = format_household_member_name(name)
+        format_value = format_household_name(name)
 
         self.assertEqual(format_value, 'John J Doe')
 
-    def test_format_household_member_name_no_middle_name(self):
+    def test_format_household_name_no_middle_name(self):
         # Given
         name = ['John', '', 'Doe']
 
         # When
-        format_value = format_household_member_name(name)
+        format_value = format_household_name(name)
 
         self.assertEqual(format_value, 'John Doe')
 
-    def test_format_household_member_name_middle_name_is_none(self):
+    def test_format_household_name_middle_name_is_none(self):
         # Given
         name = ['John', None, 'Doe']
 
         # When
-        format_value = format_household_member_name(name)
+        format_value = format_household_name(name)
 
         self.assertEqual(format_value, 'John Doe')
 
-    def test_format_household_member_name_trim_spaces(self):
+    def test_format_household_name_trim_spaces(self):
         # Given
         name = ['John  ', '   Doe   ']
 
         # When
-        format_value = format_household_member_name(name)
+        format_value = format_household_name(name)
 
         self.assertEqual(format_value, 'John Doe')
 
-    def test_format_household_member_name_possessive(self):
+    def test_format_household_name_possessive(self):
         # Given
         name = ['John', 'Doe']
 
         # When
-        format_value = format_household_member_name_possessive(name)
+        format_value = format_household_name_possessive(name)
 
         self.assertEqual(format_value, 'John Doe\u2019s')
 
-    def test_format_household_member_name_possessive_with_no_names(self):
+    def test_format_household_name_possessive_with_no_names(self):
         # Given
         name = [Undefined(), Undefined()]
 
         # When
-        format_value = format_household_member_name_possessive(name)
+        format_value = format_household_name_possessive(name)
 
         self.assertIsNone(format_value)
 
-    def test_format_household_member_name_possessive_trailing_s(self):
+    def test_format_household_name_possessive_trailing_s(self):
         # Given
         name = ['John', 'Does']
 
         # When
-        format_value = format_household_member_name_possessive(name)
+        format_value = format_household_name_possessive(name)
 
         self.assertEqual(format_value, 'John Does\u2019')
+
+    def test_format_household_summary(self):
+        names = [
+            ['Alice', 'Bob', '\\', 'Dave'],
+            ['', 'Berty', '"', 'Dixon'],
+            ['Aardvark', 'Brown', '!', 'Davies']
+        ]
+
+        format_value = format_household_summary(self.autoescape_context, names)
+        expected_result = '<ul>' \
+                          '<li>Alice Aardvark</li>' \
+                          '<li>Bob Berty Brown</li>' \
+                          '<li>\\ &#34; !</li>' \
+                          '<li>Dave Dixon Davies</li>' \
+                          '</ul>'
+
+        self.assertEqual(format_value, expected_result)
+
 
     def test_concatenated_list(self):
         # Given
@@ -873,7 +876,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
             ('2018-08-05', {}, 'SU', '2018-07-29'),  # Sunday outputs previous Sunday (Must be a full Sunday)
             ('2018-08-06', {}, 'SU', '2018-08-05'),  # Monday outputs previous Sunday
             ('2018-08-06', {'days': -1}, 'SU', '2018-08-04'),  # Previous sunday with -1 day offset
-            ('2018-08-05', {'weeks': 1}, 'SU', '2018-08-05'),  # Previous sunday with +1 month offset, back to input
+            ('2018-08-05', {'weeks': 1}, 'SU', '2018-08-05'),  # Previous sunday with +1 week offset, back to input
             ('2018-08-10', {}, 'FR', '2018-08-03'),  # Friday outputs previous Friday
             ('2018-08-10T13:32:20.365665', {}, 'FR', '2018-08-03'),  # Ensure we can handle datetime input
             ('2018-08-10', {'weeks': 4}, 'FR', '2018-08-31'),  # Friday outputs previous Friday + 4 weeks
