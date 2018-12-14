@@ -1,5 +1,5 @@
 {% set attr = {
-  "class": "label venus " ~ (" label--inline" if label.inline) ~ (" label--small" if label.small),
+  "class": "label u-fs-r--b " ~ (" label--inline" if label.inline) ~ (" label--small" if label.small),
   "for": label.for,
   "id": "label-" ~ label.for
 } %}
@@ -9,7 +9,7 @@
     {{label.text}}
     {% if label.description %}
       <br />
-      <span class="label__description pluto">{{label.description}}</span>
+      <span class="label__description u-fs-s">{{label.description}}</span>
     {% endif %}
 </label>
 {% endif %}

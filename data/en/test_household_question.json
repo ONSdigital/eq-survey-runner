@@ -89,7 +89,7 @@
                     }]
                 }],
                 "title": "Who lives here?",
-                "description": "<h2 class='neptune'>Your household includes:</h2> {{ [answers['first-name'], answers['middle-names'], answers['last-name']]|format_household_summary }}",
+                "description": "<h2 class='u-fs-m'>Your household includes:</h2> {{ [answers['first-name'], answers['middle-names'], answers['last-name']]|format_household_summary }}",
                 "routing_rules": [{
                     "goto": {
                         "block": "household-composition",

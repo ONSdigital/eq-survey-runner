@@ -4,7 +4,7 @@
     {%- else -%}
         {%- for group in content.summary.groups if group.blocks -%}
             {%- if group.title -%}
-                <h2 class="summary__title neptune" id="{{ group.id }}">{{ group.title }}</h2>
+                <h2 class="summary__title u-fs-m" id="{{ group.id }}">{{ group.title }}</h2>
                 <div class="summary__block u-mb-l">
             {%- elif loop.first -%}
                 <div class="summary__block u-mb-l">

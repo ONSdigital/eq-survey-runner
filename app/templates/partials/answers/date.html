@@ -1,27 +1,48 @@
 {% set subfields %}
- <div class="fieldgroup fieldgroup--date" data-qa="widget-date">
+ <div class="fieldgroup fieldgroup--inline fieldgroup--date" data-qa="widget-date">
   <div class="fieldgroup__fields">
-    {% if form.fields[answer['id']]['day'] %}
-    <div class="field field--input field--day">
-      <label class="label mercury" for="{{answer['id']}}-day" id="label-{{answer['id']}}-day" data-qa="label-day">{{ _("Day") }}</label>
-      {% set input = form.fields[answer['id']]['day'] %}
-      {% set input_placeholder = "DD" %}
+    {% set day_field = form.fields[answer['id']]['day'] %}
+    {% if day_field %}
+    <div class="field field--input">
+      <label class="label u-fs-r" for="{{answer['id']}}-day" id="label-{{answer['id']}}-day" data-qa="label-day">{{ _("Day") }}</label>
+      {% set input = {
+        'id': day_field.id,
+        'name': day_field.name,
+        'classes': 'input--w-2',
+        'type': 'number',
+        'data': day_field._value()
+      } %}
       {% include 'partials/forms/input.html' %}
     </div>
     {% endif %}
-    {% if form.fields[answer['id']]['month'] %}
-    <div class="field field--select field--month">
-      <label class="label mercury" for="{{answer['id']}}-month" id="label-{{answer['id']}}-month" data-qa="label-month">{{ _("Month") }}</label>
-      {% set select = form.fields[answer['id']]['month'] %}
-
+    {% set month_field = form.fields[answer['id']]['month'] %}
+    {% if month_field %}
+    <div class="field field--select">
+      <label class="label u-fs-r" for="{{answer['id']}}-month" id="label-{{answer['id']}}-month" data-qa="label-month">{{ _("Month") }}</label>
+      {% set select = {
+          'id': month_field.id,
+          'name': month_field.id,
+          'classes': 'input--w-auto',
+          'choices': month_field.choices,
+          'data': month_field.data,
+          'flags': {
+            'required': answer.mandatory
+          }
+      } %}
       {% include 'partials/forms/select.html' %}
     </div>
     {% endif %}
-    {% if form.fields[answer['id']]['year'] %}
-    <div class="field field--input field--year">
-      <label class="label mercury" for="{{answer['id']}}-year" id="label-{{answer['id']}}-year" data-qa="label-year">{{ _("Year") }}</label>
-      {% set input = form.fields[answer['id']]['year'] %}
-      {% set input_placeholder = _("YYYY") %}
+    {% set year_field = form.fields[answer['id']]['year'] %}
+    {% if year_field %}
+    <div class="field field--input">
+      <label class="label u-fs-r" for="{{answer['id']}}-year" id="label-{{answer['id']}}-year" data-qa="label-year">{{ _("Year") }}</label>
+      {% set input = {
+        'id': year_field.id,
+        'name': year_field.id,
+        'classes': 'input--w-4',
+        'type': 'number',
+        'data': year_field._value()
+      } %}
       {% include 'partials/forms/input.html' %}
     </div>
     {% endif %}
@@ -31,8 +52,8 @@
 
 {% if answer.label %}
   <fieldset class="field">
-    <legend class="field__legend mars u-vh">{{ question.title }}</legend>
-    <div class="field__label venus">{{ answer.label }}:</div>
+    <legend class="field__legend u-fs-r u-vh">{{ question.title }}</legend>
+    <div class="field__label u-fs-r--b">{{ answer.label }}:</div>
     {{subfields}}
   </fieldset>
 {% else %}

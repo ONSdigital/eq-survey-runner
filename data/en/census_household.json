@@ -185,7 +185,7 @@
                         {
                             "type": "Question",
                             "id": "everyone-at-address-confirmation",
-                            "description": "<h2 class='neptune'>Your household includes:</h2> {{ [answers['first-name'], answers['middle-names'], answers['last-name']]|format_household_summary }}",
+                            "description": "<h2 class='u-fs-m'>Your household includes:</h2> {{ [answers['first-name'], answers['middle-names'], answers['last-name']]|format_household_summary }}",
                             "questions": [{
                                 "id": "everyone-at-address-confirmation-question",
                                 "title": "Is this everyone for whom this is their permanent or family home?",
