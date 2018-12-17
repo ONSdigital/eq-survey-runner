@@ -1,20 +1,21 @@
-from flask import g
-from mock import Mock, patch
 import simplejson as json
+from flask import g
+from mock import Mock, patch, MagicMock
 
 from app.data_model.answer_store import Answer, AnswerStore
 from app.data_model.questionnaire_store import QuestionnaireStore
+from app.questionnaire.answer_store_updater import AnswerStoreUpdater
 from app.questionnaire.location import Location
 from app.templating.view_context import build_view_context
 from app.utilities.schema import load_schema_from_params
-from app.views.questionnaire import update_questionnaire_store_with_answer_data, \
-    update_questionnaire_store_with_form_data, remove_empty_household_members_from_answer_store, \
-    get_page_title_for_location, _get_schema_context
-
+from app.views.questionnaire import (
+    get_page_title_for_location,
+    _get_schema_context
+)
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
-class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-methods
+class TestQuestionnaire(IntegrationTestCase):  # pylint: disable=too-many-public-methods
     def setUp(self):
         super().setUp()
         self._application_context = self._application.app_context()
@@ -34,17 +35,16 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         self._application_context.pop()
 
     def test_update_questionnaire_store_with_form_data(self):
-
         schema = load_schema_from_params('test', '0112')
-
         location = Location('rsi', 0, 'total-retail-turnover')
 
-        form_data = {
+        form_data = MagicMock(data={
             'total-retail-turnover-answer': '1000',
-        }
+        })
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, location, form_data, schema)
+            answer_store_updater = AnswerStoreUpdater(location, schema, self.question_store)
+            answer_store_updater.save_form(form_data)
 
         self.assertEqual(self.question_store.completed_blocks, [location])
 
@@ -57,18 +57,17 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         }, self.question_store.answer_store)
 
     def test_update_questionnaire_store_with_default_value(self):
-
         schema = load_schema_from_params('test', 'default')
-
         location = Location('group', 0, 'number-question')
 
         # No answer given so will use schema defined default
-        form_data = {
+        form_data = MagicMock(data={
             'answer': None
-        }
+        })
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, location, form_data, schema)
+            answer_store_updater = AnswerStoreUpdater(location, schema, self.question_store)
+            answer_store_updater.save_form(form_data)
 
         self.assertEqual(self.question_store.completed_blocks, [location])
 
@@ -81,46 +80,55 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         }, self.question_store.answer_store)
 
     def test_update_questionnaire_store_with_answer_data(self):
-        schema = load_schema_from_params('census', 'household')
-
-        location = Location('who-lives-here', 0, 'household-composition')
+        schema = load_schema_from_params('test', 'relationship_household')
+        location = Location('multiple-questions-group', 0, 'household-relationships')
 
         answers = [
             Answer(
                 group_instance=0,
-                answer_id='first-name',
+                group_instance_id='a93b09d5-a10c-49e1-8f48-609a29626871',
+                answer_id='who-is-related',
                 answer_instance=0,
-                value='Joe'
+                value='Other relative'
             ), Answer(
-                group_instance=0,
-                answer_id='middle-names',
+                group_instance=1,
+                group_instance_id='a93b09d5-a10c-49e1-8f48-609a29626871',
+                answer_id='who-is-related',
                 answer_instance=0,
-                value=''
+                value='Other relative'
             ), Answer(
-                group_instance=0,
-                answer_id='last-name',
+                group_instance=2,
+                group_instance_id='a93b09d5-a10c-49e1-8f48-609a29626871',
+                answer_id='who-is-related',
                 answer_instance=0,
-                value='Bloggs'
+                value='Other relative'
             ), Answer(
-                group_instance=0,
-                answer_id='first-name',
-                answer_instance=1,
-                value='Bob'
+                group_instance=3,
+                group_instance_id='a93b09d5-a10c-49e1-8f48-609a29626871',
+                answer_id='who-is-related',
+                answer_instance=0,
+                value='Partner'
             ), Answer(
-                group_instance=0,
-                answer_id='middle-names',
-                answer_instance=1,
-                value=''
+                group_instance=4,
+                group_instance_id='a93b09d5-a10c-49e1-8f48-609a29626871',
+                answer_id='who-is-related',
+                answer_instance=0,
+                value='Parent-in-law'
             ), Answer(
-                group_instance=0,
-                answer_id='last-name',
-                answer_instance=1,
-                value='Seymour'
+                group_instance=5,
+                group_instance_id='a93b09d5-a10c-49e1-8f48-609a29626871',
+                answer_id='who-is-related',
+                answer_instance=0,
+                value='Stepparent'
             )
         ]
 
+        form = MagicMock()
+        form.serialise.return_value = answers
+
         with self._application.test_request_context():
-            update_questionnaire_store_with_answer_data(self.question_store, location, answers, schema)
+            answer_store_updater = AnswerStoreUpdater(location, schema, self.question_store)
+            answer_store_updater.save_form(form)
 
         self.assertEqual(self.question_store.completed_blocks, [location])
 
@@ -128,7 +136,8 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
             self.assertIn(answer.__dict__, self.question_store.answer_store)
 
     def test_remove_empty_household_members_from_answer_store(self):
-        schema = load_schema_from_params('census', 'household')
+        schema = load_schema_from_params('test', 'repeating_household')
+        location = Location('multiple-questions-group', 0, 'household-composition')
 
         answers = [
             Answer(
@@ -164,16 +173,20 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
             )
         ]
 
-        for answer in answers:
-            self.question_store.answer_store.add_or_update(answer)
+        form = MagicMock()
+        form.serialise.return_value = answers
 
-        remove_empty_household_members_from_answer_store(self.question_store.answer_store, schema)
+        with self._application.test_request_context():
+            answer_store_updater = AnswerStoreUpdater(location, schema, self.question_store)
+            answer_store_updater.save_form(form)
+            answer_store_updater.remove_empty_household_members()
 
         for answer in answers:
             self.assertIsNone(self.question_store.answer_store.find(answer))
 
     def test_remove_empty_household_members_values_entered_are_stored(self):
-        schema = load_schema_from_params('census', 'household')
+        schema = load_schema_from_params('test', 'repeating_household')
+        location = Location('multiple-questions-group', 0, 'household-composition')
 
         answered = [
             Answer(
@@ -223,10 +236,13 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         answers.extend(answered)
         answers.extend(unanswered)
 
-        for answer in answers:
-            self.question_store.answer_store.add_or_update(answer)
+        form = MagicMock()
+        form.serialise.return_value = answers
 
-        remove_empty_household_members_from_answer_store(self.question_store.answer_store, schema)
+        with self._application.test_request_context():
+            answer_store_updater = AnswerStoreUpdater(location, schema, self.question_store)
+            answer_store_updater.save_form(form)
+            answer_store_updater.remove_empty_household_members()
 
         for answer in answered:
             self.assertIsNotNone(self.question_store.answer_store.find(answer))
@@ -235,7 +251,8 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
             self.assertIsNone(self.question_store.answer_store.find(answer))
 
     def test_remove_empty_household_members_partial_answers_are_stored(self):
-        schema = load_schema_from_params('census', 'household')
+        schema = load_schema_from_params('test', 'repeating_household')
+        location = Location('multiple-questions-group', 0, 'household-composition')
 
         answered = [
             Answer(
@@ -303,10 +320,13 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         answers.extend(answered)
         answers.extend(partially_answered)
 
-        for answer in answers:
-            self.question_store.answer_store.add_or_update(answer)
+        form = MagicMock()
+        form.serialise.return_value = answers
 
-        remove_empty_household_members_from_answer_store(self.question_store.answer_store, schema)
+        with self._application.test_request_context():
+            answer_store_updater = AnswerStoreUpdater(location, schema, self.question_store)
+            answer_store_updater.save_form(form)
+            answer_store_updater.remove_empty_household_members()
 
         for answer in answered:
             self.assertIsNotNone(self.question_store.answer_store.find(answer))
@@ -315,7 +335,8 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
             self.assertIsNotNone(self.question_store.answer_store.find(answer))
 
     def test_remove_empty_household_members_middle_name_only_not_stored(self):
-        schema = load_schema_from_params('census', 'household')
+        schema = load_schema_from_params('test', 'repeating_household')
+        location = Location('multiple-questions-group', 0, 'household-composition')
 
         unanswered = [
             Answer(
@@ -336,10 +357,13 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
             )
         ]
 
-        for answer in unanswered:
-            self.question_store.answer_store.add_or_update(answer)
+        form = MagicMock()
+        form.serialise.return_value = unanswered
 
-        remove_empty_household_members_from_answer_store(self.question_store.answer_store, schema)
+        with self._application.test_request_context():
+            answer_store_updater = AnswerStoreUpdater(location, schema, self.question_store)
+            answer_store_updater.save_form(form)
+            answer_store_updater.remove_empty_household_members()
 
         for answer in unanswered:
             self.assertIsNone(self.question_store.answer_store.find(answer))
@@ -402,29 +426,32 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         min_answer_location = Location('group', 0, 'min-block')
         dependent_location = Location('group', 0, 'dependent-block')
 
-        min_answer_data = {
+        min_answer_data = MagicMock(data={
             'min-answer': '10',
-        }
+        })
 
-        dependent_data = {
+        dependent_data = MagicMock(data={
             'dependent-1': '10',
-        }
+        })
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, min_answer_location, min_answer_data, schema)
+            answer_store_updater = AnswerStoreUpdater(min_answer_location, schema, self.question_store)
+            answer_store_updater.save_form(min_answer_data)
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, dependent_location, dependent_data, schema)
+            answer_store_updater = AnswerStoreUpdater(dependent_location, schema, self.question_store)
+            answer_store_updater.save_form(dependent_data)
 
         self.assertIn(min_answer_location, self.question_store.completed_blocks)
         self.assertIn(dependent_location, self.question_store.completed_blocks)
 
-        min_answer_data = {
+        min_answer_data = MagicMock(data={
             'min-answer': '9',
-        }
+        })
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, min_answer_location, min_answer_data, schema)
+            answer_store_updater = AnswerStoreUpdater(min_answer_location, schema, self.question_store)
+            answer_store_updater.save_form(min_answer_data)
 
         self.assertNotIn(dependent_location, self.question_store.completed_blocks)
 
@@ -435,29 +462,32 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         max_answer_location = Location('group', 0, 'max-block')
         dependent_location = Location('group', 0, 'dependent-block')
 
-        max_answer_data = {
+        max_answer_data = MagicMock(data={
             'max-answer': '10',
-        }
+        })
 
-        dependent_data = {
+        dependent_data = MagicMock(data={
             'dependent-1': '10',
-        }
+        })
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, max_answer_location, max_answer_data, schema)
+            answer_store_updater = AnswerStoreUpdater(max_answer_location, schema, self.question_store)
+            answer_store_updater.save_form(max_answer_data)
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, dependent_location, dependent_data, schema)
+            answer_store_updater = AnswerStoreUpdater(dependent_location, schema, self.question_store)
+            answer_store_updater.save_form(dependent_data)
 
         self.assertIn(max_answer_location, self.question_store.completed_blocks)
         self.assertIn(dependent_location, self.question_store.completed_blocks)
 
-        max_answer_data = {
+        max_answer_data = MagicMock(data={
             'max-answer': '11',
-        }
+        })
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, max_answer_location, max_answer_data, schema)
+            answer_store_updater = AnswerStoreUpdater(max_answer_location, schema, self.question_store)
+            answer_store_updater.save_form(max_answer_data)
 
         self.assertNotIn(dependent_location, self.question_store.completed_blocks)
 
@@ -468,38 +498,43 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         calculation_answer_location = Location('group', 0, 'total-block')
         dependent_location = Location('group', 0, 'breakdown-block')
 
-        calculation_answer_data = {
+        calculation_answer_data = MagicMock(data={
             'total-answer': '100',
-        }
+        })
 
-        dependent_data = {
+        dependent_data = MagicMock(data={
             'breakdown-1': '10',
             'breakdown-2': '20',
             'breakdown-3': '30',
             'breakdown-4': '40'
-        }
+        })
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, calculation_answer_location, calculation_answer_data, schema)
+            answer_store_updater = AnswerStoreUpdater(calculation_answer_location, schema, self.question_store)
+            answer_store_updater.save_form(calculation_answer_data)
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, dependent_location, dependent_data, schema)
+            answer_store_updater = AnswerStoreUpdater(dependent_location, schema, self.question_store)
+            answer_store_updater.save_form(dependent_data)
 
         self.assertIn(calculation_answer_location, self.question_store.completed_blocks)
         self.assertIn(dependent_location, self.question_store.completed_blocks)
 
-        calculation_answer_data = {
+        calculation_answer_data = MagicMock(data={
             'total-answer': '99',
-        }
+        })
 
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, calculation_answer_location, calculation_answer_data, schema)
+            answer_store_updater = AnswerStoreUpdater(calculation_answer_location, schema, self.question_store)
+            answer_store_updater.save_form(calculation_answer_data)
 
         self.assertNotIn(dependent_location, self.question_store.completed_blocks)
 
     def test_updating_questionnaire_store_specific_group(self):
         schema = load_schema_from_params('test', 'repeating_household_routing')
-        answers = [
+        location = Location('about-household-group', 0, 'household-composition')
+
+        answers_names = [
             Answer(
                 group_instance=0,
                 group_instance_id='group-0',
@@ -527,16 +562,20 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
             )
         ]
 
-        for answer in answers:
-            self.question_store.answer_store.add_or_update(answer)
+        form = MagicMock()
+        form.serialise.return_value = answers_names
 
-        answer_form_data = {'date-of-birth-answer': None}
-        location = Location('household-member-group', 1, 'date-of-birth')
+        answer_form_data = MagicMock(data={'date-of-birth-answer': None})
+
         with self._application.test_request_context():
-            update_questionnaire_store_with_form_data(self.question_store, location, answer_form_data, schema)
+            answer_store_updater = AnswerStoreUpdater(location, schema, self.question_store)
+            with patch('app.questionnaire.answer_store_updater.AnswerStoreUpdater._should_save_serialised_answers', return_value=True):
+                answer_store_updater.save_form(form)
+            answer_store_updater.save_form(answer_form_data)
 
-        self.assertIsNone(self.question_store.answer_store.find(answers[3]))
-        for answer in answers[:2]:
+        self.assertIsNone(self.question_store.answer_store.find(answers_names[3]))
+
+        for answer in answers_names[:2]:
             self.assertIsNotNone(self.question_store.answer_store.find(answer))
 
     def test_build_view_context_for_question(self):
@@ -589,7 +628,8 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         # Then
         self.assertTrue('summary' in view_context)
         self.assertTrue('calculated_question' in view_context['summary'])
-        self.assertEqual(view_context['summary']['title'], 'We calculate the total of currency values entered to be £13.00. Is this correct? (With Fourth)')
+        self.assertEqual(view_context['summary']['title'],
+                         'We calculate the total of currency values entered to be £13.00. Is this correct? (With Fourth)')
 
     def test_answer_non_repeating_dependency_repeating_validate_all_of_block_and_group_removed(self):
         """ load a schema with a non repeating independent answer and a repeating one that depends on it
@@ -599,12 +639,13 @@ class TestQuestionnaire(IntegrationTestCase): # pylint: disable=too-many-public-
         # Given
         schema = load_schema_from_params('test', 'titles_repeating_non_repeating_dependency')
         colour_answer_location = Location('colour-group', 0, 'favourite-colour')
-        colour_answer = {'fav-colour-answer': 'blue'}
+        colour_answer = MagicMock(data={'fav-colour-answer': 'blue'})
 
         # When
         with self._application.test_request_context():
             with patch('app.data_model.questionnaire_store.QuestionnaireStore.remove_completed_blocks') as patch_remove:
-                update_questionnaire_store_with_form_data(self.question_store, colour_answer_location, colour_answer, schema)
+                answer_store_updater = AnswerStoreUpdater(colour_answer_location, schema, self.question_store)
+                answer_store_updater.save_form(colour_answer)
 
         # Then
         patch_remove.assert_called_with(group_id='repeating-group', block_id='repeating-block-3')

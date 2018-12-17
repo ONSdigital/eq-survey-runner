@@ -1,6 +1,4 @@
-from collections import defaultdict
 from datetime import datetime, timedelta
-from functools import wraps
 
 import humanize
 import simplejson as json
@@ -9,13 +7,12 @@ from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify
 from flask import session as cookie_session
 from flask_login import current_user, login_required, logout_user
 from flask_themes2 import render_theme_template
-from sdc.crypto.encrypter import encrypt
 from jwcrypto.common import base64url_decode
-
+from sdc.crypto.encrypter import encrypt
 from structlog import get_logger
 
 from app.authentication.no_token_exception import NoTokenException
-from app.data_model.answer_store import Answer, AnswerStore
+from app.data_model.answer_store import AnswerStore
 from app.data_model.app_models import SubmittedResponse
 from app.globals import (get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store,
                          get_collection_metadata)
@@ -27,6 +24,7 @@ from app.helpers.session_helpers import with_answer_store, with_metadata, with_c
 from app.helpers.template_helper import (with_session_timeout, with_metadata_context, with_analytics,
                                          with_questionnaire_url_prefix, with_legal_basis, render_template)
 from app.keys import KEY_PURPOSE_SUBMISSION
+from app.questionnaire.answer_store_updater import AnswerStoreUpdater
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
 from app.questionnaire.path_finder import PathFinder
@@ -112,20 +110,6 @@ def before_post_submission_request():
                        session_collection_id='')
 
 
-def save_questionnaire_store(func):
-    @wraps(func)
-    def save_questionnaire_store_wrapper(*args, **kwargs):
-        response = func(*args, **kwargs)
-        if not current_user.is_anonymous:
-            questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-
-            questionnaire_store.add_or_update()
-
-        return response
-
-    return save_questionnaire_store_wrapper
-
-
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=['GET'])
 @login_required
 @with_answer_store
@@ -159,6 +143,8 @@ def post_block(routing_path, schema, metadata, collection_metadata, answer_store
                group_instance, block_id):
     current_location = Location(group_id, group_instance, block_id)
     completeness = get_completeness(current_user)
+    questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+
     router = Router(schema, routing_path, completeness, current_location)
 
     if not router.can_access_location():
@@ -181,7 +167,9 @@ def post_block(routing_path, schema, metadata, collection_metadata, answer_store
 
     if form.validate():
         _set_started_at_metadata_if_required(form, collection_metadata)
-        _update_questionnaire_store(current_location, form, schema)
+        answer_store_updater = AnswerStoreUpdater(current_location, schema, questionnaire_store)
+        answer_store_updater.save_form(form)
+
         next_location = path_finder.get_next_location(current_location=current_location)
 
         if _is_end_of_questionnaire(block, next_location):
@@ -200,15 +188,17 @@ def post_block(routing_path, schema, metadata, collection_metadata, answer_store
 @with_metadata
 @with_schema
 @full_routing_path_required
-def post_household_composition(routing_path, schema, metadata, answer_store, **kwargs):
+def post_household_composition(routing_path, schema, metadata, answer_store, **kwargs):  # pylint: disable=too-many-locals
     group_id = kwargs['group_id']
+    current_location = Location(group_id, 0, 'household-composition')
 
-    if _household_answers_changed(answer_store, schema):
-        _remove_repeating_on_household_answers(answer_store, schema)
+    answer_store_updater = AnswerStoreUpdater(current_location, schema, get_questionnaire_store(current_user.user_id, current_user.user_ik))
+    household_answer_changed = answer_store_updater.household_answers_changed(request.form.copy())
+
+    if household_answer_changed:
+        answer_store_updater.remove_repeating_on_household_answers()
 
     disable_mandatory = any(x in request.form for x in ['action[add_answer]', 'action[remove_answer]', 'action[save_sign_out]'])
-
-    current_location = Location(group_id, 0, 'household-composition')
 
     block = _get_block_json(current_location, schema, answer_store, metadata)
 
@@ -231,13 +221,12 @@ def post_household_composition(routing_path, schema, metadata, answer_store, **k
 
     if 'action[save_sign_out]' in request.form:
         response = _save_sign_out(routing_path, current_location, form, schema, answer_store, metadata)
-        remove_empty_household_members_from_answer_store(answer_store, schema)
+        answer_store_updater.remove_empty_household_members()
 
         return response
 
     if form.validate():
-        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-        update_questionnaire_store_with_answer_data(questionnaire_store, current_location, form.serialise(), schema)
+        answer_store_updater.save_form(form)
 
         metadata = get_metadata(current_user)
         next_location = path_finder.get_next_location(current_location=current_location)
@@ -494,11 +483,11 @@ def _save_sign_out(routing_path, current_location, form, schema, answer_store, m
     block = _get_block_json(current_location, schema, answer_store, metadata)
 
     if form.validate():
-        _update_questionnaire_store(current_location, form, schema)
+        answer_store_updater = AnswerStoreUpdater(current_location, schema, questionnaire_store)
+        answer_store_updater.save_form(form)
 
-        if current_location in questionnaire_store.completed_blocks:
-            questionnaire_store.remove_completed_blocks(location=current_location)
-            questionnaire_store.add_or_update()
+        questionnaire_store.remove_completed_blocks(location=current_location)
+        questionnaire_store.add_or_update()
 
         logout_user()
 
@@ -506,150 +495,6 @@ def _save_sign_out(routing_path, current_location, form, schema, answer_store, m
 
     context = _get_context(routing_path, block, current_location, schema, form)
     return _render_page(block['type'], context, current_location, schema, answer_store, metadata, routing_path)
-
-
-def _household_answers_changed(answer_store, schema):
-    answer_ids = schema.get_answer_ids_for_block('household-composition')
-    household_answers = answer_store.filter(answer_ids)
-    stripped_form = request.form.copy()
-    del stripped_form['csrf_token']
-    remove = [k for k in stripped_form if 'action[' in k]
-    for k in remove:
-        del stripped_form[k]
-    if household_answers.count() != len(stripped_form):
-        return True
-    for household_answer in household_answers:
-        answer = get_answer_instance_id(household_answer.get('answer_id'), household_answer.get('answer_instance', 0))
-
-        if household_answer and (household_answer['value'] or '') != request.form[answer]:
-            return True
-
-    return False
-
-
-def _remove_repeating_on_household_answers(answer_store, schema):
-    answer_ids = schema.get_answer_ids_for_block('household-composition')
-    answer_store.remove(answer_ids=answer_ids)
-    questionnaire_store = get_questionnaire_store(
-        current_user.user_id,
-        current_user.user_ik,
-    )
-
-    for answer in schema.get_answers_that_repeat_in_block('household-composition'):
-        groups_to_delete = schema.get_groups_that_repeat_with_answer_id(answer['id'])
-        for group in groups_to_delete:
-            answer_ids = schema.get_answer_ids_for_group(group['id'])
-            answer_store.remove(answer_ids=answer_ids)
-            questionnaire_store.completed_blocks[:] = [b for b in questionnaire_store.completed_blocks if
-                                                       b.group_id != group['id']]
-
-
-def remove_empty_household_members_from_answer_store(answer_store, schema):
-    answer_ids = schema.get_answer_ids_for_block('household-composition')
-    household_answers = answer_store.filter(answer_ids=answer_ids)
-    household_member_name = defaultdict(list)
-    for household_answer in household_answers:
-        if household_answer['answer_id'] == 'first-name' or household_answer['answer_id'] == 'last-name':
-            household_member_name[household_answer['answer_instance']].append(household_answer['value'])
-
-    to_be_removed = []
-    for k, v in household_member_name.items():
-        name_value = ''.join(v).strip()
-        if not name_value:
-            to_be_removed.append(k)
-
-    for instance_to_remove in to_be_removed:
-        answer_store.remove(answer_ids=answer_ids, answer_instance=instance_to_remove)
-
-
-def _update_questionnaire_store(current_location, form, schema):
-    questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-
-    if schema.block_has_question_type(current_location.block_id, 'Relationship'):
-        update_questionnaire_store_with_answer_data(questionnaire_store, current_location,
-                                                    form.serialise(), schema)
-    else:
-        update_questionnaire_store_with_form_data(questionnaire_store, current_location, form.data, schema)
-
-
-@save_questionnaire_store
-def update_questionnaire_store_with_form_data(questionnaire_store, location, answer_dict, schema):
-
-    survey_answer_ids = schema.get_answer_ids_for_block(location.block_id)
-
-    for answer_id, answer_value in answer_dict.items():
-
-        # If answer is not answered then check for a schema specified default
-        if answer_value is None:
-            answer_value = schema.get_answer(answer_id).get('default')
-
-        if answer_id in survey_answer_ids or location.block_id == 'household-composition':
-            if answer_value is not None:
-                answer = Answer(answer_id=answer_id,
-                                value=answer_value,
-                                group_instance_id=get_group_instance_id(schema, questionnaire_store.answer_store, location),
-                                group_instance=location.group_instance)
-
-                latest_answer_store_hash = questionnaire_store.answer_store.get_hash()
-                questionnaire_store.answer_store.add_or_update(answer)
-                if latest_answer_store_hash != questionnaire_store.answer_store.get_hash() and schema.answer_dependencies[answer_id]:
-                    _remove_dependent_answers_from_completed_blocks(answer_id, location.group_instance, questionnaire_store, schema)
-            else:
-                _remove_answer_from_questionnaire_store(
-                    answer_id,
-                    questionnaire_store,
-                    group_instance=location.group_instance)
-
-    if location not in questionnaire_store.completed_blocks:
-        questionnaire_store.completed_blocks.append(location)
-
-
-def _remove_dependent_answers_from_completed_blocks(answer_id, group_instance, questionnaire_store, schema):
-    """
-    Gets a list of answers ids that are dependent on the answer_id passed in.
-    Then for each dependent answer it will remove it's block from those completed.
-    This will therefore force the respondent to revisit that block.
-    The dependent answers themselves remain untouched.
-    :param answer_id: the answer that has changed
-    :param questionnaire_store: holds the completed blocks
-    :return: None
-    """
-    answer_in_repeating_group = schema.answer_is_in_repeating_group(answer_id)
-    dependencies = schema.answer_dependencies[answer_id]
-
-    for dependency in dependencies:
-        dependency_in_repeating_group = schema.answer_is_in_repeating_group(dependency)
-
-        answer = schema.get_answer(dependency)
-        question = schema.get_question(answer['parent_id'])
-        block = schema.get_block(question['parent_id'])
-
-        if dependency_in_repeating_group and not answer_in_repeating_group:
-            questionnaire_store.remove_completed_blocks(group_id=block['parent_id'], block_id=block['id'])
-        else:
-            location = Location(block['parent_id'], group_instance, block['id'])
-            if location in questionnaire_store.completed_blocks:
-                questionnaire_store.remove_completed_blocks(location=location)
-
-
-def _remove_answer_from_questionnaire_store(answer_id, questionnaire_store,
-                                            group_instance=0):
-    questionnaire_store.answer_store.remove(answer_ids=[answer_id],
-                                            group_instance=group_instance,
-                                            answer_instance=0)
-
-
-@save_questionnaire_store
-def update_questionnaire_store_with_answer_data(questionnaire_store, location, answers, schema):
-
-    survey_answer_ids = schema.get_answer_ids_for_block(location.block_id)
-
-    for answer in [a for a in answers if a.answer_id in survey_answer_ids]:
-        answer.group_instance_id = get_group_instance_id(schema, questionnaire_store.answer_store, location, answer.answer_instance)
-        questionnaire_store.answer_store.add_or_update(answer)
-
-    if location not in questionnaire_store.completed_blocks:
-        questionnaire_store.completed_blocks.append(location)
 
 
 def _check_same_survey(url_eq_id, url_form_type, url_collection_id, session_eq_id, session_form_type, session_collection_id):
@@ -669,10 +514,6 @@ def _evaluate_skip_conditions(block_json, location, schema, answer_store, metada
                     answer['mandatory'] = False
 
     return block_json
-
-
-def get_answer_instance_id(answer_id, answer_index):
-    return 'household-{}-{}'.format(answer_index, answer_id)
 
 
 def _redirect_to_location(collection_id, eq_id, form_type, location):
@@ -754,7 +595,8 @@ def _build_template(current_location, context, template, schema, answer_store, m
 @with_metadata_context
 @with_analytics
 @with_legal_basis
-def _render_template(context, current_location, template, front_end_navigation, previous_url, add_person_url, schema, metadata, answer_store, **kwargs):
+def _render_template(context, current_location, template, front_end_navigation, previous_url, add_person_url, schema, metadata, answer_store,
+                     **kwargs):
     page_title = get_page_title_for_location(schema, current_location, metadata, answer_store)
 
     session_store = get_session_store()
