@@ -33,7 +33,7 @@ class QuestionPage extends BasePage {
 
   interstitialHeader() { return '#main > h1';}
 
-  switchLanguage(language_code) { return '[data-qa="switch-language-' + language_code + '"]'; }
+  switchLanguage(language_code) { return '.header__top [data-qa="switch-language-' + language_code + '"]'; }
 
 }
 

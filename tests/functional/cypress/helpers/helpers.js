@@ -25,13 +25,17 @@ function openQuestionnaire(schema, { userId = getRandomString(10), collectionId 
 }
 
 function startQuestionnaire(schema, userId = getRandomString(10), collectionId = getRandomString(10)) {
-  return openQuestionnaire(schema, userId, collectionId).then(() => {
-      return cy.get('.qa-btn-get-started').click();
-  });
+  return openQuestionnaire(schema, userId, collectionId)
+         .get('.qa-btn-get-started').click()
+}
+
+function navigationLink(linkName) {
+  return 'a=' + linkName;
 }
 
 module.exports = {
   openQuestionnaire,
   getToken,
   startQuestionnaire,
+  navigationLink,
 };

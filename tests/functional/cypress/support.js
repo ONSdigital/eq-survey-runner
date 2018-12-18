@@ -23,3 +23,27 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+// Gets the text content from an element using the jQuery 'text' function and trim the output
+// Optional argument of 'stripNewlines' to remove newlines from the text output.
+Cypress.Commands.add('stripText', { prevSubject: true }, (subject, stripNewlines) => {
+  return cy.wrap(subject).invoke('text').then((text) => {
+    if (stripNewlines === true) {
+      text = text.replace(/\n/g, '')
+    }
+    return text.trim()
+  })
+})
+
+// Force typing even though the subject may be covered by another element.
+// This happens with unit types.
+Cypress.Commands.add('typeForced', { prevSubject: true }, (subject, textToType) => {
+  return cy.wrap(subject).type(textToType, {force: true})
+})
+
+Cypress.Commands.add('key', (subject, keyCode) => {
+  cy.focused().trigger('keydown', {
+      keyCode: keyCode,
+      which: keyCode,
+  });
+});
