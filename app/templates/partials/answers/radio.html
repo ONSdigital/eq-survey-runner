@@ -1,6 +1,18 @@
-{% set widget_type = "radio" %}
+{%- from "macros/radios/_macro.njk" import onsRadios -%}
+
+{{
+  onsRadios({
+    "id": answer.id,
+    "name": answer.id,
+    "legend": get_answer_label(answer.id, question.id),
+    "description": answer.description,
+    "radios": map_radio_config(form, answer)
+  })
+}}
+
+{# {% set widget_type = "radio" %}
 {% set input = form.fields[answer['id']] %}
 
 <div class="field field--radio field--multiplechoice {{'field--cols' if use_grid}}">
   {% include 'partials/widgets/multiple_choice_widget.html' %}
-</div>
+</div> #}

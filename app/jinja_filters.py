@@ -573,3 +573,42 @@ def mark_safe(context, value):
     if context.autoescape:
         value = Markup(value)
     return value
+
+class RadioConfig(object):
+    def __init__(self, option, index, answer):
+        self.id = option.id
+        self.name = option.name
+        self.value = option.data
+        self.checked = option.checked
+
+        label_description = None
+        answer_option = answer['options'][index]
+
+        if answer_option is not None and answer_option['description'] is not None:
+            label_description = answer_option['description']
+
+        self.label = LabelConfig(option.id, option.label.text, label_description)
+
+class LabelConfig(object):
+    def __init__(self, _for, text, description):
+        self._for = _for
+        self.text = text
+        self.description = description
+
+
+@contextfunction
+@blueprint.app_template_filter()
+def map_radio_config(context, form, answer):
+    parent_context = context.parent
+    question = parent_context['question']
+    answers = question['answers']
+    options = form['fields'][answer['id']]
+
+    return [RadioConfig(option, i, answer) for i, option in enumerate(options)]
+
+
+
+@blueprint.app_context_processor
+def map_radio_config_processor():
+    return dict(map_radio_config=map_radio_config)
+

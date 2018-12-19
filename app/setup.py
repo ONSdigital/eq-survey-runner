@@ -37,11 +37,11 @@ CACHE_HEADERS = {
 }
 
 CSP_POLICY = {
-    'default-src': ["'self'", 'https://cdn.ons.gov.uk'],
-    'font-src': ["'self'", 'data:', 'https://cdn.ons.gov.uk'],
-    'script-src': ["'self'", 'https://www.google-analytics.com', 'https://cdn.ons.gov.uk'],
-    'connect-src': ["'self'", 'https://www.google-analytics.com', 'https://cdn.ons.gov.uk'],
-    'img-src': ["'self'", 'data:', 'https://www.google-analytics.com', 'https://cdn.ons.gov.uk'],
+    'default-src': ["'self'", 'https://cdn.ons.gov.uk', 'http://localhost:3001'],
+    'font-src': ["'self'", 'data:', 'https://cdn.ons.gov.uk', 'http://localhost:3001'],
+    'script-src': ["'self'", 'https://www.google-analytics.com', 'https://cdn.ons.gov.uk', 'http://localhost:3001'],
+    'connect-src': ["'self'", 'https://www.google-analytics.com', 'https://cdn.ons.gov.uk', 'http://localhost:3001'],
+    'img-src': ["'self'", 'data:', 'https://www.google-analytics.com', 'https://cdn.ons.gov.uk', 'http://localhost:3001'],
 }
 
 cache = Cache()

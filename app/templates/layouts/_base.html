@@ -1,6 +1,7 @@
 <!doctype html>
 {% set cdn_hash = "v2.0.0" %}
-{% set cdn_url_prefix = "https://cdn.ons.gov.uk/sdc/"~cdn_hash %}
+{# {% set cdn_url_prefix = "https://cdn.ons.gov.uk/sdc/"~cdn_hash %} #}
+{% set cdn_url_prefix = "http://localhost:3001" %}
 {% import 'macros/helpers.html' as helpers %}
 <!--[if lt IE 7]>      <html lang="en-gb" dir="ltr" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en-gb" dir="ltr" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
@@ -27,8 +28,8 @@
       <script nonce="{{ csp_nonce() }}">document.documentElement.className = document.documentElement.className.replace('no-js','has-js')</script>
     <!--<![endif]-->
     {%- block styles %}
-    {% set css_fixed_cdn = cdn_url_prefix~"/css/fixed.css" %}
-    {% set css_responsive_cdn = cdn_url_prefix~"/css/responsive.css" %}
+    {% set css_fixed_cdn = cdn_url_prefix~"/fixed.css" %}
+    {% set css_responsive_cdn = cdn_url_prefix~"/responsive.css" %}
     {% set css_theme = "css/"~_theme~"/theme.css" %}
 
     <!--[if (gt IE 9) | (IEMobile)]><!-->
@@ -122,7 +123,7 @@
 
     <!--[if gte IE 9]><!-->
     {% block scripts %}
-      {% set scripts_cdn = cdn_url_prefix~"/scripts/bundle.min.js" %}
+      {% set scripts_cdn = cdn_url_prefix~"/scripts/bundle.js" %}
       <script src="{{ scripts_cdn }}"></script>
       <script src="{{ url_for('static', filename='js/bundle.js') }}"></script>
     {% endblock scripts %}
