@@ -33,7 +33,7 @@
     class="input input--text input-type__input {{ params.classes }}"
     {% if params.name %}name="{{ params.name }}"{% endif %}
     {% if params.value %}value="{{ params.value }}"{% endif %}
-    {% for attribute, value in params.attributes %} {{ attribute }}="{{ value }}"{% endfor %}
+    {% if params.attributes %}{% for attribute, value in params.attributes.items() %} {{ attribute }}="{{ value }}"{% endfor %}{% endif %}
 />
 {% if params.prefix or params.suffix -%}
         <abbr class="input-type__type" title="{{ params.prefix.title }}{{ params.suffix.title }}">{{ params.prefix.text }}{{ params.suffix.text }}</abbr>

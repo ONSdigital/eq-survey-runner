@@ -585,12 +585,12 @@ class RadioConfig(object):
         answer_option = answer['options'][index]
 
         if answer_option and 'description' in answer_option:
-            label_description = answer_option.description
+            label_description = answer_option['description']
 
         self.label = LabelConfig(option.id, option.label.text, label_description)
 
 class LabelConfig(object):
-    def __init__(self, _for, text, description):
+    def __init__(self, _for, text, description = None):
         self._for = _for
         self.text = text
         self.description = description
@@ -606,9 +606,43 @@ def map_radio_config(context, form, answer):
 
     return [RadioConfig(option, i, answer) for i, option in enumerate(options)]
 
-
-
 @blueprint.app_context_processor
 def map_radio_config_processor():
     return dict(map_radio_config=map_radio_config)
 
+class DateConfig(object):
+    def __init__(self, context, form, question, answer):
+        self.id = answer['id']
+        self.legend = get_question_title(context, question['id'])
+        if 'label' in answer:
+            self.description = answer.label
+
+        fields = form['fields'][answer['id']]
+        day_field = fields['day']
+        month_field = fields['month']
+        year_field = fields['year']
+
+        if day_field:
+            self.day = DateFieldConfig(day_field, "Day")
+
+        if month_field:
+            self.month = DateFieldConfig(month_field, "Month")
+
+        if year_field:
+            self.year = DateFieldConfig(year_field, "Year")
+
+class DateFieldConfig(object):
+    def __init__(self, field, label):
+        self.id = field.id
+        self.name = field.name
+        self.value = field.data
+        self.label = label
+
+@contextfunction
+@blueprint.app_template_filter()
+def map_date_config(context, form, question, answer):
+    return DateConfig(context, form, question, answer)
+
+@blueprint.app_context_processor
+def map_date_config_processor():
+    return dict(map_date_config=map_date_config)
