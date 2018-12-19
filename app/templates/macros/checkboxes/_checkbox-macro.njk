@@ -8,19 +8,19 @@
                 <span class="checkbox__description u-fs-s">{{ params.label.description }}</span>
             {%- endif -%}
         </label>
-        {%- if params.other.id -%}
+        {%- if params.other -%}
             <div class="checkbox__other">
                 {%- from "macros/input/_macro.njk" import onsInput -%}
                 {{
                     onsInput({
-                        id: params.other.id,
-                        name: params.other.name,
-                        type: params.other.type,
-                        classes: "input--w-auto " + params.other.classes | default(''),
-                        attributes: params.other.attributes,
-                        label: {
-                            text: params.other.label.text,
-                            classes: 'u-fs-s--b'
+                        "id": params.other.id,
+                        "name": params.other.name,
+                        "type": params.other.type,
+                        "classes": "input--w-auto " + params.other.classes | default(''),
+                        "attributes": params.other.attributes,
+                        "label": {
+                            "text": params.other.label.text,
+                            "classes": 'u-fs-s--b'
                         }
                     })
                 }}

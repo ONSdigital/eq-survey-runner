@@ -610,6 +610,51 @@ def map_radio_config(context, form, answer):
 def map_radio_config_processor():
     return dict(map_radio_config=map_radio_config)
 
+
+class CheckboxConfig(object):
+    def __init__(self, option, index, form, answer):
+        self.id = option.id
+        self.name = option.name
+        self.value = option.data
+        self.checked = option.checked
+
+        label_description = None
+        answer_option = answer['options'][index]
+
+        if answer_option and 'description' in answer_option:
+            label_description = answer_option['description']
+
+        self.label = LabelConfig(option.id, option.label.text, label_description)
+
+
+        if option.detail_answer_id:
+            detail_answer = form['fields'][option.detail_answer_id]
+            self.other = OtherConfig(detail_answer)
+
+
+class OtherConfig(object):
+    def __init__(self, detail_answer):
+        print(detail_answer.id)
+        self.id = detail_answer.id
+        self.name = detail_answer.name
+        self.value = detail_answer.data
+        self.label = LabelConfig(detail_answer.id, detail_answer.label.text)
+
+
+@contextfunction
+@blueprint.app_template_filter()
+def map_checkbox_config(context, form, answer):
+    parent_context = context.parent
+    question = parent_context['question']
+    answers = question['answers']
+    options = form['fields'][answer['id']]
+
+    return [CheckboxConfig(option, i, form, answer) for i, option in enumerate(options)]
+
+@blueprint.app_context_processor
+def map_checkbox_config_processor():
+    return dict(map_checkbox_config=map_checkbox_config)
+
 class DateConfig(object):
     def __init__(self, context, form, question, answer):
         self.id = answer['id']

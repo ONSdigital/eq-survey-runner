@@ -1,18 +1,12 @@
-{% set widget_type = "checkbox" %}
-{% set input = form.fields[answer['id']] %}
+{%- from "macros/radios/_macro.njk" import onsRadios -%}
+{%- from "macros/checkboxes/_macro.njk" import onsCheckboxes -%}
 
-{% set checkbox_labels %}
-  {% if not answer.label %}
-
-    {% if is_exclusive_checkbox %}
-      <div class="field__label u-mt-s u-fs-r--b">{{ _("Or") }}</div>
-    {% else %}
-      <div class="field__label u-fs-r">{{ _("Select all that apply") }}:</div>
-    {% endif %}
-
-  {% endif %}
-{% endset %}
-
-<div class="field field--checkbox field--multiplechoice {{'field--cols' if use_grid}}">
-  {% include 'partials/widgets/multiple_choice_widget.html' %}
-</div>
+{{
+  onsCheckboxes({
+    "id": answer.id,
+    "name": answer.id,
+    "legend": get_answer_label(answer.id, question.id),
+    "description": answer.description,
+    "checkboxes": map_checkbox_config(form, answer)
+  })
+}}
