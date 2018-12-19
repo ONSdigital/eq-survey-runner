@@ -21,12 +21,12 @@ describe('Dependency Max', function () {
     it('When I go back and change the maximum answer Then dependent block becomes incomplete', function() {
               .get(MaxBlockPage.max()).type(9)
         .get(MaxBlockPage.submit()).click()
-        .isVisible(helpers.navigationLink('Summary')).should.eventually.be.false;
+        .get(helpers.navigationLink('Summary')).should('not.be.visible');
     });
 
     it('When I go back and do not change the maximum answer Then dependent block remains complete', function() {
               .get(MaxBlockPage.submit()).click()
-        .isVisible(helpers.navigationLink('Summary')).should.eventually.be.true;
+        .get(helpers.navigationLink('Summary')).should('be.visible');
     });
 
   });

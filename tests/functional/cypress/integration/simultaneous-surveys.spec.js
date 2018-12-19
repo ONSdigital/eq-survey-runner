@@ -1,4 +1,4 @@
-import {openQuestionnaire} from ../helpers/helpers.js
+import {openQuestionnaire} from '../helpers/helpers.js'
 const TextFieldPage = require('../generated_pages/textfield/name-block.page');
 const TextAreaPage = require('../generated_pages/textarea/textarea-block.page.js');
 const TextAreaSummaryPage = require('../generated_pages/textarea/textarea-summary.page.js');

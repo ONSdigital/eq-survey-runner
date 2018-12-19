@@ -23,12 +23,12 @@ describe('Dependency Calculation', function () {
     it('When I go back and change the total answer Then breakdown block becomes incomplete', function() {
               .get(TotalBlockPage.total()).type(99)
         .get(TotalBlockPage.submit()).click()
-        .isVisible(helpers.navigationLink('Summary')).should.eventually.be.false;
+        .get(helpers.navigationLink('Summary')).should('not.be.visible');
     });
 
     it('When I go back and do not change the total answer Then breakdown block remains complete', function() {
               .get(TotalBlockPage.submit()).click()
-        .isVisible(helpers.navigationLink('Summary')).should.eventually.be.true;
+        .get(helpers.navigationLink('Summary')).should('be.visible');
     });
 
   });

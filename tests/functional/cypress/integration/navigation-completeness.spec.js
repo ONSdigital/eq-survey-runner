@@ -1,4 +1,4 @@
-import {openQuestionnaire} from ../helpers/helpers.js
+import {openQuestionnaire} from '../helpers/helpers.js'
 const CoffeePage = require('../generated_pages/navigation_completeness/coffee.page.js');
 const ResponseYesPage = require('../generated_pages/navigation_completeness/response-yes.page.js');
 const ResponseNoPage = require('../generated_pages/navigation_completeness/response-no.page.js');

@@ -47,3 +47,16 @@ Cypress.Commands.add('key', (subject, keyCode) => {
       which: keyCode,
   });
 });
+
+Cypress.Commands.add('navigationLink', {prevSubject: 'optional'}, (subject, navText) => {
+    return cy.get('.nav').contains(navText)
+})
+
+Cypress.Commands.add('isSectionComplete', {prevSubject: 'optional'}, (subject, navText) => {
+  return cy
+    .navigationLink(navText)
+    .then(($elem)=> {
+      const dataQa = $elem.attr('data-qa')
+      return dataQa === 'complete'
+    })
+})

@@ -1,4 +1,4 @@
-import {openQuestionnaire} from ../helpers/helpers.js
+import {openQuestionnaire} from '../helpers/helpers.js'
 
 const NoOfRepeatsPage = require('../generated_pages/repeating_and_conditional_routing/no-of-repeats.page.js');
 const RepeatedBlockPage = require('../generated_pages/repeating_and_conditional_routing/repeated-block.page.js');

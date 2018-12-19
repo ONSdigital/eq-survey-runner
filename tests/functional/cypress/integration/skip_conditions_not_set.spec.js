@@ -1,4 +1,4 @@
-import {openQuestionnaire} from ../helpers/helpers.js
+import {openQuestionnaire} from '../helpers/helpers.js'
 const FoodPage = require('../generated_pages/skip_condition_not_set/food-block.page');
 const DrinkPage = require('../generated_pages/skip_condition_not_set/drink-block.page');
 const SummaryPage = require('../generated_pages/skip_condition_not_set/summary.page');

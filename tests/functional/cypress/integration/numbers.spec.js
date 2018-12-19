@@ -1,4 +1,4 @@
-import {openQuestionnaire} from ../helpers/helpers.js
+import {openQuestionnaire} from '../helpers/helpers.js'
 const SetMinMax = require('../generated_pages/numbers/set-min-max-block.page.js');
 const TestMinMax = require('../generated_pages/numbers/test-min-max-block.page.js');
 const SummaryPage = require('../generated_pages/numbers/summary.page');

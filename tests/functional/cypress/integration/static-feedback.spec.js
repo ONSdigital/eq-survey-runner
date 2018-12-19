@@ -1,4 +1,4 @@
-import {openQuestionnaire} from ../helpers/helpers.js
+import {openQuestionnaire} from '../helpers/helpers.js'
 const form = require('../base_pages/feedback-form');
 
 describe('Feedback Form', function() {

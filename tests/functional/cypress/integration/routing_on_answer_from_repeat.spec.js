@@ -1,4 +1,4 @@
-import {openQuestionnaire} from ../helpers/helpers.js
+import {openQuestionnaire} from '../helpers/helpers.js'
 
 const PrimaryNamePage = require('../generated_pages/routing_on_answer_from_driving_repeating_group/primary-name-block.page.js');
 const PrimaryLiveHereBlockPage = require('../generated_pages/routing_on_answer_from_driving_repeating_group/primary-live-here-block.page.js');

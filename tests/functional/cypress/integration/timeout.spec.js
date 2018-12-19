@@ -1,4 +1,4 @@
-import {openQuestionnaire} from ../helpers/helpers.js
+import {openQuestionnaire} from '../helpers/helpers.js'
 
 const TimeoutBlockPage = require('../generated_pages/timeout/timeout-block.page.js');
 const SummaryPage = require('../generated_pages/timeout/summary.page.js');
@@ -19,7 +19,7 @@ describe('Timeout', function() {
           .get('.js-timeout-continue').click()
           .url().should('contain', TimeoutBlockPage.pageName)
           .waitForVisible(dialog,1000, true)
-          .isVisible(dialog).should.eventually.be.false
+          .get(dialog).should('not.be.visible')
           .waitForVisible(dialog,5000);
     });
   });

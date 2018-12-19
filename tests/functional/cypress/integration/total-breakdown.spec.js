@@ -1,4 +1,4 @@
-import {openQuestionnaire} from ../helpers/helpers.js
+import {openQuestionnaire} from '../helpers/helpers.js'
 
 const BreakDownPage = require('../generated_pages/total_breakdown/block.page.js');
 

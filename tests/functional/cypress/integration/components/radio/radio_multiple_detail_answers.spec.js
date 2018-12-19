@@ -10,9 +10,9 @@ describe('Radio with multiple "detail_answer" options', function() {
   it('Given detail answer options are available, When the user clicks an option, Then the detail answer input should be visible.', function() {
     openQuestionnaire(radio_schema)
               .get().click()
-        .isVisible(MandatoryRadioPage.eggsDetail()).should.eventually.be.true
+        .get(MandatoryRadioPage.eggsDetail()).should('be.visible')
         .get().click()
-        .isVisible(MandatoryRadioPage.favouriteNotListedDetail()).should.eventually.be.true;
+        .get(MandatoryRadioPage.favouriteNotListedDetail()).should('be.visible');
     });
   });
 
@@ -23,7 +23,7 @@ describe('Radio with multiple "detail_answer" options', function() {
         .get().click()
         .get().click()
       // Then
-        .isVisible(MandatoryRadioPage.error()).should.eventually.be.true
+        .get(MandatoryRadioPage.error()).should('be.visible')
         .get(MandatoryRadioPage.errorNumber(1)).stripText().should('contain', 'Enter your favourite to continue');
     });
   });
@@ -33,7 +33,7 @@ describe('Radio with multiple "detail_answer" options', function() {
     openQuestionnaire(radio_schema)
               .get().click()
         .get().click()
-        .isVisible(MandatoryRadioPage.error()).should.eventually.be.true
+        .get(MandatoryRadioPage.error()).should('be.visible')
 
       // When
         .get(MandatoryRadioPage.favouriteNotListedDetail()).type('Bacon')
@@ -48,7 +48,7 @@ describe('Radio with multiple "detail_answer" options', function() {
     openQuestionnaire(radio_schema)
             // When
         .get().click()
-        .isVisible(MandatoryRadioPage.eggsDetail()).should.eventually.be.true
+        .get(MandatoryRadioPage.eggsDetail()).should('be.visible')
         .get().click()
       // Then
         .get(SummaryPage.radioMandatoryAnswer()).stripText().should('equal', 'Eggs');

@@ -1,4 +1,4 @@
-import {openQuestionnaire} from ../helpers/helpers.js
+import {openQuestionnaire} from '../helpers/helpers.js'
 
 const PrimaryNamePage = require('../generated_pages/routing_repeat_until/primary-name-block.page.js');
 const RepeatingNamePage = require('../generated_pages/routing_repeat_until/repeating-name-block.page.js');

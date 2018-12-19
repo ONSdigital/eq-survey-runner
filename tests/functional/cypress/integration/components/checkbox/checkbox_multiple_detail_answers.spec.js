@@ -10,9 +10,9 @@ describe('Checkbox with multiple "detail_answer" options', function() {
   it('Given detail answer options are available, When the user clicks an option, Then the detail answer input should be visible.', function() {
     openQuestionnaire(checkbox_schema)
               .get(MandatoryCheckboxPage.yourChoice()).click()
-        .isVisible(MandatoryCheckboxPage.yourChoiceDetail()).should.eventually.be.true
+        .get(MandatoryCheckboxPage.yourChoiceDetail()).should('be.visible')
         .get(MandatoryCheckboxPage.cheese()).click()
-        .isVisible(MandatoryCheckboxPage.cheeseDetail()).should.eventually.be.true;
+        .get(MandatoryCheckboxPage.cheeseDetail()).should('be.visible');
     });
   });
 
@@ -27,7 +27,7 @@ describe('Checkbox with multiple "detail_answer" options', function() {
         .get(MandatoryCheckboxPage.yourChoice()).click()
         .get(MandatoryCheckboxPage.submit()).click()
       // Then
-        .isVisible(MandatoryCheckboxPage.error()).should.eventually.be.true
+        .get(MandatoryCheckboxPage.error()).should('be.visible')
         .get(MandatoryCheckboxPage.errorNumber(1)).stripText().should('contain', 'Enter your topping choice to continue');
     });
   });
@@ -37,7 +37,7 @@ describe('Checkbox with multiple "detail_answer" options', function() {
     openQuestionnaire(checkbox_schema)
               .get(MandatoryCheckboxPage.yourChoice()).click()
         .get(MandatoryCheckboxPage.submit()).click()
-        .isVisible(MandatoryCheckboxPage.error()).should.eventually.be.true
+        .get(MandatoryCheckboxPage.error()).should('be.visible')
 
       // When
         .get(MandatoryCheckboxPage.yourChoiceDetail()).type('Bacon')
@@ -52,7 +52,7 @@ describe('Checkbox with multiple "detail_answer" options', function() {
     openQuestionnaire(checkbox_schema)
             // When
         .get(MandatoryCheckboxPage.cheese()).click()
-        .isVisible(MandatoryCheckboxPage.cheeseDetail()).should.eventually.be.true
+        .get(MandatoryCheckboxPage.cheeseDetail()).should('be.visible')
         .get(MandatoryCheckboxPage.submit()).click()
       // Then
         .get(SummaryPage.mandatoryCheckboxAnswer()).stripText().should('equal', 'Cheese');
