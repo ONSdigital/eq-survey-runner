@@ -1,18 +1,15 @@
+{%- from "macros/field/_macro.njk" import onsField -%}
+{%- from "macros/input/_macro.njk" import onsInput -%}
+
 {% set input = form.fields[answer.id] if input is undefined else input %}
+{% call onsField({}) %}
+  {{ onsInput({
+    "id": answer.id,
+    "name": input.name,
+    "value": input._value(),
+    "label": {
+      "text": answer.label
+    },
+  }) }}
+{% endcall %}
 
-<div class="field">
-    {% set label = {
-      'for': answer.id,
-      'text': answer.label
-    } %}
-    {% include 'partials/forms/label.html' %}
-
-    {% set input = {
-      'type': 'text',
-      'data': input._value(),
-      'name': input.name,
-      'id': answer.id
-    } %}
-    {% set input_placeholder = answer.placeholder %}
-    {% include 'partials/forms/input.html' %}
-</div>
