@@ -4156,6 +4156,11 @@
                                 "answers_to_calculate": ["answer3207", "answer3208", "answer3209", "answer3211"],
                                 "conditions": ["equals"]
                             }],
+                            "validation": {
+                                "messages": {
+                                    "TOTAL_SUM_NOT_EQUALS": "Enter answers that add up to %(total)s%%"
+                                }
+                            },
                             "answers": [{
                                     "id": "answer3207",
                                     "mandatory": false,

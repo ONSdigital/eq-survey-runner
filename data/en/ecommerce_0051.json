@@ -1950,6 +1950,11 @@
                                 "answers_to_calculate": ["answer1870", "answer1871"],
                                 "conditions": ["equals"]
                             }],
+                            "validation": {
+                                "messages": {
+                                    "TOTAL_SUM_NOT_EQUALS": "Enter answers that add up to %(total)s%%"
+                                }
+                            },
                             "answers": [{
                                     "id": "answer1870",
                                     "mandatory": false,
@@ -2015,6 +2020,11 @@
                                 "answers_to_calculate": ["answer1873", "answer1875"],
                                 "conditions": ["equals"]
                             }],
+                            "validation": {
+                                "messages": {
+                                    "TOTAL_SUM_NOT_EQUALS": "Enter answers that add up to %(total)s%%"
+                                }
+                            },
                             "answers": [{
                                     "id": "answer1873",
                                     "mandatory": false,
