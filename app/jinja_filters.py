@@ -584,8 +584,8 @@ class RadioConfig(object):
         label_description = None
         answer_option = answer['options'][index]
 
-        if answer_option is not None and answer_option['description'] is not None:
-            label_description = answer_option['description']
+        if answer_option and 'description' in answer_option:
+            label_description = answer_option.description
 
         self.label = LabelConfig(option.id, option.label.text, label_description)
 
