@@ -15,14 +15,14 @@ describe('Component: Mutually Exclusive TextArea With Single Checkbox Override',
     it('When the user enters a value for the non-exclusive textarea answer, Then only the non-exclusive textarea answer should be answered.', function() {
 
               // Given
-        .isSelected(TextFieldPage.textareaExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(TextFieldPage.textareaExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(TextFieldPage.textarea()).type('Blue')
 
         // Then
         .getValue(TextFieldPage.textarea()).should.eventually.contain('Blue')
-        .isSelected(TextFieldPage.textareaExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(TextFieldPage.textareaExclusiveIPreferNotToSay()).should('be.false')
 
         .get(TextFieldPage.submit()).click()
 
@@ -40,7 +40,7 @@ describe('Component: Mutually Exclusive TextArea With Single Checkbox Override',
 
         // When
         .get(TextFieldPage.textareaExclusiveIPreferNotToSay()).click()
-        .isSelected(TextFieldPage.textareaExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(TextFieldPage.textareaExclusiveIPreferNotToSay()).should('be.true')
 
         // Then
         .get(TextFieldPage.submit()).click()
@@ -56,7 +56,7 @@ describe('Component: Mutually Exclusive TextArea With Single Checkbox Override',
 
               // Given
         .getValue(TextFieldPage.textarea()).should.eventually.contain('')
-        .isSelected(TextFieldPage.textareaExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(TextFieldPage.textareaExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(TextFieldPage.submit()).click()

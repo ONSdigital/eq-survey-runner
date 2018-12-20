@@ -22,7 +22,7 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
         .get(UnitPage.unitExclusiveIPreferNotToSay()).click()
 
         // Then
-        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should('be.true')
         .getValue(UnitPage.unit()).should.eventually.contain('')
 
         .get(UnitPage.submit()).click()
@@ -38,7 +38,7 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
 
               // Given
         .get(UnitPage.unitExclusiveIPreferNotToSay()).click()
-        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should('be.true')
 
         // When
         .get(UnitPage.unit()).type('10')
@@ -46,7 +46,7 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
         // Then
         .getValue(UnitPage.unit()).should.eventually.contain('10')
         .get(UnitPage.unitLabel()).click()
-        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should('be.false')
 
         .get(UnitPage.submit()).click()
 
@@ -60,14 +60,14 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
     it('When the user enters a value for the non-exclusive unit answer, Then only the non-exclusive unit answer should be answered.', function() {
 
               // Given
-        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(UnitPage.unit()).type('10')
 
         // Then
         .getValue(UnitPage.unit()).should.eventually.contain('10')
-        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should('be.false')
 
         .get(UnitPage.submit()).click()
 
@@ -85,7 +85,7 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
 
         // When
         .get(UnitPage.unitExclusiveIPreferNotToSay()).click()
-        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should('be.true')
 
         // Then
         .get(UnitPage.submit()).click()
@@ -101,7 +101,7 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
 
               // Given
         .getValue(UnitPage.unit()).should.eventually.contain('')
-        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(UnitPage.submit()).click()

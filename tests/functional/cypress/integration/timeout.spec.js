@@ -1,7 +1,7 @@
 import {openQuestionnaire} from '../helpers/helpers.js'
 
-const TimeoutBlockPage = require('../generated_pages/timeout/timeout-block.page.js');
-const SummaryPage = require('../generated_pages/timeout/summary.page.js');
+const TimeoutBlockPage = require('../../generated_pages/timeout/timeout-block.page.js');
+const SummaryPage = require('../../generated_pages/timeout/summary.page.js');
 
 const dialog = '#dialog';
 

@@ -1,10 +1,10 @@
 import {openQuestionnaire} from '../helpers/helpers.js'
-const InsuranceAddressPage = require('../generated_pages/section_summary/insurance-address.page.js');
-const InsuranceTypePage = require('../generated_pages/section_summary/insurance-type.page.js');
-const AddressDurationPage = require('../generated_pages/section_summary/address-duration.page.js');
-const PropertyDetailsSummaryPage = require('../generated_pages/section_summary/property-details-summary.page.js');
-const HouseHoldCompositionPage = require('../generated_pages/section_summary/household-composition.page.js');
-const FinalSummaryPage = require('../generated_pages/section_summary/summary.page.js');
+const InsuranceAddressPage = require('../../generated_pages/section_summary/insurance-address.page.js');
+const InsuranceTypePage = require('../../generated_pages/section_summary/insurance-type.page.js');
+const AddressDurationPage = require('../../generated_pages/section_summary/address-duration.page.js');
+const PropertyDetailsSummaryPage = require('../../generated_pages/section_summary/property-details-summary.page.js');
+const HouseHoldCompositionPage = require('../../generated_pages/section_summary/household-composition.page.js');
+const FinalSummaryPage = require('../../generated_pages/section_summary/summary.page.js');
 
 describe('Section Summary', function() {
 

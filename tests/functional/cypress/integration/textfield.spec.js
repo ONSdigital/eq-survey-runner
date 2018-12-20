@@ -1,7 +1,7 @@
 import {openQuestionnaire} from '../helpers/helpers.js'
-const TextFieldPage = require('../generated_pages/textfield/name-block.page.js');
-const MinMaxBlockPage = require('../generated_pages/textfield/min-max-block.page');
-const SummaryPage = require('../generated_pages/textfield/summary.page.js');
+const TextFieldPage = require('../../generated_pages/textfield/name-block.page.js');
+const MinMaxBlockPage = require('../../generated_pages/textfield/min-max-block.page');
+const SummaryPage = require('../../generated_pages/textfield/summary.page.js');
 
 describe('Textfield', function() {
 

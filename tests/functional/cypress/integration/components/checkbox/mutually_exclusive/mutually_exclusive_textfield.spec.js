@@ -22,7 +22,7 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
         .get(TextFieldPage.textfieldExclusiveIPreferNotToSay()).click()
 
         // Then
-        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should('be.true')
         .getValue(TextFieldPage.textfield()).should.eventually.contain('')
 
         .get(TextFieldPage.submit()).click()
@@ -38,7 +38,7 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
 
               // Given
         .get(TextFieldPage.textfieldExclusiveIPreferNotToSay()).click()
-        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should('be.true')
 
         // When
         .get(TextFieldPage.textfield()).type('Blue')
@@ -46,7 +46,7 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
         // Then
         .getValue(TextFieldPage.textfield()).should.eventually.contain('Blue')
         .get(TextFieldPage.textfieldLabel()).click()
-        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should('be.false')
 
         .get(TextFieldPage.submit()).click()
 
@@ -60,14 +60,14 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
     it('When the user enters a value for the non-exclusive textfield answer, Then only the non-exclusive textfield answer should be answered.', function() {
 
               // Given
-        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(TextFieldPage.textfield()).type('Blue')
 
         // Then
         .getValue(TextFieldPage.textfield()).should.eventually.contain('Blue')
-        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should('be.false')
 
         .get(TextFieldPage.submit()).click()
 
@@ -85,7 +85,7 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
 
         // When
         .get(TextFieldPage.textfieldExclusiveIPreferNotToSay()).click()
-        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should('be.true')
 
         // Then
         .get(TextFieldPage.submit()).click()
@@ -101,7 +101,7 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
 
               // Given
         .getValue(TextFieldPage.textfield()).should.eventually.contain('')
-        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(TextFieldPage.submit()).click()

@@ -1,6 +1,6 @@
 import {openQuestionnaire} from '../helpers/helpers.js'
 
-const BreakDownPage = require('../generated_pages/total_breakdown/block.page.js');
+const BreakDownPage = require('../../generated_pages/total_breakdown/block.page.js');
 
 const highlightedInput = '[class$=input--has-error]';
 

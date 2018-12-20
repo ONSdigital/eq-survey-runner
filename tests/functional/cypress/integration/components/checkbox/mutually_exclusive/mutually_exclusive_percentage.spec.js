@@ -22,7 +22,7 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
         .get(PercentagePage.percentageExclusiveIPreferNotToSay()).click()
 
         // Then
-        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should('be.true')
         .getValue(PercentagePage.percentage()).should.eventually.contain('')
 
         .get(PercentagePage.submit()).click()
@@ -38,7 +38,7 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
 
               // Given
         .get(PercentagePage.percentageExclusiveIPreferNotToSay()).click()
-        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should('be.true')
 
         // When
         .get(PercentagePage.percentage()).type('99')
@@ -46,7 +46,7 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
         // Then
         .getValue(PercentagePage.percentage()).should.eventually.contain('99')
         .get(PercentagePage.percentageLabel()).click()
-        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should('be.false')
 
         .get(PercentagePage.submit()).click()
 
@@ -60,14 +60,14 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
     it('When the user enters a value for the non-exclusive percentage answer, Then only the non-exclusive percentage answer should be answered.', function() {
 
               // Given
-        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(PercentagePage.percentage()).type('99')
 
         // Then
         .getValue(PercentagePage.percentage()).should.eventually.contain('99')
-        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should('be.false')
 
         .get(PercentagePage.submit()).click()
 
@@ -85,7 +85,7 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
 
         // When
         .get(PercentagePage.percentageExclusiveIPreferNotToSay()).click()
-        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should('be.true')
 
         // Then
         .get(PercentagePage.submit()).click()
@@ -101,7 +101,7 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
 
               // Given
         .getValue(PercentagePage.percentage()).should.eventually.contain('')
-        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(PercentagePage.submit()).click()

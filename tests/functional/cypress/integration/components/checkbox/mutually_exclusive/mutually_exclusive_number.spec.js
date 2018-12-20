@@ -22,7 +22,7 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
         .get(NumberPage.numberExclusiveIPreferNotToSay()).click()
 
         // Then
-        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should('be.true')
         .getValue(NumberPage.number()).should.eventually.contain('')
 
         .get(NumberPage.submit()).click()
@@ -38,7 +38,7 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
 
               // Given
         .get(NumberPage.numberExclusiveIPreferNotToSay()).click()
-        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should('be.true')
 
         // When
         .get(NumberPage.number()).type('123')
@@ -46,7 +46,7 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
         // Then
         .getValue(NumberPage.number()).should.eventually.contain('123')
         .get(NumberPage.numberLabel()).click()
-        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should('be.false')
 
         .get(NumberPage.submit()).click()
 
@@ -60,14 +60,14 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
     it('When the user enters a value for the non-exclusive number answer, Then only the non-exclusive number answer should be answered.', function() {
 
               // Given
-        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(NumberPage.number()).type('123')
 
         // Then
         .getValue(NumberPage.number()).should.eventually.contain('123')
-        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should('be.false')
 
         .get(NumberPage.submit()).click()
 
@@ -85,7 +85,7 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
 
         // When
         .get(NumberPage.numberExclusiveIPreferNotToSay()).click()
-        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should('be.true')
 
         // Then
         .get(NumberPage.submit()).click()
@@ -101,7 +101,7 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
 
               // Given
         .getValue(NumberPage.number()).should.eventually.contain('')
-        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(NumberPage.submit()).click()

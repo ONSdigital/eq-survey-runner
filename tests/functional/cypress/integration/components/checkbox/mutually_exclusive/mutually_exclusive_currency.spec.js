@@ -22,7 +22,7 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
         .get(CurrencyPage.currencyExclusiveIPreferNotToSay()).click()
 
         // Then
-        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should('be.true')
         .getValue(CurrencyPage.currency()).should.eventually.contain('')
 
         .get(CurrencyPage.submit()).click()
@@ -38,7 +38,7 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
 
               // Given
         .get(CurrencyPage.currencyExclusiveIPreferNotToSay()).click()
-        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should('be.true')
 
         // When
         .get(CurrencyPage.currency()).type('123')
@@ -46,7 +46,7 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
         // Then
         .getValue(CurrencyPage.currency()).should.eventually.contain('123')
         .get(CurrencyPage.currencyLabel()).click()
-        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should('be.false')
 
         .get(CurrencyPage.submit()).click()
 
@@ -60,14 +60,14 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
     it('When the user enters a value for the non-exclusive currency answer, Then only the non-exclusive currency answer should be answered.', function() {
 
               // Given
-        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(CurrencyPage.currency()).type('123')
 
         // Then
         .getValue(CurrencyPage.currency()).should.eventually.contain('123')
-        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should('be.false')
 
         .get(CurrencyPage.submit()).click()
 
@@ -85,7 +85,7 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
 
         // When
         .get(CurrencyPage.currencyExclusiveIPreferNotToSay()).click()
-        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should('be.true')
 
         // Then
         .get(CurrencyPage.submit()).click()
@@ -101,7 +101,7 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
 
               // Given
         .getValue(CurrencyPage.currency()).should.eventually.contain('')
-        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(CurrencyPage.submit()).click()

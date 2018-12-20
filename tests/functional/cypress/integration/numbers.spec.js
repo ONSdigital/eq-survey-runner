@@ -1,23 +1,25 @@
 import {openQuestionnaire} from '../helpers/helpers.js'
-const SetMinMax = require('../generated_pages/numbers/set-min-max-block.page.js');
-const TestMinMax = require('../generated_pages/numbers/test-min-max-block.page.js');
-const SummaryPage = require('../generated_pages/numbers/summary.page');
+const SetMinMax = require('../../generated_pages/numbers/set-min-max-block.page.js');
+const TestMinMax = require('../../generated_pages/numbers/test-min-max-block.page.js');
+const SummaryPage = require('../../generated_pages/numbers/summary.page');
 
 describe('NumericRange', function() {
 
   const number_schema = 'test_numbers.json';
 
   beforeEach(function() {
-    return helpers.openQuestionnaire(number_schema);
+    return openQuestionnaire(number_schema);
   });
 
   it ('Answer labels should have descriptions displayed', function() {
-          .get(SetMinMax.setMinimumLabelDescription()).stripText().should('contain', "This is a description of the minimum value")
+    cy
+      .get(SetMinMax.setMinimumLabelDescription()).stripText().should('contain', "This is a description of the minimum value")
       .get(SetMinMax.setMaximumLabelDescription()).stripText().should('contain', "This is a description of the maximum value");
   });
 
   it('Given a max and min set, a user should be able to complete the survey obeying those ranges', function() {
-          .get(SetMinMax.setMinimum()).type('10')
+    cy
+      .get(SetMinMax.setMinimum()).type('10')
       .get(SetMinMax.setMaximum()).type('1020')
       .get(SetMinMax.submit()).click()
       .get(TestMinMax.testRange()).type('10')
@@ -29,7 +31,8 @@ describe('NumericRange', function() {
   });
 
   it('Given values outside of the allowed range then the correct error messages are displayed', function() {
-          .get(SetMinMax.setMinimum()).type('10')
+    cy
+      .get(SetMinMax.setMinimum()).type('10')
       .get(SetMinMax.setMaximum()).type('1020')
       .get(SetMinMax.submit()).click()
       .get(TestMinMax.testRange()).type('9')
@@ -52,7 +55,8 @@ describe('NumericRange', function() {
   });
 
   it('Given values outside of the allowed decimal places then the correct error messages are displayed', function() {
-          .get(SetMinMax.setMinimum()).type('10')
+    cy
+      .get(SetMinMax.setMinimum()).type('10')
       .get(SetMinMax.setMaximum()).type('1020')
       .get(SetMinMax.submit()).click()
       .get(TestMinMax.testRange()).type('12.344')

@@ -22,7 +22,7 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
         .get(YearDatePage.yearDateExclusiveIPreferNotToSay()).click()
 
         // Then
-        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should('be.true')
         .getValue(YearDatePage.yearDateYear()).should.eventually.contain('')
 
         .get(YearDatePage.submit()).click()
@@ -38,7 +38,7 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
 
               // Given
         .get(YearDatePage.yearDateExclusiveIPreferNotToSay()).click()
-        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should('be.true')
 
         // When
         .get(YearDatePage.yearDateYear()).type('2018')
@@ -46,7 +46,7 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
         // Then
         .getValue(YearDatePage.yearDateYear()).should.eventually.contain('2018')
         .get(YearDatePage.yearDateYearLabel()).click()
-        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should('be.false')
 
         .get(YearDatePage.submit()).click()
 
@@ -60,14 +60,14 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
     it('When the user enters a value for the non-exclusive year date answer, Then only the non-exclusive year date answer should be answered.', function() {
 
               // Given
-        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(YearDatePage.yearDateYear()).type('2018')
 
         // Then
         .getValue(YearDatePage.yearDateYear()).should.eventually.contain('2018')
-        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should('be.false')
 
         .get(YearDatePage.submit()).click()
 
@@ -85,7 +85,7 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
 
         // When
         .get(YearDatePage.yearDateExclusiveIPreferNotToSay()).click()
-        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should('be.true')
 
         // Then
         .get(YearDatePage.submit()).click()
@@ -101,7 +101,7 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
 
               // Given
         .getValue(YearDatePage.yearDateYear()).should.eventually.contain('')
-        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(YearDatePage.submit()).click()

@@ -29,18 +29,9 @@ function startQuestionnaire(schema, userId = getRandomString(10), collectionId =
          .get('.qa-btn-get-started').click()
 }
 
-function isSectionComplete(linkName) {
-  return cy
-    .get(navigationLink(linkName))
-    .then(($elem)=> {
-      const dataQa = $elem.attr('data-qa')
-      return dataQa === 'complete'
-    })
-}
-
 module.exports = {
   openQuestionnaire,
+  getRandomString,
   getToken,
-  isSectionComplete,
   startQuestionnaire,
 };

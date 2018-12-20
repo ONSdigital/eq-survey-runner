@@ -1,6 +1,6 @@
 import {openQuestionnaire} from '../helpers/helpers.js'
-const TextareaBlock = require('../generated_pages/textarea/textarea-block.page.js');
-const TextareaSummary = require('../generated_pages/textarea/textarea-summary.page.js');
+const TextareaBlock = require('../../generated_pages/textarea/textarea-block.page.js');
+const TextareaSummary = require('../../generated_pages/textarea/textarea-summary.page.js');
 
 describe('Textarea', function() {
 

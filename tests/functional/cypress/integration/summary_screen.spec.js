@@ -1,9 +1,9 @@
 import {openQuestionnaire} from '../helpers/helpers.js'
 
-const RadioPage = require('../generated_pages/summary/radio.page.js');
-const TestNumberPage = require('../generated_pages/summary/test-number-block.page.js');
-const DessertBlockPage = require('../generated_pages/summary/dessert-block.page.js');
-const SummaryPage = require('../generated_pages/summary/summary.page.js');
+const RadioPage = require('../../generated_pages/summary/radio.page.js');
+const TestNumberPage = require('../../generated_pages/summary/test-number-block.page.js');
+const DessertBlockPage = require('../../generated_pages/summary/dessert-block.page.js');
+const SummaryPage = require('../../generated_pages/summary/summary.page.js');
 
 describe('Summary Screen', function() {
 

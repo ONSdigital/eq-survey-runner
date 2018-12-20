@@ -18,19 +18,19 @@ describe('Component: Mutually Exclusive Checkbox With Single Checkbox Override',
         .get(MandatoryCheckboxPage.checkboxOther()).click()
         .get(MandatoryCheckboxPage.checkboxOtherDetail()).type('The other option')
 
-        .isSelected(MandatoryCheckboxPage.checkboxBritish()).should.eventually.be.true
-        .isSelected(MandatoryCheckboxPage.checkboxIrish()).should.eventually.be.true
-        .isSelected(MandatoryCheckboxPage.checkboxOther()).should.eventually.be.true
+        .isSelected(MandatoryCheckboxPage.checkboxBritish()).should('be.true')
+        .isSelected(MandatoryCheckboxPage.checkboxIrish()).should('be.true')
+        .isSelected(MandatoryCheckboxPage.checkboxOther()).should('be.true')
         .getValue(MandatoryCheckboxPage.checkboxOtherDetail()).should.eventually.contain('The other option')
 
         // When
         .get(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).click()
-        .isSelected(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).should('be.true')
 
         // Then
-        .isSelected(MandatoryCheckboxPage.checkboxBritish()).should.eventually.be.false
-        .isSelected(MandatoryCheckboxPage.checkboxIrish()).should.eventually.be.false
-        .isSelected(MandatoryCheckboxPage.checkboxOther()).should.eventually.be.false
+        .isSelected(MandatoryCheckboxPage.checkboxBritish()).should('be.false')
+        .isSelected(MandatoryCheckboxPage.checkboxIrish()).should('be.false')
+        .isSelected(MandatoryCheckboxPage.checkboxOther()).should('be.false')
         .getValue(MandatoryCheckboxPage.checkboxOtherDetail()).should.eventually.contain('')
 
         .get(MandatoryCheckboxPage.submit()).click()
@@ -46,16 +46,16 @@ describe('Component: Mutually Exclusive Checkbox With Single Checkbox Override',
 
               // Given
         .get(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).click()
-        .isSelected(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).should('be.true')
 
         // When
         .get(MandatoryCheckboxPage.checkboxBritish()).click()
         .get(MandatoryCheckboxPage.checkboxIrish()).click()
 
         // Then
-        .isSelected(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).should.eventually.be.false
-        .isSelected(MandatoryCheckboxPage.checkboxBritish()).should.eventually.be.true
-        .isSelected(MandatoryCheckboxPage.checkboxIrish()).should.eventually.be.true
+        .isSelected(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).should('be.false')
+        .isSelected(MandatoryCheckboxPage.checkboxBritish()).should('be.true')
+        .isSelected(MandatoryCheckboxPage.checkboxIrish()).should('be.true')
 
         .get(MandatoryCheckboxPage.submit()).click()
 
@@ -69,15 +69,15 @@ describe('Component: Mutually Exclusive Checkbox With Single Checkbox Override',
     it('When the user clicks multiple non-exclusive options, Then only the non-exclusive options should be checked.', function() {
 
               // Given
-        .isSelected(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(MandatoryCheckboxPage.checkboxBritish()).click()
         .get(MandatoryCheckboxPage.checkboxIrish()).click()
 
         // Then
-        .isSelected(MandatoryCheckboxPage.checkboxBritish()).should.eventually.be.true
-        .isSelected(MandatoryCheckboxPage.checkboxIrish()).should.eventually.be.true
+        .isSelected(MandatoryCheckboxPage.checkboxBritish()).should('be.true')
+        .isSelected(MandatoryCheckboxPage.checkboxIrish()).should('be.true')
 
         .get(MandatoryCheckboxPage.submit()).click()
 
@@ -91,13 +91,13 @@ describe('Component: Mutually Exclusive Checkbox With Single Checkbox Override',
     it('When the user clicks the mutually exclusive option, Then only the exclusive option should be checked.', function() {
 
               // Given
-        .isSelected(MandatoryCheckboxPage.checkboxBritish()).should.eventually.be.false
-        .isSelected(MandatoryCheckboxPage.checkboxIrish()).should.eventually.be.false
-        .isSelected(MandatoryCheckboxPage.checkboxOther()).should.eventually.be.false
+        .isSelected(MandatoryCheckboxPage.checkboxBritish()).should('be.false')
+        .isSelected(MandatoryCheckboxPage.checkboxIrish()).should('be.false')
+        .isSelected(MandatoryCheckboxPage.checkboxOther()).should('be.false')
 
         // When
         .get(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).click()
-        .isSelected(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).should('be.true')
         .get(MandatoryCheckboxPage.submit()).click()
 
         // Then
@@ -111,10 +111,10 @@ describe('Component: Mutually Exclusive Checkbox With Single Checkbox Override',
     it('When the user clicks the Continue button, Then a validation error message should be displayed.', function() {
 
               // Given
-        .isSelected(MandatoryCheckboxPage.checkboxBritish()).should.eventually.be.false
-        .isSelected(MandatoryCheckboxPage.checkboxIrish()).should.eventually.be.false
-        .isSelected(MandatoryCheckboxPage.checkboxOther()).should.eventually.be.false
-        .isSelected(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(MandatoryCheckboxPage.checkboxBritish()).should('be.false')
+        .isSelected(MandatoryCheckboxPage.checkboxIrish()).should('be.false')
+        .isSelected(MandatoryCheckboxPage.checkboxOther()).should('be.false')
+        .isSelected(MandatoryCheckboxPage.checkboxExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(MandatoryCheckboxPage.submit()).click()

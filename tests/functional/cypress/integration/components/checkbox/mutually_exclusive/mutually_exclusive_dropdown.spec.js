@@ -22,7 +22,7 @@ describe('Component: Mutually Exclusive Dropdown With Single Checkbox Override',
         .get(DropdownPage.dropdownExclusiveIPreferNotToSay()).click()
 
         // Then
-        .isSelected(DropdownPage.dropdownExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(DropdownPage.dropdownExclusiveIPreferNotToSay()).should('be.true')
         .getValue(DropdownPage.dropdown()).should.eventually.contain('')
 
 
@@ -39,14 +39,14 @@ describe('Component: Mutually Exclusive Dropdown With Single Checkbox Override',
 
               // Given
         .get(DropdownPage.dropdownExclusiveIPreferNotToSay()).click()
-        .isSelected(DropdownPage.dropdownExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(DropdownPage.dropdownExclusiveIPreferNotToSay()).should('be.true')
 
         // When
         .get(DropdownPage.dropdown()).select('Liverpool')
 
         // Then
         .get(DropdownPage.dropdown()).stripText().should('contain', 'Liverpool')
-        .isSelected(DropdownPage.dropdownExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(DropdownPage.dropdownExclusiveIPreferNotToSay()).should('be.false')
 
         .get(DropdownPage.submit()).click()
 
@@ -60,14 +60,14 @@ describe('Component: Mutually Exclusive Dropdown With Single Checkbox Override',
     it('When the user enters a value for the non-exclusive dropdown answer, Then only the non-exclusive dropdown answer should be answered.', function() {
 
               // Given
-        .isSelected(DropdownPage.dropdownExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(DropdownPage.dropdownExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(DropdownPage.dropdown()).select('Liverpool')
 
         // Then
         .get(DropdownPage.dropdown()).stripText().should('contain', 'Liverpool')
-        .isSelected(DropdownPage.dropdownExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(DropdownPage.dropdownExclusiveIPreferNotToSay()).should('be.false')
 
         .get(DropdownPage.submit()).click()
 
@@ -85,7 +85,7 @@ describe('Component: Mutually Exclusive Dropdown With Single Checkbox Override',
 
         // When
         .get(DropdownPage.dropdownExclusiveIPreferNotToSay()).click()
-        .isSelected(DropdownPage.dropdownExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(DropdownPage.dropdownExclusiveIPreferNotToSay()).should('be.true')
 
         // Then
         .get(DropdownPage.submit()).click()
@@ -102,7 +102,7 @@ describe('Component: Mutually Exclusive Dropdown With Single Checkbox Override',
               // Given
         .getValue(DropdownPage.dropdown()).should.eventually.contain('')
 
-        .isSelected(DropdownPage.dropdownExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(DropdownPage.dropdownExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(DropdownPage.submit()).click()

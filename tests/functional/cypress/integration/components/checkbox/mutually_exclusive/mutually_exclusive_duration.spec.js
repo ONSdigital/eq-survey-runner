@@ -25,7 +25,7 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
         .get(DurationPage.durationExclusiveIPreferNotToSay()).click()
 
         // Then
-        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should('be.true')
         .getValue(DurationPage.durationYears()).should.eventually.contain('')
         .getValue(DurationPage.durationMonths()).should.eventually.contain('')
 
@@ -42,7 +42,7 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
 
               // Given
         .get(DurationPage.durationExclusiveIPreferNotToSay()).click()
-        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should('be.true')
 
         // When
         .get(DurationPage.durationYears()).type('1')
@@ -51,7 +51,7 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
         // Then
         .getValue(DurationPage.durationYears()).should.eventually.contain('1')
         .getValue(DurationPage.durationMonths()).should.eventually.contain('7')
-        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should('be.false')
 
         .get(DurationPage.submit()).click()
 
@@ -65,7 +65,7 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
     it('When the user enters a value for the non-exclusive duration answer, Then only the non-exclusive duration answer should be answered.', function() {
 
               // Given
-        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(DurationPage.durationYears()).type('1')
@@ -74,7 +74,7 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
         // Then
         .getValue(DurationPage.durationYears()).should.eventually.contain('1')
         .getValue(DurationPage.durationMonths()).should.eventually.contain('7')
-        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should('be.false')
 
         .get(DurationPage.submit()).click()
 
@@ -93,7 +93,7 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
 
         // When
         .get(DurationPage.durationExclusiveIPreferNotToSay()).click()
-        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should.eventually.be.true
+        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should('be.true')
 
         // Then
         .get(DurationPage.submit()).click()
@@ -110,7 +110,7 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
               // Given
         .getValue(DurationPage.durationYears()).should.eventually.contain('')
         .getValue(DurationPage.durationMonths()).should.eventually.contain('')
-        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should.eventually.be.false
+        .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should('be.false')
 
         // When
         .get(DurationPage.submit()).click()
