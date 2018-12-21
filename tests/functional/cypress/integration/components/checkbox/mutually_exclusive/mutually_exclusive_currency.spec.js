@@ -16,14 +16,14 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
 
               // Given
         .get(CurrencyPage.currency()).type('123')
-        .getValue(CurrencyPage.currency()).should.eventually.contain('123')
+        .get(CurrencyPage.currency()).invoke('val').should('contain', '123')
 
         // When
         .get(CurrencyPage.currencyExclusiveIPreferNotToSay()).click()
 
         // Then
         .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should('be.true')
-        .getValue(CurrencyPage.currency()).should.eventually.contain('')
+        .get(CurrencyPage.currency()).invoke('val').should('contain', '')
 
         .get(CurrencyPage.submit()).click()
 
@@ -44,7 +44,7 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
         .get(CurrencyPage.currency()).type('123')
 
         // Then
-        .getValue(CurrencyPage.currency()).should.eventually.contain('123')
+        .get(CurrencyPage.currency()).invoke('val').should('contain', '123')
         .get(CurrencyPage.currencyLabel()).click()
         .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should('be.false')
 
@@ -66,7 +66,7 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
         .get(CurrencyPage.currency()).type('123')
 
         // Then
-        .getValue(CurrencyPage.currency()).should.eventually.contain('123')
+        .get(CurrencyPage.currency()).invoke('val').should('contain', '123')
         .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should('be.false')
 
         .get(CurrencyPage.submit()).click()
@@ -81,7 +81,7 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
               // Given
-        .getValue(CurrencyPage.currency()).should.eventually.contain('')
+        .get(CurrencyPage.currency()).invoke('val').should('contain', '')
 
         // When
         .get(CurrencyPage.currencyExclusiveIPreferNotToSay()).click()
@@ -100,7 +100,7 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
               // Given
-        .getValue(CurrencyPage.currency()).should.eventually.contain('')
+        .get(CurrencyPage.currency()).invoke('val').should('contain', '')
         .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should('be.false')
 
         // When

@@ -16,14 +16,14 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
 
               // Given
         .get(TextFieldPage.textfield()).type('Blue')
-        .getValue(TextFieldPage.textfield()).should.eventually.contain('Blue')
+        .get(TextFieldPage.textfield()).invoke('val').should('contain', 'Blue')
 
         // When
         .get(TextFieldPage.textfieldExclusiveIPreferNotToSay()).click()
 
         // Then
         .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should('be.true')
-        .getValue(TextFieldPage.textfield()).should.eventually.contain('')
+        .get(TextFieldPage.textfield()).invoke('val').should('contain', '')
 
         .get(TextFieldPage.submit()).click()
 
@@ -44,7 +44,7 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
         .get(TextFieldPage.textfield()).type('Blue')
 
         // Then
-        .getValue(TextFieldPage.textfield()).should.eventually.contain('Blue')
+        .get(TextFieldPage.textfield()).invoke('val').should('contain', 'Blue')
         .get(TextFieldPage.textfieldLabel()).click()
         .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should('be.false')
 
@@ -66,7 +66,7 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
         .get(TextFieldPage.textfield()).type('Blue')
 
         // Then
-        .getValue(TextFieldPage.textfield()).should.eventually.contain('Blue')
+        .get(TextFieldPage.textfield()).invoke('val').should('contain', 'Blue')
         .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should('be.false')
 
         .get(TextFieldPage.submit()).click()
@@ -81,7 +81,7 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
               // Given
-        .getValue(TextFieldPage.textfield()).should.eventually.contain('')
+        .get(TextFieldPage.textfield()).invoke('val').should('contain', '')
 
         // When
         .get(TextFieldPage.textfieldExclusiveIPreferNotToSay()).click()
@@ -100,7 +100,7 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
               // Given
-        .getValue(TextFieldPage.textfield()).should.eventually.contain('')
+        .get(TextFieldPage.textfield()).invoke('val').should('contain', '')
         .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should('be.false')
 
         // When

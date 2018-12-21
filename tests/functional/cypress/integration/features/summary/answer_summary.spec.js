@@ -47,7 +47,7 @@ describe('Answer Summary', function () {
       it('When I click edit on primary person, Then I should be able to edit the answer and return to the summary', function () {
                   .get(HouseholdSummaryPage.primaryFirstNameEdit(1)).click()
           .url().should('contain', PrimaryNameBlockPage.pageName)
-          .getValue(PrimaryNameBlockPage.primaryFirstName()).should.eventually.contain('Bob')
+          .get(PrimaryNameBlockPage.primaryFirstName()).invoke('val').should('contain', 'Bob')
           .get(PrimaryNameBlockPage.primaryFirstName()).type('Robert')
           .get(PrimaryNameBlockPage.submit()).click()
           .url().should('contain', HouseholdSummaryPage.pageName)
@@ -57,7 +57,7 @@ describe('Answer Summary', function () {
       it('When I click edit on first repeating person, Then I should be able to edit the answer and return to the summary', function () {
                   .get(HouseholdSummaryPage.repeatingFirstNameEdit(2)).click()
           .url().should('contain', RepeatingNameBlockPage.pageName)
-          .getValue(RepeatingNameBlockPage.repeatingFirstName()).should.eventually.contain('Sal')
+          .get(RepeatingNameBlockPage.repeatingFirstName()).invoke('val').should('contain', 'Sal')
           .get(RepeatingNameBlockPage.repeatingFirstName()).type('Sally')
           .get(RepeatingNameBlockPage.submit()).click()
           .url().should('contain', HouseholdSummaryPage.pageName)
@@ -67,7 +67,7 @@ describe('Answer Summary', function () {
       it('When I click edit on second repeating person, Then I should be able to edit the answer and return to the summary', function () {
                   .get(HouseholdSummaryPage.repeatingFirstNameEdit(3)).click()
           .url().should('contain', RepeatingNameBlockPage.pageName)
-          .getValue(RepeatingNameBlockPage.repeatingFirstName()).should.eventually.contain('Jill')
+          .get(RepeatingNameBlockPage.repeatingFirstName()).invoke('val').should('contain', 'Jill')
           .get(RepeatingNameBlockPage.repeatingFirstName()).type('Jillian')
           .get(RepeatingNameBlockPage.submit()).click()
           .url().should('contain', HouseholdSummaryPage.pageName)

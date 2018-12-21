@@ -16,14 +16,14 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
 
               // Given
         .get(PercentagePage.percentage()).type('99')
-        .getValue(PercentagePage.percentage()).should.eventually.contain('99')
+        .get(PercentagePage.percentage()).invoke('val').should('contain', '99')
 
         // When
         .get(PercentagePage.percentageExclusiveIPreferNotToSay()).click()
 
         // Then
         .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should('be.true')
-        .getValue(PercentagePage.percentage()).should.eventually.contain('')
+        .get(PercentagePage.percentage()).invoke('val').should('contain', '')
 
         .get(PercentagePage.submit()).click()
 
@@ -44,7 +44,7 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
         .get(PercentagePage.percentage()).type('99')
 
         // Then
-        .getValue(PercentagePage.percentage()).should.eventually.contain('99')
+        .get(PercentagePage.percentage()).invoke('val').should('contain', '99')
         .get(PercentagePage.percentageLabel()).click()
         .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should('be.false')
 
@@ -66,7 +66,7 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
         .get(PercentagePage.percentage()).type('99')
 
         // Then
-        .getValue(PercentagePage.percentage()).should.eventually.contain('99')
+        .get(PercentagePage.percentage()).invoke('val').should('contain', '99')
         .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should('be.false')
 
         .get(PercentagePage.submit()).click()
@@ -81,7 +81,7 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
               // Given
-        .getValue(PercentagePage.percentage()).should.eventually.contain('')
+        .get(PercentagePage.percentage()).invoke('val').should('contain', '')
 
         // When
         .get(PercentagePage.percentageExclusiveIPreferNotToSay()).click()
@@ -100,7 +100,7 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
               // Given
-        .getValue(PercentagePage.percentage()).should.eventually.contain('')
+        .get(PercentagePage.percentage()).invoke('val').should('contain', '')
         .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should('be.false')
 
         // When

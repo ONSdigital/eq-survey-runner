@@ -16,14 +16,14 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
 
               // Given
         .get(NumberPage.number()).type('123')
-        .getValue(NumberPage.number()).should.eventually.contain('123')
+        .get(NumberPage.number()).invoke('val').should('contain', '123')
 
         // When
         .get(NumberPage.numberExclusiveIPreferNotToSay()).click()
 
         // Then
         .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should('be.true')
-        .getValue(NumberPage.number()).should.eventually.contain('')
+        .get(NumberPage.number()).invoke('val').should('contain', '')
 
         .get(NumberPage.submit()).click()
 
@@ -44,7 +44,7 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
         .get(NumberPage.number()).type('123')
 
         // Then
-        .getValue(NumberPage.number()).should.eventually.contain('123')
+        .get(NumberPage.number()).invoke('val').should('contain', '123')
         .get(NumberPage.numberLabel()).click()
         .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should('be.false')
 
@@ -66,7 +66,7 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
         .get(NumberPage.number()).type('123')
 
         // Then
-        .getValue(NumberPage.number()).should.eventually.contain('123')
+        .get(NumberPage.number()).invoke('val').should('contain', '123')
         .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should('be.false')
 
         .get(NumberPage.submit()).click()
@@ -81,7 +81,7 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
               // Given
-        .getValue(NumberPage.number()).should.eventually.contain('')
+        .get(NumberPage.number()).invoke('val').should('contain', '')
 
         // When
         .get(NumberPage.numberExclusiveIPreferNotToSay()).click()
@@ -100,7 +100,7 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
               // Given
-        .getValue(NumberPage.number()).should.eventually.contain('')
+        .get(NumberPage.number()).invoke('val').should('contain', '')
         .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should('be.false')
 
         // When

@@ -23,7 +23,7 @@ describe('Component: Mutually Exclusive Dropdown With Single Checkbox Override',
 
         // Then
         .isSelected(DropdownPage.dropdownExclusiveIPreferNotToSay()).should('be.true')
-        .getValue(DropdownPage.dropdown()).should.eventually.contain('')
+        .get(DropdownPage.dropdown()).invoke('val').should('contain', '')
 
 
         .get(DropdownPage.submit()).click()
@@ -81,7 +81,7 @@ describe('Component: Mutually Exclusive Dropdown With Single Checkbox Override',
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
               // Given
-        .getValue(DropdownPage.dropdown()).should.eventually.contain('')
+        .get(DropdownPage.dropdown()).invoke('val').should('contain', '')
 
         // When
         .get(DropdownPage.dropdownExclusiveIPreferNotToSay()).click()
@@ -100,7 +100,7 @@ describe('Component: Mutually Exclusive Dropdown With Single Checkbox Override',
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
               // Given
-        .getValue(DropdownPage.dropdown()).should.eventually.contain('')
+        .get(DropdownPage.dropdown()).invoke('val').should('contain', '')
 
         .isSelected(DropdownPage.dropdownExclusiveIPreferNotToSay()).should('be.false')
 

@@ -1,5 +1,5 @@
 import {openQuestionnaire} from '../helpers/helpers.js'
-const form = require('../base_pages/feedback-form');
+const form = require('../../base_pages/feedback-form');
 
 describe('Feedback Form', function() {
   const schema = 'test_textfield.json';
@@ -8,39 +8,43 @@ describe('Feedback Form', function() {
 
   describe('When the form is loaded', function() {
     before('load the form', function() {
-      return helpers.openQuestionnaire(schema)
+      openQuestionnaire(schema)
         .then(() => {
-          return browser.url(formUrl);
+          cy.visit(formUrl);
         });
     });
 
     it('Has a message label associated with a textarea', function() {
-              .get(form.messageLabel()).click()
+      cy
+        .get(form.messageLabel()).click()
         .focused().should('match', form.messageInput());
     });
 
     it('Has a name label associated with an input', function() {
-              .get(form.nameLabel()).click()
+      cy
+        .get(form.nameLabel()).click()
         .focused().should('match', form.nameInput());
     });
 
     it('Has a email label associated with an input', function() {
-              .get(form.emailLabel()).click()
+      cy
+        .get(form.emailLabel()).click()
         .focused().should('match', form.emailInput());
     });
   });
 
   describe('When the form is empty', function() {
     beforeEach('load the form', function() {
-      return helpers.openQuestionnaire(schema)
+      openQuestionnaire(schema)
         .then(() => {
-          return browser.url(formUrl);
+          cy.visit(formUrl);
         });
     });
 
     describe('and the submit button is clicked', function() {
       it('redirects to the thankyou page', function() {
-                  .get(form.submit()).click()
+        cy
+          .get(form.submit()).click()
           .url().should('match', thankyouUrlMatcher);
       });
     });
@@ -48,7 +52,8 @@ describe('Feedback Form', function() {
 
     describe('and the user populates the message and clicks submit', function() {
       it('redirects to the thankyou page', function() {
-                  .get(form.messageInput()).type("This is a <script>message</script>")
+        cy
+          .get(form.messageInput()).type("This is a <script>message</script>")
           .get(form.submit()).click()
           .url().should('match', thankyouUrlMatcher);
       });
@@ -56,7 +61,8 @@ describe('Feedback Form', function() {
 
     describe('and the user populates the name and clicks submit', function() {
       it('redirects to the thankyou page', function() {
-                  .get(form.nameInput()).type("This is <script>my name</script>")
+        cy
+          .get(form.nameInput()).type("This is <script>my name</script>")
           .get(form.submit()).click()
           .url().should('match', thankyouUrlMatcher);
       });
@@ -64,7 +70,8 @@ describe('Feedback Form', function() {
 
     describe('and the user populates the email and clicks submit', function() {
       it('redirects to the thankyou page', function() {
-                  .get(form.emailInput()).type("This is <script>my email</script>")
+        cy
+          .get(form.emailInput()).type("This is <script>my email</script>")
           .get(form.submit()).click()
           .url().should('match', thankyouUrlMatcher);
       });

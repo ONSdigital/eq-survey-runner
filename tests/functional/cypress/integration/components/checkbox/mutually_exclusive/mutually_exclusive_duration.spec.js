@@ -18,16 +18,16 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
         .get(DurationPage.durationYears()).type('1')
         .get(DurationPage.durationMonths()).type('7')
 
-        .getValue(DurationPage.durationYears()).should.eventually.contain('1')
-        .getValue(DurationPage.durationMonths()).should.eventually.contain('7')
+        .get(DurationPage.durationYears()).invoke('val').should('contain', '1')
+        .get(DurationPage.durationMonths()).invoke('val').should('contain', '7')
 
         // When
         .get(DurationPage.durationExclusiveIPreferNotToSay()).click()
 
         // Then
         .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should('be.true')
-        .getValue(DurationPage.durationYears()).should.eventually.contain('')
-        .getValue(DurationPage.durationMonths()).should.eventually.contain('')
+        .get(DurationPage.durationYears()).invoke('val').should('contain', '')
+        .get(DurationPage.durationMonths()).invoke('val').should('contain', '')
 
         .get(DurationPage.submit()).click()
 
@@ -49,8 +49,8 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
         .get(DurationPage.durationMonths()).type('7')
 
         // Then
-        .getValue(DurationPage.durationYears()).should.eventually.contain('1')
-        .getValue(DurationPage.durationMonths()).should.eventually.contain('7')
+        .get(DurationPage.durationYears()).invoke('val').should('contain', '1')
+        .get(DurationPage.durationMonths()).invoke('val').should('contain', '7')
         .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should('be.false')
 
         .get(DurationPage.submit()).click()
@@ -72,8 +72,8 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
         .get(DurationPage.durationMonths()).type('7')
 
         // Then
-        .getValue(DurationPage.durationYears()).should.eventually.contain('1')
-        .getValue(DurationPage.durationMonths()).should.eventually.contain('7')
+        .get(DurationPage.durationYears()).invoke('val').should('contain', '1')
+        .get(DurationPage.durationMonths()).invoke('val').should('contain', '7')
         .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should('be.false')
 
         .get(DurationPage.submit()).click()
@@ -88,8 +88,8 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
               // Given
-        .getValue(DurationPage.durationYears()).should.eventually.contain('')
-        .getValue(DurationPage.durationMonths()).should.eventually.contain('')
+        .get(DurationPage.durationYears()).invoke('val').should('contain', '')
+        .get(DurationPage.durationMonths()).invoke('val').should('contain', '')
 
         // When
         .get(DurationPage.durationExclusiveIPreferNotToSay()).click()
@@ -108,8 +108,8 @@ describe('Component: Mutually Exclusive Duration With Single Checkbox Override',
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
               // Given
-        .getValue(DurationPage.durationYears()).should.eventually.contain('')
-        .getValue(DurationPage.durationMonths()).should.eventually.contain('')
+        .get(DurationPage.durationYears()).invoke('val').should('contain', '')
+        .get(DurationPage.durationMonths()).invoke('val').should('contain', '')
         .isSelected(DurationPage.durationExclusiveIPreferNotToSay()).should('be.false')
 
         // When

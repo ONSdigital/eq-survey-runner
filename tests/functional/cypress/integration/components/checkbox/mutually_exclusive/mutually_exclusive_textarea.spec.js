@@ -21,7 +21,7 @@ describe('Component: Mutually Exclusive TextArea With Single Checkbox Override',
         .get(TextFieldPage.textarea()).type('Blue')
 
         // Then
-        .getValue(TextFieldPage.textarea()).should.eventually.contain('Blue')
+        .get(TextFieldPage.textarea()).invoke('val').should('contain', 'Blue')
         .isSelected(TextFieldPage.textareaExclusiveIPreferNotToSay()).should('be.false')
 
         .get(TextFieldPage.submit()).click()
@@ -36,7 +36,7 @@ describe('Component: Mutually Exclusive TextArea With Single Checkbox Override',
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
               // Given
-        .getValue(TextFieldPage.textarea()).should.eventually.contain('')
+        .get(TextFieldPage.textarea()).invoke('val').should('contain', '')
 
         // When
         .get(TextFieldPage.textareaExclusiveIPreferNotToSay()).click()
@@ -55,7 +55,7 @@ describe('Component: Mutually Exclusive TextArea With Single Checkbox Override',
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
               // Given
-        .getValue(TextFieldPage.textarea()).should.eventually.contain('')
+        .get(TextFieldPage.textarea()).invoke('val').should('contain', '')
         .isSelected(TextFieldPage.textareaExclusiveIPreferNotToSay()).should('be.false')
 
         // When

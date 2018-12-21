@@ -3,12 +3,14 @@ const WantToSkipPage = require('../../generated_pages/skip_condition_group/do-yo
 const LastGroupPage = require('../../generated_pages/skip_condition_group/last-group-block.page');
 
 describe('Skip Condition Group', function() {
+  beforeEach(() => {
+    openQuestionnaire('test_skip_condition_group.json')
+  })
 
   it('Given I am not skipping, When I complete all questions, Then I should see the summary page', function() {
-    openQuestionnaire('test_skip_condition_group.json')
-              .get(WantToSkipPage.yes()).click()
-        .get(WantToSkipPage.submit()).click()
-        .url().should('contain', LastGroupPage.pageName);
-    });
+    cy
+      .get(WantToSkipPage.yes()).click()
+      .get(WantToSkipPage.submit()).click()
+      .url().should('contain', LastGroupPage.pageName);
   });
 });

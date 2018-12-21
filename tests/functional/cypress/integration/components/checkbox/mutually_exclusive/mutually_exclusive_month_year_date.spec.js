@@ -18,15 +18,15 @@ describe('Component: Mutually Exclusive Month Year Date With Single Checkbox Ove
         .get(MonthYearDatePage.monthYearDateMonth()).select(3)
         .get(MonthYearDatePage.monthYearDateYear()).type('2018')
         .get(MonthYearDatePage.monthYearDateMonth()).stripText().should('contain', 'March')
-        .getValue(MonthYearDatePage.monthYearDateYear()).should.eventually.contain('2018')
+        .get(MonthYearDatePage.monthYearDateYear()).invoke('val').should('contain', '2018')
 
         // When
         .get(MonthYearDatePage.monthYearDateExclusiveIPreferNotToSay()).click()
 
         // Then
         .isSelected(MonthYearDatePage.monthYearDateExclusiveIPreferNotToSay()).should('be.true')
-        .getValue(MonthYearDatePage.monthYearDateMonth()).should.eventually.contain('')
-        .getValue(MonthYearDatePage.monthYearDateYear()).should.eventually.contain('')
+        .get(MonthYearDatePage.monthYearDateMonth()).invoke('val').should('contain', '')
+        .get(MonthYearDatePage.monthYearDateYear()).invoke('val').should('contain', '')
 
         .get(MonthYearDatePage.submit()).click()
 
@@ -49,7 +49,7 @@ describe('Component: Mutually Exclusive Month Year Date With Single Checkbox Ove
 
         // Then
         .get(MonthYearDatePage.monthYearDateMonth()).stripText().should('contain', 'March')
-        .getValue(MonthYearDatePage.monthYearDateYear()).should.eventually.contain('2018')
+        .get(MonthYearDatePage.monthYearDateYear()).invoke('val').should('contain', '2018')
 
         .isSelected(MonthYearDatePage.monthYearDateExclusiveIPreferNotToSay()).should('be.false')
 
@@ -73,7 +73,7 @@ describe('Component: Mutually Exclusive Month Year Date With Single Checkbox Ove
 
         // Then
         .get(MonthYearDatePage.monthYearDateMonth()).stripText().should('contain', 'March')
-        .getValue(MonthYearDatePage.monthYearDateYear()).should.eventually.contain('2018')
+        .get(MonthYearDatePage.monthYearDateYear()).invoke('val').should('contain', '2018')
         .isSelected(MonthYearDatePage.monthYearDateExclusiveIPreferNotToSay()).should('be.false')
 
         .get(MonthYearDatePage.submit()).click()
@@ -88,8 +88,8 @@ describe('Component: Mutually Exclusive Month Year Date With Single Checkbox Ove
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
               // Given
-        .getValue(MonthYearDatePage.monthYearDateMonth()).should.eventually.contain('')
-        .getValue(MonthYearDatePage.monthYearDateYear()).should.eventually.contain('')
+        .get(MonthYearDatePage.monthYearDateMonth()).invoke('val').should('contain', '')
+        .get(MonthYearDatePage.monthYearDateYear()).invoke('val').should('contain', '')
 
         // When
         .get(MonthYearDatePage.monthYearDateExclusiveIPreferNotToSay()).click()
@@ -108,8 +108,8 @@ describe('Component: Mutually Exclusive Month Year Date With Single Checkbox Ove
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
               // Given
-        .getValue(MonthYearDatePage.monthYearDateMonth()).should.eventually.contain('')
-        .getValue(MonthYearDatePage.monthYearDateYear()).should.eventually.contain('')
+        .get(MonthYearDatePage.monthYearDateMonth()).invoke('val').should('contain', '')
+        .get(MonthYearDatePage.monthYearDateYear()).invoke('val').should('contain', '')
         .isSelected(MonthYearDatePage.monthYearDateExclusiveIPreferNotToSay()).should('be.false')
 
         // When

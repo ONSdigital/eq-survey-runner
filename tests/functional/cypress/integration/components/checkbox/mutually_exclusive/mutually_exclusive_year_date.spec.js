@@ -16,14 +16,14 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
 
               // Given
         .get(YearDatePage.yearDateYear()).type('2018')
-        .getValue(YearDatePage.yearDateYear()).should.eventually.contain('2018')
+        .get(YearDatePage.yearDateYear()).invoke('val').should('contain', '2018')
 
         // When
         .get(YearDatePage.yearDateExclusiveIPreferNotToSay()).click()
 
         // Then
         .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should('be.true')
-        .getValue(YearDatePage.yearDateYear()).should.eventually.contain('')
+        .get(YearDatePage.yearDateYear()).invoke('val').should('contain', '')
 
         .get(YearDatePage.submit()).click()
 
@@ -44,7 +44,7 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
         .get(YearDatePage.yearDateYear()).type('2018')
 
         // Then
-        .getValue(YearDatePage.yearDateYear()).should.eventually.contain('2018')
+        .get(YearDatePage.yearDateYear()).invoke('val').should('contain', '2018')
         .get(YearDatePage.yearDateYearLabel()).click()
         .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should('be.false')
 
@@ -66,7 +66,7 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
         .get(YearDatePage.yearDateYear()).type('2018')
 
         // Then
-        .getValue(YearDatePage.yearDateYear()).should.eventually.contain('2018')
+        .get(YearDatePage.yearDateYear()).invoke('val').should('contain', '2018')
         .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should('be.false')
 
         .get(YearDatePage.submit()).click()
@@ -81,7 +81,7 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
               // Given
-        .getValue(YearDatePage.yearDateYear()).should.eventually.contain('')
+        .get(YearDatePage.yearDateYear()).invoke('val').should('contain', '')
 
         // When
         .get(YearDatePage.yearDateExclusiveIPreferNotToSay()).click()
@@ -100,7 +100,7 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
               // Given
-        .getValue(YearDatePage.yearDateYear()).should.eventually.contain('')
+        .get(YearDatePage.yearDateYear()).invoke('val').should('contain', '')
         .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should('be.false')
 
         // When

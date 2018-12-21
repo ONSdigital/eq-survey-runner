@@ -12,23 +12,24 @@ describe('Section Summary', function() {
 
     beforeEach(function() {
       openQuestionnaire('test_section_summary.json')
-                  .get(InsuranceTypePage.contents()).click()
-          .get(InsuranceTypePage.submit()).click()
-          .get(InsuranceAddressPage.submit()).click()
-          .get(AddressDurationPage.submit()).click()
-          .get(PropertyDetailsSummaryPage.insuranceTypeAnswer()).stripText().should('contain', 'Contents');
-      });
+        .get(InsuranceTypePage.contents()).click()
+        .get(InsuranceTypePage.submit()).click()
+        .get(InsuranceAddressPage.submit()).click()
+        .get(AddressDurationPage.submit()).click()
+        .get(PropertyDetailsSummaryPage.insuranceTypeAnswer()).stripText().should('contain', 'Contents');
     });
 
     it('When I have selected an answer to edit and edit it, Then I should return to the section summary with new value displayed', function() {
-              .get(PropertyDetailsSummaryPage.insuranceTypeAnswerEdit()).click()
+      cy
+        .get(PropertyDetailsSummaryPage.insuranceTypeAnswerEdit()).click()
         .get(InsuranceTypePage.buildings()).click()
         .get(InsuranceTypePage.submit()).click()
         .get(PropertyDetailsSummaryPage.insuranceTypeAnswer()).stripText().should('contain', 'Buildings');
     });
 
     it('When I continue on the section summary page, Then I should be taken to the next section', function() {
-              .get(PropertyDetailsSummaryPage.submit()).click()
+      cy
+        .get(PropertyDetailsSummaryPage.submit()).click()
         .url().should('contain', HouseHoldCompositionPage.pageName);
     });
   });
@@ -37,7 +38,7 @@ describe('Section Summary', function() {
 
     beforeEach(function() {
       openQuestionnaire('test_section_summary.json')
-                  .get(InsuranceTypePage.contents()).click()
+          .get(InsuranceTypePage.contents()).click()
           .get(InsuranceTypePage.submit()).click()
           .get(InsuranceAddressPage.submit()).click()
           .get(AddressDurationPage.submit()).click()
@@ -45,11 +46,11 @@ describe('Section Summary', function() {
           .get(HouseHoldCompositionPage.firstName()).type('John')
           .get(HouseHoldCompositionPage.submit()).click()
           .url().should('contain', FinalSummaryPage.pageName);
-      });
     });
 
     it('When I select edit from Final Summary, Then I should be taken back to the Final Summary', function() {
-              .get(FinalSummaryPage.summaryShowAllButton()).click()
+      cy
+        .get(FinalSummaryPage.summaryShowAllButton()).click()
         .get(FinalSummaryPage.addressDurationAnswerEdit()).click()
         .get(AddressDurationPage.no()).click()
         .get(AddressDurationPage.submit()).click()
@@ -57,7 +58,8 @@ describe('Section Summary', function() {
     });
 
     it('When I edit from Final Summary but change routing, Then I should be taken back to the Section Summary', function() {
-              .get(FinalSummaryPage.summaryShowAllButton()).click()
+      cy
+        .get(FinalSummaryPage.summaryShowAllButton()).click()
         .get(FinalSummaryPage.insuranceTypeAnswerEdit()).click()
         .get(InsuranceTypePage.buildings()).click()
         .get(InsuranceTypePage.submit()).click()
@@ -65,7 +67,8 @@ describe('Section Summary', function() {
     });
 
     it('When I click change an answer, Then I should go to that answer', function() {
-              .get(FinalSummaryPage.summaryShowAllButton()).click()
+      cy
+        .get(FinalSummaryPage.summaryShowAllButton()).click()
         .get(FinalSummaryPage.insuranceTypeAnswer()).stripText().should('contain', 'Contents')
         .get(FinalSummaryPage.insuranceTypeAnswerEdit()).click()
         .url().should('contain', InsuranceTypePage.pageName)
@@ -79,14 +82,14 @@ describe('Section Summary', function() {
 
     it('When I select edit from Section Summary but change routing, Then I should be stepped through the section', function() {
       openQuestionnaire('test_section_summary.json')
-                  .get(InsuranceTypePage.both()).click()
+        cy
+          .get(InsuranceTypePage.both()).click()
           .get(InsuranceTypePage.submit()).click()
           .get(InsuranceAddressPage.submit()).click()
           .get(PropertyDetailsSummaryPage.insuranceTypeAnswerEdit()).click()
           .get(InsuranceTypePage.contents()).click()
           .get(InsuranceTypePage.submit()).click()
           .url().should('contain', InsuranceAddressPage.pageName);
-      });
     });
   });
 });

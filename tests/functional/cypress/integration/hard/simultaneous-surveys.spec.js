@@ -1,7 +1,7 @@
-import {openQuestionnaire} from '../helpers/helpers.js'
-const TextFieldPage = require('../../generated_pages/textfield/name-block.page');
-const TextAreaPage = require('../../generated_pages/textarea/textarea-block.page.js');
-const TextAreaSummaryPage = require('../../generated_pages/textarea/textarea-summary.page.js');
+import {openQuestionnaire} from '../../helpers/helpers.js'
+const TextFieldPage = require('../../../generated_pages/textfield/name-block.page');
+const TextAreaPage = require('../../../generated_pages/textarea/textarea-block.page.js');
+const TextAreaSummaryPage = require('../../../generated_pages/textarea/textarea-summary.page.js');
 
 describe('Given the user launches two surveys', function() {
   beforeEach('Launch two surveys', function() {
@@ -26,7 +26,7 @@ describe('Given the user launches two surveys', function() {
   });
 
   it('Displays a multiple survey error when the first survey is refreshed (i.e. on a GET)', function() {
-          .switchTab(this.firstTab)
+      .switchTab(this.firstTab)
       .refresh()
       .get('[data-qa="multiple-survey-error"]').should('exist');
   });

@@ -12,7 +12,7 @@ describe('Feature: Default Value', function() {
           .get(Summary.answer()).stripText().should('contain', '0')
           .get(Summary.previous()).click()
           .url().should('contain', QuestionPage.pageName)
-          .getValue(QuestionPage.answer()).should.eventually.contain('0');
+          .get(QuestionPage.answer()).invoke('val').should('contain', '0');
     });
   });
 });

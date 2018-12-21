@@ -18,18 +18,18 @@ describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox
         .get(DatePage.dateday()).type('17')
         .get(DatePage.datemonth()).select(3)
         .get(DatePage.dateyear()).type('2018')
-        .getValue(DatePage.dateday()).should.eventually.contain('17')
+        .get(DatePage.dateday()).invoke('val').should('contain', '17')
         .get(DatePage.datemonth()).stripText().should('contain', 'March')
-        .getValue(DatePage.dateyear()).should.eventually.contain('2018')
+        .get(DatePage.dateyear()).invoke('val').should('contain', '2018')
 
         // When
         .get(DatePage.dateExclusiveIPreferNotToSay()).click()
 
         // Then
         .isSelected(DatePage.dateExclusiveIPreferNotToSay()).should('be.true')
-        .getValue(DatePage.dateyear()).should.eventually.contain('')
-        .getValue(DatePage.datemonth()).should.eventually.contain('')
-        .getValue(DatePage.dateyear()).should.eventually.contain('')
+        .get(DatePage.dateyear()).invoke('val').should('contain', '')
+        .get(DatePage.datemonth()).invoke('val').should('contain', '')
+        .get(DatePage.dateyear()).invoke('val').should('contain', '')
 
         .get(DatePage.submit()).click()
 
@@ -52,9 +52,9 @@ describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox
         .get(DatePage.dateyear()).type('2018')
 
         // Then
-        .getValue(DatePage.dateday()).should.eventually.contain('17')
+        .get(DatePage.dateday()).invoke('val').should('contain', '17')
         .get(DatePage.datemonth()).stripText().should('contain', 'March')
-        .getValue(DatePage.dateyear()).should.eventually.contain('2018')
+        .get(DatePage.dateyear()).invoke('val').should('contain', '2018')
 
         .isSelected(DatePage.dateExclusiveIPreferNotToSay()).should('be.false')
 
@@ -78,9 +78,9 @@ describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox
         .get(DatePage.dateyear()).type('2018')
 
         // Then
-        .getValue(DatePage.dateday()).should.eventually.contain('17')
+        .get(DatePage.dateday()).invoke('val').should('contain', '17')
         .get(DatePage.datemonth()).stripText().should('contain', 'March')
-        .getValue(DatePage.dateyear()).should.eventually.contain('2018')
+        .get(DatePage.dateyear()).invoke('val').should('contain', '2018')
         .isSelected(DatePage.dateExclusiveIPreferNotToSay()).should('be.false')
 
         .get(DatePage.submit()).click()
@@ -95,9 +95,9 @@ describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
               // Given
-        .getValue(DatePage.dateyear()).should.eventually.contain('')
-        .getValue(DatePage.datemonth()).should.eventually.contain('')
-        .getValue(DatePage.dateyear()).should.eventually.contain('')
+        .get(DatePage.dateyear()).invoke('val').should('contain', '')
+        .get(DatePage.datemonth()).invoke('val').should('contain', '')
+        .get(DatePage.dateyear()).invoke('val').should('contain', '')
 
         // When
         .get(DatePage.dateExclusiveIPreferNotToSay()).click()
@@ -116,9 +116,9 @@ describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
               // Given
-        .getValue(DatePage.dateyear()).should.eventually.contain('')
-        .getValue(DatePage.datemonth()).should.eventually.contain('')
-        .getValue(DatePage.dateyear()).should.eventually.contain('')
+        .get(DatePage.dateyear()).invoke('val').should('contain', '')
+        .get(DatePage.datemonth()).invoke('val').should('contain', '')
+        .get(DatePage.dateyear()).invoke('val').should('contain', '')
         .isSelected(DatePage.dateExclusiveIPreferNotToSay()).should('be.false')
 
         // When

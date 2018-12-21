@@ -16,14 +16,14 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
 
               // Given
         .get(UnitPage.unit()).type('10')
-        .getValue(UnitPage.unit()).should.eventually.contain('10')
+        .get(UnitPage.unit()).invoke('val').should('contain', '10')
 
         // When
         .get(UnitPage.unitExclusiveIPreferNotToSay()).click()
 
         // Then
         .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should('be.true')
-        .getValue(UnitPage.unit()).should.eventually.contain('')
+        .get(UnitPage.unit()).invoke('val').should('contain', '')
 
         .get(UnitPage.submit()).click()
 
@@ -44,7 +44,7 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
         .get(UnitPage.unit()).type('10')
 
         // Then
-        .getValue(UnitPage.unit()).should.eventually.contain('10')
+        .get(UnitPage.unit()).invoke('val').should('contain', '10')
         .get(UnitPage.unitLabel()).click()
         .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should('be.false')
 
@@ -66,7 +66,7 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
         .get(UnitPage.unit()).type('10')
 
         // Then
-        .getValue(UnitPage.unit()).should.eventually.contain('10')
+        .get(UnitPage.unit()).invoke('val').should('contain', '10')
         .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should('be.false')
 
         .get(UnitPage.submit()).click()
@@ -81,7 +81,7 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
     it('When the user clicks the mutually exclusive checkbox answer, Then only the exclusive checkbox should be answered.', function() {
 
               // Given
-        .getValue(UnitPage.unit()).should.eventually.contain('')
+        .get(UnitPage.unit()).invoke('val').should('contain', '')
 
         // When
         .get(UnitPage.unitExclusiveIPreferNotToSay()).click()
@@ -100,7 +100,7 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
     it('When the user clicks the Continue button, Then it should display `No answer provided`', function() {
 
               // Given
-        .getValue(UnitPage.unit()).should.eventually.contain('')
+        .get(UnitPage.unit()).invoke('val').should('contain', '')
         .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should('be.false')
 
         // When
