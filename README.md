@@ -362,9 +362,18 @@ will be collected per-request in the `profiling` directory where it can be exami
 
 will load the file into the interactive browser where it can be sorted and queried as required.
 
-## Updating / Installing dependencies
+To visualise the profile, `snakeviz` can be used. This provides a nice interface with an 'icicle' graph:
 
-We make use of Python pip's support for only installing packages if their sha-256 hash matches a known good value.
+```
+# First combine all the profiles in the 'profiling' directory.
+# Ensure you delete all the files in this directory before starting your profiling session
+# This will create a file called `combined_profile.prof`
+pipenv run python scripts/merge_profiles.py
+
+snakeviz combined_profile.prof
+```
+
+## Updating / Installing dependencies
 
 To add a new dependency, use `pipenv install [package-name]`, which not only installs the package but Pipenv will also go to the trouble of updating the Pipfile as well.
 
