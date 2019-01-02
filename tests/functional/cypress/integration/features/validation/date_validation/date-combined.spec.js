@@ -1,6 +1,6 @@
-import {openQuestionnaire} from ../../../../helpers/helpers.js
-const DateRangePage = require('../../../../generated_pages/date_validation_combined/date-range-block.page');
-var SummaryPage = require('../../../../generated_pages/date_validation_combined/summary.page');
+import {openQuestionnaire} from '../../../../../helpers/helpers.js'
+const DateRangePage = require('../../../../../generated_pages/date_validation_combined/date-range-block.page');
+var SummaryPage = require('../../../../../generated_pages/date_validation_combined/summary.page');
 
 describe('Feature: Combined question level and single validation for dates', function() {
 

@@ -1,8 +1,8 @@
-import {openQuestionnaire} from ../../../helpers/helpers.js
-const FavouriteColourPage = require('../../../generated_pages/titles_repeating_non_repeating_dependency/favourite-colour.page');
-const HouseholdCompositionPage = require('../../../generated_pages/titles_repeating_non_repeating_dependency/household-composition.page');
-const RepeatingBlockPage = require('../../../generated_pages/titles_repeating_non_repeating_dependency/repeating-block-3.page');
-const SummaryPage = require('../../../generated_pages/titles_repeating_non_repeating_dependency/summary.page');
+import {openQuestionnaire} from '../../../../helpers/helpers.js'
+const FavouriteColourPage = require('../../../../generated_pages/titles_repeating_non_repeating_dependency/favourite-colour.page');
+const HouseholdCompositionPage = require('../../../../generated_pages/titles_repeating_non_repeating_dependency/household-composition.page');
+const RepeatingBlockPage = require('../../../../generated_pages/titles_repeating_non_repeating_dependency/repeating-block-3.page');
+const SummaryPage = require('../../../../generated_pages/titles_repeating_non_repeating_dependency/summary.page');
 
 describe('Feature: Use of conditional Titles in Repeating blocks with condition dependant on non repeating answer', function() {
 

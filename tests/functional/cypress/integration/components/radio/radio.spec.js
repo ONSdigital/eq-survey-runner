@@ -1,4 +1,4 @@
-import {openQuestionnaire} from ../../../helpers/helpers.js
+import {openQuestionnaire} from '../../../helpers/helpers.js'
 
 describe('Component: Radio', function() {
   describe('Given I start a Mandatory Radio survey', function() {
@@ -6,12 +6,13 @@ describe('Component: Radio', function() {
     var RadioMandatoryPage = require('../../../../generated_pages/radio_mandatory/radio-mandatory.page');
     var RadioSummaryPage = require('../../../../generated_pages/radio_mandatory/summary.page');
 
-    before(function() {
-      return helpers.openQuestionnaire('test_radio_mandatory.json');
+    beforeEach(function() {
+      openQuestionnaire('test_radio_mandatory.json');
     });
 
     it('When I have selected a radio option, Then the selected option should be displayed in the summary', function() {
-             .get(RadioMandatoryPage.coffee()).click()
+      cy
+       .get(RadioMandatoryPage.coffee()).click()
        .get(RadioMandatoryPage.submit()).click()
        .url().should('contain', RadioSummaryPage.pageName)
        .get(RadioSummaryPage.radioMandatoryAnswer()).stripText().should('contain', 'Coffee');
@@ -23,13 +24,15 @@ describe('Component: Radio', function() {
     var RadioMandatoryPage = require('../../../../generated_pages/radio_mandatory_with_mandatory_other/radio-mandatory.page');
     var RadioSummaryPage = require('../../../../generated_pages/radio_mandatory_with_mandatory_other/summary.page');
 
-    before(function() {
-      return helpers.openQuestionnaire('test_radio_mandatory_with_mandatory_other.json');
+    beforeEach(function() {
+      openQuestionnaire('test_radio_mandatory_with_mandatory_other.json');
     });
 
     it('When I have selected a other text field, Then the selected option should be displayed in the summary', function() {
-             .get(RadioMandatoryPage.other()).click()
-       .import {openQuestionnaire} from RadioMandatoryPage.otherDetail()/helpers.js
+      cy
+       .get(RadioMandatoryPage.other()).click()
+       .get(RadioMandatoryPage.otherDetail())
+       .type('Hello World')
        .get(RadioMandatoryPage.submit()).click()
        .url().should('contain', RadioSummaryPage.pageName)
        .get(RadioSummaryPage.radioMandatoryAnswer()).stripText().should('contain', 'Hello World');
@@ -40,12 +43,13 @@ describe('Component: Radio', function() {
 
     var RadioMandatoryPage = require('../../../../generated_pages/radio_mandatory_with_mandatory_other_overridden_error/radio-mandatory.page');
 
-    before(function() {
-      return helpers.openQuestionnaire('test_radio_mandatory_with_mandatory_other_overridden_error.json');
+    beforeEach(function() {
+      openQuestionnaire('test_radio_mandatory_with_mandatory_other_overridden_error.json');
     });
 
     it('When I submit without any data in the other text field it should Then throw an overridden error', function() {
-              .get(RadioMandatoryPage.other()).click()
+      cy
+        .get(RadioMandatoryPage.other()).click()
         .get(RadioMandatoryPage.submit()).click()
         .get(RadioMandatoryPage.errorNumber(1)).stripText().should('contain', 'Test error message is overridden');
     });
@@ -57,14 +61,15 @@ describe('Component: Radio', function() {
     var RadioMandatoryPage = require('../../../../generated_pages/radio_mandatory_with_optional_other/radio-mandatory.page');
     var RadioSummaryPage = require('../../../../generated_pages/radio_mandatory_with_optional_other/summary.page');
 
-    before(function() {
-      return helpers.openQuestionnaire('test_radio_mandatory_with_optional_other.json');
+    beforeEach(function() {
+      openQuestionnaire('test_radio_mandatory_with_optional_other.json');
     });
 
     it('When I submit without any data in the other text field is selected, Then the selected option should be displayed in the summary', function() {
-             .get(RadioMandatoryPage.submit()).click()
-       .url().should('contain', RadioSummaryPage.pageName)
-       .get(RadioSummaryPage.radioMandatoryAnswer()).stripText().should('contain', 'No answer provided');
+      cy
+        .get(RadioMandatoryPage.submit()).click()
+        .url().should('contain', RadioSummaryPage.pageName)
+        .get(RadioSummaryPage.radioMandatoryAnswer()).stripText().should('contain', 'No answer provided');
     });
   });
 
@@ -73,13 +78,14 @@ describe('Component: Radio', function() {
 
     var RadioMandatoryPage = require('../../../../generated_pages/radio_mandatory_with_overridden_error/radio-mandatory.page');
 
-    before(function() {
-      return helpers.openQuestionnaire('test_radio_mandatory_with_overridden_error.json');
+    beforeEach(function() {
+      openQuestionnaire('test_radio_mandatory_with_overridden_error.json');
     });
 
     it('When I have submitted the page without any option, Then an overridden error is displayed', function() {
-             .get(RadioMandatoryPage.submit()).click()
-       .get(RadioMandatoryPage.errorNumber(1)).stripText().should('contain', 'Test error message is overridden');
+      cy
+        .get(RadioMandatoryPage.submit()).click()
+        .get(RadioMandatoryPage.errorNumber(1)).stripText().should('contain', 'Test error message is overridden');
     });
   });
 
@@ -88,12 +94,13 @@ describe('Component: Radio', function() {
     var RadioNonMandatoryPage = require('../../../../generated_pages/radio_optional/radio-non-mandatory.page');
     var RadioSummaryPage = require('../../../../generated_pages/radio_optional/summary.page');
 
-    before(function() {
-      return helpers.openQuestionnaire('test_radio_optional.json');
+    beforeEach(function() {
+      openQuestionnaire('test_radio_optional.json');
     });
 
     it('When I have selected no option, Then the selected option should be displayed in the summary', function() {
-             .get(RadioNonMandatoryPage.submit()).click()
+      cy
+       .get(RadioNonMandatoryPage.submit()).click()
        .url().should('contain', RadioSummaryPage.pageName)
        .get(RadioSummaryPage.radioNonMandatoryAnswer()).stripText().should('contain', 'No answer provided');
     });
@@ -103,12 +110,13 @@ describe('Component: Radio', function() {
 
     var RadioNonMandatoryPage = require('../../../../generated_pages/radio_optional_with_mandatory_other_overridden_error/radio-non-mandatory.page');
 
-    before(function() {
-      return helpers.openQuestionnaire('test_radio_optional_with_mandatory_other_overridden_error.json');
+    beforeEach(function() {
+      openQuestionnaire('test_radio_optional_with_mandatory_other_overridden_error.json');
     });
 
     it('When I have submitted an other option with an empty text field, Then an overridden error is displayed', function() {
-              .get(RadioNonMandatoryPage.other()).click()
+      cy
+        .get(RadioNonMandatoryPage.other()).click()
         .get(RadioNonMandatoryPage.submit()).click()
         .get(RadioNonMandatoryPage.errorNumber(1)).stripText().should('contain', 'Test error message is overridden');
     });
@@ -120,17 +128,17 @@ describe('Component: Radio', function() {
     var RadioNonMandatoryPage = require('../../../../generated_pages/radio_optional_with_mandatory_other/radio-non-mandatory.page');
     var RadioSummaryPage = require('../../../../generated_pages/radio_optional_with_mandatory_other/summary.page');
 
-    before(function() {
-      return helpers.openQuestionnaire('test_radio_optional_with_mandatory_other.json');
+    beforeEach(function() {
+      openQuestionnaire('test_radio_optional_with_mandatory_other.json');
     });
 
     it('When I submit data in the other text field it should be persisted and Then displayed on the summary', function() {
-             .get(RadioNonMandatoryPage.other()).click()
+      cy
+       .get(RadioNonMandatoryPage.other()).click()
        .get(RadioNonMandatoryPage.otherDetail()).type('Hello World')
        .get(RadioNonMandatoryPage.submit()).click()
        .url().should('contain', RadioSummaryPage.pageName)
        .get(RadioSummaryPage.radioNonMandatoryAnswer()).stripText().should('contain', 'Hello World');
     });
   });
-
 });

@@ -1,10 +1,10 @@
-import {openQuestionnaire} from ../../helpers/helpers.js
+import {openQuestionnaire} from '../../../helpers/helpers.js'
 
-const RadioPage = require('../../generated_pages/view_submitted_response/radio.page.js');
-const NumberBlockPage = require('../../generated_pages/view_submitted_response/test-number-block.page.js');
-const SummaryPage = require('../../generated_pages/view_submitted_response/summary.page.js');
-const BaseSummaryPage = require('../../base_pages/summary.page.js');
-const ThankYouPage = require('../../base_pages/thank-you.page.js');
+const RadioPage = require('../../../generated_pages/view_submitted_response/radio.page.js');
+const NumberBlockPage = require('../../../generated_pages/view_submitted_response/test-number-block.page.js');
+const SummaryPage = require('../../../generated_pages/view_submitted_response/summary.page.js');
+const BaseSummaryPage = require('../../../base_pages/summary.page.js');
+const ThankYouPage = require('../../../base_pages/thank-you.page.js');
 
 
 describe('Feature: Submitted Responses', function() {

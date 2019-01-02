@@ -1,7 +1,7 @@
-import {openQuestionnaire} from ../../helpers/helpers.js
-const MinBlockPage = require('../../generated_pages/dependencies_min_value/min-block.page.js');
-const MinDependentBlockPage = require('../../generated_pages/dependencies_min_value/dependent-block.page.js');
-const MinSummary = require('../../generated_pages/dependencies_min_value/summary.page.js');
+import {openQuestionnaire} from '../../../helpers/helpers.js'
+const MinBlockPage = require('../../../generated_pages/dependencies_min_value/min-block.page.js');
+const MinDependentBlockPage = require('../../../generated_pages/dependencies_min_value/dependent-block.page.js');
+const MinSummary = require('../../../generated_pages/dependencies_min_value/summary.page.js');
 
 describe('Dependency Min', function () {
   describe('Given I complete the test_dependencies_min_value schema', function() {

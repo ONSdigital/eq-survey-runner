@@ -1,8 +1,8 @@
-import {openQuestionnaire} from ../../../helpers/helpers.js
+import {openQuestionnaire} from '../../../../helpers/helpers.js'
 
-const RepeatingComparison1BlockPage = require('../../../generated_pages/repeating_answer_comparison/repeating-comparison-1-block.page.js');
-const RepeatingComparison2BlockPage = require('../../../generated_pages/repeating_answer_comparison/repeating-comparison-2-block.page.js');
-const SummaryPage = require('../../../generated_pages/repeating_answer_comparison/summary.page.js');
+const RepeatingComparison1BlockPage = require('../../../../generated_pages/repeating_answer_comparison/repeating-comparison-1-block.page.js');
+const RepeatingComparison2BlockPage = require('../../../../generated_pages/repeating_answer_comparison/repeating-comparison-2-block.page.js');
+const SummaryPage = require('../../../../generated_pages/repeating_answer_comparison/summary.page.js');
 
 describe('Test repeating with answer comparisons', function() {
 

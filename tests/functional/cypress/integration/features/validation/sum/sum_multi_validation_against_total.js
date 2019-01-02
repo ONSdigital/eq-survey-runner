@@ -1,9 +1,9 @@
-import {openQuestionnaire} from ../../../../helpers/helpers.js
+import {openQuestionnaire} from '../../../../../helpers/helpers.js'
 
 describe('Feature: sum validation (Multi Rule Equals)', function () {
-  var TotalAnswerPage = require('../../../../generated_pages/sum_multi_validation_against_total/total-block.page');
-  var BreakdownAnswerPage = require('../../../../generated_pages/sum_multi_validation_against_total/breakdown-block.page');
-  var SummaryPage = require('../../../../generated_pages/sum_multi_validation_against_total/summary.page');
+  var TotalAnswerPage = require('../../../../../generated_pages/sum_multi_validation_against_total/total-block.page');
+  var BreakdownAnswerPage = require('../../../../../generated_pages/sum_multi_validation_against_total/breakdown-block.page');
+  var SummaryPage = require('../../../../../generated_pages/sum_multi_validation_against_total/summary.page');
 
   beforeEach(function() {
       return helpers.openQuestionnaire('test_sum_multi_validation_against_total.json');

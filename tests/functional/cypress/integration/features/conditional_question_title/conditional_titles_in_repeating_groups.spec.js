@@ -1,8 +1,8 @@
-import {openQuestionnaire} from ../../../helpers/helpers.js
-const HouseholdCompositionPage = require('../../../generated_pages/titles_within_repeating_blocks/household-composition.page');
-const WhoIsAnsweringPage = require('../../../generated_pages/titles_within_repeating_blocks/who-is-answering-block.page');
-const Page1 = require('../../../generated_pages/titles_within_repeating_blocks/repeating-block-1.page');
-const Page3 = require('../../../generated_pages/titles_within_repeating_blocks/repeating-block-3.page');
+import {openQuestionnaire} from '../../../../helpers/helpers.js'
+const HouseholdCompositionPage = require('../../../../generated_pages/titles_within_repeating_blocks/household-composition.page');
+const WhoIsAnsweringPage = require('../../../../generated_pages/titles_within_repeating_blocks/who-is-answering-block.page');
+const Page1 = require('../../../../generated_pages/titles_within_repeating_blocks/repeating-block-1.page');
+const Page3 = require('../../../../generated_pages/titles_within_repeating_blocks/repeating-block-3.page');
 
 describe('Feature: Use of Titles in Repeating blocks', function() {
 

@@ -1,7 +1,7 @@
-import {openQuestionnaire} from ../../../helpers/helpers.js
+import {openQuestionnaire} from '../../../../helpers/helpers.js'
 
-const QuestionPage = require('../../../generated_pages/default/number-question.page.js');
-const Summary = require('../../../generated_pages/default/summary.page.js');
+const QuestionPage = require('../../../../generated_pages/default/number-question.page.js');
+const Summary = require('../../../../generated_pages/default/summary.page.js');
 
 describe('Feature: Default Value', function() {
 

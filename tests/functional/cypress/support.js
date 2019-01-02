@@ -49,7 +49,7 @@ Cypress.Commands.add('key', (subject, keyCode) => {
 });
 
 Cypress.Commands.add('navigationLink', {prevSubject: 'optional'}, (subject, navText) => {
-    return cy.get('.nav').contains(navText)
+    return cy.get('.nav').contains(new RegExp('^' + navText))
 })
 
 Cypress.Commands.add('isSectionComplete', {prevSubject: 'optional'}, (subject, navText) => {

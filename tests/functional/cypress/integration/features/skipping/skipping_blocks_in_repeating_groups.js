@@ -1,8 +1,8 @@
-import {openQuestionnaire} from ../../../helpers/helpers.js
-const AdditionalQuestionPage = require('../../../generated_pages/skip_conditions_on_blocks_repeating_group/additional-question-block.page');
-const DobPage = require('../../../generated_pages/skip_conditions_on_blocks_repeating_group/date-of-birth.page');
-const HouseholdCompositionPage = require('../../../generated_pages/skip_conditions_on_blocks_repeating_group/household-composition.page');
-const ConfirmationPage = require('../../../generated_pages/skip_conditions_on_blocks_repeating_group/confirmation.page');
+import {openQuestionnaire} from '../../../../helpers/helpers.js'
+const AdditionalQuestionPage = require('../../../../generated_pages/skip_conditions_on_blocks_repeating_group/additional-question-block.page');
+const DobPage = require('../../../../generated_pages/skip_conditions_on_blocks_repeating_group/date-of-birth.page');
+const HouseholdCompositionPage = require('../../../../generated_pages/skip_conditions_on_blocks_repeating_group/household-composition.page');
+const ConfirmationPage = require('../../../../generated_pages/skip_conditions_on_blocks_repeating_group/confirmation.page');
 
 
 describe('Feature: Skipping in block in repeating group based on repeating answer', function() {

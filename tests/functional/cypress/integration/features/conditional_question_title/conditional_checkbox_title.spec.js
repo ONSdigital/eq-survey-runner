@@ -1,8 +1,8 @@
-import {openQuestionnaire} from ../../../helpers/helpers.js
-const CheckBoxPage = require('../../../generated_pages/titles_radio_and_checkbox/checkbox-block.page');
-const NameEntryPage = require('../../../generated_pages/titles_radio_and_checkbox/preamble-block.page');
-const RadioButtonsPage = require('../../../generated_pages/titles_radio_and_checkbox/radio-block.page');
-const SummaryPage = require('../../../generated_pages/titles_radio_and_checkbox/summary.page');
+import {openQuestionnaire} from '../../../../helpers/helpers.js'
+const CheckBoxPage = require('../../../../generated_pages/titles_radio_and_checkbox/checkbox-block.page');
+const NameEntryPage = require('../../../../generated_pages/titles_radio_and_checkbox/preamble-block.page');
+const RadioButtonsPage = require('../../../../generated_pages/titles_radio_and_checkbox/radio-block.page');
+const SummaryPage = require('../../../../generated_pages/titles_radio_and_checkbox/summary.page');
 
 
 describe('Feature: Conditional checkbox and radio question titles', function() {

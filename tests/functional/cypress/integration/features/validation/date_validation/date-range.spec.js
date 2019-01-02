@@ -1,8 +1,8 @@
-import {openQuestionnaire} from ../../../../helpers/helpers.js
+import {openQuestionnaire} from '../../../../../helpers/helpers.js'
 
 describe('Feature: Question level validation for date ranges', function() {
-  var DateRangePage = require('../../../../generated_pages/date_validation_range/date-range-block.page');
-  var SummaryPage = require('../../../../generated_pages/date_validation_range/summary.page');
+  var DateRangePage = require('../../../../../generated_pages/date_validation_range/date-range-block.page');
+  var SummaryPage = require('../../../../../generated_pages/date_validation_range/summary.page');
 
   beforeEach(function() {
         return helpers.openQuestionnaire('test_date_validation_range.json');

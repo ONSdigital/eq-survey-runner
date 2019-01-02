@@ -1,9 +1,9 @@
-import {openQuestionnaire} from ../../../helpers/helpers.js
+import {openQuestionnaire} from '../../../../helpers/helpers.js'
 
-const HouseholdCompositionPage =  require('../../../../generated_pages/routing_answer_count/household-composition.page.js');
-const GroupLessThan2 =            require('../../../../generated_pages/routing_answer_count/group-less-than-2-block.page.js');
-const GroupEqual2 =               require('../../../../generated_pages/routing_answer_count/group-equal-2-block.page.js');
-const GroupGreaterThan2 =         require('../../../../generated_pages/routing_answer_count/group-greater-than-2-block.page.js');
+const HouseholdCompositionPage =  require('../../../../../generated_pages/routing_answer_count/household-composition.page.js');
+const GroupLessThan2 =            require('../../../../../generated_pages/routing_answer_count/group-less-than-2-block.page.js');
+const GroupEqual2 =               require('../../../../../generated_pages/routing_answer_count/group-equal-2-block.page.js');
+const GroupGreaterThan2 =         require('../../../../../generated_pages/routing_answer_count/group-greater-than-2-block.page.js');
 
 const test_questionnaire_name = 'test_routing_answer_count.json';
 

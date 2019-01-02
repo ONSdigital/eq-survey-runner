@@ -1,7 +1,7 @@
-import {openQuestionnaire} from ../../../../helpers/helpers.js
-const TotalAnswerPage = require('../../../../generated_pages/sum_less_validation_against_total/total-block.page');
-const BreakdownAnswerPage = require('../../../../generated_pages/sum_less_validation_against_total/breakdown-block.page');
-const SummaryPage = require('../../../../generated_pages/sum_less_validation_against_total/summary.page');
+import {openQuestionnaire} from '../../../../../helpers/helpers.js'
+const TotalAnswerPage = require('../../../../../generated_pages/sum_less_validation_against_total/total-block.page');
+const BreakdownAnswerPage = require('../../../../../generated_pages/sum_less_validation_against_total/breakdown-block.page');
+const SummaryPage = require('../../../../../generated_pages/sum_less_validation_against_total/summary.page');
 
 describe('Feature: Sum of grouped answers validation (less than) against total', function () {
 

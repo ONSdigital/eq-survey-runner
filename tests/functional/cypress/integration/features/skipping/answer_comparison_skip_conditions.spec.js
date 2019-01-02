@@ -1,10 +1,10 @@
-import {openQuestionnaire} from ../../../helpers/helpers.js
+import {openQuestionnaire} from '../../../../helpers/helpers.js'
 
-const Comparison1Page = require('../../../generated_pages/skip_condition_answer_comparison/comparison-1.page.js');
-const Comparison2Page = require('../../../generated_pages/skip_condition_answer_comparison/comparison-2.page.js');
-const EqualsAnswersPage = require('../../../generated_pages/skip_condition_answer_comparison/equals-answers.page.js');
-const LessThanAnswersPage = require('../../../generated_pages/skip_condition_answer_comparison/less-than-answers.page.js');
-const GreaterThanAnswersPage = require('../../../generated_pages/skip_condition_answer_comparison/greater-than-answers.page.js');
+const Comparison1Page = require('../../../../generated_pages/skip_condition_answer_comparison/comparison-1.page.js');
+const Comparison2Page = require('../../../../generated_pages/skip_condition_answer_comparison/comparison-2.page.js');
+const EqualsAnswersPage = require('../../../../generated_pages/skip_condition_answer_comparison/equals-answers.page.js');
+const LessThanAnswersPage = require('../../../../generated_pages/skip_condition_answer_comparison/less-than-answers.page.js');
+const GreaterThanAnswersPage = require('../../../../generated_pages/skip_condition_answer_comparison/greater-than-answers.page.js');
 
 describe('Test skip condition answer comparisons', function() {
 

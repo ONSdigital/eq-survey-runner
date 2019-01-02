@@ -1,8 +1,8 @@
-import {openQuestionnaire} from ../../../helpers/helpers.js
+import {openQuestionnaire} from '../../../../helpers/helpers.js'
 
-const NumberOfEmployeesTotalBlockPage = require('../../../generated_pages/confirmation_question/number-of-employees-total-block.page.js');
-const ConfirmZeroEmployeesBlockPage = require('../../../generated_pages/confirmation_question/confirm-zero-employees-block.page.js');
-const SummaryPage = require('../../../generated_pages/confirmation_question/summary.page.js');
+const NumberOfEmployeesTotalBlockPage = require('../../../../generated_pages/confirmation_question/number-of-employees-total-block.page.js');
+const ConfirmZeroEmployeesBlockPage = require('../../../../generated_pages/confirmation_question/confirm-zero-employees-block.page.js');
+const SummaryPage = require('../../../../generated_pages/confirmation_question/summary.page.js');
 
 describe('Feature: Routing incompletes block if routing backwards', function() {
 

@@ -1,11 +1,11 @@
-import {openQuestionnaire} from ../../../helpers/helpers.js
-const EveryoneAtAddressConfirmationPage = require('../../../generated_pages/titles_conditional_within_repeating_block/everyone-at-address-confirmation.page');
-const HouseholdCompositionPage = require('../../../generated_pages/titles_conditional_within_repeating_block/household-composition.page');
-const ProxyCheckPage = require('../../../generated_pages/titles_conditional_within_repeating_block/proxy-check.page');
-const ReligionPage = require('../../../generated_pages/titles_conditional_within_repeating_block/religion.page');
-const WhoLivesHereCompletedPage = require('../../../generated_pages/titles_conditional_within_repeating_block/who-lives-here-completed.page');
-const HouseholdMemberCompletedPage = require('../../../generated_pages/titles_conditional_within_repeating_block/household-member-completed.page');
-const ConfirmationPage = require('../../../generated_pages/titles_conditional_within_repeating_block/confirmation.page');
+import {openQuestionnaire} from '../../../../helpers/helpers.js'
+const EveryoneAtAddressConfirmationPage = require('../../../../generated_pages/titles_conditional_within_repeating_block/everyone-at-address-confirmation.page');
+const HouseholdCompositionPage = require('../../../../generated_pages/titles_conditional_within_repeating_block/household-composition.page');
+const ProxyCheckPage = require('../../../../generated_pages/titles_conditional_within_repeating_block/proxy-check.page');
+const ReligionPage = require('../../../../generated_pages/titles_conditional_within_repeating_block/religion.page');
+const WhoLivesHereCompletedPage = require('../../../../generated_pages/titles_conditional_within_repeating_block/who-lives-here-completed.page');
+const HouseholdMemberCompletedPage = require('../../../../generated_pages/titles_conditional_within_repeating_block/household-member-completed.page');
+const ConfirmationPage = require('../../../../generated_pages/titles_conditional_within_repeating_block/confirmation.page');
 
 describe('Feature: Use of conditional Titles in Repeating blocks with condition dependant on answer changing within block', function() {
 

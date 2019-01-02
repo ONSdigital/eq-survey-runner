@@ -1,7 +1,7 @@
-import {openQuestionnaire} from ../../helpers/helpers.js
-const MaxBlockPage = require('../../generated_pages/dependencies_max_value/max-block.page.js');
-const MaxDependentBlockPage = require('../../generated_pages/dependencies_max_value/dependent-block.page.js');
-const MaxSummary = require('../../generated_pages/dependencies_max_value/summary.page.js');
+import {openQuestionnaire} from '../../../helpers/helpers.js'
+const MaxBlockPage = require('../../../generated_pages/dependencies_max_value/max-block.page.js');
+const MaxDependentBlockPage = require('../../../generated_pages/dependencies_max_value/dependent-block.page.js');
+const MaxSummary = require('../../../generated_pages/dependencies_max_value/summary.page.js');
 
 describe('Dependency Max', function () {
 

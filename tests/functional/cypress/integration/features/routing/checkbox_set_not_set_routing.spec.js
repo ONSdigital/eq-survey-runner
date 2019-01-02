@@ -1,12 +1,12 @@
-import {openQuestionnaire} from ../../../helpers/helpers.js
+import {openQuestionnaire} from '../../../../helpers/helpers.js'
 
-const ToppingCheckboxPage =           require('../../../generated_pages/routing_checkbox_set_not_set/topping-checkbox.page.js');
-const ToppingInterstitialNotSetPage = require('../../../generated_pages/routing_checkbox_set_not_set/topping-interstitial-not-set.page.js');
-const ToppingInterstitialSetPage =    require('../../../generated_pages/routing_checkbox_set_not_set/topping-interstitial-set.page.js');
-const OptionalMutuallyExclusivePage = require('../../../generated_pages/routing_checkbox_set_not_set/optional-mutually-exclusive.page.js');
-const CheeseInterstitialNotSetPage =  require('../../../generated_pages/routing_checkbox_set_not_set/cheese-interstitial-not-set.page.js');
-const CheeseInterstitialSetPage =     require('../../../generated_pages/routing_checkbox_set_not_set/cheese-interstitial-set.page.js');
-const SummaryPage =                   require('../../../generated_pages/routing_checkbox_set_not_set/summary.page.js');
+const ToppingCheckboxPage =           require('../../../../generated_pages/routing_checkbox_set_not_set/topping-checkbox.page.js');
+const ToppingInterstitialNotSetPage = require('../../../../generated_pages/routing_checkbox_set_not_set/topping-interstitial-not-set.page.js');
+const ToppingInterstitialSetPage =    require('../../../../generated_pages/routing_checkbox_set_not_set/topping-interstitial-set.page.js');
+const OptionalMutuallyExclusivePage = require('../../../../generated_pages/routing_checkbox_set_not_set/optional-mutually-exclusive.page.js');
+const CheeseInterstitialNotSetPage =  require('../../../../generated_pages/routing_checkbox_set_not_set/cheese-interstitial-not-set.page.js');
+const CheeseInterstitialSetPage =     require('../../../../generated_pages/routing_checkbox_set_not_set/cheese-interstitial-set.page.js');
+const SummaryPage =                   require('../../../../generated_pages/routing_checkbox_set_not_set/summary.page.js');
 
 describe('Test routing using not set and set conditions on checkboxes', function() {
 

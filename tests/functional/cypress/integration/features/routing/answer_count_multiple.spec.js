@@ -1,11 +1,11 @@
-import {openQuestionnaire} from ../../../helpers/helpers.js
+import {openQuestionnaire} from '../../../../helpers/helpers.js'
 
-const PrimaryNamePage =   require('../../../generated_pages/routing_answer_count_multiple/primary-name-block.page.js');
-const AnyoneElsePage =    require('../../../generated_pages/routing_answer_count_multiple/repeating-anyone-else-block.page.js');
-const RepeatingNamePage = require('../../../generated_pages/routing_answer_count_multiple/repeating-name-block.page.js');
-const GroupLessThan2 =    require('../../../generated_pages/routing_answer_count_multiple/group-less-than-2-block.page.js');
-const GroupEqual2 =       require('../../../generated_pages/routing_answer_count_multiple/group-equal-2-block.page.js');
-const GroupGreaterThan2 = require('../../../generated_pages/routing_answer_count_multiple/group-greater-than-2-block.page.js');
+const PrimaryNamePage =   require('../../../../generated_pages/routing_answer_count_multiple/primary-name-block.page.js');
+const AnyoneElsePage =    require('../../../../generated_pages/routing_answer_count_multiple/repeating-anyone-else-block.page.js');
+const RepeatingNamePage = require('../../../../generated_pages/routing_answer_count_multiple/repeating-name-block.page.js');
+const GroupLessThan2 =    require('../../../../generated_pages/routing_answer_count_multiple/group-less-than-2-block.page.js');
+const GroupEqual2 =       require('../../../../generated_pages/routing_answer_count_multiple/group-equal-2-block.page.js');
+const GroupGreaterThan2 = require('../../../../generated_pages/routing_answer_count_multiple/group-greater-than-2-block.page.js');
 
 const test_questionnaire_name = 'test_routing_answer_count_multiple.json';
 

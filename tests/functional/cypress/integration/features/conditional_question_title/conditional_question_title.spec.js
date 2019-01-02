@@ -1,8 +1,8 @@
-import {openQuestionnaire} from ../../../helpers/helpers.js
-const DefaultTitlePage = require('../../../generated_pages/titles/single-title-block.page');
-const SingleTitlePage = require('../../../generated_pages/titles/who-is-answering-block.page');
-const ConditionalTitlePage = require('../../../generated_pages/titles/multiple-question-versions-block.page');
-const SummaryPage = require('../../../generated_pages/titles/summary.page');
+import {openQuestionnaire} from '../../../../helpers/helpers.js'
+const DefaultTitlePage = require('../../../../generated_pages/titles/single-title-block.page');
+const SingleTitlePage = require('../../../../generated_pages/titles/who-is-answering-block.page');
+const ConditionalTitlePage = require('../../../../generated_pages/titles/multiple-question-versions-block.page');
+const SummaryPage = require('../../../../generated_pages/titles/summary.page');
 
 
 describe('Feature: Conditional question title', function() {
