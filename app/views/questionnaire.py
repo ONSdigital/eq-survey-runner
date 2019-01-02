@@ -101,6 +101,14 @@ def before_post_submission_request():
     logger.bind(eq_id=values['eq_id'], form_type=values['form_type'])
     logger.info('questionnaire request', method=request.method, url_path=request.full_path)
 
+    metadata_from_session_data = {
+        'tx_id': session_data.tx_id,
+        'eq_id': session_data.eq_id,
+        'form_type': session_data.form_type,
+    }
+    if check_multiple_survey(metadata_from_session_data, values):
+        raise NoTokenException(401)
+
 
 def save_questionnaire_store(func):
     @wraps(func)

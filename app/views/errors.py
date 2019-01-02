@@ -115,11 +115,11 @@ def check_multiple_survey(metadata, request_values):
     try:
         if metadata['eq_id'] != request_values['eq_id'] \
             or metadata['form_type'] != request_values['form_type'] \
-                or metadata['collection_exercise_sid'] != request_values['collection_id']:
+                or metadata.get('collection_exercise_sid') != request_values.get('collection_id'):
             logger.bind(tx_id=metadata['tx_id'],
                         eq_id=request_values['eq_id'],
                         form_type=request_values['form_type'],
-                        ce_id=request_values['collection_id'])
+                        ce_id=request_values.get('collection_id'))
 
             return True
     except KeyError:
