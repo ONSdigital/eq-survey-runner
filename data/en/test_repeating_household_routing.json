@@ -61,7 +61,7 @@
             }, {
                 "type": "Question",
                 "id": "everyone-at-address-confirmation",
-                "description": "<h2 class='neptune'>You have added...</h2> {{ [answers['first-name'], answers['middle-names'], answers['last-name']]|format_household_summary }}",
+                "description": "<h2 class='u-fs-m'>You have added...</h2> {{ [answers['first-name'], answers['middle-names'], answers['last-name']]|format_household_summary }}",
                 "questions": [{
                     "id": "everyone-at-address-confirmation-question",
                     "title": "Is that everyone?",

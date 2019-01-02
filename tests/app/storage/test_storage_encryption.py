@@ -1,5 +1,4 @@
 from unittest import TestCase
-from jwcrypto.common import base64url_decode
 import simplejson as json
 
 from app.storage.storage_encryption import StorageEncryption
@@ -54,7 +53,6 @@ class TestStorageEncryption(TestCase):
         self.assertIsInstance(encrypted_data, str)
 
         decrypted_data = self.encrypter.decrypt_data(encrypted_data)
-        decrypted_data = base64url_decode(decrypted_data.decode()).decode()
         decrypted_data = json.loads(decrypted_data)
         self.assertEqual(data, decrypted_data)
 

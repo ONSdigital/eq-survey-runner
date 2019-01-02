@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-06 10:14+0000\n"
+"POT-Creation-Date: 2018-12-13 09:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: app/jinja_filters.py:105 app/jinja_filters.py:251
+#: app/jinja_filters.py:104 app/jinja_filters.py:241
 #: app/validation/validators.py:292
 #, python-format
 msgid "%(num)s year"
@@ -25,19 +25,19 @@ msgid_plural "%(num)s years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/jinja_filters.py:107 app/validation/validators.py:294
+#: app/jinja_filters.py:106 app/validation/validators.py:294
 #, python-format
 msgid "%(num)s month"
 msgid_plural "%(num)s months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/jinja_filters.py:178
+#: app/jinja_filters.py:177
 #, python-format
 msgid "%(date)s at %(time)s"
 msgstr ""
 
-#: app/jinja_filters.py:261 app/jinja_filters.py:309
+#: app/jinja_filters.py:251 app/jinja_filters.py:299
 #, python-format
 msgid "%(from_date)s to %(to_date)s"
 msgstr ""
@@ -92,7 +92,7 @@ msgid "It is now safe to close this window"
 msgstr ""
 
 #: app/templates/feedback_sent.html:16 app/templates/session-expired.html:16
-#: app/templates/signed-out.html:12
+#: app/templates/signed-out.html:13
 msgid "Return to your account"
 msgstr ""
 
@@ -161,7 +161,7 @@ msgstr ""
 msgid "Signed out"
 msgstr ""
 
-#: app/templates/signed-out.html:8
+#: app/templates/signed-out.html:9
 msgid "Your survey answers have been saved. You are now signed out"
 msgstr ""
 
@@ -498,7 +498,7 @@ msgid "Continue survey"
 msgstr ""
 
 #: app/templates/partials/answers/checkbox.html:8
-#: app/templates/partials/widgets/multiple_choice_widget.html:39
+#: app/templates/partials/widgets/multiple_choice_widget.html:38
 msgid "Or"
 msgstr ""
 
@@ -506,20 +506,16 @@ msgstr ""
 msgid "Select all that apply"
 msgstr ""
 
-#: app/templates/partials/answers/date.html:6
+#: app/templates/partials/answers/date.html:7
 msgid "Day"
 msgstr ""
 
-#: app/templates/partials/answers/date.html:14
+#: app/templates/partials/answers/date.html:21
 msgid "Month"
 msgstr ""
 
-#: app/templates/partials/answers/date.html:22
+#: app/templates/partials/answers/date.html:38
 msgid "Year"
-msgstr ""
-
-#: app/templates/partials/answers/date.html:24
-msgid "YYYY"
 msgstr ""
 
 #: app/templates/partials/feedback/expandable_inline.html:6
@@ -604,11 +600,11 @@ msgstr ""
 msgid "No answer provided"
 msgstr ""
 
-#: app/templates/partials/widgets/multiple_choice_widget.html:39
+#: app/templates/partials/widgets/multiple_choice_widget.html:38
 msgid "Selecting this will uncheck all other answers"
 msgstr ""
 
-#: app/templates/partials/widgets/multiple_choice_widget.html:45
+#: app/templates/partials/widgets/multiple_choice_widget.html:44
 msgid "deselected"
 msgstr ""
 

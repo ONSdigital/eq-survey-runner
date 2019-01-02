@@ -54,18 +54,6 @@ describe('Total Breakdown', function() {
     });
   });
 
-  it('Given four percentage fields, When I enter non-integer values into each field, Then total should be 0', function() {
-  return helpers.openQuestionnaire('test_total_breakdown.json').then(() => {
-    return browser
-      .setValue(BreakDownPage.percentage1(), 'ten')
-      .setValue(BreakDownPage.percentage2(), 'twenty')
-      .setValue(BreakDownPage.percentage3(), 'thirty')
-      .setValue(BreakDownPage.percentage4(), 'forty')
-      .click(BreakDownPage.totalPercentageLabel())
-      .getValue(BreakDownPage.totalPercentage()).should.eventually.contain('0');
-    });
-  });
-
   it('Given four percentage fields, When total is not 100, Then total field should be highlighted', function() {
   return helpers.openQuestionnaire('test_total_breakdown.json').then(() => {
     return browser

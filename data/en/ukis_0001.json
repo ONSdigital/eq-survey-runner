@@ -5,8 +5,8 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.2",
     "survey_id": "144",
-    "title": "UK Innovation Survey",
-    "theme": "default",
+    "title": "UK Innovation Survey 2016 - 2018",
+    "theme": "ukis",
     "navigation": {
         "visible": true
     },
@@ -143,8 +143,8 @@
                                             "value": "Turnover increased by at least 10% due to merger with another business or part of it"
                                         },
                                         {
-                                            "label": "Turnover decreased by at least 10% due to demerger with another business or part of it",
-                                            "value": "Turnover decreased by at least 10% due to demerger with another business or part of it"
+                                            "label": "Turnover decreased by at least 10% due to sale or closure of part of the business",
+                                            "value": "Turnover decreased by at least 10% due to sale or closure of part of the business"
                                         }
                                     ]
                                 },
@@ -234,15 +234,18 @@
                                         },
                                         {
                                             "label": "Logistics, delivery or distribution methods",
-                                            "value": "Logistics, delivery or distribution methods"
+                                            "value": "Logistics, delivery or distribution methods",
+                                            "description": "For example transportation, service delivery, warehousing or order processing"
                                         },
                                         {
                                             "label": "Methods for information processing or communication",
-                                            "value": "Methods for information processing or communication"
+                                            "value": "Methods for information processing or communication",
+                                            "description": "The maintenance and provision of information and communication systems, for example hardware, software, data processing, database, maintenance, repair, web-hosting and other computer related information activities"
                                         },
                                         {
                                             "label": "Methods for accounting or other administrative operations",
-                                            "value": "Methods for accounting or other administrative operations"
+                                            "value": "Methods for accounting or other administrative operations",
+                                            "description": "For example accounting, book keeping, auditing, payments, financial or insurance activities and procurement"
                                         }
                                     ]
                                 },
@@ -1471,7 +1474,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2471",
-                            "title": "How important was any excessive perceived economic risk in constraining innovation activities?",
+                            "title": "How important was any <em>excessive perceived economic risk</em> in constraining innovation activities?",
                             "description": "What constitutes an answer of ‘high’, ‘medium’, ‘low’ or ‘not important’ is dependent on your own interpretation in relation to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}.",
                             "type": "General",
                             "answers": [{
@@ -1505,7 +1508,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2468",
-                            "title": "How important were the high costs of direct innovation in constraining innovation activities?",
+                            "title": "How important were the <em>high costs of direct innovation</em> in constraining innovation activities?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -1539,7 +1542,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2473",
-                            "title": "How important was the cost of finance in constraining innovation activities?",
+                            "title": "How important was the <em>cost of finance</em> in constraining innovation activities?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -1573,7 +1576,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2474",
-                            "title": "How important was the availability of finance in constraining innovation activities?",
+                            "title": "How important was the <em>availability of finance</em> in constraining innovation activities?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -1607,7 +1610,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2475",
-                            "title": "How important was the lack of available qualified personnel in constraining innovation activities?",
+                            "title": "How important was the <em>lack of available qualified personnel</em> in constraining innovation activities?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -1641,7 +1644,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2476",
-                            "title": "How important was the lack of information on technology in constraining innovation activities?",
+                            "title": "How important was the <em>lack of information on technology</em> in constraining innovation activities?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -1675,7 +1678,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2477",
-                            "title": "How important was the lack of information on markets in constraining innovation activities?",
+                            "title": "How important was the <em>lack of information on markets</em> in constraining innovation activities?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -1709,7 +1712,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2478",
-                            "title": "How important was the effect of a market dominated by established businesses in constraining innovation activities?",
+                            "title": "How important was the <em>effect of a market dominated by established businesses</em> in constraining innovation activities?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -1743,7 +1746,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2479",
-                            "title": "How important was a perceived uncertain demand for innovative goods or services in constraining innovation activities?",
+                            "title": "How important was a <em>perceived uncertain demand for innovative goods or services</em> in constraining innovation activities?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -1777,7 +1780,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2480",
-                            "title": "How important were UK government regulations in constraining innovation activities?",
+                            "title": "How important were <em>UK government regulations</em> in constraining innovation activities?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -1811,7 +1814,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2481",
-                            "title": "How important were EU regulations (including standards) in constraining innovation activities?",
+                            "title": "How important were <em>EU regulations (including standards)</em> in constraining innovation activities?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -1845,7 +1848,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question2482",
-                            "title": "How important was the outcome of the EU Referendum in constraining innovation activities?",
+                            "title": "How important was the <em>outcome of the EU Referendum</em> in constraining innovation activities?",
                             "description": "",
                             "type": "General",
                             "answers": [{
@@ -4144,7 +4147,23 @@
                                 ]
                             },
                             "description": "Estimates are acceptable and percentages must <strong>total 100%</strong>",
-                            "type": "General",
+                            "type": "Calculated",
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "value": 0,
+                                "answers_to_calculate": ["answer3207", "answer3208", "answer3209", "answer3211"],
+                                "conditions": ["equals"]
+                            }, {
+                                "calculation_type": "sum",
+                                "value": 100,
+                                "answers_to_calculate": ["answer3207", "answer3208", "answer3209", "answer3211"],
+                                "conditions": ["equals"]
+                            }],
+                            "validation": {
+                                "messages": {
+                                    "TOTAL_SUM_NOT_EQUALS": "Enter answers that add up to %(total)s%%"
+                                }
+                            },
                             "answers": [{
                                     "id": "answer3207",
                                     "mandatory": false,
@@ -4208,24 +4227,6 @@
                                         "exclusive": false
                                     },
                                     "decimal_places": 0
-                                },
-                                {
-                                    "calculated": true,
-                                    "description": "The total percentages should be 100%",
-                                    "id": "total-percentage",
-                                    "label": "Total",
-                                    "mandatory": false,
-                                    "type": "Percentage",
-                                    "decimal_places": 2,
-                                    "max_value": {
-                                        "value": 100
-                                    },
-                                    "validation": {
-                                        "messages": {
-                                            "NUMBER_TOO_SMALL": "The total percentages should equal %(min)s",
-                                            "NUMBER_TOO_LARGE": "The total percentages should equal %(max)s"
-                                        }
-                                    }
                                 }
                             ]
                         }]

@@ -35,7 +35,7 @@
       <div class="panel__header">
         <ul class="list list--bare list--errors">
           {% for field_error in form.answer_errors[answer_id] %}
-            <li class="list__item venus" {{helpers.track('error', 'Error', field_error, question.id)}}>{{ field_error }}</li>
+            <li class="list__item u-fs-r--b" {{helpers.track('error', 'Error', field_error, question.id)}}>{{ field_error }}</li>
           {% endfor %}
         </ul>
       </div>

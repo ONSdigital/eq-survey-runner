@@ -1943,10 +1943,21 @@
                             "id": "question1399",
                             "title": "During 2018, of the {{ answers['answer1869'] | format_number }}% given in the previous question, what percentage was received from the following types of customer?",
                             "description": "",
-                            "type": "General",
+                            "type": "Calculated",
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "value": 100,
+                                "answers_to_calculate": ["answer1870", "answer1871"],
+                                "conditions": ["equals"]
+                            }],
+                            "validation": {
+                                "messages": {
+                                    "TOTAL_SUM_NOT_EQUALS": "Enter answers that add up to %(total)s%%"
+                                }
+                            },
                             "answers": [{
                                     "id": "answer1870",
-                                    "mandatory": true,
+                                    "mandatory": false,
                                     "type": "Percentage",
                                     "q_code": "348",
                                     "label": "Sales to private customers (B2C)",
@@ -1955,33 +1966,12 @@
                                 },
                                 {
                                     "id": "answer1871",
-                                    "mandatory": true,
+                                    "mandatory": false,
                                     "type": "Percentage",
                                     "q_code": "349",
                                     "label": "Sales to other businesses (B2B) and public authorities (B2G)",
                                     "description": "",
                                     "decimal_places": 2
-                                },
-                                {
-                                    "calculated": true,
-                                    "description": "The total percentages should be 100%",
-                                    "id": "question1399-total-percentage",
-                                    "label": "Total",
-                                    "mandatory": false,
-                                    "type": "Percentage",
-                                    "decimal_places": 2,
-                                    "min_value": {
-                                        "value": 100
-                                    },
-                                    "max_value": {
-                                        "value": 100
-                                    },
-                                    "validation": {
-                                        "messages": {
-                                            "NUMBER_TOO_SMALL": "The total percentages should equal %(min)s",
-                                            "NUMBER_TOO_LARGE": "The total percentages should equal %(max)s"
-                                        }
-                                    }
                                 }
                             ]
                         }]
@@ -2023,10 +2013,21 @@
                             "id": "question1401",
                             "title": "During 2018, what was the percentage of orders received via a website or ‘app’ for the following options?",
                             "description": "",
-                            "type": "General",
+                            "type": "Calculated",
+                            "calculations": [{
+                                "calculation_type": "sum",
+                                "value": 100,
+                                "answers_to_calculate": ["answer1873", "answer1875"],
+                                "conditions": ["equals"]
+                            }],
+                            "validation": {
+                                "messages": {
+                                    "TOTAL_SUM_NOT_EQUALS": "Enter answers that add up to %(total)s%%"
+                                }
+                            },
                             "answers": [{
                                     "id": "answer1873",
-                                    "mandatory": true,
+                                    "mandatory": false,
                                     "type": "Percentage",
                                     "q_code": "460",
                                     "label": "Percentage of orders from your business’ own website or ‘app’",
@@ -2035,33 +2036,12 @@
                                 },
                                 {
                                     "id": "answer1875",
-                                    "mandatory": true,
+                                    "mandatory": false,
                                     "type": "Percentage",
                                     "q_code": "461",
                                     "label": "Percentage of orders from an e-commerce market place website or ‘app’ used by several businesses for trading product",
                                     "description": "For example, Booking, eBay, Amazon, Amazon Business, Alibaba, Rakuten, Etsy",
                                     "decimal_places": 2
-                                },
-                                {
-                                    "calculated": true,
-                                    "description": "The total percentages should be 100%",
-                                    "id": "question1401-total-percentage",
-                                    "label": "Total",
-                                    "mandatory": false,
-                                    "type": "Percentage",
-                                    "decimal_places": 2,
-                                    "min_value": {
-                                        "value": 100
-                                    },
-                                    "max_value": {
-                                        "value": 100
-                                    },
-                                    "validation": {
-                                        "messages": {
-                                            "NUMBER_TOO_SMALL": "The total percentages should equal %(min)s",
-                                            "NUMBER_TOO_LARGE": "The total percentages should equal %(max)s"
-                                        }
-                                    }
                                 }
                             ]
                         }]
