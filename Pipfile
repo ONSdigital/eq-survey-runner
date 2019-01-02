@@ -26,6 +26,7 @@ moto = "*"
 freezegun = "*"
 pytest-xdist = "*"
 pytest-sugar = "*"
+snakeviz = "*"
 
 [packages]
 colorama = "*"

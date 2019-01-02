@@ -31,6 +31,7 @@ coverage.xml
 .tox
 coverage/
 profiling/
+combined_profile.prof
 
 .cache
 
