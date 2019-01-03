@@ -32,11 +32,11 @@ describe('Given the user launches two surveys', function() {
       .isExisting('[data-qa="multiple-survey-error"]').should.eventually.be.true;
   });
 
-  it('Displays a session expired error when the first tabs form is submitted (CSRF Error)', function() {
+  it('Displays a multiple survey error when the first tabs form is submitted', function() {
     return browser
       .switchTab(this.firstTab)
       .click(TextFieldPage.submit())
-      .isExisting('[data-qa="session-expired-error"]').should.eventually.be.true;
+      .isExisting('[data-qa="multiple-survey-error"]').should.eventually.be.true;
   });
 
   it('Re-displays the textarea when the second survey is refreshed (i.e. on a GET)', function() {

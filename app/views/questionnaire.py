@@ -43,7 +43,7 @@ from app.templating.template_renderer import renderer, TemplateRenderer
 from app.templating.utils import get_question_title
 from app.templating.view_context import build_view_context
 from app.utilities.schema import load_schema_from_session_data
-from app.views.errors import MultipleSurveyError
+from app.views.errors import check_multiple_survey, MultipleSurveyError
 
 END_BLOCKS = 'Summary', 'Confirmation'
 
@@ -67,16 +67,13 @@ def before_questionnaire_request():
     logger.bind(tx_id=metadata['tx_id'])
 
     values = request.view_args
+
+    if check_multiple_survey(metadata, values):
+        raise MultipleSurveyError
+
     logger.bind(eq_id=values['eq_id'], form_type=values['form_type'],
                 ce_id=values['collection_id'])
     logger.info('questionnaire request', method=request.method, url_path=request.full_path)
-
-    _check_same_survey(url_eq_id=values['eq_id'],
-                       url_form_type=values['form_type'],
-                       url_collection_id=values['collection_id'],
-                       session_eq_id=metadata['eq_id'],
-                       session_form_type=metadata['form_type'],
-                       session_collection_id=metadata['collection_exercise_sid'])
 
     session_store = get_session_store()
     session_data = session_store.session_data
@@ -104,12 +101,13 @@ def before_post_submission_request():
     logger.bind(eq_id=values['eq_id'], form_type=values['form_type'])
     logger.info('questionnaire request', method=request.method, url_path=request.full_path)
 
-    _check_same_survey(url_eq_id=values['eq_id'],
-                       url_form_type=values['form_type'],
-                       url_collection_id='',
-                       session_eq_id=session_data.eq_id,
-                       session_form_type=session_data.form_type,
-                       session_collection_id='')
+    metadata_from_session_data = {
+        'tx_id': session_data.tx_id,
+        'eq_id': session_data.eq_id,
+        'form_type': session_data.form_type,
+    }
+    if check_multiple_survey(metadata_from_session_data, values):
+        raise NoTokenException(401)
 
 
 def save_questionnaire_store(func):
@@ -650,13 +648,6 @@ def update_questionnaire_store_with_answer_data(questionnaire_store, location, a
 
     if location not in questionnaire_store.completed_blocks:
         questionnaire_store.completed_blocks.append(location)
-
-
-def _check_same_survey(url_eq_id, url_form_type, url_collection_id, session_eq_id, session_form_type, session_collection_id):
-    if url_eq_id != session_eq_id \
-        or url_form_type != session_form_type \
-            or url_collection_id != session_collection_id:
-        raise MultipleSurveyError
 
 
 def _evaluate_skip_conditions(block_json, location, schema, answer_store, metadata):
