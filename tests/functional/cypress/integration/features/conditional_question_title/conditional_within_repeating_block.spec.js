@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js'
 const EveryoneAtAddressConfirmationPage = require('../../../../generated_pages/titles_conditional_within_repeating_block/everyone-at-address-confirmation.page');
 const HouseholdCompositionPage = require('../../../../generated_pages/titles_conditional_within_repeating_block/household-composition.page');
 const ProxyCheckPage = require('../../../../generated_pages/titles_conditional_within_repeating_block/proxy-check.page');
@@ -10,12 +10,13 @@ const ConfirmationPage = require('../../../../generated_pages/titles_conditional
 describe('Feature: Use of conditional Titles in Repeating blocks with condition dependant on answer changing within block', function() {
 
   beforeEach(function() {
-      return helpers.openQuestionnaire('test_titles_conditional_within_repeating_block.json');
+      openQuestionnaire('test_titles_conditional_within_repeating_block.json');
   });
 
   describe('Given I start the survey with a repeating block to gather a list of names', function() {
     it('When I enter another repeating block with conditional title based on the answer I should see those names in the title of a subsequent question and can get to confirm page', function() {
-              .get(HouseholdCompositionPage.firstName()).type('Fred')
+      cy
+        .get(HouseholdCompositionPage.firstName()).type('Fred')
         .get(HouseholdCompositionPage.addPerson()).click()
         .get(HouseholdCompositionPage.firstName('_1')).type('Mary')
         .get(HouseholdCompositionPage.addPerson()).click()

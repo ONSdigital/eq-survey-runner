@@ -18,7 +18,7 @@ describe('Feature: Calculated Summary', function() {
 
   describe('Given I have a Calculated Summary', function() {
 
-    beforeEach(function() {
+    before(function() {
       openQuestionnaire('test_calculated_summary.json')
         .get(FirstNumberBlockPage.firstNumber()).type(1.23)
         .get(FirstNumberBlockPage.submit()).click()
@@ -49,6 +49,11 @@ describe('Feature: Calculated Summary', function() {
 
         .url().should('contain', CurrencyTotalPlaybackPage.pageName);
     });
+
+  beforeEach(function () {
+    // Cypress clears cookies between tests by default.
+    Cypress.Cookies.preserveOnce('session')
+  });
 
   it('Given I complete every question, When i get to the currency summary, Then I should see the correct total', function() {
     cy
@@ -147,12 +152,10 @@ describe('Feature: Calculated Summary', function() {
     it('Given I complete every question, When i get to the percentage summary, Then I should see the correct total', function() {
       cy
         // Totals and titles should be shown
-        .get(CurrencyTotalPlaybackPage.submit()).click()
-        .get(PercentageTotalPlaybackPage.submit()).click()
+        .get(UnitTotalPlaybackPage.submit()).click()
         .get(PercentageTotalPlaybackPage.calculatedSummaryTitle()).stripText().should('contain', 'We calculate the total of percentage values entered to be 79%. Is this correct?')
         .get(PercentageTotalPlaybackPage.calculatedSummaryQuestion()).stripText().should('contain', 'Grand total of previous values')
         .get(PercentageTotalPlaybackPage.calculatedSummaryAnswer()).stripText().should('contain', '79%')
-        .get(PercentageTotalPlaybackPage.submit()).click()
 
         // Answers included in calculation should be shown
         .get(PercentageTotalPlaybackPage.fifthPercentAnswerLabel()).stripText().should('contain', 'Fifth answer label percentage total')
@@ -164,13 +167,10 @@ describe('Feature: Calculated Summary', function() {
     it('Given I complete every question, When i get to the number summary, Then I should see the correct total', function() {
       cy
         // Totals and titles should be shown
-        .get(CurrencyTotalPlaybackPage.submit()).click()
-        .get(UnitTotalPlaybackPage.calculatedSummaryTitle()).stripText().should('contain', 'We calculate the total of number values entered to be 124.58. Is this correct?')
-        .get(UnitTotalPlaybackPage.calculatedSummaryQuestion()).stripText().should('contain', 'Grand total of previous values')
-        .get(UnitTotalPlaybackPage.calculatedSummaryAnswer()).stripText().should('contain', '124.58')
-        .get(UnitTotalPlaybackPage.submit()).click()
-
         .get(PercentageTotalPlaybackPage.submit()).click()
+        .get(NumberTotalPlaybackPage.calculatedSummaryTitle()).stripText().should('contain', 'We calculate the total of number values entered to be 124.58. Is this correct?')
+        .get(NumberTotalPlaybackPage.calculatedSummaryQuestion()).stripText().should('contain', 'Grand total of previous values')
+        .get(NumberTotalPlaybackPage.calculatedSummaryAnswer()).stripText().should('contain', '124.58')
 
         // Answers included in calculation should be shown
         .get(NumberTotalPlaybackPage.fifthNumberAnswerLabel()).stripText().should('contain', 'Fifth answer label number total')

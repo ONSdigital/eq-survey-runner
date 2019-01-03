@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../../helpers/helpers.js'
 const TotalAnswerPage = require('../../../../../generated_pages/sum_less_validation_against_total/total-block.page');
 const BreakdownAnswerPage = require('../../../../../generated_pages/sum_less_validation_against_total/breakdown-block.page');
 const SummaryPage = require('../../../../../generated_pages/sum_less_validation_against_total/summary.page');
@@ -6,12 +6,13 @@ const SummaryPage = require('../../../../../generated_pages/sum_less_validation_
 describe('Feature: Sum of grouped answers validation (less than) against total', function () {
 
   beforeEach(function() {
-      return helpers.openQuestionnaire('test_sum_less_validation_against_total.json');
+      openQuestionnaire('test_sum_less_validation_against_total.json');
   });
 
   describe('Given I start a grouped answer validation survey and enter 12 into the total', function() {
     it('When I continue and enter 2 in each breakdown field, Then I should be able to get to the summary', function() {
-             .get(TotalAnswerPage.total()).type('12')
+      cy
+       .get(TotalAnswerPage.total()).type('12')
        .get(TotalAnswerPage.submit()).click()
        .get(BreakdownAnswerPage.breakdown1()).type('2')
        .get(BreakdownAnswerPage.breakdown2()).type('2')
@@ -24,7 +25,8 @@ describe('Feature: Sum of grouped answers validation (less than) against total',
 
   describe('Given I start a grouped answer validation survey and enter 5 into the total', function() {
     it('When I continue and enter 4 into breakdown 1 and leave the others empty, Then I should be able to get to the summary', function() {
-             .get(TotalAnswerPage.total()).type('5')
+      cy
+       .get(TotalAnswerPage.total()).type('5')
        .get(TotalAnswerPage.submit()).click()
        .get(BreakdownAnswerPage.breakdown1()).type('4')
        .get(BreakdownAnswerPage.breakdown2()).clear()
@@ -37,7 +39,8 @@ describe('Feature: Sum of grouped answers validation (less than) against total',
 
    describe('Given I start a grouped answer validation survey and enter 12 into the total', function() {
     it('When I continue and enter 3 in each breakdown field, Then I should see a validation error', function() {
-             .get(TotalAnswerPage.total()).type('12')
+      cy
+       .get(TotalAnswerPage.total()).type('12')
        .get(TotalAnswerPage.submit()).click()
        .get(BreakdownAnswerPage.breakdown1()).type('3')
        .get(BreakdownAnswerPage.breakdown2()).type('3')
@@ -50,7 +53,8 @@ describe('Feature: Sum of grouped answers validation (less than) against total',
 
    describe('Given I start a grouped answer validation survey and enter 5 into the total', function() {
     it('When I continue and enter 3 in each breakdown field, Then I should see a validation error', function() {
-             .get(TotalAnswerPage.total()).type('5')
+      cy
+       .get(TotalAnswerPage.total()).type('5')
        .get(TotalAnswerPage.submit()).click()
        .get(BreakdownAnswerPage.breakdown1()).type('3')
        .get(BreakdownAnswerPage.breakdown2()).type('3')

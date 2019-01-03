@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../helpers/helpers.js'
 
 const NumberOfEmployeesTotalBlockPage = require('../../../generated_pages/confirmation_question/number-of-employees-total-block.page.js');
 const ConfirmZeroEmployeesBlockPage = require('../../../generated_pages/confirmation_question/confirm-zero-employees-block.page.js');
@@ -11,25 +11,30 @@ describe('Feature: Confirmation Question', function() {
 
     before('Get to summary', function () {
       openQuestionnaire('test_confirmation_question.json')
-                  .get(NumberOfEmployeesTotalBlockPage.numberOfEmployeesTotal()).type(0)
-          .get(NumberOfEmployeesTotalBlockPage.submit()).click()
-          .get(ConfirmZeroEmployeesBlockPage.yes()).click()
-          .get(ConfirmZeroEmployeesBlockPage.submit()).click()
-          .url().should('contain', SummaryPage.pageName);
-      });
+        .get(NumberOfEmployeesTotalBlockPage.numberOfEmployeesTotal()).type(0)
+        .get(NumberOfEmployeesTotalBlockPage.submit()).click()
+        .get(ConfirmZeroEmployeesBlockPage.yes()).click()
+        .get(ConfirmZeroEmployeesBlockPage.submit()).click()
+        .url().should('contain', SummaryPage.pageName);
     });
 
+    beforeEach(function() {
+      Cypress.Cookies.preserveOnce('session')
+    })
+
     it('When I view the summary, Then the confirmation question should not be displayed', function () {
-              .get(SummaryPage.numberOfEmployeesTotal()).stripText().should('contain', '0')
-        .get(SummaryPage.confirmZeroEmployeesAnswer()).should('be.empty;')
+      cy
+        .get(SummaryPage.numberOfEmployeesTotal()).stripText().should('contain', '0')
+        .get(SummaryPage.confirmZeroEmployeesAnswer()).should('not.exist')
     });
 
     it('When I view my responses, Then the confirmation question should not be displayed', function () {
-              .get(SummaryPage.submit()).click()
+      cy
+        .get(SummaryPage.submit()).click()
         .get(ThankYouPage.viewSubmitted()).click()
         .url().should('contain', 'view-submission')
         .get(SummaryPage.numberOfEmployeesTotal()).stripText().should('contain', '0')
-        .get(SummaryPage.confirmZeroEmployeesAnswer()).should('be.empty;')
+        .get(SummaryPage.confirmZeroEmployeesAnswer()).should('not.exist')
     });
 
   });

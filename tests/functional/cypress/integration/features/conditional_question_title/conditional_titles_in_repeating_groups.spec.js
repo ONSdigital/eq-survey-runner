@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js'
 const HouseholdCompositionPage = require('../../../../generated_pages/titles_within_repeating_blocks/household-composition.page');
 const WhoIsAnsweringPage = require('../../../../generated_pages/titles_within_repeating_blocks/who-is-answering-block.page');
 const Page1 = require('../../../../generated_pages/titles_within_repeating_blocks/repeating-block-1.page');
@@ -7,12 +7,13 @@ const Page3 = require('../../../../generated_pages/titles_within_repeating_block
 describe('Feature: Use of Titles in Repeating blocks', function() {
 
   beforeEach(function() {
-      return helpers.openQuestionnaire('test_titles_within_repeating_blocks.json');
+      return openQuestionnaire('test_titles_within_repeating_blocks.json');
   });
 
   describe('Given I start the survey with a repeating block', function() {
     it('When I enter an  names I should see those names in the title of a subsequent questions', function() {
-              .get(HouseholdCompositionPage.firstName()).type('FirstPerson')
+      cy
+        .get(HouseholdCompositionPage.firstName()).type('FirstPerson')
         .get(HouseholdCompositionPage.addPerson()).click()
         .get(HouseholdCompositionPage.firstName('_1')).type('SecondPerson')
         .get(HouseholdCompositionPage.submit()).click()
