@@ -2,9 +2,9 @@
  * Paths to project folders
  */
 
-export const homePath = './app'
-export const appPath = './app/assets'
-export const distPath = './static'
+export const homePath = './app';
+export const appPath = './app/assets';
+export const distPath = './static';
 
 export const paths = {
   app: appPath,
@@ -53,4 +53,4 @@ export const paths = {
     results: 'tests/karma/results/',
     errorShots: 'tests/errorShots'
   }
-}
+};

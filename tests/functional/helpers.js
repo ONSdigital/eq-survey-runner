@@ -18,7 +18,7 @@ const openCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-EN
 
 const startCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-ENG', language = 'en') => {
   return openCensusQuestionnaire(schema, sexualIdentity, region, language).then(() => {
-      return browser.click(introductionPage.getStarted());
+    return browser.click(introductionPage.getStarted());
   });
 };
 
@@ -31,7 +31,7 @@ function openQuestionnaire(schema, { userId = getRandomString(10), collectionId 
 
 function startQuestionnaire(schema, userId = getRandomString(10), collectionId = getRandomString(10)) {
   return openQuestionnaire(schema, userId, collectionId).then(() => {
-      return browser.click(introductionPage.getStarted());
+    return browser.click(introductionPage.getStarted());
   });
 }
 
@@ -91,11 +91,11 @@ function isViewSectionsVisible() {
 }
 
 function navigationLink(linkName) {
-    return 'a=' + linkName;
+  return 'a=' + linkName;
 }
 
 function isSectionComplete(linkName) {
-    return isSectionCompleteBind.bind(null, linkName);
+  return isSectionCompleteBind.bind(null, linkName);
 }
 
 function isSectionCompleteBind(linkName) {
@@ -111,17 +111,17 @@ function isSectionCompleteBind(linkName) {
 }
 
 function pressSubmit(numberOfTimes) {
-    let chain = browser
-          .click(genericPage.submit());
+  let chain = browser
+    .click(genericPage.submit());
 
-    for (var i = 0; i < (numberOfTimes -1); i++) {
-      chain = chain.then(() => {
-        return browser
-          .click(genericPage.submit());
-      });
-    }
-    return chain;
- }
+  for (var i = 0; i < (numberOfTimes -1); i++) {
+    chain = chain.then(() => {
+      return browser
+        .click(genericPage.submit());
+    });
+  }
+  return chain;
+}
 
 module.exports = {
   introductionPage,

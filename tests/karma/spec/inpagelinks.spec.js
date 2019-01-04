@@ -1,4 +1,4 @@
-import { inPageLink, applyInPageLink, classTrigger, classDetails, attrInputId } from 'app/modules/inpagelink'
+import { inPageLink, applyInPageLink, classTrigger, classDetails, attrInputId } from 'app/modules/inpagelink';
 
 const strTemplate = `<div class="panel panel--error">
   <div class="panel__header">
@@ -31,26 +31,26 @@ const strTemplate = `<div class="panel panel--error">
       </div>
     </div>
   </div>
-</div>`
+</div>`;
 
-let elDetails, elTrigger, elId, elTemplate
+let elDetails, elTrigger, elId, elTemplate;
 
 describe('In page link', () => {
   before('Add template to DOM', () => {
-    let wrapper = document.createElement('div')
-    wrapper.innerHTML = strTemplate
-    elTemplate = wrapper
-    elDetails = elTemplate.getElementsByClassName(classDetails)[0]
-    document.body.appendChild(elTemplate)
-  })
+    let wrapper = document.createElement('div');
+    wrapper.innerHTML = strTemplate;
+    elTemplate = wrapper;
+    elDetails = elTemplate.getElementsByClassName(classDetails)[0];
+    document.body.appendChild(elTemplate);
+  });
 
   it('DOM should contain the template', () => {
-    expect(document.body.contains(elTemplate)).to.equal(true)
-  })
+    expect(document.body.contains(elTemplate)).to.equal(true);
+  });
 
   it('Input should recieve focus after in page link is clicked', () => {
-    const elTrigger = elTemplate.parentElement.getElementsByClassName(classTrigger)[0]
-    elTrigger.click()
-    expect(document.activeElement.classList.contains("input")).to.equal(true)
-  })
-})
+    const elTrigger = elTemplate.parentElement.getElementsByClassName(classTrigger)[0];
+    elTrigger.click();
+    expect(document.activeElement.classList.contains('input')).to.equal(true);
+  });
+});

@@ -1,24 +1,24 @@
-const eventReady = 'DOMContentLoaded'
+const eventReady = 'DOMContentLoaded';
 
-let callbacks = []
-let isReady = false
+let callbacks = [];
+let isReady = false;
 
 const onReady = () => {
-  isReady = true
-  callbacks.forEach(fn => fn.call())
-  document.removeEventListener(eventReady, onReady)
-}
+  isReady = true;
+  callbacks.forEach(fn => fn.call());
+  document.removeEventListener(eventReady, onReady);
+};
 
 export default function ready(fn) {
   if (isReady) {
-    fn.call()
+    fn.call();
   } else {
-    callbacks.push(fn)
+    callbacks.push(fn);
   }
 }
 
 if (document.readyState === 'interactive') {
-  onReady.call()
+  onReady.call();
 } else {
-  document.addEventListener(eventReady, onReady)
+  document.addEventListener(eventReady, onReady);
 }

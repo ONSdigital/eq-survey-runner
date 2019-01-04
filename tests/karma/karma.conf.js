@@ -1,5 +1,5 @@
 module.exports = function(config) {
-  var testDir = 'tests/karma'
+  var testDir = 'tests/karma';
 
   config.set({
 
@@ -65,5 +65,5 @@ module.exports = function(config) {
 
     colors: true,
     logLevel: config.LOG_INFO
-  })
-}
+  });
+};

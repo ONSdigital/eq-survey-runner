@@ -1,11 +1,13 @@
 module.exports = {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "node": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaVersion": 9,
     },
     "globals": {
         "cy": false,
@@ -27,6 +29,9 @@ module.exports = {
         "semi": [
             "error",
             "always"
+        ],
+        "no-unused-vars": [
+            "off"
         ]
     }
 };

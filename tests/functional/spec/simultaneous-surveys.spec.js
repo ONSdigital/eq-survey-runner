@@ -8,18 +8,18 @@ describe('Given the user launches two surveys', function() {
     this.secondTab = 'secondTab';
 
     let launchFirstTab = helpers.openQuestionnaire('test_textfield.json')
-        .then( () => {
-          return browser.getCurrentTabId();
-        })
-        .then( (tabId) => {
-          return this.firstTab = tabId;
-        });
+      .then( () => {
+        return browser.getCurrentTabId();
+      })
+      .then( (tabId) => {
+        return this.firstTab = tabId;
+      });
 
     let launchSecondTab = browser
-        .newWindow('/status', this.secondTab)
-        .then( () => {
-          return helpers.openQuestionnaire('test_textarea.json');
-        });
+      .newWindow('/status', this.secondTab)
+      .then( () => {
+        return helpers.openQuestionnaire('test_textarea.json');
+      });
 
     return Promise.all([launchFirstTab, launchSecondTab]);
 

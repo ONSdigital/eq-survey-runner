@@ -1,5 +1,5 @@
-import bs from 'browser-sync'
+import bs from 'browser-sync';
 
-let browserSync = bs.create()
+let browserSync = bs.create();
 
-export default browserSync
+export default browserSync;

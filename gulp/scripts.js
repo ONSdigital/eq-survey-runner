@@ -1,25 +1,25 @@
 // Scripts and tests
-import gulp from 'gulp'
-import gutil from 'gulp-util'
-import eslint from 'gulp-eslint'
-import rename from 'gulp-rename'
-import plumber from 'gulp-plumber'
-import uglify from 'gulp-uglify'
-import browserify from 'browserify'
-import watchify from 'watchify'
-import babel from 'gulp-babel'
-import source from 'vinyl-source-stream'
-import buffer from 'vinyl-buffer'
-import sourcemaps from 'gulp-sourcemaps'
+import gulp from 'gulp';
+import gutil from 'gulp-util';
+import eslint from 'gulp-eslint';
+import rename from 'gulp-rename';
+import plumber from 'gulp-plumber';
+import uglify from 'gulp-uglify';
+import browserify from 'browserify';
+import watchify from 'watchify';
+import babel from 'gulp-babel';
+import source from 'vinyl-source-stream';
+import buffer from 'vinyl-buffer';
+import sourcemaps from 'gulp-sourcemaps';
 
-import rollupBabel from 'rollup-plugin-babel'
-import nodeResolve from 'rollup-plugin-node-resolve'
-import commonjs from 'rollup-plugin-commonjs'
+import rollupBabel from 'rollup-plugin-babel';
+import nodeResolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
 
-import {paths, appPath} from './paths'
-import browserSync from './bs'
+import {paths, appPath} from './paths';
+import browserSync from './bs';
 
-let cache
+let cache;
 
 const b = browserify({
   ...watchify.args,
@@ -29,7 +29,7 @@ const b = browserify({
   }
 })
   .on('update', () => {
-    cache = bundle()
+    cache = bundle();
   })
   .on('error', gutil.log)
   .on('log', gutil.log)
@@ -57,14 +57,14 @@ const b = browserify({
         })
       ]
     }
-  })
+  });
 
 export function bundle(watch) {
-  const bundler = watch ? watchify(b) : b
+  const bundler = watch ? watchify(b) : b;
   return bundler.bundle()
     .on('error', function(err) {
-      gutil.log(err.message)
-      browserSync.notify('Browserify Error!')
+      gutil.log(err.message);
+      browserSync.notify('Browserify Error!');
     })
     .pipe(source('bundle.js'))
     .pipe(buffer())
@@ -74,13 +74,13 @@ export function bundle(watch) {
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(paths.scripts.output))
-    .pipe(browserSync.reload({stream: true}))
+    .pipe(browserSync.reload({stream: true}));
 }
 
 export function copyScripts() {
   gulp.src([paths.scripts.input, `!${paths.scripts.dir}app/**/*`])
     .on('error', function(err) {
-      gutil.log(err.message)
+      gutil.log(err.message);
     })
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(babel())
@@ -92,7 +92,7 @@ export function copyScripts() {
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(paths.scripts.output))
-    .pipe(browserSync.reload({stream: true}))
+    .pipe(browserSync.reload({stream: true}));
 }
 
 export function lint() {
@@ -102,39 +102,39 @@ export function lint() {
   // As a work around they're split into two distinct steps
   gulp.src(['gulp/**/*.js'])
     .pipe(plumber())
-    .pipe(eslint())
+    .pipe(eslint({'configFile': '.eslintrc.js'}))
     .pipe(eslint.results(results => results.warningCount ? gutil.log('eslint warning') : gutil.noop()))
     .pipe(eslint.format())
     .pipe(eslint.failOnError())
     .on('error', (error) => {
-      gutil.log('linting failed')
-      gutil.log(error)
-      process.exit(1)
-    })
+      gutil.log('linting failed');
+      gutil.log(error);
+      process.exit(1);
+    });
 
   return gulp.src([paths.scripts.input, `!${paths.scripts.dir}vendor/**/*`, '!**/polyfills.js'])
     .pipe(plumber())
-    .pipe(eslint())
+    .pipe(eslint({'configFile': '.eslintrc.js'}))
     .pipe(eslint.results(results => results.warningCount ? gutil.log('eslint warning') : gutil.noop()))
     .pipe(eslint.format())
     .pipe(eslint.failOnError())
     .on('error', (error) => {
-      gutil.log('linting failed')
-      gutil.log(error)
-      process.exit(1)
-    })
+      gutil.log('linting failed');
+      gutil.log(error);
+      process.exit(1);
+    });
 }
 
 export function lintFunctionalTests() {
   gulp.src([paths.test.functional + '/**/*.js'])
     .pipe(plumber())
-    .pipe(eslint())
+    .pipe(eslint({'configFile': '.eslintrc.js'}))
     .pipe(eslint.results(results => results.warningCount ? gutil.log('eslint warning') : gutil.noop()))
     .pipe(eslint.format())
     .pipe(eslint.failOnError())
     .on('error', (error) => {
-      gutil.log('linting failed')
-      gutil.log(error)
-      process.exit(1)
-    })
+      gutil.log('linting failed');
+      gutil.log(error);
+      process.exit(1);
+    });
 }

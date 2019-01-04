@@ -1,9 +1,9 @@
-import gulp from 'gulp'
-import exec from 'gulp-exec'
+import gulp from 'gulp';
+import exec from 'gulp-exec';
 
 // var exec = require('child_process').exec
 
-const a11ym = './node_modules/the-a11y-machine/a11ym'
+const a11ym = './node_modules/the-a11y-machine/a11ym';
 
 const a11yOptions = {
   filterCodes: 'filter-by-codes',
@@ -19,14 +19,14 @@ const a11yOptions = {
   workers: 'workers',
   user: '--http-auth-user',
   password: '--http-auth-password'
-}
+};
 
 function gulpA11ym(url, opts, cb) {
-  let args = url
+  let args = url;
 
   for (let prop in opts) {
     if (opts.hasOwnProperty(prop) && typeof a11yOptions[prop] !== 'undefined') {
-      args += ` --${a11yOptions[prop]} ${opts[prop]}`
+      args += ` --${a11yOptions[prop]} ${opts[prop]}`;
     }
   }
 
@@ -38,11 +38,11 @@ function gulpA11ym(url, opts, cb) {
       err: true,
       stderr: true,
       stdout: true
-    }))
+    }));
 }
 
 export default function(done) {
   gulpA11ym('http://localhost:5000/introduction', {
     output: './tests/a11y/'
-  }, done)
+  }, done);
 }

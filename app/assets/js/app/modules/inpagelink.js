@@ -1,32 +1,32 @@
-import {forEach} from 'lodash'
-import domready from './domready'
+import {forEach} from 'lodash';
+import domready from './domready';
 
-export const classTrigger = 'js-inpagelink'
+export const classTrigger = 'js-inpagelink';
 
 export default function() {
-  return inPageLink()
+  return inPageLink();
 }
 
 export function inPageLink() {
-  const nodeList = document.getElementsByClassName(classTrigger)
-  forEach(nodeList, applyInPageLink)
-  return nodeList
+  const nodeList = document.getElementsByClassName(classTrigger);
+  forEach(nodeList, applyInPageLink);
+  return nodeList;
 }
 
 export function applyInPageLink(elTrigger) {
-  const elId = elTrigger.getAttribute('href').replace('#', '')
+  const elId = elTrigger.getAttribute('href').replace('#', '');
   elTrigger.addEventListener('click', (e) => {
-    e.preventDefault()
-    focusOnInput(elId)
-  })
+    e.preventDefault();
+    focusOnInput(elId);
+  });
 
-  return { elTrigger, elId }
+  return { elTrigger, elId };
 }
 
 function focusOnInput(elId) {
-  const elIdInput = document.getElementById(elId).querySelectorAll('.input')[0]
-  elIdInput.focus()
-  return elId
+  const elIdInput = document.getElementById(elId).querySelectorAll('.input')[0];
+  elIdInput.focus();
+  return elId;
 }
 
-domready(inPageLink)
+domready(inPageLink);
