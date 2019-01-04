@@ -3,7 +3,7 @@
     "form_type": "0001",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
-    "data_version": "0.0.2",
+    "data_version": "0.0.1",
     "survey_id": "144",
     "title": "UK Innovation Survey 2016 - 2018",
     "theme": "ukis",
@@ -100,18 +100,22 @@
                                 "label": "",
                                 "description": "",
                                 "options": [{
+                                        "q_code": "0210",
                                         "label": "UK regional within approximately 100 miles of this business",
                                         "value": "UK regional within approximately 100 miles of this business"
                                     },
                                     {
+                                        "q_code": "0220",
                                         "label": "UK National",
                                         "value": "UK National"
                                     },
                                     {
+                                        "q_code": "0230",
                                         "label": "European countries",
                                         "value": "European countries"
                                     },
                                     {
+                                        "q_code": "0240",
                                         "label": "All other countries",
                                         "value": "All other countries"
                                     }
@@ -135,14 +139,17 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                            "q_code": "0410",
                                             "label": "{{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was established",
                                             "value": "{{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was established"
                                         },
                                         {
+                                            "q_code": "0420",
                                             "label": "Turnover increased by at least 10% due to merger with another business or part of it",
                                             "value": "Turnover increased by at least 10% due to merger with another business or part of it"
                                         },
                                         {
+                                            "q_code": "0430",
                                             "label": "Turnover decreased by at least 10% due to sale or closure of part of the business",
                                             "value": "Turnover decreased by at least 10% due to sale or closure of part of the business"
                                         }
@@ -155,6 +162,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                        "q_code": "d1",
                                         "label": "No significant changes occurred",
                                         "value": "No significant changes occurred"
                                     }]
@@ -213,36 +221,43 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                            "q_code": "2310",
                                             "label": "New business practices for organising procedures",
                                             "value": "New business practices for organising procedures",
                                             "description": "For example first use of supply chain management, business re-engineering, knowledge management, lean production or quality management"
                                         },
                                         {
+                                            "q_code": "2320",
                                             "label": "New methods of organising work responsibilities and decision making",
                                             "value": "New methods of organising work responsibilities and decision making",
                                             "description": "For example first use of a new system of employee responsibilities, team work, decentralisation, integration or de-integration of departments or education/training systems"
                                         },
                                         {
+                                            "q_code": "2330",
                                             "label": "New methods of organising external relationships with other firms or public institutions",
                                             "value": "New methods of organising external relationships with other firms or public institutions",
                                             "description": "For example first use of alliances, partnerships, outsourcing or subcontracting"
                                         },
                                         {
+                                            "q_code": "2340",
                                             "label": "Implementation of significant changes to marketing concepts or strategies",
                                             "value": "Implementation of significant changes to marketing concepts or strategies",
                                             "description": "For example a marketing concept or strategy that differs significantly from your enterprise’s existing marketing methods which has not been used before"
                                         },
                                         {
+                                            "q_code": "2350",
                                             "label": "Logistics, delivery or distribution methods",
                                             "value": "Logistics, delivery or distribution methods",
                                             "description": "For example transportation, service delivery, warehousing or order processing"
                                         },
                                         {
+                                            "q_code": "2360",
                                             "label": "Methods for information processing or communication",
                                             "value": "Methods for information processing or communication",
                                             "description": "The maintenance and provision of information and communication systems, for example hardware, software, data processing, database, maintenance, repair, web-hosting and other computer related information activities"
                                         },
                                         {
+                                            "q_code": "2370",
                                             "label": "Methods for accounting or other administrative operations",
                                             "value": "Methods for accounting or other administrative operations",
                                             "description": "For example accounting, book keeping, auditing, payments, financial or insurance activities and procurement"
@@ -256,6 +271,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                        "q_code": "d2",
                                         "label": "No significant changes",
                                         "value": "No significant changes"
                                     }]
@@ -299,6 +315,7 @@
                                 "id": "answer3164",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1310",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -344,14 +361,17 @@
                                 "label": "",
                                 "description": "",
                                 "options": [{
+                                        "q_code": "2675",
                                         "label": "2016",
                                         "value": "2016"
                                     },
                                     {
+                                        "q_code": "2676",
                                         "label": "2017",
                                         "value": "2017"
                                     },
                                     {
+                                        "q_code": "2677",
                                         "label": "2018",
                                         "value": "2018"
                                     }
@@ -398,6 +418,7 @@
                                 "id": "answer3166",
                                 "mandatory": false,
                                 "type": "Currency",
+                                "q_code": "1410",
                                 "label": "Total expenditure on internal Research and Development",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000",
                                 "min_value": {
@@ -432,6 +453,7 @@
                                 "id": "answer3170",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1320",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -485,6 +507,7 @@
                                 "id": "answer3171",
                                 "mandatory": false,
                                 "type": "Currency",
+                                "q_code": "1420",
                                 "label": "Total expenditure on acquisition of Research and Development",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000",
                                 "min_value": {
@@ -508,6 +531,7 @@
                                 "id": "answer3179",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "10000",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -553,14 +577,17 @@
                                 "label": "",
                                 "description": "",
                                 "options": [{
+                                        "q_code": "1331",
                                         "label": "Advanced machinery and equipment",
                                         "value": "Advanced machinery and equipment"
                                     },
                                     {
+                                        "q_code": "1332",
                                         "label": "Computer hardware",
                                         "value": "Computer hardware"
                                     },
                                     {
+                                        "q_code": "1333",
                                         "label": "Computer software",
                                         "value": "Computer software"
                                     }
@@ -591,6 +618,7 @@
                                 "id": "answer3181",
                                 "mandatory": false,
                                 "type": "Currency",
+                                "q_code": "1430",
                                 "label": "Total expenditure for the acquisition of advanced machinery, equipment and software",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000",
                                 "min_value": {
@@ -625,6 +653,7 @@
                                 "id": "answer3182",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1340",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -678,6 +707,7 @@
                                 "id": "answer3183",
                                 "mandatory": false,
                                 "type": "Currency",
+                                "q_code": "1440",
                                 "label": "Total expenditure for the acquisition of existing knowledge",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000",
                                 "min_value": {
@@ -712,6 +742,7 @@
                                 "id": "answer3184",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1350",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -765,6 +796,7 @@
                                 "id": "answer3185",
                                 "mandatory": false,
                                 "type": "Currency",
+                                "q_code": "1450",
                                 "label": "Total expenditure on training for innovative activities",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000",
                                 "min_value": {
@@ -799,6 +831,7 @@
                                 "id": "answer3186",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1360",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -852,6 +885,7 @@
                                 "id": "answer3187",
                                 "mandatory": false,
                                 "type": "Currency",
+                                "q_code": "1460",
                                 "label": "Total expenditure for all forms of design activity",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000",
                                 "min_value": {
@@ -875,6 +909,7 @@
                                 "id": "answer3188",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "10001",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -920,18 +955,22 @@
                                 "label": "",
                                 "description": "",
                                 "options": [{
+                                        "q_code": "1371",
                                         "label": "Changes to product or service design",
                                         "value": "Changes to product or service design"
                                     },
                                     {
+                                        "q_code": "1372",
                                         "label": "Market research",
                                         "value": "Market research"
                                     },
                                     {
+                                        "q_code": "1373",
                                         "label": "Changes to marketing methods",
                                         "value": "Changes to marketing methods"
                                     },
                                     {
+                                        "q_code": "1374",
                                         "label": "Launch advertising",
                                         "value": "Launch advertising"
                                     }
@@ -962,6 +1001,7 @@
                                 "id": "answer3190",
                                 "mandatory": false,
                                 "type": "Currency",
+                                "q_code": "1470",
                                 "label": "Total expenditure for all forms of design activity",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000",
                                 "min_value": {
@@ -1028,6 +1068,7 @@
                                 "id": "answer3191",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "0510",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1073,14 +1114,17 @@
                                 "label": "",
                                 "description": "",
                                 "options": [{
+                                        "q_code": "0610",
                                         "label": "This business or enterprise group",
                                         "value": "This business or enterprise group"
                                     },
                                     {
+                                        "q_code": "0620",
                                         "label": "This business with other businesses or organisation",
                                         "value": "This business with other businesses or organisation"
                                     },
                                     {
+                                        "q_code": "0630",
                                         "label": "Other businesses or organisations",
                                         "value": "Other businesses or organisations"
                                     }
@@ -1112,6 +1156,7 @@
                                 "id": "answer3193",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "0520",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1167,14 +1212,17 @@
                                 "label": "",
                                 "description": "",
                                 "options": [{
+                                        "q_code": "0601",
                                         "label": "This business or enterprise group",
                                         "value": "This business or enterprise group"
                                     },
                                     {
+                                        "q_code": "0602",
                                         "label": "This business with other businesses or organisations",
                                         "value": "This business with other businesses or organisations"
                                     },
                                     {
+                                        "q_code": "0603",
                                         "label": "Other businesses or organisations",
                                         "value": "Other businesses or organisations"
                                     }
@@ -1218,6 +1266,7 @@
                                 "id": "answer3195",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "0710",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1268,6 +1317,7 @@
                                 "id": "answer3196",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "0720",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1325,6 +1375,7 @@
                                 "id": "answer3214",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "0900",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1370,14 +1421,17 @@
                                 "label": "",
                                 "description": "",
                                 "options": [{
+                                        "q_code": "1010",
                                         "label": "This business or enterprise group",
                                         "value": "This business or enterprise group"
                                     },
                                     {
+                                        "q_code": "1020",
                                         "label": "This business with other businesses or organisations",
                                         "value": "This business with other businesses or organisations"
                                     },
                                     {
+                                        "q_code": "1030",
                                         "label": "Other businesses or organisations",
                                         "value": "Other businesses or organisations"
                                     }
@@ -1397,6 +1451,7 @@
                                 "id": "answer3216",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1100",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1442,14 +1497,17 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                            "q_code": "1510",
                                             "label": "Innovation activities were abandoned",
                                             "value": "Innovation activities were abandoned"
                                         },
                                         {
+                                            "q_code": "1530",
                                             "label": "Innovation activities were scaled back",
                                             "value": "Innovation activities were scaled back"
                                         },
                                         {
+                                            "q_code": "1520",
                                             "label": "Innovation activities were still ongoing at the end of 2018",
                                             "value": "Innovation activities were still ongoing at the end of 2018"
                                         }
@@ -1462,6 +1520,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                        "q_code": "d3",
                                         "label": "No, there were no innovation activities that were abandoned, scaled back or ongoing at the end of 2018",
                                         "value": "No, there were no innovation activities that were abandoned, scaled back or ongoing at the end of 2018"
                                     }]
@@ -1481,6 +1540,7 @@
                                 "id": "answer3218",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2657",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1515,6 +1575,7 @@
                                 "id": "answer3219",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2658",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1549,6 +1610,7 @@
                                 "id": "answer3220",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2659",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1583,6 +1645,7 @@
                                 "id": "answer3221",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2660",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1617,6 +1680,7 @@
                                 "id": "answer3222",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2661",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1651,6 +1715,7 @@
                                 "id": "answer3223",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2662",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1685,6 +1750,7 @@
                                 "id": "answer3224",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2663",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1719,6 +1785,7 @@
                                 "id": "answer3225",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2664",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1753,6 +1820,7 @@
                                 "id": "answer3226",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2665",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1787,6 +1855,7 @@
                                 "id": "answer3227",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2666",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1821,6 +1890,7 @@
                                 "id": "answer3228",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2667",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -1855,6 +1925,7 @@
                                 "id": "answer3229",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2668",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2099,18 +2170,22 @@
                                 "label": "",
                                 "description": "",
                                 "options": [{
+                                        "q_code": "2011",
                                         "label": "No need due to previous innovations",
                                         "value": "No need due to previous innovations"
                                     },
                                     {
+                                        "q_code": "2020",
                                         "label": "No need due to market conditions",
                                         "value": "No need due to market conditions"
                                     },
                                     {
+                                        "q_code": "2030",
                                         "label": "The UK does not have a business environment which encourages companies to innovate",
                                         "value": "The UK does not have a business environment which encourages companies to innovate"
                                     },
                                     {
+                                        "q_code": "2040",
                                         "label": "Other",
                                         "value": "Other"
                                     }
@@ -2213,6 +2288,7 @@
                                 "id": "answer3231",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1210",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2247,6 +2323,7 @@
                                 "id": "answer3232",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1211",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2281,6 +2358,7 @@
                                 "id": "answer3233",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1220",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2315,6 +2393,7 @@
                                 "id": "answer3234",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1230",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2349,6 +2428,7 @@
                                 "id": "answer3235",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1240",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2383,6 +2463,7 @@
                                 "id": "answer3236",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1250",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2417,6 +2498,7 @@
                                 "id": "answer3237",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1290",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2451,6 +2533,7 @@
                                 "id": "answer3238",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1260",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2485,6 +2568,7 @@
                                 "id": "answer3239",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1270",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2519,6 +2603,7 @@
                                 "id": "answer3240",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1212",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2553,6 +2638,7 @@
                                 "id": "answer3241",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1213",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2587,6 +2673,7 @@
                                 "id": "answer3242",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1280",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2700,6 +2787,7 @@
                                 "id": "answer3243",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1601",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2734,6 +2822,7 @@
                                 "id": "answer3246",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1620",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2774,6 +2863,7 @@
                                 "id": "answer3244",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1632",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2808,6 +2898,7 @@
                                 "id": "answer3245",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1631",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2842,6 +2933,7 @@
                                 "id": "answer3247",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1640",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2876,6 +2968,7 @@
                                 "id": "answer3248",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1650",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2910,6 +3003,7 @@
                                 "id": "answer3249",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1660",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2944,6 +3038,7 @@
                                 "id": "answer3250",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1670",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -2978,6 +3073,7 @@
                                 "id": "answer3251",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1680",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -3012,6 +3108,7 @@
                                 "id": "answer3252",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1610",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -3046,6 +3143,7 @@
                                 "id": "answer3253",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1611",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -3080,6 +3178,7 @@
                                 "id": "answer3254",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "1690",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -3206,18 +3305,22 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                            "q_code": "1811",
                                             "label": "UK regional within approximately 100 miles of this business",
                                             "value": "UK regional within approximately 100 miles of this business"
                                         },
                                         {
+                                            "q_code": "1812",
                                             "label": "UK national",
                                             "value": "UK national"
                                         },
                                         {
+                                            "q_code": "1813",
                                             "label": "European countries",
                                             "value": "European countries"
                                         },
                                         {
+                                            "q_code": "1814",
                                             "label": "All other countries",
                                             "value": "All other countries"
                                         }
@@ -3230,6 +3333,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                        "q_code": "d4",
                                         "label": "No, this business did not co-operate on innovation activities with other businesses within the enterprise group",
                                         "value": "No, this business did not co-operate on innovation activities with other businesses within the enterprise group"
                                     }]
@@ -3253,18 +3357,22 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                            "q_code": "1821",
                                             "label": "UK regional within approximately 100 miles of this business",
                                             "value": "UK regional within approximately 100 miles of this business"
                                         },
                                         {
+                                            "q_code": "1822",
                                             "label": "UK national",
                                             "value": "UK national"
                                         },
                                         {
+                                            "q_code": "1823",
                                             "label": "European countries",
                                             "value": "European countries"
                                         },
                                         {
+                                            "q_code": "1824",
                                             "label": "All other countries",
                                             "value": "All other countries"
                                         }
@@ -3277,6 +3385,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                        "q_code": "d5",
                                         "label": "No, this business did not co-operate on innovation activities with suppliers of equipment, materials, services or software",
                                         "value": "No, this business did not co-operate on innovation activities with suppliers of equipment, materials, services or software"
                                     }]
@@ -3300,18 +3409,22 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                            "q_code": "1881",
                                             "label": "UK regional within approximately 100 miles of this business",
                                             "value": "UK regional within approximately 100 miles of this business"
                                         },
                                         {
+                                            "q_code": "1882",
                                             "label": "UK national",
                                             "value": "UK national"
                                         },
                                         {
+                                            "q_code": "1883",
                                             "label": "European countries",
                                             "value": "European countries"
                                         },
                                         {
+                                            "q_code": "1884",
                                             "label": "All other countries",
                                             "value": "All other countries"
                                         }
@@ -3324,6 +3437,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                        "q_code": "d6",
                                         "label": "No, this business did not co-operate on innovation activities with clients or customers from the private sector",
                                         "value": "No, this business did not co-operate on innovation activities with clients or customers from the private sector"
                                     }]
@@ -3353,18 +3467,22 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                            "q_code": "1891",
                                             "label": "UK regional within approximately 100 miles of this business",
                                             "value": "UK regional within approximately 100 miles of this business"
                                         },
                                         {
+                                            "q_code": "1892",
                                             "label": "UK national",
                                             "value": "UK national"
                                         },
                                         {
+                                            "q_code": "1893",
                                             "label": "European countries",
                                             "value": "European countries"
                                         },
                                         {
+                                            "q_code": "1894",
                                             "label": "All other countries",
                                             "value": "All other countries"
                                         }
@@ -3377,6 +3495,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                        "q_code": "d7",
                                         "label": "No, this business did not co-operate on innovation activities with clients or customers from the public sector",
                                         "value": "No, this business did not co-operate on innovation activities with clients or customers from the public sector"
                                     }]
@@ -3400,18 +3519,22 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                            "q_code": "1841",
                                             "label": "UK regional within approximately 100 miles of this business",
                                             "value": "UK regional within approximately 100 miles of this business"
                                         },
                                         {
+                                            "q_code": "1842",
                                             "label": "UK national",
                                             "value": "UK national"
                                         },
                                         {
+                                            "q_code": "1843",
                                             "label": "European countries",
                                             "value": "European countries"
                                         },
                                         {
+                                            "q_code": "1844",
                                             "label": "All other countries",
                                             "value": "All other countries"
                                         }
@@ -3424,6 +3547,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                        "q_code": "d8",
                                         "label": "No, this business did not co-operate on innovation activities with competitors or other businesses in the industry",
                                         "value": "No, this business did not co-operate on innovation activities with competitors or other businesses in the industry"
                                     }]
@@ -3447,18 +3571,22 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                            "q_code": "1851",
                                             "label": "UK regional within approximately 100 miles of this business",
                                             "value": "UK regional within approximately 100 miles of this business"
                                         },
                                         {
+                                            "q_code": "1852",
                                             "label": "UK national",
                                             "value": "UK national"
                                         },
                                         {
+                                            "q_code": "1853",
                                             "label": "European countries",
                                             "value": "European countries"
                                         },
                                         {
+                                            "q_code": "1854",
                                             "label": "All other countries",
                                             "value": "All other countries"
                                         }
@@ -3471,6 +3599,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                        "q_code": "d9",
                                         "label": "No, this business did not co-operate on innovation activities with consultants, commercial labs or private research and development institutes",
                                         "value": "No, this business did not co-operate on innovation activities with consultants, commercial labs or private research and development institutes"
                                     }]
@@ -3494,18 +3623,22 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                            "q_code": "1861",
                                             "label": "UK regional within approximately 100 miles of this business",
                                             "value": "UK regional within approximately 100 miles of this business"
                                         },
                                         {
+                                            "q_code": "1862",
                                             "label": "UK national",
                                             "value": "UK national"
                                         },
                                         {
+                                            "q_code": "1863",
                                             "label": "European countries",
                                             "value": "European countries"
                                         },
                                         {
+                                            "q_code": "1864",
                                             "label": "All other countries",
                                             "value": "All other countries"
                                         }
@@ -3518,6 +3651,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                        "q_code": "d10",
                                         "label": "No, this business did not co-operate on innovation activities with universities or other higher education institutions",
                                         "value": "No, this business did not co-operate on innovation activities with universities or other higher education institutions"
                                     }]
@@ -3541,18 +3675,22 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                            "q_code": "1871",
                                             "label": "UK regional within approximately 100 miles of this business",
                                             "value": "UK regional within approximately 100 miles of this business"
                                         },
                                         {
+                                            "q_code": "1872",
                                             "label": "UK national",
                                             "value": "UK national"
                                         },
                                         {
+                                            "q_code": "1873",
                                             "label": "European countries",
                                             "value": "European countries"
                                         },
                                         {
+                                            "q_code": "1874",
                                             "label": "All other countries",
                                             "value": "All other countries"
                                         }
@@ -3565,6 +3703,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                        "q_code": "d11",
                                         "label": "No, this business did not co-operate on innovation activities with government or public research institutes",
                                         "value": "No, this business did not co-operate on innovation activities with government or public research institutes"
                                     }]
@@ -3588,18 +3727,22 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                            "q_code": "1875",
                                             "label": "UK regional within approximately 100 miles of this business",
                                             "value": "UK regional within approximately 100 miles of this business"
                                         },
                                         {
+                                            "q_code": "1876",
                                             "label": "UK national",
                                             "value": "UK national"
                                         },
                                         {
+                                            "q_code": "1877",
                                             "label": "European countries",
                                             "value": "European countries"
                                         },
                                         {
+                                            "q_code": "1878",
                                             "label": "All other countries",
                                             "value": "All other countries"
                                         }
@@ -3612,6 +3755,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                        "q_code": "d12",
                                         "label": "No this business did not co-operate on innovation activities with other businesses outside the enterprise group",
                                         "value": "No this business did not co-operate on innovation activities with other businesses outside the enterprise group"
                                     }]
@@ -3635,18 +3779,22 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                            "q_code": "1879",
                                             "label": "UK regional within approximately 100 miles of this business",
                                             "value": "UK regional within approximately 100 miles of this business"
                                         },
                                         {
+                                            "q_code": "1880",
                                             "label": "UK national",
                                             "value": "UK national"
                                         },
                                         {
+                                            "q_code": "1885",
                                             "label": "European countries",
                                             "value": "European countries"
                                         },
                                         {
+                                            "q_code": "1886",
                                             "label": "All other countries",
                                             "value": "All other countries"
                                         }
@@ -3659,6 +3807,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                        "q_code": "d13",
                                         "label": "No this business did not co-operate on innovation activities with non-profit organisations",
                                         "value": "No this business did not co-operate on innovation activities with non-profit organisations"
                                     }]
@@ -3678,6 +3827,7 @@
                                 "id": "answer3286",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2650",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -3712,6 +3862,7 @@
                                 "id": "answer3287",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2651",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -3746,6 +3897,7 @@
                                 "id": "answer3288",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2652",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -3780,6 +3932,7 @@
                                 "id": "answer3289",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2653",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -3814,6 +3967,7 @@
                                 "id": "answer3290",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2654",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -3848,6 +4002,7 @@
                                 "id": "answer3291",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2655",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -3887,6 +4042,7 @@
                                 "id": "answer3292",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2656",
                                 "label": "",
                                 "description": "",
                                 "options": [{
@@ -3962,15 +4118,18 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                            "q_code": "2668",
                                             "label": "UK local or regional authorities",
                                             "value": "UK local or regional authorities"
                                         },
                                         {
+                                            "q_code": "2669",
                                             "label": "UK central government",
                                             "value": "UK central government",
                                             "description": "Include: UK government’s agencies or funding bodies for example Innovate UK, formerly known as TSB"
                                         },
                                         {
+                                            "q_code": "2670",
                                             "label": "European Union (EU) institutions or programmes",
                                             "value": "European Union (EU) institutions or programmes"
                                         }
@@ -3983,6 +4142,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                        "q_code": "d14",
                                         "label": "No public financial support was received for innovation activities from government",
                                         "value": "No public financial support was received for innovation activities from government"
                                     }]
@@ -4022,11 +4182,13 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                            "q_code": "2672",
                                             "label": "Direct financial support",
                                             "value": "Direct financial support",
                                             "description": "For example Smart or Collaborative Research and Development grants, work with Catapult centres, Innovation vouchers"
                                         },
                                         {
+                                            "q_code": "2673",
                                             "label": "Indirect financial support",
                                             "value": "Indirect financial support",
                                             "description": "For example Research and Development tax credits, Patent box"
@@ -4040,6 +4202,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
+                                        "q_code": "2674",
                                         "label": "Don’t know",
                                         "value": "Don’t know"
                                     }]
@@ -4077,6 +4240,7 @@
                                     "id": "answer3262",
                                     "mandatory": false,
                                     "type": "Currency",
+                                    "q_code": "2410",
                                     "label": "Total estimated turnover for 2016, excluding VAT",
                                     "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000",
                                     "min_value": {
@@ -4090,6 +4254,7 @@
                                     "id": "answer3264",
                                     "mandatory": false,
                                     "type": "Currency",
+                                    "q_code": "2420",
                                     "label": "Total estimated turnover for 2018, excluding VAT",
                                     "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000",
                                     "min_value": {
@@ -4168,6 +4333,7 @@
                                     "id": "answer3207",
                                     "mandatory": false,
                                     "type": "Percentage",
+                                    "q_code": "0810",
                                     "label": "Goods and services new to the market in 2016-2018",
                                     "description": "",
                                     "min_value": {
@@ -4184,6 +4350,7 @@
                                     "id": "answer3208",
                                     "mandatory": false,
                                     "type": "Percentage",
+                                    "q_code": "0820",
                                     "label": "Goods and services only new to this business in 2016-2018",
                                     "description": "",
                                     "min_value": {
@@ -4200,6 +4367,7 @@
                                     "id": "answer3209",
                                     "mandatory": false,
                                     "type": "Percentage",
+                                    "q_code": "0830",
                                     "label": "Goods and services that were significantly improved in 2016-2018",
                                     "description": "",
                                     "min_value": {
@@ -4216,6 +4384,7 @@
                                     "id": "answer3211",
                                     "mandatory": false,
                                     "type": "Percentage",
+                                    "q_code": "0840",
                                     "label": "Goods and services that remained unchanged or only marginally modified",
                                     "description": "Include the resale of goods and services purchased from other business.",
                                     "min_value": {
@@ -4243,6 +4412,7 @@
                                 "id": "answer3265",
                                 "mandatory": false,
                                 "type": "Currency",
+                                "q_code": "2440",
                                 "label": "Total value of exports for 2018",
                                 "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000",
                                 "min_value": {
@@ -4281,6 +4451,7 @@
                                     "id": "answer3266",
                                     "mandatory": false,
                                     "type": "Number",
+                                    "q_code": "2510",
                                     "label": "Total number of employees for 2016",
                                     "description": "",
                                     "min_value": {
@@ -4293,6 +4464,7 @@
                                     "id": "answer3268",
                                     "mandatory": false,
                                     "type": "Number",
+                                    "q_code": "2520",
                                     "label": "Total number of employees for 2018",
                                     "description": "",
                                     "min_value": {
@@ -4316,6 +4488,7 @@
                                     "id": "answer3269",
                                     "mandatory": false,
                                     "type": "Percentage",
+                                    "q_code": "2610",
                                     "label": "Science or engineering subjects",
                                     "description": "",
                                     "min_value": {
@@ -4332,6 +4505,7 @@
                                     "id": "answer3270",
                                     "mandatory": false,
                                     "type": "Percentage",
+                                    "q_code": "2620",
                                     "label": "Other subjects",
                                     "description": "",
                                     "min_value": {
@@ -4362,26 +4536,32 @@
                                 "label": "",
                                 "description": "",
                                 "options": [{
+                                        "q_code": "2631",
                                         "label": "Graphic arts, layout, advertising",
                                         "value": "Graphic arts, layout, advertising"
                                     },
                                     {
+                                        "q_code": "2632",
                                         "label": "Design of objects or services",
                                         "value": "Design of objects or services"
                                     },
                                     {
+                                        "q_code": "2633",
                                         "label": "Multimedia, web design (for example audio, graphics, text, still pictures, animation, video)",
                                         "value": "Multimedia, web design (for example audio, graphics, text, still pictures, animation, video)"
                                     },
                                     {
+                                        "q_code": "2634",
                                         "label": "Software development, database management",
                                         "value": "Software development, database management"
                                     },
                                     {
+                                        "q_code": "2635",
                                         "label": "Engineering, applied sciences",
                                         "value": "Engineering, applied sciences"
                                     },
                                     {
+                                        "q_code": "2636",
                                         "label": "Mathematics, statistics",
                                         "value": "Mathematics, statistics"
                                     }
@@ -4416,6 +4596,7 @@
                                 "id": "answer3272",
                                 "mandatory": false,
                                 "type": "TextArea",
+                                "q_code": "2700",
                                 "label": "Comments",
                                 "description": ""
                             }]
@@ -4444,6 +4625,7 @@
                                     "id": "answer3273",
                                     "mandatory": false,
                                     "type": "Unit",
+                                    "q_code": "2801",
                                     "unit": "duration-hour",
                                     "unit_length": "long",
                                     "label": "Hours",
@@ -4458,6 +4640,7 @@
                                     "id": "answer3274",
                                     "mandatory": false,
                                     "type": "Unit",
+                                    "q_code": "2800",
                                     "unit": "duration-minute",
                                     "unit_length": "long",
                                     "label": "Minutes",
@@ -4483,6 +4666,7 @@
                                 "id": "answer3275",
                                 "mandatory": false,
                                 "type": "Radio",
+                                "q_code": "2900",
                                 "label": "",
                                 "description": "",
                                 "options": [{
