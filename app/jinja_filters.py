@@ -43,34 +43,25 @@ def get_currency_symbol(currency='GBP'):
 
 
 @blueprint.app_template_filter()
-def format_currency_for_input(value, decimal_places=0):
-    if value is None or value == '':
-        return ''
-    if decimal_places is None or decimal_places == 0:
-        return format_number(value)
-    return get_formatted_currency(value).replace(get_currency_symbol(), '')
-
-
-@blueprint.app_template_filter()
 def format_percentage(value):
     return '{}%'.format(value)
 
 
 @blueprint.app_template_filter()
-def format_address_list(user_entered_address=None, metadata_address=None):
+def format_address_list(first_address=None, second_address=None):
     """
-        This function format_address_list accepts two addresses, a user submitted address and a metadata address
-        If all the items in address list are 'Undefined' (nothing in answer_store) then we retrieve the metadata.
+        The function format_address_list accepts two lists of address values.
+        If all the items in the first address list are empty or 'Undefined' then we use the second address.
 
-        :param user_entered_address user entered address which is a list of answer fields
-        :param metadata_address metadata address which is a list of answer fields passed to us
-        :return: the value of the address to be piped
+        :param (list) first_address
+        :param (list) second_address
+        :return: first address if values present else second address
     """
-    if all(isinstance(field, Undefined) for field in user_entered_address) or \
-       all(field == '' for field in user_entered_address):
-        address = metadata_address
+    if all(isinstance(field, Undefined) for field in first_address) or \
+       all(field == '' for field in first_address):
+        address = second_address
     else:
-        address = user_entered_address
+        address = first_address
 
     address_list = concatenated_list(list_items=address, delimiter='<br />')
 
@@ -339,13 +330,13 @@ def first_non_empty_item(context, *items):
 
 
 @blueprint.app_template_filter()
-def format_household_member_name(names):
+def format_household_name(names):
     return concatenated_list(list_items=names, delimiter=' ')
 
 
 @blueprint.app_template_filter()
-def format_household_member_name_possessive(names):
-    name = format_household_member_name(names)
+def format_household_name_possessive(names):
+    name = format_household_name(names)
     if name:
         last_char = name[-1:]
         if last_char.lower() == 's':
@@ -404,7 +395,7 @@ def format_household_summary(context, names):
     if names:
         person_list = []
         for first_name, middle_name, last_name in zip(names[0], names[1], names[2]):
-            person_list.append(format_household_member_name([first_name, middle_name, last_name]))
+            person_list.append(format_household_name([first_name, middle_name, last_name]))
 
         return format_unordered_list(context, [person_list])
     return ''
@@ -547,11 +538,6 @@ def format_currency_processor():
 @blueprint.app_context_processor
 def get_currency_symbol_processor():
     return dict(get_currency_symbol=get_currency_symbol)
-
-
-@blueprint.app_context_processor
-def format_currency_for_input_processor():
-    return dict(format_currency_for_input=format_currency_for_input)
 
 
 @blueprint.app_context_processor

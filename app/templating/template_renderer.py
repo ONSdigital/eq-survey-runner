@@ -15,8 +15,8 @@ class TemplateRenderer:
         env.filters['concatenated_list'] = filters.concatenated_list
         env.filters['format_date'] = filters.format_date
         env.filters['format_date_custom'] = filters.format_date_custom
-        env.filters['format_household_name'] = filters.format_household_member_name
-        env.filters['format_household_name_possessive'] = filters.format_household_member_name_possessive
+        env.filters['format_household_name'] = filters.format_household_name
+        env.filters['format_household_name_possessive'] = filters.format_household_name_possessive
         env.filters['format_household_summary'] = filters.format_household_summary
         env.filters['format_number'] = filters.format_number
         env.filters['format_repeating_summary'] = filters.format_repeating_summary
