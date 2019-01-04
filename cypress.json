@@ -1,0 +1,12 @@
+{
+  "baseUrl": "http://localhost:5000",
+  "fixturesFolder": "tests/functional/cypress/fixtures",
+  "integrationFolder": "tests/functional/cypress/aggregated",
+  "pluginsFile": "tests/functional/cypress/plugins.js",
+  "screenshotsFolder": "tests/functional/cypress/screenshots",
+  "supportFile": "tests/functional/cypress/support.js",
+  "videosFolder": "tests/functional/cypress/videos",
+  "projectId": "fein7p",
+  "videoCompression": 0,
+  "chromeWebSecurity": false
+}
