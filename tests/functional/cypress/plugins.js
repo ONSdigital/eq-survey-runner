@@ -10,8 +10,12 @@
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
+const webpack = require('@cypress/webpack-preprocessor')
 
 module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+  // Using the webpack preprocessor allows us to use require.context to include
+  // all files in a directory. The default is browserify which doesn't have that
+  // option
+  on('file:preprocessor', webpack())
 }
+
