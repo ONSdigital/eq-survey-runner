@@ -12,7 +12,7 @@ describe('Feature: Skipping in block in repeating group based on repeating answe
   });
 
   describe('Given I enter 3 people and give the date of birth (dob) of the first person only', function() {
-    it('I should only be asked supplemental question for the one with the dob', function () {
+    it('I should only be asked supplemental question for the one with the dob', function() {
       cy
         .get(HouseholdCompositionPage.firstName()).type('aaa')
         .get(HouseholdCompositionPage.addPerson()).click()
@@ -34,7 +34,7 @@ describe('Feature: Skipping in block in repeating group based on repeating answe
   });
 
   describe('Given I enter 3 people and give the date of birth (dob) of the last person only', function() {
-    it('I should only be asked supplemental question for the one with the dob', function () {
+    it('I should only be asked supplemental question for the one with the dob', function() {
       cy
         .get(HouseholdCompositionPage.firstName()).type('aaa')
         .get(HouseholdCompositionPage.addPerson()).click()

@@ -9,7 +9,7 @@ describe('Feature: Confirmation Question', function() {
 
   describe('Given I have a confirmation Question', function() {
 
-    before('Get to summary', function () {
+    before('Get to summary', function() {
       openQuestionnaire('test_confirmation_question.json')
         .get(NumberOfEmployeesTotalBlockPage.numberOfEmployeesTotal()).type(0)
         .get(NumberOfEmployeesTotalBlockPage.submit()).click()
@@ -22,13 +22,13 @@ describe('Feature: Confirmation Question', function() {
       Cypress.Cookies.preserveOnce('session');
     });
 
-    it('When I view the summary, Then the confirmation question should not be displayed', function () {
+    it('When I view the summary, Then the confirmation question should not be displayed', function() {
       cy
         .get(SummaryPage.numberOfEmployeesTotal()).stripText().should('contain', '0')
         .get(SummaryPage.confirmZeroEmployeesAnswer()).should('not.exist');
     });
 
-    it('When I view my responses, Then the confirmation question should not be displayed', function () {
+    it('When I view my responses, Then the confirmation question should not be displayed', function() {
       cy
         .get(SummaryPage.submit()).click()
         .get(ThankYouPage.viewSubmitted()).click()

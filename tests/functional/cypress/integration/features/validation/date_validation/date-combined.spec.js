@@ -8,12 +8,12 @@ describe('Feature: Combined question level and single validation for dates', fun
     openQuestionnaire('test_date_validation_combined.json');
   });
 
-  beforeEach(function () {
+  beforeEach(function() {
     // Cypress clears cookies between tests by default.
     Cypress.Cookies.preserveOnce('session');
   });
 
-  describe('Period Validation', function () {
+  describe('Period Validation', function() {
     describe('Given I enter dates', function() {
 
       it('When I enter a single dates that are too early/late, Then I should see a single validation errors', function() {

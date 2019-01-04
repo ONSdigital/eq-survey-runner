@@ -3,7 +3,7 @@ const TotalAnswerPage = require('../../../../../generated_pages/sum_multi_valida
 const BreakdownAnswerPage = require('../../../../../generated_pages/sum_multi_validation_against_total/breakdown-block.page');
 const SummaryPage = require('../../../../../generated_pages/sum_multi_validation_against_total/summary.page');
 
-describe('Feature: Sum of grouped answers validation against total (Multi Rule Equals)', function () {
+describe('Feature: Sum of grouped answers validation against total (Multi Rule Equals)', function() {
 
   beforeEach(function() {
     openQuestionnaire('test_sum_multi_validation_against_total.json');

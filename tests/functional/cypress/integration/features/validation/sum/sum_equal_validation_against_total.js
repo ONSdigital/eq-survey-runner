@@ -3,7 +3,7 @@ const TotalAnswerPage = require('../../../../../generated_pages/sum_equal_valida
 const BreakdownAnswerPage = require('../../../../../generated_pages/sum_equal_validation_against_total/breakdown-block.page');
 const SummaryPage = require('../../../../../generated_pages/sum_equal_validation_against_total/summary.page');
 
-describe('Feature: Sum of grouped answers equal to validation against total ', function () {
+describe('Feature: Sum of grouped answers equal to validation against total ', function() {
 
   beforeEach(function() {
     openQuestionnaire('test_sum_equal_validation_against_total.json');

@@ -8,7 +8,7 @@ describe('Feature: Question level validation for date ranges', function() {
     openQuestionnaire('test_date_validation_range.json');
   });
 
-  describe('Period Validation', function () {
+  describe('Period Validation', function() {
     describe('Given I enter a date period greater than the max period limit', function() {
       it('When I continue, Then I should see a period validation error', function() {
         cy
@@ -55,7 +55,7 @@ describe('Feature: Question level validation for date ranges', function() {
     });
   });
 
-  describe('Date Range Validation', function () {
+  describe('Date Range Validation', function() {
     describe('Given I enter a "to date" which is earlier than the "from date"', function() {
       it('When I continue, Then I should see a validation error', function() {
         cy

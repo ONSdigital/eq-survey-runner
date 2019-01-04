@@ -13,7 +13,7 @@ const ThankYouPage = require('../../base_pages/thank-you.page.js');
 
 describe('Repeat Until Summaries', function() {
 
-  beforeEach(function () {
+  beforeEach(function() {
     openQuestionnaire('test_repeat_until_summaries.json');
   });
 
@@ -24,25 +24,25 @@ describe('Repeat Until Summaries', function() {
       .get(HouseholdSummaryBlockPage.submit()).click();
   });
 
-  it('Given I complete the First Member group, When I get to see the calculation summary, Then I should see the correct total for the first member', function () {
+  it('Given I complete the First Member group, When I get to see the calculation summary, Then I should see the correct total for the first member', function() {
     completeHouseholdSection();
     cy.get(HouseholdSummaryBlockPage.submit()).click();
     completeMember(['Aaa']);
   });
 
-  it('Given I complete the Second Member group, When I get to see the calculation summary, Then I should see the correct total for the second member', function () {
+  it('Given I complete the Second Member group, When I get to see the calculation summary, Then I should see the correct total for the second member', function() {
     completeHouseholdSection();
     cy.get(HouseholdSummaryBlockPage.submit()).click();
     completeMember(['Aaa', 'Bbb']);
   });
 
-  it('Given I complete the Third Member group, When I get to see the calculation summary, Then I should see the correct total for the third member', function () {
+  it('Given I complete the Third Member group, When I get to see the calculation summary, Then I should see the correct total for the third member', function() {
     completeHouseholdSection();
     cy.get(HouseholdSummaryBlockPage.submit()).click();
     completeMember(['Aaa', 'Bbb', 'Ccc']);
   });
 
-  it('Given I\'ve completed the Member Section, When I get to see the section summary, Then I should see the correct answers for each member', function () {
+  it('Given I\'ve completed the Member Section, When I get to see the section summary, Then I should see the correct answers for each member', function() {
     completeHouseholdSection();
     cy.get(HouseholdSummaryBlockPage.submit()).click();
     completeMember(['Aaa', 'Bbb', 'Ccc']);
@@ -53,7 +53,7 @@ describe('Repeat Until Summaries', function() {
 
   });
 
-  it('Given I\'ve completed all Sections, When I get to see the final summary, Then I should see the correct answers for all questions', function () {
+  it('Given I\'ve completed all Sections, When I get to see the final summary, Then I should see the correct answers for all questions', function() {
     completeHouseholdSection();
     cy.get(HouseholdSummaryBlockPage.submit()).click();
     completeMember(['Aaa', 'Bbb', 'Ccc']);
@@ -65,7 +65,7 @@ describe('Repeat Until Summaries', function() {
       .then(checkMemberSummaryBlockPage);
   });
 
-  it('Given I\'ve Submitted the survey, When I get to see the answers after submission, Then I should see the correct answers for all questions', function () {
+  it('Given I\'ve Submitted the survey, When I get to see the answers after submission, Then I should see the correct answers for all questions', function() {
     completeHouseholdSection();
     cy.get(HouseholdSummaryBlockPage.submit()).click();
     completeMember(['Aaa', 'Bbb', 'Ccc']);

@@ -9,7 +9,7 @@ const test_questionnaire_name = 'test_routing_answer_count.json';
 
 describe('Feature: Routing on answer count', function() {
 
-  it('Given I have a household with two members, When I enter both household members, Then I am routed to the Equals 2 Group page', function () {
+  it('Given I have a household with two members, When I enter both household members, Then I am routed to the Equals 2 Group page', function() {
     openQuestionnaire(test_questionnaire_name)
       .get(HouseholdCompositionPage.firstName()).type('Alpha')
       .get(HouseholdCompositionPage.lastName()).type('One')
@@ -20,7 +20,7 @@ describe('Feature: Routing on answer count', function() {
       .url().should('contain', GroupEqual2.pageName);
   });
 
-  it('Given I have a household with three members, When I enter three household members, Then I am routed to the greater than 2 Group page', function () {
+  it('Given I have a household with three members, When I enter three household members, Then I am routed to the greater than 2 Group page', function() {
     openQuestionnaire(test_questionnaire_name)
       .get(HouseholdCompositionPage.firstName()).type('Alpha')
       .get(HouseholdCompositionPage.lastName()).type('One')
@@ -34,7 +34,7 @@ describe('Feature: Routing on answer count', function() {
       .url().should('contain', GroupGreaterThan2.pageName);
   });
 
-  it('Given I have a household with one member, When I enter a single household member, Then i am routed to the Less than 2 Group page', function () {
+  it('Given I have a household with one member, When I enter a single household member, Then i am routed to the Less than 2 Group page', function() {
     openQuestionnaire(test_questionnaire_name)
       .get(HouseholdCompositionPage.firstName()).type('Alpha')
       .get(HouseholdCompositionPage.lastName()).type('One')

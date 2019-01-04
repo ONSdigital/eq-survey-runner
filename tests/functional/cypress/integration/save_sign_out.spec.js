@@ -29,7 +29,7 @@ describe('Save and Signout', function() {
       openQuestionnaire('test_numbers.json', {userId: 'test_user', collectionId: collectionId});
     });
 
-    it('Given I am completing a survey, when I select save and complete later, then I am redirected to sign out page and my session is cleared', function () {
+    it('Given I am completing a survey, when I select save and complete later, then I am redirected to sign out page and my session is cleared', function() {
       cy
         .get(SetMinMax.setMinimum()).type('10')
         .get(SetMinMax.setMaximum()).type('1020')
@@ -40,7 +40,7 @@ describe('Save and Signout', function() {
         .get(TestMinMax.pageBody()).should('contain', 'Your session has expired');
     });
 
-    it('Given I have started a questionnaire, when I return to the questionnaire, then I am returned to the page I was on and can then complete the survey', function () {
+    it('Given I have started a questionnaire, when I return to the questionnaire, then I am returned to the page I was on and can then complete the survey', function() {
       cy
         .url().should('contain', TestMinMax.pageName)
         .get(TestMinMax.testRange()).type('10')
@@ -56,7 +56,7 @@ describe('Save and Signout', function() {
 
   describe('Using the test introduction questionnaire', () => {
 
-    it('Given a logout url is set, when I navigate the questionnaire, then I see the correct sign out buttons', function () {
+    it('Given a logout url is set, when I navigate the questionnaire, then I see the correct sign out buttons', function() {
       openQuestionnaire('test_introduction.json', {includeLogoutUrl: true});
       cy
         .url().should('contain', IntroductionPage.pageName)
@@ -75,7 +75,7 @@ describe('Save and Signout', function() {
         .get(IntroThankYouPagePage.signOut()).stripText().should('contain', 'Sign out');
     });
 
-    it('Given a logout url is not set, when I navigate the questionnaire, then I see the correct sign out buttons', function () {
+    it('Given a logout url is not set, when I navigate the questionnaire, then I see the correct sign out buttons', function() {
       openQuestionnaire('test_introduction.json', {includeLogoutUrl: false});
       cy
         .url().should('contain', IntroductionPage.pageName)
@@ -94,7 +94,7 @@ describe('Save and Signout', function() {
         .get(IntroductionPage.signOut()).should('not.exist');
     });
 
-    it('Given I am on a northern ireland themed survey, when I navigate the questionnaire, then I see the correct sign out buttons', function () {
+    it('Given I am on a northern ireland themed survey, when I navigate the questionnaire, then I see the correct sign out buttons', function() {
       openQuestionnaire('test_theme_northernireland.json', {includeLogoutUrl: true});
       cy
         .url().should('contain', NIRadioPage.pageName)
@@ -110,7 +110,7 @@ describe('Save and Signout', function() {
         .get(NIViewSubmissionPage.signOut()).stripText().should('contain', 'Sign out');
     });
 
-    it('Given I am on a social themed survey, when I navigate the questionnaire, then I see the correct sign out buttons', function () {
+    it('Given I am on a social themed survey, when I navigate the questionnaire, then I see the correct sign out buttons', function() {
       openQuestionnaire('test_theme_social.json', {includeLogoutUrl: false});
       cy
         .url().should('contain', SocialRadioPage.pageName)
@@ -126,7 +126,7 @@ describe('Save and Signout', function() {
         .get(SocialViewSubmissionPage.signOut()).should('not.exist');
     });
 
-    it('Given a logout url is set, when I load the feedback page, then I see the sign out button', function () {
+    it('Given a logout url is set, when I load the feedback page, then I see the sign out button', function() {
       openQuestionnaire('test_numbers.json', {includeLogoutUrl: true});
       cy
         .visit(FeedbackForm.url())
@@ -135,7 +135,7 @@ describe('Save and Signout', function() {
         .get(FeedbackForm.signOut()).stripText().should('contain', 'Sign out');
     });
 
-    it('Given a logout url is not set, when I load the feedback page, then there should be no sign out button', function () {
+    it('Given a logout url is not set, when I load the feedback page, then there should be no sign out button', function() {
       openQuestionnaire('test_numbers.json', {includeLogoutUrl: false});
       cy
         .visit(FeedbackForm.url())
@@ -143,7 +143,7 @@ describe('Save and Signout', function() {
         .get(FeedbackForm.signOut()).should('not.exist');
     });
 
-    it('Given a logout url is set and I load the feedback page, when I sign out, then I should be on the account service logged out page', function () {
+    it('Given a logout url is set and I load the feedback page, when I sign out, then I should be on the account service logged out page', function() {
       openQuestionnaire('test_numbers.json', {includeLogoutUrl: true});
       cy
         .visit(FeedbackForm.url())

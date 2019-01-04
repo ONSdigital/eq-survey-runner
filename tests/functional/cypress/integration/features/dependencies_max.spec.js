@@ -3,7 +3,7 @@ const MaxBlockPage = require('../../../generated_pages/dependencies_max_value/ma
 const MaxDependentBlockPage = require('../../../generated_pages/dependencies_max_value/dependent-block.page.js');
 const MaxSummary = require('../../../generated_pages/dependencies_max_value/summary.page.js');
 
-describe('Dependency Max', function () {
+describe('Dependency Max', function() {
 
   describe('Given I complete the test_dependencies_max_value schema', function() {
 

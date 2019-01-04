@@ -4,7 +4,7 @@ const DatesPage = require('../../generated_pages/conditional_dates/date-block.pa
 const DatesConfirmationPage = require('../../generated_pages/conditional_dates/date-value-test.page');
 const SummaryPage = require('../../generated_pages/conditional_dates/summary.page');
 
-describe('Piped Dates', function () {
+describe('Piped Dates', function() {
 
   beforeEach(() => {
     openQuestionnaire('test_conditional_dates.json');

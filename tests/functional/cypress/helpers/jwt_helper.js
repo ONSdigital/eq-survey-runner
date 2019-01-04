@@ -102,7 +102,7 @@ function generateToken(schema, userId, collectionId, periodId = '201605', period
   let encryptionKeyKid = shasum.digest('hex');
 
   return JWK.asKey(webKey.toJSON())
-    .then(function (jwk) {
+    .then(function(jwk) {
       let cfg = {
         contentAlg: 'A256GCM'
       };
@@ -116,7 +116,7 @@ function generateToken(schema, userId, collectionId, periodId = '201605', period
       let jwe = JWE.createEncrypt(cfg, recipient);
       return jwe.update(sJWT).final();
     })
-    .then(function (result) {
+    .then(function(result) {
       let token = result.protected + '.' +
         result.recipients[0].encrypted_key + '.' +
         result.iv + '.' +

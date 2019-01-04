@@ -27,11 +27,11 @@ class IntroductionPage extends BasePage {
   }
 
   legalResponse() {
-      return '[data-qa="legal-response"]';
+    return '[data-qa="legal-response"]';
   }
 
   legalBasis() {
-      return '[data-qa="legal-basis"]';
+    return '[data-qa="legal-basis"]';
   }
 
   introDescription() {

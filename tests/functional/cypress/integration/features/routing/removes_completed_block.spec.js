@@ -8,7 +8,7 @@ describe('Feature: Routing incompletes block if routing backwards', function() {
 
   describe('Given I have a confirmation Question', function() {
 
-    before('Get to summary', function () {
+    before('Get to summary', function() {
       openQuestionnaire('test_confirmation_question.json')
         .get(NumberOfEmployeesTotalBlockPage.numberOfEmployeesTotal()).type(0)
         .get(NumberOfEmployeesTotalBlockPage.submit()).click()
@@ -17,7 +17,7 @@ describe('Feature: Routing incompletes block if routing backwards', function() {
         .url().should('contain', SummaryPage.pageName);
     });
 
-    it('When I use browser back button and change confirmation to no then Summary should not be available', function () {
+    it('When I use browser back button and change confirmation to no then Summary should not be available', function() {
       cy
         .go('back')
         .navigationLink('Summary').should('be.visible')

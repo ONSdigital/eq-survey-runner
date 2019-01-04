@@ -3,7 +3,7 @@ const MinBlockPage = require('../../../generated_pages/dependencies_min_value/mi
 const MinDependentBlockPage = require('../../../generated_pages/dependencies_min_value/dependent-block.page.js');
 const MinSummary = require('../../../generated_pages/dependencies_min_value/summary.page.js');
 
-describe('Dependency Min', function () {
+describe('Dependency Min', function() {
   describe('Given I complete the test_dependencies_min_value schema', function() {
 
     beforeEach(function() {

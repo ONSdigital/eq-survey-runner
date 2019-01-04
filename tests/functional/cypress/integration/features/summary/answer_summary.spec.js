@@ -6,11 +6,11 @@ const RepeatingNameBlockPage = require('../../../../generated_pages/answer_summa
 const RepeatingAnyoneElseBlockPage = require('../../../../generated_pages/answer_summary/repeating-anyone-else-block.page.js');
 const HouseholdSummaryPage = require('../../../../generated_pages/answer_summary/household-summary.page.js');
 
-describe('Answer Summary', function () {
+describe('Answer Summary', function() {
 
-  describe('Given I enter my household composition, ', function () {
+  describe('Given I enter my household composition, ', function() {
 
-    beforeEach(function () {
+    beforeEach(function() {
       // Cypress clears cookies between tests by default.
       Cypress.Cookies.preserveOnce('session');
     });
@@ -41,14 +41,14 @@ describe('Answer Summary', function () {
         .url().should('contain', HouseholdSummaryPage.pageName);
     });
 
-    it('When I view the Summary, Then the household members should be shown correctly', function () {
+    it('When I view the Summary, Then the household members should be shown correctly', function() {
       cy
         .get(HouseholdSummaryPage.primaryFirstNameLabel(1)).stripText().should('contain', 'Bob Smith')
         .get(HouseholdSummaryPage.repeatingFirstNameLabel(2)).stripText().should('contain', 'Sal Smith')
         .get(HouseholdSummaryPage.repeatingFirstNameLabel(3)).stripText().should('contain', 'Jill Smith');
     });
 
-    it('When I click edit on primary person, Then I should be able to edit the answer and return to the summary', function () {
+    it('When I click edit on primary person, Then I should be able to edit the answer and return to the summary', function() {
       cy
         .get(HouseholdSummaryPage.primaryFirstNameEdit(1)).click()
         .url().should('contain', PrimaryNameBlockPage.pageName)
@@ -59,7 +59,7 @@ describe('Answer Summary', function () {
         .get(HouseholdSummaryPage.primaryFirstNameLabel(1)).stripText().should('contain', 'Robert Smith');
     });
 
-    it('When I click edit on first repeating person, Then I should be able to edit the answer and return to the summary', function () {
+    it('When I click edit on first repeating person, Then I should be able to edit the answer and return to the summary', function() {
       cy
         .get(HouseholdSummaryPage.repeatingFirstNameEdit(2)).click()
         .url().should('contain', RepeatingNameBlockPage.pageName)
@@ -70,7 +70,7 @@ describe('Answer Summary', function () {
         .get(HouseholdSummaryPage.repeatingFirstNameLabel(2)).stripText().should('contain', 'Sally Smith');
     });
 
-    it('When I click edit on second repeating person, Then I should be able to edit the answer and return to the summary', function () {
+    it('When I click edit on second repeating person, Then I should be able to edit the answer and return to the summary', function() {
       cy
         .get(HouseholdSummaryPage.repeatingFirstNameEdit(3)).click()
         .url().should('contain', RepeatingNameBlockPage.pageName)
@@ -81,7 +81,7 @@ describe('Answer Summary', function () {
         .get(HouseholdSummaryPage.repeatingFirstNameLabel(3)).stripText().should('contain', 'Jillian Smith');
     });
 
-    it('When I click add person link, Then I should go to the anyone else page and be able to add additional people', function () {
+    it('When I click add person link, Then I should go to the anyone else page and be able to add additional people', function() {
       cy
         .get(HouseholdSummaryPage.addPersonLink()).click()
         .url().should('contain', RepeatingAnyoneElseBlockPage.pageName)

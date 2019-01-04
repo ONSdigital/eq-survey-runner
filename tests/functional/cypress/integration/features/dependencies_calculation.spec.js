@@ -3,7 +3,7 @@ const TotalBlockPage = require('../../../generated_pages/dependencies_calculatio
 const BreakdownBlockPage = require('../../../generated_pages/dependencies_calculation/breakdown-block.page.js');
 const CalculationSummary = require('../../../generated_pages/dependencies_calculation/summary.page.js');
 
-describe('Dependency Calculation', function () {
+describe('Dependency Calculation', function() {
   describe('Given I complete the test_dependencies_calculation schema', function() {
 
     beforeEach(function() {

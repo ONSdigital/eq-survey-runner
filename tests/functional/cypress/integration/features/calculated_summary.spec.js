@@ -50,7 +50,7 @@ describe('Feature: Calculated Summary', function() {
         .url().should('contain', CurrencyTotalPlaybackPage.pageName);
     });
 
-    beforeEach(function () {
+    beforeEach(function() {
     // Cypress clears cookies between tests by default.
       Cypress.Cookies.preserveOnce('session');
     });
