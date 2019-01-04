@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../helpers/helpers.js'
+import {openQuestionnaire} from '../../helpers/helpers.js';
 
 const SetLengthUnitsBlockPage = require('../../../generated_pages/unit_patterns/set-length-units-block.page.js');
 const SetDurationUnitsBlockPage = require('../../../generated_pages/unit_patterns/set-duration-units-block.page.js');
@@ -21,7 +21,7 @@ describe('Units', function() {
       .get(SetVolumeUnitsBlockPage.submit()).click()
       .get(SummaryPage.durationHour()).stripText().should('equal', '123 hours')
       .get(SummaryPage.durationYear()).stripText().should('equal', '321 years');
-    });
+  });
 
   it('Given we set a language code for welsh and run the questionnaire, when we enter values for durations, they should be displayed on the summary with their units.', function() {
     openQuestionnaire('test_unit_patterns.json', { language: 'cy' })

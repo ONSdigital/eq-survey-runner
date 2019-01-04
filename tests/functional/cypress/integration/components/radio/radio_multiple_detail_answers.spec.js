@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js';
 
 const MandatoryRadioPage = require('../../../../generated_pages/radio_multiple_detail_answers/radio-mandatory.page');
 const SummaryPage = require('../../../../generated_pages/radio_multiple_detail_answers/summary.page');
@@ -9,10 +9,10 @@ describe('Radio with multiple "detail_answer" options', function() {
 
   it('Given detail answer options are available, When the user clicks an option, Then the detail answer input should be visible.', function() {
     openQuestionnaire(radio_schema)
-        .get(MandatoryRadioPage.eggs()).click()
-        .get(MandatoryRadioPage.eggsDetail()).should('be.visible')
-        .get(MandatoryRadioPage.favouriteNotListed()).click()
-        .get(MandatoryRadioPage.favouriteNotListedDetail()).should('be.visible');
+      .get(MandatoryRadioPage.eggs()).click()
+      .get(MandatoryRadioPage.eggsDetail()).should('be.visible')
+      .get(MandatoryRadioPage.favouriteNotListed()).click()
+      .get(MandatoryRadioPage.favouriteNotListedDetail()).should('be.visible');
   });
 
   it('Given a mandatory detail answer, When I select the option but leave the input field empty and submit, Then an error should be displayed.', function() {
@@ -66,17 +66,17 @@ describe('Radio with multiple "detail_answer" options', function() {
   it('Given I have previously added text in a detail answer and saved, When I select a different radio and save, Then the text entered in the detail answer field should be empty.', function() {
     // Given
     openQuestionnaire(radio_schema)
-        // When
-        .get(MandatoryRadioPage.favouriteNotListed()).click()
-        .get(MandatoryRadioPage.favouriteNotListedDetail()).type('Bacon')
-        .get(MandatoryRadioPage.submit()).click()
-        .get(SummaryPage.previous()).click()
-        .get(MandatoryRadioPage.eggs()).click()
-        .get(MandatoryRadioPage.submit()).click()
-        .get(SummaryPage.previous()).click()
-        // Then
-        .get(MandatoryRadioPage.favouriteNotListed()).click()
-        .get(MandatoryRadioPage.favouriteNotListedDetail()).should('be.empty');
+    // When
+      .get(MandatoryRadioPage.favouriteNotListed()).click()
+      .get(MandatoryRadioPage.favouriteNotListedDetail()).type('Bacon')
+      .get(MandatoryRadioPage.submit()).click()
+      .get(SummaryPage.previous()).click()
+      .get(MandatoryRadioPage.eggs()).click()
+      .get(MandatoryRadioPage.submit()).click()
+      .get(SummaryPage.previous()).click()
+    // Then
+      .get(MandatoryRadioPage.favouriteNotListed()).click()
+      .get(MandatoryRadioPage.favouriteNotListedDetail()).should('be.empty');
 
   });
 

@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../../helpers/helpers.js';
 
 const DropdownPage = require('../../../../../generated_pages/mutually_exclusive/mutually-exclusive-dropdown.page');
 const SummaryPage = require('../../../../../generated_pages/mutually_exclusive/optional-dropdown-section-summary.page');
@@ -6,8 +6,8 @@ const SummaryPage = require('../../../../../generated_pages/mutually_exclusive/o
 describe('Component: Mutually Exclusive Dropdown With Single Checkbox Override', function() {
 
   beforeEach(function() {
-    openQuestionnaire('test_mutually_exclusive.json')
-          cy.navigationLink('Dropdown').click();
+    openQuestionnaire('test_mutually_exclusive.json');
+    cy.navigationLink('Dropdown').click();
   });
 
   describe('Given the user has entered a value for the non-exclusive dropdown answer', function() {

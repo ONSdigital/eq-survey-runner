@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js';
 const FavouriteColourPage = require('../../../../generated_pages/titles_repeating_non_repeating_dependency/favourite-colour.page');
 const HouseholdCompositionPage = require('../../../../generated_pages/titles_repeating_non_repeating_dependency/household-composition.page');
 const RepeatingBlockPage = require('../../../../generated_pages/titles_repeating_non_repeating_dependency/repeating-block-3.page');
@@ -7,7 +7,7 @@ const SummaryPage = require('../../../../generated_pages/titles_repeating_non_re
 describe('Feature: Use of conditional Titles in Repeating blocks with condition dependant on non repeating answer', function() {
 
   beforeEach(function() {
-      openQuestionnaire('test_titles_repeating_non_repeating_dependency.json');
+    openQuestionnaire('test_titles_repeating_non_repeating_dependency.json');
   });
 
   describe('Given I select a favourite colour and list of names', function() {
@@ -21,13 +21,13 @@ describe('Feature: Use of conditional Titles in Repeating blocks with condition 
         .get(HouseholdCompositionPage.addPerson()).click()
         .get(HouseholdCompositionPage.firstName('_2')).type('Mary')
         .get(HouseholdCompositionPage.submit()).click()
-        .get(RepeatingBlockPage.questionText()).stripText().should('contain', "Peter's favourite colour is Blue")
+        .get(RepeatingBlockPage.questionText()).stripText().should('contain', 'Peter\'s favourite colour is Blue')
         .get(RepeatingBlockPage.yes()).click()
         .get(RepeatingBlockPage.submit()).click()
-        .get(RepeatingBlockPage.questionText()).stripText().should('contain', "Paul's favourite colour is Blue")
+        .get(RepeatingBlockPage.questionText()).stripText().should('contain', 'Paul\'s favourite colour is Blue')
         .get(RepeatingBlockPage.yes()).click()
         .get(RepeatingBlockPage.submit()).click()
-        .get(RepeatingBlockPage.questionText()).stripText().should('contain', "Mary's favourite colour is Blue")
+        .get(RepeatingBlockPage.questionText()).stripText().should('contain', 'Mary\'s favourite colour is Blue')
         .get(RepeatingBlockPage.yes()).click()
         .get(RepeatingBlockPage.submit()).click();
     });
@@ -44,23 +44,23 @@ describe('Feature: Use of conditional Titles in Repeating blocks with condition 
         .get(HouseholdCompositionPage.addPerson()).click()
         .get(HouseholdCompositionPage.firstName('_2')).type('Mary')
         .get(HouseholdCompositionPage.submit()).click()
-        .get(RepeatingBlockPage.questionText()).stripText().should('contain', "Peter's favourite colour is Blue")
+        .get(RepeatingBlockPage.questionText()).stripText().should('contain', 'Peter\'s favourite colour is Blue')
         .get(RepeatingBlockPage.yes()).click()
         .get(RepeatingBlockPage.submit()).click()
-        .get(RepeatingBlockPage.questionText()).stripText().should('contain', "Paul's favourite colour is Blue")
+        .get(RepeatingBlockPage.questionText()).stripText().should('contain', 'Paul\'s favourite colour is Blue')
         .get(RepeatingBlockPage.yes()).click()
         .get(RepeatingBlockPage.submit()).click()
-        .get(RepeatingBlockPage.questionText()).stripText().should('contain', "Mary's favourite colour is Blue")
+        .get(RepeatingBlockPage.questionText()).stripText().should('contain', 'Mary\'s favourite colour is Blue')
         .get(RepeatingBlockPage.yes()).click()
         .get(RepeatingBlockPage.submit()).click()
         .get(SummaryPage.favColourAnswerEdit()).click()
         .get(FavouriteColourPage.yellow()).click()
         .get(FavouriteColourPage.submit()).click()
-        .get(RepeatingBlockPage.questionText()).stripText().should('contain', "Peter's favourite colour is NOT Blue")
+        .get(RepeatingBlockPage.questionText()).stripText().should('contain', 'Peter\'s favourite colour is NOT Blue')
         .get(RepeatingBlockPage.submit()).click()
-        .get(RepeatingBlockPage.questionText()).stripText().should('contain', "Paul's favourite colour is NOT Blue")
+        .get(RepeatingBlockPage.questionText()).stripText().should('contain', 'Paul\'s favourite colour is NOT Blue')
         .get(RepeatingBlockPage.submit()).click()
-        .get(RepeatingBlockPage.questionText()).stripText().should('contain', "Mary's favourite colour is NOT Blue");
+        .get(RepeatingBlockPage.questionText()).stripText().should('contain', 'Mary\'s favourite colour is NOT Blue');
     });
   });
 

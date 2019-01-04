@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js';
 
 const HouseholdCompositionPage =  require('../../../../generated_pages/routing_answer_count/household-composition.page.js');
 const GroupLessThan2 =            require('../../../../generated_pages/routing_answer_count/group-less-than-2-block.page.js');

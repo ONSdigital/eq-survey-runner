@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js';
 
 const PrimaryNamePage =   require('../../../../generated_pages/routing_answer_count_multiple/primary-name-block.page.js');
 const AnyoneElsePage =    require('../../../../generated_pages/routing_answer_count_multiple/repeating-anyone-else-block.page.js');

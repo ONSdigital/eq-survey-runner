@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../../helpers/helpers.js';
 
 const TextFieldPage = require('../../../../../generated_pages/mutually_exclusive/mutually-exclusive-textarea.page');
 const SummaryPage = require('../../../../../generated_pages/mutually_exclusive/optional-textarea-section-summary.page');

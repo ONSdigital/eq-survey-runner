@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../helpers/helpers.js'
+import {openQuestionnaire} from '../helpers/helpers.js';
 
 const IntroductionPage = require('../../generated_pages/introduction/introduction.page');
 const QuestionPage = require('../../base_pages/generic.page');
@@ -7,8 +7,8 @@ const ThankYouPage = require('../../base_pages/thank-you.page');
 
 describe('My Account header link', function() {
   beforeEach(() => {
-    openQuestionnaire('test_introduction.json')
-  })
+    openQuestionnaire('test_introduction.json');
+  });
 
   it('Given I start a survey, When I go through every page then I should see the "My account" button on each page', function() {
     cy

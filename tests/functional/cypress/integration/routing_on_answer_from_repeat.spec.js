@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../helpers/helpers.js'
+import {openQuestionnaire} from '../helpers/helpers.js';
 
 const PrimaryNamePage = require('../../generated_pages/routing_on_answer_from_driving_repeating_group/primary-name-block.page.js');
 const PrimaryLiveHereBlockPage = require('../../generated_pages/routing_on_answer_from_driving_repeating_group/primary-live-here-block.page.js');
@@ -13,8 +13,8 @@ const SummaryPage = require('../../generated_pages/routing_on_answer_from_drivin
 describe('Routing on Answer from repeat', function() {
 
   beforeEach(() => {
-    openQuestionnaire('test_routing_on_answer_from_driving_repeating_group.json')
-  })
+    openQuestionnaire('test_routing_on_answer_from_driving_repeating_group.json');
+  });
 
   it('Given I am completing a survey where I dont live in the house, When I select I dont live here, Then I should not be asked questions about myself', function() {
     cy

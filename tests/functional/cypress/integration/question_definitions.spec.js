@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../helpers/helpers.js'
+import {openQuestionnaire} from '../helpers/helpers.js';
 const DefinitionPage = require('../../generated_pages/question_definition/definition-block.page');
 
 describe('Component: Definition', function() {
@@ -33,7 +33,7 @@ describe('Component: Definition', function() {
 
         // Then
         .get(DefinitionPage.definitionContent1(), {timeout: 300}).should('not.be.visible')
-        .get(DefinitionPage.definitionButton1(), {timeout: 300}).should('not.be.visible')
+        .get(DefinitionPage.definitionButton1(), {timeout: 300}).should('not.be.visible');
 
     });
 
@@ -54,7 +54,7 @@ describe('Component: Definition', function() {
 
         // Then
         .get(DefinitionPage.definitionContent1(), {timeout: 300}).should('not.be.visible')
-        .get(DefinitionPage.definitionButton1(), {timeout: 300}).should('not.be.visible')
+        .get(DefinitionPage.definitionButton1(), {timeout: 300}).should('not.be.visible');
 
     });
 

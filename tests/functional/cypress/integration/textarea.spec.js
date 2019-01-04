@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../helpers/helpers.js'
+import {openQuestionnaire} from '../helpers/helpers.js';
 const TextareaBlock = require('../../generated_pages/textarea/textarea-block.page.js');
 const TextareaSummary = require('../../generated_pages/textarea/textarea-summary.page.js');
 
@@ -10,7 +10,7 @@ describe('Textarea', function() {
   it('Given a textarea option, a user should be able to click the label of the textarea to focus', function() {
     openQuestionnaire(textarea_schema)
       .get(TextareaBlock.answerLabel()).click()
-      .focused().should('match', TextareaBlock.answer())
+      .focused().should('match', TextareaBlock.answer());
   });
 
   it('Given a textarea option, When no text is entered, Then the summary should display "No answer provided"', function() {
@@ -28,16 +28,16 @@ describe('Textarea', function() {
 
   it('Given a text entered in textarea , When user submits and revisits the textarea, Then the textarea must contain the text entered previously', function() {
     openQuestionnaire(textarea_schema)
-      .get(TextareaBlock.answer()).type("'Twenty><&Five'")
+      .get(TextareaBlock.answer()).type('\'Twenty><&Five\'')
       .get(TextareaBlock.submit()).click()
-      .get(TextareaSummary.answer()).stripText().should('contain', "'Twenty><&Five'")
+      .get(TextareaSummary.answer()).stripText().should('contain', '\'Twenty><&Five\'')
       .get(TextareaSummary.answerEdit()).click()
-      .get(TextareaBlock.answer()).should('contain',"'Twenty><&Five'");
+      .get(TextareaBlock.answer()).should('contain','\'Twenty><&Five\'');
   });
 
   it('Displays the number of characters remaining', function() {
     openQuestionnaire(textarea_schema)
-      .get(textarea_limit).stripText().should('contain', '20')
+      .get(textarea_limit).stripText().should('contain', '20');
   });
 
   it('Updates the number of characters remaining when the user adds content', function() {

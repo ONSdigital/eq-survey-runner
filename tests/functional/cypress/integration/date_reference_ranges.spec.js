@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../helpers/helpers.js'
+import {openQuestionnaire} from '../helpers/helpers.js';
 
 const ManualRangeBlockPage = require('../../generated_pages/date_reference_ranges/manual-range-block.page.js');
 const DateSeparateBlockPage = require('../../generated_pages/date_reference_ranges/date-separate-block.page.js');
@@ -7,8 +7,8 @@ const SummaryPage = require('../../generated_pages/date_reference_ranges/summary
 
 describe('Reference Date Range Checks', function() {
   beforeEach(() => {
-    openQuestionnaire('test_date_reference_ranges.json')
-  })
+    openQuestionnaire('test_date_reference_ranges.json');
+  });
 
   it('Given we start the survey, when we click the button, the dates should be in the correct format...', function() {
     /* We have no way to mock out started_at, the unit and integration tests cover the date values
@@ -36,6 +36,6 @@ describe('Reference Date Range Checks', function() {
       // Matches `between Friday 24 August 2018 to Saturday 25 September 2019`. The day of the month can be 1 or two characters
       // In this case, the month and the year can be omitted if they are both the same in the range.
       .get(DateRangeBlockPage.questionText()).stripText().should('match', new RegExp('between \\d(?:\\d)?(?:[a-zA-Z ]+)?(?:[\\d ]{4})? to \\d(?:\\d)? \\w+ \\d{4} did'));
-    });
+  });
 });
 

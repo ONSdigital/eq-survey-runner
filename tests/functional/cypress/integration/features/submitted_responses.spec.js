@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../helpers/helpers.js'
+import {openQuestionnaire} from '../../helpers/helpers.js';
 
 const RadioPage = require('../../../generated_pages/view_submitted_response/radio.page.js');
 const NumberBlockPage = require('../../../generated_pages/view_submitted_response/test-number-block.page.js');

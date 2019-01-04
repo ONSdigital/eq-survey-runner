@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js';
 
 const ToppingCheckboxPage =           require('../../../../generated_pages/routing_checkbox_set_not_set/topping-checkbox.page.js');
 const ToppingInterstitialNotSetPage = require('../../../../generated_pages/routing_checkbox_set_not_set/topping-interstitial-not-set.page.js');

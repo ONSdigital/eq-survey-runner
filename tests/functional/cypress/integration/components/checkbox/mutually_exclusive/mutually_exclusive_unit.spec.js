@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../../helpers/helpers.js';
 
 const UnitPage = require('../../../../../generated_pages/mutually_exclusive/mutually-exclusive-unit.page');
 const SummaryPage = require('../../../../../generated_pages/mutually_exclusive/optional-unit-section-summary.page');

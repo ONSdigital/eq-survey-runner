@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js';
 
 const RepeatingComparison1BlockPage = require('../../../../generated_pages/repeating_answer_comparison/repeating-comparison-1-block.page.js');
 const RepeatingComparison2BlockPage = require('../../../../generated_pages/repeating_answer_comparison/repeating-comparison-2-block.page.js');
@@ -29,7 +29,7 @@ describe('Test repeating with answer comparisons', function() {
   });
 
   it('Given we enter three sets of different numbers and one set of the same numbers, Then it shows a summary of all the entered values', function() {
-    completeRepeatingQuestions(3)
+    completeRepeatingQuestions(3);
     cy
       .get(SummaryPage.repeatingComparison1Answer(0)).stripText().should('contain', 0)
       .get(SummaryPage.repeatingComparison2Answer(0)).stripText().should('contain', 1)

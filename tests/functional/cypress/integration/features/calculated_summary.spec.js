@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../helpers/helpers.js'
+import {openQuestionnaire} from '../../helpers/helpers.js';
 
 const FirstNumberBlockPage = require('../../../generated_pages/calculated_summary/first-number-block.page.js');
 const SecondNumberBlockPage = require('../../../generated_pages/calculated_summary/second-number-block.page.js');
@@ -50,37 +50,37 @@ describe('Feature: Calculated Summary', function() {
         .url().should('contain', CurrencyTotalPlaybackPage.pageName);
     });
 
-  beforeEach(function () {
+    beforeEach(function () {
     // Cypress clears cookies between tests by default.
-    Cypress.Cookies.preserveOnce('session')
-  });
+      Cypress.Cookies.preserveOnce('session');
+    });
 
-  it('Given I complete every question, When i get to the currency summary, Then I should see the correct total', function() {
-    cy
+    it('Given I complete every question, When i get to the currency summary, Then I should see the correct total', function() {
+      cy
       // Totals and titles should be shown
-      .get(CurrencyTotalPlaybackPage.calculatedSummaryTitle()).stripText().should('contain', 'We calculate the total of currency values entered to be £20.71. Is this correct?')
-      .get(CurrencyTotalPlaybackPage.calculatedSummaryQuestion()).stripText().should('contain', 'Grand total of previous values')
-      .get(CurrencyTotalPlaybackPage.calculatedSummaryAnswer()).stripText().should('contain', '£20.71')
+        .get(CurrencyTotalPlaybackPage.calculatedSummaryTitle()).stripText().should('contain', 'We calculate the total of currency values entered to be £20.71. Is this correct?')
+        .get(CurrencyTotalPlaybackPage.calculatedSummaryQuestion()).stripText().should('contain', 'Grand total of previous values')
+        .get(CurrencyTotalPlaybackPage.calculatedSummaryAnswer()).stripText().should('contain', '£20.71')
 
       // Answers included in calculation should be shown
-      .get(CurrencyTotalPlaybackPage.firstNumberAnswerLabel()).stripText().should('contain', 'First answer label')
-      .get(CurrencyTotalPlaybackPage.firstNumberAnswer()).stripText().should('contain', '£1.23')
-      .get(CurrencyTotalPlaybackPage.secondNumberAnswerLabel()).stripText().should('contain', 'Second answer in currency label')
-      .get(CurrencyTotalPlaybackPage.secondNumberAnswer()).stripText().should('contain', '£4.56')
-      .get(CurrencyTotalPlaybackPage.secondNumberAnswerAlsoInTotalLabel()).stripText().should('contain', 'Second answer label also in currency total ')
-      .get(CurrencyTotalPlaybackPage.secondNumberAnswerAlsoInTotal()).stripText().should('contain', '£0.12')
-      .get(CurrencyTotalPlaybackPage.thirdNumberAnswerLabel()).stripText().should('contain', 'Third answer label')
-      .get(CurrencyTotalPlaybackPage.thirdNumberAnswer()).stripText().should('contain', '£3.45')
-      .get(CurrencyTotalPlaybackPage.fourthNumberAnswerLabel()).stripText().should('contain', 'Fourth answer label ')
-      .get(CurrencyTotalPlaybackPage.fourthNumberAnswer()).stripText().should('contain', '£9.01')
-      .get(CurrencyTotalPlaybackPage.fourthNumberAnswerAlsoInTotalLabel()).stripText().should('contain', 'Fourth answer label also in total ')
-      .get(CurrencyTotalPlaybackPage.fourthNumberAnswerAlsoInTotal()).stripText().should('contain', '£2.34')
+        .get(CurrencyTotalPlaybackPage.firstNumberAnswerLabel()).stripText().should('contain', 'First answer label')
+        .get(CurrencyTotalPlaybackPage.firstNumberAnswer()).stripText().should('contain', '£1.23')
+        .get(CurrencyTotalPlaybackPage.secondNumberAnswerLabel()).stripText().should('contain', 'Second answer in currency label')
+        .get(CurrencyTotalPlaybackPage.secondNumberAnswer()).stripText().should('contain', '£4.56')
+        .get(CurrencyTotalPlaybackPage.secondNumberAnswerAlsoInTotalLabel()).stripText().should('contain', 'Second answer label also in currency total ')
+        .get(CurrencyTotalPlaybackPage.secondNumberAnswerAlsoInTotal()).stripText().should('contain', '£0.12')
+        .get(CurrencyTotalPlaybackPage.thirdNumberAnswerLabel()).stripText().should('contain', 'Third answer label')
+        .get(CurrencyTotalPlaybackPage.thirdNumberAnswer()).stripText().should('contain', '£3.45')
+        .get(CurrencyTotalPlaybackPage.fourthNumberAnswerLabel()).stripText().should('contain', 'Fourth answer label ')
+        .get(CurrencyTotalPlaybackPage.fourthNumberAnswer()).stripText().should('contain', '£9.01')
+        .get(CurrencyTotalPlaybackPage.fourthNumberAnswerAlsoInTotalLabel()).stripText().should('contain', 'Fourth answer label also in total ')
+        .get(CurrencyTotalPlaybackPage.fourthNumberAnswerAlsoInTotal()).stripText().should('contain', '£2.34')
 
       // Answers not included in calculation should not be shown
-      .get(UnitTotalPlaybackPage.secondNumberAnswerUnitTotal()).should('not.exist')
-      .get(UnitTotalPlaybackPage.thirdNumberAnswerUnitTotal()).should('not.exist')
-      .get(NumberTotalPlaybackPage.fifthNumberAnswer()).should('not.exist')
-      .get(NumberTotalPlaybackPage.sixthNumberAnswer()).should('not.exist')
+        .get(UnitTotalPlaybackPage.secondNumberAnswerUnitTotal()).should('not.exist')
+        .get(UnitTotalPlaybackPage.thirdNumberAnswerUnitTotal()).should('not.exist')
+        .get(NumberTotalPlaybackPage.fifthNumberAnswer()).should('not.exist')
+        .get(NumberTotalPlaybackPage.sixthNumberAnswer()).should('not.exist');
     });
 
     it('Given change an answer, When i get to the currency summary, Then I should see the new total', function() {

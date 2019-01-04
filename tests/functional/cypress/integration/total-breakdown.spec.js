@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../helpers/helpers.js'
+import {openQuestionnaire} from '../helpers/helpers.js';
 
 const BreakDownPage = require('../../generated_pages/total_breakdown/block.page.js');
 
@@ -6,8 +6,8 @@ const highlightedInput = '[class$=input--has-error]';
 
 describe('Total Breakdown', function() {
   beforeEach(() => {
-    openQuestionnaire('test_total_breakdown.json')
-  })
+    openQuestionnaire('test_total_breakdown.json');
+  });
 
   it('Given four percentage fields, When I enter 10, 20, 30 and 40 in the field, Then total should be 100', function() {
     cy
@@ -64,7 +64,7 @@ describe('Total Breakdown', function() {
 
       .get(BreakDownPage.percentage4()).type('94')
       .get(BreakDownPage.totalPercentageLabel()).click()
-      .get((highlightedInput)).should('exist')
+      .get((highlightedInput)).should('exist');
   });
 
   it('Given four percentage fields, When floating point numbers entered, Then total should be a floating point number', function() {

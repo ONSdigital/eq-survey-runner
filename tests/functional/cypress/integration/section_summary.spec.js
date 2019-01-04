@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../helpers/helpers.js'
+import {openQuestionnaire} from '../helpers/helpers.js';
 const InsuranceAddressPage = require('../../generated_pages/section_summary/insurance-address.page.js');
 const InsuranceTypePage = require('../../generated_pages/section_summary/insurance-type.page.js');
 const AddressDurationPage = require('../../generated_pages/section_summary/address-duration.page.js');
@@ -38,14 +38,14 @@ describe('Section Summary', function() {
 
     beforeEach(function() {
       openQuestionnaire('test_section_summary.json')
-          .get(InsuranceTypePage.contents()).click()
-          .get(InsuranceTypePage.submit()).click()
-          .get(InsuranceAddressPage.submit()).click()
-          .get(AddressDurationPage.submit()).click()
-          .get(PropertyDetailsSummaryPage.submit()).click()
-          .get(HouseHoldCompositionPage.firstName()).type('John')
-          .get(HouseHoldCompositionPage.submit()).click()
-          .url().should('contain', FinalSummaryPage.pageName);
+        .get(InsuranceTypePage.contents()).click()
+        .get(InsuranceTypePage.submit()).click()
+        .get(InsuranceAddressPage.submit()).click()
+        .get(AddressDurationPage.submit()).click()
+        .get(PropertyDetailsSummaryPage.submit()).click()
+        .get(HouseHoldCompositionPage.firstName()).type('John')
+        .get(HouseHoldCompositionPage.submit()).click()
+        .url().should('contain', FinalSummaryPage.pageName);
     });
 
     it('When I select edit from Final Summary, Then I should be taken back to the Final Summary', function() {
@@ -81,15 +81,15 @@ describe('Section Summary', function() {
   describe('Given I start a Test Section Summary survey and complete to the first Section Summary', function() {
 
     it('When I select edit from Section Summary but change routing, Then I should be stepped through the section', function() {
-      openQuestionnaire('test_section_summary.json')
-        cy
-          .get(InsuranceTypePage.both()).click()
-          .get(InsuranceTypePage.submit()).click()
-          .get(InsuranceAddressPage.submit()).click()
-          .get(PropertyDetailsSummaryPage.insuranceTypeAnswerEdit()).click()
-          .get(InsuranceTypePage.contents()).click()
-          .get(InsuranceTypePage.submit()).click()
-          .url().should('contain', InsuranceAddressPage.pageName);
+      openQuestionnaire('test_section_summary.json');
+      cy
+        .get(InsuranceTypePage.both()).click()
+        .get(InsuranceTypePage.submit()).click()
+        .get(InsuranceAddressPage.submit()).click()
+        .get(PropertyDetailsSummaryPage.insuranceTypeAnswerEdit()).click()
+        .get(InsuranceTypePage.contents()).click()
+        .get(InsuranceTypePage.submit()).click()
+        .url().should('contain', InsuranceAddressPage.pageName);
     });
   });
 });

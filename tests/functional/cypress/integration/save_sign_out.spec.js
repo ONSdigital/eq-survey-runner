@@ -1,4 +1,4 @@
-import {openQuestionnaire, getRandomString} from '../helpers/helpers.js'
+import {openQuestionnaire, getRandomString} from '../helpers/helpers.js';
 const SetMinMax = require('../../generated_pages/numbers/set-min-max-block.page.js');
 const TestMinMax = require('../../generated_pages/numbers/test-min-max-block.page.js');
 const SummaryPage = require('../../generated_pages/numbers/summary.page');
@@ -26,8 +26,8 @@ describe('Save and Signout', function() {
     const collectionId = getRandomString(10);
 
     beforeEach(() => {
-      openQuestionnaire('test_numbers.json', {userId: 'test_user', collectionId: collectionId})
-    })
+      openQuestionnaire('test_numbers.json', {userId: 'test_user', collectionId: collectionId});
+    });
 
     it('Given I am completing a survey, when I select save and complete later, then I am redirected to sign out page and my session is cleared', function () {
       cy
@@ -37,7 +37,7 @@ describe('Save and Signout', function() {
         .get(TestMinMax.saveSignOut()).click()
         .url().should('contain', 'localhost')
         .go('back')
-        .get(TestMinMax.pageBody()).should('contain', 'Your session has expired')
+        .get(TestMinMax.pageBody()).should('contain', 'Your session has expired');
     });
 
     it('Given I have started a questionnaire, when I return to the questionnaire, then I am returned to the page I was on and can then complete the survey', function () {
@@ -52,12 +52,12 @@ describe('Save and Signout', function() {
         .get(SummaryPage.submit()).click()
         .url().should('contain', 'thank-you');
     });
-  })
+  });
 
   describe('Using the test introduction questionnaire', () => {
 
     it('Given a logout url is set, when I navigate the questionnaire, then I see the correct sign out buttons', function () {
-      openQuestionnaire('test_introduction.json', {includeLogoutUrl: true})
+      openQuestionnaire('test_introduction.json', {includeLogoutUrl: true});
       cy
         .url().should('contain', IntroductionPage.pageName)
         .get(IntroductionPage.signOut()).stripText().should('contain', 'Sign out')
@@ -76,7 +76,7 @@ describe('Save and Signout', function() {
     });
 
     it('Given a logout url is not set, when I navigate the questionnaire, then I see the correct sign out buttons', function () {
-      openQuestionnaire('test_introduction.json', {includeLogoutUrl: false})
+      openQuestionnaire('test_introduction.json', {includeLogoutUrl: false});
       cy
         .url().should('contain', IntroductionPage.pageName)
         .get(IntroductionPage.signOut()).should('not.exist')
@@ -95,7 +95,7 @@ describe('Save and Signout', function() {
     });
 
     it('Given I am on a northern ireland themed survey, when I navigate the questionnaire, then I see the correct sign out buttons', function () {
-      openQuestionnaire('test_theme_northernireland.json', {includeLogoutUrl: true})
+      openQuestionnaire('test_theme_northernireland.json', {includeLogoutUrl: true});
       cy
         .url().should('contain', NIRadioPage.pageName)
         .get(NIRadioPage.saveSignOut()).stripText().should('contain', 'Save and sign out')
@@ -111,7 +111,7 @@ describe('Save and Signout', function() {
     });
 
     it('Given I am on a social themed survey, when I navigate the questionnaire, then I see the correct sign out buttons', function () {
-      openQuestionnaire('test_theme_social.json', {includeLogoutUrl: false})
+      openQuestionnaire('test_theme_social.json', {includeLogoutUrl: false});
       cy
         .url().should('contain', SocialRadioPage.pageName)
         .get(SocialRadioPage.saveSignOut()).stripText().should('contain', 'Save and complete later')
@@ -127,7 +127,7 @@ describe('Save and Signout', function() {
     });
 
     it('Given a logout url is set, when I load the feedback page, then I see the sign out button', function () {
-      openQuestionnaire('test_numbers.json', {includeLogoutUrl: true})
+      openQuestionnaire('test_numbers.json', {includeLogoutUrl: true});
       cy
         .visit(FeedbackForm.url())
         .url().should('contain', 'feedback')
@@ -136,7 +136,7 @@ describe('Save and Signout', function() {
     });
 
     it('Given a logout url is not set, when I load the feedback page, then there should be no sign out button', function () {
-      openQuestionnaire('test_numbers.json', {includeLogoutUrl: false})
+      openQuestionnaire('test_numbers.json', {includeLogoutUrl: false});
       cy
         .visit(FeedbackForm.url())
         .url().should('contain', 'feedback')
@@ -144,7 +144,7 @@ describe('Save and Signout', function() {
     });
 
     it('Given a logout url is set and I load the feedback page, when I sign out, then I should be on the account service logged out page', function () {
-      openQuestionnaire('test_numbers.json', {includeLogoutUrl: true})
+      openQuestionnaire('test_numbers.json', {includeLogoutUrl: true});
       cy
         .visit(FeedbackForm.url())
         .url().should('contain', 'feedback')
@@ -152,5 +152,5 @@ describe('Save and Signout', function() {
         .get(FeedbackForm.signOut()).click()
         .url().should('contain', 'http://localhost:8000');
     });
-  })
+  });
 });

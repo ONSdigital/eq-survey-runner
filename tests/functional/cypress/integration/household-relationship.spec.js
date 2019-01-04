@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../helpers/helpers.js'
+import {openQuestionnaire} from '../helpers/helpers.js';
 
 const HouseholdCompositionPage = require('../../generated_pages/relationship_household/household-composition.page.js');
 const RelationshipsPage = require('../../generated_pages/relationship_household/household-relationships.page.js');
@@ -8,7 +8,7 @@ const SummaryPage = require('../../generated_pages/relationship_household/summar
 describe('Household Relationship', function() {
 
   beforeEach(() => {
-    openQuestionnaire('test_relationship_household.json')
+    openQuestionnaire('test_relationship_household.json');
   });
 
   it('Given I am on the household page when I enter one name then I should not have to enter relationship details', function() {
@@ -36,7 +36,7 @@ describe('Household Relationship', function() {
       .get(VisitorsPage.submit()).click()
       .get('#who-is-related-0').select('Husband or wife')
       .get('#who-is-related-1').select('Son or daughter')
-      .url().should('contain', SummaryPage.pageName)
+      .url().should('contain', SummaryPage.pageName);
 
   });
 
@@ -57,8 +57,8 @@ describe('Household Relationship', function() {
       .get(RelationshipsPage.relationship(1, 'Brother or sister')).click()
       .get(RelationshipsPage.submit()).click()
       .back()
-      .getValue(RelationshipsPage.whoIsRelated(0)).should.eventually.equal("Partner")
-      .getValue(RelationshipsPage.whoIsRelated(1)).should.eventually.equal("Brother or sister");
+      .getValue(RelationshipsPage.whoIsRelated(0)).should.eventually.equal('Partner')
+      .getValue(RelationshipsPage.whoIsRelated(1)).should.eventually.equal('Brother or sister');
   });
 
 });

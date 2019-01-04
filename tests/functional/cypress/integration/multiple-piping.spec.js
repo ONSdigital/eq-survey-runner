@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../helpers/helpers.js'
+import {openQuestionnaire} from '../helpers/helpers.js';
 const AddressPage = require('../../generated_pages/multiple_piping/what-is-your-address.page');
 const TextfieldPage = require('../../generated_pages/multiple_piping/textfield.page');
 const MultiplePipingPage = require('../../generated_pages/multiple_piping/piping-question.page');

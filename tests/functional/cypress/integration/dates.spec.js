@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../helpers/helpers.js'
+import {openQuestionnaire} from '../helpers/helpers.js';
 const DatesPage = require('../../generated_pages/dates/date-block.page');
 const MinMaxBlockPage = require('../../generated_pages/dates/min-max-block.page');
 const SummaryPage = require('../../generated_pages/dates/summary.page');
@@ -6,8 +6,8 @@ const SummaryPage = require('../../generated_pages/dates/summary.page');
 describe('Date checks', function() {
 
   beforeEach(() => {
-    openQuestionnaire('test_dates.json')
-  })
+    openQuestionnaire('test_dates.json');
+  });
 
   it('Given the test_dates survey is selected when dates are entered then the summary screen shows the dates entered formatted', function() {
     cy
@@ -56,7 +56,7 @@ describe('Date checks', function() {
 
       // Then clicking error should focus on first input field
       .get(DatesPage.errorNumber(1)).click()
-      .focused().should('match', DatesPage.dateRangeFromday())
+      .focused().should('match', DatesPage.dateRangeFromday());
   });
 
 
@@ -156,10 +156,10 @@ describe('Date checks', function() {
 
   it('Given the test_dates survey is selected, when a user clicks the day label then the day subfield should gain the focus', function() {
     cy
-       .get(DatesPage.singleDatedayLabel()).click()
+      .get(DatesPage.singleDatedayLabel()).click()
 
-       // Then the day subfield should gain the focus
-       .focused().should('match', DatesPage.singleDateday());
+    // Then the day subfield should gain the focus
+      .focused().should('match', DatesPage.singleDateday());
   });
 
 });

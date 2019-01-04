@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../helpers/helpers.js'
+import {openQuestionnaire} from '../helpers/helpers.js';
 
 const PrimaryNamePage = require('../../generated_pages/routing_repeat_until/primary-name-block.page.js');
 const RepeatingNamePage = require('../../generated_pages/routing_repeat_until/repeating-name-block.page.js');
@@ -8,8 +8,8 @@ const SummaryPage = require('../../generated_pages/routing_repeat_until/summary.
 
 describe('Routing Repeat Until', function() {
   beforeEach(() => {
-    openQuestionnaire('test_routing_repeat_until.json')
-  })
+    openQuestionnaire('test_routing_repeat_until.json');
+  });
 
   it('Given the test_routing_repeat_until survey is selected when one additional member is entered we are asked about the the sex of them and the primary member', function() {
     cy
@@ -35,11 +35,11 @@ describe('Routing Repeat Until', function() {
 
       .url().should('contain', SummaryPage.pageName)
 
-      .get(SummaryPage.primaryGroupTitle(0)).stripText().should('contain', "Your Details")
-      .get(SummaryPage.primaryName(0)).stripText().should('contain', "Bob")
+      .get(SummaryPage.primaryGroupTitle(0)).stripText().should('contain', 'Your Details')
+      .get(SummaryPage.primaryName(0)).stripText().should('contain', 'Bob')
 
-      .get(SummaryPage.repeatingGroupTitle(0)).stripText().should('contain', "Other Household Members")
-      .get(SummaryPage.repeatingName(0)).stripText().should('contain', "Alice")
+      .get(SummaryPage.repeatingGroupTitle(0)).stripText().should('contain', 'Other Household Members')
+      .get(SummaryPage.repeatingName(0)).stripText().should('contain', 'Alice')
 
       .get(SummaryPage.submit()).click();
   });
@@ -78,18 +78,18 @@ describe('Routing Repeat Until', function() {
 
       .url().should('contain', SummaryPage.pageName)
 
-      .get(SummaryPage.primaryGroupTitle(0)).stripText().should('contain', "Your Details")
-      .get(SummaryPage.primaryName(0)).stripText().should('contain', "Bob")
+      .get(SummaryPage.primaryGroupTitle(0)).stripText().should('contain', 'Your Details')
+      .get(SummaryPage.primaryName(0)).stripText().should('contain', 'Bob')
 
-      .get(SummaryPage.repeatingGroupTitle(0)).stripText().should('contain', "Other Household Members")
-      .get(SummaryPage.repeatingName(0)).stripText().should('contain', "Alice")
+      .get(SummaryPage.repeatingGroupTitle(0)).stripText().should('contain', 'Other Household Members')
+      .get(SummaryPage.repeatingName(0)).stripText().should('contain', 'Alice')
 
-      .get(SummaryPage.repeatingGroupTitle(0)).stripText().should('contain', "Other Household Members")
-      .get(SummaryPage.repeatingName(1)).stripText().should('contain', "John")
+      .get(SummaryPage.repeatingGroupTitle(0)).stripText().should('contain', 'Other Household Members')
+      .get(SummaryPage.repeatingName(1)).stripText().should('contain', 'John')
 
-      .get(SummaryPage.sexAnswer(0)).stripText().should('contain', "Male")
-      .get(SummaryPage.sexAnswer(1)).stripText().should('contain', "Female")
-      .get(SummaryPage.sexAnswer(2)).stripText().should('contain', "Male")
+      .get(SummaryPage.sexAnswer(0)).stripText().should('contain', 'Male')
+      .get(SummaryPage.sexAnswer(1)).stripText().should('contain', 'Female')
+      .get(SummaryPage.sexAnswer(2)).stripText().should('contain', 'Male')
 
       .get(SummaryPage.submit()).click();
   });

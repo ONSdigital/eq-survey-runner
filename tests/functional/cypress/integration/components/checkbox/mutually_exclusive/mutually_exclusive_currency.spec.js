@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../../helpers/helpers.js';
 
 const CurrencyPage = require('../../../../../generated_pages/mutually_exclusive/mutually-exclusive-currency.page');
 const SummaryPage = require('../../../../../generated_pages/mutually_exclusive/optional-currency-section-summary.page');
@@ -6,7 +6,7 @@ const SummaryPage = require('../../../../../generated_pages/mutually_exclusive/o
 describe('Component: Mutually Exclusive Currency With Single Checkbox Override', function() {
 
   beforeEach(function() {
-    openQuestionnaire('test_mutually_exclusive.json')
+    openQuestionnaire('test_mutually_exclusive.json');
     cy.navigationLink('Currency').click();
   });
 

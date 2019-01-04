@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js';
 const HouseholdCompositionPage = require('../../../../generated_pages/titles_within_repeating_blocks/household-composition.page');
 const WhoIsAnsweringPage = require('../../../../generated_pages/titles_within_repeating_blocks/who-is-answering-block.page');
 const Page1 = require('../../../../generated_pages/titles_within_repeating_blocks/repeating-block-1.page');
@@ -7,7 +7,7 @@ const Page3 = require('../../../../generated_pages/titles_within_repeating_block
 describe('Feature: Use of Titles in Repeating blocks', function() {
 
   beforeEach(function() {
-      return openQuestionnaire('test_titles_within_repeating_blocks.json');
+    return openQuestionnaire('test_titles_within_repeating_blocks.json');
   });
 
   describe('Given I start the survey with a repeating block', function() {

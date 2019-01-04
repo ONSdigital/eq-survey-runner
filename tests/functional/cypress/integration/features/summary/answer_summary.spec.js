@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js';
 
 const PrimaryNameBlockPage = require('../../../../generated_pages/answer_summary/primary-name-block.page.js');
 const PrimaryAnyoneElseBlockPage = require('../../../../generated_pages/answer_summary/primary-anyone-else-block.page.js');
@@ -12,7 +12,7 @@ describe('Answer Summary', function () {
 
     beforeEach(function () {
       // Cypress clears cookies between tests by default.
-      Cypress.Cookies.preserveOnce('session')
+      Cypress.Cookies.preserveOnce('session');
     });
 
     before('load and display the form', function() {

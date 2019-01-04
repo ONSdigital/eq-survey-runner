@@ -1,4 +1,4 @@
-import {openQuestionnaire, getRandomString} from '../helpers/helpers.js'
+import {openQuestionnaire, getRandomString} from '../helpers/helpers.js';
 
 const TimeoutBlockPage = require('../../generated_pages/timeout/timeout-block.page.js');
 const SummaryPage = require('../../generated_pages/timeout/summary.page.js');
@@ -9,7 +9,7 @@ describe('Timeout', function() {
 
   it('Given I am completing an electronic questionnaire, when I have been inactive for X minutes, then I will be informed that my session is going to expire (in 2 minutes) and will be able to see how long I have until the session expires', function() {
     openQuestionnaire('test_timeout.json')
-      .get(dialog, {timeout: 5000})
+      .get(dialog, {timeout: 5000});
   });
 
   it('Given the timeout pop-up has appeared, when I choose to "Continue survey", then the pop-up will close and I am returned to the question I was last on with all data retained, and the timeout session resets to X minutes', function() {
@@ -32,7 +32,7 @@ describe('Timeout', function() {
         return openQuestionnaire('test_timeout.json', { userId: 'testUser', collectionId: collectionId });
       })
       .then(() => {
-        cy.get(TimeoutBlockPage.timeout()).should('have.value', 'foo')
+        cy.get(TimeoutBlockPage.timeout()).should('have.value', 'foo');
       });
   });
 
@@ -49,7 +49,7 @@ describe('Timeout', function() {
         cy
           .url().should('contain', 'summary')
           .get(SummaryPage.timeoutAnswer()).stripText().should('contain', 'foo');
-      })
+      });
   });
 
   it('Given I am on the summary page, when I click save and sign out, then I will be signed out and redirected to a page confirming I have been signed out', function() {

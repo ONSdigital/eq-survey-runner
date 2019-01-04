@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js';
 
 const InitialChoicePage =           require('../../../../generated_pages/routing_not_affected_by_answers_not_on_path/initial-choice.page.js');
 const InvalidPathPage =             require('../../../../generated_pages/routing_not_affected_by_answers_not_on_path/invalid-path.page.js');

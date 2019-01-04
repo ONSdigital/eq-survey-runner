@@ -1,4 +1,4 @@
-import {openQuestionnaire, navigationLink, isSectionComplete} from '../helpers/helpers.js'
+import {openQuestionnaire, navigationLink, isSectionComplete} from '../helpers/helpers.js';
 const CreditCardPage = require('../../generated_pages/navigation/credit-card.page.js');
 const ExpiryDate = require('../../generated_pages/navigation/expiry-date.page.js');
 const ExtraCoverBlockPage = require('../../generated_pages/navigation/extra-cover-block.page.js');
@@ -20,8 +20,8 @@ const QuestionPage = require('../../base_pages/generic.page.js');
 
 describe('Navigation Routing', () => {
   beforeEach(() => {
-    openQuestionnaire('test_navigation_routing.json')
-  })
+    openQuestionnaire('test_navigation_routing.json');
+  });
 
   it('Given I have a section that can not be reached from the start of the survey, When I click on the navigation link,' +
     'Then the first block of that section should be displayed', function() {
@@ -30,12 +30,12 @@ describe('Navigation Routing', () => {
       .get(QuestionPage.displayedName()).stripText().should('contain', 'Did you want Group 2');
   });
 
-})
+});
 describe('Navigation', function() {
 
   beforeEach(() => {
-    openQuestionnaire('test_navigation.json')
-  })
+    openQuestionnaire('test_navigation.json');
+  });
 
   it('Given a page with navigation, a user should be able to see it', function() {
     cy
@@ -115,7 +115,7 @@ describe('Navigation', function() {
       .isSectionComplete('Another User').should('be.false')
       .get(RepeatingBlock2Page.submit()).click()
       .isSectionComplete('Test User').should('be.true')
-      .isSectionComplete('Another User').should('be.false')
+      .isSectionComplete('Another User').should('be.false');
   });
 
   it('Given I add then remove members of a repeating navigation group, additional member links should disappear', function() {
@@ -197,7 +197,7 @@ describe('Navigation', function() {
       .get(SkipInterstitialPage.submit()).click()
       .get(SecurityCodeInterstitialPage.submit()).click()
       .get(FinalInterstitial.submit()).click()
-      .isSectionComplete('Payment Details').should('be.true')
+      .isSectionComplete('Payment Details').should('be.true');
   }
 
 });

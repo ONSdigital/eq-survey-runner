@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js';
 const EveryoneAtAddressConfirmationPage = require('../../../../generated_pages/titles_conditional_within_repeating_block/everyone-at-address-confirmation.page');
 const HouseholdCompositionPage = require('../../../../generated_pages/titles_conditional_within_repeating_block/household-composition.page');
 const ProxyCheckPage = require('../../../../generated_pages/titles_conditional_within_repeating_block/proxy-check.page');
@@ -10,7 +10,7 @@ const ConfirmationPage = require('../../../../generated_pages/titles_conditional
 describe('Feature: Use of conditional Titles in Repeating blocks with condition dependant on answer changing within block', function() {
 
   beforeEach(function() {
-      openQuestionnaire('test_titles_conditional_within_repeating_block.json');
+    openQuestionnaire('test_titles_conditional_within_repeating_block.json');
   });
 
   describe('Given I start the survey with a repeating block to gather a list of names', function() {
@@ -27,19 +27,19 @@ describe('Feature: Use of conditional Titles in Repeating blocks with condition 
         .get(WhoLivesHereCompletedPage.submit()).click()
         .get(ProxyCheckPage.proxy()).click()
         .get(ProxyCheckPage.submit()).click()
-        .get(ReligionPage.questionText()).stripText().should('contain', "What is Fred’s religion?")
+        .get(ReligionPage.questionText()).stripText().should('contain', 'What is Fred’s religion?')
         .get(ReligionPage.noReligion()).click()
         .get(ReligionPage.submit()).click()
         .get(HouseholdMemberCompletedPage.submit()).click()
         .get(ProxyCheckPage.proxy()).click()
         .get(ProxyCheckPage.submit()).click()
-        .get(ReligionPage.questionText()).stripText().should('contain', "What is Mary’s religion?")
+        .get(ReligionPage.questionText()).stripText().should('contain', 'What is Mary’s religion?')
         .get(ReligionPage.jedi()).click()
         .get(ReligionPage.submit()).click()
         .get(HouseholdMemberCompletedPage.submit()).click()
         .get(ProxyCheckPage.noProxy()).click()
         .get(ProxyCheckPage.submit()).click()
-        .get(ReligionPage.questionText()).stripText().should('contain', "What is your religion?")
+        .get(ReligionPage.questionText()).stripText().should('contain', 'What is your religion?')
         .get(ReligionPage.jedi()).click()
         .get(ReligionPage.submit()).click()
         .get(HouseholdMemberCompletedPage.submit()).click()

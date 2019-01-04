@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../../helpers/helpers.js';
 
 const MandatoryCheckboxPage = require('../../../../../generated_pages/mutually_exclusive/mutually-exclusive-checkbox.page');
 const SummaryPage = require('../../../../../generated_pages/mutually_exclusive/mandatory-section-summary.page');

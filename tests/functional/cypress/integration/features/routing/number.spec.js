@@ -1,10 +1,10 @@
-import {openQuestionnaire} from '../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js';
 
 describe('Feature: Routing on a Number', function () {
 
   beforeEach(function () {
     // Cypress clears cookies between tests by default.
-    Cypress.Cookies.preserveOnce('session')
+    Cypress.Cookies.preserveOnce('session');
   });
 
   describe('Equals', function () {

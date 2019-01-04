@@ -1,4 +1,4 @@
-import {startQuestionnaire} from '../helpers/helpers.js'
+import {startQuestionnaire} from '../helpers/helpers.js';
 
 const NoOfRepeatsPage = require('../../generated_pages/repeating_and_conditional_routing/no-of-repeats.page.js');
 const RepeatedBlockPage = require('../../generated_pages/repeating_and_conditional_routing/repeated-block.page.js');
@@ -56,7 +56,7 @@ describe('Repeating Groups', function() {
           .get(RepeatedBlockPage.shoeSizeOnly()).click()
           .get(RepeatedBlockPage.submit()).click()
           .url().should('contain', '/1/' + ShoeSizeBlockPage.pageName);
-    });
+      });
   });
 
   it('Given I am on the second question in the second group, when I go to the previous page, then I should see the first question for second group.', function() {
@@ -88,7 +88,7 @@ describe('Repeating Groups', function() {
   function completeRepeatingQuestions(numberOfRepeats, complete) {
     let chain = cy
       .get(NoOfRepeatsPage.answer()).type(numberOfRepeats)
-      .get(NoOfRepeatsPage.submit()).click()
+      .get(NoOfRepeatsPage.submit()).click();
 
     for (let i = 0; i < complete; i++) {
       chain = chain.then(() => {

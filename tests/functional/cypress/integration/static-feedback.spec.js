@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../helpers/helpers.js'
+import {openQuestionnaire} from '../helpers/helpers.js';
 const form = require('../../base_pages/feedback-form');
 
 describe('Feedback Form', function() {
@@ -53,7 +53,7 @@ describe('Feedback Form', function() {
     describe('and the user populates the message and clicks submit', function() {
       it('redirects to the thankyou page', function() {
         cy
-          .get(form.messageInput()).type("This is a <script>message</script>")
+          .get(form.messageInput()).type('This is a <script>message</script>')
           .get(form.submit()).click()
           .url().should('match', thankyouUrlMatcher);
       });
@@ -62,7 +62,7 @@ describe('Feedback Form', function() {
     describe('and the user populates the name and clicks submit', function() {
       it('redirects to the thankyou page', function() {
         cy
-          .get(form.nameInput()).type("This is <script>my name</script>")
+          .get(form.nameInput()).type('This is <script>my name</script>')
           .get(form.submit()).click()
           .url().should('match', thankyouUrlMatcher);
       });
@@ -71,7 +71,7 @@ describe('Feedback Form', function() {
     describe('and the user populates the email and clicks submit', function() {
       it('redirects to the thankyou page', function() {
         cy
-          .get(form.emailInput()).type("This is <script>my email</script>")
+          .get(form.emailInput()).type('This is <script>my email</script>')
           .get(form.submit()).click()
           .url().should('match', thankyouUrlMatcher);
       });

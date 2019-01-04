@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js';
 
 const IncorrectAnswerPage = require('../../../../generated_pages/routing_date_equals/incorrect-answer.page.js');
 const CorrectAnswerPage =   require('../../../../generated_pages/routing_date_equals/correct-answer.page.js');
@@ -171,8 +171,8 @@ describe('Feature: Routing on a Date', function () {
       var mm_yesterday = String(yesterday.getMonth()+1); //January is 0!
       var yyyy_yesterday = yesterday.getFullYear();
 
-      const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
+      const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
       ];
 
       beforeEach(function() {

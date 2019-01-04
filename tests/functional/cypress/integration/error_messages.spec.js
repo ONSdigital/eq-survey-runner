@@ -1,11 +1,11 @@
-import {openQuestionnaire} from '../helpers/helpers.js'
+import {openQuestionnaire} from '../helpers/helpers.js';
 
 const TestErrorsPage = require('../../generated_pages/error_messages/test-errors.page.js');
 
 describe('Error Messages', function() {
 
   beforeEach(() => {
-    openQuestionnaire('test_error_messages.json')
+    openQuestionnaire('test_error_messages.json');
   });
 
   it('Given a survey has an error when errors are displayed then page error messages are correct', function() {

@@ -1,15 +1,15 @@
-import {openQuestionnaire} from '../helpers/helpers.js'
-const form = require('../../base_pages/feedback-form.js')
+import {openQuestionnaire} from '../helpers/helpers.js';
+const form = require('../../base_pages/feedback-form.js');
 
 describe('Inline Feedback Form', function() {
-  const schema = 'test_textfield.json'
+  const schema = 'test_textfield.json';
 
   describe('When the survey is loaded', function() {
     beforeEach('load the form', function() {
-      return openQuestionnaire(schema)
-    })
+      return openQuestionnaire(schema);
+    });
 
-    it('the form is not visible', theFormIsNotVisible)
+    it('the form is not visible', theFormIsNotVisible);
 
     describe('and the open action is clicked', function() {
       beforeEach('click the open action', function() {
@@ -38,7 +38,7 @@ describe('Inline Feedback Form', function() {
 
       it('Has a cancel link', function() {
         cy
-          .get(form.close()).should('be.visible')
+          .get(form.close()).should('be.visible');
       });
 
       describe('and the close action is clicked', function() {
@@ -58,14 +58,14 @@ describe('Inline Feedback Form', function() {
     beforeEach('load and display the form', function() {
       return openQuestionnaire(schema)
         .then(() => {
-          cy.get(form.open()).click()
-        })
+          cy.get(form.open()).click();
+        });
     });
 
     it(`and the user populates the message ${goodSubmitBehaviour}`, function() {
       cy
         .get(form.messageInput())
-        .get(form.messageInput()).type("This is <script>my name</script>")
+        .get(form.messageInput()).type('This is <script>my name</script>')
         .get(form.submit()).click()
         .then(theFormIsNotVisibleWithThanks);
     });
@@ -74,7 +74,7 @@ describe('Inline Feedback Form', function() {
     it(`and the user populates the name ${goodSubmitBehaviour}`, function() {
       cy
         .get(form.nameInput()).should('be.visible')
-        .get(form.nameInput()).type("This is <script>my name</script>")
+        .get(form.nameInput()).type('This is <script>my name</script>')
         .get(form.submit()).click()
         .then(theFormIsNotVisibleWithThanks);
     });
@@ -82,7 +82,7 @@ describe('Inline Feedback Form', function() {
     it(`and the user populates the email ${goodSubmitBehaviour}`, function() {
       cy
         .get(form.emailInput()).should('be.visible')
-        .get(form.emailInput()).type("This is <script>my email</script>")
+        .get(form.emailInput()).type('This is <script>my email</script>')
         .get(form.submit()).click()
         .then(theFormIsNotVisibleWithThanks);
     });
@@ -95,17 +95,17 @@ describe('Inline Feedback Form', function() {
   }
 
   function theFormIsNotVisible(withThanks=false ) {
-    let chain = cy.get(form.container())
+    let chain = cy.get(form.container());
 
     if (withThanks) {
       return chain
         .get(form.display()).should('not.be.visible')
-        .get(form.thanks()).should('be.visible')
+        .get(form.thanks()).should('be.visible');
     }
 
     return chain
       .get(form.display()).should('be.visible')
-      .get(form.thanks()).should('not.be.visible')
+      .get(form.thanks()).should('not.be.visible');
   }
 
   function theFormIsVisible() {
@@ -113,7 +113,7 @@ describe('Inline Feedback Form', function() {
     cy
       .get(form.container()).should('be.visible')
       .get(form.display()).should('be.visible')
-      .get(form.thanks()).should('not.be.visible')
+      .get(form.thanks()).should('not.be.visible');
   }
 
 });

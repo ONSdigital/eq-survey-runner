@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js';
 const DefaultTitlePage = require('../../../../generated_pages/titles/single-title-block.page');
 const SingleTitlePage = require('../../../../generated_pages/titles/who-is-answering-block.page');
 const ConditionalTitlePage = require('../../../../generated_pages/titles/multiple-question-versions-block.page');
@@ -8,15 +8,15 @@ const SummaryPage = require('../../../../generated_pages/titles/summary.page');
 describe('Feature: Conditional question title', function() {
 
   beforeEach(function() {
-      return openQuestionnaire('test_titles.json');
+    return openQuestionnaire('test_titles.json');
   });
 
   describe('Given I start the different version of question titles survey', function() {
     it('When I am on the first page, Then I should see the default value for a question title', function() {
       cy
-       .get(DefaultTitlePage.questionText()).stripText().should('contain', 'How are you feeling??');
+        .get(DefaultTitlePage.questionText()).stripText().should('contain', 'How are you feeling??');
     });
-   });
+  });
 
   describe('Given I start the different version of question titles survey', function() {
     it('When I navigate to the second page, Then I should see a single title value', function() {

@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js';
 const AdditionalQuestionPage = require('../../../../generated_pages/skip_conditions_on_blocks_repeating_group/additional-question-block.page');
 const DobPage = require('../../../../generated_pages/skip_conditions_on_blocks_repeating_group/date-of-birth.page');
 const HouseholdCompositionPage = require('../../../../generated_pages/skip_conditions_on_blocks_repeating_group/household-composition.page');
@@ -8,7 +8,7 @@ const ConfirmationPage = require('../../../../generated_pages/skip_conditions_on
 describe('Feature: Skipping in block in repeating group based on repeating answer', function() {
 
   beforeEach(function() {
-      openQuestionnaire('test_skip_conditions_on_blocks_repeating_group.json');
+    openQuestionnaire('test_skip_conditions_on_blocks_repeating_group.json');
   });
 
   describe('Given I enter 3 people and give the date of birth (dob) of the first person only', function() {

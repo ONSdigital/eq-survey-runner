@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../helpers/helpers.js'
+import {openQuestionnaire} from '../helpers/helpers.js';
 
 const LanguagePage = require('../../generated_pages/language/language-block.page');
 const SummaryPage = require('../../generated_pages/language/summary.page');
@@ -17,9 +17,9 @@ describe('Language Code', function() {
       .get(SummaryPage.monthYearAnswer()).stripText().should('contain', 'Ebrill 2018')
       .get(SummaryPage.submit()).click();
 
-      // We can only test this once we have a proper welsh translation file committed
-      //.url().should('contain', 'thank-you')
-      //.get(ThankYouPage.submissionSuccessfulTitle()).stripText().should('contain', "Cyflwyno'n llwyddiannus")
+    // We can only test this once we have a proper welsh translation file committed
+    //.url().should('contain', 'thank-you')
+    //.get(ThankYouPage.submissionSuccessfulTitle()).stripText().should('contain', "Cyflwyno'n llwyddiannus")
   });
 
   it('Given the language code en is specified I should see English text', function() {

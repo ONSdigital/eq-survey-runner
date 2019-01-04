@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../../helpers/helpers.js';
 
 const YearDatePage = require('../../../../../generated_pages/mutually_exclusive/mutually-exclusive-year-date.page');
 const SummaryPage = require('../../../../../generated_pages/mutually_exclusive/optional-year-section-summary.page');

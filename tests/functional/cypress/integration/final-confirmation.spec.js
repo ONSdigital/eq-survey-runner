@@ -1,11 +1,11 @@
-import {startQuestionnaire} from '../helpers/helpers.js'
+import {startQuestionnaire} from '../helpers/helpers.js';
 const BreakfastPage = require('../../generated_pages/final_confirmation/breakfast.page.js');
 const ConfirmationPage = require('../../generated_pages/final_confirmation/confirmation.page.js');
 
 describe('Confirmation Page', function() {
 
   beforeEach(() => {
-    startQuestionnaire('test_final_confirmation.json')
+    startQuestionnaire('test_final_confirmation.json');
   });
 
   it('Given I successfully complete a questionnaire, when I submit the page, then I should be prompted for confirmation to submit.', function() {

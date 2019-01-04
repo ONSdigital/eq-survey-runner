@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../../helpers/helpers.js';
 
 const DatePage = require('../../../../../generated_pages/mutually_exclusive/mutually-exclusive-date.page');
 const SummaryPage = require('../../../../../generated_pages/mutually_exclusive/optional-date-section-summary.page');
@@ -6,8 +6,8 @@ const SummaryPage = require('../../../../../generated_pages/mutually_exclusive/o
 describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox Override', function() {
 
   beforeEach(function() {
-    openQuestionnaire('test_mutually_exclusive.json')
-          cy.navigationLink('Date').click();
+    openQuestionnaire('test_mutually_exclusive.json');
+    cy.navigationLink('Date').click();
   });
 
   describe('Given the user has entered a value for the non-exclusive month year date answer', function() {

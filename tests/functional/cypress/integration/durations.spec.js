@@ -1,4 +1,4 @@
-import {openQuestionnaire, navigationLink} from '../helpers/helpers.js'
+import {openQuestionnaire, navigationLink} from '../helpers/helpers.js';
 
 const DurationPage = require('../../generated_pages/durations/duration-block.page.js');
 const SummaryPage = require('../../generated_pages/durations/summary.page.js');
@@ -6,7 +6,7 @@ const SummaryPage = require('../../generated_pages/durations/summary.page.js');
 describe('Durations', function() {
 
   beforeEach(function() {
-    openQuestionnaire('test_durations.json')
+    openQuestionnaire('test_durations.json');
   });
 
   it('Given the test_durations survey is selected when durations are entered then the summary screen shows the durations entered formatted', function() {

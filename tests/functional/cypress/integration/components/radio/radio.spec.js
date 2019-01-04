@@ -1,4 +1,4 @@
-import {openQuestionnaire} from '../../../helpers/helpers.js'
+import {openQuestionnaire} from '../../../helpers/helpers.js';
 
 describe('Component: Radio', function() {
   describe('Given I start a Mandatory Radio survey', function() {
@@ -12,11 +12,11 @@ describe('Component: Radio', function() {
 
     it('When I have selected a radio option, Then the selected option should be displayed in the summary', function() {
       cy
-       .get(RadioMandatoryPage.coffee()).click()
-       .get(RadioMandatoryPage.submit()).click()
-       .url().should('contain', RadioSummaryPage.pageName)
-       .get(RadioSummaryPage.radioMandatoryAnswer()).stripText().should('contain', 'Coffee');
-     });
+        .get(RadioMandatoryPage.coffee()).click()
+        .get(RadioMandatoryPage.submit()).click()
+        .url().should('contain', RadioSummaryPage.pageName)
+        .get(RadioSummaryPage.radioMandatoryAnswer()).stripText().should('contain', 'Coffee');
+    });
   });
 
   describe('Given I start a Mandatory Radio Other survey', function() {
@@ -30,13 +30,13 @@ describe('Component: Radio', function() {
 
     it('When I have selected a other text field, Then the selected option should be displayed in the summary', function() {
       cy
-       .get(RadioMandatoryPage.other()).click()
-       .get(RadioMandatoryPage.otherDetail())
-       .type('Hello World')
-       .get(RadioMandatoryPage.submit()).click()
-       .url().should('contain', RadioSummaryPage.pageName)
-       .get(RadioSummaryPage.radioMandatoryAnswer()).stripText().should('contain', 'Hello World');
-     });
+        .get(RadioMandatoryPage.other()).click()
+        .get(RadioMandatoryPage.otherDetail())
+        .type('Hello World')
+        .get(RadioMandatoryPage.submit()).click()
+        .url().should('contain', RadioSummaryPage.pageName)
+        .get(RadioSummaryPage.radioMandatoryAnswer()).stripText().should('contain', 'Hello World');
+    });
   });
 
   describe('Given I start a Mandatory Radio Other Overridden Error survey ', function() {
@@ -100,9 +100,9 @@ describe('Component: Radio', function() {
 
     it('When I have selected no option, Then the selected option should be displayed in the summary', function() {
       cy
-       .get(RadioNonMandatoryPage.submit()).click()
-       .url().should('contain', RadioSummaryPage.pageName)
-       .get(RadioSummaryPage.radioNonMandatoryAnswer()).stripText().should('contain', 'No answer provided');
+        .get(RadioNonMandatoryPage.submit()).click()
+        .url().should('contain', RadioSummaryPage.pageName)
+        .get(RadioSummaryPage.radioNonMandatoryAnswer()).stripText().should('contain', 'No answer provided');
     });
   });
 
@@ -134,11 +134,11 @@ describe('Component: Radio', function() {
 
     it('When I submit data in the other text field it should be persisted and Then displayed on the summary', function() {
       cy
-       .get(RadioNonMandatoryPage.other()).click()
-       .get(RadioNonMandatoryPage.otherDetail()).type('Hello World')
-       .get(RadioNonMandatoryPage.submit()).click()
-       .url().should('contain', RadioSummaryPage.pageName)
-       .get(RadioSummaryPage.radioNonMandatoryAnswer()).stripText().should('contain', 'Hello World');
+        .get(RadioNonMandatoryPage.other()).click()
+        .get(RadioNonMandatoryPage.otherDetail()).type('Hello World')
+        .get(RadioNonMandatoryPage.submit()).click()
+        .url().should('contain', RadioSummaryPage.pageName)
+        .get(RadioSummaryPage.radioNonMandatoryAnswer()).stripText().should('contain', 'Hello World');
     });
   });
 });
