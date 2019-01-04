@@ -29,7 +29,10 @@ display_result $? 4 "Front end unit tests"
 echo "Generating functional test pages"
 yarn generate_pages
 
-echo "Running front end functional tests"
-yarn test_functional
+echo "Running chimp.js functional tests"
+yarn test_functional_chimp
+
+echo "Running cypress functional tests"
+yarn test_functional_cypress
 
 display_result $? 5 "Front end functional tests"

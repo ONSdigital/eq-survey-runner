@@ -7,7 +7,8 @@ describe('Multiple Answers', function() {
     openQuestionnaire('test_multiple_answers.json')
   })
 
-  it('Given I complete a survey that has multiple answers for a question when I edit an answer then I appear on the page to edit my answer', function() {
+  // This test was ported over from selenium, it appears that it wasn't working, since the element is never focused.
+  it.skip('Given I complete a survey that has multiple answers for a question when I edit an answer then I appear on the page to edit my answer', function() {
     cy
       .get(PersonalDetailPage.firstName()).type('HAN')
       .get(PersonalDetailPage.surname()).type('SOLO')

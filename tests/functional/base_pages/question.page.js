@@ -29,11 +29,13 @@ class QuestionPage extends BasePage {
 
   submit() { return '[data-qa="btn-submit"]'; }
 
-  saveSignOut() { return '[data-qa="btn-save-sign-out"]'; }
+  saveSignOut() { return '.header__main [data-qa="btn-save-sign-out"]'; }
 
   interstitialHeader() { return '#main > h1';}
 
   switchLanguage(language_code) { return '.header__top [data-qa="switch-language-' + language_code + '"]'; }
+
+  pageBody() { return '#main';}
 
 }
 

@@ -53,7 +53,7 @@ class FeedbackForm {
   }
 
   signOut() {
-    return '[data-qa="btn-sign-out"]';
+    return '.header__main [data-qa="btn-sign-out"]';
   }
 }
 

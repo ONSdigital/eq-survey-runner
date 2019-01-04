@@ -37,7 +37,7 @@ describe('Save and Signout', function() {
         .get(TestMinMax.saveSignOut()).click()
         .url().should('contain', 'localhost')
         .go('back')
-        .document().should('contain', 'Your session has expired')
+        .get(TestMinMax.pageBody()).should('contain', 'Your session has expired')
     });
 
     it('Given I have started a questionnaire, when I return to the questionnaire, then I am returned to the page I was on and can then complete the survey', function () {
@@ -129,7 +129,7 @@ describe('Save and Signout', function() {
     it('Given a logout url is set, when I load the feedback page, then I see the sign out button', function () {
       openQuestionnaire('test_numbers.json', {includeLogoutUrl: true})
       cy
-        .url(FeedbackForm.url())
+        .visit(FeedbackForm.url())
         .url().should('contain', 'feedback')
         .get(FeedbackForm.signOut()).should('exist')
         .get(FeedbackForm.signOut()).stripText().should('contain', 'Sign out');
@@ -138,7 +138,7 @@ describe('Save and Signout', function() {
     it('Given a logout url is not set, when I load the feedback page, then there should be no sign out button', function () {
       openQuestionnaire('test_numbers.json', {includeLogoutUrl: false})
       cy
-        .url(FeedbackForm.url())
+        .visit(FeedbackForm.url())
         .url().should('contain', 'feedback')
         .get(FeedbackForm.signOut()).should('not.exist');
     });
@@ -146,7 +146,7 @@ describe('Save and Signout', function() {
     it('Given a logout url is set and I load the feedback page, when I sign out, then I should be on the account service logged out page', function () {
       openQuestionnaire('test_numbers.json', {includeLogoutUrl: true})
       cy
-        .url(FeedbackForm.url())
+        .visit(FeedbackForm.url())
         .url().should('contain', 'feedback')
         .get(FeedbackForm.signOut()).should('exist')
         .get(FeedbackForm.signOut()).click()

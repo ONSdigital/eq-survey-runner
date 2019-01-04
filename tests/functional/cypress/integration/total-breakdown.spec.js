@@ -49,16 +49,6 @@ describe('Total Breakdown', function() {
       .get(BreakDownPage.totalPercentage()).invoke('val').should('contain', '140');
   });
 
-  it('Given four percentage fields, When I enter non-integer values into each field, Then total should be 0', function() {
-    cy
-      .get(BreakDownPage.percentage1()).type('ten')
-      .get(BreakDownPage.percentage2()).type('twenty')
-      .get(BreakDownPage.percentage3()).type('thirty')
-      .get(BreakDownPage.percentage4()).type('forty')
-      .get(BreakDownPage.totalPercentageLabel()).click()
-      .get(BreakDownPage.totalPercentage()).invoke('val').should('contain', '0');
-  });
-
   it('Given four percentage fields, When total is not 100, Then total field should be highlighted', function() {
     cy
       .get(BreakDownPage.percentage1()).type('1')
