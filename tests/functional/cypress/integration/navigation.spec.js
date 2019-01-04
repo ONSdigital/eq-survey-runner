@@ -1,4 +1,4 @@
-import {openQuestionnaire, navigationLink, isSectionComplete} from '../helpers/helpers.js';
+import {openQuestionnaire} from '../helpers/helpers.js';
 const CreditCardPage = require('../../generated_pages/navigation/credit-card.page.js');
 const ExpiryDate = require('../../generated_pages/navigation/expiry-date.page.js');
 const ExtraCoverBlockPage = require('../../generated_pages/navigation/extra-cover-block.page.js');

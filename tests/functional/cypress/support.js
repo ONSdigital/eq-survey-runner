@@ -29,34 +29,34 @@
 Cypress.Commands.add('stripText', { prevSubject: true }, (subject, stripNewlines) => {
   return cy.wrap(subject).invoke('text').then((text) => {
     if (stripNewlines === true) {
-      text = text.replace(/\n/g, '')
+      text = text.replace(/\n/g, '');
     }
-    return text.trim()
-  })
-})
+    return text.trim();
+  });
+});
 
 // Force typing even though the subject may be covered by another element.
 // This happens with unit types.
 Cypress.Commands.add('typeForced', { prevSubject: true }, (subject, textToType) => {
-  return cy.wrap(subject).type(textToType, {force: true})
-})
+  return cy.wrap(subject).type(textToType, {force: true});
+});
 
 Cypress.Commands.add('key', (subject, keyCode) => {
   cy.focused().trigger('keydown', {
-      keyCode: keyCode,
-      which: keyCode,
+    keyCode: keyCode,
+    which: keyCode,
   });
 });
 
 Cypress.Commands.add('navigationLink', {prevSubject: 'optional'}, (subject, navText) => {
-    return cy.get('.nav').contains(new RegExp('^' + navText))
-})
+  return cy.get('.nav').contains(new RegExp('^' + navText));
+});
 
 Cypress.Commands.add('isSectionComplete', {prevSubject: 'optional'}, (subject, navText) => {
   return cy
     .navigationLink(navText)
     .then(($elem)=> {
-      const dataQa = $elem.attr('data-qa')
-      return dataQa === 'complete'
-    })
-})
+      const dataQa = $elem.attr('data-qa');
+      return dataQa === 'complete';
+    });
+});

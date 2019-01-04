@@ -6,7 +6,6 @@ const RepeatingNamePage = require('../../generated_pages/routing_on_answer_from_
 const RepeatingAnyoneElsePage = require('../../generated_pages/routing_on_answer_from_driving_repeating_group/repeating-anyone-else-block.page.js');
 const SexPage = require('../../generated_pages/routing_on_answer_from_driving_repeating_group/sex-block.page.js');
 const SexNoPrimaryPage = require('../../generated_pages/routing_on_answer_from_driving_repeating_group/sex-block-no-primary.page.js');
-const RelationshipsPage = require('../../generated_pages/routing_on_answer_from_driving_repeating_group/relationships.page.js');
 const RelationshipsNoPrimaryPage = require('../../generated_pages/routing_on_answer_from_driving_repeating_group/relationships-no-primary.page.js');
 const SummaryPage = require('../../generated_pages/routing_on_answer_from_driving_repeating_group/summary.page.js');
 
@@ -42,9 +41,9 @@ describe('Routing on Answer from repeat', function() {
       .get(RelationshipsNoPrimaryPage.whoIsRelatedNoPrimary(0)).select('Husband or wife')
       .get(RelationshipsNoPrimaryPage.submit()).click()
 
-      .get(SexNoPrimaryPage.questionText()).stripText().should('contain', 'Alice')
-      .get(SexNoPrimaryPage.female()).click()
-      .get(SexNoPrimaryPage.submit()).click()
+      .get(SexPage.questionText()).stripText().should('contain', 'Alice')
+      .get(SexPage.female()).click()
+      .get(SexPage.submit()).click()
 
       .get(SexNoPrimaryPage.questionText()).stripText().should('contain', 'Jamie')
       .get(SexNoPrimaryPage.male()).click()

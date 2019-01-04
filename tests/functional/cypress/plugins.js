@@ -10,12 +10,12 @@
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
-const webpack = require('@cypress/webpack-preprocessor')
+const webpack = require('@cypress/webpack-preprocessor');
 
-module.exports = (on, config) => {
+module.exports = (on, config) => {  // eslint-disable-line no-unused-vars
   // Using the webpack preprocessor allows us to use require.context to include
   // all files in a directory. The default is browserify which doesn't have that
   // option
-  on('file:preprocessor', webpack())
-}
+  on('file:preprocessor', webpack());
+};
 

@@ -35,7 +35,7 @@ const signingKeyString = '-----BEGIN RSA PRIVATE KEY-----\n' +
   '2+IFAoGAUbmo0idyszcarBPPsiEFQY2y1yzHMajs8OkjUzOVLzdiMkr36LF4ojgw\n' +
   'UCM9sT0g1i+eTfTcuOEr3dAxcXld8Ffs6INSIplvRMWH1m7wgXMRpPCy74OuxlDQ\n' +
   'xwPp/1IVvrMqVgnyS9ezAeE0p9u8zUdZdwHz1UAggwbtHR6IbIA=\n' +
-  '-----END RSA PRIVATE KEY-----\n'
+  '-----END RSA PRIVATE KEY-----\n';
 
 const encryptionKeyString = '-----BEGIN PUBLIC KEY-----\n' +
   'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt8LZnIhuOdL/BC029GOa\n' +
@@ -45,7 +45,7 @@ const encryptionKeyString = '-----BEGIN PUBLIC KEY-----\n' +
   'f37qhuWNQgzyNyTti1DTDUIWyzQQJp926vLbkOip6Fc2R13hOFNETe68Rrw/h3hX\n' +
   'EFS17uPFZHsxvm9PFXX9KZMS25ohqbNh97I94LL4o4wybl6LaE6lJEHiD6docD0B\n' +
   '6wIDAQAB\n' +
-  '-----END PUBLIC KEY-----\n'
+  '-----END PUBLIC KEY-----\n';
 
 function generateToken(schema, userId, collectionId, periodId = '201605', periodStr = 'May 2016', regionCode = 'GB-ENG', languageCode = 'en', sexualIdentity = false, includeLogoutUrl = true) {
   let schemaParts = schemaRegEx.exec(schema);
@@ -129,4 +129,4 @@ function generateToken(schema, userId, collectionId, periodId = '201605', period
 
 module.exports = {
   generateToken
-}
+};

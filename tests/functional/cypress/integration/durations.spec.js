@@ -1,4 +1,4 @@
-import {openQuestionnaire, navigationLink} from '../helpers/helpers.js';
+import {openQuestionnaire} from '../helpers/helpers.js';
 
 const DurationPage = require('../../generated_pages/durations/duration-block.page.js');
 const SummaryPage = require('../../generated_pages/durations/summary.page.js');
