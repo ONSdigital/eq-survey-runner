@@ -2,8 +2,7 @@
   <div class="header__top" role="banner">
     <div class="container">
       <div class="grid grid--gutterless ">
-        <div class="grid__col col-6@s">
-          {% block logo %}
+        <div class="grid__col col-8@s">
           <div class="logo">
             <img
               src="{{ url_for('static', filename='img/theme/ukis/logo-beis.png') }}"
@@ -11,9 +10,11 @@
               class="logo__img header__logo"
             />
           </div>
-          {% endblock logo %}
+          <div class="logo logo--dof">
+            <img src="{{ url_for('static', filename='img/theme/ukis/logo-dof.png') }}" alt="Department of Finance" class="logo__img header__logo" />
+          </div>
         </div>
-        <div class="grid__col col-6@s">{% if account_service_url %} {% include 'partials/services-navigation.html' %} {% endif %}</div>
+        <div class="grid__col col-4@s">{% if account_service_url %} {% include 'partials/services-navigation.html' %} {% endif %}</div>
       </div>
     </div>
   </div>

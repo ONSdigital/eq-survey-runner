@@ -1,0 +1,15 @@
+.logo__img {
+  width: 140px;
+  @include mq(m) {
+    width: 180px;
+  }
+}
+
+.logo--dof {
+  .logo__img {
+    width: 110px;
+    @include mq(m) {
+      width: 160px;
+    }
+  }
+}
