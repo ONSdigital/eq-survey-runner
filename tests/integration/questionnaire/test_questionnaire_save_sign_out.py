@@ -87,7 +87,8 @@ class TestSaveSignOut(IntegrationTestCase):
 
     def test_thank_you_page_post_without_action(self):
         """
-        If the thank you page is posted too without an action, takes you to the signed out page.
+        If the thank you page is posted too without an action,
+        it takes you back to the thank you page.
         """
 
         self.launchSurvey('test', 'textarea')
@@ -99,5 +100,4 @@ class TestSaveSignOut(IntegrationTestCase):
 
         self.last_csrf_token = token
         self.post(action=None)
-        self.assertInUrl('/signed-out')
-        self.assertInBody('Your survey answers have been saved. You are now signed out')
+        self.assertInUrl('/thank-you')
