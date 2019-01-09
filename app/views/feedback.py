@@ -91,7 +91,10 @@ def thank_you():
 @feedback_blueprint.route('/thank-you', methods=['POST'])
 @login_required
 def post_thank_you():
-    return redirect(url_for('session.get_sign_out'))
+    if 'action[sign_out]' in request.form:
+        return redirect(url_for('session.get_sign_out'))
+
+    return redirect(url_for('feedback.thank_you'))
 
 
 @template_helper.with_session_timeout

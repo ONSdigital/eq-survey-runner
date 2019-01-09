@@ -273,8 +273,11 @@ def get_thank_you(schema, metadata, eq_id, form_type):
 
 @post_submission_blueprint.route('thank-you', methods=['POST'])
 @login_required
-def post_thank_you(eq_id, form_type):  # pylint: disable=unused-argument
-    return redirect(url_for('session.get_sign_out'))
+def post_thank_you(eq_id, form_type):
+    if 'action[sign_out]' in request.form:
+        return redirect(url_for('session.get_sign_out'))
+
+    return redirect(url_for('post_submission.get_thank_you', eq_id=eq_id, form_type=form_type))
 
 
 @post_submission_blueprint.route('view-submission', methods=['GET'])
@@ -339,8 +342,11 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
 
 @post_submission_blueprint.route('view-submission', methods=['POST'])
 @login_required
-def post_view_submission(eq_id, form_type):  # pylint: disable=unused-argument
-    return redirect(url_for('session.get_sign_out'))
+def post_view_submission(eq_id, form_type):
+    if 'action[sign_out]' in request.form:
+        return redirect(url_for('session.get_sign_out'))
+
+    return redirect(url_for('post_submission.get_view_submission', eq_id=eq_id, form_type=form_type))
 
 
 def _set_started_at_metadata_if_required(form, collection_metadata):
