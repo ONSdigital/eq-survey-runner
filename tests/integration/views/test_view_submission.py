@@ -59,6 +59,12 @@ class TestViewSubmission(IntegrationTestCase):
         self.post(action='sign_out')
         self.assertEqualUrl('/signed-out')
 
+    def test_view_submission_post_no_action(self):
+        self.get('questionnaire/test/view_submitted_response/view-submission')
+
+        self.post(action=None)
+        self.assertInUrl('view-submission')
+
 
 class TestCantViewSubmission(IntegrationTestCase):
 
