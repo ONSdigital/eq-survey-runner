@@ -157,6 +157,11 @@ class Feedback(IntegrationTestCase):
         self.assertStatusOK()
         self.assertEqualUrl(SIGNED_OUT_URL)
 
+    def test_feedback_thankyou_post_no_action(self):
+        self.post(url=FEEDBACK_THANKYOU_URL, post_data='', action=None)
+        self.assertStatusOK()
+        self.assertEqualUrl(FEEDBACK_THANKYOU_URL)
+
 
 def validate_json_with_schema(data, schema):
     errors = []

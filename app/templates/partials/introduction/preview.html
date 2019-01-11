@@ -19,7 +19,7 @@
 {% if intro.questions %}
 <div class="collapsible js-collapsible u-mb-s">
         <div class="collapsible__controls">
-            <button class="btn btn--secondary btn--small collapsible__control js-collapsible-toggle-all u-wa--@xs" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Show all" data-ga-label="Show all" data-close-all-label="{{ _('Hide all') }}" data-open-all-label="{{ _('Show all') }}" aria-hidden="true">
+            <button type="button" class="btn btn--secondary btn--small collapsible__control js-collapsible-toggle-all u-wa--@xs" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Show all" data-ga-label="Show all" data-close-all-label="{{ _('Hide all') }}" data-open-all-label="{{ _('Show all') }}" aria-hidden="true">
                 {{ _('Show all') }}</button>
         </div>
 
@@ -28,7 +28,7 @@
             {% set outer_loop = loop %}
             <h3 class="collapsible__title js-collapsible-title u-cf icon--collapsible" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Open panel" data-ga-label="{{question.question}}">
                 <span class="collapsible__title-text">{{question.question}}</span>
-                <button class="btn btn--secondary btn--small collapsible__title-right js-collapsible-toggle u-wa--@xs" data-close-label="{{ _('Hide') }}" data-open-label="{{ _('Show') }}" aria-hidden="true" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Open panel" data-ga-label="{{question.question}}">{{ _('Show') }}</button>
+                <button type="button" class="btn btn--secondary btn--small collapsible__title-right js-collapsible-toggle u-wa--@xs" data-close-label="{{ _('Hide') }}" data-open-label="{{ _('Show') }}" aria-hidden="true" data-ga="click" data-ga-category="Preview Survey" data-ga-action="Open panel" data-ga-label="{{question.question}}">{{ _('Show') }}</button>
             </h3>
 
             <div class="collapsible__body u-fs-r js-collapsible-body">
