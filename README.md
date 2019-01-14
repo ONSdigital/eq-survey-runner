@@ -38,21 +38,10 @@ pipenv run scripts/run_tests_unit.sh
 
 
 ## Pre-Requisites
-In order to run locally you'll need PostgreSQL, Node.js and snappy installed
+In order to run locally you'll need PostgreSQL, Node.js, sqlite3, snappy and pyenv installed
 
-PostgreSQL
 ```
-brew install postgres
-```
-
-npm
-```
-brew install npm
-```
-
-snappy
-```
-brew install snappy
+brew install postgres snappy npm sqlite3 pyenv
 ```
 
 Note that npm currently requires Python 2.x for some of the setup steps,
@@ -67,7 +56,6 @@ purpose.
 Upgrade pip and install dependencies:
 
 ```
-brew install pyenv
 pyenv install
 pip install --upgrade pip setuptools pipenv
 pipenv install --dev
