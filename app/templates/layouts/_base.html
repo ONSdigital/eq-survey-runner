@@ -57,6 +57,8 @@
 
     ga('create', '{{analytics_ua_id}}', 'auto');
     ga('set', 'anonymizeIp', true);
+    // Language is setup as a custom dimension in google analytics
+    ga('set', 'dimension1', '{{language_code}}' || 'en');
     ga('send', 'pageview');
     </script>
     {% endif %}
