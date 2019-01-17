@@ -63,10 +63,6 @@
     </script>
     {% endif %}
     <!-- End Google Analytics -->
-    <script nonce="{{ csp_nonce() }}">
-      window.__EQ_SESSION_TIMEOUT__ = {{ session_timeout|default('null') }};
-      window.__EQ_SESSION_TIMEOUT_PROMPT__ = {{ session_timeout_prompt|default('null') }};
-    </script>
   </head>
 
   <body>
@@ -115,12 +111,6 @@
       </footer>
 
     </div>
-
-    {% block post_content %}
-      {% if current_user.is_authenticated %}
-        {% include theme('partials/timeout.html') %}
-      {% endif %}
-    {% endblock post_content %}
 
     <!--[if gte IE 9]><!-->
     {% block scripts %}
