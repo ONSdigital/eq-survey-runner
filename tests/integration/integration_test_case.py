@@ -5,7 +5,7 @@ import json
 import zlib
 
 from bs4 import BeautifulSoup
-from moto import mock_dynamodb2
+from mock import patch
 
 from itsdangerous import base64_decode
 
@@ -13,7 +13,7 @@ from sdc.crypto.key_store import KeyStore
 
 from app.keys import KEY_PURPOSE_AUTHENTICATION, KEY_PURPOSE_SUBMISSION
 from app.setup import create_app
-from tests.app.app_context_test_case import setup_tables
+from tests.app.app_context_test_case import MockDatastore
 
 from tests.integration.create_token import TokenGenerator
 
@@ -46,15 +46,13 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         self._set_up_app()
 
     def _set_up_app(self):
-        self._ddb = mock_dynamodb2()
-        self._ddb.start()
+        self._ds = patch('app.setup.datastore.Client', MockDatastore)
+        self._ds.start()
 
         from application import configure_logging
         configure_logging()
 
         setting_overrides = {
-            'SQLALCHEMY_DATABASE_URI': 'sqlite://',
-            'EQ_DYNAMODB_ENDPOINT': None
         }
 
         self._application = create_app(setting_overrides)
@@ -88,11 +86,8 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
         self._client = self._application.test_client()
 
-        with self._application.app_context():
-            setup_tables()
-
     def tearDown(self):
-        self._ddb.stop()
+        self._ds.stop()
 
     def launchSurvey(self, eq_id='test', form_type_id='dates', **payload_kwargs):
         """

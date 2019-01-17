@@ -1,10 +1,34 @@
+import contextlib
 import unittest
 
-from flask import current_app
-from moto import mock_dynamodb2
+from google.cloud.datastore import Key
+from mock import patch
 
 from app.setup import create_app
-from app.storage.data_access import get_table_name, TABLE_CONFIG, is_dynamodb_read_enabled
+
+
+class MockDatastore:
+
+    # pylint: disable=unused-argument
+    def __init__(self, project_id, **kwargs):
+        self.storage = {}
+
+    # pylint: disable=no-self-use
+    def transaction(self):
+        return contextlib.suppress()
+
+    def put(self, entity):
+        self.storage[entity.key] = entity
+
+    def get(self, key):
+        return self.storage.get(key)
+
+    def delete(self, key):
+        del self.storage[key]
+
+    # pylint: disable=no-self-use
+    def key(self, *path_args, **kwargs):
+        return Key(*path_args, project='local', **kwargs)
 
 
 class AppContextTestCase(unittest.TestCase):
@@ -13,41 +37,24 @@ class AppContextTestCase(unittest.TestCase):
     and destroys it on tearDown
     """
     LOGIN_DISABLED = False
+    setting_overrides = {}
 
     def setUp(self):
-        self._ddb = mock_dynamodb2()
-        self._ddb.start()
+        self._ds = patch('app.setup.datastore.Client', MockDatastore)
+        self._ds.start()
 
         setting_overrides = {
-            'SQLALCHEMY_DATABASE_URI': 'sqlite://',
             'LOGIN_DISABLED': self.LOGIN_DISABLED,
-            'EQ_DYNAMODB_ENDPOINT': None,
         }
+        setting_overrides.update(self.setting_overrides)
         self._app = create_app(setting_overrides)
 
         self._app.config['SERVER_NAME'] = 'test.localdomain'
         self._app_context = self._app.app_context()
         self._app_context.push()
 
-        setup_tables()
-
     def tearDown(self):
         self._app_context.pop()
 
-        self._ddb.stop()
-
     def app_request_context(self, *args, **kwargs):
         return self._app.test_request_context(*args, **kwargs)
-
-
-def setup_tables():
-    for config in TABLE_CONFIG.values():
-        if is_dynamodb_read_enabled(config):
-            table_name = get_table_name(config)
-            if table_name:
-                current_app.eq['dynamodb'].create_table(
-                    TableName=table_name,
-                    AttributeDefinitions=[{'AttributeName': config['key_field'], 'AttributeType': 'S'}],
-                    KeySchema=[{'AttributeName': config['key_field'], 'KeyType': 'HASH'}],
-                    ProvisionedThroughput={'ReadCapacityUnits': 1, 'WriteCapacityUnits': 1}
-                )

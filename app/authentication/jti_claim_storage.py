@@ -2,11 +2,11 @@ from uuid import UUID
 
 from datetime import datetime, timedelta
 from dateutil.tz import tzutc
+from flask import current_app
 from structlog import get_logger
 
 from app.data_model.app_models import UsedJtiClaim
-from app.storage import data_access
-from app.storage.data_access import ItemAlreadyExistsError
+from app.storage.errors import ItemAlreadyExistsError
 
 logger = get_logger()
 
@@ -51,7 +51,7 @@ def use_jti_claim(jti_claim, expires):
 
         jti = UsedJtiClaim(jti_claim, used_at, expires)
 
-        data_access.put(jti, overwrite=False)
+        current_app.eq['storage'].put(jti, overwrite=False)
     except ItemAlreadyExistsError as e:
         logger.error('jti claim has already been used', jti_claim=jti_claim)
         raise JtiTokenUsed(jti_claim) from e

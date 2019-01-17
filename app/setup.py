@@ -16,6 +16,8 @@ from flask_caching import Cache
 from flask_talisman import Talisman
 from flask_themes2 import Themes
 from flask_wtf.csrf import CSRFProtect
+import google
+from google.cloud import datastore
 from sdc.crypto.key_store import KeyStore, validate_required_keys
 from structlog import get_logger
 
@@ -29,6 +31,9 @@ from app.globals import get_session_store
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.new_relic import setup_newrelic
 from app.secrets import SecretStore, validate_required_secrets
+from app.storage.datastore import DatastoreStorage
+from app.storage.dynamodb import DynamodbStorage
+from app.storage.sql import SqlStorage
 from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
 
 CACHE_HEADERS = {
@@ -47,6 +52,24 @@ CSP_POLICY = {
 cache = Cache()
 
 logger = get_logger()
+
+
+class EmulatorCredentials(google.auth.credentials.Credentials):
+    """A mock GCP credential object.
+    Used in conjunction with local emulators that don't require proper
+    credentials e.g. Datastore
+    """
+
+    def __init__(self):  # pylint: disable=super-init-not-called
+        self.token = b'seekrit'
+        self.expiry = None
+
+    @property
+    def valid(self):
+        return True
+
+    def refresh(self, request):  # pylint: disable=unused-argument
+        raise RuntimeError('Should never be refreshed.')
 
 
 class AWSReverseProxied:
@@ -87,9 +110,7 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     if application.config['EQ_NEW_RELIC_ENABLED']:
         setup_newrelic()
 
-    setup_database(application)
-
-    setup_dynamodb(application)
+    setup_storage(application)
 
     if application.config['EQ_RABBITMQ_ENABLED']:
         application.eq['submitter'] = RabbitMQSubmitter(
@@ -190,6 +211,17 @@ def setup_secure_headers(application):
         frame_options='DENY')
 
 
+def setup_storage(application):
+    if application.config['EQ_STORAGE_BACKEND'] == 'datastore':
+        setup_datastore(application)
+    elif application.config['EQ_STORAGE_BACKEND'] == 'dynamodb':
+        setup_dynamodb(application)
+    elif application.config['EQ_STORAGE_BACKEND'] == 'sql':
+        setup_database(application)
+    else:
+        raise Exception('Unknown EQ_DATASTORE_BACKEND')
+
+
 def get_database_uri(application):
     """ Returns database URI. Prefer SQLALCHEMY_DATABASE_URI over components."""
     if application.config.get('SQLALCHEMY_DATABASE_URI'):
@@ -213,6 +245,8 @@ def setup_database(application):
         db.init_app(application)
         db.create_all()
         check_database()
+
+    application.eq['storage'] = SqlStorage()
 
 
 def check_database():
@@ -244,8 +278,14 @@ def setup_dynamodb(application):
         max_pool_connections=application.config['EQ_DYNAMODB_MAX_POOL_CONNECTIONS'],
     )
 
-    application.eq['dynamodb'] = boto3.resource(
-        'dynamodb', endpoint_url=application.config['EQ_DYNAMODB_ENDPOINT'], config=config)
+    dynamodb = boto3.resource('dynamodb', endpoint_url=application.config['EQ_DYNAMODB_ENDPOINT'], config=config)
+    application.eq['storage'] = DynamodbStorage(dynamodb)
+
+
+def setup_datastore(application):
+    creds = EmulatorCredentials() if application.config['EQ_DATASTORE_EMULATOR_CREDENTIALS'] else None
+    client = datastore.Client(application.config['EQ_DATASTORE_PROJECT_ID'], _use_grpc=False, credentials=creds)
+    application.eq['storage'] = DatastoreStorage(client)
 
 
 def setup_profiling(application):

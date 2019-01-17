@@ -1,11 +1,11 @@
 import json
 import snappy
+from flask import current_app
 
 from structlog import get_logger
 from jwcrypto.common import base64url_decode
 
 from app.data_model.app_models import QuestionnaireState
-from app.storage import data_access
 from app.storage.storage_encryption import StorageEncryption
 logger = get_logger()
 
@@ -31,7 +31,7 @@ class EncryptedQuestionnaireStorage:
             logger.debug('creating questionnaire data', user_id=self._user_id)
             questionnaire_state = QuestionnaireState(self._user_id, encrypted_data, version)
 
-        data_access.put(questionnaire_state)
+        current_app.eq['storage'].put(questionnaire_state)
 
     def get_user_data(self):
         questionnaire_state = self._find_questionnaire_state()
@@ -51,11 +51,11 @@ class EncryptedQuestionnaireStorage:
         logger.debug('deleting users data', user_id=self._user_id)
         questionnaire_state = self._find_questionnaire_state()
         if questionnaire_state:
-            data_access.delete(questionnaire_state)
+            current_app.eq['storage'].delete(questionnaire_state)
 
     def _find_questionnaire_state(self):
         logger.debug('getting questionnaire data', user_id=self._user_id)
-        return data_access.get_by_key(QuestionnaireState, self._user_id)
+        return current_app.eq['storage'].get_by_key(QuestionnaireState, self._user_id)
 
     def _get_base64_encoded_data(self, data):
         """

@@ -101,14 +101,21 @@ Note, you will also need to run an upstream tool (eg, https://github.com/ONSDigi
 docker run -e SURVEY_RUNNER_SCHEMA_URL=http://docker.for.mac.host.internal:5000 -it -p 8000:8000 onsdigital/go-launch-a-survey:latest
 ```
 
-To submit data you will also need to run an additional upstream tool (eg, https://github.com/ONSDigital/eq-docker-dynamodb) to launch a dynamoDB container.
+This will generate a JWT for you to log into the application.
+
+The data storage backend is configurable with the `EQ_STORAGE_BACKEND` environment variable. You will need to run an emulator if you are setting this to DynamoDB or Google Datastore:
+
+DynamoDB: <https://github.com/ONSDigital/eq-docker-dynamodb>
+
+Google Datastore: <https://hub.docker.com/r/knarz/datastore-emulator/>
 
 ```
 docker run -it -p 6060:8000 onsdigital/eq-docker-dynamodb:latest
+OR
+docker run -it -p 8432:8432 knarz/datastore-emulator:latest
 ```
 
-
-This will generate a JWT for you to log into the application.
+Please note that currently the SQL backend does not support submitted responses
 
 ---
 

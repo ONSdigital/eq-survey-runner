@@ -36,6 +36,18 @@ if [ -z "$EQ_DYNAMODB_ENDPOINT" ]; then
   export EQ_DYNAMODB_ENDPOINT="http://localhost:6060"
 fi
 
+if [ -z "$DATASTORE_EMULATOR_HOST" ]; then
+  export DATASTORE_EMULATOR_HOST="localhost:8432"
+fi
+
+if [ -z "$EQ_DATASTORE_EMULATOR_CREDENTIALS" ]; then
+  export EQ_DATASTORE_EMULATOR_CREDENTIALS="True"
+fi
+
+if [ -z "$EQ_DATASTORE_PROJECT_ID" ]; then
+  export EQ_DATASTORE_PROJECT_ID="dummy-project"
+fi
+
 if [ -z "$EQ_SUBMITTED_RESPONSES_TABLE_NAME" ]; then
   export EQ_SUBMITTED_RESPONSES_TABLE_NAME="dev-submitted-responses"
 fi
@@ -44,36 +56,12 @@ if [ -z "$EQ_QUESTIONNAIRE_STATE_TABLE_NAME" ]; then
   export EQ_QUESTIONNAIRE_STATE_TABLE_NAME="dev-questionnaire-state"
 fi
 
-if [ -z "$EQ_QUESTIONNAIRE_STATE_DYNAMO_READ" ]; then
-  export EQ_QUESTIONNAIRE_STATE_DYNAMO_READ=True
-fi
-
-if [ -z "$EQ_QUESTIONNAIRE_STATE_DYNAMO_WRITE" ]; then
-  export EQ_QUESTIONNAIRE_STATE_DYNAMO_WRITE=True
-fi
-
 if [ -z "$EQ_SESSION_TABLE_NAME" ]; then
   export EQ_SESSION_TABLE_NAME="dev-eq-session"
 fi
 
-if [ -z "$EQ_SESSION_DYNAMO_READ" ]; then
-  export EQ_SESSION_DYNAMO_READ=True
-fi
-
-if [ -z "$EQ_SESSION_DYNAMO_WRITE" ]; then
-  export EQ_SESSION_DYNAMO_WRITE=True
-fi
-
 if [ -z "$EQ_USED_JTI_CLAIM_TABLE_NAME" ]; then
   export EQ_USED_JTI_CLAIM_TABLE_NAME="dev-used-jti-claim"
-fi
-
-if [ -z "$EQ_USED_JTI_CLAIM_DYNAMO_READ" ]; then
-  export EQ_USED_JTI_CLAIM_DYNAMO_READ=True
-fi
-
-if [ -z "$EQ_USED_JTI_CLAIM_DYNAMO_WRITE" ]; then
-  export EQ_USED_JTI_CLAIM_DYNAMO_WRITE=True
 fi
 
 if [ -z "$AWS_DEFAULT_REGION" ]; then
