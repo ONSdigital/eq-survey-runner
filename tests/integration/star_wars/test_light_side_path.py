@@ -36,7 +36,6 @@ class TestLightSidePath(StarWarsTestCase):
         self.assertInUrl(star_wars_test_urls.STAR_WARS_SUMMARY)
 
         # We are on the review answers page
-        self.assertInBody('>Star Wars</')
         self.assertInBody('>Check your answers and submit<')
         self.assertRegexPage('(?s)How old is Chewy?.*?234')
         self.assertRegexPage('(?s)How many Octillions do Nasa reckon it would cost to build a death star?.*?£40')

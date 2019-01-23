@@ -15,13 +15,11 @@ logger = get_logger()
 def with_session_timeout(func):
     @wraps(func)
     def session_wrapper(*args, **kwargs):
-        session_timeout_prompt = g.schema.json.get('session_prompt_in_seconds') or current_app.config['EQ_SESSION_TIMEOUT_PROMPT_SECONDS']
-        session_timeout = get_session_timeout_in_seconds(g.schema, with_grace_period=False)
+        session_timeout = get_session_timeout_in_seconds(g.schema)
 
         return func(
             *args,
             session_timeout=session_timeout,
-            session_timeout_prompt=session_timeout_prompt,
             **kwargs
         )
 
