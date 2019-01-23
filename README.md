@@ -1,5 +1,10 @@
-# eQ Survey Runner
-[![Build Status](https://travis-ci.org/ONSdigital/eq-survey-runner.svg?branch=master)](https://travis-ci.org/ONSdigital/eq-survey-runner) [![codecov](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/master/graph/badge.svg)](https://codecov.io/gh/ONSdigital/eq-survey-runner) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/82e63fc5bc5c43e8ba1ba6d13bfb4243)](https://www.codacy.com/app/ONSDigital/eq-survey-runner)
+# eQ Census Survey Runner v3
+[![Build Status](https://travis-ci.org/ONSdigital/eq-survey-runner.svg?branch=v3)](https://travis-ci.org/ONSdigital/eq-survey-runner) 
+[![codecov](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/v3/graph/badge.svg)](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/v3) 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a2bc191a96e546b99a6d1c33b9b0ed62)](https://www.codacy.com/app/MebinAbraham/eq-survey-runner?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ONSdigital/eq-survey-runner&amp;utm_campaign=Badge_Grade)
+
+This version of runner looks at optimising the product to accommodate the Census. 
+This involves changes to some of the fundamentals of how [runner currently works](https://github.com/ONSdigital/eq-survey-runner). This includes breaking changes and new architecture design changes.
 
 ## Run with Docker
 Install Docker for your system: https://www.docker.com/
