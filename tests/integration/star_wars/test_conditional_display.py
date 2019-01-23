@@ -42,7 +42,6 @@ class TestConditionalDisplay(StarWarsTestCase):
         self.assertRegexUrl(star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
 
         # We are on the summary page
-        self.assertInBody('>Star Wars</')
         self.assertInBody('>Check your answers and submit<')
         self.assertInBody('What is the name of Jar Jar Binks')
 
@@ -80,6 +79,5 @@ class TestConditionalDisplay(StarWarsTestCase):
         self.assertRegexUrl(star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
 
         # We are on the review answers page
-        self.assertInBody('>Star Wars</')
         self.assertInBody('>Check your answers and submit<')
         self.assertNotInBody('What is the name of Jar Jar Binks')

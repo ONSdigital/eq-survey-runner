@@ -336,9 +336,8 @@ def add_blueprints(application):
 
 def setup_secure_cookies(application):
     session_timeout = application.config['EQ_SESSION_TIMEOUT_SECONDS']
-    grace_period = application.config['EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS']
     application.secret_key = application.eq['secret_store'].get_secret_by_name('EQ_SECRET_KEY')
-    application.permanent_session_lifetime = timedelta(seconds=session_timeout + grace_period)
+    application.permanent_session_lifetime = timedelta(seconds=session_timeout)
     application.session_interface = SHA256SecureCookieSessionInterface()
 
 
