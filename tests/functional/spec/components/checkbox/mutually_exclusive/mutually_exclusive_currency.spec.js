@@ -29,7 +29,7 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
         .click(CurrencyPage.submit())
 
         .getText(SummaryPage.currencyExclusiveAnswer()).should.eventually.have.string('I prefer not to say')
-        .getText(SummaryPage.currencyExclusiveAnswer()).should.not.eventually.have.string('123');
+        .getText(SummaryPage.currencyExclusiveAnswer()).should.not.eventually.have.string('123')
 
     });
   });
