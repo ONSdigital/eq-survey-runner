@@ -1,23 +1,14 @@
 # coding: utf-8
-from datetime import datetime, timedelta
-from types import SimpleNamespace
+from datetime import datetime
 from unittest.mock import patch
 
-from dateutil.relativedelta import relativedelta
 from jinja2 import Undefined, Markup
 from mock import Mock
 
 from app.jinja_filters import (
-    format_date, format_conditional_date, format_currency, get_currency_symbol,
-    format_multilined_string, format_percentage, format_date_range,
-    format_household_name, format_datetime,
-    format_number_to_alphabetic_letter, format_unit,
-    format_number, format_unordered_list, format_unordered_list_missing_items,
-    format_unit_input_label, format_household_name_possessive, format_household_summary,
-    concatenated_list, calculate_years_difference, get_current_date, as_london_tz,
-    max_value, min_value, get_question_title, get_answer_label,
-    format_duration, calculate_offset_from_weekday_in_last_whole_week, format_date_custom,
-    format_date_range_no_repeated_month_year, format_repeating_summary, format_address_list, first_non_empty_item)
+    format_date, format_currency, get_currency_symbol,
+    format_multilined_string, format_datetime,
+    format_number, get_current_date, as_london_tz)
 from tests.app.app_context_test_case import AppContextTestCase
 
 
