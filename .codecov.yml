@@ -9,5 +9,6 @@ coverage:
       default: on
     changes:
       default: off
-
+codecov:
+  branch: v3
 comment: false

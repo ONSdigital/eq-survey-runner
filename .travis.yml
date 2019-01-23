@@ -38,7 +38,7 @@ before_install:
     - pyenv install --skip-existing
     - pyenv rehash
     - pyenv global $(cat .python-version)
-    - pip install -U pip pipenv==2018.5.18 wheel
+    - pip install -U pip pipenv wheel
     - pipenv install --dev --deploy
     - pipenv check
 cache:
@@ -50,7 +50,7 @@ cache:
 script:
     - set -e
     - yarn compile
-    - export TAG=`if [ "$TRAVIS_PULL_REQUEST_BRANCH" == "" ]; then echo "latest"; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi`
+    - export TAG=`if [ "$TRAVIS_PULL_REQUEST_BRANCH" == "" ]; then echo "v3"; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi`
     - docker build -t onsdigital/eq-survey-runner:$TAG -f Dockerfile .
     - docker build -t onsdigital/eq-survey-runner-static:$TAG -f Dockerfile.static .
     - pipenv run ./scripts/run.sh
@@ -64,4 +64,4 @@ after_success:
     - pipenv run python-codacy-coverage -r coverage.xml
 branches:
     only:
-        - master
+        - v3
