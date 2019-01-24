@@ -1,7 +1,35 @@
 # eQ Census Survey Runner v3
-[![Build Status](https://travis-ci.org/ONSdigital/eq-survey-runner.svg?branch=master)](https://travis-ci.org/ONSdigital/eq-survey-runner) [![codecov](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/master/graph/badge.svg)](https://codecov.io/gh/ONSdigital/eq-survey-runner) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/82e63fc5bc5c43e8ba1ba6d13bfb4243)](https://www.codacy.com/app/ONSDigital/eq-survey-runner)
+[![Build Status](https://travis-ci.org/ONSdigital/eq-survey-runner.svg?branch=v3)](https://travis-ci.org/ONSdigital/eq-survey-runner) 
+[![codecov](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/v3/graph/badge.svg)](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/v3) 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a2bc191a96e546b99a6d1c33b9b0ed62)](https://app.codacy.com/project/MebinAbraham/eq-survey-runner/dashboard?branchId=10869033)
 
-## Run with Docker
+This version of runner looks at optimising the service to accommodate the Census. 
+There are a number of major changes we need make to survey runner to develop the features required for the Census. 
+These changes are a combination of fixing technical debt we've built up and adding new features. 
+While these changes would be possible to implement in ***v2***, having to develop them in such a way to be compatible with existing data and rolling deploys will add an un-acceptable overhead. 
+
+The changes we're aware of now:
+
+- architecture changes:
+    - block variants for proxy or past/present versions of content
+    - piping in structured schema rather than inlined jinja filters
+    - routing refactor for optimum performance
+    - redesign how repeating groups and association with driving questions works
+
+- new features:
+    - who lives here (collecting householders)
+    - relationships
+    - hub and spoke navigation
+    - look up patterns (address, occupation etc)
+    
+*Existing ***v2*** schemas will be easily migrate-able to the new format when ***v3*** is stable. 
+This will be clearly documented and there is the possibility of scripts being provided to migrate schemas. 
+Once we know more about the implementation a decision will be made whether answer store migrations will be written for compatibility with existing data.*
+
+---
+## Getting Set Up
+
+### Run with Docker
 Install Docker for your system: https://www.docker.com/
 
 To get eq-survey-runner running the following command will build and run the containers
@@ -37,7 +65,7 @@ pipenv run scripts/run_tests_unit.sh
 ```
 
 
-## Pre-Requisites
+### Pre-Requisites
 In order to run locally you'll need PostgreSQL, Node.js, sqlite3, snappy and pyenv installed
 
 ```
@@ -47,7 +75,7 @@ brew install postgres snappy npm sqlite3 pyenv
 Note that npm currently requires Python 2.x for some of the setup steps,
 it doesn't work with Python 3.
 
-## Setup
+### Setup
 It is preferable to use the version of Python locally that matches that
 used on deployment. This project has a `.python_version` file for this
 purpose.
@@ -84,7 +112,7 @@ This will generate a JWT for you to log into the application.
 
 ---
 
-### Front-end Toolkit
+#### Front-end Toolkit
 
 The front-end toolkit uses nodejs, yarn and gulp.
 
@@ -134,7 +162,7 @@ Upgrade usage of the pattern library
 * app/assets/styles/partials/vars/_vars.scss.xml `$cdn-url-root: "https://cdn.ons.gov.uk/sdc/[COMMIT HASH HERE]";`
 * app/templates/layouts/base.html `{% set cdn_hash = "[COMMIT HASH HERE]" %}`
 
-## Functional test options
+### Functional test options
 
 The functional tests use a set of selectors that are generated from each of the test schemas. These make it quick to add new functional tests.
 
@@ -176,7 +204,7 @@ To run the tests against a remote deployment you will need to specify the enviro
 
 `EQ_FUNCTIONAL_TEST_ENV=https://staging-new-surveys.dev.eq.ons.digital/ yarn test_functional`
 
-## Deployment with elastic beanstalk
+### Deployment with elastic beanstalk
 
 You will need to install the EB CLI tools using PIP.
 
@@ -211,7 +239,7 @@ This will create the environment and spin up the application . Once the applicat
 eb open
 ```
 
-## Internationalisation
+### Internationalisation
 
 We use flask-babel to do internationalisation.  To extract messages from source, in the project root run the following command.
 
@@ -235,7 +263,7 @@ To create the gaelic language files, use the following:
 pipenv run pybabel init -i app/translations/messages.pot -d app/translations -l gd
 ```
 
-### Getting text translated
+#### Getting text translated
 
 Our current language translation service requires a .csv rather than a .po file. To convert a .po file to a .csv you'll need to install the Python translate-toolkit:
 ```
@@ -254,7 +282,7 @@ csv2po app.translations/static-cy.csv app/translations/cy/LC_MESSAGES/messages.p
 
 *Important:* There are some encoding issues when opening the .csv file in Excel. Opening in Google sheets and saving as a .xslx file resolves this.
 
-### Compiling the translations
+#### Compiling the translations
 
 To compile the language files for use in the application, use the following:
 
@@ -269,7 +297,7 @@ To update the language strings, use:
 pipenv run pybabel update -i app/translations/messages.pot -d app/translations
 ```
 
-## Environment Variables
+### Environment Variables
 
 The following env variables can be used
 ```
@@ -313,7 +341,7 @@ The following env variables can be used when running tests
 EQ_FUNCTIONAL_TEST_ENV - the pre-configured environment [local, docker, preprod] or the url of the environment that should be targeted
 ```
 
-## JWT Integration
+### JWT Integration
 Integration with the survey runner requires the use of a signed JWT using public and private key pair (see https://jwt.io,
 https://tools.ietf.org/html/rfc7519, https://tools.ietf.org/html/rfc7515).
 
@@ -340,7 +368,7 @@ There is a python script for generating tokens for use in development, to run:
 python token_generator.py
 ```
 
-## profiling
+### Profiling
 
 Setting the `EQ_PROFILING` environment variable to `True` will enable profiling of the application.  Profiling information
 will be collected per-request in the `profiling` directory where it can be examined using the Pstats Interactive Browser.
@@ -360,12 +388,12 @@ pipenv run python scripts/merge_profiles.py
 snakeviz combined_profile.prof
 ```
 
-## Updating / Installing dependencies
+### Updating / Installing dependencies
 
 To add a new dependency, use `pipenv install [package-name]`, which not only installs the package but Pipenv will also go to the trouble of updating the Pipfile as well.
 
 NB: both the Pipfile and Pipfile.lock files are required in source control to accurately pin dependencies.
 
-## Alpha Survey Runner
+### Alpha Survey Runner
 If you're looking for the Survey Runner code from the Alpha then it has been renamed to: alpha-eq-survey-runner
 - https://github.com/ONSdigital/alpha-eq-survey-runner
