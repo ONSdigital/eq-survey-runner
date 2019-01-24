@@ -288,7 +288,6 @@ EQ_LOG_LEVEL - The default logging level (defaults to 'INFO' for local developme
 EQ_WERKZEUG_LOG_LEVEL - The default logging level for werkzeug (defaults to 'INFO' for local development)
 EQ_SCHEMA_DIRECTORY - The directory that contains the schema files
 EQ_SESSION_TIMEOUT_SECONDS - The duration of the flask session
-EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS - The grace period between when the server removes the session and what we tell the client
 EQ_SECRET_KEY - The Flask secret key for signing cookies
 EQ_PROFILING - Enables or disables profiling (True/False) Default False/Disabled
 EQ_UA_ID - The Google Analytics ID

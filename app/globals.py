@@ -45,7 +45,7 @@ def get_session_store():
     return store
 
 
-def get_session_timeout_in_seconds(schema, with_grace_period=True):
+def get_session_timeout_in_seconds(schema):
     """
     Gets the session timeout in seconds from the schema/env variable.
     :return: Timeout in seconds
@@ -55,10 +55,6 @@ def get_session_timeout_in_seconds(schema, with_grace_period=True):
     timeout = schema_session_timeout if schema_session_timeout and \
         schema_session_timeout < default_session_timeout else \
         default_session_timeout
-
-    if with_grace_period:
-        grace_period = current_app.config['EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS']
-        timeout += grace_period
 
     return timeout
 
