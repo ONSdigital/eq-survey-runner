@@ -1,14 +1,14 @@
 # Translations template for PROJECT.
-# Copyright (C) 2018 ORGANIZATION
+# Copyright (C) 2019 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-13 09:45+0000\n"
+"POT-Creation-Date: 2019-01-25 13:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: app/jinja_filters.py:104 app/jinja_filters.py:241
+#: app/jinja_filters.py:95 app/jinja_filters.py:232
 #: app/validation/validators.py:292
 #, python-format
 msgid "%(num)s year"
@@ -25,19 +25,19 @@ msgid_plural "%(num)s years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/jinja_filters.py:106 app/validation/validators.py:294
+#: app/jinja_filters.py:97 app/validation/validators.py:294
 #, python-format
 msgid "%(num)s month"
 msgid_plural "%(num)s months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/jinja_filters.py:177
+#: app/jinja_filters.py:168
 #, python-format
 msgid "%(date)s at %(time)s"
 msgstr ""
 
-#: app/jinja_filters.py:251 app/jinja_filters.py:299
+#: app/jinja_filters.py:242 app/jinja_filters.py:290
 #, python-format
 msgid "%(from_date)s to %(to_date)s"
 msgstr ""
@@ -290,20 +290,20 @@ msgstr ""
 msgid "ONS Survey"
 msgstr ""
 
-#: app/templates/layouts/_base.html:81
+#: app/templates/layouts/_base.html:79
 msgid "Skip to content"
 msgstr ""
 
-#: app/templates/layouts/_base.html:85
+#: app/templates/layouts/_base.html:83
 #: app/templates/layouts/_questionnaire.html:30
 msgid "Save and continue"
 msgstr ""
 
-#: app/templates/layouts/_base.html:96
+#: app/templates/layouts/_base.html:94
 msgid "Hide sections"
 msgstr ""
 
-#: app/templates/layouts/_base.html:96
+#: app/templates/layouts/_base.html:94
 msgid "View sections"
 msgstr ""
 
@@ -384,6 +384,9 @@ msgstr ""
 #: app/themes/northernireland/templates/partials/footer-transactional.html:12
 #: app/themes/northernireland/templates/partials/footer.html:24
 #: app/themes/social/templates/static/contact-us.html:26
+#: app/themes/ukis/templates/partials/footer-transactional.html:13
+#: app/themes/ukis/templates/partials/footer.html:25
+#: app/themes/ukis_ni/templates/partials/footer-transactional.html:13
 msgid "Contact us"
 msgstr ""
 
@@ -393,6 +396,10 @@ msgstr ""
 #: app/themes/census/templates/partials/footer.html:13
 #: app/themes/northernireland/templates/partials/footer-transactional.html:15
 #: app/themes/northernireland/templates/partials/footer.html:13
+#: app/themes/ukis/templates/partials/footer-transactional.html:16
+#: app/themes/ukis/templates/partials/footer.html:14
+#: app/themes/ukis_ni/templates/partials/footer-transactional.html:16
+#: app/themes/ukis_ni/templates/partials/footer.html:14
 msgid "Cookies and privacy"
 msgstr ""
 
@@ -402,6 +409,10 @@ msgstr ""
 #: app/themes/census/templates/partials/footer.html:47
 #: app/themes/northernireland/templates/partials/footer-transactional.html:21
 #: app/themes/northernireland/templates/partials/footer.html:47
+#: app/themes/ukis/templates/partials/footer-transactional.html:22
+#: app/themes/ukis/templates/partials/footer.html:48
+#: app/themes/ukis_ni/templates/partials/footer-transactional.html:22
+#: app/themes/ukis_ni/templates/partials/footer.html:48
 #, python-format
 msgid ""
 "All content is available under the %(class_open)sOpen Government Licence "
@@ -411,52 +422,68 @@ msgstr ""
 #: app/templates/partials/footer.html:6
 #: app/themes/census/templates/partials/footer.html:10
 #: app/themes/northernireland/templates/partials/footer.html:10
+#: app/themes/ukis/templates/partials/footer.html:11
+#: app/themes/ukis_ni/templates/partials/footer.html:11
 msgid "Legal information"
 msgstr ""
 
 #: app/templates/partials/footer.html:14
 #: app/themes/census/templates/partials/footer.html:18
 #: app/themes/northernireland/templates/partials/footer.html:18
+#: app/themes/ukis/templates/partials/footer.html:19
+#: app/themes/ukis_ni/templates/partials/footer.html:19
 msgid "About ONS"
 msgstr ""
 
 #: app/templates/partials/footer.html:17
 #: app/themes/census/templates/partials/footer.html:21
 #: app/themes/northernireland/templates/partials/footer.html:21
+#: app/themes/ukis/templates/partials/footer.html:22
+#: app/themes/ukis_ni/templates/partials/footer.html:22
 msgid "What we do"
 msgstr ""
 
 #: app/templates/partials/footer.html:23
 #: app/themes/census/templates/partials/footer.html:27
 #: app/themes/northernireland/templates/partials/footer.html:27
+#: app/themes/ukis/templates/partials/footer.html:28
+#: app/themes/ukis_ni/templates/partials/footer.html:28
 msgid "Accessibility"
 msgstr ""
 
 #: app/templates/partials/footer.html:28
 #: app/themes/census/templates/partials/footer.html:32
 #: app/themes/northernireland/templates/partials/footer.html:32
+#: app/themes/ukis/templates/partials/footer.html:33
+#: app/themes/ukis_ni/templates/partials/footer.html:33
 msgid "Statistics"
 msgstr ""
 
 #: app/templates/partials/footer.html:31
 #: app/themes/census/templates/partials/footer.html:35
 #: app/themes/northernireland/templates/partials/footer.html:35
+#: app/themes/ukis/templates/partials/footer.html:36
+#: app/themes/ukis_ni/templates/partials/footer.html:36
 msgid "UK Statistics Authority"
 msgstr ""
 
 #: app/templates/partials/footer.html:34
 #: app/themes/census/templates/partials/footer.html:38
 #: app/themes/northernireland/templates/partials/footer.html:38
+#: app/themes/ukis/templates/partials/footer.html:39
+#: app/themes/ukis_ni/templates/partials/footer.html:39
 msgid "Release calendar"
 msgstr ""
 
 #: app/templates/partials/footer.html:37
 #: app/themes/census/templates/partials/footer.html:41
 #: app/themes/northernireland/templates/partials/footer.html:41
+#: app/themes/ukis/templates/partials/footer.html:42
+#: app/themes/ukis_ni/templates/partials/footer.html:42
 msgid "News"
 msgstr ""
 
-#: app/templates/partials/main-navigation.html:5
+#: app/templates/partials/main-navigation.html:7
 #: app/templates/partials/services-navigation.html:4
 msgid "My account"
 msgstr ""
@@ -471,7 +498,6 @@ msgstr ""
 
 #: app/templates/partials/sign-out-button-navigation.html:7
 #: app/templates/partials/sign-out-button.html:7
-#: app/templates/partials/timeout.html:28
 msgid "Save and sign out"
 msgstr ""
 
@@ -483,18 +509,6 @@ msgstr ""
 #: app/templates/partials/sign-out-button-navigation.html:13
 #: app/templates/partials/sign-out-button.html:13
 msgid "Save and complete later"
-msgstr ""
-
-#: app/templates/partials/timeout.html:12
-msgid "Your session is about to expire"
-msgstr ""
-
-#: app/templates/partials/timeout.html:26
-msgid "Continuing"
-msgstr ""
-
-#: app/templates/partials/timeout.html:26
-msgid "Continue survey"
 msgstr ""
 
 #: app/templates/partials/answers/checkbox.html:8
