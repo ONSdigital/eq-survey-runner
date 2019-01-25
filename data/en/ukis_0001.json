@@ -141,7 +141,7 @@
                                     "options": [{
                                             "q_code": "0410",
                                             "label": "{{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was established",
-                                            "value": "{{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} was established"
+                                            "value": "The business was established"
                                         },
                                         {
                                             "q_code": "0420",
