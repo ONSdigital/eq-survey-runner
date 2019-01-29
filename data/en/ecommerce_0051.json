@@ -51,7 +51,7 @@
                             "id": "preview",
                             "title": "Information you need",
                             "content": [{
-                                "title": "Read the detailed guidance for completing the survey"
+                                "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/detailedguidancetohelpcompletetheecommercesurvey'>Read the detailed guidance for completing this survey</a>"
                             }],
                             "questions": [{
                                     "question": "Use of Computers",
