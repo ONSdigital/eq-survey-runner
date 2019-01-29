@@ -162,7 +162,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
-                                        "q_code": "d1",
+                                        "q_code": "0440",
                                         "label": "No significant changes occurred",
                                         "value": "No significant changes occurred"
                                     }]
@@ -271,7 +271,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
-                                        "q_code": "d2",
+                                        "q_code": "d1",
                                         "label": "No significant changes",
                                         "value": "No significant changes"
                                     }]
@@ -1520,7 +1520,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
-                                        "q_code": "d3",
+                                        "q_code": "d2",
                                         "label": "No, there were no innovation activities that were abandoned, scaled back or ongoing at the end of 2018",
                                         "value": "No, there were no innovation activities that were abandoned, scaled back or ongoing at the end of 2018"
                                     }]
@@ -3324,7 +3324,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
-                                        "q_code": "d4",
+                                        "q_code": "d3",
                                         "label": "No, this business did not co-operate on innovation activities with other businesses within the enterprise group",
                                         "value": "No, this business did not co-operate on innovation activities with other businesses within the enterprise group"
                                     }]
@@ -3376,7 +3376,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
-                                        "q_code": "d5",
+                                        "q_code": "d4",
                                         "label": "No, this business did not co-operate on innovation activities with suppliers of equipment, materials, services or software",
                                         "value": "No, this business did not co-operate on innovation activities with suppliers of equipment, materials, services or software"
                                     }]
@@ -3428,7 +3428,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
-                                        "q_code": "d6",
+                                        "q_code": "d5",
                                         "label": "No, this business did not co-operate on innovation activities with clients or customers from the private sector",
                                         "value": "No, this business did not co-operate on innovation activities with clients or customers from the private sector"
                                     }]
@@ -3486,7 +3486,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
-                                        "q_code": "d7",
+                                        "q_code": "d6",
                                         "label": "No, this business did not co-operate on innovation activities with clients or customers from the public sector",
                                         "value": "No, this business did not co-operate on innovation activities with clients or customers from the public sector"
                                     }]
@@ -3538,7 +3538,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
-                                        "q_code": "d8",
+                                        "q_code": "d7",
                                         "label": "No, this business did not co-operate on innovation activities with competitors or other businesses in the industry",
                                         "value": "No, this business did not co-operate on innovation activities with competitors or other businesses in the industry"
                                     }]
@@ -3590,7 +3590,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
-                                        "q_code": "d9",
+                                        "q_code": "d8",
                                         "label": "No, this business did not co-operate on innovation activities with consultants, commercial labs or private research and development institutes",
                                         "value": "No, this business did not co-operate on innovation activities with consultants, commercial labs or private research and development institutes"
                                     }]
@@ -3642,7 +3642,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
-                                        "q_code": "d10",
+                                        "q_code": "d9",
                                         "label": "No, this business did not co-operate on innovation activities with universities or other higher education institutions",
                                         "value": "No, this business did not co-operate on innovation activities with universities or other higher education institutions"
                                     }]
@@ -3694,7 +3694,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
-                                        "q_code": "d11",
+                                        "q_code": "d10",
                                         "label": "No, this business did not co-operate on innovation activities with government or public research institutes",
                                         "value": "No, this business did not co-operate on innovation activities with government or public research institutes"
                                     }]
@@ -3746,7 +3746,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
-                                        "q_code": "d12",
+                                        "q_code": "d11",
                                         "label": "No this business did not co-operate on innovation activities with other businesses outside the enterprise group",
                                         "value": "No this business did not co-operate on innovation activities with other businesses outside the enterprise group"
                                     }]
@@ -3798,7 +3798,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
-                                        "q_code": "d13",
+                                        "q_code": "d12",
                                         "label": "No this business did not co-operate on innovation activities with non-profit organisations",
                                         "value": "No this business did not co-operate on innovation activities with non-profit organisations"
                                     }]
@@ -4133,7 +4133,7 @@
                                     "label": "",
                                     "description": "",
                                     "options": [{
-                                        "q_code": "d14",
+                                        "q_code": "2671",
                                         "label": "No public financial support was received for innovation activities from government",
                                         "value": "No public financial support was received for innovation activities from government"
                                     }]
