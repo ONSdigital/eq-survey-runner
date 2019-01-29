@@ -35,7 +35,7 @@ class TestConfirmationPage(IntegrationTestCase):
         self.assertInUrl('thank-you')
 
     def rogue_one_login_and_check_introduction_text(self):
-        self.launchSurvey('0', 'rogue_one')
+        self.launchSurvey('test', 'star_wars_rogue_one')
         self.rogue_one_check_introduction_text()
 
     def rogue_one_check_introduction_text(self):

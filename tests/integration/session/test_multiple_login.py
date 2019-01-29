@@ -132,7 +132,7 @@ class TestCollectionMetadataStorage(MultipleClientTestCase):
         Ensure that started_at is retained between collections
         """
         # User A starts a survey
-        self.launchSurvey(self.client_a, '1', '0112', roles=['dumper'])
+        self.launchSurvey(self.client_a, 'test', 'introduction', roles=['dumper'])
         # And starts the questionnaire
         self.post(self.client_a, action='start_questionnaire')
 
@@ -140,7 +140,7 @@ class TestCollectionMetadataStorage(MultipleClientTestCase):
         a_submission = self.dumpSubmission(self.client_a)['submission']
 
         # User B loads the survey
-        self.launchSurvey(self.client_b, '1', '0112', roles=['dumper'])
+        self.launchSurvey(self.client_b, 'test', 'introduction', roles=['dumper'])
         # And we dump their submission
         b_submission = self.dumpSubmission(self.client_b)['submission']
 

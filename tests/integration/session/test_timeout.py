@@ -16,14 +16,8 @@ class TestTimeout(IntegrationTestCase):
 
     def test_timeout_continue_valid_session_returns_200(self):
         self.launchSurvey('test', 'timeout')
-        self.get('/timeout-continue')
+        self.get(self.last_url)
         self.assertStatusOK()
-
-    def test_timeout_continue_invalid_session_returns_401(self):
-        self.launchSurvey('test', 'timeout')
-        time.sleep(3)
-        self.get('/timeout-continue')
-        self.assertStatusUnauthorised()
 
     def test_when_session_times_out_server_side_401_is_returned(self):
         self.launchSurvey('test', 'timeout')

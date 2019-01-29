@@ -1,53 +1,42 @@
 from flask import url_for
-from app.jinja_filters import get_formatted_currency, format_number, format_unit, format_percentage
+
 from app.helpers.form_helper import get_form_for_location
+from app.helpers.schema_helpers import get_group_instance_id
+from app.jinja_filters import get_formatted_currency, format_number, format_unit, format_percentage
 from app.templating.summary_context import build_summary_rendering_context
 from app.templating.template_renderer import renderer
 from app.templating.utils import get_title_from_titles, get_question_title
-from app.helpers.schema_helpers import get_group_instance_id
 
 
-def build_view_context(block_type, metadata, schema, answer_store, schema_context, rendered_block, current_location,
-                       form):
-    variables = None
-    if schema.json.get('variables'):
-        variables = renderer.render(schema.json.get('variables'), **schema_context)
-
+def build_view_context(block_type, metadata, schema, answer_store, schema_context, rendered_block, current_location, form):
     if block_type == 'Summary':
-        return build_view_context_for_final_summary(metadata, schema, answer_store, schema_context, block_type,
-                                                    variables, rendered_block)
+        return build_view_context_for_final_summary(metadata, schema, answer_store, schema_context, block_type, rendered_block)
     if block_type == 'SectionSummary':
-        return build_view_context_for_section_summary(metadata, schema, answer_store, schema_context, block_type,
-                                                      variables, current_location.group_id)
+        return build_view_context_for_section_summary(metadata, schema, answer_store, schema_context, block_type, current_location.group_id)
 
     if block_type == 'CalculatedSummary':
-        return build_view_context_for_calculated_summary(metadata, schema, answer_store, schema_context, block_type,
-                                                         variables, current_location)
+        return build_view_context_for_calculated_summary(metadata, schema, answer_store, schema_context, block_type, current_location)
 
     if block_type == 'AnswerSummary':
-        return build_view_context_for_answer_summary(metadata, schema, answer_store, block_type,
-                                                     variables, current_location)
+        return build_view_context_for_answer_summary(metadata, schema, answer_store, block_type, current_location)
 
     if block_type in ('Question', 'ConfirmationQuestion'):
         form = form or get_form_for_location(schema, rendered_block, current_location, answer_store, metadata)
-        return build_view_context_for_question(metadata, schema, answer_store, current_location, variables,
-                                               rendered_block, form)
+        return build_view_context_for_question(metadata, schema, answer_store, current_location, rendered_block, form)
 
     if block_type in ('Introduction', 'Interstitial', 'Confirmation'):
-        return build_view_context_for_non_question(variables, rendered_block)
+        return build_view_context_for_non_question(rendered_block)
 
 
-def build_view_context_for_non_question(variables, rendered_block):
+def build_view_context_for_non_question(rendered_block):
     return {
-        'variables': variables,
         'block': rendered_block,
     }
 
 
-def build_view_context_for_question(metadata, schema, answer_store, current_location, variables, rendered_block, form):  # noqa: C901, E501  pylint: disable=too-complex,line-too-long,too-many-locals,too-many-branches
+def build_view_context_for_question(metadata, schema, answer_store, current_location, rendered_block, form):  # noqa: C901, E501  pylint: disable=too-complex,line-too-long,too-many-locals,too-many-branches
 
     context = {
-        'variables': variables,
         'block': rendered_block,
         'question_titles': {},
         'form': {
@@ -95,12 +84,11 @@ def build_view_context_for_question(metadata, schema, answer_store, current_loca
     return context
 
 
-def build_view_context_for_final_summary(metadata, schema, answer_store, schema_context,
-                                         block_type, variables, rendered_block):
+def build_view_context_for_final_summary(metadata, schema, answer_store, schema_context, block_type, rendered_block):
     section_list = schema.json['sections']
 
     context = build_view_context_for_summary(schema, section_list, answer_store, metadata,
-                                             block_type, variables, schema_context)
+                                             block_type, schema_context)
 
     context['summary'].update({
         'is_view_submission_response_enabled': is_view_submitted_response_enabled(schema.json),
@@ -110,14 +98,13 @@ def build_view_context_for_final_summary(metadata, schema, answer_store, schema_
     return context
 
 
-def build_view_context_for_section_summary(metadata, schema, answer_store, schema_context,
-                                           block_type, variables, group_id):
+def build_view_context_for_section_summary(metadata, schema, answer_store, schema_context, block_type, group_id):
     section_id = schema.get_group(group_id)['parent_id']
     section = schema.get_section(section_id)
     title = section.get('title')
 
     context = build_view_context_for_summary(schema, [section], answer_store, metadata,
-                                             block_type, variables, schema_context)
+                                             block_type, schema_context)
 
     context['summary'].update({
         'title': title,
@@ -125,13 +112,11 @@ def build_view_context_for_section_summary(metadata, schema, answer_store, schem
     return context
 
 
-def build_view_context_for_calculated_summary(metadata, schema, answer_store, schema_context, block_type,
-                                              variables, current_location):
+def build_view_context_for_calculated_summary(metadata, schema, answer_store, schema_context, block_type, current_location):
     block = schema.get_block(current_location.block_id)
     section_list = _build_calculated_summary_section_list(schema, block, current_location.group_id)
 
-    context = build_view_context_for_summary(schema, section_list, answer_store, metadata,
-                                             block_type, variables, schema_context)
+    context = build_view_context_for_summary(schema, section_list, answer_store, metadata, block_type, schema_context)
 
     context['summary']['groups'] = [context['summary']['groups'][current_location.group_instance]]
     schema_context['group_instance_id'] = get_group_instance_id(schema, answer_store, current_location)
@@ -147,8 +132,8 @@ def build_view_context_for_calculated_summary(metadata, schema, answer_store, sc
     return context
 
 
-def build_view_context_for_answer_summary(metadata, schema, answer_store, block_type,  # pylint: disable=too-many-locals
-                                          variables, current_location):
+def build_view_context_for_answer_summary(metadata, schema, answer_store, block_type, current_location):  # pylint: disable=too-many-locals
+
     summary_block = schema.get_block(current_location.block_id)
 
     group = {
@@ -206,7 +191,6 @@ def build_view_context_for_answer_summary(metadata, schema, answer_store, block_
             'summary_type': block_type,
             'icon': summary_block.get('icon'),
         },
-        'variables': variables,
     }
 
 
@@ -219,8 +203,7 @@ def _build_answers(answer_store, group_instance_id):
     return answers
 
 
-def build_view_context_for_summary(schema, section_list, answer_store, metadata,
-                                   block_type, variables, schema_context):
+def build_view_context_for_summary(schema, section_list, answer_store, metadata, block_type, schema_context):
     summary_rendering_context = build_summary_rendering_context(schema, section_list, answer_store, metadata, schema_context)
 
     context = {
@@ -229,7 +212,6 @@ def build_view_context_for_summary(schema, section_list, answer_store, metadata,
             'answers_are_editable': True,
             'summary_type': block_type,
         },
-        'variables': variables,
     }
     return context
 

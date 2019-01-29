@@ -3,7 +3,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 class StarWarsTestCase(IntegrationTestCase):
 
-    def launchSurvey(self, eq_id='0', form_type_id='star_wars', **payload_kwargs):
+    def launchSurvey(self, eq_id='test', form_type_id='star_wars', **payload_kwargs):
         super().launchSurvey(eq_id, form_type_id)
 
     def start_questionnaire_and_navigate_routing(self):

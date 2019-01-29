@@ -3,7 +3,7 @@ from flask import json
 
 from tests.integration.integration_test_case import IntegrationTestCase
 
-with open('data/en/1_0205.json') as json_data:
+with open('data/en/test_checkbox.json') as json_data:
     data = json.load(json_data)
 
 
@@ -11,7 +11,7 @@ class TestStatic(IntegrationTestCase):
     @mock.patch('app.utilities.schema.load_schema_from_session_data')
     def test_contact(self, mock_contact):
         mock_contact.return_value = data
-        self.launchSurvey('test', '0205')
+        self.launchSurvey('test', 'checkbox')
         self.get('/contact-us')
         self.assertInBody('123456789012A')
 

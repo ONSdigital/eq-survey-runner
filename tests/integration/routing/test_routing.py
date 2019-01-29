@@ -13,7 +13,7 @@ class TestRouting(IntegrationTestCase):
         self._navigate_route(all_routes[0])
 
     def _navigate_route(self, route):
-        self.launchSurvey('0', 'star_wars', collection_exercise_sid=str(self.count))
+        self.launchSurvey('test', 'star_wars', collection_exercise_sid=str(self.count))
         self.count += 1
         self.post(action='start_questionnaire')
 
