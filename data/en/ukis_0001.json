@@ -4252,7 +4252,7 @@
                                         "value": 0,
                                         "exclusive": false
                                     },
-                                    "decimal_places": 0,
+                                    "decimal_places": 2,
                                     "currency": "GBP"
                                 }
                             ]
@@ -4410,7 +4410,7 @@
                                     "value": 0,
                                     "exclusive": false
                                 },
-                                "decimal_places": 0,
+                                "decimal_places": 2,
                                 "currency": "GBP"
                             }]
                         }]
