@@ -28,10 +28,6 @@ parser.add_argument('-r', '--require_path', default='../../base_pages',
                     help='The relative path from a page file to the directory containing the base/parent page classes. '
                          'Defaults to ".."')
 
-parser.add_argument('-p', '--test_schema_prefix', default='test_',
-                    help='The prefix of schemas which should be used to generate pages in the passed in directory')
-
-
 SPEC_PAGE_HEADER = "const helpers = require('../helpers');\n\n"
 
 SPEC_PAGE_IMPORT = Template(r"""const ${pageName}Page = require('../generated_pages/${pageDir}/${pageFile}');
@@ -500,7 +496,6 @@ if __name__ == '__main__':
 
     os.makedirs(args.OUT_DIRECTORY, exist_ok=True)
 
-
     if template_spec_file:
         os.makedirs(os.path.dirname(template_spec_file), exist_ok=True)
         with open(template_spec_file, 'w') as template_spec:
@@ -515,7 +510,7 @@ if __name__ == '__main__':
     else:
         if os.path.isdir(args.SCHEMA):
             for root, dirs, files in os.walk(args.SCHEMA):
-                for file in [os.path.join(root, file) for file in files if file.startswith(args.test_schema_prefix)]:
+                for file in [os.path.join(root, file) for file in files]:
                     output_dir = os.path.join(args.OUT_DIRECTORY, os.path.basename(file).split('.')[0].replace('test_', ''))
                     if not os.path.exists(output_dir):
                         os.makedirs(output_dir)
