@@ -67,7 +67,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         self.assertNotIn('introduction', blocks)
 
     def test_next_with_conditional_path(self):
-        schema = load_schema_from_params('0', 'star_wars')
+        schema = load_schema_from_params('test', 'star_wars')
 
         expected_path = [
             Location('star-wars', 0, 'choose-your-side-block'),
@@ -140,7 +140,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
     def test_routing_basic_and_conditional_path(self):
         # Given
-        schema = load_schema_from_params('0', 'star_wars')
+        schema = load_schema_from_params('test', 'star_wars')
 
         expected_path = [
             Location('star-wars', 0, 'introduction'),
@@ -175,7 +175,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         self.assertEqual(routing_path, expected_path)
 
     def test_get_next_location_introduction(self):
-        schema = load_schema_from_params('0', 'star_wars')
+        schema = load_schema_from_params('test', 'star_wars')
         schema.answer_is_in_repeating_group = MagicMock(return_value=False)
 
         introduction = Location('star-wars', 0, 'introduction')
@@ -187,7 +187,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         self.assertEqual('choose-your-side-block', next_location.block_id)
 
     def test_get_next_location_summary(self):
-        schema = load_schema_from_params('0', 'star_wars')
+        schema = load_schema_from_params('test', 'star_wars')
         schema.answer_is_in_repeating_group = MagicMock(return_value=False)
 
         answer_1 = Answer(
@@ -222,7 +222,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         self.assertEqual(expected_next_location, next_location)
 
     def test_get_previous_location_introduction(self):
-        schema = load_schema_from_params('0', 'star_wars')
+        schema = load_schema_from_params('test', 'star_wars')
         schema.answer_is_in_repeating_group = MagicMock(return_value=False)
 
         path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
@@ -234,7 +234,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         self.assertEqual('introduction', previous_location.block_id)
 
     def test_previous_with_conditional_path(self):
-        schema = load_schema_from_params('0', 'star_wars')
+        schema = load_schema_from_params('test', 'star_wars')
         schema.answer_is_in_repeating_group = MagicMock(return_value=False)
 
         expected_path = [
@@ -276,7 +276,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         self.assertEqual(actual_previous_block, expected_previous_location)
 
     def test_previous_with_conditional_path_alternative(self):
-        schema = load_schema_from_params('0', 'star_wars')
+        schema = load_schema_from_params('test', 'star_wars')
         schema.answer_is_in_repeating_group = MagicMock(return_value=False)
 
         expected_path = [
@@ -309,7 +309,7 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
                          expected_previous_location)
 
     def test_next_location_goto_summary(self):
-        schema = load_schema_from_params('0', 'star_wars')
+        schema = load_schema_from_params('test', 'star_wars')
         schema.answer_is_in_repeating_group = MagicMock(return_value=False)
 
         expected_path = [

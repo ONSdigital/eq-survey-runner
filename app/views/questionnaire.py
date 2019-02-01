@@ -324,7 +324,6 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
                     'answers_are_editable': False,
                     'is_view_submission_response_enabled': is_view_submitted_response_enabled(schema.json),
                 },
-                'variables': None,
             }
 
             return render_theme_template(schema.json['theme'],

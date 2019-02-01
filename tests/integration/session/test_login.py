@@ -31,18 +31,18 @@ class TestLogin(IntegrationTestCase):
 
     def test_login_with_valid_token_should_redirect_to_survey(self):
         # Given
-        token = self.token_generator.create_token('0205', '1')
+        token = self.token_generator.create_token('checkbox', 'test')
 
         # When
         self.get('/session?token=' + token)
 
         # Then
         self.assertStatusOK()
-        self.assertInUrl('/questionnaire/1/0205')
+        self.assertInUrl('/questionnaire/test/checkbox')
 
     def test_login_with_token_twice_is_unauthorised_when_same_jti_provided(self):
         # Given
-        token = self.token_generator.create_token('0205', '1')
+        token = self.token_generator.create_token('checkbox', 'test')
         self.get('/session?token=' + token)
 
         # When
@@ -53,7 +53,7 @@ class TestLogin(IntegrationTestCase):
 
     def test_login_without_jti_in_token_is_unauthorised(self):
         # Given
-        token = self.token_generator.create_token_without_jti('0205', '1')
+        token = self.token_generator.create_token_without_jti('checkbox', 'test')
         self.get('/session?token=' + token)
 
         # Then
@@ -71,7 +71,7 @@ class TestLogin(IntegrationTestCase):
 
     def test_http_head_request_to_login_returns_successfully_and_get_still_works(self):
         # Given
-        token = self.token_generator.create_token('0205', '1')
+        token = self.token_generator.create_token('checkbox', 'test')
 
         # When
         self._client.head('/session?token=' + token, as_tuple=True, follow_redirects=True)
@@ -79,7 +79,7 @@ class TestLogin(IntegrationTestCase):
 
         # Then
         self.assertStatusOK()
-        self.assertInUrl('/questionnaire/1/0205')
+        self.assertInUrl('/questionnaire/test/checkbox')
 
     def test_login_with_missing_mandatory_claims_should_be_forbidden(self):
         # Given

@@ -17,7 +17,7 @@ class TestDownstreamDataTyping(StarWarsTestCase):
         self.instance.send_message.return_value = False
 
         super().setUp()
-        self.launchSurvey('0', 'star_wars')
+        self.launchSurvey('test', 'star_wars')
 
     def tearDown(self):
         self.patcher.stop()

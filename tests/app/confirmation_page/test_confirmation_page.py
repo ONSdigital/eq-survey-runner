@@ -16,7 +16,7 @@ class TestConfirmationPage(AppContextTestCase):
         answer_store = AnswerStore()
         answer_store.add_or_update(answer)
 
-        schema = load_schema_from_params('0', 'rogue_one')
+        schema = load_schema_from_params('test', 'star_wars_rogue_one')
         navigator = PathFinder(schema, answer_store, {}, [])
 
         with patch('app.questionnaire.rules.evaluate_when_rules', return_value=True):

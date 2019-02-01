@@ -2,7 +2,7 @@ from datetime import datetime
 
 from dateutil.tz import tzutc
 from flask import Blueprint, current_app, redirect, request, g, session as cookie_session
-from flask_login import current_user, login_required, logout_user
+from flask_login import current_user, logout_user
 from flask_themes2 import render_theme_template
 from sdc.crypto.exceptions import InvalidTokenException
 from structlog import get_logger
@@ -19,7 +19,6 @@ from app.utilities.schema import load_schema_from_metadata
 from app.views.errors import render_template
 
 logger = get_logger()
-
 
 session_blueprint = Blueprint('session', __name__)
 
@@ -96,20 +95,6 @@ def validate_jti(decrypted_token):
         raise Unauthorized from e
     except (TypeError, ValueError) as e:
         raise InvalidTokenException from e
-
-
-@session_blueprint.route('/timeout-continue', methods=['GET'])
-@login_required
-def get_timeout_continue():
-    return 'true'
-
-
-@session_blueprint.route('/expire-session', methods=['POST'])
-@login_required
-def post_expire_session():
-    logout_user()
-
-    return get_session_expired()
 
 
 @session_blueprint.route('/session-expired', methods=['GET'])

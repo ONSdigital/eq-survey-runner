@@ -10,6 +10,7 @@ from app.templating.view_context import build_view_context_for_final_summary, \
 from app.utilities.schema import load_schema_from_params
 from tests.app.app_context_test_case import AppContextTestCase
 
+
 class TestStandardSummaryContext(AppContextTestCase):
     def setUp(self):
         super().setUp()
@@ -29,10 +30,9 @@ class TestStandardSummaryContext(AppContextTestCase):
         }
 
     def check_context(self, context):
-        self.assertEqual(len(context), 2)
-        for key_value in ('summary', 'variables'):
-            self.assertTrue(key_value in context,
-                            'Key value {} missing from context'.format(key_value))
+        self.assertEqual(len(context), 1)
+        self.assertTrue('summary' in context,
+                        'Key value {} missing from context'.format('summary'))
 
         summary_context = context['summary']
         for key_value in ('groups', 'answers_are_editable', 'summary_type'):
@@ -79,12 +79,9 @@ class TestSummaryContext(TestStandardSummaryContext):
                                                                     self.metadata, self.schema_context)
         self.check_summary_rendering_context(summary_rendering_context)
 
-
     def test_build_view_context_for_summary(self):
-        variables = None
-
         context = build_view_context_for_final_summary(self.metadata, self.schema, self.answer_store,
-                                                       self.schema_context, self.block_type, variables,
+                                                       self.schema_context, self.block_type,
                                                        self.rendered_block)
 
         self.check_context(context)
@@ -114,8 +111,6 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
         self.check_summary_rendering_context(summary_rendering_context)
 
     def test_build_view_context_for_section_summary(self):
-        variables = None
-
         current_location = Location(
             block_id='property-details-summary',
             group_id='property-details',
@@ -123,7 +118,7 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
         )
 
         context = build_view_context_for_section_summary(self.metadata, self.schema, self.answer_store,
-                                                         self.schema_context, self.block_type, variables,
+                                                         self.schema_context, self.block_type,
                                                          current_location.group_id)
 
         self.check_context(context)
@@ -162,8 +157,6 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_currency_calculated_summary_no_skip(self):
-        variables = None
-
         current_location = Location(
             block_id='currency-total-playback',
             group_id='group',
@@ -172,7 +165,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
                                                             self.schema_context, self.block_type,
-                                                            variables, current_location)
+                                                            current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -187,11 +180,8 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         self.assertEqual(context_summary['calculated_question']['title'], 'Grand total of previous values')
         self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '£27.00')
 
-
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_currency_calculated_summary_with_skip(self):
-        variables = None
-
         current_location = Location(
             block_id='currency-total-playback',
             group_id='group',
@@ -202,7 +192,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         self.answer_store.add_or_update(skip_answer)
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
                                                             self.schema_context, self.block_type,
-                                                            variables, current_location)
+                                                            current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -219,8 +209,6 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_unit_calculated_summary(self):
-        variables = None
-
         current_location = Location(
             block_id='unit-total-playback',
             group_id='group',
@@ -229,7 +217,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
                                                             self.schema_context, self.block_type,
-                                                            variables, current_location)
+                                                            current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -244,8 +232,6 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '9 cm')
 
     def test_build_view_context_for_percentage_calculated_summary(self):
-        variables = None
-
         current_location = Location(
             block_id='percentage-total-playback',
             group_id='group',
@@ -254,7 +240,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
                                                             self.schema_context, self.block_type,
-                                                            variables, current_location)
+                                                            current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -270,8 +256,6 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_number_calculated_summary(self):
-        variables = None
-
         current_location = Location(
             block_id='number-total-playback',
             group_id='group',
@@ -280,7 +264,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
                                                             self.schema_context, self.block_type,
-                                                            variables, current_location)
+                                                            current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -300,7 +284,6 @@ class TestRepeatingSummaryContext(TestStandardSummaryContext):
     def setUp(self):
         super().setUp()
         self.schema = load_schema_from_params('test', 'repeat_until_summaries')
-        self. variables = None
 
         answers = [
             {'group_instance': 0, 'answer_instance': 0, 'answer_id': 'primary-name',
@@ -354,7 +337,7 @@ class TestRepeatingSummaryContext(TestStandardSummaryContext):
         group_id = 'household-summary-group'
 
         context = build_view_context_for_section_summary(self.metadata, self.schema, self.answer_store, self.schema_context,
-                                                         block_type, self.variables, group_id)
+                                                         block_type, group_id)
 
         self.check_context(context)
 
@@ -373,7 +356,6 @@ class TestRepeatingSummaryContext(TestStandardSummaryContext):
         self.assertEqual(context_summary['groups'][2]['blocks'][0]['questions'][0]['answers'][0]['value'], 'Ccc')
         self.assertEqual(context_summary['groups'][3]['blocks'], [])
 
-
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_calculated_summary_for_repeating_group(self):
         block_type = 'CalculatedSummary'
@@ -382,7 +364,7 @@ class TestRepeatingSummaryContext(TestStandardSummaryContext):
         current_location = Location('member-group', 1, 'currency-total-playback')
 
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store, schema_context, block_type,
-                                                            self.variables, current_location)
+                                                            current_location)
 
         self.check_context(context)
 
@@ -393,13 +375,12 @@ class TestRepeatingSummaryContext(TestStandardSummaryContext):
         self.assertEqual(context_summary['groups'][0]['blocks'][0]['questions'][0]['answers'][0]['value'], 2)
         self.assertEqual(context_summary['groups'][0]['blocks'][1]['questions'][0]['answers'][0]['value'], 22)
 
-
     def test_build_view_context_for_final_summary_for_repeating_group(self):
         block_type = 'Summary'
         block = self.schema.get_block('summary')
 
         context = build_view_context_for_final_summary(self.metadata, self.schema, self.answer_store, self.schema_context,
-                                                       block_type, self.variables, block)
+                                                       block_type, block)
 
         self.check_context(context)
 
