@@ -26,19 +26,13 @@ TABLE_CONFIG = {
     },
     app_models.EQSession: {
         'table_name_key': 'EQ_SESSION_TABLE_NAME',
-        'dynamo_read_key': 'EQ_SESSION_DYNAMO_READ',
-        'dynamo_write_key': 'EQ_SESSION_DYNAMO_WRITE',
         'key_field': 'eq_session_id',
         'schema': app_models.EQSessionSchema,
-        'sql_model': models.EQSession,
     },
     app_models.UsedJtiClaim: {
         'table_name_key': 'EQ_USED_JTI_CLAIM_TABLE_NAME',
-        'dynamo_read_key': 'EQ_USED_JTI_CLAIM_DYNAMO_READ',
-        'dynamo_write_key': 'EQ_USED_JTI_CLAIM_DYNAMO_WRITE',
         'key_field': 'jti_claim',
         'schema': app_models.UsedJtiClaimSchema,
-        'sql_model': models.UsedJtiClaim,
     },
 }
 

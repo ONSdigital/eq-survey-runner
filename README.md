@@ -72,6 +72,7 @@ Note, you will also need to run an upstream tool (eg, https://github.com/ONSDigi
 ```
 docker run -e SURVEY_RUNNER_SCHEMA_URL=http://docker.for.mac.host.internal:5000 -it -p 8000:8000 onsdigital/go-launch-a-survey:latest
 ```
+This will generate a JWT for you to log into the application.
 
 To submit data you will also need to run an additional upstream tool (eg, https://github.com/ONSDigital/eq-docker-dynamodb) to launch a dynamoDB container.
 
@@ -79,8 +80,7 @@ To submit data you will also need to run an additional upstream tool (eg, https:
 docker run -it -p 6060:8000 onsdigital/eq-docker-dynamodb:latest
 ```
 
-
-This will generate a JWT for you to log into the application.
+Please note that currently the SQL backend only supports questionnaire state
 
 ---
 

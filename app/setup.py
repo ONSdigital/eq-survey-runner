@@ -24,7 +24,7 @@ from app import settings
 from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.authentication.user_id_generator import UserIDGenerator
-from app.data_model.models import EQSession, QuestionnaireState, db
+from app.data_model.models import QuestionnaireState, db
 from app.globals import get_session_store
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.new_relic import setup_newrelic
@@ -224,17 +224,6 @@ def check_database():
 
     if 'version' not in table.c:  # pragma: no cover
         raise Exception('Database patch "pr-1347-apply.sql" has not been run')
-
-    session_table = sqlalchemy.Table(EQSession.__tablename__,
-                                     md,
-                                     autoload=True,
-                                     autoload_with=db.engine)
-
-    if 'session_data' not in session_table.c:  # pragma: no cover
-        raise Exception('Database patch "pr-1391-apply.sql" has not been run')
-
-    if 'expires_at' not in session_table.c:  # pragma: no cover
-        raise Exception('Database patch "pr-1797-apply.sql" has not been run')
 
 
 def setup_dynamodb(application):

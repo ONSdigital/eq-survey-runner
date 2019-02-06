@@ -56,24 +56,8 @@ if [ -z "$EQ_SESSION_TABLE_NAME" ]; then
   export EQ_SESSION_TABLE_NAME="dev-eq-session"
 fi
 
-if [ -z "$EQ_SESSION_DYNAMO_READ" ]; then
-  export EQ_SESSION_DYNAMO_READ=True
-fi
-
-if [ -z "$EQ_SESSION_DYNAMO_WRITE" ]; then
-  export EQ_SESSION_DYNAMO_WRITE=True
-fi
-
 if [ -z "$EQ_USED_JTI_CLAIM_TABLE_NAME" ]; then
   export EQ_USED_JTI_CLAIM_TABLE_NAME="dev-used-jti-claim"
-fi
-
-if [ -z "$EQ_USED_JTI_CLAIM_DYNAMO_READ" ]; then
-  export EQ_USED_JTI_CLAIM_DYNAMO_READ=True
-fi
-
-if [ -z "$EQ_USED_JTI_CLAIM_DYNAMO_WRITE" ]; then
-  export EQ_USED_JTI_CLAIM_DYNAMO_WRITE=True
 fi
 
 if [ -z "$AWS_DEFAULT_REGION" ]; then
