@@ -1,10 +1,10 @@
 {
-    "eq_id": "qpses",
-    "form_type": "0002",
+    "eq_id": "qpses169",
+    "form_type": "0003",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
-    "survey_id": "165",
+    "survey_id": "169",
     "title": "Quarterly Public Sector Employment Survey",
     "sections": [{
         "id": "qpses-section",
@@ -19,7 +19,7 @@
                             "type": "Basic",
                             "id": "use-of-information",
                             "content": [{
-                                    "description": "The survey collects information on the number of employees in the public sector. Information is published in the quarterly Public Sector Employment Statistical Bulletin and is used to understand the performance of the labour market and UK economy, to provide accountability to Parliament and support policy making."
+                                    "description": "The survey collects information on the number of employees in the public sector and Civil Service. Information is published in the quarterly Public Sector Employment Statistical Bulletin and is used to understand the performance of the labour market and the UK economy. The Cabinet Office also publish the Civil Service statistics broken down by main government department."
                                 },
                                 {
                                     "description": "We guarantee that while your employment is less than 10, you will receive no more than 5 quarterly questionnaires for this one ONS business survey. You must complete and return all questionnaires on time, after which you will be excluded from all business surveys for at least 3 years. The Annual Survey of Hours and Earnings is not covered by this guarantee.",
