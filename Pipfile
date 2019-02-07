@@ -39,6 +39,7 @@ flask-sqlalchemy = "*"
 "flask-themes2" = "*"
 flask-wtf = "*"
 gevent = {version = "*", platform_python_implementation="=='CPython'"}
+google-cloud-datastore = "*"
 gunicorn = "*"
 newrelic = "*"
 pika = "*"

@@ -7,11 +7,13 @@ from flask import Flask, request
 from flask_babel import Babel
 
 from app import settings
-from app.setup import create_app, versioned_url_for, get_database_uri
+from app.setup import create_app, versioned_url_for, get_database_uri, EmulatorCredentials
+from app.storage.datastore import DatastoreStorage
+from app.storage.dynamodb import DynamodbStorage
 from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
 
 
-class TestCreateApp(unittest.TestCase):
+class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-methods
     def setUp(self):
         self._setting_overrides = {
             'SQLALCHEMY_DATABASE_URI': 'sqlite:////tmp/questionnaire.db'
@@ -188,6 +190,35 @@ class TestCreateApp(unittest.TestCase):
         application = create_app(self._setting_overrides)
 
         self.assertIsInstance(application.eq['submitter'], LogSubmitter)
+
+    def test_emulator_credentials(self):
+        creds = EmulatorCredentials()
+
+        self.assertTrue(creds.valid)
+
+        with self.assertRaises(RuntimeError):
+            creds.refresh(None)
+
+    def test_setup_datastore(self):
+        self._setting_overrides['EQ_STORAGE_BACKEND'] = 'datastore'
+
+        with patch('google.cloud.datastore.Client'):
+            application = create_app(self._setting_overrides)
+
+        self.assertIsInstance(application.eq['storage'], DatastoreStorage)
+
+    def test_setup_dynamodb(self):
+        self._setting_overrides['EQ_STORAGE_BACKEND'] = 'dynamodb'
+
+        application = create_app(self._setting_overrides)
+
+        self.assertIsInstance(application.eq['storage'], DynamodbStorage)
+
+    def test_invalid_storage(self):
+        self._setting_overrides['EQ_STORAGE_BACKEND'] = 'invalid'
+
+        with self.assertRaises(Exception):
+            create_app(self._setting_overrides)
 
     def test_setup_from_database_components(self):
         # Given

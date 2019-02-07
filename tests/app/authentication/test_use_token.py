@@ -5,7 +5,7 @@ from dateutil.tz import tzutc
 from mock import patch
 
 from app.authentication.jti_claim_storage import JtiTokenUsed, use_jti_claim
-from app.storage.data_access import ItemAlreadyExistsError
+from app.storage.errors import ItemAlreadyExistsError
 from tests.app.app_context_test_case import AppContextTestCase
 
 
@@ -18,7 +18,7 @@ class TestJtiClaimStorage(AppContextTestCase):
 
         # When
 
-        with patch('app.storage.data_access.put') as add:
+        with patch('app.storage.datastore.DatastoreStorage.put') as add:
             use_jti_claim(jti_token, expires)
 
             # Then
@@ -40,7 +40,7 @@ class TestJtiClaimStorage(AppContextTestCase):
 
         # When
         with self.assertRaises(JtiTokenUsed) as err:
-            with patch('app.storage.data_access.put', side_effect=[ItemAlreadyExistsError()]):
+            with patch('app.storage.datastore.DatastoreStorage.put', side_effect=[ItemAlreadyExistsError()]):
                 use_jti_claim(jti_token, expires)
 
         # Then

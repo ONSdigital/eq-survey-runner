@@ -30,7 +30,6 @@ from app.questionnaire.navigation import Navigation
 from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.router import Router
 from app.questionnaire.rules import evaluate_skip_conditions, get_answer_ids_on_routing_path
-from app.storage import data_access
 from app.storage.storage_encryption import StorageEncryption
 from app.submitter.converter import convert_answers
 from app.submitter.submission_failed import SubmissionFailedException
@@ -288,7 +287,7 @@ def get_view_submission(schema, eq_id, form_type):  # pylint: disable=unused-arg
     session_data = get_session_store().session_data
 
     if _is_submission_viewable(schema.json, session_data.submitted_time):
-        submitted_data = data_access.get_by_key(SubmittedResponse, session_data.tx_id)
+        submitted_data = current_app.eq['storage'].get_by_key(SubmittedResponse, session_data.tx_id)
 
         if submitted_data:
 
@@ -458,7 +457,7 @@ def _store_viewable_submission(answers, metadata, submitted_time):
         valid_until=valid_until.replace(tzinfo=tzutc()),
     )
 
-    data_access.put(item)
+    current_app.eq['storage'].put(item)
 
 
 def is_view_submitted_response_enabled(schema):

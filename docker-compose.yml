@@ -13,14 +13,8 @@ services:
       RABBITMQ_DEFAULT_USER: digitaleq
       RABBITMQ_DEFAULT_PASS: digitaleq
 
-  db:
-    image: postgres:9.4
-    environment:
-      POSTGRES_PASSWORD: digitaleq
-      POSTGRES_USER: digitaleq
-      POSTGRES_DB: runner
-    ports:
-      - "5433:5432"
+  datastore:
+    image: knarz/datastore-emulator
     networks:
       - eq-env
 
@@ -40,30 +34,21 @@ services:
       EQ_DEVELOPER_LOGGING: "True"
       EQ_ENABLE_SECURE_SESSION_COOKIE: "False"
       EQ_ENABLE_LIVE_RELOAD: "True"
-      EQ_SERVER_SIDE_STORAGE_DATABASE_HOST: db
-      EQ_SERVER_SIDE_STORAGE_DATABASE_NAME: runner
       EQ_RABBITMQ_HOST: rabbit
       EQ_RABBITMQ_HOST_SECONDARY: rabbit
       EQ_SECRETS_FILE: docker-secrets.yml
       EQ_KEYS_FILE: docker-keys.yml
-      EQ_DYNAMODB_ENDPOINT: http://eq-docker-dynamodb:8000
       EQ_SUBMITTED_RESPONSES_TABLE_NAME: dev-submitted-responses
       EQ_QUESTIONNAIRE_STATE_TABLE_NAME: dev-questionnaire-state
-      EQ_QUESTIONNAIRE_STATE_DYNAMO_READ: "True"
-      EQ_QUESTIONNAIRE_STATE_DYNAMO_WRITE: "True"
       EQ_SESSION_TABLE_NAME: dev-eq-session
-      EQ_SESSION_DYNAMO_READ: "True"
-      EQ_SESSION_DYNAMO_WRITE: "True"
       EQ_USED_JTI_CLAIM_TABLE_NAME: dev-used-jti-claim
-      EQ_USED_JTI_CLAIM_DYNAMO_READ: "True"
-      EQ_USED_JTI_CLAIM_DYNAM_WRITE: "True"
-      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID:-dummy}"
-      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:-dummy}"
+      EQ_DATASTORE_PROJECT_ID: dummy
+      EQ_DATASTORE_EMULATOR_CREDENTIALS: "True"
+      DATASTORE_EMULATOR_HOST: datastore:8432
     restart: always
     depends_on:
-      - db
+      - datastore
       - rabbit
-      - eq-docker-dynamodb
     networks:
       - eq-env
     ports:
@@ -82,15 +67,6 @@ services:
       - eq-env
     ports:
       - "8000:8000"
-
-
-  eq-docker-dynamodb:
-    image: onsdigital/eq-docker-dynamodb:latest
-    restart: always
-    networks:
-      - eq-env
-    ports:
-      - "6060:8000"
 
 
 networks:
