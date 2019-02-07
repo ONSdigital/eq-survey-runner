@@ -34,6 +34,8 @@ RUN apt update && apt install -y libsnappy-dev build-essential
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
+ENV GUNICORN_WORKERS 3
+
 COPY Pipfile.lock Pipfile.lock
 COPY .python-version .python-version
 
