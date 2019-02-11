@@ -99,7 +99,7 @@
                     "answers": [{
                         "q_code": "4",
                         "id": "what-is-your-age",
-                        "label": "",
+                        "label": "Age",
                         "mandatory": true,
                         "type": "Number"
                     }]
@@ -117,7 +117,7 @@
                     "answers": [{
                         "q_code": "5",
                         "id": "what-is-your-shoe-size",
-                        "label": "",
+                        "label": "Shoe size",
                         "mandatory": true,
                         "type": "Number"
                     }]

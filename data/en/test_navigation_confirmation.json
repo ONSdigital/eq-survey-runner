@@ -235,7 +235,7 @@
                 "questions": [{
                     "answers": [{
                         "id": "extra-cover-answer",
-                        "label": "",
+                        "label": "Extra cover",
                         "mandatory": true,
                         "q_code": "1",
                         "type": "Number",
@@ -278,7 +278,7 @@
                 "questions": [{
                     "answers": [{
                         "id": "credit-card-answer",
-                        "label": "",
+                        "label": "Credit card",
                         "mandatory": true,
                         "q_code": "1",
                         "type": "Number"
@@ -296,7 +296,7 @@
                 "questions": [{
                     "answers": [{
                         "id": "expiry-date-answer",
-                        "label": "",
+                        "label": "Expiry date",
                         "mandatory": true,
                         "q_code": "1",
                         "type": "TextField"
@@ -314,7 +314,7 @@
                 "questions": [{
                     "answers": [{
                         "id": "security-code-answer",
-                        "label": "",
+                        "label": "Security Code",
                         "mandatory": true,
                         "q_code": "1",
                         "type": "TextField"

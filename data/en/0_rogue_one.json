@@ -223,7 +223,7 @@
                 "questions": [{
                     "answers": [{
                         "id": "film-takings-answer",
-                        "label": "",
+                        "label": "Estimated takings",
                         "mandatory": true,
                         "q_code": "2",
                         "type": "Currency",
