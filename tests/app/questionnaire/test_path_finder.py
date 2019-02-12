@@ -12,17 +12,17 @@ from tests.app.app_context_test_case import AppContextTestCase
 class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-methods, too-many-lines
 
     def test_next_block(self):
-        schema = load_schema_from_params('test', '0102')
+        schema = load_schema_from_params('test', 'textfield')
 
         current_location = Location(
-            block_id='total-retail-turnover',
-            group_id='rsi',
+            block_id='name-block',
+            group_id='group',
             group_instance=0
         )
 
         next_location = Location(
-            block_id='internet-sales',
-            group_id='rsi',
+            block_id='min-max-block',
+            group_id='group',
             group_instance=0
         )
 
@@ -30,25 +30,24 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         self.assertEqual(path_finder.get_next_location(current_location=current_location), next_location)
 
     def test_previous_block(self):
-        schema = load_schema_from_params('test', '0102')
+        schema = load_schema_from_params('test', 'textfield')
 
         current_location = Location(
-            block_id='internet-sales',
-            group_id='rsi',
+            block_id='min-max-block',
+            group_id='group',
             group_instance=0
         )
 
         previous_location = Location(
-            block_id='total-retail-turnover',
-            group_id='rsi',
+            block_id='name-block',
+            group_id='group',
             group_instance=0
         )
-
         path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
         self.assertEqual(path_finder.get_previous_location(current_location=current_location), previous_location)
 
     def test_introduction_in_path_when_in_schema(self):
-        schema = load_schema_from_params('test', '0102')
+        schema = load_schema_from_params('test', 'introduction')
 
         path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
 
@@ -67,70 +66,45 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         self.assertNotIn('introduction', blocks)
 
     def test_next_with_conditional_path(self):
-        schema = load_schema_from_params('test', 'star_wars')
+        schema = load_schema_from_params('test', 'routing_number_equals')
 
         expected_path = [
-            Location('star-wars', 0, 'choose-your-side-block'),
-            Location('star-wars', 0, 'light-side-pick-character-ship'),
-            Location('star-wars', 0, 'star-wars-trivia'),
-            Location('star-wars', 0, 'star-wars-trivia-part-2'),
-            Location('star-wars', 0, 'star-wars-trivia-part-3'),
+            Location('group', 0, 'number-question'),
+            Location('group', 0, 'correct-answer'),
         ]
 
         answer_1 = Answer(
-            answer_id='choose-your-side-answer',
-            value='Light Side'
-        )
-
-        answer_2 = Answer(
-            answer_id='light-side-pick-ship-answer',
-            value='No'
+            answer_id='answer',
+            value=123
         )
 
         answers = AnswerStore()
         answers.add_or_update(answer_1)
-        answers.add_or_update(answer_2)
 
-        current_location = expected_path[1]
-        expected_next_location = expected_path[2]
+        current_location = expected_path[0]
+        expected_next_location = expected_path[1]
 
         completed_blocks = [
             expected_path[0],
-            expected_path[1]
         ]
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=completed_blocks)
-
-        with patch('app.questionnaire.rules.evaluate_when_rules', side_effect=[True, False, True]):
-            actual_next_block = path_finder.get_next_location(current_location=current_location)
-
-        self.assertEqual(actual_next_block, expected_next_location)
-
-        current_location = expected_path[2]
-        expected_next_location = expected_path[3]
-
-        path_finder.completed_blocks = [
-            expected_path[0],
-            expected_path[1],
-            expected_path[2]
-        ]
 
         actual_next_block = path_finder.get_next_location(current_location=current_location)
 
         self.assertEqual(actual_next_block, expected_next_location)
 
     def test_routing_basic_path(self):
-        schema = load_schema_from_params('test', '0112')
+        schema = load_schema_from_params('test', 'navigation')
 
         expected_path = [
-            Location('rsi', 0, 'introduction'),
-            Location('rsi', 0, 'reporting-period'),
-            Location('rsi', 0, 'total-retail-turnover'),
-            Location('rsi', 0, 'internet-sales'),
-            Location('rsi', 0, 'changes-in-retail-turnover'),
-            Location('rsi', 0, 'number-of-employees'),
-            Location('rsi', 0, 'changes-in-employees'),
-            Location('rsi', 0, 'summary')
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('extra-cover', 0, 'extra-cover-block'),
+            Location('skip-payment-group', 0, 'skip-payment'),
+            Location('final-section-routed-group', 0, 'final-interstitial'),
+            Location('summary-group', 0, 'summary'),
         ]
 
         path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
@@ -140,31 +114,21 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
 
     def test_routing_basic_and_conditional_path(self):
         # Given
-        schema = load_schema_from_params('test', 'star_wars')
+        schema = load_schema_from_params('test', 'routing_number_equals')
 
         expected_path = [
-            Location('star-wars', 0, 'introduction'),
-            Location('star-wars', 0, 'choose-your-side-block'),
-            Location('star-wars', 0, 'dark-side-pick-character-ship'),
-            Location('star-wars', 0, 'light-side-ship-type'),
-            Location('star-wars', 0, 'star-wars-trivia'),
-            Location('star-wars', 0, 'star-wars-trivia-part-2'),
-            Location('star-wars', 0, 'star-wars-trivia-part-3'),
-            Location('star-wars', 0, 'summary'),
+            Location('group', 0, 'number-question'),
+            Location('group', 0, 'correct-answer'),
+            Location('group', 0, 'summary'),
         ]
 
         answer_1 = Answer(
-            answer_id='choose-your-side-answer',
-            value='Dark Side'
-        )
-        answer_2 = Answer(
-            answer_id='dark-side-pick-ship-answer',
-            value='Can I be a pain and have a goodies ship',
+            answer_id='answer',
+            value=123
         )
 
         answers = AnswerStore()
         answers.add_or_update(answer_1)
-        answers.add_or_update(answer_2)
         schema.answer_is_in_repeating_group = MagicMock(return_value=False)
 
         # When
@@ -175,133 +139,86 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
         self.assertEqual(routing_path, expected_path)
 
     def test_get_next_location_introduction(self):
-        schema = load_schema_from_params('test', 'star_wars')
+        schema = load_schema_from_params('test', 'introduction')
         schema.answer_is_in_repeating_group = MagicMock(return_value=False)
 
-        introduction = Location('star-wars', 0, 'introduction')
+        introduction = Location('introduction-group', 0, 'introduction')
 
         path_finder = PathFinder(schema, AnswerStore(), {}, [introduction])
 
         next_location = path_finder.get_next_location(current_location=introduction)
 
-        self.assertEqual('choose-your-side-block', next_location.block_id)
+        self.assertEqual('general-business-information-completed', next_location.block_id)
 
     def test_get_next_location_summary(self):
-        schema = load_schema_from_params('test', 'star_wars')
-        schema.answer_is_in_repeating_group = MagicMock(return_value=False)
-
-        answer_1 = Answer(
-            answer_id='choose-your-side-answer',
-            value='Light Side'
-        )
-        answer_2 = Answer(
-            answer_id='light-side-pick-ship-answer',
-            value='No',
-        )
+        schema = load_schema_from_params('test', 'summary')
 
         answers = AnswerStore()
-        answers.add_or_update(answer_1)
-        answers.add_or_update(answer_2)
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
-        current_location = Location('star-wars', 0, 'star-wars-trivia-part-2')
+        current_location = Location('dessert-group', 0, 'dessert-block')
 
         next_location = path_finder.get_next_location(current_location=current_location)
 
-        expected_next_location = Location('star-wars', 0, 'star-wars-trivia-part-3')
-
-        self.assertEqual(expected_next_location, next_location)
-
-        current_location = expected_next_location
-
-        next_location = path_finder.get_next_location(current_location=current_location)
-
-        expected_next_location = Location('star-wars', 0, 'summary')
+        expected_next_location = Location('dessert-group', 0, 'summary')
 
         self.assertEqual(expected_next_location, next_location)
 
     def test_get_previous_location_introduction(self):
-        schema = load_schema_from_params('test', 'star_wars')
+        schema = load_schema_from_params('test', 'introduction')
         schema.answer_is_in_repeating_group = MagicMock(return_value=False)
 
         path_finder = PathFinder(schema, AnswerStore(), metadata={}, completed_blocks=[])
 
-        first_location = Location('star-wars', 0, 'choose-your-side-block')
+        first_location = Location('introduction-group', 0, 'general-business-information-completed')
 
         previous_location = path_finder.get_previous_location(current_location=first_location)
 
         self.assertEqual('introduction', previous_location.block_id)
 
     def test_previous_with_conditional_path(self):
-        schema = load_schema_from_params('test', 'star_wars')
-        schema.answer_is_in_repeating_group = MagicMock(return_value=False)
+        schema = load_schema_from_params('test', 'routing_number_equals')
 
         expected_path = [
-            Location('star-wars', 0, 'choose-your-side-block'),
-            Location('star-wars', 0, 'dark-side-pick-character-ship'),
-            Location('star-wars', 0, 'light-side-ship-type'),
-            Location('star-wars', 0, 'star-wars-trivia'),
-            Location('star-wars', 0, 'star-wars-trivia-part-2'),
-            Location('star-wars', 0, 'star-wars-trivia-part-3'),
+            Location('group', 0, 'number-question'),
+            Location('group', 0, 'correct-answer'),
         ]
 
         answer_1 = Answer(
-            answer_id='choose-your-side-answer',
-            value='Dark Side'
-        )
-        answer_2 = Answer(
-            answer_id='dark-side-pick-ship-answer',
-            value='Can I be a pain and have a goodies ship',
+            answer_id='answer',
+            value=123
         )
 
         answers = AnswerStore()
         answers.add_or_update(answer_1)
-        answers.add_or_update(answer_2)
 
-        current_location = expected_path[3]
-        expected_previous_location = expected_path[2]
+        current_location = expected_path[1]
+        expected_previous_location = expected_path[0]
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
         actual_previous_block = path_finder.get_previous_location(current_location=current_location)
 
         self.assertEqual(actual_previous_block, expected_previous_location)
 
-        current_location = expected_path[2]
-        expected_previous_location = expected_path[1]
-
-
-        actual_previous_block = path_finder.get_previous_location(current_location=current_location)
-
-        self.assertEqual(actual_previous_block, expected_previous_location)
-
     def test_previous_with_conditional_path_alternative(self):
-        schema = load_schema_from_params('test', 'star_wars')
-        schema.answer_is_in_repeating_group = MagicMock(return_value=False)
+        schema = load_schema_from_params('test', 'routing_number_equals')
 
         expected_path = [
-            Location('star-wars', 0, 'choose-your-side-block'),
-            Location('star-wars', 0, 'light-side-pick-character-ship'),
-            Location('star-wars', 0, 'star-wars-trivia'),
-            Location('star-wars', 0, 'star-wars-trivia-part-2'),
-            Location('star-wars', 0, 'star-wars-trivia-part-3'),
+            Location('group', 0, 'number-question'),
+            Location('group', 0, 'incorrect-answer'),
         ]
 
-        current_location = expected_path[2]
-        expected_previous_location = expected_path[1]
-
         answer_1 = Answer(
-            answer_id='choose-your-side-answer',
-            value='Light Side'
+            answer_id='answer',
+            value=456
         )
-        answer_2 = Answer(
-            answer_id='light-side-pick-ship-answer',
-            value='No',
-        )
+
+        current_location = expected_path[1]
+        expected_previous_location = expected_path[0]
 
         answers = AnswerStore()
         answers.add_or_update(answer_1)
-        answers.add_or_update(answer_2)
 
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
@@ -309,26 +226,21 @@ class TestPathFinder(AppContextTestCase):  # pylint: disable=too-many-public-met
                          expected_previous_location)
 
     def test_next_location_goto_summary(self):
-        schema = load_schema_from_params('test', 'star_wars')
+        schema = load_schema_from_params('test', 'summary')
         schema.answer_is_in_repeating_group = MagicMock(return_value=False)
 
         expected_path = [
-            Location('star-wars', 0, 'introduction'),
-            Location('star-wars', 0, 'choose-your-side-block'),
-            Location('star-wars', 0, 'summary'),
+            Location('summary-group', 0, 'radio'),
+            Location('summary-group', 0, 'test-number-block'),
+            Location('dessert-group', 0, 'dessert-block'),
+            Location('dessert-group', 0, 'summary'),
         ]
 
-        answer = Answer(
-            group_instance=0,
-            answer_id='choose-your-side-answer',
-            value='I prefer Star Trek',
-        )
         answers = AnswerStore()
-        answers.add_or_update(answer)
         path_finder = PathFinder(schema, answer_store=answers, metadata={}, completed_blocks=[])
 
-        current_location = expected_path[1]
-        expected_next_location = expected_path[2]
+        current_location = expected_path[2]
+        expected_next_location = expected_path[3]
 
         next_location = path_finder.get_next_location(current_location=current_location)
 

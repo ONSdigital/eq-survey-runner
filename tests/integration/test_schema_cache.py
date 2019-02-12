@@ -9,10 +9,10 @@ class TestApplicationVariables(IntegrationTestCase):
         with self._application.app_context():
             self.assertEqual(len(cache.cache._cache), 0)  # pylint: disable=protected-access
 
-            self.launchSurvey('test', 'star_wars')
+            self.launchSurvey('test', 'textfield')
             self.assertStatusOK()
             self.assertNotEqual(cache.get('app.utilities.schema.load_schema_from_params_memver'), None)
 
-            self.launchSurvey('test', 'star_wars')
+            self.launchSurvey('test', 'textfield')
             self.assertStatusOK()
             self.assertNotEqual(cache.get('app.utilities.schema.load_schema_from_params_memver'), None)

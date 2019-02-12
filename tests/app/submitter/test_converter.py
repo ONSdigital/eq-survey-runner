@@ -35,7 +35,7 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
         self.metadata = parse_metadata({
             'tx_id': str(uuid.uuid4()),
             'user_id': '789473423',
-            'form_type': '0205',
+            'form_type': '0000',
             'collection_exercise_sid': 'test-sid',
             'eq_id': '1',
             'period_id': '2016-02-01',

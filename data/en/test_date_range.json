@@ -1,0 +1,66 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "023",
+    "title": "Date range",
+    "description": "A test schema for different date formats",
+    "theme": "default",
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "blocks": [{
+                "type": "Question",
+                "id": "date-block",
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "date-range-from-answer",
+                        "label": "Period from",
+                        "mandatory": true,
+                        "q_code": "11",
+                        "type": "Date"
+                    }, {
+                        "id": "date-range-to-answer",
+                        "label": "Period to",
+                        "mandatory": true,
+                        "q_code": "12",
+                        "type": "Date"
+                    }],
+                    "description": "",
+                    "id": "date-range-question",
+                    "title": "Date range",
+                    "type": "DateRange"
+                }],
+                "title": "Date Examples"
+            }, {
+                "type": "Interstitial",
+                "id": "min-max-block",
+                "title": "Application of min and max filters to dates",
+                "description": "",
+                "content": [{
+                    "title": "",
+                    "list": [
+                        "The most recent Date Range value entered was <em>{{ max_value(answers['date-range-from-answer'], answers['date-range-to-answer'])|format_date }}</em>",
+                        "The least recent Date Range value entered was <em>{{ min_value(answers['date-range-from-answer'], answers['date-range-to-answer'])|format_date }}</em>"
+                    ]
+                }]
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }],
+            "id": "dates",
+            "title": ""
+        }]
+    }]
+}

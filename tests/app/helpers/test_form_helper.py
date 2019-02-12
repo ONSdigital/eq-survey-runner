@@ -16,68 +16,68 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_for_block_location(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', '0102')
+            schema = load_schema_from_params('test', 'date_range')
 
-            block_json = schema.get_block('reporting-period')
-            location = Location(group_id='rsi',
+            block_json = schema.get_block('date-block')
+            location = Location(group_id='dates',
                                 group_instance=0,
-                                block_id='introduction')
+                                block_id='date-block')
 
             form = get_form_for_location(schema, block_json, location, AnswerStore(), metadata=None)
 
-            self.assertTrue(hasattr(form, 'period-to'))
-            self.assertTrue(hasattr(form, 'period-from'))
+            self.assertTrue(hasattr(form, 'date-range-from-answer'))
+            self.assertTrue(hasattr(form, 'date-range-to-answer'))
 
-            period_from_field = getattr(form, 'period-from')
-            period_to_field = getattr(form, 'period-to')
+            period_from_field = getattr(form, 'date-range-from-answer')
+            period_to_field = getattr(form, 'date-range-to-answer')
 
             self.assertIsInstance(period_from_field.month.validators[0], DateRequired)
             self.assertIsInstance(period_to_field.month.validators[0], DateRequired)
 
     def test_get_form_and_disable_mandatory_answers(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', '0102')
+            schema = load_schema_from_params('test', 'date_range')
 
-            block_json = schema.get_block('reporting-period')
-            location = Location(group_id='rsi',
+            block_json = schema.get_block('date-block')
+            location = Location(group_id='dates',
                                 group_instance=0,
-                                block_id='introduction')
+                                block_id='date-block')
 
             form = get_form_for_location(schema, block_json, location,
                                          AnswerStore(), metadata=None, disable_mandatory=True)
 
-            self.assertTrue(hasattr(form, 'period-from'))
-            self.assertTrue(hasattr(form, 'period-to'))
+            self.assertTrue(hasattr(form, 'date-range-from-answer'))
+            self.assertTrue(hasattr(form, 'date-range-to-answer'))
 
-            period_from_field = getattr(form, 'period-from')
-            period_to_field = getattr(form, 'period-to')
+            period_from_field = getattr(form, 'date-range-from-answer')
+            period_to_field = getattr(form, 'date-range-to-answer')
 
             self.assertIsInstance(period_from_field.month.validators[0], OptionalForm)
             self.assertIsInstance(period_to_field.month.validators[0], OptionalForm)
 
     def test_post_form_for_block_location(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', '0102')
+            schema = load_schema_from_params('test', 'date_range')
 
-            block_json = schema.get_block('reporting-period')
-            location = Location(group_id='rsi',
+            block_json = schema.get_block('date-block')
+            location = Location(group_id='dates',
                                 group_instance=0,
-                                block_id='introduction')
+                                block_id='date-block')
 
             form = post_form_for_location(schema, block_json, location, AnswerStore(), metadata=None, request_form={
-                'period-from-day': '1',
-                'period-from-month': '05',
-                'period-from-year': '2015',
-                'period-to-day': '1',
-                'period-to-month': '09',
-                'period-to-year': '2017',
+                'date-range-from-answer-day': '1',
+                'date-range-from-answer-month': '05',
+                'date-range-from-answer-year': '2015',
+                'date-range-to-answer-day': '1',
+                'date-range-to-answer-month': '09',
+                'date-range-to-answer-year': '2017',
             })
 
-            self.assertTrue(hasattr(form, 'period-to'))
-            self.assertTrue(hasattr(form, 'period-from'))
+            self.assertTrue(hasattr(form, 'date-range-from-answer'))
+            self.assertTrue(hasattr(form, 'date-range-to-answer'))
 
-            period_to_field = getattr(form, 'period-to')
-            period_from_field = getattr(form, 'period-from')
+            period_from_field = getattr(form, 'date-range-from-answer')
+            period_to_field = getattr(form, 'date-range-to-answer')
 
             self.assertIsInstance(period_from_field.month.validators[0], DateRequired)
             self.assertIsInstance(period_to_field.month.validators[0], DateRequired)
@@ -87,21 +87,21 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_and_disable_mandatory(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', '0102')
+            schema = load_schema_from_params('test', 'date_range')
 
-            block_json = schema.get_block('reporting-period')
-            location = Location(group_id='rsi',
+            block_json = schema.get_block('date-block')
+            location = Location(group_id='dates',
                                 group_instance=0,
-                                block_id='introduction')
+                                block_id='date-block')
 
             form = post_form_for_location(schema, block_json, location, AnswerStore(), metadata=None, request_form={
             }, disable_mandatory=True)
 
-            self.assertTrue(hasattr(form, 'period-from'))
-            self.assertTrue(hasattr(form, 'period-to'))
+            self.assertTrue(hasattr(form, 'date-range-from-answer'))
+            self.assertTrue(hasattr(form, 'date-range-to-answer'))
 
-            period_from_field = getattr(form, 'period-from')
-            period_to_field = getattr(form, 'period-to')
+            period_from_field = getattr(form, 'date-range-from-answer')
+            period_to_field = getattr(form, 'date-range-to-answer')
 
             self.assertIsInstance(period_from_field.month.validators[0], OptionalForm)
             self.assertIsInstance(period_to_field.month.validators[0], OptionalForm)

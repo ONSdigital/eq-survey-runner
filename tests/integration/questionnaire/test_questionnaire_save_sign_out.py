@@ -8,11 +8,10 @@ class TestSaveSignOut(IntegrationTestCase):
         # We can save and go to the sign-out page without having to fill in mandatory answer
 
         # Given
-        self.launchSurvey('test', '0205', account_service_url='https://localhost/my-account', account_service_log_out_url='https://localhost/logout')
+        self.launchSurvey('test', 'radio_mandatory', account_service_url='https://localhost/my-account', account_service_log_out_url='https://localhost/logout')
 
         # When
-        self.post(action='start_questionnaire')
-        self.post(post_data={'total-retail-turnover': '1000'}, action='save_sign_out')
+        self.post(action='save_sign_out')
 
         # Then we are presented with the sign out page
         self.assertInUrl('/logout')
@@ -21,11 +20,10 @@ class TestSaveSignOut(IntegrationTestCase):
         # We can't save if a validation error is caused, this doesn't include missing a mandatory question
 
         # Given
-        self.launchSurvey('test', '0205')
+        self.launchSurvey('test', 'error_messages')
 
         # When
-        self.post(action='start_questionnaire')
-        self.post(post_data={'total-retail-turnover': 'error'}, action='save_sign_out')
+        self.post(post_data={'test-number': 'error'}, action='save_sign_out')
 
         # Then we are presented with an error message
         self.assertRegexPage(error_messages['INVALID_NUMBER'])
@@ -34,18 +32,12 @@ class TestSaveSignOut(IntegrationTestCase):
         # If a user completes a block, but then goes back and uses save and come back on that block, that block
         # should no longer be considered complete and on re-authenticate it should return to it
 
-        self.launchSurvey('test', '0102')
+        self.launchSurvey('test', 'textfield')
 
-        self.post(action='start_questionnaire')
         block_one_url = self.last_url
 
         post_data = {
-            'period-from-day': '01',
-            'period-from-month': '4',
-            'period-from-year': '2016',
-            'period-to-day': '30',
-            'period-to-month': '4',
-            'period-to-year': '2016'
+            'name-answer': 'Joe Bloggs'
         }
 
         self.post(post_data)
@@ -55,13 +47,13 @@ class TestSaveSignOut(IntegrationTestCase):
         self.post(action='save_sign_out')
 
         # We re-authenticate and check we are on the first page
-        self.launchSurvey('test', '0102')
+        self.launchSurvey('test', 'textfield')
         self.assertEqual(block_one_url, self.last_url)
 
     def test_sign_out_on_introduction_page(self):
 
         # Given
-        self.launchSurvey('test', '0205', account_service_url='https://localhost/my-account', account_service_log_out_url='https://localhost/logout')
+        self.launchSurvey('test', 'introduction', account_service_url='https://localhost/my-account', account_service_log_out_url='https://localhost/logout')
 
         # When
         self.post(action='sign_out')

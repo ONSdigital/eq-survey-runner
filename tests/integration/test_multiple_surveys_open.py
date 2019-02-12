@@ -51,7 +51,6 @@ class MultipleSurveysOpen(IntegrationTestCase):
         self.assertInBody('Information')
         self.assertInBody('Unfortunately you can only complete one survey at a time.')
 
-
     def test_initial_survey_completed(self):
         # We complete the first survey
         self.launchSurvey('test', 'introduction')
