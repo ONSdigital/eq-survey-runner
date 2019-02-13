@@ -140,7 +140,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "perm-male-question",
-                            "title": "On {{ metadata['date_ref'] | format_date }}, how many <em>male permanent</em> employees did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have?",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, how many <em>male permanent</em> employees did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have?",
                             "description": "",
                             "guidance": {
                                 "content": [{
@@ -233,7 +233,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "perm-male-fte-question",
-                            "title": "On {{ metadata['date_ref'] | format_date }}, how many <em>male permanent full-time equivalent</em> employees did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have?",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, how many <em>male permanent full-time equivalent</em> employees did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have?",
                             "description": "<p>Please convert part-time employees hours into those worked by full-time employees. For example, if a part-time employee works 10 hours per week and the full-time working week in your organisation is 37 hours, the part-time employee would equate to 0.27 full-time equivalents (10 divided by 37). </p><p>Please use weekly contracted hours as the basis to calculate FTE.</p>",
                             "guidance": {
                                 "content": [{
@@ -283,7 +283,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "perm-female-question",
-                            "title": "On {{ metadata['date_ref'] | format_date }}, how many <em>female permanent</em> employees did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have?",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, how many <em>female permanent</em> employees did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have?",
                             "description": "",
                             "guidance": {
                                 "content": [{
@@ -376,7 +376,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "perm-female-fte-question",
-                            "title": "On {{ metadata['date_ref'] | format_date }}, how many <em>female permanent full-time equivalent</em> employees did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have?",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, how many <em>female permanent full-time equivalent</em> employees did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have?",
                             "description": "<p>Please convert part-time employees hours into those worked by full-time employees. For example, if a part-time employee works 10 hours per week and the full-time working week in your organisation is 37 hours, the part-time employee would equate to 0.27 full-time equivalents (10 divided by 37). </p><p>Please use weekly contracted hours as the basis to calculate FTE.</p>",
                             "guidance": {
                                 "content": [{
@@ -426,7 +426,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "temp-male-question",
-                            "title": "On {{ metadata['date_ref'] | format_date }}, how many <em>male temporary and casual</em> employees did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have?",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, how many <em>male temporary and casual</em> employees did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have?",
                             "description": "",
                             "guidance": {
                                 "content": [{
@@ -503,7 +503,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "temp-male-fte-question",
-                            "title": "On {{ metadata['date_ref'] | format_date }}, how many <em>male temporary and casual full-time equivalent</em> employees did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have?",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, how many <em>male temporary and casual full-time equivalent</em> employees did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have?",
                             "description": "<p>Please convert part-time employees hours into those worked by full-time employees. For example, if a part-time employee works 10 hours per week and the full-time working week in your organisation is 37 hours, the part-time employee would equate to 0.27 full-time equivalents (10 divided by 37). </p><p>Please use weekly contracted hours as the basis to calculate FTE.</p>",
                             "guidance": {
                                 "content": [{
@@ -553,7 +553,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "temp-female-question",
-                            "title": "On {{ metadata['date_ref'] | format_date }}, how many <em>female temporary and casual</em> employees did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have?",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, how many <em>female temporary and casual</em> employees did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have?",
                             "description": "",
                             "guidance": {
                                 "content": [{
@@ -630,7 +630,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "temp-female-fte-question",
-                            "title": "On {{ metadata['date_ref'] | format_date }}, how many <em>female temporary and casual full-time equivalent</em> employees did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have?",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, how many <em>female temporary and casual full-time equivalent</em> employees did {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} have?",
                             "description": "<p>Please convert part-time employees hours into those worked by full-time employees. For example, if a part-time employee works 10 hours per week and the full-time working week in your organisation is 37 hours, the part-time employee would equate to 0.27 full-time equivalents (10 divided by 37). </p><p>Please use weekly contracted hours as the basis to calculate FTE.</p>",
                             "guidance": {
                                 "content": [{
@@ -680,7 +680,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "total-emp-question",
-                            "title": "On {{ metadata['date_ref'] | format_date }}, what was {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}&apos;s total number of employees?",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, what was {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}&apos;s total number of employees?",
                             "description": "",
                             "guidance": {
                                 "content": [{
@@ -708,7 +708,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "total-fte-question",
-                            "title": "On {{ metadata['date_ref'] | format_date }}, what was {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}&apos;s total number of full-time equivalent employees?",
+                            "title": "On {{ metadata['employment_date'] | format_date }}, what was {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}&apos;s total number of full-time equivalent employees?",
                             "description": "<p>Please convert part-time employees hours into those worked by full-time employees. For example, if a part-time employee works 10 hours per week and the full-time working week in your organisation is 37 hours, the part-time employee would equate to 0.27 full-time equivalents (10 divided by 37). </p><p>Please use weekly contracted hours as the basis to calculate FTE.</p>",
                             "guidance": {
                                 "content": [{
@@ -801,7 +801,7 @@
             "validator": "string"
         },
         {
-            "name": "date_ref",
+            "name": "employment_date",
             "validator": "date"
         },
         {
