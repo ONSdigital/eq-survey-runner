@@ -1,7 +1,5 @@
 FROM ubuntu:18.04 as builder
 
-ARG APP_VERSION=unknown
-
 RUN apt-get update \
     && apt-get install -y curl git locales make build-essential
 
@@ -20,7 +18,6 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 RUN yarn compile
 RUN ./scripts/translate_schemas.sh
-RUN printf $APP_VERSION > .application-version
 
 # We don't want node_modules to be copied to the runtime image
 RUN rm -rf node_modules
