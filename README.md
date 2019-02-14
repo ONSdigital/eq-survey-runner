@@ -313,39 +313,52 @@ pipenv run pybabel update -i app/translations/messages.pot -d app/translations
 
 The following env variables can be used
 ```
-EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY - the RRM public key for JWT user authentication
-EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY - the SR private key for JWT user authentication
-EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD - password of the SR private key for JWT user authentication
-EQ_SUBMISSION_SDX_PUBLIC_KEY - the SDX public key for encryption of Submission data
-EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY - the SR private key for signing of submission data
-EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD - the password to the SR private key
-EQ_RABBITMQ_URL - the RabbitMQ connection string
-EQ_RABBITMQ_QUEUE_NAME - the name of the submission queue
-EQ_SERVER_SIDE_STORAGE_DATABASE_URL - url of the database to connect to, e.g. 'sqlite:////tmp/questionnaire.db')
-EQ_SERVER_SIDE_STORAGE_DATABASE_SETUP_RETRY_COUNT - Number of times to retry setting up the database (connection/creation) if it fails
-EQ_SERVER_SIDE_STORAGE_DATABASE_SETUP_RETRY_DELAY_SECONDS - Number of seconds to wait between retry attempts to setup the database
-EQ_LOG_LEVEL - The default logging level (defaults to 'INFO' for local development)
-EQ_WERKZEUG_LOG_LEVEL - The default logging level for werkzeug (defaults to 'INFO' for local development)
-EQ_SCHEMA_DIRECTORY - The directory that contains the schema files
-EQ_SESSION_TIMEOUT_SECONDS - The duration of the flask session
-EQ_SECRET_KEY - The Flask secret key for signing cookies
-EQ_PROFILING - Enables or disables profiling (True/False) Default False/Disabled
-EQ_UA_ID - The Google Analytics ID
-EQ_SCHEMA_BUCKET - The name of the bucket in S3 where to look to find schemas
-SAUCE_USERNAME - Sauce Labs username
-SAUCE_ACCESS_KEY - Sauce Labs private key
-EQ_DEV_MODE - Enable dev mode
-EQ_ENABLE_FLASK_DEBUG_TOOLBAR - Enable the flask debug toolbar
-EQ_ENABLE_CACHE - Enable caching of the schema
-EQ_ENABLE_SECURE_SESSION_COOKIE - Set secure session cookies
-EQ_MAX_HTTP_POST_CONTENT_LENGTH - The maximum http post content length that the system wil accept
-EQ_MAX_NUM_REPEATS - The maximum number of repeats the system will allow
-EQ_DEVELOPER_LOGGING - Enable developer style logging described here http://structlog.readthedocs.io/en/stable/development.html
-EQ_ENABLE_LIVE_RELOAD - Enable livereload of browser when scripts, styles or templates are updated
-
-EQ_NEW_RELIC_ENABLED - Enable New Relic monitoring
-NEW_RELIC_LICENSE_KEY - Enable new relic monitoring by supplying a New Relic licence key
-NEW_RELIC_APP_NAME - The name to display for the application in New Relic
+| Variable Name                             | Default               | Description                                                                                   |
+|-------------------------------------------|-----------------------|-----------------------------------------------------------------------------------------------|
+| EQ_LOG_LEVEL                              | INFO                  | The default logging level (defaults to 'INFO' for local development)                          |
+| EQ_WERKZEUG_LOG_LEVEL                     | INFO                  | The default logging level for werkzeug (defaults to 'INFO' for local development)             |
+| EQ_SESSION_TIMEOUT_SECONDS                | 2700 (45 mins)        | The duration of the flask session                                                             |
+| EQ_PROFILING                              | False                 | Enables or disables profiling (True/False) Default False/Disabled                             |
+| EQ_UA_ID                                  |                       | The Google Analytics ID                                                                       |
+| EQ_DEV_MODE                               | False                 | Enable dev mode                                                                               |
+| EQ_ENABLE_FLASK_DEBUG_TOOLBAR             | False                 | Enable the flask debug toolbar                                                                |
+| EQ_ENABLE_CACHE                           | True                  | Enable caching of the schema                                                                  |
+| EQ_ENABLE_SECURE_SESSION_COOKIE           | True                  | Set secure session cookies                                                                    |
+| EQ_MAX_HTTP_POST_CONTENT_LENGTH           | 65536                 | The maximum http post content length that the system wil accept                               |
+| EQ_DEVELOPER_LOGGING                      | False                 | Enable developer style logging described here                                                 |
+                                                                    | http://structlog.readthedocs.io/en/stable/development.html                                    |
+| EQ_MINIMIZE_ASSETS                        | True                  | Should JS and CSS be minimized                                                                |
+| MAX_CONTENT_LENGTH                        | 65536                 | max request payload size in bytes                                                             |
+| EQ_APPLICATION_VERSION_PATH               | .application-version  | the location of a file containing the application version number                              |
+| EQ_ENABLE_LIVE_RELOAD                     | False                 | Enable livereload of browser when scripts, styles or templates are updated                    |
+| EQ_SECRETS_FILE                           | secrets.yml           | The location of the secrets file                                                              |
+| EQ_KEYS_FILE                              | keys.yml              | The location of the keys file                                                                 |
+| EQ_SUBMISSION_BACKEND                     |                       | Which submission backed to use ( gcs, rabbitmq, log )                                         |
+| EQ_GCS_SUBMISSION_PROJECT_ID              |                       | The Project id in Google cloud platform                                                       |
+| EQ_GCS_SUBMISSION_BUCKET_ID               |                       | The Bucket id in Google cloud platform to store the submissions in                            |
+| EQ_RABBITMQ_HOST                          |                       |                                                                                               |
+| EQ_RABBITMQ_HOST_SECONDARY                |                       |                                                                                               |
+| EQ_RABBITMQ_PORT                          | 5672                  |                                                                                               |
+| EQ_RABBITMQ_QUEUE_NAME                    | submit_q              | The name of the submission queue                                                              |
+| EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER    | postgresql            |                                                                                               |
+| EQ_SERVER_SIDE_STORAGE_DATABASE_HOST      |                       |                                                                                               |
+| EQ_SERVER_SIDE_STORAGE_DATABASE_PORT      | 5432                  |                                                                                               |
+| EQ_SERVER_SIDE_STORAGE_DATABASE_NAME      | digitaleqrds          |                                                                                               |
+| EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS | 10000                 |                                                                                               |
+| SQLALCHEMY_DATABASE_URI                   |                       | a Database URI to use to connecto to a database                                               |
+| EQ_STORAGE_BACKEND                        | datastore             |                                                                                               |
+| EQ_DATASTORE_PROJECT_ID                   |                       |                                                                                               |
+| EQ_DATASTORE_EMULATOR_CREDENTIALS         | False                 |                                                                                               |
+| EQ_DYNAMODB_ENDPOINT                      |                       |                                                                                               |
+| EQ_DYNAMODB_MAX_RETRIES                   | 5                     |                                                                                               |
+| EQ_DYNAMODB_MAX_POOL_CONNECTIONS          | 30                    |                                                                                               |
+| EQ_SUBMITTED_RESPONSES_TABLE_NAME         |                       |                                                                                               |
+| EQ_QUESTIONNAIRE_STATE_TABLE_NAME         |                       |                                                                                               |
+| EQ_SESSION_TABLE_NAME                     |                       |                                                                                               |
+| EQ_USED_JTI_CLAIM_TABLE_NAME              |                       |                                                                                               |
+| EQ_NEW_RELIC_ENABLED                      | False                 | Enable New Relic monitoring                                                                   |
+| NEW_RELIC_LICENSE_KEY                     |                       | Enable new relic monitoring by supplying a New Relic licence key                              |
+| NEW_RELIC_APP_NAME                        |                       | The name to display for the application in New Relic                                          |
 ```
 
 The following env variables can be used when running tests
