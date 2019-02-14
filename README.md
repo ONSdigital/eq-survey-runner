@@ -1,12 +1,12 @@
 # eQ Census Survey Runner v3
-[![Build Status](https://travis-ci.org/ONSdigital/eq-survey-runner.svg?branch=v3)](https://travis-ci.org/ONSdigital/eq-survey-runner) 
-[![codecov](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/v3/graph/badge.svg)](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/v3) 
+[![Build Status](https://travis-ci.org/ONSdigital/eq-survey-runner.svg?branch=v3)](https://travis-ci.org/ONSdigital/eq-survey-runner)
+[![codecov](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/v3/graph/badge.svg)](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/v3)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a2bc191a96e546b99a6d1c33b9b0ed62)](https://app.codacy.com/project/MebinAbraham/eq-survey-runner/dashboard?branchId=10869033)
 
-This version of runner looks at optimising the service to accommodate the Census. 
-There are a number of major changes we need make to survey runner to develop the features required for the Census. 
-These changes are a combination of fixing technical debt we've built up and adding new features. 
-While these changes would be possible to implement in ***v2***, having to develop them in such a way to be compatible with existing data and rolling deploys will add an un-acceptable overhead. 
+This version of runner looks at optimising the service to accommodate the Census.
+There are a number of major changes we need make to survey runner to develop the features required for the Census.
+These changes are a combination of fixing technical debt we've built up and adding new features.
+While these changes would be possible to implement in ***v2***, having to develop them in such a way to be compatible with existing data and rolling deploys will add an un-acceptable overhead.
 
 The changes we're aware of now:
 
@@ -21,9 +21,9 @@ The changes we're aware of now:
     - relationships
     - hub and spoke navigation
     - look up patterns (address, occupation etc)
-    
-*Existing ***v2*** schemas will be easily migrate-able to the new format when ***v3*** is stable. 
-This will be clearly documented and there is the possibility of scripts being provided to migrate schemas. 
+
+*Existing ***v2*** schemas will be easily migrate-able to the new format when ***v3*** is stable.
+This will be clearly documented and there is the possibility of scripts being provided to migrate schemas.
 Once we know more about the implementation a decision will be made whether answer store migrations will be written for compatibility with existing data.*
 
 ---
@@ -156,6 +156,7 @@ Command                                    | Task
 `yarn test`                             | Runs the unit tests through Karma and the functional tests through a local Selenium instance.
 `yarn test_unit`                        | Watches the unit tests via Karma.
 `yarn test_functional`                  | Runs the functional tests through ChimpJS (requires app running on localhost:5000 and generated pages).
+`yarn test_census`                      | Runs the census functional tests through Cypress (requires app running on localhost:5000 and generated pages).
 `yarn generate_pages`                   | Generates the functional test pages.
 `yarn lint`                             | Lints the JS, reporting errors/warnings.
 `yarn format`                           | Format the json schemas.
@@ -210,6 +211,10 @@ An example of adding `@watch` looks like this:
 To run the tests against a remote deployment you will need to specify the environment variable of EQ_FUNCTIONAL_TEST_ENV eg:
 
 `EQ_FUNCTIONAL_TEST_ENV=https://staging-new-surveys.dev.eq.ons.digital/ yarn test_functional`
+
+To run the census functional tests within the cypress UI:
+
+./node_modules/cypress/bin/cypress open
 
 ### Deployment with elastic beanstalk
 

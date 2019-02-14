@@ -5946,7 +5946,7 @@
                                     "type": "TextField"
                                 },
                                 {
-                                    "id": "employer-adress-answer-postcode",
+                                    "id": "employer-address-answer-postcode",
                                     "label": "Postcode",
                                     "mandatory": false,
                                     "type": "TextField"
@@ -6002,7 +6002,7 @@
                                     "type": "TextField"
                                 },
                                 {
-                                    "id": "no-business-name-employer-adress-answer-postcode",
+                                    "id": "no-business-name-employer-address-answer-postcode",
                                     "label": "Postcode",
                                     "mandatory": false,
                                     "type": "TextField"

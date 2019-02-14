@@ -15,6 +15,7 @@
     "$": true,
     "jQuery": true,
     "browser": true,
+    "cy": true,
     "ga": true
   },
   "rules": {
