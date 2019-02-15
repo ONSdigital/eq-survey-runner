@@ -8,10 +8,10 @@
     "title": "Quarterly Public Sector Employment Survey",
     "sections": [{
         "id": "qpses-section",
-        "title": "QPSES",
+        "title": "Quarterly Public Sector Employment Survey",
         "groups": [{
                 "id": "qpses-group",
-                "title": "QPSES",
+                "title": "Quarterly Public Sector Employment Survey",
                 "blocks": [{
                         "type": "Introduction",
                         "id": "introduction-block",
@@ -19,24 +19,16 @@
                             "type": "Basic",
                             "id": "use-of-information",
                             "content": [{
-                                    "description": "The survey collects information on the number of employees in the public sector. Information is published in the quarterly Public Sector Employment Statistical Bulletin and is used to understand the performance of the labour market and UK economy, to provide accountability to Parliament and support policy making."
-                                },
-                                {
-                                    "description": "We guarantee that while your employment is less than 10, you will receive no more than 5 quarterly questionnaires for this one ONS business survey. You must complete and return all questionnaires on time, after which you will be excluded from all business surveys for at least 3 years. The Annual Survey of Hours and Earnings is not covered by this guarantee.",
-                                    "list": [
-                                        "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
-                                        "You can provide informed estimates if actual figures aren’t available.",
-                                        "We will treat your data securely and confidentially."
-                                    ]
-                                }
-                            ]
+                                "list": [
+                                    "Data should relate to all sites in England, Scotland and Wales unless otherwise stated.",
+                                    "You can provide informed estimates if actual figures aren’t available.",
+                                    "We will treat your data securely and confidentially."
+                                ]
+                            }]
                         }],
                         "preview_content": {
                             "id": "preview",
                             "title": "Information you need",
-                            "content": [{
-                                "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
-                            }],
                             "questions": [{
                                     "question": "Permanent employees",
                                     "content": [{
@@ -128,10 +120,7 @@
                             "id": "how-we-use-your-data",
                             "title": "How we use your data",
                             "content": [{
-                                "list": [
-                                    "You cannot appeal your selection",
-                                    "The information you provide contributes to understanding the labour market and UK economy"
-                                ]
+                                "description": "The survey collects information on the number of employees in the public sector. Information is published in the quarterly Public Sector Employment Statistical Bulletin and is used to understand the performance of the labour market and UK economy, to provide accountability to Parliament and support policy making."
                             }]
                         }]
                     },
@@ -697,7 +686,7 @@
                                 "q_code": "50",
                                 "min_value": {
                                     "value": 0,
-                                    "exclusive": true
+                                    "exclusive": false
                                 },
                                 "decimal_places": 0
                             }]
