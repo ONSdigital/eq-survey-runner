@@ -55,7 +55,7 @@ def _submit_data(user):
         message = convert_answers(metadata, collection_metadata, schema, answer_store, routing_path, flushed=True)
         encrypted_message = encrypt(message, current_app.eq['key_store'], KEY_PURPOSE_SUBMISSION)
 
-        sent = current_app.eq['submitter'].send_message(encrypted_message, current_app.config['EQ_RABBITMQ_QUEUE_NAME'], metadata['tx_id'])
+        sent = current_app.eq['submitter'].send_message(encrypted_message, case_id=metadata.get('case_id'), tx_id=metadata.get('tx_id'))
 
         if not sent:
             raise SubmissionFailedException()

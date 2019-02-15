@@ -16,8 +16,8 @@ if [ -z "$EQ_ENABLE_SECURE_SESSION_COOKIE" ]; then
     export EQ_ENABLE_SECURE_SESSION_COOKIE=False
 fi
 
-if [ -z "$EQ_RABBITMQ_ENABLED" ]; then
-  export EQ_RABBITMQ_ENABLED=False
+if [ -z "$EQ_SUBMISSION_BACKEND" ]; then
+  export EQ_SUBMISSION_BACKEND="log"
 fi
 
 if [ -z "$EQ_RABBITMQ_HOST" ]; then

@@ -1,3 +1,4 @@
+from google.cloud import storage
 from pika import BasicProperties
 from pika import BlockingConnection
 from pika import URLParameters
@@ -7,16 +8,43 @@ from structlog import get_logger
 logger = get_logger()
 
 
-class LogSubmitter():  # pylint: disable=no-self-use
-
-    def send_message(self, message, queue, tx_id):  # pylint: disable=unused-argument
+class LogSubmitter:
+    @staticmethod
+    def send_message(message, case_id=None, tx_id=None):
         logger.info('sending message')
-        logger.info('message payload', message=message, queue=queue)
+        logger.info('message payload', message=message, case_id=case_id, tx_id=tx_id)
+
         return True
 
 
-class RabbitMQSubmitter():
-    def __init__(self, host, secondary_host, port, username=None, password=None):
+class GCSSubmitter:
+
+    def __init__(self, project_id, bucket_name):
+        client = storage.Client(project_id)
+        self.bucket = client.get_bucket(bucket_name)
+
+    def send_message(self, message, case_id=None, tx_id=None):
+        logger.info('sending message')
+
+        if not case_id:
+            raise Exception('case_id not passed to GCS submitter')
+
+        blob = self.bucket.blob(case_id)
+
+        metadata = {'case_id': case_id}
+
+        if tx_id:
+            metadata['tx_id'] = tx_id
+
+        blob.metadata = metadata
+        blob.upload_from_string(str(message).encode('utf8'))
+
+        return True
+
+
+class RabbitMQSubmitter:
+    def __init__(self, host, secondary_host, port, queue, username=None, password=None):
+        self.queue = queue
         if username and password:
             self.rabbitmq_url = 'amqp://{username}:{password}@{host}:{port}/%2F'.format(username=username,
                                                                                         password=password,
@@ -52,11 +80,12 @@ class RabbitMQSubmitter():
         except AMQPError as e:
             logger.error('unable to close connection', exc_info=e, category='rabbitmq')
 
-    def send_message(self, message, queue, tx_id):
+    def send_message(self, message, case_id=None, tx_id=None):
         """
         Sends a message to rabbit mq and returns a true or false depending on if it was successful
         :param message: The message to send to the rabbit mq queue
-        :param queue: the name of the queue
+        :param case_id: ID used to identify a single instance of a survey collection for a respondent
+        :param tx_id: Transaction ID used to trace a transaction through the whole system.
         :return: a boolean value indicating if it was successful
         """
         message_as_string = str(message)
@@ -66,15 +95,18 @@ class RabbitMQSubmitter():
         try:
             connection = self._connect()
             channel = connection.channel()
-            channel.queue_declare(queue=queue, durable=True)
+
+            channel.queue_declare(queue=self.queue, durable=True)
             properties = BasicProperties(headers={},
                                          delivery_mode=2)
 
+            if case_id:
+                properties.headers['case_id'] = case_id
             if tx_id:
                 properties.headers['tx_id'] = tx_id
 
             published = channel.basic_publish(exchange='',
-                                              routing_key=queue,
+                                              routing_key=self.queue,
                                               body=message_as_string,
                                               mandatory=True,
                                               properties=properties)

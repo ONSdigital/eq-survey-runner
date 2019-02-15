@@ -45,6 +45,7 @@ services:
       EQ_DATASTORE_PROJECT_ID: dummy
       EQ_DATASTORE_EMULATOR_CREDENTIALS: "True"
       DATASTORE_EMULATOR_HOST: datastore:8432
+      EQ_SUBMISSION_BACKEND: "log"
     restart: always
     depends_on:
       - datastore
