@@ -10,7 +10,7 @@ from app import settings
 from app.setup import create_app, versioned_url_for, get_database_uri, EmulatorCredentials
 from app.storage.datastore import DatastoreStorage
 from app.storage.dynamodb import DynamodbStorage
-from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
+from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter, GCSSubmitter
 
 
 class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-methods
@@ -179,17 +179,95 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
                 versioned_url_for('static', filename='some.js')
             )
 
+    def test_eq_submission_backend_not_set(self):
+        # Given
+        self._setting_overrides['EQ_SUBMISSION_BACKEND'] = ''
+
+        # When
+        with self.assertRaises(Exception) as ex:
+            create_app(self._setting_overrides)
+
+        # Then
+        assert 'Unknown EQ_SUBMISSION_BACKEND' in str(ex.exception)
+
+    def test_adds_gcs_submitter_to_the_application(self):
+        # Given
+        self._setting_overrides['EQ_SUBMISSION_BACKEND'] = 'gcs'
+        self._setting_overrides['EQ_GCS_SUBMISSION_PROJECT_ID'] = '123'
+        self._setting_overrides['EQ_GCS_SUBMISSION_BUCKET_ID'] = '123'
+
+        # When
+        with patch('google.cloud.storage.Client'):
+            application = create_app(self._setting_overrides)
+
+        # Then
+        assert isinstance(application.eq['submitter'], GCSSubmitter)
+
+    def test_gcs_submitter_project_id_not_set_raises_exception(self):
+        # Given
+        self._setting_overrides['EQ_SUBMISSION_BACKEND'] = 'gcs'
+
+        # When
+        with self.assertRaises(Exception) as ex:
+            create_app(self._setting_overrides)
+
+        # Then
+        assert 'Setting EQ_GCS_SUBMISSION_PROJECT_ID Missing' in str(ex.exception)
+
+    def test_gcs_submitter_bucket_id_not_set_raises_exception(self):
+        # Given
+        self._setting_overrides['EQ_SUBMISSION_BACKEND'] = 'gcs'
+        self._setting_overrides['EQ_GCS_SUBMISSION_PROJECT_ID'] = '123'
+
+        # WHEN
+        with self.assertRaises(Exception) as ex:
+            create_app(self._setting_overrides)
+
+        # Then
+        assert 'Setting EQ_GCS_SUBMISSION_BUCKET_ID Missing' in str(ex.exception)
+
     def test_adds_rabbit_submitter_to_the_application(self):
-        self._setting_overrides['EQ_RABBITMQ_ENABLED'] = True
+        # Given
+        self._setting_overrides['EQ_SUBMISSION_BACKEND'] = 'rabbitmq'
+        self._setting_overrides['EQ_RABBITMQ_HOST'] = 'host-1'
+        self._setting_overrides['EQ_RABBITMQ_HOST_SECONDARY'] = 'host-2'
+
+        # When
         application = create_app(self._setting_overrides)
 
-        self.assertIsInstance(application.eq['submitter'], RabbitMQSubmitter)
+        # Then
+        assert isinstance(application.eq['submitter'], RabbitMQSubmitter)
+
+    def test_rabbit_submitter_host_not_set_raises_exception(self):
+        # Given
+        self._setting_overrides['EQ_SUBMISSION_BACKEND'] = 'rabbitmq'
+        self._setting_overrides['EQ_RABBITMQ_HOST'] = ''
+
+        # When
+        with self.assertRaises(Exception) as ex:
+            create_app(self._setting_overrides)
+
+        # Then
+        assert 'Setting EQ_RABBITMQ_HOST Missing' in str(ex.exception)
+
+    def test_rabbit_submitter_secondary_host_not_set_raises_exception(self):
+        #Given
+        self._setting_overrides['EQ_SUBMISSION_BACKEND'] = 'rabbitmq'
+        self._setting_overrides['EQ_RABBITMQ_HOST_SECONDARY'] = ''
+
+        # When
+        with self.assertRaises(Exception) as ex:
+            create_app(self._setting_overrides)
+
+        # Then
+        assert 'Setting EQ_RABBITMQ_HOST_SECONDARY Missing' in str(ex.exception)
 
     def test_defaults_to_adding_the_log_submitter_to_the_application(self):
-        settings.EQ_RABBITMQ_ENABLED = False
+        # When
         application = create_app(self._setting_overrides)
 
-        self.assertIsInstance(application.eq['submitter'], LogSubmitter)
+        # Then
+        assert isinstance(application.eq['submitter'], LogSubmitter)
 
     def test_emulator_credentials(self):
         creds = EmulatorCredentials()

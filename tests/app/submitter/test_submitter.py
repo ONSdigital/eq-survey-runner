@@ -4,17 +4,17 @@ from unittest import TestCase
 from mock import patch, Mock, call
 from pika.exceptions import AMQPError
 
-from app.submitter.submitter import RabbitMQSubmitter
+from app.submitter.submitter import RabbitMQSubmitter, GCSSubmitter
 
 
-class TestSubmitter(TestCase):
+class TestRabbitMQSubmitter(TestCase):
     def setUp(self):
-        self.queue_name = 'test_queue'
+        self.queue = 'test_queue'
         self.host1 = 'host1'
         self.host2 = 'host2'
         self.port = 5672
 
-        self.submitter = RabbitMQSubmitter(host=self.host1, secondary_host=self.host2, port=self.port)
+        self.submitter = RabbitMQSubmitter(host=self.host1, secondary_host=self.host2, port=self.port, queue=self.queue)
 
     def test_when_fail_to_connect_to_queue_then_published_false(self):
         # Given
@@ -22,7 +22,7 @@ class TestSubmitter(TestCase):
             connection.side_effect = AMQPError()
 
             # When
-            published = self.submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')
+            published = self.submitter.send_message(message={}, tx_id='12345')
 
             # Then
             self.assertFalse(published, 'send_message should fail to publish message')
@@ -30,7 +30,7 @@ class TestSubmitter(TestCase):
     def test_when_message_sent_then_published_true(self):
         # Given
         with patch('app.submitter.submitter.BlockingConnection'):
-            published = self.submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')
+            published = self.submitter.send_message(message={}, tx_id='12345')
 
             # When
 
@@ -40,12 +40,12 @@ class TestSubmitter(TestCase):
     def test_when_first_connection_fails_then_secondary_succeeds(self):
         # Given
         with patch('app.submitter.submitter.BlockingConnection') as connection, \
-                patch('app.submitter.submitter.URLParameters') as url_parameters:
+            patch('app.submitter.submitter.URLParameters') as url_parameters:
             secondary_connection = Mock()
             connection.side_effect = [AMQPError(), secondary_connection]
 
             # When
-            published = self.submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')
+            published = self.submitter.send_message(message={}, tx_id='12345')
 
             # Then
             self.assertTrue(published, 'send_message should publish message')
@@ -59,7 +59,7 @@ class TestSubmitter(TestCase):
     def test_url_generation_with_credentials(self):
         # Given
         with patch('app.submitter.submitter.BlockingConnection') as connection, \
-                patch('app.submitter.submitter.URLParameters') as url_parameters:
+            patch('app.submitter.submitter.URLParameters') as url_parameters:
             secondary_connection = Mock()
             connection.side_effect = [AMQPError(), secondary_connection]
 
@@ -69,11 +69,12 @@ class TestSubmitter(TestCase):
             submitter = RabbitMQSubmitter(host=self.host1,
                                           secondary_host=self.host2,
                                           port=self.port,
+                                          queue=self.queue,
                                           username=username,
                                           password=password)
 
             # When
-            published = submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')
+            published = submitter.send_message(message={}, tx_id='12345')
 
             # Then
             self.assertTrue(published, 'send_message should publish message')
@@ -91,10 +92,9 @@ class TestSubmitter(TestCase):
         connection.close.side_effect = [error]
 
         with patch('app.submitter.submitter.BlockingConnection', return_value=connection), \
-                patch('app.submitter.submitter.logger') as logger:
-
+             patch('app.submitter.submitter.logger') as logger:
             # When
-            published = self.submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')
+            published = self.submitter.send_message(message={}, tx_id='12345')
 
             # Then
             self.assertTrue(published)
@@ -108,24 +108,25 @@ class TestSubmitter(TestCase):
         connection.channel.side_effect = Mock(return_value=channel)
         with patch('app.submitter.submitter.BlockingConnection', return_value=connection):
             # When
-            published = self.submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')
+            published = self.submitter.send_message(message={}, tx_id='12345')
 
             # Then
             self.assertFalse(published, 'send_message should fail to publish message')
 
-    def test_when_message_sent_then_tx_id_is_sent_in_header(self):
+    def test_when_message_sent_then_case_id_and_or_tx_id_is_sent_in_header(self):
         # Given
         channel = Mock()
         connection = Mock()
         connection.channel.side_effect = Mock(return_value=channel)
         with patch('app.submitter.submitter.BlockingConnection', return_value=connection):
             # When
-            self.submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')
+            self.submitter.send_message(message={}, case_id='98765', tx_id='12345')
 
             # Then
             call_args = channel.basic_publish.call_args
             properties = call_args[1]['properties']
             headers = properties.headers
+            self.assertEqual(headers['case_id'], '98765')
             self.assertEqual(headers['tx_id'], '12345')
 
     def test_when_message_sent_with_none_tx_id_then_tx_id_is_not_sent_in_header(self):
@@ -135,10 +136,60 @@ class TestSubmitter(TestCase):
         connection.channel.side_effect = Mock(return_value=channel)
         with patch('app.submitter.submitter.BlockingConnection', return_value=connection):
             # When
-            self.submitter.send_message(message={}, queue=self.queue_name, tx_id=None)
+            self.submitter.send_message(message={}, tx_id=None)
 
             # Then
             call_args = channel.basic_publish.call_args
             properties = call_args[1]['properties']
             headers = properties.headers
             self.assertEqual(len(headers), 0)
+
+
+class TestGCSSubmitter(TestCase):
+
+    def test_send_message_without_case_id_raises_exception(self):
+        # Given
+        with patch('app.submitter.submitter.storage.Client'):
+            with self.assertRaises(Exception) as ex:
+                # When
+                submitter = GCSSubmitter(project_id='test_project', bucket_name='test_bucket')
+                submitter.send_message(message={'test_data'})
+
+            # Then
+            assert 'case_id not passed to GCS submitter' in str(ex.exception)
+
+    @staticmethod
+    def test_send_message():
+        with patch('app.submitter.submitter.storage.Client') as client:
+            # Given
+            submitter = GCSSubmitter(project_id='test_project', bucket_name='test_bucket')
+
+            # When
+            published = submitter.send_message(message={'test_data'}, case_id='123')
+
+            # Then
+            bucket = client.return_value.get_bucket.return_value
+            blob = bucket.blob.return_value
+            assert isinstance(blob.metadata, dict)
+
+            blob_name = bucket.blob.call_args[0][0]
+            assert blob_name == '123'
+
+            blob_contents = blob.upload_from_string.call_args[0][0]
+            assert blob_contents == b"{'test_data'}"
+
+            assert published is True
+
+    @staticmethod
+    def test_send_message_adds_tx_id_metadata():
+        # Given
+        with patch('app.submitter.submitter.storage.Client') as client:
+            # When
+            submitter = GCSSubmitter(project_id='test_project', bucket_name='test_bucket')
+            submitter.send_message(message={'test_data'}, case_id='123', tx_id='456')
+
+            # Then
+            bucket = client.return_value.get_bucket.return_value
+            blob = bucket.blob.return_value
+
+            assert blob.metadata == {'case_id': '123', 'tx_id': '456'}

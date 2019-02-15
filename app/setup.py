@@ -16,7 +16,7 @@ from flask_caching import Cache
 from flask_talisman import Talisman
 from flask_themes2 import Themes
 from flask_wtf.csrf import CSRFProtect
-import google
+from google.auth import credentials
 from google.cloud import datastore
 from sdc.crypto.key_store import KeyStore, validate_required_keys
 from structlog import get_logger
@@ -34,7 +34,7 @@ from app.secrets import SecretStore, validate_required_secrets
 from app.storage.datastore import DatastoreStorage
 from app.storage.dynamodb import DynamodbStorage
 from app.storage.sql import SqlStorage
-from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
+from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter, GCSSubmitter
 
 CACHE_HEADERS = {
     'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -54,7 +54,7 @@ cache = Cache()
 logger = get_logger()
 
 
-class EmulatorCredentials(google.auth.credentials.Credentials):
+class EmulatorCredentials(credentials.Credentials):
     """A mock GCP credential object.
     Used in conjunction with local emulators that don't require proper
     credentials e.g. Datastore
@@ -112,17 +112,7 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     setup_storage(application)
 
-    if application.config['EQ_RABBITMQ_ENABLED']:
-        application.eq['submitter'] = RabbitMQSubmitter(
-            host=application.config['EQ_RABBITMQ_HOST'],
-            secondary_host=application.config['EQ_RABBITMQ_HOST_SECONDARY'],
-            port=application.config['EQ_RABBITMQ_PORT'],
-            username=application.eq['secret_store'].get_secret_by_name('EQ_RABBITMQ_USERNAME'),
-            password=application.eq['secret_store'].get_secret_by_name('EQ_RABBITMQ_PASSWORD'),
-        )
-
-    else:
-        application.eq['submitter'] = LogSubmitter()
+    setup_submitter(application)
 
     application.eq['id_generator'] = UserIDGenerator(
         application.config['EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS'],
@@ -286,6 +276,43 @@ def setup_datastore(application):
     creds = EmulatorCredentials() if application.config['EQ_DATASTORE_EMULATOR_CREDENTIALS'] else None
     client = datastore.Client(application.config['EQ_DATASTORE_PROJECT_ID'], _use_grpc=False, credentials=creds)
     application.eq['storage'] = DatastoreStorage(client)
+
+
+def setup_submitter(application):
+    if application.config['EQ_SUBMISSION_BACKEND'] == 'gcs':
+        project_id = application.config.get('EQ_GCS_SUBMISSION_PROJECT_ID')
+        bucket_id = application.config.get('EQ_GCS_SUBMISSION_BUCKET_ID')
+
+        if not project_id:
+            raise Exception('Setting EQ_GCS_SUBMISSION_PROJECT_ID Missing')
+        if not bucket_id:
+            raise Exception('Setting EQ_GCS_SUBMISSION_BUCKET_ID Missing')
+
+        application.eq['submitter'] = GCSSubmitter(project_id=project_id, bucket_name=bucket_id)
+
+    elif application.config['EQ_SUBMISSION_BACKEND'] == 'rabbitmq':
+        host = application.config.get('EQ_RABBITMQ_HOST')
+        secondary_host = application.config.get('EQ_RABBITMQ_HOST_SECONDARY')
+
+        if not host:
+            raise Exception('Setting EQ_RABBITMQ_HOST Missing')
+        if not secondary_host:
+            raise Exception('Setting EQ_RABBITMQ_HOST_SECONDARY Missing')
+
+        application.eq['submitter'] = RabbitMQSubmitter(
+            host=host,
+            secondary_host=secondary_host,
+            port=application.config['EQ_RABBITMQ_PORT'],
+            queue=application.config['EQ_RABBITMQ_QUEUE_NAME'],
+            username=application.eq['secret_store'].get_secret_by_name('EQ_RABBITMQ_USERNAME'),
+            password=application.eq['secret_store'].get_secret_by_name('EQ_RABBITMQ_PASSWORD'),
+        )
+
+    elif application.config['EQ_SUBMISSION_BACKEND'] == 'log':
+        application.eq['submitter'] = LogSubmitter()
+
+    else:
+        raise Exception('Unknown EQ_SUBMISSION_BACKEND')
 
 
 def setup_profiling(application):
