@@ -19,17 +19,10 @@ class TestFlushData(IntegrationTestCase):
         self.encrypt_instance = mock_encrypter_class
 
         super().setUp()
-        self.launchSurvey('test', '0205')
-        self.post(action='start_questionnaire')
+        self.launchSurvey('test', 'textfield')
 
         form_data = {
-            'period-from-day': '01',
-            'period-from-month': '4',
-            'period-from-year': '2016',
-            'period-to-day': '30',
-            'period-to-month': '4',
-            'period-to-year': '2016',
-            'total-retail-turnover': '100000'
+            'name-answer': 'Joe Bloggs',
         }
         self.post(form_data)
 
@@ -105,7 +98,7 @@ class TestFlushData(IntegrationTestCase):
             'iat': time.time(),
             'exp': time.time() + 1000,
             'eq_id': 'test',
-            'form_type': '0205',
+            'form_type': 'textfield',
             'collection_exercise_sid': '789',
             'ru_ref': '123456789012A',
             'roles': ['flusher'],

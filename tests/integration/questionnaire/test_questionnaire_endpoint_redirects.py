@@ -1,40 +1,45 @@
 import json
 
 from tests.integration.integration_test_case import IntegrationTestCase
-from tests.integration.mci import mci_test_urls
 
 
 class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
 
     def test_get_invalid_questionnaire_location_redirects_to_latest(self):
         # Given
-        self.launchSurvey('test', '0205')
+        self.launchSurvey('test', 'introduction')
+
+        base_url = '/questionnaire/test/introduction/789/introduction-group/0/'
 
         # When
-        self.get(mci_test_urls.MCI_0205_BASE + 'test')
+        self.get(base_url + 'test')
 
         # Then
-        self.assertInUrl(mci_test_urls.MCI_0205_INTRODUCTION)
+        self.assertInUrl(base_url + 'introduction')
 
     def test_post_invalid_questionnaire_location_redirects_to_latest(self):
         # Given
-        self.launchSurvey('test', '0205')
+        self.launchSurvey('test', 'introduction')
+
+        base_url = '/questionnaire/test/introduction/789/introduction-group/0/'
 
         # When
-        self.post(url=mci_test_urls.MCI_0205_BASE + 'test')
+        self.post(url=base_url + 'test')
 
         # Then
-        self.assertInUrl(mci_test_urls.MCI_0205_INTRODUCTION)
+        self.assertInUrl(base_url + 'introduction')
 
     def test_submit_answers_for_invalid_questionnaire_location_redirects_to_first_incomplete_location(self):
         # Given
-        self.launchSurvey('test', '0205')
+        self.launchSurvey('test', 'textfield')
+
+        base_url = '/questionnaire/test/textfield/789/group/0/'
 
         # When
-        self.post(url=mci_test_urls.MCI_0205_SUMMARY)
+        self.post(url=base_url + 'min-max-block')
 
         # Then
-        self.assertInUrl(mci_test_urls.MCI_0205_BLOCK1)
+        self.assertInUrl(base_url + 'name-block')
 
     def test_given_not_complete_questionnaire_when_get_thank_you_then_data_not_deleted(self):
         # Given we start a survey

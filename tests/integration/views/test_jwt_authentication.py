@@ -66,7 +66,7 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
             'eq_id': 'test',
             'period_str': '2016-01-01',
             'period_id': '12',
-            'form_type': '0203',
+            'form_type': 'default',
             'collection_exercise_sid': 'sid',
             'ref_p_start_date': '2016-01-01',
             'ref_p_end_date': '2016-09-01',

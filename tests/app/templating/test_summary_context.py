@@ -25,7 +25,7 @@ class TestStandardSummaryContext(AppContextTestCase):
             'period_str': '201610',
             'employment_date': '2016-10-10',
             'collection_exercise_sid': '789',
-            'form_type': '0102',
+            'form_type': '0000',
             'eq_id': '1',
         }
 

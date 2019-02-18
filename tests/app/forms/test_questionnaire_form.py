@@ -19,34 +19,34 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
     def test_form_ids_match_block_answer_ids(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', '0102')
+            schema = load_schema_from_params('test', 'textfield')
 
-            block_json = schema.get_block('reporting-period')
+            block_json = schema.get_block('name-block')
 
             form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None)
 
-            for answer in schema.get_answers_for_block('reporting-period'):
+            for answer in schema.get_answers_for_block('name-block'):
                 self.assertTrue(hasattr(form, answer['id']))
 
     def test_form_date_range_populates_data(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', '0102')
+            schema = load_schema_from_params('test', 'date_range')
 
-            block_json = schema.get_block('reporting-period')
+            block_json = schema.get_block('date-block')
 
             data = {
-                'period-from-day': '01',
-                'period-from-month': '3',
-                'period-from-year': '2016',
-                'period-to-day': '31',
-                'period-to-month': '3',
-                'period-to-year': '2016'
+                'date-range-from-answer-day': '01',
+                'date-range-from-answer-month': '3',
+                'date-range-from-answer-year': '2016',
+                'date-range-to-answer-day': '31',
+                'date-range-to-answer-month': '3',
+                'date-range-to-answer-year': '2016'
             }
 
             expected_form_data = {
                 'csrf_token': '',
-                'period-from': '2016-03-01',
-                'period-to': '2016-03-31'
+                'date-range-from-answer': '2016-03-01',
+                'date-range-to-answer': '2016-03-31'
             }
             form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
@@ -54,56 +54,57 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
     def test_date_range_matching_dates_raises_question_error(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', '0102')
+            schema = load_schema_from_params('test', 'date_range')
 
-            block_json = schema.get_block('reporting-period')
+            block_json = schema.get_block('date-block')
 
             data = {
-                'period-from-day': '25',
-                'period-from-month': '12',
-                'period-from-year': '2016',
-                'period-to-day': '25',
-                'period-to-month': '12',
-                'period-to-year': '2016'
+                'date-range-from-answer-day': '25',
+                'date-range-from-answer-month': '12',
+                'date-range-from-answer-year': '2016',
+                'date-range-to-answer-day': '25',
+                'date-range-to-answer-month': '12',
+                'date-range-to-answer-year': '2016'
             }
 
             expected_form_data = {
                 'csrf_token': '',
-                'period-from': '2016-12-25',
-                'period-to': '2016-12-25'
+                'date-range-from-answer': '2016-12-25',
+                'date-range-to-answer': '2016-12-25'
             }
             form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
-            self.assertEqual(form.question_errors['reporting-period-question'], schema.error_messages
+            self.assertEqual(form.question_errors['date-range-question'], schema.error_messages
                              ['INVALID_DATE_RANGE'])
 
     def test_date_range_to_precedes_from_raises_question_error(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', '0102')
+            schema = load_schema_from_params('test', 'date_range')
 
-            block_json = schema.get_block('reporting-period')
+            block_json = schema.get_block('date-block')
 
             data = {
-                'period-from-day': '25',
-                'period-from-month': '12',
-                'period-from-year': '2016',
-                'period-to-day': '24',
-                'period-to-month': '12',
-                'period-to-year': '2016'
+                'date-range-from-answer-day': '25',
+                'date-range-from-answer-month': '12',
+                'date-range-from-answer-year': '2016',
+                'date-range-to-answer-day': '24',
+                'date-range-to-answer-month': '12',
+                'date-range-to-answer-year': '2016'
             }
 
             expected_form_data = {
                 'csrf_token': '',
-                'period-from': '2016-12-25',
-                'period-to': '2016-12-24'
+                'date-range-from-answer': '2016-12-25',
+                'date-range-to-answer': '2016-12-24'
             }
+
             form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata=data)
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
-            self.assertEqual(form.question_errors['reporting-period-question'], schema.error_messages
+            self.assertEqual(form.question_errors['date-range-question'], schema.error_messages
                              ['INVALID_DATE_RANGE'], AnswerStore())
 
     def test_date_range_too_large_period_raises_question_error(self):
@@ -984,32 +985,32 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
     def test_form_errors_are_correctly_mapped(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', '0112')
+            schema = load_schema_from_params('test', 'numbers')
 
-            block_json = schema.get_block('total-retail-turnover')
+            block_json = schema.get_block('set-min-max-block')
 
             form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None)
 
             form.validate()
             mapped_errors = form.map_errors()
 
-            self.assertTrue(self._error_exists('total-retail-turnover-answer',
+            self.assertTrue(self._error_exists('set-minimum',
                                                schema.error_messages['MANDATORY_NUMBER'],
                                                mapped_errors))
 
     def test_form_subfield_errors_are_correctly_mapped(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', '0102')
+            schema = load_schema_from_params('test', 'date_range')
 
-            block_json = schema.get_block('reporting-period')
+            block_json = schema.get_block('date-block')
 
             form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None)
 
             form.validate()
             mapped_errors = form.map_errors()
 
-            self.assertTrue(self._error_exists('period-to', schema.error_messages['MANDATORY_DATE'], mapped_errors))
-            self.assertTrue(self._error_exists('period-from', schema.error_messages['MANDATORY_DATE'], mapped_errors))
+            self.assertTrue(self._error_exists('date-range-from-answer', schema.error_messages['MANDATORY_DATE'], mapped_errors))
+            self.assertTrue(self._error_exists('date-range-to-answer', schema.error_messages['MANDATORY_DATE'], mapped_errors))
 
     def test_detail_answer_mandatory_only_checked_if_option_selected(self):
         # The detail_answer can only be mandatory if the option it is associated with is answered
@@ -1053,16 +1054,16 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
     def test_answer_errors_are_interpolated(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', '0112')
+            schema = load_schema_from_params('test', 'numbers')
 
-            block_json = schema.get_block('number-of-employees')
+            block_json = schema.get_block('set-min-max-block')
 
             form = generate_form(schema, block_json, AnswerStore(), metadata=None, group_instance=0, group_instance_id=None, formdata={
-                'total-number-employees': '-1'
+                'set-minimum': '-1'
             })
 
             form.validate()
-            answer_errors = form.answer_errors('total-number-employees')
+            answer_errors = form.answer_errors('set-minimum')
             self.assertIn(schema.error_messages['NUMBER_TOO_SMALL'] % dict(min='0'), answer_errors)
 
     def test_mandatory_mutually_exclusive_question_raises_error_when_not_answered(self):

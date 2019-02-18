@@ -376,6 +376,62 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             self.assertEqual(answer_object['data']['1'], 'Ready salted')
             self.assertEqual(answer_object['data']['4'], 'Other')
 
+    def test_converter_checkboxes_with_missing_q_codes_uses_answer_q_code(self):
+        with self._app.test_request_context():
+            routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
+            answers = [create_answer('crisps-answer', [
+                'Ready salted',
+                'Sweet chilli'
+            ], group_id='favourite-food', block_id='crisps')]
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'favourite-food', 'crisps', [
+                {
+                    'id': 'crisps-question',
+                    'answers': [
+                        {
+                            'id': 'crisps-answer',
+                            'type': 'Checkbox',
+                            'q_code': '0',
+                            'options': [
+                                {
+                                    'label': 'Ready salted',
+                                    'value': 'Ready salted',
+                                    'q_code': '1'
+                                },
+                                {
+                                    'label': 'Sweet chilli',
+                                    'value': 'Sweet chilli',
+                                },
+                                {
+                                    'label': 'Cheese and onion',
+                                    'value': 'Cheese and onion',
+                                    'q_code': '3'
+                                },
+                                {
+                                    'label': 'Other',
+                                    'q_code': '4',
+                                    'description': 'Choose any other flavour',
+                                    'value': 'Other',
+                                    'detail_answer': {
+                                        'mandatory': True,
+                                        'id': 'other-answer-mandatory',
+                                        'label': 'Please specify other',
+                                        'type': 'TextField'
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ])
+
+            # When
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
+
+            # Then
+            self.assertEqual(len(answer_object['data']), 1)
+            self.assertEqual(answer_object['data']['0'], "['Ready salted', 'Sweet chilli']")
+
     def test_converter_q_codes_for_empty_strings(self):
         with self._app.test_request_context():
             routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]

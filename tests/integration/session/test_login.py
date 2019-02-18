@@ -125,7 +125,7 @@ class TestLogin(IntegrationTestCase):
 
     def test_login_without_case_id_in_token_is_unauthorised(self):
         # Given
-        token = self.token_generator.create_token_without_case_id('0205', '1')
+        token = self.token_generator.create_token_without_case_id('textfield', 'test')
         self.get('/session?token=' + token)
 
         # Then

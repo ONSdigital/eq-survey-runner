@@ -10,11 +10,11 @@ class TestApplicationVariablesNegative(IntegrationTestCase):
         super().setUp()
 
     def test_flask_toolbar_is_not_displayed(self):
-        self.launchSurvey('test', 'star_wars')
+        self.launchSurvey('test', 'textfield')
         self.assertStatusOK()
         self.assertNotInBody('flDebugToolbarHandle')
 
     def test_livereload_script_not_rendered(self):
-        self.launchSurvey('test', 'star_wars')
+        self.launchSurvey('test', 'textfield')
         self.assertStatusOK()
         self.assertFalse('__bs_script__' in self.getResponseData())

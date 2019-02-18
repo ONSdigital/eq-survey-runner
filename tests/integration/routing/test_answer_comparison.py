@@ -1,5 +1,6 @@
 from tests.integration.integration_test_case import IntegrationTestCase
 
+
 class TestAnswerComparisonsSkips(IntegrationTestCase):
     """
     Test that skip conditions work correctly when answer comparisons are
