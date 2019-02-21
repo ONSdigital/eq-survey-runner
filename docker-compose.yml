@@ -2,32 +2,13 @@ version: '3'
 
 services:
 
-  rabbit:
-    image: rabbitmq:3-management
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    networks:
-      - eq-env
-    environment:
-      RABBITMQ_DEFAULT_USER: digitaleq
-      RABBITMQ_DEFAULT_PASS: digitaleq
-
   datastore:
     image: knarz/datastore-emulator
     networks:
       - eq-env
 
-  eq-survey-register:
-    image: onsdigital/eq-survey-register:latest
-    restart: always
-    networks:
-      - eq-env
-    ports:
-      - "8080:8080"
-
   eq-survey-runner:
-    image: onsdigital/eq-survey-runner
+    image: onsdigital/eq-survey-runner:v3
     build: ./
     environment:
       EQ_DEV_MODE: "True"
@@ -49,7 +30,6 @@ services:
     restart: always
     depends_on:
       - datastore
-      - rabbit
     networks:
       - eq-env
     ports:
@@ -60,7 +40,6 @@ services:
     environment:
       SURVEY_RUNNER_URL: http://localhost:5000
       SURVEY_RUNNER_SCHEMA_URL: http://eq-survey-runner:5000
-      SURVEY_REGISTER_URL: http://eq-survey-register:8080/
     restart: always
     depends_on:
       - eq-survey-runner
