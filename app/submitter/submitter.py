@@ -10,7 +10,7 @@ logger = get_logger()
 
 class LogSubmitter:
     @staticmethod
-    def send_message(message, case_id=None, tx_id=None):
+    def send_message(message, case_id, tx_id):
         logger.info('sending message')
         logger.info('message payload', message=message, case_id=case_id, tx_id=tx_id)
 
@@ -23,20 +23,16 @@ class GCSSubmitter:
         client = storage.Client(project_id)
         self.bucket = client.get_bucket(bucket_name)
 
-    def send_message(self, message, case_id=None, tx_id=None):
+    def send_message(self, message, tx_id, case_id):
         logger.info('sending message')
 
-        if not case_id:
-            raise Exception('case_id not passed to GCS submitter')
+        blob = self.bucket.blob(tx_id)
 
-        blob = self.bucket.blob(case_id)
+        blob.metadata = {
+            'tx_id': tx_id,
+            'case_id': case_id,
+        }
 
-        metadata = {'case_id': case_id}
-
-        if tx_id:
-            metadata['tx_id'] = tx_id
-
-        blob.metadata = metadata
         blob.upload_from_string(str(message).encode('utf8'))
 
         return True
@@ -80,12 +76,12 @@ class RabbitMQSubmitter:
         except AMQPError as e:
             logger.error('unable to close connection', exc_info=e, category='rabbitmq')
 
-    def send_message(self, message, case_id=None, tx_id=None):
+    def send_message(self, message, tx_id, case_id):
         """
         Sends a message to rabbit mq and returns a true or false depending on if it was successful
         :param message: The message to send to the rabbit mq queue
-        :param case_id: ID used to identify a single instance of a survey collection for a respondent
         :param tx_id: Transaction ID used to trace a transaction through the whole system.
+        :param case_id: ID used to identify a single instance of a survey collection for a respondent
         :return: a boolean value indicating if it was successful
         """
         message_as_string = str(message)
@@ -100,10 +96,8 @@ class RabbitMQSubmitter:
             properties = BasicProperties(headers={},
                                          delivery_mode=2)
 
-            if case_id:
-                properties.headers['case_id'] = case_id
-            if tx_id:
-                properties.headers['tx_id'] = tx_id
+            properties.headers['tx_id'] = tx_id
+            properties.headers['case_id'] = case_id
 
             published = channel.basic_publish(exchange='',
                                               routing_key=self.queue,

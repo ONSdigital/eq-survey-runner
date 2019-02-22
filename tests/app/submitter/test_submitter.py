@@ -22,7 +22,7 @@ class TestRabbitMQSubmitter(TestCase):
             connection.side_effect = AMQPError()
 
             # When
-            published = self.submitter.send_message(message={}, tx_id='12345')
+            published = self.submitter.send_message(message={}, tx_id='123', case_id='456')
 
             # Then
             self.assertFalse(published, 'send_message should fail to publish message')
@@ -30,7 +30,7 @@ class TestRabbitMQSubmitter(TestCase):
     def test_when_message_sent_then_published_true(self):
         # Given
         with patch('app.submitter.submitter.BlockingConnection'):
-            published = self.submitter.send_message(message={}, tx_id='12345')
+            published = self.submitter.send_message(message={}, tx_id='123', case_id='456')
 
             # When
 
@@ -45,7 +45,7 @@ class TestRabbitMQSubmitter(TestCase):
             connection.side_effect = [AMQPError(), secondary_connection]
 
             # When
-            published = self.submitter.send_message(message={}, tx_id='12345')
+            published = self.submitter.send_message(message={}, tx_id='12345', case_id='456')
 
             # Then
             self.assertTrue(published, 'send_message should publish message')
@@ -74,7 +74,7 @@ class TestRabbitMQSubmitter(TestCase):
                                           password=password)
 
             # When
-            published = submitter.send_message(message={}, tx_id='12345')
+            published = submitter.send_message(message={}, tx_id='12345', case_id='456')
 
             # Then
             self.assertTrue(published, 'send_message should publish message')
@@ -94,7 +94,7 @@ class TestRabbitMQSubmitter(TestCase):
         with patch('app.submitter.submitter.BlockingConnection', return_value=connection), \
              patch('app.submitter.submitter.logger') as logger:
             # When
-            published = self.submitter.send_message(message={}, tx_id='12345')
+            published = self.submitter.send_message(message={}, tx_id='123', case_id='456')
 
             # Then
             self.assertTrue(published)
@@ -108,55 +108,30 @@ class TestRabbitMQSubmitter(TestCase):
         connection.channel.side_effect = Mock(return_value=channel)
         with patch('app.submitter.submitter.BlockingConnection', return_value=connection):
             # When
-            published = self.submitter.send_message(message={}, tx_id='12345')
+            published = self.submitter.send_message(message={}, tx_id='123', case_id='456')
 
             # Then
             self.assertFalse(published, 'send_message should fail to publish message')
 
-    def test_when_message_sent_then_case_id_and_or_tx_id_is_sent_in_header(self):
+    def test_when_message_sent_then_case_id_and_tx_id_is_sent_in_header(self):
         # Given
         channel = Mock()
         connection = Mock()
         connection.channel.side_effect = Mock(return_value=channel)
         with patch('app.submitter.submitter.BlockingConnection', return_value=connection):
             # When
-            self.submitter.send_message(message={}, case_id='98765', tx_id='12345')
+            self.submitter.send_message(message={}, tx_id='12345', case_id='98765')
 
             # Then
             call_args = channel.basic_publish.call_args
             properties = call_args[1]['properties']
             headers = properties.headers
-            self.assertEqual(headers['case_id'], '98765')
             self.assertEqual(headers['tx_id'], '12345')
 
-    def test_when_message_sent_with_none_tx_id_then_tx_id_is_not_sent_in_header(self):
-        # Given
-        channel = Mock()
-        connection = Mock()
-        connection.channel.side_effect = Mock(return_value=channel)
-        with patch('app.submitter.submitter.BlockingConnection', return_value=connection):
-            # When
-            self.submitter.send_message(message={}, tx_id=None)
-
-            # Then
-            call_args = channel.basic_publish.call_args
-            properties = call_args[1]['properties']
-            headers = properties.headers
-            self.assertEqual(len(headers), 0)
+            self.assertEqual(headers['case_id'], '98765')
 
 
 class TestGCSSubmitter(TestCase):
-
-    def test_send_message_without_case_id_raises_exception(self):
-        # Given
-        with patch('app.submitter.submitter.storage.Client'):
-            with self.assertRaises(Exception) as ex:
-                # When
-                submitter = GCSSubmitter(project_id='test_project', bucket_name='test_bucket')
-                submitter.send_message(message={'test_data'})
-
-            # Then
-            assert 'case_id not passed to GCS submitter' in str(ex.exception)
 
     @staticmethod
     def test_send_message():
@@ -165,7 +140,7 @@ class TestGCSSubmitter(TestCase):
             submitter = GCSSubmitter(project_id='test_project', bucket_name='test_bucket')
 
             # When
-            published = submitter.send_message(message={'test_data'}, case_id='123')
+            published = submitter.send_message(message={'test_data'}, tx_id='123', case_id='456')
 
             # Then
             bucket = client.return_value.get_bucket.return_value
@@ -181,15 +156,16 @@ class TestGCSSubmitter(TestCase):
             assert published is True
 
     @staticmethod
-    def test_send_message_adds_tx_id_metadata():
-        # Given
+    def test_send_message_adds_metadata():
         with patch('app.submitter.submitter.storage.Client') as client:
-            # When
+            # Given
             submitter = GCSSubmitter(project_id='test_project', bucket_name='test_bucket')
-            submitter.send_message(message={'test_data'}, case_id='123', tx_id='456')
+
+            # When
+            submitter.send_message(message={'test_data'}, tx_id='123', case_id='456')
 
             # Then
             bucket = client.return_value.get_bucket.return_value
             blob = bucket.blob.return_value
 
-            assert blob.metadata == {'case_id': '123', 'tx_id': '456'}
+            assert blob.metadata == {'tx_id': '123', 'case_id': '456'}
