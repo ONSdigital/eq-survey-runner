@@ -37,5 +37,3 @@ if [ "$EQ_RUN_FUNCTIONAL_TESTS" = True ]; then
     echo "Running Functional tests"
     ./scripts/run_tests_functional.sh
 fi
-
-

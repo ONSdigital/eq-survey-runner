@@ -254,7 +254,9 @@ class QuestionnaireForm(FlaskForm):
         return attr.raw_data[0] if attr.raw_data else ''
 
 
-def get_answer_fields(question, data, error_messages, schema, answer_store, metadata, group_instance, group_instance_id):
+# pylint: disable=too-many-locals
+def get_answer_fields(question, data, error_messages, schema, answer_store, metadata, group_instance,
+                      group_instance_id):
     answer_fields = {}
     for answer in question.get('answers', []):
 
@@ -263,7 +265,12 @@ def get_answer_fields(question, data, error_messages, schema, answer_store, meta
             if 'detail_answer' in option:
                 detail_answer = option['detail_answer']
                 detail_answer_error_messages = detail_answer['validation']['messages'] if detail_answer.get('validation') else error_messages
-                if option['value'] not in dict(data).get(answer['id'], []):
+                if isinstance(data, MultiDict):
+                    option_value_in_data = option['value'] in data.to_dict(flat=False).get(answer['id'], [])
+                else:
+                    option_value_in_data = option['value'] in dict(data).get(answer['id'], [])
+
+                if not option_value_in_data:
                     disable_validation = True
 
                 answer_fields[detail_answer['id']] = get_field(detail_answer, detail_answer.get('label'),
