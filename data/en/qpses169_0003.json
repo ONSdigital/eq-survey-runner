@@ -296,7 +296,7 @@
                                         "list": [
                                             "Agency workers paid directly from the agency payroll",
                                             "Self-employed workers",
-                                            "Voluntary Workers",
+                                            "Voluntary workers",
                                             "Former employees only receiving a pension",
                                             "Directors who do not receive a salary"
                                         ]
@@ -332,7 +332,7 @@
                                     "mandatory": true,
                                     "type": "Number",
                                     "label": "Part-time female permanent employees",
-                                    "description": "Working less that your organisation’s normal weekly hours",
+                                    "description": "Working less than your organisation’s normal weekly hours",
                                     "q_code": "554",
                                     "min_value": {
                                         "value": 0,
