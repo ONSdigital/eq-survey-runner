@@ -739,7 +739,7 @@
                                 "label": "Total number of full-time equivalents",
                                 "description": "",
                                 "q_code": "60",
-                                "min_value": {
+                                "max_value": {
                                     "answer_id": "total-number-of-emps",
                                     "exclusive": false
                                 },
