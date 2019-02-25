@@ -7,6 +7,8 @@ cypress.run({
     viewportWidth: 1280,
     viewportHeight: 1080,
     video: false,
-    integrationFolder: "tests/functional/cypress/spec/"
+    integrationFolder: "tests/functional/cypress/spec/",
+    defaultCommandTimeout: 60000,
+    pageLoadTimeout: 120000
   }
 });

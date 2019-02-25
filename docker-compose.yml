@@ -7,22 +7,16 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-    networks:
-      - eq-env
     environment:
       RABBITMQ_DEFAULT_USER: digitaleq
       RABBITMQ_DEFAULT_PASS: digitaleq
 
   datastore:
     image: knarz/datastore-emulator
-    networks:
-      - eq-env
 
   eq-survey-register:
     image: onsdigital/eq-survey-register:latest
     restart: always
-    networks:
-      - eq-env
     ports:
       - "8080:8080"
 
@@ -50,8 +44,6 @@ services:
     depends_on:
       - datastore
       - rabbit
-    networks:
-      - eq-env
     ports:
       - "5000:5000"
 
@@ -64,12 +56,5 @@ services:
     restart: always
     depends_on:
       - eq-survey-runner
-    networks:
-      - eq-env
     ports:
       - "8000:8000"
-
-
-networks:
-  eq-env:
-    driver: bridge

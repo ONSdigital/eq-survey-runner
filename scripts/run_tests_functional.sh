@@ -29,12 +29,12 @@ display_result $? 4 "Front end unit tests"
 echo "Generating functional test pages"
 yarn generate_pages
 
-echo "Running front end functional tests"
-yarn test_functional
-
-display_result $? 5 "Front end functional tests"
-
 echo "Running census functional tests"
 yarn test_census
 
-display_result $? 6 "Front end census functional tests"
+display_result $? 5 "Front end census functional tests"
+
+echo "Running front end functional tests"
+yarn test_functional
+
+display_result $? 6 "Front end functional tests"
