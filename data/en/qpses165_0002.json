@@ -84,7 +84,6 @@
                                         "title": "Include",
                                         "list": [
                                             "male and female employees",
-                                            "all functions of your organisation, for example, education, social services, and public administration",
                                             "casual employees only if paid in the pay period in which the reference date lies"
                                         ]
                                     }]
@@ -428,7 +427,6 @@
                                     },
                                     {
                                         "list": [
-                                            "All functions of your organisation, for example, education, social services, and public administration",
                                             "Casual employees only if paid in the pay period in which the reference date lies"
                                         ]
                                     }
@@ -555,7 +553,6 @@
                                     },
                                     {
                                         "list": [
-                                            "All functions of your organisation, for example, education, social services and public administration",
                                             "Casual employees only if paid in the pay period in which the reference date lies"
                                         ]
                                     }
