@@ -17,7 +17,6 @@ WORKDIR /usr/src/app
 
 COPY . /usr/src/app
 RUN yarn compile
-RUN ./scripts/translate_schemas.sh
 
 # We don't want node_modules to be copied to the runtime image
 RUN rm -rf node_modules
@@ -25,7 +24,7 @@ RUN rm -rf node_modules
 # Second Stage
 ###############################################################################
 
-FROM python:3.4-slim-stretch
+FROM python:3.7-slim-stretch
 
 EXPOSE 5000
 
@@ -36,12 +35,12 @@ WORKDIR /usr/src/app
 
 ENV GUNICORN_WORKERS 3
 
+COPY Pipfile Pipfile
 COPY Pipfile.lock Pipfile.lock
-COPY .python-version .python-version
 
-RUN pip install pipenv==8.2.7
+RUN pip install pipenv==2018.11.26
 
-RUN pipenv install --system --ignore-pipfile
+RUN pipenv install --deploy --system
 
 COPY --from=builder /usr/src/app/ /usr/src/app
 
