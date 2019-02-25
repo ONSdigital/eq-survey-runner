@@ -24,6 +24,8 @@
                                     "You can provide informed estimates if actual figures aren’t available.",
                                     "We will treat your data securely and confidentially."
                                 ]
+                            }, {
+                                "description": "<p><a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/quarterlypublicsectoremploymentsurveycivilservice'>Read the detailed guidance for completing this survey</a></p>"
                             }]
                         }],
                         "preview_content": {
@@ -116,11 +118,6 @@
                             ]
                         },
                         "secondary_content": [{
-                            "id": "detailed-guidance",
-                            "content": [{
-                                "description": "<p><a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/quarterlypublicsectoremploymentsurveycivilservice'>Read more information about this survey</a></p>"
-                            }]
-                        }, {
                             "id": "how-we-use-your-data",
                             "title": "How we use your data",
                             "content": [{
