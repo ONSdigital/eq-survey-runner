@@ -18,7 +18,7 @@
     "test_unit": "gulp test:scripts:unit:watch",
     "test_unit_no_watch": "gulp test:scripts:unit",
     "test_functional": "chimp tests/functional/chimp.js",
-    "test_census": "node tests/functional/cypress.js",
+    "test_cypress": "node tests/functional/cypress.js",
     "cypress": "cypress open",
     "generate_pages": "rm -rf ./tests/functional/generated_pages && cd tests/functional &&  pipenv run ./generate_pages.py ../../data/en/ ./generated_pages -r '../../base_pages' && cd ../..",
     "a11y": "gulp test:a11ym",

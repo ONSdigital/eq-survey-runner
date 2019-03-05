@@ -156,7 +156,7 @@ Command                                    | Task
 `yarn test`                             | Runs the unit tests through Karma and the functional tests through a local Selenium instance.
 `yarn test_unit`                        | Watches the unit tests via Karma.
 `yarn test_functional`                  | Runs the functional tests through ChimpJS (requires app running on localhost:5000 and generated pages).
-`yarn test_census`                      | Runs the census functional tests through Cypress (requires app running on localhost:5000 and generated pages).
+`yarn test_cypress`                     | Runs the Cypress functional tests (requires app running on localhost:5000 and generated pages).
 `yarn generate_pages`                   | Generates the functional test pages.
 `yarn lint`                             | Lints the JS, reporting errors/warnings.
 `yarn format`                           | Format the json schemas.
