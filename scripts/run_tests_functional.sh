@@ -35,7 +35,22 @@ yarn test_functional
 display_result $? 5 "Front end functional tests"
 
 if [[ "$EQ_RUN_DOCKER_UP" = True ]]; then
-    docker-compose down eq-survey-runner
+    echo "Stopping Docker Containers"
+    docker-compose down
+
+    echo "Running Datastore Emulator"
+    docker-compose run -d -p 8432:8432 datastore
+
+    while true
+    do
+        sleep 5
+        CONTENT=$(curl http://localhost:8432)
+        if [[ $CONTENT = "Ok" ]]
+        then
+            break
+        fi
+        echo "$CONTENT"
+    done
 
     echo "Running Local App"
     ./scripts/run_app.sh &

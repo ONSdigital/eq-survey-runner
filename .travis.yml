@@ -16,6 +16,7 @@ cache:
   - directories:
     - /opt/python/
     - /home/travis/.local/share/
+    - ~/.cache
 env:
   global:
     - EQ_RUN_LOCAL_LINT=True
