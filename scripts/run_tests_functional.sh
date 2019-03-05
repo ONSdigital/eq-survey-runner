@@ -29,12 +29,24 @@ display_result $? 4 "Front end unit tests"
 echo "Generating functional test pages"
 yarn generate_pages
 
-echo "Running census functional tests"
-yarn test_census
-
-display_result $? 5 "Front end census functional tests"
-
 echo "Running front end functional tests"
 yarn test_functional
 
-display_result $? 6 "Front end functional tests"
+display_result $? 5 "Front end functional tests"
+
+if [[ "$EQ_RUN_DOCKER_UP" = True ]]; then
+    docker-compose down eq-survey-runner
+
+    echo "Running Local App"
+    ./scripts/run_app.sh &
+
+    until curl -o /dev/null -s -H -f http://localhost:5000/status; do
+        printf '.'
+        sleep 5
+    done
+fi
+
+echo "Running census functional tests"
+yarn test_census
+
+display_result $? 6 "Front end census functional tests"
