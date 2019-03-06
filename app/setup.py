@@ -209,7 +209,7 @@ def setup_storage(application):
     elif application.config['EQ_STORAGE_BACKEND'] == 'sql':
         setup_database(application)
     else:
-        raise Exception('Unknown EQ_DATASTORE_BACKEND')
+        raise Exception('Unknown EQ_STORAGE_BACKEND')
 
 
 def get_database_uri(application):
