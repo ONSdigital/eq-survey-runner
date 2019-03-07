@@ -216,39 +216,20 @@ To run the census functional tests within the cypress UI:
 
 ./node_modules/cypress/bin/cypress open
 
-### Deployment with elastic beanstalk
+### Deployment with [Helm](https://helm.sh/)
 
-You will need to install the EB CLI tools using PIP.
+To deploy this application with helm, you must have a kubernetes cluster already running.
 
-```
-pip install --user awsebcli        # install the eb cli tools
-```
+You need to have Helm installed locally
 
-The Elastic Beanstalk CLI requires the presence of a requirements.txt file. To generate one with Pipenv use the following:
-```
-pipenv lock -r > requirements.txt
-```
+1. Install Helm with `brew install kubernetes-helm` and then run `helm init --client-only`
 
-Initialise the project using the command
+1. Install Helm Tiller plugin for tillerless deploys `helm plugin install https://github.com/rimusz/helm-tiller`
+
+To deploy to a cluster you can run the following command
 
 ```
-eb init --region eu-west-1
-```
-
-This will launch a wizard asking for the AWS credentials and some questions about the environment to create.
-
-`eu-west-1` is the name for Ireland.  I chose the default application name.
-
-Once completed, you can then deploy the application using the following command:
-
-```
-eb create
-```
-
-This will create the environment and spin up the application . Once the application has deployed you can use the following command to open it in a browser
-
-```
-eb open
+helm tiller run helm upgrade --install survey-runner ./helm/runner --set projectId=PROJECT_ID --set submissionBucket=BUCKET_NAME 
 ```
 
 ### Internationalisation
