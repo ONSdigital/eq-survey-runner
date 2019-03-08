@@ -52,14 +52,6 @@ class TestQuestionnairePageTitles(IntegrationTestCase):
         # Then
         self.assertEqualPageTitle('Session expired')
 
-    def test_should_have_survey_in_page_title_when_error(self):
-        # Given
-        self.launchSurvey('test', 'final_confirmation')
-        # When
-        self.get('/questionnaire/test/final_confirmation/789/non-existent-block')
-        # Then
-        self.assertEqualPageTitle('Error 404')
-
     def test_should_have_group_title_in_page_title_when_interstitial(self):
         # Given
         self.launchSurvey('test', 'interstitial_page')

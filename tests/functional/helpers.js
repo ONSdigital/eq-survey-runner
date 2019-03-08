@@ -39,75 +39,11 @@ function getElementId(element) {
   return browser.elementIdAttribute(element.value.ELEMENT, 'id').value;
 }
 
-function getBlockId() {
-  return getLocation().blockId;
-}
-
-function getRepeatedGroup() {
-  return getLocation().repeatedGroup;
-}
-
-function getLocation() {
-  // Matches: /(groupId)/(blockId)
-  var regexp = /questionnaire.+\/(\d+)\/(.+)$/g;
-  var matches = regexp.exec(browser.getUrl());
-
-  if (matches != null) {
-    return {
-      'repeatedGroup': matches[1],
-      'blockId': matches[2]
-    };
-  }
-
-  return undefined;
-}
-
 function setMobileViewport() {
   return browser.setViewportSize({
     width: 320,
     height: 568
   });
-}
-
-function openMobileNavigation() {
-  browser.click('#menu-btn');
-  return browser.waitUntil(function() {
-    return browser.isVisibleWithinViewport('#section-nav');
-  });
-}
-
-function closeMobileNavigation() {
-  browser.pause(100);
-  browser.click('#menu-btn');
-  browser.pause(200);
-  return browser.waitUntil(function() {
-    return !browser.isVisibleWithinViewport('#section-nav');
-  });
-}
-
-function isViewSectionsVisible() {
-  let viewSectionsLink = '#menu-btn';
-  return browser.isExisting(viewSectionsLink) && browser.isVisibleWithinViewport(viewSectionsLink);
-}
-
-function navigationLink(linkName) {
-    return 'a=' + linkName;
-}
-
-function isSectionComplete(linkName) {
-    return isSectionCompleteBind.bind(null, linkName);
-}
-
-function isSectionCompleteBind(linkName) {
-  return browser
-    .element(navigationLink(linkName))
-    .getAttribute('data-qa')
-    .then(function (data_qa_string) {
-      if (data_qa_string === 'complete') {
-        return true;
-      }
-      return false;
-    });
 }
 
 function pressSubmit(numberOfTimes) {
@@ -132,14 +68,6 @@ module.exports = {
   openQuestionnaire,
   startQuestionnaire,
   getElementId,
-  getBlockId,
-  getRepeatedGroup,
-  getLocation,
   setMobileViewport,
-  openMobileNavigation,
-  closeMobileNavigation,
-  isViewSectionsVisible,
-  navigationLink,
-  isSectionComplete,
   pressSubmit
 };

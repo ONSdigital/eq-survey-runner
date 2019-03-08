@@ -31,11 +31,6 @@ def unauthorized(error=None):
 
 @errors_blueprint.app_errorhandler(CSRFError)
 def csrf_error(error=None):
-    metadata = get_metadata(current_user)
-    if metadata and check_multiple_survey(metadata, request.view_args):
-        log_exception(error, 200)
-        return render_template('multiple_survey.html')
-
     log_exception(error, 401)
     return render_template('session-expired.html'), 401
 
@@ -50,12 +45,6 @@ def forbidden(error=None):
 def service_unavailable(error=None):
     log_exception(error, 503)
     return _render_error_page(503)
-
-
-@errors_blueprint.app_errorhandler(MultipleSurveyError)
-def multiple_survey_error(error=None):
-    log_exception(error, 200)
-    return render_template('multiple_survey.html')
 
 
 @errors_blueprint.app_errorhandler(Exception)
@@ -109,18 +98,3 @@ def render_template(template_name):
                                  tx_id=tx_id,
                                  account_service_url=cookie_session.get('account_service_url'),
                                  survey_title=TemplateRenderer.safe_content(cookie_session.get('survey_title', '')))
-
-
-def check_multiple_survey(metadata, request_values):
-    try:
-        if metadata['eq_id'] != request_values['eq_id'] \
-            or metadata['form_type'] != request_values['form_type'] \
-                or metadata.get('collection_exercise_sid') != request_values.get('collection_id'):
-            logger.bind(tx_id=metadata['tx_id'],
-                        eq_id=request_values['eq_id'],
-                        form_type=request_values['form_type'],
-                        ce_id=request_values.get('collection_id'))
-
-            return True
-    except KeyError:
-        return False

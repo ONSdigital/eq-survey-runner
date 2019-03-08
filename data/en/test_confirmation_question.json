@@ -4,7 +4,7 @@
     "survey_id": "139",
     "theme": "default",
     "title": "Confirmation Question Test",
-    "data_version": "0.0.1",
+    "data_version": "0.0.2",
     "description": "Confirmation Question Test",
     "view_submitted_response": {
         "enabled": true,

@@ -1,7 +1,4 @@
-from flask import url_for
-
 from app.helpers.form_helper import get_form_for_location
-from app.helpers.schema_helpers import get_group_instance_id
 from app.jinja_filters import get_formatted_currency, format_number, format_unit, format_percentage
 from app.templating.summary_context import build_summary_rendering_context
 from app.templating.template_renderer import renderer
@@ -10,22 +7,80 @@ from app.templating.utils import get_title_from_titles, get_question_title
 
 def build_view_context(block_type, metadata, schema, answer_store, schema_context, rendered_block, current_location, form):
     if block_type == 'Summary':
-        return build_view_context_for_final_summary(metadata, schema, answer_store, schema_context, block_type, rendered_block)
+        return build_view_context_for_final_summary(metadata, schema, answer_store, schema_context, block_type,
+                                                    rendered_block)
+
     if block_type == 'SectionSummary':
-        return build_view_context_for_section_summary(metadata, schema, answer_store, schema_context, block_type, current_location.group_id)
+        return build_view_context_for_section_summary(metadata, schema, answer_store, schema_context, block_type, current_location)
 
     if block_type == 'CalculatedSummary':
         return build_view_context_for_calculated_summary(metadata, schema, answer_store, schema_context, block_type, current_location)
 
-    if block_type == 'AnswerSummary':
-        return build_view_context_for_answer_summary(metadata, schema, answer_store, block_type, current_location)
-
     if block_type in ('Question', 'ConfirmationQuestion'):
         form = form or get_form_for_location(schema, rendered_block, current_location, answer_store, metadata)
-        return build_view_context_for_question(metadata, schema, answer_store, current_location, rendered_block, form)
+        return build_view_context_for_question(metadata, schema, answer_store, rendered_block, form)
 
     if block_type in ('Introduction', 'Interstitial', 'Confirmation'):
         return build_view_context_for_non_question(rendered_block)
+
+
+def build_view_context_for_final_summary(metadata, schema, answer_store, schema_context, block_type, rendered_block):
+    section_list = schema.json['sections']
+
+    context = build_view_context_for_summary(schema, section_list, answer_store, metadata,
+                                             block_type, schema_context)
+
+    context['summary'].update({
+        'is_view_submission_response_enabled': _is_view_submitted_response_enabled(schema.json),
+        'collapsible': rendered_block.get('collapsible', False),
+    })
+
+    return context
+
+
+def build_view_context_for_summary(schema, section_list, answer_store, metadata, block_type, schema_context):
+    summary_rendering_context = build_summary_rendering_context(schema, section_list, answer_store, metadata, schema_context)
+
+    context = {
+        'summary': {
+            'groups': summary_rendering_context,
+            'answers_are_editable': True,
+            'summary_type': block_type,
+        },
+    }
+    return context
+
+
+def build_view_context_for_section_summary(metadata, schema, answer_store, schema_context, block_type, current_location):
+    group = schema.get_group_by_block_id(current_location.block_id)
+    section_id = group['parent_id']
+    section = schema.get_section(section_id)
+    title = section.get('title')
+
+    context = build_view_context_for_summary(schema, [section], answer_store, metadata,
+                                             block_type, schema_context)
+
+    context['summary'].update({
+        'title': title,
+    })
+    return context
+
+
+def build_view_context_for_calculated_summary(metadata, schema, answer_store, schema_context, block_type, current_location):
+    block = schema.get_block(current_location.block_id)
+    section_list = _build_calculated_summary_section_list(schema, block, current_location)
+
+    context = build_view_context_for_summary(schema, section_list, answer_store, metadata, block_type, schema_context)
+
+    rendered_block = renderer.render(block, **schema_context)
+    formatted_total = _get_formatted_total(context['summary'].get('groups', []))
+
+    context['summary'].update({
+        'calculated_question': _get_calculated_question(rendered_block['calculation'], answer_store, schema,
+                                                        metadata, formatted_total),
+        'title': get_question_title(rendered_block, answer_store, schema, metadata) % dict(total=formatted_total),
+    })
+    return context
 
 
 def build_view_context_for_non_question(rendered_block):
@@ -34,7 +89,7 @@ def build_view_context_for_non_question(rendered_block):
     }
 
 
-def build_view_context_for_question(metadata, schema, answer_store, current_location, rendered_block, form):  # noqa: C901, E501  pylint: disable=too-complex,line-too-long,too-many-locals,too-many-branches
+def build_view_context_for_question(metadata, schema, answer_store, rendered_block, form):  # noqa: C901, E501  pylint: disable=too-complex,line-too-long,too-many-locals,too-many-branches
 
     context = {
         'block': rendered_block,
@@ -52,17 +107,10 @@ def build_view_context_for_question(metadata, schema, answer_store, current_loca
     answer_ids = []
     for question in rendered_block.get('questions'):
         if question.get('titles'):
-            group_instance_id = get_group_instance_id(schema, answer_store, current_location)
             context['question_titles'][question['id']] = get_title_from_titles(metadata, schema, answer_store,
-                                                                               question['titles'],
-                                                                               current_location.group_instance,
-                                                                               group_instance_id)
+                                                                               question['titles'])
         for answer in question['answers']:
-            if current_location.block_id == 'household-composition':
-                for repeated_form in form.household:
-                    answer_ids.append(repeated_form.form[answer['id']].id)
-            else:
-                answer_ids.append(answer['id'])
+            answer_ids.append(answer['id'])
 
             if answer['type'] in ('Checkbox', 'Radio'):
                 for option in answer['options']:
@@ -78,145 +126,11 @@ def build_view_context_for_question(metadata, schema, answer_store, current_loca
         if answer_id in form:
             context['form']['fields'][answer_id] = form[answer_id]
 
-    if current_location.block_id in ['household-composition']:
-        context['form']['household'] = form.household
-
     return context
 
 
-def build_view_context_for_final_summary(metadata, schema, answer_store, schema_context, block_type, rendered_block):
-    section_list = schema.json['sections']
-
-    context = build_view_context_for_summary(schema, section_list, answer_store, metadata,
-                                             block_type, schema_context)
-
-    context['summary'].update({
-        'is_view_submission_response_enabled': is_view_submitted_response_enabled(schema.json),
-        'collapsible': rendered_block.get('collapsible', False),
-    })
-
-    return context
-
-
-def build_view_context_for_section_summary(metadata, schema, answer_store, schema_context, block_type, group_id):
-    section_id = schema.get_group(group_id)['parent_id']
-    section = schema.get_section(section_id)
-    title = section.get('title')
-
-    context = build_view_context_for_summary(schema, [section], answer_store, metadata,
-                                             block_type, schema_context)
-
-    context['summary'].update({
-        'title': title,
-    })
-    return context
-
-
-def build_view_context_for_calculated_summary(metadata, schema, answer_store, schema_context, block_type, current_location):
-    block = schema.get_block(current_location.block_id)
-    section_list = _build_calculated_summary_section_list(schema, block, current_location.group_id)
-
-    context = build_view_context_for_summary(schema, section_list, answer_store, metadata, block_type, schema_context)
-
-    context['summary']['groups'] = [context['summary']['groups'][current_location.group_instance]]
-    schema_context['group_instance_id'] = get_group_instance_id(schema, answer_store, current_location)
-    rendered_block = renderer.render(block, **schema_context)
-    formatted_total = _get_formatted_total(context['summary'].get('groups', []))
-
-    context['summary'].update({
-        'calculated_question': _get_calculated_question(rendered_block['calculation'], answer_store, schema,
-                                                        metadata, current_location.group_instance, formatted_total),
-        'title': get_question_title(rendered_block, answer_store, schema, metadata,
-                                    current_location.group_instance) % dict(total=formatted_total),
-    })
-    return context
-
-
-def build_view_context_for_answer_summary(metadata, schema, answer_store, block_type, current_location):  # pylint: disable=too-many-locals
-
-    summary_block = schema.get_block(current_location.block_id)
-
-    group = {
-        'answers': [],
-    }
-
-    def group_instance(answer):
-        return answer['group_instance']
-
-    summary_answers = []
-
-    for answer_id in summary_block.get('answer_ids'):
-        answers = list(answer_store.filter(answer_ids=[answer_id]))
-        answers.sort(key=group_instance)
-        summary_answers.extend(answers)
-
-    for answer in summary_answers:
-        question_id = schema.get_answer(answer['answer_id']).get('parent_id')
-        block_id = schema.get_question(question_id).get('parent_id')
-        group_id = schema.get_block(block_id).get('parent_id')
-
-        link = url_for('questionnaire.get_block',
-                       eq_id=metadata['eq_id'],
-                       form_type=metadata['form_type'],
-                       collection_id=metadata['collection_exercise_sid'],
-                       group_id=group_id,
-                       group_instance=answer['group_instance'],
-                       block_id=block_id)
-
-        label = answer['value']
-
-        if summary_block.get('answer_label'):
-            render_context = {
-                'answers': _build_answers(answer_store, answer.get('group_instance_id')),
-            }
-
-            label = renderer.render('{{' + summary_block.get('answer_label') + '}}', **render_context)
-
-        view_answer = {
-            'id': answer['answer_id'],
-            'label': label,
-            'block': {
-                'link': link,
-            },
-        }
-
-        group['answers'].append(view_answer)
-
-    return {
-        'summary': {
-            'title': summary_block.get('title'),
-            'label': summary_block.get('label'),
-            'groups': [group],
-            'answers_are_editable': True,
-            'summary_type': block_type,
-            'icon': summary_block.get('icon'),
-        },
-    }
-
-
-def _build_answers(answer_store, group_instance_id):
-    answers = {}
-
-    for answer in list(answer_store.filter(group_instance_id=group_instance_id, limit=True)):
-        answers[answer['answer_id']] = answer['value']
-
-    return answers
-
-
-def build_view_context_for_summary(schema, section_list, answer_store, metadata, block_type, schema_context):
-    summary_rendering_context = build_summary_rendering_context(schema, section_list, answer_store, metadata, schema_context)
-
-    context = {
-        'summary': {
-            'groups': summary_rendering_context,
-            'answers_are_editable': True,
-            'summary_type': block_type,
-        },
-    }
-    return context
-
-
-def _build_calculated_summary_section_list(schema, rendered_block, group_id):
+def _build_calculated_summary_section_list(schema, rendered_block, current_location):
+    group = schema.get_group_by_block_id(current_location.block_id)
     blocks = []
     for block in schema.blocks:
         answers_in_block = schema.get_answers_by_id_for_block(block['id'])
@@ -229,7 +143,7 @@ def _build_calculated_summary_section_list(schema, rendered_block, group_id):
     section = {
         'groups': [
             {
-                'id': group_id,
+                'id': group['id'],
                 'blocks': blocks,
             },
         ],
@@ -285,8 +199,8 @@ def _get_formatted_total(groups):
     return format_number(calculated_total)
 
 
-def _get_calculated_question(calculation, answer_store, schema, metadata, group_instance, formatted_total):
-    calculation_title = get_question_title(calculation, answer_store, schema, metadata, group_instance)
+def _get_calculated_question(calculation, answer_store, schema, metadata, formatted_total):
+    calculation_title = get_question_title(calculation, answer_store, schema, metadata)
 
     return {
         'title': calculation_title,
@@ -300,7 +214,7 @@ def _get_calculated_question(calculation, answer_store, schema, metadata, group_
     }
 
 
-def is_view_submitted_response_enabled(schema):
+def _is_view_submitted_response_enabled(schema):
     view_submitted_response = schema.get('view_submitted_response')
     if view_submitted_response:
         return view_submitted_response['enabled']

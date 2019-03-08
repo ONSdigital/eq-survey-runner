@@ -100,58 +100,24 @@ ANSWER_UNIT_TYPE_GETTER = Template(r"""  ${answerName}Unit() {
 
 """)
 
-RELATIONSHIP_ANSWER_GETTER = Template(r"""  ${answerName}(instance) {
-    return '[name="${answerId}-' + instance + '"]';
-  }
+SECTION_SUMMARY_ANSWER_GETTER = Template(r"""  ${answerName}() { return '#${answerId}-answer'; }
 
 """)
 
-RELATIONSHIP_ANSWER_SETTER = Template(r"""  relationship(instance, answer) {
-    return '#${answerId}-' + instance + ' > [value="' + answer + '"]';
-  }
+SECTION_SUMMARY_ANSWER_EDIT_GETTER = Template(r"""  ${answerName}Edit() { return '[data-qa="${answerId}-edit"]'; }
 
 """)
 
-HOUSEHOLD_ANSWER_GETTER = Template(r"""  ${answerName}(index = '') {
-    return '#household-0-${answerId}' + index;
-  }
-
-""")
-
-REPEATING_ANSWER_ADD_REMOVE = r"""  addPerson() {
-    return 'button[name="action[add_answer]"]';
-  }
-
-  removePerson(index = 0) {
-    return 'div.question__answer:nth-child('+ (index+1) + ') > h3 button';
-    // Have to check whether it's visible in test code
-  }
-
-"""
-
-REPEATING_ANSWER_LEGEND = r"""  personLegend(index = 1) {
-    return 'div.question__answer:nth-child(' + index + ') > fieldset > legend';
-  }
-"""
-
-SECTION_SUMMARY_ANSWER_GETTER = Template(r"""  ${answerName}(index = 0) { return '#${answerId}-' + index + '-answer'; }
-
-""")
-
-SECTION_SUMMARY_ANSWER_EDIT_GETTER = Template(r"""  ${answerName}Edit(index = 0) { return '[data-qa="${answerId}-' + index + '-edit"]'; }
-
-""")
-
-SUMMARY_ANSWER_GETTER = Template(r"""  ${answerName}(index = 0) { return '#${answerId}-' + index + '-answer'; }
+SUMMARY_ANSWER_GETTER = Template(r"""  ${answerName}() { return '#${answerId}-answer'; }
 
 """)
 
 
-SUMMARY_ANSWER_EDIT_GETTER = Template(r"""  ${answerName}Edit(index = 0) { return '[data-qa="${answerId}-' + index + '-edit"]'; }
+SUMMARY_ANSWER_EDIT_GETTER = Template(r"""  ${answerName}Edit() { return '[data-qa="${answerId}-edit"]'; }
 
 """)
 
-SUMMARY_TITLE_GETTER = Template(r"""  ${group_id_camel}Title(index = 0) { return '#${group_id}-' + index; }
+SUMMARY_TITLE_GETTER = Template(r"""  ${group_id_camel}Title() { return '#${group_id}'; }
 
 """)
 
@@ -159,23 +125,11 @@ SUMMARY_SHOW_ALL_BUTTON = Template(r"""  summaryShowAllButton() { return 'div.co
 
 """)
 
-ANSWER_SUMMARY_EDIT_GETTER = Template(r"""  ${answerName}Edit(index = 1) { return '[data-qa="${answerId}-' + index + '-edit"]'; }
+SUMMARY_QUESTION_GETTER = Template(r"""  ${questionName}() { return '#${questionId}'; }
 
 """)
 
-ANSWER_SUMMARY_LABEL_GETTER = Template(r"""  ${answerName}Label(index = 1) { return '[data-qa="${answerId}-' + index + '-label"]'; } 
-
-""")
-
-ANSWER_SUMMARY_ADD_LINK_GETTER = Template(r"""  addPersonLink() { return '#add-person-link'; }
-
-""")
-
-SUMMARY_QUESTION_GETTER = Template(r"""  ${questionName}(index = 0) { return '#${questionId}-' + index; }
-
-""")
-
-CALCULATED_SUMMARY_LABEL_GETTER = Template(r"""  ${answerName}Label(index = 0) { return '#${answerId}-' + index + '-label'; } 
+CALCULATED_SUMMARY_LABEL_GETTER = Template(r"""  ${answerName}Label() { return '#${answerId}-label'; } 
 
 """)
 
@@ -231,7 +185,7 @@ def process_options(answer_id, options, page_spec, base_prefix):
             page_spec.write(ANSWER_GETTER.substitute(option_context))
 
 
-def process_answer(question_type, answer, page_spec, long_names, page_name):
+def process_answer(answer, page_spec, long_names, page_name):
 
     answer_name = generate_pascal_case_from_id(answer['id'])
     answer_name = answer_name.replace(page_name, '')
@@ -254,30 +208,16 @@ def process_answer(question_type, answer, page_spec, long_names, page_name):
     elif answer['type'] in 'Duration':
         page_spec.write(_write_duration_answer(answer['id'], answer['units'], prefix))
 
-    elif answer['type'] in 'Relationship':
-        answer_context = {
-            'answerName': camel_case(answer_name),
-            'answerId': answer['id']
-        }
-
-        page_spec.write(RELATIONSHIP_ANSWER_GETTER.substitute(answer_context))
-        page_spec.write(RELATIONSHIP_ANSWER_SETTER.substitute(answer_context))
-        page_spec.write(ANSWER_LABEL_GETTER.substitute(answer_context))
-
     elif answer['type'] in ('TextField', 'Number', 'TextArea', 'Currency', 'Percentage', 'Unit', 'Dropdown'):
         answer_context = {
             'answerName': camel_case(answer_name),
             'answerId': answer['id']
         }
 
-
-        if question_type in ['RepeatingAnswer']:
-            page_spec.write(HOUSEHOLD_ANSWER_GETTER.substitute(answer_context))
-        else:
-            page_spec.write(ANSWER_GETTER.substitute(answer_context))
-            page_spec.write(ANSWER_LABEL_GETTER.substitute(answer_context))
-            page_spec.write(ANSWER_LABEL_DESCRIPTION_GETTER.substitute(answer_context))
-            page_spec.write(ANSWER_ERROR_GETTER.substitute(answer_context))
+        page_spec.write(ANSWER_GETTER.substitute(answer_context))
+        page_spec.write(ANSWER_LABEL_GETTER.substitute(answer_context))
+        page_spec.write(ANSWER_LABEL_DESCRIPTION_GETTER.substitute(answer_context))
+        page_spec.write(ANSWER_ERROR_GETTER.substitute(answer_context))
 
         if answer['type'] == 'Unit':
             page_spec.write(ANSWER_UNIT_TYPE_GETTER.substitute(answer_context))
@@ -288,11 +228,6 @@ def process_answer(question_type, answer, page_spec, long_names, page_name):
 
 def process_question(question, page_spec, num_questions, page_name):
     logger.debug('\t\tprocessing question: ', title=question.get('title', 'titles'), question_id=question['id'])
-
-    question_type = question['type']
-    if question_type == 'RepeatingAnswer':
-        page_spec.write(REPEATING_ANSWER_ADD_REMOVE)
-        page_spec.write(REPEATING_ANSWER_LEGEND)
 
     long_names = long_names_required(question, num_questions)
 
@@ -306,7 +241,7 @@ def process_question(question, page_spec, num_questions, page_name):
             page_spec.write(QUESTION_DEFINITION_BUTTON_GETTER.substitute(definition_context))
 
     for answer in question.get('answers', []):
-        process_answer(question_type, answer, page_spec, long_names, page_name)
+        process_answer(answer, page_spec, long_names, page_name)
 
 
 def process_calculated_summary(answers, page_spec):
@@ -320,19 +255,6 @@ def process_calculated_summary(answers, page_spec):
         page_spec.write(SUMMARY_ANSWER_GETTER.substitute(answer_context))
         page_spec.write(SUMMARY_ANSWER_EDIT_GETTER.substitute(answer_context))
         page_spec.write(CALCULATED_SUMMARY_LABEL_GETTER.substitute(answer_context))
-
-
-def process_answer_summary(block, page_spec):
-    for answer_id in block.get('answer_ids'):
-        answer_name = generate_pascal_case_from_id(answer_id)
-        answer_context = {
-            'answerName': camel_case(answer_name),
-            'answerId': answer_id
-        }
-
-        page_spec.write(ANSWER_SUMMARY_EDIT_GETTER.substitute(answer_context))
-        page_spec.write(ANSWER_SUMMARY_LABEL_GETTER.substitute(answer_context))
-        page_spec.write(ANSWER_SUMMARY_ADD_LINK_GETTER.substitute(answer_context))
 
 
 def process_summary(schema_data, page_spec):
@@ -454,8 +376,6 @@ def process_block(block, dir_out, schema_data, spec_file, relative_require='..')
         page_spec.write(CONSTRUCTOR.substitute(block_context))
         if block['type'] in ('Summary', 'SectionSummary'):
             process_summary(schema_data, page_spec)
-        elif block['type'] in ('AnswerSummary'):
-            process_answer_summary(block, page_spec)
         elif block['type'] in ('CalculatedSummary'):
             process_calculated_summary(block['calculation']['answers_to_calculate'], page_spec)
         else:

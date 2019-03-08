@@ -1,7 +1,7 @@
 {
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
-    "data_version": "0.0.1",
+    "data_version": "0.0.2",
     "survey_id": "001",
     "title": "Other input fields",
     "theme": "default",
@@ -43,15 +43,6 @@
                 }],
                 "title": "Text Field Test",
                 "routing_rules": []
-            }, {
-                "type": "Interstitial",
-                "id": "min-max-block",
-                "title": "Application of min and max filters to strings",
-                "description": "",
-                "content": [{
-                    "title": "",
-                    "list": ["Of the strings <em>{{ answers['name-answer'] }}</em> (entered by you) and <em>abcd123</em>, the string <em>{{ max_value(answers['name-answer'], 'abcd123') }}</em> is maximum."]
-                }]
             }, {
                 "type": "Summary",
                 "id": "summary"

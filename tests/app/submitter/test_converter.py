@@ -6,7 +6,6 @@ import dateutil.parser
 
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
-from app.questionnaire.location import Location
 from app.storage.metadata_parser import validate_metadata, parse_runner_claims
 from app.submitter.converter import convert_answers, DataVersionError
 from tests.app.app_context_test_case import AppContextTestCase
@@ -192,70 +191,9 @@ class TestConverter(AppContextTestCase):  # pylint: disable=too-many-public-meth
 
             self.assertEqual(str(err.exception), 'Data version -0.0.1 not supported')
 
-    def test_convert_answers(self):
-        with self._app.test_request_context():
-            user_answer = [create_answer('ABC', '2016-01-01', group_id='group-1', block_id='block-1'),
-                           create_answer('DEF', '2016-03-30', group_id='group-1', block_id='block-1')]
 
-            questionnaire = {
-                'survey_id': '021',
-                'data_version': '0.0.1',
-                'sections': [
-                    {
-                        'id': 'section-1',
-                        'groups': [
-                            {
-                                'id': 'group-1',
-                                'blocks': [
-                                    {
-                                        'id': 'block-1',
-                                        'questions': [
-                                            {
-                                                'id': 'question-1',
-                                                'answers': [
-                                                    {
-                                                        'id': 'ABC',
-                                                        'type': 'TextField',
-                                                        'q_code': '001'
-                                                    },
-                                                    {
-                                                        'id': 'DEF',
-                                                        'type': 'TextField',
-                                                        'q_code': '002'
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
-
-            routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
-
-            self.assertEqual(answer_object['type'], 'uk.gov.ons.edc.eq:surveyresponse')
-            self.assertEqual(answer_object['version'], '0.0.1')
-            self.assertEqual(answer_object['origin'], 'uk.gov.ons.edc.eq')
-            self.assertEqual(answer_object['survey_id'], '021')
-            self.assertEqual(answer_object['collection']['exercise_sid'], self.metadata['collection_exercise_sid'])
-            self.assertEqual(answer_object['collection']['instrument_id'], self.metadata['form_type'])
-            self.assertEqual(answer_object['collection']['period'], self.metadata['period_id'])
-            self.assertEqual(answer_object['metadata']['user_id'], self.metadata['user_id'])
-            self.assertEqual(answer_object['metadata']['ru_ref'], self.metadata['ru_ref'])
-            self.assertEqual(answer_object['data']['001'], '2016-01-01')
-            self.assertEqual(answer_object['data']['002'], '2016-03-30')
-
-
-def create_answer(answer_id, value, group_id=None, block_id=None, answer_instance=0, group_instance=0):
+def create_answer(answer_id, value):
     return {
-        'group_id': group_id,
-        'block_id': block_id,
         'answer_id': answer_id,
-        'answer_instance': answer_instance,
-        'group_instance': group_instance,
         'value': value,
     }

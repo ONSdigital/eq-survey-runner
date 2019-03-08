@@ -255,8 +255,7 @@ class QuestionnaireForm(FlaskForm):
 
 
 # pylint: disable=too-many-locals
-def get_answer_fields(question, data, error_messages, schema, answer_store, metadata, group_instance,
-                      group_instance_id):
+def get_answer_fields(question, data, error_messages, schema, answer_store, metadata):
     answer_fields = {}
     for answer in question.get('answers', []):
 
@@ -275,10 +274,10 @@ def get_answer_fields(question, data, error_messages, schema, answer_store, meta
 
                 answer_fields[detail_answer['id']] = get_field(detail_answer, detail_answer.get('label'),
                                                                detail_answer_error_messages, answer_store, metadata,
-                                                               group_instance=group_instance, disable_validation=disable_validation)
+                                                               disable_validation=disable_validation)
 
-        name = answer.get('label') or get_question_title(question, answer_store, schema, metadata, group_instance, group_instance_id)
-        answer_fields[answer['id']] = get_field(answer, name, error_messages, answer_store, metadata, group_instance=group_instance)
+        name = answer.get('label') or get_question_title(question, answer_store, schema, metadata)
+        answer_fields[answer['id']] = get_field(answer, name, error_messages, answer_store, metadata)
 
     return answer_fields
 
@@ -308,7 +307,7 @@ def map_detail_answer_errors(errors, answer_json):
     return detail_answer_errors
 
 
-def generate_form(schema, block_json, answer_store, metadata, group_instance, group_instance_id, data=None, formdata=None):
+def generate_form(schema, block_json, answer_store, metadata, data=None, formdata=None):
     class DynamicForm(QuestionnaireForm):
         pass
 
@@ -321,14 +320,13 @@ def generate_form(schema, block_json, answer_store, metadata, group_instance, gr
             schema,
             answer_store,
             metadata,
-            group_instance,
-            group_instance_id,
         ))
 
     for answer_id, field in answer_fields.items():
         setattr(DynamicForm, answer_id, field)
 
     if formdata:
+        formdata = MultiDict(formdata)
         formdata = MultiDict(formdata)
 
     return DynamicForm(schema, block_json, answer_store, metadata, data=data, formdata=formdata)

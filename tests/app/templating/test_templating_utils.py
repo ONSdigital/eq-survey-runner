@@ -9,7 +9,7 @@ class TestTemplatingUtils(unittest.TestCase):
         expected_value = ''
         test_schema = {'title': expected_value}
 
-        actual_value = get_question_title(test_schema, None, None, None, None)
+        actual_value = get_question_title(test_schema, None, None, None)
 
         self.assertEqual(expected_value, actual_value)
 
@@ -18,14 +18,14 @@ class TestTemplatingUtils(unittest.TestCase):
         test_schema = {}
 
         with patch('app.templating.utils.get_title_from_titles', return_value='TitlesElement'):
-            actual_value = get_question_title(test_schema, None, None, None, None)
+            actual_value = get_question_title(test_schema, None, None, None)
             self.assertEqual(expected_value, actual_value)
 
     def test_get_question_title_title_returned_if_present(self):
         expected_value = 'MyTitle'
         test_schema = {'title': expected_value}
 
-        actual_value = get_question_title(test_schema, None, None, None, None)
+        actual_value = get_question_title(test_schema, None, None, None)
 
         self.assertEqual(expected_value, actual_value)
 
@@ -33,7 +33,7 @@ class TestTemplatingUtils(unittest.TestCase):
         expected_value = 'MyTitle'
         test_schema = {'titles': [{'value': expected_value}]}
 
-        actual_value = get_question_title(test_schema, None, None, None, None)
+        actual_value = get_question_title(test_schema, None, None, None)
         self.assertEqual(expected_value, actual_value)
 
     def test_evaluates_when_rule_if_present(self):
@@ -51,5 +51,5 @@ class TestTemplatingUtils(unittest.TestCase):
             }
 
         with patch('app.templating.utils.evaluate_when_rules', return_value=True):
-            actual_value = get_question_title(test_schema, None, None, None, None)
+            actual_value = get_question_title(test_schema, None, None, None)
             self.assertEqual(expected_value, actual_value)

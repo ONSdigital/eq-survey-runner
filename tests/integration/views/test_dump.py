@@ -1,8 +1,5 @@
 import json
 
-from mock import patch
-from werkzeug.datastructures import MultiDict
-
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -68,16 +65,10 @@ class TestDumpAnswers(IntegrationTestCase):
             'answers': [
                 {
                     'value': '',
-                    'answer_instance': 0,
-                    'group_instance': 0,
-                    'group_instance_id': None,
                     'answer_id': 'other-answer-mandatory',
                 },
                 {
                     'value': 'Toast',
-                    'answer_instance': 0,
-                    'group_instance': 0,
-                    'group_instance_id': None,
                     'answer_id': 'radio-mandatory-answer',
                 }
             ]
@@ -165,8 +156,7 @@ class TestDumpSubmission(IntegrationTestCase):
         self.launchSurvey('test', 'radio_mandatory', roles=['dumper'])
 
         # When I submit an answer
-        with patch('app.helpers.schema_helpers.uuid4', side_effect=range(10)):
-            self.post(post_data={'radio-mandatory-answer': 'Coffee'})
+        self.post(post_data={'radio-mandatory-answer': 'Coffee'})
 
         # And I attempt to dump the submission payload
         self.get('/dump/submission')
@@ -197,9 +187,6 @@ class TestDumpSubmission(IntegrationTestCase):
                 'data': [
                     {
                         'answer_id': 'radio-mandatory-answer',
-                        'answer_instance': 0,
-                        'group_instance': 0,
-                        'group_instance_id': None,
                         'value': 'Coffee',
                     },
                 ],
@@ -214,25 +201,3 @@ class TestDumpSubmission(IntegrationTestCase):
         # Enable full dictionary diffs on test failure
         self.maxDiff = None
         self.assertDictEqual(actual, expected)
-
-    def test_dump_submission_repeating_groups(self):
-        """Regression test to ensure that surveys with repeating groups can be correctly dumped"""
-        self.launchSurvey('test', 'repeating_household_routing', roles=['dumper'])
-
-        form_data = MultiDict()
-        form_data.add('household-0-first-name', 'Joe')
-        form_data.add('household-0-middle-names', '')
-        form_data.add('household-0-last-name', 'Bloggs')
-        form_data.add('household-1-first-name', 'Jane')
-        form_data.add('household-1-middle-names', '')
-        form_data.add('household-1-last-name', 'Doe')
-        self.post(form_data)
-
-        # Check that's submitted correctly, else we don't have `group_instance > 0` on any answers
-        self.assertInBody('Is that everyone?')
-
-        # And I attempt to dump the submission payload
-        self.get('/dump/submission')
-
-        # Then I get a 200 OK response
-        self.assertStatusOK()

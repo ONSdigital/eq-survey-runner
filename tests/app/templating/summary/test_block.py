@@ -33,7 +33,7 @@ class TestSection(TestCase):
         with patch('app.templating.summary.block.Question', return_value=get_mock_question('A Question')), \
                 patch('app.templating.summary.block.evaluate_skip_conditions', return_value=False), \
                 patch('app.templating.summary.block.url_for', return_value='http://a.url/'):
-            block = Block(block_schema, 'group_id', self.answer_store, self.metadata, self.schema, 0)
+            block = Block(block_schema, self.answer_store, self.metadata, self.schema)
 
         # Then
         self.assertEqual(block.id, 'block_id')
@@ -51,7 +51,7 @@ class TestSection(TestCase):
                    side_effect=[get_mock_question('A Question'), get_mock_question('A Second Question')]), \
                 patch('app.templating.summary.block.evaluate_skip_conditions', return_value=False), \
                 patch('app.templating.summary.block.url_for', return_value='http://a.url/'):
-            block = Block(block_schema, 'group_id', self.answer_store, self.metadata, self.schema, 0)
+            block = Block(block_schema, self.answer_store, self.metadata, self.schema)
 
         # Then
         self.assertEqual(len(block.questions), 2)
@@ -70,7 +70,7 @@ class TestSection(TestCase):
                 patch('app.templating.summary.block.evaluate_skip_conditions', side_effect=[False, True]), \
                 patch('app.templating.summary.block.url_for', return_value='http://a.url/'):
             # When
-            block = Block(block_schema, 'group_id', self.answer_store, self.metadata, self.schema, 0)
+            block = Block(block_schema, self.answer_store, self.metadata, self.schema)
 
         # Then
         patched_question_context.assert_called_once()

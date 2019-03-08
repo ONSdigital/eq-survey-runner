@@ -7,7 +7,7 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
 
   beforeEach(function() {
     return helpers.openQuestionnaire('test_mutually_exclusive.json').then(() => {
-          return browser.click(helpers.navigationLink('Currency'));
+          return browser.url('/questionnaire/mutually-exclusive-currency');
         });
   });
 

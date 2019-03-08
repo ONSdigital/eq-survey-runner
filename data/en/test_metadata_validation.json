@@ -1,5 +1,5 @@
 {
-    "data_version": "0.0.1",
+    "data_version": "0.0.2",
     "description": "Test Metadata validations",
     "metadata": [{
             "name": "ref_p_start_date",

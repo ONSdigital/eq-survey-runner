@@ -19,8 +19,6 @@ def get_basic_input():
         }],
         'COMPLETED_BLOCKS': [
             {
-                'group_id': 'a-test-group',
-                'group_instance': 0,
                 'block_id': 'a-test-block',
             }
         ],
@@ -43,8 +41,6 @@ def get_input_answers_dict():
         },
         'COMPLETED_BLOCKS': [
             {
-                'group_id': 'a-test-group',
-                'group_instance': 0,
                 'block_id': 'a-test-block',
             }
         ],
@@ -53,17 +49,17 @@ def get_input_answers_dict():
         },
     }
 
+
 class TestQuestionnaireStore(TestCase):
 
     def setUp(self):
 
         def get_user_data():
             """Fake get_user_data implementation for storage"""
-            return (self.input_data, 1)
+            return self.input_data, 1
 
-        def set_output_data(data, version):
+        def set_output_data(data):
             self.output_data = data
-            self.output_version = version
 
         # Storage class mocking
         self.storage = MagicMock()
@@ -195,8 +191,8 @@ class TestQuestionnaireStore(TestCase):
 
     def test_questionnaire_store_removes_completed_location_from_many(self):
         store = QuestionnaireStore(self.storage)
-        location = Location('first-test-group', 0, 'a-test-block')
-        location2 = Location('second-test-group', 0, 'a-test-block')
+        location = Location('a-test-block')
+        location2 = Location('a-test-block')
         store.completed_blocks = [
             location,
             location2,
@@ -205,44 +201,6 @@ class TestQuestionnaireStore(TestCase):
         store.remove_completed_blocks(location=location)
         # Then
         self.assertEqual(store.completed_blocks, [location2])
-
-    def test_questionnaire_store_removes_completed_location_by_group(self):
-        store = QuestionnaireStore(self.storage)
-        location = Location('first-test-group', 0, 'a-test-block')
-        location2 = Location('second-test-group', 0, 'a-test-block')
-        store.completed_blocks = [
-            location,
-            location2,
-        ]
-        # When
-        store.remove_completed_blocks(group_id='first-test-group', block_id='a-test-block')
-        # Then
-        self.assertEqual(store.completed_blocks, [location2])
-
-    def test_questionnaire_store_raises_on_invalid_group_remove_completed_blocks_call(self):
-        store = QuestionnaireStore(self.storage)
-        location = Location('first-test-group', 0, 'a-test-block')
-        location2 = Location('second-test-group', 0, 'a-test-block')
-        store.completed_blocks = [
-            location,
-            location2,
-        ]
-        # When / Then
-        with self.assertRaises(KeyError):
-            store.remove_completed_blocks(block_id='a-test-block')
-
-
-    def test_questionnaire_store_raises_on_invalid_location_remove_completed_blocks_call(self):
-        store = QuestionnaireStore(self.storage)
-        location = Location('first-test-group', 0, 'a-test-block')
-        location2 = Location('second-test-group', 0, 'a-test-block')
-        store.completed_blocks = [
-            location,
-            location2,
-        ]
-        # When / Then
-        with self.assertRaises(TypeError):
-            store.remove_completed_blocks(location={'group_id': 'a-group', 'group_instance': 0, 'block-id': 'a-block-id'})
 
     def test_questionnaire_store_raises_when_writing_to_metadata(self):
         store = QuestionnaireStore(self.storage)

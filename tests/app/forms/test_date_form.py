@@ -219,8 +219,6 @@ class TestDateForm(AppContextTestCase):
 
         test_answer_id = Answer(
             answer_id='date',
-            answer_instance=1,
-            group_instance=0,
             value='2018-03-20',
         )
         store.add_or_update(test_answer_id)
@@ -253,8 +251,6 @@ class TestDateForm(AppContextTestCase):
 
         test_answer_id = Answer(
             answer_id='date',
-            answer_instance=1,
-            group_instance=0,
             value='2018-03-20',
         )
         store.add_or_update(test_answer_id)

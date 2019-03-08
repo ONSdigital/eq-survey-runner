@@ -143,14 +143,6 @@ class TestTemplateRenderer(AppContextTestCase):
 
         self.assertEqual(safe_content, 'Your answer is … to …')
 
-    def test_should_replace_jinja_template_variable_containing_special_characters(self):
-        content = 'How is {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }} ' \
-                  'related to the people below?'
-
-        safe_content = TemplateRenderer.safe_content(content)
-
-        self.assertEqual(safe_content, 'How is … related to the people below?')
-
     def test_should_replace_jinja_template_variable_containing_function(self):
         content = 'Is {{ format_date_range(metadata.ref_p_start_date, metadata.ref_p_end_date)}} correct?'
 

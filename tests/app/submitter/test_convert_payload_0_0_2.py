@@ -10,15 +10,10 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
 
     def test_convert_answers_to_payload_0_0_2(self):
         with self._app.test_request_context():
-            routing_path = [Location(group_id='personal details', group_instance=0, block_id='about you'),
-                            Location(group_id='household', group_instance=0, block_id='where you live'),
-                            Location(group_id='household', group_instance=1, block_id='where you live')]
-            answers = [create_answer('name', 'Joe Bloggs', group_id='personal details', block_id='about you'),
-                       create_answer('name', 'Fred Bloggs', group_id='personal details', block_id='about you',
-                                     answer_instance=1),
-                       create_answer('address', '62 Somewhere', group_id='household', block_id='where you live'),
-                       create_answer('address', '63 Somewhere', group_id='household', block_id='where you live',
-                                     group_instance=1)]
+            routing_path = [Location(block_id='about you'),
+                            Location(block_id='where you live')]
+            answers = [create_answer('name', 'Joe Bloggs', ),
+                       create_answer('address', '62 Somewhere')]
 
             questionnaire = {
                 'survey_id': '021',
@@ -74,28 +69,16 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
 
             # Then
-            self.assertEqual(len(answer_object['data']), 4)
-            self.assertEqual(answer_object['data'][0]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
+            self.assertEqual(len(answer_object['data']), 2)
             self.assertEqual(answer_object['data'][0]['value'], 'Joe Bloggs')
-
-            self.assertEqual(answer_object['data'][1]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][1]['answer_instance'], 1)
-            self.assertEqual(answer_object['data'][1]['value'], 'Fred Bloggs')
-
-            self.assertEqual(answer_object['data'][2]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][2]['answer_instance'], 0)
-            self.assertEqual(answer_object['data'][2]['value'], '62 Somewhere')
-
-            self.assertEqual(answer_object['data'][3]['group_instance'], 1)
-            self.assertEqual(answer_object['data'][3]['answer_instance'], 0)
-            self.assertEqual(answer_object['data'][3]['value'], '63 Somewhere')
+            self.assertEqual(answer_object['data'][1]['value'], '62 Somewhere')
 
     def test_convert_payload_0_0_2_multiple_answers(self):
         with self._app.test_request_context():
-            routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
+            routing_path = [Location(block_id='crisps')]
             answers = [
-                create_answer('crisps-answer', ['Ready salted', 'Sweet chilli'], group_id='favourite-food', block_id='crisps')]
+                create_answer('crisps-answer', ['Ready salted', 'Sweet chilli'])
+            ]
 
             questionnaire = make_schema('0.0.2', 'section-1', 'favourite-food', 'crisps', [
                 {
@@ -128,14 +111,12 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
-            self.assertEqual(answer_object['data'][0]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
             self.assertEqual(answer_object['data'][0]['value'], ['Ready salted', 'Sweet chilli'])
 
     def test_radio_answer(self):
         with self._app.test_request_context():
-            routing_path = [Location(group_id='radio-group', group_instance=0, block_id='radio-block')]
-            user_answer = [create_answer('radio-answer', 'Coffee', group_id='radio-group', block_id='radio-block')]
+            routing_path = [Location(block_id='radio-block')]
+            user_answer = [create_answer('radio-answer', 'Coffee')]
 
             questionnaire = make_schema('0.0.2', 'section-1', 'radio-group', 'radio-block', [
                 {
@@ -165,13 +146,11 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 1)
             self.assertEqual(answer_object['data'][0]['value'], 'Coffee')
-            self.assertEqual(answer_object['data'][0]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
     def test_number_answer(self):
         with self._app.test_request_context():
-            routing_path = [Location(group_id='number-group', group_instance=0, block_id='number-block')]
-            user_answer = [create_answer('number-answer', 1.755, group_id='number-group', block_id='number-block')]
+            routing_path = [Location(block_id='number-block')]
+            user_answer = [create_answer('number-answer', 1.755)]
 
             questionnaire = make_schema('0.0.2', 'section-1', 'number-group', 'number-block', [
                 {
@@ -191,13 +170,11 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 1)
             self.assertEqual(answer_object['data'][0]['value'], 1.755)
-            self.assertEqual(answer_object['data'][0]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
     def test_percentage_answer(self):
         with self._app.test_request_context():
-            routing_path = [Location(group_id='percentage-group', group_instance=0, block_id='percentage-block')]
-            user_answer = [create_answer('percentage-answer', 99, group_id='percentage-group', block_id='percentage-block')]
+            routing_path = [Location(block_id='percentage-block')]
+            user_answer = [create_answer('percentage-answer', 99)]
 
             questionnaire = make_schema('0.0.2', 'section-1', 'percentage-group', 'percentage-block', [
                 {
@@ -217,13 +194,11 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 1)
             self.assertEqual(answer_object['data'][0]['value'], 99)
-            self.assertEqual(answer_object['data'][0]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
     def test_textarea_answer(self):
         with self._app.test_request_context():
-            routing_path = [Location(group_id='textarea-group', group_instance=0, block_id='textarea-block')]
-            user_answer = [create_answer('textarea-answer', 'This is an example text!', group_id='textarea-group', block_id='textarea-block')]
+            routing_path = [Location(block_id='textarea-block')]
+            user_answer = [create_answer('textarea-answer', 'This is an example text!')]
 
             questionnaire = make_schema('0.0.2', 'section-1', 'textarea-group', 'textarea-block', [
                 {
@@ -243,13 +218,11 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 1)
             self.assertEqual(answer_object['data'][0]['value'], 'This is an example text!')
-            self.assertEqual(answer_object['data'][0]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
     def test_currency_answer(self):
         with self._app.test_request_context():
-            routing_path = [Location(group_id='currency-group', group_instance=0, block_id='currency-block')]
-            user_answer = [create_answer('currency-answer', 100, group_id='currency-group', block_id='currency-block')]
+            routing_path = [Location(block_id='currency-block')]
+            user_answer = [create_answer('currency-answer', 100)]
 
             questionnaire = make_schema('0.0.2', 'section-1', 'currency-group', 'currency-block', [
                 {
@@ -269,13 +242,11 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 1)
             self.assertEqual(answer_object['data'][0]['value'], 100)
-            self.assertEqual(answer_object['data'][0]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
     def test_dropdown_answer(self):
         with self._app.test_request_context():
-            routing_path = [Location(group_id='dropdown-group', group_instance=0, block_id='dropdown-block')]
-            user_answer = [create_answer('dropdown-answer', 'Rugby is better!', group_id='dropdown-group', block_id='dropdown-block')]
+            routing_path = [Location(block_id='dropdown-block')]
+            user_answer = [create_answer('dropdown-answer', 'Rugby is better!')]
 
             questionnaire = make_schema('0.0.2', 'section-1', 'dropdown-group', 'dropdown-block', [
                 {
@@ -309,14 +280,12 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 1)
             self.assertEqual(answer_object['data'][0]['value'], 'Rugby is better!')
-            self.assertEqual(answer_object['data'][0]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
     def test_date_answer(self):
         with self._app.test_request_context():
-            routing_path = [Location(group_id='date-group', group_instance=0, block_id='date-block')]
-            user_answer = [create_answer('single-date-answer', '01-01-1990', group_id='date-group', block_id='date-block'),
-                           create_answer('month-year-answer', '01-1990', group_id='date-group', block_id='date-block')]
+            routing_path = [Location(block_id='date-block')]
+            user_answer = [create_answer('single-date-answer', '01-01-1990'),
+                           create_answer('month-year-answer', '01-1990')]
 
             questionnaire = make_schema('0.0.2', 'section-1', 'date-group', 'date-block', [
                 {
@@ -337,14 +306,12 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             self.assertEqual(len(answer_object['data']), 1)
 
             self.assertEqual(answer_object['data'][0]['value'], '01-01-1990')
-            self.assertEqual(answer_object['data'][0]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
     def test_month_year_date_answer(self):
         with self._app.test_request_context():
-            routing_path = [Location(group_id='date-group', group_instance=0, block_id='date-block')]
-            user_answer = [create_answer('single-date-answer', '01-01-1990', group_id='date-group', block_id='date-block'),
-                           create_answer('month-year-answer', '01-1990', group_id='date-group', block_id='date-block')]
+            routing_path = [Location(block_id='date-block')]
+            user_answer = [create_answer('single-date-answer', '01-01-1990'),
+                           create_answer('month-year-answer', '01-1990')]
 
             questionnaire = make_schema('0.0.2', 'section-1', 'date-group', 'date-block', [
                 {
@@ -365,13 +332,11 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             self.assertEqual(len(answer_object['data']), 1)
 
             self.assertEqual(answer_object['data'][0]['value'], '01-1990')
-            self.assertEqual(answer_object['data'][0]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
 
     def test_unit_answer(self):
         with self._app.test_request_context():
-            routing_path = [Location(group_id='unit-group', group_instance=0, block_id='unit-block')]
-            user_answer = [create_answer('unit-answer', 10, group_id='unit-group', block_id='unit-block')]
+            routing_path = [Location(block_id='unit-block')]
+            user_answer = [create_answer('unit-answer', 10)]
 
             questionnaire = make_schema('0.0.2', 'section-1', 'unit-group', 'unit-block', [
                 {
@@ -391,60 +356,3 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             # Then
             self.assertEqual(len(answer_object['data']), 1)
             self.assertEqual(answer_object['data'][0]['value'], 10)
-            self.assertEqual(answer_object['data'][0]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
-
-    def test_relationship_answer(self):
-        with self._app.test_request_context():
-            routing_path = [Location(group_id='relationship-group', group_instance=0, block_id='relationship-block')]
-            user_answer = [create_answer('relationship-answer', 'Unrelated', group_id='relationship-group', block_id='relationship-block'),
-                           create_answer('relationship-answer', 'Partner', group_id='relationship-group', block_id='relationship-block',
-                                         answer_instance=1),
-                           create_answer('relationship-answer', 'Husband or wife', group_id='relationship-group', block_id='relationship-block',
-                                         answer_instance=2)]
-
-            questionnaire = make_schema('0.0.2', 'section-1', 'relationship-group', 'relationship-block', [
-                {
-                    'id': 'relationship-question',
-                    'type': 'Relationship',
-                    'answers': [
-                        {
-                            'id': 'relationship-answer',
-                            'q_code': '1',
-                            'type': 'Relationship',
-                            'options': [
-                                {
-                                    'label': 'Husband or wife',
-                                    'value': 'Husband or wife'
-                                },
-                                {
-                                    'label': 'Partner',
-                                    'value': 'Partner'
-                                },
-                                {
-                                    'label': 'Unrelated',
-                                    'value': 'Unrelated'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ])
-
-            # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
-
-            # Then
-            self.assertEqual(len(answer_object['data']), 3)
-            self.assertEqual(answer_object['data'][0]['value'], 'Unrelated')
-
-            self.assertEqual(answer_object['data'][0]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
-
-            self.assertEqual(answer_object['data'][1]['value'], 'Partner')
-            self.assertEqual(answer_object['data'][1]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][1]['answer_instance'], 1)
-
-            self.assertEqual(answer_object['data'][2]['value'], 'Husband or wife')
-            self.assertEqual(answer_object['data'][2]['group_instance'], 0)
-            self.assertEqual(answer_object['data'][2]['answer_instance'], 2)

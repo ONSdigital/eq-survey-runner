@@ -2,8 +2,6 @@ from collections import OrderedDict
 
 from flask_babel import force_locale
 
-from app.questionnaire.answer_dependencies import get_answer_dependencies
-from app.questionnaire.group_dependencies import get_group_dependencies
 from app.validation.error_messages import error_messages
 
 DEFAULT_LANGUAGE_CODE = 'en'
@@ -35,14 +33,6 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def answers(self):
         return self._answers_by_id.values()
 
-    @property
-    def answer_dependencies(self):
-        return self._answer_dependencies
-
-    @property
-    def group_dependencies(self):
-        return self._group_dependencies.group_dependencies
-
     def get_section(self, section_id):
         return self._sections_by_id.get(section_id)
 
@@ -63,13 +53,6 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         group = self.get_group(block['parent_id'])
         return self.get_section(group['parent_id'])
 
-    def get_groups_that_repeat_with_answer_id(self, answer_id):
-        for group in self.groups:
-            repeating_rule = self.get_repeat_rule(group)
-            if repeating_rule:
-                if repeating_rule.get('answer_id') == answer_id:
-                    yield group
-
     def group_has_questions(self, group_id):
         for block in self.get_group(group_id)['blocks']:
             if block['type'] == 'Question':
@@ -82,13 +65,9 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         if group:
             return group['blocks'][0]['id']
 
-    def get_answer_ids_for_group(self, group_id):
-        answer_ids = []
-        group = self.get_group(group_id)
-        for block in group['blocks']:
-            answer_ids.extend(self.get_answer_ids_for_block(block['id']))
-
-        return answer_ids
+    def get_group_by_block_id(self, block_id):
+        block = self.get_block(block_id)
+        return self.get_group(block['parent_id'])
 
     def get_answers_by_id_for_block(self, block_id):
         block = self.get_block(block_id)
@@ -110,48 +89,11 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def get_answers_for_block(self, block_id):
         return list(self.get_answers_by_id_for_block(block_id).values())
 
-    def get_answers_that_repeat_in_block(self, block_id):
-        block = self.get_block(block_id)
-
-        for question in block.get('questions', []):
-            if question['type'] == 'RepeatingAnswer':
-                for answer in question['answers']:
-                    yield answer
-
     def get_summary_and_confirmation_blocks(self):
         return [
             block['id'] for block in self.blocks
             if block['type'] in ('Summary', 'Confirmation')
         ]
-
-    def get_group_dependencies(self, group_id):
-        return self.group_dependencies.get(group_id)
-
-    def get_group_dependencies_group_drivers(self):
-        return self.group_dependencies['group_drivers']
-
-    def get_group_dependencies_block_drivers(self):
-        return self.group_dependencies['block_drivers']
-
-    def location_requires_group_instance(self, location):
-        return bool(self.group_dependencies.get(location.group_id)
-                    or location.group_id in self.get_group_dependencies_group_drivers()
-                    or location.block_id in self.get_group_dependencies_group_drivers()
-                    or location.block_id in self.get_group_dependencies_block_drivers())
-
-    def block_has_question_type(self, block_id, question_type):
-        block = self.get_block(block_id)
-        for question in block.get('questions', []):
-            if question['type'] == question_type:
-                return True
-        return False
-
-    @staticmethod
-    def get_repeat_rule(group):
-        if 'routing_rules' in group:
-            for rule in group['routing_rules']:
-                if 'repeat' in rule.keys():
-                    return rule['repeat']
 
     @staticmethod
     def get_questions_for_block(block_json):
@@ -190,32 +132,6 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
         return False
 
-    def is_repeating_answer_type(self, answer_id):
-        answer = self.get_answer(answer_id)
-        question = self.get_question(answer['parent_id'])
-        return answer.get('type') == 'Checkbox' or question['type'] == 'RepeatingAnswer'
-
-    def block_drives_multiple_groups(self, block_id):
-        driver_count = 0
-
-        for driven_group in self.group_dependencies:
-            if driven_group in ['group_drivers', 'block_drivers']:
-                continue
-
-            if block_id in self.group_dependencies[driven_group]:
-                driver_count += 1
-
-        return driver_count > 1
-
-    def answer_is_in_repeating_group(self, answer_id):
-        answer = self.get_answer(answer_id)
-        question = self.get_question(answer['parent_id'])
-        block = self.get_block(question['parent_id'])
-        group = self.get_group(block['parent_id'])
-
-        repeat_rule = self.get_repeat_rule(group)
-        return repeat_rule
-
     def _parse_schema(self):
         self._sections_by_id = self._get_sections_by_id()
         self._groups_by_id = get_nested_schema_objects(self._sections_by_id, 'groups')
@@ -223,8 +139,6 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         self._questions_by_id = get_nested_schema_objects(self._blocks_by_id, 'questions')
         self._answers_by_id = get_nested_schema_objects(self._questions_by_id, 'answers')
         self.error_messages = self._get_error_messages()
-        self._answer_dependencies = get_answer_dependencies(self)
-        self._group_dependencies = get_group_dependencies(self)
 
     def _get_sections_by_id(self):
         return OrderedDict(
@@ -241,25 +155,6 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
             messages.update(self.json['messages'])
 
         return messages
-
-    def _get_answers_by_id_for_question(self, question_id):
-        question = self.get_question(question_id)
-
-        return {
-            answer['id']: answer
-            for answer in question.get('answers', [])
-        }
-
-    def get_answer_ids_for_question(self, question_id):
-        """ get answer ids associated with a specific question_id """
-        return list(self._get_answers_by_id_for_question(question_id).keys())
-
-    def get_block_id_for_answer_id(self, answer_id):
-        answer = self.get_answer(answer_id)
-        question = self.get_question(answer['parent_id'])
-        block = self.get_block(question['parent_id'])
-
-        return block['id']
 
 
 def get_nested_schema_objects(parent_object, list_key):

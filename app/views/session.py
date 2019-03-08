@@ -10,7 +10,7 @@ from werkzeug.exceptions import Unauthorized
 
 from app.authentication.authenticator import store_session, decrypt_token
 from app.authentication.jti_claim_storage import JtiTokenUsed, use_jti_claim
-from app.globals import get_completeness, get_session_timeout_in_seconds
+from app.globals import get_session_timeout_in_seconds, get_completed_blocks
 from app.helpers.path_finder_helper import path_finder
 from app.questionnaire.router import Router
 from app.storage.metadata_parser import validate_metadata, parse_runner_claims
@@ -75,12 +75,12 @@ def login():
         cookie_session['account_service_log_out_url'] = claims.get('account_service_log_out_url')
 
     routing_path = path_finder.get_full_routing_path()
-    completeness = get_completeness(current_user)
-    router = Router(g.schema, routing_path, completeness)
+    completed_locations = get_completed_blocks(current_user)
+    router = Router(g.schema, routing_path, completed_locations=completed_locations)
 
     next_location = router.get_next_location()
 
-    return redirect(next_location.url(claims))
+    return redirect(next_location.url())
 
 
 def validate_jti(decrypted_token):

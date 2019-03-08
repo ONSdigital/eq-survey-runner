@@ -17,7 +17,7 @@ def convert_answers_to_payload_0_0_1(answer_store, schema, routing_path):
     data = OrderedDict()
     for location in routing_path:
         answer_ids = schema.get_answer_ids_for_block(location.block_id)
-        answers_in_block = answer_store.filter(answer_ids, location.group_instance)
+        answers_in_block = answer_store.filter(answer_ids)
         answer_schema_list = schema.get_answers_by_id_for_block(location.block_id)
 
         for answer in answers_in_block:
@@ -29,7 +29,7 @@ def convert_answers_to_payload_0_0_1(answer_store, schema, routing_path):
                 if answer_schema['type'] == 'Checkbox':
                     data.update(_get_checkbox_answer_data(answer_store, answer_schema, value))
                 elif 'q_code' in answer_schema:
-                    answer_data = _get_answer_data(data, answer_schema['q_code'], value)
+                    answer_data = _encode_value(value)
                     if answer_data is not None:
                         data[answer_schema['q_code']] = _format_downstream_answer(answer_schema['type'], answer['value'], answer_data)
 
@@ -46,17 +46,6 @@ def _format_downstream_answer(answer_type, answer_value, answer_data):
     return answer_data
 
 
-def _get_answer_data(original_data, item_code, value):
-    if item_code in original_data:
-        data_to_return = original_data[item_code]
-        if not isinstance(data_to_return, list):
-            data_to_return = [data_to_return]
-        data_to_return.append(_encode_value(value))
-
-        return data_to_return
-    return _encode_value(value)
-
-
 def _get_checkbox_answer_data(answer_store, answer_schema, value):
     qcodes_and_values = []
     for user_answer in value:
@@ -66,9 +55,6 @@ def _get_checkbox_answer_data(answer_store, answer_schema, value):
         if option:
             if 'detail_answer' in option:
                 filtered = answer_store.filter(answer_ids=[option['detail_answer']['id']])
-
-                if filtered.count() > 1:
-                    raise Exception('Multiple answers found for {}'.format(option['detail_answer']['id']))
 
                 # if the user has selected an option with a detail answer we need to find the detail answer value it refers to.
                 # the detail answer value can be empty, in this case we just use the main value (e.g. other)

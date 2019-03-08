@@ -7,7 +7,7 @@ describe('Component: Mutually Exclusive Dropdown With Single Checkbox Override',
 
   beforeEach(function() {
     return helpers.openQuestionnaire('test_mutually_exclusive.json').then(() => {
-          return browser.click(helpers.navigationLink('Dropdown'));
+          return browser.url('/questionnaire/mutually-exclusive-dropdown');
         });
   });
 

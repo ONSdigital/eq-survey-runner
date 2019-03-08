@@ -37,7 +37,7 @@ class TestViewSubmission(IntegrationTestCase):
         self.assertInBody('View and print a copy of your answers')
 
         # go to the view submission page
-        self.get('questionnaire/test/view_submitted_response/view-submission')
+        self.get('submitted/view-submission')
 
         # check we're on the view submission page
         self.assertInUrl('view-submission')
@@ -54,13 +54,13 @@ class TestViewSubmission(IntegrationTestCase):
         self.assertNotInBody('data-ga-action="Edit click"')
 
     def test_view_submission_sign_out(self):
-        self.get('questionnaire/test/view_submitted_response/view-submission')
+        self.get('submitted/view-submission')
 
         self.post(action='sign_out')
         self.assertEqualUrl('/signed-out')
 
     def test_view_submission_post_no_action(self):
-        self.get('questionnaire/test/view_submitted_response/view-submission')
+        self.get('submitted/view-submission')
 
         self.post(action=None)
         self.assertInUrl('view-submission')
@@ -97,7 +97,7 @@ class TestCantViewSubmission(IntegrationTestCase):
         self.assertNotInBody('View and print a copy of your answers')
 
         # try go to the view submission page anyway
-        self.get('questionnaire/test/currency/view-submission')
+        self.get('submitted/view-submission')
 
         # check we're redirected back to thank you page
         self.assertInUrl('thank-you')
@@ -109,7 +109,7 @@ class TestCantViewSubmission(IntegrationTestCase):
         self.assertInBody('What is your favourite breakfast food')
 
         # try to get the view-submission page
-        self.get('questionnaire/test/view_submitted_response/view-submission')
+        self.get('submitted/view-submission')
 
         # check we're redirected back to first page
         self.assertInBody('What is your favourite breakfast food')
@@ -150,7 +150,7 @@ class TestViewSubmissionTradingAs(IntegrationTestCase):
         self.post(action=None)
 
         # go to the view submission page
-        self.get('questionnaire/test/view_submitted_response/view-submission')
+        self.get('submitted/view-submission')
 
         # check we're on the view submission page, and trading as value is displayed
         self.assertInUrl('view-submission')
@@ -205,7 +205,7 @@ class TestViewSubmissionTradingAs(IntegrationTestCase):
             self.post(action=None)
 
             # go to the view submission page
-            self.get('questionnaire/test/view_submitted_response/view-submission')
+            self.get('submitted/view-submission')
 
             # check we're on the view submission page, and trading as value is displayed
             self.assertInUrl('view-submission')
@@ -262,7 +262,7 @@ class TestViewSubmissionTradingAs(IntegrationTestCase):
             self.post(action=None)
 
             # go to the view submission page
-            self.get('questionnaire/test/view_submitted_response/view-submission')
+            self.get('submitted/view-submission')
 
             # check we're on the view submission page, and trading as value is displayed
             self.assertInUrl('view-submission')
@@ -296,7 +296,7 @@ class TestViewSubmissionCompression(IntegrationTestCase):
             self.post(action=None)
 
             # go to the view submission page
-            self.get('questionnaire/test/view_submitted_response/view-submission')
+            self.get('submitted/view-submission')
 
             # check we're on the view submission page
             self.assertInUrl('view-submission')

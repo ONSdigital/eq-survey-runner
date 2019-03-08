@@ -21,20 +21,14 @@ class TestNumberRangeValidator(unittest.TestCase):
 
         answer1 = Answer(
             answer_id='set-minimum',
-            answer_instance=1,
-            group_instance=1,
             value=10,
         )
         answer2 = Answer(
             answer_id='set-maximum',
-            answer_instance=1,
-            group_instance=1,
             value=20,
         )
         answer3 = Answer(
             answer_id='set-maximum-cat',
-            answer_instance=1,
-            group_instance=1,
             value='cat',
         )
 
