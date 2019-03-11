@@ -27,7 +27,7 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
                                 'blocks': [
                                     {
                                         'id': 'about you',
-                                        'questions': [
+                                        'question':
                                             {
                                                 'id': 'crisps-question',
                                                 'answers': [
@@ -37,7 +37,6 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
                                                     }
                                                 ]
                                             }
-                                        ]
                                     }
                                 ]
                             },
@@ -46,7 +45,7 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
                                 'blocks': [
                                     {
                                         'id': 'where you live',
-                                        'questions': [
+                                        'question':
                                             {
                                                 'id': 'crisps-question',
                                                 'answers': [
@@ -56,7 +55,6 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
                                                     }
                                                 ]
                                             }
-                                        ]
                                     }
                                 ]
                             }
@@ -66,7 +64,8 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             }
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(answers), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 2)
@@ -80,34 +79,34 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
                 create_answer('crisps-answer', ['Ready salted', 'Sweet chilli'])
             ]
 
-            questionnaire = make_schema('0.0.2', 'section-1', 'favourite-food', 'crisps', [
-                {
-                    'id': 'crisps-question',
-                    'answers': [
-                        {
-                            'id': 'crisps-answer',
-                            'type': 'Checkbox',
-                            'options': [
-                                {
-                                    'label': 'Ready salted',
-                                    'value': 'Ready salted'
-                                },
-                                {
-                                    'label': 'Sweet chilli',
-                                    'value': 'Sweet chilli'
-                                },
-                                {
-                                    'label': 'Cheese and onion',
-                                    'value': 'Cheese and onion'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ])
+            questionnaire = make_schema('0.0.2', 'section-1', 'favourite-food', 'crisps', {
+                'id': 'crisps-question',
+                'answers': [
+                    {
+                        'id': 'crisps-answer',
+                        'type': 'Checkbox',
+                        'options': [
+                            {
+                                'label': 'Ready salted',
+                                'value': 'Ready salted'
+                            },
+                            {
+                                'label': 'Sweet chilli',
+                                'value': 'Sweet chilli'
+                            },
+                            {
+                                'label': 'Cheese and onion',
+                                'value': 'Cheese and onion'
+                            }
+                        ]
+                    }
+                ]
+            }
+                                        )
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(answers), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -118,30 +117,30 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(block_id='radio-block')]
             user_answer = [create_answer('radio-answer', 'Coffee')]
 
-            questionnaire = make_schema('0.0.2', 'section-1', 'radio-group', 'radio-block', [
-                {
-                    'id': 'radio-question',
-                    'answers': [
-                        {
-                            'type': 'Radio',
-                            'id': 'radio-answer',
-                            'options': [
-                                {
-                                    'label': 'Coffee',
-                                    'value': 'Coffee'
-                                },
-                                {
-                                    'label': 'Tea',
-                                    'value': 'Tea'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ])
+            questionnaire = make_schema('0.0.2', 'section-1', 'radio-group', 'radio-block', {
+                'id': 'radio-question',
+                'answers': [
+                    {
+                        'type': 'Radio',
+                        'id': 'radio-answer',
+                        'options': [
+                            {
+                                'label': 'Coffee',
+                                'value': 'Coffee'
+                            },
+                            {
+                                'label': 'Tea',
+                                'value': 'Tea'
+                            }
+                        ]
+                    }
+                ]
+            }
+                                        )
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -152,20 +151,20 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(block_id='number-block')]
             user_answer = [create_answer('number-answer', 1.755)]
 
-            questionnaire = make_schema('0.0.2', 'section-1', 'number-group', 'number-block', [
-                {
-                    'id': 'number-question',
-                    'answers': [
-                        {
-                            'id': 'number-answer',
-                            'type': 'Number'
-                        }
-                    ]
-                }
-            ])
+            questionnaire = make_schema('0.0.2', 'section-1', 'number-group', 'number-block', {
+                'id': 'number-question',
+                'answers': [
+                    {
+                        'id': 'number-answer',
+                        'type': 'Number'
+                    }
+                ]
+            }
+                                        )
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -176,20 +175,20 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(block_id='percentage-block')]
             user_answer = [create_answer('percentage-answer', 99)]
 
-            questionnaire = make_schema('0.0.2', 'section-1', 'percentage-group', 'percentage-block', [
-                {
-                    'id': 'percentage-question',
-                    'answers': [
-                        {
-                            'id': 'percentage-answer',
-                            'type': 'Percentage'
-                        }
-                    ]
-                }
-            ])
+            questionnaire = make_schema('0.0.2', 'section-1', 'percentage-group', 'percentage-block', {
+                'id': 'percentage-question',
+                'answers': [
+                    {
+                        'id': 'percentage-answer',
+                        'type': 'Percentage'
+                    }
+                ]
+            }
+                                        )
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -200,20 +199,20 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(block_id='textarea-block')]
             user_answer = [create_answer('textarea-answer', 'This is an example text!')]
 
-            questionnaire = make_schema('0.0.2', 'section-1', 'textarea-group', 'textarea-block', [
-                {
-                    'id': 'textarea-question',
-                    'answers': [
-                        {
-                            'id': 'textarea-answer',
-                            'type': 'TextArea'
-                        }
-                    ]
-                }
-            ])
+            questionnaire = make_schema('0.0.2', 'section-1', 'textarea-group', 'textarea-block', {
+                'id': 'textarea-question',
+                'answers': [
+                    {
+                        'id': 'textarea-answer',
+                        'type': 'TextArea'
+                    }
+                ]
+            }
+                                        )
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -224,20 +223,20 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(block_id='currency-block')]
             user_answer = [create_answer('currency-answer', 100)]
 
-            questionnaire = make_schema('0.0.2', 'section-1', 'currency-group', 'currency-block', [
-                {
-                    'id': 'currency-question',
-                    'answers': [
-                        {
-                            'id': 'currency-answer',
-                            'type': 'Currency'
-                        }
-                    ]
-                }
-            ])
+            questionnaire = make_schema('0.0.2', 'section-1', 'currency-group', 'currency-block', {
+                'id': 'currency-question',
+                'answers': [
+                    {
+                        'id': 'currency-answer',
+                        'type': 'Currency'
+                    }
+                ]
+            }
+                                        )
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -248,34 +247,34 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(block_id='dropdown-block')]
             user_answer = [create_answer('dropdown-answer', 'Rugby is better!')]
 
-            questionnaire = make_schema('0.0.2', 'section-1', 'dropdown-group', 'dropdown-block', [
-                {
-                    'id': 'dropdown-question',
-                    'answers': [
-                        {
-                            'id': 'dropdown-answer',
-                            'type': 'Dropdown',
-                            'options': [
-                                {
-                                    'label': 'Liverpool',
-                                    'value': 'Liverpool'
-                                },
-                                {
-                                    'label': 'Chelsea',
-                                    'value': 'Chelsea'
-                                },
-                                {
-                                    'label': 'Rugby is better!',
-                                    'value': 'Rugby is better!'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ])
+            questionnaire = make_schema('0.0.2', 'section-1', 'dropdown-group', 'dropdown-block', {
+                'id': 'dropdown-question',
+                'answers': [
+                    {
+                        'id': 'dropdown-answer',
+                        'type': 'Dropdown',
+                        'options': [
+                            {
+                                'label': 'Liverpool',
+                                'value': 'Liverpool'
+                            },
+                            {
+                                'label': 'Chelsea',
+                                'value': 'Chelsea'
+                            },
+                            {
+                                'label': 'Rugby is better!',
+                                'value': 'Rugby is better!'
+                            }
+                        ]
+                    }
+                ]
+            }
+                                        )
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -287,20 +286,20 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             user_answer = [create_answer('single-date-answer', '01-01-1990'),
                            create_answer('month-year-answer', '01-1990')]
 
-            questionnaire = make_schema('0.0.2', 'section-1', 'date-group', 'date-block', [
-                {
-                    'id': 'single-date-question',
-                    'answers': [
-                        {
-                            'id': 'single-date-answer',
-                            'type': 'Date'
-                        }
-                    ]
-                }
-            ])
+            questionnaire = make_schema('0.0.2', 'section-1', 'date-group', 'date-block', {
+                'id': 'single-date-question',
+                'answers': [
+                    {
+                        'id': 'single-date-answer',
+                        'type': 'Date'
+                    }
+                ]
+            }
+                                        )
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -313,20 +312,20 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             user_answer = [create_answer('single-date-answer', '01-01-1990'),
                            create_answer('month-year-answer', '01-1990')]
 
-            questionnaire = make_schema('0.0.2', 'section-1', 'date-group', 'date-block', [
-                {
-                    'id': 'month-year-question',
-                    'answers': [
-                        {
-                            'id': 'month-year-answer',
-                            'type': 'MonthYearDate'
-                        }
-                    ]
-                }
-            ])
+            questionnaire = make_schema('0.0.2', 'section-1', 'date-group', 'date-block', {
+                'id': 'month-year-question',
+                'answers': [
+                    {
+                        'id': 'month-year-answer',
+                        'type': 'MonthYearDate'
+                    }
+                ]
+            }
+                                        )
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -338,20 +337,20 @@ class TestConvertPayload002(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(block_id='unit-block')]
             user_answer = [create_answer('unit-answer', 10)]
 
-            questionnaire = make_schema('0.0.2', 'section-1', 'unit-group', 'unit-block', [
-                {
-                    'id': 'unit-question',
-                    'answers': [
-                        {
-                            'id': 'unit-answer',
-                            'type': 'Unit'
-                        }
-                    ]
-                }
-            ])
+            questionnaire = make_schema('0.0.2', 'section-1', 'unit-group', 'unit-block', {
+                'id': 'unit-question',
+                'answers': [
+                    {
+                        'id': 'unit-answer',
+                        'type': 'Unit'
+                    }
+                ]
+            }
+                                        )
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)

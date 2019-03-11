@@ -23,7 +23,7 @@
             "blocks": [{
                 "type": "Question",
                 "id": "personal-details-block",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "first-name-answer",
                         "label": "What is your first name",
@@ -41,7 +41,7 @@
                     "id": "personal-details-question",
                     "title": "Tell me about yourself",
                     "type": "General"
-                }],
+                },
                 "title": "Multiple questions"
             }, {
                 "type": "Summary",

@@ -1,6 +1,6 @@
 from flask import url_for
 
-from app.questionnaire.rules import evaluate_skip_conditions
+from app.questionnaire.rules import evaluate_when_rules
 from app.templating.summary.question import Question
 
 
@@ -11,7 +11,7 @@ class Block:
         self.title = block_schema.get('title')
         self.number = block_schema.get('number')
         self.link = self._build_link(block_schema['id'])
-        self.questions = self._build_questions(block_schema, answer_store, metadata, schema)
+        self.question = self.get_question(block_schema, answer_store, metadata, schema)
 
     @staticmethod
     def _build_link(block_id):
@@ -19,14 +19,14 @@ class Block:
                        block_id=block_id)
 
     @staticmethod
-    def _build_questions(block_schema, answer_store, metadata, schema):
-        questions = []
-        for question_schema in block_schema.get('questions', []):
-            is_skipped = evaluate_skip_conditions(question_schema.get('skip_conditions'), schema, metadata, answer_store)
-            if not is_skipped:
-                question = Question(question_schema, answer_store, metadata, schema).serialize()
-                questions.append(question)
-        return questions
+    def get_question(block_schema, answer_store, metadata, schema):
+        """ Taking question variants into account, return the question which was displayed to the user """
+        for variant in block_schema.get('question_variants', []):
+            display_variant = evaluate_when_rules(variant.get('when'), schema, metadata, answer_store)
+            if display_variant:
+                return Question(variant['question'], answer_store, schema).serialize()
+
+        return Question(block_schema['question'], answer_store, schema).serialize()
 
     def serialize(self):
         return {
@@ -34,5 +34,5 @@ class Block:
             'title': self.title,
             'number': self.number,
             'link': self.link,
-            'questions': self.questions,
+            'question': self.question,
         }

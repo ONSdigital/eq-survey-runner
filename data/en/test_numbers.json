@@ -23,7 +23,7 @@
                 "type": "Question",
                 "id": "set-min-max-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "set-minimum",
                         "label": "Minimum Value",
@@ -55,13 +55,13 @@
                     "id": "set-min-question",
                     "title": "Please set the minimum and maximum used for future questions",
                     "type": "General"
-                }],
+                },
                 "title": ""
             }, {
                 "type": "Question",
                 "id": "test-min-max-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "test-range",
                         "description": "",
@@ -156,7 +156,7 @@
                     "id": "test-min-max-range-question",
                     "title": "Please enter test values (none mandatory)",
                     "type": "General"
-                }],
+                },
                 "title": ""
             }],
             "id": "test",

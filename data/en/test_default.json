@@ -23,7 +23,8 @@
                 "type": "Question",
                 "id": "number-question",
                 "description": "",
-                "questions": [{
+                "title": "Zero Default",
+                "question": {
                     "answers": [{
                         "id": "answer",
                         "mandatory": false,
@@ -34,8 +35,7 @@
                     "id": "question",
                     "title": "Don't enter an answer. Zero will be shown on summary",
                     "type": "General"
-                }],
-                "title": "Zero Default"
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

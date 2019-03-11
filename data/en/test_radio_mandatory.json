@@ -23,7 +23,7 @@
             "blocks": [{
                 "type": "Question",
                 "id": "radio-mandatory",
-                "questions": [{
+                "question": {
                     "type": "General",
                     "id": "radio-mandatory-question",
                     "title": "What do you prefer for breakfast?",
@@ -39,7 +39,7 @@
                             "value": "Tea"
                         }]
                     }]
-                }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

@@ -6,8 +6,8 @@ if [ "$1" == "--local" ] || [ "$2" == "--local" ]; then
 fi
 
 if [ "$run_docker" == true ]; then
-    docker pull onsdigital/eq-schema-validator:use-non-global-named-args
-    validator="$(docker run -d -p 5001:5000 onsdigital/eq-schema-validator:use-non-global-named-args)"
+    docker pull onsdigital/eq-schema-validator:enforce-consistent-variant-ids
+    validator="$(docker run -d -p 5001:5000 onsdigital/eq-schema-validator:enforce-consistent-variant-ids)"
     sleep 3
 fi
 

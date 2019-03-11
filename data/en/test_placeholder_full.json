@@ -29,7 +29,7 @@
                     "type": "Question",
                     "id": "name-question",
                     "title": "What is your name?",
-                    "questions": [{
+                    "question": {
                         "description": "",
                         "id": "primary-name-question",
                         "title": "Please enter your name",
@@ -49,7 +49,7 @@
                                 "type": "TextField"
                             }
                         ]
-                    }]
+                    }
                 }]
             }]
         },
@@ -62,11 +62,28 @@
                 "blocks": [{
                     "type": "Question",
                     "id": "dob-question-block",
-                    "title": "What is your date of birth?",
-                    "questions": [{
+                    "question": {
                         "description": "",
                         "id": "dob-question",
-                        "title": "Please enter your date of birth",
+                        "title": {
+                            "text": "What is the date of birth for {person_name}?",
+                            "placeholders": [{
+                                "placeholder": "person_name",
+                                "transforms": [{
+                                    "transform": "concatenate_list",
+                                    "arguments": {
+                                        "list_to_concatenate": {
+                                            "source": "answers",
+                                            "identifier": [
+                                                "first-name",
+                                                "last-name"
+                                            ]
+                                        },
+                                        "delimiter": " "
+                                    }
+                                }]
+                            }]
+                        },
                         "type": "General",
                         "answers": [{
                             "id": "date-of-birth-answer",
@@ -75,7 +92,7 @@
                             "mandatory": true,
                             "type": "Date"
                         }]
-                    }]
+                    }
                 }]
             }]
         },
@@ -86,7 +103,7 @@
                 "blocks": [{
                     "type": "ConfirmationQuestion",
                     "id": "confirm-dob-proxy",
-                    "questions": [{
+                    "question": {
                         "id": "confirm-date-of-birth-proxy",
                         "title": {
                             "text": "{person_name} is {age_in_years} years old. Is this correct?",
@@ -166,6 +183,20 @@
                             ],
                             "type": "Radio"
                         }]
+                    },
+                    "routing_rules": [{
+                        "goto": {
+                            "group": "dob-input-group",
+                            "when": [{
+                                "id": "confirm-date-of-birth-answer-proxy",
+                                "condition": "equals",
+                                "value": "No"
+                            }]
+                        }
+                    }, {
+                        "goto": {
+                            "group": "summary-group"
+                        }
                     }]
                 }],
                 "id": "group",

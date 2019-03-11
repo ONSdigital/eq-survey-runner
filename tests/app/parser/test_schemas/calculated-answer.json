@@ -19,7 +19,7 @@
                     "type": "Questionnaire",
                     "id": "block",
                             "description": "",
-                            "questions": [
+                            "question":
                               {
                                     "answers": [
                                         {
@@ -97,8 +97,7 @@
                                     "id": "question",
                                     "title": "",
                                     "type": "General"
-                              }
-                            ],
+                              },
                     "routing_rules":[
                     ],
                     "title": ""

@@ -24,7 +24,7 @@
                 "type": "Question",
                 "id": "manual-range-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "manual-range-radio",
                         "mandatory": true,
@@ -41,12 +41,12 @@
                     "id": "manual-range-question",
                     "title": "Did you have a paid job, either as an employee or self-employed, in the week {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) | format_date_custom( 'EEEE d MMMM YYYY' ) }} to {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU') | format_date_custom( 'EEEE d MMMM YYYY' ) }}",
                     "type": "General"
-                }]
+                }
             }, {
                 "type": "Question",
                 "id": "date-separate-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "date-separate-radio",
                         "mandatory": true,
@@ -63,12 +63,12 @@
                     "id": "date-separate-question",
                     "title": "If you had been offered a job in the week starting {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}) | format_date_custom( 'EEEE d MMMM' ) }} would you be able to start before {{ calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks':2}) | format_date_custom( 'EEEE d MMMM' ) }}",
                     "type": "General"
-                }]
+                }
             }, {
                 "type": "Question",
                 "id": "date-range-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "date-range-radio",
                         "mandatory": true,
@@ -85,7 +85,7 @@
                     "id": "date-range-question",
                     "title": "In the 4 weeks between {{ format_date_range_no_repeated_month_year(calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {'weeks': -3}), calculate_offset_from_weekday_in_last_whole_week(collection_metadata['started_at'], {}, 'SU')) }} did you look for any paid work?",
                     "type": "General"
-                }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

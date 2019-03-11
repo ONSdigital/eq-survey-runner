@@ -1,5 +1,5 @@
 <fieldset>
-  {% set answer_label = get_answer_label(answer.id, question.id) %}
+  {% set answer_label = get_answer_label(answer.id) %}
   <legend class="field__legend u-fs-r {{'u-vh' if answer.label|length == 0}}">
     {{answer_label}}
 

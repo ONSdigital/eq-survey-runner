@@ -23,7 +23,7 @@
                 "type": "Question",
                 "id": "comparison-date-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "comparison-date-answer",
                         "label": "",
@@ -41,13 +41,13 @@
                             "list": ["Yesterday 30/03/2018", "Today 31/03/2018", "Tomorrow 01/04/2018", "Last Month 28/02/2018 (28th as no 31st February)", "Next Month 30/04/2018 (30th as no 31st April)", "Last Year 31/03/2017", "Next Year 31/03/2019"]
                         }]
                     }
-                }],
+                },
                 "title": "Date To Compare"
             }, {
                 "type": "Question",
                 "id": "date-question",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "single-date-answer",
                         "label": "Today",
@@ -58,7 +58,7 @@
                     "id": "date-questions",
                     "title": "Enter {{ answers['comparison-date-answer']|format_date }} or offset by one day, month or year in either direction",
                     "type": "General"
-                }],
+                },
                 "title": "",
                 "routing_rules": [{
                     "goto": {
@@ -164,7 +164,9 @@
                 "type": "Interstitial",
                 "id": "incorrect-answer",
                 "title": "Incorrect Date",
-                "description": "You entered an incorrect date",
+                "content": [{
+                    "description": "You entered an incorrect date"
+                }],
                 "routing_rules": [{
                     "goto": {
                         "block": "summary"
@@ -174,7 +176,9 @@
                 "type": "Interstitial",
                 "id": "correct-answer",
                 "title": "Correct Date",
-                "description": "You entered a correct date."
+                "content": [{
+                    "description": "You entered a correct date."
+                }]
             }, {
                 "type": "Summary",
                 "id": "summary"

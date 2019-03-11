@@ -46,7 +46,7 @@
             "blocks": [{
                 "type": "ConfirmationQuestion",
                 "id": "address-confirmation",
-                "questions": [{
+                "question": {
                     "type": "General",
                     "answers": [{
                         "type": "Radio",
@@ -63,7 +63,7 @@
                     "id": "confirm-address-question",
                     "title": "Is your address correct?",
                     "description": "{{ format_address_list ([answers['address-line1'], answers['address-line2'], answers['locality'], answers['town-name'], answers['postcode']], [metadata['address_line1'], metadata['address_line2'], metadata['locality'], metadata['town_name'], metadata['postcode']]) }}"
-                }],
+                },
                 "routing_rules": [{
                     "goto": {
                         "block": "address-edit",
@@ -82,7 +82,7 @@
                 "type": "Question",
                 "id": "address-edit",
                 "description": "",
-                "questions": [{
+                "question": {
                     "id": "address-edit-question",
                     "title": "What is your address?",
                     "type": "General",
@@ -117,7 +117,7 @@
                             "type": "TextField"
                         }
                     ]
-                }],
+                },
                 "routing_rules": [{
                     "goto": {
                         "block": "address-check-block"
@@ -127,7 +127,7 @@
                 "type": "Question",
                 "id": "address-check-block",
                 "description": "{{ format_address_list ([answers['address-line1'], answers['address-line2'], answers['locality'], answers['town-name'], answers['postcode']], [metadata['address_line1'], metadata['address_line2'], metadata['locality'], metadata['town_name'], metadata['postcode']]) }}",
-                "questions": [{
+                "question": {
                     "id": "address-check-question",
                     "title": "Is the address above your main residence?",
                     "description": "",
@@ -148,7 +148,7 @@
                         ],
                         "type": "Radio"
                     }]
-                }],
+                },
                 "routing_rules": [{
                     "goto": {
                         "block": "summary"

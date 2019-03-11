@@ -25,7 +25,7 @@
                 "type": "Question",
                 "id": "definition-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "id": "question",
                     "title": "Do you connect a LiFePO4 battery to your <em>photovoltaic system</em> to store surplus energy?",
                     "type": "General",
@@ -62,7 +62,7 @@
 
                         }]
                     }]
-                }],
+                },
                 "title": "Definition Test"
             }, {
                 "type": "Summary",

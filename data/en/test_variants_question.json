@@ -1,0 +1,477 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "0",
+    "title": "Test Question Variants",
+    "theme": "default",
+    "description": "A questionnaire to test question variants",
+    "metadata": [{
+            "name": "user_id",
+            "validator": "string"
+        },
+        {
+            "name": "period_id",
+            "validator": "string"
+        },
+        {
+            "name": "ru_name",
+            "validator": "string"
+        }
+    ],
+    "sections": [{
+            "id": "variant-proxy-section",
+            "groups": [{
+                "id": "variant-proxy-group",
+                "title": "Variants for proxy",
+                "blocks": [{
+                        "type": "Question",
+                        "id": "name-block",
+                        "question": {
+                            "description": "",
+                            "id": "name-question",
+                            "title": "Who is this questionnaire about?",
+                            "type": "General",
+                            "answers": [{
+                                    "id": "first-name-answer",
+                                    "description": "",
+                                    "label": "First Name",
+                                    "mandatory": true,
+                                    "type": "TextField"
+                                },
+                                {
+                                    "id": "last-name-answer",
+                                    "description": "",
+                                    "label": "Last Name",
+                                    "mandatory": false,
+                                    "type": "TextField"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Question",
+                        "id": "proxy-block",
+                        "question": {
+                            "id": "proxy-question",
+                            "title": {
+                                "text": "Are you <em>{person_name}</em>?",
+                                "placeholders": [{
+                                    "placeholder": "person_name",
+                                    "transforms": [{
+                                        "transform": "concatenate_list",
+                                        "arguments": {
+                                            "list_to_concatenate": {
+                                                "source": "answers",
+                                                "identifier": ["first-name-answer", "last-name-answer"]
+                                            },
+                                            "delimiter": " "
+                                        }
+                                    }]
+                                }]
+                            },
+                            "type": "General",
+                            "answers": [{
+                                "id": "proxy-answer",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Yes, I am",
+                                        "value": "non-proxy"
+                                    },
+                                    {
+                                        "label": "No, I am answering on their behalf",
+                                        "value": "proxy"
+                                    }
+                                ],
+                                "type": "Radio"
+                            }]
+                        }
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "basic-question-variant-section",
+            "groups": [{
+                "id": "basic-question-variant-group",
+                "title": "Variants",
+                "blocks": [{
+                        "type": "Question",
+                        "id": "age-block",
+                        "question_variants": [{
+                                "question": {
+                                    "id": "age-question",
+                                    "type": "General",
+                                    "title": "What is your age?",
+                                    "answers": [{
+                                        "id": "age-answer",
+                                        "mandatory": false,
+                                        "type": "Number",
+                                        "label": "Age"
+                                    }]
+                                },
+                                "when": [{
+                                    "id": "proxy-answer",
+                                    "condition": "equals",
+                                    "value": "non-proxy"
+                                }]
+                            },
+                            {
+                                "question": {
+                                    "id": "age-question",
+                                    "type": "General",
+                                    "title": {
+                                        "text": "What age is <em>{person_name}</em>?",
+                                        "placeholders": [{
+                                            "placeholder": "person_name",
+                                            "transforms": [{
+                                                "transform": "concatenate_list",
+                                                "arguments": {
+                                                    "list_to_concatenate": {
+                                                        "source": "answers",
+                                                        "identifier": ["first-name-answer", "last-name-answer"]
+                                                    },
+                                                    "delimiter": " "
+                                                }
+                                            }]
+                                        }]
+                                    },
+                                    "answers": [{
+                                        "id": "age-answer",
+                                        "mandatory": true,
+                                        "type": "Number",
+                                        "label": "Age"
+                                    }]
+                                },
+                                "when": [{
+                                    "id": "proxy-answer",
+                                    "condition": "equals",
+                                    "value": "proxy"
+                                }]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "ConfirmationQuestion",
+                        "id": "age-confirmation-block",
+                        "question_variants": [{
+                                "question": {
+                                    "id": "age-confirmation-question",
+                                    "type": "General",
+                                    "title": "You are over 16?",
+                                    "answers": [{
+                                        "id": "age-confirm-answer",
+                                        "type": "Radio",
+                                        "mandatory": true,
+                                        "options": [{
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }]
+                                },
+                                "when": [{
+                                        "id": "age-answer",
+                                        "condition": "greater than",
+                                        "value": 16
+                                    },
+                                    {
+                                        "id": "proxy-answer",
+                                        "condition": "not equals",
+                                        "value": "proxy"
+                                    }
+                                ]
+                            },
+                            {
+                                "question": {
+                                    "id": "age-confirmation-question",
+                                    "type": "General",
+                                    "title": "You are under 16?",
+                                    "answers": [{
+                                        "id": "age-confirm-answer",
+                                        "type": "Radio",
+                                        "mandatory": true,
+                                        "options": [{
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }]
+                                },
+                                "when": [{
+                                        "id": "age-answer",
+                                        "condition": "less than or equal to",
+                                        "value": 16
+                                    },
+                                    {
+                                        "id": "proxy-answer",
+                                        "condition": "not equals",
+                                        "value": "proxy"
+                                    }
+                                ]
+                            },
+                            {
+                                "question": {
+                                    "id": "age-confirmation-question",
+                                    "type": "General",
+                                    "title": {
+                                        "text": "<em>{person_name}</em> is over 16?",
+                                        "placeholders": [{
+                                            "placeholder": "person_name",
+                                            "transforms": [{
+                                                "transform": "concatenate_list",
+                                                "arguments": {
+                                                    "list_to_concatenate": {
+                                                        "source": "answers",
+                                                        "identifier": ["first-name-answer", "last-name-answer"]
+                                                    },
+                                                    "delimiter": " "
+                                                }
+                                            }]
+                                        }]
+                                    },
+                                    "answers": [{
+                                        "id": "age-confirm-answer",
+                                        "type": "Radio",
+                                        "mandatory": true,
+                                        "options": [{
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }]
+                                },
+                                "when": [{
+                                        "id": "age-answer",
+                                        "condition": "greater than or equal to",
+                                        "value": 16
+                                    },
+                                    {
+                                        "id": "proxy-answer",
+                                        "condition": "equals",
+                                        "value": "proxy"
+                                    }
+                                ]
+                            },
+                            {
+                                "question": {
+                                    "id": "age-confirmation-question",
+                                    "type": "General",
+                                    "title": {
+                                        "text": "<em>{person_name}</em> is under 16?",
+                                        "placeholders": [{
+                                            "placeholder": "person_name",
+                                            "transforms": [{
+                                                "transform": "concatenate_list",
+                                                "arguments": {
+                                                    "list_to_concatenate": {
+                                                        "source": "answers",
+                                                        "identifier": ["first-name-answer", "last-name-answer"]
+                                                    },
+                                                    "delimiter": " "
+                                                }
+                                            }]
+                                        }]
+                                    },
+                                    "answers": [{
+                                        "id": "age-confirm-answer",
+                                        "type": "Radio",
+                                        "mandatory": true,
+                                        "options": [{
+                                                "label": "Yes",
+                                                "value": "Yes"
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "No"
+                                            }
+                                        ]
+                                    }]
+                                },
+                                "when": [{
+                                        "id": "age-answer",
+                                        "condition": "less than or equal to",
+                                        "value": 16
+                                    },
+                                    {
+                                        "id": "proxy-answer",
+                                        "condition": "equals",
+                                        "value": "proxy"
+                                    }
+                                ]
+                            }
+                        ],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "age-block",
+                                    "when": [{
+                                        "id": "age-confirm-answer",
+                                        "condition": "equals",
+                                        "value": "no"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "basic-variants-summary"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "basic-variants-summary",
+                        "type": "SectionSummary"
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "currency-section",
+            "groups": [{
+                "id": "currency-group",
+                "title": "Section Summary With Variants",
+                "blocks": [{
+                        "type": "Question",
+                        "id": "currency-block",
+                        "question": {
+                            "id": "currency-question",
+                            "type": "General",
+                            "title": "What currency would you like",
+                            "answers": [{
+                                "id": "currency-answer",
+                                "type": "Radio",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "US Dollars",
+                                        "value": "USD"
+                                    },
+                                    {
+                                        "label": "Sterling",
+                                        "value": "GBP"
+                                    }
+                                ]
+                            }]
+                        }
+                    },
+                    {
+                        "type": "Question",
+                        "id": "first-number-block",
+                        "question_variants": [{
+                                "question": {
+                                    "id": "first-number-question",
+                                    "title": "First Number Question Title",
+                                    "type": "General",
+                                    "answers": [{
+                                        "id": "first-number-answer",
+                                        "label": "First answer in GBP",
+                                        "mandatory": true,
+                                        "type": "Currency",
+                                        "currency": "GBP",
+                                        "decimal_places": 2
+                                    }]
+                                },
+                                "when": [{
+                                    "id": "currency-answer",
+                                    "condition": "equals",
+                                    "value": "GBP"
+                                }]
+                            },
+                            {
+                                "question": {
+                                    "id": "first-number-question",
+                                    "title": "First Number Question Title",
+                                    "type": "General",
+                                    "answers": [{
+                                        "id": "first-number-answer",
+                                        "label": "First answer in USD",
+                                        "mandatory": true,
+                                        "type": "Currency",
+                                        "currency": "USD",
+                                        "decimal_places": 2
+                                    }]
+                                },
+                                "when": [{
+                                    "id": "currency-answer",
+                                    "condition": "equals",
+                                    "value": "USD"
+                                }]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "second-number-block",
+                        "question_variants": [{
+                                "question": {
+                                    "id": "second-number-question",
+                                    "title": "Second Number Question Title",
+                                    "type": "General",
+                                    "answers": [{
+                                        "id": "second-number-answer",
+                                        "label": "Second answer in GBP",
+                                        "mandatory": true,
+                                        "type": "Currency",
+                                        "currency": "GBP",
+                                        "decimal_places": 2
+                                    }]
+                                },
+                                "when": [{
+                                    "id": "currency-answer",
+                                    "condition": "equals",
+                                    "value": "GBP"
+                                }]
+                            },
+                            {
+                                "question": {
+                                    "id": "second-number-question",
+                                    "title": "Second Number Question Title",
+                                    "type": "General",
+                                    "answers": [{
+                                        "id": "second-number-answer",
+                                        "label": "Second answer in USD",
+                                        "mandatory": true,
+                                        "type": "Currency",
+                                        "currency": "USD",
+                                        "decimal_places": 2
+                                    }]
+                                },
+                                "when": [{
+                                    "id": "currency-answer",
+                                    "condition": "equals",
+                                    "value": "USD"
+                                }]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "SectionSummary",
+                        "id": "currency-section-summary"
+                    }
+                ]
+            }]
+        },
+        {
+            "id": "summary-section",
+            "groups": [{
+                "id": "summary-group",
+                "title": "Final summary",
+                "blocks": [{
+                    "id": "all-summary",
+                    "type": "Summary"
+                }]
+            }]
+        }
+    ]
+}

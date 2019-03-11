@@ -25,7 +25,7 @@
                 "type": "Question",
                 "id": "date-block",
                 "title": "Calculate Difference Between Two Dates",
-                "questions": [{
+                "question": {
                     "id": "date-pipe-question",
                     "title": "How long were you outside the UK?",
                     "type": "DateRange",
@@ -40,12 +40,12 @@
                         "id": "period-to",
                         "type": "Date"
                     }]
-                }]
+                }
             }, {
                 "type": "ConfirmationQuestion",
                 "id": "age-test",
                 "title": "Confirm Dates",
-                "questions": [{
+                "question": {
                     "id": "confirm-dob-question",
                     "title": "You were out of the UK for {{ calculate_years_difference (answers['period-from'], answers['period-to']) }}. Is this correct?",
                     "type": "General",
@@ -62,7 +62,7 @@
                             "value": "No"
                         }]
                     }]
-                }],
+                },
                 "routing_rules": [{
                     "goto": {
                         "block": "date-block",

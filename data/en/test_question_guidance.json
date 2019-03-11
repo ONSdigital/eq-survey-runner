@@ -31,7 +31,7 @@
                 "id": "block-test-guidance-title",
                 "title": "Section: Test guidance title",
                 "description": "",
-                "questions": [{
+                "question": {
                     "id": "question-test-guidance-title",
                     "title": "Question: Test guidance title",
                     "description": "Testing combinations of the title within guidance",
@@ -54,13 +54,13 @@
                         "q_code": "0",
                         "type": "TextField"
                     }]
-                }]
+                }
             }, {
                 "type": "Question",
                 "id": "block-test-guidance-description",
                 "title": "Section: Test guidance descriptions",
                 "description": "",
-                "questions": [{
+                "question": {
                     "id": "question-test-guidance-description",
                     "title": "Question: Test guidance descriptions",
                     "description": "Tests the descriptions within guidance",
@@ -81,13 +81,13 @@
                         "q_code": "0",
                         "type": "TextField"
                     }]
-                }]
+                }
             }, {
                 "type": "Question",
                 "id": "block-test-guidance-lists",
                 "title": "Section: Test guidance lists",
                 "description": "",
-                "questions": [{
+                "question": {
                     "id": "question-test-guidance-lists",
                     "title": "Question: Test guidance lists (with no question description below)",
                     "guidance": {
@@ -106,13 +106,13 @@
                         "q_code": "0",
                         "type": "TextField"
                     }]
-                }]
+                }
             }, {
                 "type": "Question",
                 "id": "block-test-guidance-content-description",
                 "title": "Section: Test show guidance content description",
                 "description": "",
-                "questions": [{
+                "question": {
                     "id": "question-test-guidance-content-description",
                     "title": "Question: Test show guidance content description",
                     "guidance": {
@@ -135,13 +135,13 @@
                         "q_code": "0",
                         "type": "TextField"
                     }]
-                }]
+                }
             }, {
                 "type": "Question",
                 "id": "block-test-guidance-content-title",
                 "title": "Section: Test show guidance content title",
                 "description": "",
-                "questions": [{
+                "question": {
                     "id": "question-test-guidance-content-title",
                     "title": "Question: Test show guidance content title",
                     "guidance": {
@@ -164,13 +164,13 @@
                         "q_code": "0",
                         "type": "TextField"
                     }]
-                }]
+                }
             }, {
                 "type": "Question",
                 "id": "block-test-guidance-content-list",
                 "title": "Section: Test show guidance content list",
                 "description": "",
-                "questions": [{
+                "question": {
                     "id": "question-test-guidance-content-list",
                     "title": "Question: Test show guidance content list",
                     "guidance": {
@@ -193,13 +193,13 @@
                         "q_code": "0",
                         "type": "TextField"
                     }]
-                }]
+                }
             }, {
                 "type": "Question",
                 "id": "block-test-guidance-all",
                 "title": "Section: Test guidance all",
                 "description": "",
-                "questions": [{
+                "question": {
                     "id": "question-test-guidance-all",
                     "title": "Question: Test guidance all",
                     "description": "Testing all features of the guidance block enabled together",
@@ -244,7 +244,7 @@
                         "q_code": "0",
                         "type": "TextField"
                     }]
-                }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

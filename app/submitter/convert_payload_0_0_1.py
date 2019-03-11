@@ -1,14 +1,17 @@
 from collections import OrderedDict
 from datetime import datetime
 
+from app.questionnaire.schema_utils import choose_question_to_display
 
-def convert_answers_to_payload_0_0_1(answer_store, schema, routing_path):
+
+def convert_answers_to_payload_0_0_1(metadata, answer_store, schema, routing_path):
     """
     Convert answers into the data format below
     'data': {
           '001': '01-01-2016',
           '002': '30-03-2016'
         }
+    :param metadata: questionnaire metadata
     :param answer_store: questionnaire answers
     :param schema: QuestionnaireSchema class with popuated schema json
     :param routing_path: the path followed in the questionnaire
@@ -18,12 +21,17 @@ def convert_answers_to_payload_0_0_1(answer_store, schema, routing_path):
     for location in routing_path:
         answer_ids = schema.get_answer_ids_for_block(location.block_id)
         answers_in_block = answer_store.filter(answer_ids)
-        answer_schema_list = schema.get_answers_by_id_for_block(location.block_id)
 
-        for answer in answers_in_block:
-            answer_schema = answer_schema_list[answer['answer_id']]
+        for answer_in_block in answers_in_block:
+            answer_schema = None
 
-            value = answer['value']
+            block = schema.get_block_for_answer_id(answer_in_block['answer_id'])
+            question = choose_question_to_display(block, schema, metadata, answer_store)
+            for answer in question['answers']:
+                if answer['id'] == answer_in_block['answer_id']:
+                    answer_schema = answer
+
+            value = answer_in_block['value']
 
             if answer_schema is not None and value is not None:
                 if answer_schema['type'] == 'Checkbox':
@@ -31,7 +39,7 @@ def convert_answers_to_payload_0_0_1(answer_store, schema, routing_path):
                 elif 'q_code' in answer_schema:
                     answer_data = _encode_value(value)
                     if answer_data is not None:
-                        data[answer_schema['q_code']] = _format_downstream_answer(answer_schema['type'], answer['value'], answer_data)
+                        data[answer_schema['q_code']] = _format_downstream_answer(answer_schema['type'], answer_in_block['value'], answer_data)
 
     return data
 

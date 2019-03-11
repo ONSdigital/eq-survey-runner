@@ -23,11 +23,13 @@ class TestAnswerStoreUpdater(unittest.TestCase):
             completed_blocks=[],
             answer_store=self.answer_store
         )
-        self.answer_store_updater = AnswerStoreUpdater(self.location, self.schema, self.questionnaire_store)
+        self.metadata = MagicMock()
+        self.answer_store_updater = None
+        self.current_question = None
 
     def test_save_answers_with_answer_data(self):
         self.location.block_id = 'household-composition'
-        self.schema.get_answer_ids_for_block.return_value = ['first-name', 'middle-names', 'last-name']
+        self.schema.get_answer_ids_for_question.return_value = ['first-name', 'middle-names', 'last-name']
 
         answers = [
             Answer(
@@ -44,7 +46,8 @@ class TestAnswerStoreUpdater(unittest.TestCase):
 
         form = MagicMock()
         form.serialise.return_value = answers
-
+        self.current_question = self.schema.get_block(self.location.block_id)['question']
+        self.answer_store_updater = AnswerStoreUpdater(self.location, self.schema, self.questionnaire_store, self.current_question)
         self.answer_store_updater.save_answers(form)
 
         assert self.questionnaire_store.completed_blocks == [self.location]
@@ -58,10 +61,12 @@ class TestAnswerStoreUpdater(unittest.TestCase):
         answer_id = 'answer'
         answer_value = '1000'
 
-        self.schema.get_answer_ids_for_block.return_value = [answer_id]
+        self.schema.get_answer_ids_for_question.return_value = [answer_id]
 
         form = MagicMock(spec=QuestionnaireForm, data={answer_id: answer_value})
 
+        self.current_question = self.schema.get_block(self.location.block_id)['question']
+        self.answer_store_updater = AnswerStoreUpdater(self.location, self.schema, self.questionnaire_store, self.current_question)
         self.answer_store_updater.save_answers(form)
 
         assert self.questionnaire_store.completed_blocks == [self.location]
@@ -77,8 +82,8 @@ class TestAnswerStoreUpdater(unittest.TestCase):
         answer_id = 'answer'
         default_value = 0
 
-        self.schema.get_answer_ids_for_block.return_value = [answer_id]
-        self.schema.get_answer.return_value = {'default': default_value}
+        self.schema.get_answer_ids_for_question.return_value = [answer_id]
+        self.schema.get_answers.return_value = [{'default': default_value}]
 
         # No answer given so will use schema defined default
         form_data = {
@@ -87,6 +92,13 @@ class TestAnswerStoreUpdater(unittest.TestCase):
 
         form = MagicMock(spec=QuestionnaireForm, data=form_data)
 
+        self.current_question = {
+            'answers': [{
+                'id': 'answer',
+                'default': default_value
+            }]
+        }
+        self.answer_store_updater = AnswerStoreUpdater(self.location, self.schema, self.questionnaire_store, self.current_question)
         self.answer_store_updater.save_answers(form)
 
         assert self.questionnaire_store.completed_blocks == [self.location]

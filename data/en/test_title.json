@@ -1,0 +1,51 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "0",
+    "title": "Question Title Test",
+    "theme": "default",
+    "description": "A questionnaire to test question titles",
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+            "id": "group",
+            "title": "",
+            "blocks": [{
+                "type": "Question",
+                "id": "single-title-block",
+                "title": "Single question title",
+                "question": {
+                    "id": "single-title-question",
+                    "title": "How are you feeling??",
+                    "type": "General",
+                    "answers": [{
+                        "type": "Radio",
+                        "id": "feeling-answer",
+                        "mandatory": true,
+                        "options": [{
+                            "label": "Good",
+                            "value": "good"
+                        }, {
+                            "label": "Bad",
+                            "value": "bad"
+                        }]
+                    }]
+                }
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }]
+        }]
+    }]
+}

@@ -36,7 +36,7 @@
                         }
                     }]
                 },
-                "questions": [{
+                "question": {
                     "answers": [{
                         "description": "Enter the total gross weekly pay",
                         "id": "answer",
@@ -47,7 +47,7 @@
                     "id": "question",
                     "title": "",
                     "type": "General"
-                }],
+                },
                 "title": "Metadata Placeholder Test",
                 "routing_rules": []
             }],

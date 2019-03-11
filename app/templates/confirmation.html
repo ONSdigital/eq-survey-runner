@@ -11,6 +11,10 @@
 {% elif content.summary and content.summary.summary_type == 'CalculatedSummary' %}
     <button type="submit" class="btn btn--loader u-mb-s js-btn-submit" data-qa="btn-submit">{{ _("Yes, I confirm these are correct") }}</button>
 {% else  %}
+  {% if block and block.content %}
+    {% set content_block = content.block.content %}
+    {% include 'partials/content-block.html' %}
+  {% endif %}
     <button type="submit" class="btn btn--loader u-mb-s js-btn-submit" data-qa="btn-submit" data-loading-msg='{{ _("Submitting") }}&hellip;'>{{ _("Submit answers") }}</button>
 {% endif %}
 {% endblock %}

@@ -1,23 +1,16 @@
 {% set block = content.block %}
 
 <div class="block" id="{{current_location.block_id}}">
-  {% if block['number'] %}
-    {% if block['title'] %}
-      <p class="block__title u-fs-m" data-qa="block-title">{{ _("Section") }} {{block['number']}}: {{block['title']}}</p>
-    {% endif %}
-  {% else %}
-    {% if block['title'] %}
-      <p class="block__title u-fs-m" data-qa="block-title">{{block['title']}}</p>
-    {% endif %}
+  {% if block['title'] %}
+    <p class="block__title u-fs-m" data-qa="block-title">{{block['title']}}</p>
   {% endif %}
 
   {% if block['description'] %}
     <div class="block__description u-fs-r" data-qa="block-description">{{block['description']}}</div>
   {% endif %}
 
-  {% for question in block['questions'] %}
-    {% if not question.skipped %}
+  {% if 'question' in block %}
+      {% set question = block['question'] %}
       {% include theme('partials/question.html') %}
-    {% endif %}
-  {% endfor %}
+  {% endif %}
 </div>

@@ -23,7 +23,7 @@
             "blocks": [{
                 "type": "Question",
                 "id": "radio-mandatory",
-                "questions": [{
+                "question": {
                     "type": "General",
                     "id": "radio-mandatory-question",
                     "title": "What is you favourite breakfast beverage?",
@@ -44,7 +44,7 @@
                             }
                         }
                     }]
-                }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

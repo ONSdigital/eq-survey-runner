@@ -34,7 +34,7 @@
             "title": "Confirmation Question Test",
             "blocks": [{
                 "id": "number-of-employees-total-block",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "number-of-employees-total",
                         "q_code": "50",
@@ -46,7 +46,7 @@
                     "id": "number-of-employees-total-question",
                     "title": "How many employees work at {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
                     "type": "General"
-                }],
+                },
                 "type": "Question"
             }, {
                 "type": "ConfirmationQuestion",
@@ -59,7 +59,7 @@
                         "value": 0
                     }]
                 }],
-                "questions": [{
+                "question": {
                     "type": "General",
                     "answers": [{
                         "type": "Radio",
@@ -76,7 +76,7 @@
                     }],
                     "id": "confirm-zero-employees-question",
                     "title": "The current number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} is <em>0</em>, is this correct?"
-                }],
+                },
                 "routing_rules": [{
                     "goto": {
                         "when": [{
@@ -94,7 +94,7 @@
             }, {
                 "id": "number-of-employees-split-block",
                 "type": "Question",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "number-of-employees-male-more-30-hours",
                         "label": "Number of male employees working more than 30 hours per week",
@@ -117,7 +117,7 @@
                     "id": "number-of-employees-split-question",
                     "title": "Of the <em>{{answers['number-of-employees-total']}}</em> total employees employed, how many male and female employees worked the following hours?",
                     "type": "General"
-                }]
+                }
             }]
         }]
     }, {

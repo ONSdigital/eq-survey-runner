@@ -128,6 +128,56 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
         self.assertEqual(group['title'], 'Group 1')
 
+    def test_get_questions_with_variants(self):
+        survey_json = {
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'title': 'Group 1',
+                    'blocks': [
+                        {
+                            'id': 'block1',
+                            'type': 'Question',
+                            'title': 'Block 1',
+                            'question_variants': [{
+                                'when': [{}],
+                                'question': {
+                                    'id': 'question1',
+                                    'title': 'Question 1',
+                                    'answers': [
+                                        {
+                                            'id': 'answer1',
+                                            'label': 'Answer 1'
+                                        }
+                                    ]
+                                }
+                            }, {
+                                'when': [{}],
+                                'question': {
+                                    'id': 'question1',
+                                    'title': 'Another Question 1',
+                                    'answers': [
+                                        {
+                                            'id': 'answer1',
+                                            'label': 'Answer 1'
+                                        }
+                                    ]
+                                }
+                            }]
+                        }
+                    ]
+                }]
+            }]
+        }
+
+        schema = QuestionnaireSchema(survey_json)
+        questions = schema.get_questions('question1')
+
+        self.assertEqual(len(questions), 2)
+        self.assertEqual(questions[0]['title'], 'Question 1')
+        self.assertEqual(questions[1]['title'], 'Another Question 1')
+
     def test_get_questions(self):
         survey_json = {
             'sections': [{
@@ -140,11 +190,16 @@ class TestQuestionnaireSchema(AppContextTestCase):
                             'id': 'block1',
                             'type': 'Question',
                             'title': 'Block 1',
-                            'questions': [
-                                {
-                                    'id': 'question1'
-                                }
-                            ]
+                            'question': {
+                                'id': 'question1',
+                                'title': 'Question 1',
+                                'answers': [
+                                    {
+                                        'id': 'answer1',
+                                        'label': 'Answer 1'
+                                    }
+                                ]
+                            }
                         }
                     ]
                 }]
@@ -152,9 +207,11 @@ class TestQuestionnaireSchema(AppContextTestCase):
         }
 
         schema = QuestionnaireSchema(survey_json)
-        self.assertEqual(len(schema.questions), 1)
+        questions = schema.get_questions('question1')
 
-    def test_get_question(self):
+        self.assertEqual(questions[0]['title'], 'Question 1')
+
+    def test_schema_answers(self):
         survey_json = {
             'sections': [{
                 'id': 'section1',
@@ -166,10 +223,65 @@ class TestQuestionnaireSchema(AppContextTestCase):
                             'id': 'block1',
                             'type': 'Question',
                             'title': 'Block 1',
-                            'questions': [
+                            'question': {
+                                'id': 'question1',
+                                'title': 'Question 1',
+                                'answers': [
+                                    {
+                                        'id': 'answer1',
+                                        'label': 'Answer 1'
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }]
+            }]
+        }
+
+        schema = QuestionnaireSchema(survey_json)
+        answers = schema.answers
+        self.assertEqual(len(answers), 1)
+
+
+    def test_get_answers_with_variants(self):
+        survey_json = {
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'title': 'Group 1',
+                    'blocks': [
+                        {
+                            'id': 'block1',
+                            'type': 'Question',
+                            'title': 'Block 1',
+                            'question_variants': [
                                 {
-                                    'id': 'question1',
-                                    'title': 'Question 1'
+                                    'when': [{}],
+                                    'question': {
+                                        'id': 'question1',
+                                        'title': 'Question 1',
+                                        'answers': [
+                                            {
+                                                'id': 'answer1',
+                                                'label': 'Answer 1'
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    'when': [{}],
+                                    'question': {
+                                        'id': 'question1',
+                                        'title': 'Question 1',
+                                        'answers': [
+                                            {
+                                                'id': 'answer1',
+                                                'label': 'Another Answer 1'
+                                            }
+                                        ]
+                                    }
                                 }
                             ]
                         }
@@ -179,9 +291,10 @@ class TestQuestionnaireSchema(AppContextTestCase):
         }
 
         schema = QuestionnaireSchema(survey_json)
-        question = schema.get_question('question1')
-
-        self.assertEqual(question['title'], 'Question 1')
+        answers = schema.get_answers('answer1')
+        self.assertEqual(len(answers), 2)
+        self.assertEqual(answers[0]['label'], 'Answer 1')
+        self.assertEqual(answers[1]['label'], 'Another Answer 1')
 
     def test_get_answers(self):
         survey_json = {
@@ -195,18 +308,16 @@ class TestQuestionnaireSchema(AppContextTestCase):
                             'id': 'block1',
                             'type': 'Question',
                             'title': 'Block 1',
-                            'questions': [
-                                {
-                                    'id': 'question1',
-                                    'title': 'Question 1',
-                                    'answers': [
-                                        {
-                                            'id': 'answer1',
-                                            'label': 'Answer 1'
-                                        }
-                                    ]
-                                }
-                            ]
+                            'question': {
+                                'id': 'question1',
+                                'title': 'Question 1',
+                                'answers': [
+                                    {
+                                        'id': 'answer1',
+                                        'label': 'Answer 1'
+                                    }
+                                ]
+                            }
                         }
                     ]
                 }]
@@ -214,42 +325,9 @@ class TestQuestionnaireSchema(AppContextTestCase):
         }
 
         schema = QuestionnaireSchema(survey_json)
-        self.assertEqual(len(schema.answers), 1)
-
-    def test_get_answer(self):
-        survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'group1',
-                    'title': 'Group 1',
-                    'blocks': [
-                        {
-                            'id': 'block1',
-                            'type': 'Question',
-                            'title': 'Block 1',
-                            'questions': [
-                                {
-                                    'id': 'question1',
-                                    'title': 'Question 1',
-                                    'answers': [
-                                        {
-                                            'id': 'answer1',
-                                            'label': 'Answer 1'
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }]
-            }]
-        }
-
-        schema = QuestionnaireSchema(survey_json)
-        answer = schema.get_answer('answer1')
-
-        self.assertEqual(answer['label'], 'Answer 1')
+        answers = schema.get_answers('answer1')
+        self.assertEqual(len(answers), 1)
+        self.assertEqual(answers[0]['label'], 'Answer 1')
 
     def test_get_summary_and_confirmation_blocks_returns_only_summary(self):
         survey_json = {
@@ -374,3 +452,74 @@ class TestQuestionnaireSchema(AppContextTestCase):
         self.assertTrue(schema.is_confirmation_group(schema.get_group('group-1')))
         self.assertFalse(schema.is_summary_section(schema.get_section('section-1')))
         self.assertFalse(schema.is_summary_group(schema.get_group('group-1')))
+
+def test_get_all_questions_for_block_question():
+    block = {
+        'id': 'block1',
+        'type': 'Question',
+        'title': 'Block 1',
+        'question': {
+            'id': 'question1',
+            'title': 'Question 1',
+            'answers': [
+                {
+                    'id': 'answer1',
+                    'label': 'Answer 1'
+                }
+            ]
+        }
+    }
+
+    all_questions = QuestionnaireSchema.get_all_questions_for_block(block)
+
+    assert len(all_questions) == 1
+
+    assert all_questions[0]['answers'][0]['id'] == 'answer1'
+
+def test_get_all_questions_for_block_question_variants():
+    block = {
+        'id': 'block1',
+        'type': 'Question',
+        'title': 'Block 1',
+        'question_variants': [
+            {
+                'question': {
+                    'id': 'question1',
+                    'title': 'Question 1',
+                    'answers': [
+                        {
+                            'id': 'answer1',
+                            'label': 'Variant 1'
+                        }
+                    ]
+                },
+                'when': []
+            }, {
+                'question': {
+                    'id': 'question1',
+                    'title': 'Question 1',
+                    'answers': [
+                        {
+                            'id': 'answer1',
+                            'label': 'Variant 2'
+                        }
+                    ]
+                },
+                'when': []
+            }
+        ]
+    }
+
+    all_questions = QuestionnaireSchema.get_all_questions_for_block(block)
+
+    assert len(all_questions) == 2
+
+    assert all_questions[0]['answers'][0]['label'] == 'Variant 1'
+    assert all_questions[1]['answers'][0]['label'] == 'Variant 2'
+
+def test_get_all_questions_for_block_empty():
+    block = {}
+
+    all_questions = QuestionnaireSchema.get_all_questions_for_block(block)
+
+    assert not all_questions

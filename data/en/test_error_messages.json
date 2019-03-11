@@ -23,7 +23,7 @@
                 "type": "Question",
                 "id": "test-errors",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "test-number",
                         "description": "",
@@ -52,7 +52,7 @@
                     "id": "test-min-max-range-question",
                     "title": "Please enter test values (none mandatory)",
                     "type": "General"
-                }],
+                },
                 "title": ""
             }],
             "id": "test",

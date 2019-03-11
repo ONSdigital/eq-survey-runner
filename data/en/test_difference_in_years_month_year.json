@@ -25,7 +25,7 @@
                 "type": "Question",
                 "id": "age-block",
                 "title": "Calculate Difference",
-                "questions": [{
+                "question": {
                     "id": "date-pipe-question",
                     "title": "When did you last go on holiday?",
                     "type": "General",
@@ -35,12 +35,12 @@
                         "mandatory": true,
                         "type": "MonthYearDate"
                     }]
-                }]
+                }
             }, {
                 "type": "ConfirmationQuestion",
                 "id": "age-test",
                 "title": "Confirm Duration",
-                "questions": [{
+                "question": {
                     "id": "confirm-dob-question",
                     "title": "It has been {{ calculate_years_difference (answers['date-dob'], 'now') }} since you last went on holiday. Is this correct?",
                     "type": "General",
@@ -57,7 +57,7 @@
                             "value": "No"
                         }]
                     }]
-                }],
+                },
                 "routing_rules": [{
                     "goto": {
                         "block": "age-block",

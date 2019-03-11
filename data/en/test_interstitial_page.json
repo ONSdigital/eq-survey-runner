@@ -33,7 +33,7 @@
                 "type": "Question",
                 "id": "breakfast-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "favourite-breakfast",
                         "label": "What is your favourite breakfast food",
@@ -45,19 +45,21 @@
                     "id": "favourite-breakfast-question",
                     "title": "What is your favourite breakfast food",
                     "type": "General"
-                }],
+                },
                 "title": "What is your favourite breakfast food",
                 "routing_rules": []
             }, {
                 "id": "breakfast-interstitial",
                 "title": "Breakfast Interstitial Page",
-                "description": "You have successfully completed the breakfast section. Next we want to know about your lunch.",
+                "content": [{
+                    "description": "You have successfully completed the breakfast section. Next we want to know about your lunch."
+                }],
                 "type": "Interstitial"
             }, {
                 "type": "Question",
                 "id": "lunch-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "favourite-lunch",
                         "label": "What is your favourite lunchtime food",
@@ -69,13 +71,15 @@
                     "id": "favourite-lunch-question",
                     "title": "",
                     "type": "General"
-                }],
+                },
                 "title": "What is your favourite lunchtime food",
                 "routing_rules": []
             }, {
                 "type": "Confirmation",
                 "id": "confirmation",
-                "title": "Thank you for your answers, do you wish to submit"
+                "content": [{
+                    "title": "Thank you for your answers, do you wish to submit"
+                }]
             }],
             "id": "favourite-foods",
             "title": "Favourite food"

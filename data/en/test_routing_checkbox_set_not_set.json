@@ -23,7 +23,7 @@
                     "type": "Question",
                     "id": "topping-checkbox",
                     "description": "",
-                    "questions": [{
+                    "question": {
                         "answers": [{
                             "id": "topping-checkbox-answer",
                             "label": "",
@@ -66,14 +66,16 @@
                         "id": "topping-checkbox-question",
                         "title": "What extra toppings would you like?",
                         "type": "General"
-                    }],
+                    },
                     "title": "Topping question",
                     "routing_rules": []
                 },
                 {
                     "id": "topping-interstitial-set",
                     "title": "Topping Interstitial Page",
-                    "description": "You selected a topping",
+                    "content": [{
+                        "description": "You selected a topping"
+                    }],
                     "type": "Interstitial",
                     "skip_conditions": [{
                         "when": [{
@@ -85,7 +87,9 @@
                 {
                     "id": "topping-interstitial-not-set",
                     "title": "Topping Interstitial Page",
-                    "description": "You did not select a topping",
+                    "content": [{
+                        "description": "You did not select a topping"
+                    }],
                     "type": "Interstitial",
                     "skip_conditions": [{
                         "when": [{
@@ -97,7 +101,7 @@
                 {
                     "type": "Question",
                     "id": "optional-mutually-exclusive",
-                    "questions": [{
+                    "question": {
                         "answers": [{
                             "id": "optional-mutually-exclusive-answer",
                             "mandatory": false,
@@ -119,14 +123,16 @@
                         "id": "optional-mutually-exclusive-question",
                         "title": "What is your favourite cheese?",
                         "type": "General"
-                    }],
+                    },
                     "title": "Optional question"
                 },
                 {
                     "id": "cheese-interstitial-set",
                     "title": "Cheese Interstitial Page",
-                    "description": "You selected an option for the cheese question",
                     "type": "Interstitial",
+                    "content": [{
+                        "description": "You selected an option for the cheese question"
+                    }],
                     "skip_conditions": [{
                         "when": [{
                             "id": "optional-mutually-exclusive-answer",
@@ -136,8 +142,10 @@
                 }, {
                     "id": "cheese-interstitial-not-set",
                     "title": "Cheese Interstitial Page",
-                    "description": "You did not select an option for the cheese question",
                     "type": "Interstitial",
+                    "content": [{
+                        "description": "You did not select an option for the cheese question"
+                    }],
                     "skip_conditions": [{
                         "when": [{
                             "id": "optional-mutually-exclusive-answer",

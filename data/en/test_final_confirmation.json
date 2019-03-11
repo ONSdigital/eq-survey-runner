@@ -38,7 +38,7 @@
                 "id": "breakfast",
                 "description": "",
                 "title": "What is your favourite breakfast food",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "breakfast-answer",
                         "label": "What is your favourite breakfast food",
@@ -50,7 +50,7 @@
                     "id": "breakfast-question",
                     "title": "What is your favourite breakfast food",
                     "type": "General"
-                }],
+                },
                 "routing_rules": []
             }],
             "id": "final-confirmation",
@@ -63,7 +63,10 @@
             "blocks": [{
                 "type": "Confirmation",
                 "id": "confirmation",
-                "title": "Thank you for your answers, do you wish to submit"
+                "title": "Submit answers",
+                "content": [{
+                    "title": "Thank you for your answers, do you wish to submit"
+                }]
             }],
             "id": "confirmation-group",
             "title": "Submit answers"

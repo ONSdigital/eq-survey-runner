@@ -28,7 +28,7 @@
                 "type": "Question",
                 "id": "block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "answer",
                         "label": "How much did you spend?",
@@ -65,7 +65,7 @@
                     "id": "question",
                     "title": "",
                     "type": "General"
-                }],
+                },
                 "title": "Currency Input Test",
                 "routing_rules": []
             }, {

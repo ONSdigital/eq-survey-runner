@@ -15,7 +15,7 @@
 
             <div class="collapsible__body u-fs-r js-collapsible-body">
                 {%- for block in group.blocks -%}
-                    {%- for question in block.questions -%}
+                    {%- set question = block.question -%}
                         {%- set has_multiple_answers = question.answers|length > 1 -%}
 
                         {%- if has_multiple_answers -%}
@@ -35,8 +35,6 @@
                                 {%- endif -%}
                             </div>
                         {%- endfor -%}
-
-                    {%- endfor -%}
                 {%- endfor -%}
             </div>
         {%- endfor -%}

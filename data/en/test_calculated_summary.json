@@ -33,7 +33,7 @@
                     "title": "First Number Block Title",
                     "id": "first-number-block",
                     "description": "",
-                    "questions": [{
+                    "question": {
                         "id": "first-number-question",
                         "title": "First Number Question Title",
                         "type": "General",
@@ -45,14 +45,14 @@
                             "currency": "GBP",
                             "decimal_places": 2
                         }]
-                    }]
+                    }
                 },
                 {
                     "type": "Question",
                     "title": "Second Number Block Title",
                     "id": "second-number-block",
                     "description": "",
-                    "questions": [{
+                    "question": {
                         "id": "second-number-question",
                         "title": "Second Number Question Title",
                         "type": "General",
@@ -81,45 +81,50 @@
                                 "decimal_places": 2
                             }
                         ]
-                    }]
+                    }
                 },
                 {
                     "type": "Question",
                     "title": "Third Number Block Title",
                     "id": "third-number-block",
                     "description": "",
-                    "questions": [{
-                            "id": "third-number-question",
-                            "title": "Third Number Question Title",
-                            "type": "General",
-                            "answers": [{
-                                "id": "third-number-answer",
-                                "label": "Third answer label",
-                                "mandatory": true,
-                                "type": "Currency",
-                                "currency": "GBP",
-                                "decimal_places": 2
-                            }]
-                        },
-                        {
-                            "id": "third-number-question-unit-total",
-                            "title": "Third Number Question Title Unit Total",
-                            "type": "General",
-                            "answers": [{
-                                "id": "third-number-answer-unit-total",
-                                "label": "Third answer label in unit total",
-                                "mandatory": true,
-                                "type": "Unit",
-                                "unit_length": "short",
-                                "unit": "length-centimeter"
-                            }]
-                        }
-                    ]
+                    "question": {
+                        "id": "third-number-question",
+                        "title": "Third Number Question Title",
+                        "type": "General",
+                        "answers": [{
+                            "id": "third-number-answer",
+                            "label": "Third answer label",
+                            "mandatory": true,
+                            "type": "Currency",
+                            "currency": "GBP",
+                            "decimal_places": 2
+                        }]
+                    }
+                },
+                {
+                    "type": "Question",
+                    "title": "Third Number Block Title",
+                    "id": "third-and-a-half-number-block",
+                    "description": "",
+                    "question": {
+                        "id": "third-and-a-half-number-question-unit-total",
+                        "title": "Third Number Question Title Unit Total",
+                        "type": "General",
+                        "answers": [{
+                            "id": "third-and-a-half-number-answer-unit-total",
+                            "label": "Third answer label in unit total",
+                            "mandatory": true,
+                            "type": "Unit",
+                            "unit_length": "short",
+                            "unit": "length-centimeter"
+                        }]
+                    }
                 },
                 {
                     "type": "Question",
                     "id": "skip-fourth-block",
-                    "questions": [{
+                    "question": {
                         "type": "General",
                         "id": "skip-fourth-block-question",
                         "title": "Skip Fourth Block so it doesn't appear in Total?",
@@ -137,7 +142,7 @@
                                 }
                             ]
                         }]
-                    }]
+                    }
                 },
                 {
                     "skip_conditions": [{
@@ -151,40 +156,52 @@
                     "title": "Fourth Number Block Title",
                     "id": "fourth-number-block",
                     "description": "",
-                    "questions": [{
-                            "id": "fourth-number-question",
-                            "title": "Fourth Number Question Title",
-                            "type": "General",
-                            "answers": [{
-                                "id": "fourth-number-answer",
-                                "label": "Fourth answer label (optional)",
-                                "mandatory": false,
-                                "type": "Currency",
-                                "currency": "GBP",
-                                "decimal_places": 2
-                            }]
-                        },
-                        {
-                            "id": "fourth-number-question-also-in-total",
-                            "title": "Fourth Number Additional Question Title",
-                            "type": "General",
-                            "answers": [{
-                                "id": "fourth-number-answer-also-in-total",
-                                "label": "Fourth answer label also in total (optional)",
-                                "mandatory": false,
-                                "type": "Currency",
-                                "currency": "GBP",
-                                "decimal_places": 2
-                            }]
-                        }
-                    ]
+                    "question": {
+                        "id": "fourth-number-question",
+                        "title": "Fourth Number Question Title",
+                        "type": "General",
+                        "answers": [{
+                            "id": "fourth-number-answer",
+                            "label": "Fourth answer label (optional)",
+                            "mandatory": false,
+                            "type": "Currency",
+                            "currency": "GBP",
+                            "decimal_places": 2
+                        }]
+                    }
+                },
+                {
+                    "skip_conditions": [{
+                        "when": [{
+                            "id": "skip-fourth-block-answer",
+                            "condition": "equals",
+                            "value": "Yes"
+                        }]
+                    }],
+                    "type": "Question",
+                    "title": "Fourth Number Block Title",
+                    "id": "fourth-and-a-half-number-block",
+                    "description": "",
+                    "question": {
+                        "id": "fourth-and-a-half-number-question-also-in-total",
+                        "title": "Fourth Number Additional Question Title",
+                        "type": "General",
+                        "answers": [{
+                            "id": "fourth-and-a-half-number-answer-also-in-total",
+                            "label": "Fourth answer label also in total (optional)",
+                            "mandatory": false,
+                            "type": "Currency",
+                            "currency": "GBP",
+                            "decimal_places": 2
+                        }]
+                    }
                 },
                 {
                     "type": "Question",
                     "title": "Fifth Number Block Title",
                     "id": "fifth-number-block",
                     "description": "",
-                    "questions": [{
+                    "question": {
                         "id": "fifth-number-question",
                         "title": "Fifth Number Question Title Percentage",
                         "type": "General",
@@ -205,14 +222,14 @@
                                 "decimal_places": 2
                             }
                         ]
-                    }]
+                    }
                 },
                 {
                     "type": "Question",
                     "title": "Sixth Number Block Title",
                     "id": "sixth-number-block",
                     "description": "",
-                    "questions": [{
+                    "question": {
                         "id": "sixth-number-question",
                         "title": "Sixth Number Question Title Percentage",
                         "type": "General",
@@ -233,23 +250,34 @@
                                 "decimal_places": 2
                             }
                         ]
+                    }
+                },
+                {
+                    "type": "CalculatedSummary",
+                    "id": "currency-total-playback-skipped-fourth",
+                    "title": "We calculate the total of currency values entered to be %(total)s. Is this correct? (Skipped Fourth)",
+                    "calculation": {
+                        "calculation_type": "sum",
+                        "answers_to_calculate": [
+                            "first-number-answer",
+                            "second-number-answer",
+                            "second-number-answer-also-in-total",
+                            "third-number-answer"
+                        ],
+                        "title": "Grand total of previous values"
+                    },
+                    "skip_conditions": [{
+                        "when": [{
+                            "id": "skip-fourth-block-answer",
+                            "condition": "equals",
+                            "value": "No"
+                        }]
                     }]
                 },
                 {
                     "type": "CalculatedSummary",
-                    "id": "currency-total-playback",
-                    "titles": [{
-                            "value": "We calculate the total of currency values entered to be %(total)s. Is this correct? (Skipped Fourth)",
-                            "when": [{
-                                "id": "skip-fourth-block-answer",
-                                "condition": "equals",
-                                "value": "Yes"
-                            }]
-                        },
-                        {
-                            "value": "We calculate the total of currency values entered to be %(total)s. Is this correct? (With Fourth)"
-                        }
-                    ],
+                    "id": "currency-total-playback-with-fourth",
+                    "title": "We calculate the total of currency values entered to be %(total)s. Is this correct? (With Fourth)",
                     "calculation": {
                         "calculation_type": "sum",
                         "answers_to_calculate": [
@@ -258,62 +286,55 @@
                             "second-number-answer-also-in-total",
                             "third-number-answer",
                             "fourth-number-answer",
-                            "fourth-number-answer-also-in-total"
+                            "fourth-and-a-half-number-answer-also-in-total"
                         ],
-                        "titles": [{
-                            "value": "Grand total of previous values"
+                        "title": "Grand total of previous values"
+                    },
+                    "skip_conditions": [{
+                        "when": [{
+                            "id": "skip-fourth-block-answer",
+                            "condition": "equals",
+                            "value": "Yes"
                         }]
-                    }
+                    }]
                 },
                 {
                     "type": "CalculatedSummary",
                     "id": "unit-total-playback",
-                    "titles": [{
-                        "value": "We calculate the total of unit values entered to be %(total)s. Is this correct?"
-                    }],
+                    "title": "We calculate the total of unit values entered to be %(total)s. Is this correct?",
                     "calculation": {
                         "calculation_type": "sum",
                         "answers_to_calculate": [
                             "second-number-answer-unit-total",
-                            "third-number-answer-unit-total"
+                            "third-and-a-half-number-answer-unit-total"
                         ],
-                        "titles": [{
-                            "value": "Grand total of previous values"
-                        }]
+                        "title": "Grand total of previous values"
                     }
                 },
                 {
                     "type": "CalculatedSummary",
                     "id": "percentage-total-playback",
-                    "titles": [{
-                        "value": "We calculate the total of percentage values entered to be %(total)s. Is this correct?"
-                    }],
+                    "title": "We calculate the total of percentage values entered to be %(total)s. Is this correct?",
                     "calculation": {
                         "calculation_type": "sum",
                         "answers_to_calculate": [
                             "fifth-percent-answer",
                             "sixth-percent-answer"
                         ],
-                        "titles": [{
-                            "value": "Grand total of previous values"
-                        }]
+                        "title": "Grand total of previous values"
                     }
                 },
                 {
                     "type": "CalculatedSummary",
                     "id": "number-total-playback",
-                    "titles": [{
-                        "value": "We calculate the total of number values entered to be %(total)s. Is this correct?"
-                    }],
+                    "title": "We calculate the total of number values entered to be %(total)s. Is this correct?",
                     "calculation": {
                         "calculation_type": "sum",
                         "answers_to_calculate": [
                             "fifth-number-answer",
                             "sixth-number-answer"
                         ],
-                        "titles": [{
-                            "value": "Grand total of previous values"
-                        }]
+                        "title": "Grand total of previous values"
                     }
                 },
                 {

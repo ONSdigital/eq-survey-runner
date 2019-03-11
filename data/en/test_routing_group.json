@@ -25,7 +25,7 @@
                 "id": "which-group-block",
                 "description": "",
                 "title": "Pick your next group?",
-                "questions": [{
+                "question": {
                     "description": "",
                     "id": "which-group-question",
                     "title": "Select Group",
@@ -46,7 +46,7 @@
                             "messages": {}
                         }
                     }]
-                }],
+                },
                 "routing_rules": [{
                     "goto": {
                         "group": "group1",
@@ -71,7 +71,7 @@
                 "routing_rules": [],
                 "description": "",
                 "title": "Did you want Group 1?",
-                "questions": [{
+                "question": {
                     "description": "",
                     "id": "group1-question",
                     "title": "Did you want Group 1?",
@@ -82,7 +82,7 @@
                         "mandatory": true,
                         "type": "TextArea"
                     }]
-                }]
+                }
             }]
         }, {
             "id": "group2",
@@ -93,7 +93,7 @@
                 "routing_rules": [],
                 "description": "",
                 "title": "Did you want Group 2?",
-                "questions": [{
+                "question": {
                     "description": "",
                     "id": "group2-question",
                     "title": "Did you want Group 2?",
@@ -104,7 +104,7 @@
                         "mandatory": true,
                         "type": "TextArea"
                     }]
-                }]
+                }
             }]
         }, {
             "blocks": [{

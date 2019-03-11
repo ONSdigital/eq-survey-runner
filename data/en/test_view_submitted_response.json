@@ -27,7 +27,7 @@
                 "type": "Question",
                 "id": "radio",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "radio-answer",
                         "label": "What is your favourite breakfast food?",
@@ -63,13 +63,13 @@
                     "id": "radio-question",
                     "title": "",
                     "type": "General"
-                }],
+                },
                 "title": "What is your favourite breakfast food"
             }, {
                 "type": "Question",
                 "id": "test-number-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "test-currency",
                         "description": "",
@@ -98,7 +98,7 @@
                     "id": "test-number-range-question",
                     "title": "Please enter test values (none mandatory)",
                     "type": "General"
-                }],
+                },
                 "title": ""
             }, {
                 "type": "Summary",

@@ -257,7 +257,7 @@ To deploy the app to the cluster, run the following command:
  ```
 ./k8s/deploy_app.sh census-eq-dev-1234567-survey-runner-submission eu.gcr.io/census-eq-dev v3.0.0
  ```
- 
+
 ### Internationalisation
 
 We use flask-babel to do internationalisation.  To extract messages from source, in the project root run the following command.
@@ -407,7 +407,7 @@ will be collected per-request in the `profiling` directory where it can be exami
 
 will load the file into the interactive browser where it can be sorted and queried as required.
 
-To visualise the profile, `snakeviz` can be used. This provides a nice interface with an 'icicle' graph:
+To visualise the profile, `snakeviz` can be used. This provides a nice interface with an icicle graph:
 
 ```
 # First combine all the profiles in the 'profiling' directory.

@@ -28,7 +28,7 @@
                 "type": "Question",
                 "id": "textarea-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "answer",
                         "label": "Enter your comments",
@@ -45,7 +45,7 @@
                     "id": "question",
                     "title": "",
                     "type": "General"
-                }],
+                },
                 "title": "Textarea Test"
             }, {
                 "type": "Summary",

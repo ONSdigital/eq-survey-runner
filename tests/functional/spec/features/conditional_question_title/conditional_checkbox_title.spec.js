@@ -24,7 +24,7 @@ describe('Feature: Conditional checkbox and radio question titles', function() {
         .setValue(NameEntryPage.name(),'Fred')
         .click(NameEntryPage.submit())
         .getText(CheckBoxPage.questionText()).should.eventually.contain('Did this business make major changes in the following areas')
-        .click(CheckBoxPage.implementationOfChangesToMarketingConceptsOrStrategies())
+        .click(CheckBoxPage.checkboxImplementationOfChangesToMarketingConceptsOrStrategies())
         .getText(RadioButtonsPage.questionText()).should.eventually.contain('Did this business make major changes in the following areas');
     });
 
@@ -40,10 +40,10 @@ describe('Feature: Conditional checkbox and radio question titles', function() {
         .setValue(NameEntryPage.name(),'Mary')
         .click(NameEntryPage.submit())
         .getText(CheckBoxPage.questionText()).should.eventually.contain('Did Mary make changes to this business')
-        .click(CheckBoxPage.implementationOfChangesToMarketingConceptsOrStrategies())
+        .click(CheckBoxPage.checkboxImplementationOfChangesToMarketingConceptsOrStrategiesLabel())
         .click(CheckBoxPage.submit())
         .getText(RadioButtonsPage.questionText()).should.eventually.contain('Is Mary the boss?')
-        .click(RadioButtonsPage.maybe())
+        .click(RadioButtonsPage.radioMaybe())
         .click(RadioButtonsPage.submit())
         .getText(SummaryPage.nameAnswer()).should.eventually.contain('Mary')
         .getText(SummaryPage.summaryQuestionText()).should.eventually.contain('Did Mary make changes to this business?');

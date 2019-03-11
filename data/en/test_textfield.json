@@ -28,7 +28,7 @@
                 "type": "Question",
                 "id": "name-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "name-answer",
                         "label": "What is your name?",
@@ -40,7 +40,7 @@
                     "id": "name-question",
                     "title": "",
                     "type": "General"
-                }],
+                },
                 "title": "Text Field Test",
                 "routing_rules": []
             }, {

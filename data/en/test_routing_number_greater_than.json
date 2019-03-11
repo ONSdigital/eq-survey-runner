@@ -23,7 +23,7 @@
                 "type": "Question",
                 "id": "number-question",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "answer",
                         "mandatory": true,
@@ -33,7 +33,7 @@
                     "id": "question",
                     "title": "Enter the number greater than 123",
                     "type": "General"
-                }],
+                },
                 "title": "Number Routing Greater Than",
                 "routing_rules": [{
                     "goto": {
@@ -53,7 +53,9 @@
                 "type": "Interstitial",
                 "id": "incorrect-answer",
                 "title": "You entered a number that was not greater than 123",
-                "description": "You were asked to enter a number greater than <em>123</em> but you entered <em>{{answers['answer']}}</em>.",
+                "content": [{
+                    "description": "You were asked to enter a number greater than <em>123</em> but you entered <em>{{answers['answer']}}</em>."
+                }],
                 "routing_rules": [{
                     "goto": {
                         "block": "summary"
@@ -63,7 +65,9 @@
                 "type": "Interstitial",
                 "id": "correct-answer",
                 "title": "You entered a number greater than 123",
-                "description": "You were asked to enter a number greater than <em>123</em> and you entered <em>{{answers['answer']}}</em>."
+                "content": [{
+                    "description": "You were asked to enter a number greater than <em>123</em> and you entered <em>{{answers['answer']}}</em>."
+                }]
             }, {
                 "type": "Summary",
                 "id": "summary"

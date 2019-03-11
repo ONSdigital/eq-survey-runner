@@ -38,14 +38,15 @@ class TestFormHelper(AppContextTestCase):
             form = get_form_for_location(schema, block_json, location,
                                          AnswerStore(), metadata=None, disable_mandatory=True)
 
-            self.assertTrue(hasattr(form, 'date-range-from-answer'))
-            self.assertTrue(hasattr(form, 'date-range-to-answer'))
+            period_from_field = getattr(form, 'date-range-from-answer', None)
+            period_to_field = getattr(form, 'date-range-to-answer', None)
 
-            period_from_field = getattr(form, 'date-range-from-answer')
-            period_to_field = getattr(form, 'date-range-to-answer')
+            assert period_from_field
+            assert period_to_field
 
             self.assertIsInstance(period_from_field.month.validators[0], OptionalForm)
             self.assertIsInstance(period_to_field.month.validators[0], OptionalForm)
+
 
     def test_post_form_for_block_location(self):
         with self.app_request_context():

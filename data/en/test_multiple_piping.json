@@ -24,7 +24,7 @@
             "blocks": [{
                 "type": "Question",
                 "id": "what-is-your-address",
-                "questions": [{
+                "question": {
                     "id": "what-is-your-address-question",
                     "title": "What is your address?",
                     "type": "General",
@@ -74,11 +74,11 @@
                         "mandatory": false,
                         "type": "TextField"
                     }]
-                }]
+                }
             }, {
                 "type": "Question",
                 "id": "textfield",
-                "questions": [{
+                "question": {
                     "id": "textfield-question",
                     "title": "Enter text below",
                     "type": "General",
@@ -98,11 +98,11 @@
                         "mandatory": false,
                         "type": "TextField"
                     }]
-                }]
+                }
             }, {
                 "type": "Question",
                 "id": "piping-question",
-                "questions": [{
+                "question": {
                     "id": "multiple-piping-question",
                     "title": "Does <em>{{[answers['first-text'], answers['second-text']] | format_household_name}}</em> live at <em>{{answers['address-line-1']}}</em>",
                     "type": "General",
@@ -118,7 +118,7 @@
                             "value": "at another address"
                         }]
                     }]
-                }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

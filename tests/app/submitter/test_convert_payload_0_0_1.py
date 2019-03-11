@@ -15,31 +15,33 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                            create_answer('DEF', '2016-03-30'),
                            create_answer('GHI', '2016-05-30')]
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'group-1', 'block-1', [
-                {
-                    'id': 'question-1',
-                    'answers': [
-                        {
-                            'id': 'LMN',
-                            'type': 'TextField',
-                            'q_code': '001'
-                        },
-                        {
-                            'id': 'DEF',
-                            'type': 'TextField',
-                            'q_code': '002'
-                        },
-                        {
-                            'id': 'JKL',
-                            'type': 'TextField',
-                            'q_code': '003'
-                        }
-                    ]
-                }
-            ])
+            question = {
+                'id': 'question-1',
+                'answers': [
+                    {
+                        'id': 'LMN',
+                        'type': 'TextField',
+                        'q_code': '001'
+                    },
+                    {
+                        'id': 'DEF',
+                        'type': 'TextField',
+                        'q_code': '002'
+                    },
+                    {
+                        'id': 'JKL',
+                        'type': 'TextField',
+                        'q_code': '003'
+                    }
+                ]
+            }
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'group-1', 'block-1', question)
 
             routing_path = [Location(block_id='block-1')]
-            answer_object = (convert_answers_to_payload_0_0_1(AnswerStore(user_answer), QuestionnaireSchema(questionnaire), routing_path))
+            answer_object = (
+                convert_answers_to_payload_0_0_1({}, AnswerStore(user_answer), QuestionnaireSchema(questionnaire),
+                                                 routing_path))
             self.assertEqual(answer_object['002'], '2016-03-30')
             self.assertEqual(len(answer_object), 1)
 
@@ -47,22 +49,23 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
         with self._app.test_request_context():
             user_answer = [create_answer('GHI', 0)]
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'group-1', 'block-1', [
-                {
-                    'id': 'question-2',
-                    'answers': [
-                        {
-                            'id': 'GHI',
-                            'type': 'TextField',
-                            'q_code': '003'
-                        }
-                    ]
-                }
-            ])
+            question = {
+                'id': 'question-2',
+                'answers': [
+                    {
+                        'id': 'GHI',
+                        'type': 'TextField',
+                        'q_code': '003'
+                    }
+                ]
+            }
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'group-1', 'block-1', question)
 
             routing_path = [Location(block_id='block-1')]
 
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Check the converter correctly
             self.assertEqual('0', answer_object['data']['003'])
@@ -71,22 +74,23 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
         with self._app.test_request_context():
             user_answer = [create_answer('GHI', 10.02)]
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'group-1', 'block-1', [
-                {
-                    'id': 'question-2',
-                    'answers': [
-                        {
-                            'id': 'GHI',
-                            'type': 'TextField',
-                            'q_code': '003'
-                        }
-                    ]
-                }
-            ])
+            question = {
+                'id': 'question-2',
+                'answers': [
+                    {
+                        'id': 'GHI',
+                        'type': 'TextField',
+                        'q_code': '003'
+                    }
+                ]
+            }
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'group-1', 'block-1', question)
 
             routing_path = [Location(block_id='block-1')]
 
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Check the converter correctly
             self.assertEqual('10.02', answer_object['data']['003'])
@@ -95,22 +99,23 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
         with self._app.test_request_context():
             user_answer = [create_answer('GHI', 'String test + !')]
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'group-1', 'block-1', [
-                {
-                    'id': 'question-2',
-                    'answers': [
-                        {
-                            'id': 'GHI',
-                            'type': 'TextField',
-                            'q_code': '003'
-                        }
-                    ]
-                }
-            ])
+            question = {
+                'id': 'question-2',
+                'answers': [
+                    {
+                        'id': 'GHI',
+                        'type': 'TextField',
+                        'q_code': '003'
+                    }
+                ]
+            }
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'group-1', 'block-1', question)
 
             routing_path = [Location(block_id='block-1')]
 
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Check the converter correctly
             self.assertEqual('String test + !', answer_object['data']['003'])
@@ -119,21 +124,22 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
         with self._app.test_request_context():
             user_answer = [create_answer('GHI', 'String test + !')]
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'group-1', 'block-1', [
-                {
-                    'id': 'question-2',
-                    'answers': [
-                        {
-                            'id': 'GHI',
-                            'type': 'TextField'
-                        }
-                    ]
-                }
-            ])
+            question = {
+                'id': 'question-2',
+                'answers': [
+                    {
+                        'id': 'GHI',
+                        'type': 'TextField'
+                    }
+                ]
+            }
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'group-1', 'block-1', question)
 
             routing_path = [Location(block_id='block-1')]
 
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             self.assertEqual(len(answer_object['data']), 0)
 
@@ -145,49 +151,50 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                 'Sweet chilli'
             ])]
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'favourite-food', 'crisps', [
-                {
-                    'id': 'crisps-question',
-                    'answers': [
-                        {
-                            'id': 'crisps-answer',
-                            'type': 'Checkbox',
-                            'options': [
-                                {
-                                    'label': 'Ready salted',
-                                    'value': 'Ready salted',
-                                    'q_code': '1'
-                                },
-                                {
-                                    'label': 'Sweet chilli',
-                                    'value': 'Sweet chilli',
-                                    'q_code': '2'
-                                },
-                                {
-                                    'label': 'Cheese and onion',
-                                    'value': 'Cheese and onion',
-                                    'q_code': '3'
-                                },
-                                {
-                                    'label': 'Other',
-                                    'q_code': '4',
-                                    'description': 'Choose any other flavour',
-                                    'value': 'Other',
-                                    'detail_answer': {
-                                        'mandatory': True,
-                                        'id': 'other-answer-mandatory',
-                                        'label': 'Please specify other',
-                                        'type': 'TextField'
-                                    }
+            question = {
+                'id': 'crisps-question',
+                'answers': [
+                    {
+                        'id': 'crisps-answer',
+                        'type': 'Checkbox',
+                        'options': [
+                            {
+                                'label': 'Ready salted',
+                                'value': 'Ready salted',
+                                'q_code': '1'
+                            },
+                            {
+                                'label': 'Sweet chilli',
+                                'value': 'Sweet chilli',
+                                'q_code': '2'
+                            },
+                            {
+                                'label': 'Cheese and onion',
+                                'value': 'Cheese and onion',
+                                'q_code': '3'
+                            },
+                            {
+                                'label': 'Other',
+                                'q_code': '4',
+                                'description': 'Choose any other flavour',
+                                'value': 'Other',
+                                'detail_answer': {
+                                    'mandatory': True,
+                                    'id': 'other-answer-mandatory',
+                                    'label': 'Please specify other',
+                                    'type': 'TextField'
                                 }
-                            ]
-                        }
-                    ]
-                }
-            ])
+                            }
+                        ]
+                    }
+                ]
+            }
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'favourite-food', 'crisps', question)
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(answers), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 2)
@@ -204,49 +211,50 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
 
             answers += [create_answer('other-answer-mandatory', 'Bacon')]
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'favourite-food', 'crisps', [
-                {
-                    'id': 'crisps-question',
-                    'answers': [
-                        {
-                            'id': 'crisps-answer',
-                            'type': 'Checkbox',
-                            'options': [
-                                {
-                                    'label': 'Ready salted',
-                                    'value': 'Ready salted',
-                                    'q_code': '1'
-                                },
-                                {
-                                    'label': 'Sweet chilli',
-                                    'value': 'Sweet chilli',
-                                    'q_code': '2'
-                                },
-                                {
-                                    'label': 'Cheese and onion',
-                                    'value': 'Cheese and onion',
-                                    'q_code': '3'
-                                },
-                                {
-                                    'label': 'Other',
-                                    'q_code': '4',
-                                    'description': 'Choose any other flavour',
-                                    'value': 'Other',
-                                    'detail_answer':  {
-                                        'mandatory': True,
-                                        'id': 'other-answer-mandatory',
-                                        'label': 'Please specify other',
-                                        'type': 'TextField'
-                                    }
+            question = {
+                'id': 'crisps-question',
+                'answers': [
+                    {
+                        'id': 'crisps-answer',
+                        'type': 'Checkbox',
+                        'options': [
+                            {
+                                'label': 'Ready salted',
+                                'value': 'Ready salted',
+                                'q_code': '1'
+                            },
+                            {
+                                'label': 'Sweet chilli',
+                                'value': 'Sweet chilli',
+                                'q_code': '2'
+                            },
+                            {
+                                'label': 'Cheese and onion',
+                                'value': 'Cheese and onion',
+                                'q_code': '3'
+                            },
+                            {
+                                'label': 'Other',
+                                'q_code': '4',
+                                'description': 'Choose any other flavour',
+                                'value': 'Other',
+                                'detail_answer': {
+                                    'mandatory': True,
+                                    'id': 'other-answer-mandatory',
+                                    'label': 'Please specify other',
+                                    'type': 'TextField'
                                 }
-                            ]
-                        }
-                    ]
-                }
-            ])
+                            }
+                        ]
+                    }
+                ]
+            }
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'favourite-food', 'crisps', question)
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(answers), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 2)
@@ -263,49 +271,50 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
 
             answers += [create_answer('other-answer-mandatory', '')]
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'favourite-food', 'crisps', [
-                {
-                    'id': 'crisps-question',
-                    'answers': [
-                        {
-                            'id': 'crisps-answer',
-                            'type': 'Checkbox',
-                            'options': [
-                                {
-                                    'label': 'Ready salted',
-                                    'value': 'Ready salted',
-                                    'q_code': '1'
-                                },
-                                {
-                                    'label': 'Sweet chilli',
-                                    'value': 'Sweet chilli',
-                                    'q_code': '2'
-                                },
-                                {
-                                    'label': 'Cheese and onion',
-                                    'value': 'Cheese and onion',
-                                    'q_code': '3'
-                                },
-                                {
-                                    'label': 'Other',
-                                    'q_code': '4',
-                                    'description': 'Choose any other flavour',
-                                    'value': 'Other',
-                                    'detail_answer': {
-                                        'mandatory': True,
-                                        'id': 'other-answer-mandatory',
-                                        'label': 'Please specify other',
-                                        'type': 'TextField'
-                                    }
+            question = {
+                'id': 'crisps-question',
+                'answers': [
+                    {
+                        'id': 'crisps-answer',
+                        'type': 'Checkbox',
+                        'options': [
+                            {
+                                'label': 'Ready salted',
+                                'value': 'Ready salted',
+                                'q_code': '1'
+                            },
+                            {
+                                'label': 'Sweet chilli',
+                                'value': 'Sweet chilli',
+                                'q_code': '2'
+                            },
+                            {
+                                'label': 'Cheese and onion',
+                                'value': 'Cheese and onion',
+                                'q_code': '3'
+                            },
+                            {
+                                'label': 'Other',
+                                'q_code': '4',
+                                'description': 'Choose any other flavour',
+                                'value': 'Other',
+                                'detail_answer': {
+                                    'mandatory': True,
+                                    'id': 'other-answer-mandatory',
+                                    'label': 'Please specify other',
+                                    'type': 'TextField'
                                 }
-                            ]
-                        }
-                    ]
-                }
-            ])
+                            }
+                        ]
+                    }
+                ]
+            }
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'favourite-food', 'crisps', question)
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(answers), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 2)
@@ -320,49 +329,50 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
                 'Sweet chilli'
             ])]
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'favourite-food', 'crisps', [
-                {
-                    'id': 'crisps-question',
-                    'answers': [
-                        {
-                            'id': 'crisps-answer',
-                            'type': 'Checkbox',
-                            'q_code': '0',
-                            'options': [
-                                {
-                                    'label': 'Ready salted',
-                                    'value': 'Ready salted',
-                                    'q_code': '1'
-                                },
-                                {
-                                    'label': 'Sweet chilli',
-                                    'value': 'Sweet chilli',
-                                },
-                                {
-                                    'label': 'Cheese and onion',
-                                    'value': 'Cheese and onion',
-                                    'q_code': '3'
-                                },
-                                {
-                                    'label': 'Other',
-                                    'q_code': '4',
-                                    'description': 'Choose any other flavour',
-                                    'value': 'Other',
-                                    'detail_answer': {
-                                        'mandatory': True,
-                                        'id': 'other-answer-mandatory',
-                                        'label': 'Please specify other',
-                                        'type': 'TextField'
-                                    }
+            question = {
+                'id': 'crisps-question',
+                'answers': [
+                    {
+                        'id': 'crisps-answer',
+                        'type': 'Checkbox',
+                        'q_code': '0',
+                        'options': [
+                            {
+                                'label': 'Ready salted',
+                                'value': 'Ready salted',
+                                'q_code': '1'
+                            },
+                            {
+                                'label': 'Sweet chilli',
+                                'value': 'Sweet chilli',
+                            },
+                            {
+                                'label': 'Cheese and onion',
+                                'value': 'Cheese and onion',
+                                'q_code': '3'
+                            },
+                            {
+                                'label': 'Other',
+                                'q_code': '4',
+                                'description': 'Choose any other flavour',
+                                'value': 'Other',
+                                'detail_answer': {
+                                    'mandatory': True,
+                                    'id': 'other-answer-mandatory',
+                                    'label': 'Please specify other',
+                                    'type': 'TextField'
                                 }
-                            ]
-                        }
-                    ]
-                }
-            ])
+                            }
+                        ]
+                    }
+                ]
+            }
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'favourite-food', 'crisps', question)
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(answers), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -375,28 +385,29 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             answers += [
                 create_answer('other-crisps-answer', 'Ready salted')]
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'favourite-food', 'crisps', [
-                {
-                    'id': 'crisps-question',
-                    'answers': [
-                        {
-                            'id': 'crisps-answer',
-                            'type': 'TextArea',
-                            'options': [],
-                            'q_code': '1'
-                        },
-                        {
-                            'id': 'other-crisps-answer',
-                            'type': 'TextArea',
-                            'options': [],
-                            'q_code': '2'
-                        }
-                    ]
-                }
-            ])
+            question = {
+                'id': 'crisps-question',
+                'answers': [
+                    {
+                        'id': 'crisps-answer',
+                        'type': 'TextArea',
+                        'options': [],
+                        'q_code': '1'
+                    },
+                    {
+                        'id': 'other-crisps-answer',
+                        'type': 'TextArea',
+                        'options': [],
+                        'q_code': '2'
+                    }
+                ]
+            }
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'favourite-food', 'crisps', question)
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(answers), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(answers), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -406,32 +417,31 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
         with self._app.test_request_context():
             routing_path = [Location(block_id='radio-block')]
             user_answer = [create_answer('radio-answer', 'Coffee')]
-
-            questionnaire = make_schema('0.0.1', 'section-1', 'radio-block', 'radio-block', [
-                {
-                    'id': 'radio-question',
-                    'answers': [
-                        {
-                            'type': 'Radio',
-                            'id': 'radio-answer',
-                            'q_code': '1',
-                            'options': [
-                                {
-                                    'label': 'Coffee',
-                                    'value': 'Coffee'
-                                },
-                                {
-                                    'label': 'Tea',
-                                    'value': 'Tea'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ])
+            question = {
+                'id': 'radio-question',
+                'answers': [
+                    {
+                        'type': 'Radio',
+                        'id': 'radio-answer',
+                        'q_code': '1',
+                        'options': [
+                            {
+                                'label': 'Coffee',
+                                'value': 'Coffee'
+                            },
+                            {
+                                'label': 'Tea',
+                                'value': 'Tea'
+                            }
+                        ]
+                    }
+                ]
+            }
+            questionnaire = make_schema('0.0.1', 'section-1', 'radio-block', 'radio-block', question)
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -442,21 +452,22 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(block_id='number-block')]
             user_answer = [create_answer('number-answer', 0.9999)]
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'number-block', 'number-block', [
-                {
-                    'id': 'number-question',
-                    'answers': [
-                        {
-                            'id': 'number-answer',
-                            'type': 'Number',
-                            'q_code': '1'
-                        }
-                    ]
-                }
-            ])
+            question = {
+                'id': 'number-question',
+                'answers': [
+                    {
+                        'id': 'number-answer',
+                        'type': 'Number',
+                        'q_code': '1'
+                    }
+                ]
+            }
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'number-block', 'number-block', question)
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -466,22 +477,22 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
         with self._app.test_request_context():
             routing_path = [Location(block_id='percentage-block')]
             user_answer = [create_answer('percentage-answer', 100)]
+            question = {
+                'id': 'percentage-question',
+                'answers': [
+                    {
+                        'id': 'percentage-answer',
+                        'type': 'Percentage',
+                        'q_code': '1'
+                    }
+                ]
+            }
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'percentage-block', 'percentage-block', [
-                {
-                    'id': 'percentage-question',
-                    'answers': [
-                        {
-                            'id': 'percentage-answer',
-                            'type': 'Percentage',
-                            'q_code': '1'
-                        }
-                    ]
-                }
-            ])
+            questionnaire = make_schema('0.0.1', 'section-1', 'percentage-block', 'percentage-block', question)
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -492,21 +503,22 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(block_id='textarea-block')]
             user_answer = [create_answer('textarea-answer', 'example text.')]
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'textarea-block', 'textarea-block', [
-                {
-                    'id': 'textarea-question',
-                    'answers': [
-                        {
-                            'id': 'textarea-answer',
-                            'q_code': '1',
-                            'type': 'TextArea'
-                        }
-                    ]
-                }
-            ])
+            question = {
+                'id': 'textarea-question',
+                'answers': [
+                    {
+                        'id': 'textarea-answer',
+                        'q_code': '1',
+                        'type': 'TextArea'
+                    }
+                ]
+            }
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'textarea-block', 'textarea-block', question)
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -517,21 +529,22 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(block_id='currency-block')]
             user_answer = [create_answer('currency-answer', 99.99)]
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'currency-block', 'currency-block', [
-                {
-                    'id': 'currency-question',
-                    'answers': [
-                        {
-                            'id': 'currency-answer',
-                            'type': 'Currency',
-                            'q_code': '1'
-                        }
-                    ]
-                }
-            ])
+            question = {
+                'id': 'currency-question',
+                'answers': [
+                    {
+                        'id': 'currency-answer',
+                        'type': 'Currency',
+                        'q_code': '1'
+                    }
+                ]
+            }
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'currency-block', 'currency-block', question)
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -542,35 +555,36 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(block_id='dropdown-block')]
             user_answer = [create_answer('dropdown-answer', 'Liverpool')]
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'dropdown-block', 'dropdown-block', [
-                {
-                    'id': 'dropdown-question',
-                    'answers': [
-                        {
-                            'id': 'dropdown-answer',
-                            'type': 'Dropdown',
-                            'q_code': '1',
-                            'options': [
-                                {
-                                    'label': 'Liverpool',
-                                    'value': 'Liverpool'
-                                },
-                                {
-                                    'label': 'Chelsea',
-                                    'value': 'Chelsea'
-                                },
-                                {
-                                    'label': 'Rugby is better!',
-                                    'value': 'Rugby is better!'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ])
+            question = {
+                'id': 'dropdown-question',
+                'answers': [
+                    {
+                        'id': 'dropdown-answer',
+                        'type': 'Dropdown',
+                        'q_code': '1',
+                        'options': [
+                            {
+                                'label': 'Liverpool',
+                                'value': 'Liverpool'
+                            },
+                            {
+                                'label': 'Chelsea',
+                                'value': 'Chelsea'
+                            },
+                            {
+                                'label': 'Rugby is better!',
+                                'value': 'Rugby is better!'
+                            }
+                        ]
+                    }
+                ]
+            }
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'dropdown-block', 'dropdown-block', question)
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
@@ -582,30 +596,27 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             user_answer = [create_answer('single-date-answer', '1990-02-01'),
                            create_answer('month-year-answer', '1990-01')]
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'date-block', 'date-block', [
-                {
-                    'id': 'single-date-question',
-                    'answers': [
-                        {
-                            'id': 'single-date-answer',
-                            'type': 'Date',
-                            'q_code': '1'
-                        }
-                    ]
-                },
-                {
-                    'id': 'month-year-question',
-                    'answers': [
-                        {
-                            'id': 'month-year-answer',
-                            'type': 'MonthYearDate',
-                            'q_code': '2'
-                        }
-                    ]
-                }
-            ])
+            question = {
+                'id': 'single-date-question',
+                'answers': [
+                    {
+                        'id': 'single-date-answer',
+                        'type': 'Date',
+                        'q_code': '1'
+                    },
+                    {
+                        'id': 'month-year-answer',
+                        'type': 'MonthYearDate',
+                        'q_code': '2'
+                    }
+                ]
+            }
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'date-block', 'date-block', question)
+
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 2)
@@ -617,21 +628,22 @@ class TestConvertPayload001(TestConverter):  # pylint: disable=too-many-public-m
             routing_path = [Location(block_id='unit-block')]
             user_answer = [create_answer('unit-answer', 10)]
 
-            questionnaire = make_schema('0.0.1', 'section-1', 'unit-block', 'unit-block', [
-                {
-                    'id': 'unit-question',
-                    'answers': [
-                        {
-                            'id': 'unit-answer',
-                            'type': 'Unit',
-                            'q_code': '1'
-                        }
-                    ]
-                }
-            ])
+            question = {
+                'id': 'unit-question',
+                'answers': [
+                    {
+                        'id': 'unit-answer',
+                        'type': 'Unit',
+                        'q_code': '1'
+                    }
+                ]
+            }
+
+            questionnaire = make_schema('0.0.1', 'section-1', 'unit-block', 'unit-block', question)
 
             # When
-            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire), AnswerStore(user_answer), routing_path)
+            answer_object = convert_answers(self.metadata, self.collection_metadata, QuestionnaireSchema(questionnaire),
+                                            AnswerStore(user_answer), routing_path)
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)

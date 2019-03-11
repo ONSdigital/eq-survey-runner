@@ -26,7 +26,7 @@
                 "type": "Question",
                 "id": "route-comparison-1",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "route-comparison-1-answer",
                         "label": "1st Number",
@@ -37,12 +37,12 @@
                     "id": "route-comparison-1-question",
                     "title": "Enter your first number",
                     "type": "General"
-                }]
+                }
             }, {
                 "type": "Question",
                 "id": "route-comparison-2",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "route-comparison-2-answer",
                         "label": "2nd Number",
@@ -53,7 +53,7 @@
                     "id": "route-comparison-2-question",
                     "title": "Enter a higher number to skip the next interstitial",
                     "type": "General"
-                }],
+                },
                 "routing_rules": [{
                     "goto": {
                         "block": "route-comparison-4",
@@ -72,12 +72,16 @@
                 "type": "Interstitial",
                 "id": "route-comparison-3",
                 "title": "Your second number was lower or equal",
-                "description": "This page should be skipped if your second answer was higher than your first"
+                "content": [{
+                    "description": "This page should be skipped if your second answer was higher than your first"
+                }]
             }, {
                 "type": "Interstitial",
                 "id": "route-comparison-4",
                 "title": "Your second number was higher",
-                "description": "This page should never be skipped"
+                "content": [{
+                    "description": "This page should never be skipped"
+                }]
             }]
         }, {
             "id": "summary-group",

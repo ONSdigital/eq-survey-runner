@@ -23,7 +23,7 @@
             "blocks": [{
                 "type": "Question",
                 "id": "dropdown-mandatory-with-overridden-error",
-                "questions": [{
+                "question": {
                     "type": "General",
                     "id": "dropdown-mandatory-with-overridden-error-question",
                     "title": "Which football team do your support?",
@@ -48,7 +48,7 @@
                             }
                         }
                     }]
-                }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

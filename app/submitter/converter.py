@@ -70,7 +70,7 @@ def convert_answers(metadata, collection_metadata, schema, answer_store, routing
     if schema.json['data_version'] == '0.0.2':
         payload['data'] = convert_answers_to_payload_0_0_2(answer_store, schema, routing_path)
     elif schema.json['data_version'] == '0.0.1':
-        payload['data'] = convert_answers_to_payload_0_0_1(answer_store, schema, routing_path)
+        payload['data'] = convert_answers_to_payload_0_0_1(metadata, answer_store, schema, routing_path)
     else:
         raise DataVersionError(schema.json['data_version'])
 

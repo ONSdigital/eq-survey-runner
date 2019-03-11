@@ -29,7 +29,7 @@
                     "type": "Question",
                     "id": "mutually-exclusive-checkbox",
                     "title": "Mutually Exclusive With Single Checkbox Override - Mandatory",
-                    "questions": [{
+                    "question": {
                         "id": "mutually-exclusive-checkbox-question",
                         "type": "MutuallyExclusive",
                         "title": "What is your nationality?",
@@ -67,7 +67,7 @@
                                 "value": "I prefer not to say"
                             }]
                         }]
-                    }]
+                    }
                 }]
             }, {
                 "id": "mandatory-mutually-exclusive-summary-group",
@@ -88,7 +88,7 @@
                     "type": "Question",
                     "id": "mutually-exclusive-date",
                     "title": "Mutually Exclusive With Single Checkbox Override - Optional",
-                    "questions": [{
+                    "question": {
                         "id": "mutually-exclusive-date-question",
                         "type": "MutuallyExclusive",
                         "title": "When did you leave your last paid job?",
@@ -107,7 +107,7 @@
                                 "value": "I prefer not to say"
                             }]
                         }]
-                    }]
+                    }
                 }]
             }, {
                 "id": "mutually-exclusive-date-section-summary",
@@ -127,7 +127,7 @@
                     "type": "Question",
                     "id": "mutually-exclusive-currency",
                     "title": "Mutually Exclusive With Single Checkbox Override - Optional",
-                    "questions": [{
+                    "question": {
                         "id": "mutually-exclusive-currency-question",
                         "type": "MutuallyExclusive",
                         "title": "What is your annual income before tax?",
@@ -147,7 +147,7 @@
                                 "value": "I prefer not to say"
                             }]
                         }]
-                    }]
+                    }
                 }]
             }, {
                 "id": "mutually-exclusive-currency-section-summary",
@@ -167,7 +167,7 @@
                     "type": "Question",
                     "id": "mutually-exclusive-number",
                     "title": "Mutually Exclusive With Single Checkbox Override - Optional",
-                    "questions": [{
+                    "question": {
                         "id": "mutually-exclusive-number-question",
                         "type": "MutuallyExclusive",
                         "title": "What is your favourite number?",
@@ -187,7 +187,7 @@
                                 "value": "I prefer not to say"
                             }]
                         }]
-                    }]
+                    }
                 }]
             }, {
                 "id": "mutually-exclusive-number-section-summary",
@@ -208,7 +208,7 @@
                     "type": "Question",
                     "id": "mutually-exclusive-percentage",
                     "title": "Mutually Exclusive With Single Checkbox Override - Optional",
-                    "questions": [{
+                    "question": {
                         "id": "mutually-exclusive-percentage-question",
                         "type": "MutuallyExclusive",
                         "title": "What was the percentage increase in your annual income this tax year?",
@@ -230,7 +230,7 @@
                                 "value": "I prefer not to say"
                             }]
                         }]
-                    }]
+                    }
                 }]
             }, {
                 "id": "mutually-exclusive-percentage-section-summary",
@@ -250,7 +250,7 @@
                     "type": "Question",
                     "id": "mutually-exclusive-textfield",
                     "title": "Mutually Exclusive With Single Checkbox Override - Optional",
-                    "questions": [{
+                    "question": {
                         "id": "mutually-exclusive-textfield-question",
                         "type": "MutuallyExclusive",
                         "title": "What is your favourite colour?",
@@ -269,7 +269,7 @@
                                 "value": "I prefer not to say"
                             }]
                         }]
-                    }]
+                    }
                 }]
             }, {
                 "id": "mutually-exclusive-textfield-section-summary",
@@ -289,7 +289,7 @@
                     "type": "Question",
                     "id": "mutually-exclusive-month-year-date",
                     "title": "Mutually Exclusive With Single Checkbox Override - Optional",
-                    "questions": [{
+                    "question": {
                         "id": "mutually-exclusive-month-year-date-question",
                         "type": "MutuallyExclusive",
                         "title": "When did you leave your last paid job?",
@@ -311,7 +311,7 @@
                                 "value": "I prefer not to say"
                             }]
                         }]
-                    }]
+                    }
                 }]
             }, {
                 "id": "mutually-exclusive-month-year-section-summary",
@@ -331,7 +331,7 @@
                     "type": "Question",
                     "id": "mutually-exclusive-year-date",
                     "title": "Mutually Exclusive With Single Checkbox Override - Optional",
-                    "questions": [{
+                    "question": {
                         "id": "mutually-exclusive-year-date-question",
                         "type": "MutuallyExclusive",
                         "title": "When did you leave your last paid job?",
@@ -353,7 +353,7 @@
                                 "value": "I prefer not to say"
                             }]
                         }]
-                    }]
+                    }
                 }]
             }, {
                 "id": "mutually-exclusive-year-section-summary",
@@ -373,7 +373,7 @@
                     "type": "Question",
                     "id": "mutually-exclusive-unit",
                     "title": "Mutually Exclusive With Single Checkbox Override - Optional",
-                    "questions": [{
+                    "question": {
                         "id": "mutually-exclusive-unit-question",
                         "type": "MutuallyExclusive",
                         "title": "How many years have you been in the UK?",
@@ -394,7 +394,7 @@
                                 "value": "I prefer not to say"
                             }]
                         }]
-                    }]
+                    }
                 }]
             }, {
                 "id": "mutually-exclusive-unit-section-summary",
@@ -414,7 +414,7 @@
                     "type": "Question",
                     "id": "mutually-exclusive-dropdown",
                     "title": "Mutually Exclusive With Single Checkbox Override - Optional",
-                    "questions": [{
+                    "question": {
                         "id": "mutually-exclusive-dropdown-question",
                         "type": "MutuallyExclusive",
                         "title": "Who is your favourite football club?",
@@ -443,7 +443,7 @@
                                 "value": "I prefer not to say"
                             }]
                         }]
-                    }]
+                    }
                 }]
             }, {
                 "id": "mutually-exclusive-dropdown-section-summary",
@@ -463,7 +463,7 @@
                     "type": "Question",
                     "id": "mutually-exclusive-duration",
                     "title": "Mutually Exclusive With Single Checkbox Override - Optional",
-                    "questions": [{
+                    "question": {
                         "id": "mutually-exclusive-duration-question",
                         "type": "MutuallyExclusive",
                         "title": "How long have you been employed for?",
@@ -483,7 +483,7 @@
                                 "value": "I prefer not to say"
                             }]
                         }]
-                    }]
+                    }
                 }]
             }, {
                 "id": "mutually-exclusive-duration-section-summary",
@@ -503,7 +503,7 @@
                     "type": "Question",
                     "id": "mutually-exclusive-textarea",
                     "title": "Mutually Exclusive With Single Checkbox Override - Optional",
-                    "questions": [{
+                    "question": {
                         "id": "mutually-exclusive-textarea-question",
                         "type": "MutuallyExclusive",
                         "title": "Why did you leave you last job?",
@@ -521,7 +521,7 @@
                                 "value": "I prefer not to say"
                             }]
                         }]
-                    }]
+                    }
                 }]
             }, {
                 "id": "mutually-exclusive-textarea-section-summary",

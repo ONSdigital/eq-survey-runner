@@ -31,7 +31,7 @@
             "groups": [{
                     "blocks": [{
                             "id": "test-skipping-forced",
-                            "questions": [{
+                            "question": {
                                 "answers": [{
                                     "id": "test-skipping-answer",
                                     "mandatory": true,
@@ -50,7 +50,7 @@
                                 "id": "test-skipping-question",
                                 "title": "Were you forced to complete section 1?",
                                 "type": "General"
-                            }],
+                            },
                             "title": "This is section 1",
                             "type": "Question",
                             "routing_rules": [{
@@ -74,7 +74,7 @@
                             "id": "test-skipping-optional",
                             "title": "This is section 1",
                             "type": "Question",
-                            "questions": [{
+                            "question": {
                                 "answers": [{
                                     "id": "test-skipping-optional-answer",
                                     "mandatory": true,
@@ -92,7 +92,7 @@
                                 "id": "test-skipping-optional-question",
                                 "title": "What would incentivise you to complete this section?",
                                 "type": "General"
-                            }]
+                            }
                         }
                     ],
                     "id": "test-skipping-group",
@@ -114,7 +114,7 @@
             "groups": [{
                     "blocks": [{
                             "id": "test-skipping-forced-2",
-                            "questions": [{
+                            "question": {
                                 "answers": [{
                                     "id": "test-skipping-answer-2",
                                     "mandatory": true,
@@ -133,7 +133,7 @@
                                 "id": "test-skipping-question-2",
                                 "title": "Were you forced to complete section 2?",
                                 "type": "General"
-                            }],
+                            },
                             "title": "This is section 2",
                             "type": "Question",
                             "routing_rules": [{
@@ -157,7 +157,7 @@
                             "id": "test-skipping-optional-2",
                             "title": "This is section 2",
                             "type": "Question",
-                            "questions": [{
+                            "question": {
                                 "answers": [{
                                     "id": "test-skipping-optional-answer-2",
                                     "mandatory": true,
@@ -175,7 +175,7 @@
                                 "id": "test-skipping-optional-question-2",
                                 "title": "What would incentivise you to complete this section?",
                                 "type": "General"
-                            }]
+                            }
                         }
                     ],
                     "id": "test-skipping-group-2",

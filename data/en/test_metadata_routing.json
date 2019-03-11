@@ -25,7 +25,7 @@
                 "type": "Question",
                 "id": "block1",
                 "title": "Question 1",
-                "questions": [{
+                "question": {
                     "id": "block1-question",
                     "title": "Question 1",
                     "type": "General",
@@ -36,7 +36,7 @@
                         "type": "TextField",
                         "label": "Question 1"
                     }]
-                }],
+                },
                 "routing_rules": [{
                     "goto": {
                         "block": "block3",
@@ -55,7 +55,7 @@
                 "type": "Question",
                 "id": "block2",
                 "title": "Question 2",
-                "questions": [{
+                "question": {
                     "id": "block2-question",
                     "title": "Question 2",
                     "type": "General",
@@ -66,12 +66,12 @@
                         "type": "TextField",
                         "label": "Question 2"
                     }]
-                }]
+                }
             }, {
                 "type": "Question",
                 "id": "block3",
                 "title": "Question 3",
-                "questions": [{
+                "question": {
                     "id": "block3-question",
                     "title": "Question 3",
                     "type": "General",
@@ -82,7 +82,7 @@
                         "type": "TextField",
                         "label": "Question 3"
                     }]
-                }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"
