@@ -38,7 +38,7 @@ flask-script = "*"
 flask-sqlalchemy = "*"
 "flask-themes2" = "*"
 flask-wtf = "*"
-gevent = {version = "*", platform_python_implementation="=='CPython'"}
+gevent = {version = "*",platform_python_implementation = "=='CPython'"}
 google-cloud-datastore = "*"
 grpcio = "*"
 gunicorn = "*"
@@ -57,6 +57,7 @@ flask-talisman = "*"
 marshmallow = "*"
 python-snappy = "*"
 google-cloud-storage = "*"
+jsonpointer = "*"
 
 [requires]
 python_version = "3.7"

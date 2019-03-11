@@ -18,7 +18,6 @@ class TestMetaDataValidators(TestCase):
         else:
             self.assertEqual(method(value), expected)
 
-
     def test_boolean_validator(self):
         """ Asserts that only boolean True/False are accepted"""
         variations = (
@@ -33,7 +32,6 @@ class TestMetaDataValidators(TestCase):
         )
         for (claim_value, expected) in variations:
             self.simple_mapping_assertion(boolean_parser, claim_value, expected, TypeError)
-
 
     def test_uuid_4_parser(self):
         """ Asserts that only boolean True/False are accepted"""
@@ -50,7 +48,6 @@ class TestMetaDataValidators(TestCase):
         )
         for (claim_value, expected) in variations:
             self.simple_mapping_assertion(uuid_4_parser, claim_value, expected)
-
 
     def test_iso_8601_date_parser(self):
         """ Asserts that only boolean True/False are accepted"""

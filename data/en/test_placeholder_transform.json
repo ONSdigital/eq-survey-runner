@@ -1,0 +1,105 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "0",
+    "title": "Placeholder Test",
+    "theme": "default",
+    "description": "A questionnaire to test placeholders",
+    "navigation": {
+        "visible": true
+    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
+    "sections": [{
+            "id": "retail-turnover-section",
+            "title": "Retail Turnover Input",
+            "groups": [{
+                "id": "retail-turnover-group",
+                "title": "",
+                "blocks": [{
+                    "type": "Question",
+                    "id": "total-retail-turnover-block",
+                    "title": "What was the total retail turnover?",
+                    "questions": [{
+                        "description": "",
+                        "id": "total-retail-turnover-question",
+                        "title": "Please enter the total retail turnover",
+                        "type": "General",
+                        "answers": [{
+                            "id": "total-retail-turnover-answer",
+                            "description": "",
+                            "label": "Total Retail Turnover",
+                            "mandatory": true,
+                            "type": "Currency",
+                            "currency": "GBP",
+                            "decimal_places": 2
+                        }]
+                    }]
+                }]
+            }]
+        },
+        {
+            "id": "percent-input-section",
+            "title": "Reporting Confirmation",
+            "groups": [{
+                "blocks": [{
+                    "type": "Question",
+                    "id": "report-period",
+                    "title": "What was the value of internet sales?",
+                    "questions": [{
+                        "type": "General",
+                        "id": "total-retail-turnover-confirmation-question",
+                        "title": "Please enter the value of internet sales",
+                        "description": {
+                            "text": "Of the <em>{total_turnover}</em> total retail turnover, what was the value of internet sales?",
+                            "placeholders": [{
+                                "placeholder": "total_turnover",
+                                "transforms": [{
+                                    "transform": "format_currency",
+                                    "arguments": {
+                                        "number": {
+                                            "source": "answers",
+                                            "identifier": "total-retail-turnover-answer"
+                                        }
+                                    }
+                                }]
+                            }]
+                        },
+                        "answers": [{
+                            "id": "total-retail-turnover-internet-sales-answer",
+                            "description": "",
+                            "label": "Value of Internet Sales",
+                            "mandatory": true,
+                            "type": "Currency",
+                            "currency": "GBP",
+                            "decimal_places": 2
+                        }]
+                    }]
+                }],
+                "id": "retail-confirmation-group",
+                "title": ""
+            }]
+        },
+        {
+            "id": "summary-section",
+            "title": "Summary",
+            "groups": [{
+                "blocks": [{
+                    "type": "Summary",
+                    "id": "summary"
+                }],
+                "id": "summary-group",
+                "title": "Summary"
+            }]
+        }
+    ]
+}

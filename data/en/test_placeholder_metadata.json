@@ -1,0 +1,69 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "0",
+    "title": "Placeholder Test",
+    "theme": "default",
+    "description": "A questionnaire to test placeholders",
+    "navigation": {
+        "visible": true
+    },
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
+    "sections": [{
+        "id": "percent-input-section",
+        "title": "Gross Weekly Pay",
+        "groups": [{
+            "blocks": [{
+                "type": "Question",
+                "id": "block",
+                "description": {
+                    "text": "What was the <em>total gross weekly pay</em> paid to employees in the last week of {period}?",
+                    "placeholders": [{
+                        "placeholder": "period",
+                        "value": {
+                            "source": "metadata",
+                            "identifier": "period_id"
+                        }
+                    }]
+                },
+                "questions": [{
+                    "answers": [{
+                        "description": "Enter the total gross weekly pay",
+                        "id": "answer",
+                        "label": "",
+                        "mandatory": false,
+                        "type": "Number"
+                    }],
+                    "id": "question",
+                    "title": "",
+                    "type": "General"
+                }],
+                "title": "Metadata Placeholder Test",
+                "routing_rules": []
+            }],
+            "id": "group",
+            "title": ""
+        }]
+    }, {
+        "id": "summary-section",
+        "title": "Summary",
+        "groups": [{
+            "blocks": [{
+                "type": "Summary",
+                "id": "summary"
+            }],
+            "id": "summary-group",
+            "title": "Summary"
+        }]
+    }]
+}
