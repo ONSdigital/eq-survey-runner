@@ -30,6 +30,7 @@ from app.questionnaire.navigation import Navigation
 from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.router import Router
 from app.questionnaire.rules import evaluate_skip_conditions, get_answer_ids_on_routing_path
+from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.storage.storage_encryption import StorageEncryption
 from app.submitter.converter import convert_answers
 from app.submitter.submission_failed import SubmissionFailedException
@@ -124,7 +125,11 @@ def get_block(routing_path, schema, metadata, answer_store, eq_id, form_type, co
         return _redirect_to_location(collection_id, eq_id, form_type, next_location)
 
     block = _get_block_json(current_location, schema, answer_store, metadata)
-    context = _get_context(routing_path, block, current_location, schema)
+
+    placeholder_renderer = PlaceholderRenderer(block, answer_store=answer_store, metadata=metadata)
+    replaced_block = placeholder_renderer.render()
+
+    context = _get_context(routing_path, replaced_block, current_location, schema)
 
     return _render_page(block['type'], context, current_location, schema, answer_store, metadata, routing_path)
 
@@ -149,9 +154,12 @@ def post_block(routing_path, schema, metadata, collection_metadata, answer_store
 
     block = _get_block_json(current_location, schema, answer_store, metadata)
 
+    placeholder_renderer = PlaceholderRenderer(block, answer_store=answer_store, metadata=metadata)
+    replaced_block = placeholder_renderer.render()
+
     schema_context = _get_schema_context(routing_path, current_location, metadata, collection_metadata, answer_store, schema)
 
-    rendered_block = renderer.render(block, **schema_context)
+    rendered_block = renderer.render(replaced_block, **schema_context)
 
     form = _generate_wtf_form(request.form, rendered_block, current_location, schema)
 

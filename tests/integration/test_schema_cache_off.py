@@ -1,4 +1,4 @@
-from werkzeug.contrib.cache import NullCache
+from flask_caching.backends.null import NullCache
 
 from app import settings
 from app.setup import cache

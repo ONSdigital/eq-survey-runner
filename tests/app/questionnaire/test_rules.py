@@ -16,6 +16,7 @@ def get_schema_mock(answer_is_in_repeating_group=False):
     schema.get_block_id_for_answer_id = Mock(return_value='answer_block')
     return schema
 
+
 class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
     def test_evaluate_rule_uses_single_value_from_list(self):
