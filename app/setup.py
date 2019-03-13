@@ -274,21 +274,18 @@ def setup_dynamodb(application):
 
 def setup_datastore(application):
     creds = EmulatorCredentials() if application.config['EQ_DATASTORE_EMULATOR_CREDENTIALS'] else None
-    client = datastore.Client(application.config['EQ_DATASTORE_PROJECT_ID'], _use_grpc=False, credentials=creds)
+    client = datastore.Client(_use_grpc=False, credentials=creds)
     application.eq['storage'] = DatastoreStorage(client)
 
 
 def setup_submitter(application):
     if application.config['EQ_SUBMISSION_BACKEND'] == 'gcs':
-        project_id = application.config.get('EQ_GCS_SUBMISSION_PROJECT_ID')
         bucket_id = application.config.get('EQ_GCS_SUBMISSION_BUCKET_ID')
 
-        if not project_id:
-            raise Exception('Setting EQ_GCS_SUBMISSION_PROJECT_ID Missing')
         if not bucket_id:
             raise Exception('Setting EQ_GCS_SUBMISSION_BUCKET_ID Missing')
 
-        application.eq['submitter'] = GCSSubmitter(project_id=project_id, bucket_name=bucket_id)
+        application.eq['submitter'] = GCSSubmitter(bucket_name=bucket_id)
 
     elif application.config['EQ_SUBMISSION_BACKEND'] == 'rabbitmq':
         host = application.config.get('EQ_RABBITMQ_HOST')

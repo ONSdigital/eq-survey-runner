@@ -44,10 +44,6 @@ if [ -z "$EQ_DATASTORE_EMULATOR_CREDENTIALS" ]; then
   export EQ_DATASTORE_EMULATOR_CREDENTIALS="True"
 fi
 
-if [ -z "$EQ_DATASTORE_PROJECT_ID" ]; then
-  export EQ_DATASTORE_PROJECT_ID="dummy-project"
-fi
-
 if [ -z "$EQ_SUBMITTED_RESPONSES_TABLE_NAME" ]; then
   export EQ_SUBMITTED_RESPONSES_TABLE_NAME="dev-submitted-responses"
 fi
