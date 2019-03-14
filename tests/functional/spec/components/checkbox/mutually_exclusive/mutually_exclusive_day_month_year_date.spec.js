@@ -7,7 +7,7 @@ describe('Component: Mutually Exclusive Day Month Year Date With Single Checkbox
 
   beforeEach(function() {
     return helpers.openQuestionnaire('test_mutually_exclusive.json').then(() => {
-          return browser.click(helpers.navigationLink('Date'));
+          return browser.url('/questionnaire/mutually-exclusive-date');
         });
   });
 

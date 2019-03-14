@@ -10,8 +10,7 @@ class TestQuestionnaireJSONOutput(IntegrationTestCase):
         self.launchSurvey('test', 'final_confirmation')
 
         # When
-        #import ipdb; ipdb.set_trace()
-        self.get('/questionnaire/test/final_confirmation/789/final-confirmation/0/introduction', headers={'Accept': 'application/json'})
+        self.get('/questionnaire/introduction', headers={'Accept': 'application/json'})
 
         # Then
         data = json.loads(self.getResponseData())

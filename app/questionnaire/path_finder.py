@@ -1,14 +1,12 @@
 import copy
 from structlog import get_logger
 
-from app.helpers.schema_helpers import get_group_instance_id
 from app.questionnaire.location import Location
 from app.questionnaire.routing_path import RoutingPath
 from app.questionnaire.rules import (
     evaluate_goto,
     evaluate_skip_conditions,
     is_goto_rule,
-    get_number_of_repeats,
 )
 
 logger = get_logger()
@@ -26,20 +24,7 @@ class PathFinder:
 
     @staticmethod
     def _block_index_for_location(blocks, location):
-        return next((index for (index, b) in enumerate(blocks) if b['block']['id'] == location.block_id
-                     and b['group_id'] == location.group_id
-                     and b['group_instance'] == location.group_instance),
-                    None)
-
-    @staticmethod
-    def _build_blocks_for_group(group, instance_idx):
-        for block in group['blocks']:
-
-            yield {
-                'group_id': group['id'],
-                'group_instance': instance_idx,
-                'block': block,
-            }
+        return next((index for (index, block) in enumerate(blocks) if block['id'] == location.block_id), None)
 
     def build_path(self):
         """
@@ -58,38 +43,19 @@ class PathFinder:
         first_groups = self._get_first_group_in_section()
 
         for group in self.schema.groups:
-            first_block_in_group = self.schema.get_first_block_id_for_group(group['id'])
-            if not this_location:
-                this_location = Location(group['id'], 0, first_block_in_group)
+            if group['id'] in first_groups:
+                first_block_in_group = self.schema.get_first_block_id_for_group(group['id'])
+                this_location = Location(block_id=first_block_in_group)
 
-            no_of_repeats = get_number_of_repeats(group, self.schema, path, self.answer_store)
+            if 'skip_conditions' in group:
+                if evaluate_skip_conditions(group['skip_conditions'], self.schema, self.metadata,
+                                            self.answer_store, routing_path=path):
+                    continue
 
-            first_group_instance_index = None
-            for group_instance in range(0, no_of_repeats):
+            blocks.extend(group['blocks'])
 
-                if 'skip_conditions' in group:
-                    group_instance_id = get_group_instance_id(self.schema, self.answer_store, Location(group['id'], group_instance, first_block_in_group))
-
-                    if evaluate_skip_conditions(group['skip_conditions'], self.schema, self.metadata,
-                                                self.answer_store, group_instance, group_instance_id,
-                                                routing_path=path):
-                        continue
-
-                group_blocks = list(self._build_blocks_for_group(group, group_instance))
-                blocks += group_blocks
-
-                if group_blocks and first_group_instance_index is None:
-                    # get the group instance of the first instance of a block in this group that has not been skipped
-                    first_group_instance_index = group_blocks[0]['group_instance']
-
-            all_blocks_skipped = first_group_instance_index is None
-
-            if not all_blocks_skipped:
-                if group['id'] in first_groups:
-                    this_location = Location(group['id'], first_group_instance_index, first_block_in_group)
-
-                if blocks:
-                    path, block_index = self._build_path_within_group(blocks, block_index, this_location, path)
+            if blocks:
+                path, block_index = self._build_path_within_group(blocks, block_index, this_location, path)
 
         return RoutingPath(path)
 
@@ -108,18 +74,16 @@ class PathFinder:
             if block_index is None:
                 return path, prev_block_index
 
-            block = blocks[block_index]['block']
+            block = blocks[block_index]
 
             if block.get('skip_conditions') and \
                     evaluate_skip_conditions(block['skip_conditions'], self.schema, self.metadata,
-                                             self.answer_store, this_location.group_instance, routing_path=path):
+                                             self.answer_store, routing_path=path):
 
                 if block_index == len(blocks) - 1:
                     return path, block_index
 
-                this_location = Location(blocks[block_index + 1]['group_id'],
-                                         blocks[block_index + 1]['group_instance'],
-                                         blocks[block_index + 1]['block']['id'])
+                this_location = Location(block_id=blocks[block_index + 1]['id'])
                 continue
 
             if this_location not in path:
@@ -132,26 +96,19 @@ class PathFinder:
                 if this_location:
                     continue
 
-                return path, block_index
-
             # No routing rules, so if this isn't the last block, step forward a block
             if block_index < len(blocks) - 1:
-                this_location = Location(blocks[block_index + 1]['group_id'],
-                                         blocks[block_index + 1]['group_instance'],
-                                         blocks[block_index + 1]['block']['id'])
+                this_location = Location(block_id=blocks[block_index + 1]['id'])
                 continue
 
             return path, block_index
 
     def _evaluate_routing_rules(self, this_location, blocks, block, block_index, path):
         for rule in filter(is_goto_rule, block['routing_rules']):
-            group_instance_id = get_group_instance_id(self.schema, self.answer_store, this_location)
             should_goto = evaluate_goto(rule['goto'],
                                         self.schema,
                                         self.metadata,
                                         self.answer_store,
-                                        this_location.group_instance,
-                                        group_instance_id=group_instance_id,
                                         routing_path=path)
 
             if should_goto:
@@ -161,7 +118,6 @@ class PathFinder:
         next_location = copy.copy(this_location)
 
         if 'group' in rule['goto']:
-            next_location.group_id = rule['goto']['group']
             next_location.block_id = self.schema.get_first_block_id_for_group(rule['goto']['group'])
         else:
             next_location.block_id = rule['goto']['block']
@@ -181,22 +137,10 @@ class PathFinder:
         if 'when' in goto_rule.keys():
             for condition in goto_rule['when']:
                 if 'meta' not in condition.keys():
-                    self.answer_store.remove(answer_ids=[condition['id']],
-                                             answer_instance=0)
+                    self.answer_store.remove(answer_ids=[condition['id']])
 
         if this_location in self.completed_blocks:
             self.completed_blocks.remove(this_location)
-
-    def get_routing_path(self, group_id, group_instance=0):
-        """
-        Returns a list of the block ids visited based on answers provided
-        :return: List of block location dicts
-        """
-        self.get_full_routing_path()
-
-        for i, location in enumerate(self._full_routing_path):
-            if location.group_id == group_id and location.group_instance == group_instance:
-                return self._full_routing_path[i:]
 
     def get_full_routing_path(self):
         """
@@ -225,7 +169,7 @@ class PathFinder:
         :param current_location:
         :return: The next location as a dict
         """
-        routing_path = self.get_routing_path(current_location.group_id, current_location.group_instance)
+        routing_path = self.get_full_routing_path()
 
         current_location_index = PathFinder._get_current_location_index(routing_path, current_location)
 
@@ -278,25 +222,14 @@ class PathFinder:
         :return: The previous location as a dict
         :return:
         """
-
-        if current_location.group_id == 'who-lives-here-relationship':
-            return self._relationship_previous_location(current_location.group_instance)
-
-        first_block_for_group = self.schema.get_first_block_id_for_group(current_location.group_id)
+        group = self.schema.get_group_by_block_id(current_location.block_id)
+        first_block_for_group = self.schema.get_first_block_id_for_group(group['id'])
 
         if first_block_for_group == current_location.block_id:
             return None
 
-        routing_path = self.get_routing_path(current_location.group_id, current_location.group_instance)
+        routing_path = self.get_full_routing_path()
         current_location_index = PathFinder._get_current_location_index(routing_path, current_location)
 
         if current_location_index is not None and current_location_index != 0:
             return routing_path[current_location_index - 1]
-
-    @staticmethod
-    def _relationship_previous_location(current_group_instance):
-        if current_group_instance == 0:
-            previous_location = Location('who-lives-here', 0, 'overnight-visitors')
-        else:
-            previous_location = Location('who-lives-here-relationship', current_group_instance - 1, 'household-relationships')
-        return previous_location

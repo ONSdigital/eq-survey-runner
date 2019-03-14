@@ -7,7 +7,7 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
 
   beforeEach(function() {
     return helpers.openQuestionnaire('test_mutually_exclusive.json').then(() => {
-          return browser.click(helpers.navigationLink('Number'));
+          return browser.url('/questionnaire/mutually-exclusive-number');
         });
   });
 

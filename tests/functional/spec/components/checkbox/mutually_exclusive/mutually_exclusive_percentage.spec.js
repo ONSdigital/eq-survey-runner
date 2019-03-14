@@ -7,7 +7,7 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
 
   beforeEach(function() {
     return helpers.openQuestionnaire('test_mutually_exclusive.json').then(() => {
-          return browser.click(helpers.navigationLink('Percentage'));
+          return browser.url('/questionnaire/mutually-exclusive-percentage');
         });
   });
 

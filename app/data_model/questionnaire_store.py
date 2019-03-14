@@ -6,14 +6,7 @@ from app.questionnaire.location import Location
 
 
 class QuestionnaireStore:
-    """
-    The QuestionnaireStore is versioned to provide a way to migrate existing state. Versions are:
-    1 - Reformat date answers from d/m/y to y-m-d
-    2 - Add group_instance_id to all answers
-    3 - Compress state using snappy before encryption. Also removes base64 encoding and
-        unnecessary json wrapper around encrypted data.
-    """
-    LATEST_VERSION = 3
+    LATEST_VERSION = 1
 
     def __init__(self, storage, version=None):
         self._storage = storage
@@ -44,14 +37,6 @@ class QuestionnaireStore:
         self._metadata = to_set
         self.metadata = MappingProxyType(self._metadata)
 
-    def ensure_latest_version(self, schema):
-        """ If the code has been updated, the data being loaded may need
-        transforming to match the latest code. """
-        new_version = self.get_latest_version_number()
-        if self.version < new_version:
-            self.answer_store.upgrade(self.version, schema)
-        self.version = new_version
-
         return self
 
     def _deserialise(self, data):
@@ -81,33 +66,12 @@ class QuestionnaireStore:
 
     def add_or_update(self):
         data = self._serialise()
-        self._storage.add_or_update(data=data, version=self.version)
+        self._storage.add_or_update(data=data)
 
-    def remove_completed_blocks(self, location=None, group_id=None, block_id=None):
-        """Removes completed blocks from store either by specific location
-           or all group instances within a group and block.
-
-            e.g.
-            ```
-            # By location
-            question_store.remove_completed_blocks(location=Location(...))
-
-            # By group_id/block_id (i.e. for all group instances for that group/block)
-            question_store.remove_completed_blocks(group_id='a-test-group', block_id='a-test-block')
-            ```
+    def remove_completed_blocks(self, location):
+        """Removes completed blocks from store
         """
-
-        if location:
-            if not isinstance(location, Location):
-                raise TypeError('location needs to be a Location instance')
-            self.completed_blocks.remove(location)
-        else:
-            if None in (group_id, block_id):
-                raise KeyError('Both group_id and block_id required')
-
-            self.completed_blocks = [completed_block for completed_block in self.completed_blocks
-                                     if completed_block.group_id != group_id
-                                     or completed_block.block_id != block_id]
+        self.completed_blocks.remove(location)
 
     def _encode_questionnaire_store(self, o):
         if hasattr(o, 'to_dict'):

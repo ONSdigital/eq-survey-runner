@@ -1,6 +1,5 @@
 const helpers = require('../helpers');
 const TextFieldPage = require('../generated_pages/textfield/name-block.page.js');
-const MinMaxBlockPage = require('../generated_pages/textfield/min-max-block.page');
 const SummaryPage = require('../generated_pages/textfield/summary.page.js');
 
 describe('Textfield', function() {
@@ -18,8 +17,6 @@ describe('Textfield', function() {
       return browser
         .setValue(TextFieldPage.name(), "'Twenty><&Five'")
         .click(TextFieldPage.submit())
-        // Interstitial displaying min-max formats
-        .click(MinMaxBlockPage.submit())
         .getUrl().should.eventually.contain(SummaryPage.pageName)
         .getText(SummaryPage.nameAnswer()).should.eventually.contain("Twenty><&Five'")
         .click(SummaryPage.nameAnswerEdit())

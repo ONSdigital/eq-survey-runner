@@ -9,7 +9,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         # Given
         self.launchSurvey('test', 'introduction')
 
-        base_url = '/questionnaire/test/introduction/789/introduction-group/0/'
+        base_url = '/questionnaire/'
 
         # When
         self.get(base_url + 'test')
@@ -21,7 +21,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         # Given
         self.launchSurvey('test', 'introduction')
 
-        base_url = '/questionnaire/test/introduction/789/introduction-group/0/'
+        base_url = '/questionnaire/'
 
         # When
         self.post(url=base_url + 'test')
@@ -33,7 +33,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         # Given
         self.launchSurvey('test', 'textfield')
 
-        base_url = '/questionnaire/test/textfield/789/group/0/'
+        base_url = '/questionnaire/'
 
         # When
         self.post(url=base_url + 'min-max-block')
@@ -47,7 +47,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self.post({'answer': '99'})
 
         # When we request the thank you page (without submitting the survey)
-        self.get('questionnaire/test/percentage/thank-you')
+        self.get('submitted/thank-you')
 
         # Then the answers are not deleted
         self.get('/dump/answers')
@@ -59,10 +59,10 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self.launchSurvey('test', 'percentage', roles=['dumper'])
 
         # When we request the thank you page (without submitting the survey)
-        self.get('questionnaire/test/percentage/thank-you')
+        self.get('submitted/thank-you')
 
         # Then we should be redirected back to the latest location
-        self.assertInUrl('group/0/block')
+        self.assertInUrl('block')
 
     def test_given_complete_questionnaire_when_submitted_then_data_is_deleted(self):
         # Given we submit a survey
@@ -85,7 +85,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self.post(action=None)
 
         # When we try to get the summary
-        self.get('questionnaire/test/percentage/789/summary-group/0/summary')
+        self.get('questionnaire/summary')
 
         # Then we get the unauthorised page
         self.assertStatusUnauthorised()
@@ -97,10 +97,10 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self.post(action=None)
 
         # When we try to get the thank-you page
-        self.get('questionnaire/test/percentage/thank-you')
+        self.get('submitted/thank-you')
 
         # Then we get the thank-you page
-        self.assertInUrl('questionnaire/test/percentage/thank-you')
+        self.assertInUrl('submitted/thank-you')
 
     def test_when_survey_submitted_re_submitting_returns_unauthorised(self):
         # Given we have submitted the test_percentage survey
@@ -109,14 +109,14 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self.post(action=None)
 
         # When we try to submit the survey again
-        self.get(url='/questionnaire/test/percentage/789/summary-group/0/summary')
+        self.get(url='/questionnaire/summary')
 
         # Then we get the unauthorised page
         self.assertStatusUnauthorised()
 
     def test_when_no_session_thank_you_returns_unauthorised(self):
         # When we try to request the thank-you page with no session
-        self.get(url='/questionnaire/test/percentage/thank-you')
+        self.get(url='submitted/thank-you')
 
         # Then we get the unauthorised page
         self.assertStatusUnauthorised()

@@ -45,23 +45,6 @@ def with_analytics(func):
     return analytics_wrapper
 
 
-def with_questionnaire_url_prefix(func):
-    @wraps(func)
-    def url_prefix_wrapper(*args, **kwargs):
-        metadata = get_metadata(current_user)
-        metadata_context = build_metadata_context(metadata)
-
-        url_prefix = '/questionnaire/{}/{}/{}'.format(
-            metadata_context['eq_id'],
-            metadata_context['form_type'],
-            metadata_context['collection_id'],
-        )
-
-        return func(*args, url_prefix=url_prefix, **kwargs)
-
-    return url_prefix_wrapper
-
-
 def with_legal_basis(func):
     @wraps(func)
     def legal_basis_wrapper(*args, **kwargs):

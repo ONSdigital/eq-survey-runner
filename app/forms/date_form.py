@@ -36,8 +36,8 @@ class DateField(FormField):
 
 class MonthYearField(FormField):
 
-    def __init__(self, answer_store, metadata, answer, error_messages, group_instance=0, **kwargs):
-        form_class = get_month_year_form(answer_store, metadata, answer, error_messages, group_instance=group_instance)
+    def __init__(self, answer_store, metadata, answer, error_messages, **kwargs):
+        form_class = get_month_year_form(answer_store, metadata, answer, error_messages)
         super(MonthYearField, self).__init__(form_class, **kwargs)
 
     def process(self, formdata, data=None):
@@ -53,9 +53,9 @@ class MonthYearField(FormField):
 
 class YearField(FormField):
 
-    def __init__(self, answer_store, metadata, answer, error_messages, group_instance=0, **kwargs):
+    def __init__(self, answer_store, metadata, answer, error_messages, **kwargs):
         form_class = get_year_form(answer_store, metadata, answer, error_messages, kwargs.get('description'),
-                                   kwargs.get('label'), group_instance=group_instance)
+                                   kwargs.get('label'))
         super(YearField, self).__init__(form_class, **kwargs)
 
     def process(self, formdata, data=None):
@@ -114,7 +114,7 @@ def get_date_form(answer_store, metadata, answer=None, error_messages=None):
     return DateForm
 
 
-def get_month_year_form(answer, answer_store, metadata, error_messages, group_instance=0):
+def get_month_year_form(answer, answer_store, metadata, error_messages):
     """
     Returns a month year form metaclass with appropriate validators. Used in both date and
     date range form creation.
@@ -146,7 +146,7 @@ def get_month_year_form(answer, answer_store, metadata, error_messages, group_in
     validate_with.append(MonthYearCheck(error_message))
 
     if 'minimum' in answer or 'maximum' in answer:
-        min_max_validation = validate_min_max_date(answer, answer_store, metadata, 'yyyy-mm', group_instance=group_instance)
+        min_max_validation = validate_min_max_date(answer, answer_store, metadata, 'yyyy-mm')
         validate_with.append(min_max_validation)
 
     MonthYearDateForm.month = get_month_selection_field(validate_with)
@@ -154,7 +154,7 @@ def get_month_year_form(answer, answer_store, metadata, error_messages, group_in
     return MonthYearDateForm
 
 
-def get_year_form(answer, answer_store, metadata, error_messages, label, guidance, group_instance=0):
+def get_year_form(answer, answer_store, metadata, error_messages, label, guidance):
     """
     Returns a year form metaclass with appropriate validators. Used in both date and
     date range form creation.
@@ -184,7 +184,7 @@ def get_year_form(answer, answer_store, metadata, error_messages, label, guidanc
     validate_with.append(YearCheck(error_message))
 
     if 'minimum' in answer or 'maximum' in answer:
-        min_max_validation = validate_min_max_date(answer, answer_store, metadata, 'yyyy', group_instance=group_instance)
+        min_max_validation = validate_min_max_date(answer, answer_store, metadata, 'yyyy')
         validate_with.append(min_max_validation)
 
     YearDateForm.year = CustomIntegerField(
@@ -217,11 +217,11 @@ def get_month_selection_field(validate_with):
     return SelectField(choices=month_choices, default='', validators=validate_with)
 
 
-def validate_min_max_date(answer, answer_store, metadata, date_format, group_instance=0):
+def validate_min_max_date(answer, answer_store, metadata, date_format):
     messages = None
     if 'validation' in answer:
         messages = answer['validation'].get('messages')
-    minimum_date, maximum_date = get_dates_for_single_date_period_validation(answer, answer_store, metadata, group_instance=group_instance)
+    minimum_date, maximum_date = get_dates_for_single_date_period_validation(answer, answer_store, metadata)
 
     display_format = 'd MMMM YYYY'
     if date_format == 'yyyy-mm':
@@ -236,7 +236,7 @@ def validate_min_max_date(answer, answer_store, metadata, date_format, group_ins
     return SingleDatePeriodCheck(messages=messages, date_format=display_format, minimum_date=minimum_date, maximum_date=maximum_date)
 
 
-def get_dates_for_single_date_period_validation(answer, answer_store, metadata, group_instance=0):
+def get_dates_for_single_date_period_validation(answer, answer_store, metadata):
     """
     Gets attributes within a minimum or maximum of a date field and validates that the entered date
     is valid.
@@ -249,9 +249,9 @@ def get_dates_for_single_date_period_validation(answer, answer_store, metadata, 
     minimum_referenced_date, maximum_referenced_date = None, None
 
     if 'minimum' in answer:
-        minimum_referenced_date = get_referenced_offset_value(answer['minimum'], answer_store, metadata, group_instance=group_instance)
+        minimum_referenced_date = get_referenced_offset_value(answer['minimum'], answer_store, metadata)
     if 'maximum' in answer:
-        maximum_referenced_date = get_referenced_offset_value(answer['maximum'], answer_store, metadata, group_instance=group_instance)
+        maximum_referenced_date = get_referenced_offset_value(answer['maximum'], answer_store, metadata)
 
     # Extra runtime validation that will catch invalid schemas
     # Similar validation in schema validator
@@ -262,7 +262,7 @@ def get_dates_for_single_date_period_validation(answer, answer_store, metadata, 
     return minimum_referenced_date, maximum_referenced_date
 
 
-def get_referenced_offset_value(answer_min_or_max, answer_store, metadata, group_instance=0):
+def get_referenced_offset_value(answer_min_or_max, answer_store, metadata):
     """
     Gets value of the referenced date type, whether it is a value,
     id of an answer or a meta date. Then adds/subtracts offset from that value and returns
@@ -285,7 +285,7 @@ def get_referenced_offset_value(answer_min_or_max, answer_store, metadata, group
         value = get_metadata_value(metadata, answer_min_or_max['meta'])
     elif 'answer_id' in answer_min_or_max:
         schema = load_schema_from_metadata(metadata)
-        value = get_answer_store_value(answer_min_or_max['answer_id'], answer_store, schema, group_instance=group_instance)
+        value = get_answer_store_value(answer_min_or_max['answer_id'], answer_store, schema)
 
     value = convert_to_datetime(value)
 

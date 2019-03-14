@@ -3,7 +3,6 @@ const InsuranceAddressPage = require('../generated_pages/section_summary/insuran
 const InsuranceTypePage = require('../generated_pages/section_summary/insurance-type.page.js');
 const AddressDurationPage = require('../generated_pages/section_summary/address-duration.page.js');
 const PropertyDetailsSummaryPage = require('../generated_pages/section_summary/property-details-summary.page.js');
-const HouseHoldCompositionPage = require('../generated_pages/section_summary/household-composition.page.js');
 const FinalSummaryPage = require('../generated_pages/section_summary/summary.page.js');
 
 describe('Section Summary', function() {
@@ -32,7 +31,7 @@ describe('Section Summary', function() {
     it('When I continue on the section summary page, Then I should be taken to the next section', function() {
       return browser
         .click(PropertyDetailsSummaryPage.submit())
-        .getUrl().should.eventually.contain(HouseHoldCompositionPage.pageName);
+        .getUrl().should.eventually.contain(FinalSummaryPage.pageName);
     });
   });
 
@@ -46,8 +45,6 @@ describe('Section Summary', function() {
           .click(InsuranceAddressPage.submit())
           .click(AddressDurationPage.submit())
           .click(PropertyDetailsSummaryPage.submit())
-          .setValue(HouseHoldCompositionPage.firstName(), 'John')
-          .click(HouseHoldCompositionPage.submit())
           .getUrl().should.eventually.contain(FinalSummaryPage.pageName);
       });
     });

@@ -97,10 +97,10 @@ class TestMultipleLogin(MultipleClientTestCase):
         # user B gets taken straight to summary as survey is complete
         self.launchSurvey(self.client_b, 'test', 'textfield')
         last_url_b = self.cache[self.client_b]['last_url']
-        self.assertIn('/questionnaire/test/textfield/789/group/0/summary', last_url_b)
+        self.assertIn('/questionnaire/summary', last_url_b)
 
         # user B manually navigates to answer and can view the value that user A entered
-        self.get(self.client_b, '/questionnaire/test/textfield/789/group/0/block')
+        self.get(self.client_b, '/questionnaire/block')
         last_response_b = self.cache[self.client_b]['last_response']
         self.assertEqual(last_response_b.status_code, 200)
         self.assertIn(input_data, last_response_b.get_data(True))

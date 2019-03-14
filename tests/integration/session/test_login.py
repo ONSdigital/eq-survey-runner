@@ -38,7 +38,7 @@ class TestLogin(IntegrationTestCase):
 
         # Then
         self.assertStatusOK()
-        self.assertInUrl('/questionnaire/test/checkbox')
+        self.assertInUrl('/questionnaire')
 
     def test_login_with_token_twice_is_unauthorised_when_same_jti_provided(self):
         # Given
@@ -79,7 +79,7 @@ class TestLogin(IntegrationTestCase):
 
         # Then
         self.assertStatusOK()
-        self.assertInUrl('/questionnaire/test/checkbox')
+        self.assertInUrl('/questionnaire')
 
     def test_login_with_missing_mandatory_claims_should_be_forbidden(self):
         # Given
@@ -107,7 +107,7 @@ class TestLogin(IntegrationTestCase):
             self.get('/session?token=' + token)
 
         self.assertStatusOK()
-        self.assertInUrl('/questionnaire/test/textarea')
+        self.assertInUrl('/questionnaire')
 
     def test_login_token_with_incorrect_survey_url_results_in_404(self):
 

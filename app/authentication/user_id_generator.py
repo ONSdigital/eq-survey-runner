@@ -12,7 +12,7 @@ from app.utilities.strings import to_str
 logger = get_logger()
 
 
-class UserIDGenerator():
+class UserIDGenerator:
 
     def __init__(self, iterations, user_id_salt, user_ik_salt):
         if user_id_salt is None:

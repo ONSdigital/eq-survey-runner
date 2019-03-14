@@ -1,5 +1,5 @@
 from unittest import TestCase
-from mock import MagicMock, patch
+from mock import patch
 from app.data_model.answer_store import AnswerStore, Answer
 from app.templating.schema_context import build_schema_context, _build_answers, build_schema_metadata
 from app.utilities.schema import _load_schema_file
@@ -27,8 +27,6 @@ def get_test_schema():
     test_json = _load_schema_file('test_schema_context.json', DEFAULT_LANGUAGE_CODE)
     schema = QuestionnaireSchema(test_json, DEFAULT_LANGUAGE_CODE)
 
-    schema.is_repeating_answer_type = MagicMock(return_value=False)
-    schema.answer_is_in_repeating_group = MagicMock(return_value=False)
     return schema
 
 
@@ -72,38 +70,11 @@ class TestBuildAnswersContext(TestCase):
         answer_ids_on_path = ['first_name']
 
         # When
-        context_answers = _build_answers(self.answer_store, self.schema, answer_ids_on_path)
+        context_answers = _build_answers(self.answer_store, answer_ids_on_path)
 
         # Then
         self.assertEqual(len(context_answers), 1)
         self.assertEqual(context_answers['first_name'], 'Joe Bloggs')
-
-    def test_build_answers_context_repeating_answers(self):
-        # Given
-        self.answer_store.add_or_update(Answer(
-            answer_id='full_name_answer',
-            value='Person One',
-        ))
-        self.answer_store.add_or_update(Answer(
-            answer_id='full_name_answer',
-            value='Person Two',
-            answer_instance=1,
-        ))
-        self.answer_store.add_or_update(Answer(
-            answer_id='full_name_answer',
-            value='Person One',
-            answer_instance=2
-        ))
-        answer_ids_on_path = ['full_name_answer']
-
-        # When
-        self.schema.is_repeating_answer_type = MagicMock(return_value=True)
-        context_answers = _build_answers(self.answer_store, self.schema, answer_ids_on_path)
-
-        # Then
-        self.assertIsInstance(context_answers['full_name_answer'], list)
-        self.assertEqual(len(context_answers['full_name_answer']), 3)
-        self.assertEqual(len(context_answers), 1)
 
     def test_build_answers_single_answer_should_not_return_list(self):
         # Given
@@ -114,43 +85,13 @@ class TestBuildAnswersContext(TestCase):
         answer_ids_on_path = ['full_name_answer']
 
         # When
-        context_answers = _build_answers(self.answer_store, self.schema, answer_ids_on_path)
+        context_answers = _build_answers(self.answer_store, answer_ids_on_path)
 
         # Then
         self.assertEqual(len(context_answers), 1)
         self.assertEqual(context_answers['full_name_answer'], 'Person One')
 
-    def test_build_answers_alias_for_repeating_answer_returns_list(self):
-        # Given
-        self.answer_store.add_or_update(Answer(
-            answer_id='repeating_answer_id',
-            value='Some Value',
-        ))
-        answer_ids_on_path = ['repeating_answer_id']
-
-        # When
-        self.schema.is_repeating_answer_type = MagicMock(return_value=True)
-        context_answers = _build_answers(self.answer_store, self.schema, answer_ids_on_path)
-
-        # Then
-        self.assertIsInstance(context_answers['repeating_answer_id'], list)
-
-    def test_alias_for_non_repeating_answer_returns_string(self):
-        # Given
-        self.answer_store.add_or_update(Answer(
-            answer_id='non_repeating_answer_id',
-            value='Some Value',
-        ))
-        answer_ids_on_path = ['non_repeating_answer_id']
-
-        # When
-        context_answers = _build_answers(self.answer_store, self.schema, answer_ids_on_path)
-
-        # Then
-        self.assertIsInstance(context_answers['non_repeating_answer_id'], str)
-        self.assertEqual(context_answers['non_repeating_answer_id'], 'Some Value')
-
-    def test_alias_for_answer_in_repeating_group_returns_list(self):
+    def test_alias_for_answer_returns_string(self):
         # Given
         self.answer_store.add_or_update(Answer(
             answer_id='answer_id',
@@ -159,29 +100,11 @@ class TestBuildAnswersContext(TestCase):
         answer_ids_on_path = ['answer_id']
 
         # When
-        self.schema.is_repeating_answer_type = MagicMock(return_value=True)
-        context_answers = _build_answers(self.answer_store, self.schema, answer_ids_on_path)
+        context_answers = _build_answers(self.answer_store, answer_ids_on_path)
 
         # Then
-        self.assertIsInstance(context_answers['answer_id'], list)
-
-    def test_maximum_answers_must_be_limited_to_system_max(self):
-        # Given
-        for instance in range(26):
-            self.answer_store.add_or_update(Answer(
-                answer_id='repeating_answer_id',
-                value='Some Value',
-                answer_instance=instance,
-            ))
-        answer_ids_on_path = ['repeating_answer_id']
-
-        # When
-        self.schema.is_repeating_answer_type = MagicMock(return_value=True)
-        context_answers = _build_answers(self.answer_store, self.schema, answer_ids_on_path)
-
-        # Then
-        print(context_answers)
-        self.assertEqual(len(context_answers['repeating_answer_id']), 25)
+        self.assertIsInstance(context_answers['answer_id'], str)
+        self.assertEqual(context_answers['answer_id'], 'Some Value')
 
     def test_given_quotes_in_answers_when_create_context_quotes_then_are_html_encoded(self):
         # Given
@@ -192,7 +115,7 @@ class TestBuildAnswersContext(TestCase):
         answer_ids_on_path = ['first_name']
 
         # When
-        context_answers = _build_answers(self.answer_store, self.schema, answer_ids_on_path)
+        context_answers = _build_answers(self.answer_store, answer_ids_on_path)
 
         # Then
         self.assertEqual(len(context_answers), 1)
@@ -207,7 +130,7 @@ class TestBuildAnswersContext(TestCase):
         answer_ids_on_path = ['first_name']
 
         # When
-        context_answers = _build_answers(self.answer_store, self.schema, answer_ids_on_path)
+        context_answers = _build_answers(self.answer_store, answer_ids_on_path)
 
         # Then
         self.assertEqual(len(context_answers), 1)
@@ -226,74 +149,11 @@ class TestBuildAnswersContext(TestCase):
         answer_ids_on_path = ['first_name']
 
         # When
-        context_answers = _build_answers(self.answer_store, self.schema, answer_ids_on_path)
+        context_answers = _build_answers(self.answer_store, answer_ids_on_path)
 
         # Then
         self.assertEqual(len(context_answers), 1)
         self.assertEqual(context_answers['first_name'], 'Joe')
-
-    def test_build_answers_puts_answers_in_repeating_group_in_correct_index(self):
-        """Tests that repeating answers get put in a padded list in the
-        correct position
-        """
-        # Given
-        self.answer_store.add_or_update(Answer(
-            answer_id='first_name',
-            value='Joe',
-            group_instance=1,
-        ))
-        answer_ids_on_path = ['first_name']
-
-        # When
-        self.schema.answer_is_in_repeating_group = MagicMock(return_value=True)
-        context_answers = _build_answers(self.answer_store, self.schema, answer_ids_on_path)
-
-        # Then
-        print(context_answers)
-        self.assertEqual(len(context_answers), 1)
-        self.assertEqual(context_answers['first_name'], ['', 'Joe'])
-
-    def test_build_answers_puts_repeating_answers_in_correct_index(self):
-        """Tests that repeating answers get put in a padded list in the
-        correct position
-        """
-        # Given
-        self.answer_store.add_or_update(Answer(
-            answer_id='first_name',
-            value='Joe',
-            answer_instance=1,
-        ))
-        answer_ids_on_path = ['first_name']
-
-        # When
-        self.schema.is_repeating_answer_type = MagicMock(return_value=True)
-        context_answers = _build_answers(self.answer_store, self.schema, answer_ids_on_path)
-
-        # Then
-        self.assertEqual(len(context_answers), 1)
-        self.assertEqual(context_answers['first_name'], ['', 'Joe'])
-
-    def test_build_answers_puts_answers_in_repeating_group(self):
-        # Given
-        self.answer_store.add_or_update(Answer(
-            answer_id='first_name',
-            value='Bloggs',
-            answer_instance=1,
-        ))
-        self.answer_store.add_or_update(Answer(
-            answer_id='first_name',
-            value='Joe',
-            answer_instance=0, # answer_instance deliberately in inverse order
-        ))
-        answer_ids_on_path = ['first_name']
-
-        # When
-        self.schema.is_repeating_answer_type = MagicMock(return_value=True)
-        context_answers = _build_answers(self.answer_store, self.schema, answer_ids_on_path)
-
-        # Then
-        self.assertEqual(len(context_answers), 1)
-        self.assertEqual(context_answers['first_name'], ['Joe', 'Bloggs'])
 
 
 class TestBuildSchemaMetadata(TestCase):

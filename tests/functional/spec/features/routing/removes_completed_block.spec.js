@@ -19,14 +19,5 @@ describe('Feature: Routing incompletes block if routing backwards', function() {
       });
     });
 
-    it('When I use browser back button and change confirmation to no then Summary should not be available', function () {
-      return browser
-        .back()
-        .isVisible(helpers.navigationLink('Summary')).should.eventually.be.true
-        .click(ConfirmZeroEmployeesBlockPage.no())
-        .click(ConfirmZeroEmployeesBlockPage.submit())
-        .isVisible(helpers.navigationLink('Summary')).should.eventually.be.false;
-    });
-
   });
 });

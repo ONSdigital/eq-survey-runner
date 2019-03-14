@@ -6,11 +6,11 @@ from app.questionnaire.location import Location
 class TestRouter(TestCase):
     def setUp(self):
         self.blocks = [
-            Location('group-a', 0, 'block-a'),
-            Location('group-b', 0, 'block-b'),
-            Location('group-b', 0, 'block-c'),
-            Location('group-b', 1, 'block-b'),
-            Location('group-b', 1, 'block-c')
+            Location('block-a'),
+            Location('block-b'),
+            Location('block-c'),
+            Location('block-b'),
+            Location('block-c')
         ]
         self.routing_path = RoutingPath(self.blocks)
         super().setUp()
@@ -32,7 +32,7 @@ class TestRouter(TestCase):
 
     def test_contains_true(self):
         self.assertIn(self.blocks[0], self.routing_path)
-        self.assertNotIn(Location('group-z', 0, 'block-z'), self.routing_path)
+        self.assertNotIn(Location('block-z'), self.routing_path)
 
     def test_iter(self):
         self.assertEqual(self.blocks[0], next(iter(self.routing_path)))

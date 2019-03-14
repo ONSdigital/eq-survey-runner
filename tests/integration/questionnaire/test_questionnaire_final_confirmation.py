@@ -26,7 +26,7 @@ class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
         self.assertInBody('What is your favourite breakfast food')
 
         # And try posting straight to the confirmation screen
-        self.post(url='/questionnaire/test/final_confirmation/789/final-confirmation/0/confirmation')
+        self.post(url='/questionnaire/confirmation')
 
         # Then we are re-directed back
         self.assertInBody('What is your favourite breakfast food')

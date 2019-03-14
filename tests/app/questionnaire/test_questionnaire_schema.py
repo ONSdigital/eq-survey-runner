@@ -1,82 +1,255 @@
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
-from app.utilities.schema import load_schema_from_params
 from tests.app.app_context_test_case import AppContextTestCase
 
 
 # pylint: disable=too-many-public-methods
 class TestQuestionnaireSchema(AppContextTestCase):
     def test_get_sections(self):
-        schema = load_schema_from_params('test', 'repeating_household')
-        self.assertEqual(len(schema.sections), 3)
+        survey_json = {
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'blocks': [
+                        {
+                            'id': 'block1',
+                            'type': 'Question'
+                        }
+                    ]
+                }]
+            }]
+        }
+
+        schema = QuestionnaireSchema(survey_json)
+        self.assertEqual(len(schema.sections), 1)
 
     def test_get_section(self):
-        schema = load_schema_from_params('test', 'repeating_household')
-        section = schema.get_section('group-1-section')
+        survey_json = {
+            'sections': [{
+                'id': 'section1',
+                'title': 'Section 1',
+                'groups': [{
+                    'id': 'group1',
+                    'blocks': [
+                        {
+                            'id': 'block1',
+                            'type': 'Question'
+                        }
+                    ]
+                }]
+            }]
+        }
 
-        self.assertEqual(section['title'], 'Group 1')
+        schema = QuestionnaireSchema(survey_json)
+        section = schema.get_section('section1')
+        self.assertEqual(section['title'], 'Section 1')
 
     def test_get_blocks(self):
-        schema = load_schema_from_params('test', 'repeating_household')
-        self.assertEqual(len(schema.blocks), 6)
+        survey_json = {
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'blocks': [
+                        {
+                            'id': 'block1',
+                            'type': 'Question'
+                        }
+                    ]
+                }]
+            }]
+        }
+
+        schema = QuestionnaireSchema(survey_json)
+        self.assertEqual(len(schema.blocks), 1)
 
     def test_get_block(self):
-        schema = load_schema_from_params('test', 'repeating_household')
-        block = schema.get_block('household-composition')
+        survey_json = {
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'blocks': [
+                        {
+                            'id': 'block1',
+                            'type': 'Question',
+                            'title': 'Block 1'
+                        }
+                    ]
+                }]
+            }]
+        }
 
-        self.assertEqual(block['title'], 'Household')
+        schema = QuestionnaireSchema(survey_json)
+        block = schema.get_block('block1')
+
+        self.assertEqual(block['title'], 'Block 1')
 
     def test_get_groups(self):
-        schema = load_schema_from_params('test', 'repeating_household')
-        self.assertEqual(len(schema.groups), 3)
+        survey_json = {
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'blocks': [
+                        {
+                            'id': 'block1',
+                            'type': 'Question',
+                            'title': 'Block 1'
+                        }
+                    ]
+                }]
+            }]
+        }
+
+        schema = QuestionnaireSchema(survey_json)
+        self.assertEqual(len(schema.groups), 1)
 
     def test_get_group(self):
-        schema = load_schema_from_params('test', 'repeating_household')
-        group = schema.get_group('repeating-group')
+        survey_json = {
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'title': 'Group 1',
+                    'blocks': [
+                        {
+                            'id': 'block1',
+                            'type': 'Question',
+                            'title': 'Block 1'
+                        }
+                    ]
+                }]
+            }]
+        }
 
-        self.assertEqual(group['title'], 'Group 2')
+        schema = QuestionnaireSchema(survey_json)
+        group = schema.get_group('group1')
+
+        self.assertEqual(group['title'], 'Group 1')
 
     def test_get_questions(self):
-        schema = load_schema_from_params('test', 'repeating_household')
-        self.assertEqual(len(schema.questions), 4)
+        survey_json = {
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'title': 'Group 1',
+                    'blocks': [
+                        {
+                            'id': 'block1',
+                            'type': 'Question',
+                            'title': 'Block 1',
+                            'questions': [
+                                {
+                                    'id': 'question1'
+                                }
+                            ]
+                        }
+                    ]
+                }]
+            }]
+        }
+
+        schema = QuestionnaireSchema(survey_json)
+        self.assertEqual(len(schema.questions), 1)
 
     def test_get_question(self):
-        schema = load_schema_from_params('test', 'repeating_household')
-        question = schema.get_question('household-composition-question')
+        survey_json = {
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'title': 'Group 1',
+                    'blocks': [
+                        {
+                            'id': 'block1',
+                            'type': 'Question',
+                            'title': 'Block 1',
+                            'questions': [
+                                {
+                                    'id': 'question1',
+                                    'title': 'Question 1'
+                                }
+                            ]
+                        }
+                    ]
+                }]
+            }]
+        }
 
-        self.assertEqual(question['title'], 'Who usually lives here?')
+        schema = QuestionnaireSchema(survey_json)
+        question = schema.get_question('question1')
+
+        self.assertEqual(question['title'], 'Question 1')
 
     def test_get_answers(self):
-        schema = load_schema_from_params('test', 'repeating_household')
-        self.assertEqual(len(schema.answers), 6)
+        survey_json = {
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'title': 'Group 1',
+                    'blocks': [
+                        {
+                            'id': 'block1',
+                            'type': 'Question',
+                            'title': 'Block 1',
+                            'questions': [
+                                {
+                                    'id': 'question1',
+                                    'title': 'Question 1',
+                                    'answers': [
+                                        {
+                                            'id': 'answer1',
+                                            'label': 'Answer 1'
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }]
+            }]
+        }
+
+        schema = QuestionnaireSchema(survey_json)
+        self.assertEqual(len(schema.answers), 1)
 
     def test_get_answer(self):
-        schema = load_schema_from_params('test', 'repeating_household')
-        answer = schema.get_answer('first-name')
+        survey_json = {
+            'sections': [{
+                'id': 'section1',
+                'groups': [{
+                    'id': 'group1',
+                    'title': 'Group 1',
+                    'blocks': [
+                        {
+                            'id': 'block1',
+                            'type': 'Question',
+                            'title': 'Block 1',
+                            'questions': [
+                                {
+                                    'id': 'question1',
+                                    'title': 'Question 1',
+                                    'answers': [
+                                        {
+                                            'id': 'answer1',
+                                            'label': 'Answer 1'
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }]
+            }]
+        }
 
-        self.assertEqual(answer['label'], 'First Name')
+        schema = QuestionnaireSchema(survey_json)
+        answer = schema.get_answer('answer1')
 
-    def test_get_repeating_rule(self):
-        schema = load_schema_from_params('test', 'repeating_household')
-        groups = [group for group in schema.groups]
-        rule = schema.get_repeat_rule(groups[1])
-
-        self.assertEqual(
-            {
-                'type': 'answer_count',
-                'answer_id': 'first-name'
-            }, rule)
-
-    def test_get_answers_that_repeat_in_block(self):
-        schema = load_schema_from_params('test', 'repeating_household')
-        answers = [answer for answer in schema.get_answers_that_repeat_in_block('household-composition')]
-
-        self.assertEqual(len(answers), 3)
-
-    def test_get_groups_that_repeat_with_answer_id(self):
-        schema = load_schema_from_params('test', 'repeating_household')
-        groups = [group for group in schema.get_groups_that_repeat_with_answer_id('first-name')]
-
-        self.assertEqual(len(groups), 1)
+        self.assertEqual(answer['label'], 'Answer 1')
 
     def test_get_summary_and_confirmation_blocks_returns_only_summary(self):
         survey_json = {
@@ -180,32 +353,6 @@ class TestQuestionnaireSchema(AppContextTestCase):
         self.assertFalse(schema.is_confirmation_section(schema.get_section('section-1')))
         self.assertFalse(schema.is_confirmation_group(schema.get_group('group-1')))
 
-    def test_is_repeating_answer_type_repeating_answer(self):
-        survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'question-group',
-                    'blocks': [
-                        {
-                            'id': 'repeating-question-block',
-                            'type': 'Question',
-                            'questions': [{
-                                'id': 'repeating-question',
-                                'type': 'RepeatingAnswer',
-                                'answers': [{
-                                    'id': 'first-name'
-                                }]
-                            }]
-                        }
-                    ]
-                }]
-            }]
-        }
-        schema = QuestionnaireSchema(survey_json)
-
-        self.assertTrue(schema.is_repeating_answer_type('first-name'))
-
     def test_is_confirmation(self):
         survey_json = {
             'sections': [{
@@ -227,75 +374,3 @@ class TestQuestionnaireSchema(AppContextTestCase):
         self.assertTrue(schema.is_confirmation_group(schema.get_group('group-1')))
         self.assertFalse(schema.is_summary_section(schema.get_section('section-1')))
         self.assertFalse(schema.is_summary_group(schema.get_group('group-1')))
-
-    def test_is_repeating_answer_type_general_answer(self):
-        survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'question-group',
-                    'blocks': [
-                        {
-                            'id': 'question-block',
-                            'type': 'Question',
-                            'questions': [{
-                                'id': 'question',
-                                'type': 'General',
-                                'answers': [{
-                                    'id': 'first-name'
-                                }]
-                            }]
-                        }
-                    ]
-                }]
-            }]
-        }
-
-        schema = QuestionnaireSchema(survey_json)
-
-        self.assertFalse(schema.is_repeating_answer_type('first-name'))
-
-    def test_is_repeating_answer_type_checkbox(self):
-        survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'question-group',
-                    'blocks': [
-                        {
-                            'id': 'question-block',
-                            'type': 'Question',
-                            'questions': [{
-                                'id': 'question',
-                                'type': 'General',
-                                'answers': [{
-                                    'id': 'frequency-answer',
-                                    'options': [{
-                                        'value': 'Weekly'
-                                    }],
-                                    'type': 'Checkbox'
-                                }]
-                            }]
-                        }
-                    ]
-                }]
-            }]
-        }
-
-        schema = QuestionnaireSchema(survey_json)
-
-        self.assertTrue(schema.is_repeating_answer_type('frequency-answer'))
-
-    def test_answer_is_in_repeating_group(self):
-        schema = load_schema_from_params('test', 'repeating_household')
-
-        self.assertFalse(schema.answer_is_in_repeating_group('first-name'))
-        self.assertTrue(schema.answer_is_in_repeating_group('confirm-answer'))
-
-    def test_title_when_dependencies_are_added_to_dependencies(self):
-        schema = load_schema_from_params('test', 'titles')
-        dependencies = schema.answer_dependencies['behalf-of-answer']
-
-        self.assertIn('gender-answer', dependencies)
-        self.assertIn('age-answer', dependencies)
-        self.assertEqual(len(dependencies), 2)

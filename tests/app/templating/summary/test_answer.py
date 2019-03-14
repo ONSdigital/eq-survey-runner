@@ -11,10 +11,10 @@ class TestAnswer(TestCase):
         user_answer = 'An answer'
 
         # When
-        answer = Answer(answer_schema, user_answer, 2)
+        answer = Answer(answer_schema, user_answer)
 
         # Then
-        self.assertEqual(answer.id, 'answer-id-2')
+        self.assertEqual(answer.id, 'answer-id')
         self.assertEqual(answer.label, 'Answer Label')
         self.assertEqual(answer.value, user_answer)
 
@@ -24,7 +24,7 @@ class TestAnswer(TestCase):
         user_answer = None
 
         # When
-        answer = Answer(answer_schema, user_answer, 0)
+        answer = Answer(answer_schema, user_answer)
 
         # Then
         self.assertEqual(answer.type, 'date')

@@ -7,7 +7,7 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
 
   beforeEach(function() {
     return helpers.openQuestionnaire('test_mutually_exclusive.json').then(() => {
-          return browser.click(helpers.navigationLink('Year Date'));
+          return browser.url('/questionnaire/mutually-exclusive-year-date');
         });
   });
 

@@ -23,20 +23,8 @@ def build_summary_rendering_context(schema, sections, answer_store, metadata, sc
         for section in sections
     )
 
-    group_ids_on_path = [location.group_id for location in path]
-
     for group in itertools.chain.from_iterable(group_lists):
-        if (group['id'] in group_ids_on_path and schema.group_has_questions(group['id'])):
-            no_of_repeats = _number_of_repeats(group, path)
-            repeating_groups = []
-            for instance_idx in range(0, no_of_repeats):
-                summary_group = Group(group, path, answer_store, metadata, schema, instance_idx, schema_context).serialize()
-                repeating_groups.append(summary_group)
-            groups.extend(repeating_groups)
+        summary_group = Group(group, path, answer_store, metadata, schema, schema_context).serialize()
+        groups.append(summary_group)
 
     return groups
-
-
-def _number_of_repeats(group, path):
-    group_instances_on_path = [location.group_instance for location in path if location.group_id == group['id']]
-    return len(set(group_instances_on_path))

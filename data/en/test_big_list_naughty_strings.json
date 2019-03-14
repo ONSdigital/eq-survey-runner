@@ -3078,7 +3078,7 @@
     }],
     "title": "Other input fields",
     "description": "A questionnaire to test textareas.",
-    "data_version": "0.0.1",
+    "data_version": "0.0.2",
     "theme": "default",
     "schema_version": "0.0.1",
     "survey_id": "0"

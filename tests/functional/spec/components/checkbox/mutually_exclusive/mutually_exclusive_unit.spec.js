@@ -7,7 +7,7 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
 
   beforeEach(function() {
     return helpers.openQuestionnaire('test_mutually_exclusive.json').then(() => {
-          return browser.click(helpers.navigationLink('Unit'));
+          return browser.url('/questionnaire/mutually-exclusive-unit');
         });
   });
 
