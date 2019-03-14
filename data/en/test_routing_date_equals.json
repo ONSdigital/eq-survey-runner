@@ -56,7 +56,22 @@
                     }],
                     "description": "",
                     "id": "date-questions",
-                    "title": "Enter {{ answers['comparison-date-answer']|format_date }} or offset by one day, month or year in either direction",
+                    "title": {
+                        "text": "Enter {date} or offset by one day, month or year in either direction",
+                        "placeholders": [{
+                            "placeholder": "date",
+                            "transforms": [{
+                                "transform": "format_date",
+                                "arguments": {
+                                    "date_to_format": {
+                                        "source": "answers",
+                                        "identifier": "comparison-date-answer"
+                                    },
+                                    "date_format": "d MMMM YYYY"
+                                }
+                            }]
+                        }]
+                    },
                     "type": "General"
                 },
                 "title": "",

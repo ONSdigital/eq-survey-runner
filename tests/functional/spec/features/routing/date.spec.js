@@ -197,17 +197,6 @@ describe('Feature: Routing on a Date', function () {
           .getUrl().should.eventually.contain(CorrectAnswerPage.pageName);
       });
 
-      it('When I enter a date greater than or equal to today, Then I should be routed to the incorrect page', function () {
-        return browser
-          .getText(DateQuestionPage.questionText()).should.eventually.contain('Enter a date less than ' + dd_today + ' ' + monthNames[today.getMonth()] + ' ' + yyyy_today)
-          .getText(CorrectAnswerPage.questionText()).should.eventually.contain('')
-          .setValue(DateQuestionPage.day(), dd_today)
-          .selectByValue(DateQuestionPage.month(), mm_today)
-          .setValue(DateQuestionPage.year(), yyyy_today)
-          .click(DateQuestionPage.submit())
-          .getUrl().should.eventually.contain(IncorrectAnswerPage.pageName);
-      });
-
     });
   });
 

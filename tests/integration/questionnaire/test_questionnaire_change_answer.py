@@ -36,8 +36,6 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
         for datum in post_data:
             self.post(datum)
 
-        self.assertInBody('Application of min and max filters to dates')
-        self.post(action='save_continue')
         self.assertInBody('22 February 2099')
         self.assertNotInBody('No answer provided')
 

@@ -72,11 +72,38 @@
                         "type": "Definition",
                         "question": "Definition of innovation",
                         "content": [{
-                            "list": [
-                                "Innovation, for the purpose of this survey, is defined as <strong>new</strong> or <strong>significantly improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all goods or services that {{ metadata['ru_name'] }} has introduced, regardless of their origin.",
-                                "These innovations may be new to {{ metadata['ru_name'] }} or new to the market",
-                                "Investments for future innovation and changes that {{ metadata['ru_name'] }} has introduced at a <strong>strategic</strong> level (in organisation and practices) are also covered"
-                            ]
+                            "description": {
+                                "text": "Innovation, for the purpose of this survey, is defined as <strong>new</strong> or <strong>significantly improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all goods or services that {ru_name} has introduced, regardless of their origin.",
+                                "placeholders": [{
+                                    "placeholder": "ru_name",
+                                    "value": {
+                                        "source": "metadata",
+                                        "identifier": "ru_name"
+                                    }
+                                }]
+                            }
+                        }, {
+                            "description": {
+                                "text": "These innovations may be new to {ru_name} or new to the market",
+                                "placeholders": [{
+                                    "placeholder": "ru_name",
+                                    "value": {
+                                        "source": "metadata",
+                                        "identifier": "ru_name"
+                                    }
+                                }]
+                            }
+                        }, {
+                            "description": {
+                                "text": "Investments for future innovation and changes that {ru_name} has introduced at a <strong>strategic</strong> level (in organisation and practices) are also covered",
+                                "placeholders": [{
+                                    "placeholder": "ru_name",
+                                    "value": {
+                                        "source": "metadata",
+                                        "identifier": "ru_name"
+                                    }
+                                }]
+                            }
                         }]
                     }]
                 },

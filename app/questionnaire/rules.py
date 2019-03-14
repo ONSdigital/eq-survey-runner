@@ -247,15 +247,6 @@ def get_answer_store_value(answer_id, answer_store, schema, routing_path=None):
     return next(iter(filtered))['value'] if filtered.count() == 1 else None
 
 
-def get_answer_ids_on_routing_path(schema, path):
-    answer_ids_on_path = []
-    for location in path:
-        answer_ids_on_path.extend(
-            schema.get_answer_ids_for_block(location.block_id))
-
-    return answer_ids_on_path
-
-
 def get_metadata_value(metadata, key):
     return metadata.get(key)
 

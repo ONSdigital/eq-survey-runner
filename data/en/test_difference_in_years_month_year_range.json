@@ -47,7 +47,25 @@
                 "title": "Confirm Dates",
                 "question": {
                     "id": "confirm-dob-question",
-                    "title": "You were out of the UK for {{ calculate_years_difference (answers['period-from'], answers['period-to']) }}. Is this correct?",
+                    "title": {
+                        "text": "You were out of the UK for {time_away}. Is this correct?",
+                        "placeholders": [{
+                            "placeholder": "time_away",
+                            "transforms": [{
+                                "transform": "calculate_years_difference",
+                                "arguments": {
+                                    "first_date": {
+                                        "source": "answers",
+                                        "identifier": "period-from"
+                                    },
+                                    "second_date": {
+                                        "source": "answers",
+                                        "identifier": "period-to"
+                                    }
+                                }
+                            }]
+                        }]
+                    },
                     "type": "General",
                     "answers": [{
                         "id": "date-test-answer",

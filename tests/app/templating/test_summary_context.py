@@ -57,10 +57,6 @@ class TestSummaryContext(TestStandardSummaryContext):
         super().setUp()
         self.schema = load_schema_from_params('test', 'summary')
         self.answer_store = AnswerStore()
-        self.schema_context = {
-            'answers': {},
-            'metadata': self.metadata
-        }
         self.block_type = 'Summary'
         self.rendered_block = {
             'parent_id': 'summary-group',
@@ -72,13 +68,12 @@ class TestSummaryContext(TestStandardSummaryContext):
     def test_build_summary_rendering_context(self):
         sections = self.schema.sections
         summary_rendering_context = build_summary_rendering_context(self.schema, sections, self.answer_store,
-                                                                    self.metadata, self.schema_context)
+                                                                    self.metadata)
         self.check_summary_rendering_context(summary_rendering_context)
 
     def test_build_view_context_for_summary(self):
         context = build_view_context_for_final_summary(self.metadata, self.schema, self.answer_store,
-                                                       self.schema_context, self.block_type,
-                                                       self.rendered_block)
+                                                       self.block_type, self.rendered_block)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -93,25 +88,19 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
         super().setUp()
         self.schema = load_schema_from_params('test', 'section_summary')
         self.answer_store = AnswerStore()
-        self.schema_context = {
-            'answers': {},
-            'group_instance': 0,
-            'metadata': self.metadata
-        }
         self.block_type = 'SectionSummary'
 
     def test_build_summary_rendering_context(self):
         sections = [self.schema.get_section('property-details-section')]
         summary_rendering_context = build_summary_rendering_context(self.schema, sections, self.answer_store,
-                                                                    self.metadata, self.schema_context)
+                                                                    self.metadata)
         self.check_summary_rendering_context(summary_rendering_context)
 
     def test_build_view_context_for_section_summary(self):
         current_location = Location(block_id='property-details-summary')
 
         context = build_view_context_for_section_summary(self.metadata, self.schema, self.answer_store,
-                                                         self.schema_context, self.block_type,
-                                                         current_location)
+                                                         self.block_type, current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -140,11 +129,6 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             {'value': 12, 'answer_id': 'sixth-number-answer'},
         ]
         self.answer_store = AnswerStore(answers)
-        self.schema_context = {
-            'answers': answers,
-            'group_instance': 0,
-            'metadata': self.metadata
-        }
         self.block_type = 'CalculatedSummary'
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
@@ -152,8 +136,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         current_location = Location(block_id='currency-total-playback-with-fourth')
 
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
-                                                            self.schema_context, self.block_type,
-                                                            current_location)
+                                                            self.block_type, current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -175,8 +158,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         skip_answer = Answer('skip-fourth-block-answer', 'Yes')
         self.answer_store.add_or_update(skip_answer)
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
-                                                            self.schema_context, self.block_type,
-                                                            current_location)
+                                                            self.block_type, current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -196,8 +178,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         current_location = Location(block_id='unit-total-playback')
 
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
-                                                            self.schema_context, self.block_type,
-                                                            current_location)
+                                                            self.block_type, current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -215,8 +196,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         current_location = Location(block_id='percentage-total-playback')
 
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
-                                                            self.schema_context, self.block_type,
-                                                            current_location)
+                                                            self.block_type, current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -235,8 +215,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         current_location = Location(block_id='number-total-playback')
 
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
-                                                            self.schema_context, self.block_type,
-                                                            current_location)
+                                                            self.block_type, current_location)
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])

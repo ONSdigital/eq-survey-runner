@@ -1,13 +1,11 @@
+import re
 from functools import wraps
 
 from flask import current_app, g, session as cookie_session
-from flask_login import current_user
 from flask_themes2 import render_theme_template
 from structlog import get_logger
 
-from app.globals import get_metadata, get_session_timeout_in_seconds
-from app.templating.metadata_context import build_metadata_context
-from app.templating.template_renderer import TemplateRenderer
+from app.globals import get_session_timeout_in_seconds
 
 logger = get_logger()
 
@@ -24,17 +22,6 @@ def with_session_timeout(func):
         )
 
     return session_wrapper
-
-
-def with_metadata_context(func):
-    @wraps(wraps)
-    def metadata_context_wrapper(*args, **kwargs):
-        metadata = get_metadata(current_user)
-        metadata_context = build_metadata_context(metadata)
-
-        return func(*args, metadata_context=metadata_context, **kwargs)
-
-    return metadata_context_wrapper
 
 
 def with_analytics(func):
@@ -60,9 +47,25 @@ def render_template(template, **kwargs):
     return render_theme_template(
         theme,
         template,
-        survey_title=TemplateRenderer.safe_content(g.schema.json['title']),
+        survey_title=safe_content(g.schema.json['title']),
         account_service_url=cookie_session.get('account_service_url'),
         account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
         survey_id=g.schema.json['survey_id'],
         **kwargs
     )
+
+
+def safe_content(content):
+    """Make content safe.
+
+    Replaces variable with ellipsis and strips any HTML tags.
+
+    :param (str) content: Input string.
+    :returns (str): Modified string.
+    """
+    if content is not None:
+        # Replace piping with ellipsis
+        content = re.sub(r'{.*?}', '…', content)
+        # Strip HTML Tags
+        content = re.sub(r'</?[^>]+>', '', content)
+    return content

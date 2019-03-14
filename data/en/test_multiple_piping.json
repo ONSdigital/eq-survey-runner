@@ -104,14 +104,50 @@
                 "id": "piping-question",
                 "question": {
                     "id": "multiple-piping-question",
-                    "title": "Does <em>{{[answers['first-text'], answers['second-text']] | format_household_name}}</em> live at <em>{{answers['address-line-1']}}</em>",
+                    "title": {
+                        "text": "Does <em>{person}</em> live at <em>{address}</em>",
+                        "placeholders": [{
+                            "placeholder": "person",
+                            "transforms": [{
+                                "transform": "concatenate_list",
+                                "arguments": {
+                                    "list_to_concatenate": {
+                                        "source": "answers",
+                                        "identifier": ["first-text", "second-text"]
+                                    },
+                                    "delimiter": " "
+                                }
+                            }]
+                        }, {
+                            "placeholder": "address",
+                            "value": {
+                                "source": "answers",
+                                "identifier": "address-line-1"
+                            }
+                        }]
+                    },
                     "type": "General",
                     "answers": [{
                         "id": "multiple-piping-answer",
                         "type": "Radio",
                         "mandatory": true,
                         "options": [{
-                            "label": "{{[answers['building'], answers['address-line-1'], answers['address-line-2'], answers['address-line-3'], answers['town-city'], answers['county'], answers['postcode'], answers['country']] | concatenated_list}}",
+                            "label": {
+                                "text": "{address}",
+                                "placeholders": [{
+                                    "placeholder": "address",
+                                    "transforms": [{
+                                        "transform": "concatenate_list",
+                                        "arguments": {
+                                            "list_to_concatenate": {
+                                                "source": "answers",
+                                                "identifier": ["building", "address-line-1", "address-line-2", "address-line-3", "town-city", "county", "postcode", "country"]
+                                            },
+                                            "delimiter": ", "
+                                        }
+                                    }]
+                                }]
+                            },
                             "value": "at your address"
                         }, {
                             "label": "at another address",

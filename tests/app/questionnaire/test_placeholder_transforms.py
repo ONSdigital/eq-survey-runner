@@ -58,3 +58,18 @@ class TestPlaceholderParser(unittest.TestCase):
         assert self.transforms.concatenate_list(list_to_concatenate, '') == 'MilkEggsFlourWater'
         assert self.transforms.concatenate_list(list_to_concatenate, ' ') == 'Milk Eggs Flour Water'
         assert self.transforms.concatenate_list(list_to_concatenate, ', ') == 'Milk, Eggs, Flour, Water'
+
+    def test_remove_empty_from_list(self):
+        list_to_filter = [None, 0, False, '', 'String']
+
+        assert self.transforms.remove_empty_from_list(list_to_filter) == [0, False, 'String']
+
+    def test_first_non_empty_item(self):
+        list_to_filter = [None, 0, False, '', 'String']
+
+        assert self.transforms.first_non_empty_item(list_to_filter) == 0
+
+    def test_first_non_empty_item_no_valid(self):
+        list_to_filter = [None, None]
+
+        assert self.transforms.first_non_empty_item(list_to_filter) == ''

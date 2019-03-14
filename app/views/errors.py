@@ -9,17 +9,13 @@ from ua_parser import user_agent_parser
 
 from app.authentication.no_token_exception import NoTokenException
 from app.globals import get_metadata
+from app.helpers.template_helper import safe_content
 from app.libs.utils import convert_tx_id_for_boxes
 from app.submitter.submission_failed import SubmissionFailedException
-from app.templating.template_renderer import TemplateRenderer
 
 logger = get_logger()
 
 errors_blueprint = Blueprint('errors', __name__)
-
-
-class MultipleSurveyError(Exception):
-    pass
 
 
 @errors_blueprint.app_errorhandler(401)
@@ -97,4 +93,4 @@ def render_template(template_name):
                                  ua=user_agent,
                                  tx_id=tx_id,
                                  account_service_url=cookie_session.get('account_service_url'),
-                                 survey_title=TemplateRenderer.safe_content(cookie_session.get('survey_title', '')))
+                                 survey_title=safe_content(cookie_session.get('survey_title', '')))

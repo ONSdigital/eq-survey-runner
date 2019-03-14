@@ -27,109 +27,150 @@
         "validator": "optional_string"
     }],
     "sections": [{
-        "id": "default-section",
-        "title": "Questions",
-        "groups": [{
-            "id": "confirmation-block",
-            "title": "Confirmation Question Test",
-            "blocks": [{
-                "id": "number-of-employees-total-block",
-                "question": {
-                    "answers": [{
-                        "id": "number-of-employees-total",
-                        "q_code": "50",
-                        "label": "Total number of employees",
-                        "mandatory": false,
-                        "type": "Number",
-                        "default": 0
-                    }],
-                    "id": "number-of-employees-total-question",
-                    "title": "How many employees work at {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
-                    "type": "General"
-                },
-                "type": "Question"
-            }, {
-                "type": "ConfirmationQuestion",
-                "title": "Employees",
-                "id": "confirm-zero-employees-block",
-                "skip_conditions": [{
-                    "when": [{
-                        "id": "number-of-employees-total",
-                        "condition": "greater than",
-                        "value": 0
-                    }]
-                }],
-                "question": {
-                    "type": "General",
-                    "answers": [{
-                        "type": "Radio",
-                        "id": "confirm-zero-employees-answer",
-                        "options": [{
-                            "label": "Yes this is correct",
-                            "value": "Yes"
-                        }, {
-                            "label": "No I need to change this",
-                            "value": "No"
-                        }],
-                        "mandatory": true,
-                        "q_code": "d50"
-                    }],
-                    "id": "confirm-zero-employees-question",
-                    "title": "The current number of employees for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }} is <em>0</em>, is this correct?"
-                },
-                "routing_rules": [{
-                    "goto": {
-                        "when": [{
-                            "value": "No",
-                            "id": "confirm-zero-employees-answer",
-                            "condition": "equals"
-                        }],
-                        "block": "number-of-employees-total-block"
-                    }
-                }, {
-                    "goto": {
-                        "group": "summary-group"
-                    }
-                }]
-            }, {
-                "id": "number-of-employees-split-block",
-                "type": "Question",
-                "question": {
-                    "answers": [{
-                        "id": "number-of-employees-male-more-30-hours",
-                        "label": "Number of male employees working more than 30 hours per week",
-                        "mandatory": false,
-                        "q_code": "51",
-                        "type": "Number",
-                        "max_value": {
-                            "answer_id": "number-of-employees-total"
-                        }
+            "id": "default-section",
+            "title": "Questions",
+            "groups": [{
+                "id": "confirmation-block",
+                "title": "Confirmation Question Test",
+                "blocks": [{
+                        "id": "number-of-employees-total-block",
+                        "question": {
+                            "answers": [{
+                                "id": "number-of-employees-total",
+                                "q_code": "50",
+                                "label": "Total number of employees",
+                                "mandatory": false,
+                                "type": "Number",
+                                "default": 0
+                            }],
+                            "id": "number-of-employees-total-question",
+                            "title": {
+                                "text": "How many employees work at {company_name}?",
+                                "placeholders": [{
+                                    "placeholder": "company_name",
+                                    "transforms": [{
+                                        "transform": "first_non_empty_item",
+                                        "arguments": {
+                                            "items": {
+                                                "source": "metadata",
+                                                "identifier": ["trad_as", "ru_name"]
+                                            }
+                                        }
+                                    }]
+                                }]
+                            },
+                            "type": "General"
+                        },
+                        "type": "Question"
                     }, {
-                        "id": "number-of-employees-female-more-30-hours",
-                        "label": "Number of female employees working more than 30 hours per week",
-                        "mandatory": false,
-                        "q_code": "52",
-                        "type": "Number",
-                        "max_value": {
-                            "answer_id": "number-of-employees-total"
+                        "type": "ConfirmationQuestion",
+                        "title": "Employees",
+                        "id": "confirm-zero-employees-block",
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "number-of-employees-total",
+                                "condition": "greater than",
+                                "value": 0
+                            }]
+                        }],
+                        "question": {
+                            "type": "General",
+                            "answers": [{
+                                "type": "Radio",
+                                "id": "confirm-zero-employees-answer",
+                                "options": [{
+                                    "label": "Yes this is correct",
+                                    "value": "Yes"
+                                }, {
+                                    "label": "No I need to change this",
+                                    "value": "No"
+                                }],
+                                "mandatory": true,
+                                "q_code": "d50"
+                            }],
+                            "id": "confirm-zero-employees-question",
+                            "title": {
+                                "text": "The current number of employees for {company_name} is <em>0</em>, is this correct?",
+                                "placeholders": [{
+                                    "placeholder": "company_name",
+                                    "transforms": [{
+                                        "transform": "first_non_empty_item",
+                                        "arguments": {
+                                            "items": {
+                                                "source": "metadata",
+                                                "identifier": ["trad_as", "ru_name"]
+                                            }
+                                        }
+                                    }]
+                                }]
+                            }
+                        },
+                        "routing_rules": [{
+                            "goto": {
+                                "when": [{
+                                    "value": "No",
+                                    "id": "confirm-zero-employees-answer",
+                                    "condition": "equals"
+                                }],
+                                "block": "number-of-employees-total-block"
+                            }
+                        }, {
+                            "goto": {
+                                "group": "summary-group"
+                            }
+                        }]
+                    },
+                    {
+                        "id": "number-of-employees-split-block",
+                        "type": "Question",
+                        "question": {
+                            "answers": [{
+                                "id": "number-of-employees-male-more-30-hours",
+                                "label": "Number of male employees working more than 30 hours per week",
+                                "mandatory": false,
+                                "q_code": "51",
+                                "type": "Number",
+                                "max_value": {
+                                    "answer_id": "number-of-employees-total"
+                                }
+                            }, {
+                                "id": "number-of-employees-female-more-30-hours",
+                                "label": "Number of female employees working more than 30 hours per week",
+                                "mandatory": false,
+                                "q_code": "52",
+                                "type": "Number",
+                                "max_value": {
+                                    "answer_id": "number-of-employees-total"
+                                }
+                            }],
+                            "id": "number-of-employees-split-question",
+                            "title": {
+                                "text": "Of the <em>{number_of_employees_total}</em> total employees employed, how many male and female employees worked the following hours?",
+                                "placeholders": [{
+                                    "placeholder": "number_of_employees_total",
+                                    "value": {
+                                        "source": "answers",
+                                        "identifier": "number-of-employees-total"
+                                    }
+                                }]
+                            },
+                            "type": "General"
                         }
-                    }],
-                    "id": "number-of-employees-split-question",
-                    "title": "Of the <em>{{answers['number-of-employees-total']}}</em> total employees employed, how many male and female employees worked the following hours?",
-                    "type": "General"
-                }
+                    }
+                ]
             }]
-        }]
-    }, {
-        "id": "summary-section",
-        "title": "Summary",
-        "groups": [{
-            "blocks": [{
-                "id": "summary",
-                "type": "Summary"
-            }],
-            "id": "summary-group",
-            "title": "Summary"
-        }]
-    }]
+        },
+        {
+            "id": "summary-section",
+            "title": "Summary",
+            "groups": [{
+                "blocks": [{
+                    "id": "summary",
+                    "type": "Summary"
+                }],
+                "id": "summary-group",
+                "title": "Summary"
+            }]
+        }
+    ]
 }

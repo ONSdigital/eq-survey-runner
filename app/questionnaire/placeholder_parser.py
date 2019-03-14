@@ -52,7 +52,10 @@ class PlaceholderParser:
                     else:
                         transform_args[arg_key] = self._lookup_answer(arg_value['identifier'])
                 elif arg_value['source'] == 'metadata':
-                    transform_args[arg_key] = self._metadata[arg_value['identifier']]
+                    if isinstance(arg_value['identifier'], list):
+                        transform_args[arg_key] = [self._metadata.get(identifier) for identifier in arg_value['identifier']]
+                    else:
+                        transform_args[arg_key] = self._metadata.get(arg_value['identifier'])
                 elif arg_value['source'] == 'previous_transform':
                     transform_args[arg_key] = transformed_value
 
