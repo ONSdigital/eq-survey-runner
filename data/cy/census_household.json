@@ -3,7 +3,7 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.2",
     "survey_id": "census",
-    "title": "2017 Census Test",
+    "title": "2019 Census Test",
     "description": "Census England Household Schema",
     "theme": "census",
     "legal_basis": "Voluntary",
@@ -960,13 +960,13 @@
                         "id": "confirm-dob",
                         "questions": [{
                             "id": "confirm-date-of-birth",
-                            "title": "Rydych chi\u2019n {{ calculate_years_difference (answers['date-of-birth-answer'][group_instance], \u2018now\u2019) }} oed. Ydy hyn yn gywir?",
+                            "title": "Rydych chi\u2019n {{ calculate_years_difference (answers['date-of-birth-answer'][group_instance], 'now') }} oed. Ydy hyn yn gywir?",
                             "type": "General",
                             "answers": [{
                                 "id": "confirm-date-of-birth-answer",
                                 "mandatory": true,
                                 "options": [{
-                                        "label": "Ydy, rwy\u2019n {{ calculate_years_difference (answers['date-of-birth-answer'][group_instance], \u2018now\u2019) }} oed",
+                                        "label": "Ydy, rwy\u2019n {{ calculate_years_difference (answers['date-of-birth-answer'][group_instance], 'now') }} oed",
                                         "value": "Yes"
                                     },
                                     {
@@ -1014,13 +1014,13 @@
                         "id": "confirm-dob-proxy",
                         "questions": [{
                             "id": "confirm-date-of-birth-proxy",
-                            "title": "Mae {{[answers['first-name'][group_instance], answers['last-name'][group_instance]]  | format_household_name}} yn {{ calculate_years_difference (answers['date-of-birth-answer'][group_instance], \u2018now\u2019) }} oed. Ydy hyn yn gywir?",
+                            "title": "Mae {{[answers['first-name'][group_instance], answers['last-name'][group_instance]]  | format_household_name}} yn {{ calculate_years_difference (answers['date-of-birth-answer'][group_instance], 'now') }} oed. Ydy hyn yn gywir?",
                             "type": "General",
                             "answers": [{
                                 "id": "confirm-date-of-birth-answer-proxy",
                                 "mandatory": true,
                                 "options": [{
-                                        "label": "Ydy, mae {{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}} yn {{ calculate_years_difference (answers['date-of-birth-answer'][group_instance], \u2018now\u2019) }} oed",
+                                        "label": "Ydy, mae {{[answers['first-name'][group_instance], answers['last-name'][group_instance]] | format_household_name}} yn {{ calculate_years_difference (answers['date-of-birth-answer'][group_instance], 'now') }} oed",
                                         "value": "Yes"
                                     },
                                     {

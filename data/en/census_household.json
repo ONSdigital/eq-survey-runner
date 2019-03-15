@@ -3,7 +3,7 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.2",
     "survey_id": "census",
-    "title": "2017 Census Test",
+    "title": "2019 Census Test",
     "description": "Census England Household Schema",
     "theme": "census",
     "legal_basis": "Voluntary",
