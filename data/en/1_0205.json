@@ -494,7 +494,7 @@
                 "questions": [{
                     "guidance": {
                         "content": [{
-                            "title": "Include",
+                            "title": "For example",
                             "list": ["in-store / online promotions", "special events (e.g. sporting events)", "calendar events (e.g. Christmas, Easter, Bank Holiday)", "weather", "store closures/openings"]
                         }]
                     },
