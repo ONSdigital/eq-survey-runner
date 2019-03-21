@@ -46,15 +46,14 @@ class DatastoreStorage:
         table_name = current_app.config[config['table_name_key']]
         key = self.client.key(table_name, key_value)
 
-        with self.client.transaction():
-            if not overwrite:
-                existing = self.client.get(key)
-                if existing:
-                    raise ItemAlreadyExistsError()
+        if not overwrite:
+            existing = self.client.get(key)
+            if existing:
+                raise ItemAlreadyExistsError()
 
-            entity = datastore.Entity(key=key, exclude_from_indexes=list(item.keys()))
-            entity.update(item)
-            self.client.put(entity)
+        entity = datastore.Entity(key=key, exclude_from_indexes=list(item.keys()))
+        entity.update(item)
+        self.client.put(entity)
 
     def get_by_key(self, model_type, key_value):
         config = TABLE_CONFIG[model_type]

@@ -1,5 +1,3 @@
-import contextlib
-
 import mock
 from google.cloud import datastore as google_datastore
 
@@ -15,7 +13,6 @@ class TestDatastore(AppContextTestCase):
         super().setUp()
 
         self.mock_client = mock.Mock()
-        self.mock_client.transaction.return_value = contextlib.suppress()
         self.ds = DatastoreStorage(self.mock_client)
 
     def test_get_by_key(self):
