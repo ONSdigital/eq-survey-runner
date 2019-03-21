@@ -10,16 +10,13 @@ class Block:
         self.id = block_schema['id']
         self.title = block_schema.get('title')
         self.number = block_schema.get('number')
-        self.link = self._build_link(block_schema, metadata)
+        self.link = self._build_link(block_schema['id'])
         self.questions = self._build_questions(block_schema, answer_store, metadata, schema)
 
     @staticmethod
-    def _build_link(block_schema, metadata):
+    def _build_link(block_id):
         return url_for('questionnaire.get_block',
-                       eq_id=metadata['eq_id'],
-                       form_type=metadata['form_type'],
-                       collection_id=metadata['collection_exercise_sid'],
-                       block_id=block_schema['id'])
+                       block_id=block_id)
 
     @staticmethod
     def _build_questions(block_schema, answer_store, metadata, schema):
