@@ -23,7 +23,6 @@ services:
       EQ_QUESTIONNAIRE_STATE_TABLE_NAME: dev-questionnaire-state
       EQ_SESSION_TABLE_NAME: dev-eq-session
       EQ_USED_JTI_CLAIM_TABLE_NAME: dev-used-jti-claim
-      EQ_DATASTORE_PROJECT_ID: dummy
       EQ_DATASTORE_EMULATOR_CREDENTIALS: "True"
       DATASTORE_EMULATOR_HOST: datastore:8432
       EQ_SUBMISSION_BACKEND: "log"

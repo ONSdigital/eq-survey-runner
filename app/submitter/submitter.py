@@ -19,8 +19,8 @@ class LogSubmitter:
 
 class GCSSubmitter:
 
-    def __init__(self, project_id, bucket_name):
-        client = storage.Client(project_id)
+    def __init__(self, bucket_name):
+        client = storage.Client()
         self.bucket = client.get_bucket(bucket_name)
 
     def send_message(self, message, tx_id, case_id):

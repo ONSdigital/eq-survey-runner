@@ -137,7 +137,7 @@ class TestGCSSubmitter(TestCase):
     def test_send_message():
         with patch('app.submitter.submitter.storage.Client') as client:
             # Given
-            submitter = GCSSubmitter(project_id='test_project', bucket_name='test_bucket')
+            submitter = GCSSubmitter(bucket_name='test_bucket')
 
             # When
             published = submitter.send_message(message={'test_data'}, tx_id='123', case_id='456')
@@ -159,7 +159,7 @@ class TestGCSSubmitter(TestCase):
     def test_send_message_adds_metadata():
         with patch('app.submitter.submitter.storage.Client') as client:
             # Given
-            submitter = GCSSubmitter(project_id='test_project', bucket_name='test_bucket')
+            submitter = GCSSubmitter(bucket_name='test_bucket')
 
             # When
             submitter.send_message(message={'test_data'}, tx_id='123', case_id='456')
