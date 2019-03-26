@@ -251,11 +251,11 @@ EQ_KEYS_FILE=docker-keys.yml EQ_SECRETS_FILE=docker-secrets.yml ./k8s/deploy_cre
 
 To deploy the app to the cluster, run the following command:
 ```
-./k8s/deploy_app.sh <SUBMISSION_BUCKET_NAME> <IMAGE_TAG>
+./k8s/deploy_app.sh <SUBMISSION_BUCKET_NAME> <DOCKER_REGISTRY> <IMAGE_TAG>
 ```
 ##### Example
  ```
-./k8s/deploy_app.sh census-eq-dev-1234567-survey-runner-submission v3.0.0
+./k8s/deploy_app.sh census-eq-dev-1234567-survey-runner-submission eu.gcr.io/census-eq-dev v3.0.0
  ```
  
 ### Internationalisation
