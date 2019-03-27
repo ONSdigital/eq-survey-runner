@@ -10,7 +10,7 @@ from app.setup import create_app
 class MockDatastore:
 
     # pylint: disable=unused-argument
-    def __init__(self, project_id, **kwargs):
+    def __init__(self, **kwargs):
         self.storage = {}
 
     # pylint: disable=no-self-use

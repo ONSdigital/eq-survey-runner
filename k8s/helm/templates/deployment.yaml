@@ -53,8 +53,6 @@ spec:
           env:
             - name: EQ_STORAGE_BACKEND
               value: "datastore"
-            - name: EQ_DATASTORE_PROJECT_ID
-              value: "{{- .Values.projectId }}"
             - name: EQ_ENABLE_SECURE_SESSION_COOKIE
               value: "False"
             - name: EQ_SECRETS_FILE
@@ -77,7 +75,5 @@ spec:
               value: used-jti-claim
             - name: EQ_SUBMISSION_BACKEND
               value: gcs
-            - name: EQ_GCS_SUBMISSION_PROJECT_ID
-              value: "{{- .Values.projectId }}"
             - name: EQ_GCS_SUBMISSION_BUCKET_ID
               value: "{{- .Values.submissionBucket }}"

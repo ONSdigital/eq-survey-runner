@@ -193,7 +193,6 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
     def test_adds_gcs_submitter_to_the_application(self):
         # Given
         self._setting_overrides['EQ_SUBMISSION_BACKEND'] = 'gcs'
-        self._setting_overrides['EQ_GCS_SUBMISSION_PROJECT_ID'] = '123'
         self._setting_overrides['EQ_GCS_SUBMISSION_BUCKET_ID'] = '123'
 
         # When
@@ -203,21 +202,9 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
         # Then
         assert isinstance(application.eq['submitter'], GCSSubmitter)
 
-    def test_gcs_submitter_project_id_not_set_raises_exception(self):
-        # Given
-        self._setting_overrides['EQ_SUBMISSION_BACKEND'] = 'gcs'
-
-        # When
-        with self.assertRaises(Exception) as ex:
-            create_app(self._setting_overrides)
-
-        # Then
-        assert 'Setting EQ_GCS_SUBMISSION_PROJECT_ID Missing' in str(ex.exception)
-
     def test_gcs_submitter_bucket_id_not_set_raises_exception(self):
         # Given
         self._setting_overrides['EQ_SUBMISSION_BACKEND'] = 'gcs'
-        self._setting_overrides['EQ_GCS_SUBMISSION_PROJECT_ID'] = '123'
 
         # WHEN
         with self.assertRaises(Exception) as ex:

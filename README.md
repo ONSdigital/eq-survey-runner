@@ -119,6 +119,14 @@ Please note that currently the SQL backend does not support submitted responses
 
 ---
 
+To use `EQ_STORAGE_BACKEND` as `datastore` or `EQ_SUBMISSION_BACKEND` as `gcs` directly on GCP and not a docker image, you need to set the GCP project using the following command:
+```
+gcloud config set project <gcp_project_id>
+```
+Or set the `GOOGLE_CLOUD_PROJECT` environment variable to your gcp project id.
+
+---
+
 #### Front-end Toolkit
 
 The front-end toolkit uses nodejs, yarn and gulp.
@@ -218,20 +226,38 @@ To run the census functional tests within the cypress UI:
 
 ### Deployment with [Helm](https://helm.sh/)
 
-To deploy this application with helm, you must have a kubernetes cluster already running.
+To deploy this application with helm, you must have a kubernetes cluster already running and be logged into the cluster.
 
+Log in to the cluster using:
+```
+gcloud container clusters get-credentials survey-runner --region <region> --project <gcp_project_id>
+```
 You need to have Helm installed locally
 
 1. Install Helm with `brew install kubernetes-helm` and then run `helm init --client-only`
 
-1. Install Helm Tiller plugin for tillerless deploys `helm plugin install https://github.com/rimusz/helm-tiller`
+1. Install Helm Tiller plugin for *Tillerless* deploys `helm plugin install https://github.com/rimusz/helm-tiller`
 
-To deploy to a cluster you can run the following command
+Before deploying the app to a cluster you need to create the application credentials on Kubernetes. Run the following command to provision the credentials:
 
 ```
-helm tiller run helm upgrade --install survey-runner ./helm/runner --set projectId=PROJECT_ID --set submissionBucket=BUCKET_NAME 
+EQ_KEYS_FILE=PATH_TO_KEYS_FILE EQ_SECRETS_FILE=PATH_TO_SECRETS_FILE ./k8s/deploy_credentials.sh
 ```
+##### Example
+```
+EQ_KEYS_FILE=docker-keys.yml EQ_SECRETS_FILE=docker-secrets.yml ./k8s/deploy_credentials.sh
+```
+---
 
+To deploy the app to the cluster, run the following command:
+```
+./k8s/deploy_app.sh <SUBMISSION_BUCKET_NAME> <DOCKER_REGISTRY> <IMAGE_TAG>
+```
+##### Example
+ ```
+./k8s/deploy_app.sh census-eq-dev-1234567-survey-runner-submission eu.gcr.io/census-eq-dev v3.0.0
+ ```
+ 
 ### Internationalisation
 
 We use flask-babel to do internationalisation.  To extract messages from source, in the project root run the following command.
@@ -315,7 +341,6 @@ The following env variables can be used
 | EQ_SECRETS_FILE                           | secrets.yml           | The location of the secrets file                                                              |
 | EQ_KEYS_FILE                              | keys.yml              | The location of the keys file                                                                 |
 | EQ_SUBMISSION_BACKEND                     |                       | Which submission backed to use ( gcs, rabbitmq, log )                                         |
-| EQ_GCS_SUBMISSION_PROJECT_ID              |                       | The Project id in Google cloud platform                                                       |
 | EQ_GCS_SUBMISSION_BUCKET_ID               |                       | The Bucket id in Google cloud platform to store the submissions in                            |
 | EQ_RABBITMQ_HOST                          |                       |                                                                                               |
 | EQ_RABBITMQ_HOST_SECONDARY                |                       |                                                                                               |
@@ -328,7 +353,6 @@ The following env variables can be used
 | EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS | 10000                 |                                                                                               |
 | SQLALCHEMY_DATABASE_URI                   |                       | a Database URI to use to connecto to a database                                               |
 | EQ_STORAGE_BACKEND                        | datastore             |                                                                                               |
-| EQ_DATASTORE_PROJECT_ID                   |                       |                                                                                               |
 | EQ_DATASTORE_EMULATOR_CREDENTIALS         | False                 |                                                                                               |
 | EQ_DYNAMODB_ENDPOINT                      |                       |                                                                                               |
 | EQ_DYNAMODB_MAX_RETRIES                   | 5                     |                                                                                               |
