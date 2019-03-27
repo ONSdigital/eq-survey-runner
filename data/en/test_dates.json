@@ -7,111 +7,143 @@
     "description": "A test schema for different date formats",
     "theme": "default",
     "metadata": [{
-        "name": "user_id",
-        "validator": "string"
-    }, {
-        "name": "period_id",
-        "validator": "string"
-    }, {
-        "name": "ru_name",
-        "validator": "string"
-    }],
+            "name": "user_id",
+            "validator": "string"
+        },
+        {
+            "name": "period_id",
+            "validator": "string"
+        },
+        {
+            "name": "ru_name",
+            "validator": "string"
+        }
+    ],
     "sections": [{
         "id": "default-section",
+        "title": "Date Examples",
         "groups": [{
-            "blocks": [{
-                "type": "Question",
-                "id": "date-block",
-                "description": "",
-                "questions": [{
-                    "answers": [{
-                        "id": "date-range-from-answer",
-                        "label": "Period from",
-                        "mandatory": true,
-                        "q_code": "11",
-                        "type": "Date"
-                    }, {
-                        "id": "date-range-to-answer",
-                        "label": "Period to",
-                        "mandatory": true,
-                        "q_code": "12",
-                        "type": "Date"
-                    }],
-                    "description": "",
-                    "id": "date-range-question",
-                    "title": "Date range",
-                    "type": "DateRange"
-                }, {
-                    "answers": [{
-                        "id": "month-year-answer",
-                        "label": "Date",
-                        "mandatory": true,
-                        "q_code": "11",
-                        "type": "MonthYearDate"
-                    }],
-                    "description": "",
-                    "id": "month-year-question",
-                    "title": "Date with month and year",
-                    "type": "General"
-                }, {
-                    "answers": [{
-                        "id": "single-date-answer",
-                        "label": "Date",
-                        "mandatory": true,
-                        "q_code": "11",
-                        "type": "Date"
-                    }],
-                    "description": "",
-                    "id": "single-date-question",
-                    "title": "Single date type",
-                    "type": "General"
-                }, {
-                    "answers": [{
-                        "id": "non-mandatory-date-answer",
-                        "label": "Date",
-                        "mandatory": false,
-                        "q_code": "17",
-                        "type": "Date"
-                    }],
-                    "description": "",
-                    "id": "non-mandatory-date-question",
-                    "title": "Non Mandatory",
-                    "type": "General"
-                }, {
-                    "answers": [{
-                        "id": "year-date-answer",
-                        "label": "Date",
-                        "mandatory": false,
-                        "q_code": "18",
-                        "type": "YearDate"
-                    }],
-                    "description": "",
-                    "id": "year-date-question",
-                    "title": "Year (YYYY)",
-                    "type": "General"
-                }],
-                "title": "Date Examples"
-            }, {
-                "type": "Interstitial",
-                "id": "min-max-block",
-                "title": "Application of min and max filters to dates",
-                "description": "",
-                "content": [{
-                    "title": "",
-                    "list": [
-                        "The most recent Date Range value entered was <em>{{ max_value(answers['date-range-from-answer'], answers['date-range-to-answer'])|format_date }}</em>",
-                        "The least recent Date Range value entered was <em>{{ min_value(answers['date-range-from-answer'], answers['date-range-to-answer'])|format_date }}</em>",
-                        "The most recent of the dates <em>Date with month and year</em> and <em>Period From</em> is <em>{{ max_value(answers['date-range-from-answer'], answers['month-year-answer'])|format_date }}</em>",
-                        "The most recent of the dates <em>Single date</em> and <em>Non-mandatory date</em>: <em>{{ max_value(answers['single-date-answer'], answers['non-mandatory-date-answer']) }}</em>",
-                        "The least recent of the dates <em>Single date</em> and <em>Non-mandatory date</em> (if non-mandatory date is unset this will be blank): <em>{{ min_value(answers['single-date-answer'], answers['non-mandatory-date-answer']) }}</em>"
-                    ]
-                }]
-            }, {
-                "type": "Summary",
-                "id": "summary"
-            }],
             "id": "dates",
-            "title": ""
+            "title": "",
+            "blocks": [{
+                    "type": "Question",
+                    "id": "date-range-block",
+                    "description": "",
+                    "question": {
+                        "answers": [{
+                                "id": "date-range-from-answer",
+                                "label": "Period from",
+                                "mandatory": true,
+                                "q_code": "11",
+                                "type": "Date"
+                            },
+                            {
+                                "id": "date-range-to-answer",
+                                "label": "Period to",
+                                "mandatory": true,
+                                "q_code": "12",
+                                "type": "Date"
+                            }
+                        ],
+                        "description": "",
+                        "id": "date-range-question",
+                        "title": "Date range",
+                        "type": "DateRange"
+                    }
+                },
+                {
+                    "type": "Question",
+                    "id": "date-month-year-block",
+                    "description": "",
+                    "question": {
+                        "answers": [{
+                            "id": "month-year-answer",
+                            "label": "Date",
+                            "mandatory": true,
+                            "q_code": "11",
+                            "type": "MonthYearDate"
+                        }],
+                        "description": "",
+                        "id": "month-year-question",
+                        "title": "Date with month and year",
+                        "type": "General"
+                    }
+                },
+                {
+                    "type": "Question",
+                    "id": "date-single-block",
+                    "description": "",
+                    "question": {
+                        "answers": [{
+                            "id": "single-date-answer",
+                            "label": "Date",
+                            "mandatory": true,
+                            "q_code": "11",
+                            "type": "Date"
+                        }],
+                        "description": "",
+                        "id": "single-date-question",
+                        "title": "Single date type",
+                        "type": "General"
+                    }
+                },
+                {
+                    "type": "Question",
+                    "id": "date-non-mandatory-block",
+                    "description": "",
+                    "question": {
+                        "answers": [{
+                            "id": "non-mandatory-date-answer",
+                            "label": "Date",
+                            "mandatory": false,
+                            "q_code": "17",
+                            "type": "Date"
+                        }],
+                        "description": "",
+                        "id": "non-mandatory-date-question",
+                        "title": "Non Mandatory",
+                        "type": "General"
+                    }
+                },
+                {
+                    "type": "Question",
+                    "id": "date-year-date-block",
+                    "description": "",
+                    "question": {
+                        "answers": [{
+                            "id": "year-date-answer",
+                            "label": "Date",
+                            "mandatory": false,
+                            "q_code": "18",
+                            "type": "YearDate"
+                        }],
+                        "description": "",
+                        "id": "year-date-question",
+                        "title": "Year (YYYY)",
+                        "type": "General"
+                    }
+                },
+                {
+                    "type": "Interstitial",
+                    "id": "min-max-block",
+                    "title": "Application of min and max filters to dates",
+                    "description": "",
+                    "content": [{
+                        "title": "",
+                        "list": [
+                            "The most recent Date Range value entered was <em>{{ max_value(answers['date-range-from-answer'], answers['date-range-to-answer'])|format_date }}</em>",
+                            "The least recent Date Range value entered was <em>{{ min_value(answers['date-range-from-answer'], answers['date-range-to-answer'])|format_date }}</em>",
+                            "The most recent of the dates <em>Date with month and year</em> and <em>Period From</em> is <em>{{ max_value(answers['date-range-from-answer'], answers['month-year-answer'])|format_date }}</em>",
+                            "The most recent of the dates <em>Single date</em> and <em>Non-mandatory date</em>: <em>{{ max_value(answers['single-date-answer'], answers['non-mandatory-date-answer']) }}</em>",
+                            "The least recent of the dates <em>Single date</em> and <em>Non-mandatory date</em> (if non-mandatory date is unset this will be blank): <em>{{ min_value(answers['single-date-answer'], answers['non-mandatory-date-answer']) }}</em>"
+                        ]
+                    }]
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ]
         }]
     }]
 }

@@ -26,7 +26,7 @@
                 "title": "Target total",
                 "id": "total-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "id": "total-question",
                     "title": "Total",
                     "type": "General",
@@ -38,12 +38,12 @@
                         "currency": "GBP",
                         "decimal_places": 2
                     }]
-                }]
+                }
             }, {
                 "type": "Question",
                 "title": "Calculated total",
                 "id": "breakdown-block",
-                "questions": [{
+                "question": {
                     "id": "breakdown-question",
                     "title": "Breakdown",
                     "type": "Calculated",
@@ -82,7 +82,7 @@
                         "type": "Currency",
                         "currency": "GBP"
                     }]
-                }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

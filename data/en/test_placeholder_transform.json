@@ -29,7 +29,7 @@
                     "type": "Question",
                     "id": "total-retail-turnover-block",
                     "title": "What was the total retail turnover?",
-                    "questions": [{
+                    "question": {
                         "description": "",
                         "id": "total-retail-turnover-question",
                         "title": "Please enter the total retail turnover",
@@ -43,7 +43,7 @@
                             "currency": "GBP",
                             "decimal_places": 2
                         }]
-                    }]
+                    }
                 }]
             }]
         },
@@ -55,7 +55,7 @@
                     "type": "Question",
                     "id": "report-period",
                     "title": "What was the value of internet sales?",
-                    "questions": [{
+                    "question": {
                         "type": "General",
                         "id": "total-retail-turnover-confirmation-question",
                         "title": "Please enter the value of internet sales",
@@ -83,7 +83,7 @@
                             "currency": "GBP",
                             "decimal_places": 2
                         }]
-                    }]
+                    }
                 }],
                 "id": "retail-confirmation-group",
                 "title": ""

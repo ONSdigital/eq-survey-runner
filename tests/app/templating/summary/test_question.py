@@ -1,4 +1,4 @@
-from mock import MagicMock, patch
+from mock import MagicMock
 from tests.app.app_context_test_case import AppContextTestCase
 from app.templating.summary.question import Question
 from app.data_model.answer_store import AnswerStore, Answer
@@ -19,8 +19,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         question_schema = {'id': 'question_id', 'title': question_title, 'type': 'GENERAL', 'answers': [self.answer_schema]}
 
         # When
-        with patch('app.templating.summary.question.get_question_title', return_value=question_title):
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema)
 
         # Then
         self.assertEqual(question.id, 'question_id')
@@ -33,38 +32,12 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         question_schema = {'id': 'question_id', 'title': question_title, 'type': 'GENERAL', 'answers': []}
 
         # When
-        with patch('app.templating.summary.question.get_question_title', return_value=question_title):
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema)
 
         # Then
         self.assertEqual(question.id, 'question_id')
         self.assertEqual(question.title, question_title)
         self.assertEqual(len(question.answers), 0)
-
-    def test_create_question_with_conditional_title(self):
-        # Given
-        self.answer_store.add_or_update(Answer(
-            answer_id='answer_1',
-            value='Han',
-        ))
-
-        title_when = [{
-            'id': 'answer_1',
-            'condition': 'equals',
-            'value': 'Han'
-            }]
-        question_schema = {'id': 'question_id', 'titles': [{'value': 'conditional_title', 'when': title_when},
-                                                           {'value': 'question_title'}], 'type': 'GENERAL', 'answers': [self.answer_schema]}
-
-        # When
-        with patch('app.templating.utils.evaluate_when_rules', side_effect=[True, False]) as evaluate_when_rules:
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
-
-        # Then
-        evaluate_when_rules.assert_called_once_with(title_when, self.schema, self.metadata, self.answer_store)
-        self.assertEqual(question.id, 'question_id')
-        self.assertEqual(question.title, 'conditional_title')
-        self.assertEqual(len(question.answers), 1)
 
     def test_create_question_with_answer_label_when_empty_title(self):
         # Given
@@ -72,8 +45,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         question_schema = {'id': 'question_id', 'title': '', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        with patch('app.templating.summary.question.get_question_title', return_value=False):
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema)
 
         # Then
         self.assertEqual(question.title, 'Age')
@@ -103,8 +75,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
                            'answers': [first_answer_schema, second_answer_schema]}
 
         # When
-        with patch('app.templating.summary.question.get_question_title', return_value=False):
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema)
 
         # Then
         self.assertEqual(len(question.answers), 2)
@@ -127,8 +98,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
                            'answers': [first_date_answer_schema, second_date_answer_schema]}
 
         # When
-        with patch('app.templating.summary.question.get_question_title', return_value=False):
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema)
 
         # Then
         self.assertEqual(len(question.answers), 1)
@@ -162,7 +132,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
                            [first_date_answer_schema, second_date_answer_schema, third_date_answer_schema, fourth_date_answer_schema]}
 
         # When
-        question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema)
 
         # Then
         self.assertEqual(len(question.answers), 2)
@@ -189,8 +159,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        with patch('app.templating.summary.question.get_question_title', return_value=False):
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema)
 
         # Then
         self.assertEqual(len(question.answers[0]['value']), 2)
@@ -218,8 +187,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        with patch('app.templating.summary.question.get_question_title', return_value=False):
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema)
 
         # Then
         self.assertEqual(len(question.answers[0]['value']), 1)
@@ -258,8 +226,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
                            'answers': answer_schema}
 
         # When
-        with patch('app.templating.summary.question.get_question_title', return_value=False):
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema)
 
         # Then
         self.assertEqual(len(question.answers[0]['value']), 2)
@@ -287,8 +254,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        with patch('app.templating.summary.question.get_question_title', return_value=False):
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema)
 
         # Then
         self.assertEqual(len(question.answers[0]['value']), 2)
@@ -309,8 +275,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        with patch('app.templating.summary.question.get_question_title', return_value=False):
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema)
 
         # Then
         self.assertEqual(question.answers[0]['value'], None)
@@ -325,8 +290,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        with patch('app.templating.summary.question.get_question_title', return_value=False):
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema)
 
         # Then
         self.assertEqual(question.answers[0]['value'], None)
@@ -359,8 +323,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
                            'answers': answer_schema}
 
         # When
-        with patch('app.templating.summary.question.get_question_title', return_value=False):
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema)
 
         # Then
         self.assertEqual(question.answers[0]['value']['detail_answer_value'], 'Test')
@@ -375,8 +338,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        with patch('app.templating.summary.question.get_question_title', return_value=False):
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema)
 
         # Then
         self.assertEqual(question.answers[0]['value'], None)
@@ -399,8 +361,7 @@ class TestQuestion(AppContextTestCase):   # pylint: disable=too-many-public-meth
         ))
 
         # When
-        with patch('app.templating.summary.question.get_question_title', return_value=False):
-            question = Question(question_schema, self.answer_store, self.metadata, self.schema)
+        question = Question(question_schema, self.answer_store, self.schema)
 
         # Then
         self.assertEqual(question.answers[0]['value'], 'Dark Side label')

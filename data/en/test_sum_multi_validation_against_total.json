@@ -26,7 +26,7 @@
                 "title": "Target total",
                 "id": "total-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "id": "total-question",
                     "title": "Total",
                     "type": "General",
@@ -41,12 +41,12 @@
                             "exclusive": true
                         }
                     }]
-                }]
+                }
             }, {
                 "type": "Question",
                 "title": "Calculated total",
                 "id": "breakdown-block",
-                "questions": [{
+                "question": {
                     "id": "breakdown-question",
                     "title": "Breakdown",
                     "type": "Calculated",
@@ -86,7 +86,7 @@
                         "decimal_places": 2,
                         "type": "Number"
                     }]
-                }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

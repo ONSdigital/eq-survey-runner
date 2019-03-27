@@ -1,4 +1,4 @@
-const helpers = require('../helpers');
+/*const helpers = require('../helpers');
 const DatesPage = require('../generated_pages/dates/date-block.page');
 const MinMaxBlockPage = require('../generated_pages/dates/min-max-block.page');
 const SummaryPage = require('../generated_pages/dates/summary.page');
@@ -215,4 +215,4 @@ describe('Date checks', function() {
   });
 
 });
-
+*/

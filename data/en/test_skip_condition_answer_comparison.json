@@ -24,7 +24,7 @@
                 "type": "Question",
                 "id": "comparison-1",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "comparison-1-answer",
                         "label": "1st Number",
@@ -35,12 +35,12 @@
                     "id": "comparison-1-question",
                     "title": "Enter your first number",
                     "type": "General"
-                }]
+                }
             }, {
                 "type": "Question",
                 "id": "comparison-2",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "comparison-2-answer",
                         "label": "2nd Number",
@@ -51,12 +51,14 @@
                     "id": "comparison-2-question",
                     "title": "Enter your second number",
                     "type": "General"
-                }]
+                }
             }, {
                 "type": "Interstitial",
                 "id": "equals-answers",
                 "title": "Second equal first",
-                "description": "Your second number was equal to your first number",
+                "content": [{
+                    "description": "Your second number was equal to your first number"
+                }],
                 "skip_conditions": [{
                     "when": [{
                         "id": "comparison-1-answer",
@@ -68,7 +70,9 @@
                 "type": "Interstitial",
                 "id": "less-than-answers",
                 "title": "First less than second",
-                "description": "Your first answer was less than your second number",
+                "content": [{
+                    "description": "Your first answer was less than your second number"
+                }],
                 "skip_conditions": [{
                     "when": [{
                         "id": "comparison-1-answer",
@@ -86,7 +90,9 @@
                 "type": "Interstitial",
                 "id": "greater-than-answers",
                 "title": "First greater than second",
-                "description": "Your first answer was greater than your second number",
+                "content": [{
+                    "description": "Your first answer was greater than your second number"
+                }],
                 "skip_conditions": [{
                     "when": [{
                         "id": "comparison-1-answer",

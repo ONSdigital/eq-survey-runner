@@ -23,7 +23,7 @@
                 "type": "Question",
                 "id": "date-question",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "single-date-answer",
                         "label": "Today",
@@ -34,7 +34,7 @@
                     "id": "date-questions",
                     "title": "Enter a date less than {{ get_current_date() }}",
                     "type": "General"
-                }],
+                },
                 "title": "",
                 "routing_rules": [{
                     "goto": {
@@ -56,7 +56,9 @@
                 "type": "Interstitial",
                 "id": "incorrect-answer",
                 "title": "Incorrect Date",
-                "description": "You entered a date later than yesterday.",
+                "content": [{
+                    "description": "You entered a date later than yesterday."
+                }],
                 "routing_rules": [{
                     "goto": {
                         "block": "summary"
@@ -66,7 +68,9 @@
                 "type": "Interstitial",
                 "id": "correct-answer",
                 "title": "Correct Date",
-                "description": "You entered a date older than {{ get_current_date() }}."
+                "content": [{
+                    "description": "You entered a date older than {{ get_current_date() }}."
+                }]
             }, {
                 "type": "Summary",
                 "id": "summary"

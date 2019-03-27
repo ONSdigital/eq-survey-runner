@@ -29,7 +29,7 @@ def get_form_for_location(schema, block_json, location, answer_store, metadata, 
         block_id=location.block_id,
     )
 
-    return generate_form(schema, block_json, answer_store, metadata, data=mapped_answers)
+    return generate_form(schema, block_json.get('question'), answer_store, metadata, data=mapped_answers)
 
 
 def post_form_for_block(schema, block_json, answer_store, metadata, request_form, disable_mandatory=False):
@@ -44,33 +44,41 @@ def post_form_for_block(schema, block_json, answer_store, metadata, request_form
     :param error_messages: The default error messages to use within the form
     :param disable_mandatory: Make mandatory answers optional
     """
-
     if disable_mandatory:
         block_json = disable_mandatory_answers(block_json)
 
-    data = clear_detail_answer_field(request_form, schema.get_questions_for_block(block_json))
-    return generate_form(schema, block_json, answer_store, metadata, formdata=data)
+    question = block_json.get('question')
+
+    data = clear_detail_answer_field(request_form, question)
+
+    return generate_form(schema, question, answer_store, metadata, formdata=data)
 
 
-def disable_mandatory_answers(block_json):
-    for question_json in block_json.get('questions', []):
-        for answer_json in question_json.get('answers', []):
-            if 'mandatory' in answer_json and answer_json['mandatory'] is True:
-                answer_json['mandatory'] = False
-    return block_json
+def disable_mandatory_answers(block):
+
+    def set_mandatory_to_false(question):
+        # Here Be Dragons: This loop modifies the input in place.
+        for answer in question.get('answers', []):
+            if answer.get('mandatory', True) is True:
+                answer['mandatory'] = False
+
+    if block.get('question'):
+        set_mandatory_to_false(block['question'])
+
+    return block
 
 
-def clear_detail_answer_field(data, questions_for_block):
+def clear_detail_answer_field(data, question):
     """
     Checks the submitted answers and in the case of both checkboxes and radios,
     removes the text entered into the detail answer field if the associated option is not
     selected.
     :param data: the submitted form data.
-    :param questions_for_block: a list of questions from the block schema.
+    :param question: a question to clear.
     :return: the form data with the other text field cleared, if appropriate.
     """
     form_data = MultiDict(data)
-    for question in questions_for_block:
+    if question:
         for answer in question.get('answers', []):
             for option in answer.get('options', []):
                 if 'detail_answer' in option:

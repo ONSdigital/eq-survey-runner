@@ -31,7 +31,7 @@
                 "type": "Question",
                 "id": "date-range-block",
                 "title": "Date Range",
-                "questions": [{
+                "question": {
                     "id": "date-range-question",
                     "title": "Enter Date Range",
                     "type": "DateRange",
@@ -71,7 +71,7 @@
                             }
                         }
                     }]
-                }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

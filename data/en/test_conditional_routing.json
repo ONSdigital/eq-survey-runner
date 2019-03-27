@@ -24,7 +24,7 @@
                 "id": "conditional-routing-block",
                 "title": "Conditional Routing Test",
                 "description": "",
-                "questions": [{
+                "question": {
                     "id": "conditional-routing-question",
                     "title": "Do you drink coffee?",
                     "description": "",
@@ -45,7 +45,7 @@
                         "mandatory": true,
                         "type": "Radio"
                     }]
-                }],
+                },
                 "routing_rules": [{
                     "goto": {
                         "block": "response-yes",
@@ -65,7 +65,7 @@
                 "id": "response-yes",
                 "title": "Yes, I do drink coffee",
                 "description": "",
-                "questions": [{
+                "question": {
                     "id": "response-yes-question",
                     "title": "How many cups of coffee do you drink a day?",
                     "description": "",
@@ -77,7 +77,7 @@
                         "q_code": "2",
                         "type": "Number"
                     }]
-                }],
+                },
                 "routing_rules": [{
                     "goto": {
                         "block": "summary"
@@ -88,7 +88,7 @@
                 "id": "response-no",
                 "title": "No, I prefer tea",
                 "description": "",
-                "questions": [{
+                "question": {
                     "id": "response-no-question",
                     "title": "How many cups of tea do you drink a day?",
                     "description": "",
@@ -100,7 +100,7 @@
                         "q_code": "2",
                         "type": "Number"
                     }]
-                }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

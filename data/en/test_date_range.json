@@ -23,7 +23,7 @@
                 "type": "Question",
                 "id": "date-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "date-range-from-answer",
                         "label": "Period from",
@@ -41,7 +41,7 @@
                     "id": "date-range-question",
                     "title": "Date range",
                     "type": "DateRange"
-                }],
+                },
                 "title": "Date Examples"
             }, {
                 "type": "Interstitial",

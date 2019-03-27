@@ -29,7 +29,7 @@
                 "type": "Question",
                 "id": "date-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "date-start-from",
                         "label": "Period from",
@@ -47,13 +47,13 @@
                     "id": "date-pipe-question",
                     "title": "Pipe range",
                     "type": "DateRange"
-                }],
+                },
                 "title": "Date Examples"
             }, {
                 "type": "Question",
                 "id": "date-value-test",
                 "description": "A test to see if dates are correctly passed",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "date-test-answer",
                         "label": "Piped dates",
@@ -64,7 +64,7 @@
                     "id": "total-retail-turnover-question",
                     "title": "For the period {{ format_conditional_date (answers['date-start-from'], metadata['ref_p_start_date'])}} to {{ format_conditional_date (answers['date-end-to'], metadata['ref_p_end_date'])}}, what was the value of the business\u2019s total retail turnover?",
                     "type": "General"
-                }],
+                },
                 "title": "Conditional Date Validation"
             }, {
                 "type": "Summary",

@@ -26,7 +26,7 @@
                 "type": "Question",
                 "id": "timeout-block",
                 "title": "Timeout",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "timeout-answer",
                         "label": "Does the timeout appear?",
@@ -38,7 +38,7 @@
                     "id": "timeout-question",
                     "title": "Timeout title",
                     "type": "General"
-                }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

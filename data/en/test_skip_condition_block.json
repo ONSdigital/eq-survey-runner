@@ -26,7 +26,7 @@
                 "routing_rules": [],
                 "description": "",
                 "title": "Do you want to skip?",
-                "questions": [{
+                "question": {
                     "description": "",
                     "id": "do-you-want-to-skip-question",
                     "title": "Do you want to skip?",
@@ -47,14 +47,14 @@
                             "messages": {}
                         }
                     }]
-                }]
+                }
             }, {
                 "type": "Question",
                 "id": "should-skip",
                 "routing_rules": [],
                 "description": "",
                 "title": "Why didn't you skip the block?",
-                "questions": [{
+                "question": {
                     "description": "",
                     "id": "should-skip-question",
                     "title": "Do you want to skip?",
@@ -65,7 +65,7 @@
                         "mandatory": true,
                         "type": "TextArea"
                     }]
-                }],
+                },
                 "skip_conditions": [{
                     "when": [{
                         "id": "do-you-want-to-skip-answer",
@@ -78,7 +78,7 @@
                 "id": "a-non-skipped-block",
                 "description": "an additional question within the same group",
                 "title": "Additional Question",
-                "questions": [{
+                "question": {
                     "id": "will-not-be-skipped-question",
                     "title": "Always ask this question",
                     "type": "General",
@@ -88,7 +88,7 @@
                         "mandatory": true,
                         "type": "TextArea"
                     }]
-                }]
+                }
             }]
         }, {
             "blocks": [{

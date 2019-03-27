@@ -26,7 +26,7 @@
                 "id": "checkbox-block",
                 "title": "Did this business make major changes in the following areas?",
                 "description": "<p>Include all <strong>new</strong> and <strong>significantly improved</strong> forms of organisation, business structures or practices aimed at raising internal efficiency or the effectiveness of approaching markets and customers.</p>",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "checkbox-answer",
                         "label": "Did this business make major changes in the following areas?",
@@ -56,12 +56,12 @@
                     "id": "checkbox-question",
                     "title": "Did this business make major changes in the following areas?",
                     "type": "General"
-                }]
+                }
             }, {
                 "type": "Question",
                 "id": "radio-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "radio-answer",
                         "label": "Did this business make major changes in the following areas?",
@@ -92,7 +92,7 @@
                     "id": "radio-question",
                     "title": "Did this business make major changes in the following areas?",
                     "type": "General"
-                }],
+                },
                 "title": "Business Strategy and Practices Part Two"
             }, {
                 "type": "Summary",

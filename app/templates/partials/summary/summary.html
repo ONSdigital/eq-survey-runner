@@ -11,17 +11,16 @@
             {%- endif -%}
 
                 {%- for block in group.blocks -%}
-                    {%- for question in block.questions -%}
+                    {%- set question = block.question -%}
 
-                        {%- set has_multiple_answers = question.answers|length > 1 -%}
+                    {%- set has_multiple_answers = question.answers|length > 1 -%}
 
-                        {%- if has_multiple_answers -%}
-                            {%- include theme(['partials/summary/question-multiple-answers.html']) -%}
-                        {%- else -%}
-                            {%- include theme(['partials/summary/question-single-answer.html']) -%}
-                        {%- endif -%}
+                    {%- if has_multiple_answers -%}
+                        {%- include theme(['partials/summary/question-multiple-answers.html']) -%}
+                    {%- else -%}
+                        {%- include theme(['partials/summary/question-single-answer.html']) -%}
+                    {%- endif -%}
 
-                    {%- endfor -%}
                 {%- endfor -%}
                 {%- if content.summary.summary_type == 'CalculatedSummary' -%}
                     {%- include theme(['partials/summary/calculated-summary-answer.html']) -%}

@@ -29,7 +29,7 @@
                 "id": "date-block",
                 "title": "Date",
                 "description": "This date will be used as a minimum date for the 'To' date in the next question",
-                "questions": [{
+                "question": {
                     "id": "date-question",
                     "title": "Enter Date",
                     "type": "General",
@@ -39,12 +39,12 @@
                         "mandatory": true,
                         "type": "Date"
                     }]
-                }]
+                }
             }, {
                 "type": "Question",
                 "id": "date-range-block",
                 "title": "Date Range",
-                "questions": [{
+                "question": {
                     "id": "date-range-question",
                     "title": "Enter Date Range",
                     "type": "DateRange",
@@ -83,7 +83,7 @@
                             }
                         }
                     }]
-                }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

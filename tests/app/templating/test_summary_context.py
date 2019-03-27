@@ -42,14 +42,13 @@ class TestStandardSummaryContext(AppContextTestCase):
             self.assertTrue('id' in group)
             self.assertTrue('blocks' in group)
             for block in group['blocks']:
-                self.assertTrue('questions' in block)
-                for question in block['questions']:
-                    self.assertTrue('title' in question)
-                    self.assertTrue('answers' in question)
-                    for answer in question['answers']:
-                        self.assertTrue('id' in answer)
-                        self.assertTrue('value' in answer)
-                        self.assertTrue('type' in answer)
+                self.assertTrue('question' in block)
+                self.assertTrue('title' in block['question'])
+                self.assertTrue('answers' in block['question'])
+                for answer in block['question']['answers']:
+                    self.assertTrue('id' in answer)
+                    self.assertTrue('value' in answer)
+                    self.assertTrue('type' in answer)
 
 
 class TestSummaryContext(TestStandardSummaryContext):
@@ -131,10 +130,10 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             {'value': 3, 'answer_id': 'second-number-answer-unit-total'},
             {'value': 4, 'answer_id': 'second-number-answer-also-in-total'},
             {'value': 5, 'answer_id': 'third-number-answer'},
-            {'value': 6, 'answer_id': 'third-number-answer-unit-total'},
+            {'value': 6, 'answer_id': 'third-and-a-half-number-answer-unit-total'},
             {'value': 'No', 'answer_id': 'skip-fourth-block-answer'},
             {'value': 7, 'answer_id': 'fourth-number-answer'},
-            {'value': 8, 'answer_id': 'fourth-number-answer-also-in-total'},
+            {'value': 8, 'answer_id': 'fourth-and-a-half-number-answer-also-in-total'},
             {'value': 9, 'answer_id': 'fifth-percent-answer'},
             {'value': 10, 'answer_id': 'fifth-number-answer'},
             {'value': 11, 'answer_id': 'sixth-percent-answer'},
@@ -150,7 +149,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_currency_calculated_summary_no_skip(self):
-        current_location = Location(block_id='currency-total-playback')
+        current_location = Location(block_id='currency-total-playback-with-fourth')
 
         context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
                                                             self.schema_context, self.block_type,
@@ -165,13 +164,13 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
                          'We calculate the total of currency values entered to be £27.00. Is this correct? (With Fourth)')
 
         self.assertTrue('calculated_question' in context_summary)
-        self.assertEqual(len(context_summary['groups'][0]['blocks']), 4)
+        self.assertEqual(len(context_summary['groups'][0]['blocks']), 5)
         self.assertEqual(context_summary['calculated_question']['title'], 'Grand total of previous values')
         self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '£27.00')
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_currency_calculated_summary_with_skip(self):
-        current_location = Location(block_id='currency-total-playback')
+        current_location = Location(block_id='currency-total-playback-skipped-fourth')
 
         skip_answer = Answer('skip-fourth-block-answer', 'Yes')
         self.answer_store.add_or_update(skip_answer)

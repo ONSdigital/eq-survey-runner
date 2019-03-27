@@ -23,7 +23,7 @@
                 "type": "Question",
                 "id": "block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "description": "",
                         "id": "percentage-1",
@@ -87,7 +87,7 @@
                     "id": "question",
                     "title": "",
                     "type": "General"
-                }],
+                },
                 "title": "Percentage Input Test",
                 "routing_rules": []
             }, {

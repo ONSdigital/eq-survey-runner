@@ -33,7 +33,7 @@
                     "id": "insurance-type",
                     "title": "Property Details",
                     "type": "Question",
-                    "questions": [{
+                    "question": {
                         "id": "insurance-type-question",
                         "title": "What kind of insurance would you like?",
                         "type": "General",
@@ -53,12 +53,12 @@
                                 "value": "Both"
                             }]
                         }]
-                    }]
+                    }
                 }, {
                     "id": "insurance-address",
                     "title": "Property Details",
                     "type": "Question",
-                    "questions": [{
+                    "question": {
                         "id": "insurance-address-question",
                         "title": "What is the address you would like to insure?",
                         "type": "General",
@@ -68,7 +68,7 @@
                             "label": "",
                             "mandatory": false
                         }]
-                    }]
+                    }
                 }]
             }, {
                 "id": "address-length",
@@ -77,7 +77,7 @@
                     "id": "address-duration",
                     "title": "Address Duration",
                     "type": "Question",
-                    "questions": [{
+                    "question": {
                         "id": "address-duration-question",
                         "title": "Have you been living at this address for over 5 years?",
                         "type": "General",
@@ -93,7 +93,7 @@
                                 "value": "No"
                             }]
                         }]
-                    }],
+                    },
                     "skip_conditions": [{
                         "when": [{
                             "id": "insurance-type-answer",
@@ -135,7 +135,7 @@
                         "id": "house-type",
                         "title": "House Details",
                         "type": "Question",
-                        "questions": [{
+                        "question": {
                             "id": "house-type-question",
                             "title": "What kind of house is it?",
                             "type": "General",
@@ -158,7 +158,7 @@
                                     }
                                 ]
                             }]
-                        }]
+                        }
                     }]
                 },
                 {

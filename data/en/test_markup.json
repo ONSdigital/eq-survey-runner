@@ -25,7 +25,7 @@
                 "type": "Question",
                 "id": "emphasis-block",
                 "title": "Emphasis",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "guidance": {
                             "show_guidance": "Show lorem ipsum guidance",
@@ -44,7 +44,7 @@
                     "id": "question",
                     "title": "This is a title <em>with emphasis</em>",
                     "type": "General"
-                }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

@@ -22,7 +22,7 @@
             "blocks": [{
                 "type": "Question",
                 "id": "initial-choice",
-                "questions": [{
+                "question": {
                     "type": "General",
                     "id": "initial-choice-question",
                     "title": "Answer First, then, after answering a quesiton, go back to this question and answer Second",
@@ -38,7 +38,7 @@
                             "value": "Second"
                         }]
                     }]
-                }],
+                },
                 "routing_rules": [{
                         "goto": {
                             "block": "valid-path",
@@ -60,7 +60,7 @@
                 "id": "invalid-path",
                 "title": "",
                 "description": "Enter an answer and continue",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "invalid-path-answer",
                         "mandatory": true,
@@ -70,12 +70,14 @@
                     "id": "invalid-path-question",
                     "title": "Enter a number",
                     "type": "General"
-                }]
+                }
             }, {
                 "type": "Interstitial",
                 "id": "invalid-path-interstitial",
                 "title": "You now have an answer that could be invalid in the store.",
-                "description": "Go back to the first question and choose the second path.",
+                "content": [{
+                    "description": "Go back to the first question and choose the second path."
+                }],
                 "routing_rules": [{
                     "goto": {
                         "block": "summary"
@@ -86,7 +88,7 @@
                 "id": "valid-path",
                 "title": "Route page",
                 "description": "This page should take you to the valid page. If it takes you to the invalid page then routing is using an answer that isn't on the routing path",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "valid-path-answer",
                         "mandatory": true,
@@ -96,7 +98,7 @@
                     "id": "valid-path-question",
                     "title": "Enter a number and continue",
                     "type": "General"
-                }],
+                },
                 "routing_rules": [{
                     "goto": {
                         "block": "invalid-final-interstitial",
@@ -114,7 +116,9 @@
                 "type": "Interstitial",
                 "id": "valid-skipped-interstitial",
                 "title": "This page should have been skipped!",
-                "description": "",
+                "content": [{
+                    "description": ""
+                }],
                 "skip_conditions": [{
                     "when": [{
                         "id": "invalid-path-answer",
@@ -125,7 +129,9 @@
                 "type": "Interstitial",
                 "id": "valid-final-interstitial",
                 "title": "You were routed correctly!",
-                "description": "",
+                "content": [{
+                    "description": ""
+                }],
                 "routing_rules": [{
                     "goto": {
                         "block": "summary"
@@ -135,7 +141,9 @@
                 "type": "Interstitial",
                 "id": "invalid-final-interstitial",
                 "title": "You were routed incorrectly.",
-                "description": "",
+                "content": [{
+                    "description": ""
+                }],
                 "routing_rules": [{
                     "goto": {
                         "block": "summary"

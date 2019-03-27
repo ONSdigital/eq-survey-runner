@@ -1,4 +1,4 @@
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 
 from flask_babel import force_locale
 
@@ -26,10 +26,6 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         return self._blocks_by_id.values()
 
     @property
-    def questions(self):
-        return self._questions_by_id.values()
-
-    @property
     def answers(self):
         return self._answers_by_id.values()
 
@@ -42,10 +38,22 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def get_block(self, block_id):
         return self._blocks_by_id.get(block_id)
 
-    def get_question(self, question_id):
+    def get_block_for_answer_id(self, answer_id):
+        answers = self.get_answers(answer_id)
+        # All matching questions / answers must be within the same block
+        questions = self.get_questions(answers[0]['parent_id'])
+        return self.get_block(questions[0]['parent_id'])
+
+    def get_questions(self, question_id):
+        """ Return a list of questions matching some question id
+        This includes all questions inside variants
+        """
         return self._questions_by_id.get(question_id)
 
-    def get_answer(self, answer_id):
+    def get_answers(self, answer_id):
+        """ Return a list of answers matching some answer id
+        This includes all matching answers inside variants
+        """
         return self._answers_by_id.get(answer_id)
 
     def get_section_by_block_id(self, block_id):
@@ -69,25 +77,29 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         block = self.get_block(block_id)
         return self.get_group(block['parent_id'])
 
-    def get_answers_by_id_for_block(self, block_id):
-        block = self.get_block(block_id)
-        if block:
-            answers_by_id = {}
-            for question in block.get('questions', []):
-                for answer in question.get('answers', []):
-                    answers_by_id.update({answer['id']: answer})
-                    for option in answer.get('options', []):
-                        if 'detail_answer' in option:
-                            answers_by_id.update({option['detail_answer']['id']: option['detail_answer']})
-            return answers_by_id
+    @classmethod
+    def get_answer_ids_for_question(cls, question):
+        answer_ids = set()
 
-        return {}
+        for answer in question.get('answers', []):
+            answer_ids.add(answer['id'])
+            for option in answer.get('options', []):
+                if 'detail_answer' in option:
+                    answer_ids.add(option['detail_answer']['id'])
+
+        return answer_ids
 
     def get_answer_ids_for_block(self, block_id):
-        return list(self.get_answers_by_id_for_block(block_id).keys())
+        block = self.get_block(block_id)
+        answer_ids = set()
 
-    def get_answers_for_block(self, block_id):
-        return list(self.get_answers_by_id_for_block(block_id).values())
+        if block:
+            questions = self.get_all_questions_for_block(block)
+
+            for question in questions:
+                answer_ids.update(self.get_answer_ids_for_question(question))
+
+        return answer_ids
 
     def get_summary_and_confirmation_blocks(self):
         return [
@@ -96,9 +108,17 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         ]
 
     @staticmethod
-    def get_questions_for_block(block_json):
-        for question_json in block_json.get('questions', []):
-            yield question_json
+    def get_all_questions_for_block(block):
+        all_questions = []
+        if block:
+            if block.get('question'):
+                all_questions.append(block['question'])
+            elif block.get('question_variants'):
+                for variant in block['question_variants']:
+                    all_questions.append(variant['question'])
+
+            return all_questions
+        return []
 
     @staticmethod
     def is_summary_section(section):
@@ -136,9 +156,35 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         self._sections_by_id = self._get_sections_by_id()
         self._groups_by_id = get_nested_schema_objects(self._sections_by_id, 'groups')
         self._blocks_by_id = get_nested_schema_objects(self._groups_by_id, 'blocks')
-        self._questions_by_id = get_nested_schema_objects(self._blocks_by_id, 'questions')
-        self._answers_by_id = get_nested_schema_objects(self._questions_by_id, 'answers')
+        self._questions_by_id = self._get_questions_by_id()
+        self._answers_by_id = self._get_answers_by_id()
         self.error_messages = self._get_error_messages()
+
+    def _get_questions_by_id(self):
+        questions_by_id = defaultdict(list)
+
+        for block in self._blocks_by_id.values():
+            questions = self.get_all_questions_for_block(block)
+            for question in questions:
+                question['parent_id'] = block['id']
+                questions_by_id[question['id']].append(question)
+
+        return questions_by_id
+
+    def _get_answers_by_id(self):
+        answers_by_id = defaultdict(list)
+
+        for question_set in self._questions_by_id.values():
+            for question in question_set:
+                for answer in question['answers']:
+                    answer['parent_id'] = question['id']
+                    answers_by_id[answer['id']].append(answer)
+                    for option in answer.get('options', []):
+                        if 'detail_answer' in option:
+                            option['detail_answer']['parent_id'] = question['id']
+                            answers_by_id[option['detail_answer']['id']].append(option['detail_answer'])
+
+        return answers_by_id
 
     def _get_sections_by_id(self):
         return OrderedDict(
@@ -174,10 +220,5 @@ def get_nested_schema_objects(parent_object, list_key):
             # patch the ID of the parent onto the object
             child_list_object['parent_id'] = parent_id
             nested_objects[child_list_object['id']] = child_list_object
-
-            for option in child_list_object.get('options', []):
-                if 'detail_answer' in option:
-                    option['detail_answer']['parent_id'] = parent_id
-                    nested_objects[option['detail_answer']['id']] = option['detail_answer']
 
     return nested_objects

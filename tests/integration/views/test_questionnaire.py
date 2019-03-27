@@ -1,5 +1,4 @@
 import simplejson as json
-from flask import g
 from mock import Mock
 import pytest
 
@@ -8,7 +7,7 @@ from app.data_model.questionnaire_store import QuestionnaireStore
 from app.questionnaire.location import Location
 from app.templating.view_context import build_view_context
 from app.utilities.schema import load_schema_from_params
-from app.views.questionnaire import get_page_title_for_location, _get_schema_context
+from app.views.questionnaire import get_page_title_for_location
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -27,6 +26,7 @@ class TestQuestionnaire(IntegrationTestCase):
         storage.get_user_data = Mock(return_value=(json.dumps(data), QuestionnaireStore.LATEST_VERSION))
 
         self.question_store = QuestionnaireStore(storage)
+        self.mock_context = {'block': {'question': {'title': 'Testing title'}}}
 
     def tearDown(self):
         self._application_context.pop()
@@ -36,7 +36,7 @@ class TestQuestionnaire(IntegrationTestCase):
         schema = load_schema_from_params('test', 'final_confirmation')
 
         # When
-        page_title = get_page_title_for_location(schema, Location('introduction'), {}, AnswerStore())
+        page_title = get_page_title_for_location(schema, Location('introduction'), self.mock_context)
 
         # Then
         self.assertEqual(page_title, 'Final confirmation to submit')
@@ -46,7 +46,7 @@ class TestQuestionnaire(IntegrationTestCase):
         schema = load_schema_from_params('test', 'interstitial_page')
 
         # When
-        page_title = get_page_title_for_location(schema, Location('breakfast-interstitial'), {}, AnswerStore())
+        page_title = get_page_title_for_location(schema, Location('breakfast-interstitial'), self.mock_context)
 
         # Then
         self.assertEqual(page_title, 'Favourite food - Interstitial Pages')
@@ -56,21 +56,10 @@ class TestQuestionnaire(IntegrationTestCase):
         schema = load_schema_from_params('test', 'final_confirmation')
 
         # When
-        page_title = get_page_title_for_location(schema, Location('breakfast'), {}, AnswerStore())
+        page_title = get_page_title_for_location(schema, Location('breakfast'), self.mock_context)
 
         # Then
-        self.assertEqual(page_title, 'What is your favourite breakfast food - Final confirmation to submit')
-
-    def test_given_questionnaire_page_when_get_page_title_with_titles_object(self):
-
-        # Given
-        schema = load_schema_from_params('test', 'titles')
-
-        # When
-        page_title = get_page_title_for_location(schema, Location('single-title-block'), {}, AnswerStore())
-
-        # Then
-        self.assertEqual(page_title, 'How are you feeling?? - Multiple Question Title Test')
+        self.assertEqual(page_title, 'Testing title - Final confirmation to submit')
 
     @pytest.mark.xfail
     def test_given_jinja_variable_question_title_when_get_page_title_then_replace_with_ellipsis(self):
@@ -78,34 +67,15 @@ class TestQuestionnaire(IntegrationTestCase):
         schema = load_schema_from_params('test', 'relationship_household')
 
         # When
-        page_title = get_page_title_for_location(schema, Location('household-relationships'), {}, AnswerStore())
+        page_title = get_page_title_for_location(schema, Location('household-relationships'), self.mock_context)
 
         # Then
         self.assertEqual(page_title, 'How is … related to the people below? - Household relationship')
 
-    def test_build_view_context_for_question(self):
-        # Given
-        g.schema = schema = load_schema_from_params('test', 'titles')
-        block = g.schema.get_block('single-title-block')
-        full_routing_path = [Location('single-title-block'),
-                             Location('who-is-answer-block'),
-                             Location('multiple-question-versions-block'),
-                             Location('Summary')]
-        current_location = Location('single-title-block')
-        schema_context = _get_schema_context(full_routing_path, {}, {}, AnswerStore(), g.schema)
-
-        # When
-        with self._application.test_request_context():
-            question_view_context = build_view_context('Question', {}, schema, AnswerStore(), schema_context, block,
-                                                       current_location, form=None)
-
-        # Then
-        self.assertEqual(question_view_context['question_titles']['single-title-question'], 'How are you feeling??')
-
     def test_build_view_context_for_calculation_summary(self):
         # Given
         schema = load_schema_from_params('test', 'calculated_summary')
-        block = schema.get_block('currency-total-playback')
+        block = schema.get_block('currency-total-playback-with-fourth')
         metadata = {
             'tx_id': '12345678-1234-5678-1234-567812345678',
             'collection_exercise_sid': '789',
@@ -122,7 +92,7 @@ class TestQuestionnaire(IntegrationTestCase):
             'answers': answers,
             'metadata': metadata
         }
-        current_location = Location('currency-total-playback')
+        current_location = Location('currency-total-playback-with-fourth')
 
         # When
         with self._application.test_request_context():

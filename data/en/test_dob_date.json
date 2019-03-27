@@ -1,0 +1,184 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "999",
+    "title": "Test Date and DOB routing",
+    "description": "Tests ",
+    "theme": "default",
+    "metadata": [{
+        "name": "user_id",
+        "validator": "string"
+    }, {
+        "name": "period_id",
+        "validator": "string"
+    }, {
+        "name": "ru_name",
+        "validator": "string"
+    }],
+    "sections": [{
+        "id": "default-section",
+        "groups": [{
+                "blocks": [{
+                        "type": "Question",
+                        "id": "date-of-birth",
+                        "question": {
+                            "id": "date-of-birth-question",
+                            "title": "What is your date of birth?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "date-of-birth-answer",
+                                "mandatory": false,
+                                "type": "Date",
+                                "maximum": {
+                                    "value": "now"
+                                },
+                                "minimum": {
+                                    "value": "1900-01-01"
+                                }
+                            }]
+                        },
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "over-sixteen",
+                                    "when": [{
+                                        "id": "date-of-birth-answer",
+                                        "condition": "less than",
+                                        "date_comparison": {
+                                            "value": "now",
+                                            "offset_by": {
+                                                "years": -16
+                                            }
+                                        }
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "under-sixteen",
+                                    "when": [{
+                                        "id": "date-of-birth-answer",
+                                        "condition": "greater than or equal to",
+                                        "date_comparison": {
+                                            "value": "now",
+                                            "offset_by": {
+                                                "years": -16
+                                            }
+                                        }
+                                    }]
+                                }
+                            }, {
+                                "goto": {
+                                    "block": "dob-age"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "dob-age",
+                        "question": {
+                            "id": "dob-age-question",
+                            "title": "What is your age?",
+                            "type": "General",
+                            "answers": [{
+                                "id": "dob-age-answer",
+                                "unit": "duration-year",
+                                "type": "Unit",
+                                "label": "Your age",
+                                "unit_length": "long",
+                                "mandatory": true,
+                                "max_value": {
+                                    "value": 118
+                                }
+                            }]
+                        },
+                        "routing_rules": [{
+                            "goto": {
+                                "block": "over-sixteen",
+                                "when": [{
+                                    "id": "dob-age-answer",
+                                    "condition": "greater than or equal to",
+                                    "value": 16
+                                }]
+                            }
+                        }, {
+                            "goto": {
+                                "block": "under-sixteen"
+                            }
+                        }]
+                    },
+                    {
+                        "type": "Question",
+                        "id": "over-sixteen",
+                        "question": {
+                            "id": "over-sixteen-question",
+                            "title": "You are over 16!",
+                            "type": "General",
+                            "answers": [{
+                                "id": "over-sixteen-answer",
+                                "mandatory": false,
+                                "type": "Date",
+                                "maximum": {
+                                    "value": "now"
+                                },
+                                "minimum": {
+                                    "value": "1900-01-01"
+                                }
+                            }]
+                        }
+                    },
+                    {
+                        "type": "Question",
+                        "id": "under-sixteen",
+                        "question": {
+                            "id": "under-sixteen-question",
+                            "title": "You are under 16!",
+                            "type": "General",
+                            "answers": [{
+                                "id": "under-sixteen-answer",
+                                "mandatory": false,
+                                "type": "Date",
+                                "maximum": {
+                                    "value": "now"
+                                },
+                                "minimum": {
+                                    "value": "1900-01-01"
+                                }
+                            }]
+                        },
+                        "skip_conditions": [{
+                            "when": [{
+                                "id": "dob-age-answer",
+                                "condition": "greater than or equal to",
+                                "value": 16
+                            }]
+                        }, {
+                            "when": [{
+                                "id": "date-of-birth-answer",
+                                "condition": "less than",
+                                "date_comparison": {
+                                    "value": "now",
+                                    "offset_by": {
+                                        "years": -16
+                                    }
+                                }
+                            }]
+                        }]
+                    }
+                ],
+                "id": "test",
+                "title": ""
+            },
+
+            {
+                "blocks": [{
+                    "type": "Summary",
+                    "id": "summary"
+                }],
+                "id": "summary-group",
+                "title": "Summary"
+            }
+        ]
+    }]
+}

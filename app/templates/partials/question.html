@@ -1,20 +1,17 @@
 {% import 'macros/helpers.html' as helpers %}
 
 {% set form = content.form %}
-{% set invalid = form.question_errors[question.id] | length > 0 if form else False %}
 
-{% set question_number = question.number %}
-{% set question_title = get_question_title(question.id) %}
+{% set invalid = form.question_errors[question.id] | length > 0 if form else False %}
+{% set question_title = question.title %}
 {% set question_subtitle = question.subtitle %}
 {% set question_guidance = "" %}
 {% set question_definition = "" %}
 
 {% set question_titles %}
   {%- if question_title -%}
+
     <h1 class="question__title u-fs-l" data-qa="question-title">
-      {%- if question_number -%}
-        <span class="question__number">{{question_number}}. </span>
-      {% endif %}
       {{question_title}}
     </h1>
 

@@ -151,9 +151,7 @@ def _get_answers_on_path(answers, schema, routing_path) -> AnswerStore:
 
 
 def _is_answer_on_path(schema, answer, routing_path):
-    answer_schema = schema.get_answer(answer['answer_id'])
-    question_schema = schema.get_question(answer_schema['parent_id'])
-    block_schema = schema.get_block(question_schema['parent_id'])
+    block_schema = schema.get_block_for_answer_id(answer['answer_id'])
     location = Location(block_id=block_schema['id'])
     return location in routing_path
 
@@ -253,7 +251,7 @@ def get_answer_ids_on_routing_path(schema, path):
     answer_ids_on_path = []
     for location in path:
         answer_ids_on_path.extend(
-            schema.get_answers_by_id_for_block(location.block_id))
+            schema.get_answer_ids_for_block(location.block_id))
 
     return answer_ids_on_path
 

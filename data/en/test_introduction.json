@@ -96,28 +96,23 @@
                 "id": "general-business-information-completed",
                 "section_number": "1",
                 "title": "General Business Information",
-                "description": "<p>You have successfully completed this section</p><p>The next section covers changes in <em>business strategy and practices</em>, for example, implementing changes to marketing concepts or strategies.</p>",
+                "content": [{
+                    "description": "<p>You have successfully completed this section</p><p>The next section covers changes in <em>business strategy and practices</em>, for example, implementing changes to marketing concepts or strategies.</p>"
+                }],
                 "type": "Interstitial"
             }]
         }, {
             "blocks": [{
                 "id": "confirmation",
-                "description": "",
-                "questions": [{
-                    "id": "ready-to-submit-completed-question",
-                    "title": "Submission",
-                    "type": "Content",
-                    "guidance": {
-                        "content": [{
-                            "list": [
-                                "You will not be able to access or change your answers on submitting the questionnaire",
-                                "If you wish to review your answers please select the relevant completed sections"
-                            ]
-                        }]
-                    }
-                }],
                 "title": "You are now ready to submit this survey",
-                "type": "Confirmation"
+                "type": "Confirmation",
+                "content": [{
+                    "title": "Submission",
+                    "list": [
+                        "You will not be able to access or change your answers on submitting the questionnaire",
+                        "If you wish to review your answers please select the relevant completed sections"
+                    ]
+                }]
             }],
             "id": "ready-to-submit",
             "title": "Submit answers"

@@ -10,7 +10,6 @@ from wtforms import validators
 
 from app.forms.date_form import get_dates_for_single_date_period_validation
 from app.forms.fields import get_field
-from app.templating.utils import get_question_title
 from app.validation.validators import DateRangeCheck, SumCheck, MutuallyExclusiveCheck
 
 logger = logging.getLogger(__name__)
@@ -18,9 +17,9 @@ logger = logging.getLogger(__name__)
 
 class QuestionnaireForm(FlaskForm):
 
-    def __init__(self, schema, block_json, answer_store, metadata, **kwargs):
+    def __init__(self, schema, question_schema, answer_store, metadata, **kwargs):
         self.schema = schema
-        self.block_json = block_json
+        self.question = question_schema
         self.answer_store = answer_store
         self.metadata = metadata
         self.question_errors = {}
@@ -38,13 +37,13 @@ class QuestionnaireForm(FlaskForm):
         valid_calculated_form = True
         valid_mutually_exclusive_form = True
 
-        for question in self.schema.get_questions_for_block(self.block_json):
-            if question['type'] == 'DateRange' and valid_date_range_form:
-                valid_date_range_form = self.validate_date_range_question(question)
-            elif question['type'] == 'Calculated' and valid_calculated_form:
-                valid_calculated_form = self.validate_calculated_question(question)
-            elif question['type'] == 'MutuallyExclusive' and valid_mutually_exclusive_form and valid_fields:
-                valid_mutually_exclusive_form = self.validate_mutually_exclusive_question(question)
+        if self.question:
+            if self.question['type'] == 'DateRange' and valid_date_range_form:
+                valid_date_range_form = self.validate_date_range_question(self.question)
+            elif self.question['type'] == 'Calculated' and valid_calculated_form:
+                valid_calculated_form = self.validate_calculated_question(self.question)
+            elif self.question['type'] == 'MutuallyExclusive' and valid_mutually_exclusive_form and valid_fields:
+                valid_mutually_exclusive_form = self.validate_mutually_exclusive_question(self.question)
 
         return valid_fields and valid_date_range_form and valid_calculated_form and valid_mutually_exclusive_form
 
@@ -109,8 +108,8 @@ class QuestionnaireForm(FlaskForm):
         if 'value' in calculation:
             return calculation['value'], question.get('currency')
 
-        target_answer = self.schema.get_answer(calculation['answer_id'])
-        return self.answer_store.filter(answer_ids=[target_answer['id']]).values()[0], target_answer.get('currency')
+        target_answer = self.schema.get_answers(calculation['answer_id'])[0]
+        return self.answer_store.filter(answer_ids=[calculation['answer_id']]).values()[0], target_answer.get('currency')
 
     def validate_date_range_with_period_limits_and_single_date_limits(self, question_id, period_limits, period_range):
         # Get period_limits from question
@@ -232,17 +231,14 @@ class QuestionnaireForm(FlaskForm):
     def map_errors(self):
         ordered_errors = []
 
-        question_json_list = self.schema.get_questions_for_block(self.block_json)
+        if self.question['id'] in self.question_errors:
+            ordered_errors += [(self.question['id'], self.question_errors[self.question['id']])]
 
-        for question_json in question_json_list:
-            if question_json['id'] in self.question_errors:
-                ordered_errors += [(question_json['id'], self.question_errors[question_json['id']])]
-
-            for answer_json in question_json['answers']:
-                if answer_json['id'] in self.errors:
-                    ordered_errors += map_subfield_errors(self.errors, answer_json['id'])
-                if 'options' in answer_json:
-                    ordered_errors += map_detail_answer_errors(self.errors, answer_json)
+        for answer in self.question['answers']:
+            if answer['id'] in self.errors:
+                ordered_errors += map_subfield_errors(self.errors, answer['id'])
+            if 'options' in answer:
+                ordered_errors += map_detail_answer_errors(self.errors, answer)
 
         return ordered_errors
 
@@ -255,8 +251,11 @@ class QuestionnaireForm(FlaskForm):
 
 
 # pylint: disable=too-many-locals
-def get_answer_fields(question, data, error_messages, schema, answer_store, metadata):
+def get_answer_fields(question, data, error_messages, answer_store, metadata):
     answer_fields = {}
+    if not question:
+        return answer_fields
+
     for answer in question.get('answers', []):
 
         for option in answer.get('options', []):
@@ -276,9 +275,9 @@ def get_answer_fields(question, data, error_messages, schema, answer_store, meta
                                                                detail_answer_error_messages, answer_store, metadata,
                                                                disable_validation=disable_validation)
 
-        name = answer.get('label') or get_question_title(question, answer_store, schema, metadata)
-        answer_fields[answer['id']] = get_field(answer, name, error_messages, answer_store, metadata)
+        name = answer.get('label') or question.get('title')
 
+        answer_fields[answer['id']] = get_field(answer, name, error_messages, answer_store, metadata)
     return answer_fields
 
 
@@ -307,20 +306,17 @@ def map_detail_answer_errors(errors, answer_json):
     return detail_answer_errors
 
 
-def generate_form(schema, block_json, answer_store, metadata, data=None, formdata=None):
+def generate_form(schema, question_schema, answer_store, metadata, data=None, formdata=None):
     class DynamicForm(QuestionnaireForm):
         pass
 
-    answer_fields = {}
-    for question in schema.get_questions_for_block(block_json):
-        answer_fields.update(get_answer_fields(
-            question,
-            formdata if formdata is not None else data,
-            schema.error_messages,
-            schema,
-            answer_store,
-            metadata,
-        ))
+    answer_fields = get_answer_fields(
+        question_schema,
+        formdata if formdata is not None else data,
+        schema.error_messages,
+        answer_store,
+        metadata,
+    )
 
     for answer_id, field in answer_fields.items():
         setattr(DynamicForm, answer_id, field)
@@ -329,4 +325,4 @@ def generate_form(schema, block_json, answer_store, metadata, data=None, formdat
         formdata = MultiDict(formdata)
         formdata = MultiDict(formdata)
 
-    return DynamicForm(schema, block_json, answer_store, metadata, data=data, formdata=formdata)
+    return DynamicForm(schema, question_schema, answer_store, metadata, data=data, formdata=formdata)

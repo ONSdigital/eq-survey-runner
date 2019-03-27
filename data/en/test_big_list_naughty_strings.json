@@ -17,7 +17,7 @@
                 "type": "Question",
                 "description": "Test schema for known bad text combinations.",
                 "routing_rules": [],
-                "questions": [{
+                "question": {
                     "answers": [{
                         "type": "TextArea",
                         "q_code": "0",
@@ -3065,7 +3065,7 @@
                     "title": "",
                     "description": "",
                     "id": "question"
-                }],
+                },
                 "title": "Textarea Test",
                 "id": "textarea-block"
             }, {

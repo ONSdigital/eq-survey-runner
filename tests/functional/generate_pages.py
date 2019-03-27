@@ -156,6 +156,16 @@ def camel_case(s):
     else:
         return
 
+def get_all_questions(block):
+    all_questions = []
+    if block.get('question'):
+        all_questions.append(block.get('question'))
+    for question_variant in block.get('question_variants', []):
+        if 'question' in question_variant:
+            all_questions.append(question_variant['question'])
+
+    return all_questions
+
 
 def process_options(answer_id, options, page_spec, base_prefix):
     for index, option in enumerate(options):
@@ -227,7 +237,7 @@ def process_answer(answer, page_spec, long_names, page_name):
 
 
 def process_question(question, page_spec, num_questions, page_name):
-    logger.debug('\t\tprocessing question: ', title=question.get('title', 'titles'), question_id=question['id'])
+    logger.debug('\t\tprocessing question: ', title=question.get('title'), question_id=question['id'])
 
     long_names = long_names_required(question, num_questions)
 
@@ -261,7 +271,7 @@ def process_summary(schema_data, page_spec):
     for section in schema_data['sections']:
         for group in section['groups']:
             for block in group['blocks']:
-                for question in block.get('questions', []):
+                for question in get_all_questions(block):
                     question_context = {
                         'questionId': question['id'],
                         'questionName': camel_case(generate_pascal_case_from_id(question['id']))
@@ -330,7 +340,7 @@ def _write_duration_answer(answer_id, units, prefix):
 
 
 def find_kv(block, key, values):
-    for question in block.get('questions', []):
+    for question in get_all_questions(block):
         for answer in question.get('answers', []):
             if key in answer and answer[key] in values:
                 return True
@@ -382,9 +392,10 @@ def process_block(block, dir_out, schema_data, spec_file, relative_require='..')
             if block.get('description'):
                 page_spec.write(BLOCK_DESCRIPTION.substitute(block_context))
 
-            num_questions = len(block.get('questions', []))
+            all_questions = get_all_questions(block)
+            num_questions = len(all_questions)
 
-            for question in block.get('questions', []):
+            for question in all_questions:
                 process_question(question, page_spec, num_questions, page_name)
 
         page_spec.write(FOOTER.substitute(block_context))

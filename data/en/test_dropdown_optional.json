@@ -23,7 +23,7 @@
             "blocks": [{
                 "type": "Question",
                 "id": "dropdown-optional",
-                "questions": [{
+                "question": {
                     "type": "General",
                     "id": "dropdown-optional-question",
                     "title": "Which football team do your support?",
@@ -44,7 +44,7 @@
                             "value": "Rugby is better!"
                         }]
                     }]
-                }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

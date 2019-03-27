@@ -22,7 +22,7 @@
                 "type": "Question",
                 "id": "language-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "month-year-answer",
                         "label": "Dyddiad",
@@ -34,7 +34,7 @@
                     "id": "month-year-question",
                     "title": "Dyddiad gyda mis a blwyddyn",
                     "type": "General"
-                }],
+                },
                 "title": "Holiadur Cymraeg"
             }, {
                 "type": "Summary",

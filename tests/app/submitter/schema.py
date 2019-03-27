@@ -1,4 +1,4 @@
-def make_schema(data_version, section, group, block, questions):
+def make_schema(data_version, section, group, block, question):
     return {
         'survey_id': '021',
         'data_version': data_version,
@@ -11,7 +11,7 @@ def make_schema(data_version, section, group, block, questions):
                         'blocks': [
                             {
                                 'id': block,
-                                'questions': questions
+                                'question': question
                             }
                         ]
                     }

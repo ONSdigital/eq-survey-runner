@@ -23,7 +23,7 @@
                 "type": "Question",
                 "id": "set-length-units-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "centimetres",
                         "description": "",
@@ -61,13 +61,13 @@
                     "id": "set-length-units-question",
                     "title": "Length Units",
                     "type": "General"
-                }],
+                },
                 "title": "Length Units"
             }, {
                 "type": "Question",
                 "id": "set-duration-units-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                             "id": "duration-hour",
                             "description": "",
@@ -91,13 +91,13 @@
                     "id": "set-duration-units-question",
                     "title": "Duration Units",
                     "type": "General"
-                }],
+                },
                 "title": "Duration Units"
             }, {
                 "type": "Question",
                 "id": "set-area-units-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "square-centimetres",
                         "description": "",
@@ -151,13 +151,13 @@
                     "id": "set-area-unit-questions",
                     "title": "Area Units",
                     "type": "General"
-                }],
+                },
                 "title": "Area Units"
             }, {
                 "type": "Question",
                 "id": "set-volume-units-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "cubic-centimetres",
                         "description": "",
@@ -203,7 +203,7 @@
                     "id": "set-volume-unit-questions",
                     "title": "Volume Units",
                     "type": "General"
-                }],
+                },
                 "title": "Volume Units"
             }],
             "id": "test",

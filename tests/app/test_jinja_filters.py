@@ -15,7 +15,7 @@ from app.jinja_filters import (
     format_number, format_unordered_list, format_unordered_list_missing_items,
     format_unit_input_label, format_household_name_possessive, format_household_summary,
     concatenated_list, calculate_years_difference, get_current_date, as_london_tz,
-    max_value, min_value, get_question_title, get_answer_label,
+    max_value, min_value, get_answer_label,
     format_duration, calculate_offset_from_weekday_in_last_whole_week, format_date_custom,
     format_date_range_no_repeated_month_year, format_repeating_summary, format_address_list, first_non_empty_item)
 from tests.app.app_context_test_case import AppContextTestCase
@@ -759,50 +759,9 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         # Then
         self.assertEqual(min_of_two, then)
 
-    def test_get_question_title_with_title_value(self):
-        # Given
-        question_id = 'question'
-        context = SimpleNamespace(
-            parent={
-                'question': {
-                    'id': 'question',
-                    'title': 'question_title'
-                }
-            }
-        )
-
-        # When
-        title = get_question_title(context, question_id)
-
-        # Then
-        self.assertEqual(title, 'question_title')
-
-    def test_get_question_title_with_question_titles(self):
-        # Given
-        question_id = 'question'
-        context = SimpleNamespace(
-            parent={
-                'question': {
-                    'id': 'question'
-                },
-                'content': {
-                    'question_titles': {
-                        'question': 'default_question_title'
-                    }
-                }
-            }
-        )
-
-        # When
-        title = get_question_title(context, question_id)
-
-        # Then
-        self.assertEqual(title, 'default_question_title')
-
     def test_get_answer_label_with_answer_label(self):
         # Given
         answer_id = 'answer'
-        question_id = 'question'
         context = SimpleNamespace(
             parent={
                 'question': {
@@ -816,7 +775,7 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         )
 
         # When
-        answer_label = get_answer_label(context, answer_id, question_id)
+        answer_label = get_answer_label(context, answer_id)
 
         # Then
         self.assertEqual(answer_label, 'answer_label')
@@ -824,7 +783,6 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
     def test_get_answer_label_with_no_answer_label_and_title(self):
         # Given
         answer_id = 'answer'
-        question_id = 'question'
         context = SimpleNamespace(
             parent={
                 'question': {
@@ -838,36 +796,10 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
         )
 
         # When
-        answer_label = get_answer_label(context, answer_id, question_id)
+        answer_label = get_answer_label(context, answer_id)
 
         # Then
         self.assertEqual(answer_label, 'question_title')
-
-    def test_get_answer_label_with_no_answer_label_and_question_titles(self):
-        # Given
-        answer_id = 'answer'
-        question_id = 'question'
-        context = SimpleNamespace(
-            parent={
-                'question': {
-                    'id': 'question',
-                    'answers': [{
-                        'id': 'answer'
-                    }]
-                },
-                'content': {
-                    'question_titles': {
-                        'question': 'default_question_title'
-                    }
-                }
-            }
-        )
-
-        # When
-        answer_label = get_answer_label(context, answer_id, question_id)
-
-        # Then
-        self.assertEqual(answer_label, 'default_question_title')
 
     def test_offset_date_from_day(self):
         test_cases = [

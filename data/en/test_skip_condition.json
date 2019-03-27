@@ -24,7 +24,7 @@
                 "type": "Question",
                 "id": "food-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "food-answer",
                         "label": "What is your favourite breakfast food",
@@ -43,14 +43,14 @@
                     "id": "food-question",
                     "title": "",
                     "type": "General"
-                }],
+                },
                 "title": "What is your favourite breakfast food",
                 "routing_rules": []
             }, {
                 "type": "Question",
                 "id": "drink-block",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "drink-answer",
                         "label": "What is your favourite breakfast beverage",
@@ -76,7 +76,7 @@
                             "value": "Eggs"
                         }]
                     }]
-                }],
+                },
                 "title": ""
             }, {
                 "type": "Summary",

@@ -31,7 +31,7 @@
                     "type": "Question",
                     "id": "mandatory-checkbox",
                     "description": "",
-                    "questions": [{
+                    "question": {
                         "answers": [{
                             "id": "mandatory-checkbox-answer",
                             "label": "",
@@ -99,7 +99,7 @@
                         "id": "mandatory-checkbox-question",
                         "title": "Which pizza toppings would you like?",
                         "type": "General"
-                    }],
+                    },
                     "title": "Mandatory other option",
                     "routing_rules": []
                 },

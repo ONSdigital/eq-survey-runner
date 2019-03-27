@@ -27,7 +27,7 @@
                 "type": "Question",
                 "id": "radio",
                 "description": "",
-                "questions": [{
+                "question": {
                     "answers": [{
                         "id": "radio-answer",
                         "mandatory": false,
@@ -47,7 +47,7 @@
                     "id": "radio-question",
                     "title": "What is your favourite breakfast food?",
                     "type": "General"
-                }],
+                },
                 "title": "Favourite breakfast food"
             }, {
                 "type": "Summary",
