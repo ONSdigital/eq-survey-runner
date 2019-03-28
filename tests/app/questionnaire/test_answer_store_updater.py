@@ -1,9 +1,8 @@
 import unittest
-from unittest import mock
 
 from mock import MagicMock
 
-from app.data_model.answer_store import Answer, AnswerStore
+from app.data_model.answer_store import AnswerStore
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.forms.questionnaire_form import QuestionnaireForm
 from app.questionnaire.answer_store_updater import AnswerStoreUpdater
@@ -26,36 +25,6 @@ class TestAnswerStoreUpdater(unittest.TestCase):
         self.metadata = MagicMock()
         self.answer_store_updater = None
         self.current_question = None
-
-    def test_save_answers_with_answer_data(self):
-        self.location.block_id = 'household-composition'
-        self.schema.get_answer_ids_for_question.return_value = ['first-name', 'middle-names', 'last-name']
-
-        answers = [
-            Answer(
-                answer_id='first-name',
-                value='Joe'
-            ), Answer(
-                answer_id='middle-names',
-                value=''
-            ), Answer(
-                answer_id='last-name',
-                value='Bloggs'
-            )
-        ]
-
-        form = MagicMock()
-        form.serialise.return_value = answers
-        self.current_question = self.schema.get_block(self.location.block_id)['question']
-        self.answer_store_updater = AnswerStoreUpdater(self.location, self.schema, self.questionnaire_store, self.current_question)
-        self.answer_store_updater.save_answers(form)
-
-        assert self.questionnaire_store.completed_blocks == [self.location]
-        assert len(answers) == self.answer_store.add_or_update.call_count
-
-        # answers should be passed straight through as Answer objects
-        answer_calls = list(map(mock.call, answers))
-        assert answer_calls in self.answer_store.add_or_update.call_args_list
 
     def test_save_answers_with_form_data(self):
         answer_id = 'answer'
@@ -109,3 +78,42 @@ class TestAnswerStoreUpdater(unittest.TestCase):
             'answer_id': answer_id,
             'value': default_value
         }
+
+    def test_empty_answers(self):
+        string_answer_id = 'string-answer'
+        checkbox_answer_id = 'checkbox-answer'
+        radio_answer_id = 'radio-answer'
+
+        self.schema.get_answer_ids_for_question.return_value = [
+            string_answer_id,
+            checkbox_answer_id,
+            radio_answer_id
+        ]
+
+        form_data = {
+            string_answer_id: '',
+            checkbox_answer_id: [],
+            radio_answer_id: None
+        }
+
+        form = MagicMock(spec=QuestionnaireForm, data=form_data)
+
+        self.current_question = {
+            'answers': [
+                {
+                    'id': 'string-answer',
+                },
+                {
+                    'id': 'checkbox-answer',
+                },
+                {
+                    'id': 'radio-answer',
+                }
+            ]
+        }
+        self.answer_store_updater = AnswerStoreUpdater(self.location, self.schema, self.questionnaire_store,
+                                                       self.current_question)
+        self.answer_store_updater.save_answers(form)
+
+        assert self.questionnaire_store.completed_blocks == [self.location]
+        assert self.answer_store.add_or_update.call_count == 0
