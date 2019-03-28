@@ -64,10 +64,6 @@ class TestDumpAnswers(IntegrationTestCase):
         expected = {
             'answers': [
                 {
-                    'value': '',
-                    'answer_id': 'other-answer-mandatory',
-                },
-                {
                     'value': 'Toast',
                     'answer_id': 'radio-mandatory-answer',
                 }
