@@ -105,7 +105,6 @@ gulp.task('lint:scripts', () => {
   lintScripts()
 })
 
-
 gulp.task('lint:tests', () => {
   lintFunctionalTests()
 })
@@ -191,4 +190,11 @@ gulp.task('format:json', () => {
     .src(['./data/*/*.json'])
     .pipe(prettify({end_with_newline: true}))
     .pipe(gulp.dest('./data/'))
+})
+
+gulp.task('format:census', () => {
+  return gulp
+    .src(['./data-source/*.json'])
+    .pipe(prettify({end_with_newline: true}))
+    .pipe(gulp.dest('./data-source/'))
 })

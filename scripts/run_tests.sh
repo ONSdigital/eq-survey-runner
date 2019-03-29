@@ -5,10 +5,14 @@
 
 set -e
 
-if [ ! -f "./scripts/run.sh" ]; then
-    echo "./scripts/run.sh not found. Are you running in the root of eq-survey-runner?"
-    exit 1
-fi
+echo "Running schema tests"
+./scripts/test_schemas.sh data/en
 
-EQ_RUN_LOCAL_TESTS=True EQ_RUN_FUNCTIONAL_TESTS=True EQ_RUN_LOCAL_LINT=True ./scripts/run.sh
+echo "Running lint tests"
+./scripts/run_lint.sh
 
+echo "Running unit tests"
+./scripts/run_tests_unit.sh
+
+echo "Running functional tests"
+./scripts/run_tests_functional.sh

@@ -13,6 +13,11 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 RUN apt-get update \
     && apt-get install -y yarn nodejs
 
+
+RUN git clone --branch v0.12.1 --depth 1 https://github.com/google/jsonnet.git /tmp/jsonnet \
+    && make -C /tmp/jsonnet \
+    && cp /tmp/jsonnet/jsonnet /usr/local/bin
+
 WORKDIR /runner
 
 COPY app/assets /runner/app/assets
@@ -24,6 +29,11 @@ COPY gulpfile.babel.js /runner/
 COPY gulp/* /runner/gulp/
 COPY .babelrc .eslint* .stylelintrc .tern-project .yarnrc /runner/
 RUN yarn compile
+
+COPY scripts/build_schemas.sh /runner/
+COPY data-source /runner/data-source
+RUN mkdir -p /runner/data/en
+RUN ./build_schemas.sh
 
 ###############################################################################
 # Second Stage
@@ -49,5 +59,6 @@ RUN pipenv install --deploy --system
 
 COPY . /runner
 COPY --from=builder /runner/static /runner/static
+COPY --from=builder /runner/data/en/* /runner/data/en/
 
 CMD ["sh", "docker-entrypoint.sh"]

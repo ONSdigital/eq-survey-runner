@@ -1,0 +1,18 @@
+{
+    "type": "Question",
+    "id": "comments-block",
+    "question": {
+        "type": "General",
+        "id": "comments-question",
+        "title": "Thanks you are done!",
+        "answers": [
+            {
+                "id": "comments-answer",
+                "type": "TextArea",
+                "mandatory": false,
+                "label": "Comments"
+            }
+        ],
+        "description": ""
+    }
+}

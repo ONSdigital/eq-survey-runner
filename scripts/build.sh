@@ -9,12 +9,11 @@ if [ ! -s "static" ]; then
   echo "Compiling web resources"
   yarn compile
 
+  echo "Building schemas"
+  "${DIR}"/build_schemas.sh
+
   echo "Compiling translated schemas"
   "${DIR}"/translate_schemas.sh
-
-  echo "Testing schemas"
-  "${DIR}"/test_schemas.sh data/en
-  "${DIR}"/test_schemas.sh data/cy
 fi
 
 printf $(git rev-parse HEAD) > .application-version
