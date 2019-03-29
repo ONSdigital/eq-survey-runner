@@ -407,7 +407,10 @@ def process_block(block, dir_out, schema_data, spec_file, relative_require='..')
 
 def process_schema(in_schema, out_dir, spec_file, require_path='..'):
 
-    data = json.loads(open(in_schema).read())
+    try:
+        data = json.loads(open(in_schema).read())
+    except Exception as ex:
+        logger.error('error reading %s', in_schema)
 
     try:
         os.stat(out_dir)
@@ -442,7 +445,11 @@ if __name__ == '__main__':
         if os.path.isdir(args.SCHEMA):
             for root, dirs, files in os.walk(args.SCHEMA):
                 for file in [os.path.join(root, file) for file in files]:
-                    output_dir = os.path.join(args.OUT_DIRECTORY, os.path.basename(file).split('.')[0].replace('test_', ''))
+                    filename = os.path.basename(file)
+                    logger.info('File %s', filename)
+                    if filename[0] is '.':
+                        continue
+                    output_dir = os.path.join(args.OUT_DIRECTORY, filename.split('.')[0].replace('test_', ''))
                     if not os.path.exists(output_dir):
                         os.makedirs(output_dir)
                     process_schema(file, output_dir, None, args.require_path)

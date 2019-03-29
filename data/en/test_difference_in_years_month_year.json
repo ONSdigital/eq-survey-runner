@@ -42,7 +42,24 @@
                 "title": "Confirm Duration",
                 "question": {
                     "id": "confirm-dob-question",
-                    "title": "It has been {{ calculate_years_difference (answers['date-dob'], 'now') }} since you last went on holiday. Is this correct?",
+                    "title": {
+                        "text": "It has been {age} since you last went on holiday. Is this correct?",
+                        "placeholders": [{
+                            "placeholder": "age",
+                            "transforms": [{
+                                "transform": "calculate_years_difference",
+                                "arguments": {
+                                    "first_date": {
+                                        "source": "answers",
+                                        "identifier": "date-dob"
+                                    },
+                                    "second_date": {
+                                        "value": "now"
+                                    }
+                                }
+                            }]
+                        }]
+                    },
                     "type": "General",
                     "answers": [{
                         "id": "date-test-answer",

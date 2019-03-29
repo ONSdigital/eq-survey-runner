@@ -12,9 +12,9 @@ from app.authentication.authenticator import store_session, decrypt_token
 from app.authentication.jti_claim_storage import JtiTokenUsed, use_jti_claim
 from app.globals import get_session_timeout_in_seconds, get_completed_blocks
 from app.helpers.path_finder_helper import path_finder
+from app.helpers.template_helper import safe_content
 from app.questionnaire.router import Router
 from app.storage.metadata_parser import validate_metadata, parse_runner_claims
-from app.templating.template_renderer import TemplateRenderer
 from app.utilities.schema import load_schema_from_metadata
 from app.views.errors import render_template
 
@@ -120,4 +120,4 @@ def get_sign_out():
                                  template_name='signed-out.html',
                                  analytics_ua_id=current_app.config['EQ_UA_ID'],
                                  account_service_url=cookie_session.get('account_service_url'),
-                                 survey_title=TemplateRenderer.safe_content(cookie_session.get('survey_title', '')))
+                                 survey_title=safe_content(cookie_session.get('survey_title', '')))

@@ -44,18 +44,6 @@
                 },
                 "title": "Date Examples"
             }, {
-                "type": "Interstitial",
-                "id": "min-max-block",
-                "title": "Application of min and max filters to dates",
-                "description": "",
-                "content": [{
-                    "title": "",
-                    "list": [
-                        "The most recent Date Range value entered was <em>{{ max_value(answers['date-range-from-answer'], answers['date-range-to-answer'])|format_date }}</em>",
-                        "The least recent Date Range value entered was <em>{{ min_value(answers['date-range-from-answer'], answers['date-range-to-answer'])|format_date }}</em>"
-                    ]
-                }]
-            }, {
                 "type": "Summary",
                 "id": "summary"
             }],

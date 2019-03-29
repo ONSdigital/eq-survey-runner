@@ -1,28 +1,4 @@
 from app.libs.utils import convert_tx_id
-from app.templating.schema_context import json_and_html_safe
-from app.templating.schema_context import build_schema_metadata
-from app.utilities.schema import load_schema_from_metadata
-
-
-def build_metadata_context(metadata):
-    """
-    Builds the metadata context using eq claims and schema defined metadata
-    :param metadata: token metadata
-    :return: metadata context
-    """
-    eq_context = {
-        'eq_id': json_and_html_safe(metadata['eq_id']),
-        'collection_id': json_and_html_safe(metadata['collection_exercise_sid']),
-        'form_type': json_and_html_safe(metadata['form_type']),
-        'ru_ref': json_and_html_safe(metadata['ru_ref']),
-        'tx_id': json_and_html_safe(metadata['tx_id']),
-    }
-
-    schema = load_schema_from_metadata(metadata)
-
-    eq_context.update(build_schema_metadata(metadata, schema))
-
-    return eq_context
 
 
 def build_metadata_context_for_survey_completed(session_data):

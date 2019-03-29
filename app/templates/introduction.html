@@ -22,19 +22,19 @@
             <div class="grid__col col-7@m">
 
                 <h2 class="u-fs-l">
-                    {% if metadata.trad_as %}
+                    {% if content.metadata.trad_as %}
                         {{ _("You are completing this for <span>%(ru_name)s</span> (%(trading_as_name)s)",
-                        ru_name = metadata.ru_name,
-                        trading_as_name = metadata.trad_as) }}
+                        ru_name = content.metadata.ru_name,
+                        trading_as_name = content.metadata.trad_as) }}
                     {% else %}
-                        {{ _("You are completing this for <span>%(ru_name)s</span>", ru_name = metadata.ru_name) }}
+                        {{ _("You are completing this for <span>%(ru_name)s</span>", ru_name = content.metadata.ru_name) }}
                     {% endif %}
 
                 </h2>
 
                 <p class="u-fs-r" data-qa="details-changed-title">{{ _("If the company details or structure have changed contact us on %(telephone_number)s or email %(email_address)s",
                         telephone_number = helpers.telephone_number(),
-                        email_address = helpers.email_address(aria_describedby='details-changed-title', subject="Change of details reference " + metadata.ru_ref)
+                        email_address = helpers.email_address(aria_describedby='details-changed-title', subject="Change of details reference " + content.metadata.ru_ref)
                     ) }}
                 </p>
 

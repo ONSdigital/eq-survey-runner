@@ -42,7 +42,24 @@
                 "title": "Confirm Your Age",
                 "question": {
                     "id": "confirm-dob-question",
-                    "title": "You are {{ calculate_years_difference (answers['date-dob'], 'now') }} old. Is this correct?",
+                    "title": {
+                        "text": "You are {age} old. Is this correct?",
+                        "placeholders": [{
+                            "placeholder": "age",
+                            "transforms": [{
+                                "transform": "calculate_years_difference",
+                                "arguments": {
+                                    "first_date": {
+                                        "source": "answers",
+                                        "identifier": "date-dob"
+                                    },
+                                    "second_date": {
+                                        "value": "now"
+                                    }
+                                }
+                            }]
+                        }]
+                    },
                     "type": "General",
                     "answers": [{
                         "id": "date-test-answer",

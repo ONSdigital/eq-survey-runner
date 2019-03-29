@@ -54,7 +54,16 @@
                 "id": "incorrect-answer",
                 "title": "You entered a number that was not less than 123",
                 "content": [{
-                    "description": "You were asked to enter a number less than <em>123</em> but you entered <em>{{answers['answer']}}</em>."
+                    "description": {
+                        "text": "You were asked to enter a number less than <em>123</em> but you entered <em>{answer}</em>.",
+                        "placeholders": [{
+                            "placeholder": "answer",
+                            "value": {
+                                "source": "answers",
+                                "identifier": "answer"
+                            }
+                        }]
+                    }
                 }],
                 "routing_rules": [{
                     "goto": {
@@ -66,7 +75,16 @@
                 "id": "correct-answer",
                 "title": "You entered a number less than 123",
                 "content": [{
-                    "description": "You were asked to enter a number less than <em>123</em> and you entered <em>{{answers['answer']}}</em>."
+                    "description": {
+                        "text": "You were asked to enter a number less than <em>123</em> and you entered <em>{answer}</em>.",
+                        "placeholders": [{
+                            "placeholder": "answer",
+                            "value": {
+                                "source": "answers",
+                                "identifier": "answer"
+                            }
+                        }]
+                    }
                 }]
             }, {
                 "type": "Summary",

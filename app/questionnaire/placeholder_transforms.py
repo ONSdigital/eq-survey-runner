@@ -31,8 +31,27 @@ class PlaceholderTransforms:
         return formatted_list
 
     @staticmethod
-    def concatenate_list(list_to_concatenate, delimiter):
-        return delimiter.join(list_to_concatenate)
+    def remove_empty_from_list(list_to_filter):
+        """
+        :param list_to_filter: anything that is iterable
+        :return: a list with no empty values
+
+        In this filter the following values are considered non empty:
+        - None
+        - any empty sequence, for example, '', (), [].
+        - any empty mapping, for example, {}.
+
+        This filter will treat zero of any numeric type for example, 0, 0.0, 0j and boolean 'False'
+        as a valid item since they are naturally 'falsy' in Python but not empty.
+
+        Note: Booleans are a subtype of integers. Zero of any numeric type 'is not False' but 'equals False'.
+        Reference: https://docs.python.org/release/3.4.2/library/stdtypes.html?highlight=boolean#boolean-values
+        """
+        return [item for item in list_to_filter if item or item is False or item == 0]
+
+    def concatenate_list(self, list_to_concatenate, delimiter):
+        filtered_list = self.remove_empty_from_list(list_to_concatenate)
+        return delimiter.join(filtered_list)
 
     @staticmethod
     def format_possessive(string_to_format):
@@ -59,3 +78,17 @@ class PlaceholderTransforms:
         second_date = datetime.now() if second_date == 'now' else datetime.strptime(second_date, self.input_date_format)
 
         return str(relativedelta(second_date, first_date).years)
+
+    def first_non_empty_item(self, items):
+        """
+        :param items: anything that is iterable
+        :return: first non empty value
+
+         Note: to guarantee the returned element is actually the first non empty element in the iterable,
+        'items' must be a data structure that preserves order, ie tuple, list etc.
+        If order is not important, this can be reused to return `one of` the elements which is non empty.
+        """
+        for item in self.remove_empty_from_list(items):
+            return item
+
+        return ''

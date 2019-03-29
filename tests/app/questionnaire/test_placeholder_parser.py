@@ -194,6 +194,32 @@ class TestPlaceholder(unittest.TestCase):
         assert placeholders['start_date'] == '11/02/2019'
 
     @staticmethod
+    def test_multiple_metadata_list_transform_placeholder():
+        placeholder_list = [{
+            'placeholder': 'dates',
+            'transforms': [
+                {
+                    'transform': 'concatenate_list',
+                    'arguments': {
+                        'list_to_concatenate': {
+                            'source': 'metadata',
+                            'identifier': ['ref_p_start_date', 'ref_p_end_date']
+                        },
+                        'delimiter': ' '
+                    }
+                }
+            ]
+        }]
+
+        parser = PlaceholderParser(metadata={
+            'ref_p_start_date': '2019-02-11',
+            'ref_p_end_date': '2019-10-11'
+        })
+        placeholders = parser.parse(placeholder_list)
+
+        assert placeholders['dates'] == '2019-02-11 2019-10-11'
+
+    @staticmethod
     def test_mixed_transform_placeholder():
         placeholder_list = [{
             'placeholder': 'age_in_years',

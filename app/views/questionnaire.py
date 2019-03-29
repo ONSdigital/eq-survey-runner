@@ -21,23 +21,19 @@ from app.helpers.form_helper import post_form_for_block
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required
 from app.helpers.schema_helpers import with_schema
 from app.helpers.session_helpers import with_answer_store, with_metadata, with_collection_metadata
-from app.helpers.template_helper import (with_session_timeout, with_metadata_context, with_analytics,
-                                         with_legal_basis, render_template)
+from app.helpers.template_helper import (with_session_timeout, with_analytics,
+                                         with_legal_basis, render_template, safe_content)
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.questionnaire.answer_store_updater import AnswerStoreUpdater
 from app.questionnaire.location import Location
-from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.router import Router
-from app.questionnaire.rules import get_answer_ids_on_routing_path
 from app.questionnaire.placeholder_renderer import PlaceholderRenderer
 from app.questionnaire.schema_utils import transform_variants
 from app.storage.storage_encryption import StorageEncryption
 from app.submitter.converter import convert_answers
 from app.submitter.submission_failed import SubmissionFailedException
 from app.templating.metadata_context import build_metadata_context_for_survey_completed
-from app.templating.schema_context import build_schema_context
 from app.templating.summary_context import build_summary_rendering_context
-from app.templating.template_renderer import renderer, TemplateRenderer
 from app.templating.view_context import build_view_context
 from app.utilities.schema import load_schema_from_session_data
 
@@ -109,12 +105,12 @@ def get_block(routing_path, schema, metadata, answer_store, block_id):
 
     block = schema.get_block(current_location.block_id)
 
-    placeholder_renderer = PlaceholderRenderer(block, answer_store=answer_store, metadata=metadata)
-    replaced_block = placeholder_renderer.render()
+    transformed_block = transform_variants(block, schema, metadata, answer_store)
 
-    transformed_block = transform_variants(replaced_block, schema, metadata, answer_store)
+    placeholder_renderer = PlaceholderRenderer(answer_store=answer_store, metadata=metadata)
+    rendered_block = placeholder_renderer.render(transformed_block)
 
-    context = _get_context(routing_path, transformed_block, current_location, schema)
+    context = _get_context(rendered_block, current_location, schema)
 
     return _render_page(block['type'], context, current_location, schema)
 
@@ -137,19 +133,15 @@ def post_block(routing_path, schema, metadata, collection_metadata, answer_store
 
     block = schema.get_block(current_location.block_id)
 
-    placeholder_renderer = PlaceholderRenderer(block, answer_store=answer_store, metadata=metadata)
-    replaced_block = placeholder_renderer.render()
+    transformed_block = transform_variants(block, schema, metadata, answer_store)
 
-    transformed_block = transform_variants(replaced_block, schema, metadata, answer_store)
-
-    schema_context = _get_schema_context(routing_path, metadata, collection_metadata, answer_store, schema)
-
-    rendered_block = renderer.render(transformed_block, **schema_context)
+    placeholder_renderer = PlaceholderRenderer(answer_store=answer_store, metadata=metadata)
+    rendered_block = placeholder_renderer.render(transformed_block)
 
     form = _generate_wtf_form(request.form, rendered_block, schema)
 
     if 'action[save_sign_out]' in request.form:
-        return _save_sign_out(routing_path, current_location, rendered_block.get('question'), form, schema)
+        return _save_sign_out(current_location, rendered_block.get('question'), form, schema)
 
     if 'action[sign_out]' in request.form:
         return redirect(url_for('session.get_sign_out'))
@@ -167,7 +159,7 @@ def post_block(routing_path, schema, metadata, collection_metadata, answer_store
 
         return redirect(next_location.url())
 
-    context = build_view_context(block['type'], metadata, schema, answer_store, schema_context, rendered_block, current_location, form)
+    context = build_view_context(block['type'], metadata, schema, answer_store, rendered_block, current_location, form)
 
     return _render_page(block['type'], context, current_location, schema)
 
@@ -192,7 +184,7 @@ def get_thank_you(schema):
                                      metadata=metadata_context,
                                      analytics_ua_id=current_app.config['EQ_UA_ID'],
                                      survey_id=schema.json['survey_id'],
-                                     survey_title=TemplateRenderer.safe_content(schema.json['title']),
+                                     survey_title=safe_content(schema.json['title']),
                                      is_view_submitted_response_enabled=is_view_submitted_response_enabled(schema.json),
                                      view_submission_url=view_submission_url,
                                      account_service_url=cookie_session.get('account_service_url'),
@@ -247,13 +239,9 @@ def get_view_submission(schema):  # pylint: too-many-locals
             answer_store = AnswerStore(submitted_data.get('answers'))
 
             metadata = submitted_data.get('metadata')
-            collection_metadata = submitted_data.get('collection_metadata')
 
-            routing_path = PathFinder(schema, answer_store, metadata, []).get_full_routing_path()
-
-            schema_context = _get_schema_context(routing_path, metadata, collection_metadata, answer_store, schema)
             section_list = schema.json['sections']
-            summary_rendered_context = build_summary_rendering_context(schema, section_list, answer_store, metadata, schema_context)
+            summary_rendered_context = build_summary_rendering_context(schema, section_list, answer_store, metadata)
 
             context = {
                 'summary': {
@@ -268,7 +256,7 @@ def get_view_submission(schema):  # pylint: too-many-locals
                                          metadata=metadata_context,
                                          analytics_ua_id=current_app.config['EQ_UA_ID'],
                                          survey_id=schema.json['survey_id'],
-                                         survey_title=TemplateRenderer.safe_content(schema.json['title']),
+                                         survey_title=safe_content(schema.json['title']),
                                          account_service_url=cookie_session.get('account_service_url'),
                                          account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
                                          content=context)
@@ -398,7 +386,7 @@ def _is_submission_viewable(schema, submitted_time):
     return False
 
 
-def _save_sign_out(routing_path, current_location, current_question, form, schema):
+def _save_sign_out(current_location, current_question, form, schema):
     questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
 
     block = schema.get_block(current_location.block_id)
@@ -414,7 +402,7 @@ def _save_sign_out(routing_path, current_location, current_question, form, schem
 
         return redirect(url_for('session.get_sign_out'))
 
-    context = _get_context(routing_path, block, current_location, schema, form)
+    context = _get_context(block, current_location, schema, form)
     return _render_page(block['type'], context, current_location, schema)
 
 
@@ -422,25 +410,12 @@ def _redirect_to_location(location):
     return redirect(url_for('questionnaire.get_block', block_id=location.block_id))
 
 
-def _get_context(full_routing_path, block, current_location, schema, form=None):
+def _get_context(block, current_location, schema, form=None):
     metadata = get_metadata(current_user)
-    collection_metadata = get_collection_metadata(current_user)
 
     answer_store = get_answer_store(current_user)
-    schema_context = _get_schema_context(full_routing_path, metadata, collection_metadata, answer_store, schema)
-    rendered_block = renderer.render(block, **schema_context)
 
-    return build_view_context(block['type'], metadata, schema, answer_store, schema_context, rendered_block, current_location, form=form)
-
-
-def _get_schema_context(full_routing_path, metadata, collection_metadata, answer_store, schema):
-    answer_ids_on_path = get_answer_ids_on_routing_path(schema, full_routing_path)
-
-    return build_schema_context(metadata=metadata,
-                                collection_metadata=collection_metadata,
-                                schema=schema,
-                                answer_store=answer_store,
-                                answer_ids_on_path=answer_ids_on_path)
+    return build_view_context(block['type'], metadata, schema, answer_store, block, current_location, form=form)
 
 
 def get_page_title_for_location(schema, current_location, context):
@@ -450,11 +425,12 @@ def get_page_title_for_location(schema, current_location, context):
         page_title = '{group_title} - {survey_title}'.format(group_title=group['title'], survey_title=schema.json['title'])
     elif block['type'] == 'Question':
         question_title = context['block']['question'].get('title')
+
         page_title = '{question_title} - {survey_title}'.format(question_title=question_title, survey_title=schema.json['title'])
     else:
         page_title = schema.json['title']
 
-    return TemplateRenderer.safe_content(page_title)
+    return safe_content(page_title)
 
 
 def _build_template(current_location, context, template, schema):
@@ -465,10 +441,10 @@ def _build_template(current_location, context, template, schema):
 
 
 @with_session_timeout
-@with_metadata_context
 @with_analytics
 @with_legal_basis
-def _render_template(context, current_location, template, previous_url, schema, **kwargs):
+def _render_template(context, current_location, template, previous_url, schema,
+                     **kwargs):
     page_title = get_page_title_for_location(schema, current_location, context)
 
     session_store = get_session_store()
@@ -480,7 +456,6 @@ def _render_template(context, current_location, template, previous_url, schema, 
         current_location=current_location,
         previous_location=previous_url,
         page_title=page_title,
-        metadata=kwargs.pop('metadata_context'),  # `metadata_context` is used as `metadata` in the jinja templates
         language_code=session_data.language_code,
         **kwargs
     )
