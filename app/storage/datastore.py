@@ -3,7 +3,6 @@ from google.cloud import datastore
 from structlog import get_logger
 
 from app.data_model import app_models
-from app.storage.errors import ItemAlreadyExistsError
 
 logger = get_logger()
 
@@ -37,6 +36,9 @@ class DatastoreStorage:
         self.client = client
 
     def put(self, model, overwrite=True):
+        if not overwrite:
+            raise NotImplementedError('Unique key checking not supported')
+
         config = TABLE_CONFIG[type(model)]
 
         schema = config['schema'](strict=True)
@@ -46,15 +48,9 @@ class DatastoreStorage:
         table_name = current_app.config[config['table_name_key']]
         key = self.client.key(table_name, key_value)
 
-        with self.client.transaction():
-            if not overwrite:
-                existing = self.client.get(key)
-                if existing:
-                    raise ItemAlreadyExistsError()
-
-            entity = datastore.Entity(key=key, exclude_from_indexes=list(item.keys()))
-            entity.update(item)
-            self.client.put(entity)
+        entity = datastore.Entity(key=key, exclude_from_indexes=list(item.keys()))
+        entity.update(item)
+        self.client.put(entity)
 
     def get_by_key(self, model_type, key_value):
         config = TABLE_CONFIG[model_type]

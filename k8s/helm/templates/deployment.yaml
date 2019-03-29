@@ -79,3 +79,14 @@ spec:
               value: "9"
             - name: EQ_GCS_SUBMISSION_BUCKET_ID
               value: "{{- .Values.submissionBucket }}"
+            - name: EQ_REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: runner-config
+                  key: redis_host
+            - name: EQ_REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: runner-config
+                  key: redis_port
+

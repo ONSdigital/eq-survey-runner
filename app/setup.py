@@ -7,6 +7,7 @@ from datetime import timedelta
 from uuid import uuid4
 
 import boto3
+import redis
 import sqlalchemy
 import yaml
 from botocore.config import Config
@@ -33,6 +34,7 @@ from app.new_relic import setup_newrelic
 from app.secrets import SecretStore, validate_required_secrets
 from app.storage.datastore import DatastoreStorage
 from app.storage.dynamodb import DynamodbStorage
+from app.storage.redis import RedisStorage
 from app.storage.sql import SqlStorage
 from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter, GCSSubmitter
 
@@ -211,6 +213,8 @@ def setup_storage(application):
     else:
         raise Exception('Unknown EQ_STORAGE_BACKEND')
 
+    setup_redis(application)
+
 
 def get_database_uri(application):
     """ Returns database URI. Prefer SQLALCHEMY_DATABASE_URI over components."""
@@ -276,6 +280,15 @@ def setup_datastore(application):
     creds = EmulatorCredentials() if application.config['EQ_DATASTORE_EMULATOR_CREDENTIALS'] else None
     client = datastore.Client(_use_grpc=False, credentials=creds)
     application.eq['storage'] = DatastoreStorage(client)
+
+
+def setup_redis(application):
+    redis_client = redis.Redis(
+        host=application.config['EQ_REDIS_HOST'],
+        port=application.config['EQ_REDIS_PORT'],
+    )
+
+    application.eq['ephemeral_storage'] = RedisStorage(redis_client)
 
 
 def setup_submitter(application):

@@ -355,6 +355,8 @@ The following env variables can be used
 | EQ_STORAGE_BACKEND                        | datastore             |                                                                                               |
 | EQ_DATASTORE_EMULATOR_CREDENTIALS         | False                 |                                                                                               |
 | EQ_DYNAMODB_ENDPOINT                      |                       |                                                                                               |
+| EQ_REDIS_HOST                             |                       | Hostname of Redis instance used for ephemeral storage                                         |
+| EQ_REDIS_PORT                             |                       | Port number of Redis instance used for ephemeral storage                                      |
 | EQ_DYNAMODB_MAX_RETRIES                   | 5                     |                                                                                               |
 | EQ_DYNAMODB_MAX_POOL_CONNECTIONS          | 30                    |                                                                                               |
 | EQ_SUBMITTED_RESPONSES_TABLE_NAME         |                       |                                                                                               |

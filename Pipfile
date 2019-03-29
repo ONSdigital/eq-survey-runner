@@ -27,6 +27,7 @@ freezegun = "*"
 pytest-xdist = "*"
 pytest-sugar = "*"
 snakeviz = "*"
+fakeredis = "*"
 
 [packages]
 colorama = "*"
@@ -58,6 +59,7 @@ marshmallow = "*"
 python-snappy = "*"
 google-cloud-storage = "*"
 jsonpointer = "*"
+redis = "*"
 
 [requires]
 python_version = "3.7"

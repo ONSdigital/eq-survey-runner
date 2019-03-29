@@ -7,6 +7,11 @@ services:
     networks:
       - eq-env
 
+  redis:
+    image: redis:4
+    networks:
+      - eq-env
+
   eq-survey-runner:
     image: onsdigital/eq-survey-runner:v3
     build: ./
@@ -25,10 +30,14 @@ services:
       EQ_USED_JTI_CLAIM_TABLE_NAME: dev-used-jti-claim
       EQ_DATASTORE_EMULATOR_CREDENTIALS: "True"
       DATASTORE_EMULATOR_HOST: datastore:8432
+      DATASTORE_DATASET: "local"
       EQ_SUBMISSION_BACKEND: "log"
+      EQ_REDIS_HOST: "redis"
+      EQ_REDIS_PORT: "6379"
     restart: always
     depends_on:
       - datastore
+      - redis
     networks:
       - eq-env
     ports:

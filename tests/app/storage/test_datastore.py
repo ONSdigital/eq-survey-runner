@@ -48,6 +48,14 @@ class TestDatastore(AppContextTestCase):
         self.assertEqual(model.state_data, put_data['state_data'])
         self.assertEqual(model.version, put_data['version'])
 
+    def test_put_without_overwrite(self):
+        model = QuestionnaireState('someuser', 'data', 1)
+
+        with self.assertRaises(NotImplementedError) as exception:
+            self.ds.put(model, False)
+
+        self.assertEqual(exception.exception.args[0], 'Unique key checking not supported')
+
     def test_delete(self):
         model = QuestionnaireState('someuser', 'data', 1)
         self.ds.delete(model)
