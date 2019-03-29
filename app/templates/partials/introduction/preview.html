@@ -1,8 +1,8 @@
-<h2 class="u-fs-l u-mt-m">{{ intro.title }}</h2>
+<h3 class="u-fs-m">{{ intro.title }}</h3>
 <div class="collapsible__introduction">
 {% for content in intro.content %}
 {% if content.title  %}
-<h3 class="u-fs-r--b u-mt-s">{{ content.title }}</h3>
+<h4 class="u-fs-r--b u-mt-s">{{ content.title }}</h4>
 {% endif %}
 <p class="u-fs-r qa-intro-description" data-qa="intro-preview-description">
     {{ content.description }}
