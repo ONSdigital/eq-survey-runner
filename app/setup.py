@@ -96,7 +96,7 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     application.eq = {}
 
-    if application.config['EQ_OPENCENSUS_ENABLED']:
+    if application.config['EQ_STACKDRIVER_PROJECT_ID']:
         exporter = StackdriverExporter(project_id=application.config['EQ_STACKDRIVER_PROJECT_ID'],
                                        transport=AsyncTransport)
         FlaskMiddleware(application, exporter=exporter, blacklist_paths=['s', 'schemas'])
