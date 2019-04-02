@@ -1,4 +1,5 @@
 from app.questionnaire.rules import evaluate_when_rules
+from app.decorators.opencensus_decorators import capture_trace
 
 
 def _choose_variant(block, schema, metadata, answer_store, variants_key, single_key):
@@ -19,6 +20,7 @@ def choose_content_to_display(block, schema, metadata, answer_store):
     return _choose_variant(block, schema, metadata, answer_store, variants_key='content_variants', single_key='content')
 
 
+@capture_trace
 def transform_variants(block, schema, metadata, answer_store):
     output_block = block.copy()
 

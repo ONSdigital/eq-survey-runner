@@ -23,6 +23,8 @@ from app.helpers.schema_helpers import with_schema
 from app.helpers.session_helpers import with_answer_store, with_metadata, with_collection_metadata
 from app.helpers.template_helper import (with_session_timeout, with_analytics,
                                          with_legal_basis, render_template, safe_content)
+
+from app.decorators.opencensus_decorators import capture_trace
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.questionnaire.answer_store_updater import AnswerStoreUpdater
 from app.questionnaire.location import Location
@@ -51,6 +53,7 @@ post_submission_blueprint = Blueprint(name='post_submission',
 
 
 @questionnaire_blueprint.before_request
+@capture_trace
 def before_questionnaire_request():
     metadata = get_metadata(current_user)
     if not metadata:
@@ -73,6 +76,7 @@ def before_questionnaire_request():
 
 
 @post_submission_blueprint.before_request
+@capture_trace
 def before_post_submission_request():
     session_store = get_session_store()
     if not session_store or not session_store.session_data:
@@ -283,6 +287,7 @@ def _set_started_at_metadata_if_required(form, collection_metadata):
         collection_metadata['started_at'] = started_at
 
 
+@capture_trace
 def _render_page(block_type, context, current_location, schema):
     if request_wants_json():
         return jsonify(context)
@@ -290,6 +295,7 @@ def _render_page(block_type, context, current_location, schema):
     return _build_template(current_location, context, block_type, schema)
 
 
+@capture_trace
 def _generate_wtf_form(form, block, schema):
     disable_mandatory = 'action[save_sign_out]' in form
 
@@ -410,6 +416,7 @@ def _redirect_to_location(location):
     return redirect(url_for('questionnaire.get_block', block_id=location.block_id))
 
 
+@capture_trace
 def _get_context(block, current_location, schema, form=None):
     metadata = get_metadata(current_user)
 

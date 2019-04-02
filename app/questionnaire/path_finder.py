@@ -8,6 +8,7 @@ from app.questionnaire.rules import (
     evaluate_skip_conditions,
     is_goto_rule,
 )
+from app.decorators.opencensus_decorators import capture_trace
 
 logger = get_logger()
 
@@ -26,6 +27,7 @@ class PathFinder:
     def _block_index_for_location(blocks, location):
         return next((index for (index, block) in enumerate(blocks) if block['id'] == location.block_id), None)
 
+    @capture_trace
     def build_path(self):
         """
         Visits all the blocks from a location forwards and returns path

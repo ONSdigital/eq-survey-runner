@@ -3,7 +3,7 @@ from sqlalchemy.orm.exc import FlushError
 
 from app.data_model import app_models, models
 from app.storage.errors import ItemAlreadyExistsError
-
+from app.decorators.opencensus_decorators import capture_trace
 
 TABLE_CONFIG = {
     app_models.QuestionnaireState: {
@@ -23,6 +23,7 @@ TABLE_CONFIG = {
 
 class SqlStorage:  # pylint: disable=no-self-use
 
+    @capture_trace
     def get_by_key(self, model_type, key_value):
         config = TABLE_CONFIG[model_type]
         key = {config['key_field']: key_value}
@@ -30,6 +31,7 @@ class SqlStorage:  # pylint: disable=no-self-use
         if returned_data:
             return returned_data.to_app_model()
 
+    @capture_trace
     def put(self, model, overwrite=True):
         config = TABLE_CONFIG[type(model)]
         sql_model = config['sql_model'].from_app_model(model)
@@ -45,6 +47,7 @@ class SqlStorage:  # pylint: disable=no-self-use
         except (IntegrityError, FlushError) as e:
             raise ItemAlreadyExistsError() from e
 
+    @capture_trace
     def delete(self, model):
         config = TABLE_CONFIG[type(model)]
         sql_model = config['sql_model'].from_app_model(model)

@@ -3,7 +3,7 @@ from flask import current_app
 
 from app.data_model import app_models
 from app.storage.errors import ItemAlreadyExistsError
-
+from app.decorators.opencensus_decorators import capture_trace
 
 TABLE_CONFIG = {
     app_models.SubmittedResponse: {
@@ -34,6 +34,7 @@ class DynamodbStorage:
     def __init__(self, dynamodb):
         self.dynamodb = dynamodb
 
+    @capture_trace
     def put(self, model, overwrite=True):
         config = TABLE_CONFIG[type(model)]
         schema = config['schema'](strict=True)
@@ -54,6 +55,7 @@ class DynamodbStorage:
 
             raise  # pragma: no cover
 
+    @capture_trace
     def get_by_key(self, model_type, key_value):
         config = TABLE_CONFIG[model_type]
         schema = config['schema'](strict=True)
@@ -67,6 +69,7 @@ class DynamodbStorage:
             model, _ = schema.load(item)
             return model
 
+    @capture_trace
     def delete(self, model):
         config = TABLE_CONFIG[type(model)]
         table = self.get_table(config)

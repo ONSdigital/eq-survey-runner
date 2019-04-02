@@ -5,7 +5,9 @@ from structlog import get_logger
 
 from app.data_model.app_models import QuestionnaireState
 from app.data_model.questionnaire_store import QuestionnaireStore
+from app.decorators.opencensus_decorators import capture_trace
 from app.storage.storage_encryption import StorageEncryption
+
 logger = get_logger()
 
 
@@ -18,6 +20,7 @@ class EncryptedQuestionnaireStorage:
         self._user_id = user_id
         self.encrypter = StorageEncryption(user_id, user_ik, pepper)
 
+    @capture_trace
     def add_or_update(self, data):
         compressed_data = snappy.compress(data)
         encrypted_data = self.encrypter.encrypt_data(compressed_data)
@@ -31,6 +34,7 @@ class EncryptedQuestionnaireStorage:
 
         current_app.eq['storage'].put(questionnaire_state)
 
+    @capture_trace
     def get_user_data(self):
         questionnaire_state = self._find_questionnaire_state()
         if questionnaire_state and questionnaire_state.state_data:
@@ -40,6 +44,7 @@ class EncryptedQuestionnaireStorage:
 
         return None, None
 
+    @capture_trace
     def delete(self):
         logger.debug('deleting users data', user_id=self._user_id)
         questionnaire_state = self._find_questionnaire_state()

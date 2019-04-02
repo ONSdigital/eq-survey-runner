@@ -4,6 +4,9 @@ from structlog import get_logger
 
 from app.data_model import app_models
 
+from app.decorators.opencensus_decorators import capture_trace
+
+
 logger = get_logger()
 
 TABLE_CONFIG = {
@@ -35,6 +38,7 @@ class DatastoreStorage:
     def __init__(self, client):
         self.client = client
 
+    @capture_trace
     def put(self, model, overwrite=True):
         if not overwrite:
             raise NotImplementedError('Unique key checking not supported')
@@ -52,6 +56,7 @@ class DatastoreStorage:
         entity.update(item)
         self.client.put(entity)
 
+    @capture_trace
     def get_by_key(self, model_type, key_value):
         config = TABLE_CONFIG[model_type]
 
@@ -65,6 +70,7 @@ class DatastoreStorage:
             model, _ = schema.load(item)
             return model
 
+    @capture_trace
     def delete(self, model):
         config = TABLE_CONFIG[type(model)]
 

@@ -4,6 +4,7 @@ from dateutil.tz import tzutc
 from flask import g, current_app, session as cookie_session
 from structlog import get_logger
 
+from app.decorators.opencensus_decorators import capture_trace
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.settings import EQ_SESSION_ID, USER_IK
 
@@ -83,6 +84,7 @@ def get_answer_store(user):
     return questionnaire_store.answer_store
 
 
+@capture_trace
 def get_completed_blocks(user):
     questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
     return questionnaire_store.completed_blocks

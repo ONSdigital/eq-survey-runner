@@ -22,6 +22,10 @@ from google.cloud import datastore
 from sdc.crypto.key_store import KeyStore, validate_required_keys
 from structlog import get_logger
 
+from opencensus.ext.flask.flask_middleware import FlaskMiddleware
+from opencensus.ext.stackdriver.trace_exporter import StackdriverExporter
+from opencensus.common.transports.async_ import AsyncTransport
+
 from app import flask_theme_cache
 from app import settings
 from app.authentication.authenticator import login_manager
@@ -91,6 +95,11 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     application.config.from_object(settings)
 
     application.eq = {}
+
+    if application.config['EQ_OPENCENSUS_ENABLED']:
+        exporter = StackdriverExporter(project_id=application.config['EQ_STACKDRIVER_PROJECT_ID'],
+                                       transport=AsyncTransport)
+        FlaskMiddleware(application, exporter=exporter, blacklist_paths=['s', 'schemas'])
 
     with open(application.config['EQ_SECRETS_FILE']) as secrets_file:
         secrets = yaml.safe_load(secrets_file)

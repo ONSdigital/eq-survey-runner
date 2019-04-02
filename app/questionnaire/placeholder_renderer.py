@@ -4,6 +4,7 @@ from jsonpointer import set_pointer, resolve_pointer
 
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.placeholder_parser import PlaceholderParser
+from app.decorators.opencensus_decorators import capture_trace
 
 
 def find_pointers_containing(input_data, search_key, pointer=None):
@@ -50,6 +51,7 @@ class PlaceholderRenderer:
 
         return pointer_data['text'].format(**transformed_values)
 
+    @capture_trace
     def render(self, dict_to_render):
         """
         Transform the current schema json to a fully rendered dictionary

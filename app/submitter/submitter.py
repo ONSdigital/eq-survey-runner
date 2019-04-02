@@ -5,6 +5,8 @@ from pika import URLParameters
 from pika.exceptions import AMQPError
 from structlog import get_logger
 
+from app.decorators.opencensus_decorators import capture_trace
+
 logger = get_logger()
 
 
@@ -23,6 +25,7 @@ class GCSSubmitter:
         client = storage.Client()
         self.bucket = client.get_bucket(bucket_name)
 
+    @capture_trace
     def send_message(self, message, tx_id, case_id):
         logger.info('sending message')
 
@@ -54,6 +57,7 @@ class RabbitMQSubmitter:
             self.rabbitmq_url = 'amqp://{host}:{port}/%2F'.format(host=host, port=port)
             self.rabbitmq_secondary_url = 'amqp://{host}:{port}/%2F'.format(host=secondary_host, port=port)
 
+    @capture_trace
     def _connect(self):
         try:
             logger.info('attempt to open connection', server='primary', category='rabbitmq')
@@ -76,6 +80,7 @@ class RabbitMQSubmitter:
         except AMQPError as e:
             logger.error('unable to close connection', exc_info=e, category='rabbitmq')
 
+    @capture_trace
     def send_message(self, message, tx_id, case_id):
         """
         Sends a message to rabbit mq and returns a true or false depending on if it was successful

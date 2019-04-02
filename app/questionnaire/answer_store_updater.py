@@ -1,4 +1,5 @@
 from app.data_model.answer_store import Answer
+from app.decorators.opencensus_decorators import capture_trace
 
 
 class AnswerStoreUpdater:
@@ -14,6 +15,7 @@ class AnswerStoreUpdater:
         self._questionnaire_store = questionnaire_store
         self._answer_store = self._questionnaire_store.answer_store
 
+    @capture_trace
     def save_answers(self, form):
         self._update_questionnaire_store_with_form_data(form.data)
 
