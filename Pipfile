@@ -60,6 +60,9 @@ python-snappy = "*"
 google-cloud-storage = "*"
 jsonpointer = "*"
 redis = "*"
+opencensus = "*"
+opencensus-ext-flask = "*"
+opencensus-ext-stackdriver = "*"
 
 [requires]
 python_version = "3.7"
