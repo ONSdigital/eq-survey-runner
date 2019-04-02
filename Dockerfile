@@ -13,13 +13,18 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 RUN apt-get update \
     && apt-get install -y yarn nodejs
 
-WORKDIR /usr/src/app
+WORKDIR /runner
 
-COPY . /usr/src/app
+COPY app/assets /runner/app/assets
+COPY package.json /runner/
+COPY yarn.lock /runner/
+RUN yarn install
+
+COPY gulpfile.babel.js /runner/
+COPY gulp/* /runner/gulp/
+COPY .babelrc .eslint* .stylelintrc .tern-project .yarnrc /runner/
 RUN yarn compile
 
-# We don't want node_modules to be copied to the runtime image
-RUN rm -rf node_modules
 ###############################################################################
 # Second Stage
 ###############################################################################
@@ -30,8 +35,8 @@ EXPOSE 5000
 
 RUN apt update && apt install -y libsnappy-dev build-essential
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p /runner
+WORKDIR /runner
 
 ENV GUNICORN_WORKERS 3
 
@@ -42,6 +47,7 @@ RUN pip install pipenv==2018.11.26
 
 RUN pipenv install --deploy --system
 
-COPY --from=builder /usr/src/app/ /usr/src/app
+COPY . /runner
+COPY --from=builder /runner/static /runner/static
 
 CMD ["sh", "docker-entrypoint.sh"]
