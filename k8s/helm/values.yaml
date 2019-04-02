@@ -23,4 +23,10 @@ ingress:
     - secretName: tls-cert
 
 resources:
-  cpu: "3"
+  requests:
+    cpu: "3"
+
+autoscaler:
+    minReplicas: 3
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 50

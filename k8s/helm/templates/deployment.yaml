@@ -75,5 +75,7 @@ spec:
               value: used-jti-claim
             - name: EQ_SUBMISSION_BACKEND
               value: gcs
+            - name: GUNICORN_WORKERS
+              value: "9"
             - name: EQ_GCS_SUBMISSION_BUCKET_ID
               value: "{{- .Values.submissionBucket }}"
