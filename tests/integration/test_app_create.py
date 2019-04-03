@@ -6,8 +6,7 @@ from mock import patch, MagicMock
 from flask import Flask, request
 from flask_babel import Babel
 
-from opencensus.trace import execution_context
-from opencensus.trace.tracers.noop_tracer import NoopTracer
+from opencensus.ext.flask.flask_middleware import FlaskMiddleware
 
 from app import settings
 from app.setup import create_app, versioned_url_for, get_database_uri, EmulatorCredentials
@@ -257,10 +256,7 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
 
         application = create_app(self._setting_overrides)
 
-        with application.test_client():
-            tracer = execution_context.get_opencensus_tracer()
-
-        assert isinstance(tracer, NoopTracer)
+        assert isinstance(application.eq['tracing'], FlaskMiddleware)
 
     def test_defaults_to_adding_the_log_submitter_to_the_application(self):
         # When

@@ -96,11 +96,6 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     application.eq = {}
 
-    if application.config['EQ_STACKDRIVER_PROJECT_ID']:
-        exporter = StackdriverExporter(project_id=application.config['EQ_STACKDRIVER_PROJECT_ID'],
-                                       transport=AsyncTransport)
-        FlaskMiddleware(application, exporter=exporter, blacklist_paths=['s', 'schemas'])
-
     with open(application.config['EQ_SECRETS_FILE']) as secrets_file:
         secrets = yaml.safe_load(secrets_file)
 
@@ -114,6 +109,9 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     if setting_overrides:
         application.config.update(setting_overrides)
+
+    if application.config['EQ_STACKDRIVER_PROJECT_ID']:
+        setup_tracing(application)
 
     if application.config['EQ_APPLICATION_VERSION']:
         logger.info('starting eq survey runner', version=application.config['EQ_APPLICATION_VERSION'])
@@ -418,6 +416,12 @@ def add_blueprints(application):
     from app.views.schema import schema_blueprint
     application.register_blueprint(schema_blueprint)
     schema_blueprint.config = application.config.copy()
+
+
+def setup_tracing(application):
+    exporter = StackdriverExporter(project_id=application.config['EQ_STACKDRIVER_PROJECT_ID'],
+                                   transport=AsyncTransport)
+    application.eq['tracing'] = FlaskMiddleware(application, exporter=exporter, blacklist_paths=['s', 'schemas'])
 
 
 def setup_secure_cookies(application):
