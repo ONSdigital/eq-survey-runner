@@ -11,6 +11,8 @@ from app.setup import create_app, versioned_url_for, get_database_uri, EmulatorC
 from app.storage.datastore import DatastoreStorage
 from app.storage.dynamodb import DynamodbStorage
 from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter, GCSSubmitter
+from opencensus.trace import execution_context
+from opencensus.trace.tracers.noop_tracer import ContextTracer
 
 
 class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-methods
@@ -248,6 +250,18 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
 
         # Then
         assert 'Setting EQ_RABBITMQ_HOST_SECONDARY Missing' in str(ex.exception)
+
+    def test_adds_stackdriver_tracing_to_the_application(self):
+        self._setting_overrides['EQ_STACKDRIVER_PROJECT_ID'] = 'stackdriver-project'
+
+        application = create_app(self._setting_overrides)
+
+        context = application.test_request_context(path='/')
+
+        with context:
+            tracer = execution_context.get_opencensus_tracer()
+
+        assert isinstance(tracer, ContextTracer)
 
     def test_defaults_to_adding_the_log_submitter_to_the_application(self):
         # When
