@@ -18,6 +18,8 @@ from app.storage.metadata_parser import validate_metadata, parse_runner_claims
 from app.utilities.schema import load_schema_from_metadata
 from app.views.errors import render_template
 
+from app.decorators.opencensus_decorators import capture_trace
+
 logger = get_logger()
 
 session_blueprint = Blueprint('session', __name__)
@@ -35,6 +37,7 @@ def login_head():
 
 
 @session_blueprint.route('/session', methods=['GET'])
+@capture_trace
 def login():
     """
     Initial url processing - expects a token parameter and then will authenticate this token. Once authenticated
@@ -98,6 +101,7 @@ def validate_jti(decrypted_token):
 
 
 @session_blueprint.route('/session-expired', methods=['GET'])
+@capture_trace
 def get_session_expired():
     logout_user()
 
@@ -105,6 +109,7 @@ def get_session_expired():
 
 
 @session_blueprint.route('/signed-out', methods=['GET'])
+@capture_trace
 def get_sign_out():
     """
     Signs the user first out of eq, then the account service by hitting the account services'
