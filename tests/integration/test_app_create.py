@@ -12,7 +12,7 @@ from app.storage.datastore import DatastoreStorage
 from app.storage.dynamodb import DynamodbStorage
 from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter, GCSSubmitter
 from opencensus.trace import execution_context
-from opencensus.trace.tracers.noop_tracer import ContextTracer
+from opencensus.trace.tracers.noop_tracer import NoopTracer
 
 
 class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-methods
@@ -261,7 +261,7 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
         with context:
             tracer = execution_context.get_opencensus_tracer()
 
-        assert isinstance(tracer, ContextTracer)
+        assert isinstance(tracer, NoopTracer)
 
     def test_defaults_to_adding_the_log_submitter_to_the_application(self):
         # When
