@@ -60,6 +60,7 @@ tests/results
 tests/coverage
 tests/a11y
 
+
 **/_sprite.scss
 
 ## OS X
@@ -77,3 +78,7 @@ newrelic.ini
 htmlcov/
 
 *errorShots*
+
+# Ignore any generated pages for the functional tests
+tests/functional/generated_pages
+tests/
