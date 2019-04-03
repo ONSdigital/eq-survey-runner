@@ -6,13 +6,14 @@ from mock import patch, MagicMock
 from flask import Flask, request
 from flask_babel import Babel
 
+from opencensus.trace import execution_context
+from opencensus.trace.tracers.noop_tracer import NoopTracer
+
 from app import settings
 from app.setup import create_app, versioned_url_for, get_database_uri, EmulatorCredentials
 from app.storage.datastore import DatastoreStorage
 from app.storage.dynamodb import DynamodbStorage
 from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter, GCSSubmitter
-from opencensus.trace import execution_context
-from opencensus.trace.tracers.noop_tracer import NoopTracer
 
 
 class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-methods
@@ -256,9 +257,7 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
 
         application = create_app(self._setting_overrides)
 
-        context = application.test_request_context(path='/')
-
-        with context:
+        with application.test_client():
             tracer = execution_context.get_opencensus_tracer()
 
         assert isinstance(tracer, NoopTracer)
