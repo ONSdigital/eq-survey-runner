@@ -10,6 +10,7 @@ image:
   pullPolicy: Always
 
 submissionBucket: ""
+stackdriverProject: ""
 
 service:
   type: NodePort

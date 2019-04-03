@@ -89,4 +89,5 @@ spec:
                 configMapKeyRef:
                   name: runner-config
                   key: redis_port
-
+            - name: EQ_STACKDRIVER_PROJECT_ID
+              value: "{{- .Values.stackdriverProject }}"
