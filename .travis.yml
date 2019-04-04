@@ -44,16 +44,16 @@ cache:
         - /opt/python/
         - /home/travis/.local/share/
 install:
-    - ls -ltrh yarn.lock
-    - ls -ltrh package.json
+    - md5sum yarn.lock
+    - md5sum package.json
     - yarn install --pure-lockfile
 script:
     - set -e
     - yarn compile
     - pipenv run ./scripts/run.sh
     - export TAG=`if [ "$TRAVIS_PULL_REQUEST_BRANCH" == "" ]; then echo "v3"; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi`
-    - ls -ltrh yarn.lock
-    - ls -ltrh package.json
+    - md5sum yarn.lock
+    - md5sum package.json
     - docker build -t onsdigital/eq-survey-runner:$TAG -f Dockerfile .
     - docker build -t onsdigital/eq-survey-runner-static:$TAG -f Dockerfile.static .
     - echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USERNAME --password-stdin
