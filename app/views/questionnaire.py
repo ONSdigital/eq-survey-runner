@@ -55,14 +55,11 @@ post_submission_blueprint = Blueprint(name='post_submission',
 
 
 def capture_trace_attributes(metadata, block_id):
-    try:
-        tracer = execution_context.get_opencensus_tracer()
+    tracer = execution_context.get_opencensus_tracer()
 
-        tracer.add_attribute_to_current_span('form_type', metadata['form_type'])
-        tracer.add_attribute_to_current_span('eq_id', metadata['eq_id'])
-        tracer.add_attribute_to_current_span('block_id', block_id)
-    except Exception:
-        logger.error('Failed to trace request', exc_info=True)
+    tracer.add_attribute_to_current_span('form_type', metadata['form_type'])
+    tracer.add_attribute_to_current_span('eq_id', metadata['eq_id'])
+    tracer.add_attribute_to_current_span('block_id', block_id)
 
 
 @questionnaire_blueprint.before_request
