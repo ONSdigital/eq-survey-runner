@@ -44,6 +44,8 @@ cache:
         - /opt/python/
         - /home/travis/.local/share/
 install:
+    - ls -ltrh yarn.lock
+    - ls -ltrh package.json
     - yarn install --pure-lockfile
 script:
     - set -e
