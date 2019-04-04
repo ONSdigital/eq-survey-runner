@@ -43,9 +43,10 @@ cache:
     - directories:
         - /opt/python/
         - /home/travis/.local/share/
+install:
+    - yarn install --pure-lockfile
 script:
     - set -e
-    - yarn install --pure-lockfile
     - yarn compile
     - pipenv run ./scripts/run.sh
     - export TAG=`if [ "$TRAVIS_PULL_REQUEST_BRANCH" == "" ]; then echo "v3"; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi`
