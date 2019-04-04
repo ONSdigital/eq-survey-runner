@@ -45,7 +45,7 @@ cache:
         - /home/travis/.local/share/
 script:
     - set -e
-    - yarn compile
+    - yarn compile --pure-lockfile
     - pipenv run ./scripts/run.sh
     - export TAG=`if [ "$TRAVIS_PULL_REQUEST_BRANCH" == "" ]; then echo "v3"; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi`
     - docker build -t onsdigital/eq-survey-runner:$TAG -f Dockerfile .
