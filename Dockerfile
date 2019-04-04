@@ -15,7 +15,8 @@ RUN apt-get update \
 
 WORKDIR /runner
 
-COPY package.json yarn.lock /runner/
+COPY package.json /runner/
+COPY yarn.lock /runner/
 RUN yarn install --pure-lockfile
 
 COPY app/assets /runner/app/assets
