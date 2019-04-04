@@ -421,7 +421,7 @@ def add_blueprints(application):
 def setup_tracing(application):
     exporter = StackdriverExporter(project_id=application.config['EQ_STACKDRIVER_PROJECT_ID'],
                                    transport=AsyncTransport)
-    application.eq['tracing'] = FlaskMiddleware(application, exporter=exporter, blacklist_paths=['s', 'schemas'])
+    application.eq['opencensus'] = FlaskMiddleware(application, exporter=exporter, blacklist_paths=['s', 'schemas', 'dump'])
 
 
 def setup_secure_cookies(application):

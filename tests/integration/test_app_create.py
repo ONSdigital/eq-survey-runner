@@ -256,7 +256,7 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
 
         application = create_app(self._setting_overrides)
 
-        assert isinstance(application.eq['tracing'], FlaskMiddleware)
+        assert isinstance(application.eq['opencensus'], FlaskMiddleware)
 
     def test_defaults_to_adding_the_log_submitter_to_the_application(self):
         # When

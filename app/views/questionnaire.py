@@ -11,6 +11,8 @@ from jwcrypto.common import base64url_decode
 from sdc.crypto.encrypter import encrypt
 from structlog import get_logger
 
+from opencensus.trace import execution_context
+
 from app.authentication.no_token_exception import NoTokenException
 from app.data_model.answer_store import AnswerStore
 from app.data_model.app_models import SubmittedResponse
@@ -50,6 +52,17 @@ questionnaire_blueprint = Blueprint(name='questionnaire',
 post_submission_blueprint = Blueprint(name='post_submission',
                                       import_name=__name__,
                                       url_prefix='/submitted/')
+
+
+def capture_trace_attributes(metadata, block_id):
+    try:
+        tracer = execution_context.get_opencensus_tracer()
+
+        tracer.add_attribute_to_current_span('form_type', metadata['form_type'])
+        tracer.add_attribute_to_current_span('eq_id', metadata['eq_id'])
+        tracer.add_attribute_to_current_span('block_id', block_id)
+    except Exception:
+        logger.error('Failed to trace request', exc_info=True)
 
 
 @questionnaire_blueprint.before_request
@@ -93,6 +106,7 @@ def before_post_submission_request():
 
 
 @questionnaire_blueprint.route('<block_id>', methods=['GET'])
+@capture_trace
 @login_required
 @with_answer_store
 @with_metadata
@@ -102,6 +116,8 @@ def get_block(routing_path, schema, metadata, answer_store, block_id):
     current_location = Location(block_id)
     completed_locations = get_completed_blocks(current_user)
     router = Router(schema, routing_path, current_location, completed_locations)
+
+    capture_trace_attributes(metadata, block_id)
 
     if not router.can_access_location():
         next_location = router.get_next_location()
@@ -120,6 +136,7 @@ def get_block(routing_path, schema, metadata, answer_store, block_id):
 
 
 @questionnaire_blueprint.route('<block_id>', methods=['POST'])
+@capture_trace
 @login_required
 @with_answer_store
 @with_collection_metadata
@@ -130,6 +147,8 @@ def post_block(routing_path, schema, metadata, collection_metadata, answer_store
     current_location = Location(block_id)
     completed_locations = get_completed_blocks(current_user)
     router = Router(schema, routing_path, current_location, completed_locations)
+
+    capture_trace_attributes(metadata, block_id)
 
     if not router.can_access_location():
         next_location = router.get_next_location()
