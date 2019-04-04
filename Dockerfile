@@ -15,14 +15,12 @@ RUN apt-get update \
 
 WORKDIR /runner
 
-COPY app/assets /runner/app/assets
-COPY package.json /runner/
-COPY yarn.lock /runner/
+COPY package.json yarn.lock /runner/
 RUN yarn install
 
-COPY gulpfile.babel.js /runner/
+COPY app/assets /runner/app/assets
 COPY gulp/* /runner/gulp/
-COPY .babelrc .eslint* .stylelintrc .tern-project .yarnrc /runner/
+COPY .babelrc .eslint* .stylelintrc .tern-project .yarnrc gulpfile.babel.js /runner/
 RUN yarn compile
 
 ###############################################################################
