@@ -27,8 +27,8 @@ from app.helpers.template_helper import (with_session_timeout, with_analytics,
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.questionnaire.answer_store_updater import AnswerStoreUpdater
 from app.questionnaire.location import Location
-from app.questionnaire.router import Router
 from app.questionnaire.placeholder_renderer import PlaceholderRenderer
+from app.questionnaire.router import Router
 from app.questionnaire.schema_utils import transform_variants
 from app.storage.storage_encryption import StorageEncryption
 from app.submitter.converter import convert_answers
@@ -99,7 +99,6 @@ def get_block(routing_path, schema, metadata, answer_store, block_id):
     current_location = Location(block_id)
     completed_locations = get_completed_blocks(current_user)
     router = Router(schema, routing_path, current_location, completed_locations)
-
     if not router.can_access_location():
         next_location = router.get_next_location()
         return _redirect_to_location(next_location)

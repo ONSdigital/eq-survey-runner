@@ -208,7 +208,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         self.assertFalse(evaluate_goto(goto_rule, get_schema_mock(), {}, answer_store))
 
-    def test_evaluate_goto_returns_true_when_value_contained_in_list(self):
+    def test_evaluate_goto_returns_true_when_answer_value_list_contains_match_value(self):
 
         goto = {
             'id': 'next-question',
@@ -225,7 +225,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         self.assertTrue(evaluate_goto(goto, get_schema_mock(), {}, answer_store))
 
-    def test_evaluate_goto_returns_true_when_value_not_contained_in_list(self):
+    def test_evaluate_goto_returns_true_when_answer_value_list_not_contains_match_value(self):
 
         goto = {
             'id': 'next-question',
@@ -241,6 +241,74 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         answer_store.add_or_update(Answer(answer_id='my_answers', value=['answer2', 'answer3']))
 
         self.assertTrue(evaluate_goto(goto, get_schema_mock(), {}, answer_store, 0))
+
+    def test_evaluate_goto_returns_true_when_answer_values_contains_any_match_values(self):
+
+        goto = {
+            'id': 'next-question',
+            'when': [
+                {
+                    'id': 'my_answers',
+                    'condition': 'contains any',
+                    'value': ['answer1', 'answer2']
+                }
+            ]
+        }
+        answer_store = AnswerStore({})
+        answer_store.add_or_update(Answer(answer_id='my_answers', value=['answer1', 'answer4']))
+
+        self.assertTrue(evaluate_goto(goto, get_schema_mock(), {}, answer_store))
+
+    def test_evaluate_goto_returns_true_when_answer_values_contains_all_match_values(self):
+
+        goto = {
+            'id': 'next-question',
+            'when': [
+                {
+                    'id': 'my_answers',
+                    'condition': 'contains all',
+                    'value': ['answer1', 'answer2']
+                }
+            ]
+        }
+        answer_store = AnswerStore({})
+        answer_store.add_or_update(Answer(answer_id='my_answers', value=['answer1', 'answer2', 'answer3']))
+
+        self.assertTrue(evaluate_goto(goto, get_schema_mock(), {}, answer_store))
+
+    def test_evaluate_goto_returns_true_when_answer_value_equals_any_match_values(self):
+
+        goto = {
+            'id': 'next-question',
+            'when': [
+                {
+                    'id': 'my_answers',
+                    'condition': 'equals any',
+                    'values': ['answer1', 'answer2']
+                }
+            ]
+        }
+        answer_store = AnswerStore({})
+        answer_store.add_or_update(Answer(answer_id='my_answers', value='answer2'))
+
+        self.assertTrue(evaluate_goto(goto, get_schema_mock(), {}, answer_store))
+
+    def test_evaluate_goto_returns_true_when_answer_value_not_equals_any_match_values(self):
+
+        goto = {
+            'id': 'next-question',
+            'when': [
+                {
+                    'id': 'my_answers',
+                    'condition': 'not equals any',
+                    'values': ['answer1', 'answer2'],
+                }
+            ]
+        }
+        answer_store = AnswerStore({})
+        answer_store.add_or_update(Answer(answer_id='my_answers', value='answer3'))
+
+        self.assertTrue(evaluate_goto(goto, get_schema_mock(), {}, answer_store))
 
     def test_evaluate_skip_condition_returns_true_when_this_rule_true(self):
         # Given
@@ -515,6 +583,8 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             'medium': Answer(answer_id='medium', value=5),
             'high': Answer(answer_id='high', value=10),
             'list_answer': Answer(answer_id='list_answer', value=['a', 'abc', 'cba']),
+            'other_list_answer': Answer(answer_id='other_list_answer', value=['x', 'y', 'z']),
+            'other_list_answer_2': Answer(answer_id='other_list_answer_2', value=['a', 'abc', 'cba']),
             'text_answer': Answer(answer_id='small_string', value='abc'),
             'other_text_answer': Answer(answer_id='other_string', value='xyz'),
         }
@@ -530,14 +600,21 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             (answers['medium'], 'less than', answers['high'], True),
             (answers['medium'], 'less than', answers['low'], False),
             (answers['medium'], 'equals', missing_answer, False),
-            (answers['list_answer'], 'not contains', answers['other_text_answer'], True),
-            (answers['list_answer'], 'not contains', answers['text_answer'], False),
             (answers['list_answer'], 'contains', answers['text_answer'], True),
             (answers['list_answer'], 'contains', answers['other_text_answer'], False),
+            (answers['list_answer'], 'not contains', answers['other_text_answer'], True),
+            (answers['list_answer'], 'not contains', answers['text_answer'], False),
+            (answers['list_answer'], 'contains any', answers['other_list_answer_2'], True),
+            (answers['list_answer'], 'contains any', answers['other_list_answer'], False),
+            (answers['list_answer'], 'contains all', answers['other_list_answer'], False),
+            (answers['list_answer'], 'contains all', answers['other_list_answer_2'], True),
+            (answers['text_answer'], 'equals any', answers['list_answer'], True),
+            (answers['text_answer'], 'equals any', answers['other_list_answer'], False),
+            (answers['text_answer'], 'not equals any', answers['other_list_answer'], True),
+            (answers['text_answer'], 'not equals any', answers['list_answer'], False)
         ]
 
         for lhs, comparison, rhs, expected_result in param_list:
-
             # Given
             with self.subTest(lhs=lhs, comparison=comparison, rhs=rhs, expected_result=expected_result):
                 answer_store = AnswerStore({})
@@ -549,6 +626,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
                     'condition': comparison,
                     'comparison_id': rhs.answer_id
                 }]
+
                 self.assertEqual(evaluate_when_rules(when, get_schema_mock(), {}, answer_store, None), expected_result)
 
     def test_evaluate_when_rule_raises_if_bad_when_condition(self):
@@ -586,4 +664,5 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
             self.assertTrue(evaluate_when_rules(when['when'], get_schema_mock(), {}, answer_store, None))
 
         with patch('app.questionnaire.rules._is_answer_on_path', return_value=False):
-            self.assertFalse(evaluate_when_rules(when['when'], get_schema_mock(), {}, answer_store, routing_path=routing_path))
+            self.assertFalse(
+                evaluate_when_rules(when['when'], get_schema_mock(), {}, answer_store, routing_path=routing_path))
