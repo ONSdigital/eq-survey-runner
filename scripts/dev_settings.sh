@@ -44,6 +44,14 @@ if [ -z "$EQ_DATASTORE_EMULATOR_CREDENTIALS" ]; then
   export EQ_DATASTORE_EMULATOR_CREDENTIALS="True"
 fi
 
+if [ -z "$EQ_REDIS_HOST" ]; then
+  export EQ_REDIS_HOST="localhost"
+fi
+
+if [ -z "$EQ_REDIS_PORT" ]; then
+  export EQ_REDIS_PORT="6379"
+fi
+
 if [ -z "$EQ_SUBMITTED_RESPONSES_TABLE_NAME" ]; then
   export EQ_SUBMITTED_RESPONSES_TABLE_NAME="dev-submitted-responses"
 fi

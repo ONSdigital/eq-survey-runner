@@ -3,6 +3,7 @@ import re
 import unittest
 import json
 import zlib
+import fakeredis
 
 from bs4 import BeautifulSoup
 from mock import patch
@@ -49,6 +50,9 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         self._ds = patch('app.setup.datastore.Client', MockDatastore)
         self._ds.start()
 
+        self._redis = patch('app.setup.redis.Redis', fakeredis.FakeStrictRedis)
+        self._redis.start()
+
         from application import configure_logging
         configure_logging()
 
@@ -88,6 +92,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
     def tearDown(self):
         self._ds.stop()
+        self._redis.stop()
 
     def launchSurvey(self, eq_id='test', form_type_id='dates', **payload_kwargs):
         """
