@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f8c6eaa564959cd16d1f70e14394abeb7590f0018fd8b56ff5a453c0754137f9"
+            "sha256": "7537949d024a69627cc2d092427c43e4105652637f05accced1df60b9108ac8e"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -489,24 +489,30 @@
         },
         "opencensus": {
             "hashes": [
-                "sha256:c5680c9a5c91b8a7be6953be44189ab518018ab728e0c4c89bad2d857d5e82de"
+                "sha256:74ea86c6815d0dfc185802cab7ab86b03dc8faaa9ccb14c80a9e66eaf39f66af"
             ],
             "index": "pypi",
-            "version": "==0.3.1"
+            "version": "==0.4.0"
+        },
+        "opencensus-context": {
+            "hashes": [
+                "sha256:0d63a1da591b529371d4121819ffe0c191548236a24af3df5b502d3e6eb10447"
+            ],
+            "version": "==0.1.0"
         },
         "opencensus-ext-flask": {
             "hashes": [
-                "sha256:cce417a1948c12fcaa1b95ee81f177cd29f1f2e428f9a427259e5745be44e069"
+                "sha256:bffa47846e6562525a93d807efa67bcac2d896064fe507f4acdd32c1864967da"
             ],
             "index": "pypi",
-            "version": "==0.1.0"
+            "version": "==0.2.0"
         },
         "opencensus-ext-stackdriver": {
             "hashes": [
-                "sha256:4f5bc1dbb530e1f724e278dd97608de1e6db37456038f49766f2e13f74ad2dd9"
+                "sha256:932816ab0e437e755cf0c02091c2571a44ffd1ecb5146fe67c1525c02b1bda74"
             ],
             "index": "pypi",
-            "version": "==0.1.1"
+            "version": "==0.2.0"
         },
         "pika": {
             "hashes": [
