@@ -217,7 +217,7 @@ def get_view_submission(schema):  # pylint: too-many-locals
     session_data = get_session_store().session_data
 
     if _is_submission_viewable(schema.json, session_data.submitted_time):
-        submitted_data = current_app.eq['storage'].get_by_key(SubmittedResponse, session_data.tx_id)
+        submitted_data = current_app.eq['ephemeral_storage'].get_by_key(SubmittedResponse, session_data.tx_id)
 
         if submitted_data:
 
@@ -366,7 +366,7 @@ def _store_viewable_submission(answers, metadata, submitted_time):
         valid_until=valid_until.replace(tzinfo=tzutc()),
     )
 
-    current_app.eq['storage'].put(item)
+    current_app.eq['ephemeral_storage'].put(item)
 
 
 def is_view_submitted_response_enabled(schema):
