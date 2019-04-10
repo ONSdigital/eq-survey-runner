@@ -4,6 +4,8 @@ services:
 
   datastore:
     image: knarz/datastore-emulator
+    environment:
+        IN_MEMORY: "true"
     networks:
       - eq-env
 
