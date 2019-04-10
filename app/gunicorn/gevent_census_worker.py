@@ -1,3 +1,4 @@
+# pylint: skip-file
 from gunicorn.workers import ggevent
 import gevent
 import sys
