@@ -25,4 +25,3 @@ class GEventOpenCensusWorker(ggevent.GeventWorker):
             else:
                 sockets.append(ggevent.socket(s.FAMILY, ggevent._socket.SOCK_STREAM, _sock=s))
         self.sockets = sockets
-
