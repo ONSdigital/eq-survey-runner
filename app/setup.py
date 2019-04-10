@@ -25,6 +25,7 @@ from structlog import get_logger
 from opencensus.ext.flask.flask_middleware import FlaskMiddleware
 from opencensus.ext.stackdriver.trace_exporter import StackdriverExporter
 from opencensus.common.transports.async_ import AsyncTransport
+from opencensus.trace.samplers.probability import ProbabilitySampler
 
 from app import flask_theme_cache
 from app import settings
@@ -421,7 +422,7 @@ def add_blueprints(application):
 def setup_tracing(application):
     exporter = StackdriverExporter(project_id=application.config['EQ_STACKDRIVER_PROJECT_ID'],
                                    transport=AsyncTransport)
-    application.eq['opencensus'] = FlaskMiddleware(application, exporter=exporter,
+    application.eq['opencensus'] = FlaskMiddleware(application, exporter=exporter, sampler=ProbabilitySampler(rate=0.5),
                                                    blacklist_paths=['/s/', 'status', 'schemas', 'dump', 'flush'])
 
 
