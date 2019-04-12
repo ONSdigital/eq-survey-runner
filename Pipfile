@@ -60,6 +60,7 @@ python-snappy = "*"
 google-cloud-storage = "*"
 jsonpointer = "*"
 redis = "*"
+quart = "*"
 
 [requires]
 python_version = "3.7"

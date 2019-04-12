@@ -1,3 +1,4 @@
+import quart.flask_patch
 import copy
 import json
 import logging
@@ -11,7 +12,7 @@ import redis
 import sqlalchemy
 import yaml
 from botocore.config import Config
-from flask import Flask, url_for, session as cookie_session
+from quart import Quart, session as cookie_session, url_for
 from flask_babel import Babel
 from flask_caching import Cache
 from flask_talisman import Talisman
@@ -87,7 +88,7 @@ class AWSReverseProxied:
 
 
 def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-complex
-    application = Flask(__name__, static_url_path='/s', static_folder='../static')
+    application = Quart(__name__, static_url_path='/s', static_folder='../static')
     application.config.from_object(settings)
 
     application.eq = {}

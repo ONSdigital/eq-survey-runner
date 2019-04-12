@@ -3,8 +3,8 @@ from datetime import datetime, timedelta
 import humanize
 import simplejson as json
 from dateutil.tz import tzutc
-from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify
-from flask import session as cookie_session
+from quart import Blueprint, g, redirect, request, url_for, current_app, jsonify
+from quart import session as cookie_session
 from flask_login import current_user, login_required, logout_user
 from flask_themes2 import render_theme_template
 from jwcrypto.common import base64url_decode
@@ -94,7 +94,7 @@ def before_post_submission_request():
 @with_metadata
 @with_schema
 @full_routing_path_required
-def get_block(routing_path, schema, metadata, answer_store, block_id):
+async def get_block(routing_path, schema, metadata, answer_store, block_id):
     current_location = Location(block_id)
     completed_locations = get_completed_blocks(current_user)
     router = Router(schema, routing_path, current_location, completed_locations)
@@ -122,7 +122,7 @@ def get_block(routing_path, schema, metadata, answer_store, block_id):
 @with_metadata
 @with_schema
 @full_routing_path_required
-def post_block(routing_path, schema, metadata, collection_metadata, answer_store, block_id):  # pylint: disable=too-many-locals
+async def post_block(routing_path, schema, metadata, collection_metadata, answer_store, block_id):  # pylint: disable=too-many-locals
     current_location = Location(block_id)
     completed_locations = get_completed_blocks(current_user)
     router = Router(schema, routing_path, current_location, completed_locations)
@@ -144,7 +144,7 @@ def post_block(routing_path, schema, metadata, collection_metadata, answer_store
         return _save_sign_out(current_location, rendered_block.get('question'), form, schema)
 
     if 'action[sign_out]' in request.form:
-        return redirect(url_for('session.get_sign_out'))
+        return await redirect(url_for('session.get_sign_out'))
 
     if form.validate():
         _set_started_at_metadata_if_required(form, collection_metadata)
@@ -157,7 +157,7 @@ def post_block(routing_path, schema, metadata, collection_metadata, answer_store
         if _is_end_of_questionnaire(block, next_location):
             return submit_answers(routing_path, schema)
 
-        return redirect(next_location.url())
+        return await redirect(next_location.url())
 
     context = build_view_context(block['type'], metadata, schema, answer_store, rendered_block, current_location, form)
 
@@ -167,7 +167,7 @@ def post_block(routing_path, schema, metadata, collection_metadata, answer_store
 @post_submission_blueprint.route('thank-you', methods=['GET'])
 @login_required
 @with_schema
-def get_thank_you(schema):
+async def get_thank_you(schema):
     session_data = get_session_store().session_data
 
     if session_data.submitted_time:
@@ -202,7 +202,7 @@ def get_thank_you(schema):
 
 @post_submission_blueprint.route('thank-you', methods=['POST'])
 @login_required
-def post_thank_you():
+async def post_thank_you():
     if 'action[sign_out]' in request.form:
         return redirect(url_for('session.get_sign_out'))
 
@@ -212,7 +212,7 @@ def post_thank_you():
 @post_submission_blueprint.route('view-submission', methods=['GET'])
 @login_required
 @with_schema
-def get_view_submission(schema):  # pylint: too-many-locals
+async def get_view_submission(schema):  # pylint: too-many-locals
 
     session_data = get_session_store().session_data
 
@@ -266,11 +266,11 @@ def get_view_submission(schema):  # pylint: too-many-locals
 
 @post_submission_blueprint.route('view-submission', methods=['POST'])
 @login_required
-def post_view_submission():
+async def post_view_submission():
     if 'action[sign_out]' in request.form:
-        return redirect(url_for('session.get_sign_out'))
+        return await redirect(url_for('session.get_sign_out'))
 
-    return redirect(url_for('post_submission.get_view_submission'))
+    return await redirect(url_for('post_submission.get_view_submission'))
 
 
 def _set_started_at_metadata_if_required(form, collection_metadata):
@@ -407,7 +407,7 @@ def _save_sign_out(current_location, current_question, form, schema):
 
 
 def _redirect_to_location(location):
-    return redirect(url_for('questionnaire.get_block', block_id=location.block_id))
+    return await redirect(url_for('questionnaire.get_block', block_id=location.block_id))
 
 
 def _get_context(block, current_location, schema, form=None):
@@ -450,7 +450,7 @@ def _render_template(context, current_location, template, previous_url, schema,
     session_store = get_session_store()
     session_data = session_store.session_data
 
-    return render_template(
+    return await render_template(
         template,
         content=context,
         current_location=current_location,
