@@ -66,10 +66,10 @@ pipenv run scripts/run_tests_unit.sh
 
 
 ### Pre-Requisites
-In order to run locally you'll need PostgreSQL, Node.js, sqlite3, snappy, pyenv and Jsonnet installed
+In order to run locally you'll need Node.js, snappy, pyenv and Jsonnet installed
 
 ```
-brew install postgres snappy npm sqlite3 pyenv jsonnet
+brew install snappy npm pyenv jsonnet
 ```
 
 Note that npm currently requires Python 2.x for some of the setup steps,
@@ -114,8 +114,6 @@ docker run -it -p 6060:8000 onsdigital/eq-docker-dynamodb:latest
 OR
 docker run -it -p 8432:8432 knarz/datastore-emulator:latest
 ```
-
-Please note that currently the SQL backend does not support submitted responses
 
 You will also need to run Redis as a cache for JTI tokens
 
@@ -352,12 +350,7 @@ The following env variables can be used
 | EQ_RABBITMQ_HOST_SECONDARY                |                       |                                                                                               |
 | EQ_RABBITMQ_PORT                          | 5672                  |                                                                                               |
 | EQ_RABBITMQ_QUEUE_NAME                    | submit_q              | The name of the submission queue                                                              |
-| EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER    | postgresql            |                                                                                               |
-| EQ_SERVER_SIDE_STORAGE_DATABASE_HOST      |                       |                                                                                               |
-| EQ_SERVER_SIDE_STORAGE_DATABASE_PORT      | 5432                  |                                                                                               |
-| EQ_SERVER_SIDE_STORAGE_DATABASE_NAME      | digitaleqrds          |                                                                                               |
 | EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS | 10000                 |                                                                                               |
-| SQLALCHEMY_DATABASE_URI                   |                       | a Database URI to use to connecto to a database                                               |
 | EQ_STORAGE_BACKEND                        | datastore             |                                                                                               |
 | EQ_DATASTORE_EMULATOR_CREDENTIALS         | False                 |                                                                                               |
 | EQ_DYNAMODB_ENDPOINT                      |                       |                                                                                               |

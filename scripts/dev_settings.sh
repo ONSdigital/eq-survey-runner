@@ -28,10 +28,6 @@ if [ -z "$EQ_RABBITMQ_HOST_SECONDARY" ]; then
   export EQ_RABBITMQ_HOST_SECONDARY="localhost"
 fi
 
-if [ -z "$SQLALCHEMY_DATABASE_URI" ]; then
-  export SQLALCHEMY_DATABASE_URI="sqlite:////tmp/questionnaire.db"
-fi
-
 if [ -z "$EQ_DYNAMODB_ENDPOINT" ]; then
   export EQ_DYNAMODB_ENDPOINT="http://localhost:6060"
 fi
