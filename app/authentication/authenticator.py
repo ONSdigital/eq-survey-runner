@@ -48,10 +48,13 @@ def _extend_session_expiry(session_store):
     """
     session_timeout = cookie_session.get('expires_in')
     if session_timeout:
-        session_store.expiration_time = datetime.now(tz=tzutc()) + timedelta(seconds=session_timeout)
-        session_store.save()
+        new_expiration_time = datetime.now(tz=tzutc()) + timedelta(seconds=session_timeout)
 
-        logger.debug('session expiry extended')
+        # Only update expiry time if its greater than 60s different to what is currently set
+        if not session_store.expiration_time or (new_expiration_time - session_store.expiration_time).total_seconds() > 60:
+            session_store.expiration_time = new_expiration_time
+            session_store.save()
+            logger.debug('session expiry extended')
 
 
 def _is_session_valid(session_store):
