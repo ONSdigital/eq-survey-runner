@@ -18,7 +18,6 @@ var
 sdist
 develop-eggs
 .installed.cfg
-lib
 lib64
 
 # Installer logs
@@ -91,6 +90,9 @@ secrets.yml
 requirements.txt
 
 .screenshots
+
+# Ignore built schemas
+data/en/census_individual.json
 
 # Ignore any generated pages for the functional tests
 tests/functional/generated_pages

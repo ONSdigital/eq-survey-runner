@@ -28,5 +28,8 @@ pylint --reports=n --output-format=colorized --rcfile=.pylintrc -j 0 ./app ./tes
 # http://stackoverflow.com/questions/6626351/how-to-extract-bits-from-return-code-number-in-bash
 display_result $? 2 "Pylint linting check"
 
+./scripts/lint_jsonnet.sh
+display_result $? 1 "Jsonnet linting check"
+
 yarn lint
 display_result $? 1 "Javascript linting check"

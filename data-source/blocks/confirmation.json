@@ -1,0 +1,18 @@
+{
+    "type": "Confirmation",
+    "id": "confirmation",
+    "title": "You’re ready to submit your 2017 Census Test",
+    "content": [
+        {
+            "description": "Thank you for taking part in the 2017 Census Test"
+        },
+        {
+            "title": "Please note:",
+            "list": [
+                "by submitting your responses, you are declaring that you have completed to the best of your knowledge and belief.",
+                "if you do not submit, your responses will be automatically submitted when the Census 2017 Test closes.",
+                "after submission you will have an opportunity to provide feedback on your experience."
+            ]
+        }
+    ]
+}
