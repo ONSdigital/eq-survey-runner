@@ -22,12 +22,6 @@ class EQSession:
         self.updated_at = datetime.now(tz=tzutc())
         self.expires_at = expires_at
 
-        # Needed only when data is read from Postgres.
-        # The Timestamp() class already handles this when reading from Dynamo.
-        # Can be removed once only Dynamo is used.
-        if expires_at:
-            self.expires_at = expires_at.replace(tzinfo=tzutc())
-
 
 class UsedJtiClaim:
     def __init__(self, jti_claim, used_at, expires):

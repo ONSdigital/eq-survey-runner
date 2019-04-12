@@ -1,13 +1,13 @@
 import unittest
 from uuid import UUID
 from contextlib import contextmanager
-from mock import patch, MagicMock
+from mock import patch
 
 from flask import Flask, request
 from flask_babel import Babel
 
 from app import settings
-from app.setup import create_app, versioned_url_for, get_database_uri, EmulatorCredentials
+from app.setup import create_app, versioned_url_for, EmulatorCredentials
 from app.storage.datastore import DatastoreStorage
 from app.storage.dynamodb import DynamodbStorage
 from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter, GCSSubmitter
@@ -16,7 +16,6 @@ from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter, GCSSubmitte
 class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-methods
     def setUp(self):
         self._setting_overrides = {
-            'SQLALCHEMY_DATABASE_URI': 'sqlite:////tmp/questionnaire.db'
         }
 
     @contextmanager
@@ -284,25 +283,3 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
 
         with self.assertRaises(Exception):
             create_app(self._setting_overrides)
-
-    def test_setup_from_database_components(self):
-        # Given
-        self._setting_overrides.update({
-            'EQ_SERVER_SIDE_STORAGE_DATABASE_HOST': '',
-            'EQ_SERVER_SIDE_STORAGE_DATABASE_PORT': '',
-            'EQ_SERVER_SIDE_STORAGE_DATABASE_NAME': 'questionnaire.db',
-            'EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER': 'sqlite',
-            'SQLALCHEMY_DATABASE_URI': False,
-        })
-
-        application = MagicMock()
-        application.config = self._setting_overrides
-        secret_store = MagicMock()
-        secret_store.get_secret_by_name = MagicMock(return_value='')
-        application.eq = {'secret_store': secret_store}
-
-        # When
-        uri = get_database_uri(application)
-
-        # Then
-        self.assertEqual(uri, 'sqlite://:@:/questionnaire.db')
