@@ -1,4 +1,4 @@
-{% extends theme('layouts/_twocol.html') %}
+{% extends 'layouts/_twocol.html' %}
 {% import 'macros/helpers.html' as helpers %}
 
 {% block page_title -%}{{_("Submission")}} - {{survey_title}}{% endblock -%}
@@ -29,10 +29,10 @@
 
 <button type="button" class="btn btn--secondary btn-print icon--print-link u-mt-s u-mb-l print__hidden u-no-js-hide">{{ _("Print this page") }} <span class="btn__icon btn__icon--print-link"></span></button>
 
-{% include theme('partials/summary/summary.html') %}
+{% include 'partials/summary/summary.html' %}
 
 {% endblock -%}
 
 {% block footer %}
-{% include theme('partials/footer-transactional.html') %}
+{% include 'partials/footer-transactional.html' %}
 {% endblock %}

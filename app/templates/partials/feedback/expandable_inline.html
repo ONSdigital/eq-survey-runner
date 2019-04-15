@@ -8,7 +8,7 @@
             <div class="js-collapsible-content">
                 <a class="collapsible__title collapsible__title--link js-collapsible-title icon--collapsible-simple u-fs-r--b" target="_blank" data-qa="a-feedback-open" data-ga="click" data-ga-category="feedback" data-ga-action="Open panel" data-ga-label="Feedback" href="/feedback">{{ _("Give feedback and help us improve this service") }}.</a>
                 <div class="collapsible__body u-fs-r js-collapsible-body">
-                    {% include theme('partials/feedback/js_feedback_form.html') %}
+                    {% include 'partials/feedback/js_feedback_form.html' %}
                     <button type="button" class="btn--secondary btn--small js-collapsible-close u-no-js-hide" data-ga="click" data-ga-category="feedback" data-qa="a-feedback-close" data-ga-action="Cancel" data-ga-label="Feedback cancelled">{{ _("I don't want to provide feedback") }}</button>
                 </div>
             </div>

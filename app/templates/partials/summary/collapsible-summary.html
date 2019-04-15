@@ -19,9 +19,9 @@
                         {%- set has_multiple_answers = question.answers|length > 1 -%}
 
                         {%- if has_multiple_answers -%}
-                            {%- include theme(['partials/summary/question-multiple-answers.html']) -%}
+                            {%- include ['partials/summary/question-multiple-answers.html'] -%}
                         {%- else -%}
-                            {%- include theme(['partials/summary/question-single-answer.html']) -%}
+                            {%- include ['partials/summary/question-single-answer.html'] -%}
                         {%- endif -%}
 
                         {%- for answers in question.answers -%}

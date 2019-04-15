@@ -1,5 +1,5 @@
 {% import 'macros/helpers.html' as helpers %}
-{% extends theme('confirmation.html') -%}
+{% extends 'confirmation.html' -%}
 
 {% set save_on_signout = true %}
 
@@ -7,7 +7,7 @@
 
 {% block sidebar %}
   {% if navigation %}
-    {% include theme('partials/section-navigation.html') %}
+    {% include 'partials/section-navigation.html' %}
   {% endif %}
 {% endblock %}
 
@@ -46,9 +46,9 @@
 {% endif %}
 
 {% if content.summary.summary_type == 'AnswerSummary' %}
-  {% include theme('partials/summary/answer-summary.html') %}
+  {% include 'partials/summary/answer-summary.html' %}
 {% else %}
-  {% include theme('partials/summary/summary.html') %}
+  {% include 'partials/summary/summary.html' %}
 {% endif %}
 
 {% if content.summary.is_view_submission_response_enabled %}

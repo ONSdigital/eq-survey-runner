@@ -1,4 +1,4 @@
-{% extends theme('layouts/_twocol.html') %}
+{% extends 'layouts/_twocol.html' %}
 
 {% block page_title %}{{_("We\'ve received your answers")}} - {{survey_title}}{% endblock %}
 
@@ -38,5 +38,5 @@
 
 {% endblock %}
 {% block footer %}
-{% include theme('partials/footer-transactional.html') %}
+{% include 'partials/footer-transactional.html' %}
 {% endblock %}

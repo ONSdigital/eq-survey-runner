@@ -1,4 +1,4 @@
-{% extends theme('layouts/_twocol.html') %}
+{% extends 'layouts/_twocol.html' %}
 {% import 'macros/helpers.html' as helpers %}
 
 {% block page_title %}{{page_title}}{% endblock %}
@@ -12,7 +12,7 @@
 
 {% block sidebar %}
   {% if navigation %}
-    {% include theme('partials/section-navigation.html') %}
+    {% include 'partials/section-navigation.html' %}
   {% endif %}
 {% endblock %}
 
@@ -36,10 +36,10 @@
   <div class="container">
     <div class="grid">
       <div class="grid__col col-7@m">
-        {% include theme('partials/feedback/expandable_inline.html') %}
+        {% include 'partials/feedback/expandable_inline.html' %}
       </div>
     </div>
   </div>
 </div>
-{% include theme('partials/footer-transactional.html') %}
+{% include 'partials/footer-transactional.html' %}
 {% endblock %}

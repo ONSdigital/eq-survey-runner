@@ -3,7 +3,7 @@
     <div class="question__answers">
       {%- for answer in question.answers -%}
         <div class="question__answer">
-          {% include theme('partials/answer.html') %}
+          {% include 'partials/answer.html' %}
         </div>
       {%- endfor -%}
     </div>
@@ -47,7 +47,7 @@
     {{question_description}}
     {{question_definition}}
     {{question_guidance}}
-    {% include theme('partials/questions/errors.html') %}
+    {% include 'partials/questions/errors.html' %}
 
   {% else %}
 

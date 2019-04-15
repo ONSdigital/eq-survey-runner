@@ -1,7 +1,7 @@
 <div class="summary__item summary__item--multiple">
     <div class="grid">
         <div class="grid__col col-12@m">
-            {%- include theme(['partials/summary/display-question.html']) -%}
+            {%- include ['partials/summary/display-question.html'] -%}
         </div>
     </div>
 
@@ -9,13 +9,13 @@
     {% set is_textarea = answer_is_type(answer, 'textarea') %}
     <div class="grid">
         <div class="grid__col col-12@xs {{ 'col-10@m' if is_textarea else 'col-6@m' }}">
-            {%- include theme(['partials/summary/display-answer-label.html']) -%}
+            {%- include ['partials/summary/display-answer-label.html'] -%}
         </div>
 
-        {%- include theme(['partials/summary/display-answer.html']) -%}
+        {%- include ['partials/summary/display-answer.html'] -%}
 
         {%- if content.summary.answers_are_editable -%}
-            {% include theme(['partials/summary/edit-link.html']) -%}
+            {% include ['partials/summary/edit-link.html'] -%}
         {%- endif -%}
 
     </div>

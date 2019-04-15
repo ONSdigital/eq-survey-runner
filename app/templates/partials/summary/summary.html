@@ -16,14 +16,14 @@
                     {%- set has_multiple_answers = question.answers|length > 1 -%}
 
                     {%- if has_multiple_answers -%}
-                        {%- include theme(['partials/summary/question-multiple-answers.html']) -%}
+                        {%- include ['partials/summary/question-multiple-answers.html'] -%}
                     {%- else -%}
-                        {%- include theme(['partials/summary/question-single-answer.html']) -%}
+                        {%- include ['partials/summary/question-single-answer.html'] -%}
                     {%- endif -%}
 
                 {%- endfor -%}
                 {%- if content.summary.summary_type == 'CalculatedSummary' -%}
-                    {%- include theme(['partials/summary/calculated-summary-answer.html']) -%}
+                    {%- include ['partials/summary/calculated-summary-answer.html'] -%}
                 {%- endif -%}
             {%- if loop.last or loop.nextitem.title -%}
                 </div>
