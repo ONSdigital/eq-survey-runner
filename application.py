@@ -1,10 +1,8 @@
 #!/usr/bin/env python
-
+import quart.flask_patch
 import logging
 import os
 
-from flask_script import Manager
-from flask_script import Server
 from structlog import configure
 from structlog.dev import ConsoleRenderer
 from structlog.processors import JSONRenderer, format_exc_info
@@ -63,7 +61,4 @@ application = create_app()
 
 
 if __name__ == '__main__':
-    manager = Manager(application)
-    port = int(os.environ.get('PORT', 5000))
-    manager.add_command("runserver", Server(host='0.0.0.0', port=port, threaded=True))  # nosec
-    manager.run()
+    application.run()

@@ -8,7 +8,7 @@ from app.forms.questionnaire_form import generate_form
 logger = get_logger()
 
 
-def get_form_for_location(schema, block_json, location, answer_store, metadata, disable_mandatory=False):  # pylint: disable=too-many-locals
+async def get_form_for_location(schema, block_json, location, answer_store, metadata, disable_mandatory=False):  # pylint: disable=too-many-locals
     """
     Returns the form necessary for the location given a get request, plus any template arguments
 
@@ -29,10 +29,10 @@ def get_form_for_location(schema, block_json, location, answer_store, metadata, 
         block_id=location.block_id,
     )
 
-    return generate_form(schema, block_json.get('question'), answer_store, metadata, data=mapped_answers)
+    return await generate_form(schema, block_json.get('question'), answer_store, metadata, data=mapped_answers)
 
 
-def post_form_for_block(schema, block_json, answer_store, metadata, request_form, disable_mandatory=False):
+async def post_form_for_block(schema, block_json, answer_store, metadata, request_form, disable_mandatory=False):
     """
     Returns the form necessary for the location given a post request, plus any template arguments
 
@@ -51,7 +51,7 @@ def post_form_for_block(schema, block_json, answer_store, metadata, request_form
 
     data = clear_detail_answer_field(request_form, question)
 
-    return generate_form(schema, question, answer_store, metadata, formdata=data)
+    return await generate_form(schema, question, answer_store, metadata, formdata=data)
 
 
 def disable_mandatory_answers(block):

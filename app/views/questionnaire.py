@@ -6,7 +6,7 @@ from dateutil.tz import tzutc
 from quart import Blueprint, g, redirect, request, url_for, current_app, jsonify
 from quart import session as cookie_session
 from flask_login import current_user, login_required, logout_user
-from flask_themes2 import render_theme_template
+
 from jwcrypto.common import base64url_decode
 from sdc.crypto.encrypter import encrypt
 from structlog import get_logger
@@ -110,9 +110,9 @@ async def get_block(routing_path, schema, metadata, answer_store, block_id):
     placeholder_renderer = PlaceholderRenderer(answer_store=answer_store, metadata=metadata)
     rendered_block = placeholder_renderer.render(transformed_block)
 
-    context = _get_context(rendered_block, current_location, schema)
+    context = await _get_context(rendered_block, current_location, schema)
 
-    return _render_page(block['type'], context, current_location, schema)
+    return await _render_page(block['type'], context, current_location, schema)
 
 
 @questionnaire_blueprint.route('<block_id>', methods=['POST'])
@@ -138,10 +138,10 @@ async def post_block(routing_path, schema, metadata, collection_metadata, answer
     placeholder_renderer = PlaceholderRenderer(answer_store=answer_store, metadata=metadata)
     rendered_block = placeholder_renderer.render(transformed_block)
 
-    form = _generate_wtf_form(request.form, rendered_block, schema)
+    form = await _generate_wtf_form(request.form, rendered_block, schema)
 
     if 'action[save_sign_out]' in request.form:
-        return _save_sign_out(current_location, rendered_block.get('question'), form, schema)
+        return await _save_sign_out(current_location, rendered_block.get('question'), form, schema)
 
     if 'action[sign_out]' in request.form:
         return await redirect(url_for('session.get_sign_out'))
@@ -179,17 +179,16 @@ async def get_thank_you(schema):
             view_submission_url = url_for('.get_view_submission')
             view_submission_duration = humanize.naturaldelta(timedelta(seconds=schema.json['view_submitted_response']['duration']))
 
-        return render_theme_template(schema.json['theme'],
-                                     template_name='thank-you.html',
-                                     metadata=metadata_context,
-                                     analytics_ua_id=current_app.config['EQ_UA_ID'],
-                                     survey_id=schema.json['survey_id'],
-                                     survey_title=safe_content(schema.json['title']),
-                                     is_view_submitted_response_enabled=is_view_submitted_response_enabled(schema.json),
-                                     view_submission_url=view_submission_url,
-                                     account_service_url=cookie_session.get('account_service_url'),
-                                     account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
-                                     view_submission_duration=view_submission_duration)
+        return await render_template('thank-you.html',
+                             metadata=metadata_context,
+                             analytics_ua_id=current_app.config['EQ_UA_ID'],
+                             survey_id=schema.json['survey_id'],
+                             survey_title=safe_content(schema.json['title']),
+                             is_view_submitted_response_enabled=is_view_submitted_response_enabled(schema.json),
+                             view_submission_url=view_submission_url,
+                             account_service_url=cookie_session.get('account_service_url'),
+                             account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
+                             view_submission_duration=view_submission_duration)
 
     routing_path = path_finder.get_full_routing_path()
 
@@ -251,15 +250,14 @@ async def get_view_submission(schema):  # pylint: too-many-locals
                 },
             }
 
-            return render_theme_template(schema.json['theme'],
-                                         template_name='view-submission.html',
-                                         metadata=metadata_context,
-                                         analytics_ua_id=current_app.config['EQ_UA_ID'],
-                                         survey_id=schema.json['survey_id'],
-                                         survey_title=safe_content(schema.json['title']),
-                                         account_service_url=cookie_session.get('account_service_url'),
-                                         account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
-                                         content=context)
+            return await render_template(template_name='view-submission.html',
+                                     metadata=metadata_context,
+                                     analytics_ua_id=current_app.config['EQ_UA_ID'],
+                                     survey_id=schema.json['survey_id'],
+                                     survey_title=safe_content(schema.json['title']),
+                                     account_service_url=cookie_session.get('account_service_url'),
+                                     account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
+                                     content=context)
 
     return redirect(url_for('post_submission.get_thank_you'))
 
@@ -290,15 +288,17 @@ def _render_page(block_type, context, current_location, schema):
     return _build_template(current_location, context, block_type, schema)
 
 
-def _generate_wtf_form(form, block, schema):
-    disable_mandatory = 'action[save_sign_out]' in form
+async def _generate_wtf_form(form, block, schema):
+    disable_mandatory = 'action[save_sign_out]' in await form
 
-    wtf_form = post_form_for_block(
+    request_form = await request.form
+
+    wtf_form = await post_form_for_block(
         schema,
         block,
         get_answer_store(current_user),
         get_metadata(current_user),
-        request.form,
+        request_form,
         disable_mandatory)
 
     return wtf_form
@@ -386,7 +386,7 @@ def _is_submission_viewable(schema, submitted_time):
     return False
 
 
-def _save_sign_out(current_location, current_question, form, schema):
+async def _save_sign_out(current_location, current_question, form, schema):
     questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
 
     block = schema.get_block(current_location.block_id)
@@ -400,22 +400,22 @@ def _save_sign_out(current_location, current_question, form, schema):
 
         logout_user()
 
-        return redirect(url_for('session.get_sign_out'))
+        return await redirect(url_for('session.get_sign_out'))
 
-    context = _get_context(block, current_location, schema, form)
-    return _render_page(block['type'], context, current_location, schema)
+    context = await (block, current_location, schema, form)
+    return await _render_page(block['type'], context, current_location, schema)
 
 
-def _redirect_to_location(location):
+async def _redirect_to_location(location):
     return await redirect(url_for('questionnaire.get_block', block_id=location.block_id))
 
 
-def _get_context(block, current_location, schema, form=None):
+async def _get_context(block, current_location, schema, form=None):
     metadata = get_metadata(current_user)
 
     answer_store = get_answer_store(current_user)
 
-    return build_view_context(block['type'], metadata, schema, answer_store, block, current_location, form=form)
+    return await build_view_context(block['type'], metadata, schema, answer_store, block, current_location, form=form)
 
 
 def get_page_title_for_location(schema, current_location, context):
@@ -443,7 +443,7 @@ def _build_template(current_location, context, template, schema):
 @with_session_timeout
 @with_analytics
 @with_legal_basis
-def _render_template(context, current_location, template, previous_url, schema,
+async def _render_template(context, current_location, template, previous_url, schema,
                      **kwargs):
     page_title = get_page_title_for_location(schema, current_location, context)
 

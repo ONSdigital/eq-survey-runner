@@ -1,5 +1,5 @@
-from flask import Blueprint, request, current_app, session as cookie_session
-from flask_themes2 import render_theme_template
+from quart import Blueprint, request, current_app, render_template as render_quart_template, session as cookie_session
+
 from flask_login import current_user
 from flask_wtf.csrf import CSRFError
 from sdc.crypto.exceptions import InvalidTokenException
@@ -64,11 +64,11 @@ def log_exception(error, status_code):
     logger.error('an error has occurred', exc_info=error, url=request.url, status_code=status_code)
 
 
-def _render_error_page(status_code):
+async def _render_error_page(status_code):
     tx_id = get_tx_id()
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
 
-    return render_theme_template('default', 'errors/error.html',
+    return await render_quart_template('errors/error.html',
                                  status_code=status_code,
                                  analytics_ua_id=current_app.config['EQ_UA_ID'],
                                  account_service_url=cookie_session.get('account_service_url'),
@@ -83,12 +83,11 @@ def get_tx_id():
     return tx_id
 
 
-def render_template(template_name):
+async def render_template(template_name):
     tx_id = get_tx_id()
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
 
-    return render_theme_template(cookie_session.get('theme', 'default'),
-                                 template_name=template_name,
+    return await render_quart_template(template_name,
                                  analytics_ua_id=current_app.config['EQ_UA_ID'],
                                  ua=user_agent,
                                  tx_id=tx_id,

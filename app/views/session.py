@@ -1,9 +1,9 @@
 from datetime import datetime
 
 from dateutil.tz import tzutc
-from flask import Blueprint, current_app, redirect, request, g, session as cookie_session
+from quart import Blueprint, current_app, redirect, request, g, render_template, session as cookie_session
 from flask_login import current_user, logout_user
-from flask_themes2 import render_theme_template
+
 from sdc.crypto.exceptions import InvalidTokenException
 from structlog import get_logger
 from werkzeug.exceptions import Unauthorized
@@ -16,7 +16,7 @@ from app.helpers.template_helper import safe_content
 from app.questionnaire.router import Router
 from app.storage.metadata_parser import validate_metadata, parse_runner_claims
 from app.utilities.schema import load_schema_from_metadata
-from app.views.errors import render_template
+from app.views.errors import render_template as render_error
 
 logger = get_logger()
 
@@ -101,7 +101,7 @@ def validate_jti(decrypted_token):
 def get_session_expired():
     logout_user()
 
-    return render_template('session-expired.html')
+    return render_error('session-expired.html')
 
 
 @session_blueprint.route('/signed-out', methods=['GET'])
@@ -116,8 +116,8 @@ def get_sign_out():
     if account_service_log_out_url:
         return redirect(account_service_log_out_url)
 
-    return render_theme_template(cookie_session.get('theme', 'default'),
-                                 template_name='signed-out.html',
-                                 analytics_ua_id=current_app.config['EQ_UA_ID'],
-                                 account_service_url=cookie_session.get('account_service_url'),
-                                 survey_title=safe_content(cookie_session.get('survey_title', '')))
+    return render_template('signed-out.html',
+                           analytics_ua_id=current_app.config['EQ_UA_ID'],
+                           account_service_url=cookie_session.get('account_service_url'),
+                           survey_title=safe_content(cookie_session.get('survey_title', ''))
+                           )

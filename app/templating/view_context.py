@@ -4,7 +4,7 @@ from app.templating.summary_context import build_summary_rendering_context
 from app.questionnaire.schema_utils import choose_question_to_display, get_answer_ids_in_block
 
 
-def build_view_context(block_type, metadata, schema, answer_store, rendered_block, current_location, form):
+async def build_view_context(block_type, metadata, schema, answer_store, rendered_block, current_location, form):
     if block_type == 'Summary':
         return build_view_context_for_final_summary(metadata, schema, answer_store, block_type,
                                                     rendered_block)
@@ -16,7 +16,7 @@ def build_view_context(block_type, metadata, schema, answer_store, rendered_bloc
         return build_view_context_for_calculated_summary(metadata, schema, answer_store, block_type, current_location)
 
     if block_type in ('Question', 'ConfirmationQuestion'):
-        form = form or get_form_for_location(schema, rendered_block, current_location, answer_store, metadata)
+        form = form or await get_form_for_location(schema, rendered_block, current_location, answer_store, metadata)
         return build_view_context_for_question(rendered_block, form)
 
     if block_type in ('Introduction', 'Interstitial', 'Confirmation'):

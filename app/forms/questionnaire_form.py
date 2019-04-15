@@ -306,7 +306,7 @@ def map_detail_answer_errors(errors, answer_json):
     return detail_answer_errors
 
 
-def generate_form(schema, question_schema, answer_store, metadata, data=None, formdata=None):
+async def generate_form(schema, question_schema, answer_store, metadata, data=None, formdata=None):
     class DynamicForm(QuestionnaireForm):
         pass
 
@@ -322,7 +322,7 @@ def generate_form(schema, question_schema, answer_store, metadata, data=None, fo
         setattr(DynamicForm, answer_id, field)
 
     if formdata:
-        formdata = MultiDict(formdata)
-        formdata = MultiDict(formdata)
+        formdata = await MultiDict(formdata)
+        formdata = await MultiDict(formdata)
 
     return DynamicForm(schema, question_schema, answer_store, metadata, data=data, formdata=formdata)
