@@ -21,7 +21,8 @@ class TestPlaceholderParser(unittest.TestCase):
             }
         ])
 
-        parser = PlaceholderParser(answer_store=answer_store)
+        parser = PlaceholderParser(language='en',
+                                   answer_store=answer_store)
         placeholders = parser.parse(placeholder_list)
 
         self.assertIsInstance(placeholders, dict)
@@ -30,6 +31,7 @@ class TestPlaceholderParser(unittest.TestCase):
 
 
 class TestPlaceholder(unittest.TestCase):
+
     @staticmethod
     def test_previous_answer_placeholder():
         placeholder_list = [{
@@ -49,7 +51,8 @@ class TestPlaceholder(unittest.TestCase):
             }
         ])
 
-        parser = PlaceholderParser(answer_store=answer_store)
+        parser = PlaceholderParser(language='en',
+                                   answer_store=answer_store)
         placeholders = parser.parse(placeholder_list)
 
         assert first_name == placeholders['first_name']
@@ -65,7 +68,7 @@ class TestPlaceholder(unittest.TestCase):
         }]
 
         period_str = 'Aug 2018'
-        parser = PlaceholderParser(metadata={
+        parser = PlaceholderParser(language='en', metadata={
             'period_str': period_str
         })
 
@@ -96,7 +99,8 @@ class TestPlaceholder(unittest.TestCase):
             'value': retail_turnover
         }])
 
-        parser = PlaceholderParser(answer_store=answer_store)
+        parser = PlaceholderParser(language='en',
+                                   answer_store=answer_store)
         placeholders = parser.parse(placeholder_list)
 
         assert placeholders['total_turnover'] == '£1,000.00'
@@ -119,7 +123,7 @@ class TestPlaceholder(unittest.TestCase):
             ]
         }]
 
-        parser = PlaceholderParser(metadata={
+        parser = PlaceholderParser(language='en', metadata={
             'ref_p_start_date': '2019-02-11'
         })
         placeholders = parser.parse(placeholder_list)
@@ -144,7 +148,7 @@ class TestPlaceholder(unittest.TestCase):
             ]
         }]
 
-        parser = PlaceholderParser(answer_store=AnswerStore([
+        parser = PlaceholderParser(language='en', answer_store=AnswerStore([
             {
                 'answer_id': 'first-name',
                 'value': 'Joe'
@@ -186,7 +190,7 @@ class TestPlaceholder(unittest.TestCase):
             ]
         }]
 
-        parser = PlaceholderParser(metadata={
+        parser = PlaceholderParser(language='en', metadata={
             'ref_p_start_date': '2019-02-11'
         })
         placeholders = parser.parse(placeholder_list)
@@ -211,7 +215,7 @@ class TestPlaceholder(unittest.TestCase):
             ]
         }]
 
-        parser = PlaceholderParser(metadata={
+        parser = PlaceholderParser(language='en', metadata={
             'ref_p_start_date': '2019-02-11',
             'ref_p_end_date': '2019-10-11'
         })
@@ -240,7 +244,7 @@ class TestPlaceholder(unittest.TestCase):
             ]
         }]
 
-        parser = PlaceholderParser(answer_store=AnswerStore([
+        parser = PlaceholderParser(language='en', answer_store=AnswerStore([
             {
                 'answer_id': 'date-of-birth-answer',
                 'value': '1999-01-01'
@@ -272,7 +276,7 @@ class TestPlaceholder(unittest.TestCase):
             ]
         }]
 
-        parser = PlaceholderParser(answer_store=AnswerStore([
+        parser = PlaceholderParser(language='en', answer_store=AnswerStore([
             {
                 'answer_id': 'date-of-birth-answer',
                 'value': '1999-01-01'
@@ -308,7 +312,7 @@ class TestPlaceholder(unittest.TestCase):
             ]
         }]
 
-        parser = PlaceholderParser(answer_store=AnswerStore([
+        parser = PlaceholderParser(language='en', answer_store=AnswerStore([
             {
                 'answer_id': 'first-name',
                 'value': 'Joe'

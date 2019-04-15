@@ -10,7 +10,9 @@ class Group:
         self.title = group_schema.get('title')
 
         self.blocks = self._build_blocks(group_schema, path, answer_store, metadata, schema)
-        self.placeholder_renderer = PlaceholderRenderer(answer_store=answer_store, metadata=metadata)
+        self.placeholder_renderer = PlaceholderRenderer(language='en',
+                                                        answer_store=answer_store,
+                                                        metadata=metadata)
 
     @staticmethod
     def _build_blocks(group_schema, path, answer_store, metadata, schema):

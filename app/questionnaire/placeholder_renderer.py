@@ -33,13 +33,16 @@ class PlaceholderRenderer:
     Renders placeholders specified by a list of pointers in a schema block to their final
     strings
     """
-    def __init__(self, answer_store=None, metadata=None):
+    def __init__(self, language, answer_store=None, metadata=None):
+        self.language = language
         self.answer_store = answer_store or AnswerStore()
         self.metadata = metadata
         self.placeholders = {}
 
     def render_pointer(self, dict_to_render, pointer_to_render):
-        placeholder_parser = PlaceholderParser(answer_store=self.answer_store, metadata=self.metadata)
+        placeholder_parser = PlaceholderParser(language=self.language,
+                                               answer_store=self.answer_store,
+                                               metadata=self.metadata)
 
         pointer_data = resolve_pointer(dict_to_render, pointer_to_render)
 

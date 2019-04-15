@@ -5,7 +5,7 @@ from app.questionnaire.placeholder_transforms import PlaceholderTransforms
 
 class TestPlaceholderParser(unittest.TestCase):
     def setUp(self):
-        self.transforms = PlaceholderTransforms()
+        self.transforms = PlaceholderTransforms(language='en')
 
     def test_format_currency(self):
         assert self.transforms.format_currency('11', 'GBP') == '£11.00'
@@ -46,6 +46,14 @@ class TestPlaceholderParser(unittest.TestCase):
         assert self.transforms.format_possessive('Dave Dixon Davies') == 'Dave Dixon Davies’'
         assert self.transforms.format_possessive("Alice Aardvark's") == 'Alice Aardvark’s'
         assert self.transforms.format_possessive('Alice Aardvark’s') == 'Alice Aardvark’s'
+
+    @staticmethod
+    def test_format_possessive_non_english_does_nothing():
+        welsh_transforms = PlaceholderTransforms(language='cy')
+        assert welsh_transforms.format_possessive('Alice Aardvark') == 'Alice Aardvark'
+        assert welsh_transforms.format_possessive('Dave Dixon Davies') == 'Dave Dixon Davies'
+        assert welsh_transforms.format_possessive("Alice Aardvark's") == "Alice Aardvark's"
+        assert welsh_transforms.format_possessive('Alice Aardvark’s') == 'Alice Aardvark’s'
 
     def test_calculate_years_difference(self):
         assert self.transforms.calculate_years_difference('2016-06-10', '2019-06-10') == '3'

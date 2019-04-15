@@ -84,7 +84,7 @@ class TestPlaceholderRenderer(AppContextTestCase):
         json_to_render = self.question_json.copy()
         json_to_render['answers'][0]['options'][0]['label']['placeholders'][1]['transforms'][0] = mock_transform
 
-        renderer = PlaceholderRenderer(answer_store=AnswerStore([
+        renderer = PlaceholderRenderer(language='en', answer_store=AnswerStore([
             {
                 'answer_id': 'first-name',
                 'value': 'Hal'
@@ -119,7 +119,7 @@ class TestPlaceholderRenderer(AppContextTestCase):
         json_to_render = self.question_json.copy()
         json_to_render['answers'][0]['options'][0]['label']['placeholders'][1]['transforms'][0] = mock_transform
 
-        renderer = PlaceholderRenderer(answer_store=AnswerStore([
+        renderer = PlaceholderRenderer(language='en', answer_store=AnswerStore([
             {
                 'answer_id': 'first-name',
                 'value': 'Alfred'
@@ -141,14 +141,14 @@ class TestPlaceholderRenderer(AppContextTestCase):
 
     def test_errors_on_invalid_pointer(self):
 
-        renderer = PlaceholderRenderer()
+        renderer = PlaceholderRenderer(language='en')
 
         with self.assertRaises(ValueError):
             renderer.render_pointer(self.question_json, '/title')
 
     def test_errors_on_invalid_json(self):
 
-        renderer = PlaceholderRenderer()
+        renderer = PlaceholderRenderer(language='en')
 
         with self.assertRaises(ValueError):
             dict_to_render = {

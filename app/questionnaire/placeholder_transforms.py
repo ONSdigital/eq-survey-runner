@@ -1,9 +1,11 @@
 from datetime import datetime
+
 from dateutil.relativedelta import relativedelta
 
 from babel.numbers import format_currency
 from babel.dates import format_datetime
 from babel import numbers
+
 from app.settings import DEFAULT_LOCALE
 
 
@@ -11,6 +13,10 @@ class PlaceholderTransforms:
     """
     A class to group the transforms that can be used within placeholders
     """
+
+    def __init__(self, language):
+        self.language = language
+
     locale = DEFAULT_LOCALE
     input_date_format = '%Y-%m-%d'
 
@@ -53,9 +59,8 @@ class PlaceholderTransforms:
         filtered_list = self.remove_empty_from_list(list_to_concatenate)
         return delimiter.join(filtered_list)
 
-    @staticmethod
-    def format_possessive(string_to_format):
-        if string_to_format:
+    def format_possessive(self, string_to_format):
+        if string_to_format and self.language == 'en':
             lowered_string = string_to_format.lower()
 
             if lowered_string.endswith("'s") or lowered_string.endswith('’s'):
@@ -65,6 +70,8 @@ class PlaceholderTransforms:
                 return string_to_format + '’'
 
             return string_to_format + '’s'
+
+        return string_to_format
 
     @staticmethod
     def format_number(number):
