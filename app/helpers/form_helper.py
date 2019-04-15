@@ -77,7 +77,7 @@ def clear_detail_answer_field(data, question):
     :param question: a question to clear.
     :return: the form data with the other text field cleared, if appropriate.
     """
-    form_data = MultiDict(data)
+    form_data = data
     if question:
         for answer in question.get('answers', []):
             for option in answer.get('options', []):

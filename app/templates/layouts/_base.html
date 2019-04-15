@@ -29,7 +29,6 @@
     {%- block styles %}
     {% set css_fixed_cdn = cdn_url_prefix~"/css/fixed.css" %}
     {% set css_responsive_cdn = cdn_url_prefix~"/css/responsive.css" %}
-    {% set css_theme = "css/"~_theme~"/theme.css" %}
 
     <!--[if (gt IE 9) | (IEMobile)]><!-->
     {%- if request.args.get('fixed') == 'true' %}
@@ -41,8 +40,6 @@
     <!--[if (lte IE 9) & (!IEMobile)]>
       <link href="{{ css_fixed_cdn }}" rel="stylesheet" />
     <![endif]-->
-
-    <link href="{{ url_for('static', filename=css_theme) }}" rel="stylesheet" />
 
     {% endblock styles -%}
     {% endblock head -%}

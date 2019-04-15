@@ -321,8 +321,4 @@ async def generate_form(schema, question_schema, answer_store, metadata, data=No
     for answer_id, field in answer_fields.items():
         setattr(DynamicForm, answer_id, field)
 
-    if formdata:
-        formdata = await MultiDict(formdata)
-        formdata = await MultiDict(formdata)
-
     return DynamicForm(schema, question_schema, answer_store, metadata, data=data, formdata=formdata)

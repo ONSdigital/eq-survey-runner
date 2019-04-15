@@ -1,7 +1,7 @@
 import re
 from functools import wraps
 
-from quart import current_app, g, session as cookie_session, render_template as render_quart_template
+from quart import current_app, g
 from structlog import get_logger
 
 from app.globals import get_session_timeout_in_seconds
@@ -37,20 +37,6 @@ def with_legal_basis(func):
         legal_basis = g.schema.json.get('legal_basis')
         return func(*args, legal_basis=legal_basis, **kwargs)
     return legal_basis_wrapper
-
-
-def render_template(template, **kwargs):
-    theme = g.schema.json.get('theme')
-    template = '{}.html'.format(template).lower()
-
-    return render_quart_template(
-        template,
-        survey_title=safe_content(g.schema.json['title']),
-        account_service_url=cookie_session.get('account_service_url'),
-        account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
-        survey_id=g.schema.json['survey_id'],
-        **kwargs
-    )
 
 
 def safe_content(content):

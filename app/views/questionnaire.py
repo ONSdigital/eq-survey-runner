@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 import humanize
 import simplejson as json
 from dateutil.tz import tzutc
-from quart import Blueprint, g, redirect, request, url_for, current_app, jsonify
+from quart import Blueprint, g, redirect, request, url_for, current_app, jsonify, render_template
 from quart import session as cookie_session
 from flask_login import current_user, login_required, logout_user
 
@@ -22,7 +22,7 @@ from app.helpers.path_finder_helper import path_finder, full_routing_path_requir
 from app.helpers.schema_helpers import with_schema
 from app.helpers.session_helpers import with_answer_store, with_metadata, with_collection_metadata
 from app.helpers.template_helper import (with_session_timeout, with_analytics,
-                                         with_legal_basis, render_template, safe_content)
+                                         with_legal_basis, safe_content)
 from app.keys import KEY_PURPOSE_SUBMISSION
 from app.questionnaire.answer_store_updater import AnswerStoreUpdater
 from app.questionnaire.location import Location
@@ -140,10 +140,10 @@ async def post_block(routing_path, schema, metadata, collection_metadata, answer
 
     form = await _generate_wtf_form(request.form, rendered_block, schema)
 
-    if 'action[save_sign_out]' in request.form:
+    if 'action[save_sign_out]' in await request.form:
         return await _save_sign_out(current_location, rendered_block.get('question'), form, schema)
 
-    if 'action[sign_out]' in request.form:
+    if 'action[sign_out]' in await request.form:
         return await redirect(url_for('session.get_sign_out'))
 
     if form.validate():
@@ -157,7 +157,7 @@ async def post_block(routing_path, schema, metadata, collection_metadata, answer
         if _is_end_of_questionnaire(block, next_location):
             return submit_answers(routing_path, schema)
 
-        return await redirect(next_location.url())
+        return redirect(next_location.url())
 
     context = build_view_context(block['type'], metadata, schema, answer_store, rendered_block, current_location, form)
 
@@ -449,6 +449,8 @@ async def _render_template(context, current_location, template, previous_url, sc
 
     session_store = get_session_store()
     session_data = session_store.session_data
+
+    template = '{}.html'.format(template).lower()
 
     return await render_template(
         template,
