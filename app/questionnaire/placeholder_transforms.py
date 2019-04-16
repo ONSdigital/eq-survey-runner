@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
+from dateutil.tz import tzutc
 
 from babel.numbers import format_currency
 from babel.dates import format_datetime
@@ -19,6 +20,7 @@ class PlaceholderTransforms:
 
     locale = DEFAULT_LOCALE
     input_date_format = '%Y-%m-%d'
+    input_date_format_month_year_only = '%Y-%m'
 
     def format_currency(self, number=None, currency='GBP'):
         return format_currency(number, currency, locale=self.locale)
@@ -80,11 +82,29 @@ class PlaceholderTransforms:
 
         return ''
 
-    def calculate_years_difference(self, first_date, second_date):
-        first_date = datetime.now() if first_date == 'now' else datetime.strptime(first_date, self.input_date_format)
-        second_date = datetime.now() if second_date == 'now' else datetime.strptime(second_date, self.input_date_format)
+    @staticmethod
+    def calculate_years_difference(first_date, second_date):
+        return str(relativedelta(PlaceholderTransforms.parse_date(second_date),
+                                 PlaceholderTransforms.parse_date(first_date)).years)
 
-        return str(relativedelta(second_date, first_date).years)
+    @staticmethod
+    def parse_date(date):
+        """
+        :param date: string representing a date
+        :return: datetime of that date
+
+        Convert `date` from string into `datetime` object. `date` can be 'YYYY-MM-DD', 'YYYY-MM'
+        or 'now'. Note that in the shorthand YYYY-MM format, day_of_month is assumed to be 1.
+        """
+        if date == 'now':
+            return datetime.now(tz=tzutc())
+
+        try:
+            return datetime.strptime(date, PlaceholderTransforms.input_date_format)\
+                .replace(tzinfo=tzutc())
+        except ValueError:
+            return datetime.strptime(date, PlaceholderTransforms.input_date_format_month_year_only)\
+                .replace(tzinfo=tzutc())
 
     def first_non_empty_item(self, items):
         """
