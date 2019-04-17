@@ -56,9 +56,12 @@ class TestPlaceholderParser(unittest.TestCase):
         assert welsh_transforms.format_possessive('Alice Aardvark’s') == 'Alice Aardvark’s'
 
     def test_calculate_years_difference(self):
-        assert self.transforms.calculate_years_difference('2016-06-10', '2019-06-10') == '3'
-        assert self.transforms.calculate_years_difference('2010-01-01', '2018-12-31') == '8'
-        assert self.transforms.calculate_years_difference('now', 'now') == '0'
+        assert PlaceholderTransforms.calculate_years_difference('2016-06-10', '2019-06-10') == '3'
+        assert PlaceholderTransforms.calculate_years_difference('2010-01-01', '2018-12-31') == '8'
+        assert PlaceholderTransforms.calculate_years_difference('2011-01', '2015-04') == '4'
+        assert PlaceholderTransforms.calculate_years_difference('now', 'now') == '0'
+        with self.assertRaises(ValueError):
+            PlaceholderTransforms.calculate_years_difference('2018', 'now')
 
     def test_concatenate_list(self):
         list_to_concatenate = ['Milk', 'Eggs', 'Flour', 'Water']
