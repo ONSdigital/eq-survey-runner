@@ -1,18 +1,18 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import '../../../lib/rules.libsonnet';
 
-local question(title) = {
+local question(title, guidanceHeader) = {
   id: 'jobseeker-question',
   title: title,
   type: 'General',
   answers: [
     {
       guidance: {
-        show_guidance: 'Why do I need to answer if I am retired or long term sick or disabled?',
-        hide_guidance: 'Why do I need to answer if I am retired or long term sick or disabled',
+        show_guidance: guidanceHeader,
+        hide_guidance: guidanceHeader,
         content: [
           {
-            description: 'To get a true picture of the UK working population, we ask this question to everyone who is not currently working. We ask people who are retired because the number of people continuing to work after retirement age is increasing. We ask people who are long-term sick or disabled because some intend to go back to work.',
+            description: 'To get a true picture of the UK working population, we ask this question of everyone who is not currently working. We ask people who are retired because the number of people continuing to work after retirement age is increasing. We ask people who are long-term sick or disabled because some intend to go back to work.',
           },
         ],
       },
@@ -40,17 +40,19 @@ local proxyTitle = {
     placeholders.personName,
   ],
 };
+local nonProxyGuidanceHeader = 'Why do I need to answer if I am retired or long term sick or disabled?';
+local proxyGuidanceHeader = 'Why do I need to answer if they have retired or are long term sick or disabled?';
 
 {
   type: 'Question',
   id: 'jobseeker',
   question_variants: [
     {
-      question: question(nonProxyTitle),
+      question: question(nonProxyTitle, nonProxyGuidanceHeader),
       when: [rules.proxyNo],
     },
     {
-      question: question(proxyTitle),
+      question: question(proxyTitle, proxyGuidanceHeader),
       when: [rules.proxyYes],
     },
   ],

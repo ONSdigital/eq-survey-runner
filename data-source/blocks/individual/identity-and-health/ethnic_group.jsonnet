@@ -12,7 +12,11 @@ local question(title, description) = {
         hide_guidance: 'Why your answer is important',
         content: [
           {
-            description: 'Your answer will help the government and other organisations to provide appropriate services and make decisions to support equality and fairness in your community.',
+            description: 'Your answer will help to support equality and fairness in your community. Councils and government use information on ethnic group to make sure they:',
+            list: [
+              'provide services and share funding fairly',
+              'understand and represent everyone’s interests',
+            ],
           },
         ],
       },

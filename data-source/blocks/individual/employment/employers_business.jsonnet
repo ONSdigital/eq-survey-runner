@@ -39,7 +39,7 @@ local pastProxyTitle = {
 };
 
 local englandDescription = 'For example clothing retail, general hospital, primary education, food wholesale, civil service DWP, local government housing.';
-local walesDescription = 'For example clothing retail, general hospital, primary education, food wholesale, civil service DVLA, local government housing.';
+local walesDescription = 'For example clothing retail, general hospital, primary education, food wholesale, civil service Welsh Government, local government housing.';
 
 {
   type: 'Question',
