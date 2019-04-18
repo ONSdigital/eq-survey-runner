@@ -1,14 +1,14 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import '../../../lib/rules.libsonnet';
 
-local question(title) = {
+local question(title, guidanceTitle) = {
   id: 'degree-question',
   title: title,
   type: 'General',
   guidance: {
     content: [
       {
-        title: 'Include equivalent qualifications achieved anywhere outside England and Wales',
+        title: guidanceTitle,
       },
     ],
   },
@@ -16,6 +16,7 @@ local question(title) = {
     {
       id: 'degree-answer',
       mandatory: true,
+      type: 'Radio',
       options: [
         {
           label: 'Yes',
@@ -28,7 +29,6 @@ local question(title) = {
           description: 'Questions on other NVQs, A levels, GCSEs and equivalents will follow',
         },
       ],
-      type: 'Radio',
     },
   ],
 };
@@ -41,17 +41,28 @@ local proxyTitle = {
   ],
 };
 
+local englandGuidanceTitle = 'Include equivalent qualifications achieved anywhere outside England and Wales';
+local walesGuidanceTitle = 'Include equivalent qualifications achieved anywhere outside Wales and England';
+
 {
   type: 'Question',
   id: 'degree',
   question_variants: [
     {
-      question: question(nonProxyTitle),
-      when: [rules.proxyNo],
+      question: question(nonProxyTitle, englandGuidanceTitle),
+      when: [rules.proxyNo, rules.regionNotWales],
     },
     {
-      question: question(proxyTitle),
-      when: [rules.proxyYes],
+      question: question(proxyTitle, englandGuidanceTitle),
+      when: [rules.proxyYes, rules.regionNotWales],
+    },
+    {
+      question: question(nonProxyTitle, walesGuidanceTitle),
+      when: [rules.proxyNo, rules.regionWales],
+    },
+    {
+      question: question(proxyTitle, walesGuidanceTitle),
+      when: [rules.proxyYes, rules.regionWales],
     },
   ],
 }

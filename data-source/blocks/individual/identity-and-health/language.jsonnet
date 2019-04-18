@@ -1,26 +1,38 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import '../../../lib/rules.libsonnet';
 
-local question(title, options) = {
+local question(title, definitionDescription, regionOption) = {
   id: 'language-question',
   title: title,
   type: 'General',
-  definitions: [
-    {
-      title: "What do we mean by 'main language'?",
-      content: [
-        {
-          description: 'Main language is your first or preferred language.',
-        },
-      ],
-    },
-  ],
+  definitions: [{
+    title: 'What do we mean by “main language”?',
+    content: [
+      {
+        description: definitionDescription,
+      },
+    ],
+  }],
   answers: [
     {
       id: 'language-answer',
       mandatory: true,
       type: 'Radio',
-    } + options,
+      options: [
+        regionOption,
+        {
+          label: 'Other',
+          value: 'Other',
+          description: 'Including British Sign Language',
+          detail_answer: {
+            id: 'language-answer-other',
+            type: 'TextField',
+            mandatory: false,
+            label: 'Please specify main language',
+          },
+        },
+      ],
+    },
   ],
 };
 
@@ -31,45 +43,17 @@ local proxyTitle = {
     placeholders.personNamePossessive,
   ],
 };
+local nonProxyDefinitionDescription = 'Your main language is the language you use most naturally. It could be the language you use at home.';
+local proxyDefinitionDescription = 'Their main language is the language they use most naturally. It could be the language they use at home.';
 
-local englandOptions = {
-  options: [
-    {
-      label: 'English',
-      value: 'English',
-    },
-    {
-      label: 'Other',
-      value: 'Other',
-      description: 'Including British Sign Language',
-      detail_answer: {
-        id: 'language-answer-other',
-        type: 'TextField',
-        mandatory: false,
-        label: 'Please specify main language',
-      },
-    },
-  ],
+local englandOption = {
+  label: 'English',
+  value: 'English',
 };
 
-local walesOptions = {
-  options: [
-    {
-      label: 'English or Welsh',
-      value: 'English or Welsh',
-    },
-    {
-      label: 'Other',
-      value: 'Other',
-      description: 'Including British Sign Language',
-      detail_answer: {
-        id: 'language-answer-other',
-        type: 'TextField',
-        mandatory: false,
-        label: 'Please specify main language',
-      },
-    },
-  ],
+local walesOption = {
+  label: 'English or Welsh',
+  value: 'English or Welsh',
 };
 
 {
@@ -77,19 +61,19 @@ local walesOptions = {
   id: 'language',
   question_variants: [
     {
-      question: question(nonProxyTitle, englandOptions),
+      question: question(nonProxyTitle, nonProxyDefinitionDescription, englandOption),
       when: [rules.proxyNo, rules.regionNotWales],
     },
     {
-      question: question(proxyTitle, englandOptions),
+      question: question(proxyTitle, proxyDefinitionDescription, englandOption),
       when: [rules.proxyYes, rules.regionNotWales],
     },
     {
-      question: question(nonProxyTitle, walesOptions),
+      question: question(nonProxyTitle, nonProxyDefinitionDescription, walesOption),
       when: [rules.proxyNo, rules.regionWales],
     },
     {
-      question: question(proxyTitle, walesOptions),
+      question: question(proxyTitle, proxyDefinitionDescription, walesOption),
       when: [rules.proxyYes, rules.regionWales],
     },
   ],
