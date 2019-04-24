@@ -17,7 +17,7 @@
         "validator": "string"
     }],
     "sections": [{
-        "id": "default-section",
+        "id": "single-answer-section",
         "groups": [{
             "blocks": [{
                 "type": "Question",
@@ -32,12 +32,19 @@
                     "answers": [{
                         "options": [{
                             "label": "Yes",
-                            "value": "yes",
-                            "description": ""
+                            "value": "Yes"
+                        }, {
+                            "label": "Sometimes",
+                            "value": "Sometimes"
                         }, {
                             "label": "No, I prefer tea",
-                            "value": "no",
-                            "description": ""
+                            "value": "No, I prefer tea"
+                        }, {
+                            "label": "I don't like coffee",
+                            "value": "I don't like coffee"
+                        }, {
+                            "label": "No, I don't drink any hot drinks",
+                            "value": "No, I don't drink any hot drinks"
                         }],
                         "q_code": "1",
                         "id": "conditional-routing-answer",
@@ -48,53 +55,57 @@
                 },
                 "routing_rules": [{
                     "goto": {
-                        "block": "response-yes",
+                        "block": "response-any",
                         "when": [{
                             "id": "conditional-routing-answer",
-                            "condition": "equals",
-                            "value": "yes"
+                            "condition": "equals any",
+                            "values": ["Yes", "Sometimes"]
                         }]
                     }
                 }, {
                     "goto": {
-                        "block": "response-no"
+                        "block": "response-not-any",
+                        "when": [{
+                            "id": "conditional-routing-answer",
+                            "condition": "not equals any",
+                            "values": ["Yes", "Sometimes", "I don't like coffee", "No, I don't drink any hot drinks"]
+                        }]
                     }
-                }]
-            }, {
-                "type": "Question",
-                "id": "response-yes",
-                "title": "Yes, I do drink coffee",
-                "description": "",
-                "question": {
-                    "id": "response-yes-question",
-                    "title": "How many cups of coffee do you drink a day?",
-                    "description": "",
-                    "type": "General",
-                    "answers": [{
-                        "id": "response-yes-number-of-cups",
-                        "label": "Number of cups",
-                        "mandatory": true,
-                        "q_code": "2",
-                        "type": "Number"
-                    }]
-                },
-                "routing_rules": [{
+                }, {
                     "goto": {
                         "block": "summary"
                     }
                 }]
             }, {
                 "type": "Question",
-                "id": "response-no",
+                "id": "response-any",
+                "title": "Yes/Sometimes, I do drink coffee",
+                "description": "",
+                "question": {
+                    "id": "response-any-question",
+                    "title": "How many cups of coffee do you drink a day?",
+                    "description": "",
+                    "type": "General",
+                    "answers": [{
+                        "id": "response-any-number-of-cups",
+                        "label": "Number of cups",
+                        "mandatory": true,
+                        "q_code": "2",
+                        "type": "Number"
+                    }]
+                }
+            }, {
+                "type": "Question",
+                "id": "response-not-any",
                 "title": "No, I prefer tea",
                 "description": "",
                 "question": {
-                    "id": "response-no-question",
+                    "id": "response-not-any-question",
                     "title": "How many cups of tea do you drink a day?",
                     "description": "",
                     "type": "General",
                     "answers": [{
-                        "id": "response-no-number-of-cups",
+                        "id": "response-not-any-number-of-cups",
                         "label": "Number of cups",
                         "mandatory": true,
                         "q_code": "2",
