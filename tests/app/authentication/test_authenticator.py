@@ -94,8 +94,7 @@ class TestAuthenticator(AppContextTestCase): # pylint: disable=too-many-public-m
                 self.assertIsNone(user)
                 self.assertIsNone(cookie_session.get(USER_IK))
 
-
-    def test_valid_user_extends_session_expiry(self):
+    def test_valid_user_does_not_extend_session_expiry_when_expiry_less_than_60_seconds_different(self):
         with self.app_request_context('/status'):
             with patch('app.authentication.authenticator.get_session_store', return_value=self.session_store):
                 # Given
@@ -110,8 +109,24 @@ class TestAuthenticator(AppContextTestCase): # pylint: disable=too-many-public-m
                 self.assertEqual(user.user_id, 'user_id')
                 self.assertEqual(user.user_ik, 'user_ik')
                 self.assertEqual(user.is_authenticated, True)
-                self.assertGreater(self.session_store.expiration_time, self.expires_at)
+                self.assertEqual(self.session_store.expiration_time, self.expires_at)
 
+    def test_valid_user_extends_session_expiry_when_expiry_greater_than_60_seconds_different(self):
+        with self.app_request_context('/status'):
+            with patch('app.authentication.authenticator.get_session_store', return_value=self.session_store):
+                # Given
+                self.session_store.create('eq_session_id', 'user_id', self.session_data, self.expires_at)
+                cookie_session[USER_IK] = 'user_ik'
+                cookie_session['expires_in'] = 600
+
+                # When
+                user = user_loader(None)
+
+                # Then
+                self.assertEqual(user.user_id, 'user_id')
+                self.assertEqual(user.user_ik, 'user_ik')
+                self.assertEqual(user.is_authenticated, True)
+                self.assertGreater(self.session_store.expiration_time, self.expires_at)
 
     def test_session_still_valid_without_expiration_time(self):
         with self.app_request_context('/status'):
