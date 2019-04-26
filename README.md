@@ -117,6 +117,12 @@ docker run -it -p 8432:8432 knarz/datastore-emulator:latest
 
 Please note that currently the SQL backend does not support submitted responses
 
+You will also need to run Redis as a cache for JTI tokens
+
+```
+docker run -it -p 6379:6379 redis:4
+```
+
 ---
 
 To use `EQ_STORAGE_BACKEND` as `datastore` or `EQ_SUBMISSION_BACKEND` as `gcs` directly on GCP and not a docker image, you need to set the GCP project using the following command:
