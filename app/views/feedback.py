@@ -12,6 +12,7 @@ from app.submitter.submission_failed import SubmissionFailedException
 from app.globals import get_metadata, get_session_store
 from app.submitter.converter import convert_feedback
 from app.utilities.schema import load_schema_from_session_data
+from app.authentication.no_token_exception import NoTokenException
 
 logger = get_logger()
 
@@ -53,12 +54,13 @@ def send_feedback():
     if 'action[sign_out]' in request.form:
         return redirect(url_for('session.get_sign_out'))
 
+    metadata = get_metadata(current_user)
+    if not metadata:
+        raise NoTokenException(401)
+
     form = FeedbackForm()
 
     if form.validate():
-
-        metadata = get_metadata(current_user)
-
         message = convert_feedback(
             escape(request.form.get('message')),
             escape(request.form.get('name')),

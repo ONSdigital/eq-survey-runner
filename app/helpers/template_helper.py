@@ -8,6 +8,7 @@ from structlog import get_logger
 from app.globals import get_metadata, get_session_timeout_in_seconds
 from app.templating.metadata_context import build_metadata_context
 from app.templating.template_renderer import TemplateRenderer
+from app.authentication.no_token_exception import NoTokenException
 
 logger = get_logger()
 
@@ -30,6 +31,9 @@ def with_metadata_context(func):
     @wraps(wraps)
     def metadata_context_wrapper(*args, **kwargs):
         metadata = get_metadata(current_user)
+        if not metadata:
+            raise NoTokenException(401)
+
         metadata_context = build_metadata_context(metadata)
 
         return func(*args, metadata_context=metadata_context, **kwargs)
