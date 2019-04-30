@@ -3,7 +3,7 @@ from uuid import uuid4
 
 from blinker import ANY
 from dateutil.tz import tzutc
-from flask import session as cookie_session, current_app
+from quart import session as cookie_session, current_app
 from flask_login import LoginManager, user_logged_out
 from sdc.crypto.decrypter import decrypt
 from structlog import get_logger

@@ -1,6 +1,6 @@
 from flask_login import current_user
 from flask_login import login_required
-from flask import Blueprint, jsonify
+from quart import Blueprint, jsonify
 
 
 from app.authentication.roles import role_required

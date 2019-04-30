@@ -1,4 +1,4 @@
-from flask import url_for
+from quart import url_for
 
 
 class Location:

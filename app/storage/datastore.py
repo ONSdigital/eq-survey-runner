@@ -1,4 +1,4 @@
-from flask import current_app
+from quart import current_app
 from google.cloud import datastore
 from structlog import get_logger
 

@@ -1,4 +1,4 @@
-from flask import url_for
+from quart import url_for
 
 from app.questionnaire.rules import evaluate_when_rules
 from app.templating.summary.question import Question

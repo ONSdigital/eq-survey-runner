@@ -1,4 +1,4 @@
-from flask import Blueprint, Response, request, session, current_app
+from quart import Blueprint, Response, request, session, current_app
 from sdc.crypto.encrypter import encrypt
 from sdc.crypto.decrypter import decrypt
 

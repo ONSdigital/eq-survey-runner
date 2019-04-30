@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, url_for, escape, request, current_app, g
+from quart import Blueprint, redirect, url_for, escape, request, current_app, g
 from flask_login import login_required, current_user
 from flask_wtf import FlaskForm
 from sdc.crypto.encrypter import encrypt

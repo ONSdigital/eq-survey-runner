@@ -2,7 +2,7 @@ from uuid import UUID
 
 from datetime import datetime, timedelta
 from dateutil.tz import tzutc
-from flask import current_app
+from quart import current_app
 from structlog import get_logger
 
 from app.data_model.app_models import UsedJtiClaim

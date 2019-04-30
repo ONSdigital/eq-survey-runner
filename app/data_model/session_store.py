@@ -1,5 +1,5 @@
 import simplejson as json
-from flask import current_app
+from quart import current_app
 from jwcrypto.common import base64url_decode
 from structlog import get_logger
 

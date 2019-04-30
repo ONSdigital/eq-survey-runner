@@ -1,7 +1,7 @@
 from os import listdir
 from os.path import isfile, join
 
-from flask import Blueprint, jsonify
+from quart import Blueprint, jsonify
 from app.utilities.schema import load_schema_from_params
 
 schema_blueprint = Blueprint('schema', __name__)
