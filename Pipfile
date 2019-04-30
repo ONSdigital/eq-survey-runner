@@ -59,6 +59,8 @@ python-snappy = "*"
 google-cloud-storage = "*"
 jsonpointer = "*"
 redis = "*"
+flask-compress = "*"
+htmlmin = "*"
 
 [requires]
 python_version = "3.7"
