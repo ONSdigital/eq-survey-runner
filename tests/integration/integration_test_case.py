@@ -57,6 +57,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         configure_logging()
 
         setting_overrides = {
+            'EQ_ENABLE_HTML_MINIFY': False
         }
 
         self._application = create_app(setting_overrides)

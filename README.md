@@ -339,6 +339,7 @@ The following env variables can be used
 | EQ_DEV_MODE                               | False                 | Enable dev mode                                                                               |
 | EQ_ENABLE_FLASK_DEBUG_TOOLBAR             | False                 | Enable the flask debug toolbar                                                                |
 | EQ_ENABLE_CACHE                           | True                  | Enable caching of the schema                                                                  |
+| EQ_ENABLE_HTML_MINIFY                     | True                  | Enable minification of html                                                                   |
 | EQ_ENABLE_SECURE_SESSION_COOKIE           | True                  | Set secure session cookies                                                                    |
 | EQ_MAX_HTTP_POST_CONTENT_LENGTH           | 65536                 | The maximum http post content length that the system wil accept                               |
 | EQ_DEVELOPER_LOGGING                      | False                 | Enable developer style logging described here                                                 |
