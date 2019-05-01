@@ -4,7 +4,6 @@ from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 
-from app.data_model.answer_store import AnswerStore
 from app.questionnaire.location import Location
 
 MAX_REPEATS = 25
@@ -140,22 +139,8 @@ def evaluate_goto(goto_rule, schema, metadata, answer_store, routing_path=None):
     return True
 
 
-def _get_answers_on_path(answers, schema, routing_path) -> AnswerStore:
-    """
-    Get any answers that are on the routing path and return an answer store.
-    """
-    answers_to_remove = [answer for answer in answers if not _is_answer_on_path(schema, answer, routing_path)]
-
-    answers_on_path = answers.copy()
-
-    for answer in answers_to_remove:
-        answers_on_path.remove_answer(answer)
-
-    return answers_on_path
-
-
 def _is_answer_on_path(schema, answer, routing_path):
-    block_schema = schema.get_block_for_answer_id(answer['answer_id'])
+    block_schema = schema.get_block_for_answer_id(answer.answer_id)
     location = Location(block_id=block_schema['id'])
     return location in routing_path
 
@@ -234,19 +219,19 @@ def evaluate_when_rules(when_rules, schema, metadata, answer_store, routing_path
 
 
 def get_answer_store_value(answer_id, answer_store, schema, routing_path=None):
-    filtered = answer_store.filter(answer_ids=[answer_id])
-
-    if routing_path:
-        answers_on_path = _get_answers_on_path(filtered, schema, routing_path)
-    else:
-        answers_on_path = filtered
-
-    if not answers_on_path.count():
+    """ Return answer value assuming it is on the routing path.
+    If answer is not on the routing path, return None
+    If routing_path empty, return answer value
+    """
+    answer = answer_store.get_answer(answer_id)
+    if not answer:
         return None
 
-    filtered = answers_on_path.filter(answer_ids=[answer_id])
-
-    return next(iter(filtered))['value'] if filtered.count() == 1 else None
+    if routing_path:
+        if _is_answer_on_path(schema, answer, routing_path):
+            return answer.value
+    else:
+        return answer.value
 
 
 def get_metadata_value(metadata, key):

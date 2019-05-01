@@ -20,18 +20,18 @@ def convert_answers_to_payload_0_0_1(metadata, answer_store, schema, routing_pat
     data = OrderedDict()
     for location in routing_path:
         answer_ids = schema.get_answer_ids_for_block(location.block_id)
-        answers_in_block = answer_store.filter(answer_ids)
+        answers_in_block = answer_store.get_answers_by_answer_id(answer_ids, location.list_item_id)
 
         for answer_in_block in answers_in_block:
             answer_schema = None
 
-            block = schema.get_block_for_answer_id(answer_in_block['answer_id'])
+            block = schema.get_block_for_answer_id(answer_in_block.answer_id)
             question = choose_question_to_display(block, schema, metadata, answer_store)
             for answer in question['answers']:
-                if answer['id'] == answer_in_block['answer_id']:
+                if answer['id'] == answer_in_block.answer_id:
                     answer_schema = answer
 
-            value = answer_in_block['value']
+            value = answer_in_block.value
 
             if answer_schema is not None and value is not None:
                 if answer_schema['type'] == 'Checkbox':
@@ -39,7 +39,7 @@ def convert_answers_to_payload_0_0_1(metadata, answer_store, schema, routing_pat
                 elif 'q_code' in answer_schema:
                     answer_data = _encode_value(value)
                     if answer_data is not None:
-                        data[answer_schema['q_code']] = _format_downstream_answer(answer_schema['type'], answer_in_block['value'], answer_data)
+                        data[answer_schema['q_code']] = _format_downstream_answer(answer_schema['type'], answer_in_block.value, answer_data)
 
     return data
 
@@ -62,11 +62,11 @@ def _get_checkbox_answer_data(answer_store, answer_schema, value):
 
         if option:
             if 'detail_answer' in option:
-                filtered = answer_store.filter(answer_ids=[option['detail_answer']['id']])
+                detail_answer = answer_store.get_answer(option['detail_answer']['id'])
 
                 # if the user has selected an option with a detail answer we need to find the detail answer value it refers to.
                 # the detail answer value can be empty, in this case we just use the main value (e.g. other)
-                user_answer = filtered.values()[0] or user_answer
+                user_answer = detail_answer.value or user_answer
 
             qcodes_and_values.append((option.get('q_code'), user_answer))
 

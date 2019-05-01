@@ -133,6 +133,22 @@ CALCULATED_SUMMARY_LABEL_GETTER = Template(r"""  ${answerName}Label() { return '
 
 """)
 
+LIST_SUMMARY_LABEL_GETTER = r"""  listLabel(instance) { return `[data-qa="list-summary-${instance}"] .list__item-name`; }
+
+"""
+
+LIST_SUMMARY_EDIT_LINK_GETTER = r"""  listEditLink(instance) { return `[data-qa="list-summary-${instance}"] [data-qa="list-edit-link-${instance}"]`; }
+
+"""
+
+LIST_SUMMARY_REMOVE_LINK_GETTER = r"""  listRemoveLink(instance) { return `[data-qa="list-summary-${instance}"] [data-qa="list-remove-link-${instance}"]`; }
+
+"""
+
+LIST_SUMMARY_LIST_GETTER = r"""  listSummary() { return '.list__item'; }
+
+"""
+
 CONSTRUCTOR = Template(r"""  constructor() {
     super('${block_id}');
   }
@@ -348,10 +364,17 @@ def find_kv(block, key, values):
     return False
 
 
-def process_block(block, dir_out, schema_data, spec_file, relative_require='..'):
+def process_block(block, dir_out, schema_data, spec_file, relative_require='..', page_filename=None):
     logger.debug('Processing Block: %s', block['id'])
 
-    page_filename = block['id'] + '.page.js'
+    if not page_filename:
+        page_filename = block['id'] + '.page.js'
+
+    if block['type'] == 'ListCollector':
+        list_operations = ['add', 'edit', 'remove']
+        for list_operation in list_operations:
+            process_block(block[f'{list_operation}_block'], dir_out, schema_data, spec_file, relative_require, page_filename=f'{block["id"]}-{list_operation}.page.js')
+
     page_path = os.path.join(dir_out, page_filename)
 
     logger.info('creating %s...', page_path)
@@ -397,6 +420,13 @@ def process_block(block, dir_out, schema_data, spec_file, relative_require='..')
 
             for question in all_questions:
                 process_question(question, page_spec, num_questions, page_name)
+
+
+        if block['type'] == 'ListCollector':
+            page_spec.write(LIST_SUMMARY_LABEL_GETTER)
+            page_spec.write(LIST_SUMMARY_EDIT_LINK_GETTER)
+            page_spec.write(LIST_SUMMARY_REMOVE_LINK_GETTER)
+            page_spec.write(LIST_SUMMARY_LIST_GETTER)
 
         page_spec.write(FOOTER.substitute(block_context))
 

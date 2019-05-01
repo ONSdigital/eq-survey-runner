@@ -42,9 +42,9 @@ Removing these from the URL effectively reduces the example above to:
 ```
 /<block_id>
 /does-anyone-else-live-here
-/does-anyone-else-live-here/add
-/does-anyone-else-live-here/<repeat_identifier>/change
-/does-anyone-else-live-here/<repeat_identifier>/remove
+/<list_identifier>/<add_block_id>
+/<list_identifier>/<list_item_id>/<edit_block_id>
+/<list_identifier>/<list_item_id>/<remove_block_id>
 ```
 
 - Listing blocks have a list property declaring what list they populate
@@ -56,14 +56,14 @@ Removing these from the URL effectively reduces the example above to:
 ### Blocks that repeat from a listing
 
 ```
-/<list_identifier>/<repeat_identifier>/<block_id>
-/householders/<repeat_identifier>/proxy
-/householders/<repeat_identifier>/sex
-/householders/<repeat_identifier>/date-of-birth
+/<list_identifier>/<list_item_id>/<block_id>
+/householders/<list_item_id>/proxy
+/householders/<list_item_id>/sex
+/householders/<list_item_id>/date-of-birth
 ```
 
 - `list_identifier` is a schema defined name for a list that can be created
-- `repeat_identifier` identifies an item in that list
+- `list_item_id` identifies an item in that list
 - List ids cannot clash with block ids
 - A list can be populated by one or more list creator blocks e.g. "does anyone else live here?" and "is there anyone temporarily away?"
 

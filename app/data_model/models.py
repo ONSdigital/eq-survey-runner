@@ -1,12 +1,14 @@
 import datetime
 
+from typing import Any
+
 from flask_sqlalchemy import SQLAlchemy
 from structlog import get_logger
 
 from app.data_model import app_models
 
 logger = get_logger()
-db = SQLAlchemy()
+db: Any = SQLAlchemy()
 
 
 # pylint: disable=maybe-no-member

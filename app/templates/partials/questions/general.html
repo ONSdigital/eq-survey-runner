@@ -22,6 +22,8 @@
 
         <legend class="u-vh">{{question_title|striptags}}</legend>
 
+        {{list_summary}}
+
         {{question_description}}
         {{question_definition}}
         {{question_guidance}}
@@ -32,6 +34,7 @@
     {% else %}
 
       {{question_titles}}
+      {{list_summary}}
       {{question_description}}
       {{question_definition}}
       {{question_guidance}}
@@ -44,6 +47,7 @@
   {% if invalid %}
 
     {{question_titles}}
+    {{list_summary}}
     {{question_description}}
     {{question_definition}}
     {{question_guidance}}

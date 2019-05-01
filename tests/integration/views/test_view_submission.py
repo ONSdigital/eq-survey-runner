@@ -308,7 +308,7 @@ class _CompressedStorageEncryption(StorageEncryption):
 
     def encrypt_data(self, data):
         if isinstance(data, dict):
-            data = json.dumps(data)
+            data = json.dumps(data, for_json=True)
 
         protected_header = {
             'alg': 'dir',

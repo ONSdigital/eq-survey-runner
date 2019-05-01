@@ -1,7 +1,7 @@
 {
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.2",
-    "data_version": "0.0.2",
+    "data_version": "0.0.3",
     "survey_id": "0",
     "title": "Radio Optional with Mandatory Other Overridden Error",
     "theme": "default",

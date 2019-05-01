@@ -36,6 +36,11 @@ def transform_variants(block, schema, metadata, answer_store):
 
         output_block['content'] = content
 
+    if block['type'] == 'ListCollector':
+        list_operations = ['add_block', 'edit_block', 'remove_block']
+        for list_operation in list_operations:
+            output_block[list_operation] = transform_variants(block[list_operation], schema, metadata, answer_store)
+
     return output_block
 
 

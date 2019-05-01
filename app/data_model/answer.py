@@ -1,34 +1,30 @@
+from __future__ import annotations
+from typing import Union, Optional, Dict, List
+from dataclasses import dataclass, field, asdict
+
+
 from structlog import get_logger
 
 logger = get_logger()
 
 
+@dataclass
 class Answer:
-    def __init__(self, answer_id, value):
-        if answer_id is None or value is None:
-            raise ValueError("Both 'answer_id' and 'value' must be set for Answer")
+    answer_id: str
+    value: Union[str, int, float, List]
+    list_item_id: Optional[str] = field(default=None)
 
-        self.answer_id = answer_id
-        self.value = value
+    @classmethod
+    def from_dict(cls, answer_dict: Dict) -> Answer:
+        return cls(answer_id=answer_dict['answer_id'],
+                   value=answer_dict['value'],
+                   list_item_id=answer_dict.get('list_item_id'))
 
-    def matches(self, answer):
-        """
-        Check to see if two answers match.
+    def for_json(self) -> Dict:
+        output = self.to_dict()
+        if not self.list_item_id:
+            del output['list_item_id']
+        return output
 
-        :param answer: An answer to compare
-        :return: True if both answers match, otherwise False.
-        """
-        return self.answer_id == answer.answer_id
-
-    def matches_dict(self, answer_dict):
-        """
-        Check to see if a dict describes an answer the same as this object.
-
-        :param answer_dict: A dictionary representation of the answer.
-        :return: True if both answers match, otherwise False.
-        """
-
-        return self.matches(Answer(
-            answer_dict.get('answer_id'),
-            answer_dict.get('value'),
-        ))
+    def to_dict(self) -> Dict:
+        return asdict(self)

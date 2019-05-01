@@ -82,7 +82,7 @@ local confirmation = import 'blocks/confirmation.json';
 {
   mime_type: 'application/json/ons/eq',
   schema_version: '0.0.1',
-  data_version: '0.0.2',
+  data_version: '0.0.3',
   survey_id: 'census',
   title: '2017 Census Test',
   description: 'Census England Individual Schema',

@@ -241,7 +241,6 @@ def _get_number_field_validators(answer, error_messages, answer_store):
     if max_decimals > MAX_DECIMAL_PLACES:
         raise Exception('decimal_places: {} > system maximum: {} for answer id: {}'
                         .format(max_decimals, MAX_DECIMAL_PLACES, answer['id']))
-
     min_value, minimum_exclusive = get_schema_defined_limit(answer['id'], answer.get('min_value'), answer_store)
     if min_value is None:
         min_value = 0
@@ -283,8 +282,8 @@ def get_schema_defined_limit(answer_id, definition, answer_store):
             value = definition['value']
         else:
             source_answer_id = definition.get('answer_id')
-            answer_list = answer_store.filter(answer_ids=[source_answer_id])
-            value = next(iter(answer_list)).get('value')
+            answer = answer_store.get_answer(source_answer_id)
+            value = answer.value
             if not isinstance(value, int) and not isinstance(value, Decimal):
                 raise Exception('answer: {} value: {} for answer id: {} is not a valid number'
                                 .format(source_answer_id, value, answer_id))

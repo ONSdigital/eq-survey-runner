@@ -16,26 +16,22 @@ class Question:
         self.answers = self._build_answers(answer_store, question_schema)
 
     @staticmethod
-    def _get_answers(answer_store, answer_id):
-        answers = answer_store.filter(answer_ids=[answer_id]).values()
+    def _get_answer(answer_store, answer_id):
+        answer = answer_store.get_answer(answer_id)
+        if answer:
+            return answer.value
 
-        return answers or [None]
-
-    def _get_answer(self, answer_store, answer_id):
-        return self._get_answers(answer_store, answer_id)[0]
+        return None
 
     def _build_answers(self, answer_store, question_schema):
         summary_answers = []
 
         for answer_schema in self.answer_schemas:
-            answer_values = self._get_answers(answer_store, answer_schema['id'])
-            for answer_value in answer_values:
+            answer_value = self._get_answer(answer_store, answer_schema['id'])
+            answer = self._build_answer(answer_store, question_schema, answer_schema, answer_value)
 
-                answer = self._build_answer(answer_store, question_schema, answer_schema, answer_value)
-
-                summary_answer = Answer(answer_schema, answer).serialize()
-
-                summary_answers.append(summary_answer)
+            summary_answer = Answer(answer_schema, answer).serialize()
+            summary_answers.append(summary_answer)
 
         if question_schema['type'] == 'MutuallyExclusive':
             exclusive_option = summary_answers[-1]['value']
