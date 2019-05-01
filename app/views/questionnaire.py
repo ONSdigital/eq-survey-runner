@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 
+import asyncio
 import humanize
 import simplejson as json
 from dateutil.tz import tzutc
@@ -144,7 +145,7 @@ async def post_block(routing_path, schema, metadata, collection_metadata, answer
         return await _save_sign_out(current_location, rendered_block.get('question'), form, schema)
 
     if 'action[sign_out]' in await request.form:
-        return await redirect(url_for('session.get_sign_out'))
+        return redirect(url_for('session.get_sign_out'))
 
     if form.validate():
         _set_started_at_metadata_if_required(form, collection_metadata)
@@ -202,7 +203,7 @@ async def get_thank_you(schema):
 @post_submission_blueprint.route('thank-you', methods=['POST'])
 @login_required
 async def post_thank_you():
-    if 'action[sign_out]' in request.form:
+    if 'action[sign_out]' in await request.form:
         return redirect(url_for('session.get_sign_out'))
 
     return redirect(url_for('post_submission.get_thank_you'))
@@ -265,10 +266,10 @@ async def get_view_submission(schema):  # pylint: too-many-locals
 @post_submission_blueprint.route('view-submission', methods=['POST'])
 @login_required
 async def post_view_submission():
-    if 'action[sign_out]' in request.form:
-        return await redirect(url_for('session.get_sign_out'))
+    if 'action[sign_out]' in await request.form:
+        return redirect(url_for('session.get_sign_out'))
 
-    return await redirect(url_for('post_submission.get_view_submission'))
+    return redirect(url_for('post_submission.get_view_submission'))
 
 
 def _set_started_at_metadata_if_required(form, collection_metadata):
@@ -400,14 +401,14 @@ async def _save_sign_out(current_location, current_question, form, schema):
 
         logout_user()
 
-        return await redirect(url_for('session.get_sign_out'))
+        return redirect(url_for('session.get_sign_out'))
 
     context = await (block, current_location, schema, form)
     return await _render_page(block['type'], context, current_location, schema)
 
 
-async def _redirect_to_location(location):
-    return await redirect(url_for('questionnaire.get_block', block_id=location.block_id))
+def _redirect_to_location(location):
+    return redirect(url_for('questionnaire.get_block', block_id=location.block_id))
 
 
 async def _get_context(block, current_location, schema, form=None):
