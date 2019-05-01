@@ -1,0 +1,25 @@
+{% extends theme('layouts/_questionnaire.html') %}
+{% import 'macros/helpers.html' as helpers %}
+
+{% set save_on_signout = true %}
+
+{% block form_errors %}
+  {% if form and (form.errors or form.question_errors) %}
+
+    <div class="panel panel--error u-mb-s" data-qa="error">
+      <div class="panel__header">
+        <h1 class="panel__title u-fs-r--b">{{ ngettext('This page has an error', 'This page has %(num)s errors', form.mapped_errors|length) }}</h1>
+      </div>
+      <div class="panel__body" data-qa="error-body">
+        <p class="u-fs-r">{{ ngettext('This <strong>must be corrected</strong> to continue', 'These <strong>must be corrected</strong> to continue', form.mapped_errors|length) }}.</p>
+        <ul class="list list--bare">
+          {% for answer_id, error in form.mapped_errors %}
+            <li class="list__item u-fs-r">
+              {{loop.index}}) <a class="js-inpagelink" href="#container-{{answer_id}}">{{ error }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+{% endblock form_errors %}

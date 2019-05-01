@@ -2,6 +2,7 @@ from types import MappingProxyType
 import simplejson as json
 
 from app.data_model.answer_store import AnswerStore
+from app.data_model.list_store import ListStore
 from app.questionnaire.location import Location
 
 
@@ -17,6 +18,7 @@ class QuestionnaireStore:
         # metadata is a read-only view over self._metadata
         self.metadata = MappingProxyType(self._metadata)
         self.collection_metadata = {}
+        self.list_store = ListStore()
         self.answer_store = AnswerStore()
         self.completed_blocks = []
 
@@ -45,6 +47,7 @@ class QuestionnaireStore:
                             json_data.get('COMPLETED_BLOCKS', [])]
         self.set_metadata(json_data.get('METADATA', {}))
         self.answer_store = AnswerStore(json_data.get('ANSWERS'))
+        self.list_store = ListStore.deserialise(json_data.get('LISTS'))
         self.completed_blocks = completed_blocks
         self.collection_metadata = json_data.get('COLLECTION_METADATA', {})
 
@@ -52,10 +55,11 @@ class QuestionnaireStore:
         data = {
             'METADATA': self._metadata,
             'ANSWERS': list(self.answer_store),
+            'LISTS': self.list_store.serialise(),
             'COMPLETED_BLOCKS': self.completed_blocks,
             'COLLECTION_METADATA': self.collection_metadata,
         }
-        return json.dumps(data, default=self._encode_questionnaire_store)
+        return json.dumps(data, for_json=True)
 
     def delete(self):
         self._storage.delete()
@@ -72,9 +76,3 @@ class QuestionnaireStore:
         """Removes completed blocks from store
         """
         self.completed_blocks.remove(location)
-
-    def _encode_questionnaire_store(self, o):
-        if hasattr(o, 'to_dict'):
-            return o.to_dict()
-
-        return json.JSONEncoder.default(self, o)

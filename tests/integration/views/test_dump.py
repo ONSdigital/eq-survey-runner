@@ -119,7 +119,7 @@ class TestDumpSubmission(IntegrationTestCase):
         # tx_id and submitted_at are dynamic; so copy them over
         expected = {
             'submission': {
-                'version': '0.0.2',
+                'version': '0.0.3',
                 'survey_id': '0',
                 'flushed': False,
                 'origin': 'uk.gov.ons.edc.eq',
@@ -166,7 +166,7 @@ class TestDumpSubmission(IntegrationTestCase):
         # tx_id and submitted_at are dynamic; so copy them over
         expected = {
             'submission': {
-                'version': '0.0.2',
+                'version': '0.0.3',
                 'survey_id': '0',
                 'flushed': False,
                 'origin': 'uk.gov.ons.edc.eq',
@@ -183,7 +183,7 @@ class TestDumpSubmission(IntegrationTestCase):
                 'data': [
                     {
                         'answer_id': 'radio-mandatory-answer',
-                        'value': 'Coffee',
+                        'value': 'Coffee'
                     },
                 ],
                 'metadata': {

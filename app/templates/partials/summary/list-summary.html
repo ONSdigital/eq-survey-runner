@@ -1,0 +1,22 @@
+<div>
+  <ul class="list list--records list--people u-mb-s js-household-members-summary" style="list-style-type: none;" >
+    {%- for list_item in content.list_items -%}
+      <li class="list__item" data-qa="list-summary-{{ loop.index }}">
+            <span class="list__item-name js-person-name">
+              {{ list_item.item_title | striptags }}
+            </span>
+        <div class="list__item-actions u-fr">
+            <span class="list__item-action">
+                <a href="{{ list_item.edit_link }}" data-qa="list-edit-link-{{ loop.index }}">
+                  Change
+                </a> /
+                <a href="{{ list_item.remove_link }}" data-qa="list-remove-link-{{ loop.index }}">
+                  Remove
+                </a>
+            </span>
+        </div>
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>
+

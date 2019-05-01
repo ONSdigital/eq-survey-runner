@@ -660,8 +660,7 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
         routing_path = [
             Location('test_block_id')
         ]
-        with patch('app.questionnaire.rules._get_answers_on_path', return_value=answer_store):
-            self.assertTrue(evaluate_when_rules(when['when'], get_schema_mock(), {}, answer_store, None))
+        self.assertTrue(evaluate_when_rules(when['when'], get_schema_mock(), {}, answer_store, None))
 
         with patch('app.questionnaire.rules._is_answer_on_path', return_value=False):
             self.assertFalse(

@@ -18,7 +18,7 @@ class TestQuestionnairePiping(IntegrationTestCase):
         self.assertStatusOK()
         self.assertInSelector(
             'Does <em>Joe Bloggs "Junior"</em> live at <em>44 hill side</em>',
-            id='container-multiple-piping-answer',
+            '#container-multiple-piping-answer',
         )
 
     def test_given_backslash_in_answer_when_piped_into_page_then_backslash_on_page(self):
@@ -37,7 +37,7 @@ class TestQuestionnairePiping(IntegrationTestCase):
         self.assertStatusOK()
         self.assertInSelector(
             'Joe Bloggs\\John Doe',
-            id='container-multiple-piping-answer'
+            '#container-multiple-piping-answer'
         )
 
     def test_answer_piped_into_option(self):
@@ -56,7 +56,7 @@ class TestQuestionnairePiping(IntegrationTestCase):
         self.assertStatusOK()
         self.assertInSelector(
             '44 hill side, newport',
-            id='label-multiple-piping-answer-0'
+            '#label-multiple-piping-answer-0'
         )
 
     def test_answer_piped_into_option_on_validation_error(self):
@@ -78,5 +78,5 @@ class TestQuestionnairePiping(IntegrationTestCase):
         self.assertStatusOK()
         self.assertInSelector(
             '44 hill side, newport',
-            id='label-multiple-piping-answer-0'
+            '#label-multiple-piping-answer-0'
         )

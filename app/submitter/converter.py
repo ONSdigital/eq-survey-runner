@@ -1,7 +1,7 @@
 from datetime import datetime
 from structlog import get_logger
 from app.submitter.convert_payload_0_0_1 import convert_answers_to_payload_0_0_1
-from app.submitter.convert_payload_0_0_2 import convert_answers_to_payload_0_0_2
+from app.submitter.convert_payload_0_0_3 import convert_answers_to_payload_0_0_3
 
 logger = get_logger()
 
@@ -15,16 +15,10 @@ class DataVersionError(Exception):
         return 'Data version {} not supported'.format(self.version)
 
 
-def convert_answers(metadata, collection_metadata, schema, answer_store, routing_path, flushed=False):
+def convert_answers(schema, questionnaire_store, routing_path, flushed=False):
     """
-    Create the JSON answer format for down stream processing
-    :param metadata: metadata for the questionnaire
-    :param collection_metadata: Any metadata about the collection of the questionnaire
-    :param schema: QuestionnaireSchema class with populated schema json
-    :param answer_store: the users answers
-    :param routing_path: the path followed by the user when answering the questionnaire
-    :param flushed: True when system submits the users answers, False when user submits there own answers
-    :return: a JSON object in the following format:
+    Create the JSON answer format for down stream processing in the following format:
+    ```
       {
         'tx_id': '0f534ffc-9442-414c-b39f-a756b4adc6cb',
         'type' : 'uk.gov.ons.edc.eq:surveyresponse',
@@ -43,11 +37,27 @@ def convert_answers(metadata, collection_metadata, schema, answer_store, routing
           'user_id': '789473423',
           'ru_ref': '432423423423'
         },
-        'data': {}
+        'data': {
+            ...
+        },
       }
+    ```
+
+    Args:
+        schema: QuestionnaireSchema instance with populated schema json
+        routing_path: The path followed by the user when answering the questionnaire
+        flushed: True when system submits the users answers, False when submitted by user.
+    Returns:
+        Data payload
     """
+    metadata = questionnaire_store.metadata
+    collection_metadata = questionnaire_store.collection_metadata
+    answer_store = questionnaire_store.answer_store
+    list_store = questionnaire_store.list_store
+
     survey_id = schema.json['survey_id']
     submitted_at = datetime.utcnow()
+
     payload = {
         'tx_id': metadata['tx_id'],
         'type': 'uk.gov.ons.edc.eq:surveyresponse',
@@ -60,6 +70,7 @@ def convert_answers(metadata, collection_metadata, schema, answer_store, routing
         'metadata': _build_metadata(metadata),
         'case_id': metadata['case_id'],
     }
+
     if collection_metadata.get('started_at'):
         payload['started_at'] = collection_metadata['started_at']
     if metadata.get('case_id'):
@@ -67,8 +78,8 @@ def convert_answers(metadata, collection_metadata, schema, answer_store, routing
     if metadata.get('case_ref'):
         payload['case_ref'] = metadata['case_ref']
 
-    if schema.json['data_version'] == '0.0.2':
-        payload['data'] = convert_answers_to_payload_0_0_2(answer_store, schema, routing_path)
+    if schema.json['data_version'] == '0.0.3':
+        payload['data'] = convert_answers_to_payload_0_0_3(answer_store, list_store, schema, routing_path)
     elif schema.json['data_version'] == '0.0.1':
         payload['data'] = convert_answers_to_payload_0_0_1(metadata, answer_store, schema, routing_path)
     else:

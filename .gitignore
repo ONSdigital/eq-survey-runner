@@ -96,3 +96,5 @@ data/en/census_individual.json
 
 # Ignore any generated pages for the functional tests
 tests/functional/generated_pages
+
+.mypy_cache

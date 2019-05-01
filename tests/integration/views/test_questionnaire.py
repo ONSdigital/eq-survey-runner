@@ -2,6 +2,7 @@ import simplejson as json
 from mock import Mock
 
 from app.data_model.answer_store import AnswerStore
+from app.data_model.list_store import ListStore
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.questionnaire.location import Location
 from app.templating.view_context import build_view_context
@@ -80,7 +81,7 @@ class TestQuestionnaire(IntegrationTestCase):
 
         # When
         with self._application.test_request_context():
-            view_context = build_view_context(block['type'], metadata, schema, AnswerStore(answers),
+            view_context = build_view_context(block['type'], metadata, schema, ListStore(), AnswerStore(answers),
                                               block, current_location, form=None)
 
         # Then

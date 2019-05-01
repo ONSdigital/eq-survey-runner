@@ -4,7 +4,7 @@ class Router:
         self._schema = schema
         self._routing_path = routing_path
         self._current_location = current_location
-        self._completed_locations = completed_locations or []
+        self._completed_locations = completed_locations
 
     def can_access_location(self):
         """

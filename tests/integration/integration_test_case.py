@@ -215,29 +215,29 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
     # Extra Helper Assertions
     def assertInHead(self, content):
-        self.assertInSelector(content, name='head')
+        self.assertInSelector(content, 'head')
 
     # Extra Helper Assertions
     def assertInBody(self, content):
-        self.assertInSelector(content, name='body')
+        self.assertInSelector(content, 'body')
 
     # Extra Helper Assertions
     def assertNotInHead(self, content):
-        self.assertNotInSelector(content, name='head')
+        self.assertNotInSelector(content, 'head')
 
     # Extra Helper Assertions
     def assertNotInBody(self, content):
-        self.assertNotInSelector(content, name='body')
+        self.assertNotInSelector(content, 'body')
 
-    def assertInSelector(self, content, **selectors):
-        data = self.getHtmlSoup().find(**selectors)
+    def assertInSelector(self, content, selector):
+        data = self.getHtmlSoup().select(selector)
         message = '\n{} not in \n{}'.format(content, data)
 
         # intentionally not using assertIn to avoid duplicating the output message
         self.assertTrue(content in str(data), msg=message)
 
-    def assertNotInSelector(self, content, **selectors):
-        data = self.getHtmlSoup().find(**selectors)
+    def assertNotInSelector(self, content, selector):
+        data = self.getHtmlSoup().select(selector)
         message = '\n{} in \n{}'.format(content, data)
 
         # intentionally not using assertIn to avoid duplicating the output message

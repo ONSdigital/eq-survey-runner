@@ -47,22 +47,22 @@ A new top level item in the questionnaire store will store each named list and i
         {
             "answer_id": "date-of-birth",
             "value": "1982-08-01",
-            "repeat_identifier": "a9hd8j"
+            "list_item_id": "a9hd8j"
         },
         {
             "answer_id": "occupation",
             "value": "Teacher",
-            "repeat_identifier": "a9hd8j"
+            "list_item_id": "a9hd8j"
         },
         {
             "answer_id": "date-of-birth",
             "value": "1994-02-05",
-            "repeat_identifier": "kl9s3y"
+            "list_item_id": "kl9s3y"
         },
         {
             "answer_id": "occupation",
             "value": "Engineer",
-            "repeat_identifier": "kl9s3y"
+            "list_item_id": "kl9s3y"
         }
     ],
     "lists": [
@@ -78,7 +78,7 @@ A new top level item in the questionnaire store will store each named list and i
 ```
 
 - Removal of `group_instance`, `group_instance_id` and `answer_instance` from answers.
-- Introduction of a `repeat_identifier` that identifies the list item that an answer is related to.
+- Introduction of a `list_item_id` that identifies the list item that an answer is related to.
 - The order of the items in the list definiton will determine display order.
 - The repeat identifier should be a short randomised string (it only has to be unique within the questionnaire).
 

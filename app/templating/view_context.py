@@ -1,10 +1,12 @@
+from flask import url_for
+from app.questionnaire.placeholder_transforms import PlaceholderTransforms
 from app.helpers.form_helper import get_form_for_location
 from app.jinja_filters import get_formatted_currency, format_number, format_unit, format_percentage
 from app.templating.summary_context import build_summary_rendering_context
 from app.questionnaire.schema_utils import choose_question_to_display, get_answer_ids_in_block
 
 
-def build_view_context(block_type, metadata, schema, answer_store, rendered_block, current_location, form):
+def build_view_context(block_type, metadata, schema, list_store, answer_store, rendered_block, current_location, form):
     if block_type == 'Summary':
         return build_view_context_for_final_summary(metadata, schema, answer_store, block_type,
                                                     rendered_block)
@@ -15,19 +17,69 @@ def build_view_context(block_type, metadata, schema, answer_store, rendered_bloc
     if block_type == 'CalculatedSummary':
         return build_view_context_for_calculated_summary(metadata, schema, answer_store, block_type, current_location)
 
-    if block_type in ('Question', 'ConfirmationQuestion'):
+    if block_type in ('Question', 'ConfirmationQuestion', 'ListAddQuestion', 'ListEditQuestion', 'ListRemoveQuestion'):
         form = form or get_form_for_location(schema, rendered_block, current_location, answer_store, metadata)
         return build_view_context_for_question(rendered_block, form)
+
+    if block_type == 'ListCollector':
+        form = form or get_form_for_location(schema, rendered_block, current_location, answer_store, metadata)
+        return build_view_context_for_list_collector(rendered_block, list_store, answer_store, form)
 
     if block_type in ('Introduction', 'Interstitial', 'Confirmation'):
         return build_view_context_for_non_question(rendered_block, metadata)
 
 
+def generate_list_item_title(answers, block_schema):
+    """
+    Generate a list item title from the answers within a block. Concatenates stripped answers with a space.
+    Assumes that the block has already had variants transformed
+    """
+    output = []
+    for block_answer in block_schema['question']['answers']:
+        output.append(next((answer.value for answer in answers if answer.answer_id == block_answer['id']), '').strip())
+
+    output = ' '.join(PlaceholderTransforms.remove_empty_from_list(output))
+
+    return output
+
+
+def build_view_context_for_list_collector(rendered_block, list_store, answer_store, form):
+    question_context = build_view_context_for_question(rendered_block, form)
+
+    list_name = rendered_block['populates_list']
+    list_item_ids = list_store[list_name]
+
+    list_title_answer_ids = [answer['id'] for answer in rendered_block['add_block']['question']['answers']]
+
+    list_items = []
+    for list_item_id in list_item_ids:
+        title_answers = answer_store.get_answers_by_answer_id(answer_ids=list_title_answer_ids, list_item_id=list_item_id)
+        if title_answers:
+            list_items.append({
+                'answers': title_answers,
+                'item_title': generate_list_item_title(title_answers, rendered_block['add_block']),
+                'edit_link': url_for('questionnaire.get_block',
+                                     list_name=list_name,
+                                     block_id=rendered_block['edit_block']['id'],
+                                     list_item_id=list_item_id),
+                'remove_link': url_for('questionnaire.get_block',
+                                       list_name=list_name,
+                                       block_id=rendered_block['remove_block']['id'],
+                                       list_item_id=list_item_id),
+            })
+
+    list_collector_context = {
+        'list_items': list_items,
+        'add_link': url_for('questionnaire.get_block', list_name=rendered_block['populates_list'], block_id=rendered_block['id']),
+    }
+
+    return {**question_context, **list_collector_context}
+
+
 def build_view_context_for_final_summary(metadata, schema, answer_store, block_type, rendered_block):
     section_list = schema.json['sections']
 
-    context = build_view_context_for_summary(schema, section_list, answer_store, metadata,
-                                             block_type)
+    context = build_view_context_for_summary(schema, section_list, answer_store, metadata, block_type)
 
     context['summary'].update({
         'is_view_submission_response_enabled': _is_view_submitted_response_enabled(schema.json),
