@@ -208,6 +208,34 @@ class TestRules(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
         self.assertFalse(evaluate_goto(goto_rule, get_schema_mock(), {}, answer_store))
 
+    def test_evaluate_goto_returns_false_when_checkbox_question_not_answered(self):
+
+        goto_contains = {
+            'id': 'next-question',
+            'when': [
+                {
+                    'id': 'my_answers',
+                    'condition': 'contains',
+                    'value': 'answer1'
+                }
+            ]
+        }
+
+        goto_not_contains = {
+            'id': 'next-question',
+            'when': [
+                {
+                    'id': 'my_answers',
+                    'condition': 'not contains',
+                    'value': 'answer1'
+                }
+            ]
+        }
+        answer_store = AnswerStore({})
+
+        self.assertFalse(evaluate_goto(goto_contains, get_schema_mock(), {}, answer_store))
+        self.assertFalse(evaluate_goto(goto_not_contains, get_schema_mock(), {}, answer_store))
+
     def test_evaluate_goto_returns_true_when_answer_value_list_contains_match_value(self):
 
         goto = {
