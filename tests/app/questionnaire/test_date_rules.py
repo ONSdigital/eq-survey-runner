@@ -125,6 +125,20 @@ class TestDateRules(AppContextTestCase):
         result = evaluate_date_rule(when, answer_store, get_schema_mock(), None, answer_value)
         self.assertFalse(result)
 
+    def test_evaluate_date_rule_invalid(self):
+        when = {
+            'id': 'date-answer',
+            'condition': 'greater than',
+            'date_comparison': {
+                'id': 'compare_date_answer'
+            }
+        }
+        answer_store = AnswerStore({})
+        result = evaluate_date_rule(when, answer_store, get_schema_mock(), None, None)
+
+        self.assertFalse(result)
+
+
     def test_do_not_go_to_next_question_for_date_answer(self):
 
         goto_rule = {
@@ -139,6 +153,6 @@ class TestDateRules(AppContextTestCase):
         }
 
         answer_store = AnswerStore({})
-        answer_store.add_or_update(Answer(answer_id='date_answer', value='2018-02-01'))
+        answer_store.add_or_update(Answer(answer_id='date-answer', value='2018-02-01'))
 
         self.assertFalse(evaluate_goto(goto_rule, get_schema_mock(), {}, answer_store, 0))

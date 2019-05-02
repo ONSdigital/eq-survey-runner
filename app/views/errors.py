@@ -8,6 +8,7 @@ from structlog import get_logger
 from ua_parser import user_agent_parser
 
 from app.authentication.no_token_exception import NoTokenException
+from app.views.exceptions import PageNotFoundException
 from app.globals import get_metadata
 from app.helpers.template_helper import safe_content
 from app.libs.utils import convert_tx_id_for_boxes
@@ -35,6 +36,12 @@ def csrf_error(error=None):
 def forbidden(error=None):
     log_exception(error, 403)
     return _render_error_page(403)
+
+
+@errors_blueprint.app_errorhandler(PageNotFoundException)
+def not_found(error=None):
+    log_exception(error, 404)
+    return _render_error_page(404)
 
 
 @errors_blueprint.app_errorhandler(SubmissionFailedException)

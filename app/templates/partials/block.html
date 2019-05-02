@@ -9,6 +9,12 @@
     <div class="block__description u-fs-r" data-qa="block-description">{{block['description']}}</div>
   {% endif %}
 
+  {% set list_summary %}
+      {% if block.type == 'ListCollector' %}
+        {% include theme('partials/summary/list-summary.html') %}
+      {% endif %}
+  {% endset %}
+
   {% if 'question' in block %}
       {% set question = block['question'] %}
       {% include theme('partials/question.html') %}

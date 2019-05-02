@@ -4,8 +4,7 @@ from sdc.crypto.decrypter import decrypt
 
 
 from app.authentication.user import User
-from app.globals import (get_answer_store, get_metadata, get_questionnaire_store,
-                         get_completed_blocks, get_collection_metadata)
+from app.globals import get_answer_store, get_questionnaire_store, get_completed_blocks
 from app.questionnaire.path_finder import PathFinder
 from app.keys import KEY_PURPOSE_AUTHENTICATION, KEY_PURPOSE_SUBMISSION
 from app.submitter.converter import convert_answers
@@ -46,13 +45,15 @@ def _submit_data(user):
     answer_store = get_answer_store(user)
 
     if answer_store:
-        metadata = get_metadata(user)
-        collection_metadata = get_collection_metadata(user)
+        questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
+        answer_store = questionnaire_store.answer_store
+        metadata = questionnaire_store.metadata
+
         schema = load_schema_from_metadata(metadata)
         completed_blocks = get_completed_blocks(user)
         routing_path = PathFinder(schema, answer_store, metadata, completed_blocks).get_full_routing_path()
 
-        message = convert_answers(metadata, collection_metadata, schema, answer_store, routing_path, flushed=True)
+        message = convert_answers(schema, questionnaire_store, routing_path, flushed=True)
         encrypted_message = encrypt(message, current_app.eq['key_store'], KEY_PURPOSE_SUBMISSION)
 
         sent = current_app.eq['submitter'].send_message(encrypted_message, case_id=metadata.get('case_id'), tx_id=metadata.get('tx_id'))

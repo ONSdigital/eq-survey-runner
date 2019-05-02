@@ -1,7 +1,7 @@
 from werkzeug.datastructures import MultiDict
 from tests.app.app_context_test_case import AppContextTestCase
 
-from app.helpers.form_helper import get_form_for_location, post_form_for_block
+from app.helpers.form_helper import get_form_for_location, post_form_for_block, get_mapped_answers
 from app.questionnaire.location import Location
 from app.utilities.schema import load_schema_from_params
 from app.data_model.answer_store import AnswerStore
@@ -144,3 +144,25 @@ class TestFormHelper(AppContextTestCase):
 
             other_text_field = getattr(form, 'other-answer-mandatory')
             self.assertEqual(other_text_field.data, 'Other text field value')
+
+    def test_get_mapped_answers(self):
+        schema = load_schema_from_params('test', 'list_collector')
+        location = Location(block_id='add-person', list_name='people')
+        answer_store = AnswerStore([
+            {
+                'answer_id': 'first-name',
+                'value': 'Jon',
+            },
+            {
+                'answer_id': 'another-name',
+                'value': 'Malcolm',
+            },
+            {
+                'answer_id': 'last-name',
+                'value': 'Smith',
+            },
+
+        ])
+
+        mapped = get_mapped_answers(schema, answer_store, location)
+        self.assertEqual(len(mapped), 2)

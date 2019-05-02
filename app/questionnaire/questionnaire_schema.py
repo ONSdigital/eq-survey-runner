@@ -5,6 +5,7 @@ from flask_babel import force_locale
 from app.validation.error_messages import error_messages
 
 DEFAULT_LANGUAGE_CODE = 'en'
+LIST_COLLECTOR_CHILDREN = ['ListAddQuestion', 'ListEditQuestion', 'ListRemoveQuestion']
 
 
 class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
@@ -75,6 +76,9 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
     def get_group_by_block_id(self, block_id):
         block = self.get_block(block_id)
+        if block['type'] in LIST_COLLECTOR_CHILDREN:
+            parent = self.get_block(block['parent_id'])
+            return self.get_group(parent['parent_id'])
         return self.get_group(block['parent_id'])
 
     @classmethod
@@ -152,13 +156,40 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
         return False
 
+    def get_list_collector_for_block_id(self, block_id):
+        block = self.get_block(block_id)
+        return self.get_block(block['parent_id'])
+
+    def is_block_list_collector_child(self, block_id):
+        block = self.get_block(block_id)
+        if not block:
+            return False
+
+        return block['type'] in LIST_COLLECTOR_CHILDREN
+
     def _parse_schema(self):
         self._sections_by_id = self._get_sections_by_id()
         self._groups_by_id = get_nested_schema_objects(self._sections_by_id, 'groups')
-        self._blocks_by_id = get_nested_schema_objects(self._groups_by_id, 'blocks')
+        self._blocks_by_id = self._get_blocks_by_id()
         self._questions_by_id = self._get_questions_by_id()
         self._answers_by_id = self._get_answers_by_id()
         self.error_messages = self._get_error_messages()
+
+    def _get_blocks_by_id(self):
+        blocks = defaultdict(list)
+
+        for group in self._groups_by_id.values():
+            for block in group['blocks']:
+                block['parent_id'] = group['id']
+                blocks[block['id']] = block
+
+                if block['type'] == 'ListCollector':
+                    for nested_block_name in ['add_block', 'edit_block', 'remove_block']:
+                        nested_block = block[nested_block_name]
+                        nested_block['parent_id'] = block['id']
+                        blocks[nested_block['id']] = nested_block
+
+        return blocks
 
     def _get_questions_by_id(self):
         questions_by_id = defaultdict(list)

@@ -19,7 +19,6 @@ class PathFinder:
         self.metadata = metadata
         self.schema = schema
         self.completed_blocks = completed_blocks
-        self._answer_store_hash = self.answer_store.get_hash()
         self._full_routing_path = None
 
     @staticmethod
@@ -137,7 +136,7 @@ class PathFinder:
         if 'when' in goto_rule.keys():
             for condition in goto_rule['when']:
                 if 'meta' not in condition.keys():
-                    self.answer_store.remove(answer_ids=[condition['id']])
+                    self.answer_store.remove_answer(condition['id'])
 
         if this_location in self.completed_blocks:
             self.completed_blocks.remove(this_location)
@@ -147,12 +146,10 @@ class PathFinder:
         Returns a list of the block ids visited based on answers provided
         :return: List of block location dicts
         """
-        latest_answer_store_hash = self.answer_store.get_hash()
         if self._full_routing_path and \
-                self._answer_store_hash == latest_answer_store_hash:
+                not self.answer_store.is_dirty:
             return self._full_routing_path
 
-        self._answer_store_hash = latest_answer_store_hash
         self._full_routing_path = self.build_path()
 
         return self._full_routing_path
@@ -215,7 +212,7 @@ class PathFinder:
                 if location not in self.completed_blocks:
                     return None
 
-    def get_previous_location(self, current_location):
+    def get_previous_location(self, current_location, schema):
         """
         Returns the previous 'location' to visit given a set of user answers
         :param current_location:
@@ -227,6 +224,11 @@ class PathFinder:
 
         if first_block_for_group == current_location.block_id:
             return None
+
+        block = schema.get_block(current_location.block_id)
+        if schema.is_block_list_collector_child(current_location.block_id):
+            # If this is a list collector sub block, return the collector in the previous link
+            return Location(block_id=block['parent_id'])
 
         routing_path = self.get_full_routing_path()
         current_location_index = PathFinder._get_current_location_index(routing_path, current_location)

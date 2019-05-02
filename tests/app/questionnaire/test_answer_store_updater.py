@@ -3,9 +3,10 @@ import unittest
 from mock import MagicMock
 
 from app.data_model.answer_store import AnswerStore
+from app.data_model.list_store import ListStore
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.forms.questionnaire_form import QuestionnaireForm
-from app.questionnaire.answer_store_updater import AnswerStoreUpdater
+from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
 from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 
@@ -17,10 +18,12 @@ class TestAnswerStoreUpdater(unittest.TestCase):
         self.location = Location('block_bar')
         self.schema = MagicMock(spec=QuestionnaireSchema)
         self.answer_store = MagicMock(spec=AnswerStore)
+        self.list_store = MagicMock(spec=ListStore)
         self.questionnaire_store = MagicMock(
             spec=QuestionnaireStore,
             completed_blocks=[],
-            answer_store=self.answer_store
+            answer_store=self.answer_store,
+            list_store=self.list_store
         )
         self.metadata = MagicMock()
         self.answer_store_updater = None
@@ -35,7 +38,7 @@ class TestAnswerStoreUpdater(unittest.TestCase):
         form = MagicMock(spec=QuestionnaireForm, data={answer_id: answer_value})
 
         self.current_question = self.schema.get_block(self.location.block_id)['question']
-        self.answer_store_updater = AnswerStoreUpdater(self.location, self.schema, self.questionnaire_store, self.current_question)
+        self.answer_store_updater = QuestionnaireStoreUpdater(self.location, self.schema, self.questionnaire_store, self.current_question)
         self.answer_store_updater.save_answers(form)
 
         assert self.questionnaire_store.completed_blocks == [self.location]
@@ -44,6 +47,7 @@ class TestAnswerStoreUpdater(unittest.TestCase):
         created_answer = self.answer_store.add_or_update.call_args[0][0]
         assert created_answer.__dict__ == {
             'answer_id': answer_id,
+            'list_item_id': None,
             'value': answer_value
         }
 
@@ -67,7 +71,7 @@ class TestAnswerStoreUpdater(unittest.TestCase):
                 'default': default_value
             }]
         }
-        self.answer_store_updater = AnswerStoreUpdater(self.location, self.schema, self.questionnaire_store, self.current_question)
+        self.answer_store_updater = QuestionnaireStoreUpdater(self.location, self.schema, self.questionnaire_store, self.current_question)
         self.answer_store_updater.save_answers(form)
 
         assert self.questionnaire_store.completed_blocks == [self.location]
@@ -76,6 +80,7 @@ class TestAnswerStoreUpdater(unittest.TestCase):
         created_answer = self.answer_store.add_or_update.call_args[0][0]
         assert created_answer.__dict__ == {
             'answer_id': answer_id,
+            'list_item_id': None,
             'value': default_value
         }
 
@@ -111,9 +116,40 @@ class TestAnswerStoreUpdater(unittest.TestCase):
                 }
             ]
         }
-        self.answer_store_updater = AnswerStoreUpdater(self.location, self.schema, self.questionnaire_store,
-                                                       self.current_question)
+        self.answer_store_updater = QuestionnaireStoreUpdater(self.location, self.schema, self.questionnaire_store, self.current_question)
         self.answer_store_updater.save_answers(form)
 
         assert self.questionnaire_store.completed_blocks == [self.location]
         assert self.answer_store.add_or_update.call_count == 0
+
+    def test_remove_all_answers_with_list_item_id(self):
+        answer_store = AnswerStore(existing_answers=[
+            {
+                'answer_id': 'test1',
+                'value': 1,
+                'list_item_id': 'abcdef'
+            },
+            {
+                'answer_id': 'test2',
+                'value': 2,
+                'list_item_id': 'abcdef'
+            },
+            {
+                'answer_id': 'test3',
+                'value': 3,
+                'list_item_id': 'uvwxyz'
+            }
+        ])
+
+        questionnaire_store = MagicMock(
+            spec=QuestionnaireStore,
+            completed_blocks=[],
+            answer_store=answer_store,
+            list_store=MagicMock(spec=ListStore)
+        )
+
+        self.answer_store_updater = QuestionnaireStoreUpdater(self.location, self.schema, questionnaire_store, self.current_question)
+        self.answer_store_updater.remove_all_answers_with_list_item_id('abc', 'abcdef')
+
+        assert len(answer_store) == 1
+        assert answer_store.get_answer('test3', 'uvwxyz')

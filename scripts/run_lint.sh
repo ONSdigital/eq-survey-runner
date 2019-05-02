@@ -33,3 +33,6 @@ display_result $? 1 "Jsonnet linting check"
 
 yarn lint
 display_result $? 1 "Javascript linting check"
+
+./scripts/run_mypy.sh
+display_result $? 1 "Mypy type check"

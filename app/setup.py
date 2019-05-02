@@ -130,6 +130,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     application.wsgi_app = AWSReverseProxied(application.wsgi_app)
 
+    application.url_map.strict_slashes = False
+
     add_blueprints(application)
 
     configure_flask_logging(application)
