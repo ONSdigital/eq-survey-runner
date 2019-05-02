@@ -65,10 +65,11 @@ class AsyncDatastoreStorage:
 
         if results['found']:
             item = results['found'][0]
-            model, _ = schema.load(item)
+            model, _ = schema.load(item.entity.properties)
             return model
 
     async def delete(self, model):
+        logger.info("Async DELETE")
         config = TABLE_CONFIG[type(model)]
 
         key_value = getattr(model, config['key_field'])

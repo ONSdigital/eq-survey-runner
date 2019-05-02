@@ -20,7 +20,15 @@ class QuestionnaireStore:
         self.answer_store = AnswerStore()
         self.completed_blocks = []
 
+    def load_user_data(self):
         raw_data, version = self._storage.get_user_data()
+        if raw_data:
+            self._deserialise(raw_data)
+        if version is not None:
+            self.version = version
+
+    async def load_user_data_async(self):
+        raw_data, version = await self._storage.get_user_data_async()
         if raw_data:
             self._deserialise(raw_data)
         if version is not None:
@@ -64,9 +72,20 @@ class QuestionnaireStore:
         self.answer_store.clear()
         self.completed_blocks = []
 
+    async def delete_async(self):
+        self._storage.delete_async()
+        self._metadata.clear()
+        self.collection_metadata = {}
+        self.answer_store.clear()
+        self.completed_blocks = []
+
     def add_or_update(self):
         data = self._serialise()
         self._storage.add_or_update(data=data)
+
+    async def add_or_update_async(self):
+        data = self._serialise()
+        await self._storage.add_or_update_async(data=data)
 
     def remove_completed_blocks(self, location):
         """Removes completed blocks from store

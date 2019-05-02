@@ -15,7 +15,7 @@ from app.authentication.no_token_exception import NoTokenException
 from app.data_model.answer_store import AnswerStore
 from app.data_model.app_models import SubmittedResponse
 from app.globals import (get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store,
-                         get_collection_metadata)
+                         get_questionnaire_store_async, get_collection_metadata)
 from app.globals import get_session_store, get_session_store_async
 from app.helpers.form_helper import post_form_for_block
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required
@@ -73,8 +73,8 @@ async def before_questionnaire_request():
 
 
 @post_submission_blueprint.before_request
-def before_post_submission_request():
-    session_store = get_session_store()
+async def before_post_submission_request():
+    session_store = await get_session_store_async()
     if not session_store or not session_store.session_data:
         raise NoTokenException(401)
 
@@ -148,14 +148,14 @@ async def post_block(routing_path, schema, metadata, collection_metadata, answer
 
     if form.validate():
         _set_started_at_metadata_if_required(form, collection_metadata)
-        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+        questionnaire_store = await get_questionnaire_store_async(current_user.user_id, current_user.user_ik)
         answer_store_updater = AnswerStoreUpdater(current_location, schema, questionnaire_store, rendered_block.get('question'))
-        answer_store_updater.save_answers(form)
+        await answer_store_updater.save_answers_async(form)
 
         next_location = path_finder.get_next_location(current_location=current_location)
 
         if _is_end_of_questionnaire(block, next_location):
-            return submit_answers(routing_path, schema)
+            return await submit_answers(routing_path, schema)
 
         return redirect(next_location.url())
 
@@ -213,7 +213,7 @@ async def post_thank_you():
 @with_schema
 async def get_view_submission(schema):  # pylint: too-many-locals
 
-    session_data = get_session_store().session_data
+    session_data = (await get_session_store_async()).session_data
 
     if _is_submission_viewable(schema.json, session_data.submitted_time):
         submitted_data = current_app.eq['storage'].get_by_key(SubmittedResponse, session_data.tx_id)
@@ -310,7 +310,7 @@ def _is_end_of_questionnaire(block, next_location):
     )
 
 
-def submit_answers(routing_path, schema):
+async def submit_answers(routing_path, schema):
     metadata = get_metadata(current_user)
     collection_metadata = get_collection_metadata(current_user)
     answer_store = get_answer_store(current_user)
@@ -336,7 +336,7 @@ def submit_answers(routing_path, schema):
     if is_view_submitted_response_enabled(schema.json):
         _store_viewable_submission(list(answer_store), metadata, submitted_time)
 
-    get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
+    await (await get_questionnaire_store_async(current_user.user_id, current_user.user_ik)).delete_async()
 
     return redirect(url_for('post_submission.get_thank_you'))
 
@@ -387,16 +387,16 @@ def _is_submission_viewable(schema, submitted_time):
 
 
 async def _save_sign_out(current_location, current_question, form, schema):
-    questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+    questionnaire_store = await get_questionnaire_store_async(current_user.user_id, current_user.user_ik)
 
     block = schema.get_block(current_location.block_id)
 
     if form.validate():
         answer_store_updater = AnswerStoreUpdater(current_location, schema, questionnaire_store, current_question)
-        answer_store_updater.save_answers(form)
+        await answer_store_updater.save_answers_async(form)
 
         questionnaire_store.remove_completed_blocks(location=current_location)
-        questionnaire_store.add_or_update()
+        questionnaire_store.add_or_update_async()
 
         logout_user()
 

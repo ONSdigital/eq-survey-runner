@@ -22,6 +22,14 @@ class AnswerStoreUpdater:
 
         self._questionnaire_store.add_or_update()
 
+    async def save_answers_async(self, form):
+        self._update_questionnaire_store_with_form_data(form.data)
+
+        if self._current_location not in self._questionnaire_store.completed_blocks:
+            self._questionnaire_store.completed_blocks.append(self._current_location)
+
+        await self._questionnaire_store.add_or_update_async()
+
     def _update_questionnaire_store_with_form_data(self, form_data):
         answer_ids_for_question = self._schema.get_answer_ids_for_question(self._current_question)
 

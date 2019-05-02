@@ -19,6 +19,21 @@ def get_questionnaire_store(user_id, user_ik):
         pepper = current_app.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
         storage = EncryptedQuestionnaireStorage(user_id, user_ik, pepper)
         store = g._questionnaire_store = QuestionnaireStore(storage)
+        store.load_user_data()
+
+    return store
+
+
+async def get_questionnaire_store_async(user_id, user_ik):
+    from app.storage.encrypted_questionnaire_storage import EncryptedQuestionnaireStorage
+
+    # Sets up a single QuestionnaireStore instance per request.
+    store = g.get('_questionnaire_store')
+    if store is None:
+        pepper = current_app.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
+        storage = EncryptedQuestionnaireStorage(user_id, user_ik, pepper)
+        store = g._questionnaire_store = QuestionnaireStore(storage)
+        await store.load_user_data_async()
 
     return store
 
