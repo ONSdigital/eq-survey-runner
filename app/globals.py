@@ -35,6 +35,24 @@ def get_session_store():
     if store is None:
         pepper = current_app.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
         store = g._session_store = SessionStore(cookie_session[USER_IK], pepper, cookie_session[EQ_SESSION_ID])
+        store.load()
+
+    return store
+
+
+async def get_session_store_async():
+    from app.data_model.session_store import SessionStore
+
+    if USER_IK not in cookie_session or EQ_SESSION_ID not in cookie_session:
+        return None
+
+    # Sets up a single SessionStore instance per request.
+    store = g.get('_session_store')
+
+    if store is None:
+        pepper = current_app.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
+        store = g._session_store = SessionStore(cookie_session[USER_IK], pepper, cookie_session[EQ_SESSION_ID])
+        await store.load_async()
 
     return store
 
@@ -62,6 +80,18 @@ def create_session_store(eq_session_id, user_id, user_ik, session_data):
 
     # pylint: disable=W0212
     g._session_store = SessionStore(user_ik, pepper).create(eq_session_id, user_id, session_data, expires_at).save()
+
+
+async def create_session_store_async(eq_session_id, user_id, user_ik, session_data):
+    from app.data_model.session_store import SessionStore
+
+    pepper = current_app.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
+    session_timeout_in_seconds = get_session_timeout_in_seconds(g.schema)
+    expires_at = datetime.now(tz=tzutc()) + timedelta(seconds=session_timeout_in_seconds)
+
+    # pylint: disable=W0212
+    g._session_store = SessionStore(user_ik, pepper).create(eq_session_id, user_id, session_data, expires_at)
+    await g._session_store.save_async()
 
 
 def get_metadata(user):

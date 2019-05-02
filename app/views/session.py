@@ -35,7 +35,7 @@ def login_head():
 
 
 @session_blueprint.route('/session', methods=['GET'])
-def login():
+async def login():
     """
     Initial url processing - expects a token parameter and then will authenticate this token. Once authenticated
     it will be placed in the users session
@@ -62,7 +62,7 @@ def login():
     logger.bind(eq_id=eq_id, form_type=form_type, tx_id=tx_id, ru_ref=ru_ref)
     logger.info('decrypted token and parsed metadata')
 
-    store_session(claims)
+    await store_session(claims)
 
     cookie_session['theme'] = g.schema.json['theme']
     cookie_session['survey_title'] = g.schema.json['title']

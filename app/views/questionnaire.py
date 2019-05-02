@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 
-import asyncio
 import humanize
 import simplejson as json
 from dateutil.tz import tzutc
@@ -17,7 +16,7 @@ from app.data_model.answer_store import AnswerStore
 from app.data_model.app_models import SubmittedResponse
 from app.globals import (get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store,
                          get_collection_metadata)
-from app.globals import get_session_store
+from app.globals import get_session_store, get_session_store_async
 from app.helpers.form_helper import post_form_for_block
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required
 from app.helpers.schema_helpers import with_schema
@@ -52,7 +51,7 @@ post_submission_blueprint = Blueprint(name='post_submission',
 
 
 @questionnaire_blueprint.before_request
-def before_questionnaire_request():
+async def before_questionnaire_request():
     metadata = get_metadata(current_user)
     if not metadata:
         raise NoTokenException(401)
@@ -62,7 +61,7 @@ def before_questionnaire_request():
 
     logger.info('questionnaire request', method=request.method, url_path=request.full_path)
 
-    session_store = get_session_store()
+    session_store = await get_session_store_async()
     session_data = session_store.session_data
 
     language_code = request.args.get('language_code')
@@ -162,14 +161,14 @@ async def post_block(routing_path, schema, metadata, collection_metadata, answer
 
     context = build_view_context(block['type'], metadata, schema, answer_store, rendered_block, current_location, form)
 
-    return _render_page(block['type'], context, current_location, schema)
+    return await _render_page(block['type'], context, current_location, schema)
 
 
 @post_submission_blueprint.route('thank-you', methods=['GET'])
 @login_required
 @with_schema
 async def get_thank_you(schema):
-    session_data = get_session_store().session_data
+    session_data = (await get_session_store_async()).session_data
 
     if session_data.submitted_time:
         metadata_context = build_metadata_context_for_survey_completed(session_data)
@@ -181,15 +180,15 @@ async def get_thank_you(schema):
             view_submission_duration = humanize.naturaldelta(timedelta(seconds=schema.json['view_submitted_response']['duration']))
 
         return await render_template('thank-you.html',
-                             metadata=metadata_context,
-                             analytics_ua_id=current_app.config['EQ_UA_ID'],
-                             survey_id=schema.json['survey_id'],
-                             survey_title=safe_content(schema.json['title']),
-                             is_view_submitted_response_enabled=is_view_submitted_response_enabled(schema.json),
-                             view_submission_url=view_submission_url,
-                             account_service_url=cookie_session.get('account_service_url'),
-                             account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
-                             view_submission_duration=view_submission_duration)
+                                     metadata=metadata_context,
+                                     analytics_ua_id=current_app.config['EQ_UA_ID'],
+                                     survey_id=schema.json['survey_id'],
+                                     survey_title=safe_content(schema.json['title']),
+                                     is_view_submitted_response_enabled=is_view_submitted_response_enabled(schema.json),
+                                     view_submission_url=view_submission_url,
+                                     account_service_url=cookie_session.get('account_service_url'),
+                                     account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
+                                     view_submission_duration=view_submission_duration)
 
     routing_path = path_finder.get_full_routing_path()
 
@@ -252,13 +251,13 @@ async def get_view_submission(schema):  # pylint: too-many-locals
             }
 
             return await render_template(template_name='view-submission.html',
-                                     metadata=metadata_context,
-                                     analytics_ua_id=current_app.config['EQ_UA_ID'],
-                                     survey_id=schema.json['survey_id'],
-                                     survey_title=safe_content(schema.json['title']),
-                                     account_service_url=cookie_session.get('account_service_url'),
-                                     account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
-                                     content=context)
+                                         metadata=metadata_context,
+                                         analytics_ua_id=current_app.config['EQ_UA_ID'],
+                                         survey_id=schema.json['survey_id'],
+                                         survey_title=safe_content(schema.json['title']),
+                                         account_service_url=cookie_session.get('account_service_url'),
+                                         account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
+                                         content=context)
 
     return redirect(url_for('post_submission.get_thank_you'))
 
@@ -282,11 +281,11 @@ def _set_started_at_metadata_if_required(form, collection_metadata):
         collection_metadata['started_at'] = started_at
 
 
-def _render_page(block_type, context, current_location, schema):
+async def _render_page(block_type, context, current_location, schema):
     if request_wants_json():
         return jsonify(context)
 
-    return _build_template(current_location, context, block_type, schema)
+    return await _build_template(current_location, context, block_type, schema)
 
 
 async def _generate_wtf_form(form, block, schema):
@@ -434,11 +433,11 @@ def get_page_title_for_location(schema, current_location, context):
     return safe_content(page_title)
 
 
-def _build_template(current_location, context, template, schema):
+async def _build_template(current_location, context, template, schema):
     previous_location = path_finder.get_previous_location(current_location)
     previous_url = previous_location.url() if previous_location is not None else None
 
-    return _render_template(context, current_location, template, previous_url, schema)
+    return await _render_template(context, current_location, template, previous_url, schema)
 
 
 @with_session_timeout

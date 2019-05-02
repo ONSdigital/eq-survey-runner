@@ -11,7 +11,7 @@ from structlog import get_logger
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.user import User
 from app.data_model.session_data import SessionData
-from app.globals import get_questionnaire_store, get_session_store, create_session_store
+from app.globals import get_questionnaire_store, get_session_store, create_session_store_async
 from app.keys import KEY_PURPOSE_AUTHENTICATION
 from app.settings import EQ_SESSION_ID, USER_IK
 
@@ -118,7 +118,7 @@ def _create_session_data_from_metadata(metadata):
     return session_data
 
 
-def store_session(metadata):
+async def store_session(metadata):
     """
     Store new session and metadata
     :param metadata: metadata parsed from jwt token
@@ -139,7 +139,7 @@ def store_session(metadata):
     cookie_session[EQ_SESSION_ID] = eq_session_id
 
     session_data = _create_session_data_from_metadata(metadata)
-    create_session_store(eq_session_id, user_id, user_ik, session_data)
+    await create_session_store_async(eq_session_id, user_id, user_ik, session_data)
 
     questionnaire_store = get_questionnaire_store(user_id, user_ik)
     questionnaire_store.set_metadata(metadata)
