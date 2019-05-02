@@ -64,6 +64,11 @@ To run the unit tests locally:
 pipenv run scripts/run_tests_unit.sh
 ```
 
+If you want to run the app locally, but all other dependencies in docker, you can use the docker-compose-dev.yaml file:
+
+```
+docker-compose -f docker-compose-dev.yml up -d
+```
 
 ### Pre-Requisites
 In order to run locally you'll need Node.js, snappy, pyenv and Jsonnet installed
