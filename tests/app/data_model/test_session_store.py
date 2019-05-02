@@ -78,14 +78,13 @@ class SessionStoreTest(AppContextTestCase):
             self.assertEqual(session_store.session_data.submitted_time, current_time)
 
     def test_should_not_delete_when_no_session(self):
-        with self.app_request_context('/status'):
-            with patch('app.data_model.models.db.session.delete') as delete:
+        with self.app_request_context('/status') as context:
 
-                # Call clear with a valid user_id but no session in database
-                self.session_store.delete()
+            # Call clear with a valid user_id but no session in database
+            self.session_store.delete()
 
-                # No database calls should have been made
-                self.assertFalse(delete.called)
+            # No database calls should have been made
+            self.assertEqual(context.app.eq['storage'].client.delete_call_count, 0)
 
     def test_session_store_ignores_new_values_in_session_data(self):
         session_data = SessionData(

@@ -21,13 +21,7 @@ class EncryptedQuestionnaireStorage:
     def add_or_update(self, data):
         compressed_data = snappy.compress(data)
         encrypted_data = self.encrypter.encrypt_data(compressed_data)
-        questionnaire_state = self._find_questionnaire_state()
-        if questionnaire_state:
-            logger.debug('updating questionnaire data', user_id=self._user_id)
-            questionnaire_state.state_data = encrypted_data
-        else:
-            logger.debug('creating questionnaire data', user_id=self._user_id)
-            questionnaire_state = QuestionnaireState(self._user_id, encrypted_data, QuestionnaireStore.LATEST_VERSION)
+        questionnaire_state = QuestionnaireState(self._user_id, encrypted_data, QuestionnaireStore.LATEST_VERSION)
 
         current_app.eq['storage'].put(questionnaire_state)
 

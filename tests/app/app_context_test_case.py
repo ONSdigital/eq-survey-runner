@@ -12,6 +12,7 @@ class MockDatastore:
     # pylint: disable=unused-argument
     def __init__(self, **kwargs):
         self.storage = {}
+        self.delete_call_count = 0
 
     # pylint: disable=no-self-use
     def transaction(self):
@@ -24,6 +25,7 @@ class MockDatastore:
         return self.storage.get(key)
 
     def delete(self, key):
+        self.delete_call_count += 1
         del self.storage[key]
 
     # pylint: disable=no-self-use

@@ -39,8 +39,6 @@ secrets['EQ_SECRET_KEY'] = get_file_contents(keys_folder, 'eq-secret-key.txt', T
 
 secrets['EQ_RABBITMQ_USERNAME'] = get_file_contents(keys_folder, 'eq-rabbitmq-username.txt', True)
 secrets['EQ_RABBITMQ_PASSWORD'] = get_file_contents(keys_folder, 'eq-rabbitmq-password.txt', True)
-secrets['EQ_SERVER_SIDE_STORAGE_DATABASE_USERNAME'] = get_file_contents(keys_folder, 'eq-server-side-storage-database-username.txt', True)
-secrets['EQ_SERVER_SIDE_STORAGE_DATABASE_PASSWORD'] = get_file_contents(keys_folder, 'eq-server-side-storage-database-password.txt', True)
 
 with open('secrets.yml', 'w') as f:
     yaml.dump({"secrets": secrets}, f, default_flow_style=False)
