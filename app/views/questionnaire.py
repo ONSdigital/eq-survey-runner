@@ -16,7 +16,7 @@ from app.data_model.answer_store import AnswerStore
 from app.data_model.app_models import SubmittedResponse
 from app.globals import (get_answer_store_async, get_completed_blocks_async, get_metadata_async,
                          get_questionnaire_store_async, get_collection_metadata_async)
-from app.globals import get_session_store, get_session_store_async
+from app.globals import get_session_store_async
 from app.helpers.form_helper import post_form_for_block
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required
 from app.helpers.schema_helpers import with_schema
@@ -67,7 +67,7 @@ async def before_questionnaire_request():
     language_code = request.args.get('language_code')
     if language_code:
         session_data.language_code = language_code
-        session_store.save()
+        await session_store.save_async()
 
     g.schema = load_schema_from_session_data(session_data)
 
@@ -331,7 +331,7 @@ async def submit_answers(routing_path, schema):
 
     submitted_time = datetime.utcnow()
 
-    _store_submitted_time_in_session(submitted_time)
+    await _store_submitted_time_in_session(submitted_time)
 
     if is_view_submitted_response_enabled(schema.json):
         _store_viewable_submission(list(answer_store), metadata, submitted_time)
@@ -341,11 +341,11 @@ async def submit_answers(routing_path, schema):
     return redirect(url_for('post_submission.get_thank_you'))
 
 
-def _store_submitted_time_in_session(submitted_time):
-    session_store = get_session_store()
+async def _store_submitted_time_in_session(submitted_time):
+    session_store = await get_session_store_async()
     session_data = session_store.session_data
     session_data.submitted_time = submitted_time.isoformat()
-    session_store.save()
+    await session_store.save_async()
 
 
 def _store_viewable_submission(answers, metadata, submitted_time):
@@ -447,7 +447,7 @@ async def _render_template(context, current_location, template, previous_url, sc
                      **kwargs):
     page_title = get_page_title_for_location(schema, current_location, context)
 
-    session_store = get_session_store()
+    session_store = await get_session_store_async()
     session_data = session_store.session_data
 
     template = '{}.html'.format(template).lower()

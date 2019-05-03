@@ -4,8 +4,8 @@ from sdc.crypto.decrypter import decrypt
 
 
 from app.authentication.user import User
-from app.globals import (get_answer_store, get_metadata, get_questionnaire_store,
-                         get_completed_blocks, get_collection_metadata)
+from app.globals import (get_answer_store_async, get_metadata_async, get_questionnaire_store_async,
+                         get_completed_blocks_async, get_collection_metadata_async)
 from app.questionnaire.path_finder import PathFinder
 from app.keys import KEY_PURPOSE_AUTHENTICATION, KEY_PURPOSE_SUBMISSION
 from app.submitter.converter import convert_answers
@@ -16,7 +16,7 @@ flush_blueprint = Blueprint('flush', __name__)
 
 
 @flush_blueprint.route('/flush', methods=['POST'])
-def flush_data():
+async def flush_data():
 
     if session:
         session.clear()
@@ -35,21 +35,21 @@ def flush_data():
 
     if roles and 'flusher' in roles:
         user = _get_user(decrypted_token)
-        if _submit_data(user):
+        if await _submit_data(user):
             return Response(status=200)
         return Response(status=404)
     return Response(status=403)
 
 
-def _submit_data(user):
+async def _submit_data(user):
 
-    answer_store = get_answer_store(user)
+    answer_store = await get_answer_store_async(user)
 
     if answer_store:
-        metadata = get_metadata(user)
-        collection_metadata = get_collection_metadata(user)
+        metadata = await get_metadata_async(user)
+        collection_metadata = await get_collection_metadata_async(user)
         schema = load_schema_from_metadata(metadata)
-        completed_blocks = get_completed_blocks(user)
+        completed_blocks = await get_completed_blocks_async(user)
         routing_path = PathFinder(schema, answer_store, metadata, completed_blocks).get_full_routing_path()
 
         message = convert_answers(metadata, collection_metadata, schema, answer_store, routing_path, flushed=True)
@@ -60,7 +60,7 @@ def _submit_data(user):
         if not sent:
             raise SubmissionFailedException()
 
-        get_questionnaire_store(user.user_id, user.user_ik).delete()
+        await (await get_questionnaire_store_async(user.user_id, user.user_ik)).delete_async()
         return True
 
     return False

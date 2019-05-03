@@ -11,7 +11,7 @@ from structlog import get_logger
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.user import User
 from app.data_model.session_data import SessionData
-from app.globals import get_questionnaire_store, get_session_store, create_session_store_async
+from app.globals import get_questionnaire_store_async, get_session_store, create_session_store_async
 from app.keys import KEY_PURPOSE_AUTHENTICATION
 from app.settings import EQ_SESSION_ID, USER_IK
 
@@ -141,9 +141,9 @@ async def store_session(metadata):
     session_data = _create_session_data_from_metadata(metadata)
     await create_session_store_async(eq_session_id, user_id, user_ik, session_data)
 
-    questionnaire_store = get_questionnaire_store(user_id, user_ik)
+    questionnaire_store = await get_questionnaire_store_async(user_id, user_ik)
     questionnaire_store.set_metadata(metadata)
-    questionnaire_store.add_or_update()
+    await questionnaire_store.add_or_update_async()
 
     logger.info('user authenticated')
 
