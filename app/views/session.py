@@ -10,7 +10,7 @@ from werkzeug.exceptions import Unauthorized
 
 from app.authentication.authenticator import store_session, decrypt_token
 from app.authentication.jti_claim_storage import JtiTokenUsed, use_jti_claim
-from app.globals import get_session_timeout_in_seconds, get_completed_blocks
+from app.globals import get_session_timeout_in_seconds, get_completed_blocks_async
 from app.helpers.path_finder_helper import get_path_finder
 from app.helpers.template_helper import safe_content
 from app.questionnaire.router import Router
@@ -75,7 +75,7 @@ async def login():
         cookie_session['account_service_log_out_url'] = claims.get('account_service_log_out_url')
 
     routing_path = (await get_path_finder()).get_full_routing_path()
-    completed_locations = get_completed_blocks(current_user)
+    completed_locations = await get_completed_blocks_async(current_user)
     router = Router(g.schema, routing_path, completed_locations=completed_locations)
 
     next_location = router.get_next_location()

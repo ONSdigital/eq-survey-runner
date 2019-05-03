@@ -75,5 +75,6 @@ class AsyncDatastoreStorage:
         key_value = getattr(model, config['key_field'])
         table_name = current_app.config[config['table_name_key']]
         key = datastore.Key(self.project, [datastore.PathElement(kind=table_name, name=key_value)])
+        results = await self.client.delete(key)
 
-        return await self.client.delete(key)
+        return results

@@ -2,12 +2,9 @@ import simplejson as json
 from quart import current_app
 from jwcrypto.common import base64url_decode
 from structlog import get_logger
-from gcloud.aio import datastore as async_datastore
 from app.data_model.app_models import EQSession
 from app.data_model.session_data import SessionData
 from app.storage.storage_encryption import StorageEncryption
-from app.storage.async_datastore import AsyncDatastoreStorage
-import os
 
 logger = get_logger()
 
@@ -71,9 +68,7 @@ class SessionStore:
             self._eq_session.session_data = \
                 StorageEncryption(self.user_id, self.user_ik, self.pepper).encrypt_data(vars(self.session_data))
 
-            client = async_datastore.Datastore(os.getenv('EQ_DATASTORE_PROJECT_ID'))
-            async_storage = AsyncDatastoreStorage(client)
-            await async_storage.put(self._eq_session)
+            await current_app.eq['async_storage'].put(self._eq_session)
 
         return self
 
@@ -123,9 +118,8 @@ class SessionStore:
 
     async def load_async(self):
         logger.debug('finding eq_session_id in async database', eq_session_id=self.eq_session_id)
-        client = async_datastore.Datastore(os.getenv('EQ_DATASTORE_PROJECT_ID'))
-        async_storage = AsyncDatastoreStorage(client)
-        self._eq_session = await async_storage.get_by_key(EQSession, self.eq_session_id)
+
+        self._eq_session = await current_app.eq['async_storage'].get_by_key(EQSession, self.eq_session_id)
 
         if self._eq_session:
 

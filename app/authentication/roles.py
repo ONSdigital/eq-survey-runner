@@ -1,7 +1,7 @@
 from functools import wraps
 from flask_login import current_user
 from werkzeug.exceptions import Forbidden
-from app.globals import get_metadata
+from app.globals import get_metadata_async
 
 
 def role_required(role):
@@ -24,11 +24,11 @@ def role_required(role):
     """
     def role_required_decorator(func):
         @wraps(func)
-        def role_required_wrapper(*args, **kwargs):
-            metadata = get_metadata(current_user)
+        async def role_required_wrapper(*args, **kwargs):
+            metadata = await get_metadata_async(current_user)
             roles = (metadata.get('roles', []) or []) if metadata else []
             if current_user.is_authenticated and role in roles:
-                return func(*args, **kwargs)
+                return await func(*args, **kwargs)
             raise Forbidden
         return role_required_wrapper
     return role_required_decorator

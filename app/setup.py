@@ -20,6 +20,7 @@ from google.auth import credentials
 from google.cloud import datastore
 from sdc.crypto.key_store import KeyStore, validate_required_keys
 from structlog import get_logger
+from gcloud.aio import datastore as async_datastore
 
 from app import settings
 from app.authentication.authenticator import login_manager
@@ -31,6 +32,7 @@ from app.keys import KEY_PURPOSE_SUBMISSION
 from app.new_relic import setup_newrelic
 from app.secrets import SecretStore, validate_required_secrets
 from app.storage.datastore import DatastoreStorage
+from app.storage.async_datastore import AsyncDatastoreStorage
 from app.storage.dynamodb import DynamodbStorage
 from app.storage.redis import RedisStorage
 from app.storage.sql import SqlStorage
@@ -202,6 +204,8 @@ def setup_secure_headers(application):
 
 
 def setup_storage(application):
+    setup_async_storage(application)
+
     if application.config['EQ_STORAGE_BACKEND'] == 'datastore':
         setup_datastore(application)
     elif application.config['EQ_STORAGE_BACKEND'] == 'dynamodb':
@@ -278,6 +282,11 @@ def setup_datastore(application):
     creds = EmulatorCredentials() if application.config['EQ_DATASTORE_EMULATOR_CREDENTIALS'] else None
     client = datastore.Client(_use_grpc=False, credentials=creds)
     application.eq['storage'] = DatastoreStorage(client)
+
+
+def setup_async_storage(application):
+    client = async_datastore.Datastore()
+    application.eq['async_storage'] = AsyncDatastoreStorage(client)
 
 
 def setup_redis(application):
