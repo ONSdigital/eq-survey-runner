@@ -40,7 +40,7 @@ local question(title) = {
         hide_guidance: 'Why your answer is important',
         content: [
           {
-            description: 'Workplace address and method of travel to work information is used to inform planning and modelling for transport services and policies. The information helps in the assessment of local public transport needs.',
+            description: 'The government uses information about workplace address and method of travel to work to form transport policies and plan services. The information helps to work out local transport needs.',
           },
         ],
       },

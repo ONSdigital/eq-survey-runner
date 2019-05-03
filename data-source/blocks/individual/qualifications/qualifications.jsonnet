@@ -9,23 +9,44 @@ local rules = import '../../../lib/rules.libsonnet';
     {
       content: [
         {
-          title: 'The next set of questions is about your qualifications',
-          description: 'Record any qualifications you have ever achieved in England, Wales or worldwide, including equivalents, even if you are not using them now.',
+          title: 'Qualifications',
+          description: 'The next set of questions is about any qualifications you have ever achieved in England, Wales or worldwide, including equivalents, even if you are not using them now.',
         },
       ],
-      when: [rules.proxyNo],
+      when: [rules.proxyNo, rules.regionNotWales],
     },
     {
       content: [
         {
-          title: {
-            text: 'The next set of questions is about {person_name_possessive} qualifications',
-            placeholders: [placeholders.personNamePossessive],
-          },
-          description: 'Record any qualifications they have ever achieved in England, Wales or worldwide, including equivalents, even if they are not using them now.',
+          title: 'Qualifications',
+          description: 'The next set of questions is about any qualifications you have ever achieved in Wales, England or worldwide, including equivalents, even if you are not using them now.',
         },
       ],
-      when: [rules.proxyYes],
+      when: [rules.proxyNo, rules.regionWales],
+    },
+    {
+      content: [
+        {
+          title: 'Qualifications',
+          description: {
+            text: 'The next set of questions is about any qualifications <em>{person_name}</em>, has ever achieved in England, Wales or worldwide, including equivalents, even if they are not using them now.',
+            placeholders: [placeholders.personName],
+          },
+        },
+      ],
+      when: [rules.proxyYes, rules.regionNotWales],
+    },
+    {
+      content: [
+        {
+          title: 'Qualifications',
+          description: {
+            text: 'The next set of questions is about any qualifications <em>{person_name}</em>, has ever achieved in Wales, England or worldwide, including equivalents, even if they are not using them now.',
+            placeholders: [placeholders.personName],
+          },
+        },
+      ],
+      when: [rules.proxyYes, rules.regionWales],
     },
   ],
 }

@@ -1,7 +1,7 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import '../../../lib/rules.libsonnet';
 
-local question(title) = {
+local question(title, guidanceTitle, regionOptions) = {
   id: 'gcse-question',
   title: title,
   type: 'MutuallyExclusive',
@@ -9,7 +9,7 @@ local question(title) = {
   guidance: {
     content: [
       {
-        title: 'Include equivalent qualifications achieved anywhere outside England and Wales',
+        title: guidanceTitle,
       },
     ],
   },
@@ -34,7 +34,7 @@ local question(title) = {
           value: 'Basic skills course',
           description: 'Skills for life, literacy, numeracy and language',
         },
-      ],
+      ] + regionOptions,
     },
     {
       id: 'gcse-answer-exclusive',
@@ -58,17 +58,39 @@ local proxyTitle = {
   ],
 };
 
+local englandGuidanceTitle = 'Include equivalent qualifications achieved anywhere outside England and Wales';
+local walesGuidanceTitle = 'Include equivalent qualifications achieved anywhere outside Wales and England';
+
+local walesOptions = [
+  {
+    label: 'Intermediate or National Welsh Baccalaureate',
+    value: 'Intermediate or National Welsh Baccalaureate',
+  },
+  {
+    label: 'Foundation Welsh Baccalaureate',
+    value: 'Foundation Welsh Baccalaureate',
+  },
+];
+
 {
   type: 'Question',
   id: 'gcse',
   question_variants: [
     {
-      question: question(nonProxyTitle),
-      when: [rules.proxyNo],
+      question: question(nonProxyTitle, englandGuidanceTitle, []),
+      when: [rules.proxyNo, rules.regionNotWales],
     },
     {
-      question: question(proxyTitle),
-      when: [rules.proxyYes],
+      question: question(proxyTitle, englandGuidanceTitle, []),
+      when: [rules.proxyYes, rules.regionNotWales],
+    },
+    {
+      question: question(nonProxyTitle, walesGuidanceTitle, walesOptions),
+      when: [rules.proxyNo, rules.regionWales],
+    },
+    {
+      question: question(proxyTitle, walesGuidanceTitle, walesOptions),
+      when: [rules.proxyYes, rules.regionWales],
     },
   ],
   routing_rules: [
@@ -76,11 +98,6 @@ local proxyTitle = {
       goto: {
         block: 'other-qualifications',
         when: [
-          {
-            id: 'apprenticeship-answer',
-            condition: 'equals',
-            value: 'No',
-          },
           {
             id: 'degree-answer',
             condition: 'equals',

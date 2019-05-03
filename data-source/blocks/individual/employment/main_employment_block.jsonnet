@@ -9,8 +9,8 @@ local rules = import '../../../lib/rules.libsonnet';
     {
       content: [
         {
-          title: 'Answer the next set of questions for your main job',
-          description: 'Your main job is the job in which you usually work the most hours',
+          title: 'Main job',
+          description: 'The next set of questions is about your main job. Your main job is the job in which you usually work the most hours',
         },
       ],
       when: [rules.proxyNo, rules.mainJob],
@@ -18,11 +18,11 @@ local rules = import '../../../lib/rules.libsonnet';
     {
       content: [
         {
-          title: {
-            text: 'Answer the next set of questions for {person_name_possessive} main job',
+          title: 'Main job',
+          description: {
+            text: 'The next set of questions is about <em>{person_name_possessive}</em> main job. Their main job is the job in which they usually work the most hours',
             placeholders: [placeholders.personNamePossessive],
           },
-          description: 'Their main job is the job in which they usually work the most hours',
         },
       ],
       when: [rules.proxyYes, rules.mainJob],
@@ -30,8 +30,8 @@ local rules = import '../../../lib/rules.libsonnet';
     {
       content: [
         {
-          title: 'Answer the next set of questions for your last main job',
-          description: 'Your main job is the job in which you usually worked the most hours',
+          title: 'Last main job',
+          description: 'The next set of questions is about your last main job. Your main job is the job in which you usually worked the most hours',
         },
       ],
       when: [rules.proxyNo, rules.lastMainJob],
@@ -39,11 +39,11 @@ local rules = import '../../../lib/rules.libsonnet';
     {
       content: [
         {
-          title: {
-            text: 'Answer the next set of questions for {person_name_possessive} last main job',
+          title: 'Last main job',
+          description: {
+            text: 'The next set of questions is about <em>{person_name_possessive}</em> last main job. Their main job is the job in which they usually worked the most hours',
             placeholders: [placeholders.personNamePossessive],
           },
-          description: 'Their main job is the job in which they usually worked the most hours',
         },
       ],
       when: [rules.proxyYes, rules.lastMainJob],
