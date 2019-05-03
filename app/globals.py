@@ -118,8 +118,22 @@ def get_metadata(user):
     return questionnaire_store.metadata
 
 
+async def get_metadata_async(user):
+    if user.is_anonymous:
+        logger.debug('anonymous user requesting metadata get instance')
+        return None
+
+    questionnaire_store = await get_questionnaire_store_async(user.user_id, user.user_ik)
+    return questionnaire_store.metadata
+
+
 def get_collection_metadata(user):
     questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
+    return questionnaire_store.collection_metadata
+
+
+async def get_collection_metadata_async(user):
+    questionnaire_store = await get_questionnaire_store_async(user.user_id, user.user_ik)
     return questionnaire_store.collection_metadata
 
 
@@ -128,6 +142,16 @@ def get_answer_store(user):
     return questionnaire_store.answer_store
 
 
+async def get_answer_store_async(user):
+    questionnaire_store = await get_questionnaire_store_async(user.user_id, user.user_ik)
+    return questionnaire_store.answer_store
+
+
 def get_completed_blocks(user):
     questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
+    return questionnaire_store.completed_blocks
+
+
+async def get_completed_blocks_async(user):
+    questionnaire_store = await get_questionnaire_store_async(user.user_id, user.user_ik)
     return questionnaire_store.completed_blocks

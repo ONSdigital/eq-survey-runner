@@ -14,8 +14,8 @@ from structlog import get_logger
 from app.authentication.no_token_exception import NoTokenException
 from app.data_model.answer_store import AnswerStore
 from app.data_model.app_models import SubmittedResponse
-from app.globals import (get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store,
-                         get_questionnaire_store_async, get_collection_metadata)
+from app.globals import (get_answer_store_async, get_completed_blocks_async, get_metadata_async,
+                         get_questionnaire_store_async, get_collection_metadata_async)
 from app.globals import get_session_store, get_session_store_async
 from app.helpers.form_helper import post_form_for_block
 from app.helpers.path_finder_helper import path_finder, full_routing_path_required
@@ -52,7 +52,7 @@ post_submission_blueprint = Blueprint(name='post_submission',
 
 @questionnaire_blueprint.before_request
 async def before_questionnaire_request():
-    metadata = get_metadata(current_user)
+    metadata = await get_metadata_async(current_user)
     if not metadata:
         raise NoTokenException(401)
 
@@ -96,7 +96,7 @@ async def before_post_submission_request():
 @full_routing_path_required
 async def get_block(routing_path, schema, metadata, answer_store, block_id):
     current_location = Location(block_id)
-    completed_locations = get_completed_blocks(current_user)
+    completed_locations = await get_completed_blocks_async(current_user)
     router = Router(schema, routing_path, current_location, completed_locations)
 
     if not router.can_access_location():
@@ -124,7 +124,7 @@ async def get_block(routing_path, schema, metadata, answer_store, block_id):
 @full_routing_path_required
 async def post_block(routing_path, schema, metadata, collection_metadata, answer_store, block_id):  # pylint: disable=too-many-locals
     current_location = Location(block_id)
-    completed_locations = get_completed_blocks(current_user)
+    completed_locations = await get_completed_blocks_async(current_user)
     router = Router(schema, routing_path, current_location, completed_locations)
 
     if not router.can_access_location():
@@ -192,7 +192,7 @@ async def get_thank_you(schema):
 
     routing_path = path_finder.get_full_routing_path()
 
-    completed_locations = get_completed_blocks(current_user)
+    completed_locations = await get_completed_blocks_async(current_user)
     router = Router(schema, routing_path, completed_locations=completed_locations)
     next_location = router.get_next_location()
 
@@ -296,8 +296,8 @@ async def _generate_wtf_form(form, block, schema):
     wtf_form = await post_form_for_block(
         schema,
         block,
-        get_answer_store(current_user),
-        get_metadata(current_user),
+        await get_answer_store_async(current_user),
+        await get_metadata_async(current_user),
         request_form,
         disable_mandatory)
 
@@ -311,9 +311,9 @@ def _is_end_of_questionnaire(block, next_location):
 
 
 async def submit_answers(routing_path, schema):
-    metadata = get_metadata(current_user)
-    collection_metadata = get_collection_metadata(current_user)
-    answer_store = get_answer_store(current_user)
+    metadata = await get_metadata_async(current_user)
+    collection_metadata = await get_collection_metadata_async(current_user)
+    answer_store = await get_answer_store_async(current_user)
 
     message = json.dumps(convert_answers(
         metadata,
@@ -411,9 +411,9 @@ def _redirect_to_location(location):
 
 
 async def _get_context(block, current_location, schema, form=None):
-    metadata = get_metadata(current_user)
+    metadata = await get_metadata_async(current_user)
 
-    answer_store = get_answer_store(current_user)
+    answer_store = await get_answer_store_async(current_user)
 
     return await build_view_context(block['type'], metadata, schema, answer_store, block, current_location, form=form)
 
