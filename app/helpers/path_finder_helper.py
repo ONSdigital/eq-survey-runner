@@ -2,32 +2,28 @@ from functools import wraps
 
 from flask import g
 from flask_login import current_user, login_required
-from werkzeug.local import LocalProxy
 
-from app.globals import get_answer_store, get_metadata, get_completed_blocks
+from app.globals import get_answer_store_async, get_metadata_async, get_completed_blocks_async
 from app.questionnaire.path_finder import PathFinder
 
 
 @login_required
-def get_path_finder():
+async def get_path_finder():
     finder = getattr(g, 'path_finder', None)
 
     if finder is None:
-        metadata = get_metadata(current_user)
-        answer_store = get_answer_store(current_user)
-        completed_blocks = get_completed_blocks(current_user)
+        metadata = await get_metadata_async(current_user)
+        answer_store = await get_answer_store_async(current_user)
+        completed_blocks = await get_completed_blocks_async(current_user)
         finder = PathFinder(g.schema, answer_store, metadata, completed_blocks)
         g.path_finder = finder
 
     return finder
 
 
-path_finder = LocalProxy(get_path_finder)
-
-
 def full_routing_path_required(function):
     @wraps(function)
-    def wrap_function(*args, **kwargs):
-        routing_path = path_finder.get_full_routing_path()
-        return function(routing_path, *args, **kwargs)
+    async def wrap_function(*args, **kwargs):
+        routing_path = (await get_path_finder()).get_full_routing_path()
+        return await function(routing_path, *args, **kwargs)
     return wrap_function

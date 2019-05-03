@@ -18,7 +18,7 @@ from app.globals import (get_answer_store_async, get_completed_blocks_async, get
                          get_questionnaire_store_async, get_collection_metadata_async)
 from app.globals import get_session_store_async
 from app.helpers.form_helper import post_form_for_block
-from app.helpers.path_finder_helper import path_finder, full_routing_path_required
+from app.helpers.path_finder_helper import get_path_finder, full_routing_path_required
 from app.helpers.schema_helpers import with_schema
 from app.helpers.session_helpers import with_answer_store, with_metadata, with_collection_metadata
 from app.helpers.template_helper import (with_session_timeout, with_analytics,
@@ -152,7 +152,7 @@ async def post_block(routing_path, schema, metadata, collection_metadata, answer
         answer_store_updater = AnswerStoreUpdater(current_location, schema, questionnaire_store, rendered_block.get('question'))
         await answer_store_updater.save_answers_async(form)
 
-        next_location = path_finder.get_next_location(current_location=current_location)
+        next_location = (await get_path_finder()).get_next_location(current_location=current_location)
 
         if _is_end_of_questionnaire(block, next_location):
             return await submit_answers(routing_path, schema)
@@ -190,7 +190,7 @@ async def get_thank_you(schema):
                                      account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
                                      view_submission_duration=view_submission_duration)
 
-    routing_path = path_finder.get_full_routing_path()
+    routing_path = (await get_path_finder()).get_full_routing_path()
 
     completed_locations = await get_completed_blocks_async(current_user)
     router = Router(schema, routing_path, completed_locations=completed_locations)
@@ -434,7 +434,7 @@ def get_page_title_for_location(schema, current_location, context):
 
 
 async def _build_template(current_location, context, template, schema):
-    previous_location = path_finder.get_previous_location(current_location)
+    previous_location = (await get_path_finder()).get_previous_location(current_location)
     previous_url = previous_location.url() if previous_location is not None else None
 
     return await _render_template(context, current_location, template, previous_url, schema)
