@@ -36,7 +36,7 @@ class AsyncDatastoreStorage:
 
     def __init__(self, client):
         self.client = client
-        self.project = os.getenv('EQ_DATASTORE_PROJECT_ID')
+        self.project = os.getenv('GOOGLE_CLOUD_PROJECT')
 
     async def put(self, model, overwrite=True):
         logger.info("Async PUT")
