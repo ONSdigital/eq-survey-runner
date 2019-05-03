@@ -70,7 +70,7 @@ class EncryptedQuestionnaireStorage:
 
     async def delete_async(self):
         logger.debug('deleting users data', user_id=self._user_id)
-        questionnaire_state = self._find_questionnaire_state_async()
+        questionnaire_state = await self._find_questionnaire_state_async()
         if questionnaire_state:
             await current_app.eq['async_storage'].delete(questionnaire_state)
 

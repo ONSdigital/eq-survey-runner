@@ -4,6 +4,7 @@ from structlog import get_logger
 
 from app.data_model import app_models
 
+import backoff
 import os
 
 logger = get_logger()
@@ -38,6 +39,7 @@ class AsyncDatastoreStorage:
         self.client = client
         self.project = os.getenv('GOOGLE_CLOUD_PROJECT')
 
+    @backoff.on_exception(backoff.expo, Exception, max_tries=10)
     async def put(self, model, overwrite=True):
         logger.info("Async PUT")
         if not overwrite:
@@ -53,6 +55,7 @@ class AsyncDatastoreStorage:
 
         await self.client.upsert(key, item)
 
+    @backoff.on_exception(backoff.expo, Exception, max_tries=10)
     async def get_by_key(self, model_type, key_value):
         logger.info("Async GET")
         config = TABLE_CONFIG[model_type]
@@ -68,6 +71,7 @@ class AsyncDatastoreStorage:
             model, _ = schema.load(item.entity.properties)
             return model
 
+    @backoff.on_exception(backoff.expo, Exception, max_tries=10)
     async def delete(self, model):
         logger.info("Async DELETE")
         config = TABLE_CONFIG[type(model)]
