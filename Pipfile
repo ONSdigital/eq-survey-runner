@@ -61,6 +61,7 @@ jsonpointer = "*"
 redis = "*"
 quart = "*"
 hypercorn = "*"
+gcloud-aio-datastore = "*"
 
 [requires]
 python_version = "3.7"
