@@ -2,6 +2,8 @@ import logging
 import time
 import unittest
 import uuid
+import random
+import string
 
 from sdc.crypto.key_store import KeyStore
 from sdc.crypto.encrypter import encrypt
@@ -56,6 +58,7 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
     def create_payload():
         iat = time.time()
         exp = time.time() + (5 * 60)
+        response_id = ''.join(random.choices(string.digits, k=16))
         return {
             'tx_id': str(uuid.uuid4()),
             'jti': str(uuid.uuid4()),
@@ -71,6 +74,7 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
             'ref_p_start_date': '2016-01-01',
             'ref_p_end_date': '2016-09-01',
             'ru_ref': '1234',
+            'response_id': response_id,
             'ru_name': 'Test',
             'return_by': '2016-09-09'
         }

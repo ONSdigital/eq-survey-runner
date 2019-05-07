@@ -9,6 +9,7 @@ class SessionData:
                  survey_url,
                  ru_name,
                  ru_ref,
+                 response_id,
                  case_id,
                  case_ref=None,
                  account_service_url=None,
@@ -24,6 +25,7 @@ class SessionData:
         self.survey_url = survey_url
         self.ru_name = ru_name
         self.ru_ref = ru_ref
+        self.response_id = response_id
         self.submitted_time = submitted_time
         self.case_id = case_id
         self.case_ref = case_ref

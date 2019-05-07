@@ -40,6 +40,7 @@ def fake_metadata():
         'ref_p_start_date': '2016-02-02',
         'ref_p_end_date': '2016-03-03',
         'ru_ref': '432423423423',
+        'response_id': '1234567890123456',
         'ru_name': 'Apple',
         'return_by': '2016-07-07',
         'started_at': '2018-07-04T14:49:33.448608+00:00',

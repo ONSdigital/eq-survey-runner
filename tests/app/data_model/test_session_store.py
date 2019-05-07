@@ -28,6 +28,7 @@ class SessionStoreTest(AppContextTestCase):
             survey_url=None,
             ru_name='ru_name',
             ru_ref='ru_ref',
+            response_id='response_id',
             case_id='case_id'
         )
 
@@ -96,6 +97,7 @@ class SessionStoreTest(AppContextTestCase):
             survey_url=None,
             ru_name='ru_name',
             ru_ref='ru_ref',
+            response_id='response_id',
             case_id='case_id'
         )
 
@@ -118,6 +120,7 @@ class SessionStoreTest(AppContextTestCase):
             survey_url=None,
             ru_name='ru_name',
             ru_ref='ru_ref',
+            response_id='response_id',
             case_id='case_id'
         )
 
@@ -142,6 +145,7 @@ class SessionStoreTest(AppContextTestCase):
             survey_url=None,
             ru_name='ru_name',
             ru_ref='ru_ref',
+            response_id='response_id',
             trad_as='trading_as',
             case_id='case_id'
         )
@@ -162,6 +166,7 @@ class SessionStoreTest(AppContextTestCase):
             survey_url=None,
             ru_name='ru_name',
             ru_ref='ru_ref',
+            response_id='response_id',
             case_id='case_id'
         )
         with self._app.test_request_context():
@@ -181,6 +186,7 @@ class SessionStoreTest(AppContextTestCase):
             survey_url=None,
             ru_name='ru_name',
             ru_ref='ru_ref',
+            response_id='response_id',
             case_id='case_id'
         )
         delattr(old_session_data, 'trad_as')   # Make class look like old style class
@@ -240,6 +246,7 @@ class SessionStoreTest(AppContextTestCase):
             language_code=None,
             survey_url=None,
             ru_name='ru_name',
+            response_id='response_id',
             ru_ref='ru_ref',
             trad_as='trading_as_name',
             case_id='case_id'
@@ -272,6 +279,7 @@ class TestSessionStoreEncoding(AppContextTestCase):
             language_code=None,
             survey_url=None,
             ru_name='ru_name',
+            response_id='response_id',
             ru_ref='ru_ref',
             trad_as='trading_as_name',
             case_id='case_id'

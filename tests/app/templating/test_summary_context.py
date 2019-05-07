@@ -17,6 +17,7 @@ class TestStandardSummaryContext(AppContextTestCase):
             'ref_p_start_date': '2016-10-10',
             'ref_p_end_date': '2016-10-10',
             'ru_ref': 'def123',
+            'response_id': 'abc123',
             'ru_name': 'Mr Cloggs',
             'trad_as': 'Samsung',
             'tx_id': '12345678-1234-5678-1234-567812345678',

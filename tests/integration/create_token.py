@@ -11,6 +11,7 @@ PAYLOAD = {
     'period_id': '201604',
     'collection_exercise_sid': '789',
     'ru_ref': '123456789012A',
+    'response_id': '1234567890123456',
     'ru_name': 'Integration Testing',
     'ref_p_start_date': '2016-04-01',
     'ref_p_end_date': '2016-04-30',
@@ -21,7 +22,6 @@ PAYLOAD = {
     'language_code': 'en',
     'roles': [],
 }
-
 
 class TokenGenerator:
 

@@ -112,6 +112,7 @@ def _create_session_data_from_metadata(metadata):
         survey_url=metadata.get('survey_url'),
         ru_name=metadata.get('ru_name'),
         ru_ref=metadata.get('ru_ref'),
+        response_id=metadata.get('response_id'),
         case_id=metadata.get('case_id'),
         case_ref=metadata.get('case_ref'),
         trad_as=metadata.get('trad_as'),
@@ -132,8 +133,8 @@ def store_session(metadata):
 
     # get the hashed user id for eq
     id_generator = current_app.eq['id_generator']
-    user_id = id_generator.generate_id(metadata)
-    user_ik = id_generator.generate_ik(metadata)
+    user_id = id_generator.generate_id(metadata['response_id'])
+    user_ik = id_generator.generate_ik(metadata['response_id'])
 
     eq_session_id = str(uuid4())
 

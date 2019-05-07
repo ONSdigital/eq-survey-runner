@@ -38,8 +38,8 @@ class TestFlushData(IntegrationTestCase):
 
     def test_no_data_to_flush(self):
         payload = self.get_payload()
-        # Made up ru_ref
-        payload['ru_ref'] = 'no data'
+        # Made up response_id
+        payload['response_id'] = '0000000000000000'
 
         self.post(url='/flush?token=' + self.token_generator.generate_token(payload))
         self.assertStatusNotFound()
@@ -101,5 +101,6 @@ class TestFlushData(IntegrationTestCase):
             'form_type': 'textfield',
             'collection_exercise_sid': '789',
             'ru_ref': '123456789012A',
+            'response_id': '1234567890123456',
             'roles': ['flusher'],
         }

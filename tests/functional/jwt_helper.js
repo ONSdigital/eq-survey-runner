@@ -1,3 +1,4 @@
+const utilities = require('./utilities');
 const KJUR = require('jsrsasign');
 const uuid = require('uuid/v1');
 const JSONWebKey = require('json-web-key');
@@ -47,7 +48,7 @@ const encryptionKeyString = '-----BEGIN PUBLIC KEY-----\n' +
 
 const schemaRegEx = /^([a-z0-9]+)_(\w+)\.json/;
 
-module.exports = function generateToken(schema, { userId, collectionId, periodId = '201605', periodStr = 'May 2016', regionCode = 'GB-ENG', languageCode = 'en', sexualIdentity = false, includeLogoutUrl = true, country = '', locality = '', townName = '', postcode = '', displayAddress = '' }) {
+module.exports = function generateToken(schema, { userId, collectionId, responseId = utilities.getRandomString(16), periodId = '201605', periodStr = 'May 2016', regionCode = 'GB-ENG', languageCode = 'en', sexualIdentity = false, includeLogoutUrl = true, country = '', locality = '', townName = '', postcode = '', displayAddress = '' }) {
   let schemaParts = schemaRegEx.exec(schema);
 
   // Header
@@ -66,6 +67,7 @@ module.exports = function generateToken(schema, { userId, collectionId, periodId
     user_id: userId,
     case_id: uuid(),
     ru_ref: '12346789012A',
+    response_id: responseId,
     ru_name: 'Apple',
     trad_as: 'Apple',
     eq_id: schemaParts[1],

@@ -26,9 +26,12 @@ def test_ref_period_end_date_is_not_in_output(fake_questionnaire_schema, fake_qu
 
 def test_ref_period_start_and_end_date_is_in_output(fake_questionnaire_schema, fake_questionnaire_store):
     answer_object = convert_answers(fake_questionnaire_schema, fake_questionnaire_store, {})
-    assert answer_object['metadata']['ref_period_start_date'], '2016-02-02'
-    assert answer_object['metadata']['ref_period_end_date'], '2016-03-03'
+    assert answer_object['metadata']['ref_period_start_date'] == '2016-02-02'
+    assert answer_object['metadata']['ref_period_end_date'] == '2016-03-03'
 
+def test_response_id_is_in_output(fake_questionnaire_schema, fake_questionnaire_store):
+    answer_object = convert_answers(fake_questionnaire_schema, fake_questionnaire_store, {})
+    assert answer_object['response_id'] == '1234567890123456'
 
 def test_convert_answers_flushed_flag_overriden_to_true(fake_questionnaire_schema, fake_questionnaire_store):
     answer_object = convert_answers(fake_questionnaire_schema, fake_questionnaire_store, {}, flushed=True)
