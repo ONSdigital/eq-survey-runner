@@ -76,6 +76,10 @@ if [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
   export AWS_SECRET_ACCESS_KEY=dummy-secret-key
 fi
 
+if [ -z "$DATASTORE_DATASET" ]; then
+  export DATASTORE_DATASET=local
+fi
+
 export FLASK_DEBUG=1
 
 python scripts/generate_secrets.py jwt-test-secrets/

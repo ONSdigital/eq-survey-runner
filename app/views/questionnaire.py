@@ -186,7 +186,7 @@ def post_block_handler(routing_path, schema, questionnaire_store,  # noqa: C901
     form = _generate_wtf_form(request.form, rendered_block, schema)
 
     if 'action[save_sign_out]' in request.form:
-        return _save_sign_out(current_location, rendered_block.get('question'), form, schema)
+        return _save_sign_out(current_location, rendered_block, form, schema)
 
     if 'action[sign_out]' in request.form:
         return redirect(url_for('session.get_sign_out'))
@@ -487,13 +487,11 @@ def _is_submission_viewable(schema, submitted_time):
     return False
 
 
-def _save_sign_out(current_location, current_question, form, schema):
+def _save_sign_out(current_location, block, form, schema):
     questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
 
-    block = schema.get_block(current_location.block_id)
-
     if form.validate():
-        questionnaire_store_updater = QuestionnaireStoreUpdater(current_location, schema, questionnaire_store, current_question)
+        questionnaire_store_updater = QuestionnaireStoreUpdater(current_location, schema, questionnaire_store, block.get('question'))
         questionnaire_store_updater.save_answers(form)
         questionnaire_store_updater.remove_completed_blocks(location=current_location)
 
