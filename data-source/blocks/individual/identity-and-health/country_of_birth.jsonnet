@@ -1,19 +1,6 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import '../../../lib/rules.libsonnet';
 
-local question(title, options) = {
-  id: 'country-of-birth-question',
-  title: title,
-  type: 'General',
-  answers: [
-    {
-      id: 'country-of-birth-answer',
-      mandatory: true,
-      type: 'Radio',
-    } + options,
-  ],
-};
-
 local nonProxyTitle = 'What is your country of birth?';
 local proxyTitle = {
   text: 'What is <em>{person_name_possessive}</em> country of birth?',
@@ -92,25 +79,33 @@ local walesOptions = {
   ],
 };
 
-{
+local question(title, region_code) = (
+  local radioOptions = if region_code == 'GB-WLS' then walesOptions else englandOptions;
+  {
+    id: 'country-of-birth-question',
+    title: title,
+    type: 'General',
+    answers: [
+      {
+        id: 'country-of-birth-answer',
+        mandatory: true,
+        type: 'Radio',
+      } + radioOptions,
+    ],
+  }
+);
+
+function(region_code) {
   type: 'Question',
   id: 'country-of-birth',
   question_variants: [
     {
-      question: question(nonProxyTitle, englandOptions),
-      when: [rules.proxyNo, rules.regionNotWales],
+      question: question(nonProxyTitle, region_code),
+      when: [rules.proxyNo],
     },
     {
-      question: question(proxyTitle, englandOptions),
-      when: [rules.proxyYes, rules.regionNotWales],
-    },
-    {
-      question: question(nonProxyTitle, walesOptions),
-      when: [rules.proxyNo, rules.regionWales],
-    },
-    {
-      question: question(proxyTitle, walesOptions),
-      when: [rules.proxyYes, rules.regionWales],
+      question: question(proxyTitle, region_code),
+      when: [rules.proxyYes],
     },
   ],
   routing_rules: [
@@ -140,19 +135,7 @@ local walesOptions = {
     },
     {
       goto: {
-        block: 'understand-welsh',
-        when: [
-          {
-            meta: 'region_code',
-            condition: 'equals',
-            value: 'GB-WLS',
-          },
-        ],
-      },
-    },
-    {
-      goto: {
-        block: 'language',
+        block: if region_code == 'GB-WLS' then 'understand-welsh' else 'language',
       },
     },
   ],

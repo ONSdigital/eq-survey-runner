@@ -25,6 +25,7 @@ local question(title) = {
 };
 
 local nonProxyTitle = 'Including the time already spent here, how long do you intend to stay in the United Kingdom?';
+
 local proxyTitle = {
   text: 'Including the time already spent here, how long does <em>{person_name}</em> intend to stay in the United Kingdom?',
   placeholders: [
@@ -32,7 +33,7 @@ local proxyTitle = {
   ],
 };
 
-{
+function(region_code) {
   type: 'Question',
   id: 'length-of-stay',
   question_variants: [
@@ -48,19 +49,7 @@ local proxyTitle = {
   routing_rules: [
     {
       goto: {
-        block: 'understand-welsh',
-        when: [
-          {
-            meta: 'region_code',
-            condition: 'equals',
-            value: 'GB-WLS',
-          },
-        ],
-      },
-    },
-    {
-      goto: {
-        block: 'language',
+        block: if region_code == 'GB-WLS' then 'understand-welsh' else 'language',
       },
     },
   ],

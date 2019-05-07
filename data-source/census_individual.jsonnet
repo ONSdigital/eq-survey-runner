@@ -79,7 +79,9 @@ local comments = import 'blocks/comments.json';
 
 local confirmation = import 'blocks/confirmation.json';
 
-{
+local understandWelshBlock(region_code) = if region_code == 'GB-WLS' then [understand_welsh] else [];
+
+function(region_code, census_date) {
   mime_type: 'application/json/ons/eq',
   schema_version: '0.0.1',
   data_version: '0.0.3',
@@ -89,7 +91,7 @@ local confirmation = import 'blocks/confirmation.json';
   theme: 'census',
   legal_basis: 'Voluntary',
   eq_id: 'census',
-  form_type: 'household',
+  form_type: if region_code == 'GB-WLS' then 'individual_gb_wls' else 'individual_gb_eng',
   navigation: {
     visible: false,
   },
@@ -100,10 +102,6 @@ local confirmation = import 'blocks/confirmation.json';
     },
     {
       name: 'period_id',
-      validator: 'string',
-    },
-    {
-      name: 'region_code',
       validator: 'string',
     },
     {
@@ -136,7 +134,7 @@ local confirmation = import 'blocks/confirmation.json';
             date_of_birth,
             confirm_dob,
             sex,
-            marriage_type,
+            marriage_type(census_date),
             current_marriage_status,
             previous_marriage_status,
             current_partnership_status,
@@ -154,21 +152,21 @@ local confirmation = import 'blocks/confirmation.json';
           id: 'identity-and-health-group',
           title: 'Identity and Health',
           blocks: [
-            country_of_birth,
-            arrive_in_uk,
-            when_arrive_in_uk,
-            length_of_stay,
-            understand_welsh,
-            language,
+            country_of_birth(region_code),
+            arrive_in_uk(region_code, census_date),
+            when_arrive_in_uk(region_code, census_date),
+            length_of_stay(region_code),
+          ] + understandWelshBlock(region_code) + [
+            language(region_code),
             speak_english,
-            national_identity,
-            ethnic_group,
-            ethnic_group_white,
+            national_identity(region_code),
+            ethnic_group(region_code),
+            ethnic_group_white(region_code),
             ethnic_group_mixed,
             ethnic_group_asian,
             ethnic_group_black,
             ethnic_group_other,
-            religion,
+            religion(region_code),
             past_usual_household_address,
             last_year_address,
             passports,
@@ -184,13 +182,13 @@ local confirmation = import 'blocks/confirmation.json';
           id: 'qualifications-group',
           title: 'Qualifications',
           blocks: [
-            qualifications,
-            apprenticeship,
-            degree,
-            nvq_level,
-            a_level,
-            gcse,
-            other_qualifications,
+            qualifications(region_code),
+            apprenticeship(region_code),
+            degree(region_code),
+            nvq_level(region_code),
+            a_level(region_code),
+            gcse(region_code),
+            other_qualifications(region_code),
           ],
         },
         {
@@ -209,7 +207,7 @@ local confirmation = import 'blocks/confirmation.json';
             business_name,
             job_title,
             job_description,
-            employers_business,
+            employers_business(region_code),
             supervise,
             hours_worked,
             work_travel,

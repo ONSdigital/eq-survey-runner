@@ -19,16 +19,6 @@
       },
     },
   },
-  regionNotWales: {
-    meta: 'region_code',
-    condition: 'not equals',
-    value: 'GB-WLS',
-  },
-  regionWales: {
-    meta: 'region_code',
-    condition: 'equals',
-    value: 'GB-WLS',
-  },
   mainJob: {
     id: 'employment-status-answer-exclusive',
     condition: 'not set',

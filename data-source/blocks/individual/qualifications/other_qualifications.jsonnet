@@ -1,32 +1,6 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import '../../../lib/rules.libsonnet';
 
-local question(title, regionOptions) = {
-  id: 'other-qualifications-question',
-  title: title,
-  type: 'MutuallyExclusive',
-  mandatory: true,
-  answers: [
-    {
-      id: 'other-qualifications-answer',
-      mandatory: false,
-      type: 'Checkbox',
-      options: regionOptions,
-    },
-    {
-      id: 'other-qualifications-answer-exclusive',
-      type: 'Checkbox',
-      mandatory: false,
-      options: [
-        {
-          label: 'No qualifications',
-          value: 'No qualifications',
-        },
-      ],
-    },
-  ],
-};
-
 local nonProxyTitle = 'Have you achieved any other qualifications?';
 local proxyTitle = {
   text: 'Has <em>{person_name}</em> achieved any other qualifications?',
@@ -57,25 +31,46 @@ local walesOptions = [
   },
 ];
 
-{
+local question(title, region_code) = (
+  local regionOptions = if region_code == 'GB-WLS' then walesOptions else englandOptions;
+  {
+    id: 'other-qualifications-question',
+    title: title,
+    type: 'MutuallyExclusive',
+    mandatory: true,
+    answers: [
+      {
+        id: 'other-qualifications-answer',
+        mandatory: false,
+        type: 'Checkbox',
+        options: regionOptions,
+      },
+      {
+        id: 'other-qualifications-answer-exclusive',
+        type: 'Checkbox',
+        mandatory: false,
+        options: [
+          {
+            label: 'No qualifications',
+            value: 'No qualifications',
+          },
+        ],
+      },
+    ],
+  }
+);
+
+function(region_code) {
   type: 'Question',
   id: 'other-qualifications',
   question_variants: [
     {
-      question: question(nonProxyTitle, englandOptions),
-      when: [rules.proxyNo, rules.regionNotWales],
+      question: question(nonProxyTitle, region_code),
+      when: [rules.proxyNo],
     },
     {
-      question: question(proxyTitle, englandOptions),
-      when: [rules.proxyYes, rules.regionNotWales],
-    },
-    {
-      question: question(nonProxyTitle, walesOptions),
-      when: [rules.proxyNo, rules.regionWales],
-    },
-    {
-      question: question(proxyTitle, walesOptions),
-      when: [rules.proxyYes, rules.regionWales],
+      question: question(proxyTitle, region_code),
+      when: [rules.proxyYes],
     },
   ],
   routing_rules: [
