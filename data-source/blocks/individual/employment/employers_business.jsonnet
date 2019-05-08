@@ -1,27 +1,6 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import '../../../lib/rules.libsonnet';
 
-local question(title, description) = {
-  id: 'employers-business-question',
-  title: title,
-  description: description,
-  type: 'General',
-  answers: [
-    {
-      id: 'employers-business-answer',
-      label: 'Description',
-      mandatory: true,
-      type: 'TextArea',
-      max_length: 200,
-      validation: {
-        messages: {
-          MAX_LENGTH_EXCEEDED: 'Your answer has to be less than %(max)d characters long',
-        },
-      },
-    },
-  ],
-};
-
 local nonProxyTitle = 'What is the main activity of your organisation, business or freelance work?';
 local proxyTitle = {
   text: 'What is the main activity of <em>{person_name_possessive}</em> organisation, business or freelance work?',
@@ -41,41 +20,49 @@ local pastProxyTitle = {
 local englandDescription = 'For example clothing retail, general hospital, primary education, food wholesale, civil service DWP, local government housing.';
 local walesDescription = 'For example clothing retail, general hospital, primary education, food wholesale, civil service Welsh Government, local government housing.';
 
-{
+local question(title, region_code) = (
+  local description = if region_code == 'GB-WLS' then walesDescription else englandDescription;
+  {
+    id: 'employers-business-question',
+    title: title,
+    description: description,
+    type: 'General',
+    answers: [
+      {
+        id: 'employers-business-answer',
+        label: 'Description',
+        mandatory: true,
+        type: 'TextArea',
+        max_length: 200,
+        validation: {
+          messages: {
+            MAX_LENGTH_EXCEEDED: 'Your answer has to be less than %(max)d characters long',
+          },
+        },
+      },
+    ],
+  }
+);
+
+function(region_code) {
   type: 'Question',
   id: 'employers-business',
   question_variants: [
     {
-      question: question(nonProxyTitle, englandDescription),
-      when: [rules.proxyNo, rules.mainJob, rules.regionNotWales],
+      question: question(nonProxyTitle, region_code),
+      when: [rules.proxyNo, rules.mainJob],
     },
     {
-      question: question(proxyTitle, englandDescription),
-      when: [rules.proxyYes, rules.mainJob, rules.regionNotWales],
+      question: question(proxyTitle, region_code),
+      when: [rules.proxyYes, rules.mainJob],
     },
     {
-      question: question(pastNonProxyTitle, englandDescription),
-      when: [rules.proxyNo, rules.lastMainJob, rules.regionNotWales],
+      question: question(pastNonProxyTitle, region_code),
+      when: [rules.proxyNo, rules.lastMainJob],
     },
     {
-      question: question(pastProxyTitle, englandDescription),
-      when: [rules.proxyYes, rules.lastMainJob, rules.regionNotWales],
-    },
-    {
-      question: question(nonProxyTitle, walesDescription),
-      when: [rules.proxyNo, rules.mainJob, rules.regionWales],
-    },
-    {
-      question: question(proxyTitle, walesDescription),
-      when: [rules.proxyYes, rules.mainJob, rules.regionWales],
-    },
-    {
-      question: question(pastNonProxyTitle, walesDescription),
-      when: [rules.proxyNo, rules.lastMainJob, rules.regionWales],
-    },
-    {
-      question: question(pastProxyTitle, walesDescription),
-      when: [rules.proxyYes, rules.lastMainJob, rules.regionWales],
+      question: question(pastProxyTitle, region_code),
+      when: [rules.proxyYes, rules.lastMainJob],
     },
   ],
 }

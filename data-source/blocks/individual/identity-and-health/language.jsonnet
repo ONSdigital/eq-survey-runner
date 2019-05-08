@@ -1,41 +1,6 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import '../../../lib/rules.libsonnet';
 
-local question(title, definitionDescription, regionOption) = {
-  id: 'language-question',
-  title: title,
-  type: 'General',
-  definitions: [{
-    title: 'What do we mean by “main language”?',
-    content: [
-      {
-        description: definitionDescription,
-      },
-    ],
-  }],
-  answers: [
-    {
-      id: 'language-answer',
-      mandatory: true,
-      type: 'Radio',
-      options: [
-        regionOption,
-        {
-          label: 'Other',
-          value: 'Other',
-          description: 'Including British Sign Language',
-          detail_answer: {
-            id: 'language-answer-other',
-            type: 'TextField',
-            mandatory: false,
-            label: 'Please specify main language',
-          },
-        },
-      ],
-    },
-  ],
-};
-
 local nonProxyTitle = 'What is your main language?';
 local proxyTitle = {
   text: 'What is <em>{person_name_possessive}</em> main language?',
@@ -43,8 +8,6 @@ local proxyTitle = {
     placeholders.personNamePossessive,
   ],
 };
-local nonProxyDefinitionDescription = 'Your main language is the language you use most naturally. It could be the language you use at home.';
-local proxyDefinitionDescription = 'Their main language is the language they use most naturally. It could be the language they use at home.';
 
 local englandOption = {
   label: 'English',
@@ -56,25 +19,58 @@ local walesOption = {
   value: 'English or Welsh',
 };
 
-{
+local nonProxyDefinitionDescription = 'Your main language is the language you use most naturally. It could be the language you use at home.';
+local proxyDefinitionDescription = 'Their main language is the language they use most naturally. It could be the language they use at home.';
+
+local question(title, definitionDescription, region_code) = (
+  local regionOption = if region_code == 'GB-WLS' then walesOption else englandOption;
+  {
+    id: 'language-question',
+    title: title,
+    type: 'General',
+    definitions: [{
+      title: 'What do we mean by “main language”?',
+      content: [
+        {
+          description: definitionDescription,
+        },
+      ],
+    }],
+    answers: [
+      {
+        id: 'language-answer',
+        mandatory: true,
+        type: 'Radio',
+        options: [
+          regionOption,
+          {
+            label: 'Other',
+            value: 'Other',
+            description: 'Including British Sign Language',
+            detail_answer: {
+              id: 'language-answer-other',
+              type: 'TextField',
+              mandatory: false,
+              label: 'Please specify main language',
+            },
+          },
+        ],
+      },
+    ],
+  }
+);
+
+function(region_code) {
   type: 'Question',
   id: 'language',
   question_variants: [
     {
-      question: question(nonProxyTitle, nonProxyDefinitionDescription, englandOption),
-      when: [rules.proxyNo, rules.regionNotWales],
+      question: question(nonProxyTitle, nonProxyDefinitionDescription, region_code),
+      when: [rules.proxyNo],
     },
     {
-      question: question(proxyTitle, proxyDefinitionDescription, englandOption),
-      when: [rules.proxyYes, rules.regionNotWales],
-    },
-    {
-      question: question(nonProxyTitle, nonProxyDefinitionDescription, walesOption),
-      when: [rules.proxyNo, rules.regionWales],
-    },
-    {
-      question: question(proxyTitle, proxyDefinitionDescription, walesOption),
-      when: [rules.proxyYes, rules.regionWales],
+      question: question(proxyTitle, proxyDefinitionDescription, region_code),
+      when: [rules.proxyYes],
     },
   ],
   routing_rules: [

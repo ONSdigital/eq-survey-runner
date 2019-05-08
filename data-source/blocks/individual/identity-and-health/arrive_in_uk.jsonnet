@@ -23,7 +23,7 @@ local proxyTitle = {
   ],
 };
 
-{
+function(region_code, census_date) {
   type: 'Question',
   id: 'arrive-in-uk',
   question_variants: [
@@ -45,7 +45,7 @@ local proxyTitle = {
             id: 'arrive-in-uk-answer',
             condition: 'greater than',
             date_comparison: {
-              value: std.extVar('census_date'),
+              value: census_date,
               offset_by: {
                 years: -1,
               },
@@ -62,7 +62,7 @@ local proxyTitle = {
             id: 'arrive-in-uk-answer',
             condition: 'equals',
             date_comparison: {
-              value: std.extVar('census_date'),
+              value: census_date,
               offset_by: {
                 years: -1,
               },
@@ -73,13 +73,7 @@ local proxyTitle = {
     },
     {
       goto: {
-        block: 'understand-welsh',
-        when: [rules.regionWales],
-      },
-    },
-    {
-      goto: {
-        block: 'language',
+        block: if region_code == 'GB-WLS' then 'understand-welsh' else 'language',
       },
     },
   ],

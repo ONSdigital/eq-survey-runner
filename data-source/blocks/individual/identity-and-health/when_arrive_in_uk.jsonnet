@@ -24,30 +24,31 @@ local question(title) = {
   ],
 };
 
-local nonProxyTitle = {
+local nonProxyTitle(census_date) = {
   text: 'Did you arrive in the UK, on or after {census_date}',
   placeholders: [
-    placeholders.censusDate,
-  ],
-};
-local proxyTitle = {
-  text: 'Did <em>{person_name}</em> arrive in the UK, on or after {census_date}',
-  placeholders: [
-    placeholders.personName,
-    placeholders.censusDate,
+    placeholders.censusDate(census_date),
   ],
 };
 
-{
+local proxyTitle(census_date) = {
+  text: 'Did <em>{person_name}</em> arrive in the UK, on or after {census_date}',
+  placeholders: [
+    placeholders.personName,
+    placeholders.censusDate(census_date),
+  ],
+};
+
+function(region_code, census_date) {
   type: 'Question',
   id: 'when-arrive-in-uk',
   question_variants: [
     {
-      question: question(nonProxyTitle),
+      question: question(nonProxyTitle(census_date)),
       when: [rules.proxyNo],
     },
     {
-      question: question(proxyTitle),
+      question: question(proxyTitle(census_date)),
       when: [rules.proxyYes],
     },
   ],
@@ -66,19 +67,7 @@ local proxyTitle = {
     },
     {
       goto: {
-        block: 'understand-welsh',
-        when: [
-          {
-            meta: 'region_code',
-            condition: 'equals',
-            value: 'GB-WLS',
-          },
-        ],
-      },
-    },
-    {
-      goto: {
-        block: 'language',
+        block: if region_code == 'GB-WLS' then 'understand-welsh' else 'language',
       },
     },
   ],
