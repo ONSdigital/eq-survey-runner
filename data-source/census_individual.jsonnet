@@ -70,6 +70,7 @@ local job_description = import 'blocks/individual/employment/job_description.jso
 local job_pending = import 'blocks/individual/employment/job_pending.jsonnet';
 local job_title = import 'blocks/individual/employment/job_title.jsonnet';
 local jobseeker = import 'blocks/individual/employment/jobseeker.jsonnet';
+local last_main_employment_block = import 'blocks/individual/employment/last_main_employment_block.jsonnet';
 local main_employment_block = import 'blocks/individual/employment/main_employment_block.jsonnet';
 local main_job_type = import 'blocks/individual/employment/main_job_type.jsonnet';
 local supervise = import 'blocks/individual/employment/supervise.jsonnet';
@@ -203,6 +204,7 @@ function(region_code, census_date) {
             job_pending,
             ever_worked,
             main_employment_block,
+            last_main_employment_block,
             main_job_type,
             business_name,
             job_title,

@@ -89,7 +89,7 @@ local proxyLabel = 'No, has never worked';
     },
     {
       goto: {
-        block: 'main-employment-block',
+        block: 'last-main-employment-block',
       },
     },
   ],
