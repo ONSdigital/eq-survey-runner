@@ -109,11 +109,7 @@ function(region_code, census_date) {
       validator: 'optional_string',
     },
     {
-      name: 'address-line-1',
-      validator: 'string',
-    },
-    {
-      name: 'address-line-2',
+      name: 'display_address',
       validator: 'string',
     },
 

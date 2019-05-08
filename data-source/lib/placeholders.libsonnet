@@ -37,16 +37,10 @@
   },
   address: {
     placeholder: 'address',
-    transforms: [{
-      transform: 'concatenate_list',
-      arguments: {
-        list_to_concatenate: {
-          source: 'metadata',
-          identifier: ['address-line-1', 'address-line-2'],
-        },
-        delimiter: ', ',
-      },
-    }],
+    value: {
+      identifier: 'display_address',
+      source: 'metadata',
+    },
   },
   censusDate(census_date): {
     placeholder: 'census_date',
