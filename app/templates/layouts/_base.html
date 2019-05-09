@@ -46,26 +46,25 @@
 
     {% endblock styles -%}
     {% endblock head -%}
-    <!-- Google Analytics -->
-
-    {% if analytics_ua_id  %}
-    <script nonce="{{ csp_nonce() }}">
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', '{{analytics_ua_id}}', 'auto');
-    ga('set', 'anonymizeIp', true);
-    // Language is setup as a custom dimension in google analytics
-    ga('set', 'dimension1', '{{language_code}}' || 'en');
-    ga('send', 'pageview');
-    </script>
-    {% endif %}
-    <!-- End Google Analytics -->
+    <!-- Google Tag Manager -->
+    {% if analytics_gtm_id and analytics_gtm_env_id %}
+      <script nonce="{{ csp_nonce() }}">(function(w,d,s,l,i,e){w['GoogleTagManagerObject']=l;w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?gtm_auth={{analytics_gtm_env_id}}&id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','{{analytics_gtm_id}}', "{{analytics_gtm_env_id}}");</script>
+    {%- endif %}
+    <!-- End Google Tag Manager -->
   </head>
 
   <body>
+
+    <!-- Google Tag Manager (noscript) -->
+    {% if analytics_gtm_id and analytics_gtm_env_id %}
+      <noscript nonce="{{ csp_nonce() }}"><iframe src="https://www.googletagmanager.com/gtm.js?id={{analytics_gtm_id}}&gtm_auth={{analytics_gtm_env_id}}"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    {%- endif %}
+    <!-- End Google Tag Manager (noscript) -->
 
     {% if request.args.get('grid_debug') == 'true' and config['DEBUG'] == true %}
       {% include 'partials/grid-overlay.html' %}

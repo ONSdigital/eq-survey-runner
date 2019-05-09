@@ -25,7 +25,8 @@ def contact():
                                              template_name='static/contact-us.html',
                                              session=session,
                                              survey_id=survey_id,
-                                             analytics_ua_id=current_app.config['EQ_UA_ID'])
+                                             analytics_gtm_id=current_app.config['EQ_GTM_ID'],
+                                             analytics_gtm_env_id=current_app.config['EQ_GTM_ENV_ID'])
     return contact_template
 
 
@@ -33,5 +34,6 @@ def contact():
 def legal():
     cookie_template = render_theme_template(theme=cookie_session.get('theme', 'default'),
                                             template_name='static/cookies-privacy.html',
-                                            analytics_ua_id=current_app.config['EQ_UA_ID'])
+                                            analytics_gtm_id=current_app.config['EQ_GTM_ID'],
+                                            analytics_gtm_env_id=current_app.config['EQ_GTM_ENV_ID'])
     return cookie_template

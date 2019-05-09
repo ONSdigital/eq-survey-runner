@@ -290,7 +290,8 @@ EQ_SCHEMA_DIRECTORY - The directory that contains the schema files
 EQ_SESSION_TIMEOUT_SECONDS - The duration of the flask session
 EQ_SECRET_KEY - The Flask secret key for signing cookies
 EQ_PROFILING - Enables or disables profiling (True/False) Default False/Disabled
-EQ_UA_ID - The Google Analytics ID
+EQ_GTM_ID - The Google Tag Manager ID
+EQ_GTM_ENV_ID - The Google Tag Manager Environment
 EQ_SCHEMA_BUCKET - The name of the bucket in S3 where to look to find schemas
 SAUCE_USERNAME - Sauce Labs username
 SAUCE_ACCESS_KEY - Sauce Labs private key

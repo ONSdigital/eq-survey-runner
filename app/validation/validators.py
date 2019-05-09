@@ -134,7 +134,7 @@ class DecimalPlaces:
         if data and decimal_symbol in data:
             if self.max_decimals == 0:
                 raise validators.ValidationError(self.messages['INVALID_INTEGER'])
-            elif len(data.split(decimal_symbol)[1]) > self.max_decimals:
+            if len(data.split(decimal_symbol)[1]) > self.max_decimals:
                 raise validators.ValidationError(self.messages['INVALID_DECIMAL'] % dict(max=self.max_decimals))
 
 
@@ -352,5 +352,5 @@ class MutuallyExclusiveCheck:
         total_answered = sum(1 for value in answer_values if value)
         if total_answered > 1:
             raise validators.ValidationError(self.messages['MUTUALLY_EXCLUSIVE'])
-        elif is_mandatory and total_answered < 1:
+        if is_mandatory and total_answered < 1:
             raise validators.ValidationError(self.messages['MANDATORY_QUESTION'])

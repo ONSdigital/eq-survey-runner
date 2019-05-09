@@ -44,7 +44,11 @@ def with_metadata_context(func):
 def with_analytics(func):
     @wraps(func)
     def analytics_wrapper(*args, **kwargs):
-        return func(*args, analytics_ua_id=current_app.config['EQ_UA_ID'], **kwargs)
+        return func(
+            *args,
+            analytics_gtm_id=current_app.config['EQ_GTM_ID'],
+            analytics_gtm_env_id=current_app.config['EQ_GTM_ENV_ID'],
+            **kwargs)
 
     return analytics_wrapper
 

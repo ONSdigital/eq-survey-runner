@@ -133,6 +133,7 @@ def get_sign_out():
 
     return render_theme_template(cookie_session.get('theme', 'default'),
                                  template_name='signed-out.html',
-                                 analytics_ua_id=current_app.config['EQ_UA_ID'],
+                                 analytics_gtm_id=current_app.config['EQ_GTM_ID'],
+                                 analytics_gtm_env_id=current_app.config['EQ_GTM_ENV_ID'],
                                  account_service_url=cookie_session.get('account_service_url'),
                                  survey_title=TemplateRenderer.safe_content(cookie_session.get('survey_title', '')))
