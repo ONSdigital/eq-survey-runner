@@ -1,0 +1,92 @@
+<h2 class="u-fs-l u-mt-m">{{ intro.title }}</h2>
+
+<div class="collapsible__introduction">
+  {% for content in intro.content %}
+    {% if content.title  %}
+      <h3 class="u-fs-r--b u-mt-s">{{ content.title }}</h3>
+    {% endif %}
+
+    <p class="u-fs-r qa-intro-description" data-qa="intro-preview-description">{{ content.description }}</p>
+
+    {% if content.list %}
+      <ul>
+          {% for li in content.list %}
+          <li>{{ li }}</li>
+          {% endfor %}
+      </ul>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% if intro.questions %}
+  {% from "components/accordion/_macro.njk" import onsAccordion %}
+
+  {% set accordionItems = [] %}
+
+  {% for question in intro.questions %}
+    {% set content %}
+      {% if question.content %}
+        {% for item in question.content %}
+          <div class="u-mb-s">
+            {% if item.title %}
+              <div  class="u-mb-s u-fs-r--b">{{ item.title }}</div>
+            {% endif %}
+
+            {% if item.description %}
+              <div class="u-mb-s">{{ item.description }}</div>
+            {% endif %}
+
+            {% if item.list %}
+              <ul>
+                  {% for li in item.list %}
+                    <li>{{ li }}</li>
+                  {% endfor %}
+              </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+      {% endif %}
+    {% endset %}
+
+    {% set item = {
+      "title": question.question,
+      "content": content,
+      "summaryAttributes": {
+          "data-ga": "click",
+          "data-ga-category": "Preview Survey",
+          "data-ga-action": "Open panel",
+          "data-ga-label": question.question
+      },
+      "button": {
+        "open": _('Show'),
+        "close": _('Hide'),
+        "attributes": {
+          "data-ga": "click",
+          "data-ga-category": "Preview Survey",
+          "data-ga-action": "Open panel",
+          "data-ga-label": question.question
+        }
+      }
+    } %}
+
+    {% do accordionItems.append(item) %}
+  {% endfor %}
+
+  {{
+      onsAccordion({
+          "id": "intro-questions",
+          "classes": "u-mb-s",
+          "allButton": {
+            "open": _('Show all'),
+            "close": _('Hide all'),
+            "attributes": {
+              "data-ga": "click",
+              "data-ga-category": "Preview Survey",
+              "data-ga-action": "Show all",
+              "data-ga-label": "Show all"
+            }
+          },
+          "itemsList": accordionItems
+      })
+  }}
+{% endif %}

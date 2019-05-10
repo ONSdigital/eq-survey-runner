@@ -47,7 +47,6 @@ describe('Component: Mutually Exclusive Unit With Single Checkbox Override', fun
 
         // Then
         .getValue(UnitPage.unit()).should.eventually.contain('10')
-        .click(UnitPage.unitLabel())
         .isSelected(UnitPage.unitExclusiveIPreferNotToSay()).should.eventually.be.false
 
         .click(UnitPage.submit())

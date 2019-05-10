@@ -1,9 +1,0 @@
-{
-    "application": "surveyrunner",
-    "identifier": "census",
-    "name": "Census 2017",
-    "author": "hamishtapin",
-    "description": "Theme for the 2017 Census",
-    "license": "MIT/X11",
-    "version": "1.0.0"
-}

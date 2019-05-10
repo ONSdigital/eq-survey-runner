@@ -1,0 +1,22 @@
+{% from "components/input/_macro.njk" import onsInput %}
+
+{% set input = form.fields[answer['id']] %}
+
+{{ onsInput({
+  "id": answer.id,
+  "classes": "js-totaliser-input-calculated" if answer.calculated,
+  "type": "number",
+  "label": {
+    "text": answer.label,
+    "description": answer.description
+  },
+  "value": input._value(),
+  "name": input.name,
+  "attributes": {
+    "data-qa": "input-text"
+  },
+  "suffix": {
+    "title": "%"
+  },
+  "mutuallyExclusive": mutuallyExclusive
+}) }}

@@ -15,7 +15,7 @@ describe('Feature: Combined question level and single validation for MM-YYYY dat
         return browser
          .setValue(DateRangePage.dateRangeFromYear(), 2018)
 
-         .selectByValue(DateRangePage.dateRangeToMonth(), 4)
+         .setValue(DateRangePage.dateRangeToMonth(), 4)
          .setValue(DateRangePage.dateRangeToYear(), 2017)
          .click(DateRangePage.submit())
          .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a valid date')
@@ -24,10 +24,10 @@ describe('Feature: Combined question level and single validation for MM-YYYY dat
 
       it('When I enter a year but no month, Then I should see only a single invalid date error', function() {
         return browser
-         .selectByValue(DateRangePage.dateRangeFromMonth(), 10)
+         .setValue(DateRangePage.dateRangeFromMonth(), 10)
          .setValue(DateRangePage.dateRangeFromYear(), '')
 
-         .selectByValue(DateRangePage.dateRangeToMonth(), 4)
+         .setValue(DateRangePage.dateRangeToMonth(), 4)
          .setValue(DateRangePage.dateRangeToYear(), 2017)
          .click(DateRangePage.submit())
          .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a valid date')
@@ -36,10 +36,10 @@ describe('Feature: Combined question level and single validation for MM-YYYY dat
 
       it('When I enter a year of 0, Then I should see only a single invalid date error', function() {
         return browser
-         .selectByValue(DateRangePage.dateRangeFromMonth(), 10)
+         .setValue(DateRangePage.dateRangeFromMonth(), 10)
          .setValue(DateRangePage.dateRangeFromYear(), 0)
 
-         .selectByValue(DateRangePage.dateRangeToMonth(), 4)
+         .setValue(DateRangePage.dateRangeToMonth(), 4)
          .setValue(DateRangePage.dateRangeToYear(), 2017)
          .click(DateRangePage.submit())
          .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a valid date')
@@ -48,10 +48,10 @@ describe('Feature: Combined question level and single validation for MM-YYYY dat
 
       it('When I enter a year that contains more than 4 characters, Then I should see only a single invalid date error', function() {
         return browser
-         .selectByValue(DateRangePage.dateRangeFromMonth(), 10)
+         .setValue(DateRangePage.dateRangeFromMonth(), 10)
          .setValue(DateRangePage.dateRangeFromYear(), 10001)
 
-         .selectByValue(DateRangePage.dateRangeToMonth(), 4)
+         .setValue(DateRangePage.dateRangeToMonth(), 4)
          .setValue(DateRangePage.dateRangeToYear(), 2017)
          .click(DateRangePage.submit())
          .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a valid date')
@@ -60,10 +60,10 @@ describe('Feature: Combined question level and single validation for MM-YYYY dat
 
       it('When I enter a single dates that are too early/late, Then I should see a single validation errors', function() {
         return browser
-         .selectByValue(DateRangePage.dateRangeFromMonth(), 10)
+         .setValue(DateRangePage.dateRangeFromMonth(), 10)
          .setValue(DateRangePage.dateRangeFromYear(), 2016)
 
-         .selectByValue(DateRangePage.dateRangeToMonth(), 6)
+         .setValue(DateRangePage.dateRangeToMonth(), 6)
          .setValue(DateRangePage.dateRangeToYear(), 2017)
          .click(DateRangePage.submit())
          .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a date after November 2016.')
@@ -72,10 +72,10 @@ describe('Feature: Combined question level and single validation for MM-YYYY dat
 
       it('When I enter a range too large, Then I should see a range validation error', function() {
         return browser
-         .selectByValue(DateRangePage.dateRangeFromMonth(), 12)
+         .setValue(DateRangePage.dateRangeFromMonth(), 12)
          .setValue(DateRangePage.dateRangeFromYear(), 2016)
 
-         .selectByValue(DateRangePage.dateRangeToMonth(), 5)
+         .setValue(DateRangePage.dateRangeToMonth(), 5)
          .setValue(DateRangePage.dateRangeToYear(), 2017)
          .click(DateRangePage.submit())
          .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a reporting period less than or equal to 3 months.');
@@ -83,10 +83,10 @@ describe('Feature: Combined question level and single validation for MM-YYYY dat
 
       it('When I enter a range too small, Then I should see a range validation error', function() {
         return browser
-         .selectByValue(DateRangePage.dateRangeFromMonth(), 12)
+         .setValue(DateRangePage.dateRangeFromMonth(), 12)
          .setValue(DateRangePage.dateRangeFromYear(), 2016)
 
-         .selectByValue(DateRangePage.dateRangeToMonth(), 1)
+         .setValue(DateRangePage.dateRangeToMonth(), 1)
          .setValue(DateRangePage.dateRangeToYear(), 2017)
          .click(DateRangePage.submit())
          .getText(DateRangePage.errorNumber(1)).should.eventually.contain('Enter a reporting period greater than or equal to 2 months.');
@@ -94,18 +94,18 @@ describe('Feature: Combined question level and single validation for MM-YYYY dat
 
       it('When I enter valid dates, Then I should see the summary page', function() {
         return browser
-         .selectByValue(DateRangePage.dateRangeFromMonth(), 1)
+         .setValue(DateRangePage.dateRangeFromMonth(), 1)
          .setValue(DateRangePage.dateRangeFromYear(), 2017)
 
          // Min range
-         .selectByValue(DateRangePage.dateRangeToMonth(), 3)
+         .setValue(DateRangePage.dateRangeToMonth(), 3)
          .setValue(DateRangePage.dateRangeToYear(), 2017)
          .click(DateRangePage.submit())
          .getText(SummaryPage.dateRangeFrom()).should.eventually.contain('January 2017 to March 2017')
 
          // Max range
          .click(SummaryPage.dateRangeFromEdit())
-         .selectByValue(DateRangePage.dateRangeToMonth(), 4)
+         .setValue(DateRangePage.dateRangeToMonth(), 4)
          .setValue(DateRangePage.dateRangeToYear(), 2017)
          .click(DateRangePage.submit())
          .getText(SummaryPage.dateRangeFrom()).should.eventually.contain('January 2017 to April 2017');

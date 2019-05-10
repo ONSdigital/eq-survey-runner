@@ -29,8 +29,8 @@ services:
       EQ_SESSION_TABLE_NAME: dev-eq-session
       EQ_USED_JTI_CLAIM_TABLE_NAME: dev-used-jti-claim
       EQ_DATASTORE_EMULATOR_CREDENTIALS: "True"
-      DATASTORE_EMULATOR_HOST: datastore:8432
       DATASTORE_DATASET: "local"
+      DATASTORE_EMULATOR_HOST: datastore:8432
       EQ_SUBMISSION_BACKEND: "log"
       EQ_REDIS_HOST: "redis"
       EQ_REDIS_PORT: "6379"

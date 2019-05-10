@@ -47,7 +47,6 @@ describe('Component: Mutually Exclusive Percentage With Single Checkbox Override
 
         // Then
         .getValue(PercentagePage.percentage()).should.eventually.contain('99')
-        .click(PercentagePage.percentageLabel())
         .isSelected(PercentagePage.percentageExclusiveIPreferNotToSay()).should.eventually.be.false
 
         .click(PercentagePage.submit())

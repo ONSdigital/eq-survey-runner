@@ -9,15 +9,15 @@ class QuestionPage extends BasePage {
 
   myAccountLink() { return '#my-account'; }
 
-  summaryQuestionText() { return '[data-qa="summary-question-title"]'; }
+  summaryQuestionText() { return '.summary__item-title'; }
 
-  questionText() { return '[data-qa="question-title"]'; }
+  questionText() { return 'h1'; }
 
   alert() { return '[data-qa="error-body"]';  }
 
   error() { return '.js-inpagelink'; }
 
-  errorHeader() { return '#main > div.panel.panel--error.u-mb-s > div.panel__header > h1'; }
+  errorHeader() { return '#main-content > div.panel.panel--error.u-mb-s > div.panel__header > div'; }
 
   errorNumber(number = 1) { return '[data-qa="error-body"] ul > li:nth-child(' + number + ') > a'; }
 
@@ -31,9 +31,9 @@ class QuestionPage extends BasePage {
 
   saveSignOut() { return '[data-qa="btn-save-sign-out"]'; }
 
-  interstitialHeader() { return '#main > h1';}
+  interstitialHeader() { return 'main > h1';}
 
-  switchLanguage(language_code) { return '[data-qa="switch-language-' + language_code + '"]'; }
+  switchLanguage(language_code) { return 'a[href="?language_code=' + language_code + '"]'; }
 
 }
 

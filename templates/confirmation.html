@@ -1,0 +1,47 @@
+{% extends 'layouts/_questionnaire.html' %}
+{% from "components/button/_macro.njk" import onsButton %}
+
+{% set save_on_signout = true %}
+
+{% set page_title = summary_page_title | default(_("Submit answers") + " - " + page_title) %}
+
+{% block submit_button %}
+  {% if content.summary and content.summary.summary_type in ('SectionSummary', 'AnswerSummary') %}
+    {{
+      onsButton({
+        "text": _("Continue"),
+        "classes": "btn--loader js-btn-submit",
+        "attributes": {
+          "data-qa": "btn-submit"
+        }
+      })
+    }}
+  {% elif content.summary and content.summary.summary_type == 'CalculatedSummary' %}
+    {{
+      onsButton({
+        "text": _("Yes, I confirm these are correct"),
+        "classes": "btn--loader js-btn-submit",
+        "attributes": {
+          "data-qa": "btn-submit"
+        }
+      })
+    }}
+  {% else  %}
+    {% if block and block.content %}
+      {% set content_block = content.block.content %}
+      {% include 'partials/content-block.html' %}
+    {% endif %}
+    <p class="u-mt-m">
+      {{
+        onsButton({
+          "text": _("Submit answers"),
+          "classes": "btn--loader js-btn-submit",
+          "attributes": {
+            "data-qa": "btn-submit",
+            "data-loading-msg": _("Submitting") + "&hellip;"
+          }
+        })
+      }}
+    </p>
+  {% endif %}
+{% endblock %}

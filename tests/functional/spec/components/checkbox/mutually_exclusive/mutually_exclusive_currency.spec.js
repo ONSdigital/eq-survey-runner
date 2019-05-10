@@ -47,7 +47,6 @@ describe('Component: Mutually Exclusive Currency With Single Checkbox Override',
 
         // Then
         .getValue(CurrencyPage.currency()).should.eventually.contain('123')
-        .click(CurrencyPage.currencyLabel())
         .isSelected(CurrencyPage.currencyExclusiveIPreferNotToSay()).should.eventually.be.false
 
         .click(CurrencyPage.submit())

@@ -33,7 +33,7 @@ class FeedbackForm {
   }
 
   messageLabel() {
-    return '#feedback-message-label';
+    return '[for=feedback-message]';
   }
 
   nameInput() {
@@ -41,7 +41,7 @@ class FeedbackForm {
   }
 
   nameLabel() {
-    return '#feedback-name-label';
+    return '[for=feedback-name]';
   }
 
   emailInput() {
@@ -49,7 +49,7 @@ class FeedbackForm {
   }
 
   emailLabel() {
-    return '#feedback-email-label';
+    return '[for=feedback-email]';
   }
 
   signOut() {

@@ -1,0 +1,13 @@
+{%- if content.summary.collapsible -%}
+  {%- include 'partials/summary/collapsible-summary.html' -%}
+{%- else -%}
+  {% from "components/summary/_macro.njk" import onsSummary %}
+
+  {%- for group in content.summary.groups if group.blocks -%}
+    {{ onsSummary({
+      "title": '<div id="' + group.id +'">' + group.title + '</div>' if group.title else None,
+      "rows": map_summary_item_config(group, content.summary.summary_type, content.summary.answers_are_editable, _("No answer provided"), _("Change"), _("Change your answer for:"), content.summary.calculated_question),
+      "classes": "u-mt-m" if loop.index > 1 else ""
+    }) }}
+  {%- endfor -%}
+{%- endif -%}

@@ -1,5 +1,6 @@
 from tests.integration.integration_test_case import IntegrationTestCase
 
+
 class TestQuestionnaireListCollector(IntegrationTestCase):
 
     def add_person(self, first_name, last_name):
@@ -12,8 +13,8 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
             'last-name': last_name
         })
 
-    def get_link(self, qa_tag, text):
-        selector = f'li[data-qa="{qa_tag}"] a'
+    def get_link(self, rowIndex, text):
+        selector = f'tbody:nth-child({rowIndex}) td:last-child a'
         selected = self.getHtmlSoup().select(selector)
 
         filtered = [html for html in selected if text in html.get_text()]
@@ -21,7 +22,7 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
         return filtered[0].get('href')
 
     def get_previous_link(self):
-        selector = '#bottom-previous'
+        selector = '#top-previous'
         selected = self.getHtmlSoup().select(selector)
         return selected[0].get('href')
 
@@ -64,23 +65,23 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.add_person('Marie Claire', 'Doe')
 
-        self.assertInSelector('Marie Claire Doe', 'li[data-qa="list-summary-1"]')
+        self.assertInSelector('Marie Claire Doe', 'tbody:nth-child(1) td:first-child')
 
         self.add_person('John', 'Doe')
 
-        self.assertInSelector('John Doe', 'li[data-qa="list-summary-2"]')
+        self.assertInSelector('John Doe', 'tbody:nth-child(2) td:first-child')
 
         self.add_person('A', 'Mistake')
 
-        self.assertInSelector('A Mistake', 'li[data-qa="list-summary-3"]')
+        self.assertInSelector('A Mistake', 'tbody:nth-child(3) td:first-child')
 
         self.add_person('Johnny', 'Doe')
 
-        self.assertInSelector('Johnny Doe', 'li[data-qa="list-summary-4"]')
+        self.assertInSelector('Johnny Doe', 'tbody:nth-child(4) td:first-child')
 
         # Make another mistake
 
-        mistake_change_link = self.get_link('list-summary-3', 'Change')
+        mistake_change_link = self.get_link('3', 'Change')
 
         self.get(mistake_change_link)
 
@@ -89,11 +90,11 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
             'last-name': 'Mistake'
         })
 
-        self.assertInSelector('Another Mistake', 'li[data-qa="list-summary-3"]')
+        self.assertInSelector('Another Mistake', 'tbody:nth-child(3) td:first-child')
 
         # Get rid of the mistake
 
-        mistake_remove_link = self.get_link('list-summary-3', 'Remove')
+        mistake_remove_link = self.get_link('3', 'Remove')
 
         self.get(mistake_remove_link)
 
@@ -116,11 +117,11 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
         })
 
         # Make sure Johnny has moved up the list
-        self.assertInSelector('Johnny Doe', 'li[data-qa="list-summary-3"]')
+        self.assertInSelector('Johnny Doe', 'tbody:nth-child(3) td:first-child')
 
         # Test the previous links
-        john_change_link = self.get_link('list-summary-2', 'Change')
-        john_remove_link = self.get_link('list-summary-2', 'Remove')
+        john_change_link = self.get_link('2', 'Change')
+        john_remove_link = self.get_link('2', 'Remove')
 
         self.get(john_change_link)
 
@@ -149,11 +150,11 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.add_person('Marie Claire', 'Doe')
 
-        self.assertInSelector('Marie Claire Doe', 'li[data-qa="list-summary-1"]')
+        self.assertInSelector('Marie Claire Doe', 'tbody:nth-child(1) td:first-child')
 
         self.add_person('John', 'Doe')
 
-        self.assertInSelector('John Doe', 'li[data-qa="list-summary-2"]')
+        self.assertInSelector('John Doe', 'tbody:nth-child(2) td:first-child')
 
         self.post({
             'anyone-else': 'No'

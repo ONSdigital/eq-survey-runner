@@ -194,10 +194,10 @@ class TestQuestionnaireForm(AppContextTestCase):  # noqa: C901  pylint: disable=
 
             data = {
                 'date-range-from-day': '01',
-                'date-range-from-month': 1,
+                'date-range-from-month': '1',
                 'date-range-from-year': '2017',
                 'date-range-to-day': '14',
-                'date-range-to-month': 3,
+                'date-range-to-month': '3',
                 'date-range-to-year': '2017'
             }
 

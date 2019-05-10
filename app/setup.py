@@ -10,20 +10,17 @@ import boto3
 import redis
 import yaml
 from botocore.config import Config
-from flask import Flask, url_for, session as cookie_session
+from flask import Flask, session as cookie_session
 from flask_babel import Babel
 from flask_caching import Cache
 from flask_compress import Compress
 from flask_talisman import Talisman
-from flask_themes2 import Themes
 from flask_wtf.csrf import CSRFProtect
 from google.auth import credentials
 from google.cloud import datastore
 from htmlmin.main import minify
 from sdc.crypto.key_store import KeyStore, validate_required_keys
 from structlog import get_logger
-
-from app import flask_theme_cache
 from app import settings
 from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
@@ -87,7 +84,7 @@ class AWSReverseProxied:
 
 
 def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-complex
-    application = Flask(__name__, static_url_path='/s', static_folder='../static')
+    application = Flask(__name__, template_folder='../templates')
     application.config.from_object(settings)
 
     application.eq = {}
@@ -155,12 +152,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     # during schema/metadata/summary context (and navigition) generation
     application.jinja_env.autoescape = False
 
-    # Add theme manager
-    application.config['THEME_PATHS'] = os.path.dirname(os.path.abspath(__file__))
-    Themes(application, app_identifier='surveyrunner')
-
     # pylint: disable=no-member
-    application.jinja_env.globals['theme'] = flask_theme_cache.get_global_theme_template(cache)
+    application.jinja_env.add_extension('jinja2.ext.do')
 
     @application.before_request
     def before_request():  # pylint: disable=unused-variable
@@ -189,15 +182,11 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
         """
         if application.config['EQ_ENABLE_HTML_MINIFY'] and response.content_type == u'text/html; charset=utf-8':
             response.set_data(
-                minify(response.get_data(as_text=True)),
+                minify(response.get_data(as_text=True), remove_comments=True, remove_empty_space=True),
             )
 
             return response
         return response
-
-    @application.context_processor
-    def override_url_for():  # pylint: disable=unused-variable
-        return dict(url_for=versioned_url_for)
 
     return application
 
@@ -411,19 +400,6 @@ def add_safe_health_check(application):
             'version': application.config['EQ_APPLICATION_VERSION'],
         }
         return json.dumps(data)
-
-
-def versioned_url_for(endpoint, **values):
-
-    if endpoint == 'static':
-        filename = values.get('filename', None)
-        if filename:
-            filename = get_minimized_asset(filename)
-            # use the git revision
-            version = settings.EQ_APPLICATION_VERSION
-            values['filename'] = filename
-            values['q'] = version
-    return url_for(endpoint, **values)
 
 
 def get_minimized_asset(filename):

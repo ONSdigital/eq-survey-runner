@@ -1,0 +1,9 @@
+{% from "components/checkboxes/_macro.njk" import onsCheckboxes %}
+
+{{ onsCheckboxes({
+  "id": answer["id"],
+  "checkboxesLabel": _("Select all that apply"),
+  "checkboxes": map_checkbox_config(form, answer),
+  "mutuallyExclusive": mutuallyExclusive
+}) }}
+

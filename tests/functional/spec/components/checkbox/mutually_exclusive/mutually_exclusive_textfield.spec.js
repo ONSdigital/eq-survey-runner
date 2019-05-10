@@ -47,7 +47,6 @@ describe('Component: Mutually Exclusive Textfield With Single Checkbox Override'
 
         // Then
         .getValue(TextFieldPage.textfield()).should.eventually.contain('Blue')
-        .click(TextFieldPage.textfieldLabel())
         .isSelected(TextFieldPage.textfieldExclusiveIPreferNotToSay()).should.eventually.be.false
 
         .click(TextFieldPage.submit())

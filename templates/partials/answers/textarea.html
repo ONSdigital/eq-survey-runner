@@ -1,0 +1,17 @@
+{% from "components/textarea/_macro.njk" import onsTextarea %}
+
+{% set input = form.fields[answer['id']] %}
+
+{{ onsTextarea({
+  "id": answer.id,
+  "name": input.name,
+  "label": {
+    "text": answer.label,
+    "description": answer.description
+  },
+  "value": input._value(),
+  "maxlength": answer.max_length | default(input.maxlength, true),
+  "charCountSingular": _("You have {x} character remaining"),
+  "charCountPlural": _("You have {x} characters remaining"),
+  "mutuallyExclusive": mutuallyExclusive
+}) }}

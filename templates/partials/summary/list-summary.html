@@ -1,0 +1,14 @@
+{% from "components/summary/_macro.njk" import onsSummary %}
+
+{{ onsSummary({
+  "withinQuestion": true,
+  "rows": map_list_collector_config(
+    content.list_items,
+    "person",
+    _("Change"),
+    _("Change details for {item_name}"),
+    _("Remove"),
+    _("Remove {item_name}")
+  ),
+  "classes": "u-mt-s u-mb-m"
+}) }}

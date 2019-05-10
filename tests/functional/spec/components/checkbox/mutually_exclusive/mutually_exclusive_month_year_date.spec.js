@@ -16,9 +16,9 @@ describe('Component: Mutually Exclusive Month Year Date With Single Checkbox Ove
 
       return browser
         // Given
-        .selectByValue(MonthYearDatePage.monthYearDateMonth(), 3)
+        .setValue(MonthYearDatePage.monthYearDateMonth(), '3')
         .setValue(MonthYearDatePage.monthYearDateYear(), '2018')
-        .getText(MonthYearDatePage.monthYearDateMonth()).should.eventually.contain('March')
+        .getValue(MonthYearDatePage.monthYearDateMonth()).should.eventually.contain('3')
         .getValue(MonthYearDatePage.monthYearDateYear()).should.eventually.contain('2018')
 
         // When
@@ -46,11 +46,11 @@ describe('Component: Mutually Exclusive Month Year Date With Single Checkbox Ove
         .isSelected(MonthYearDatePage.monthYearDateExclusiveIPreferNotToSay()).should.eventually.be.true
 
         // When
-        .selectByValue(MonthYearDatePage.monthYearDateMonth(), 3)
+        .setValue(MonthYearDatePage.monthYearDateMonth(), '3')
         .setValue(MonthYearDatePage.monthYearDateYear(), '2018')
 
         // Then
-        .getText(MonthYearDatePage.monthYearDateMonth()).should.eventually.contain('March')
+        .getValue(MonthYearDatePage.monthYearDateMonth()).should.eventually.contain('3')
         .getValue(MonthYearDatePage.monthYearDateYear()).should.eventually.contain('2018')
 
         .isSelected(MonthYearDatePage.monthYearDateExclusiveIPreferNotToSay()).should.eventually.be.false
@@ -71,11 +71,11 @@ describe('Component: Mutually Exclusive Month Year Date With Single Checkbox Ove
         .isSelected(MonthYearDatePage.monthYearDateExclusiveIPreferNotToSay()).should.eventually.be.false
 
         // When
-        .selectByValue(MonthYearDatePage.monthYearDateMonth(), 3)
+        .setValue(MonthYearDatePage.monthYearDateMonth(), '3')
         .setValue(MonthYearDatePage.monthYearDateYear(), '2018')
 
         // Then
-        .getText(MonthYearDatePage.monthYearDateMonth()).should.eventually.contain('March')
+        .getValue(MonthYearDatePage.monthYearDateMonth()).should.eventually.contain('3')
         .getValue(MonthYearDatePage.monthYearDateYear()).should.eventually.contain('2018')
         .isSelected(MonthYearDatePage.monthYearDateExclusiveIPreferNotToSay()).should.eventually.be.false
 

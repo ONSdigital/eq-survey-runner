@@ -1,9 +1,0 @@
-{
-    "application": "surveyrunner",
-    "identifier": "ukis",
-    "name": "UKIS",
-    "author": "jonshaw",
-    "description": "Theme for UKIS",
-    "license": "MIT/X11",
-    "version": "1.0.0"
-}

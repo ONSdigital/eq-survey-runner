@@ -1,0 +1,49 @@
+{% from "components/accordion/_macro.njk" import onsAccordion %}
+{% from "components/summary/_macro.njk" import onsSummary %}
+
+{%- set itemList = [] -%}
+
+{%- for group in content.summary.groups -%}
+  {%- if group.title -%}
+    {%- set item = {
+      "title": group.title,
+      "content": "",
+      "button": {
+        "open": _('Show'),
+        "close": _('Hide'),
+        "attributes": {
+          "data-ga": "click",
+          "data-ga-category": "Preview Survey",
+          "data-ga-action": "Open panel",
+          "data-ga-label": group.title
+        }
+      }
+    } -%}
+    {%- for block in group.blocks -%}
+      {%- set summary %}
+        {{ onsSummary({
+          "classes": "summary--no-bottom-border",
+          "rows": map_summary_item_config(group, content.summary.summary_type, content.summary.answers_are_editable, _("No answer provided"), _("Change"), _("Change your answer for:"), content.summary.calculated_question)
+        }) }}
+      {%- endset -%}
+
+      {%- do item | setAttribute("content", item.content + summary) -%}
+    {%- endfor -%}
+    {%- do itemList.append(item) -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{{ onsAccordion({
+  "id": "summary-accordion",
+  "allButton": {
+      "open": _('Show all'),
+      "close": _('Hide all'),
+      "attributes": {
+        "data-ga": "click",
+        "data-ga-category": "Preview Survey",
+        "data-ga-action": "Show all",
+        "data-ga-label": "Show all"
+      }
+  },
+  "itemsList": itemList
+}) }}

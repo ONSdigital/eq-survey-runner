@@ -5,9 +5,8 @@ import humanize
 import simplejson as json
 from dateutil.tz import tzutc
 from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify
-from flask import session as cookie_session
+from flask import session as cookie_session, render_template as flask_render_template
 from flask_login import current_user, login_required, logout_user
-from flask_themes2 import render_theme_template
 from jwcrypto.common import base64url_decode
 from sdc.crypto.encrypter import encrypt
 from structlog import get_logger
@@ -284,8 +283,7 @@ def get_thank_you(schema):
             view_submission_duration = humanize.naturaldelta(
                 timedelta(seconds=schema.json['view_submitted_response']['duration']))
 
-        return render_theme_template(schema.json['theme'],
-                                     template_name='thank-you.html',
+        return flask_render_template('thank-you.html',
                                      metadata=metadata_context,
                                      analytics_ua_id=current_app.config['EQ_UA_ID'],
                                      survey_id=schema.json['survey_id'],
@@ -356,8 +354,7 @@ def get_view_submission(schema):  # pylint: too-many-locals
                 },
             }
 
-            return render_theme_template(schema.json['theme'],
-                                         template_name='view-submission.html',
+            return flask_render_template('view-submission.html',
                                          metadata=metadata_context,
                                          analytics_ua_id=current_app.config['EQ_UA_ID'],
                                          survey_id=schema.json['survey_id'],

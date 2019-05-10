@@ -211,7 +211,6 @@ class TestViewSubmissionTradingAs(IntegrationTestCase):
             # check we're on the view submission page, and trading as value is displayed
             self.assertInUrl('view-submission')
             self.assertNotInBody('(Integration Tests)')
-            self.assertNotInBody('()')
 
     def test_view_submission_does_not_show_parenthesis_trading_as_is_empty_string(self):
         no_trading_as_payload = {
@@ -269,7 +268,6 @@ class TestViewSubmissionTradingAs(IntegrationTestCase):
             # check we're on the view submission page, and trading as value is displayed
             self.assertInUrl('view-submission')
             self.assertNotInBody('(Integration Tests)')
-            self.assertNotInBody('()')
 
 
 class TestViewSubmissionCompression(IntegrationTestCase):

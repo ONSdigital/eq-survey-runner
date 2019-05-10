@@ -47,7 +47,6 @@ describe('Component: Mutually Exclusive Number With Single Checkbox Override', f
 
         // Then
         .getValue(NumberPage.number()).should.eventually.contain('123')
-        .click(NumberPage.numberLabel())
         .isSelected(NumberPage.numberExclusiveIPreferNotToSay()).should.eventually.be.false
 
         .click(NumberPage.submit())

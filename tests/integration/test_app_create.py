@@ -7,7 +7,7 @@ from flask import Flask, request
 from flask_babel import Babel
 
 from app import settings
-from app.setup import create_app, versioned_url_for, EmulatorCredentials
+from app.setup import create_app, EmulatorCredentials
 from app.storage.datastore import DatastoreStorage
 from app.storage.dynamodb import DynamodbStorage
 from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter, GCSSubmitter
@@ -46,12 +46,6 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
             settings.EQ_NEW_RELIC_ENABLED = 'True'
             create_app(self._setting_overrides)
             self.assertEqual(new_relic.call_count, 1)
-
-    def test_sets_static_url(self):
-        self.assertEqual('/s', create_app(self._setting_overrides).static_url_path)
-
-    def test_sets_static_folder_that_exists(self):
-        self.assertRegex(create_app(self._setting_overrides).static_folder, '../static$')
 
     def test_sets_content_length(self):
         self.assertGreater(create_app(self._setting_overrides).config['MAX_CONTENT_LENGTH'], 0)
@@ -114,69 +108,6 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
     # it happens.
     def test_adds_blueprints(self):
         self.assertGreater(len(create_app(self._setting_overrides).blueprints), 0)
-
-    def test_versioned_url_for_with_version(self):
-        self._setting_overrides['EQ_APPLICATION_VERSION'] = 'abc123'
-        application = create_app(self._setting_overrides)
-        application.config['SERVER_NAME'] = 'test'
-
-        with application.app_context(), self.override_settings():
-            self.assertEqual(
-                'http://test/s/a.jpg?q=abc123',
-                versioned_url_for('static', filename='a.jpg')
-            )
-
-    def test_versioned_url_for_without_version(self):
-        self._setting_overrides.update({
-            'EQ_APPLICATION_VERSION': False,
-        })
-        application = create_app(self._setting_overrides)
-        application.config['SERVER_NAME'] = 'test'
-
-        # Patches the application version, since it's used in `versioned_url_for`
-        with application.app_context(), self.override_settings():
-            self.assertEqual(
-                'http://test/s/a.jpg?q=False',
-                versioned_url_for('static', filename='a.jpg')
-            )
-
-    def test_versioned_url_for_minimized_assets(self):
-        self._setting_overrides.update({
-            'EQ_MINIMIZE_ASSETS': True,
-            'EQ_APPLICATION_VERSION': 'False',
-        })
-        application = create_app(self._setting_overrides)
-        application.config['SERVER_NAME'] = 'test'
-
-        with application.app_context(), self.override_settings():
-            self.assertEqual(
-                'http://test/s/some.min.css?q=False',
-                versioned_url_for('static', filename='some.css')
-            )
-
-            self.assertEqual(
-                'http://test/s/some.min.js?q=False',
-                versioned_url_for('static', filename='some.js')
-            )
-
-    def test_versioned_url_for_regular_assets(self):
-        self._setting_overrides.update({
-            'EQ_MINIMIZE_ASSETS': False,
-            'EQ_APPLICATION_VERSION': False,
-        })
-        application = create_app(self._setting_overrides)
-        application.config['SERVER_NAME'] = 'test'
-
-        with application.app_context(), self.override_settings():
-            self.assertEqual(
-                'http://test/s/some.css?q=False',
-                versioned_url_for('static', filename='some.css')
-            )
-
-            self.assertEqual(
-                'http://test/s/some.js?q=False',
-                versioned_url_for('static', filename='some.js')
-            )
 
     def test_eq_submission_backend_not_set(self):
         # Given

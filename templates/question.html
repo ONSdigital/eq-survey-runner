@@ -1,0 +1,32 @@
+{% extends 'layouts/_questionnaire.html' %}
+{% import 'macros/helpers.html' as helpers %}
+
+{% set save_on_signout = true %}
+
+{% block form_errors %}
+  {% set form = content.form %}
+
+  {% if form and (form.errors or form.question_errors) %}
+    {% from "components/panel/_macro.njk" import onsPanel %}
+
+    {% call
+        onsPanel({
+          "type": "error",
+          "classes": "u-mb-s",
+          "title":  ngettext('This page has an error', 'This page has %(num)s errors', form.mapped_errors|length),
+          "attributes": {
+            "data-qa": "error-body"
+          }
+        })
+    %}
+      <p>{{ ngettext('This <strong>must be corrected</strong> to continue', 'These <strong>must be corrected</strong> to continue', form.mapped_errors | length) }}.</p>
+      <ul class="list list--bare">
+        {% for answer_id, error in form.mapped_errors %}
+          <li class="list__item">
+            {{ loop.index }}) <a class="js-inpagelink" href="#{{answer_id}}">{{ error }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endcall %}
+  {% endif %}
+{% endblock form_errors %}

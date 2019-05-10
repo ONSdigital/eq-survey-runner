@@ -1,8 +1,7 @@
 import re
 from functools import wraps
 
-from flask import current_app, g, session as cookie_session
-from flask_themes2 import render_theme_template
+from flask import current_app, g, session as cookie_session, render_template as flask_render_template
 from structlog import get_logger
 
 from app.globals import get_session_timeout_in_seconds
@@ -41,11 +40,9 @@ def with_legal_basis(func):
 
 
 def render_template(template, **kwargs):
-    theme = g.schema.json.get('theme')
     template = '{}.html'.format(template).lower()
 
-    return render_theme_template(
-        theme,
+    return flask_render_template(
         template,
         survey_title=safe_content(g.schema.json['title']),
         account_service_url=cookie_session.get('account_service_url'),

@@ -1,5 +1,0 @@
-{%- if answer.value is none or answer.value == '' -%}
-    {{ _("No answer provided") }}
-{%- else -%}
-    {% include theme(['partials/summary/' ~ answer.type ~ '.html', 'partials/summary/default.html']) %}
-{%- endif -%}

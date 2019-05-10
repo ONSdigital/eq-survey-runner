@@ -1,0 +1,42 @@
+{% if current_user.is_authenticated %}
+  {% if account_service_log_out_url %}
+    {% if save_on_signout %}
+        {% do page | setAttribute("signoutButton", {
+            "text": _("Save and sign out"),
+            "name": "action[save_sign_out]",
+            "classes": "js-btn-save",
+            "attributes": {
+                "data-qa": "btn-save-sign-out",
+                "data-ga": "click",
+                "data-ga-category": "Navigation",
+                "data-ga-action": "Save and sign out click"
+            }
+        }) %}
+    {% else %}
+        {% do page | setAttribute("signoutButton", {
+            "text": _("Sign out"),
+            "name": "action[sign_out]",
+            "attributes": {
+                "data-qa": "btn-sign-out",
+                "data-ga": "click",
+                "data-ga-category": "Navigation",
+                "data-ga-action": "Sign out click"
+            }
+        }) %}
+    {% endif %}
+  {% else %}
+    {% if save_on_signout %}
+        {% do page | setAttribute("signoutButton", {
+            "text": _("Save and complete later"),
+            "name": "action[save_sign_out]",
+            "classes": "js-btn-save",
+            "attributes": {
+                "data-qa": "btn-save-sign-out",
+                "data-ga": "click",
+                "data-ga-category": "Navigation",
+                "data-ga-action": "Save and sign out click"
+            }
+        }) %}
+    {% endif %}
+  {% endif %}
+{% endif %}

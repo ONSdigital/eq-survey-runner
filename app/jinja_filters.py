@@ -5,7 +5,7 @@ from datetime import datetime
 import flask
 import flask_babel
 from babel import units, numbers
-from jinja2 import Markup, contextfunction, escape, evalcontextfilter, evalcontextfunction
+from jinja2 import Markup, escape, evalcontextfilter
 
 from app.questionnaire.rules import convert_to_datetime
 
@@ -18,13 +18,6 @@ def format_number(value):
         return numbers.format_decimal(value, locale=flask_babel.get_locale())
 
     return ''
-
-
-@evalcontextfunction
-def format_currency(context, value, currency='GBP'):
-    currency_value = get_formatted_currency(value, currency)
-    result = "<span class='date'>{currency_value}</span>".format(currency_value=currency_value)
-    return mark_safe(context, result)
 
 
 def get_formatted_currency(value, currency='GBP'):
@@ -57,8 +50,10 @@ def format_unit_input_label(unit, unit_length='short'):
     :param (str) unit_length length of unit text, can be one of short/long/narrow
     """
     if unit_length == 'long':
-        return units.format_unit(value=2, measurement_unit=unit, length=unit_length, locale=flask_babel.get_locale()).replace('2 ', '')
-    return units.format_unit(value='', measurement_unit=unit, length=unit_length, locale=flask_babel.get_locale()).strip()
+        return units.format_unit(value=2, measurement_unit=unit, length=unit_length,
+                                 locale=flask_babel.get_locale()).replace('2 ', '')
+    return units.format_unit(value='', measurement_unit=unit, length=unit_length,
+                             locale=flask_babel.get_locale()).strip()
 
 
 def format_duration(value):
@@ -71,19 +66,14 @@ def format_duration(value):
     return ' '.join(parts)
 
 
-@evalcontextfilter
-@blueprint.app_template_filter()
-def format_multilined_string(context, value):
+def get_format_multilined_string(value):
     escaped_value = escape(value)
     new_line_regex = r'(?:\r\n|\r|\n)+'
     value_with_line_break_tag = re.sub(new_line_regex, '<br>', escaped_value)
-    result = '{}'.format(value_with_line_break_tag)
-    return mark_safe(context, result)
+    return '{}'.format(value_with_line_break_tag)
 
 
-@evalcontextfilter
-@blueprint.app_template_filter()
-def format_date(context, value):
+def get_format_date(value):
     """Format a datetime string.
 
     :param (jinja2.nodes.EvalContext) context: Evaluation context.
@@ -91,8 +81,6 @@ def format_date(context, value):
     :returns (str): Formatted datetime.
     """
     value = value[0] if isinstance(value, list) else value
-    if not isinstance(value, str):
-        return value
     date_format = 'd MMMM YYYY'
     if value and re.match(r'\d{4}-\d{2}$', value):
         date_format = 'MMMM YYYY'
@@ -103,13 +91,12 @@ def format_date(context, value):
     result = "<span class='date'>{date}</span>".format(
         date=flask_babel.format_date(date_to_format, format=date_format))
 
-    return mark_safe(context, result)
+    return result
 
 
 @evalcontextfilter
 @blueprint.app_template_filter()
 def format_datetime(context, value):
-
     london_date_time = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
     london_date = london_date_time.date()
     formatted_date = flask_babel.format_date(london_date, format='d MMMM YYYY')
@@ -121,64 +108,18 @@ def format_datetime(context, value):
     return mark_safe(context, result)
 
 
-@evalcontextfunction
-def format_date_range(context, start_date, end_date=None):
-    if end_date:
-        result = flask_babel.gettext('%(from_date)s to %(to_date)s',
-                                     from_date=format_date(context, start_date),
-                                     to_date=format_date(context, end_date))
-    else:
-        result = format_date(context, start_date)
-
-    return mark_safe(context, result)
-
-
-@blueprint.app_template_filter()
-def answer_is_type(answer, target_answer_type):
-    """
-    :param answer:
-    :param target_answer_type:
-    :return: true if the answer type matches given input
-    'RepeatingAnswer' question type return 'answers' as an object, and dict for all other question types.
-    """
-    answer_type = answer['type'] if isinstance(answer, dict) else answer.type
-    return answer_type == target_answer_type.lower()
+def get_format_date_range(start_date, end_date):
+    return flask_babel.gettext('%(from_date)s to %(to_date)s',
+                               from_date=get_format_date(start_date),
+                               to_date=get_format_date(end_date))
 
 
 @blueprint.app_template_filter()
 def language_urls(languages, current_language):
-    return [language for language in languages if language[0] != current_language]
+    if not any(language[0] == current_language for language in languages):
+        current_language = 'en'
 
-
-@contextfunction
-@blueprint.app_template_filter()
-def get_answer_label(context, answer_id):
-    """Return the value that should be used as the answer label tries
-    answer.label first then resorts to question title"""
-    parent_context = context.parent
-    question = parent_context['question']
-    answers = question['answers']
-
-    for answer in answers:
-        if answer_id == answer['id']:
-            if answer.get('label') is not None:
-                return answer['label']
-            return question['title']
-
-
-@blueprint.app_context_processor
-def get_answer_label_processor():
-    return dict(get_answer_label=get_answer_label)
-
-
-@blueprint.app_context_processor
-def answer_is_type_processor():
-    return dict(answer_is_type=answer_is_type)
-
-
-@blueprint.app_context_processor
-def start_end_date_check():
-    return dict(format_date_range=format_date_range)
+    return [LanguageConfig(language, current_language) for language in languages]
 
 
 @blueprint.app_context_processor
@@ -192,23 +133,8 @@ def format_unit_input_label_processor():
 
 
 @blueprint.app_context_processor
-def format_duration_processor():
-    return dict(format_duration=format_duration)
-
-
-@blueprint.app_context_processor
-def format_currency_processor():
-    return dict(format_currency=format_currency)
-
-
-@blueprint.app_context_processor
 def get_currency_symbol_processor():
     return dict(get_currency_symbol=get_currency_symbol)
-
-
-@blueprint.app_context_processor
-def format_number_processor():
-    return dict(format_number=format_number)
 
 
 @blueprint.app_context_processor
@@ -220,3 +146,293 @@ def mark_safe(context, value):
     if context.autoescape:
         value = Markup(value)
     return value
+
+
+@blueprint.app_template_filter()
+def setAttribute(dictionary, key, value):
+    dictionary[key] = value
+    return dictionary
+
+
+@blueprint.app_template_filter()
+def setAttributes(dictionary, attributes):
+    for key in attributes:
+        dictionary[key] = attributes[key]
+    return dictionary
+
+
+@blueprint.app_template_filter()
+def question_as_legend(question):
+    question_type = question['type']
+
+    if question_type == 'MutuallyExclusive':
+        return True
+
+    answers = question['answers']
+    more_than_one_question = len(answers) > 1
+
+    if more_than_one_question:
+        return True
+
+    answer = answers[0]
+    if 'type' in answer and any(answer['type'] in answer_type
+                                for answer_type in ['Checkbox', 'Radio', 'Date', 'Duration']):
+        return True
+
+    return False
+
+
+@blueprint.app_context_processor
+def question_as_legend_processor():
+    return dict(question_as_legend=question_as_legend)
+
+
+class LabelConfig():
+    def __init__(self, _for, text, description=None):
+        self._for = _for
+        self.text = text
+        self.description = description
+
+
+class CheckboxConfig():
+    def __init__(self, option, index, form, answer):
+        self.id = option.id
+        self.name = option.name
+        self.value = option.data
+        self.checked = option.checked
+
+        label_description = None
+        answer_option = answer['options'][index]
+
+        if answer_option and 'description' in answer_option:
+            label_description = answer_option['description']
+
+        self.label = LabelConfig(option.id, option.label.text, label_description)
+
+        if option.detail_answer_id:
+            detail_answer = form['fields'][option.detail_answer_id]
+            self.other = OtherConfig(detail_answer)
+
+
+class RadioConfig():
+    def __init__(self, option, index, form, answer):
+        self.id = option.id
+        self.name = option.name
+        self.value = option.data
+        self.checked = option.checked
+
+        label_description = None
+        answer_option = answer['options'][index]
+
+        if answer_option and 'description' in answer_option:
+            label_description = answer_option['description']
+
+        self.label = LabelConfig(option.id, option.label.text, label_description)
+
+        if option.detail_answer_id:
+            detail_answer = form['fields'][option.detail_answer_id]
+            self.other = OtherConfig(detail_answer)
+
+
+class OtherConfig():
+    def __init__(self, detail_answer):
+        self.id = detail_answer.id
+        self.name = detail_answer.name
+        self.value = detail_answer.data
+        self.label = LabelConfig(detail_answer.id, detail_answer.label.text)
+
+
+@blueprint.app_template_filter()
+def map_checkbox_config(form, answer):
+    options = form['fields'][answer['id']]
+
+    return [CheckboxConfig(option, i, form, answer) for i, option in enumerate(options)]
+
+
+@blueprint.app_context_processor
+def map_checkbox_config_processor():
+    return dict(map_checkbox_config=map_checkbox_config)
+
+
+@blueprint.app_template_filter()
+def map_radio_config(form, answer):
+    options = form['fields'][answer['id']]
+
+    return [RadioConfig(option, i, form, answer) for i, option in enumerate(options)]
+
+
+@blueprint.app_context_processor
+def map_radio_config_processor():
+    return dict(map_radio_config=map_radio_config)
+
+
+class SelectOptionConfig():
+    def __init__(self, option, select):
+        self.text = option[1]
+        self.value = option[0]
+        self.selected = select.data == self.value
+        self.disabled = self.value == '' and select.flags.required
+
+
+@blueprint.app_template_filter()
+def map_select_config(select):
+    return [SelectOptionConfig(tuple[1], select) for tuple in enumerate(select.choices)]
+
+
+@blueprint.app_context_processor
+def map_select_config_processor():
+    return dict(map_select_config=map_select_config)
+
+
+class LanguageConfig:
+    def __init__(self, language, current_language):
+        self.ISOCode = language[0]
+        self.url = '?language_code=' + self.ISOCode
+        self.text = language[1]
+        self.current = self.ISOCode == current_language
+
+
+class SummaryAction():
+    def __init__(self, block, answer, answer_title, edit_link_text, edit_link_aria_label):
+        self.text = edit_link_text
+        self.ariaLabel = edit_link_aria_label + ' ' + answer_title
+        self.url = block['link'] + '#' + answer['id']
+
+        qa_attribute = answer['id'] + '-edit'
+        self.attributes = dict(**{'data-qa': qa_attribute})
+
+
+class SummaryRowItemValue():
+    def __init__(self, text, other=None):
+        self.text = text
+
+        if other:
+            self.other = other
+
+
+class SummaryRowItem():
+    def __init__(self, block, question, answer, multiple_answers, answers_are_editable,  # noqa: C901, R0912  pylint: disable=too-complex,too-many-branches
+                 no_answer_provided, edit_link_text, edit_link_aria_label, summary_type):
+
+        if 'type' in answer:
+            answer_type = answer['type']
+        else:
+            answer_type = 'calculated'
+
+        if (multiple_answers or answer_type == 'relationship' or summary_type == 'CalculatedSummary') and 'label' in answer and answer['label']:
+            self.title = answer['label']
+            self.titleAttributes = {
+                'data-qa': answer['id'] + '-label',
+            }
+        else:
+            self.title = question['title']
+            self.titleAttributes = {
+                'data-qa': question['id'],
+            }
+
+        value = answer['value']
+
+        self.attributes = {
+            'data-qa': answer['id'],
+        }
+
+        if value is None or value == '':
+            self.valueList = [SummaryRowItemValue(no_answer_provided)]
+        elif answer_type == 'checkbox':
+            self.valueList = [SummaryRowItemValue(val.label, val.detail_answer_value) for val in value]
+        elif answer_type == 'currency':
+            self.valueList = [SummaryRowItemValue(get_formatted_currency(value, answer['currency']))]
+        elif answer_type in ['date', 'monthyeardate', 'yeardate']:
+            if question['type'] == 'DateRange':
+                self.valueList = [SummaryRowItemValue(get_format_date_range(value['from'], value['to']))]
+            else:
+                self.valueList = [SummaryRowItemValue(get_format_date(value))]
+        elif answer_type == 'duration':
+            self.valueList = [SummaryRowItemValue(format_duration(value))]
+        elif answer_type == 'number':
+            self.valueList = [SummaryRowItemValue(format_number(value))]
+        elif answer_type == 'percentage':
+            self.valueList = [SummaryRowItemValue(format_percentage(value))]
+        elif answer_type == 'radio':
+            detail_answer_value = value['detail_answer_value']
+            self.valueList = [SummaryRowItemValue(value['label'], detail_answer_value)]
+        elif answer_type == 'textarea':
+            self.valueList = [SummaryRowItemValue(get_format_multilined_string(value))]
+        elif answer_type == 'unit':
+            self.valueList = [SummaryRowItemValue(format_unit(answer['unit'], value, answer['unit_length']))]
+        else:
+            self.valueList = [SummaryRowItemValue(value)]
+
+        if answers_are_editable:
+            self.actions = [SummaryAction(block, answer, self.title, edit_link_text, edit_link_aria_label)]
+
+
+class SummaryRow():
+    def __init__(self, block, question, summary_type, answers_are_editable, no_answer_provided, edit_link_text,
+                 edit_link_aria_label):
+        self.title = question['title']
+        self.rowItems = []
+
+        multiple_answers = len(question['answers']) > 1
+
+        if summary_type == 'CalculatedSummary' and not answers_are_editable:
+            self.total = True
+
+        for answer in question['answers']:
+            self.rowItems.append(
+                SummaryRowItem(block, question, answer, multiple_answers, answers_are_editable, no_answer_provided,
+                               edit_link_text, edit_link_aria_label, summary_type))
+
+
+@blueprint.app_template_filter()
+def map_summary_item_config(group, summary_type, answers_are_editable, no_answer_provided, edit_link_text,
+                            edit_link_aria_label, calculated_question):
+    rows = []
+
+    for block in group['blocks']:
+        rows.append(
+            SummaryRow(block, block['question'], summary_type, answers_are_editable, no_answer_provided,
+                       edit_link_text, edit_link_aria_label))
+        if summary_type == 'CalculatedSummary':
+            rows.append(SummaryRow(block, calculated_question, summary_type, False, None, None, None))
+
+    return rows
+
+
+@blueprint.app_context_processor
+def map_summary_item_config_processor():
+    return dict(map_summary_item_config=map_summary_item_config)
+
+
+@blueprint.app_template_filter()
+def map_list_collector_config(list_items, icon, edit_link_text, edit_link_aria_label, remove_link_text, remove_link_aria_label):
+    rows = []
+
+    for list_item in list_items:
+        item_name = list_item.get('item_title')
+        rows.append({
+            'title': item_name,
+            'rowItems': [
+                {
+                    'icon': icon,
+                    'actions': [
+                        {
+                            'text': edit_link_text,
+                            'ariaLabel': edit_link_aria_label.format(item_name=item_name),
+                            'url': list_item.get('edit_link'),
+                        },
+                        {
+                            'text': remove_link_text,
+                            'ariaLabel': remove_link_aria_label.format(item_name=item_name),
+                            'url': list_item.get('remove_link'),
+                        },
+                    ],
+                },
+            ],
+        })
+    return rows
+
+
+@blueprint.app_context_processor
+def map_list_collector_config_processor():
+    return dict(map_list_collector_config=map_list_collector_config)

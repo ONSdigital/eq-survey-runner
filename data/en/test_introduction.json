@@ -45,7 +45,7 @@
                     "content": [{
                         "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
                     }, {
-                        "description": "<p><a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/aboutonsbusinesssurveys/detailedguidancetohelpcompletethequarterlyacquisitionsanddisposalsofcapitalassetssurvey'>Read the detailed guidance for completing this survey</a></p>"
+                        "description": "<a rel='noopener noreferrer' target='_blank' href='https://www.ons.gov.uk/surveys/informationforbusinesses/aboutonsbusinesssurveys/detailedguidancetohelpcompletethequarterlyacquisitionsanddisposalsofcapitalassetssurvey'>Read the detailed guidance for completing this survey</a>"
                     }],
                     "questions": [{
                         "id": "employee-pay-frequency",

@@ -1,0 +1,19 @@
+{% extends 'layouts/_base.html' %}
+{% from "components/panel/_macro.njk" import onsPanel %}
+
+{% set page_title = _("Information") %}
+
+{% block main %}
+  <h1 class="u-fs-l">{{ _("Information") }}</h1>
+
+  {% call onsPanel({
+    "type": "error"
+    "spacious": true,
+    "attributes": {
+      "data-qa": "multiple-survey-error"
+    }
+  }) %}
+    <p><strong>{{ _("Unfortunately you can only complete one survey at a time") }}.</strong></p>
+    <p>{{ _("Close this window to continue with your current survey") }}.</p>
+  {% endcall %}
+{% endblock %}

@@ -12,7 +12,7 @@ describe('Language Code', function() {
 
       return browser
         .getText(LanguagePage.displayedName()).should.eventually.equal('Holiadur Cymraeg')
-        .selectByValue(LanguagePage.Month(), 4)
+        .setValue(LanguagePage.Month(), 4)
         .setValue(LanguagePage.Year(), 2018)
         .click(LanguagePage.submit())
 
@@ -32,7 +32,7 @@ describe('Language Code', function() {
 
       return browser
         .getText(LanguagePage.displayedName()).should.eventually.equal('English Questionnaire')
-        .selectByValue(LanguagePage.Month(), 4)
+        .setValue(LanguagePage.Month(), 4)
         .setValue(LanguagePage.Year(), 2018)
         .click(LanguagePage.submit())
 
@@ -54,7 +54,7 @@ describe('Language Code', function() {
         .click(SummaryPage.switchLanguage('cy'))
         .getText(LanguagePage.displayedName()).should.eventually.equal('Holiadur Cymraeg')
         .click(SummaryPage.switchLanguage('en'))
-        .selectByValue(LanguagePage.Month(), 4)
+        .setValue(LanguagePage.Month(), 4)
         .setValue(LanguagePage.Year(), 2018)
         .click(LanguagePage.submit())
 
@@ -75,7 +75,7 @@ describe('Language Code', function() {
         .click(SummaryPage.switchLanguage('en'))
         .getText(LanguagePage.displayedName()).should.eventually.equal('English Questionnaire')
         .click(SummaryPage.switchLanguage('cy'))
-        .selectByValue(LanguagePage.Month(), 4)
+        .setValue(LanguagePage.Month(), 4)
         .setValue(LanguagePage.Year(), 2018)
         .click(LanguagePage.submit())
 

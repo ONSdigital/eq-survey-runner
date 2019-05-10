@@ -26,7 +26,7 @@ class TestApplicationVariables(IntegrationTestCase):
     def test_google_analytics_code_is_present(self):
         self.launchSurvey('test', 'textfield')
         self.assertStatusOK()
-        self.assertInHead('GoogleAnalyticsObject')
+        self.assertInBody('GoogleAnalyticsObject')
 
     def test_livereload_script_rendered(self):
         self.launchSurvey('test', 'textfield')
