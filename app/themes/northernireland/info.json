@@ -1,9 +1,0 @@
-{
-    "application": "surveyrunner",
-    "identifier": "northernireland",
-    "name": "Northern Ireland",
-    "author": "adamdwyer",
-    "description": "A Northern Ireland theme",
-    "license": "MIT/X11",
-    "version": "1.0.0"
-}

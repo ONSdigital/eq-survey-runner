@@ -19,8 +19,7 @@ echo "Running unit tests"
 
 echo "Running Docker compose"
 docker-compose --version
-docker-compose build
-docker-compose up -d
+docker-compose up --build -d
 
 echo "Running Functional tests"
 ./scripts/run_tests_functional.sh

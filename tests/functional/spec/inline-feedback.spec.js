@@ -100,12 +100,12 @@ describe('Inline Feedback Form', function() {
 
     if (withThanks) {
       return chain
-        .isVisible(form.display()).should.eventually.be.false
+        .isExisting(form.display()).should.eventually.be.false
         .isVisible(form.thanks()).should.eventually.be.true;
     }
 
     return chain
-      .isVisible(form.display()).should.eventually.be.true
+      .isExisting(form.display()).should.eventually.be.true
       .isVisible(form.thanks()).should.eventually.be.false;
   }
 
@@ -116,5 +116,4 @@ describe('Inline Feedback Form', function() {
       .isVisible(form.display()).should.eventually.be.true
       .isVisible(form.thanks()).should.eventually.be.false;
   }
-
 });

@@ -1,5 +1,6 @@
 from tests.integration.integration_test_case import IntegrationTestCase
 
+
 class TestQuestionnaireLanguage(IntegrationTestCase):
     """ Tests that the language selection from tokens works """
     def test_load_cy_survey(self):

@@ -46,7 +46,7 @@ describe('Feature: Conditional checkbox and radio question titles', function() {
         .click(RadioButtonsPage.radioMaybe())
         .click(RadioButtonsPage.submit())
         .getText(SummaryPage.nameAnswer()).should.eventually.contain('Mary')
-        .getText(SummaryPage.summaryQuestionText()).should.eventually.contain('Did Mary make changes to this business?');
+        .getText(SummaryPage.checkboxQuestion()).should.eventually.contain('Did Mary make changes to this business?');
     });
   });
 });

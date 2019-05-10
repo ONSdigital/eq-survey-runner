@@ -1,9 +1,0 @@
-{
-    "application": "surveyrunner",
-    "identifier": "ukis_ni",
-    "name": "UKIS Northern Ireland",
-    "author": "hamishtaplin",
-    "description": "Theme for UKIS Northern Ireland",
-    "license": "MIT/X11",
-    "version": "1.0.0"
-}

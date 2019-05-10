@@ -82,3 +82,7 @@ htmlcov/
 # Ignore any generated pages for the functional tests
 tests/functional/generated_pages
 tests/
+
+# Ignore Design-System templates
+templates/components
+templates/layout

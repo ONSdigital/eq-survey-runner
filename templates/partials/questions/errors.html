@@ -1,0 +1,15 @@
+{% from "components/panel/_macro.njk" import onsPanel %}
+{% import 'macros/helpers.html' as helpers %}
+
+{% call onsPanel({
+  "id": "container-" + question.id,
+  "type": "error",
+  "attributes": {
+    "data-qa": "error"
+  }
+}) %}
+  <ul class="list list--bare list--errors">
+    <li class="list__item u-fs-r--b" {{ helpers.track('error', 'Error', error, question.id) }}>{{ form.question_errors[question.id] }}</li>
+  </ul>
+  <div data-qa="error-body">{{ question_answers }}</div>
+{% endcall %}

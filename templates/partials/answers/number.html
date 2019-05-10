@@ -1,0 +1,18 @@
+{% from "components/input/_macro.njk" import onsInput %}
+
+{% set input = form.fields[answer['id']] %}
+
+{{ onsInput({
+  "id": answer.id,
+  "type": "number",
+  "label": {
+    "text": answer.label,
+    "description": answer.description
+  },
+  "value": input._value(),
+  "name": answer.id,
+  "attributes": {
+    "data-qa": "input-text"
+  },
+  "mutuallyExclusive": mutuallyExclusive
+}) }}

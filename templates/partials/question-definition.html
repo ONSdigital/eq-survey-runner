@@ -1,0 +1,26 @@
+{% from "components/details/_macro.njk" import onsDetails %}
+
+{% for definition in question.definitions %}
+  {% set content_block = definition.content %}
+  {% call onsDetails({
+      "title": definition.title,
+      "classes": "u-mt-s u-mb-s",
+      "summaryAttributes": {
+        "data-ga": "click",
+        "data-ga-category": "Question definition",
+        "data-ga-action": "Open panel",
+        "data-ga-label": definition.title
+      },
+      "button": {
+        "close": _("Hide this"),
+        "attributes": {
+        "data-ga": "click",
+        "data-ga-category": "Question definition",
+        "data-ga-action": "Close panel",
+        "data-ga-label": definition.title
+        }
+      }
+  }) %}
+    {% include 'partials/content-block.html' %}
+  {% endcall %}
+{% endfor %}

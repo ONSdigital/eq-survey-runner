@@ -1,0 +1,7 @@
+{% from "components/radios/_macro.njk" import onsRadios %}
+
+{{ onsRadios({
+  "id": answer["id"],
+  "name": answer["id"],
+  "radios": map_radio_config(form, answer)
+}) }}

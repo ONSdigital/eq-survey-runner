@@ -405,55 +405,6 @@
                 }]
             }]
         }, {
-            "id": "mutually-exclusive-dropdown-section",
-            "title": "Dropdown",
-            "groups": [{
-                "id": "mutually-exclusive-dropdown-group",
-                "title": "Mutually Exclusive With Single Checkbox Override - Optional",
-                "blocks": [{
-                    "type": "Question",
-                    "id": "mutually-exclusive-dropdown",
-                    "title": "Mutually Exclusive With Single Checkbox Override - Optional",
-                    "question": {
-                        "id": "mutually-exclusive-dropdown-question",
-                        "type": "MutuallyExclusive",
-                        "title": "Who is your favourite football club?",
-                        "mandatory": false,
-                        "answers": [{
-                            "id": "dropdown-answer",
-                            "label": "Select your favourite team",
-                            "type": "Dropdown",
-                            "mandatory": false,
-                            "options": [{
-                                "label": "Liverpool",
-                                "value": "Liverpool"
-                            }, {
-                                "label": "Chelsea",
-                                "value": "Chelsea"
-                            }, {
-                                "label": "Rugby is better!",
-                                "value": "Rugby is better!"
-                            }]
-                        }, {
-                            "id": "dropdown-exclusive-answer",
-                            "mandatory": false,
-                            "type": "Checkbox",
-                            "options": [{
-                                "label": "I prefer not to say",
-                                "value": "I prefer not to say"
-                            }]
-                        }]
-                    }
-                }]
-            }, {
-                "id": "mutually-exclusive-dropdown-section-summary",
-                "title": "",
-                "blocks": [{
-                    "type": "SectionSummary",
-                    "id": "optional-dropdown-section-summary"
-                }]
-            }]
-        }, {
             "id": "mutually-exclusive-duration-section",
             "title": "Duration",
             "groups": [{

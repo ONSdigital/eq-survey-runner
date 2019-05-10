@@ -1,4 +1,5 @@
 # eQ Census Survey Runner v3
+
 [![Build Status](https://travis-ci.org/ONSdigital/eq-survey-runner.svg?branch=v3)](https://travis-ci.org/ONSdigital/eq-survey-runner)
 [![codecov](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/v3/graph/badge.svg)](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/v3)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a2bc191a96e546b99a6d1c33b9b0ed62)](https://app.codacy.com/project/MebinAbraham/eq-survey-runner/dashboard?branchId=10869033)
@@ -6,33 +7,37 @@
 This version of runner looks at optimising the service to accommodate the Census.
 There are a number of major changes we need make to survey runner to develop the features required for the Census.
 These changes are a combination of fixing technical debt we've built up and adding new features.
-While these changes would be possible to implement in ***v2***, having to develop them in such a way to be compatible with existing data and rolling deploys will add an un-acceptable overhead.
+While these changes would be possible to implement in **_v2_**, having to develop them in such a way to be compatible with existing data and rolling deploys will add an un-acceptable overhead.
 
 The changes we're aware of now:
 
-- architecture changes:
-    - block variants for proxy or past/present versions of content
-    - piping in structured schema rather than inlined jinja filters
-    - routing refactor for optimum performance
-    - redesign how repeating groups and association with driving questions works
+-   architecture changes:
 
-- new features:
-    - who lives here (collecting householders)
-    - relationships
-    - hub and spoke navigation
-    - look up patterns (address, occupation etc)
+    -   block variants for proxy or past/present versions of content
+    -   piping in structured schema rather than inlined jinja filters
+    -   routing refactor for optimum performance
+    -   redesign how repeating groups and association with driving questions works
 
-*Existing ***v2*** schemas will be easily migrate-able to the new format when ***v3*** is stable.
+-   new features:
+    -   who lives here (collecting householders)
+    -   relationships
+    -   hub and spoke navigation
+    -   look up patterns (address, occupation etc)
+
+\*Existing **_v2_** schemas will be easily migrate-able to the new format when **_v3_** is stable.
 This will be clearly documented and there is the possibility of scripts being provided to migrate schemas.
-Once we know more about the implementation a decision will be made whether answer store migrations will be written for compatibility with existing data.*
+Once we know more about the implementation a decision will be made whether answer store migrations will be written for compatibility with existing data.\*
 
 ---
+
 ## Getting Set Up
 
 ### Run with Docker
+
 Install Docker for your system: https://www.docker.com/
 
 To get eq-survey-runner running the following command will build and run the containers
+
 ```
 docker-compose up -d
 ```
@@ -43,16 +48,19 @@ When the containers are running you are able to access the application as normal
 However, any new dependencies that are added would require a re-build.
 
 To rebuild the eq-survey-runner container, the following command can be used.
+
 ```
 docker-compose build
 ```
 
 If you need to rebuild the container from scratch to re-load any dependencies then you can run the following
+
 ```
 docker-compose build --no-cache
 ```
 
 To run just the unit tests inside Docker:
+
 ```
 docker build -t onsdigital/eq-survey-runner .
 docker build -t onsdigital/eq-survey-runner-unit-tests -f Dockerfile.test .
@@ -60,6 +68,7 @@ docker run onsdigital/eq-survey-runner-unit-tests
 ```
 
 To run the unit tests locally:
+
 ```
 pipenv run scripts/run_tests_unit.sh
 ```
@@ -70,7 +79,16 @@ If you want to run the app locally, but all other dependencies in docker, you ca
 docker-compose -f docker-compose-dev.yml up -d
 ```
 
+You will also need these environment variables to your bash profile:
+
+```
+export EQ_DATASTORE_EMULATOR_CREDENTIALS="True"
+export DATASTORE_EMULATOR_HOST="localhost:8432"
+export DATASTORE_DATASET="local"
+```
+
 ### Pre-Requisites
+
 In order to run locally you'll need Node.js, snappy, pyenv and Jsonnet installed
 
 ```
@@ -81,10 +99,10 @@ Note that npm currently requires Python 2.x for some of the setup steps,
 it doesn't work with Python 3.
 
 ### Setup
+
 It is preferable to use the version of Python locally that matches that
 used on deployment. This project has a `.python_version` file for this
 purpose.
-
 
 Upgrade pip and install dependencies:
 
@@ -129,18 +147,19 @@ docker run -it -p 6379:6379 redis:4
 ---
 
 To use `EQ_STORAGE_BACKEND` as `datastore` or `EQ_SUBMISSION_BACKEND` as `gcs` directly on GCP and not a docker image, you need to set the GCP project using the following command:
+
 ```
 gcloud config set project <gcp_project_id>
 ```
+
 Or set the `GOOGLE_CLOUD_PROJECT` environment variable to your gcp project id.
 
 ---
 
-#### Front-end Toolkit
+#### Frontend Tests
 
-The front-end toolkit uses nodejs, yarn and gulp.
+The frontend tests use NodeJS to run. You will need to have node version 8.X to run these tests. To do this, do the following commands:
 
-Currently, in order to build the front-end toolkit, you will need to have node version 8.X.  To do this, do the following commands:
 ```
 brew install nvm
 nvm install 8
@@ -150,7 +169,7 @@ nvm use 8
 Install yarn with:
 
 ```
-npm install yarn --global
+npm i -g yarn
 ```
 
 Fetch npm dependencies (Note that this overrides the python version defined in `.python-version`):
@@ -159,33 +178,19 @@ Fetch npm dependencies (Note that this overrides the python version defined in `
 PYENV_VERSION=system yarn
 ```
 
-Compile the project with
-```
-yarn compile
-```
+Available commands:
 
-There are a few additional npm tasks:
-
-Command                                    | Task
--------------------------------------------|----------------------
-`yarn compile`                          | Build the assets (js, css, img) into `/static`.
-`yarn dev`                              | Build assets and watch for changes. Runs Browsersync.
-`yarn test`                             | Runs the unit tests through Karma and the functional tests through a local Selenium instance.
-`yarn test_unit`                        | Watches the unit tests via Karma.
-`yarn test_functional`                  | Runs the functional tests through ChimpJS (requires app running on localhost:5000 and generated pages).
-`yarn test_cypress`                     | Runs the Cypress functional tests (requires app running on localhost:5000 and generated pages).
-`yarn generate_pages`                   | Generates the functional test pages.
-`yarn lint`                             | Lints the JS, reporting errors/warnings.
-`yarn format`                           | Format the json schemas.
+| Command                | Task                                                                                                    |
+| ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| `yarn test`            | Runs the unit tests through Karma and the functional tests through a local Selenium instance.           |
+| `yarn test_unit`       | Watches the unit tests via Karma.                                                                       |
+| `yarn test_functional` | Runs the functional tests through ChimpJS (requires app running on localhost:5000 and generated pages). |
+| `yarn test_cypress`    | Runs the Cypress functional tests (requires app running on localhost:5000 and generated pages).         |
+| `yarn generate_pages`  | Generates the functional test pages.                                                                    |
+| `yarn lint`            | Lints the JS, reporting errors/warnings.                                                                |
+| `yarn format`          | Format the json schemas.                                                                                |
 
 ---
-
-###
-Upgrade usage of the pattern library
-(Currently) To make an upgrade to the pattern library you'll need to change the short-hand commit hash in the following files:
-* app/assets/favicons/browserconfig.xml `<square150x150logo src="https://cdn.ons.gov.uk/sdc/[COMMIT HASH HERE]/favicons/mstile-150x150.png"/>`
-* app/assets/styles/partials/vars/_vars.scss.xml `$cdn-url-root: "https://cdn.ons.gov.uk/sdc/[COMMIT HASH HERE]";`
-* app/templates/layouts/base.html `{% set cdn_hash = "[COMMIT HASH HERE]" %}`
 
 ### Functional test options
 
@@ -238,38 +243,46 @@ To run the census functional tests within the cypress UI:
 To deploy this application with helm, you must have a kubernetes cluster already running and be logged into the cluster.
 
 Log in to the cluster using:
+
 ```
 gcloud container clusters get-credentials survey-runner --region <region> --project <gcp_project_id>
 ```
+
 You need to have Helm installed locally
 
 1. Install Helm with `brew install kubernetes-helm` and then run `helm init --client-only`
 
-1. Install Helm Tiller plugin for *Tillerless* deploys `helm plugin install https://github.com/rimusz/helm-tiller`
+2. Install Helm Tiller plugin for _Tillerless_ deploys `helm plugin install https://github.com/rimusz/helm-tiller`
 
 Before deploying the app to a cluster you need to create the application credentials on Kubernetes. Run the following command to provision the credentials:
 
 ```
 EQ_KEYS_FILE=PATH_TO_KEYS_FILE EQ_SECRETS_FILE=PATH_TO_SECRETS_FILE ./k8s/deploy_credentials.sh
 ```
+
 ##### Example
+
 ```
 EQ_KEYS_FILE=docker-keys.yml EQ_SECRETS_FILE=docker-secrets.yml ./k8s/deploy_credentials.sh
 ```
+
 ---
 
 To deploy the app to the cluster, run the following command:
+
 ```
 ./k8s/deploy_app.sh <SUBMISSION_BUCKET_NAME> <DOCKER_REGISTRY> <IMAGE_TAG>
 ```
+
 ##### Example
- ```
+
+```
 ./k8s/deploy_app.sh census-eq-dev-1234567-survey-runner-submission eu.gcr.io/census-eq-dev v3.0.0
- ```
+```
 
 ### Internationalisation
 
-We use flask-babel to do internationalisation.  To extract messages from source, in the project root run the following command.
+We use flask-babel to do internationalisation. To extract messages from source, in the project root run the following command.
 
 ```
 pipenv run pybabel extract -F babel.cfg -o app/translations/messages.pot .
@@ -294,21 +307,24 @@ pipenv run pybabel init -i app/translations/messages.pot -d app/translations -l 
 #### Getting text translated
 
 Our current language translation service requires a .csv rather than a .po file. To convert a .po file to a .csv you'll need to install the Python translate-toolkit:
+
 ```
 brew install translate-toolkit
 ```
 
 To generate the .csv file:
+
 ```
 po2csv app/translations/cy/LC_MESSAGES/messages.po app.translations/static-cy.csv
 ```
 
 To convert back to a .po file:
+
 ```
 csv2po app.translations/static-cy.csv app/translations/cy/LC_MESSAGES/messages.po
 ```
 
-*Important:* There are some encoding issues when opening the .csv file in Excel. Opening in Google sheets and saving as a .xslx file resolves this.
+_Important:_ There are some encoding issues when opening the .csv file in Excel. Opening in Google sheets and saving as a .xslx file resolves this.
 
 #### Compiling the translations
 
@@ -328,6 +344,7 @@ pipenv run pybabel update -i app/translations/messages.pot -d app/translations
 ### Environment Variables
 
 The following env variables can be used
+
 ```
 | Variable Name                             | Default               | Description                                                                                   |
 |-------------------------------------------|-----------------------|-----------------------------------------------------------------------------------------------|
@@ -374,40 +391,46 @@ The following env variables can be used
 ```
 
 The following env variables can be used when running tests
+
 ```
 EQ_FUNCTIONAL_TEST_ENV - the pre-configured environment [local, docker, preprod] or the url of the environment that should be targeted
 ```
 
 ### JWT Integration
+
 Integration with the survey runner requires the use of a signed JWT using public and private key pair (see https://jwt.io,
 https://tools.ietf.org/html/rfc7519, https://tools.ietf.org/html/rfc7515).
 
 Once signed the JWT must be encrypted using JWE (see https://tools.ietf.org/html/rfc7516).
 
 The JWT payload must contain the following claims:
-- exp - expiration time
-- iat - issued at time
+
+-   exp - expiration time
+-   iat - issued at time
 
 The header of the JWT must include the following:
-- alg - the signing algorithm (must be RS256)
-- type - the token type (must be JWT)
-- kid - key identification  (must be EDCRRM)
+
+-   alg - the signing algorithm (must be RS256)
+-   type - the token type (must be JWT)
+-   kid - key identification (must be EDCRRM)
 
 The JOSE header of the final JWE must include:
-- alg - the key encryption algorithm (must be RSA-OAEP)
-- enc - the key encryption encoding (must be A256GCM)
+
+-   alg - the key encryption algorithm (must be RSA-OAEP)
+-   enc - the key encryption encoding (must be A256GCM)
 
 To access the application you must provide a valid JWT. To do this browse to the /session url and append a token parameter.
 This parameter must be set to a valid JWE encrypted JWT token. Only encrypted tokens are allowed.
 
 There is a python script for generating tokens for use in development, to run:
+
 ```
 python token_generator.py
 ```
 
 ### Profiling
 
-Setting the `EQ_PROFILING` environment variable to `True` will enable profiling of the application.  Profiling information
+Setting the `EQ_PROFILING` environment variable to `True` will enable profiling of the application. Profiling information
 will be collected per-request in the `profiling` directory where it can be examined using the Pstats Interactive Browser.
 
 `$ python -m pstats <filename>`
@@ -432,5 +455,7 @@ To add a new dependency, use `pipenv install [package-name]`, which not only ins
 NB: both the Pipfile and Pipfile.lock files are required in source control to accurately pin dependencies.
 
 ### Alpha Survey Runner
+
 If you're looking for the Survey Runner code from the Alpha then it has been renamed to: alpha-eq-survey-runner
-- https://github.com/ONSdigital/alpha-eq-survey-runner
+
+-   https://github.com/ONSdigital/alpha-eq-survey-runner

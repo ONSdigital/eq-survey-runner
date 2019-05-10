@@ -47,11 +47,9 @@ script:
     - pipenv run ./scripts/run_travis.sh
     - export TAG=`if [ "$TRAVIS_PULL_REQUEST_BRANCH" == "" ]; then echo "v3"; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi`
     - docker build -t onsdigital/eq-survey-runner:$TAG -f Dockerfile .
-    - docker build -t onsdigital/eq-survey-runner-static:$TAG -f Dockerfile.static .
     - echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USERNAME --password-stdin
     - echo "Pushing with tag [$TAG]"
     - docker push onsdigital/eq-survey-runner:$TAG
-    - docker push onsdigital/eq-survey-runner-static:$TAG
 after_success:
     - pipenv run bash <(curl -s https://codecov.io/bash)
     - pipenv run pip install codacy-coverage

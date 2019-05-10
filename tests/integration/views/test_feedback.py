@@ -1,4 +1,6 @@
 import json
+import pytest
+
 from jsonschema import SchemaError, ValidationError, validate
 from mock import patch
 from sdc.crypto.decrypter import decrypt
@@ -29,6 +31,7 @@ class Feedback(IntegrationTestCase):
     def tearDown(self):
         self.patcher.stop()
 
+    @pytest.mark.skip(reason='No link in page as currently feedback cant be done from a different page, so its done from the footer')
     def test_correct_feeback_link_in_page(self):
         soup = self.getHtmlSoup()
         links = soup.find_all('a')

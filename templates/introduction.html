@@ -1,0 +1,58 @@
+{% extends 'layouts/_base.html' %}
+
+{% import 'macros/helpers.html' as helpers %}
+
+{% set form = content.form %}
+
+{# Test failing because section title is missing #}
+{# {% set page_title = <section title> + ' - ' + page_title %} #}
+
+{% block main %}
+
+    {% block business_details %}
+      <h2 class="u-fs-l u-pt-s">
+        {% if content.metadata.trad_as %}
+            {{ _("You are completing this for <span>%(ru_name)s</span> (%(trading_as_name)s)",
+            ru_name = content.metadata.ru_name,
+            trading_as_name = content.metadata.trad_as) }}
+        {% else %}
+            {{ _("You are completing this for <span>%(ru_name)s</span>", ru_name = content.metadata.ru_name) }}
+        {% endif %}
+      </h2>
+
+      <p data-qa="details-changed-title">{{ _("If the company details or structure have changed contact us on %(telephone_number)s or email %(email_address)s",
+              telephone_number = helpers.telephone_number(),
+              email_address = helpers.email_address(subject="Change of details reference " + content.metadata.ru_ref)
+          ) }}
+      </p>
+    {% endblock business_details %}
+
+    {% block intro_content %}
+      {% if content.block.primary_content %}
+          {% for intro in content.block.primary_content %}
+              {% include 'partials/introduction/basic.html' %}
+          {% endfor %}
+      {% endif %}
+
+      {%- if legal_basis -%}
+          <h2 class="u-fs-m u-mb-xs" data-qa="legal-response">{{ _("Your response is legally required") }}</h2>
+          <p class="u-mb-m" data-qa="legal-basis">{{ legal_basis }}</p>
+      {%- endif -%}
+
+      {% block start_survey %}
+          {% include 'partials/introduction/start-survey.html' %}
+      {% endblock start_survey %}
+
+      {% if content.block.preview_content %}
+          {% set intro = content.block.preview_content %}
+          {% include 'partials/introduction/preview.html' %}
+      {% endif %}
+
+      {% if content.block.secondary_content %}
+          {% for intro in content.block.secondary_content %}
+              {% include 'partials/introduction/basic.html' %}
+          {% endfor %}
+      {% endif %}
+    {% endblock intro_content %}
+
+{% endblock %}

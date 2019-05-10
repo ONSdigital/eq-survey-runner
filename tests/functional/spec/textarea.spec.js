@@ -5,7 +5,7 @@ const TextareaSummary = require('../generated_pages/textarea/textarea-summary.pa
 describe('Textarea', function() {
 
   const textarea_schema = 'test_textarea.json';
-  const textarea_limit = '[data-qa="textarea-with-limit"]';
+  const textarea_limit = `${TextareaBlock.answer()} + [data-charcount-singular]`;
 
   it('Given a textarea option, a user should be able to click the label of the textarea to focus', function() {
     return helpers.openQuestionnaire(textarea_schema)

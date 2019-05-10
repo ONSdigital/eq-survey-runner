@@ -1,0 +1,13 @@
+{% if account_service_url %}
+  {% do page | setAttribute("serviceLinks", {
+      "ariaLabel": "Site services menu",
+      "ariaListLabel": "Navigation menu",
+      "itemsList": [
+          {
+              "id": "my-account",
+              "text": _("My account"),
+              "url": account_service_url
+          }
+      ]
+  }) %}
+{% endif %}

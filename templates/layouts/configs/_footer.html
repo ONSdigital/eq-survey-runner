@@ -1,0 +1,78 @@
+{% set footer = {
+  "assetsURL": page.assetsURL,
+  "OGLLink": {
+    "HTML": _("All content is available under the %(class_open)sOpen Government Licence v3.0%(class_close)s, except where otherwise stated", class_open='<a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank">', class_close="</a>")
+  }
+} %}
+
+{% if use_transactional_footer %}
+  {% do footer | setAttribute("rows", [
+      {
+          "itemsList": [
+              {
+                  "text": _('Contact us'),
+                  "url": '/contact-us'
+              },
+              {
+                  "text": _('Cookies and privacy'),
+                  "url": '/cookies-privacy'
+              }
+          ]
+      }
+  ]) %}
+{% else %}
+  {% do footer | setAttribute("cols", [
+    {
+        "title": _("Legal information"),
+        "itemsList": [
+            {
+                "text": _("Cookies and privacy"),
+                "url": "/cookies-privacy",
+                "target": "_blank"
+            }
+        ]
+    },
+    {
+        "title": _("About ONS"),
+        "itemsList": [
+            {
+                "text": _("What we do"),
+                "url": "https://www.ons.gov.uk/aboutus/whatwedo",
+                "target": "_blank"
+            },
+            {
+                "text": _("Contact us"),
+                "url": "/contact-us",
+                "target": "_blank"
+            },
+            {
+                "text": _("Accessibility"),
+                "url": "https://www.ons.gov.uk/help/accessibility",
+                "target": "_blank"
+            }
+        ]
+    },
+    {
+        "title": _("Statistics"),
+        "itemsList": [
+            {
+                "text": _("UK Statistics Authority"),
+                "url": "https://www.statisticsauthority.gov.uk/about-the-authority/",
+                "target": "_blank"
+            },
+            {
+                "text": _("Release calendar"),
+                "url": "https://www.ons.gov.uk/releasecalendar",
+                "target": "_blank"
+            },
+            {
+                "text": _("News"),
+                "url": "https://www.ons.gov.uk/news",
+                "target": "_blank"
+            }
+        ]
+    }
+  ]) %}
+{% endif %}
+
+{% do page | setAttribute("footer", footer) %}

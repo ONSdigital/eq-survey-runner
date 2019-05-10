@@ -47,7 +47,6 @@ describe('Component: Mutually Exclusive Year Date With Single Checkbox Override'
 
         // Then
         .getValue(YearDatePage.yearDateYear()).should.eventually.contain('2018')
-        .click(YearDatePage.yearDateYearLabel())
         .isSelected(YearDatePage.yearDateExclusiveIPreferNotToSay()).should.eventually.be.false
 
         .click(YearDatePage.submit())

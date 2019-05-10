@@ -1,0 +1,102 @@
+{% from "components/field/_macro.njk" import onsField %}
+
+{% set form = content.form %}
+
+{% set question_title = question.title %}
+{% set question_guidance = "" %}
+{% set question_definition = "" %}
+{% set wrap_question_in_fieldset = question_as_legend(question) %}
+
+{%- set question_definition -%}
+  {%- if question.definitions -%}
+    {%- include 'partials/question-definition.html' -%}
+  {%- endif -%}
+{%- endset -%}
+
+{% set question_guidance %}
+  {%- if question.guidance -%}
+    {% set content_block = question.guidance.content %}
+    {% from "components/panel/_macro.njk" import onsPanel %}
+    {% call onsPanel({
+      "id": "question-guidance-" + question.id,
+      "classes": "u-mb-m"
+    }) %}
+      {% include 'partials/content-block.html' %}
+    {% endcall %}
+  {% endif %}
+{% endset %}
+
+{%- set mutually_exclusive_quesstion = question.type == 'MutuallyExclusive' -%}
+
+{% set question_answers %}
+  {% if mutually_exclusive_quesstion %}
+    {%- set answer = question.answers[0] -%}
+    {%- set mutuallyExclusiveAnswer = question.answers[1] -%}
+    {%- set mutuallyExlusiveOptions = mutuallyExclusiveAnswer.options[0] -%}
+
+    {%- set deselectionMessage = _("Selecting this will clear your answer") -%}
+    {%- set deselectGroupAdjective = _("cleared") -%}
+
+    {%- if answer.type == 'checkbox' -%}
+      {%- set deselectionMessage = _("Selecting this will deselect any selected options") -%}
+      {%- set deselectGroupAdjective = _("deselected") -%}
+    {%- endif -%}
+
+    {%- set mutuallyExclusive = {
+      "or": _("Or"),
+      "checkbox": {
+        "id": mutuallyExclusiveAnswer.id + "-0",
+        "label": {
+          "text": mutuallyExlusiveOptions.label
+        },
+        "value": mutuallyExlusiveOptions.value,
+        "name": mutuallyExclusiveAnswer.id
+      },
+      "deselectionMessage": deselectionMessage,
+      "deselectGroupAdjective": deselectGroupAdjective,
+      "deselectCheckboxAdjective": _("deselected"),
+    } %}
+    {% include 'partials/answer.html' %}
+  {%- else -%}
+    {%- for answer in question.answers -%}
+      {% include 'partials/answer.html' %}
+    {%- endfor -%}
+  {%- endif -%}
+{% endset %}
+
+{% set question_markup %}
+  {%- if content.list_items -%}
+    {% include 'partials/summary/list-summary.html' %}
+  {% endif %}
+  {{ question_definition }}
+  {{ question_guidance }}
+
+  {% if invalid %}
+    {% include 'partials/questions/errors.html' %}
+  {% else %}
+    {{ question_answers }}
+  {% endif %}
+{% endset %}
+
+{% if wrap_question_in_fieldset %}
+  {% call onsField({
+    "id": question.id,
+    "legend": question_title,
+    "description": question.description,
+    "questionMode": true,
+    "classes": " field--exclusive" if mutually_exclusive_quesstion else "",
+    "legendClasses": "question__title"
+  }) %}
+    {{ question_markup }}
+  {% endcall %}
+{% else %}
+  <div class="question" id="{{ question.id }}">
+      {% if question_title %}
+        <h1 class="question__title u-fs-l" data-qa="question-title">{{ question_title }}</h1>
+      {% endif %}
+      {%- if question.description -%}
+        <div class="question__description" id="description-{{ question.id }}">{{ question.description }}</div>
+      {% endif %}
+      {{ question_markup }}
+  </div>
+{% endif %}

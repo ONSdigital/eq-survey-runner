@@ -1,0 +1,14 @@
+{% from "components/select/_macro.njk" import onsSelect %}
+
+{% set select = form.fields[answer['id']] %}
+
+{{ onsSelect({
+  "id": answer.id,
+  "name": select.name,
+  "label": {
+    "text": answer.label,
+    "description": answer.description
+  },
+  "options": map_select_config(select),
+  "mutuallyExclusive": mutuallyExclusive
+}) }}

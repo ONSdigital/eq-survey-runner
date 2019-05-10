@@ -27,10 +27,6 @@ class TestQuestionnaireQuestionVariants(IntegrationTestCase):
 
         self.post(action='save_continue')
 
-
-        self.assertInBody('What age is Linus Torvalds')
-        self.assertInBody('Are you Linus Torvalds')
-
         # Now change an answer which has variants depending on it
         self.get(url=self.proxy_url)
         print(self.getHtmlSoup())

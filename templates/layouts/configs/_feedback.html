@@ -1,0 +1,57 @@
+{% do page | setAttribute("feedback", {
+  "id": "feedback",
+  "title": _("Give feedback and help us improve this service"),
+  "closeButton": {
+    "text": _("I don't want to provide feedback"),
+    "attributes": {
+        "data-ga": "click",
+        "data-ga-category": "feedback",
+        "data-qa": "a-feedback-close",
+        "data-ga-action": "Cancel",
+        "data-ga-label": "Feedback cancelled"
+    }
+  },
+  "summaryAttributes": {
+    "data-qa": "a-feedback-open",
+    "data-ga": "click",
+    "data-ga-category": "feedback",
+    "data-ga-action": "Open panel",
+    "data-ga-label": "Feedback"
+  },
+  "action": "/feedback",
+  "textarea": {
+    "id": "feedback-message",
+    "label": {
+      "text": _("How can we improve this survey")
+    },
+    "name": "message",
+    "maxlength": 2000,
+    "charCountSingular": _("You have {x} character remaining"),
+    "charCountPlural": _("You have {x} characters remaining")
+  },
+  "name": {
+    "name": "name",
+    "label": {
+      "text": _("Name (optional)"),
+      "description": _("Please include your name and email address if you’re interested in taking part in further research to improve this survey")
+    }
+  },
+  "email": {
+    "name": "email",
+    "label": {
+      "text": _("Email address (optional)")
+    }
+  },
+  "sendButton": {
+    "text": _("Send feedback"),
+    "attributes": {
+      "name": "action[send_feedback]",
+      "data-qa": "btn-feedback-submit",
+      "data-ga": "click",
+      "data-ga-category": "Feedback",
+      "data-ga-action": "Send"
+    }
+  },
+  "thankYouMessage": _("Thanks for your feedback"),
+  "errorMessage": _("There was an error sending your feedback.\n(Error code: {x})")
+}) %}

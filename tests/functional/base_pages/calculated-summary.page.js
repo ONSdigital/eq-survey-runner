@@ -8,9 +8,9 @@ class CalculatedSummaryPage extends QuestionPage {
 
   calculatedSummaryTitle() { return '[data-qa="calculated-summary-title"]'; }
 
-  calculatedSummaryQuestion() { return '#calculated-summary-question'; }
+  calculatedSummaryQuestion() { return '[data-qa=calculated-summary-question]'; }
 
-  calculatedSummaryAnswer() { return '#calculated-summary-answer-answer'; }
+  calculatedSummaryAnswer() { return '[data-qa=calculated-summary-answer]'; }
 
 }
 

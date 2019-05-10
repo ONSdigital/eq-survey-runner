@@ -1,0 +1,38 @@
+{% extends 'layouts/_base.html' %}
+{% import 'macros/helpers.html' as helpers %}
+
+{% set survey_title  = _("ONS Business Surveys") %}
+
+{% block main %}
+  {% do page | setAttribute("feedback", "") %}
+
+  <h1 class="u-fs-l">{{ _("Contact us") }}</h1>
+
+  <h2 class="u-fs-m">{{ _("Telephone") }}</h2>
+
+  <p>{{ helpers.telephone_number() }}</p>
+
+  {% if session %}
+    <p>{{ _("Please quote the reference <b>%(ru_ref)s</b> when contacting ONS about this survey.", ru_ref=session.ru_ref) }}</p>
+
+    <p>{{ _("Your Survey ID is <b>%(survey_id)s</b>.", survey_id=survey_id) }}</p>
+  {% endif %}
+
+
+  <h3 class="u-fs-r--b">{{ _("Opening hours") }}:</h3>
+
+  <ul class="list list--bare">
+    <li>{{ _("Monday to Thursday 8:30am – 5:00pm") }}</li>
+    <li>{{ _("Friday 8:30am - 4:30pm") }}</li>
+  </ul>
+
+  <p>{{ _("This office is closed during public holidays") }}</p>
+
+  <h2 class="u-fs-m">{{ _("Email") }}</h2>
+
+  <p>{{helpers.email_address(subject=session.ru_ref)}}</p>
+
+  <h2 class="u-fs-m">{{ _("Post") }}</h2>
+
+  <p>Office for National Statistics<br>Government Buildings<br>Cardiff Road<br>Newport<br>South Wales<br>NP10 8XG</p>
+{% endblock %}

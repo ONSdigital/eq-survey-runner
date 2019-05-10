@@ -1,0 +1,26 @@
+{% set content_block = answer_guidance.schema_item.content %}
+{% from "components/details/_macro.njk" import onsDetails %}
+
+{% call onsDetails({
+  "classes": "u-mt-s",
+  "title": _(answer_guidance.schema_item.show_guidance),
+  "summaryAttributes": {
+    "data-ga": "click",
+    "data-ga-category": "Answer guidance",
+    "data-ga-action": "Open panel",
+    "data-ga-label": _(answer_guidance.schema_item.show_guidance)
+  },
+  "button": {
+    "close": _("Hide this"),
+    "attributes": {
+      "data-ga": "click",
+      "data-ga-category": "Answer guidance",
+      "data-ga-action": "Close panel",
+      "data-ga-label": _(answer_guidance.schema_item.show_guidance)
+    }
+  }
+}) %}
+  <div class="u-mt-s">
+    {% include 'partials/content-block.html' %}
+  </div>
+{% endcall %}

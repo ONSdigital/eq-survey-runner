@@ -1,0 +1,44 @@
+{% import 'macros/helpers.html' as helpers %}
+{% set form = content.form %}
+{% set invalid = form.answer_errors[answer.id] | length > 0 %}
+
+{% if render_guidance != False %}
+  {%- set answer_guidance %}
+    {% if answer.guidance %}
+      {% with answer_guidance = {
+        'id': answer.id,
+        'label': answer.label,
+        'schema_item': answer.guidance
+      } %}
+        {% include 'partials/answer-guidance.html' %}
+      {% endwith %}
+    {% endif %}
+  {% endset -%}
+{% endif %}
+
+{% if invalid %}
+  {% from "components/panel/_macro.njk" import onsPanel %}
+  {% set answer_id = answer.id %}
+
+  {% call onsPanel({
+    "type": "error",
+    "attributes": {
+      "data-qa": "error"
+    }
+  }) %}
+    <ul class="list list--bare list--errors">
+      {% for field_error in form.answer_errors[answer_id] %}
+        <li class="list__item u-fs-r--b" {{ helpers.track('error', 'Error', field_error, question.id) }}>{{ field_error }}</li>
+      {% endfor %}
+    </ul>
+    <div data-qa="error-body">
+      {% include 'partials/answers/' ~ answer.type|lower ~ '.html' %}
+    </div>
+  {% endcall %}
+
+  {{answer_guidance}}
+
+{% else %}
+  {% include 'partials/answers/' ~ answer.type|lower ~ '.html' %}
+  {{ answer_guidance }}
+{% endif %}

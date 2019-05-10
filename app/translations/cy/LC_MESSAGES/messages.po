@@ -97,7 +97,7 @@ msgid ""
 "%(telephone_number)s or email %(email_address)s"
 msgstr ""
 "Os yw manylion neu strwythur y cwmni wedi newid, cysylltwch â ni ar "
-"%(telephone_number)s neu e-bost % (email_address)s"
+"%(telephone_number)s neu e-bost %(email_address)s"
 
 #: app/templates/introduction.html:57
 msgid "Your response is legally required"
@@ -551,7 +551,7 @@ msgid ""
 "Please quote the reference <b>%(ru_ref)s</b> when contacting ONS about this "
 "survey."
 msgstr ""
-"Dyfynnwch y cyfeirnod <b>% (ru_ref) s </ b> wrth gysylltu â'r SYG am yr "
+"Dyfynnwch y cyfeirnod <b>%(ru_ref)s </ b> wrth gysylltu â'r SYG am yr "
 "arolwg hwn."
 
 #: app/templates/static/contact-us.html:40
@@ -763,7 +763,7 @@ msgid ""
 "at %(email_link)s"
 msgstr ""
 "Os oes gennych unrhyw gwestiynau am y datganiad preifatrwydd hwn, gallwch "
-"gysylltu â ni yn % (email_link)s"
+"gysylltu â ni yn %(email_link)s"
 
 #: app/templates/static/cookies-privacy.html:105+app/themes/social/templates/static/cookies-privacy.html:100
 msgid "Universal Analytics"

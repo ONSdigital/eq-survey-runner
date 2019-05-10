@@ -1,0 +1,17 @@
+{% from "components/input/_macro.njk" import onsInput %}
+
+{% set input = form.fields[answer.id] if input is undefined else input %}
+
+{{ onsInput({
+  "id": answer.id,
+  "name": input.name,
+  "value": input._value(),
+  "label": {
+    "text": answer.label,
+    "description": answer.description
+  },
+  "attributes": {
+    "data-qa": "input-text"
+  },
+  "mutuallyExclusive": mutuallyExclusive
+}) }}

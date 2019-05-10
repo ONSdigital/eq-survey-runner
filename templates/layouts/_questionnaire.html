@@ -1,0 +1,41 @@
+{% extends 'layouts/_base.html' %}
+{% import 'macros/helpers.html' as helpers %}
+{% from "components/button/_macro.njk" import onsButton %}
+
+{% set block = content.block %}
+{% set form = content.form %}
+{% set use_transactional_footer = true %}
+
+{% block preHeader %}
+  <input id="csrf_token" name="csrf_token" type="hidden" value="{{ csrf_token() }}"/>
+  <button class="u-vh" tabindex="-1" type="submit" name="action[save_continue]">{{_("Save and continue")}}</button>
+{% endblock %}
+
+{% block main %}
+  {% if previous_location %}
+    <div class="u-mb-s">
+      <a {{ helpers.track('click', 'Navigation', 'Previous link click', position )}} href="{{ previous_location }}" id="top-previous">{{ _("Previous") }}</a>
+    </div>
+  {% endif %}
+
+  {% block form_errors %}{% endblock %}
+
+  {% block form_content %}
+      <div class="group" id="{{current_location.group_id}}">
+        {% include 'partials/block.html' %}
+      </div>
+  {% endblock %}
+
+  {% block submit_button %}
+      {{
+          onsButton({
+              "text": continue_button_text | default(_("Save and continue")),
+              "name": "action[save_continue]",
+              "classes": "u-mt-m",
+              "attributes": {
+                  "data-qa": "btn-submit"
+              }
+          })
+      }}
+  {% endblock %}
+{% endblock %}

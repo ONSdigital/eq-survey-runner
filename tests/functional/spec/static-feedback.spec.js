@@ -53,7 +53,7 @@ describe('Feedback Form', function() {
     describe('and the user populates the message and clicks submit', function() {
       it('redirects to the thankyou page', function() {
         return browser
-          .setValue(form.messageInput(), "This is a <script>message</script>")
+          .keys(form.messageInput(), 'This is a <script>message</script>')
           .click(form.submit())
           .getUrl().should.eventually.match(thankyouUrlMatcher);
       });
@@ -62,7 +62,7 @@ describe('Feedback Form', function() {
     describe('and the user populates the name and clicks submit', function() {
       it('redirects to the thankyou page', function() {
         return browser
-          .setValue(form.nameInput(), "This is <script>my name</script>")
+          .keys(form.nameInput(), "This is <script>my name</script>")
           .click(form.submit())
           .getUrl().should.eventually.match(thankyouUrlMatcher);
       });
@@ -71,7 +71,7 @@ describe('Feedback Form', function() {
     describe('and the user populates the email and clicks submit', function() {
       it('redirects to the thankyou page', function() {
         return browser
-          .setValue(form.emailInput(), "This is <script>my email</script>")
+          .keys(form.emailInput(), "This is <script>my email</script>")
           .click(form.submit())
           .getUrl().should.eventually.match(thankyouUrlMatcher);
       });

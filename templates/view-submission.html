@@ -1,0 +1,41 @@
+{% extends 'layouts/_base.html' %}
+{% from "components/panel/_macro.njk" import onsPanel %}
+{% from "components/button/_macro.njk" import onsButton %}
+
+{% import 'macros/helpers.html' as helpers %}
+{% set use_transactional_footer = true %}
+
+{%- set page_title = _("Submission") -%}
+
+{% block main -%}
+  <h1 class="u-fs-l">{{ _("Submitted answers") }}</h1>
+
+  {% call onsPanel({
+    "type": "success",
+    "spacious": true,
+    "classes": "u-mb-l"
+  }) %}
+    <p>
+      {% if metadata.trad_as %}
+        {{ _("Your answers were submitted for <span>%(ru_name)s</span> (%(trading_as_name)s) on %(submitted_time)s",
+        ru_name = metadata.ru_name,
+        trading_as_name = metadata.trad_as,
+        submitted_time=metadata.submitted_time|format_datetime) }}
+      {% else %}
+        {{ _("Your answers were submitted for <span>%(ru_name)s</span> on %(submitted_time)s",
+        ru_name = metadata.ru_name,
+        submitted_time=metadata.submitted_time|format_datetime) }}
+      {% endif %}
+    </p>
+    <p>{{ _("Transaction ID") }}: <em>{{metadata.tx_id}}</em></p>
+  {% endcall %}
+
+  {{ onsButton({
+    "type": "button",
+    "print": true,
+    "classes": "u-mb-l",
+    "text": _("Print this page")
+  }) }}
+
+  {% include 'partials/summary/summary.html' %}
+{% endblock -%}

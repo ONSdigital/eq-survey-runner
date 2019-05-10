@@ -1,9 +1,0 @@
-{
-    "application": "surveyrunner",
-    "identifier": "social",
-    "name": "Social",
-    "author": "jonshaw",
-    "description": "Theme for Social surveys",
-    "license": "MIT/X11",
-    "version": "1.0.0"
-}

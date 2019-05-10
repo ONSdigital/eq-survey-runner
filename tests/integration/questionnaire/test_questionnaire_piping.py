@@ -1,5 +1,6 @@
 from tests.integration.integration_test_case import IntegrationTestCase
 
+
 class TestQuestionnairePiping(IntegrationTestCase):
 
     def test_given_quotes_in_answer_when_piped_into_page_then_html_escaped_quotes_on_page(self):
@@ -16,9 +17,9 @@ class TestQuestionnairePiping(IntegrationTestCase):
         # Then
         self.get(self.last_url)
         self.assertStatusOK()
-        self.assertInSelector(
+        self.assertInSelectorCSS(
             'Does <em>Joe Bloggs "Junior"</em> live at <em>44 hill side</em>',
-            '#container-multiple-piping-answer',
+            'h1'
         )
 
     def test_given_backslash_in_answer_when_piped_into_page_then_backslash_on_page(self):
@@ -35,9 +36,9 @@ class TestQuestionnairePiping(IntegrationTestCase):
         # Then
         self.get(self.last_url)
         self.assertStatusOK()
-        self.assertInSelector(
+        self.assertInSelectorCSS(
             'Joe Bloggs\\John Doe',
-            '#container-multiple-piping-answer'
+            'h1'
         )
 
     def test_answer_piped_into_option(self):
@@ -54,9 +55,12 @@ class TestQuestionnairePiping(IntegrationTestCase):
         # Then
         self.get(self.last_url)
         self.assertStatusOK()
-        self.assertInSelector(
+        self.assertInSelectorCSS(
             '44 hill side, newport',
-            '#label-multiple-piping-answer-0'
+            'label',
+            {
+                'for': 'multiple-piping-answer-0'
+            }
         )
 
     def test_answer_piped_into_option_on_validation_error(self):
@@ -76,7 +80,10 @@ class TestQuestionnairePiping(IntegrationTestCase):
 
         # Then
         self.assertStatusOK()
-        self.assertInSelector(
+        self.assertInSelectorCSS(
             '44 hill side, newport',
-            '#label-multiple-piping-answer-0'
+            'label',
+            {
+                'for': 'multiple-piping-answer-0'
+            }
         )
