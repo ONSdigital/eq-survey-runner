@@ -33,6 +33,7 @@ def convert_answers(schema, questionnaire_store, routing_path, flushed=False):
         },
         'started_at': '2016-03-06T15:28:05Z',
         'submitted_at': '2016-03-07T15:28:05Z',
+        'response_id': '1234567890123456',
         'metadata': {
           'user_id': '789473423',
           'ru_ref': '432423423423'
@@ -69,6 +70,7 @@ def convert_answers(schema, questionnaire_store, routing_path, flushed=False):
         'collection': _build_collection(metadata),
         'metadata': _build_metadata(metadata),
         'case_id': metadata['case_id'],
+        'response_id': metadata['response_id'],
     }
 
     if collection_metadata.get('started_at'):

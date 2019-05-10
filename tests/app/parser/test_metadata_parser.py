@@ -25,6 +25,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ref_p_end_date': '2016-03-03',
             'ru_ref': '2016-04-04',
             'ru_name': 'Apple',
+            'response_id': '1234567890123456',
             'return_by': '2016-07-07',
             'case_id': '1234567890',
             'case_ref': '1000000000000001',
@@ -304,6 +305,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'eq_id': '2',
             'period_id': '3',
             'ru_ref': '2016-04-04',
+            'response_id': '1234567890123456',
             'case_id': str(uuid.uuid4())
         }
 
@@ -321,6 +323,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'eq_id': '2',
             'period_id': '3',
             'ru_ref': '2016-04-04',
+            'response_id': '1234567890123456',
             'period_str': 'May 2016',
             'case_id': str(uuid.uuid4())
         }

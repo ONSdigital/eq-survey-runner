@@ -1,4 +1,5 @@
 const helpers = require('../helpers');
+const utilities = require('../utilities');
 const SetMinMax = require('../generated_pages/numbers/set-min-max-block.page.js');
 const TestMinMax = require('../generated_pages/numbers/test-min-max-block.page.js');
 const SummaryPage = require('../generated_pages/numbers/summary.page');
@@ -22,10 +23,10 @@ const FeedbackForm = require('../base_pages/feedback-form');
 
 describe('SaveSignOut', function() {
 
-  const collectionId = helpers.getRandomString(10);
+  const responseId = utilities.getRandomString(16);
 
   it('Given I am completing a survey, when I select save and complete later, then I am redirected to sign out page and my session is cleared', function() {
-    return helpers.openQuestionnaire('test_numbers.json', { userId: 'test_user', collectionId: collectionId }).then(() => {
+    return helpers.openQuestionnaire('test_numbers.json', { userId: 'test_user', responseId: responseId } ).then(() => {
         return browser
           .setValue(SetMinMax.setMinimum(), '10')
           .setValue(SetMinMax.setMaximum(), '1020')
@@ -38,7 +39,7 @@ describe('SaveSignOut', function() {
   });
 
   it('Given I have started a questionnaire, when I return to the questionnaire, then I am returned to the page I was on and can then complete the survey', function() {
-    return helpers.openQuestionnaire('test_numbers.json', { userId: 'test_user', collectionId: collectionId }).then(() => {
+    return helpers.openQuestionnaire('test_numbers.json', { userId: 'test_user', responseId: responseId } ).then(() => {
         return browser
           .getUrl().should.eventually.contain(TestMinMax.pageName)
           .setValue(TestMinMax.testRange(), '10')

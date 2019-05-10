@@ -33,7 +33,7 @@ def flush_data():
     roles = decrypted_token.get('roles')
 
     if roles and 'flusher' in roles:
-        user = _get_user(decrypted_token)
+        user = _get_user(decrypted_token['response_id'])
         if _submit_data(user):
             return Response(status=200)
         return Response(status=404)
@@ -67,8 +67,8 @@ def _submit_data(user):
     return False
 
 
-def _get_user(decrypted_token):
+def _get_user(response_id):
     id_generator = current_app.eq['id_generator']
-    user_id = id_generator.generate_id(decrypted_token)
-    user_ik = id_generator.generate_ik(decrypted_token)
+    user_id = id_generator.generate_id(response_id)
+    user_ik = id_generator.generate_ik(response_id)
     return User(user_id, user_ik)
