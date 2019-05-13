@@ -7,7 +7,6 @@ from app.validation.validators import DateCheck
 
 
 class TestDateCheckValidator(unittest.TestCase):
-
     def test_date_type_validator_empty_string(self):
         validator = DateCheck()
 

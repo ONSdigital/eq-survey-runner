@@ -4,7 +4,6 @@ from app.utilities import strings
 
 
 class TestStrings(unittest.TestCase):
-
     def test_to_bytes_with_string(self):
         b = strings.to_bytes('abc')
         self.assertEqual(b, b'abc')

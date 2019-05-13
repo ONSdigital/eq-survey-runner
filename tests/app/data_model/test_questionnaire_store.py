@@ -10,51 +10,25 @@ from app.questionnaire.location import Location
 
 def get_basic_input():
     return {
-        'METADATA': {
-            'test': True
-        },
-        'ANSWERS': [{
-            'answer_id': 'test',
-            'value': 'test',
-        }],
+        'METADATA': {'test': True},
+        'ANSWERS': [{'answer_id': 'test', 'value': 'test'}],
         'LISTS': [],
-        'COMPLETED_BLOCKS': [
-            {
-                'block_id': 'a-test-block',
-            }
-        ],
-        'COLLECTION_METADATA': {
-            'test-meta': 'test'
-        },
+        'COMPLETED_BLOCKS': [{'block_id': 'a-test-block'}],
+        'COLLECTION_METADATA': {'test-meta': 'test'},
     }
 
 
 def get_input_answers_dict():
     return {
-        'METADATA': {
-            'test': True
-        },
-        'ANSWERS': {
-            'test': [{
-                'answer_id': 'test',
-                'value': 'test'
-            }]
-        },
-        'COMPLETED_BLOCKS': [
-            {
-                'block_id': 'a-test-block',
-            }
-        ],
-        'COLLECTION_METADATA': {
-            'test-meta': 'test'
-        },
+        'METADATA': {'test': True},
+        'ANSWERS': {'test': [{'answer_id': 'test', 'value': 'test'}]},
+        'COMPLETED_BLOCKS': [{'block_id': 'a-test-block'}],
+        'COLLECTION_METADATA': {'test-meta': 'test'},
     }
 
 
 class TestQuestionnaireStore(TestCase):
-
     def setUp(self):
-
         def get_user_data():
             """Fake get_user_data implementation for storage"""
             return self.input_data, 1
@@ -83,12 +57,17 @@ class TestQuestionnaireStore(TestCase):
         self.assertEqual(store.answer_store, AnswerStore(expected['ANSWERS']))
         expected_location = expected['COMPLETED_BLOCKS'][0]
         self.assertEqual(len(store.completed_blocks), 1)
-        self.assertEqual(store.completed_blocks[0], Location.from_dict(location_dict=expected_location))
+        self.assertEqual(
+            store.completed_blocks[0],
+            Location.from_dict(location_dict=expected_location),
+        )
 
     def test_questionnaire_store_ignores_extra_json(self):
         # Given
         expected = get_basic_input()
-        expected['NOT_A_LEGAL_TOP_LEVEL_KEY'] = 'woop_woop_thats_the_sound_of_the_police'
+        expected[
+            'NOT_A_LEGAL_TOP_LEVEL_KEY'
+        ] = 'woop_woop_thats_the_sound_of_the_police'
         self.input_data = json.dumps(expected)
         # When
         store = QuestionnaireStore(self.storage)
@@ -98,7 +77,10 @@ class TestQuestionnaireStore(TestCase):
         self.assertEqual(store.answer_store, AnswerStore(expected['ANSWERS']))
         expected_location = expected['COMPLETED_BLOCKS'][0]
         self.assertEqual(len(store.completed_blocks), 1)
-        self.assertEqual(store.completed_blocks[0], Location.from_dict(location_dict=expected_location))
+        self.assertEqual(
+            store.completed_blocks[0],
+            Location.from_dict(location_dict=expected_location),
+        )
 
     def test_questionnaire_store_missing_keys(self):
         # Given
@@ -133,9 +115,7 @@ class TestQuestionnaireStore(TestCase):
         class NotSerializable:
             pass
 
-        non_serializable_metadata = {
-            'test': NotSerializable()
-        }
+        non_serializable_metadata = {'test': NotSerializable()}
 
         expected = get_basic_input()
         store = QuestionnaireStore(self.storage)
@@ -180,10 +160,7 @@ class TestQuestionnaireStore(TestCase):
         store = QuestionnaireStore(self.storage)
         location = Location('a-test-block')
         location2 = Location('a-test-block')
-        store.completed_blocks = [
-            location,
-            location2,
-        ]
+        store.completed_blocks = [location, location2]
         # When
         store.remove_completed_blocks(location=location)
         # Then

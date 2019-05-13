@@ -27,38 +27,61 @@ class TestPlaceholderParser(unittest.TestCase):
         assert self.transforms.format_number(None) == ''
 
     def test_format_list(self):
-        names = [
-            'Alice Aardvark', 'Bob Berty Brown', 'Dave Dixon Davies'
-        ]
+        names = ['Alice Aardvark', 'Bob Berty Brown', 'Dave Dixon Davies']
 
         format_value = self.transforms.format_list(names)
 
-        expected_result = '<ul>' \
-                          '<li>Alice Aardvark</li>' \
-                          '<li>Bob Berty Brown</li>' \
-                          '<li>Dave Dixon Davies</li>' \
-                          '</ul>'
+        expected_result = (
+            '<ul>'
+            '<li>Alice Aardvark</li>'
+            '<li>Bob Berty Brown</li>'
+            '<li>Dave Dixon Davies</li>'
+            '</ul>'
+        )
 
         assert expected_result == format_value
 
     def test_format_possessive(self):
         assert self.transforms.format_possessive('Alice Aardvark') == 'Alice Aardvark’s'
-        assert self.transforms.format_possessive('Dave Dixon Davies') == 'Dave Dixon Davies’'
-        assert self.transforms.format_possessive("Alice Aardvark's") == 'Alice Aardvark’s'
-        assert self.transforms.format_possessive('Alice Aardvark’s') == 'Alice Aardvark’s'
+        assert (
+            self.transforms.format_possessive('Dave Dixon Davies')
+            == 'Dave Dixon Davies’'
+        )
+        assert (
+            self.transforms.format_possessive("Alice Aardvark's") == 'Alice Aardvark’s'
+        )
+        assert (
+            self.transforms.format_possessive('Alice Aardvark’s') == 'Alice Aardvark’s'
+        )
 
     @staticmethod
     def test_format_possessive_non_english_does_nothing():
         welsh_transforms = PlaceholderTransforms(language='cy')
         assert welsh_transforms.format_possessive('Alice Aardvark') == 'Alice Aardvark'
-        assert welsh_transforms.format_possessive('Dave Dixon Davies') == 'Dave Dixon Davies'
-        assert welsh_transforms.format_possessive("Alice Aardvark's") == "Alice Aardvark's"
-        assert welsh_transforms.format_possessive('Alice Aardvark’s') == 'Alice Aardvark’s'
+        assert (
+            welsh_transforms.format_possessive('Dave Dixon Davies')
+            == 'Dave Dixon Davies'
+        )
+        assert (
+            welsh_transforms.format_possessive("Alice Aardvark's") == "Alice Aardvark's"
+        )
+        assert (
+            welsh_transforms.format_possessive('Alice Aardvark’s') == 'Alice Aardvark’s'
+        )
 
     def test_calculate_years_difference(self):
-        assert PlaceholderTransforms.calculate_years_difference('2016-06-10', '2019-06-10') == '3'
-        assert PlaceholderTransforms.calculate_years_difference('2010-01-01', '2018-12-31') == '8'
-        assert PlaceholderTransforms.calculate_years_difference('2011-01', '2015-04') == '4'
+        assert (
+            PlaceholderTransforms.calculate_years_difference('2016-06-10', '2019-06-10')
+            == '3'
+        )
+        assert (
+            PlaceholderTransforms.calculate_years_difference('2010-01-01', '2018-12-31')
+            == '8'
+        )
+        assert (
+            PlaceholderTransforms.calculate_years_difference('2011-01', '2015-04')
+            == '4'
+        )
         assert PlaceholderTransforms.calculate_years_difference('now', 'now') == '0'
         with self.assertRaises(ValueError):
             PlaceholderTransforms.calculate_years_difference('2018', 'now')
@@ -66,14 +89,27 @@ class TestPlaceholderParser(unittest.TestCase):
     def test_concatenate_list(self):
         list_to_concatenate = ['Milk', 'Eggs', 'Flour', 'Water']
 
-        assert self.transforms.concatenate_list(list_to_concatenate, '') == 'MilkEggsFlourWater'
-        assert self.transforms.concatenate_list(list_to_concatenate, ' ') == 'Milk Eggs Flour Water'
-        assert self.transforms.concatenate_list(list_to_concatenate, ', ') == 'Milk, Eggs, Flour, Water'
+        assert (
+            self.transforms.concatenate_list(list_to_concatenate, '')
+            == 'MilkEggsFlourWater'
+        )
+        assert (
+            self.transforms.concatenate_list(list_to_concatenate, ' ')
+            == 'Milk Eggs Flour Water'
+        )
+        assert (
+            self.transforms.concatenate_list(list_to_concatenate, ', ')
+            == 'Milk, Eggs, Flour, Water'
+        )
 
     def test_remove_empty_from_list(self):
         list_to_filter = [None, 0, False, '', 'String']
 
-        assert self.transforms.remove_empty_from_list(list_to_filter) == [0, False, 'String']
+        assert self.transforms.remove_empty_from_list(list_to_filter) == [
+            0,
+            False,
+            'String',
+        ]
 
     def test_first_non_empty_item(self):
         list_to_filter = [None, 0, False, '', 'String']

@@ -4,7 +4,6 @@ from app import settings
 
 
 class TestAppInit(unittest.TestCase):
-
     def test_get_minimized_asset_with_env(self):
         settings.EQ_MINIMIZE_ASSETS = True
         self.assertEqual('some.min.css', get_minimized_asset('some.css'))

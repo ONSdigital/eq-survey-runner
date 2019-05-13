@@ -37,9 +37,13 @@ class TestCheckboxSingleCheckboxOverride(IntegrationTestCase):
 
     def test_invalid_exclusive_answers(self):
         # When
-        self.post({'checkbox-answer': ['British', 'Irish', 'Other'],
-                   'checkbox-child-other-answer': 'Other field input',
-                   'checkbox-exclusive-answer': ['I prefer not to say']})
+        self.post(
+            {
+                'checkbox-answer': ['British', 'Irish', 'Other'],
+                'checkbox-child-other-answer': 'Other field input',
+                'checkbox-exclusive-answer': ['I prefer not to say'],
+            }
+        )
 
         # Then
         self.assertInBody('Remove an answer to continue.')

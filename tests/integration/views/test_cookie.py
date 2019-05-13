@@ -1,7 +1,7 @@
 from tests.integration.integration_test_case import IntegrationTestCase
 
-class TestCookie(IntegrationTestCase):
 
+class TestCookie(IntegrationTestCase):
     def test_cookie_contents(self):
         self.launchSurvey()
         cookie = self.getCookie()

@@ -17,10 +17,7 @@ def build_summary_rendering_context(schema, sections, answer_store, metadata):
     path = navigator.get_full_routing_path()
     groups = []
 
-    group_lists = (
-        section['groups']
-        for section in sections
-    )
+    group_lists = (section['groups'] for section in sections)
 
     for group in itertools.chain.from_iterable(group_lists):
         summary_group = Group(group, path, answer_store, metadata, schema).serialize()

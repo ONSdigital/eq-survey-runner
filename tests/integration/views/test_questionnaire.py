@@ -18,12 +18,10 @@ class TestQuestionnaire(IntegrationTestCase):
         self._application_context.push()
 
         storage = Mock()
-        data = {
-            'METADATA': 'test',
-            'ANSWERS': [],
-            'COMPLETED_BLOCKS': []
-        }
-        storage.get_user_data = Mock(return_value=(json.dumps(data), QuestionnaireStore.LATEST_VERSION))
+        data = {'METADATA': 'test', 'ANSWERS': [], 'COMPLETED_BLOCKS': []}
+        storage.get_user_data = Mock(
+            return_value=(json.dumps(data), QuestionnaireStore.LATEST_VERSION)
+        )
 
         self.question_store = QuestionnaireStore(storage)
         self.mock_context = {'block': {'question': {'title': 'Testing title'}}}
@@ -31,32 +29,44 @@ class TestQuestionnaire(IntegrationTestCase):
     def tearDown(self):
         self._application_context.pop()
 
-    def test_given_introduction_page_when_get_page_title_then_defaults_to_survey_title(self):
+    def test_given_introduction_page_when_get_page_title_then_defaults_to_survey_title(
+        self
+    ):
         # Given
         schema = load_schema_from_params('test', 'final_confirmation')
 
         # When
-        page_title = get_page_title_for_location(schema, Location('introduction'), self.mock_context)
+        page_title = get_page_title_for_location(
+            schema, Location('introduction'), self.mock_context
+        )
 
         # Then
         self.assertEqual(page_title, 'Final confirmation to submit')
 
-    def test_given_interstitial_page_when_get_page_title_then_group_title_and_survey_title(self):
+    def test_given_interstitial_page_when_get_page_title_then_group_title_and_survey_title(
+        self
+    ):
         # Given
         schema = load_schema_from_params('test', 'interstitial_page')
 
         # When
-        page_title = get_page_title_for_location(schema, Location('breakfast-interstitial'), self.mock_context)
+        page_title = get_page_title_for_location(
+            schema, Location('breakfast-interstitial'), self.mock_context
+        )
 
         # Then
         self.assertEqual(page_title, 'Favourite food - Interstitial Pages')
 
-    def test_given_questionnaire_page_when_get_page_title_then_question_title_and_survey_title(self):
+    def test_given_questionnaire_page_when_get_page_title_then_question_title_and_survey_title(
+        self
+    ):
         # Given
         schema = load_schema_from_params('test', 'final_confirmation')
 
         # When
-        page_title = get_page_title_for_location(schema, Location('breakfast'), self.mock_context)
+        page_title = get_page_title_for_location(
+            schema, Location('breakfast'), self.mock_context
+        )
 
         # Then
         self.assertEqual(page_title, 'Testing title - Final confirmation to submit')
@@ -81,11 +91,21 @@ class TestQuestionnaire(IntegrationTestCase):
 
         # When
         with self._application.test_request_context():
-            view_context = build_view_context(block['type'], metadata, schema, ListStore(), AnswerStore(answers),
-                                              block, current_location, form=None)
+            view_context = build_view_context(
+                block['type'],
+                metadata,
+                schema,
+                ListStore(),
+                AnswerStore(answers),
+                block,
+                current_location,
+                form=None,
+            )
 
         # Then
         self.assertTrue('summary' in view_context)
         self.assertTrue('calculated_question' in view_context['summary'])
-        self.assertEqual(view_context['summary']['title'],
-                         'We calculate the total of currency values entered to be £13.00. Is this correct? (With Fourth)')
+        self.assertEqual(
+            view_context['summary']['title'],
+            'We calculate the total of currency values entered to be £13.00. Is this correct? (With Fourth)',
+        )

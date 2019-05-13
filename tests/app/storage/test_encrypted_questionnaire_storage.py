@@ -12,16 +12,11 @@ def _save_state_data(user_id, data, state_version=QuestionnaireStore.LATEST_VERS
 
     state_data = encryption.encrypt_data(data)
 
-    questionnaire_state = QuestionnaireState(
-        user_id,
-        state_data,
-        state_version
-    )
+    questionnaire_state = QuestionnaireState(user_id, state_data, state_version)
     current_app.eq['storage'].put(questionnaire_state)
 
 
 class TestEncryptedQuestionnaireStorage(AppContextTestCase):
-
     def setUp(self):
         super().setUp()
         self.storage = EncryptedQuestionnaireStorage('user_id', 'user_ik', 'pepper')
@@ -41,21 +36,31 @@ class TestEncryptedQuestionnaireStorage(AppContextTestCase):
         data = 'test'
         encrypted.add_or_update(data)
         # check we can decrypt the data
-        self.assertEqual(('test', QuestionnaireStore.LATEST_VERSION), encrypted.get_user_data())
+        self.assertEqual(
+            ('test', QuestionnaireStore.LATEST_VERSION), encrypted.get_user_data()
+        )
 
     def test_store(self):
         data = 'test'
         self.assertIsNone(self.storage.add_or_update(data))
-        self.assertIsNotNone(self.storage.get_user_data())  # pylint: disable=protected-access
+        self.assertIsNotNone(
+            self.storage.get_user_data()
+        )  # pylint: disable=protected-access
 
     def test_get(self):
         data = 'test'
         self.storage.add_or_update(data)
-        self.assertEqual((data, QuestionnaireStore.LATEST_VERSION), self.storage.get_user_data())
+        self.assertEqual(
+            (data, QuestionnaireStore.LATEST_VERSION), self.storage.get_user_data()
+        )
 
     def test_delete(self):
         data = 'test'
         self.storage.add_or_update(data)
-        self.assertEqual((data, QuestionnaireStore.LATEST_VERSION), self.storage.get_user_data())
+        self.assertEqual(
+            (data, QuestionnaireStore.LATEST_VERSION), self.storage.get_user_data()
+        )
         self.storage.delete()
-        self.assertEqual((None, None), self.storage.get_user_data())  # pylint: disable=protected-access
+        self.assertEqual(
+            (None, None), self.storage.get_user_data()
+        )  # pylint: disable=protected-access

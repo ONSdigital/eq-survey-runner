@@ -30,7 +30,6 @@ TABLE_CONFIG = {
 
 
 class DynamodbStorage:
-
     def __init__(self, dynamodb):
         self.dynamodb = dynamodb
 
@@ -43,10 +42,14 @@ class DynamodbStorage:
         item, _ = schema.dump(model)
         put_kwargs = {'Item': item}
         if not overwrite:
-            put_kwargs['ConditionExpression'] = 'attribute_not_exists({key_field})'.format(key_field=key_field)
+            put_kwargs[
+                'ConditionExpression'
+            ] = 'attribute_not_exists({key_field})'.format(key_field=key_field)
 
         try:
-            response = table.put_item(**put_kwargs)['ResponseMetadata']['HTTPStatusCode']
+            response = table.put_item(**put_kwargs)['ResponseMetadata'][
+                'HTTPStatusCode'
+            ]
             return response == 200
         except ClientError as e:
             if e.response['Error']['Code'] == 'ConditionalCheckFailedException':

@@ -2,16 +2,10 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestQuestionnaireListCollector(IntegrationTestCase):
-
     def add_person(self, first_name, last_name):
-        self.post({
-            'anyone-else': 'Yes'
-        })
+        self.post({'anyone-else': 'Yes'})
 
-        self.post({
-            'first-name': first_name,
-            'last-name': last_name
-        })
+        self.post({'first-name': first_name, 'last-name': last_name})
 
     def get_link(self, rowIndex, text):
         selector = f'tbody:nth-child({rowIndex}) td:last-child a'
@@ -59,9 +53,7 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.assertInBody('Does anyone else live here?')
 
-        self.post({
-            'anyone-else': 'Yes'
-        })
+        self.post({'anyone-else': 'Yes'})
 
         self.add_person('Marie Claire', 'Doe')
 
@@ -85,10 +77,7 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.get(mistake_change_link)
 
-        self.post({
-            'first-name': 'Another',
-            'last-name': 'Mistake'
-        })
+        self.post({'first-name': 'Another', 'last-name': 'Mistake'})
 
         self.assertInSelector('Another Mistake', 'tbody:nth-child(3) td:first-child')
 
@@ -102,9 +91,7 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         # Cancel
 
-        self.post({
-            'remove-confirmation': 'No'
-        })
+        self.post({'remove-confirmation': 'No'})
 
         self.assertEqualUrl('/questionnaire/list-collector/')
 
@@ -112,9 +99,7 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.get(mistake_remove_link)
 
-        self.post({
-            'remove-confirmation': 'Yes'
-        })
+        self.post({'remove-confirmation': 'Yes'})
 
         # Make sure Johnny has moved up the list
         self.assertInSelector('Johnny Doe', 'tbody:nth-child(3) td:first-child')
@@ -144,9 +129,7 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.assertInBody('Does anyone else live here?')
 
-        self.post({
-            'anyone-else': 'Yes'
-        })
+        self.post({'anyone-else': 'Yes'})
 
         self.add_person('Marie Claire', 'Doe')
 
@@ -156,15 +139,11 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.assertInSelector('John Doe', 'tbody:nth-child(2) td:first-child')
 
-        self.post({
-            'anyone-else': 'No'
-        })
+        self.post({'anyone-else': 'No'})
 
         self.post(action='save_continue')
 
-        self.post({
-            'another-anyone-else': 'No'
-        })
+        self.post({'another-anyone-else': 'No'})
 
         self.post()
 
@@ -177,15 +156,11 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
 
         self.assertInBody('Does anyone else live here?')
 
-        self.post({
-            'anyone-else': 'No'
-        })
+        self.post({'anyone-else': 'No'})
 
         self.post(action='save_continue')
 
-        self.post({
-            'another-anyone-else': 'No'
-        })
+        self.post({'another-anyone-else': 'No'})
 
         self.post()
 

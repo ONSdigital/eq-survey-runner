@@ -20,15 +20,18 @@ def contact():
         schema = load_schema_from_session_data(session)
         survey_id = schema.json['survey_id']
 
-    contact_template = flask_render_template('static/contact-us.html',
-                                             session=session,
-                                             survey_id=survey_id,
-                                             analytics_ua_id=current_app.config['EQ_UA_ID'])
+    contact_template = flask_render_template(
+        'static/contact-us.html',
+        session=session,
+        survey_id=survey_id,
+        analytics_ua_id=current_app.config['EQ_UA_ID'],
+    )
     return contact_template
 
 
 @contact_blueprint.route('/cookies-privacy', methods=['GET'])
 def legal():
-    cookie_template = flask_render_template('static/cookies-privacy.html',
-                                            analytics_ua_id=current_app.config['EQ_UA_ID'])
+    cookie_template = flask_render_template(
+        'static/cookies-privacy.html', analytics_ua_id=current_app.config['EQ_UA_ID']
+    )
     return cookie_template

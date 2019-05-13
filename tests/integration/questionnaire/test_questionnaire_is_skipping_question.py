@@ -2,7 +2,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestQuestionnaireChangeAnswer(IntegrationTestCase):
-
     def test_final_summary_not_available_if_any_question_incomplete(self):
 
         # Given I launched a survey and have not answered any questions

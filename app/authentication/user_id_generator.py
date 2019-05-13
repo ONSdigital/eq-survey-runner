@@ -12,7 +12,6 @@ logger = get_logger()
 
 
 class UserIDGenerator:
-
     def __init__(self, iterations, user_id_salt, user_ik_salt):
         if user_id_salt is None:
             raise ValueError('user_id_salt is required')
@@ -34,7 +33,12 @@ class UserIDGenerator:
         return to_str(user_ik)
 
     def _generate(self, key_material, salt):
-        kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=salt,
-                         iterations=self._iterations, backend=backend)
+        kdf = PBKDF2HMAC(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=salt,
+            iterations=self._iterations,
+            backend=backend,
+        )
         generated_key = kdf.derive(to_bytes(key_material))
         return binascii.hexlify(generated_key)

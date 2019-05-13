@@ -81,9 +81,13 @@ def convert_answers(schema, questionnaire_store, routing_path, flushed=False):
         payload['case_ref'] = metadata['case_ref']
 
     if schema.json['data_version'] == '0.0.3':
-        payload['data'] = convert_answers_to_payload_0_0_3(answer_store, list_store, schema, routing_path)
+        payload['data'] = convert_answers_to_payload_0_0_3(
+            answer_store, list_store, schema, routing_path
+        )
     elif schema.json['data_version'] == '0.0.1':
-        payload['data'] = convert_answers_to_payload_0_0_1(metadata, answer_store, schema, routing_path)
+        payload['data'] = convert_answers_to_payload_0_0_1(
+            metadata, answer_store, schema, routing_path
+        )
     else:
         raise DataVersionError(schema.json['data_version'])
 
@@ -100,10 +104,7 @@ def _build_collection(metadata):
 
 
 def _build_metadata(metadata):
-    downstream_metadata = {
-        'user_id': metadata['user_id'],
-        'ru_ref': metadata['ru_ref'],
-    }
+    downstream_metadata = {'user_id': metadata['user_id'], 'ru_ref': metadata['ru_ref']}
 
     if metadata.get('ref_p_start_date'):
         downstream_metadata['ref_period_start_date'] = metadata['ref_p_start_date']
@@ -151,11 +152,6 @@ def convert_feedback(message, name, email, url, metadata, survey_id):
         'metadata': _build_metadata(metadata),
     }
 
-    payload['data'] = {
-        'message': message,
-        'name': name,
-        'email': email,
-        'url': url,
-    }
+    payload['data'] = {'message': message, 'name': name, 'email': email, 'url': url}
 
     return payload

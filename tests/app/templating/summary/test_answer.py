@@ -4,7 +4,6 @@ from app.templating.summary.answer import Answer
 
 
 class TestAnswer(TestCase):
-
     def test_create_answer(self):
         # Given
         answer_schema = {'id': 'answer-id', 'label': 'Answer Label', 'type': 'date'}

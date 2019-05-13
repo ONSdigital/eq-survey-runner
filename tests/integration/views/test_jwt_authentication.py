@@ -12,10 +12,12 @@ from app.keys import KEY_PURPOSE_AUTHENTICATION
 from tests.app.app_context_test_case import AppContextTestCase
 from tests.app.authentication import (
     TEST_DO_NOT_USE_UPSTREAM_PRIVATE_KEY,
-    TEST_DO_NOT_USE_SR_PUBLIC_KEY
+    TEST_DO_NOT_USE_SR_PUBLIC_KEY,
 )
-from tests.integration.integration_test_case import EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID, \
-    SR_USER_AUTHENTICATION_PUBLIC_KEY_KID
+from tests.integration.integration_test_case import (
+    EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID,
+    SR_USER_AUTHENTICATION_PUBLIC_KEY_KID,
+)
 
 
 class FlaskClientAuthenticationTestCase(AppContextTestCase):
@@ -36,16 +38,22 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
         self.assertEqual(403, response.status_code)
 
     def test_fully_encrypted(self):
-        key_store = KeyStore({
-            'keys': {
-                SR_USER_AUTHENTICATION_PUBLIC_KEY_KID: {'purpose': KEY_PURPOSE_AUTHENTICATION,
-                                                        'type': 'public',
-                                                        'value': TEST_DO_NOT_USE_SR_PUBLIC_KEY},
-                EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID: {'purpose': KEY_PURPOSE_AUTHENTICATION,
-                                                             'type': 'private',
-                                                             'value': TEST_DO_NOT_USE_UPSTREAM_PRIVATE_KEY},
+        key_store = KeyStore(
+            {
+                'keys': {
+                    SR_USER_AUTHENTICATION_PUBLIC_KEY_KID: {
+                        'purpose': KEY_PURPOSE_AUTHENTICATION,
+                        'type': 'public',
+                        'value': TEST_DO_NOT_USE_SR_PUBLIC_KEY,
+                    },
+                    EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID: {
+                        'purpose': KEY_PURPOSE_AUTHENTICATION,
+                        'type': 'private',
+                        'value': TEST_DO_NOT_USE_UPSTREAM_PRIVATE_KEY,
+                    },
+                }
             }
-        })
+        )
 
         payload = self.create_payload()
 
@@ -76,7 +84,7 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
             'ru_ref': '1234',
             'response_id': response_id,
             'ru_name': 'Test',
-            'return_by': '2016-09-09'
+            'return_by': '2016-09-09',
         }
 
 

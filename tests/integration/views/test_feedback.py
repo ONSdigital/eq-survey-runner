@@ -31,11 +31,15 @@ class Feedback(IntegrationTestCase):
     def tearDown(self):
         self.patcher.stop()
 
-    @pytest.mark.skip(reason='No link in page as currently feedback cant be done from a different page, so its done from the footer')
+    @pytest.mark.skip(
+        reason='No link in page as currently feedback cant be done from a different page, so its done from the footer'
+    )
     def test_correct_feeback_link_in_page(self):
         soup = self.getHtmlSoup()
         links = soup.find_all('a')
-        feedback_links = [link['href'] for link in links if FEEDBACK_FORM_URL in link['href']]
+        feedback_links = [
+            link['href'] for link in links if FEEDBACK_FORM_URL in link['href']
+        ]
         self.assertGreaterEqual(len(feedback_links), 1)
 
     def test_get_feedback_page(self):
@@ -49,36 +53,31 @@ class Feedback(IntegrationTestCase):
         self.assertEqualUrl(FEEDBACK_THANKYOU_URL)
 
     def test_feedback_no_redirect(self):
-        post_data = {
-            'redirect': False,
-        }
+        post_data = {'redirect': False}
         self.post(url=FEEDBACK_FORM_URL, post_data=post_data, action='send_feedback')
         self.assertStatusOK()
         self.assertEqualUrl(FEEDBACK_FORM_URL)
 
     def test_post_with_empty_message_does_not_send_message(self):
-        post_data = {
-            'message': '',
-            'name': 'Bill',
-            'email': 'Bill@email.com'
-        }
+        post_data = {'message': '', 'name': 'Bill', 'email': 'Bill@email.com'}
 
         self.post(url=FEEDBACK_FORM_URL, post_data=post_data, action='send_feedback')
         self.assertStatusOK()
 
-        self.assertEqual(self.instance.send_message.call_count, 0)  # pylint: disable=no-member
+        self.assertEqual(
+            self.instance.send_message.call_count, 0
+        )  # pylint: disable=no-member
 
     def test_post_sends_message(self):
         post_data = {
             'message': 'This survey is awesome',
             'name': 'Bill',
-            'email': 'Bill@email.com'
+            'email': 'Bill@email.com',
         }
 
         referer = 'https://some.url'
         message = self.post_then_intercept_and_decrypt_message(
-            post_data,
-            headers={'Referer': referer}
+            post_data, headers={'Referer': referer}
         )
 
         self.assertStatusOK()
@@ -92,18 +91,14 @@ class Feedback(IntegrationTestCase):
         post_data = {
             'message': 'This survey is awesome',
             'name': 'Bill',
-            'email': 'Bill@email.com'
+            'email': 'Bill@email.com',
         }
 
         self.post(url='/feedback', post_data=post_data, action='send_feedback')
         self.assertStatusCode(401)
 
     def test_post_html_encodes_user_input(self):
-        post_data = {
-            'message': '&<>\'\"',
-            'name': '&<>\'\"',
-            'email': '&<>\'\"'
-        }
+        post_data = {'message': '&<>\'\"', 'name': '&<>\'\"', 'email': '&<>\'\"'}
 
         data = self.post_then_intercept_and_decrypt_message(post_data)['data']
         expected = '&amp;&lt;&gt;&#39;&#34;'
@@ -136,7 +131,7 @@ class Feedback(IntegrationTestCase):
         post_data = {
             'message': 'This survey is awesome',
             'name': 'Bill',
-            'email': 'Bill@email.com'
+            'email': 'Bill@email.com',
         }
 
         self.instance.send_message.return_value = False  # pylint: disable=no-member
@@ -145,10 +140,16 @@ class Feedback(IntegrationTestCase):
         self.assertStatusCode(503)
 
     def post_then_intercept_and_decrypt_message(self, post_data, **kwargs):
-        self.post(url=FEEDBACK_FORM_URL, post_data=post_data, action='send_feedback', **kwargs)
+        self.post(
+            url=FEEDBACK_FORM_URL, post_data=post_data, action='send_feedback', **kwargs
+        )
 
         # pylint: disable=no-member
-        return decrypt(self.instance.send_message.call_args[0][0], self._key_store, KEY_PURPOSE_SUBMISSION)
+        return decrypt(
+            self.instance.send_message.call_args[0][0],
+            self._key_store,
+            KEY_PURPOSE_SUBMISSION,
+        )
 
     def test_feedback_post_redirects_to_signed_out_page(self):
         self.post(url=FEEDBACK_FORM_URL, post_data='', action='sign_out')
@@ -173,10 +174,15 @@ def validate_json_with_schema(data, schema):
         validate(data, schema)
 
     except ValidationError as e:
-        errors.append('Schema Validation Error! message [{}] does not validate against schema. Error [{}]'.format(data,
-                                                                                                                  e))
+        errors.append(
+            'Schema Validation Error! message [{}] does not validate against schema. Error [{}]'.format(
+                data, e
+            )
+        )
 
     except SchemaError as e:
-        errors.append('JSON Parse Error! Could not parse [{}]. Error [{}]'.format(data, e))
+        errors.append(
+            'JSON Parse Error! Could not parse [{}]. Error [{}]'.format(data, e)
+        )
 
     return errors

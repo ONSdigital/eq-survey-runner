@@ -38,6 +38,7 @@ class AppContextTestCase(unittest.TestCase):
     unittest.TestCase that creates a Flask app context on setUp
     and destroys it on tearDown
     """
+
     LOGIN_DISABLED = False
     setting_overrides = {}
 
@@ -45,9 +46,7 @@ class AppContextTestCase(unittest.TestCase):
         self._ds = patch('app.setup.datastore.Client', MockDatastore)
         self._ds.start()
 
-        setting_overrides = {
-            'LOGIN_DISABLED': self.LOGIN_DISABLED,
-        }
+        setting_overrides = {'LOGIN_DISABLED': self.LOGIN_DISABLED}
         setting_overrides.update(self.setting_overrides)
         self._app = create_app(setting_overrides)
 

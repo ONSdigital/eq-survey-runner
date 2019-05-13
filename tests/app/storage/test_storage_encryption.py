@@ -6,7 +6,6 @@ from app.storage.storage_encryption import StorageEncryption
 
 # pylint: disable=W0212
 class TestStorageEncryption(TestCase):
-
     def setUp(self):
         super().setUp()
         self.encrypter = StorageEncryption('user_id', 'user_ik', 'pepper')
@@ -44,10 +43,7 @@ class TestStorageEncryption(TestCase):
         self.assertNotEqual(key2, key3)
 
     def test_encryption_decryption(self):
-        data = {
-            'data1': 'Test Data One',
-            'data2': 'Test Data Two'
-        }
+        data = {'data1': 'Test Data One', 'data2': 'Test Data Two'}
         encrypted_data = self.encrypter.encrypt_data(data)
         self.assertNotEqual(encrypted_data, data)
         self.assertIsInstance(encrypted_data, str)

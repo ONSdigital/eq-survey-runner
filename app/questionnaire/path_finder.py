@@ -13,7 +13,6 @@ logger = get_logger()
 
 
 class PathFinder:
-
     def __init__(self, schema, answer_store, metadata, completed_blocks):
         self.answer_store = answer_store
         self.metadata = metadata
@@ -23,7 +22,14 @@ class PathFinder:
 
     @staticmethod
     def _block_index_for_location(blocks, location):
-        return next((index for (index, block) in enumerate(blocks) if block['id'] == location.block_id), None)
+        return next(
+            (
+                index
+                for (index, block) in enumerate(blocks)
+                if block['id'] == location.block_id
+            ),
+            None,
+        )
 
     def build_path(self):
         """
@@ -43,26 +49,32 @@ class PathFinder:
 
         for group in self.schema.groups:
             if group['id'] in first_groups:
-                first_block_in_group = self.schema.get_first_block_id_for_group(group['id'])
+                first_block_in_group = self.schema.get_first_block_id_for_group(
+                    group['id']
+                )
                 this_location = Location(block_id=first_block_in_group)
 
             if 'skip_conditions' in group:
-                if evaluate_skip_conditions(group['skip_conditions'], self.schema, self.metadata,
-                                            self.answer_store, routing_path=path):
+                if evaluate_skip_conditions(
+                    group['skip_conditions'],
+                    self.schema,
+                    self.metadata,
+                    self.answer_store,
+                    routing_path=path,
+                ):
                     continue
 
             blocks.extend(group['blocks'])
 
             if blocks:
-                path, block_index = self._build_path_within_group(blocks, block_index, this_location, path)
+                path, block_index = self._build_path_within_group(
+                    blocks, block_index, this_location, path
+                )
 
         return RoutingPath(path)
 
     def _get_first_group_in_section(self):
-        return [
-            section['groups'][0]['id']
-            for section in self.schema.sections
-        ]
+        return [section['groups'][0]['id'] for section in self.schema.sections]
 
     def _build_path_within_group(self, blocks, block_index, this_location, path):
         # Keep going unless we've hit the last block
@@ -75,9 +87,13 @@ class PathFinder:
 
             block = blocks[block_index]
 
-            if block.get('skip_conditions') and \
-                    evaluate_skip_conditions(block['skip_conditions'], self.schema, self.metadata,
-                                             self.answer_store, routing_path=path):
+            if block.get('skip_conditions') and evaluate_skip_conditions(
+                block['skip_conditions'],
+                self.schema,
+                self.metadata,
+                self.answer_store,
+                routing_path=path,
+            ):
 
                 if block_index == len(blocks) - 1:
                     return path, block_index
@@ -90,7 +106,9 @@ class PathFinder:
 
             # If routing rules exist then a rule must match (i.e. default goto)
             if 'routing_rules' in block and block['routing_rules']:
-                this_location = self._evaluate_routing_rules(this_location, blocks, block, block_index, path)
+                this_location = self._evaluate_routing_rules(
+                    this_location, blocks, block, block_index, path
+                )
 
                 if this_location:
                     continue
@@ -104,25 +122,33 @@ class PathFinder:
 
     def _evaluate_routing_rules(self, this_location, blocks, block, block_index, path):
         for rule in filter(is_goto_rule, block['routing_rules']):
-            should_goto = evaluate_goto(rule['goto'],
-                                        self.schema,
-                                        self.metadata,
-                                        self.answer_store,
-                                        routing_path=path)
+            should_goto = evaluate_goto(
+                rule['goto'],
+                self.schema,
+                self.metadata,
+                self.answer_store,
+                routing_path=path,
+            )
 
             if should_goto:
-                return self._follow_routing_rule(this_location, rule, blocks, block_index, path)
+                return self._follow_routing_rule(
+                    this_location, rule, blocks, block_index, path
+                )
 
     def _follow_routing_rule(self, this_location, rule, blocks, block_index, path):
         next_location = copy.copy(this_location)
 
         if 'group' in rule['goto']:
-            next_location.block_id = self.schema.get_first_block_id_for_group(rule['goto']['group'])
+            next_location.block_id = self.schema.get_first_block_id_for_group(
+                rule['goto']['group']
+            )
         else:
             next_location.block_id = rule['goto']['block']
 
         next_block_index = PathFinder._block_index_for_location(blocks, next_location)
-        next_precedes_current = next_block_index is not None and next_block_index < block_index
+        next_precedes_current = (
+            next_block_index is not None and next_block_index < block_index
+        )
 
         if next_precedes_current:
             self._remove_rule_answers(rule['goto'], this_location)
@@ -146,8 +172,7 @@ class PathFinder:
         Returns a list of the block ids visited based on answers provided
         :return: List of block location dicts
         """
-        if self._full_routing_path and \
-                not self.answer_store.is_dirty:
+        if self._full_routing_path and not self.answer_store.is_dirty:
             return self._full_routing_path
 
         self._full_routing_path = self.build_path()
@@ -168,21 +193,30 @@ class PathFinder:
         """
         routing_path = self.get_full_routing_path()
 
-        current_location_index = PathFinder._get_current_location_index(routing_path, current_location)
+        current_location_index = PathFinder._get_current_location_index(
+            routing_path, current_location
+        )
 
-        if current_location_index is not None and current_location_index < len(routing_path) - 1:
+        if (
+            current_location_index is not None
+            and current_location_index < len(routing_path) - 1
+        ):
             if self._is_survey_completed(routing_path):
-                return routing_path[-1]     # Go to Summary location
+                return routing_path[-1]  # Go to Summary location
 
-            section_summary_location = self._get_valid_section_summary(current_location.block_id, routing_path)
+            section_summary_location = self._get_valid_section_summary(
+                current_location.block_id, routing_path
+            )
             if section_summary_location:
-                return section_summary_location     # Go to SectionSummary location
+                return section_summary_location  # Go to SectionSummary location
 
             return routing_path[current_location_index + 1]
 
     def _is_survey_completed(self, routing_path):
         # Check all blocks on routing path are complete
-        for location in routing_path[:-1]:  # Don't evaluate end block (Summary or Confirmation)
+        for location in routing_path[
+            :-1
+        ]:  # Don't evaluate end block (Summary or Confirmation)
             if location not in self.completed_blocks:
                 return False
 
@@ -199,7 +233,11 @@ class PathFinder:
         """
         current_section = self.schema.get_section_by_block_id(current_block_id)
 
-        if self.schema.get_block(current_block_id)['type'] in ['Summary', 'SectionSummary', 'AnswerSummary']:
+        if self.schema.get_block(current_block_id)['type'] in [
+            'Summary',
+            'SectionSummary',
+            'AnswerSummary',
+        ]:
             return None
 
         for location in routing_path:
@@ -231,7 +269,9 @@ class PathFinder:
             return Location(block_id=block['parent_id'])
 
         routing_path = self.get_full_routing_path()
-        current_location_index = PathFinder._get_current_location_index(routing_path, current_location)
+        current_location_index = PathFinder._get_current_location_index(
+            routing_path, current_location
+        )
 
         if current_location_index is not None and current_location_index != 0:
             return routing_path[current_location_index - 1]

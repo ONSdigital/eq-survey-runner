@@ -18,7 +18,7 @@ class TestThankYou(IntegrationTestCase):
         'employment_date': '1983-06-02',
         'region_code': 'GB-ENG',
         'language_code': 'en',
-        'roles': []
+        'roles': [],
     }
 
     def test_thank_you_page_shows_trading_as_if_present(self):
@@ -49,7 +49,9 @@ class TestThankYou(IntegrationTestCase):
         self.assertInUrl('thank-you')
         self.assertInBody('(Integration Tests)')
 
-    def test_thank_you_page_does_not_show_empty_parenthesis_if_trading_as_if_not_present(self):
+    def test_thank_you_page_does_not_show_empty_parenthesis_if_trading_as_if_not_present(
+        self
+    ):
 
         with patch('tests.integration.create_token.PAYLOAD', self.example_payload):
             self.launchSurvey('test', 'currency')
@@ -79,7 +81,9 @@ class TestThankYou(IntegrationTestCase):
             self.assertInUrl('thank-you')
             self.assertNotInBody('(Integration Tests)')
 
-    def test_thank_you_page_does_not_show_empty_parenthesis_if_trading_as_is_empty(self):
+    def test_thank_you_page_does_not_show_empty_parenthesis_if_trading_as_is_empty(
+        self
+    ):
         empty_trading_as_payload = self.example_payload.copy()
         empty_trading_as_payload['trad_as'] = ''
 
@@ -115,7 +119,9 @@ class TestThankYou(IntegrationTestCase):
         account_service_url_supplied = self.example_payload.copy()
         account_service_url_supplied['account_service_url'] = 'http://correct.place'
 
-        with patch('tests.integration.create_token.PAYLOAD', account_service_url_supplied):
+        with patch(
+            'tests.integration.create_token.PAYLOAD', account_service_url_supplied
+        ):
             self.launchSurvey('test', 'currency')
 
             # check we're on first page

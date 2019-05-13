@@ -4,24 +4,30 @@ from tests.app.app_context_test_case import AppContextTestCase
 
 
 class TestLocation(AppContextTestCase):
-
     def test_location_url(self):
         location = Location('some-block')
         location_url = location.url()
 
-        self.assertEqual(location_url, 'http://test.localdomain/questionnaire/some-block/')
+        self.assertEqual(
+            location_url, 'http://test.localdomain/questionnaire/some-block/'
+        )
 
     def test_location_url_with_list(self):
         location = Location('add-block', 'people')
         location_url = location.url()
 
-        self.assertEqual(location_url, 'http://test.localdomain/questionnaire/people/add-block/')
+        self.assertEqual(
+            location_url, 'http://test.localdomain/questionnaire/people/add-block/'
+        )
 
     def test_location_url_with_list_item_id(self):
         location = Location('add-block', 'people', 'abc123')
         location_url = location.url()
 
-        self.assertEqual(location_url, 'http://test.localdomain/questionnaire/people/abc123/add-block/')
+        self.assertEqual(
+            location_url,
+            'http://test.localdomain/questionnaire/people/abc123/add-block/',
+        )
 
     def test_location_hash(self):
         location = Location('some-block')
@@ -42,9 +48,7 @@ class TestLocation(AppContextTestCase):
         self.assertEqual(location.list_name, 'people')
 
     def test_load_location_from_dict_without_list_item_id(self):
-        location_dict = {
-            'block_id': 'some-block',
-        }
+        location_dict = {'block_id': 'some-block'}
 
         location = Location.from_dict(location_dict)
 

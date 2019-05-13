@@ -23,7 +23,10 @@ def read_file(file_name):
             contents = file.read()
             return contents
     else:
-        logger.info('Did not load file because filename supplied was None or not a file', filename=file_name)
+        logger.info(
+            'Did not load file because filename supplied was None or not a file',
+            filename=file_name,
+        )
         return None
 
 
@@ -59,14 +62,19 @@ EQ_NEW_RELIC_ENABLED = parse_mode(os.getenv('EQ_NEW_RELIC_ENABLED', 'False'))
 EQ_APPLICATION_VERSION_PATH = '.application-version'
 EQ_APPLICATION_VERSION = read_file(EQ_APPLICATION_VERSION_PATH)
 
-EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS = ensure_min(int(os.getenv('EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS', '10000')),
-                                                       1000)
+EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS = ensure_min(
+    int(os.getenv('EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS', '10000')), 1000
+)
 
 EQ_STORAGE_BACKEND = os.getenv('EQ_STORAGE_BACKEND', 'datastore')
-EQ_DATASTORE_EMULATOR_CREDENTIALS = parse_mode(os.getenv('EQ_DATASTORE_EMULATOR_CREDENTIALS', 'False'))
+EQ_DATASTORE_EMULATOR_CREDENTIALS = parse_mode(
+    os.getenv('EQ_DATASTORE_EMULATOR_CREDENTIALS', 'False')
+)
 EQ_DYNAMODB_ENDPOINT = os.getenv('EQ_DYNAMODB_ENDPOINT')
 EQ_DYNAMODB_MAX_RETRIES = int(os.getenv('EQ_DYNAMODB_MAX_RETRIES', '5'))
-EQ_DYNAMODB_MAX_POOL_CONNECTIONS = int(os.getenv('EQ_DYNAMODB_MAX_POOL_CONNECTIONS', '30'))
+EQ_DYNAMODB_MAX_POOL_CONNECTIONS = int(
+    os.getenv('EQ_DYNAMODB_MAX_POOL_CONNECTIONS', '30')
+)
 EQ_SUBMITTED_RESPONSES_TABLE_NAME = get_env_or_fail('EQ_SUBMITTED_RESPONSES_TABLE_NAME')
 EQ_QUESTIONNAIRE_STATE_TABLE_NAME = get_env_or_fail('EQ_QUESTIONNAIRE_STATE_TABLE_NAME')
 EQ_SESSION_TABLE_NAME = get_env_or_fail('EQ_SESSION_TABLE_NAME')
@@ -77,8 +85,12 @@ EQ_REDIS_PORT = get_env_or_fail('EQ_REDIS_PORT')
 
 EQ_DEV_MODE = parse_mode(os.getenv('EQ_DEV_MODE', 'False'))
 EQ_ENABLE_CACHE = parse_mode(os.getenv('EQ_ENABLE_CACHE', 'True'))
-EQ_ENABLE_FLASK_DEBUG_TOOLBAR = parse_mode(os.getenv('EQ_ENABLE_FLASK_DEBUG_TOOLBAR', 'False'))
-EQ_ENABLE_SECURE_SESSION_COOKIE = parse_mode(os.getenv('EQ_ENABLE_SECURE_SESSION_COOKIE', 'True'))
+EQ_ENABLE_FLASK_DEBUG_TOOLBAR = parse_mode(
+    os.getenv('EQ_ENABLE_FLASK_DEBUG_TOOLBAR', 'False')
+)
+EQ_ENABLE_SECURE_SESSION_COOKIE = parse_mode(
+    os.getenv('EQ_ENABLE_SECURE_SESSION_COOKIE', 'True')
+)
 
 EQ_ENABLE_HTML_MINIFY = parse_mode(os.getenv('EQ_ENABLE_HTML_MINIFY', 'True'))
 

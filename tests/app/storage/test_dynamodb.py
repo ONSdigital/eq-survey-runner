@@ -9,7 +9,6 @@ from tests.app.app_context_test_case import AppContextTestCase
 
 
 class TestDynamo(AppContextTestCase):
-
     def setUp(self):
         self._ddb = mock_dynamodb2()
         self._ddb.start()
@@ -24,9 +23,16 @@ class TestDynamo(AppContextTestCase):
             if table_name:
                 client.create_table(
                     TableName=table_name,
-                    AttributeDefinitions=[{'AttributeName': config['key_field'], 'AttributeType': 'S'}],
-                    KeySchema=[{'AttributeName': config['key_field'], 'KeyType': 'HASH'}],
-                    ProvisionedThroughput={'ReadCapacityUnits': 1, 'WriteCapacityUnits': 1}
+                    AttributeDefinitions=[
+                        {'AttributeName': config['key_field'], 'AttributeType': 'S'}
+                    ],
+                    KeySchema=[
+                        {'AttributeName': config['key_field'], 'KeyType': 'HASH'}
+                    ],
+                    ProvisionedThroughput={
+                        'ReadCapacityUnits': 1,
+                        'WriteCapacityUnits': 1,
+                    },
                 )
 
     def tearDown(self):

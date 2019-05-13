@@ -6,7 +6,6 @@ with open('tests/fixtures/blns.json') as blns:
 
 
 class TestTextArea(IntegrationTestCase):
-
     def test_empty_submission(self):
         self.launchSurvey('test', 'textarea')
         self.post(action='save_continue')

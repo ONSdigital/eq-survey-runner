@@ -9,7 +9,6 @@ login_manager = LoginManager()
 
 
 class SurveyRunnerTestCase(unittest.TestCase):
-
     def setUp(self):
         application = Flask(__name__)
         application.config['TESTING'] = True

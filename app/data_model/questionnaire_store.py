@@ -43,8 +43,10 @@ class QuestionnaireStore:
 
     def _deserialise(self, data):
         json_data = json.loads(data, use_decimal=True)
-        completed_blocks = [Location.from_dict(location_dict=completed_block) for completed_block in
-                            json_data.get('COMPLETED_BLOCKS', [])]
+        completed_blocks = [
+            Location.from_dict(location_dict=completed_block)
+            for completed_block in json_data.get('COMPLETED_BLOCKS', [])
+        ]
         self.set_metadata(json_data.get('METADATA', {}))
         self.answer_store = AnswerStore(json_data.get('ANSWERS'))
         self.list_store = ListStore.deserialise(json_data.get('LISTS'))

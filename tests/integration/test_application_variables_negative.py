@@ -3,7 +3,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestApplicationVariablesNegative(IntegrationTestCase):
-
     def setUp(self):
         settings.EQ_DEV_MODE = True
         settings.EQ_ENABLE_LIVE_RELOAD = False

@@ -25,10 +25,12 @@ def flush_data():
     if not encrypted_token or encrypted_token is None:
         return Response(status=403)
 
-    decrypted_token = decrypt(token=encrypted_token,
-                              key_store=current_app.eq['key_store'],
-                              key_purpose=KEY_PURPOSE_AUTHENTICATION,
-                              leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'])
+    decrypted_token = decrypt(
+        token=encrypted_token,
+        key_store=current_app.eq['key_store'],
+        key_purpose=KEY_PURPOSE_AUTHENTICATION,
+        leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'],
+    )
 
     roles = decrypted_token.get('roles')
 
@@ -51,12 +53,22 @@ def _submit_data(user):
 
         schema = load_schema_from_metadata(metadata)
         completed_blocks = get_completed_blocks(user)
-        routing_path = PathFinder(schema, answer_store, metadata, completed_blocks).get_full_routing_path()
+        routing_path = PathFinder(
+            schema, answer_store, metadata, completed_blocks
+        ).get_full_routing_path()
 
-        message = convert_answers(schema, questionnaire_store, routing_path, flushed=True)
-        encrypted_message = encrypt(message, current_app.eq['key_store'], KEY_PURPOSE_SUBMISSION)
+        message = convert_answers(
+            schema, questionnaire_store, routing_path, flushed=True
+        )
+        encrypted_message = encrypt(
+            message, current_app.eq['key_store'], KEY_PURPOSE_SUBMISSION
+        )
 
-        sent = current_app.eq['submitter'].send_message(encrypted_message, case_id=metadata.get('case_id'), tx_id=metadata.get('tx_id'))
+        sent = current_app.eq['submitter'].send_message(
+            encrypted_message,
+            case_id=metadata.get('case_id'),
+            tx_id=metadata.get('tx_id'),
+        )
 
         if not sent:
             raise SubmissionFailedException()

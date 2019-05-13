@@ -7,7 +7,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestFlushData(IntegrationTestCase):
-
     def setUp(self):
         self.submitter_patcher = patch('app.setup.LogSubmitter')
         mock_submitter_class = self.submitter_patcher.start()
@@ -21,9 +20,7 @@ class TestFlushData(IntegrationTestCase):
         super().setUp()
         self.launchSurvey('test', 'textfield')
 
-        form_data = {
-            'name-answer': 'Joe Bloggs',
-        }
+        form_data = {'name-answer': 'Joe Bloggs'}
         self.post(form_data)
 
     def tearDown(self):
@@ -33,7 +30,10 @@ class TestFlushData(IntegrationTestCase):
         super().tearDown()
 
     def test_flush_data_successful(self):
-        self.post(url='/flush?token=' + self.token_generator.generate_token(self.get_payload()))
+        self.post(
+            url='/flush?token='
+            + self.token_generator.generate_token(self.get_payload())
+        )
         self.assertStatusOK()
 
     def test_no_data_to_flush(self):
@@ -61,11 +61,17 @@ class TestFlushData(IntegrationTestCase):
         self.assertStatusForbidden()
 
     def test_double_flush(self):
-        self.post(url='/flush?token=' + self.token_generator.generate_token(self.get_payload()))
+        self.post(
+            url='/flush?token='
+            + self.token_generator.generate_token(self.get_payload())
+        )
 
         # Once the data has been flushed it is wiped.
         # It can't be flushed again and should return 404 no data on second flush
-        self.post(url='/flush?token=' + self.token_generator.generate_token(self.get_payload()))
+        self.post(
+            url='/flush?token='
+            + self.token_generator.generate_token(self.get_payload())
+        )
         self.assertStatusNotFound()
 
     def test_no_token_passed_to_flush(self):
@@ -77,14 +83,22 @@ class TestFlushData(IntegrationTestCase):
         self.assertStatusForbidden()
 
     def test_flush_errors_when_submission_fails(self):
-        self.submitter_instance.send_message.return_value = False  # pylint: disable=no-member
+        self.submitter_instance.send_message.return_value = (
+            False
+        )  # pylint: disable=no-member
 
-        self.post(url='/flush?token=' + self.token_generator.generate_token(self.get_payload()))
+        self.post(
+            url='/flush?token='
+            + self.token_generator.generate_token(self.get_payload())
+        )
         self.assertStatusCode(503)
 
     def test_flush_sets_flushed_flag_to_true(self):
 
-        self.post(url='/flush?token=' + self.token_generator.generate_token(self.get_payload()))
+        self.post(
+            url='/flush?token='
+            + self.token_generator.generate_token(self.get_payload())
+        )
 
         self.encrypt_instance.assert_called_once()  # pylint: disable=no-member
         args = self.encrypt_instance.call_args[0]  # pylint: disable=no-member

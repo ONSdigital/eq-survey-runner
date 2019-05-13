@@ -79,7 +79,9 @@ class EQSessionSchema(Schema, DateTimeSchemaMixin):
     eq_session_id = fields.Str()
     user_id = fields.Str()
     session_data = fields.Str()
-    expires_at = Timestamp(allow_none=True)  # To cater in flight data (Should never actually be None)
+    expires_at = Timestamp(
+        allow_none=True
+    )  # To cater in flight data (Should never actually be None)
 
     @post_load
     def make_model(self, data):

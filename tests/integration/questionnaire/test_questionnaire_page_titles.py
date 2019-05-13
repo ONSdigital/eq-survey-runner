@@ -2,7 +2,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestQuestionnairePageTitles(IntegrationTestCase):
-
     def test_should_have_question_in_page_title_when_loading_introduction(self):
         # Given, When
         self.launchSurvey('test', 'final_confirmation')
@@ -15,7 +14,9 @@ class TestQuestionnairePageTitles(IntegrationTestCase):
         # When
         self.post(action='start_questionnaire')
         # Then
-        self.assertEqualPageTitle('What is your favourite breakfast food - Final confirmation to submit')
+        self.assertEqualPageTitle(
+            'What is your favourite breakfast food - Final confirmation to submit'
+        )
 
     def test_should_have_question_in_page_title_when_loading_confirmation(self):
         # Given
@@ -42,7 +43,9 @@ class TestQuestionnairePageTitles(IntegrationTestCase):
         # When submit
         self.post(action=None)
         # Then
-        self.assertEqualPageTitle("We\'ve received your answers - Final confirmation to submit")
+        self.assertEqualPageTitle(
+            "We\'ve received your answers - Final confirmation to submit"
+        )
 
     def test_session_expired_page_title(self):
         # Given

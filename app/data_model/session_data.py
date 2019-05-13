@@ -1,22 +1,23 @@
 class SessionData:
-
-    def __init__(self,
-                 tx_id,
-                 eq_id,
-                 form_type,
-                 period_str,
-                 language_code,
-                 survey_url,
-                 ru_name,
-                 ru_ref,
-                 response_id,
-                 case_id,
-                 case_ref=None,
-                 account_service_url=None,
-                 account_service_log_out_url=None,
-                 submitted_time=None,
-                 trad_as=None,
-                 **_):                  # pylint: disable=too-many-locals
+    def __init__(
+        self,
+        tx_id,
+        eq_id,
+        form_type,
+        period_str,
+        language_code,
+        survey_url,
+        ru_name,
+        ru_ref,
+        response_id,
+        case_id,
+        case_ref=None,
+        account_service_url=None,
+        account_service_log_out_url=None,
+        submitted_time=None,
+        trad_as=None,
+        **_,
+    ):  # pylint: disable=too-many-locals
         self.tx_id = tx_id
         self.eq_id = eq_id
         self.form_type = form_type

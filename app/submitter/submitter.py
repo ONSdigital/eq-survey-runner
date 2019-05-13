@@ -18,7 +18,6 @@ class LogSubmitter:
 
 
 class GCSSubmitter:
-
     def __init__(self, bucket_name):
         client = storage.Client()
         self.bucket = client.get_bucket(bucket_name)
@@ -28,10 +27,7 @@ class GCSSubmitter:
 
         blob = self.bucket.blob(tx_id)
 
-        blob.metadata = {
-            'tx_id': tx_id,
-            'case_id': case_id,
-        }
+        blob.metadata = {'tx_id': tx_id, 'case_id': case_id}
 
         blob.upload_from_string(str(message).encode('utf8'))
 
@@ -42,29 +38,45 @@ class RabbitMQSubmitter:
     def __init__(self, host, secondary_host, port, queue, username=None, password=None):
         self.queue = queue
         if username and password:
-            self.rabbitmq_url = 'amqp://{username}:{password}@{host}:{port}/%2F'.format(username=username,
-                                                                                        password=password,
-                                                                                        host=host,
-                                                                                        port=port)
-            self.rabbitmq_secondary_url = 'amqp://{username}:{password}@{host}:{port}/%2F'.format(username=username,
-                                                                                                  password=password,
-                                                                                                  host=secondary_host,
-                                                                                                  port=port)
+            self.rabbitmq_url = 'amqp://{username}:{password}@{host}:{port}/%2F'.format(
+                username=username, password=password, host=host, port=port
+            )
+            self.rabbitmq_secondary_url = 'amqp://{username}:{password}@{host}:{port}/%2F'.format(
+                username=username, password=password, host=secondary_host, port=port
+            )
         else:
             self.rabbitmq_url = 'amqp://{host}:{port}/%2F'.format(host=host, port=port)
-            self.rabbitmq_secondary_url = 'amqp://{host}:{port}/%2F'.format(host=secondary_host, port=port)
+            self.rabbitmq_secondary_url = 'amqp://{host}:{port}/%2F'.format(
+                host=secondary_host, port=port
+            )
 
     def _connect(self):
         try:
-            logger.info('attempt to open connection', server='primary', category='rabbitmq')
+            logger.info(
+                'attempt to open connection', server='primary', category='rabbitmq'
+            )
             return BlockingConnection(URLParameters(self.rabbitmq_url))
         except AMQPError as e:
-            logger.error('unable to open connection', exc_info=e, server='primary', category='rabbitmq')
+            logger.error(
+                'unable to open connection',
+                exc_info=e,
+                server='primary',
+                category='rabbitmq',
+            )
             try:
-                logger.info('attempt to open connection', server='secondary', category='rabbitmq')
+                logger.info(
+                    'attempt to open connection',
+                    server='secondary',
+                    category='rabbitmq',
+                )
                 return BlockingConnection(URLParameters(self.rabbitmq_secondary_url))
             except AMQPError as err:
-                logger.error('unable to open connection', exc_info=e, server='secondary', category='rabbitmq')
+                logger.error(
+                    'unable to open connection',
+                    exc_info=e,
+                    server='secondary',
+                    category='rabbitmq',
+                )
                 raise err
 
     @staticmethod
@@ -93,17 +105,18 @@ class RabbitMQSubmitter:
             channel = connection.channel()
 
             channel.queue_declare(queue=self.queue, durable=True)
-            properties = BasicProperties(headers={},
-                                         delivery_mode=2)
+            properties = BasicProperties(headers={}, delivery_mode=2)
 
             properties.headers['tx_id'] = tx_id
             properties.headers['case_id'] = case_id
 
-            published = channel.basic_publish(exchange='',
-                                              routing_key=self.queue,
-                                              body=message_as_string,
-                                              mandatory=True,
-                                              properties=properties)
+            published = channel.basic_publish(
+                exchange='',
+                routing_key=self.queue,
+                body=message_as_string,
+                mandatory=True,
+                properties=properties,
+            )
             if published:
                 logger.info('sent message', category='rabbitmq')
             else:

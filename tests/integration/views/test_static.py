@@ -22,4 +22,6 @@ class TestStatic(IntegrationTestCase):
 
     def test_cookies_and_privacy(self):
         self.get('/cookies-privacy')
-        self.assertInBody('We can only use your information for research and statistical purposes. ')
+        self.assertInBody(
+            'We can only use your information for research and statistical purposes. '
+        )

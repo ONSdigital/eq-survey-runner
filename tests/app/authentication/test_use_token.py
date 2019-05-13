@@ -10,7 +10,6 @@ from tests.app.app_context_test_case import AppContextTestCase
 
 
 class TestJtiClaimStorage(AppContextTestCase):
-
     def test_should_use_token(self):
         # Given
         jti_token = str(uuid4())
@@ -40,12 +39,17 @@ class TestJtiClaimStorage(AppContextTestCase):
 
         # When
         with self.assertRaises(JtiTokenUsed) as err:
-            with patch('app.storage.redis.RedisStorage.put_jti', side_effect=[ItemAlreadyExistsError()]):
+            with patch(
+                'app.storage.redis.RedisStorage.put_jti',
+                side_effect=[ItemAlreadyExistsError()],
+            ):
                 use_jti_claim(jti_token, expires)
 
         # Then
         self.assertEqual(err.exception.jti_claim, jti_token)
-        self.assertEqual(str(err.exception), "jti claim '{}' has already been used".format(jti_token))
+        self.assertEqual(
+            str(err.exception), "jti claim '{}' has already been used".format(jti_token)
+        )
 
     def test_should_raise_type_error_invalid_uuid(self):
         jti_token = 'jti_token'

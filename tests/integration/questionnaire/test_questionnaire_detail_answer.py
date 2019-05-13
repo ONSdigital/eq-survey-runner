@@ -7,10 +7,12 @@ class TestQuestionnaireDetailAnswer(IntegrationTestCase):
 
     def test_detail_answer(self):
         self.launchSurvey('test', 'checkbox_multiple_detail_answers')
-        self.post({
-            'mandatory-checkbox-answer': ['Ham', 'Pineapple', 'Your choice'],
-            'your-choice-answer-mandatory': 'Chicken',
-        })
+        self.post(
+            {
+                'mandatory-checkbox-answer': ['Ham', 'Pineapple', 'Your choice'],
+                'your-choice-answer-mandatory': 'Chicken',
+            }
+        )
         self.assertInBody('Ham')
         self.assertInBody('Pineapple')
         self.assertInBody('Your choice')

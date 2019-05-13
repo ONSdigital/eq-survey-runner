@@ -4,14 +4,15 @@ from app.templating.summary.answer import Answer
 
 
 class Question:
-
     def __init__(self, question_schema, answer_store, schema):
         self.id = question_schema['id']
         self.type = question_schema['type']
         self.schema = schema
         self.answer_schemas = iter(question_schema['answers'])
 
-        self.title = question_schema.get('title') or question_schema['answers'][0]['label']
+        self.title = (
+            question_schema.get('title') or question_schema['answers'][0]['label']
+        )
         self.number = question_schema.get('number', None)
         self.answers = self._build_answers(answer_store, question_schema)
 
@@ -28,7 +29,9 @@ class Question:
 
         for answer_schema in self.answer_schemas:
             answer_value = self._get_answer(answer_store, answer_schema['id'])
-            answer = self._build_answer(answer_store, question_schema, answer_schema, answer_value)
+            answer = self._build_answer(
+                answer_store, question_schema, answer_schema, answer_value
+            )
 
             summary_answer = Answer(answer_schema, answer).serialize()
             summary_answers.append(summary_answer)
@@ -41,7 +44,9 @@ class Question:
 
         return summary_answers
 
-    def _build_answer(self, answer_store, question_schema, answer_schema, answer_value=None):
+    def _build_answer(
+        self, answer_store, question_schema, answer_schema, answer_value=None
+    ):
         if answer_value is None:
             return None
 
@@ -57,34 +62,42 @@ class Question:
         }
 
         if answer_schema['type'] in answer_builder.keys():
-            return answer_builder[answer_schema['type']](answer_value, answer_schema, answer_store)
+            return answer_builder[answer_schema['type']](
+                answer_value, answer_schema, answer_store
+            )
 
         return answer_value
 
     def _build_checkbox_answers(self, answer, answer_schema, answer_store):
         multiple_answers = []
-        CheckboxSummaryAnswer = collections.namedtuple('CheckboxSummaryAnswer', 'label detail_answer_value')
+        CheckboxSummaryAnswer = collections.namedtuple(
+            'CheckboxSummaryAnswer', 'label detail_answer_value'
+        )
         for option in answer_schema['options']:
             if option['value'] in answer:
-                detail_answer_value = self._get_detail_answer_value(option, answer_store)
+                detail_answer_value = self._get_detail_answer_value(
+                    option, answer_store
+                )
 
-                multiple_answers.append(CheckboxSummaryAnswer(label=option['label'],
-                                                              detail_answer_value=detail_answer_value))
+                multiple_answers.append(
+                    CheckboxSummaryAnswer(
+                        label=option['label'], detail_answer_value=detail_answer_value
+                    )
+                )
 
         return multiple_answers or None
 
     def _build_date_range_answer(self, answer_store, answer):
         next_answer = next(self.answer_schemas)
         to_date = self._get_answer(answer_store, next_answer['id'])
-        return {
-            'from': answer,
-            'to': to_date,
-        }
+        return {'from': answer, 'to': to_date}
 
     def _build_radio_answer(self, answer, answer_schema, answer_store):
         for option in answer_schema['options']:
             if answer == option['value']:
-                detail_answer_value = self._get_detail_answer_value(option, answer_store)
+                detail_answer_value = self._get_detail_answer_value(
+                    option, answer_store
+                )
                 return {
                     'label': option['label'],
                     'detail_answer_value': detail_answer_value,

@@ -36,7 +36,6 @@ def get_file_contents(filename, trim=False):
 
 
 class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public-methods
-
     def setUp(self):
         # Cache for requests
         self.last_url = None
@@ -54,39 +53,52 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         self._redis.start()
 
         from application import configure_logging
+
         configure_logging()
 
-        setting_overrides = {
-            'EQ_ENABLE_HTML_MINIFY': False
-        }
+        setting_overrides = {'EQ_ENABLE_HTML_MINIFY': False}
 
         self._application = create_app(setting_overrides)
 
-        self._key_store = KeyStore({
-            'keys': {
-                EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID: {
-                    'purpose': KEY_PURPOSE_AUTHENTICATION,
-                    'type': 'private',
-                    'value': get_file_contents('third-party/sdc-rrm-authentication-signing-private-v1.pem')},
-                SR_USER_AUTHENTICATION_PUBLIC_KEY_KID: {
-                    'purpose': KEY_PURPOSE_AUTHENTICATION,
-                    'type': 'public',
-                    'value': get_file_contents('third-party/sdc-sr-authentication-encryption-public-v1.pem')},
-                EQ_SUBMISSION_SDX_PRIVATE_KEY: {
-                    'purpose': KEY_PURPOSE_SUBMISSION,
-                    'type': 'private',
-                    'value': get_file_contents('third-party/sdc-sdx-submission-encryption-private-v1.pem')},
-                EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY: {
-                    'purpose': KEY_PURPOSE_SUBMISSION,
-                    'type': 'public',
-                    'value': get_file_contents('sdc-sr-submission-signing-private-v1.pem')},
+        self._key_store = KeyStore(
+            {
+                'keys': {
+                    EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID: {
+                        'purpose': KEY_PURPOSE_AUTHENTICATION,
+                        'type': 'private',
+                        'value': get_file_contents(
+                            'third-party/sdc-rrm-authentication-signing-private-v1.pem'
+                        ),
+                    },
+                    SR_USER_AUTHENTICATION_PUBLIC_KEY_KID: {
+                        'purpose': KEY_PURPOSE_AUTHENTICATION,
+                        'type': 'public',
+                        'value': get_file_contents(
+                            'third-party/sdc-sr-authentication-encryption-public-v1.pem'
+                        ),
+                    },
+                    EQ_SUBMISSION_SDX_PRIVATE_KEY: {
+                        'purpose': KEY_PURPOSE_SUBMISSION,
+                        'type': 'private',
+                        'value': get_file_contents(
+                            'third-party/sdc-sdx-submission-encryption-private-v1.pem'
+                        ),
+                    },
+                    EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY: {
+                        'purpose': KEY_PURPOSE_SUBMISSION,
+                        'type': 'public',
+                        'value': get_file_contents(
+                            'sdc-sr-submission-signing-private-v1.pem'
+                        ),
+                    },
+                }
             }
-        })
+        )
 
         self.token_generator = TokenGenerator(
             self._key_store,
             EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID,
-            SR_USER_AUTHENTICATION_PUBLIC_KEY_KID
+            SR_USER_AUTHENTICATION_PUBLIC_KEY_KID,
         )
 
         self._client = self._application.test_client()
@@ -101,7 +113,9 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         :param eq_id: The id of the survey to launch e.g. 'census', 'test' etc.
         :param form_type_id: The form type of the survey e.g. 'household', 'radio' etc.
         """
-        token = self.token_generator.create_token(form_type_id=form_type_id, eq_id=eq_id, **payload_kwargs)
+        token = self.token_generator.create_token(
+            form_type_id=form_type_id, eq_id=eq_id, **payload_kwargs
+        )
         self.get('/session?token=' + token)
 
     def dumpAnswers(self):
@@ -138,15 +152,19 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         :param url: the URL to GET
         """
         environ, response = self._client.get(
-            url,
-            as_tuple=True,
-            follow_redirects=True,
-            **kwargs
+            url, as_tuple=True, follow_redirects=True, **kwargs
         )
 
         self._cache_response(environ, response)
 
-    def post(self, post_data=None, url=None, action='save_continue', action_value='', **kwargs):
+    def post(
+        self,
+        post_data=None,
+        url=None,
+        action='save_continue',
+        action_value='',
+        **kwargs,
+    ):
         """
         POSTs to the specified URL with post_data and performs a GET
         with the URL from the re-direct.
@@ -170,11 +188,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
             _post_data.update({'action[{action}]'.format(action=action): action_value})
 
         environ, response = self._client.post(
-            url,
-            data=_post_data,
-            as_tuple=True,
-            follow_redirects=True,
-            **kwargs
+            url, data=_post_data, as_tuple=True, follow_redirects=True, **kwargs
         )
 
         self._cache_response(environ, response)
@@ -188,7 +202,10 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
     @staticmethod
     def _extract_csrf_token(html):
-        match = re.search(r'<input id="csrf_token" name="csrf_token" type="hidden" value="(.+?)"/>', html)
+        match = re.search(
+            r'<input id="csrf_token" name="csrf_token" type="hidden" value="(.+?)"/>',
+            html,
+        )
         return (match.group(1) or None) if match else None
 
     def getResponseData(self):
@@ -253,14 +270,20 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
     def assertNotInPage(self, content, message=None):
 
-        self.assertNotIn(member=str(content), container=self.getResponseData(), msg=str(message))
+        self.assertNotIn(
+            member=str(content), container=self.getResponseData(), msg=str(message)
+        )
 
     def assertRegexPage(self, regex, message=None):
 
-        self.assertRegex(text=self.getResponseData(), expected_regex=str(regex), msg=str(message))
+        self.assertRegex(
+            text=self.getResponseData(), expected_regex=str(regex), msg=str(message)
+        )
 
     def assertEqualPageTitle(self, title):
-        self.assertEqual(self.getHtmlSoup().title.string, title)  # pylint: disable=no-member
+        self.assertEqual(
+            self.getHtmlSoup().title.string, title
+        )  # pylint: disable=no-member
 
     def assertStatusOK(self):
         self.assertStatusCode(200)

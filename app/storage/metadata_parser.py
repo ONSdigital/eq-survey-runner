@@ -50,34 +50,13 @@ VALIDATORS = {
 }
 
 MANDATORY_METADATA = [
-    {
-        'name': 'eq_id',
-        'validator': 'string',
-    },
-    {
-        'name': 'form_type',
-        'validator': 'string',
-    },
-    {
-        'name': 'ru_ref',
-        'validator': 'string',
-    },
-    {
-        'name': 'collection_exercise_sid',
-        'validator': 'string',
-    },
-    {
-        'name': 'tx_id',
-        'validator': 'uuid',
-    },
-    {
-        'name': 'case_id',
-        'validator': 'uuid',
-    },
-    {
-        'name': 'response_id',
-        'validator': 'string',
-    },
+    {'name': 'eq_id', 'validator': 'string'},
+    {'name': 'form_type', 'validator': 'string'},
+    {'name': 'ru_ref', 'validator': 'string'},
+    {'name': 'collection_exercise_sid', 'validator': 'string'},
+    {'name': 'tx_id', 'validator': 'uuid'},
+    {'name': 'case_id', 'validator': 'uuid'},
+    {'name': 'response_id', 'validator': 'string'},
 ]
 
 
@@ -104,15 +83,21 @@ def _validate_metadata_values_are_valid(claims, required_metadata):
             name = metadata_field['name']
             claim = claims.get(name)
             if name not in claims:
-                raise InvalidTokenException('Missing required key {} from claims'.format(name))
+                raise InvalidTokenException(
+                    'Missing required key {} from claims'.format(name)
+                )
 
             logger.debug('parsing metadata', key=name, value=claim)
             VALIDATORS[metadata_field['validator']](claim)
 
     except (RuntimeError, ValueError, TypeError) as error:
         logger.error('Unable to parse metadata', key=name, value=claim, exc_info=error)
-        raise InvalidTokenException('incorrect data in token for {}'.format(name)) from error
+        raise InvalidTokenException(
+            'incorrect data in token for {}'.format(name)
+        ) from error
     except KeyError as key_error:
-        error_msg = 'Invalid validator for schema metadata - {}'.format(key_error.args[0])
+        error_msg = 'Invalid validator for schema metadata - {}'.format(
+            key_error.args[0]
+        )
         logger.error(error_msg, exc_info=key_error)
         raise KeyError(error_msg) from key_error

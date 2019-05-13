@@ -125,22 +125,25 @@ class TestNumberValidator(unittest.TestCase):
             self.fail('Valid number raised StopValidation')
 
     def test_manual_decimal(self):
-        answer = {'decimal_places': 2, 'label': 'Range Test 10 to 20',
-                  'mandatory': False,
-                  'validation':
-                      {
-                          'messages':
-                          {
-                              'INVALID_NUMBER': 'Please only enter whole numbers into the field.',
-                              'INVALID_DECIMAL': 'Please enter a number to 2 decimal places.'
-                          }
-                      },
-                  'id': 'test-range', 'type': 'Currency'
-                 }
+        answer = {
+            'decimal_places': 2,
+            'label': 'Range Test 10 to 20',
+            'mandatory': False,
+            'validation': {
+                'messages': {
+                    'INVALID_NUMBER': 'Please only enter whole numbers into the field.',
+                    'INVALID_DECIMAL': 'Please enter a number to 2 decimal places.',
+                }
+            },
+            'id': 'test-range',
+            'type': 'Currency',
+        }
         label = answer['label']
         returned_error_messages = answer['validation']['messages']
 
-        decimal_field = get_number_field(answer, label, '', returned_error_messages, AnswerStore(), False)
+        decimal_field = get_number_field(
+            answer, label, '', returned_error_messages, AnswerStore(), False
+        )
 
         self.assertTrue(decimal_field.field_class == CustomDecimalField)
 
@@ -154,7 +157,9 @@ class TestNumberValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             test_validator(mock_form, decimal_field)
 
-            self.assertEqual(str(ite.exception), returned_error_messages['INVALID_DECIMAL'])
+            self.assertEqual(
+                str(ite.exception), returned_error_messages['INVALID_DECIMAL']
+            )
 
         try:
             decimal_field.raw_data = ['1.23']
@@ -164,23 +169,29 @@ class TestNumberValidator(unittest.TestCase):
 
     def test_manual_decimal_too_large(self):
         answer = {
-            'decimal_places': 10, 'label': 'Range Test 10 to 20',
+            'decimal_places': 10,
+            'label': 'Range Test 10 to 20',
             'mandatory': False,
-            'validation':
-                {
-                    'messages':
-                        {
-                            'INVALID_NUMBER': 'Please only enter whole numbers into the field.',
-                            'INVALID_DECIMAL': 'Please enter a number to 2 decimal places.'
-                        }
-                },
-            'id': 'test-range', 'type': 'Currency'
+            'validation': {
+                'messages': {
+                    'INVALID_NUMBER': 'Please only enter whole numbers into the field.',
+                    'INVALID_DECIMAL': 'Please enter a number to 2 decimal places.',
+                }
+            },
+            'id': 'test-range',
+            'type': 'Currency',
         }
         label = answer['label']
         returned_error_messages = answer['validation']['messages']
 
         with self.assertRaises(Exception) as ite:
-            get_number_field(answer, label, '', returned_error_messages, AnswerStore(), False)
+            get_number_field(
+                answer, label, '', returned_error_messages, AnswerStore(), False
+            )
 
-            self.assertEqual(str(ite.exception), 'decimal_places: 10 > system maximum: {} for answer id: test-range'
-                             .format(MAX_DECIMAL_PLACES))
+            self.assertEqual(
+                str(ite.exception),
+                'decimal_places: 10 > system maximum: {} for answer id: test-range'.format(
+                    MAX_DECIMAL_PLACES
+                ),
+            )

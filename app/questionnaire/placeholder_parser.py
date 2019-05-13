@@ -7,6 +7,7 @@ class PlaceholderParser:
     Parses placeholder statements from a schema dict and returns a map of their
     final values
     """
+
     def __init__(self, language, answer_store=None, metadata=None):
         self._answer_store = answer_store or AnswerStore()
         self._metadata = metadata
@@ -32,7 +33,9 @@ class PlaceholderParser:
                 elif placeholder['value']['source'] == 'metadata':
                     placeholder_map[placeholder_id] = self._metadata[source_id]
             elif 'transforms' in placeholder:
-                placeholder_map[placeholder_id] = self.parse_transforms(placeholder['transforms'])
+                placeholder_map[placeholder_id] = self.parse_transforms(
+                    placeholder['transforms']
+                )
 
         return placeholder_map
 
@@ -48,17 +51,29 @@ class PlaceholderParser:
                     transform_args[arg_key] = arg_value
                 elif arg_value['source'] == 'answers':
                     if isinstance(arg_value['identifier'], list):
-                        transform_args[arg_key] = [self._lookup_answer(identifier) for identifier in arg_value['identifier']]
+                        transform_args[arg_key] = [
+                            self._lookup_answer(identifier)
+                            for identifier in arg_value['identifier']
+                        ]
                     else:
-                        transform_args[arg_key] = self._lookup_answer(arg_value['identifier'])
+                        transform_args[arg_key] = self._lookup_answer(
+                            arg_value['identifier']
+                        )
                 elif arg_value['source'] == 'metadata':
                     if isinstance(arg_value['identifier'], list):
-                        transform_args[arg_key] = [self._metadata.get(identifier) for identifier in arg_value['identifier']]
+                        transform_args[arg_key] = [
+                            self._metadata.get(identifier)
+                            for identifier in arg_value['identifier']
+                        ]
                     else:
-                        transform_args[arg_key] = self._metadata.get(arg_value['identifier'])
+                        transform_args[arg_key] = self._metadata.get(
+                            arg_value['identifier']
+                        )
                 elif arg_value['source'] == 'previous_transform':
                     transform_args[arg_key] = transformed_value
 
-            transformed_value = getattr(self._transformer, transform['transform'])(**transform_args)
+            transformed_value = getattr(self._transformer, transform['transform'])(
+                **transform_args
+            )
 
         return transformed_value

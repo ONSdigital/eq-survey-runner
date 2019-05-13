@@ -1,4 +1,6 @@
-from tests.integration.components.mutually_exclusive.schema_urls import MUTUALLY_EXCLUSIVE_MONTH_YEAR_DATE
+from tests.integration.components.mutually_exclusive.schema_urls import (
+    MUTUALLY_EXCLUSIVE_MONTH_YEAR_DATE,
+)
 
 
 from tests.integration.integration_test_case import IntegrationTestCase
@@ -17,8 +19,12 @@ class TestMonthYearDateSingleCheckboxOverride(IntegrationTestCase):
 
     def test_non_exclusive_answer(self):
         # When
-        self.post({'month-year-date-answer-month': '10',
-                   'month-year-date-answer-year': '2018'})
+        self.post(
+            {
+                'month-year-date-answer-month': '10',
+                'month-year-date-answer-year': '2018',
+            }
+        )
 
         # Then
         self.assertInUrl('section-summary')
@@ -26,9 +32,13 @@ class TestMonthYearDateSingleCheckboxOverride(IntegrationTestCase):
 
     def test_exclusive_answer(self):
         # When
-        self.post({'month-year-date-answer-month': '',
-                   'month-year-date-answer-year': '',
-                   'month-year-date-exclusive-answer': ['I prefer not to say']})
+        self.post(
+            {
+                'month-year-date-answer-month': '',
+                'month-year-date-answer-year': '',
+                'month-year-date-exclusive-answer': ['I prefer not to say'],
+            }
+        )
 
         # Then
         self.assertInUrl('section-summary')
@@ -44,9 +54,13 @@ class TestMonthYearDateSingleCheckboxOverride(IntegrationTestCase):
 
     def test_invalid_exclusive_answers(self):
         # When
-        self.post({'month-year-date-answer-month': '10',
-                   'month-year-date-answer-year': '2018',
-                   'month-year-date-exclusive-answer': ['I prefer not to say']})
+        self.post(
+            {
+                'month-year-date-answer-month': '10',
+                'month-year-date-answer-year': '2018',
+                'month-year-date-exclusive-answer': ['I prefer not to say'],
+            }
+        )
 
         # Then
         self.assertInBody('Remove an answer to continue.')

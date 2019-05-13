@@ -11,7 +11,9 @@ from app.jinja_filters import (
     format_unit,
     format_number,
     format_unit_input_label,
-    format_duration, get_formatted_currency)
+    format_duration,
+    get_formatted_currency,
+)
 from tests.app.app_context_test_case import AppContextTestCase
 
 
@@ -51,7 +53,9 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
             format_value = format_datetime(self.autoescape_context, date_time)
 
         # Then
-        self.assertEqual(format_value, "<span class='date'>29 March 2018 at 12:59</span>")
+        self.assertEqual(
+            format_value, "<span class='date'>29 March 2018 at 12:59</span>"
+        )
 
     def test_format_date_time_in_gmt(self):
         # Given
@@ -62,7 +66,9 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
             format_value = format_datetime(self.autoescape_context, date_time)
 
         # Then
-        self.assertEqual(format_value, "<span class='date'>28 October 2018 at 11:59</span>")
+        self.assertEqual(
+            format_value, "<span class='date'>28 October 2018 at 11:59</span>"
+        )
 
     def test_format_percentage(self):
         self.assertEqual(format_percentage('100'), '100%')
@@ -128,10 +134,14 @@ class TestJinjaFilters(AppContextTestCase):  # pylint: disable=too-many-public-m
 
     def test_format_year_month_duration(self):
         with self.app_request_context('/'):
-            self.assertEqual(format_duration({'years': 5, 'months': 4}), '5 years 4 months')
+            self.assertEqual(
+                format_duration({'years': 5, 'months': 4}), '5 years 4 months'
+            )
             self.assertEqual(format_duration({'years': 5, 'months': 0}), '5 years')
             self.assertEqual(format_duration({'years': 0, 'months': 4}), '4 months')
-            self.assertEqual(format_duration({'years': 1, 'months': 1}), '1 year 1 month')
+            self.assertEqual(
+                format_duration({'years': 1, 'months': 1}), '1 year 1 month'
+            )
             self.assertEqual(format_duration({'years': 0, 'months': 0}), '0 months')
 
     def test_format_year_duration(self):

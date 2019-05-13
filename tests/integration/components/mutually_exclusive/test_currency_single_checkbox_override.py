@@ -1,4 +1,6 @@
-from tests.integration.components.mutually_exclusive.schema_urls import MUTUALLY_EXCLUSIVE_CURRENCY
+from tests.integration.components.mutually_exclusive.schema_urls import (
+    MUTUALLY_EXCLUSIVE_CURRENCY,
+)
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -23,8 +25,12 @@ class TestCurrencySingleCheckboxOverride(IntegrationTestCase):
 
     def test_exclusive_answer(self):
         # When
-        self.post({'currency-answer': '',
-                   'currency-exclusive-answer': ['I prefer not to say']})
+        self.post(
+            {
+                'currency-answer': '',
+                'currency-exclusive-answer': ['I prefer not to say'],
+            }
+        )
 
         # Then
         self.assertInUrl('section-summary')
@@ -40,8 +46,12 @@ class TestCurrencySingleCheckboxOverride(IntegrationTestCase):
 
     def test_invalid_exclusive_answers(self):
         # When
-        self.post({'currency-answer': '10',
-                   'currency-exclusive-answer': ['I prefer not to say']})
+        self.post(
+            {
+                'currency-answer': '10',
+                'currency-exclusive-answer': ['I prefer not to say'],
+            }
+        )
 
         # Then
         self.assertInBody('Remove an answer to continue.')

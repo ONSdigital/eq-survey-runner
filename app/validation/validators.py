@@ -26,7 +26,11 @@ class NumberCheck:
 
     def __call__(self, form, field):
         try:
-            Decimal(field.raw_data[0].replace(numbers.get_group_symbol(flask_babel.get_locale()), ''))
+            Decimal(
+                field.raw_data[0].replace(
+                    numbers.get_group_symbol(flask_babel.get_locale()), ''
+                )
+            )
         except (ValueError, TypeError, InvalidOperation, AttributeError):
             raise validators.StopValidation(self.message)
 
@@ -42,7 +46,8 @@ class ResponseRequired:
     on the Optional() validator wtforms provides. Oddly, stripping whitespace is not
     an option for DataRequired or InputRequired validators in wtforms.
     """
-    field_flags = ('required', )
+
+    field_flags = ('required',)
 
     def __init__(self, message, strip_whitespace=True):
         self.message = message
@@ -53,7 +58,11 @@ class ResponseRequired:
             self.string_check = lambda s: s
 
     def __call__(self, form, field):
-        if not field.raw_data or not field.raw_data[0] or not self.string_check(field.raw_data[0]):
+        if (
+            not field.raw_data
+            or not field.raw_data[0]
+            or not self.string_check(field.raw_data[0])
+        ):
             field.errors[:] = []
             raise validators.StopValidation(self.message)
 
@@ -71,9 +80,16 @@ class NumberRange:
         The maximum value of the number. If not provided, maximum value
         will not be checked.
     """
-    def __init__(self, minimum=None, minimum_exclusive=False,
-                 maximum=None, maximum_exclusive=False,
-                 messages=None, currency=None):
+
+    def __init__(
+        self,
+        minimum=None,
+        minimum_exclusive=False,
+        maximum=None,
+        maximum_exclusive=False,
+        messages=None,
+        currency=None,
+    ):
         self.minimum = minimum
         self.maximum = maximum
         self.minimum_exclusive = minimum_exclusive
@@ -96,22 +112,28 @@ class NumberRange:
     def validate_minimum(self, value):
         if self.minimum_exclusive:
             if value <= self.minimum:
-                return self.messages['NUMBER_TOO_SMALL_EXCLUSIVE'] % dict(min=format_playback_value(self.minimum,
-                                                                                                    self.currency))
+                return self.messages['NUMBER_TOO_SMALL_EXCLUSIVE'] % dict(
+                    min=format_playback_value(self.minimum, self.currency)
+                )
         else:
             if value < self.minimum:
-                return self.messages['NUMBER_TOO_SMALL'] % dict(min=format_playback_value(self.minimum, self.currency))
+                return self.messages['NUMBER_TOO_SMALL'] % dict(
+                    min=format_playback_value(self.minimum, self.currency)
+                )
 
         return None
 
     def validate_maximum(self, value):
         if self.maximum_exclusive:
             if value >= self.maximum:
-                return self.messages['NUMBER_TOO_LARGE_EXCLUSIVE'] % dict(max=format_playback_value(self.maximum,
-                                                                                                    self.currency))
+                return self.messages['NUMBER_TOO_LARGE_EXCLUSIVE'] % dict(
+                    max=format_playback_value(self.maximum, self.currency)
+                )
         else:
             if value > self.maximum:
-                return self.messages['NUMBER_TOO_LARGE'] % dict(max=format_playback_value(self.maximum, self.currency))
+                return self.messages['NUMBER_TOO_LARGE'] % dict(
+                    max=format_playback_value(self.maximum, self.currency)
+                )
 
         return None
 
@@ -124,18 +146,25 @@ class DecimalPlaces:
     :param max_decimals:
         The maximum allowed number of decimal places.
     """
+
     def __init__(self, max_decimals=0, messages=None):
         self.max_decimals = max_decimals
         self.messages = messages or error_messages
 
     def __call__(self, form, field):
-        data = field.raw_data[0].replace(numbers.get_group_symbol(flask_babel.get_locale()), '').replace(' ', '')
+        data = (
+            field.raw_data[0]
+            .replace(numbers.get_group_symbol(flask_babel.get_locale()), '')
+            .replace(' ', '')
+        )
         decimal_symbol = numbers.get_decimal_symbol(flask_babel.get_locale())
         if data and decimal_symbol in data:
             if self.max_decimals == 0:
                 raise validators.ValidationError(self.messages['INVALID_INTEGER'])
             if len(data.split(decimal_symbol)[1]) > self.max_decimals:
-                raise validators.ValidationError(self.messages['INVALID_DECIMAL'] % dict(max=self.max_decimals))
+                raise validators.ValidationError(
+                    self.messages['INVALID_DECIMAL'] % dict(max=self.max_decimals)
+                )
 
 
 class OptionalForm:
@@ -143,6 +172,7 @@ class OptionalForm:
     Allows completely empty form and stops the validation chain from continuing.
     Will not stop the validation chain if any one of the fields is populated.
     """
+
     field_flags = ('optional',)
 
     def __call__(self, form, field):
@@ -152,8 +182,12 @@ class OptionalForm:
             has_raw_data = hasattr(formfield, 'raw_data')
 
             is_empty = has_raw_data and len(formfield.raw_data) == 0
-            is_blank = has_raw_data and len(formfield.raw_data) >= 1 \
-                and isinstance(formfield.raw_data[0], string_types) and not formfield.raw_data[0]
+            is_blank = (
+                has_raw_data
+                and len(formfield.raw_data) >= 1
+                and isinstance(formfield.raw_data[0], string_types)
+                and not formfield.raw_data[0]
+            )
 
             # By default we'll receive empty arrays for values not posted, so need to allow empty lists
             empty_field = True if is_empty else is_blank
@@ -165,7 +199,7 @@ class OptionalForm:
 
 
 class DateRequired:
-    field_flags = ('required', )
+    field_flags = ('required',)
 
     def __init__(self, message=None):
         self.message = message or error_messages['MANDATORY_DATE']
@@ -202,7 +236,9 @@ class MonthYearCheck:
 
     def __call__(self, form, field):
         try:
-            datestr = '{}-{:02d}'.format(int(form.year.data or 0), int(form.month.data or 0))
+            datestr = '{}-{:02d}'.format(
+                int(form.year.data or 0), int(form.month.data or 0)
+            )
             datetime.strptime(datestr, '%Y-%m')
         except ValueError:
             raise validators.StopValidation(self.message)
@@ -219,7 +255,13 @@ class YearCheck:
 
 
 class SingleDatePeriodCheck:
-    def __init__(self, messages=None, date_format='d MMMM YYYY', minimum_date=None, maximum_date=None):
+    def __init__(
+        self,
+        messages=None,
+        date_format='d MMMM YYYY',
+        minimum_date=None,
+        maximum_date=None,
+    ):
         self.messages = messages or error_messages
         self.minimum_date = minimum_date
         self.maximum_date = maximum_date
@@ -230,15 +272,25 @@ class SingleDatePeriodCheck:
 
         if self.minimum_date:
             if date < self.minimum_date:
-                raise validators.ValidationError(self.messages['SINGLE_DATE_PERIOD_TOO_EARLY'] %
-                                                 dict(min=self._format_playback_date(self.minimum_date + relativedelta(days=-1),
-                                                                                     self.date_format)))
+                raise validators.ValidationError(
+                    self.messages['SINGLE_DATE_PERIOD_TOO_EARLY']
+                    % dict(
+                        min=self._format_playback_date(
+                            self.minimum_date + relativedelta(days=-1), self.date_format
+                        )
+                    )
+                )
 
         if self.maximum_date:
             if date > self.maximum_date:
-                raise validators.ValidationError(self.messages['SINGLE_DATE_PERIOD_TOO_LATE'] %
-                                                 dict(max=self._format_playback_date(self.maximum_date + relativedelta(days=+1),
-                                                                                     self.date_format)))
+                raise validators.ValidationError(
+                    self.messages['SINGLE_DATE_PERIOD_TOO_LATE']
+                    % dict(
+                        max=self._format_playback_date(
+                            self.maximum_date + relativedelta(days=+1), self.date_format
+                        )
+                    )
+                )
 
     @staticmethod
     def _format_playback_date(date, date_format='d MMMM YYYY'):
@@ -262,25 +314,35 @@ class DateRangeCheck:
 
         if self.period_min:
             min_range = self._return_relative_delta(self.period_min)
-            if self._is_first_relative_delta_largest(min_range, answered_range_relative):
-                raise validators.ValidationError(self.messages['DATE_PERIOD_TOO_SMALL'] % dict(
-                    min=self._build_range_length_error(self.period_min)))
+            if self._is_first_relative_delta_largest(
+                min_range, answered_range_relative
+            ):
+                raise validators.ValidationError(
+                    self.messages['DATE_PERIOD_TOO_SMALL']
+                    % dict(min=self._build_range_length_error(self.period_min))
+                )
 
         if self.period_max:
             max_range = self._return_relative_delta(self.period_max)
-            if self._is_first_relative_delta_largest(answered_range_relative, max_range):
-                raise validators.ValidationError(self.messages['DATE_PERIOD_TOO_LARGE'] % dict(
-                    max=self._build_range_length_error(self.period_max)))
+            if self._is_first_relative_delta_largest(
+                answered_range_relative, max_range
+            ):
+                raise validators.ValidationError(
+                    self.messages['DATE_PERIOD_TOO_LARGE']
+                    % dict(max=self._build_range_length_error(self.period_max))
+                )
 
     @staticmethod
     def _return_relative_delta(period_object):
-        return relativedelta(years=period_object.get('years', 0),
-                             months=period_object.get('months', 0),
-                             days=period_object.get('days', 0))
+        return relativedelta(
+            years=period_object.get('years', 0),
+            months=period_object.get('months', 0),
+            days=period_object.get('days', 0),
+        )
 
     @staticmethod
     def _is_first_relative_delta_largest(relativedelta1, relativedelta2):
-        epoch = datetime.min    # generic epoch for comparison purposes only
+        epoch = datetime.min  # generic epoch for comparison purposes only
         date1 = epoch + relativedelta1
         date2 = epoch + relativedelta2
         return date1 > date2
@@ -289,13 +351,23 @@ class DateRangeCheck:
     def _build_range_length_error(period_object):
         error_message = ''
         if 'years' in period_object:
-            error_message = ngettext('%(num)s year', '%(num)s years', period_object['years'])
+            error_message = ngettext(
+                '%(num)s year', '%(num)s years', period_object['years']
+            )
         if 'months' in period_object:
-            message_addition = ngettext('%(num)s month', '%(num)s months', period_object['months'])
-            error_message += message_addition if error_message == '' else ', ' + message_addition
+            message_addition = ngettext(
+                '%(num)s month', '%(num)s months', period_object['months']
+            )
+            error_message += (
+                message_addition if error_message == '' else ', ' + message_addition
+            )
         if 'days' in period_object:
-            message_addition = ngettext('%(num)s day', '%(num)s days', period_object['days'])
-            error_message += message_addition if error_message == '' else ', ' + message_addition
+            message_addition = ngettext(
+                '%(num)s day', '%(num)s days', period_object['days']
+            )
+            error_message += (
+                message_addition if error_message == '' else ', ' + message_addition
+            )
 
         return error_message
 
@@ -312,7 +384,8 @@ class SumCheck:
             except ValueError:
                 raise Exception(
                     'There are multiple conditions, but equals is not one of them. '
-                    'We only support <= and >=')
+                    'We only support <= and >='
+                )
 
             condition = '{} or equals'.format(conditions[0])
         else:
@@ -321,8 +394,10 @@ class SumCheck:
         is_valid, message = self._is_valid(condition, total, target_total)
 
         if not is_valid:
-            raise validators.ValidationError(self.messages[message] %
-                                             dict(total=format_playback_value(target_total, self.currency)))
+            raise validators.ValidationError(
+                self.messages[message]
+                % dict(total=format_playback_value(target_total, self.currency))
+            )
 
     @staticmethod
     def _is_valid(condition, total, target_total):

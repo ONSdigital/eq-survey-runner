@@ -8,7 +8,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestLogin(IntegrationTestCase):
-
     def test_login_with_no_token_should_be_unauthorized(self):
         # Given
         token = ''
@@ -74,7 +73,9 @@ class TestLogin(IntegrationTestCase):
         token = self.token_generator.create_token('checkbox', 'test')
 
         # When
-        self._client.head('/session?token=' + token, as_tuple=True, follow_redirects=True)
+        self._client.head(
+            '/session?token=' + token, as_tuple=True, follow_redirects=True
+        )
         self.get('/session?token=' + token)
 
         # Then
@@ -100,7 +101,9 @@ class TestLogin(IntegrationTestCase):
         survey_url = 'http://eq-survey-register/my-test-schema'
 
         # Given
-        token = self.token_generator.create_token_with_survey_url('textarea', 'test', survey_url)
+        token = self.token_generator.create_token_with_survey_url(
+            'textarea', 'test', survey_url
+        )
 
         # When
         with HTTMock(self.survey_url_mock):
@@ -114,7 +117,9 @@ class TestLogin(IntegrationTestCase):
         survey_url = 'http://eq-survey-register/my-test-schema-not-found'
 
         # Given
-        token = self.token_generator.create_token_with_survey_url('textarea', 'test', survey_url)
+        token = self.token_generator.create_token_with_survey_url(
+            'textarea', 'test', survey_url
+        )
 
         # When
         with HTTMock(self.survey_url_mock_404):

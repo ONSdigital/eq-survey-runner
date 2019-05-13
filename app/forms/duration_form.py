@@ -4,7 +4,6 @@ from app.forms.custom_fields import CustomIntegerField
 
 
 class DurationForm(Form):
-
     def validate(self):
         if all(not field.raw_data[0] for field in self._fields.values()):
             if self.mandatory:
@@ -17,7 +16,9 @@ class DurationForm(Form):
             self._set_error('INVALID_DURATION')
             return False
 
-        if 'months' in self.units and (self.months.data is None or self.months.data < 0):
+        if 'months' in self.units and (
+            self.months.data is None or self.months.data < 0
+        ):
             self._set_error('INVALID_DURATION')
             return False
 
@@ -39,7 +40,6 @@ class DurationForm(Form):
 
 
 def get_duration_form(answer, error_messages):
-
     class CustomDurationForm(DurationForm):
         mandatory = answer['mandatory']
         units = answer['units']

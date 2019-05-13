@@ -1,4 +1,6 @@
-from tests.integration.components.mutually_exclusive.schema_urls import MUTUALLY_EXCLUSIVE_DURATION
+from tests.integration.components.mutually_exclusive.schema_urls import (
+    MUTUALLY_EXCLUSIVE_DURATION,
+)
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -15,8 +17,7 @@ class TestDurationSingleCheckboxOverride(IntegrationTestCase):
 
     def test_non_exclusive_answer(self):
         # When
-        self.post({'duration-answer-months': '11',
-                   'duration-answer-years': '1'})
+        self.post({'duration-answer-months': '11', 'duration-answer-years': '1'})
 
         # Then
         self.assertInUrl('section-summary')
@@ -24,9 +25,13 @@ class TestDurationSingleCheckboxOverride(IntegrationTestCase):
 
     def test_exclusive_answer(self):
         # When
-        self.post({'duration-answer-months': '',
-                   'duration-answer-years': '',
-                   'duration-exclusive-answer': ['I prefer not to say']})
+        self.post(
+            {
+                'duration-answer-months': '',
+                'duration-answer-years': '',
+                'duration-exclusive-answer': ['I prefer not to say'],
+            }
+        )
 
         # Then
         self.assertInUrl('section-summary')
@@ -34,8 +39,7 @@ class TestDurationSingleCheckboxOverride(IntegrationTestCase):
 
     def test_optional_exclusive_question(self):
         # When
-        self.post({'duration-answer-months': '',
-                   'duration-answer-years': ''})
+        self.post({'duration-answer-months': '', 'duration-answer-years': ''})
 
         # Then
         self.assertInUrl('section-summary')
@@ -43,9 +47,13 @@ class TestDurationSingleCheckboxOverride(IntegrationTestCase):
 
     def test_invalid_exclusive_answers(self):
         # When
-        self.post({'duration-answer-months': '11',
-                   'duration-answer-years': '2',
-                   'duration-exclusive-answer': ['I prefer not to say']})
+        self.post(
+            {
+                'duration-answer-months': '11',
+                'duration-answer-years': '2',
+                'duration-exclusive-answer': ['I prefer not to say'],
+            }
+        )
 
         # Then
         self.assertInBody('Remove an answer to continue.')

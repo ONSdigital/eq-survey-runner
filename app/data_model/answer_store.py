@@ -43,12 +43,17 @@ class AnswerStore:
     @staticmethod
     def _build_map(answers: List[Dict]):
         """ Builds the answer_store's data structure from a list of answer dictionaries"""
-        return {(answer['answer_id'], answer.get('list_item_id')): Answer.from_dict(answer) for answer in answers}
+        return {
+            (answer['answer_id'], answer.get('list_item_id')): Answer.from_dict(answer)
+            for answer in answers
+        }
 
     @staticmethod
     def _validate(answer):
         if not isinstance(answer, Answer):
-            raise TypeError(f'Method only supports Answer argument type, found type: {type(answer)}')
+            raise TypeError(
+                f'Method only supports Answer argument type, found type: {type(answer)}'
+            )
 
     @property
     def is_dirty(self):
@@ -80,7 +85,9 @@ class AnswerStore:
         """
         return self.answer_map.get((answer_id, list_item_id))
 
-    def get_answers_by_answer_id(self, answer_ids: List[str], list_item_id: str = None) -> List[Answer]:
+    def get_answers_by_answer_id(
+        self, answer_ids: List[str], list_item_id: str = None
+    ) -> List[Answer]:
         """ Get multiple answers from the store using the answer_id
 
         Args:

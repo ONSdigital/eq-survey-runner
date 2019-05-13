@@ -10,16 +10,17 @@ class MultipleClientTestCase(IntegrationTestCase):
 
         self.cache = {}
 
-    def launchSurvey(self, client, eq_id='test', form_type_id='textfield', **payload_kwargs):
-        token = self.token_generator.create_token(form_type_id=form_type_id, eq_id=eq_id, **payload_kwargs)
+    def launchSurvey(
+        self, client, eq_id='test', form_type_id='textfield', **payload_kwargs
+    ):
+        token = self.token_generator.create_token(
+            form_type_id=form_type_id, eq_id=eq_id, **payload_kwargs
+        )
         self.get(client, '/session?token=' + token)
 
     def get(self, client, url, **kwargs):
         environ, response = client.get(
-            url,
-            as_tuple=True,
-            follow_redirects=True,
-            **kwargs
+            url, as_tuple=True, follow_redirects=True, **kwargs
         )
 
         self._cache_response(client, environ, response)
@@ -35,7 +36,15 @@ class MultipleClientTestCase(IntegrationTestCase):
         dump_submission = json.loads(cache.get('last_response').get_data(True))
         return dump_submission
 
-    def post(self, client, post_data=None, url=None, action='save_continue', action_value='', **kwargs):
+    def post(
+        self,
+        client,
+        post_data=None,
+        url=None,
+        action='save_continue',
+        action_value='',
+        **kwargs,
+    ):
         cache = self.cache[client]
 
         if url is None:
@@ -52,11 +61,7 @@ class MultipleClientTestCase(IntegrationTestCase):
             _post_data.update({'action[{action}]'.format(action=action): action_value})
 
         environ, response = client.post(
-            url,
-            data=_post_data,
-            as_tuple=True,
-            follow_redirects=True,
-            **kwargs
+            url, data=_post_data, as_tuple=True, follow_redirects=True, **kwargs
         )
 
         self._cache_response(client, environ, response)
@@ -72,17 +77,13 @@ class MultipleClientTestCase(IntegrationTestCase):
 
 
 class TestMultipleLogin(MultipleClientTestCase):
-
     def setUp(self):
         super().setUp()
 
         self.client_a = self._application.test_client()
         self.client_b = self._application.test_client()
 
-        self.cache = {
-            self.client_a: {},
-            self.client_b: {}
-        }
+        self.cache = {self.client_a: {}, self.client_b: {}}
 
     def test_multiple_users_same_survey(self):
         """Tests that multiple sessions can be created which work on the same
@@ -122,10 +123,7 @@ class TestCollectionMetadataStorage(MultipleClientTestCase):
         self.client_a = self._application.test_client()
         self.client_b = self._application.test_client()
 
-        self.cache = {
-            self.client_a: {},
-            self.client_b: {}
-        }
+        self.cache = {self.client_a: {}, self.client_b: {}}
 
     def test_multiple_logins_have_same_started_at(self):
         """
@@ -148,6 +146,8 @@ class TestCollectionMetadataStorage(MultipleClientTestCase):
         # it is the same for both users
         self.assertEqual(a_submission['started_at'], b_submission['started_at'])
 
-        started_at_datetime = datetime.strptime(a_submission['started_at'], '%Y-%m-%dT%H:%M:%S.%f')
+        started_at_datetime = datetime.strptime(
+            a_submission['started_at'], '%Y-%m-%dT%H:%M:%S.%f'
+        )
 
         self.assertIsNotNone(started_at_datetime)
