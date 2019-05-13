@@ -1,15 +1,15 @@
 {
-    "eq_id": "516",
-    "form_type": "0052",
+    "eq_id": "13fec20d-6144-4dbb-9c00-4eab97d111c5",
+    "form_type": "0070",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
     "survey_id": "017",
     "title": "Quarterly Stocks Survey",
     "sections": [{
-        "id": "section1198",
+        "id": "section91",
         "groups": [{
-                "id": "group1198",
+                "id": "group91",
                 "title": "",
                 "blocks": [{
                         "type": "Introduction",
@@ -19,8 +19,8 @@
                             "id": "primary",
                             "content": [{
                                 "list": [
-                                    "This survey covers UK businesses. The business is the individual company partnership, sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
-                                    "You can provide informed estimates if actual figures aren&#x2019;t available.",
+                                    "Data should relate to all sites in England, Scotland, Wales and Northern Ireland unless otherwise stated.",
+                                    "You can provide info estimates if actual figures aren&#x2019;t available.",
                                     "We will treat your data securely and confidentially."
                                 ]
                             }]
@@ -68,11 +68,11 @@
                         "id": "able-to-report-between",
                         "type": "Question",
                         "questions": [{
-                            "id": "question4783",
+                            "id": "question379",
                             "title": "Are you able to report for the period {{ metadata['ref_p_start_date'] }} to {{ metadata['ref_p_end_date'] }}?",
                             "type": "General",
                             "answers": [{
-                                "id": "answer6073",
+                                "id": "answer434",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
@@ -90,17 +90,17 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "which-period-report",
+                                    "block": "total-value-stocks-net-progress-payments",
                                     "when": [{
-                                        "id": "answer6073",
+                                        "id": "answer434",
                                         "condition": "equals",
-                                        "value": "No"
+                                        "value": "Yes"
                                     }]
                                 }
                             },
                             {
                                 "goto": {
-                                    "block": "total-value-stocks"
+                                    "block": "which-period-report"
                                 }
                             }
                         ]
@@ -109,11 +109,11 @@
                         "id": "which-period-report",
                         "type": "Question",
                         "questions": [{
-                            "id": "question4784",
+                            "id": "question380",
                             "title": "For which period are you able to report?",
                             "type": "DateRange",
                             "answers": [{
-                                    "id": "answer6074from",
+                                    "id": "answer435from",
                                     "type": "Date",
                                     "mandatory": true,
                                     "label": "Period from",
@@ -126,7 +126,7 @@
                                     }
                                 },
                                 {
-                                    "id": "answer6074to",
+                                    "id": "answer435to",
                                     "type": "Date",
                                     "mandatory": true,
                                     "label": "Period to",
@@ -150,10 +150,10 @@
                         }]
                     },
                     {
-                        "id": "total-value-stocks",
+                        "id": "total-value-stocks-net-progress-payments",
                         "type": "Question",
                         "questions": [{
-                            "id": "question4785",
+                            "id": "question381",
                             "title": "What was the <em>total value</em> of stocks held (net of progress payments on long-term contracts)?",
                             "guidance": {
                                 "content": [{
@@ -161,9 +161,10 @@
                                     },
                                     {
                                         "list": [
-                                            "All stocks owned; whether held by your business in the UK or abroad",
+                                            "All stocks owned, whether held by your business in the UK or abroad",
                                             "Duty for dutiable goods held out of bond",
-                                            "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                                            "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes",
+                                            "Work in progress"
                                         ]
                                     },
                                     {
@@ -176,42 +177,49 @@
                             },
                             "type": "General",
                             "answers": [{
-                                    "id": "answer6076",
+                                    "id": "answer436",
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Total value of stocks held at start of period",
-                                    "q_code": "498",
                                     "description": "",
+                                    "q_code": "498",
                                     "decimal_places": 2,
                                     "currency": "GBP"
                                 },
                                 {
-                                    "id": "answer6075",
+                                    "id": "answer437",
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Total value of stocks held at end of period",
-                                    "q_code": "499",
                                     "description": "",
+                                    "q_code": "499",
                                     "decimal_places": 2,
-                                    "currency": "GBP"
+                                    "currency": "GBP",
+                                    "guidance": {
+                                        "show_guidance": "What is 'work in progress'?",
+                                        "hide_guidance": "What is 'work in progress'?",
+                                        "content": [{
+                                            "description": "Work in progress consists of goods and services that have been partially completed (e.g. a solicitor working on a legal case over a period of time and being paid at the end of the contract for the services provided i.e. unbilled work)."
+                                        }]
+                                    }
                                 }
                             ]
                         }]
                     },
                     {
-                        "id": "is-eop-figures-estimated",
+                        "id": "figures-estimated",
                         "type": "Question",
                         "questions": [{
-                            "id": "question4788",
+                            "id": "question4616",
                             "title": "Are the end of period figures you have provided estimated?",
                             "type": "General",
                             "answers": [{
-                                "id": "answer6079",
+                                "id": "answer5873",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
-                                "q_code": "15",
                                 "description": "",
+                                "q_code": "15",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -225,20 +233,20 @@
                         }]
                     },
                     {
-                        "id": "significant-changes-total-value",
+                        "id": "stocks-significant-changes",
                         "type": "Question",
                         "questions": [{
-                            "id": "question4808",
+                            "id": "question4952",
                             "title": "Did any significant changes occur to the total value of stocks for {{ metadata['trad_as'] }}?",
-                            "description": "<p>Please note: what constitutes a &#x2018;significant change&#x2019; is dependent on your own interpretation in relation to {{ metadata['trad_as'] }}&#x2019;s figures from the previous reporting period and the same reporting period last year.</p><p>This information will help us to validate your data and should reduce the need to query any figures with you.</p>",
+                            "description": "<p>Please note: what constitutes a &#x2018;significant change&#x2019; is dependent on your own interpretation in relation to {{ metadata['trad_as'] }}{{ metadata['trad_as'] }}&#x2019;s figures from the previous reporting period and the same reporting period last year.</p><p>This information will help us to validate your data and should reduce the need to query any figures with you.</p>",
                             "type": "General",
                             "answers": [{
-                                "id": "answer6102",
+                                "id": "answer6287",
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
-                                "q_code": "146a",
                                 "description": "",
+                                "q_code": "146a",
                                 "options": [{
                                         "label": "Yes",
                                         "value": "Yes"
@@ -252,9 +260,9 @@
                         }],
                         "routing_rules": [{
                                 "goto": {
-                                    "block": "reason-changes-total-value",
+                                    "block": "reasons-for-changes-value",
                                     "when": [{
-                                        "id": "answer6102",
+                                        "id": "answer6287",
                                         "condition": "equals",
                                         "value": "Yes"
                                     }]
@@ -262,20 +270,20 @@
                             },
                             {
                                 "goto": {
-                                    "block": "difference-quarter-open-close-value"
+                                    "block": "differences-between-quarters"
                                 }
                             }
                         ]
                     },
                     {
-                        "id": "reason-changes-total-value",
+                        "id": "reasons-for-changes-value",
                         "type": "Question",
                         "questions": [{
-                            "id": "question4809",
+                            "id": "question4953",
                             "title": "Please indicate the reasons for any changes in the total value of stocks for {{ metadata['trad_as'] }}",
                             "type": "General",
                             "answers": [{
-                                "id": "answer6103",
+                                "id": "answer6288",
                                 "mandatory": true,
                                 "type": "Checkbox",
                                 "label": "",
@@ -320,19 +328,19 @@
                         }]
                     },
                     {
-                        "id": "difference-quarter-open-close-value",
+                        "id": "differences-between-quarters",
                         "type": "Question",
                         "questions": [{
-                            "id": "question4786",
+                            "id": "question383",
                             "title": "Explain any differences between this quarter&apos;s opening value and the previously returned closing value",
                             "description": "<p>  Include any unusual fluctuations in figures  </p>",
                             "type": "General",
                             "answers": [{
-                                "id": "answer6077",
+                                "id": "answer439",
                                 "mandatory": false,
                                 "type": "TextArea",
-                                "q_code": "146",
                                 "label": "Comments",
+                                "q_code": "146",
                                 "description": ""
                             }]
                         }]

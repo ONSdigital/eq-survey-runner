@@ -373,14 +373,6 @@
         {
             "name": "ref_p_end_date",
             "validator": "string"
-        },
-        {
-            "name": "trad_as",
-            "validator": "string"
-        },
-        {
-            "name": "employmentDate",
-            "validator": "date"
         }
     ],
     "view_submitted_response": {
