@@ -170,7 +170,7 @@
                                     "type": "Date",
                                     "mandatory": true,
                                     "label": "Period from",
-                                    "q_code": "q11",
+                                    "q_code": "11",
                                     "minimum": {
                                         "value": "2019-03-31",
                                         "offset_by": {
@@ -183,7 +183,7 @@
                                     "type": "Date",
                                     "mandatory": true,
                                     "label": "Period to",
-                                    "q_code": "q12",
+                                    "q_code": "12",
                                     "maximum": {
                                         "value": "2019-06-30",
                                         "offset_by": {
@@ -239,7 +239,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Value of all stocks other than motor vehicles and motor cycles at start of period",
-                                    "q_code": "q9",
+                                    "q_code": "9",
                                     "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
@@ -249,7 +249,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Value of all stocks other than motor vehicles and motor cycles at end of period",
-                                    "q_code": "q10",
+                                    "q_code": "10",
                                     "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
@@ -300,7 +300,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Value of used vehicles and motor cycles at start of period",
-                                    "q_code": "q193",
+                                    "q_code": "193",
                                     "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
@@ -310,7 +310,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Value of used vehicles and motor cycles at end of period",
-                                    "q_code": "q194",
+                                    "q_code": "194",
                                     "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
@@ -361,7 +361,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Value of new motor vehicles and motor cycles at start of period",
-                                    "q_code": "q195",
+                                    "q_code": "195",
                                     "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
@@ -371,7 +371,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Value of new motor vehicles and motor cycles at end of period",
-                                    "q_code": "q196",
+                                    "q_code": "196",
                                     "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
@@ -419,7 +419,7 @@
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
-                                "q_code": "q15",
+                                "q_code": "15",
                                 "description": "",
                                 "options": [{
                                         "label": "Yes",
@@ -446,7 +446,7 @@
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
-                                "q_code": "q146a",
+                                "q_code": "146a",
                                 "description": "",
                                 "options": [{
                                         "label": "Yes",
@@ -491,37 +491,37 @@
                                 "description": "",
                                 "options": [{
                                         "label": "Start or end of long term project",
-                                        "q_code": "q146b",
+                                        "q_code": "146b",
                                         "value": "Start or end of long term project"
                                     },
                                     {
                                         "label": "End of accounting period of financial year",
-                                        "q_code": "q146c",
+                                        "q_code": "146c",
                                         "value": "End of accounting period of financial year"
                                     },
                                     {
                                         "label": "Normal movement for the time of year",
-                                        "q_code": "q146d",
+                                        "q_code": "146d",
                                         "value": "Normal movement for the time of year"
                                     },
                                     {
                                         "label": "Change of business structure, merger or takeover",
-                                        "q_code": "q146e",
+                                        "q_code": "146e",
                                         "value": "Change of business structure, merger or takeover"
                                     },
                                     {
                                         "label": "One of increase in stocks",
-                                        "q_code": "q146f",
+                                        "q_code": "146f",
                                         "value": "One of increase in stocks"
                                     },
                                     {
                                         "label": "Introduction or removal of new legislation or incentive",
-                                        "q_code": "q146g",
+                                        "q_code": "146g",
                                         "value": "Introduction or removal of new legislation or incentive"
                                     },
                                     {
                                         "label": "Other (for example, global economic conditions; leaving the EU)",
-                                        "q_code": "q146h",
+                                        "q_code": "146h",
                                         "value": "Other (for example, global economic conditions; leaving the EU)"
                                     }
                                 ]
@@ -540,7 +540,7 @@
                                 "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
-                                "q_code": "q146",
+                                "q_code": "146",
                                 "description": ""
                             }]
                         }]

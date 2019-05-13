@@ -97,7 +97,7 @@
                                     "type": "Date",
                                     "mandatory": true,
                                     "label": "Period from",
-                                    "q_code": "q11",
+                                    "q_code": "11",
                                     "minimum": {
                                         "value": "2019-03-31",
                                         "offset_by": {
@@ -110,7 +110,7 @@
                                     "type": "Date",
                                     "mandatory": true,
                                     "label": "Period to",
-                                    "q_code": "q12",
+                                    "q_code": "12",
                                     "maximum": {
                                         "value": "2019-06-30",
                                         "offset_by": {
@@ -160,7 +160,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Value start of the period",
-                                    "q_code": "q174",
+                                    "q_code": "174",
                                     "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
@@ -170,7 +170,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Value at end of period",
-                                    "q_code": "q175",
+                                    "q_code": "175",
                                     "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
@@ -209,7 +209,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Value at start of period",
-                                    "q_code": "q179",
+                                    "q_code": "179",
                                     "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
@@ -219,7 +219,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Value at end of period",
-                                    "q_code": "q180",
+                                    "q_code": "180",
                                     "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
@@ -258,7 +258,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Value at start of period",
-                                    "q_code": "q209",
+                                    "q_code": "209",
                                     "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
@@ -268,7 +268,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Value at end of period",
-                                    "q_code": "q210",
+                                    "q_code": "210",
                                     "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
@@ -311,7 +311,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Value at start of period",
-                                    "q_code": "q119",
+                                    "q_code": "119",
                                     "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
@@ -321,7 +321,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Value at end of period",
-                                    "q_code": "q120",
+                                    "q_code": "120",
                                     "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
@@ -373,7 +373,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Value at start of period",
-                                    "q_code": "q144",
+                                    "q_code": "144",
                                     "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
@@ -383,7 +383,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Value at end of period",
-                                    "q_code": "q145",
+                                    "q_code": "145",
                                     "description": "",
                                     "decimal_places": 2,
                                     "currency": "GBP"
@@ -450,7 +450,7 @@
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
-                                "q_code": "q15",
+                                "q_code": "15",
                                 "description": "",
                                 "options": [{
                                         "label": "Yes",
@@ -477,7 +477,7 @@
                                 "mandatory": true,
                                 "type": "Radio",
                                 "label": "",
-                                "q_code": "q146a",
+                                "q_code": "146a",
                                 "description": "",
                                 "options": [{
                                         "label": "Yes",
@@ -522,37 +522,37 @@
                                 "description": "",
                                 "options": [{
                                         "label": "Start or end of long term project",
-                                        "q_code": "q146b",
+                                        "q_code": "146b",
                                         "value": "Start or end of long term project"
                                     },
                                     {
                                         "label": "End of accounting period or financial year",
-                                        "q_code": "q146c",
+                                        "q_code": "146c",
                                         "value": "End of accounting period or financial year"
                                     },
                                     {
                                         "label": "Normal movement for the time of year",
-                                        "q_code": "q146d",
+                                        "q_code": "146d",
                                         "value": "Normal movement for the time of year"
                                     },
                                     {
                                         "label": "Change of business structure, merger or takeover",
-                                        "q_code": "q146e",
+                                        "q_code": "146e",
                                         "value": "Change of business structure, merger or takeover"
                                     },
                                     {
                                         "label": "One off increase in stocks",
-                                        "q_code": "q146f",
+                                        "q_code": "146f",
                                         "value": "One off increase in stocks"
                                     },
                                     {
                                         "label": "Introduction or removal of new legislation or incentive",
-                                        "q_code": "q146g",
+                                        "q_code": "146g",
                                         "value": "Introduction or removal of new legislation or incentive"
                                     },
                                     {
                                         "label": "Other (for example, global economic conditions; leaving the EU)",
-                                        "q_code": "q146h",
+                                        "q_code": "146h",
                                         "value": "Other (for example, global economic conditions; leaving the EU)"
                                     }
                                 ]
@@ -571,7 +571,7 @@
                                 "mandatory": false,
                                 "type": "TextArea",
                                 "label": "Comments",
-                                "q_code": "q146",
+                                "q_code": "146",
                                 "description": ""
                             }]
                         }]
