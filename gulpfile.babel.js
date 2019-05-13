@@ -48,7 +48,7 @@ gulp.task('lint', ['lint:scripts', 'lint:json', 'lint:tests'])
 
 gulp.task('lint:json', () => {
   return gulp
-    .src(['./data/*/*.json'])
+    .src(['./data-source/json/*.json'])
     .pipe(prettify({end_with_newline: true}))
     .pipe(diff())
     .pipe(

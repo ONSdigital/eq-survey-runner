@@ -11,7 +11,4 @@ echo "Loading Templates"
 echo "Building schemas"
 "${DIR}"/build_schemas.sh
 
-echo "Compiling translated schemas"
-"${DIR}"/translate_schemas.sh
-
 printf $(git rev-parse HEAD) > .application-version
