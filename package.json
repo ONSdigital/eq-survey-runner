@@ -17,7 +17,7 @@
     "test_cypress": "node tests/functional/cypress.js",
     "cypress": "cypress open",
     "generate_pages": "rm -rf ./tests/functional/generated_pages && cd tests/functional &&  pipenv run ./generate_pages.py ../../data/en/ ./generated_pages -r '../../base_pages' && cd ../..",
-    "format": "gulp format:json"
+    "format": "gulp format:json && pipenv run black app tests"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

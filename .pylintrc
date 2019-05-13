@@ -72,6 +72,7 @@ disable=
     missing-docstring,
     invalid-name,
     inconsistent-return-statements,
+    bad-continuation,
 
 
 [REPORTS]
