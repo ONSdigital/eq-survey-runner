@@ -12,11 +12,25 @@ def _choose_variant(block, schema, metadata, answer_store, variants_key, single_
 
 
 def choose_question_to_display(block, schema, metadata, answer_store):
-    return _choose_variant(block, schema, metadata, answer_store, variants_key='question_variants', single_key='question')
+    return _choose_variant(
+        block,
+        schema,
+        metadata,
+        answer_store,
+        variants_key='question_variants',
+        single_key='question',
+    )
 
 
 def choose_content_to_display(block, schema, metadata, answer_store):
-    return _choose_variant(block, schema, metadata, answer_store, variants_key='content_variants', single_key='content')
+    return _choose_variant(
+        block,
+        schema,
+        metadata,
+        answer_store,
+        variants_key='content_variants',
+        single_key='content',
+    )
 
 
 def transform_variants(block, schema, metadata, answer_store):
@@ -39,7 +53,9 @@ def transform_variants(block, schema, metadata, answer_store):
     if block['type'] == 'ListCollector':
         list_operations = ['add_block', 'edit_block', 'remove_block']
         for list_operation in list_operations:
-            output_block[list_operation] = transform_variants(block[list_operation], schema, metadata, answer_store)
+            output_block[list_operation] = transform_variants(
+                block[list_operation], schema, metadata, answer_store
+            )
 
     return output_block
 

@@ -3,13 +3,22 @@ import unittest
 import uuid
 
 from sdc.crypto.exceptions import InvalidTokenException
-from app.storage.metadata_parser import boolean_parser, clean_leading_trailing_spaces, iso_8601_date_parser, \
-    optional_string_parser, parse_runner_claims, string_parser, validate_metadata, uuid_4_parser
+from app.storage.metadata_parser import (
+    boolean_parser,
+    clean_leading_trailing_spaces,
+    iso_8601_date_parser,
+    optional_string_parser,
+    parse_runner_claims,
+    string_parser,
+    validate_metadata,
+    uuid_4_parser,
+)
 from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
 
-class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-public-methods
-
+class TestMetadataParser(
+    SurveyRunnerTestCase
+):  # pylint: disable=too-many-public-methods
     def setUp(self):
         super().setUp()
         self.metadata = {
@@ -29,18 +38,12 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'return_by': '2016-07-07',
             'case_id': '1234567890',
             'case_ref': '1000000000000001',
-            'account_service_url': 'https://ras.ons.gov.uk'
+            'account_service_url': 'https://ras.ons.gov.uk',
         }
 
         self.schema_metadata = [
-            {
-                'name': 'user_id',
-                'validator': 'string'
-            },
-            {
-                'name': 'period_id',
-                'validator': 'string'
-            }
+            {'name': 'user_id', 'validator': 'string'},
+            {'name': 'period_id', 'validator': 'string'},
         ]
 
         with self.application.test_request_context():
@@ -56,7 +59,10 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_collection_id(self):
         with self.application.test_request_context():
-            self.assertEqual(self.metadata.get('collection_exercise_sid'), self.metadata['collection_exercise_sid'])
+            self.assertEqual(
+                self.metadata.get('collection_exercise_sid'),
+                self.metadata['collection_exercise_sid'],
+            )
 
     def test_get_eq_id(self):
         with self.application.test_request_context():
@@ -68,19 +74,27 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_get_period_str(self):
         with self.application.test_request_context():
-            self.assertEqual(self.metadata.get('period_str'), self.metadata['period_str'])
+            self.assertEqual(
+                self.metadata.get('period_str'), self.metadata['period_str']
+            )
 
     def test_ref_p_start_date(self):
         with self.application.test_request_context():
-            self.assertEqual(self.metadata.get('ref_p_start_date'), self.metadata['ref_p_start_date'])
+            self.assertEqual(
+                self.metadata.get('ref_p_start_date'), self.metadata['ref_p_start_date']
+            )
 
     def test_ref_p_end_date(self):
         with self.application.test_request_context():
-            self.assertEqual(self.metadata.get('ref_p_end_date'), self.metadata['ref_p_end_date'])
+            self.assertEqual(
+                self.metadata.get('ref_p_end_date'), self.metadata['ref_p_end_date']
+            )
 
     def test_ru_ref(self):
         with self.application.test_request_context():
-            self.assertEqual(self.metadata.get('ref_p_end_date'), self.metadata['ref_p_end_date'])
+            self.assertEqual(
+                self.metadata.get('ref_p_end_date'), self.metadata['ref_p_end_date']
+            )
 
     def test_case_id(self):
         with self.application.test_request_context():
@@ -92,7 +106,10 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_account_service_url(self):
         with self.application.test_request_context():
-            self.assertEqual(self.metadata.get('account_service_url'), self.metadata['account_service_url'])
+            self.assertEqual(
+                self.metadata.get('account_service_url'),
+                self.metadata['account_service_url'],
+            )
 
     def test_is_valid(self):
         with self.application.test_request_context():
@@ -100,18 +117,9 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_missing_required_eq_id_in_token(self):
         schema_metadata = [
-            {
-                'name': 'user_id',
-                'validator': 'string'
-            },
-            {
-                'name': 'period_id',
-                'validator': 'string'
-            },
-            {
-                'name': 'eq_id',
-                'validator': 'string'
-            }
+            {'name': 'user_id', 'validator': 'string'},
+            {'name': 'period_id', 'validator': 'string'},
+            {'name': 'eq_id', 'validator': 'string'},
         ]
 
         del self.metadata['eq_id']
@@ -119,7 +127,9 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
         with self.assertRaises(InvalidTokenException) as ite_key:
             validate_metadata(self.metadata, schema_metadata)
 
-        self.assertEqual('Missing required key eq_id from claims', str(ite_key.exception))
+        self.assertEqual(
+            'Missing required key eq_id from claims', str(ite_key.exception)
+        )
 
     def test_missing_required_metadata_user_id_in_token(self):
         metadata = {
@@ -134,13 +144,17 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
         with self.assertRaises(InvalidTokenException) as ite_key:
             validate_metadata(metadata, self.schema_metadata)
 
-        self.assertEqual('Missing required key user_id from claims', str(ite_key.exception))
+        self.assertEqual(
+            'Missing required key user_id from claims', str(ite_key.exception)
+        )
 
         with self.assertRaises(InvalidTokenException) as ite_value:
             metadata['user_id'] = ''
             validate_metadata(metadata, self.schema_metadata)
 
-        self.assertEqual('incorrect data in token for user_id', str(ite_value.exception))
+        self.assertEqual(
+            'incorrect data in token for user_id', str(ite_value.exception)
+        )
 
     def test_missing_required_metadata_period_id_in_token(self):
         metadata = {
@@ -155,54 +169,36 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
         with self.assertRaises(InvalidTokenException) as ite_key:
             validate_metadata(metadata, self.schema_metadata)
 
-        self.assertEqual('Missing required key period_id from claims', str(ite_key.exception))
+        self.assertEqual(
+            'Missing required key period_id from claims', str(ite_key.exception)
+        )
 
         with self.assertRaises(InvalidTokenException) as ite_value:
             metadata['period_id'] = ''
             validate_metadata(metadata, self.schema_metadata)
 
-        self.assertEqual('incorrect data in token for period_id', str(ite_value.exception))
+        self.assertEqual(
+            'incorrect data in token for period_id', str(ite_value.exception)
+        )
 
     def test_missing_metadata_address_line_in_token(self):
         schema_metadata = [
-            {
-                'name': 'user_id',
-                'validator': 'string'
-            },
-            {
-                'name': 'period_id',
-                'validator': 'string'
-            },
-            {
-                'name': 'address_line1',
-                'validator': 'optional_string'
-            },
-            {
-                'name': 'address_line2',
-                'validator': 'optional_string'
-            },
-            {
-                'name': 'locality',
-                'validator': 'optional_string'
-            },
-            {
-                'name': 'town_name',
-                'validator': 'optional_string'
-            },
-            {
-                'name': 'postcode',
-                'validator': 'optional_string'
-            },
-            {
-                'name': 'display_address',
-                'validator': 'string'
-            }
+            {'name': 'user_id', 'validator': 'string'},
+            {'name': 'period_id', 'validator': 'string'},
+            {'name': 'address_line1', 'validator': 'optional_string'},
+            {'name': 'address_line2', 'validator': 'optional_string'},
+            {'name': 'locality', 'validator': 'optional_string'},
+            {'name': 'town_name', 'validator': 'optional_string'},
+            {'name': 'postcode', 'validator': 'optional_string'},
+            {'name': 'display_address', 'validator': 'string'},
         ]
 
         with self.assertRaises(InvalidTokenException) as ite_key:
             validate_metadata(self.metadata, schema_metadata)
 
-        self.assertEqual('Missing required key address_line1 from claims', str(ite_key.exception))
+        self.assertEqual(
+            'Missing required key address_line1 from claims', str(ite_key.exception)
+        )
 
         self.metadata['address_line1'] = '68 Testing Road'
         self.metadata['address_line2'] = ''
@@ -229,13 +225,17 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
         with self.assertRaises(InvalidTokenException) as ite_key:
             validate_metadata(metadata, self.schema_metadata)
 
-        self.assertEqual('Missing required key return_by from claims', str(ite_key.exception))
+        self.assertEqual(
+            'Missing required key return_by from claims', str(ite_key.exception)
+        )
 
         with self.assertRaises(InvalidTokenException) as ite_value:
             metadata['return_by'] = ''
             validate_metadata(metadata, self.schema_metadata)
 
-        self.assertEqual('incorrect data in token for return_by', str(ite_value.exception))
+        self.assertEqual(
+            'incorrect data in token for return_by', str(ite_value.exception)
+        )
 
     def test_invalid_required_ref_p_start_date(self):
         metadata = {
@@ -254,7 +254,9 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
         with self.assertRaises(InvalidTokenException) as ite:
             validate_metadata(metadata, self.schema_metadata)
 
-        self.assertEqual('incorrect data in token for ref_p_start_date', str(ite.exception))
+        self.assertEqual(
+            'incorrect data in token for ref_p_start_date', str(ite.exception)
+        )
 
     def test_invalid_tx_id(self):
         metadata = {
@@ -267,7 +269,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_ref': '2016-04-04',
             'case_id': str(uuid.uuid4()),
             # invalid
-            'tx_id': '12121'
+            'tx_id': '12121',
         }
 
         with self.assertRaises(InvalidTokenException) as ite:
@@ -286,7 +288,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_ref': '2016-04-04',
             'case_id': str(uuid.uuid4()),
             # one character short
-            'tx_id': '83a3db82-bea7-403c-a411-6357ff70f2f'
+            'tx_id': '83a3db82-bea7-403c-a411-6357ff70f2f',
         }
 
         with self.assertRaises(InvalidTokenException) as ite:
@@ -306,7 +308,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'period_id': '3',
             'ru_ref': '2016-04-04',
             'response_id': '1234567890123456',
-            'case_id': str(uuid.uuid4())
+            'case_id': str(uuid.uuid4()),
         }
 
         parsed = parse_runner_claims(metadata)
@@ -325,15 +327,20 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
             'ru_ref': '2016-04-04',
             'response_id': '1234567890123456',
             'period_str': 'May 2016',
-            'case_id': str(uuid.uuid4())
+            'case_id': str(uuid.uuid4()),
         }
 
-        self.schema_metadata.append({'name': 'period_id', 'validator': 'invalidValidator'})
+        self.schema_metadata.append(
+            {'name': 'period_id', 'validator': 'invalidValidator'}
+        )
 
         with self.assertRaises(KeyError) as ite:
             validate_metadata(metadata, self.schema_metadata)
 
-        self.assertEqual('Invalid validator for schema metadata - invalidValidator', ite.exception.args[0])
+        self.assertEqual(
+            'Invalid validator for schema metadata - invalidValidator',
+            ite.exception.args[0],
+        )
 
     def test_clean_leading_trailing_spaces(self):
         metadata = self.metadata.copy()
@@ -354,13 +361,17 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
         test_date = '2016'
         with self.assertRaises(ValueError) as error:
             iso_8601_date_parser(test_date)
-        self.assertEqual("time data '2016' does not match format '%Y-%m-%d'", error.exception.args[0])
+        self.assertEqual(
+            "time data '2016' does not match format '%Y-%m-%d'", error.exception.args[0]
+        )
 
     def test_date_parser_invalid_empty_string(self):
         test_date = ''
         with self.assertRaises(ValueError) as error:
             iso_8601_date_parser(test_date)
-        self.assertEqual("time data '' does not match format '%Y-%m-%d'", error.exception.args[0])
+        self.assertEqual(
+            "time data '' does not match format '%Y-%m-%d'", error.exception.args[0]
+        )
 
     def test_uuid_parser_valid(self):
         test_uuid = '19162b10-96b6-4051-99d6-70183ca23b38'
@@ -371,7 +382,9 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
         test_uuid = 'test'
         with self.assertRaises(ValueError) as error:
             uuid_4_parser(test_uuid)
-        self.assertEqual('badly formed hexadecimal UUID string', error.exception.args[0])
+        self.assertEqual(
+            'badly formed hexadecimal UUID string', error.exception.args[0]
+        )
 
     def test_boolean_parser_True_valid(self):
         test_boolean = True

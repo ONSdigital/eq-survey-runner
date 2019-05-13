@@ -29,7 +29,7 @@ class SessionStoreTest(AppContextTestCase):
             ru_name='ru_name',
             ru_ref='ru_ref',
             response_id='response_id',
-            case_id='case_id'
+            case_id='case_id',
         )
 
     def test_no_session(self):
@@ -39,20 +39,26 @@ class SessionStoreTest(AppContextTestCase):
 
     def test_create(self):
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', self.session_data, self.expires_at)
+            self.session_store.create(
+                'eq_session_id', 'test', self.session_data, self.expires_at
+            )
             self.assertEqual('eq_session_id', self.session_store.eq_session_id)
             self.assertEqual('test', self.session_store.user_id)
             self.assertEqual(self.session_data, self.session_store.session_data)
 
     def test_save(self):
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', self.session_data, self.expires_at).save()
+            self.session_store.create(
+                'eq_session_id', 'test', self.session_data, self.expires_at
+            ).save()
             session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
             self.assertEqual(session_store.session_data.tx_id, 'tx_id')
 
     def test_delete(self):
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', self.session_data, self.expires_at).save()
+            self.session_store.create(
+                'eq_session_id', 'test', self.session_data, self.expires_at
+            ).save()
             self.assertEqual('test', self.session_store.user_id)
             self.session_store.delete()
             self.assertEqual(self.session_store.user_id, None)
@@ -70,7 +76,9 @@ class SessionStoreTest(AppContextTestCase):
 
     def test_add_data_to_session(self):
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', self.session_data, self.expires_at).save()
+            self.session_store.create(
+                'eq_session_id', 'test', self.session_data, self.expires_at
+            ).save()
             current_time = datetime.utcnow().isoformat()
             self.session_store.session_data.submitted_time = current_time
             self.session_store.save()
@@ -98,13 +106,15 @@ class SessionStoreTest(AppContextTestCase):
             ru_name='ru_name',
             ru_ref='ru_ref',
             response_id='response_id',
-            case_id='case_id'
+            case_id='case_id',
         )
 
         session_data.additional_value = 'some cool new value you do not know about yet'
 
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', session_data, self.expires_at).save()
+            self.session_store.create(
+                'eq_session_id', 'test', session_data, self.expires_at
+            ).save()
 
             session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
@@ -121,19 +131,23 @@ class SessionStoreTest(AppContextTestCase):
             ru_name='ru_name',
             ru_ref='ru_ref',
             response_id='response_id',
-            case_id='case_id'
+            case_id='case_id',
         )
 
         session_data.additional_value = 'some cool new value you do not know about yet'
         session_data.second_additional_value = 'some other not so cool value'
 
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', session_data, self.expires_at).save()
+            self.session_store.create(
+                'eq_session_id', 'test', session_data, self.expires_at
+            ).save()
 
             session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
             self.assertFalse(hasattr(session_store.session_data, 'additional_value'))
-            self.assertFalse(hasattr(session_store.session_data, 'second_additional_value'))
+            self.assertFalse(
+                hasattr(session_store.session_data, 'second_additional_value')
+            )
 
     def test_session_store_stores_trading_as_value_if_present(self):
         session_data = SessionData(
@@ -147,10 +161,12 @@ class SessionStoreTest(AppContextTestCase):
             ru_ref='ru_ref',
             response_id='response_id',
             trad_as='trading_as',
-            case_id='case_id'
+            case_id='case_id',
         )
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', session_data, self.expires_at).save()
+            self.session_store.create(
+                'eq_session_id', 'test', session_data, self.expires_at
+            ).save()
 
             session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
@@ -167,16 +183,20 @@ class SessionStoreTest(AppContextTestCase):
             ru_name='ru_name',
             ru_ref='ru_ref',
             response_id='response_id',
-            case_id='case_id'
+            case_id='case_id',
         )
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', session_data, self.expires_at).save()
+            self.session_store.create(
+                'eq_session_id', 'test', session_data, self.expires_at
+            ).save()
 
             session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
             self.assertIsNone(session_store.session_data.trad_as)
 
-    def test_session_store_reads_data_saved_without_trading_as_but_read_expecting_trading_as(self):
+    def test_session_store_reads_data_saved_without_trading_as_but_read_expecting_trading_as(
+        self
+    ):
         old_session_data = SessionData(
             tx_id='tx_id',
             eq_id='eq_id',
@@ -187,17 +207,21 @@ class SessionStoreTest(AppContextTestCase):
             ru_name='ru_name',
             ru_ref='ru_ref',
             response_id='response_id',
-            case_id='case_id'
+            case_id='case_id',
         )
-        delattr(old_session_data, 'trad_as')   # Make class look like old style class
+        delattr(old_session_data, 'trad_as')  # Make class look like old style class
         with self._app.test_request_context():
-            self.session_store.create('eq_session_id', 'test', old_session_data, self.expires_at).save()
+            self.session_store.create(
+                'eq_session_id', 'test', old_session_data, self.expires_at
+            ).save()
 
             session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
             self.assertIsNone(session_store.session_data.trad_as)
 
-    def test_session_store_reads_data_saved_with_trading_as_but_read_not_expecting_trading_as(self):
+    def test_session_store_reads_data_saved_with_trading_as_but_read_not_expecting_trading_as(
+        self
+    ):
         """This test simulates the case where a session is created using a new session store that holds trading as
             but this gets read in an old session that does NOT support trading as """
 
@@ -205,20 +229,23 @@ class SessionStoreTest(AppContextTestCase):
 
         class OldSessionData:
             """class representing what old sessions expect ( no trading as) """
-            def __init__(self,
-                         tx_id,
-                         eq_id,
-                         form_type,
-                         period_str,
-                         language_code,
-                         survey_url,
-                         ru_name,
-                         ru_ref,
-                         case_id,
-                         case_ref=None,
-                         account_service_url=None,
-                         submitted_time=None,
-                         **_):
+
+            def __init__(
+                self,
+                tx_id,
+                eq_id,
+                form_type,
+                period_str,
+                language_code,
+                survey_url,
+                ru_name,
+                ru_ref,
+                case_id,
+                case_ref=None,
+                account_service_url=None,
+                submitted_time=None,
+                **_,
+            ):
                 self.tx_id = tx_id
                 self.eq_id = eq_id
                 self.form_type = form_type
@@ -235,7 +262,9 @@ class SessionStoreTest(AppContextTestCase):
         def old_json_loader(raw, object_hook):  # pylint: disable=unused-argument
             """replacement for json.loads to decode to old format ( no trading as) """
 
-            old_data = original_loads_func(raw, object_hook=lambda d: OldSessionData(**d))   # call json.loads ,hook pointing to an old class
+            old_data = original_loads_func(
+                raw, object_hook=lambda d: OldSessionData(**d)
+            )  # call json.loads ,hook pointing to an old class
             return old_data
 
         session_data = SessionData(
@@ -249,12 +278,16 @@ class SessionStoreTest(AppContextTestCase):
             response_id='response_id',
             ru_ref='ru_ref',
             trad_as='trading_as_name',
-            case_id='case_id'
+            case_id='case_id',
         )
         with self._app.test_request_context():
 
-            with patch('app.data_model.session_store.json.loads', old_json_loader):  # patch json.loads to use old_json_loader above
-                self.session_store.create('eq_session_id', 'test', session_data, self.expires_at).save()
+            with patch(
+                'app.data_model.session_store.json.loads', old_json_loader
+            ):  # patch json.loads to use old_json_loader above
+                self.session_store.create(
+                    'eq_session_id', 'test', session_data, self.expires_at
+                ).save()
 
                 session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
 
@@ -265,6 +298,7 @@ class TestSessionStoreEncoding(AppContextTestCase):
     """Session data used to be base64-encoded. For performance reasons the
     base64 encoding was removed.
     """
+
     def setUp(self):
         super().setUp()
         self.user_id = 'user_id'
@@ -282,15 +316,18 @@ class TestSessionStoreEncoding(AppContextTestCase):
             response_id='response_id',
             ru_ref='ru_ref',
             trad_as='trading_as_name',
-            case_id='case_id'
+            case_id='case_id',
         )
 
         # pylint: disable=protected-access
         self.key = storage_encryption.StorageEncryption._generate_key(
-            self.user_id, self.user_ik, self.pepper)
+            self.user_id, self.user_ik, self.pepper
+        )
 
     def test_legacy_load(self):
-        self._save_session(self.session_id, self.user_id, self.session_data, legacy=True)
+        self._save_session(
+            self.session_id, self.user_id, self.session_data, legacy=True
+        )
         session_store = SessionStore(self.user_ik, self.pepper, self.session_id)
         self.assertEqual(session_store.session_data.tx_id, self.session_data.tx_id)
 
@@ -301,11 +338,7 @@ class TestSessionStoreEncoding(AppContextTestCase):
 
     def _save_session(self, session_id, user_id, data, legacy=False):
         raw_data = json.dumps(vars(data))
-        protected_header = {
-            'alg': 'dir',
-            'enc': 'A256GCM',
-            'kid': '1,1',
-        }
+        protected_header = {'alg': 'dir', 'enc': 'A256GCM', 'kid': '1,1'}
 
         if legacy:
             plaintext = base64url_encode(raw_data)
@@ -313,14 +346,10 @@ class TestSessionStoreEncoding(AppContextTestCase):
             plaintext = raw_data
 
         jwe_token = jwe.JWE(
-            plaintext=plaintext,
-            protected=protected_header,
-            recipient=self.key
+            plaintext=plaintext, protected=protected_header, recipient=self.key
         )
 
         session_model = EQSession(
-            session_id,
-            user_id,
-            jwe_token.serialize(compact=True)
+            session_id, user_id, jwe_token.serialize(compact=True)
         )
         current_app.eq['storage'].put(session_model)

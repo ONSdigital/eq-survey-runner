@@ -12,6 +12,7 @@ class TestSumCheckValidator(unittest.TestCase):
     """
     Sum check validator evaluates a calculated total against a target total, given a condition
     """
+
     def test_equal_condition_check(self):
         validator = SumCheck()
 
@@ -24,8 +25,11 @@ class TestSumCheckValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, conditions, calculation_total, target_total)
 
-        self.assertEqual(error_messages['TOTAL_SUM_NOT_EQUALS'] % dict(total=format_playback_value(target_total)),
-                         str(ite.exception))
+        self.assertEqual(
+            error_messages['TOTAL_SUM_NOT_EQUALS']
+            % dict(total=format_playback_value(target_total)),
+            str(ite.exception),
+        )
 
     def test_less_or_equal_condition_check(self):
         validator = SumCheck()
@@ -39,8 +43,11 @@ class TestSumCheckValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, conditions, calculation_total, target_total)
 
-        self.assertEqual(error_messages['TOTAL_SUM_NOT_LESS_THAN_OR_EQUALS'] % dict(total=format_playback_value(
-            target_total)), str(ite.exception))
+        self.assertEqual(
+            error_messages['TOTAL_SUM_NOT_LESS_THAN_OR_EQUALS']
+            % dict(total=format_playback_value(target_total)),
+            str(ite.exception),
+        )
 
     def test_less_than_condition_check(self):
         validator = SumCheck()
@@ -54,8 +61,11 @@ class TestSumCheckValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, conditions, calculation_total, target_total)
 
-        self.assertEqual(error_messages['TOTAL_SUM_NOT_LESS_THAN'] % dict(total=format_playback_value(target_total)),
-                         str(ite.exception))
+        self.assertEqual(
+            error_messages['TOTAL_SUM_NOT_LESS_THAN']
+            % dict(total=format_playback_value(target_total)),
+            str(ite.exception),
+        )
 
     def test_greater_than_condition_check(self):
         validator = SumCheck()
@@ -69,8 +79,11 @@ class TestSumCheckValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, conditions, calculation_total, target_total)
 
-        self.assertEqual(error_messages['TOTAL_SUM_NOT_GREATER_THAN'] % dict(total=format_playback_value(target_total)),
-                         str(ite.exception))
+        self.assertEqual(
+            error_messages['TOTAL_SUM_NOT_GREATER_THAN']
+            % dict(total=format_playback_value(target_total)),
+            str(ite.exception),
+        )
 
     def test_greater_or_equal_condition_check(self):
         validator = SumCheck()
@@ -84,8 +97,11 @@ class TestSumCheckValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, conditions, calculation_total, target_total)
 
-        self.assertEqual(error_messages['TOTAL_SUM_NOT_GREATER_THAN_OR_EQUALS'] % dict(total=format_playback_value(target_total)),
-                         str(ite.exception))
+        self.assertEqual(
+            error_messages['TOTAL_SUM_NOT_GREATER_THAN_OR_EQUALS']
+            % dict(total=format_playback_value(target_total)),
+            str(ite.exception),
+        )
 
     def test_currency_playback(self):
         validator = SumCheck(currency='EUR')
@@ -99,9 +115,11 @@ class TestSumCheckValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, conditions, calculation_total, target_total)
 
-        self.assertEqual(error_messages['TOTAL_SUM_NOT_EQUALS'] % dict(total=format_playback_value(target_total,
-                                                                                                   currency='EUR')),
-                         str(ite.exception))
+        self.assertEqual(
+            error_messages['TOTAL_SUM_NOT_EQUALS']
+            % dict(total=format_playback_value(target_total, currency='EUR')),
+            str(ite.exception),
+        )
 
     def test_bespoke_message_playback(self):
         message = {'TOTAL_SUM_NOT_EQUALS': 'Test %(total)s'}
@@ -130,8 +148,11 @@ class TestSumCheckValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, conditions, calculation_total, target_total)
 
-        self.assertEqual(error_messages['TOTAL_SUM_NOT_LESS_THAN_OR_EQUALS'] % dict(total=format_playback_value(target_total)),
-                         str(ite.exception))
+        self.assertEqual(
+            error_messages['TOTAL_SUM_NOT_LESS_THAN_OR_EQUALS']
+            % dict(total=format_playback_value(target_total)),
+            str(ite.exception),
+        )
 
     def test_invalid_multiple_conditions(self):
         validator = SumCheck()
@@ -145,5 +166,7 @@ class TestSumCheckValidator(unittest.TestCase):
         with self.assertRaises(Exception) as ite:
             validator(mock_form, conditions, calculation_total, target_total)
 
-        self.assertEqual('There are multiple conditions, but equals is not one of them. We only support <= and >=',
-                         str(ite.exception))
+        self.assertEqual(
+            'There are multiple conditions, but equals is not one of them. We only support <= and >=',
+            str(ite.exception),
+        )

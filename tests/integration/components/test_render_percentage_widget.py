@@ -2,7 +2,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestRenderPercentageWidget(IntegrationTestCase):
-
     def setUp(self):
         super().setUp()
         self.launchSurvey('test', 'percentage')

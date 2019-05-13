@@ -4,7 +4,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
-
     def test_get_invalid_questionnaire_location_redirects_to_latest(self):
         # Given
         self.launchSurvey('test', 'introduction')
@@ -29,7 +28,9 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         # Then
         self.assertInUrl(base_url + 'introduction')
 
-    def test_submit_answers_for_invalid_questionnaire_location_redirects_to_first_incomplete_location(self):
+    def test_submit_answers_for_invalid_questionnaire_location_redirects_to_first_incomplete_location(
+        self
+    ):
         # Given
         self.launchSurvey('test', 'textfield')
 
@@ -41,7 +42,9 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         # Then
         self.assertInUrl(base_url + 'name-block')
 
-    def test_given_not_complete_questionnaire_when_get_thank_you_then_data_not_deleted(self):
+    def test_given_not_complete_questionnaire_when_get_thank_you_then_data_not_deleted(
+        self
+    ):
         # Given we start a survey
         self.launchSurvey('test', 'percentage', roles=['dumper'])
         self.post({'answer': '99'})
@@ -54,7 +57,9 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         answers = json.loads(self.getResponseData())
         self.assertEqual(1, len(answers['answers']))
 
-    def test_given_not_complete_questionnaire_when_get_thank_you_then_redirected_to_latest_location(self):
+    def test_given_not_complete_questionnaire_when_get_thank_you_then_redirected_to_latest_location(
+        self
+    ):
         # Given we start a survey
         self.launchSurvey('test', 'percentage', roles=['dumper'])
 

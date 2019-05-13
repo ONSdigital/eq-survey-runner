@@ -1,4 +1,10 @@
-from flask import Blueprint, request, current_app, session as cookie_session, render_template as flask_render_template
+from flask import (
+    Blueprint,
+    request,
+    current_app,
+    session as cookie_session,
+    render_template as flask_render_template,
+)
 from flask_login import current_user
 from flask_wtf.csrf import CSRFError
 from sdc.crypto.exceptions import InvalidTokenException
@@ -67,18 +73,29 @@ def log_exception(error, status_code):
     if metadata:
         logger.bind(tx_id=metadata['tx_id'])
 
-    logger.error('an error has occurred', exc_info=error, url=request.url, status_code=status_code)
+    logger.error(
+        'an error has occurred',
+        exc_info=error,
+        url=request.url,
+        status_code=status_code,
+    )
 
 
 def _render_error_page(status_code):
     tx_id = get_tx_id()
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
 
-    return flask_render_template('errors/error.html',
-                                 status_code=status_code,
-                                 analytics_ua_id=current_app.config['EQ_UA_ID'],
-                                 account_service_url=cookie_session.get('account_service_url'),
-                                 ua=user_agent, tx_id=tx_id), status_code
+    return (
+        flask_render_template(
+            'errors/error.html',
+            status_code=status_code,
+            analytics_ua_id=current_app.config['EQ_UA_ID'],
+            account_service_url=cookie_session.get('account_service_url'),
+            ua=user_agent,
+            tx_id=tx_id,
+        ),
+        status_code,
+    )
 
 
 def get_tx_id():
@@ -93,9 +110,11 @@ def render_template(template_name):
     tx_id = get_tx_id()
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
 
-    return flask_render_template(template_name,
-                                 analytics_ua_id=current_app.config['EQ_UA_ID'],
-                                 ua=user_agent,
-                                 tx_id=tx_id,
-                                 account_service_url=cookie_session.get('account_service_url'),
-                                 survey_title=safe_content(cookie_session.get('survey_title', '')))
+    return flask_render_template(
+        template_name,
+        analytics_ua_id=current_app.config['EQ_UA_ID'],
+        ua=user_agent,
+        tx_id=tx_id,
+        account_service_url=cookie_session.get('account_service_url'),
+        survey_title=safe_content(cookie_session.get('survey_title', '')),
+    )

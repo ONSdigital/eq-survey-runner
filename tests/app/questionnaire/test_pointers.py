@@ -4,12 +4,9 @@ from app.questionnaire.placeholder_renderer import find_pointers_containing
 
 
 class TestPointers(unittest.TestCase):
-
     @staticmethod
     def test_find_pointers_containing_root():
-        schema = {
-            'test': ''
-        }
+        schema = {'test': ''}
 
         pointers = [p for p in find_pointers_containing(schema, 'test')]
 
@@ -17,12 +14,7 @@ class TestPointers(unittest.TestCase):
 
     @staticmethod
     def test_find_pointers_containing_element():
-        schema = {
-            'this': 'is',
-            'a': {
-                'test': 'schema'
-            }
-        }
+        schema = {'this': 'is', 'a': {'test': 'schema'}}
 
         pointers = find_pointers_containing(schema, 'test')
 
@@ -33,18 +25,14 @@ class TestPointers(unittest.TestCase):
         schema = {
             'this': 'is',
             'a': {
-                'test': [{
-                    'item': {}
-                }, {
-                    'item': {}
-                }, {
-                    'item': {}
-                }, {
-                    'item': {}
-                }, {
-                    'item': {}
-                }]
-            }
+                'test': [
+                    {'item': {}},
+                    {'item': {}},
+                    {'item': {}},
+                    {'item': {}},
+                    {'item': {}},
+                ]
+            },
         }
 
         pointers = find_pointers_containing(schema, 'item')

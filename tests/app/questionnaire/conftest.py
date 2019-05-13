@@ -1,59 +1,69 @@
 import pytest
 
+
 @pytest.fixture()
 def question_variant_schema():
     return {
-        'sections': [{
-            'id': 'section1',
-            'groups': [{
-                'id': 'group1',
-                'title': 'Group 1',
-                'blocks': [
+        'sections': [
+            {
+                'id': 'section1',
+                'groups': [
                     {
-                        'id': 'block1',
-                        'type': 'Question',
-                        'title': 'Block 1',
-                        'question_variants': [
+                        'id': 'group1',
+                        'title': 'Group 1',
+                        'blocks': [
                             {
-                                'when': [{
-                                    'id': 'when-answer',
-                                    'condition': 'equals',
-                                    'value': 'yes'
-                                }],
-                                'question': {
-                                    'id': 'question1',
-                                    'title': 'Question 1, Yes',
-                                    'answers': [
-                                        {
-                                            'id': 'answer1',
-                                            'label': 'Answer 1 Variant 1'
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                'when': [{
-                                    'id': 'when-answer',
-                                    'condition': 'not equals',
-                                    'value': 'yes'
-                                }],
-                                'question': {
-                                    'id': 'question1',
-                                    'title': 'Question 1, No',
-                                    'answers': [
-                                        {
-                                            'id': 'answer1',
-                                            'label': 'Answer 1 Variant 2'
-                                        }
-                                    ]
-                                }
+                                'id': 'block1',
+                                'type': 'Question',
+                                'title': 'Block 1',
+                                'question_variants': [
+                                    {
+                                        'when': [
+                                            {
+                                                'id': 'when-answer',
+                                                'condition': 'equals',
+                                                'value': 'yes',
+                                            }
+                                        ],
+                                        'question': {
+                                            'id': 'question1',
+                                            'title': 'Question 1, Yes',
+                                            'answers': [
+                                                {
+                                                    'id': 'answer1',
+                                                    'label': 'Answer 1 Variant 1',
+                                                }
+                                            ],
+                                        },
+                                    },
+                                    {
+                                        'when': [
+                                            {
+                                                'id': 'when-answer',
+                                                'condition': 'not equals',
+                                                'value': 'yes',
+                                            }
+                                        ],
+                                        'question': {
+                                            'id': 'question1',
+                                            'title': 'Question 1, No',
+                                            'answers': [
+                                                {
+                                                    'id': 'answer1',
+                                                    'label': 'Answer 1 Variant 2',
+                                                }
+                                            ],
+                                        },
+                                    },
+                                ],
                             }
-                        ]
+                        ],
                     }
-                ]
-            }]
-        }]
+                ],
+            }
+        ]
     }
+
 
 @pytest.fixture()
 def list_collector_variant_schema():
@@ -70,13 +80,10 @@ def list_collector_variant_schema():
                                 'id': 'block1',
                                 'type': 'ListCollector',
                                 'populates_list': 'people',
-                                'add_answer': {
-                                    'id': 'answer1',
-                                    'value': 'Yes'
-                                },
+                                'add_answer': {'id': 'answer1', 'value': 'Yes'},
                                 'remove_answer': {
                                     'id': 'remove-confirmation',
-                                    'value': 'Yes'
+                                    'value': 'Yes',
                                 },
                                 'question_variants': [
                                     {
@@ -87,15 +94,17 @@ def list_collector_variant_schema():
                                             'answers': [
                                                 {
                                                     'id': 'answer1',
-                                                    'label': 'Collector Answer 1 Variant Yes'
+                                                    'label': 'Collector Answer 1 Variant Yes',
                                                 }
-                                            ]
+                                            ],
                                         },
-                                        'when': [{
-                                            'id': 'when-answer',
-                                            'condition': 'equals',
-                                            'value': 'yes'
-                                        }],
+                                        'when': [
+                                            {
+                                                'id': 'when-answer',
+                                                'condition': 'equals',
+                                                'value': 'yes',
+                                            }
+                                        ],
                                     },
                                     {
                                         'question': {
@@ -105,16 +114,18 @@ def list_collector_variant_schema():
                                             'answers': [
                                                 {
                                                     'id': 'answer1',
-                                                    'label': 'Collector Answer 1 Variant No'
+                                                    'label': 'Collector Answer 1 Variant No',
                                                 }
-                                            ]
+                                            ],
                                         },
-                                        'when': [{
-                                            'id': 'when-answer',
-                                            'condition': 'equals',
-                                            'value': 'no'
-                                        }],
-                                    }
+                                        'when': [
+                                            {
+                                                'id': 'when-answer',
+                                                'condition': 'equals',
+                                                'value': 'no',
+                                            }
+                                        ],
+                                    },
                                 ],
                                 'add_block': {
                                     'id': 'add-person',
@@ -128,15 +139,17 @@ def list_collector_variant_schema():
                                                 'answers': [
                                                     {
                                                         'id': 'answer1',
-                                                        'label': 'Answer 1 Variant Yes'
+                                                        'label': 'Answer 1 Variant Yes',
                                                     }
-                                                ]
+                                                ],
                                             },
-                                            'when': [{
-                                                'id': 'when-answer',
-                                                'condition': 'equals',
-                                                'value': 'yes'
-                                            }],
+                                            'when': [
+                                                {
+                                                    'id': 'when-answer',
+                                                    'condition': 'equals',
+                                                    'value': 'yes',
+                                                }
+                                            ],
                                         },
                                         {
                                             'question': {
@@ -146,17 +159,19 @@ def list_collector_variant_schema():
                                                 'answers': [
                                                     {
                                                         'id': 'answer1',
-                                                        'label': 'Answer 1 Variant Yes'
+                                                        'label': 'Answer 1 Variant Yes',
                                                     }
-                                                ]
+                                                ],
                                             },
-                                            'when': [{
-                                                'id': 'when-answer',
-                                                'condition': 'equals',
-                                                'value': 'no'
-                                            }],
-                                        }
-                                    ]
+                                            'when': [
+                                                {
+                                                    'id': 'when-answer',
+                                                    'condition': 'equals',
+                                                    'value': 'no',
+                                                }
+                                            ],
+                                        },
+                                    ],
                                 },
                                 'edit_block': {
                                     'id': 'edit-person',
@@ -170,15 +185,17 @@ def list_collector_variant_schema():
                                                 'answers': [
                                                     {
                                                         'id': 'answer1',
-                                                        'label': 'Answer 1 Variant Yes'
+                                                        'label': 'Answer 1 Variant Yes',
                                                     }
-                                                ]
+                                                ],
                                             },
-                                            'when': [{
-                                                'id': 'when-answer',
-                                                'condition': 'equals',
-                                                'value': 'yes'
-                                            }],
+                                            'when': [
+                                                {
+                                                    'id': 'when-answer',
+                                                    'condition': 'equals',
+                                                    'value': 'yes',
+                                                }
+                                            ],
                                         },
                                         {
                                             'question': {
@@ -188,17 +205,19 @@ def list_collector_variant_schema():
                                                 'answers': [
                                                     {
                                                         'id': 'answer1',
-                                                        'label': 'Answer 1 Variant No'
+                                                        'label': 'Answer 1 Variant No',
                                                     }
-                                                ]
+                                                ],
                                             },
-                                            'when': [{
-                                                'id': 'when-answer',
-                                                'condition': 'equals',
-                                                'value': 'no'
-                                            }],
-                                        }
-                                    ]
+                                            'when': [
+                                                {
+                                                    'id': 'when-answer',
+                                                    'condition': 'equals',
+                                                    'value': 'no',
+                                                }
+                                            ],
+                                        },
+                                    ],
                                 },
                                 'remove_block': {
                                     'id': 'remove-person',
@@ -212,15 +231,17 @@ def list_collector_variant_schema():
                                                 'answers': [
                                                     {
                                                         'id': 'answer1',
-                                                        'label': 'Answer 1 Variant Yes'
+                                                        'label': 'Answer 1 Variant Yes',
                                                     }
-                                                ]
+                                                ],
                                             },
-                                            'when': [{
-                                                'id': 'when-answer',
-                                                'condition': 'equals',
-                                                'value': 'yes'
-                                            }],
+                                            'when': [
+                                                {
+                                                    'id': 'when-answer',
+                                                    'condition': 'equals',
+                                                    'value': 'yes',
+                                                }
+                                            ],
                                         },
                                         {
                                             'question': {
@@ -230,99 +251,105 @@ def list_collector_variant_schema():
                                                 'answers': [
                                                     {
                                                         'id': 'answer1',
-                                                        'label': 'Answer 1 Variant No'
+                                                        'label': 'Answer 1 Variant No',
                                                     }
-                                                ]
+                                                ],
                                             },
-                                            'when': [{
-                                                'id': 'when-answer',
-                                                'condition': 'equals',
-                                                'value': 'no'
-                                            }],
-                                        }
-                                    ]
-                                }
+                                            'when': [
+                                                {
+                                                    'id': 'when-answer',
+                                                    'condition': 'equals',
+                                                    'value': 'no',
+                                                }
+                                            ],
+                                        },
+                                    ],
+                                },
                             }
-                            ]
-                    }]
-            }]
+                        ],
+                    }
+                ],
+            }
+        ]
     }
+
 
 @pytest.fixture()
 def content_variant_schema():
     return {
-        'sections': [{
-            'id': 'section1',
-            'groups': [{
-                'id': 'group1',
-                'title': 'Group 1',
-                'blocks': [
+        'sections': [
+            {
+                'id': 'section1',
+                'groups': [
                     {
-                        'id': 'block1',
-                        'type': 'Question',
-                        'title': 'Block 1',
-                        'content_variants': [
+                        'id': 'group1',
+                        'title': 'Group 1',
+                        'blocks': [
                             {
-                                'content': [{
-                                    'title': 'You are over 16'
-                                }],
-                                'when': [{
-                                    'id': 'age-answer',
-                                    'condition': 'greater than',
-                                    'value': '16'
-                                }]
-                            },
-                            {
-                                'content': [{
-                                    'title': 'You are under 16'
-                                }],
-                                'when': [{
-                                    'id': 'age-answer',
-                                    'condition': 'less than or equal to',
-                                    'value': '16'
-                                }]
-                            },
-                            {
-                                'content': [{
-                                    'title': 'You are ageless'
-                                }],
-                                'when': [{
-                                    'id': 'age-answer',
-                                    'condition': 'not set',
-                                }]
+                                'id': 'block1',
+                                'type': 'Question',
+                                'title': 'Block 1',
+                                'content_variants': [
+                                    {
+                                        'content': [{'title': 'You are over 16'}],
+                                        'when': [
+                                            {
+                                                'id': 'age-answer',
+                                                'condition': 'greater than',
+                                                'value': '16',
+                                            }
+                                        ],
+                                    },
+                                    {
+                                        'content': [{'title': 'You are under 16'}],
+                                        'when': [
+                                            {
+                                                'id': 'age-answer',
+                                                'condition': 'less than or equal to',
+                                                'value': '16',
+                                            }
+                                        ],
+                                    },
+                                    {
+                                        'content': [{'title': 'You are ageless'}],
+                                        'when': [
+                                            {'id': 'age-answer', 'condition': 'not set'}
+                                        ],
+                                    },
+                                ],
                             }
-                        ]
+                        ],
                     }
-                ]
-            }]
-        }]
+                ],
+            }
+        ]
     }
+
 
 @pytest.fixture()
 def question_schema():
     return {
-        'sections': [{
-            'id': 'section1',
-            'groups': [{
-                'id': 'group1',
-                'title': 'Group 1',
-                'blocks': [
+        'sections': [
+            {
+                'id': 'section1',
+                'groups': [
                     {
-                        'id': 'block1',
-                        'type': 'Question',
-                        'title': 'Block 1',
-                        'question': {
-                            'id': 'question1',
-                            'title': 'A Question',
-                            'answers': [
-                                {
-                                    'id': 'answer1',
-                                    'label': 'Answer 1'
-                                }
-                            ]
-                        }
+                        'id': 'group1',
+                        'title': 'Group 1',
+                        'blocks': [
+                            {
+                                'id': 'block1',
+                                'type': 'Question',
+                                'title': 'Block 1',
+                                'question': {
+                                    'id': 'question1',
+                                    'title': 'A Question',
+                                    'answers': [{'id': 'answer1', 'label': 'Answer 1'}],
+                                },
+                            }
+                        ],
                     }
-                ]
-            }]
-        }]
+                ],
+            }
+        ]
     }

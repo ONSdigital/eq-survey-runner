@@ -4,7 +4,9 @@ from app.data_model.answer import Answer
 from app.data_model.answer_store import AnswerStore
 
 
-def convert_answers_to_payload_0_0_3(answer_store, list_store, schema, routing_path) -> List[Dict]:
+def convert_answers_to_payload_0_0_3(
+    answer_store, list_store, schema, routing_path
+) -> List[Dict]:
     """
     Convert answers into the data format below
     'data': [
@@ -35,19 +37,25 @@ def convert_answers_to_payload_0_0_3(answer_store, list_store, schema, routing_p
 
     for location in routing_path:
         if schema.get_block(location.block_id)['type'] == 'ListCollector':
-            answers_in_add_block = get_answers_for_add_block(answer_store, list_store, schema, location)
+            answers_in_add_block = get_answers_for_add_block(
+                answer_store, list_store, schema, location
+            )
             for answer in answers_in_add_block:
                 answers.add_or_update(answer)
 
         answer_ids = schema.get_answer_ids_for_block(location.block_id)
-        answers_in_block = answer_store.get_answers_by_answer_id(answer_ids, list_item_id=location.list_item_id)
+        answers_in_block = answer_store.get_answers_by_answer_id(
+            answer_ids, list_item_id=location.list_item_id
+        )
         for answer_in_block in answers_in_block:
             answers.add_or_update(answer_in_block)
 
     return list(answers.answer_map.values())
 
 
-def get_answers_for_add_block(answer_store, list_store, schema, location) -> List[Answer]:
+def get_answers_for_add_block(
+    answer_store, list_store, schema, location
+) -> List[Answer]:
     """For the given list collector location, return a list of answers which match the add_block
 
     Returns:

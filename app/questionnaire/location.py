@@ -42,4 +42,9 @@ class Location:
 
         :return:
         """
-        return url_for('questionnaire.get_block', block_id=self.block_id, list_name=self.list_name, list_item_id=self.list_item_id)
+        return url_for(
+            'questionnaire.get_block',
+            block_id=self.block_id,
+            list_name=self.list_name,
+            list_item_id=self.list_item_id,
+        )

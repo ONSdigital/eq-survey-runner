@@ -3,7 +3,6 @@ from tests.app.app_context_test_case import AppContextTestCase
 
 
 class SchemaLoaderTest(AppContextTestCase):
-
     def test_load_schema_from_params(self):
         self.assertIsNotNone(load_schema_from_params('test', 'checkbox'))
 

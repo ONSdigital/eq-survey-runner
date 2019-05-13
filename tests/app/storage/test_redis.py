@@ -10,7 +10,6 @@ from tests.app.app_context_test_case import AppContextTestCase
 
 
 class TestDatastore(AppContextTestCase):
-
     def setUp(self):
         super().setUp()
 

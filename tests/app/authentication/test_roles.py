@@ -5,7 +5,6 @@ from werkzeug.exceptions import Forbidden
 
 
 class TestRoleRequired(TestCase):
-
     def setUp(self):
         # Create a patched get_metadata
         self.get_metadata_patcher = patch('app.globals.get_metadata', autospec=True)
@@ -27,6 +26,7 @@ class TestRoleRequired(TestCase):
         # performed after get_metadata and current_user have been patched
         # otherwise the original functions are cached and not patched correctly
         from app.authentication.roles import role_required
+
         self.role_required = role_required
 
     def test_role_required_unauthenticated_no_metadata(self):
@@ -219,7 +219,9 @@ class TestRoleRequired(TestCase):
         with self.assertRaises(Forbidden):
             wrapped_func(arg1='y', arg2='z')
 
-    def test_role_required_unauthenticated_wrapped_with_positional_and_keyword_arguments(self):
+    def test_role_required_unauthenticated_wrapped_with_positional_and_keyword_arguments(
+        self
+    ):
         # Given I am not authenticated
         self.mock_get_metadata.return_value = {'roles': ['flusher', 'other', 'dumper']}
         self.mock_current_user.is_authenticated = False

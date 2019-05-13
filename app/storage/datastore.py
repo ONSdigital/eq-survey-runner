@@ -31,7 +31,6 @@ TABLE_CONFIG = {
 
 
 class DatastoreStorage:
-
     def __init__(self, client):
         self.client = client
 

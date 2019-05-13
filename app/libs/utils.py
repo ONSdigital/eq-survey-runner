@@ -19,7 +19,7 @@ def convert_tx_id_for_boxes(tx_id):
     tx_id = uuid.UUID(tx_id)
     tx_id = tx_id.hex
     tx_id = tx_id.upper()
-    displayable_tx_id = (tx_id[i:i + 4] for i in range(0, 16, 4))
+    displayable_tx_id = (tx_id[i : i + 4] for i in range(0, 16, 4))
     return displayable_tx_id
 
 

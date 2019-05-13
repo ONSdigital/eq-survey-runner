@@ -20,7 +20,9 @@ def convert_answers_to_payload_0_0_1(metadata, answer_store, schema, routing_pat
     data = OrderedDict()
     for location in routing_path:
         answer_ids = schema.get_answer_ids_for_block(location.block_id)
-        answers_in_block = answer_store.get_answers_by_answer_id(answer_ids, location.list_item_id)
+        answers_in_block = answer_store.get_answers_by_answer_id(
+            answer_ids, location.list_item_id
+        )
 
         for answer_in_block in answers_in_block:
             answer_schema = None
@@ -35,11 +37,15 @@ def convert_answers_to_payload_0_0_1(metadata, answer_store, schema, routing_pat
 
             if answer_schema is not None and value is not None:
                 if answer_schema['type'] == 'Checkbox':
-                    data.update(_get_checkbox_answer_data(answer_store, answer_schema, value))
+                    data.update(
+                        _get_checkbox_answer_data(answer_store, answer_schema, value)
+                    )
                 elif 'q_code' in answer_schema:
                     answer_data = _encode_value(value)
                     if answer_data is not None:
-                        data[answer_schema['q_code']] = _format_downstream_answer(answer_schema['type'], answer_in_block.value, answer_data)
+                        data[answer_schema['q_code']] = _format_downstream_answer(
+                            answer_schema['type'], answer_in_block.value, answer_data
+                        )
 
     return data
 
@@ -58,7 +64,14 @@ def _get_checkbox_answer_data(answer_store, answer_schema, value):
     qcodes_and_values = []
     for user_answer in value:
         # find the option in the schema which matches the users answer
-        option = next((option for option in answer_schema['options'] if option['value'] == user_answer), None)
+        option = next(
+            (
+                option
+                for option in answer_schema['options']
+                if option['value'] == user_answer
+            ),
+            None,
+        )
 
         if option:
             if 'detail_answer' in option:
@@ -75,7 +88,9 @@ def _get_checkbox_answer_data(answer_store, answer_schema, value):
     if all(q_code is not None for (q_code, _) in qcodes_and_values):
         checkbox_answer_data.update(qcodes_and_values)
     else:
-        checkbox_answer_data[answer_schema['q_code']] = str([v for (_, v) in qcodes_and_values])
+        checkbox_answer_data[answer_schema['q_code']] = str(
+            [v for (_, v) in qcodes_and_values]
+        )
 
     return checkbox_answer_data
 

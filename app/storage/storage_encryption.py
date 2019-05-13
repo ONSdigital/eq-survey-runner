@@ -11,7 +11,6 @@ logger = get_logger()
 
 
 class StorageEncryption:
-
     def __init__(self, user_id, user_ik, pepper):
         if user_id is None:
             raise ValueError('User id must be set')
@@ -32,10 +31,7 @@ class StorageEncryption:
         # we only need the first 32 characters for the CEK
         cek = to_bytes(sha256.hexdigest()[:32])
 
-        password = {
-            'kty': 'oct',
-            'k': base64url_encode(cek),
-        }
+        password = {'kty': 'oct', 'k': base64url_encode(cek)}
 
         return jwk.JWK(**password)
 
@@ -43,16 +39,10 @@ class StorageEncryption:
         if isinstance(data, dict):
             data = json.dumps(data, for_json=True)
 
-        protected_header = {
-            'alg': 'dir',
-            'enc': 'A256GCM',
-            'kid': '1,1',
-        }
+        protected_header = {'alg': 'dir', 'enc': 'A256GCM', 'kid': '1,1'}
 
         jwe_token = jwe.JWE(
-            plaintext=data,
-            protected=protected_header,
-            recipient=self.key,
+            plaintext=data, protected=protected_header, recipient=self.key
         )
 
         return jwe_token.serialize(compact=True)

@@ -15,9 +15,9 @@ from app.utilities.schema import load_schema_from_session_data
 
 logger = get_logger()
 
-feedback_blueprint = Blueprint(name='feedback',
-                               import_name=__name__,
-                               url_prefix='/feedback')
+feedback_blueprint = Blueprint(
+    name='feedback', import_name=__name__, url_prefix='/feedback'
+)
 
 
 class FeedbackForm(FlaskForm):
@@ -40,9 +40,7 @@ def before_request():
 @login_required
 def get_form():
     form = FeedbackForm()
-    content = {
-        'csrf_token': form.csrf_token,
-    }
+    content = {'csrf_token': form.csrf_token}
     return _render_template('feedback', content=content)
 
 
@@ -68,8 +66,14 @@ def send_feedback():
             g.schema.json['survey_id'],
         )
 
-        encrypted_message = encrypt(message, current_app.eq['key_store'], key_purpose=KEY_PURPOSE_SUBMISSION)
-        sent = current_app.eq['submitter'].send_message(encrypted_message, case_id=metadata.get('case_id'), tx_id=metadata.get('tx_id'))
+        encrypted_message = encrypt(
+            message, current_app.eq['key_store'], key_purpose=KEY_PURPOSE_SUBMISSION
+        )
+        sent = current_app.eq['submitter'].send_message(
+            encrypted_message,
+            case_id=metadata.get('case_id'),
+            tx_id=metadata.get('tx_id'),
+        )
 
         if not sent:
             raise SubmissionFailedException()

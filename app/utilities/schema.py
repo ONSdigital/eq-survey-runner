@@ -5,7 +5,10 @@ import simplejson as json
 from structlog import get_logger
 from werkzeug.exceptions import NotFound
 
-from app.questionnaire.questionnaire_schema import QuestionnaireSchema, DEFAULT_LANGUAGE_CODE
+from app.questionnaire.questionnaire_schema import (
+    QuestionnaireSchema,
+    DEFAULT_LANGUAGE_CODE,
+)
 from app.setup import cache
 
 logger = get_logger()
@@ -15,8 +18,12 @@ DEFAULT_SCHEMA_DIR = 'data'
 
 def load_schema_from_metadata(metadata):
     if metadata.get('survey_url'):
-        return load_schema_from_url(metadata['survey_url'], metadata.get('language_code'))
-    return load_schema_from_params(metadata['eq_id'], metadata['form_type'], metadata.get('language_code'))
+        return load_schema_from_url(
+            metadata['survey_url'], metadata.get('language_code')
+        )
+    return load_schema_from_params(
+        metadata['eq_id'], metadata['form_type'], metadata.get('language_code')
+    )
 
 
 def load_schema_from_session_data(session_data):
@@ -26,7 +33,9 @@ def load_schema_from_session_data(session_data):
 @cache.memoize()
 def load_schema_from_params(eq_id, form_type, language_code=None):
     language_code = language_code or DEFAULT_LANGUAGE_CODE
-    schema_json = _load_schema_file('{}_{}.json'.format(eq_id, form_type), language_code)
+    schema_json = _load_schema_file(
+        '{}_{}.json'.format(eq_id, form_type), language_code
+    )
 
     return QuestionnaireSchema(schema_json, language_code)
 
@@ -40,11 +49,20 @@ def _load_schema_file(schema_file, language_code):
     schema_path = get_schema_file_path(schema_file, language_code)
 
     if language_code != DEFAULT_LANGUAGE_CODE and not os.path.exists(schema_path):
-        logger.info("couldn't find requested language schema, falling back to 'en'",
-                    schema_file=schema_file, language_code=language_code, schema_path=schema_path)
+        logger.info(
+            "couldn't find requested language schema, falling back to 'en'",
+            schema_file=schema_file,
+            language_code=language_code,
+            schema_path=schema_path,
+        )
         schema_path = get_schema_file_path(schema_file, DEFAULT_LANGUAGE_CODE)
 
-    logger.info('loading schema', schema_file=schema_file, language_code=language_code, schema_path=schema_path)
+    logger.info(
+        'loading schema',
+        schema_file=schema_file,
+        language_code=language_code,
+        schema_path=schema_path,
+    )
 
     try:
         with open(schema_path, encoding='utf8') as json_data:
@@ -58,7 +76,9 @@ def _load_schema_file(schema_file, language_code):
 @cache.memoize()
 def load_schema_from_url(survey_url, language_code):
     language_code = language_code or DEFAULT_LANGUAGE_CODE
-    logger.info('loading schema from URL', survey_url=survey_url, language_code=language_code)
+    logger.info(
+        'loading schema from URL', survey_url=survey_url, language_code=language_code
+    )
 
     constructed_survey_url = '{}?language={}'.format(survey_url, language_code)
 

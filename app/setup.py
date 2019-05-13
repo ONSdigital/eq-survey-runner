@@ -42,9 +42,22 @@ CACHE_HEADERS = {
 CSP_POLICY = {
     'default-src': ["'self'", 'https://cdn.ons.gov.uk'],
     'font-src': ["'self'", 'data:', 'https://cdn.ons.gov.uk'],
-    'script-src': ["'self'", 'https://www.google-analytics.com', 'https://cdn.ons.gov.uk'],
-    'connect-src': ["'self'", 'https://www.google-analytics.com', 'https://cdn.ons.gov.uk'],
-    'img-src': ["'self'", 'data:', 'https://www.google-analytics.com', 'https://cdn.ons.gov.uk'],
+    'script-src': [
+        "'self'",
+        'https://www.google-analytics.com',
+        'https://cdn.ons.gov.uk',
+    ],
+    'connect-src': [
+        "'self'",
+        'https://www.google-analytics.com',
+        'https://cdn.ons.gov.uk',
+    ],
+    'img-src': [
+        "'self'",
+        'data:',
+        'https://www.google-analytics.com',
+        'https://cdn.ons.gov.uk',
+    ],
 }
 
 cache = Cache()
@@ -72,7 +85,6 @@ class EmulatorCredentials(credentials.Credentials):
 
 
 class AWSReverseProxied:
-
     def __init__(self, app):
         self.app = app
 
@@ -104,7 +116,10 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
         application.config.update(setting_overrides)
 
     if application.config['EQ_APPLICATION_VERSION']:
-        logger.info('starting eq survey runner', version=application.config['EQ_APPLICATION_VERSION'])
+        logger.info(
+            'starting eq survey runner',
+            version=application.config['EQ_APPLICATION_VERSION'],
+        )
 
     if application.config['EQ_NEW_RELIC_ENABLED']:
         setup_newrelic()
@@ -115,8 +130,12 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     application.eq['id_generator'] = UserIDGenerator(
         application.config['EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS'],
-        application.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_USER_ID_SALT'),
-        application.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_USER_IK_SALT'),
+        application.eq['secret_store'].get_secret_by_name(
+            'EQ_SERVER_SIDE_STORAGE_USER_ID_SALT'
+        ),
+        application.eq['secret_store'].get_secret_by_name(
+            'EQ_SERVER_SIDE_STORAGE_USER_IK_SALT'
+        ),
     )
 
     setup_secure_cookies(application)
@@ -180,9 +199,16 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
         """
         minify html response to decrease site traffic
         """
-        if application.config['EQ_ENABLE_HTML_MINIFY'] and response.content_type == u'text/html; charset=utf-8':
+        if (
+            application.config['EQ_ENABLE_HTML_MINIFY']
+            and response.content_type == u'text/html; charset=utf-8'
+        ):
             response.set_data(
-                minify(response.get_data(as_text=True), remove_comments=True, remove_empty_space=True),
+                minify(
+                    response.get_data(as_text=True),
+                    remove_comments=True,
+                    remove_empty_space=True,
+                )
             )
 
             return response
@@ -206,7 +232,8 @@ def setup_secure_headers(application):
         force_https=False,  # this is handled at the firewall
         strict_transport_security=True,
         strict_transport_security_max_age=31536000,
-        frame_options='DENY')
+        frame_options='DENY',
+    )
 
 
 def setup_storage(application):
@@ -227,12 +254,20 @@ def setup_dynamodb(application):
         max_pool_connections=application.config['EQ_DYNAMODB_MAX_POOL_CONNECTIONS'],
     )
 
-    dynamodb = boto3.resource('dynamodb', endpoint_url=application.config['EQ_DYNAMODB_ENDPOINT'], config=config)
+    dynamodb = boto3.resource(
+        'dynamodb',
+        endpoint_url=application.config['EQ_DYNAMODB_ENDPOINT'],
+        config=config,
+    )
     application.eq['storage'] = DynamodbStorage(dynamodb)
 
 
 def setup_datastore(application):
-    creds = EmulatorCredentials() if application.config['EQ_DATASTORE_EMULATOR_CREDENTIALS'] else None
+    creds = (
+        EmulatorCredentials()
+        if application.config['EQ_DATASTORE_EMULATOR_CREDENTIALS']
+        else None
+    )
     client = datastore.Client(_use_grpc=False, credentials=creds)
     application.eq['storage'] = DatastoreStorage(client)
 
@@ -269,8 +304,12 @@ def setup_submitter(application):
             secondary_host=secondary_host,
             port=application.config['EQ_RABBITMQ_PORT'],
             queue=application.config['EQ_RABBITMQ_QUEUE_NAME'],
-            username=application.eq['secret_store'].get_secret_by_name('EQ_RABBITMQ_USERNAME'),
-            password=application.eq['secret_store'].get_secret_by_name('EQ_RABBITMQ_PASSWORD'),
+            username=application.eq['secret_store'].get_secret_by_name(
+                'EQ_RABBITMQ_USERNAME'
+            ),
+            password=application.eq['secret_store'].get_secret_by_name(
+                'EQ_RABBITMQ_PASSWORD'
+            ),
         )
 
     elif application.config['EQ_SUBMISSION_BACKEND'] == 'log':
@@ -295,13 +334,16 @@ def setup_profiling(application):
 
     application.config['PROFILE'] = True
     application.wsgi_app = ProfilerMiddleware(
-        application.wsgi_app, stream, profile_dir=profiling_dir)
+        application.wsgi_app, stream, profile_dir=profiling_dir
+    )
     application.debug = True
 
 
 def configure_flask_logging(application):
     # set the logger for this application and stop using flasks broken solution
-    application._logger = logging.getLogger(__name__)  # pylint: disable=protected-access
+    application._logger = logging.getLogger(  # pylint: disable=protected-access
+        __name__
+    )
     # workaround flask crazy logging mechanism (https://github.com/pallets/flask/issues/641)
     application.logger_name = 'nowhere'
     # the line below is required to trigger disabling the logger
@@ -314,6 +356,7 @@ def start_dev_mode(application):
         application.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
         application.debug = True
         from flask_debugtoolbar import DebugToolbarExtension
+
         DebugToolbarExtension(application)
 
     if application.config['EQ_PROFILING']:
@@ -325,50 +368,62 @@ def add_blueprints(application):
 
     # import and register the main application blueprint
     from app.views.questionnaire import questionnaire_blueprint
+
     application.register_blueprint(questionnaire_blueprint)
     questionnaire_blueprint.config = application.config.copy()
 
     from app.views.questionnaire import post_submission_blueprint
+
     application.register_blueprint(post_submission_blueprint)
     post_submission_blueprint.config = application.config.copy()
 
     from app.views.feedback import feedback_blueprint
+
     application.register_blueprint(feedback_blueprint)
     feedback_blueprint.config = application.config.copy()
 
     from app.views.session import session_blueprint
+
     csrf.exempt(session_blueprint)
     application.register_blueprint(session_blueprint)
     session_blueprint.config = application.config.copy()
 
     from app.views.flush import flush_blueprint
+
     csrf.exempt(flush_blueprint)
     application.register_blueprint(flush_blueprint)
     flush_blueprint.config = application.config.copy()
 
     from app.views.dump import dump_blueprint
+
     application.register_blueprint(dump_blueprint)
     dump_blueprint.config = application.config.copy()
 
     from app.views.errors import errors_blueprint
+
     application.register_blueprint(errors_blueprint)
     errors_blueprint.config = application.config.copy()
 
     from app.jinja_filters import blueprint as filter_blueprint
+
     application.register_blueprint(filter_blueprint)
 
     from app.views.static import contact_blueprint
+
     application.register_blueprint(contact_blueprint)
     contact_blueprint.config = application.config.copy()
 
     from app.views.schema import schema_blueprint
+
     application.register_blueprint(schema_blueprint)
     schema_blueprint.config = application.config.copy()
 
 
 def setup_secure_cookies(application):
     session_timeout = application.config['EQ_SESSION_TIMEOUT_SECONDS']
-    application.secret_key = application.eq['secret_store'].get_secret_by_name('EQ_SECRET_KEY')
+    application.secret_key = application.eq['secret_store'].get_secret_by_name(
+        'EQ_SECRET_KEY'
+    )
     application.permanent_session_lifetime = timedelta(seconds=session_timeout)
     application.session_interface = SHA256SecureCookieSessionInterface()
 
@@ -395,10 +450,7 @@ def setup_babel(application):
 def add_safe_health_check(application):
     @application.route('/status')
     def safe_health_check():  # pylint: disable=unused-variable
-        data = {
-            'status': 'OK',
-            'version': application.config['EQ_APPLICATION_VERSION'],
-        }
+        data = {'status': 'OK', 'version': application.config['EQ_APPLICATION_VERSION']}
         return json.dumps(data)
 
 

@@ -5,7 +5,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestTimeout(IntegrationTestCase):
-
     def setUp(self):
         settings.EQ_SESSION_TIMEOUT_SECONDS = 2
         super().setUp()

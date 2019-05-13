@@ -2,7 +2,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestQuestionnairePreviousLink(IntegrationTestCase):
-
     def test_previous_link_doesnt_appear_on_introduction(self):
         # Given
         self.launchSurvey('test', 'final_confirmation')

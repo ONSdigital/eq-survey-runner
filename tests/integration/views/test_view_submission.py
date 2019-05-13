@@ -9,15 +9,12 @@ from app.storage.storage_encryption import StorageEncryption
 
 
 class TestViewSubmission(IntegrationTestCase):
-
     def setUp(self):
         super().setUp()
 
         self.launchSurvey('test', 'view_submitted_response')
 
-        form_data = {
-            'radio-answer': 'Bacon',
-        }
+        form_data = {'radio-answer': 'Bacon'}
         self.post(form_data)
 
         form_data = {
@@ -67,7 +64,6 @@ class TestViewSubmission(IntegrationTestCase):
 
 
 class TestCantViewSubmission(IntegrationTestCase):
-
     def test_try_view_submission_when_not_available(self):
         self.launchSurvey('test', 'currency')
 
@@ -116,7 +112,6 @@ class TestCantViewSubmission(IntegrationTestCase):
 
 
 class TestViewSubmissionTradingAs(IntegrationTestCase):
-
     def test_view_submission_shows_trading_as_if_present(self):
         self.launchSurvey('test', 'view_submitted_response')
 
@@ -126,7 +121,7 @@ class TestViewSubmissionTradingAs(IntegrationTestCase):
         # We fill in our answer
         form_data = {
             # Food choice
-            'radio-answer': 'Bacon',
+            'radio-answer': 'Bacon'
         }
 
         # We submit the form
@@ -171,7 +166,7 @@ class TestViewSubmissionTradingAs(IntegrationTestCase):
             'employment_date': '1983-06-02',
             'region_code': 'GB-ENG',
             'language_code': 'en',
-            'roles': []
+            'roles': [],
         }
         with patch('tests.integration.create_token.PAYLOAD', no_trading_as_payload):
             self.launchSurvey('test', 'view_submitted_response')
@@ -182,7 +177,7 @@ class TestViewSubmissionTradingAs(IntegrationTestCase):
             # We fill in our answer
             form_data = {
                 # Food choice
-                'radio-answer': 'Bacon',
+                'radio-answer': 'Bacon'
             }
 
             # We submit the form
@@ -228,7 +223,7 @@ class TestViewSubmissionTradingAs(IntegrationTestCase):
             'region_code': 'GB-ENG',
             'language_code': 'en',
             'roles': [],
-            'trad_as': ''
+            'trad_as': '',
         }
         with patch('tests.integration.create_token.PAYLOAD', no_trading_as_payload):
             self.launchSurvey('test', 'view_submitted_response')
@@ -239,7 +234,7 @@ class TestViewSubmissionTradingAs(IntegrationTestCase):
             # We fill in our answer
             form_data = {
                 # Food choice
-                'radio-answer': 'Bacon',
+                'radio-answer': 'Bacon'
             }
 
             # We submit the form
@@ -271,19 +266,17 @@ class TestViewSubmissionTradingAs(IntegrationTestCase):
 
 
 class TestViewSubmissionCompression(IntegrationTestCase):
-
     def test_compressed_submitted_response_data(self):
         """Compressed storage will be introduced in the next release
         """
         # setup
         with patch(
-                'app.views.questionnaire.StorageEncryption',
-                wraps=_CompressedStorageEncryption):
+            'app.views.questionnaire.StorageEncryption',
+            wraps=_CompressedStorageEncryption,
+        ):
             self.launchSurvey('test', 'view_submitted_response')
 
-            form_data = {
-                'radio-answer': 'Bacon',
-            }
+            form_data = {'radio-answer': 'Bacon'}
             self.post(form_data)
 
             form_data = {
@@ -305,23 +298,16 @@ class TestViewSubmissionCompression(IntegrationTestCase):
 
 
 class _CompressedStorageEncryption(StorageEncryption):
-
     def encrypt_data(self, data):
         if isinstance(data, dict):
             data = json.dumps(data, for_json=True)
 
-        protected_header = {
-            'alg': 'dir',
-            'enc': 'A256GCM',
-            'kid': '1,1',
-        }
+        protected_header = {'alg': 'dir', 'enc': 'A256GCM', 'kid': '1,1'}
 
         data = snappy.compress(data)
 
         jwe_token = jwe.JWE(
-            plaintext=data,
-            protected=protected_header,
-            recipient=self.key,
+            plaintext=data, protected=protected_header, recipient=self.key
         )
 
         return jwe_token.serialize(compact=True)

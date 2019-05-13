@@ -107,7 +107,8 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
     def get_summary_and_confirmation_blocks(self):
         return [
-            block['id'] for block in self.blocks
+            block['id']
+            for block in self.blocks
             if block['type'] in ('Summary', 'Confirmation')
         ]
 
@@ -184,7 +185,11 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
                 blocks[block['id']] = block
 
                 if block['type'] == 'ListCollector':
-                    for nested_block_name in ['add_block', 'edit_block', 'remove_block']:
+                    for nested_block_name in [
+                        'add_block',
+                        'edit_block',
+                        'remove_block',
+                    ]:
                         nested_block = block[nested_block_name]
                         nested_block['parent_id'] = block['id']
                         blocks[nested_block['id']] = nested_block
@@ -213,14 +218,15 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
                     for option in answer.get('options', []):
                         if 'detail_answer' in option:
                             option['detail_answer']['parent_id'] = question['id']
-                            answers_by_id[option['detail_answer']['id']].append(option['detail_answer'])
+                            answers_by_id[option['detail_answer']['id']].append(
+                                option['detail_answer']
+                            )
 
         return answers_by_id
 
     def _get_sections_by_id(self):
         return OrderedDict(
-            (section['id'], section)
-            for section in self.json.get('sections', [])
+            (section['id'], section) for section in self.json.get('sections', [])
         )
 
     def _get_error_messages(self):

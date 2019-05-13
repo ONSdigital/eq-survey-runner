@@ -20,6 +20,10 @@ def get_schema_json(eq_id, form_type):
 @schema_blueprint.route('/schemas', methods=['GET'])
 def list_schemas():
     schema_path = 'data/en'
-    onlyfiles = [f for f in listdir(schema_path) if isfile(join(schema_path, f)) and f.endswith('.json')]
+    onlyfiles = [
+        f
+        for f in listdir(schema_path)
+        if isfile(join(schema_path, f)) and f.endswith('.json')
+    ]
 
     return jsonify(onlyfiles)

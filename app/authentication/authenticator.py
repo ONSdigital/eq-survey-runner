@@ -48,10 +48,16 @@ def _extend_session_expiry(session_store):
     """
     session_timeout = cookie_session.get('expires_in')
     if session_timeout:
-        new_expiration_time = datetime.now(tz=tzutc()) + timedelta(seconds=session_timeout)
+        new_expiration_time = datetime.now(tz=tzutc()) + timedelta(
+            seconds=session_timeout
+        )
 
         # Only update expiry time if its greater than 60s different to what is currently set
-        if not session_store.expiration_time or (new_expiration_time - session_store.expiration_time).total_seconds() > 60:
+        if (
+            not session_store.expiration_time
+            or (new_expiration_time - session_store.expiration_time).total_seconds()
+            > 60
+        ):
             session_store.expiration_time = new_expiration_time
             session_store.save()
             logger.debug('session expiry extended')
@@ -64,8 +70,9 @@ def _is_session_valid(session_store):
     :return: True if the session is valid else False
     """
 
-    if session_store.expiration_time and \
-            session_store.expiration_time < datetime.now(tz=tzutc()):
+    if session_store.expiration_time and session_store.expiration_time < datetime.now(
+        tz=tzutc()
+    ):
         return False
 
     return True
@@ -157,10 +164,12 @@ def decrypt_token(encrypted_token):
         raise NoTokenException('Please provide a token')
 
     logger.debug('decrypting token')
-    decrypted_token = decrypt(token=encrypted_token,
-                              key_store=current_app.eq['key_store'],
-                              key_purpose=KEY_PURPOSE_AUTHENTICATION,
-                              leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'])
+    decrypted_token = decrypt(
+        token=encrypted_token,
+        key_store=current_app.eq['key_store'],
+        key_purpose=KEY_PURPOSE_AUTHENTICATION,
+        leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'],
+    )
 
     logger.debug('token decrypted')
     return decrypted_token

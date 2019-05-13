@@ -1,7 +1,15 @@
 from datetime import datetime
 
 from dateutil.tz import tzutc
-from flask import Blueprint, current_app, redirect, request, g, session as cookie_session, render_template as flask_render_template
+from flask import (
+    Blueprint,
+    current_app,
+    redirect,
+    request,
+    g,
+    session as cookie_session,
+    render_template as flask_render_template,
+)
 from flask_login import current_user, logout_user
 from sdc.crypto.exceptions import InvalidTokenException
 from structlog import get_logger
@@ -71,7 +79,9 @@ def login():
         cookie_session['account_service_url'] = claims.get('account_service_url')
 
     if claims.get('account_service_log_out_url'):
-        cookie_session['account_service_log_out_url'] = claims.get('account_service_log_out_url')
+        cookie_session['account_service_log_out_url'] = claims.get(
+            'account_service_log_out_url'
+        )
 
     routing_path = path_finder.get_full_routing_path()
     completed_locations = get_completed_blocks(current_user)
@@ -115,7 +125,9 @@ def get_sign_out():
     if account_service_log_out_url:
         return redirect(account_service_log_out_url)
 
-    return flask_render_template('signed-out.html',
-                                 analytics_ua_id=current_app.config['EQ_UA_ID'],
-                                 account_service_url=cookie_session.get('account_service_url'),
-                                 survey_title=safe_content(cookie_session.get('survey_title', '')))
+    return flask_render_template(
+        'signed-out.html',
+        analytics_ua_id=current_app.config['EQ_UA_ID'],
+        account_service_url=cookie_session.get('account_service_url'),
+        survey_title=safe_content(cookie_session.get('survey_title', '')),
+    )

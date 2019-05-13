@@ -1,6 +1,7 @@
 class RoutingPath:
     """Holds a list of locations and optimizes for `in` comparisons
     """
+
     def __init__(self, path):
         self._values = tuple(path)
         self._set = frozenset(path)

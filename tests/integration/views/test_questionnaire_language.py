@@ -3,6 +3,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 class TestQuestionnaireLanguage(IntegrationTestCase):
     """ Tests that the language selection from tokens works """
+
     def test_load_cy_survey(self):
         # When: load a cy survey
         self.launchSurvey('test', 'language', language_code='cy')

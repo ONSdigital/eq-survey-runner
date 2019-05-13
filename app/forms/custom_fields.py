@@ -1,7 +1,13 @@
 from decimal import Decimal, InvalidOperation
 
 from babel import numbers
-from wtforms import TextAreaField, IntegerField, DecimalField, SelectMultipleField, SelectField
+from wtforms import (
+    TextAreaField,
+    IntegerField,
+    DecimalField,
+    SelectMultipleField,
+    SelectField,
+)
 
 from app.settings import DEFAULT_LOCALE
 
@@ -21,6 +27,7 @@ class CustomIntegerField(IntegerField):
     further validation steps by using a separate NumberCheck and
     DecimalPlace validators
     """
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.data = None
@@ -29,7 +36,9 @@ class CustomIntegerField(IntegerField):
 
         if valuelist:
             try:
-                self.data = int(valuelist[0].replace(numbers.get_group_symbol(DEFAULT_LOCALE), ''))
+                self.data = int(
+                    valuelist[0].replace(numbers.get_group_symbol(DEFAULT_LOCALE), '')
+                )
             except ValueError:
                 pass
 
@@ -43,6 +52,7 @@ class CustomDecimalField(DecimalField):
     further validation steps by using a separate NumberCheck and
     DecimalPlace validators
     """
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.data = None
@@ -51,7 +61,9 @@ class CustomDecimalField(DecimalField):
 
         if valuelist:
             try:
-                self.data = Decimal(valuelist[0].replace(numbers.get_group_symbol(DEFAULT_LOCALE), ''))
+                self.data = Decimal(
+                    valuelist[0].replace(numbers.get_group_symbol(DEFAULT_LOCALE), '')
+                )
             except (ValueError, TypeError, InvalidOperation):
                 pass
 
@@ -61,12 +73,17 @@ class CustomSelectMultipleField(SelectMultipleField):
     This custom field allows us to add the additional detail_answer_id to choices/options.
     This saves us having to later map options with their detail_answer.
     """
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
     def __iter__(self):
-        opts = dict(widget=self.option_widget, _name=self.name, _form=None, _meta=self.meta)
-        for i, (value, label, checked, detail_answer_id) in enumerate(self.iter_choices()):
+        opts = dict(
+            widget=self.option_widget, _name=self.name, _form=None, _meta=self.meta
+        )
+        for i, (value, label, checked, detail_answer_id) in enumerate(
+            self.iter_choices()
+        ):
             opt = self._Option(label=label, id='%s-%d' % (self.id, i), **opts)
             opt.process(None, value)
             opt.detail_answer_id = detail_answer_id
@@ -84,12 +101,17 @@ class CustomSelectField(SelectField):
     This custom field allows us to add the additional detail_answer_id to choices/options.
     This saves us having to later map options with their detail_answer.
     """
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
     def __iter__(self):
-        opts = dict(widget=self.option_widget, _name=self.name, _form=None, _meta=self.meta)
-        for i, (value, label, checked, detail_answer_id) in enumerate(self.iter_choices()):
+        opts = dict(
+            widget=self.option_widget, _name=self.name, _form=None, _meta=self.meta
+        )
+        for i, (value, label, checked, detail_answer_id) in enumerate(
+            self.iter_choices()
+        ):
             opt = self._Option(label=label, id='%s-%d' % (self.id, i), **opts)
             opt.process(None, value)
             opt.detail_answer_id = detail_answer_id

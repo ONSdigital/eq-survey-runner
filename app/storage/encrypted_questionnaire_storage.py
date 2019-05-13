@@ -6,11 +6,11 @@ from structlog import get_logger
 from app.data_model.app_models import QuestionnaireState
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.storage.storage_encryption import StorageEncryption
+
 logger = get_logger()
 
 
 class EncryptedQuestionnaireStorage:
-
     def __init__(self, user_id, user_ik, pepper):
         if user_id is None:
             raise ValueError('User id must be set')
@@ -21,7 +21,9 @@ class EncryptedQuestionnaireStorage:
     def add_or_update(self, data):
         compressed_data = snappy.compress(data)
         encrypted_data = self.encrypter.encrypt_data(compressed_data)
-        questionnaire_state = QuestionnaireState(self._user_id, encrypted_data, QuestionnaireStore.LATEST_VERSION)
+        questionnaire_state = QuestionnaireState(
+            self._user_id, encrypted_data, QuestionnaireStore.LATEST_VERSION
+        )
 
         current_app.eq['storage'].put(questionnaire_state)
 
@@ -29,7 +31,9 @@ class EncryptedQuestionnaireStorage:
         questionnaire_state = self._find_questionnaire_state()
         if questionnaire_state and questionnaire_state.state_data:
             version = questionnaire_state.version
-            decrypted_data = self._get_snappy_compressed_data(questionnaire_state.state_data)
+            decrypted_data = self._get_snappy_compressed_data(
+                questionnaire_state.state_data
+            )
             return decrypted_data, version
 
         return None, None

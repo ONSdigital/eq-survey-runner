@@ -6,18 +6,17 @@ from tests.app.app_context_test_case import AppContextTestCase
 class TestQuestionnaireSchema(AppContextTestCase):
     def test_get_sections(self):
         survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'group1',
-                    'blocks': [
+            'sections': [
+                {
+                    'id': 'section1',
+                    'groups': [
                         {
-                            'id': 'block1',
-                            'type': 'Question'
+                            'id': 'group1',
+                            'blocks': [{'id': 'block1', 'type': 'Question'}],
                         }
-                    ]
-                }]
-            }]
+                    ],
+                }
+            ]
         }
 
         schema = QuestionnaireSchema(survey_json)
@@ -25,19 +24,18 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_get_section(self):
         survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'title': 'Section 1',
-                'groups': [{
-                    'id': 'group1',
-                    'blocks': [
+            'sections': [
+                {
+                    'id': 'section1',
+                    'title': 'Section 1',
+                    'groups': [
                         {
-                            'id': 'block1',
-                            'type': 'Question'
+                            'id': 'group1',
+                            'blocks': [{'id': 'block1', 'type': 'Question'}],
                         }
-                    ]
-                }]
-            }]
+                    ],
+                }
+            ]
         }
 
         schema = QuestionnaireSchema(survey_json)
@@ -46,18 +44,17 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_get_blocks(self):
         survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'group1',
-                    'blocks': [
+            'sections': [
+                {
+                    'id': 'section1',
+                    'groups': [
                         {
-                            'id': 'block1',
-                            'type': 'Question'
+                            'id': 'group1',
+                            'blocks': [{'id': 'block1', 'type': 'Question'}],
                         }
-                    ]
-                }]
-            }]
+                    ],
+                }
+            ]
         }
 
         schema = QuestionnaireSchema(survey_json)
@@ -65,19 +62,19 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_get_block(self):
         survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'group1',
-                    'blocks': [
+            'sections': [
+                {
+                    'id': 'section1',
+                    'groups': [
                         {
-                            'id': 'block1',
-                            'type': 'Question',
-                            'title': 'Block 1'
+                            'id': 'group1',
+                            'blocks': [
+                                {'id': 'block1', 'type': 'Question', 'title': 'Block 1'}
+                            ],
                         }
-                    ]
-                }]
-            }]
+                    ],
+                }
+            ]
         }
 
         schema = QuestionnaireSchema(survey_json)
@@ -87,19 +84,19 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_get_groups(self):
         survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'group1',
-                    'blocks': [
+            'sections': [
+                {
+                    'id': 'section1',
+                    'groups': [
                         {
-                            'id': 'block1',
-                            'type': 'Question',
-                            'title': 'Block 1'
+                            'id': 'group1',
+                            'blocks': [
+                                {'id': 'block1', 'type': 'Question', 'title': 'Block 1'}
+                            ],
                         }
-                    ]
-                }]
-            }]
+                    ],
+                }
+            ]
         }
 
         schema = QuestionnaireSchema(survey_json)
@@ -107,20 +104,20 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_get_group(self):
         survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'group1',
-                    'title': 'Group 1',
-                    'blocks': [
+            'sections': [
+                {
+                    'id': 'section1',
+                    'groups': [
                         {
-                            'id': 'block1',
-                            'type': 'Question',
-                            'title': 'Block 1'
+                            'id': 'group1',
+                            'title': 'Group 1',
+                            'blocks': [
+                                {'id': 'block1', 'type': 'Question', 'title': 'Block 1'}
+                            ],
                         }
-                    ]
-                }]
-            }]
+                    ],
+                }
+            ]
         }
 
         schema = QuestionnaireSchema(survey_json)
@@ -130,45 +127,52 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_get_questions_with_variants(self):
         survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'group1',
-                    'title': 'Group 1',
-                    'blocks': [
+            'sections': [
+                {
+                    'id': 'section1',
+                    'groups': [
                         {
-                            'id': 'block1',
-                            'type': 'Question',
-                            'title': 'Block 1',
-                            'question_variants': [{
-                                'when': [{}],
-                                'question': {
-                                    'id': 'question1',
-                                    'title': 'Question 1',
-                                    'answers': [
+                            'id': 'group1',
+                            'title': 'Group 1',
+                            'blocks': [
+                                {
+                                    'id': 'block1',
+                                    'type': 'Question',
+                                    'title': 'Block 1',
+                                    'question_variants': [
                                         {
-                                            'id': 'answer1',
-                                            'label': 'Answer 1'
-                                        }
-                                    ]
-                                }
-                            }, {
-                                'when': [{}],
-                                'question': {
-                                    'id': 'question1',
-                                    'title': 'Another Question 1',
-                                    'answers': [
+                                            'when': [{}],
+                                            'question': {
+                                                'id': 'question1',
+                                                'title': 'Question 1',
+                                                'answers': [
+                                                    {
+                                                        'id': 'answer1',
+                                                        'label': 'Answer 1',
+                                                    }
+                                                ],
+                                            },
+                                        },
                                         {
-                                            'id': 'answer1',
-                                            'label': 'Answer 1'
-                                        }
-                                    ]
+                                            'when': [{}],
+                                            'question': {
+                                                'id': 'question1',
+                                                'title': 'Another Question 1',
+                                                'answers': [
+                                                    {
+                                                        'id': 'answer1',
+                                                        'label': 'Answer 1',
+                                                    }
+                                                ],
+                                            },
+                                        },
+                                    ],
                                 }
-                            }]
+                            ],
                         }
-                    ]
-                }]
-            }]
+                    ],
+                }
+            ]
         }
 
         schema = QuestionnaireSchema(survey_json)
@@ -180,30 +184,31 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_get_questions(self):
         survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'group1',
-                    'title': 'Group 1',
-                    'blocks': [
+            'sections': [
+                {
+                    'id': 'section1',
+                    'groups': [
                         {
-                            'id': 'block1',
-                            'type': 'Question',
-                            'title': 'Block 1',
-                            'question': {
-                                'id': 'question1',
-                                'title': 'Question 1',
-                                'answers': [
-                                    {
-                                        'id': 'answer1',
-                                        'label': 'Answer 1'
-                                    }
-                                ]
-                            }
+                            'id': 'group1',
+                            'title': 'Group 1',
+                            'blocks': [
+                                {
+                                    'id': 'block1',
+                                    'type': 'Question',
+                                    'title': 'Block 1',
+                                    'question': {
+                                        'id': 'question1',
+                                        'title': 'Question 1',
+                                        'answers': [
+                                            {'id': 'answer1', 'label': 'Answer 1'}
+                                        ],
+                                    },
+                                }
+                            ],
                         }
-                    ]
-                }]
-            }]
+                    ],
+                }
+            ]
         }
 
         schema = QuestionnaireSchema(survey_json)
@@ -213,81 +218,85 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_schema_answers(self):
         survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'group1',
-                    'title': 'Group 1',
-                    'blocks': [
+            'sections': [
+                {
+                    'id': 'section1',
+                    'groups': [
                         {
-                            'id': 'block1',
-                            'type': 'Question',
-                            'title': 'Block 1',
-                            'question': {
-                                'id': 'question1',
-                                'title': 'Question 1',
-                                'answers': [
-                                    {
-                                        'id': 'answer1',
-                                        'label': 'Answer 1'
-                                    }
-                                ]
-                            }
+                            'id': 'group1',
+                            'title': 'Group 1',
+                            'blocks': [
+                                {
+                                    'id': 'block1',
+                                    'type': 'Question',
+                                    'title': 'Block 1',
+                                    'question': {
+                                        'id': 'question1',
+                                        'title': 'Question 1',
+                                        'answers': [
+                                            {'id': 'answer1', 'label': 'Answer 1'}
+                                        ],
+                                    },
+                                }
+                            ],
                         }
-                    ]
-                }]
-            }]
+                    ],
+                }
+            ]
         }
 
         schema = QuestionnaireSchema(survey_json)
         answers = schema.answers
         self.assertEqual(len(answers), 1)
 
-
     def test_get_answers_with_variants(self):
         survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'group1',
-                    'title': 'Group 1',
-                    'blocks': [
+            'sections': [
+                {
+                    'id': 'section1',
+                    'groups': [
                         {
-                            'id': 'block1',
-                            'type': 'Question',
-                            'title': 'Block 1',
-                            'question_variants': [
+                            'id': 'group1',
+                            'title': 'Group 1',
+                            'blocks': [
                                 {
-                                    'when': [{}],
-                                    'question': {
-                                        'id': 'question1',
-                                        'title': 'Question 1',
-                                        'answers': [
-                                            {
-                                                'id': 'answer1',
-                                                'label': 'Answer 1'
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    'when': [{}],
-                                    'question': {
-                                        'id': 'question1',
-                                        'title': 'Question 1',
-                                        'answers': [
-                                            {
-                                                'id': 'answer1',
-                                                'label': 'Another Answer 1'
-                                            }
-                                        ]
-                                    }
+                                    'id': 'block1',
+                                    'type': 'Question',
+                                    'title': 'Block 1',
+                                    'question_variants': [
+                                        {
+                                            'when': [{}],
+                                            'question': {
+                                                'id': 'question1',
+                                                'title': 'Question 1',
+                                                'answers': [
+                                                    {
+                                                        'id': 'answer1',
+                                                        'label': 'Answer 1',
+                                                    }
+                                                ],
+                                            },
+                                        },
+                                        {
+                                            'when': [{}],
+                                            'question': {
+                                                'id': 'question1',
+                                                'title': 'Question 1',
+                                                'answers': [
+                                                    {
+                                                        'id': 'answer1',
+                                                        'label': 'Another Answer 1',
+                                                    }
+                                                ],
+                                            },
+                                        },
+                                    ],
                                 }
-                            ]
+                            ],
                         }
-                    ]
-                }]
-            }]
+                    ],
+                }
+            ]
         }
 
         schema = QuestionnaireSchema(survey_json)
@@ -298,30 +307,31 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_get_answers(self):
         survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'group1',
-                    'title': 'Group 1',
-                    'blocks': [
+            'sections': [
+                {
+                    'id': 'section1',
+                    'groups': [
                         {
-                            'id': 'block1',
-                            'type': 'Question',
-                            'title': 'Block 1',
-                            'question': {
-                                'id': 'question1',
-                                'title': 'Question 1',
-                                'answers': [
-                                    {
-                                        'id': 'answer1',
-                                        'label': 'Answer 1'
-                                    }
-                                ]
-                            }
+                            'id': 'group1',
+                            'title': 'Group 1',
+                            'blocks': [
+                                {
+                                    'id': 'block1',
+                                    'type': 'Question',
+                                    'title': 'Block 1',
+                                    'question': {
+                                        'id': 'question1',
+                                        'title': 'Question 1',
+                                        'answers': [
+                                            {'id': 'answer1', 'label': 'Answer 1'}
+                                        ],
+                                    },
+                                }
+                            ],
                         }
-                    ]
-                }]
-            }]
+                    ],
+                }
+            ]
         }
 
         schema = QuestionnaireSchema(survey_json)
@@ -331,26 +341,21 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_get_summary_and_confirmation_blocks_returns_only_summary(self):
         survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'group1',
-                    'blocks': [
+            'sections': [
+                {
+                    'id': 'section1',
+                    'groups': [
                         {
-                            'id': 'questionnaire-block',
-                            'type': 'Question'
-                        },
-                        {
-                            'id': 'summary-block',
-                            'type': 'Summary'
-                        },
-                        {
-                            'id': 'confirmation-block',
-                            'type': 'Confirmation'
+                            'id': 'group1',
+                            'blocks': [
+                                {'id': 'questionnaire-block', 'type': 'Question'},
+                                {'id': 'summary-block', 'type': 'Summary'},
+                                {'id': 'confirmation-block', 'type': 'Confirmation'},
+                            ],
                         }
-                    ]
-                }]
-            }]
+                    ],
+                }
+            ]
         }
 
         schema = QuestionnaireSchema(survey_json)
@@ -363,22 +368,20 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_group_has_questions_returns_true_when_group_has_questionnaire_blocks(self):
         survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'question-group',
-                    'blocks': [
+            'sections': [
+                {
+                    'id': 'section1',
+                    'groups': [
                         {
-                            'id': 'introduction',
-                            'type': 'Introduction'
-                        },
-                        {
-                            'id': 'question',
-                            'type': 'Question'
+                            'id': 'question-group',
+                            'blocks': [
+                                {'id': 'introduction', 'type': 'Introduction'},
+                                {'id': 'question', 'type': 'Question'},
+                            ],
                         }
-                    ]
-                }]
-            }]
+                    ],
+                }
+            ]
         }
 
         schema = QuestionnaireSchema(survey_json)
@@ -387,20 +390,21 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
         self.assertTrue(has_questions)
 
-    def test_group_has_questions_returns_false_when_group_doesnt_have_questionnaire_blocks(self):
+    def test_group_has_questions_returns_false_when_group_doesnt_have_questionnaire_blocks(
+        self
+    ):
         survey_json = {
-            'sections': [{
-                'id': 'section1',
-                'groups': [{
-                    'id': 'non-question-group',
-                    'blocks': [
+            'sections': [
+                {
+                    'id': 'section1',
+                    'groups': [
                         {
-                            'id': 'summary-block',
-                            'type': 'Summary'
+                            'id': 'non-question-group',
+                            'blocks': [{'id': 'summary-block', 'type': 'Summary'}],
                         }
-                    ]
-                }]
-            }]
+                    ],
+                }
+            ]
         }
 
         schema = QuestionnaireSchema(survey_json)
@@ -411,40 +415,40 @@ class TestQuestionnaireSchema(AppContextTestCase):
 
     def test_is_summary(self):
         survey_json = {
-            'sections': [{
-                'id': 'section-1',
-                'groups': [{
-                    'id': 'group-1',
-                    'blocks': [
+            'sections': [
+                {
+                    'id': 'section-1',
+                    'groups': [
                         {
-                            'id': 'block-1',
-                            'type': 'Summary'
+                            'id': 'group-1',
+                            'blocks': [{'id': 'block-1', 'type': 'Summary'}],
                         }
-                    ]
-                }]
-            }]
+                    ],
+                }
+            ]
         }
 
         schema = QuestionnaireSchema(survey_json)
         self.assertTrue(schema.is_summary_section(schema.get_section('section-1')))
         self.assertTrue(schema.is_summary_group(schema.get_group('group-1')))
-        self.assertFalse(schema.is_confirmation_section(schema.get_section('section-1')))
+        self.assertFalse(
+            schema.is_confirmation_section(schema.get_section('section-1'))
+        )
         self.assertFalse(schema.is_confirmation_group(schema.get_group('group-1')))
 
     def test_is_confirmation(self):
         survey_json = {
-            'sections': [{
-                'id': 'section-1',
-                'groups': [{
-                    'id': 'group-1',
-                    'blocks': [
+            'sections': [
+                {
+                    'id': 'section-1',
+                    'groups': [
                         {
-                            'id': 'block-1',
-                            'type': 'Confirmation'
+                            'id': 'group-1',
+                            'blocks': [{'id': 'block-1', 'type': 'Confirmation'}],
                         }
-                    ]
-                }]
-            }]
+                    ],
+                }
+            ]
         }
 
         schema = QuestionnaireSchema(survey_json)
@@ -452,6 +456,7 @@ class TestQuestionnaireSchema(AppContextTestCase):
         self.assertTrue(schema.is_confirmation_group(schema.get_group('group-1')))
         self.assertFalse(schema.is_summary_section(schema.get_section('section-1')))
         self.assertFalse(schema.is_summary_group(schema.get_group('group-1')))
+
 
 def test_get_all_questions_for_block_question():
     block = {
@@ -461,13 +466,8 @@ def test_get_all_questions_for_block_question():
         'question': {
             'id': 'question1',
             'title': 'Question 1',
-            'answers': [
-                {
-                    'id': 'answer1',
-                    'label': 'Answer 1'
-                }
-            ]
-        }
+            'answers': [{'id': 'answer1', 'label': 'Answer 1'}],
+        },
     }
 
     all_questions = QuestionnaireSchema.get_all_questions_for_block(block)
@@ -475,6 +475,7 @@ def test_get_all_questions_for_block_question():
     assert len(all_questions) == 1
 
     assert all_questions[0]['answers'][0]['id'] == 'answer1'
+
 
 def test_get_all_questions_for_block_question_variants():
     block = {
@@ -486,28 +487,19 @@ def test_get_all_questions_for_block_question_variants():
                 'question': {
                     'id': 'question1',
                     'title': 'Question 1',
-                    'answers': [
-                        {
-                            'id': 'answer1',
-                            'label': 'Variant 1'
-                        }
-                    ]
+                    'answers': [{'id': 'answer1', 'label': 'Variant 1'}],
                 },
-                'when': []
-            }, {
+                'when': [],
+            },
+            {
                 'question': {
                     'id': 'question1',
                     'title': 'Question 1',
-                    'answers': [
-                        {
-                            'id': 'answer1',
-                            'label': 'Variant 2'
-                        }
-                    ]
+                    'answers': [{'id': 'answer1', 'label': 'Variant 2'}],
                 },
-                'when': []
-            }
-        ]
+                'when': [],
+            },
+        ],
     }
 
     all_questions = QuestionnaireSchema.get_all_questions_for_block(block)
@@ -516,6 +508,7 @@ def test_get_all_questions_for_block_question_variants():
 
     assert all_questions[0]['answers'][0]['label'] == 'Variant 1'
     assert all_questions[1]['answers'][0]['label'] == 'Variant 2'
+
 
 def test_get_all_questions_for_block_empty():
     block = {}

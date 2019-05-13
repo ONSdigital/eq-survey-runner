@@ -1,4 +1,6 @@
-from tests.integration.components.mutually_exclusive.schema_urls import MUTUALLY_EXCLUSIVE_YEAR_DATE
+from tests.integration.components.mutually_exclusive.schema_urls import (
+    MUTUALLY_EXCLUSIVE_YEAR_DATE,
+)
 
 
 from tests.integration.integration_test_case import IntegrationTestCase
@@ -25,8 +27,12 @@ class TestYearDateSingleCheckboxOverride(IntegrationTestCase):
 
     def test_exclusive_answer(self):
         # When
-        self.post({'year-date-answer-year': '',
-                   'year-date-exclusive-answer': ['I prefer not to say']})
+        self.post(
+            {
+                'year-date-answer-year': '',
+                'year-date-exclusive-answer': ['I prefer not to say'],
+            }
+        )
 
         # Then
         self.assertInUrl('section-summary')
@@ -42,8 +48,12 @@ class TestYearDateSingleCheckboxOverride(IntegrationTestCase):
 
     def test_invalid_exclusive_answers(self):
         # When
-        self.post({'year-date-answer-year': '2018',
-                   'year-date-exclusive-answer': ['I prefer not to say']})
+        self.post(
+            {
+                'year-date-answer-year': '2018',
+                'year-date-exclusive-answer': ['I prefer not to say'],
+            }
+        )
 
         # Then
         self.assertInBody('Remove an answer to continue.')

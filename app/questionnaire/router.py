@@ -1,6 +1,7 @@
 class Router:
-
-    def __init__(self, schema, routing_path, current_location=None, completed_locations=None):
+    def __init__(
+        self, schema, routing_path, current_location=None, completed_locations=None
+    ):
         self._schema = schema
         self._routing_path = routing_path
         self._current_location = current_location
@@ -11,7 +12,10 @@ class Router:
         Checks whether the current location is valid and accessible.
         :return: boolean
         """
-        if self._is_current_location_valid() and not self._get_survey_redirect_location():
+        if (
+            self._is_current_location_valid()
+            and not self._get_survey_redirect_location()
+        ):
             return True
 
         return False

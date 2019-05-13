@@ -27,12 +27,18 @@ def dump_answers():
 @login_required
 @role_required('dumper')
 def dump_submission():
-    questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+    questionnaire_store = get_questionnaire_store(
+        current_user.user_id, current_user.user_ik
+    )
     answer_store = questionnaire_store.answer_store
     metadata = questionnaire_store.metadata
     session_data = get_session_store().session_data
     schema = load_schema_from_session_data(session_data)
     completed_blocks = questionnaire_store.completed_blocks
-    routing_path = PathFinder(schema, answer_store, metadata, completed_blocks).get_full_routing_path()
-    response = {'submission': convert_answers(schema, questionnaire_store, routing_path)}
+    routing_path = PathFinder(
+        schema, answer_store, metadata, completed_blocks
+    ).get_full_routing_path()
+    response = {
+        'submission': convert_answers(schema, questionnaire_store, routing_path)
+    }
     return json.dumps(response, for_json=True), 200

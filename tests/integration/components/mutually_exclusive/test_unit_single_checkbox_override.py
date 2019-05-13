@@ -1,4 +1,6 @@
-from tests.integration.components.mutually_exclusive.schema_urls import MUTUALLY_EXCLUSIVE_UNIT
+from tests.integration.components.mutually_exclusive.schema_urls import (
+    MUTUALLY_EXCLUSIVE_UNIT,
+)
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -23,8 +25,7 @@ class TestUnitSingleCheckboxOverride(IntegrationTestCase):
 
     def test_exclusive_answer(self):
         # When
-        self.post({'unit-answer': '',
-                   'unit-exclusive-answer': ['I prefer not to say']})
+        self.post({'unit-answer': '', 'unit-exclusive-answer': ['I prefer not to say']})
 
         # Then
         self.assertInUrl('section-summary')
@@ -40,8 +41,9 @@ class TestUnitSingleCheckboxOverride(IntegrationTestCase):
 
     def test_invalid_exclusive_answers(self):
         # When
-        self.post({'unit-answer': '123',
-                   'unit-exclusive-answer': ['I prefer not to say']})
+        self.post(
+            {'unit-answer': '123', 'unit-exclusive-answer': ['I prefer not to say']}
+        )
 
         # Then
         self.assertInBody('Remove an answer to continue.')

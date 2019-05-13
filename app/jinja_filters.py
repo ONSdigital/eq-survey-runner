@@ -22,7 +22,9 @@ def format_number(value):
 
 def get_formatted_currency(value, currency='GBP'):
     if value or value == 0:
-        return numbers.format_currency(number=value, currency=currency, locale=flask_babel.get_locale())
+        return numbers.format_currency(
+            number=value, currency=currency, locale=flask_babel.get_locale()
+        )
 
     return ''
 
@@ -38,7 +40,12 @@ def format_percentage(value):
 
 
 def format_unit(unit, value, length='short'):
-    return units.format_unit(value=value, measurement_unit=unit, length=length, locale=flask_babel.get_locale())
+    return units.format_unit(
+        value=value,
+        measurement_unit=unit,
+        length=length,
+        locale=flask_babel.get_locale(),
+    )
 
 
 def format_unit_input_label(unit, unit_length='short'):
@@ -50,19 +57,35 @@ def format_unit_input_label(unit, unit_length='short'):
     :param (str) unit_length length of unit text, can be one of short/long/narrow
     """
     if unit_length == 'long':
-        return units.format_unit(value=2, measurement_unit=unit, length=unit_length,
-                                 locale=flask_babel.get_locale()).replace('2 ', '')
-    return units.format_unit(value='', measurement_unit=unit, length=unit_length,
-                             locale=flask_babel.get_locale()).strip()
+        return units.format_unit(
+            value=2,
+            measurement_unit=unit,
+            length=unit_length,
+            locale=flask_babel.get_locale(),
+        ).replace('2 ', '')
+    return units.format_unit(
+        value='',
+        measurement_unit=unit,
+        length=unit_length,
+        locale=flask_babel.get_locale(),
+    ).strip()
 
 
 def format_duration(value):
     parts = []
 
     if 'years' in value and (value['years'] > 0 or len(value) == 1):
-        parts.append(flask_babel.ngettext('%(num)s year', '%(num)s years', value['years']))
-    if 'months' in value and (value['months'] > 0 or len(value) == 1 or ('years' in value and value['years'] == 0)):
-        parts.append(flask_babel.ngettext('%(num)s month', '%(num)s months', value['months']))
+        parts.append(
+            flask_babel.ngettext('%(num)s year', '%(num)s years', value['years'])
+        )
+    if 'months' in value and (
+        value['months'] > 0
+        or len(value) == 1
+        or ('years' in value and value['years'] == 0)
+    ):
+        parts.append(
+            flask_babel.ngettext('%(num)s month', '%(num)s months', value['months'])
+        )
     return ' '.join(parts)
 
 
@@ -89,7 +112,8 @@ def get_format_date(value):
 
     date_to_format = convert_to_datetime(value).date()
     result = "<span class='date'>{date}</span>".format(
-        date=flask_babel.format_date(date_to_format, format=date_format))
+        date=flask_babel.format_date(date_to_format, format=date_format)
+    )
 
     return result
 
@@ -103,15 +127,19 @@ def format_datetime(context, value):
     formatted_time = flask_babel.format_time(london_date_time, format='HH:mm')
 
     result = "<span class='date'>{date}</span>".format(
-        date=flask_babel.gettext('%(date)s at %(time)s', date=formatted_date, time=formatted_time),
+        date=flask_babel.gettext(
+            '%(date)s at %(time)s', date=formatted_date, time=formatted_time
+        )
     )
     return mark_safe(context, result)
 
 
 def get_format_date_range(start_date, end_date):
-    return flask_babel.gettext('%(from_date)s to %(to_date)s',
-                               from_date=get_format_date(start_date),
-                               to_date=get_format_date(end_date))
+    return flask_babel.gettext(
+        '%(from_date)s to %(to_date)s',
+        from_date=get_format_date(start_date),
+        to_date=get_format_date(end_date),
+    )
 
 
 @blueprint.app_template_filter()
@@ -175,8 +203,10 @@ def question_as_legend(question):
         return True
 
     answer = answers[0]
-    if 'type' in answer and any(answer['type'] in answer_type
-                                for answer_type in ['Checkbox', 'Radio', 'Date', 'Duration']):
+    if 'type' in answer and any(
+        answer['type'] in answer_type
+        for answer_type in ['Checkbox', 'Radio', 'Date', 'Duration']
+    ):
         return True
 
     return False
@@ -187,14 +217,14 @@ def question_as_legend_processor():
     return dict(question_as_legend=question_as_legend)
 
 
-class LabelConfig():
+class LabelConfig:
     def __init__(self, _for, text, description=None):
         self._for = _for
         self.text = text
         self.description = description
 
 
-class CheckboxConfig():
+class CheckboxConfig:
     def __init__(self, option, index, form, answer):
         self.id = option.id
         self.name = option.name
@@ -214,7 +244,7 @@ class CheckboxConfig():
             self.other = OtherConfig(detail_answer)
 
 
-class RadioConfig():
+class RadioConfig:
     def __init__(self, option, index, form, answer):
         self.id = option.id
         self.name = option.name
@@ -234,7 +264,7 @@ class RadioConfig():
             self.other = OtherConfig(detail_answer)
 
 
-class OtherConfig():
+class OtherConfig:
     def __init__(self, detail_answer):
         self.id = detail_answer.id
         self.name = detail_answer.name
@@ -266,7 +296,7 @@ def map_radio_config_processor():
     return dict(map_radio_config=map_radio_config)
 
 
-class SelectOptionConfig():
+class SelectOptionConfig:
     def __init__(self, option, select):
         self.text = option[1]
         self.value = option[0]
@@ -292,8 +322,10 @@ class LanguageConfig:
         self.current = self.ISOCode == current_language
 
 
-class SummaryAction():
-    def __init__(self, block, answer, answer_title, edit_link_text, edit_link_aria_label):
+class SummaryAction:
+    def __init__(
+        self, block, answer, answer_title, edit_link_text, edit_link_aria_label
+    ):
         self.text = edit_link_text
         self.ariaLabel = edit_link_aria_label + ' ' + answer_title
         self.url = block['link'] + '#' + answer['id']
@@ -302,7 +334,7 @@ class SummaryAction():
         self.attributes = dict(**{'data-qa': qa_attribute})
 
 
-class SummaryRowItemValue():
+class SummaryRowItemValue:
     def __init__(self, text, other=None):
         self.text = text
 
@@ -310,41 +342,61 @@ class SummaryRowItemValue():
             self.other = other
 
 
-class SummaryRowItem():
-    def __init__(self, block, question, answer, multiple_answers, answers_are_editable,  # noqa: C901, R0912  pylint: disable=too-complex,too-many-branches
-                 no_answer_provided, edit_link_text, edit_link_aria_label, summary_type):
+class SummaryRowItem:
+    def __init__(  # noqa: C901, R0912  pylint: disable=too-complex,too-many-branches
+        self,
+        block,
+        question,
+        answer,
+        multiple_answers,
+        answers_are_editable,
+        no_answer_provided,
+        edit_link_text,
+        edit_link_aria_label,
+        summary_type,
+    ):
 
         if 'type' in answer:
             answer_type = answer['type']
         else:
             answer_type = 'calculated'
 
-        if (multiple_answers or answer_type == 'relationship' or summary_type == 'CalculatedSummary') and 'label' in answer and answer['label']:
+        if (
+            (
+                multiple_answers
+                or answer_type == 'relationship'
+                or summary_type == 'CalculatedSummary'
+            )
+            and 'label' in answer
+            and answer['label']
+        ):
             self.title = answer['label']
-            self.titleAttributes = {
-                'data-qa': answer['id'] + '-label',
-            }
+            self.titleAttributes = {'data-qa': answer['id'] + '-label'}
         else:
             self.title = question['title']
-            self.titleAttributes = {
-                'data-qa': question['id'],
-            }
+            self.titleAttributes = {'data-qa': question['id']}
 
         value = answer['value']
 
-        self.attributes = {
-            'data-qa': answer['id'],
-        }
+        self.attributes = {'data-qa': answer['id']}
 
         if value is None or value == '':
             self.valueList = [SummaryRowItemValue(no_answer_provided)]
         elif answer_type == 'checkbox':
-            self.valueList = [SummaryRowItemValue(val.label, val.detail_answer_value) for val in value]
+            self.valueList = [
+                SummaryRowItemValue(val.label, val.detail_answer_value) for val in value
+            ]
         elif answer_type == 'currency':
-            self.valueList = [SummaryRowItemValue(get_formatted_currency(value, answer['currency']))]
+            self.valueList = [
+                SummaryRowItemValue(get_formatted_currency(value, answer['currency']))
+            ]
         elif answer_type in ['date', 'monthyeardate', 'yeardate']:
             if question['type'] == 'DateRange':
-                self.valueList = [SummaryRowItemValue(get_format_date_range(value['from'], value['to']))]
+                self.valueList = [
+                    SummaryRowItemValue(
+                        get_format_date_range(value['from'], value['to'])
+                    )
+                ]
             else:
                 self.valueList = [SummaryRowItemValue(get_format_date(value))]
         elif answer_type == 'duration':
@@ -359,17 +411,33 @@ class SummaryRowItem():
         elif answer_type == 'textarea':
             self.valueList = [SummaryRowItemValue(get_format_multilined_string(value))]
         elif answer_type == 'unit':
-            self.valueList = [SummaryRowItemValue(format_unit(answer['unit'], value, answer['unit_length']))]
+            self.valueList = [
+                SummaryRowItemValue(
+                    format_unit(answer['unit'], value, answer['unit_length'])
+                )
+            ]
         else:
             self.valueList = [SummaryRowItemValue(value)]
 
         if answers_are_editable:
-            self.actions = [SummaryAction(block, answer, self.title, edit_link_text, edit_link_aria_label)]
+            self.actions = [
+                SummaryAction(
+                    block, answer, self.title, edit_link_text, edit_link_aria_label
+                )
+            ]
 
 
-class SummaryRow():
-    def __init__(self, block, question, summary_type, answers_are_editable, no_answer_provided, edit_link_text,
-                 edit_link_aria_label):
+class SummaryRow:
+    def __init__(
+        self,
+        block,
+        question,
+        summary_type,
+        answers_are_editable,
+        no_answer_provided,
+        edit_link_text,
+        edit_link_aria_label,
+    ):
         self.title = question['title']
         self.rowItems = []
 
@@ -380,21 +448,50 @@ class SummaryRow():
 
         for answer in question['answers']:
             self.rowItems.append(
-                SummaryRowItem(block, question, answer, multiple_answers, answers_are_editable, no_answer_provided,
-                               edit_link_text, edit_link_aria_label, summary_type))
+                SummaryRowItem(
+                    block,
+                    question,
+                    answer,
+                    multiple_answers,
+                    answers_are_editable,
+                    no_answer_provided,
+                    edit_link_text,
+                    edit_link_aria_label,
+                    summary_type,
+                )
+            )
 
 
 @blueprint.app_template_filter()
-def map_summary_item_config(group, summary_type, answers_are_editable, no_answer_provided, edit_link_text,
-                            edit_link_aria_label, calculated_question):
+def map_summary_item_config(
+    group,
+    summary_type,
+    answers_are_editable,
+    no_answer_provided,
+    edit_link_text,
+    edit_link_aria_label,
+    calculated_question,
+):
     rows = []
 
     for block in group['blocks']:
         rows.append(
-            SummaryRow(block, block['question'], summary_type, answers_are_editable, no_answer_provided,
-                       edit_link_text, edit_link_aria_label))
+            SummaryRow(
+                block,
+                block['question'],
+                summary_type,
+                answers_are_editable,
+                no_answer_provided,
+                edit_link_text,
+                edit_link_aria_label,
+            )
+        )
         if summary_type == 'CalculatedSummary':
-            rows.append(SummaryRow(block, calculated_question, summary_type, False, None, None, None))
+            rows.append(
+                SummaryRow(
+                    block, calculated_question, summary_type, False, None, None, None
+                )
+            )
 
     return rows
 
@@ -405,31 +502,44 @@ def map_summary_item_config_processor():
 
 
 @blueprint.app_template_filter()
-def map_list_collector_config(list_items, icon, edit_link_text, edit_link_aria_label, remove_link_text, remove_link_aria_label):
+def map_list_collector_config(
+    list_items,
+    icon,
+    edit_link_text,
+    edit_link_aria_label,
+    remove_link_text,
+    remove_link_aria_label,
+):
     rows = []
 
     for list_item in list_items:
         item_name = list_item.get('item_title')
-        rows.append({
-            'title': item_name,
-            'rowItems': [
-                {
-                    'icon': icon,
-                    'actions': [
-                        {
-                            'text': edit_link_text,
-                            'ariaLabel': edit_link_aria_label.format(item_name=item_name),
-                            'url': list_item.get('edit_link'),
-                        },
-                        {
-                            'text': remove_link_text,
-                            'ariaLabel': remove_link_aria_label.format(item_name=item_name),
-                            'url': list_item.get('remove_link'),
-                        },
-                    ],
-                },
-            ],
-        })
+        rows.append(
+            {
+                'title': item_name,
+                'rowItems': [
+                    {
+                        'icon': icon,
+                        'actions': [
+                            {
+                                'text': edit_link_text,
+                                'ariaLabel': edit_link_aria_label.format(
+                                    item_name=item_name
+                                ),
+                                'url': list_item.get('edit_link'),
+                            },
+                            {
+                                'text': remove_link_text,
+                                'ariaLabel': remove_link_aria_label.format(
+                                    item_name=item_name
+                                ),
+                                'url': list_item.get('remove_link'),
+                            },
+                        ],
+                    }
+                ],
+            }
+        )
     return rows
 
 

@@ -4,7 +4,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestDumpAnswers(IntegrationTestCase):
-
     def test_dump_answers_not_authenticated(self):
         # Given I am not an authenticated user
         # When I attempt to dump the answer store
@@ -30,7 +29,9 @@ class TestDumpAnswers(IntegrationTestCase):
     def test_dump_answers_authenticated_with_role_no_answers(self):
         # Given I am an authenticated user who has launched a survey
         # and does have the 'dumper' role in my metadata
-        self.launchSurvey('test', 'radio_mandatory_with_mandatory_other', roles=['dumper'])
+        self.launchSurvey(
+            'test', 'radio_mandatory_with_mandatory_other', roles=['dumper']
+        )
 
         # When I haven't submitted any answers
         # And I attempt to dump the answer store
@@ -48,7 +49,9 @@ class TestDumpAnswers(IntegrationTestCase):
     def test_dump_answers_authenticated_with_role_with_answers(self):
         # Given I am an authenticated user who has launched a survey
         # and does have the 'dumper' role in my metadata
-        self.launchSurvey('test', 'radio_mandatory_with_mandatory_other', roles=['dumper'])
+        self.launchSurvey(
+            'test', 'radio_mandatory_with_mandatory_other', roles=['dumper']
+        )
 
         # When I submit an answer
         self.post(post_data={'radio-mandatory-answer': 'Toast'})
@@ -62,12 +65,7 @@ class TestDumpAnswers(IntegrationTestCase):
         # And the JSON response contains the data I submitted
         actual = json.loads(self.getResponseData())
         expected = {
-            'answers': [
-                {
-                    'value': 'Toast',
-                    'answer_id': 'radio-mandatory-answer',
-                }
-            ]
+            'answers': [{'value': 'Toast', 'answer_id': 'radio-mandatory-answer'}]
         }
 
         # Enable full dictionary diffs on test failure
@@ -79,7 +77,6 @@ class TestDumpAnswers(IntegrationTestCase):
 
 
 class TestDumpSubmission(IntegrationTestCase):
-
     def test_dump_submission_not_authenticated(self):
         # Given I am not an authenticated user
         # When I attempt to dump the submission payload
@@ -105,7 +102,9 @@ class TestDumpSubmission(IntegrationTestCase):
     def test_dump_submission_authenticated_with_role_no_answers(self):
         # Given I am an authenticated user who has launched a survey
         # and does have the 'dumper' role in my metadata
-        self.launchSurvey('test', 'radio_mandatory_with_mandatory_other', roles=['dumper'])
+        self.launchSurvey(
+            'test', 'radio_mandatory_with_mandatory_other', roles=['dumper']
+        )
 
         # When I haven't submitted any answers
         # And I attempt to dump the submission payload
@@ -131,15 +130,15 @@ class TestDumpSubmission(IntegrationTestCase):
                 'collection': {
                     'period': '201604',
                     'exercise_sid': '789',
-                    'instrument_id': 'radio_mandatory_with_mandatory_other'
+                    'instrument_id': 'radio_mandatory_with_mandatory_other',
                 },
                 'data': [],
                 'metadata': {
                     'ref_period_end_date': '2016-04-30',
                     'ref_period_start_date': '2016-04-01',
                     'ru_ref': '123456789012A',
-                    'user_id': 'integration-test'
-                }
+                    'user_id': 'integration-test',
+                },
             }
         }
 
@@ -180,20 +179,15 @@ class TestDumpSubmission(IntegrationTestCase):
                 'collection': {
                     'period': '201604',
                     'exercise_sid': '789',
-                    'instrument_id': 'radio_mandatory'
+                    'instrument_id': 'radio_mandatory',
                 },
-                'data': [
-                    {
-                        'answer_id': 'radio-mandatory-answer',
-                        'value': 'Coffee'
-                    },
-                ],
+                'data': [{'answer_id': 'radio-mandatory-answer', 'value': 'Coffee'}],
                 'metadata': {
                     'ref_period_end_date': '2016-04-30',
                     'ref_period_start_date': '2016-04-01',
                     'ru_ref': '123456789012A',
-                    'user_id': 'integration-test'
-                }
+                    'user_id': 'integration-test',
+                },
             }
         }
         # Enable full dictionary diffs on test failure

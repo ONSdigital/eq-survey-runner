@@ -1,11 +1,14 @@
 import unittest
 from unittest.mock import Mock
 from wtforms.fields import Field
-from app.forms.custom_fields import MaxTextAreaField, CustomIntegerField, CustomDecimalField
+from app.forms.custom_fields import (
+    MaxTextAreaField,
+    CustomIntegerField,
+    CustomDecimalField,
+)
 
 
 class TestMaxTextAreaField(unittest.TestCase):
-
     def setUp(self):
         self.mock_form = Mock()
 
@@ -14,7 +17,9 @@ class TestMaxTextAreaField(unittest.TestCase):
         self.assertIsInstance(text_area, Field)
 
     def test_text_area_supports_maxlength_property(self):
-        text_area = MaxTextAreaField('TestLabel', maxlength=20, _form=self.mock_form, _name='aName')
+        text_area = MaxTextAreaField(
+            'TestLabel', maxlength=20, _form=self.mock_form, _name='aName'
+        )
         self.assertIsInstance(text_area, Field)
         self.assertEqual(text_area.maxlength, 20)
 

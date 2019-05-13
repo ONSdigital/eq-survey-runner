@@ -12,6 +12,7 @@ class TestDateRangeValidator(unittest.TestCase):
     the 'to' range data dictionary, whilst the validator receives the from
     form data as an object during the validation call
     """
+
     def test_date_range_matching_dates(self):
 
         validator = DateRangeCheck()
@@ -108,7 +109,10 @@ class TestDateRangeValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, period_from, period_to)
 
-        self.assertEqual('Enter a reporting period greater than or equal to 20 days.', str(ite.exception))
+        self.assertEqual(
+            'Enter a reporting period greater than or equal to 20 days.',
+            str(ite.exception),
+        )
 
     def test_date_range_with_too_large_period(self):
 
@@ -126,7 +130,10 @@ class TestDateRangeValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, period_from, period_to)
 
-        self.assertEqual('Enter a reporting period less than or equal to 1 month.', str(ite.exception))
+        self.assertEqual(
+            'Enter a reporting period less than or equal to 1 month.',
+            str(ite.exception),
+        )
 
     def test_bespoke_message_playback(self):
         message = {'DATE_PERIOD_TOO_LARGE': 'Test %(max)s'}
@@ -140,8 +147,6 @@ class TestDateRangeValidator(unittest.TestCase):
         period_to.data = '2018-03-19'
 
         mock_form = Mock()
-
-
 
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, period_from, period_to)
@@ -164,7 +169,10 @@ class TestDateRangeValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, period_from, period_to)
 
-        self.assertEqual('Enter a reporting period less than or equal to 2 years, 1 month, 3 days.', str(ite.exception))
+        self.assertEqual(
+            'Enter a reporting period less than or equal to 2 years, 1 month, 3 days.',
+            str(ite.exception),
+        )
 
         # Max month, day
         period_max = {'months': 2, 'days': 1}
@@ -173,7 +181,10 @@ class TestDateRangeValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, period_from, period_to)
 
-        self.assertEqual('Enter a reporting period less than or equal to 2 months, 1 day.', str(ite.exception))
+        self.assertEqual(
+            'Enter a reporting period less than or equal to 2 months, 1 day.',
+            str(ite.exception),
+        )
 
         # Max years, days
         period_min = {'years': 3, 'days': 2}
@@ -182,4 +193,7 @@ class TestDateRangeValidator(unittest.TestCase):
         with self.assertRaises(ValidationError) as ite:
             validator(mock_form, period_from, period_to)
 
-        self.assertEqual('Enter a reporting period greater than or equal to 3 years, 2 days.', str(ite.exception))
+        self.assertEqual(
+            'Enter a reporting period greater than or equal to 3 years, 2 days.',
+            str(ite.exception),
+        )

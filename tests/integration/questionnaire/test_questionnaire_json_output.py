@@ -3,7 +3,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestQuestionnaireJSONOutput(IntegrationTestCase):
-
     def test_questionnaire_json_response(self):
 
         # Given

@@ -3,12 +3,16 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestSaveSignOut(IntegrationTestCase):
-
     def test_save_sign_out_with_mandatory_question_not_answered(self):
         # We can save and go to the sign-out page without having to fill in mandatory answer
 
         # Given
-        self.launchSurvey('test', 'radio_mandatory', account_service_url='https://localhost/my-account', account_service_log_out_url='https://localhost/logout')
+        self.launchSurvey(
+            'test',
+            'radio_mandatory',
+            account_service_url='https://localhost/my-account',
+            account_service_log_out_url='https://localhost/logout',
+        )
 
         # When
         self.post(action='save_sign_out')
@@ -36,9 +40,7 @@ class TestSaveSignOut(IntegrationTestCase):
 
         block_one_url = self.last_url
 
-        post_data = {
-            'name-answer': 'Joe Bloggs'
-        }
+        post_data = {'name-answer': 'Joe Bloggs'}
 
         self.post(post_data)
 
@@ -53,7 +55,12 @@ class TestSaveSignOut(IntegrationTestCase):
     def test_sign_out_on_introduction_page(self):
 
         # Given
-        self.launchSurvey('test', 'introduction', account_service_url='https://localhost/my-account', account_service_log_out_url='https://localhost/logout')
+        self.launchSurvey(
+            'test',
+            'introduction',
+            account_service_url='https://localhost/my-account',
+            account_service_log_out_url='https://localhost/logout',
+        )
 
         # When
         self.post(action='sign_out')

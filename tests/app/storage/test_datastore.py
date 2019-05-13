@@ -10,7 +10,6 @@ from app.storage.datastore import DatastoreStorage
 
 
 class TestDatastore(AppContextTestCase):
-
     def setUp(self):
         super().setUp()
 
@@ -54,7 +53,9 @@ class TestDatastore(AppContextTestCase):
         with self.assertRaises(NotImplementedError) as exception:
             self.ds.put(model, False)
 
-        self.assertEqual(exception.exception.args[0], 'Unique key checking not supported')
+        self.assertEqual(
+            exception.exception.args[0], 'Unique key checking not supported'
+        )
 
     def test_delete(self):
         model = QuestionnaireState('someuser', 'data', 1)

@@ -4,7 +4,6 @@ from app import settings
 
 
 class TestSettings(unittest.TestCase):
-
     def test_ensure_min_returns_min(self):
         minimum = 1000
         value = 1
@@ -28,7 +27,9 @@ class TestSettings(unittest.TestCase):
         with self.assertRaises(Exception) as exception:
             settings.get_env_or_fail('MISSING_ENVIRONMENT_VARIABLE')
 
-        self.assertEqual("Setting 'MISSING_ENVIRONMENT_VARIABLE' Missing", str(exception.exception))
+        self.assertEqual(
+            "Setting 'MISSING_ENVIRONMENT_VARIABLE' Missing", str(exception.exception)
+        )
 
 
 if __name__ == '__main__':

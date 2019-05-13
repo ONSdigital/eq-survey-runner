@@ -3,8 +3,11 @@ from unittest.mock import Mock, patch
 from app.data_model.answer_store import AnswerStore, Answer
 from app.questionnaire.location import Location
 from app.templating.summary_context import build_summary_rendering_context
-from app.templating.view_context import build_view_context_for_final_summary, \
-    build_view_context_for_section_summary, build_view_context_for_calculated_summary
+from app.templating.view_context import (
+    build_view_context_for_final_summary,
+    build_view_context_for_section_summary,
+    build_view_context_for_calculated_summary,
+)
 from app.utilities.schema import load_schema_from_params
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -30,13 +33,16 @@ class TestStandardSummaryContext(AppContextTestCase):
 
     def check_context(self, context):
         self.assertEqual(len(context), 1)
-        self.assertTrue('summary' in context,
-                        'Key value {} missing from context'.format('summary'))
+        self.assertTrue(
+            'summary' in context, 'Key value {} missing from context'.format('summary')
+        )
 
         summary_context = context['summary']
         for key_value in ('groups', 'answers_are_editable', 'summary_type'):
-            self.assertTrue(key_value in summary_context,
-                            "Key value {} missing from context['summary']".format(key_value))
+            self.assertTrue(
+                key_value in summary_context,
+                "Key value {} missing from context['summary']".format(key_value),
+            )
 
     def check_summary_rendering_context(self, summary_rendering_context):
         for group in summary_rendering_context:
@@ -53,7 +59,6 @@ class TestStandardSummaryContext(AppContextTestCase):
 
 
 class TestSummaryContext(TestStandardSummaryContext):
-
     def setUp(self):
         super().setUp()
         self.schema = load_schema_from_params('test', 'summary')
@@ -63,18 +68,24 @@ class TestSummaryContext(TestStandardSummaryContext):
             'parent_id': 'summary-group',
             'id': 'summary',
             'type': 'Summary',
-            'collapsible': True
+            'collapsible': True,
         }
 
     def test_build_summary_rendering_context(self):
         sections = self.schema.sections
-        summary_rendering_context = build_summary_rendering_context(self.schema, sections, self.answer_store,
-                                                                    self.metadata)
+        summary_rendering_context = build_summary_rendering_context(
+            self.schema, sections, self.answer_store, self.metadata
+        )
         self.check_summary_rendering_context(summary_rendering_context)
 
     def test_build_view_context_for_summary(self):
-        context = build_view_context_for_final_summary(self.metadata, self.schema, self.answer_store,
-                                                       self.block_type, self.rendered_block)
+        context = build_view_context_for_final_summary(
+            self.metadata,
+            self.schema,
+            self.answer_store,
+            self.block_type,
+            self.rendered_block,
+        )
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -84,7 +95,6 @@ class TestSummaryContext(TestStandardSummaryContext):
 
 
 class TestSectionSummaryContext(TestStandardSummaryContext):
-
     def setUp(self):
         super().setUp()
         self.schema = load_schema_from_params('test', 'section_summary')
@@ -93,15 +103,21 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
 
     def test_build_summary_rendering_context(self):
         sections = [self.schema.get_section('property-details-section')]
-        summary_rendering_context = build_summary_rendering_context(self.schema, sections, self.answer_store,
-                                                                    self.metadata)
+        summary_rendering_context = build_summary_rendering_context(
+            self.schema, sections, self.answer_store, self.metadata
+        )
         self.check_summary_rendering_context(summary_rendering_context)
 
     def test_build_view_context_for_section_summary(self):
         current_location = Location(block_id='property-details-summary')
 
-        context = build_view_context_for_section_summary(self.metadata, self.schema, self.answer_store,
-                                                         self.block_type, current_location)
+        context = build_view_context_for_section_summary(
+            self.metadata,
+            self.schema,
+            self.answer_store,
+            self.block_type,
+            current_location,
+        )
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -110,7 +126,6 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
 
 
 class TestCalculatedSummaryContext(TestStandardSummaryContext):
-
     def setUp(self):
         super().setUp()
         self.schema = load_schema_from_params('test', 'calculated_summary')
@@ -136,21 +151,33 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
     def test_build_view_context_for_currency_calculated_summary_no_skip(self):
         current_location = Location(block_id='currency-total-playback-with-fourth')
 
-        context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
-                                                            self.block_type, current_location)
+        context = build_view_context_for_calculated_summary(
+            self.metadata,
+            self.schema,
+            self.answer_store,
+            self.block_type,
+            current_location,
+        )
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
         self.assertEqual(len(context['summary']), 5)
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
-        self.assertEqual(context_summary['title'],
-                         'We calculate the total of currency values entered to be £27.00. Is this correct? (With Fourth)')
+        self.assertEqual(
+            context_summary['title'],
+            'We calculate the total of currency values entered to be £27.00. Is this correct? (With Fourth)',
+        )
 
         self.assertTrue('calculated_question' in context_summary)
         self.assertEqual(len(context_summary['groups'][0]['blocks']), 5)
-        self.assertEqual(context_summary['calculated_question']['title'], 'Grand total of previous values')
-        self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '£27.00')
+        self.assertEqual(
+            context_summary['calculated_question']['title'],
+            'Grand total of previous values',
+        )
+        self.assertEqual(
+            context_summary['calculated_question']['answers'][0]['value'], '£27.00'
+        )
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_currency_calculated_summary_with_skip(self):
@@ -158,8 +185,13 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
 
         skip_answer = Answer('skip-fourth-block-answer', 'Yes')
         self.answer_store.add_or_update(skip_answer)
-        context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
-                                                            self.block_type, current_location)
+        context = build_view_context_for_calculated_summary(
+            self.metadata,
+            self.schema,
+            self.answer_store,
+            self.block_type,
+            current_location,
+        )
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
@@ -167,65 +199,108 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
         self.assertEqual(len(context_summary['groups'][0]['blocks']), 3)
-        self.assertEqual(context_summary['title'],
-                         'We calculate the total of currency values entered to be £12.00. Is this correct? (Skipped Fourth)')
+        self.assertEqual(
+            context_summary['title'],
+            'We calculate the total of currency values entered to be £12.00. Is this correct? (Skipped Fourth)',
+        )
 
         self.assertTrue('calculated_question' in context_summary)
-        self.assertEqual(context_summary['calculated_question']['title'], 'Grand total of previous values')
-        self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '£12.00')
+        self.assertEqual(
+            context_summary['calculated_question']['title'],
+            'Grand total of previous values',
+        )
+        self.assertEqual(
+            context_summary['calculated_question']['answers'][0]['value'], '£12.00'
+        )
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_unit_calculated_summary(self):
         current_location = Location(block_id='unit-total-playback')
 
-        context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
-                                                            self.block_type, current_location)
+        context = build_view_context_for_calculated_summary(
+            self.metadata,
+            self.schema,
+            self.answer_store,
+            self.block_type,
+            current_location,
+        )
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
         self.assertEqual(len(context['summary']), 5)
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
-        self.assertEqual(context_summary['title'],
-                         'We calculate the total of unit values entered to be 9 cm. Is this correct?')
+        self.assertEqual(
+            context_summary['title'],
+            'We calculate the total of unit values entered to be 9 cm. Is this correct?',
+        )
 
         self.assertTrue('calculated_question' in context_summary)
-        self.assertEqual(context_summary['calculated_question']['title'], 'Grand total of previous values')
-        self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '9 cm')
+        self.assertEqual(
+            context_summary['calculated_question']['title'],
+            'Grand total of previous values',
+        )
+        self.assertEqual(
+            context_summary['calculated_question']['answers'][0]['value'], '9 cm'
+        )
 
     def test_build_view_context_for_percentage_calculated_summary(self):
         current_location = Location(block_id='percentage-total-playback')
 
-        context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
-                                                            self.block_type, current_location)
+        context = build_view_context_for_calculated_summary(
+            self.metadata,
+            self.schema,
+            self.answer_store,
+            self.block_type,
+            current_location,
+        )
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
         self.assertEqual(len(context['summary']), 5)
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
-        self.assertEqual(context_summary['title'],
-                         'We calculate the total of percentage values entered to be 20%. Is this correct?')
+        self.assertEqual(
+            context_summary['title'],
+            'We calculate the total of percentage values entered to be 20%. Is this correct?',
+        )
 
         self.assertTrue('calculated_question' in context_summary)
-        self.assertEqual(context_summary['calculated_question']['title'], 'Grand total of previous values')
-        self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '20%')
+        self.assertEqual(
+            context_summary['calculated_question']['title'],
+            'Grand total of previous values',
+        )
+        self.assertEqual(
+            context_summary['calculated_question']['answers'][0]['value'], '20%'
+        )
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
     def test_build_view_context_for_number_calculated_summary(self):
         current_location = Location(block_id='number-total-playback')
 
-        context = build_view_context_for_calculated_summary(self.metadata, self.schema, self.answer_store,
-                                                            self.block_type, current_location)
+        context = build_view_context_for_calculated_summary(
+            self.metadata,
+            self.schema,
+            self.answer_store,
+            self.block_type,
+            current_location,
+        )
 
         self.check_context(context)
         self.check_summary_rendering_context(context['summary']['groups'])
         self.assertEqual(len(context['summary']), 5)
         context_summary = context['summary']
         self.assertTrue('title' in context_summary)
-        self.assertEqual(context_summary['title'],
-                         'We calculate the total of number values entered to be 22. Is this correct?')
+        self.assertEqual(
+            context_summary['title'],
+            'We calculate the total of number values entered to be 22. Is this correct?',
+        )
 
         self.assertTrue('calculated_question' in context_summary)
-        self.assertEqual(context_summary['calculated_question']['title'], 'Grand total of previous values')
-        self.assertEqual(context_summary['calculated_question']['answers'][0]['value'], '22')
+        self.assertEqual(
+            context_summary['calculated_question']['title'],
+            'Grand total of previous values',
+        )
+        self.assertEqual(
+            context_summary['calculated_question']['answers'][0]['value'], '22'
+        )

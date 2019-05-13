@@ -22,10 +22,14 @@ def find_pointers_containing(input_data, search_key, pointer=None):
             if isinstance(v, dict) and search_key in v:
                 yield pointer + '/' + k if pointer else '/' + k
             else:
-                yield from find_pointers_containing(v, search_key, pointer + '/' + k if pointer else '/' + k)
+                yield from find_pointers_containing(
+                    v, search_key, pointer + '/' + k if pointer else '/' + k
+                )
     elif isinstance(input_data, list):
         for index, item in enumerate(input_data):
-            yield from find_pointers_containing(item, search_key, '{}/{}'.format(pointer, index))
+            yield from find_pointers_containing(
+                item, search_key, '{}/{}'.format(pointer, index)
+            )
 
 
 class PlaceholderRenderer:
@@ -33,6 +37,7 @@ class PlaceholderRenderer:
     Renders placeholders specified by a list of pointers in a schema block to their final
     strings
     """
+
     def __init__(self, language, answer_store=None, metadata=None):
         self.language = language
         self.answer_store = answer_store or AnswerStore()
@@ -40,9 +45,11 @@ class PlaceholderRenderer:
         self.placeholders = {}
 
     def render_pointer(self, dict_to_render, pointer_to_render):
-        placeholder_parser = PlaceholderParser(language=self.language,
-                                               answer_store=self.answer_store,
-                                               metadata=self.metadata)
+        placeholder_parser = PlaceholderParser(
+            language=self.language,
+            answer_store=self.answer_store,
+            metadata=self.metadata,
+        )
 
         pointer_data = resolve_pointer(dict_to_render, pointer_to_render)
 

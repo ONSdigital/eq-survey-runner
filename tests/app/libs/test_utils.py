@@ -8,7 +8,7 @@ class ObjectFromDictTest(unittest.TestCase):
         simple_dict = {
             'property_one': 'string',
             'property_two': 2,
-            'property_three': []
+            'property_three': [],
         }
 
         obj = ObjectFromDict(simple_dict)

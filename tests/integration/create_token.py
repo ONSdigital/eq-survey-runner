@@ -23,8 +23,8 @@ PAYLOAD = {
     'roles': [],
 }
 
-class TokenGenerator:
 
+class TokenGenerator:
     def __init__(self, key_store, upstream_kid, sr_public_kid):
         self._key_store = key_store
         self._upstream_kid = upstream_kid
@@ -50,24 +50,34 @@ class TokenGenerator:
         return payload_vars
 
     def create_token(self, form_type_id, eq_id, **extra_payload):
-        payload_vars = self._get_payload_with_params(form_type_id, eq_id, None, **extra_payload)
+        payload_vars = self._get_payload_with_params(
+            form_type_id, eq_id, None, **extra_payload
+        )
 
         return self.generate_token(payload_vars)
 
     def create_token_without_jti(self, form_type_id, eq_id, **extra_payload):
-        payload_vars = self._get_payload_with_params(form_type_id, eq_id, None, **extra_payload)
+        payload_vars = self._get_payload_with_params(
+            form_type_id, eq_id, None, **extra_payload
+        )
         del payload_vars['jti']
 
         return self.generate_token(payload_vars)
 
     def create_token_without_case_id(self, form_type_id, eq_id, **extra_payload):
-        payload_vars = self._get_payload_with_params(form_type_id, eq_id, None, **extra_payload)
+        payload_vars = self._get_payload_with_params(
+            form_type_id, eq_id, None, **extra_payload
+        )
         del payload_vars['case_id']
 
         return self.generate_token(payload_vars)
 
-    def create_token_with_survey_url(self, form_type_id, eq_id, survey_url, **extra_payload):
-        payload_vars = self._get_payload_with_params(form_type_id, eq_id, survey_url, **extra_payload)
+    def create_token_with_survey_url(
+        self, form_type_id, eq_id, survey_url, **extra_payload
+    ):
+        payload_vars = self._get_payload_with_params(
+            form_type_id, eq_id, survey_url, **extra_payload
+        )
 
         return self.generate_token(payload_vars)
 

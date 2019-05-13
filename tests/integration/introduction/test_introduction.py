@@ -3,7 +3,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestIntroduction(IntegrationTestCase):
-
     def test_mail_link_contains_ru_ref_in_subject(self):
         # Given a business survey
         self.launchSurvey('test', 'introduction')
@@ -54,7 +53,9 @@ class TestIntroduction(IntegrationTestCase):
         # Then started_at should be set in collection_metadata (and payload)
         actual = self.dumpSubmission()['submission']
 
-        started_at_datetime = datetime.strptime(actual['started_at'], '%Y-%m-%dT%H:%M:%S.%f')
+        started_at_datetime = datetime.strptime(
+            actual['started_at'], '%Y-%m-%dT%H:%M:%S.%f'
+        )
 
         self.assertIsNotNone(started_at_datetime)
 

@@ -2,8 +2,9 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestQuestionnairePiping(IntegrationTestCase):
-
-    def test_given_quotes_in_answer_when_piped_into_page_then_html_escaped_quotes_on_page(self):
+    def test_given_quotes_in_answer_when_piped_into_page_then_html_escaped_quotes_on_page(
+        self
+    ):
         # Given
         self.launchSurvey('test', 'multiple_piping')
         self.post(action='start_questionnaire')
@@ -18,11 +19,12 @@ class TestQuestionnairePiping(IntegrationTestCase):
         self.get(self.last_url)
         self.assertStatusOK()
         self.assertInSelectorCSS(
-            'Does <em>Joe Bloggs "Junior"</em> live at <em>44 hill side</em>',
-            'h1'
+            'Does <em>Joe Bloggs "Junior"</em> live at <em>44 hill side</em>', 'h1'
         )
 
-    def test_given_backslash_in_answer_when_piped_into_page_then_backslash_on_page(self):
+    def test_given_backslash_in_answer_when_piped_into_page_then_backslash_on_page(
+        self
+    ):
         # Given
         self.launchSurvey('test', 'multiple_piping')
         self.post(action='start_questionnaire')
@@ -36,10 +38,7 @@ class TestQuestionnairePiping(IntegrationTestCase):
         # Then
         self.get(self.last_url)
         self.assertStatusOK()
-        self.assertInSelectorCSS(
-            'Joe Bloggs\\John Doe',
-            'h1'
-        )
+        self.assertInSelectorCSS('Joe Bloggs\\John Doe', 'h1')
 
     def test_answer_piped_into_option(self):
         # Given
@@ -56,11 +55,7 @@ class TestQuestionnairePiping(IntegrationTestCase):
         self.get(self.last_url)
         self.assertStatusOK()
         self.assertInSelectorCSS(
-            '44 hill side, newport',
-            'label',
-            {
-                'for': 'multiple-piping-answer-0'
-            }
+            '44 hill side, newport', 'label', {'for': 'multiple-piping-answer-0'}
         )
 
     def test_answer_piped_into_option_on_validation_error(self):
@@ -81,9 +76,5 @@ class TestQuestionnairePiping(IntegrationTestCase):
         # Then
         self.assertStatusOK()
         self.assertInSelectorCSS(
-            '44 hill side, newport',
-            'label',
-            {
-                'for': 'multiple-piping-answer-0'
-            }
+            '44 hill side, newport', 'label', {'for': 'multiple-piping-answer-0'}
         )

@@ -19,43 +19,38 @@ def fake_metadata():
         return validated_claims
 
     schema_metadata = [
-        {
-            'name': 'user_id',
-            'validator': 'string'
-        },
-        {
-            'name': 'period_id',
-            'validator': 'string'
-        }
+        {'name': 'user_id', 'validator': 'string'},
+        {'name': 'period_id', 'validator': 'string'},
     ]
 
-    metadata = parse_metadata({
-        'tx_id': str(uuid.uuid4()),
-        'user_id': '789473423',
-        'form_type': '0000',
-        'collection_exercise_sid': 'test-sid',
-        'eq_id': '1',
-        'period_id': '2016-02-01',
-        'period_str': '2016-01-01',
-        'ref_p_start_date': '2016-02-02',
-        'ref_p_end_date': '2016-03-03',
-        'ru_ref': '432423423423',
-        'response_id': '1234567890123456',
-        'ru_name': 'Apple',
-        'return_by': '2016-07-07',
-        'started_at': '2018-07-04T14:49:33.448608+00:00',
-        'case_id': str(uuid.uuid4()),
-        'case_ref': '1000000000000001'
-    }, schema_metadata)
+    metadata = parse_metadata(
+        {
+            'tx_id': str(uuid.uuid4()),
+            'user_id': '789473423',
+            'form_type': '0000',
+            'collection_exercise_sid': 'test-sid',
+            'eq_id': '1',
+            'period_id': '2016-02-01',
+            'period_str': '2016-01-01',
+            'ref_p_start_date': '2016-02-02',
+            'ref_p_end_date': '2016-03-03',
+            'ru_ref': '432423423423',
+            'response_id': '1234567890123456',
+            'ru_name': 'Apple',
+            'return_by': '2016-07-07',
+            'started_at': '2018-07-04T14:49:33.448608+00:00',
+            'case_id': str(uuid.uuid4()),
+            'case_ref': '1000000000000001',
+        },
+        schema_metadata,
+    )
 
     return metadata
 
 
 @pytest.fixture
 def fake_collection_metadata():
-    collection_metadata = {
-        'started_at': '2018-07-04T14:49:33.448608+00:00',
-    }
+    collection_metadata = {'started_at': '2018-07-04T14:49:33.448608+00:00'}
 
     return collection_metadata
 
@@ -80,9 +75,6 @@ def fake_questionnaire_store(fake_metadata, fake_collection_metadata):
 
 @pytest.fixture
 def fake_questionnaire_schema():
-    questionnaire = {
-        'survey_id': '021',
-        'data_version': '0.0.3'
-    }
+    questionnaire = {'survey_id': '021', 'data_version': '0.0.3'}
 
     return QuestionnaireSchema(questionnaire)

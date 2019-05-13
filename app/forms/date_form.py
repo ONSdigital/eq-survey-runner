@@ -7,15 +7,25 @@ from dateutil.relativedelta import relativedelta
 from wtforms import Form, StringField, FormField
 
 from app.forms.custom_fields import CustomIntegerField
-from app.questionnaire.rules import get_metadata_value, get_answer_store_value, convert_to_datetime
-from app.validation.validators import DateCheck, OptionalForm, DateRequired, MonthYearCheck, YearCheck, SingleDatePeriodCheck
+from app.questionnaire.rules import (
+    get_metadata_value,
+    get_answer_store_value,
+    convert_to_datetime,
+)
+from app.validation.validators import (
+    DateCheck,
+    OptionalForm,
+    DateRequired,
+    MonthYearCheck,
+    YearCheck,
+    SingleDatePeriodCheck,
+)
 from app.utilities.schema import load_schema_from_metadata
 
 logger = logging.getLogger(__name__)
 
 
 class DateField(FormField):
-
     def __init__(self, answer_store, metadata, answer, error_messages, **kwargs):
         form_class = get_date_form(answer_store, metadata, answer, error_messages)
         super(DateField, self).__init__(form_class, **kwargs)
@@ -23,17 +33,12 @@ class DateField(FormField):
     def process(self, formdata, data=None):
         if data is not None:
             substrings = data.split('-')
-            data = {
-                'year': substrings[0],
-                'month': substrings[1],
-                'day': substrings[2],
-            }
+            data = {'year': substrings[0], 'month': substrings[1], 'day': substrings[2]}
 
         super().process(formdata, data)
 
 
 class MonthYearField(FormField):
-
     def __init__(self, answer_store, metadata, answer, error_messages, **kwargs):
         form_class = get_month_year_form(answer_store, metadata, answer, error_messages)
         super(MonthYearField, self).__init__(form_class, **kwargs)
@@ -41,27 +46,27 @@ class MonthYearField(FormField):
     def process(self, formdata, data=None):
         if data is not None:
             substrings = data.split('-')
-            data = {
-                'year': substrings[0],
-                'month': substrings[1],
-            }
+            data = {'year': substrings[0], 'month': substrings[1]}
 
         super().process(formdata, data)
 
 
 class YearField(FormField):
-
     def __init__(self, answer_store, metadata, answer, error_messages, **kwargs):
-        form_class = get_year_form(answer_store, metadata, answer, error_messages, kwargs.get('description'),
-                                   kwargs.get('label'))
+        form_class = get_year_form(
+            answer_store,
+            metadata,
+            answer,
+            error_messages,
+            kwargs.get('description'),
+            kwargs.get('label'),
+        )
         super(YearField, self).__init__(form_class, **kwargs)
 
     def process(self, formdata, data=None):
         if data is not None:
             substrings = data.split('-')
-            data = {
-                'year': substrings[0],
-            }
+            data = {'year': substrings[0]}
 
         super().process(formdata, data)
 
@@ -77,6 +82,7 @@ def get_date_form(answer_store, metadata, answer=None, error_messages=None):
     :param metadata: metadata for reference meta dates
     :return: The generated DateForm metaclass
     """
+
     class DateForm(Form):
         day = StringField()
         year = StringField()
@@ -89,9 +95,7 @@ def get_date_form(answer_store, metadata, answer=None, error_messages=None):
                 return None
 
             return '{:04d}-{:02d}-{:02d}'.format(
-                int(data['year']),
-                int(data['month']),
-                int(data['day']),
+                int(data['year']), int(data['month']), int(data['day'])
             )
 
     validate_with = [OptionalForm()]
@@ -99,12 +103,16 @@ def get_date_form(answer_store, metadata, answer=None, error_messages=None):
     if answer['mandatory'] is True:
         validate_with = validate_mandatory_date(error_messages, answer)
 
-    error_message = get_bespoke_message(answer, 'INVALID_DATE') or error_messages['INVALID_DATE']
+    error_message = (
+        get_bespoke_message(answer, 'INVALID_DATE') or error_messages['INVALID_DATE']
+    )
 
     validate_with.append(DateCheck(error_message))
 
     if 'minimum' in answer or 'maximum' in answer:
-        min_max_validation = validate_min_max_date(answer, answer_store, metadata, 'yyyy-mm-dd')
+        min_max_validation = validate_min_max_date(
+            answer, answer_store, metadata, 'yyyy-mm-dd'
+        )
         validate_with.append(min_max_validation)
 
     DateForm.month = StringField(validators=validate_with)
@@ -121,6 +129,7 @@ def get_month_year_form(answer, answer_store, metadata, error_messages):
     :param error_messages: The messages to use upon this form during validation
     :return: The generated MonthYearDateForm metaclass
     """
+
     class MonthYearDateForm(Form):
         year = StringField()
         month = StringField()
@@ -131,10 +140,7 @@ def get_month_year_form(answer, answer_store, metadata, error_messages):
             if not data['year'] and not data['month']:
                 return None
 
-            return '{:04d}-{:02d}'.format(
-                int(data['year']),
-                int(data['month']),
-            )
+            return '{:04d}-{:02d}'.format(int(data['year']), int(data['month']))
 
     validate_with = [OptionalForm()]
 
@@ -145,7 +151,9 @@ def get_month_year_form(answer, answer_store, metadata, error_messages):
     validate_with.append(MonthYearCheck(error_message))
 
     if 'minimum' in answer or 'maximum' in answer:
-        min_max_validation = validate_min_max_date(answer, answer_store, metadata, 'yyyy-mm')
+        min_max_validation = validate_min_max_date(
+            answer, answer_store, metadata, 'yyyy-mm'
+        )
         validate_with.append(min_max_validation)
 
     MonthYearDateForm.month = StringField(validators=validate_with)
@@ -183,28 +191,34 @@ def get_year_form(answer, answer_store, metadata, error_messages, label, guidanc
     validate_with.append(YearCheck(error_message))
 
     if 'minimum' in answer or 'maximum' in answer:
-        min_max_validation = validate_min_max_date(answer, answer_store, metadata, 'yyyy')
+        min_max_validation = validate_min_max_date(
+            answer, answer_store, metadata, 'yyyy'
+        )
         validate_with.append(min_max_validation)
 
     YearDateForm.year = CustomIntegerField(
-        label=label,
-        validators=validate_with,
-        description=guidance,
+        label=label, validators=validate_with, description=guidance
     )
 
     return YearDateForm
 
 
 def validate_mandatory_date(error_messages, answer):
-    error_message = get_bespoke_message(answer, 'MANDATORY_DATE') or error_messages['MANDATORY_DATE']
+    error_message = (
+        get_bespoke_message(answer, 'MANDATORY_DATE')
+        or error_messages['MANDATORY_DATE']
+    )
 
     validate_with = [DateRequired(message=error_message)]
     return validate_with
 
 
 def get_bespoke_message(answer, message_type):
-    if ('validation' in answer and 'messages' in answer['validation']
-            and message_type in answer['validation']['messages']):
+    if (
+        'validation' in answer
+        and 'messages' in answer['validation']
+        and message_type in answer['validation']['messages']
+    ):
         return answer['validation']['messages'][message_type]
 
     return None
@@ -214,19 +228,34 @@ def validate_min_max_date(answer, answer_store, metadata, date_format):
     messages = None
     if 'validation' in answer:
         messages = answer['validation'].get('messages')
-    minimum_date, maximum_date = get_dates_for_single_date_period_validation(answer, answer_store, metadata)
+    minimum_date, maximum_date = get_dates_for_single_date_period_validation(
+        answer, answer_store, metadata
+    )
 
     display_format = 'd MMMM YYYY'
     if date_format == 'yyyy-mm':
         display_format = 'MMMM YYYY'
-        minimum_date = minimum_date.replace(day=1) if minimum_date else None    # First day of Month
-        maximum_date = maximum_date + relativedelta(day=31) if maximum_date else None   # Last day of month
+        minimum_date = (
+            minimum_date.replace(day=1) if minimum_date else None
+        )  # First day of Month
+        maximum_date = (
+            maximum_date + relativedelta(day=31) if maximum_date else None
+        )  # Last day of month
     elif date_format == 'yyyy':
         display_format = 'YYYY'
-        minimum_date = minimum_date.replace(month=1, day=1) if minimum_date else None    # January 1st
-        maximum_date = maximum_date.replace(month=12, day=31) if maximum_date else None   # Last day of december
+        minimum_date = (
+            minimum_date.replace(month=1, day=1) if minimum_date else None
+        )  # January 1st
+        maximum_date = (
+            maximum_date.replace(month=12, day=31) if maximum_date else None
+        )  # Last day of december
 
-    return SingleDatePeriodCheck(messages=messages, date_format=display_format, minimum_date=minimum_date, maximum_date=maximum_date)
+    return SingleDatePeriodCheck(
+        messages=messages,
+        date_format=display_format,
+        minimum_date=minimum_date,
+        maximum_date=maximum_date,
+    )
 
 
 def get_dates_for_single_date_period_validation(answer, answer_store, metadata):
@@ -242,15 +271,23 @@ def get_dates_for_single_date_period_validation(answer, answer_store, metadata):
     minimum_referenced_date, maximum_referenced_date = None, None
 
     if 'minimum' in answer:
-        minimum_referenced_date = get_referenced_offset_value(answer['minimum'], answer_store, metadata)
+        minimum_referenced_date = get_referenced_offset_value(
+            answer['minimum'], answer_store, metadata
+        )
     if 'maximum' in answer:
-        maximum_referenced_date = get_referenced_offset_value(answer['maximum'], answer_store, metadata)
+        maximum_referenced_date = get_referenced_offset_value(
+            answer['maximum'], answer_store, metadata
+        )
 
     # Extra runtime validation that will catch invalid schemas
     # Similar validation in schema validator
     if minimum_referenced_date and maximum_referenced_date:
         if minimum_referenced_date > maximum_referenced_date:
-            raise Exception('The minimum offset date is greater than the maximum offset date for {}.'.format(answer['id']))
+            raise Exception(
+                'The minimum offset date is greater than the maximum offset date for {}.'.format(
+                    answer['id']
+                )
+            )
 
     return minimum_referenced_date, maximum_referenced_date
 
@@ -278,14 +315,18 @@ def get_referenced_offset_value(answer_min_or_max, answer_store, metadata):
         value = get_metadata_value(metadata, answer_min_or_max['meta'])
     elif 'answer_id' in answer_min_or_max:
         schema = load_schema_from_metadata(metadata)
-        value = get_answer_store_value(answer_min_or_max['answer_id'], answer_store, schema)
+        value = get_answer_store_value(
+            answer_min_or_max['answer_id'], answer_store, schema
+        )
 
     value = convert_to_datetime(value)
 
     if 'offset_by' in answer_min_or_max:
         offset = answer_min_or_max['offset_by']
-        value += relativedelta(years=offset.get('years', 0),
-                               months=offset.get('months', 0),
-                               days=offset.get('days', 0))
+        value += relativedelta(
+            years=offset.get('years', 0),
+            months=offset.get('months', 0),
+            days=offset.get('days', 0),
+        )
 
     return value

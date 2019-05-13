@@ -13,10 +13,9 @@ from app.storage.dynamodb import DynamodbStorage
 from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter, GCSSubmitter
 
 
-class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-methods
+class TestCreateApp(unittest.TestCase):  # pylint: disable=too-many-public-methods
     def setUp(self):
-        self._setting_overrides = {
-        }
+        self._setting_overrides = {}
 
     @contextmanager
     def override_settings(self):
@@ -29,7 +28,10 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
         settings.
 
         Returns a list of contexts."""
-        patches = [patch('app.setup.settings.{}'.format(k), v) for k, v in self._setting_overrides.items()]
+        patches = [
+            patch('app.setup.settings.{}'.format(k), v)
+            for k, v in self._setting_overrides.items()
+        ]
         for p in patches:
             p.start()
         yield patches
@@ -48,7 +50,9 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
             self.assertEqual(new_relic.call_count, 1)
 
     def test_sets_content_length(self):
-        self.assertGreater(create_app(self._setting_overrides).config['MAX_CONTENT_LENGTH'], 0)
+        self.assertGreater(
+            create_app(self._setting_overrides).config['MAX_CONTENT_LENGTH'], 0
+        )
 
     def test_enforces_secure_session(self):
         application = create_app(self._setting_overrides)
@@ -62,14 +66,14 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
 
     # localisation may not be used but is currently attached...
     def test_adds_i18n_to_application(self):
-        self.assertIsInstance(create_app(self._setting_overrides).babel, Babel)  # pylint: disable=no-member
+        babel = create_app(self._setting_overrides).babel  # pylint: disable=no-member
+        self.assertIsInstance(babel, Babel)
 
     def test_adds_logging_of_request_ids(self):
         with patch('app.setup.logger') as logger:
-            self._setting_overrides.update({
-                'EQ_DEV_MODE': True,
-                'EQ_APPLICATION_VERSION': False
-            })
+            self._setting_overrides.update(
+                {'EQ_DEV_MODE': True, 'EQ_APPLICATION_VERSION': False}
+            )
             application = create_app(self._setting_overrides)
 
             application.test_client().get('/')
@@ -81,12 +85,19 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
         with create_app(self._setting_overrides).test_client() as client:
             headers = client.get(
                 '/',
-                headers={'X-Forwarded-Proto': 'https'} # set protocal so that talisman sets HSTS headers
+                headers={
+                    'X-Forwarded-Proto': 'https'
+                },  # set protocal so that talisman sets HSTS headers
             ).headers
 
-            self.assertEqual('no-cache, no-store, must-revalidate', headers['Cache-Control'])
+            self.assertEqual(
+                'no-cache, no-store, must-revalidate', headers['Cache-Control']
+            )
             self.assertEqual('no-cache', headers['Pragma'])
-            self.assertEqual('max-age=31536000; includeSubDomains', headers['Strict-Transport-Security'])
+            self.assertEqual(
+                'max-age=31536000; includeSubDomains',
+                headers['Strict-Transport-Security'],
+            )
             self.assertEqual('DENY', headers['X-Frame-Options'])
             self.assertEqual('1; mode=block', headers['X-Xss-Protection'])
             self.assertEqual('nosniff', headers['X-Content-Type-Options'])
@@ -95,13 +106,17 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
             self.assertIn("default-src 'self' https://cdn.ons.gov.uk", csp_policy_parts)
             self.assertIn(
                 "script-src 'self' https://www.google-analytics.com https://cdn.ons.gov.uk 'nonce-{}'".format(
-                    request.csp_nonce),
-                csp_policy_parts
+                    request.csp_nonce
+                ),
+                csp_policy_parts,
             )
             self.assertIn(
-                "img-src 'self' data: https://www.google-analytics.com https://cdn.ons.gov.uk", csp_policy_parts)
+                "img-src 'self' data: https://www.google-analytics.com https://cdn.ons.gov.uk",
+                csp_policy_parts,
+            )
             self.assertIn(
-                "font-src 'self' data: https://cdn.ons.gov.uk", csp_policy_parts)
+                "font-src 'self' data: https://cdn.ons.gov.uk", csp_policy_parts
+            )
 
     # Indirectly covered by higher level integration
     # tests, keeping to highlight that create_app is where
@@ -168,7 +183,7 @@ class TestCreateApp(unittest.TestCase): # pylint: disable=too-many-public-method
         assert 'Setting EQ_RABBITMQ_HOST Missing' in str(ex.exception)
 
     def test_rabbit_submitter_secondary_host_not_set_raises_exception(self):
-        #Given
+        # Given
         self._setting_overrides['EQ_SUBMISSION_BACKEND'] = 'rabbitmq'
         self._setting_overrides['EQ_RABBITMQ_HOST_SECONDARY'] = ''
 

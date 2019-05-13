@@ -2,7 +2,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestQuestionnaireChangeAnswer(IntegrationTestCase):
-
     def test_change_non_mandatory_date_from_answered_to_not_answered(self):
 
         # Given the test_dates questionnaire with a non-mandatory date answered.
@@ -15,22 +14,21 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
                 'date-range-from-answer-year': '2017',
                 'date-range-to-answer-day': '2',
                 'date-range-to-answer-month': '1',
-                'date-range-to-answer-year': '2017'
-            }, {
-                'month-year-answer-month': '1',
-                'month-year-answer-year': '2016'
-            }, {
+                'date-range-to-answer-year': '2017',
+            },
+            {'month-year-answer-month': '1', 'month-year-answer-year': '2016'},
+            {
                 'single-date-answer-day': '1',
                 'single-date-answer-month': '1',
-                'single-date-answer-year': '2016'
-            }, {
+                'single-date-answer-year': '2016',
+            },
+            {
                 # non-mandatory dates answered
                 'non-mandatory-date-answer-day': '22',
                 'non-mandatory-date-answer-month': '2',
-                'non-mandatory-date-answer-year': '2099'
-            }, {
-                'year-date-answer-year': '2017'
-            }
+                'non-mandatory-date-answer-year': '2099',
+            },
+            {'year-date-answer-year': '2017'},
         ]
 
         for datum in post_data:
@@ -45,7 +43,7 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
         unanswered_post_data = {
             'non-mandatory-date-answer-day': '',
             'non-mandatory-date-answer-month': '',
-            'non-mandatory-date-answer-year': ''
+            'non-mandatory-date-answer-year': '',
         }
 
         self.post(unanswered_post_data)

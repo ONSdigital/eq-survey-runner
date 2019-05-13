@@ -30,4 +30,5 @@ def full_routing_path_required(function):
     def wrap_function(*args, **kwargs):
         routing_path = path_finder.get_full_routing_path()
         return function(routing_path, *args, **kwargs)
+
     return wrap_function

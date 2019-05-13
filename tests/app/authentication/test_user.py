@@ -7,7 +7,6 @@ from app.authentication.user import User
 
 
 class TestUser(unittest.TestCase):
-
     def setUp(self):
         self.application = Flask(__name__)
         self.application.config['TESTING'] = True

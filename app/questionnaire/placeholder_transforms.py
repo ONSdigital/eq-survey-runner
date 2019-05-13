@@ -84,8 +84,12 @@ class PlaceholderTransforms:
 
     @staticmethod
     def calculate_years_difference(first_date, second_date):
-        return str(relativedelta(PlaceholderTransforms.parse_date(second_date),
-                                 PlaceholderTransforms.parse_date(first_date)).years)
+        return str(
+            relativedelta(
+                PlaceholderTransforms.parse_date(second_date),
+                PlaceholderTransforms.parse_date(first_date),
+            ).years
+        )
 
     @staticmethod
     def parse_date(date):
@@ -100,11 +104,13 @@ class PlaceholderTransforms:
             return datetime.now(tz=tzutc())
 
         try:
-            return datetime.strptime(date, PlaceholderTransforms.input_date_format)\
-                .replace(tzinfo=tzutc())
+            return datetime.strptime(
+                date, PlaceholderTransforms.input_date_format
+            ).replace(tzinfo=tzutc())
         except ValueError:
-            return datetime.strptime(date, PlaceholderTransforms.input_date_format_month_year_only)\
-                .replace(tzinfo=tzutc())
+            return datetime.strptime(
+                date, PlaceholderTransforms.input_date_format_month_year_only
+            ).replace(tzinfo=tzutc())
 
     def first_non_empty_item(self, items):
         """

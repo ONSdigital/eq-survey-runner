@@ -4,8 +4,9 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestQuestionnaireCsrf(IntegrationTestCase):
-
-    def test_given_on_interstitial_page_when_submit_with_no_csrf_token_then_forbidden(self):
+    def test_given_on_interstitial_page_when_submit_with_no_csrf_token_then_forbidden(
+        self
+    ):
         # Given
         self.launchSurvey('test', 'interstitial_page')
         self.last_csrf_token = None
@@ -17,7 +18,9 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self.assertStatusCode(401)
         self.assertEqualUrl(self.last_url)
 
-    def test_given_on_interstitial_page_when_submit_with_invalid_csrf_token_then_forbidden(self):
+    def test_given_on_interstitial_page_when_submit_with_invalid_csrf_token_then_forbidden(
+        self
+    ):
         # Given
         self.launchSurvey('test', 'interstitial_page')
         self.last_csrf_token = 'made-up-token'
@@ -29,7 +32,9 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self.assertStatusCode(401)
         self.assertEqualUrl(self.last_url)
 
-    def test_given_on_introduction_page_when_submit_valid_token_then_redirect_to_next_page(self):
+    def test_given_on_introduction_page_when_submit_valid_token_then_redirect_to_next_page(
+        self
+    ):
         # Given
         self.launchSurvey('test', 'interstitial_page')
 
@@ -40,7 +45,9 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self.assertStatusOK()
         self.assertInBody('What is your favourite breakfast food')
 
-    def test_given_answered_question_when_change_answer_with_invalid_csrf_token_then_answers_not_saved(self):
+    def test_given_answered_question_when_change_answer_with_invalid_csrf_token_then_answers_not_saved(
+        self
+    ):
         # Given
         self.launchSurvey('test', 'interstitial_page', roles=['dumper'])
         self.post()
@@ -56,11 +63,17 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         answers = json.loads(self.getResponseData())
         self.assertEqual('Muesli', answers['answers'][0]['value'])
 
-    def test_given_valid_answer_when_answer_with_invalid_csrf_token_then_answer_not_saved(self):
+    def test_given_valid_answer_when_answer_with_invalid_csrf_token_then_answer_not_saved(
+        self
+    ):
         # Given
         self.launchSurvey('test', 'checkbox', roles=['dumper'])
-        self.post({'mandatory-checkbox-answer': 'Other',
-                   'other-answer-mandatory': 'No reason'})
+        self.post(
+            {
+                'mandatory-checkbox-answer': 'Other',
+                'other-answer-mandatory': 'No reason',
+            }
+        )
 
         # When
         self.last_csrf_token = 'made-up-token'
@@ -72,7 +85,9 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         answers = json.loads(self.getResponseData())
         self.assertEqual(2, len(answers['answers']))
 
-    def test_given_valid_answers_when_save_and_sign_out_with_invalid_csrf_token_then_answers_not_saved(self):
+    def test_given_valid_answers_when_save_and_sign_out_with_invalid_csrf_token_then_answers_not_saved(
+        self
+    ):
         # Given
         self.launchSurvey('test', 'interstitial_page', roles=['dumper'])
         self.post()

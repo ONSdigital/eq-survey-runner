@@ -3,11 +3,14 @@ from datetime import datetime
 
 import pytest
 
-from app.storage.metadata_parser import boolean_parser, uuid_4_parser, iso_8601_date_parser
+from app.storage.metadata_parser import (
+    boolean_parser,
+    uuid_4_parser,
+    iso_8601_date_parser,
+)
 
 
 class TestMetaDataValidators(TestCase):
-
     def simple_mapping_assertion(self, method, value, expected, exc_type=Exception):
         """Given a method which should be called, assert that expected is
            returned. A special case is when expected=='err', expect an error
@@ -31,7 +34,9 @@ class TestMetaDataValidators(TestCase):
             (tuple(), 'err'),
         )
         for (claim_value, expected) in variations:
-            self.simple_mapping_assertion(boolean_parser, claim_value, expected, TypeError)
+            self.simple_mapping_assertion(
+                boolean_parser, claim_value, expected, TypeError
+            )
 
     def test_uuid_4_parser(self):
         """ Asserts that only boolean True/False are accepted"""
@@ -43,8 +48,14 @@ class TestMetaDataValidators(TestCase):
             (False, 'err'),
             ({}, 'err'),
             (tuple(), 'err'),
-            ('3e0a497f-ee63-4b12-b0b9-234eca1850fa', '3e0a497f-ee63-4b12-b0b9-234eca1850fa'),
-            ('8b8d701d-1f76-430a-895f-53c9030f7ca2', '8b8d701d-1f76-430a-895f-53c9030f7ca2'),
+            (
+                '3e0a497f-ee63-4b12-b0b9-234eca1850fa',
+                '3e0a497f-ee63-4b12-b0b9-234eca1850fa',
+            ),
+            (
+                '8b8d701d-1f76-430a-895f-53c9030f7ca2',
+                '8b8d701d-1f76-430a-895f-53c9030f7ca2',
+            ),
         )
         for (claim_value, expected) in variations:
             self.simple_mapping_assertion(uuid_4_parser, claim_value, expected)

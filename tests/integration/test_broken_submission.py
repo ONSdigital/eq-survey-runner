@@ -21,5 +21,7 @@ class TestBrokenSubmission(IntegrationTestCase):
         self.assertStatusOK()
 
         self.post(action=None)
-        self.assertEqual(self.instance.send_message.called, True)  # pylint: disable=no-member
+        self.assertEqual(
+            self.instance.send_message.called, True
+        )  # pylint: disable=no-member
         self.assertStatusCode(503)

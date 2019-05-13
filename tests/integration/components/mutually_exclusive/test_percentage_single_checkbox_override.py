@@ -1,4 +1,6 @@
-from tests.integration.components.mutually_exclusive.schema_urls import MUTUALLY_EXCLUSIVE_PERCENTAGE
+from tests.integration.components.mutually_exclusive.schema_urls import (
+    MUTUALLY_EXCLUSIVE_PERCENTAGE,
+)
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -23,8 +25,12 @@ class TestPercentageSingleCheckboxOverride(IntegrationTestCase):
 
     def test_exclusive_answer(self):
         # When
-        self.post({'percentage-answer': '',
-                   'percentage-exclusive-answer': ['I prefer not to say']})
+        self.post(
+            {
+                'percentage-answer': '',
+                'percentage-exclusive-answer': ['I prefer not to say'],
+            }
+        )
 
         # Then
         self.assertInUrl('section-summary')
@@ -40,8 +46,12 @@ class TestPercentageSingleCheckboxOverride(IntegrationTestCase):
 
     def test_invalid_exclusive_answers(self):
         # When
-        self.post({'percentage-answer': '99',
-                   'percentage-exclusive-answer': ['I prefer not to say']})
+        self.post(
+            {
+                'percentage-answer': '99',
+                'percentage-exclusive-answer': ['I prefer not to say'],
+            }
+        )
 
         # Then
         self.assertInBody('Remove an answer to continue.')

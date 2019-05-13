@@ -13,17 +13,18 @@ block_schema = {
                 'id': 'first-name',
                 'label': 'First name',
                 'mandatory': True,
-                'type': 'TextField'
+                'type': 'TextField',
             },
             {
                 'id': 'last-name',
                 'label': 'Last name',
                 'mandatory': True,
-                'type': 'TextField'
-            }
-        ]
-    }
+                'type': 'TextField',
+            },
+        ],
+    },
 }
+
 
 def test_generate_list_item_title_all_names():
     answer_store = AnswerStore()
@@ -33,6 +34,7 @@ def test_generate_list_item_title_all_names():
     title = generate_list_item_title(answer_store, block_schema)
 
     assert title == 'John Smith'
+
 
 def test_generate_list_item_title_one_name():
     answer_store = AnswerStore()

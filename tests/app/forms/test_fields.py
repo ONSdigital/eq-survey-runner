@@ -1,9 +1,20 @@
 from wtforms import validators, StringField, FormField, SelectField
 
 from app.data_model.answer_store import AnswerStore
-from app.forms.custom_fields import MaxTextAreaField, CustomSelectMultipleField, CustomSelectField
+from app.forms.custom_fields import (
+    MaxTextAreaField,
+    CustomSelectMultipleField,
+    CustomSelectField,
+)
 from app.forms.date_form import DateField, MonthYearField, YearField
-from app.forms.fields import CustomIntegerField, CustomDecimalField, get_field, get_mandatory_validator, get_length_validator, _coerce_str_unless_none
+from app.forms.fields import (
+    CustomIntegerField,
+    CustomDecimalField,
+    get_field,
+    get_mandatory_validator,
+    get_length_validator,
+    _coerce_str_unless_none,
+)
 from app.validation.error_messages import error_messages
 from app.validation.validators import ResponseRequired
 from tests.app.app_context_test_case import AppContextTestCase
@@ -11,7 +22,6 @@ from tests.app.app_context_test_case import AppContextTestCase
 
 # pylint: disable=no-member, too-many-public-methods
 class TestFields(AppContextTestCase):
-
     def setUp(self):
         super().setUp()
         self.answer_store = AnswerStore()
@@ -28,7 +38,7 @@ class TestFields(AppContextTestCase):
             'ru_name': 'Apple',
             'return_by': '2016-07-07',
             'case_id': '1234567890',
-            'case_ref': '1000000000000001'
+            'case_ref': '1000000000000001',
         }
 
     def tearDown(self):
@@ -37,23 +47,23 @@ class TestFields(AppContextTestCase):
         self.metadata.clear()
 
     def test_get_mandatory_validator_optional(self):
-        answer = {
-            'mandatory': False
-        }
+        answer = {'mandatory': False}
         validate_with = get_mandatory_validator(answer, None, 'MANDATORY_TEXTFIELD')
 
         self.assertIsInstance(validate_with[0], validators.Optional)
 
     def test_get_mandatory_validator_mandatory(self):
-        answer = {
-            'mandatory': True
-        }
-        validate_with = get_mandatory_validator(answer, {
-            'MANDATORY_TEXTFIELD': 'This is the default mandatory message'
-        }, 'MANDATORY_TEXTFIELD')
+        answer = {'mandatory': True}
+        validate_with = get_mandatory_validator(
+            answer,
+            {'MANDATORY_TEXTFIELD': 'This is the default mandatory message'},
+            'MANDATORY_TEXTFIELD',
+        )
 
         self.assertIsInstance(validate_with[0], ResponseRequired)
-        self.assertEqual(validate_with[0].message, 'This is the default mandatory message')
+        self.assertEqual(
+            validate_with[0].message, 'This is the default mandatory message'
+        )
 
     def test_get_mandatory_validator_mandatory_with_error(self):
         answer = {
@@ -62,21 +72,31 @@ class TestFields(AppContextTestCase):
                 'messages': {
                     'MANDATORY_TEXTFIELD': 'This is the mandatory message for an answer'
                 }
-            }
+            },
         }
-        validate_with = get_mandatory_validator(answer, {
-            'MANDATORY_TEXTFIELD': 'This is the default mandatory message'
-        }, 'MANDATORY_TEXTFIELD')
+        validate_with = get_mandatory_validator(
+            answer,
+            {'MANDATORY_TEXTFIELD': 'This is the default mandatory message'},
+            'MANDATORY_TEXTFIELD',
+        )
 
         self.assertIsInstance(validate_with[0], ResponseRequired)
-        self.assertEqual(validate_with[0].message, 'This is the mandatory message for an answer')
+        self.assertEqual(
+            validate_with[0].message, 'This is the mandatory message for an answer'
+        )
 
     def test_get_length_validator(self):
-        validate_with = get_length_validator({}, {
-            'MAX_LENGTH_EXCEEDED': 'This is the default max length of %(max)d message'
-        })
+        validate_with = get_length_validator(
+            {},
+            {
+                'MAX_LENGTH_EXCEEDED': 'This is the default max length of %(max)d message'
+            },
+        )
 
-        self.assertEqual(validate_with[0].message, 'This is the default max length of %(max)d message')
+        self.assertEqual(
+            validate_with[0].message,
+            'This is the default max length of %(max)d message',
+        )
 
     def test_get_length_validator_with_message_override(self):
         answer = {
@@ -87,20 +107,20 @@ class TestFields(AppContextTestCase):
             }
         }
 
-        validate_with = get_length_validator(answer, {
-            'MAX_LENGTH_EXCEEDED': 'This is the default max length message'
-        })
+        validate_with = get_length_validator(
+            answer, {'MAX_LENGTH_EXCEEDED': 'This is the default max length message'}
+        )
 
-        self.assertEqual(validate_with[0].message, 'A message with characters %(max)d placeholder')
+        self.assertEqual(
+            validate_with[0].message, 'A message with characters %(max)d placeholder'
+        )
 
     def test_get_length_validator_with_max_length_override(self):
-        answer = {
-            'max_length': 30
-        }
+        answer = {'max_length': 30}
 
-        validate_with = get_length_validator(answer, {
-            'MAX_LENGTH_EXCEEDED': '%(max)d characters'
-        })
+        validate_with = get_length_validator(
+            answer, {'MAX_LENGTH_EXCEEDED': '%(max)d characters'}
+        )
 
         self.assertEqual(validate_with[0].max, 30)
 
@@ -110,14 +130,21 @@ class TestFields(AppContextTestCase):
             'label': 'Job title',
             'mandatory': False,
             'guidance': '<p>Please enter your job title in the space provided.</p>',
-            'type': 'TextField'
+            'type': 'TextField',
         }
-        unbound_field = get_field(textfield_json, textfield_json['label'], error_messages, self.answer_store,
-                                  self.metadata)
+        unbound_field = get_field(
+            textfield_json,
+            textfield_json['label'],
+            error_messages,
+            self.answer_store,
+            self.metadata,
+        )
 
         self.assertEqual(unbound_field.field_class, StringField)
         self.assertEqual(unbound_field.kwargs['label'], textfield_json['label'])
-        self.assertEqual(unbound_field.kwargs['description'], textfield_json['guidance'])
+        self.assertEqual(
+            unbound_field.kwargs['description'], textfield_json['guidance']
+        )
 
     def test_text_area_field(self):
         textarea_json = {
@@ -126,11 +153,16 @@ class TestFields(AppContextTestCase):
             'label': 'Enter your comments',
             'mandatory': False,
             'q_code': '0',
-            'type': 'TextArea'
+            'type': 'TextArea',
         }
 
-        unbound_field = get_field(textarea_json, textarea_json['label'], error_messages, self.answer_store,
-                                  self.metadata)
+        unbound_field = get_field(
+            textarea_json,
+            textarea_json['label'],
+            error_messages,
+            self.answer_store,
+            self.metadata,
+        )
 
         self.assertEqual(unbound_field.field_class, MaxTextAreaField)
         self.assertEqual(unbound_field.kwargs['label'], textarea_json['label'])
@@ -146,14 +178,19 @@ class TestFields(AppContextTestCase):
             'validation': {
                 'messages': {
                     'INVALID_DATE': 'The date entered is not valid.  Please correct your answer.',
-                    'MANDATORY': 'Please provide an answer to continue.'
+                    'MANDATORY': 'Please provide an answer to continue.',
                 }
-            }
+            },
         }
 
         with self.app_request_context('/'):
-            unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
-                                      self.metadata)
+            unbound_field = get_field(
+                date_json,
+                date_json['label'],
+                error_messages,
+                self.answer_store,
+                self.metadata,
+            )
 
         self.assertEqual(unbound_field.field_class, DateField)
         self.assertEqual(unbound_field.kwargs['label'], date_json['label'])
@@ -171,14 +208,19 @@ class TestFields(AppContextTestCase):
             'validation': {
                 'messages': {
                     'INVALID_DATE': 'The date entered is not valid.  Please correct your answer.',
-                    'MANDATORY': 'Please provide an answer to continue.'
+                    'MANDATORY': 'Please provide an answer to continue.',
                 }
-            }
+            },
         }
 
         with self.app_request_context('/'):
-            unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
-                                      self.metadata)
+            unbound_field = get_field(
+                date_json,
+                date_json['label'],
+                error_messages,
+                self.answer_store,
+                self.metadata,
+            )
 
         self.assertEqual(unbound_field.field_class, MonthYearField)
         self.assertEqual(unbound_field.kwargs['label'], date_json['label'])
@@ -196,14 +238,19 @@ class TestFields(AppContextTestCase):
             'validation': {
                 'messages': {
                     'INVALID_DATE': 'The date entered is not valid.  Please correct your answer.',
-                    'MANDATORY': 'Please provide an answer to continue.'
+                    'MANDATORY': 'Please provide an answer to continue.',
                 }
-            }
+            },
         }
 
         with self.app_request_context('/'):
-            unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
-                                      self.metadata)
+            unbound_field = get_field(
+                date_json,
+                date_json['label'],
+                error_messages,
+                self.answer_store,
+                self.metadata,
+            )
 
         self.assertEqual(unbound_field.field_class, YearField)
         self.assertEqual(unbound_field.kwargs['label'], date_json['label'])
@@ -222,14 +269,19 @@ class TestFields(AppContextTestCase):
             'validation': {
                 'messages': {
                     'INVALID_DURATION': 'The duration entered is not valid.  Please correct your answer.',
-                    'MANDATORY_DURATION': 'Please provide a duration to continue.'
+                    'MANDATORY_DURATION': 'Please provide a duration to continue.',
                 }
-            }
+            },
         }
 
         with self.app_request_context('/'):
-            unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store,
-                                      self.metadata)
+            unbound_field = get_field(
+                date_json,
+                date_json['label'],
+                error_messages,
+                self.answer_store,
+                self.metadata,
+            )
 
         self.assertEqual(unbound_field.field_class, FormField)
         self.assertEqual(unbound_field.kwargs['label'], date_json['label'])
@@ -245,30 +297,31 @@ class TestFields(AppContextTestCase):
                 {
                     'label': 'Light Side',
                     'value': 'Light Side',
-                    'description': 'The light side of the Force'
+                    'description': 'The light side of the Force',
                 },
                 {
                     'label': 'Dark Side',
                     'value': 'Dark Side',
-                    'description': 'The dark side of the Force'
+                    'description': 'The dark side of the Force',
                 },
-                {
-                    'label': 'I prefer Star Trek',
-                    'value': 'I prefer Star Trek'
-                },
-                {
-                    'label': 'Other',
-                    'value': 'Other'
-                }
+                {'label': 'I prefer Star Trek', 'value': 'I prefer Star Trek'},
+                {'label': 'Other', 'value': 'Other'},
             ],
             'q_code': '20',
-            'type': 'Radio'
+            'type': 'Radio',
         }
 
-        unbound_field = get_field(radio_json, radio_json['label'], error_messages, self.answer_store,
-                                  self.metadata)
+        unbound_field = get_field(
+            radio_json,
+            radio_json['label'],
+            error_messages,
+            self.answer_store,
+            self.metadata,
+        )
 
-        expected_choices = [(option['label'], option['value'], None) for option in radio_json['options']]
+        expected_choices = [
+            (option['label'], option['value'], None) for option in radio_json['options']
+        ]
 
         self.assertEqual(unbound_field.field_class, CustomSelectField)
         self.assertTrue(unbound_field.kwargs['coerce'], _coerce_str_unless_none)
@@ -284,27 +337,24 @@ class TestFields(AppContextTestCase):
             'label': 'Please choose an option',
             'description': 'This is a mandatory dropdown, therefore you must select a value!.',
             'options': [
-                {
-                    'label': 'Liverpool',
-                    'value': 'Liverpool'
-                },
-                {
-                    'label': 'Chelsea',
-                    'value': 'Chelsea'
-                },
-                {
-                    'label': 'Rugby is better!',
-                    'value': 'Rugby is better!'
-                }
-            ]
+                {'label': 'Liverpool', 'value': 'Liverpool'},
+                {'label': 'Chelsea', 'value': 'Chelsea'},
+                {'label': 'Rugby is better!', 'value': 'Rugby is better!'},
+            ],
         }
 
         with self.app_request_context('/'):
-            unbound_field = get_field(dropdown_json, dropdown_json['label'], error_messages, self.answer_store,
-                                      self.metadata)
+            unbound_field = get_field(
+                dropdown_json,
+                dropdown_json['label'],
+                error_messages,
+                self.answer_store,
+                self.metadata,
+            )
 
-        expected_choices = [('', 'Select an answer')] + \
-                           [(option['label'], option['value']) for option in dropdown_json['options']]
+        expected_choices = [('', 'Select an answer')] + [
+            (option['label'], option['value']) for option in dropdown_json['options']
+        ]
 
         self.assertEqual(unbound_field.field_class, SelectField)
         self.assertEqual(unbound_field.kwargs['label'], dropdown_json['label'])
@@ -328,39 +378,29 @@ class TestFields(AppContextTestCase):
             'label': '',
             'mandatory': False,
             'options': [
-                {
-                    'label': 'Luke Skywalker',
-                    'value': 'Luke Skywalker'
-                },
-                {
-                    'label': 'Han Solo',
-                    'value': 'Han Solo'
-                },
-                {
-                    'label': 'The Emperor',
-                    'value': 'The Emperor'
-                },
-                {
-                    'label': 'R2D2',
-                    'value': 'R2D2'
-                },
-                {
-                    'label': 'Senator Amidala',
-                    'value': 'Senator Amidala'
-                },
-                {
-                    'label': 'Yoda',
-                    'value': 'Yoda'
-                }
+                {'label': 'Luke Skywalker', 'value': 'Luke Skywalker'},
+                {'label': 'Han Solo', 'value': 'Han Solo'},
+                {'label': 'The Emperor', 'value': 'The Emperor'},
+                {'label': 'R2D2', 'value': 'R2D2'},
+                {'label': 'Senator Amidala', 'value': 'Senator Amidala'},
+                {'label': 'Yoda', 'value': 'Yoda'},
             ],
             'q_code': '7',
-            'type': 'Checkbox'
+            'type': 'Checkbox',
         }
 
-        unbound_field = get_field(checkbox_json, checkbox_json['label'], error_messages, self.answer_store,
-                                  self.metadata)
+        unbound_field = get_field(
+            checkbox_json,
+            checkbox_json['label'],
+            error_messages,
+            self.answer_store,
+            self.metadata,
+        )
 
-        expected_choices = [(option['value'], option['label'], None) for option in checkbox_json['options']]
+        expected_choices = [
+            (option['value'], option['label'], None)
+            for option in checkbox_json['options']
+        ]
 
         self.assertEqual(unbound_field.field_class, CustomSelectMultipleField)
         self.assertEqual(unbound_field.kwargs['label'], checkbox_json['label'])
@@ -381,12 +421,18 @@ class TestFields(AppContextTestCase):
                 'messages': {
                     'NUMBER_TOO_LARGE': 'No one lives that long, not even Yoda',
                     'NUMBER_TOO_SMALL': 'Negative age you can not be.',
-                    'INVALID_NUMBER': 'Please enter your age.'
+                    'INVALID_NUMBER': 'Please enter your age.',
                 }
-            }
+            },
         }
 
-        unbound_field = get_field(integer_json, integer_json['label'], error_messages, self.answer_store, self.metadata)
+        unbound_field = get_field(
+            integer_json,
+            integer_json['label'],
+            error_messages,
+            self.answer_store,
+            self.metadata,
+        )
 
         self.assertEqual(unbound_field.field_class, CustomIntegerField)
         self.assertEqual(unbound_field.kwargs['label'], integer_json['label'])
@@ -404,12 +450,18 @@ class TestFields(AppContextTestCase):
                 'messages': {
                     'NUMBER_TOO_LARGE': 'Thats hotter then the sun, Jar Jar Binks you must be',
                     'NUMBER_TOO_SMALL': 'How can it be negative?',
-                    'INVALID_NUMBER': 'Please only enter whole numbers into the field.'
+                    'INVALID_NUMBER': 'Please only enter whole numbers into the field.',
                 }
-            }
+            },
         }
 
-        unbound_field = get_field(decimal_json, decimal_json['label'], error_messages, self.answer_store, self.metadata)
+        unbound_field = get_field(
+            decimal_json,
+            decimal_json['label'],
+            error_messages,
+            self.answer_store,
+            self.metadata,
+        )
 
         self.assertEqual(unbound_field.field_class, CustomDecimalField)
         self.assertEqual(unbound_field.kwargs['label'], decimal_json['label'])
@@ -427,13 +479,18 @@ class TestFields(AppContextTestCase):
                 'messages': {
                     'NUMBER_TOO_LARGE': 'How much, fool you must be',
                     'NUMBER_TOO_SMALL': 'How can it be negative?',
-                    'INVALID_NUMBER': 'Please only enter whole numbers into the field.'
+                    'INVALID_NUMBER': 'Please only enter whole numbers into the field.',
                 }
-            }
+            },
         }
 
-        unbound_field = get_field(currency_json, currency_json['label'], error_messages, self.answer_store,
-                                  self.metadata)
+        unbound_field = get_field(
+            currency_json,
+            currency_json['label'],
+            error_messages,
+            self.answer_store,
+            self.metadata,
+        )
 
         self.assertEqual(unbound_field.field_class, CustomIntegerField)
         self.assertEqual(unbound_field.kwargs['label'], currency_json['label'])
@@ -447,28 +504,39 @@ class TestFields(AppContextTestCase):
             'mandatory': False,
             'q_code': '0810',
             'type': 'Percentage',
-            'max_value': {
-                'value': 100
-            },
+            'max_value': {'value': 100},
             'validation': {
                 'messages': {
                     'NUMBER_TOO_LARGE': 'How much, fool you must be',
                     'NUMBER_TOO_SMALL': 'How can it be negative?',
-                    'INVALID_NUMBER': 'Please only enter whole numbers into the field.'
+                    'INVALID_NUMBER': 'Please only enter whole numbers into the field.',
                 }
-            }
+            },
         }
 
-        unbound_field = get_field(percentage_json, percentage_json['label'], error_messages, self.answer_store,
-                                  self.metadata)
+        unbound_field = get_field(
+            percentage_json,
+            percentage_json['label'],
+            error_messages,
+            self.answer_store,
+            self.metadata,
+        )
 
         self.assertEqual(unbound_field.field_class, CustomIntegerField)
         self.assertEqual(unbound_field.kwargs['label'], percentage_json['label'])
-        self.assertEqual(unbound_field.kwargs['description'], percentage_json['description'])
+        self.assertEqual(
+            unbound_field.kwargs['description'], percentage_json['description']
+        )
 
     def test_invalid_field_type_raises_on_invalid(self):
         # Given
         invalid_field_type = 'Football'
         # When / Then
         with self.assertRaises(KeyError):
-            get_field({'type': invalid_field_type}, 'Football Field', error_messages, self.answer_store, self.metadata)
+            get_field(
+                {'type': invalid_field_type},
+                'Football Field',
+                error_messages,
+                self.answer_store,
+                self.metadata,
+            )

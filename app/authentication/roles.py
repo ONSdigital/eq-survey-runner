@@ -22,6 +22,7 @@ def role_required(role):
 
     :param role: The role required by the function being decorated
     """
+
     def role_required_decorator(func):
         @wraps(func)
         def role_required_wrapper(*args, **kwargs):
@@ -30,5 +31,7 @@ def role_required(role):
             if current_user.is_authenticated and role in roles:
                 return func(*args, **kwargs)
             raise Forbidden
+
         return role_required_wrapper
+
     return role_required_decorator

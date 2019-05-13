@@ -12,13 +12,14 @@ logger = get_logger()
 
 
 class JtiTokenUsed(Exception):
-
     def __init__(self, jti_claim):
         super().__init__()
         self.jti_claim = jti_claim
 
     def __str__(self, *args, **kwargs):
-        return "jti claim '{jti_claim}' has already been used".format(jti_claim=self.jti_claim)
+        return "jti claim '{jti_claim}' has already been used".format(
+            jti_claim=self.jti_claim
+        )
 
 
 def _is_valid(jti_claim):

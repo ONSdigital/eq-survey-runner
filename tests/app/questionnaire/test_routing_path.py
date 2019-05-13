@@ -10,7 +10,7 @@ class TestRouter(TestCase):
             Location('block-b'),
             Location('block-c'),
             Location('block-b'),
-            Location('block-c')
+            Location('block-c'),
         ]
         self.routing_path = RoutingPath(self.blocks)
         super().setUp()
@@ -25,10 +25,7 @@ class TestRouter(TestCase):
         self.assertEqual(len(self.blocks), len(self.routing_path))
 
     def test_reversed(self):
-        self.assertEqual(
-            list(reversed(self.blocks)),
-            list(reversed(self.routing_path))
-        )
+        self.assertEqual(list(reversed(self.blocks)), list(reversed(self.routing_path)))
 
     def test_contains_true(self):
         self.assertIn(self.blocks[0], self.routing_path)

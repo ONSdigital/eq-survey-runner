@@ -8,9 +8,10 @@ def build_block_schema(question_schema):
         'id': 'block_id',
         'title': 'A section title',
         'number': '1',
-        'question': question_schema
+        'question': question_schema,
     }
     return block_schema
+
 
 def get_mock_question(placeholder):
     """Returns a mocked question, which returns `placeholder` from the serialize method"""
@@ -18,8 +19,8 @@ def get_mock_question(placeholder):
     question.serialize = MagicMock(return_value=placeholder)
     return question
 
-class TestSection(TestCase):
 
+class TestSection(TestCase):
     def setUp(self):
         self.answer_store = MagicMock()
         self.metadata = MagicMock()
@@ -30,8 +31,10 @@ class TestSection(TestCase):
         block_schema = build_block_schema({'id': 'mock_question_schema'})
 
         # When
-        with patch('app.templating.summary.block.Question', return_value=get_mock_question('A Question')), \
-                patch('app.templating.summary.block.url_for', return_value='http://a.url/'):
+        with patch(
+            'app.templating.summary.block.Question',
+            return_value=get_mock_question('A Question'),
+        ), patch('app.templating.summary.block.url_for', return_value='http://a.url/'):
             block = Block(block_schema, self.answer_store, self.metadata, self.schema)
 
         # Then

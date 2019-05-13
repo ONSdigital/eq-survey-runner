@@ -2,7 +2,6 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
-
     def test_final_confirmation_asked_at_end_of_questionnaire(self):
         # Given
         self.launchSurvey('test', 'final_confirmation')
