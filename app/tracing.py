@@ -8,7 +8,7 @@ def trace():
     def wrapper(wrapped, _, args, kwargs):
         # AWS X-Ray tracing
 
-        if current_app.config['AWS_XRAY_SDK_ENABLED']:
+        if current_app.config.get('AWS_XRAY_SDK_ENABLED'):
             xray_recorder.begin_subsegment(wrapped.__name__)
             result = wrapped(*args, **kwargs)
             xray_recorder.end_subsegment()

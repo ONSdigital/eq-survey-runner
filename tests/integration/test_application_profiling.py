@@ -5,10 +5,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 class TestApplicationProfiling(IntegrationTestCase):
     def setUp(self, setting_overrides=None):
-        super().setUp({
-            'EQ_DEV_MODE': True,
-            'EQ_PROFILING': True
-        })
+        super().setUp({'EQ_DEV_MODE': True, 'EQ_PROFILING': True})
 
     def test_profiling_is_enabled(self):
         self.assertEqual(True, self._application.config['PROFILE'])

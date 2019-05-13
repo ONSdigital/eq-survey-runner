@@ -5,9 +5,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 class TestTimeout(IntegrationTestCase):
     def setUp(self, setting_overrides=None):
-        super().setUp({
-            'EQ_SESSION_TIMEOUT_SECONDS': 2
-        })
+        super().setUp({'EQ_SESSION_TIMEOUT_SECONDS': 2})
 
     def test_timeout_continue_valid_session_returns_200(self):
         self.launchSurvey('test', 'timeout')

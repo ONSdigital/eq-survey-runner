@@ -36,7 +36,7 @@ def get_file_contents(filename, trim=False):
 
 
 class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public-methods
-# pylint: disable=W0221
+    # pylint: disable=W0221
     def setUp(self, setting_overrides=None):
         # Cache for requests
         self.last_url = None
@@ -57,7 +57,10 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
         configure_logging()
 
-        setting_overrides = {'EQ_ENABLE_HTML_MINIFY': False}
+        if not setting_overrides:
+            setting_overrides = {}
+
+        setting_overrides['EQ_ENABLE_HTML_MINIFY'] = False
 
         self._application = create_app(setting_overrides)
 

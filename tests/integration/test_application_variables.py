@@ -3,12 +3,14 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 class TestApplicationVariables(IntegrationTestCase):
     def setUp(self, setting_overrides=None):
-        super().setUp({
-            'EQ_ENABLE_FLASK_DEBUG_TOOLBAR': True,
-            'EQ_DEV_MODE': True,
-            'EQ_ENABLE_LIVE_RELOAD': True,
-            'EQ_UA_ID': 'TestId'
-        })
+        super().setUp(
+            {
+                'EQ_ENABLE_FLASK_DEBUG_TOOLBAR': True,
+                'EQ_DEV_MODE': True,
+                'EQ_ENABLE_LIVE_RELOAD': True,
+                'EQ_UA_ID': 'TestId',
+            }
+        )
 
     def test_flask_toolbar_is_displayed(self):
         self.launchSurvey('test', 'textfield')

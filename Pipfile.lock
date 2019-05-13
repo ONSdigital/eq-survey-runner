@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "554f69b47573d58b9c6142b9118f94d05a4f0135a5b2336a25d359b74bf4896a"
+            "sha256": "18e71a83643b05f1b1e9f124e1e940da324c8e386d2cfa7bd6f20b9489eb50a4"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -706,6 +706,13 @@
             ],
             "version": "==1.5"
         },
+        "appdirs": {
+            "hashes": [
+                "sha256:9e5896d1372858f8dd3344faf4e5014d21849c756c8d5701f78f8a103b372d92",
+                "sha256:d8b24664561d0d34ddfaec54636d502d7cea6e29c3eaf68f3df6180863e2166e"
+            ],
+            "version": "==1.4.3"
+        },
         "asn1crypto": {
             "hashes": [
                 "sha256:2f1adbb7546ed199e3c90ef23ec95c5cf3585bac7d11fb7eb562a3fe89c64e87",
@@ -756,6 +763,14 @@
             ],
             "index": "pypi",
             "version": "==4.7.1"
+        },
+        "black": {
+            "hashes": [
+                "sha256:09a9dcb7c46ed496a9850b76e4e825d6049ecd38b611f1224857a79bd985a8cf",
+                "sha256:68950ffd4d9169716bcb8719a56c07a2f4485354fec061cdd5910aa07369731c"
+            ],
+            "index": "pypi",
+            "version": "==19.3b0"
         },
         "blinker": {
             "hashes": [
@@ -972,14 +987,6 @@
             ],
             "index": "pypi",
             "version": "==0.1.1"
-        },
-        "flake8-commas": {
-            "hashes": [
-                "sha256:d3005899466f51380387df7151fb59afec666a0f4f4a2c6a8995b975de0f44b7",
-                "sha256:ee2141a3495ef9789a3894ed8802d03eff1eaaf98ce6d8653a7c573ef101935e"
-            ],
-            "index": "pypi",
-            "version": "==2.0.0"
         },
         "flake8-debugger": {
             "hashes": [
@@ -1463,6 +1470,13 @@
                 "sha256:1d6d69ce66211143803fbc56652b41d73b4a400a2891d7bf7a1cdf4c02de613b"
             ],
             "version": "==1.1.0"
+        },
+        "toml": {
+            "hashes": [
+                "sha256:229f81c57791a41d65e399fc06bf0848bab550a9dfd5ed66df18ce5f05e73d5c",
+                "sha256:235682dd292d5899d361a811df37e04a8828a5b1da3115886b73cf81ebc9100e"
+            ],
+            "version": "==0.10.0"
         },
         "tornado": {
             "hashes": [

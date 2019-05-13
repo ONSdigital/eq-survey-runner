@@ -6,9 +6,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 class TestApplicationVariables(IntegrationTestCase):
     def setUp(self, setting_overrides=None):
-        super().setUp({
-            'EQ_ENABLE_CACHE': False
-        })
+        super().setUp({'EQ_ENABLE_CACHE': False})
 
     def test_schema_is_cached(self):
         with self._application.app_context():

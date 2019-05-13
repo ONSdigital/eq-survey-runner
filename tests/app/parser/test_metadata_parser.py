@@ -19,9 +19,8 @@ from tests.app.app_context_test_case import AppContextTestCase
 
 login_manager = LoginManager()
 
-class TestMetadataParser(
-    AppContextTestCase
-):  # pylint: disable=too-many-public-methods
+
+class TestMetadataParser(AppContextTestCase):  # pylint: disable=too-many-public-methods
     def setUp(self):
         super().setUp()
         self.metadata = {

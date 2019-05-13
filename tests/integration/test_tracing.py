@@ -4,21 +4,22 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestTracing(IntegrationTestCase):
-
     def setUp(self, setting_overrides=None):
 
-        self.begin_subsegment = patch('aws_xray_sdk.core.xray_recorder.begin_subsegment')
+        self.begin_subsegment = patch(
+            'aws_xray_sdk.core.xray_recorder.begin_subsegment'
+        )
         self.begin_subsegment_mock = self.begin_subsegment.start()
         self.end_subsegment = patch('aws_xray_sdk.core.xray_recorder.end_subsegment')
         self.end_subsegment_mock = self.end_subsegment.start()
-        self.XRayMiddleware = patch('aws_xray_sdk.ext.flask.middleware.XRayMiddleware', Mock())
+        self.XRayMiddleware = patch(
+            'aws_xray_sdk.ext.flask.middleware.XRayMiddleware', Mock()
+        )
         self.XRayMiddleware_mock = self.XRayMiddleware.start()
         self.patch_all = patch('aws_xray_sdk.core.patch_all', Mock())
         self.patch_all_mock = self.patch_all.start()
 
-        super().setUp({
-            'AWS_XRAY_SDK_ENABLED': True
-        })
+        super().setUp({'AWS_XRAY_SDK_ENABLED': True})
 
     def tearDown(self):
         super().tearDown()
@@ -36,7 +37,8 @@ class TestTracing(IntegrationTestCase):
 
         self.assertEqual(self.XRayMiddleware_mock.call_count, 1)
 
-        self.assertEqual(self.begin_subsegment_mock.call_count,
-                         self.end_subsegment_mock.call_count)
+        self.assertEqual(
+            self.begin_subsegment_mock.call_count, self.end_subsegment_mock.call_count
+        )
 
         self.assertStatusOK()
