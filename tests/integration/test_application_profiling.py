@@ -1,24 +1,21 @@
 from unittest.mock import patch
 
-from app import settings
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestApplicationProfiling(IntegrationTestCase):
-    def setUp(self):
-        settings.EQ_PROFILING = True
-        super().setUp()
-
-    def tearDown(self):
-        settings.EQ_PROFILING = False
-        super().tearDown()
+    def setUp(self, setting_overrides=None):
+        super().setUp({
+            'EQ_DEV_MODE': True,
+            'EQ_PROFILING': True
+        })
 
     def test_profiling_is_enabled(self):
         self.assertEqual(True, self._application.config['PROFILE'])
 
 
 class TestApplicationProfilingDir(IntegrationTestCase):
-    def setUp(self):
+    def setUp(self, setting_overrides=None):
         pass
 
     def test_profiling_directory_created(self):

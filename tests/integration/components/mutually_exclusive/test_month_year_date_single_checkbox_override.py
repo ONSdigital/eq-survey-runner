@@ -12,7 +12,7 @@ class TestMonthYearDateSingleCheckboxOverride(IntegrationTestCase):
     with single checkbox override function as expected. These tests emulate the non-JS version.
     """
 
-    def setUp(self):
+    def setUp(self, setting_overrides=None):
         super().setUp()
         self.launchSurvey('test', 'mutually_exclusive')
         self.get(MUTUALLY_EXCLUSIVE_MONTH_YEAR_DATE)

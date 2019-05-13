@@ -388,6 +388,7 @@ The following env variables can be used
 | EQ_NEW_RELIC_ENABLED                      | False                 | Enable New Relic monitoring                                                                   |
 | NEW_RELIC_LICENSE_KEY                     |                       | Enable new relic monitoring by supplying a New Relic licence key                              |
 | NEW_RELIC_APP_NAME                        |                       | The name to display for the application in New Relic                                          |
+| AWS_XRAY_SDK_ENABLED                      | False                 | Enable Traces to be sent to AWS X-Ray                                                         |
 ```
 
 The following env variables can be used when running tests

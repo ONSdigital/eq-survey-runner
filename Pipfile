@@ -61,6 +61,7 @@ jsonpointer = "*"
 redis = "*"
 flask-compress = "*"
 htmlmin = "*"
+aws-xray-sdk = "*"
 
 [requires]
 python_version = "3.7"

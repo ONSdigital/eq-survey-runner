@@ -101,6 +101,11 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     application.eq = {}
 
+    if setting_overrides:
+        application.config.update(setting_overrides)
+
+    setup_tracing(application)
+
     with open(application.config['EQ_SECRETS_FILE']) as secrets_file:
         secrets = yaml.safe_load(secrets_file)
 
@@ -111,9 +116,6 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     validate_required_keys(keys, KEY_PURPOSE_SUBMISSION)
     application.eq['secret_store'] = SecretStore(secrets)
     application.eq['key_store'] = KeyStore(keys)
-
-    if setting_overrides:
-        application.config.update(setting_overrides)
 
     if application.config['EQ_APPLICATION_VERSION']:
         logger.info(
@@ -215,6 +217,18 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
         return response
 
     return application
+
+
+def setup_tracing(application):
+
+    if application.config['AWS_XRAY_SDK_ENABLED']:
+        from aws_xray_sdk.core import patch_all, xray_recorder
+        from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
+
+        patch_all()
+
+        xray_recorder.configure(service='Survey Runner')
+        XRayMiddleware(application, xray_recorder)
 
 
 def setup_secure_headers(application):

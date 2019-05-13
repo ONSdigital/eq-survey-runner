@@ -12,7 +12,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestQuestionnaire(IntegrationTestCase):
-    def setUp(self):
+    def setUp(self, setting_overrides=None):
         super().setUp()
         self._application_context = self._application.app_context()
         self._application_context.push()

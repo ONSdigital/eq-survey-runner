@@ -77,6 +77,8 @@ spec:
               value: gcs
             - name: GUNICORN_WORKERS
               value: "9"
+            - name: AWS_XRAY_SDK_ENABLED
+              value: "False"
             - name: EQ_GCS_SUBMISSION_BUCKET_ID
               value: "{{- .Values.submissionBucket }}"
             - name: EQ_REDIS_HOST

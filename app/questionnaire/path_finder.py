@@ -1,6 +1,8 @@
 import copy
+
 from structlog import get_logger
 
+from app import tracing
 from app.questionnaire.location import Location
 from app.questionnaire.routing_path import RoutingPath
 from app.questionnaire.rules import (
@@ -31,6 +33,7 @@ class PathFinder:
             None,
         )
 
+    @tracing.trace()
     def build_path(self):
         """
         Visits all the blocks from a location forwards and returns path

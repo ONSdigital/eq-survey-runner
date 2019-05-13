@@ -97,6 +97,10 @@ EQ_ENABLE_HTML_MINIFY = parse_mode(os.getenv('EQ_ENABLE_HTML_MINIFY', 'True'))
 EQ_JWT_LEEWAY_IN_SECONDS = 120
 DEFAULT_LOCALE = 'en_GB'
 
+SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
+
+AWS_XRAY_SDK_ENABLED = parse_mode(os.getenv('AWS_XRAY_SDK_ENABLED', 'False'))
+
 USER_IK = 'user_ik'
 EQ_SESSION_ID = 'eq-session-id'
 

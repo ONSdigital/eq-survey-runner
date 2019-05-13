@@ -1,8 +1,10 @@
 import uuid
 from datetime import datetime
-from structlog import get_logger
 
 from sdc.crypto.exceptions import InvalidTokenException
+from structlog import get_logger
+
+from app import tracing
 
 logger = get_logger()
 
@@ -60,6 +62,7 @@ MANDATORY_METADATA = [
 ]
 
 
+@tracing.trace()
 def parse_runner_claims(claims):
     cleaned_claims = clean_leading_trailing_spaces(claims.copy())
     validate_metadata(cleaned_claims, MANDATORY_METADATA)
@@ -67,6 +70,7 @@ def parse_runner_claims(claims):
     return cleaned_claims
 
 
+@tracing.trace()
 def validate_metadata(claims, required_metadata):
     _validate_metadata_values_are_valid(claims, required_metadata)
 

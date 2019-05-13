@@ -4,12 +4,14 @@ from dateutil.tz import tzutc
 from flask import g, current_app, session as cookie_session
 from structlog import get_logger
 
+from app import tracing
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.settings import EQ_SESSION_ID, USER_IK
 
 logger = get_logger()
 
 
+@tracing.trace()
 def get_questionnaire_store(user_id, user_ik):
     from app.storage.encrypted_questionnaire_storage import (
         EncryptedQuestionnaireStorage,
@@ -27,6 +29,7 @@ def get_questionnaire_store(user_id, user_ik):
     return store
 
 
+@tracing.trace()
 def get_session_store():
     from app.data_model.session_store import SessionStore
 
@@ -63,6 +66,7 @@ def get_session_timeout_in_seconds(schema):
     return timeout
 
 
+@tracing.trace()
 def create_session_store(eq_session_id, user_id, user_ik, session_data):
     from app.data_model.session_store import SessionStore
 

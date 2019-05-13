@@ -1,12 +1,12 @@
-from app import settings
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestApplicationVariablesNegative(IntegrationTestCase):
-    def setUp(self):
-        settings.EQ_DEV_MODE = True
-        settings.EQ_ENABLE_LIVE_RELOAD = False
-        super().setUp()
+    def setUp(self, setting_overrides=None):
+        super().setUp({
+            'EQ_DEV_MODE': True,
+            'EQ_ENABLE_LIVE_RELOAD': False
+        })
 
     def test_flask_toolbar_is_not_displayed(self):
         self.launchSurvey('test', 'textfield')

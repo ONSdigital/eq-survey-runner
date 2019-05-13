@@ -36,16 +36,17 @@ def get_file_contents(filename, trim=False):
 
 
 class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public-methods
-    def setUp(self):
+# pylint: disable=W0221
+    def setUp(self, setting_overrides=None):
         # Cache for requests
         self.last_url = None
         self.last_response = None
         self.last_csrf_token = None
 
         # Perform setup steps
-        self._set_up_app()
+        self._set_up_app(setting_overrides)
 
-    def _set_up_app(self):
+    def _set_up_app(self, setting_overrides=None):
         self._ds = patch('app.setup.datastore.Client', MockDatastore)
         self._ds.start()
 
@@ -106,6 +107,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
     def tearDown(self):
         self._ds.stop()
         self._redis.stop()
+        super().tearDown()
 
     def launchSurvey(self, eq_id='test', form_type_id='dates', **payload_kwargs):
         """

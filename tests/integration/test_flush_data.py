@@ -7,7 +7,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestFlushData(IntegrationTestCase):
-    def setUp(self):
+    def setUp(self, setting_overrides=None):
         self.submitter_patcher = patch('app.setup.LogSubmitter')
         mock_submitter_class = self.submitter_patcher.start()
         self.submitter_instance = mock_submitter_class.return_value

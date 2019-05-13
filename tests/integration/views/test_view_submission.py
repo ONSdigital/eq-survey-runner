@@ -9,7 +9,7 @@ from app.storage.storage_encryption import StorageEncryption
 
 
 class TestViewSubmission(IntegrationTestCase):
-    def setUp(self):
+    def setUp(self, setting_overrides=None):
         super().setUp()
 
         self.launchSurvey('test', 'view_submitted_response')

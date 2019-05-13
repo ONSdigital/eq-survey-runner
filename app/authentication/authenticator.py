@@ -8,6 +8,7 @@ from flask_login import LoginManager, user_logged_out
 from sdc.crypto.decrypter import decrypt
 from structlog import get_logger
 
+from app import tracing
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.user import User
 from app.data_model.session_data import SessionData
@@ -78,6 +79,7 @@ def _is_session_valid(session_store):
     return True
 
 
+@tracing.trace()
 def load_user():
     """
     Checks for the present of the JWT in the users sessions
@@ -105,6 +107,7 @@ def load_user():
     return None
 
 
+@tracing.trace()
 def _create_session_data_from_metadata(metadata):
     """
     Creates a SessionData object from metadata
@@ -129,6 +132,7 @@ def _create_session_data_from_metadata(metadata):
     return session_data
 
 
+@tracing.trace()
 def store_session(metadata):
     """
     Store new session and metadata
@@ -159,6 +163,7 @@ def store_session(metadata):
     logger.info('user authenticated')
 
 
+@tracing.trace()
 def decrypt_token(encrypted_token):
     if not encrypted_token:
         raise NoTokenException('Please provide a token')

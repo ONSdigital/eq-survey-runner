@@ -2,7 +2,9 @@ import datetime
 import unittest
 import uuid
 
+from flask_login import LoginManager
 from sdc.crypto.exceptions import InvalidTokenException
+
 from app.storage.metadata_parser import (
     boolean_parser,
     clean_leading_trailing_spaces,
@@ -13,11 +15,12 @@ from app.storage.metadata_parser import (
     validate_metadata,
     uuid_4_parser,
 )
-from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
+from tests.app.app_context_test_case import AppContextTestCase
 
+login_manager = LoginManager()
 
 class TestMetadataParser(
-    SurveyRunnerTestCase
+    AppContextTestCase
 ):  # pylint: disable=too-many-public-methods
     def setUp(self):
         super().setUp()
@@ -46,73 +49,73 @@ class TestMetadataParser(
             {'name': 'period_id', 'validator': 'string'},
         ]
 
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             validate_metadata(self.metadata, self.schema_metadata)
 
     def test_transaction_id(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             self.assertEqual(self.metadata.get('tx_id'), self.metadata['tx_id'])
 
     def test_form_type(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             self.assertEqual(self.metadata.get('form_type'), self.metadata['form_type'])
 
     def test_collection_id(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             self.assertEqual(
                 self.metadata.get('collection_exercise_sid'),
                 self.metadata['collection_exercise_sid'],
             )
 
     def test_get_eq_id(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             self.assertEqual(self.metadata.get('eq_id'), self.metadata['eq_id'])
 
     def test_get_period_id(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             self.assertEqual(self.metadata.get('period_id'), self.metadata['period_id'])
 
     def test_get_period_str(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             self.assertEqual(
                 self.metadata.get('period_str'), self.metadata['period_str']
             )
 
     def test_ref_p_start_date(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             self.assertEqual(
                 self.metadata.get('ref_p_start_date'), self.metadata['ref_p_start_date']
             )
 
     def test_ref_p_end_date(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             self.assertEqual(
                 self.metadata.get('ref_p_end_date'), self.metadata['ref_p_end_date']
             )
 
     def test_ru_ref(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             self.assertEqual(
                 self.metadata.get('ref_p_end_date'), self.metadata['ref_p_end_date']
             )
 
     def test_case_id(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             self.assertEqual(self.metadata.get('case_id'), self.metadata['case_id'])
 
     def test_case_ref(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             self.assertEqual(self.metadata.get('case_ref'), self.metadata['case_ref'])
 
     def test_account_service_url(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             self.assertEqual(
                 self.metadata.get('account_service_url'),
                 self.metadata['account_service_url'],
             )
 
     def test_is_valid(self):
-        with self.application.test_request_context():
+        with self._app.test_request_context():
             validate_metadata(self.metadata, self.schema_metadata)
 
     def test_missing_required_eq_id_in_token(self):

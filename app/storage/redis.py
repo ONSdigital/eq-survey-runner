@@ -1,3 +1,5 @@
+from app import tracing
+
 from app.storage.errors import ItemAlreadyExistsError
 
 
@@ -5,6 +7,7 @@ class RedisStorage:
     def __init__(self, redis):
         self.redis = redis
 
+    @tracing.trace()
     def put_jti(self, jti):
         record_created = self.redis.set(
             name=jti.jti_claim,

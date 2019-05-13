@@ -4,11 +4,13 @@ from flask import g
 from flask_login import current_user, login_required
 from werkzeug.local import LocalProxy
 
+from app import tracing
 from app.globals import get_answer_store, get_metadata, get_completed_blocks
 from app.questionnaire.path_finder import PathFinder
 
 
 @login_required
+@tracing.trace()
 def get_path_finder():
     finder = getattr(g, 'path_finder', None)
 
