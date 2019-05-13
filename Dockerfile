@@ -1,7 +1,11 @@
 FROM ubuntu:18.04 as builder
 
 RUN apt-get update \
-    && apt-get install -y curl unzip
+    && apt-get install -y curl unzip git make build-essential
+
+RUN git clone --branch v0.12.1 --depth 1 https://github.com/google/jsonnet.git /tmp/jsonnet \
+    && make -C /tmp/jsonnet \
+    && cp /tmp/jsonnet/jsonnet /usr/local/bin
 
 WORKDIR /runner
 

@@ -6,7 +6,7 @@ const ThankYouPage = require('../base_pages/thank-you.page.js');
 
 describe('Language Code', function() {
 
-  it('Given the language code cy is specified I should see Welsh text', function() {
+  it.skip('Given the language code cy is specified I should see Welsh text', function() {
 
     return helpers.openQuestionnaire('test_language.json', { language: 'cy' }).then(() => {
 
@@ -45,7 +45,7 @@ describe('Language Code', function() {
     });
   });
 
-  it('Given the language code en, When I select Cymraeg lanuage, Then the language should be switched to Welsh', function() {
+  it.skip('Given the language code en, When I select Cymraeg lanuage, Then the language should be switched to Welsh', function() {
 
     return helpers.openQuestionnaire('test_language.json', { language: 'en' }).then(() => {
 
@@ -66,7 +66,7 @@ describe('Language Code', function() {
     });
   });
 
-  it('Given the language code cy, When I select English lanuage, Then the language should be switched to English', function() {
+  it.skip('Given the language code cy, When I select English lanuage, Then the language should be switched to English', function() {
 
     return helpers.openQuestionnaire('test_language.json', { language: 'cy' }).then(() => {
 

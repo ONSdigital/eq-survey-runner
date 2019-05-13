@@ -9,7 +9,7 @@ echo "Building"
 ./scripts/build.sh
 
 echo "Running schema tests"
-./scripts/test_schemas.sh data/en
+./scripts/test_schemas.sh data-source/json
 
 echo "Running lint tests"
 ./scripts/run_lint.sh

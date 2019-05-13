@@ -116,7 +116,7 @@ class Feedback(IntegrationTestCase):
 
         message = self.post_then_intercept_and_decrypt_message(post_data)
 
-        with open('data/schema/feedback_v1.json') as schema_file:
+        with open('tests/data/schema/feedback_v1.json') as schema_file:
             schema = json.load(schema_file)
 
         errors = validate_json_with_schema(message, schema)
