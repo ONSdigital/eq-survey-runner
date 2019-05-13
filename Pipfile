@@ -61,8 +61,8 @@ google-cloud-storage = "*"
 jsonpointer = "*"
 redis = "*"
 opencensus = "*"
-opencensus-ext-flask = "*"
 opencensus-ext-stackdriver = "*"
+opencensus-ext-flask = "*"
 
 [requires]
 python_version = "3.7"
