@@ -6,7 +6,7 @@ import simplejson as json
 
 
 from app.authentication.roles import role_required
-from app.globals import get_questionnaire_store, get_session_store, get_answer_store
+from app.globals import get_questionnaire_store, get_session_store
 from app.submitter.converter import convert_answers
 from app.utilities.schema import load_schema_from_session_data
 from app.questionnaire.path_finder import PathFinder
@@ -15,12 +15,14 @@ from app.questionnaire.path_finder import PathFinder
 dump_blueprint = Blueprint('dump', __name__)
 
 
-@dump_blueprint.route('/dump/answers', methods=['GET'])
+@dump_blueprint.route('/dump/debug', methods=['GET'])
 @login_required
 @role_required('dumper')
-def dump_answers():
-    response = {'answers': get_answer_store(current_user).serialise() or []}
-    return json.dumps(response, for_json=True), 200
+def dump_debug():
+    questionnaire_store = get_questionnaire_store(
+        current_user.user_id, current_user.user_ik
+    )
+    return questionnaire_store.serialise()
 
 
 @dump_blueprint.route('/dump/submission', methods=['GET'])
@@ -41,4 +43,4 @@ def dump_submission():
     response = {
         'submission': convert_answers(schema, questionnaire_store, routing_path)
     }
-    return json.dumps(response, for_json=True), 200
+    return json.dumps(response, for_json=True)

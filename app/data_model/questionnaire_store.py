@@ -53,7 +53,7 @@ class QuestionnaireStore:
         self.completed_blocks = completed_blocks
         self.collection_metadata = json_data.get('COLLECTION_METADATA', {})
 
-    def _serialise(self):
+    def serialise(self):
         data = {
             'METADATA': self._metadata,
             'ANSWERS': list(self.answer_store),
@@ -71,7 +71,7 @@ class QuestionnaireStore:
         self.completed_blocks = []
 
     def add_or_update(self):
-        data = self._serialise()
+        data = self.serialise()
         self._storage.add_or_update(data=data)
 
     def remove_completed_blocks(self, location):

@@ -53,9 +53,9 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self.get('submitted/thank-you')
 
         # Then the answers are not deleted
-        self.get('/dump/answers')
+        self.get('/dump/debug')
         answers = json.loads(self.getResponseData())
-        self.assertEqual(1, len(answers['answers']))
+        self.assertEqual(1, len(answers['ANSWERS']))
 
     def test_given_not_complete_questionnaire_when_get_thank_you_then_redirected_to_latest_location(
         self
@@ -79,9 +79,9 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self.launchSurvey('test', 'percentage', roles=['dumper'])
 
         # Then no answers should have persisted
-        self.get('/dump/answers')
+        self.get('/dump/debug')
         answers = json.loads(self.getResponseData())
-        self.assertEqual(0, len(answers['answers']))
+        self.assertEqual(0, len(answers['ANSWERS']))
 
     def test_when_on_thank_you_get_summary_returns_unauthorised(self):
         # Given we complete the test_percentage survey and are on the thank you page
