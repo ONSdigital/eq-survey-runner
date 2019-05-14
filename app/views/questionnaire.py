@@ -71,6 +71,7 @@ def before_questionnaire_request():
         eq_id=metadata['eq_id'],
         metadata=metadata['form_type'],
         ce_id=metadata['collection_exercise_sid'],
+        questionnaire_id=metadata['questionnaire_id'],
     )
 
     logger.info(
@@ -550,7 +551,10 @@ def submit_answers(routing_path, schema):
         message, current_app.eq['key_store'], KEY_PURPOSE_SUBMISSION
     )
     sent = current_app.eq['submitter'].send_message(
-        encrypted_message, case_id=metadata.get('case_id'), tx_id=metadata.get('tx_id')
+        encrypted_message,
+        questionnaire_id=metadata.get('questionnaire_id'),
+        case_id=metadata.get('case_id'),
+        tx_id=metadata.get('tx_id'),
     )
 
     if not sent:
