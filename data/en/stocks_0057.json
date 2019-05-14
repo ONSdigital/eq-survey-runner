@@ -122,7 +122,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4667",
-                            "title": "Are you able to report for the period {{ metadata['ref_p_start_date'] }} to {{ metadata['ref_p_end_date'] }}?",
+                            "title": "Are you able to report for the period {{ metadata['ref_p_start_date'] | format_date }} to {{ metadata['ref_p_end_date'] | format_date }}?",
                             "type": "General",
                             "answers": [{
                                 "id": "answer5917",
@@ -438,8 +438,8 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4790",
-                            "title": "Did any significant changes occur to the total value of stocks for {{ metadata['trad_as'] }}?",
-                            "description": "<p>Please note: what constitutes a &#x2018;significant change&#x2019; is dependent on your own interpretation in relation to {{ metadata['trad_as'] }}&#x2019;s figures from the previous reporting period and the same reporting period last year.</p><p>This information will help us to validate your data and should reduce the need to query any figures with you.</p>",
+                            "title": "Did any significant changes occur to the total value of stocks for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
+                            "description": "<p>Please note: what constitutes a &#x2018;significant change&#x2019; is dependent on your own interpretation in relation to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}&#x2019;s figures from the previous reporting period and the same reporting period last year.</p><p>This information will help us to validate your data and should reduce the need to query any figures with you.</p>",
                             "type": "General",
                             "answers": [{
                                 "id": "answer6083",
@@ -481,7 +481,7 @@
                         "type": "Question",
                         "questions": [{
                             "id": "question4791",
-                            "title": "Please indicate the reasons for any changes in the total value of stocks for {{ metadata['trad_as'] }}",
+                            "title": "Please indicate the reasons for any changes in the total value of stocks for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}",
                             "type": "General",
                             "answers": [{
                                 "id": "answer6084",
@@ -584,11 +584,7 @@
         },
         {
             "name": "trad_as",
-            "validator": "string"
-        },
-        {
-            "name": "employment_date",
-            "validator": "date"
+            "validator": "optional_string"
         }
     ],
     "view_submitted_response": {
