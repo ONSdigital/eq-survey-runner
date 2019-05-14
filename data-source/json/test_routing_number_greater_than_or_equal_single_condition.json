@@ -8,15 +8,15 @@
     "description": "A test survey for routing based on a number greater than or equal",
     "metadata": [{
             "name": "user_id",
-            "validator": "string"
+            "type": "string"
         },
         {
             "name": "period_id",
-            "validator": "string"
+            "type": "string"
         },
         {
             "name": "ru_name",
-            "validator": "string"
+            "type": "string"
         }
     ],
     "sections": [{

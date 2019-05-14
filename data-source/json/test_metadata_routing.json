@@ -8,13 +8,13 @@
     "theme": "census",
     "metadata": [{
         "name": "user_id",
-        "validator": "string"
+        "type": "string"
     }, {
         "name": "period_id",
-        "validator": "string"
+        "type": "string"
     }, {
         "name": "flag_1",
-        "validator": "boolean"
+        "type": "boolean"
     }],
     "sections": [{
         "id": "default-section",

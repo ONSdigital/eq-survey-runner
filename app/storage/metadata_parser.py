@@ -1,103 +1,106 @@
-import uuid
-from datetime import datetime
-from structlog import get_logger
+import functools
 
-from sdc.crypto.exceptions import InvalidTokenException
+from typing import Dict
+from structlog import get_logger
+from marshmallow import Schema, fields, validate, EXCLUDE, pre_load
 
 logger = get_logger()
 
 
-def iso_8601_date_parser(iso_8601_string):
-    return datetime.strptime(iso_8601_string, '%Y-%m-%d')
+class UUIDString(fields.UUID):
+    """ Currently, runner cannot handle UUID objects in metadata
+    Since all metadata is serialised and deserialised to JSON.
+    This custom field deserialises UUIDs to strings.
+    """
+
+    def _deserialize(self, *args, **kwargs):  # pylint: disable=arguments-differ
+        return str(super()._deserialize(*args, **kwargs))
 
 
-def uuid_4_parser(plain_string):
-    return str(uuid.UUID(plain_string))
+class DateString(fields.DateTime):
+    """ Currently, runner cannot handle Date objects in metadata
+    Since all metadata is serialised and deserialised to JSON.
+    This custom field deserialises Dates to strings.
+    """
 
-
-def boolean_parser(boolean_value):
-    if not isinstance(boolean_value, bool):
-        raise TypeError('Claim was not of type `bool`')
-    return boolean_value
-
-
-def string_parser(string_value):
-    if not isinstance(string_value, str) or string_value == '':
-        raise TypeError('Claim not a valid string value')
-    return string_value
-
-
-def optional_string_parser(optional_string_value):
-    if not isinstance(optional_string_value, str):
-        raise TypeError('Claim not a valid/empty string')
-    return optional_string_value
-
-
-def clean_leading_trailing_spaces(metadata):
-    for key, value in metadata.items():
-        if isinstance(value, str):
-            metadata[key] = value.strip()
-
-    return metadata
+    def _deserialize(self, *args, **kwargs):  # pylint: disable=arguments-differ
+        return super()._deserialize(*args, **kwargs).strftime('%Y-%m-%d')
 
 
 VALIDATORS = {
-    'date': iso_8601_date_parser,
-    'uuid': uuid_4_parser,
-    'boolean': boolean_parser,
-    'string': string_parser,
-    'optional_string': optional_string_parser,
+    'date': functools.partial(DateString, format='%Y-%m-%d', required=True),
+    'uuid': functools.partial(UUIDString, required=True),
+    'boolean': functools.partial(fields.Boolean, required=True),
+    'string': functools.partial(fields.String, required=True),
+    'url': functools.partial(fields.Url, required=True),
 }
 
-MANDATORY_METADATA = [
-    {'name': 'eq_id', 'validator': 'string'},
-    {'name': 'form_type', 'validator': 'string'},
-    {'name': 'ru_ref', 'validator': 'string'},
-    {'name': 'collection_exercise_sid', 'validator': 'string'},
-    {'name': 'tx_id', 'validator': 'uuid'},
-    {'name': 'case_id', 'validator': 'uuid'},
-    {'name': 'response_id', 'validator': 'string'},
-]
+
+class StripWhitespaceMixin:
+    @pre_load
+    def strip_whitespace(self, items):  # pylint: disable=no-self-use
+        for key, value in items.items():
+            if isinstance(value, str):
+                items[key] = value.strip()
+        return items
 
 
-def parse_runner_claims(claims):
-    cleaned_claims = clean_leading_trailing_spaces(claims.copy())
-    validate_metadata(cleaned_claims, MANDATORY_METADATA)
-
-    return cleaned_claims
-
-
-def validate_metadata(claims, required_metadata):
-    _validate_metadata_values_are_valid(claims, required_metadata)
-
-
-def _validate_metadata_values_are_valid(claims, required_metadata):
+class RunnerMetadataSchema(Schema, StripWhitespaceMixin):
+    """ Metadata which is required for the operation of runner itself
     """
-    Validate metadata from the JWT claims that are required by the schema/runner.
-    Ensures that the values adhere to the expected format.
-    :param claims:
-    :param required_metadata:
-    """
-    try:
-        for metadata_field in required_metadata:
-            name = metadata_field['name']
-            claim = claims.get(name)
-            if name not in claims:
-                raise InvalidTokenException(
-                    'Missing required key {} from claims'.format(name)
+
+    jti = VALIDATORS['uuid']()
+    eq_id = VALIDATORS['string'](validate=validate.Length(min=1))
+    form_type = VALIDATORS['string'](validate=validate.Length(min=1))
+    ru_ref = VALIDATORS['string'](validate=validate.Length(min=1))
+    collection_exercise_sid = VALIDATORS['string'](validate=validate.Length(min=1))
+    tx_id = VALIDATORS['uuid']()
+    case_id = VALIDATORS['uuid']()
+    response_id = VALIDATORS['string']()
+    account_service_url = VALIDATORS['url']()
+
+    account_service_log_out_url = VALIDATORS['url'](required=False)
+    roles = fields.List(fields.String(), required=False)
+    survey_url = VALIDATORS['url'](required=False)
+    language_code = VALIDATORS['string'](required=False)
+
+
+def validate_questionnaire_claims(claims, questionnaire_specific_metadata):
+    """ Validate any survey specific claims required for a questionnaire"""
+    dynamic_fields = {}
+
+    for metadata_field in questionnaire_specific_metadata:
+        field_arguments = {}
+        validators = []
+
+        if metadata_field.get('optional'):
+            field_arguments['required'] = False
+
+        if any(
+            length_limit in metadata_field
+            for length_limit in ('min_length', 'max_length', 'length')
+        ):
+            validators.append(
+                validate.Length(
+                    min=metadata_field.get('min_length'),
+                    max=metadata_field.get('max_length'),
+                    equal=metadata_field.get('length'),
                 )
+            )
 
-            logger.debug('parsing metadata', key=name, value=claim)
-            VALIDATORS[metadata_field['validator']](claim)
-
-    except (RuntimeError, ValueError, TypeError) as error:
-        logger.error('Unable to parse metadata', key=name, value=claim, exc_info=error)
-        raise InvalidTokenException(
-            'incorrect data in token for {}'.format(name)
-        ) from error
-    except KeyError as key_error:
-        error_msg = 'Invalid validator for schema metadata - {}'.format(
-            key_error.args[0]
+        dynamic_fields[metadata_field['name']] = VALIDATORS[metadata_field['type']](
+            validate=validators, **field_arguments
         )
-        logger.error(error_msg, exc_info=key_error)
-        raise KeyError(error_msg) from key_error
+
+    questionnaire_metadata_schema = type(
+        'QuestionnaireMetadataSchema', (Schema, StripWhitespaceMixin), dynamic_fields
+    )(unknown=EXCLUDE)
+
+    # The load method performs validation.
+    return questionnaire_metadata_schema.load(claims)
+
+
+def validate_runner_claims(claims: Dict):
+    """ Validate claims required for runner to function"""
+    runner_metadata_schema = RunnerMetadataSchema(unknown=EXCLUDE)
+    return runner_metadata_schema.load(claims)

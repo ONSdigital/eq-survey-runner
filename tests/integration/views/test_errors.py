@@ -45,7 +45,13 @@ class TestErrors(IntegrationTestCase):
 
     def test_errors_500(self):
         # Given
-        self.launchSurvey('test', 'percentage')
+        payload_without_account_service_url = self.example_payload.copy()
+        del payload_without_account_service_url['account_service_url']
+        with patch(
+            'tests.integration.create_token.PAYLOAD',
+            payload_without_account_service_url,
+        ):
+            self.launchSurvey('test', 'percentage')
         # When / Then
         # Patch out a class in post to raise an exception so that the application error handler
         # gets called

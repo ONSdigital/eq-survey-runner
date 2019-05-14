@@ -35,11 +35,11 @@ class DynamodbStorage:
 
     def put(self, model, overwrite=True):
         config = TABLE_CONFIG[type(model)]
-        schema = config['schema'](strict=True)
+        schema = config['schema']()
         table = self.get_table(config)
         key_field = config['key_field']
 
-        item, _ = schema.dump(model)
+        item = schema.dump(model)
         put_kwargs = {'Item': item}
         if not overwrite:
             put_kwargs[
@@ -59,7 +59,7 @@ class DynamodbStorage:
 
     def get_by_key(self, model_type, key_value):
         config = TABLE_CONFIG[model_type]
-        schema = config['schema'](strict=True)
+        schema = config['schema']()
         table = self.get_table(config)
         key = {config['key_field']: key_value}
 
@@ -67,8 +67,7 @@ class DynamodbStorage:
         item = response.get('Item', None)
 
         if item:
-            model, _ = schema.load(item)
-            return model
+            return schema.load(item)
 
     def delete(self, model):
         config = TABLE_CONFIG[type(model)]

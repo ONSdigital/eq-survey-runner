@@ -19,6 +19,7 @@ class TestThankYou(IntegrationTestCase):
         'region_code': 'GB-ENG',
         'language_code': 'en',
         'roles': [],
+        'account_service_url': 'http://upstream.url',
     }
 
     def test_thank_you_page_shows_trading_as_if_present(self):

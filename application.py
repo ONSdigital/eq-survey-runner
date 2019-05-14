@@ -28,7 +28,9 @@ def configure_logging():
         'DEBUG': logging.DEBUG,
     }
     handler = logging.StreamHandler()
-    logging.basicConfig(level=levels[EQ_LOG_LEVEL], format=log_format, handlers=[handler])
+    logging.basicConfig(
+        level=levels[EQ_LOG_LEVEL], format=log_format, handlers=[handler]
+    )
 
     # Set werkzeug logging level
     werkzeug_logger = logging.getLogger('werkzeug')
@@ -44,8 +46,20 @@ def configure_logging():
 
     # setup file logging
     renderer_processor = ConsoleRenderer() if EQ_DEVELOPER_LOGGING else JSONRenderer()
-    processors = [add_log_level, TimeStamper(key='created', fmt='iso'), add_service, format_exc_info, parse_exception, renderer_processor]
-    configure(context_class=wrap_dict(dict), logger_factory=LoggerFactory(), processors=processors, cache_logger_on_first_use=True)
+    processors = [
+        add_log_level,
+        TimeStamper(key='created', fmt='iso'),
+        add_service,
+        format_exc_info,
+        parse_exception,
+        renderer_processor,
+    ]
+    configure(
+        context_class=wrap_dict(dict),
+        logger_factory=LoggerFactory(),
+        processors=processors,
+        cache_logger_on_first_use=True,
+    )
 
 
 def add_service(logger, method_name, event_dict):  # pylint: disable=unused-argument
@@ -59,11 +73,14 @@ def add_service(logger, method_name, event_dict):  # pylint: disable=unused-argu
 # Initialise logging before the rest of the application
 configure_logging()
 from app.setup import create_app  # NOQA
+
 application = create_app()
 
 
 if __name__ == '__main__':
     manager = Manager(application)
     port = int(os.environ.get('PORT', 5000))
-    manager.add_command("runserver", Server(host='0.0.0.0', port=port, threaded=True))  # nosec
+    manager.add_command(
+        "runserver", Server(host='0.0.0.0', port=port, threaded=True)
+    )  # nosec
     manager.run()

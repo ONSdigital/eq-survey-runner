@@ -15,16 +15,17 @@
     },
     "metadata": [{
         "name": "user_id",
-        "validator": "string"
+        "type": "string"
     }, {
         "name": "period_id",
-        "validator": "string"
+        "type": "string"
     }, {
         "name": "ru_name",
-        "validator": "string"
+        "type": "string"
     }, {
         "name": "trad_as",
-        "validator": "optional_string"
+        "type": "string",
+        "optional": true
     }],
     "sections": [{
             "id": "default-section",

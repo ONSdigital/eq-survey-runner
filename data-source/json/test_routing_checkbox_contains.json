@@ -8,15 +8,15 @@
     "description": "A questionnaire to demo checkbox field combined contains routing",
     "metadata": [{
             "name": "user_id",
-            "validator": "string"
+            "type": "string"
         },
         {
             "name": "period_id",
-            "validator": "string"
+            "type": "string"
         },
         {
             "name": "ru_name",
-            "validator": "string"
+            "type": "string"
         }
     ],
     "sections": [{

@@ -40,8 +40,8 @@ class DatastoreStorage:
 
         config = TABLE_CONFIG[type(model)]
 
-        schema = config['schema'](strict=True)
-        item, _ = schema.dump(model)
+        schema = config['schema']()
+        item = schema.dump(model)
 
         key_value = getattr(model, config['key_field'])
         table_name = current_app.config[config['table_name_key']]
@@ -57,12 +57,11 @@ class DatastoreStorage:
         table_name = current_app.config[config['table_name_key']]
         key = self.client.key(table_name, key_value)
 
-        schema = config['schema'](strict=True)
+        schema = config['schema']()
 
         item = self.client.get(key)
         if item:
-            model, _ = schema.load(item)
-            return model
+            return schema.load(item)
 
     def delete(self, model):
         config = TABLE_CONFIG[type(model)]

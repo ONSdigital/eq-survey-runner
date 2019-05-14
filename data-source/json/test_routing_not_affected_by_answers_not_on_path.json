@@ -8,13 +8,13 @@
     "description": "A test survey to make sure previous answers that are not on the routing path do not affect routing",
     "metadata": [{
         "name": "user_id",
-        "validator": "string"
+        "type": "string"
     }, {
         "name": "period_id",
-        "validator": "string"
+        "type": "string"
     }, {
         "name": "ru_name",
-        "validator": "string"
+        "type": "string"
     }],
     "sections": [{
         "id": "default-section",
