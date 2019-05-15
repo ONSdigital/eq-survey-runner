@@ -59,9 +59,9 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
 
         # Then
         self.assertStatusCode(401)
-        self.get('/dump/answers')
+        self.get('/dump/debug')
         answers = json.loads(self.getResponseData())
-        self.assertEqual('Muesli', answers['answers'][0]['value'])
+        self.assertEqual('Muesli', answers['ANSWERS'][0]['value'])
 
     def test_given_valid_answer_when_answer_with_invalid_csrf_token_then_answer_not_saved(
         self
@@ -81,9 +81,9 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
 
         # Then
         self.assertStatusCode(401)
-        self.get('/dump/answers')
+        self.get('/dump/debug')
         answers = json.loads(self.getResponseData())
-        self.assertEqual(2, len(answers['answers']))
+        self.assertEqual(2, len(answers['ANSWERS']))
 
     def test_given_valid_answers_when_save_and_sign_out_with_invalid_csrf_token_then_answers_not_saved(
         self
@@ -99,9 +99,9 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
 
         # Then
         self.assertStatusCode(401)
-        self.get('/dump/answers')
+        self.get('/dump/debug')
         answers = json.loads(self.getResponseData())
-        self.assertEqual(0, len(answers['answers']))
+        self.assertEqual(0, len(answers['ANSWERS']))
 
     def test_given_csrf_attack_when_refresh_then_on_question(self):
         # Given
@@ -115,9 +115,9 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
 
         # Then
         self.assertEqual(self.last_response.status_code, 200)
-        self.get('/dump/answers')
+        self.get('/dump/debug')
         answers = json.loads(self.getResponseData())
-        self.assertEqual(0, len(answers['answers']))
+        self.assertEqual(0, len(answers['ANSWERS']))
 
     def test_given_csrf_attack_when_submit_new_answers_then_answers_saved(self):
         # Given
@@ -132,6 +132,6 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
 
         # Then
         self.assertStatusOK()
-        self.get('/dump/answers')
+        self.get('/dump/debug')
         answers = json.loads(self.getResponseData())
-        self.assertEqual('Pancakes', answers['answers'][0]['value'])
+        self.assertEqual('Pancakes', answers['ANSWERS'][0]['value'])
