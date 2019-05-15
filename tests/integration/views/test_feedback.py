@@ -14,6 +14,8 @@ FEEDBACK_FORM_URL = '/feedback'
 FEEDBACK_THANKYOU_URL = '/feedback/thank-you'
 SIGNED_OUT_URL = '/signed-out'
 
+SESSION_EXPIRED_PAGE_TITLE = 'Session expired'
+
 
 class Feedback(IntegrationTestCase):
     def setUp(self):
@@ -52,6 +54,23 @@ class Feedback(IntegrationTestCase):
         self.post(url=FEEDBACK_FORM_URL, post_data=post_data, action='send_feedback')
         self.assertStatusOK()
         self.assertEqualUrl(FEEDBACK_FORM_URL)
+
+    def test_post_feedback_after_submission_returns_401(self):
+        self._submit_questionnaire()
+        self.post(url=FEEDBACK_FORM_URL, post_data={}, action='send_feedback')
+        self.assertStatusUnauthorised()
+        self.assertEqualPageTitle(SESSION_EXPIRED_PAGE_TITLE)
+
+    def test_get_feedback_after_submission_returns_401(self):
+        self._submit_questionnaire()
+        self.get(FEEDBACK_FORM_URL)
+        self.assertStatusUnauthorised()
+        self.assertEqualPageTitle(SESSION_EXPIRED_PAGE_TITLE)
+
+    def _submit_questionnaire(self):
+        self.post()
+        self.post()
+        self.post()
 
     def test_post_with_empty_message_does_not_send_message(self):
         post_data = {
