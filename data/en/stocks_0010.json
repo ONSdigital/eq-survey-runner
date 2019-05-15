@@ -1,5 +1,5 @@
 {
-    "eq_id": "515",
+    "eq_id": "stocks",
     "form_type": "0010",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
@@ -37,10 +37,7 @@
                             "id": "secondary-content",
                             "title": "How we use your data",
                             "content": [{
-                                "list": [
-                                    "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
-                                    "The information you provide contributes to Gross Domestic Product (GDP)."
-                                ]
+                                "list": ["The information supplied is used to estimate changes in stock levels which are used in the compilation of Gross Domestic Product (GDP), the total UK economic activity. GDP is used to measure the UK's financial health and prosperity over time and in comparison to other countries. The results are used by the Bank of England and HM Treasury to monitor interest rates, inflation and in formulating financial policies (e.g. income, expenditure and taxation) for the UK."]
                             }]
                         }]
                     },
@@ -137,7 +134,7 @@
                             "title": "What was the value of stocks held for <em>coal</em> (net of progress payments on long-term contracts)?",
                             "guidance": {
                                 "content": [{
-                                        "title": "<strong>Include</strong>"
+                                        "title": "Include"
                                     },
                                     {
                                         "list": [
@@ -159,7 +156,7 @@
                                     "id": "answer6059",
                                     "mandatory": true,
                                     "type": "Currency",
-                                    "label": "Value start of the period",
+                                    "label": "Value of coal at start of the period",
                                     "q_code": "174",
                                     "description": "",
                                     "decimal_places": 2,
@@ -169,7 +166,7 @@
                                     "id": "answer6053",
                                     "mandatory": true,
                                     "type": "Currency",
-                                    "label": "Value at end of period",
+                                    "label": "Value of coal at at end of period",
                                     "q_code": "175",
                                     "description": "",
                                     "decimal_places": 2,
@@ -186,7 +183,7 @@
                             "title": "What was the value of stocks held for <em>oil</em> (net of progress payments on long-term contracts)?",
                             "guidance": {
                                 "content": [{
-                                        "title": "<strong>Include</strong>"
+                                        "title": "Include"
                                     },
                                     {
                                         "list": [
@@ -208,7 +205,7 @@
                                     "id": "answer6060",
                                     "mandatory": true,
                                     "type": "Currency",
-                                    "label": "Value at start of period",
+                                    "label": "Value of oil at start of period",
                                     "q_code": "179",
                                     "description": "",
                                     "decimal_places": 2,
@@ -218,7 +215,7 @@
                                     "id": "answer6054",
                                     "mandatory": true,
                                     "type": "Currency",
-                                    "label": "Value at end of period",
+                                    "label": "Value of oil at end of period",
                                     "q_code": "180",
                                     "description": "",
                                     "decimal_places": 2,
@@ -235,7 +232,7 @@
                             "title": "What was the value of stocks held for <em>other fuel</em> (net of progress payments on long-term contracts)?",
                             "guidance": {
                                 "content": [{
-                                        "title": "<strong>Include</strong>"
+                                        "title": "Include"
                                     },
                                     {
                                         "list": [
@@ -257,7 +254,7 @@
                                     "id": "answer6061",
                                     "mandatory": true,
                                     "type": "Currency",
-                                    "label": "Value at start of period",
+                                    "label": "Value of other fuel stocks at start of period",
                                     "q_code": "209",
                                     "description": "",
                                     "decimal_places": 2,
@@ -267,7 +264,7 @@
                                     "id": "answer6055",
                                     "mandatory": true,
                                     "type": "Currency",
-                                    "label": "Value at end of period",
+                                    "label": "Value of other fuel stocks at end of period",
                                     "q_code": "210",
                                     "description": "",
                                     "decimal_places": 2,
@@ -310,7 +307,7 @@
                                     "id": "answer6062",
                                     "mandatory": true,
                                     "type": "Currency",
-                                    "label": "Value at start of period",
+                                    "label": "Value of stores at start of period",
                                     "q_code": "119",
                                     "description": "",
                                     "decimal_places": 2,
@@ -320,7 +317,7 @@
                                     "id": "answer6056",
                                     "mandatory": true,
                                     "type": "Currency",
-                                    "label": "Value at end of period",
+                                    "label": "Value of stores at end of period",
                                     "q_code": "120",
                                     "description": "",
                                     "decimal_places": 2,
@@ -372,7 +369,7 @@
                                     "id": "answer6058",
                                     "mandatory": true,
                                     "type": "Currency",
-                                    "label": "Value at start of period",
+                                    "label": "Value of work in progress at start of period",
                                     "q_code": "144",
                                     "description": "",
                                     "decimal_places": 2,
@@ -382,7 +379,7 @@
                                     "id": "answer6057",
                                     "mandatory": true,
                                     "type": "Currency",
-                                    "label": "Value at end of period",
+                                    "label": "Value of work in progress at end of period",
                                     "q_code": "145",
                                     "description": "",
                                     "decimal_places": 2,
@@ -392,51 +389,44 @@
                         }]
                     },
                     {
-                        "id": "total-value-stocks-held",
-                        "type": "Question",
-                        "questions": [{
-                            "id": "question4774",
-                            "title": "What was the <em>total value</em> of stocks held (net of progress payments on long-term contracts)?",
-                            "guidance": {
-                                "content": [{
-                                        "title": "<strong>Include</strong>"
-                                    },
-                                    {
-                                        "list": [
-                                            "All stocks owned; whether held by you or in transit in the UK or abroad",
-                                            "Duty for dutiable goods held out of bond",
-                                            "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
-                                        ]
-                                    },
-                                    {
-                                        "title": "<strong>Exclude</strong>"
-                                    },
-                                    {
-                                        "list": ["VAT", "Stocks you hold that do not belong to you", "Duty on stocks held in bond"]
-                                    }
-                                ]
-                            },
-                            "type": "General",
-                            "answers": [{
-                                    "id": "answer6064",
-                                    "mandatory": true,
-                                    "type": "Currency",
-                                    "label": "Total value at start of period",
-                                    "description": "",
-                                    "decimal_places": 2,
-                                    "currency": "GBP"
-                                },
-                                {
-                                    "id": "answer6063",
-                                    "mandatory": true,
-                                    "type": "Currency",
-                                    "label": "Total value at end of period",
-                                    "description": "",
-                                    "decimal_places": 2,
-                                    "currency": "GBP"
-                                }
-                            ]
-                        }]
+                        "id": "calc-total-value-stocks-held-start",
+                        "type": "CalculatedSummary",
+                        "titles": [{
+                            "value": "For the <em>start of the period</em>, we calculate the total value of stocks to be %(total)s"
+                        }],
+                        "calculation": {
+                            "calculation_type": "sum",
+                            "answers_to_calculate": [
+                                "answer6059",
+                                "answer6060",
+                                "answer6061",
+                                "answer6062",
+                                "answer6058"
+                            ],
+                            "titles": [{
+                                "value": "Total value of stocks at the start of the period"
+                            }]
+                        }
+                    },
+                    {
+                        "id": "calc-total-value-stocks-held-end",
+                        "type": "CalculatedSummary",
+                        "titles": [{
+                            "value": "For the <em>end of the period</em>, we calculate your total value of stocks to be %(total)s"
+                        }],
+                        "calculation": {
+                            "calculation_type": "sum",
+                            "answers_to_calculate": [
+                                "answer6053",
+                                "answer6054",
+                                "answer6055",
+                                "answer6056",
+                                "answer6057"
+                            ],
+                            "titles": [{
+                                "value": "Total value of stocks at the end of the period"
+                            }]
+                        }
                     },
                     {
                         "id": "estimated-figures",
@@ -551,9 +541,9 @@
                                         "value": "Introduction or removal of new legislation or incentive"
                                     },
                                     {
-                                        "label": "Other (for example, global economic conditions; leaving the EU)",
+                                        "label": "Other (for example, global economic conditions, leaving the EU)",
                                         "q_code": "146h",
-                                        "value": "Other (for example, global economic conditions; leaving the EU)"
+                                        "value": "Other (for example, global economic conditions, leaving the EU)"
                                     }
                                 ]
                             }]
