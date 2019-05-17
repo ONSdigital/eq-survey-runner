@@ -37,8 +37,8 @@
     </div>
 </div>
 {% elif content.summary.summary_type == 'CalculatedSummary' %}
-<div>
-  <h1 class="u-fs-l" data-qa="calculated-summary-title">{{content.summary.title}}</h1>
+<div class="question">
+  <h1 class="u-fs-l question__title" data-qa="calculated-summary-title">{{content.summary.title}}</h1>
   <div class="print__hidden panel panel--simple panel--success u-mb-l">
     <h2 class="u-fs-r--b">{{ _("Please review your answers and confirm these are correct") }}.</h2>
   </div>
