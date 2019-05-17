@@ -7,20 +7,26 @@ import pytest
 from app.data_model.answer_store import AnswerStore
 from app.data_model.answer import Answer
 from app.data_model.questionnaire_store import QuestionnaireStore
-from app.storage.metadata_parser import validate_metadata, parse_runner_claims
+from app.storage.metadata_parser import (
+    validate_questionnaire_claims,
+    validate_runner_claims,
+)
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 
 
 @pytest.fixture
 def fake_metadata():
     def parse_metadata(claims, schema_metadata):
-        validated_claims = parse_runner_claims(claims)
-        validate_metadata(validated_claims, schema_metadata)
-        return validated_claims
+        runner_claims = validate_runner_claims(claims)
+        questionnaire_claims = validate_questionnaire_claims(claims, schema_metadata)
+        return {**runner_claims, **questionnaire_claims}
 
     schema_metadata = [
-        {'name': 'user_id', 'validator': 'string'},
-        {'name': 'period_id', 'validator': 'string'},
+        {'name': 'user_id', 'type': 'string'},
+        {'name': 'period_id', 'type': 'string'},
+        {'name': 'ref_p_start_date', 'type': 'string'},
+        {'name': 'ref_p_end_date', 'type': 'string'},
+        {'name': 'case_ref', 'type': 'string'},
     ]
 
     metadata = parse_metadata(
@@ -29,6 +35,7 @@ def fake_metadata():
             'user_id': '789473423',
             'form_type': '0000',
             'collection_exercise_sid': 'test-sid',
+            'account_service_url': 'https://rh.ons.gov.uk/',
             'eq_id': '1',
             'period_id': '2016-02-01',
             'period_str': '2016-01-01',
@@ -38,9 +45,9 @@ def fake_metadata():
             'response_id': '1234567890123456',
             'ru_name': 'Apple',
             'return_by': '2016-07-07',
-            'started_at': '2018-07-04T14:49:33.448608+00:00',
             'case_id': str(uuid.uuid4()),
             'case_ref': '1000000000000001',
+            'jti': str(uuid.uuid4()),
         },
         schema_metadata,
     )
@@ -51,7 +58,6 @@ def fake_metadata():
 @pytest.fixture
 def fake_collection_metadata():
     collection_metadata = {'started_at': '2018-07-04T14:49:33.448608+00:00'}
-
     return collection_metadata
 
 

@@ -96,9 +96,19 @@ class TestLogin(IntegrationTestCase):
         # Then
         self.assertStatusForbidden()
 
+    def test_login_with_invalid_questionnaire_claims_should_be_forbidden(self):
+        # flag_1 should be a boolean
+        token = self.token_generator.create_token(
+            'metadata_routing', 'test', flag_1=123
+        )
+
+        self.get('/session?token=' + token)
+
+        self.assertStatusForbidden()
+
     def test_login_token_with_survey_url_should_redirect_to_survey(self):
 
-        survey_url = 'http://eq-survey-register/my-test-schema'
+        survey_url = 'http://eq-survey-register.url/my-test-schema'
 
         # Given
         token = self.token_generator.create_token_with_survey_url(
@@ -114,7 +124,7 @@ class TestLogin(IntegrationTestCase):
 
     def test_login_token_with_incorrect_survey_url_results_in_404(self):
 
-        survey_url = 'http://eq-survey-register/my-test-schema-not-found'
+        survey_url = 'http://eq-survey-register.url/my-test-schema-not-found'
 
         # Given
         token = self.token_generator.create_token_with_survey_url(

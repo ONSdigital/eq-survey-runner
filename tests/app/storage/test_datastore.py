@@ -19,7 +19,7 @@ class TestDatastore(AppContextTestCase):
 
     def test_get_by_key(self):
         model = QuestionnaireState('someuser', 'data', 1)
-        model_data, _ = QuestionnaireStateSchema(strict=True).dump(model)
+        model_data = QuestionnaireStateSchema().dump(model)
 
         m_entity = google_datastore.Entity()
         m_entity.update(model_data)

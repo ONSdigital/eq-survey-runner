@@ -167,6 +167,7 @@ class TestViewSubmissionTradingAs(IntegrationTestCase):
             'region_code': 'GB-ENG',
             'language_code': 'en',
             'roles': [],
+            'account_service_url': 'http://upstream.url/',
         }
         with patch('tests.integration.create_token.PAYLOAD', no_trading_as_payload):
             self.launchSurvey('test', 'view_submitted_response')
@@ -224,6 +225,7 @@ class TestViewSubmissionTradingAs(IntegrationTestCase):
             'language_code': 'en',
             'roles': [],
             'trad_as': '',
+            'account_service_url': 'http://upstream.url',
         }
         with patch('tests.integration.create_token.PAYLOAD', no_trading_as_payload):
             self.launchSurvey('test', 'view_submitted_response')

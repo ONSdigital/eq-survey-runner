@@ -8,15 +8,15 @@
     "description": "A survey that tests grouped and calculated answers against a total",
     "metadata": [{
             "name": "user_id",
-            "validator": "string"
+            "type": "string"
         },
         {
             "name": "period_id",
-            "validator": "string"
+            "type": "string"
         },
         {
             "name": "ru_name",
-            "validator": "string"
+            "type": "string"
         }
     ],
     "view_submitted_response": {

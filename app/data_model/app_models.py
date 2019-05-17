@@ -39,12 +39,12 @@ class SubmittedResponse:
 
 # pylint: disable=no-self-use
 class Timestamp(fields.Field):
-    def _serialize(self, value, attr, obj):
+    def _serialize(self, value, attr, obj, **kwargs):
         if value:
             # Timezone aware datetime to timestamp
             return int(value.replace(tzinfo=tzutc()).strftime('%s'))
 
-    def _deserialize(self, value, attr, data):
+    def _deserialize(self, value, attr, data, **kwargs):
         if value:
             # Timestamp to timezone aware datetime
             return datetime.utcfromtimestamp(value).replace(tzinfo=tzutc())

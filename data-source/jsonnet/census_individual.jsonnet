@@ -98,19 +98,20 @@ function(region_code, census_date) {
   metadata: [
     {
       name: 'user_id',
-      validator: 'string',
+      type: 'string',
     },
     {
       name: 'period_id',
-      validator: 'string',
+      type: 'string',
     },
     {
       name: 'case_type',
-      validator: 'optional_string',
+      type: 'string',
+      optional: true,
     },
     {
       name: 'display_address',
-      validator: 'string',
+      type: 'string',
     },
 
   ],

@@ -85,6 +85,7 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
             'response_id': response_id,
             'ru_name': 'Test',
             'return_by': '2016-09-09',
+            'account_service_url': 'http://upstream.url/',
         }
 
 

@@ -38,10 +38,10 @@ class TestAppModels(AppContextTestCase):
 
     def _test_model(self, orig):
         config = TABLE_CONFIG[type(orig)]
-        schema = config['schema'](strict=True)
+        schema = config['schema']()
 
-        item, _ = schema.dump(orig)
-        new_model, _ = schema.load(item)
+        item = schema.dump(orig)
+        new_model = schema.load(item)
 
         self.assertEqual(orig.__dict__, new_model.__dict__)
 

@@ -13,6 +13,7 @@ from flask import (
 from flask_login import current_user, logout_user
 from sdc.crypto.exceptions import InvalidTokenException
 from structlog import get_logger
+from marshmallow import ValidationError
 from werkzeug.exceptions import Unauthorized
 
 from app.authentication.authenticator import store_session, decrypt_token
@@ -21,7 +22,10 @@ from app.globals import get_session_timeout_in_seconds, get_completed_blocks
 from app.helpers.path_finder_helper import path_finder
 from app.helpers.template_helper import safe_content
 from app.questionnaire.router import Router
-from app.storage.metadata_parser import validate_metadata, parse_runner_claims
+from app.storage.metadata_parser import (
+    validate_questionnaire_claims,
+    validate_runner_claims,
+)
 from app.utilities.schema import load_schema_from_metadata
 from app.views.errors import render_template
 
@@ -53,13 +57,25 @@ def login():
         cookie_session.clear()
 
     decrypted_token = decrypt_token(request.args.get('token'))
+
     validate_jti(decrypted_token)
 
-    claims = parse_runner_claims(decrypted_token)
+    try:
+        runner_claims = validate_runner_claims(decrypted_token)
+    except ValidationError as e:
+        raise InvalidTokenException('Invalid runner claims') from e
 
-    g.schema = load_schema_from_metadata(claims)
+    g.schema = load_schema_from_metadata(runner_claims)
     schema_metadata = g.schema.json['metadata']
-    validate_metadata(claims, schema_metadata)
+
+    try:
+        questionnaire_claims = validate_questionnaire_claims(
+            decrypted_token, schema_metadata
+        )
+    except ValidationError as e:
+        raise InvalidTokenException('Invalid questionnaire claims') from e
+
+    claims = {**runner_claims, **questionnaire_claims}
 
     eq_id = claims['eq_id']
     form_type = claims['form_type']

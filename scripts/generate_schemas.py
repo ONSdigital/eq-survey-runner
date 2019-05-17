@@ -8,9 +8,7 @@ from yaml import safe_load
 
 
 def generate_schema(manifest, survey):
-    schema = {
-        'groups': [],
-    }
+    schema = {'groups': []}
 
     for group in manifest['groups']:
         new_group = deepcopy(group)
@@ -53,17 +51,15 @@ def merge_block_files(files):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Mills out all the schema variants defined in the manifest files',
+        description='Mills out all the schema variants defined in the manifest files'
     )
 
     parser.add_argument(
-        'SOURCES_DIR',
-        help='The directory that contains the manifests and blocks',
+        'SOURCES_DIR', help='The directory that contains the manifests and blocks'
     )
 
     parser.add_argument(
-        'OUT_DIR',
-        help='The location where generated schemas should be written',
+        'OUT_DIR', help='The location where generated schemas should be written'
     )
 
     args = parser.parse_args()
@@ -87,14 +83,17 @@ if __name__ == '__main__':
 
             if 'schema_filename' not in manifest:
                 print(  # noqa: T001,T101
-                    "WARNING - No 'schema_filename' found in {}, skipping to the next one."
-                    .format(path),
+                    "WARNING - No 'schema_filename' found in {}, skipping to the next one.".format(
+                        path
+                    )
                 )
                 continue
 
             schema = generate_schema(manifest, merged_blocks)
 
-            file_name = '{}/{}.json'.format(out_dir, manifest['schema_filename'], 'json')
+            file_name = '{}/{}.json'.format(
+                out_dir, manifest['schema_filename'], 'json'
+            )
 
             out = open(file_name, 'w')
 

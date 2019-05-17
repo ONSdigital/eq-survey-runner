@@ -97,18 +97,11 @@ class TestDumpSubmission(IntegrationTestCase):
                     'instrument_id': 'radio_mandatory_with_mandatory_other',
                 },
                 'data': [],
-                'metadata': {
-                    'ref_period_end_date': '2016-04-30',
-                    'ref_period_start_date': '2016-04-01',
-                    'ru_ref': '123456789012A',
-                    'user_id': 'integration-test',
-                },
+                'metadata': {'ru_ref': '123456789012A', 'user_id': 'integration-test'},
             }
         }
 
-        # Enable full dictionary diffs on test failure
-        self.maxDiff = None
-        self.assertDictEqual(actual, expected)
+        assert actual == expected
 
     def test_dump_submission_authenticated_with_role_with_answers(self):
         # Given I am an authenticated user who has launched a survey
@@ -146,14 +139,7 @@ class TestDumpSubmission(IntegrationTestCase):
                     'instrument_id': 'radio_mandatory',
                 },
                 'data': [{'answer_id': 'radio-mandatory-answer', 'value': 'Coffee'}],
-                'metadata': {
-                    'ref_period_end_date': '2016-04-30',
-                    'ref_period_start_date': '2016-04-01',
-                    'ru_ref': '123456789012A',
-                    'user_id': 'integration-test',
-                },
+                'metadata': {'ru_ref': '123456789012A', 'user_id': 'integration-test'},
             }
         }
-        # Enable full dictionary diffs on test failure
-        self.maxDiff = None
-        self.assertDictEqual(actual, expected)
+        assert actual == expected

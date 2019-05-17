@@ -8,16 +8,16 @@
     "theme": "default",
     "metadata": [{
         "name": "user_id",
-        "validator": "string"
+        "type": "string"
     }, {
         "name": "period_id",
-        "validator": "string"
+        "type": "string"
     }, {
         "name": "ru_name",
-        "validator": "string"
+        "type": "string"
     }, {
         "name": "ref_p_start_date",
-        "validator": "date"
+        "type": "date"
     }],
     "sections": [{
         "id": "default-section",

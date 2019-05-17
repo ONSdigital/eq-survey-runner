@@ -21,6 +21,7 @@ PAYLOAD = {
     'region_code': 'GB-ENG',
     'language_code': 'en',
     'roles': [],
+    'account_service_url': 'http://upstream.url',
 }
 
 
