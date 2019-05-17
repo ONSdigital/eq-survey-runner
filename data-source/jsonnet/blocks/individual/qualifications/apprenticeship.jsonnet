@@ -9,8 +9,8 @@ local proxyTitle = {
   ],
 };
 
-local walesGuidanceTitle = 'Include equivalent apprenticeships completed anywhere outside England and Wales';
-local englandGuidanceTitle = 'Include equivalent apprenticeships completed anywhere outside Wales and England';
+local walesGuidanceTitle = 'Include equivalent apprenticeships completed anywhere outside Wales and England';
+local englandGuidanceTitle = 'Include equivalent apprenticeships completed anywhere outside England and Wales';
 
 local question(title, region_code) = (
   local regionGuidanceTitle = if region_code == 'GB-WLS' then walesGuidanceTitle else englandGuidanceTitle;
