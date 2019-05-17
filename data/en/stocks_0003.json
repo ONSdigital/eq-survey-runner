@@ -1,5 +1,5 @@
 {
-    "eq_id": "510",
+    "eq_id": "stocks",
     "form_type": "0003",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
@@ -19,8 +19,8 @@
                             "id": "primary",
                             "content": [{
                                 "list": [
-                                    "This survey covers UK businesses. The business is the individual company partnership, sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
-                                    "You can provide informed estimates if actual figures aren&#x2019;t available.",
+                                    "This survey covers UK businesses. The business is the individual company partnership or sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
+                                    "All stocks owned and either held by you or currently in transit within the United Kingdom - what it should be for guidance across all surveys",
                                     "We will treat your data securely and confidentially."
                                 ]
                             }]
@@ -34,7 +34,7 @@
                             "questions": [{
                                     "question": "Value of stocks held for raw materials and consumable stores",
                                     "content": [{
-                                            "description": "<strong>Include</strong>"
+                                            "title": "Include"
                                         },
                                         {
                                             "list": [
@@ -48,7 +48,7 @@
                                             ]
                                         },
                                         {
-                                            "description": "<strong>Exclude</strong>"
+                                            "title": "Exclude"
                                         },
                                         {
                                             "list": ["VAT", "Stocks you hold that do not belong to you", "Duty on stocks held in bond"]
@@ -58,7 +58,7 @@
                                 {
                                     "question": "Value of all other stocks held",
                                     "content": [{
-                                            "description": "<strong>Include</strong>"
+                                            "title": "Include"
                                         },
                                         {
                                             "list": [
@@ -72,7 +72,7 @@
                                             ]
                                         },
                                         {
-                                            "description": "<strong>Exclude</strong>"
+                                            "title": "Exclude"
                                         },
                                         {
                                             "list": [
@@ -90,11 +90,7 @@
                             "id": "secondary-content",
                             "title": "How we use your data",
                             "content": [{
-                                "list": [
-                                    "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
-                                    "The information supplied is used to estimate changes in stock levels which are used in the compilation of Gross Domestic Product (GDP), the total UK economic activity.",
-                                    "The results are used by the Bank of England and HM Treasury to monitor interest rates, inflation and in formulating financial policies (e.g. income, expenditure and taxation) for the UK."
-                                ]
+                                "list": ["The information supplied is used to estimate changes in stock levels which are used in the compilation of Gross Domestic Product (GDP), the total UK economic activity. GDP is used to measure the UK's financial health and prosperity over time and in comparison to other countries. The results are used by the Bank of England and HM Treasury to monitor interest rates, inflation and in formulating financial policies (e.g. income, expenditure and taxation) for the UK."]
                             }]
                         }]
                     },
@@ -441,9 +437,9 @@
                                         "value": "Introduction or removal of new legislation or incentive"
                                     },
                                     {
-                                        "label": "Other (for example, global economic conditions; leaving the EU)",
+                                        "label": "Other (for example, global economic conditions, leaving the EU)",
                                         "q_code": "146h",
-                                        "value": "Other (for example, global economic conditions; leaving the EU)"
+                                        "value": "Other (for example, global economic conditions, leaving the EU)"
                                     }
                                 ]
                             }]
