@@ -36,7 +36,6 @@ flask = "*"
 flask-babel = "*"
 flask-caching = "*"
 flask-login = "*"
-flask-script = "*"
 "flask-themes2" = "*"
 flask-wtf = "*"
 gevent = {version = "*",platform_python_implementation = "=='CPython'"}
