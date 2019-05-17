@@ -1,5 +1,5 @@
 {
-    "eq_id": "508",
+    "eq_id": "stocks",
     "form_type": "0008",
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
@@ -20,7 +20,7 @@
                             "content": [{
                                 "list": [
                                     "This survey covers UK businesses. The business is the individual company partnership or sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
-                                    "You can provide informed estimates if actual figures aren&#x2019;t available.",
+                                    "All stocks owned and either held by you or currently in transit within the United Kingdom - what it should be for guidance across all surveys",
                                     "We will treat your data securely and confidentially."
                                 ]
                             }]
@@ -34,7 +34,7 @@
                             "questions": [{
                                     "question": "Value of stocks held for natural gas stocks",
                                     "content": [{
-                                            "description": "<strong>Include</strong>"
+                                            "title": "Include"
                                         },
                                         {
                                             "list": [
@@ -44,7 +44,7 @@
                                             ]
                                         },
                                         {
-                                            "description": "<strong>Exclude</strong>"
+                                            "title": "Exclude"
                                         },
                                         {
                                             "list": [
@@ -60,7 +60,7 @@
                                 {
                                     "question": "Value of stocks held for other fuel stocks",
                                     "content": [{
-                                            "description": "<strong>Include</strong>"
+                                            "title": "Include"
                                         },
                                         {
                                             "list": [
@@ -70,7 +70,7 @@
                                             ]
                                         },
                                         {
-                                            "description": "<strong>Exclude</strong>"
+                                            "title": "Exclude"
                                         },
                                         {
                                             "list": [
@@ -86,7 +86,7 @@
                                 {
                                     "question": "Value of stocks held for non-fuel stocks",
                                     "content": [{
-                                            "description": "<strong>Include</strong>"
+                                            "title": "Include"
                                         },
                                         {
                                             "list": [
@@ -96,7 +96,7 @@
                                             ]
                                         },
                                         {
-                                            "description": "<strong>Exclude</strong>"
+                                            "title": "Exclude"
                                         },
                                         {
                                             "list": [
@@ -115,11 +115,7 @@
                             "id": "secondary-content",
                             "title": "How we use your data",
                             "content": [{
-                                "list": [
-                                    "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
-                                    "The information supplied is used to estimate changes in stock levels which are used in the compilation of Gross Domestic Product (GDP), the total UK economic activity.",
-                                    "The results are used by the Bank of England and HM Treasury to monitor interest rates, inflation and in formulating financial policies (e.g. income, expenditure and taxation) for the UK."
-                                ]
+                                "list": ["The information supplied is used to estimate changes in stock levels which are used in the compilation of Gross Domestic Product (GDP), the total UK economic activity. GDP is used to measure the UK's financial health and prosperity over time and in comparison to other countries. The results are used by the Bank of England and HM Treasury to monitor interest rates, inflation and in formulating financial policies (e.g. income, expenditure and taxation) for the UK."]
                             }]
                         }]
                     },
@@ -216,7 +212,7 @@
                             "title": "What was the value of stocks held for <em>natural gas stocks</em> (net of progress payments on long-term contracts)?",
                             "guidance": {
                                 "content": [{
-                                        "title": "<strong>Include</strong>"
+                                        "title": "Include"
                                     },
                                     {
                                         "list": [
@@ -226,7 +222,7 @@
                                         ]
                                     },
                                     {
-                                        "title": "<strong>Exclude</strong>"
+                                        "title": "Exclude"
                                     },
                                     {
                                         "list": [
@@ -271,7 +267,7 @@
                             "title": "What was the value of stocks held for <em>other fuel stocks</em> (net of progress payments on long-term contracts)?",
                             "guidance": {
                                 "content": [{
-                                        "title": "<strong>Include</strong>"
+                                        "title": "Include"
                                     },
                                     {
                                         "list": [
@@ -281,7 +277,7 @@
                                         ]
                                     },
                                     {
-                                        "title": "<strong>Exclude</strong>"
+                                        "title": "Exclude"
                                     },
                                     {
                                         "list": [
@@ -326,7 +322,7 @@
                             "title": "What was the value of stocks held for <em>non-fuel stocks</em> (net of progress payments on long-term contracts)?",
                             "guidance": {
                                 "content": [{
-                                        "title": "<strong>Include</strong>"
+                                        "title": "Include"
                                     },
                                     {
                                         "list": [
@@ -336,7 +332,7 @@
                                         ]
                                     },
                                     {
-                                        "title": "<strong>Exclude</strong>"
+                                        "title": "Exclude"
                                     },
                                     {
                                         "list": [
@@ -514,9 +510,9 @@
                                         "value": "Introduction or removal of new legislation or incentive"
                                     },
                                     {
-                                        "label": "Other (for example, global economic conditions; leaving the EU)",
+                                        "label": "Other (for example, global economic conditions, leaving the EU)",
                                         "q_code": "146h",
-                                        "value": "Other (for example, global economic conditions; leaving the EU)"
+                                        "value": "Other (for example, global economic conditions, leaving the EU)"
                                     }
                                 ]
                             }]
