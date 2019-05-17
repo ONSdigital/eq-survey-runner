@@ -6,7 +6,7 @@ from app.forms.custom_fields import (
     CustomSelectMultipleField,
     CustomSelectField,
 )
-from app.forms.date_form import DateField, MonthYearField, YearField
+from app.forms.date_form import DateField
 from app.forms.fields import (
     CustomIntegerField,
     CustomDecimalField,
@@ -222,7 +222,7 @@ class TestFields(AppContextTestCase):
                 self.metadata,
             )
 
-        self.assertEqual(unbound_field.field_class, MonthYearField)
+        self.assertEqual(unbound_field.field_class, DateField)
         self.assertEqual(unbound_field.kwargs['label'], date_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], date_json['guidance'])
 
@@ -252,7 +252,7 @@ class TestFields(AppContextTestCase):
                 self.metadata,
             )
 
-        self.assertEqual(unbound_field.field_class, YearField)
+        self.assertEqual(unbound_field.field_class, DateField)
         self.assertEqual(unbound_field.kwargs['label'], date_json['label'])
         self.assertEqual(unbound_field.kwargs['description'], date_json['guidance'])
 

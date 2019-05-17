@@ -246,13 +246,13 @@ class TestQuestionnaireForm(
             form.validate()
             self.assertEqual(form.data, expected_form_data)
             self.assertEqual(
-                form.errors['date-range-from']['month'][0],
+                form.errors['date-range-from']['year'][0],
                 schema.error_messages['SINGLE_DATE_PERIOD_TOO_EARLY']
                 % dict(min='1 January 2017'),
             )
 
             self.assertEqual(
-                form.errors['date-range-to']['month'][0],
+                form.errors['date-range-to']['year'][0],
                 schema.error_messages['SINGLE_DATE_PERIOD_TOO_LATE']
                 % dict(max='14 March 2017'),
             )
@@ -359,13 +359,13 @@ class TestQuestionnaireForm(
             form.validate()
             self.assertEqual(form.data, expected_form_data)
             self.assertEqual(
-                form.errors['date-range-from']['month'][0],
+                form.errors['date-range-from']['year'][0],
                 schema.error_messages['SINGLE_DATE_PERIOD_TOO_EARLY']
                 % dict(min='November 2016'),
             )
 
             self.assertEqual(
-                form.errors['date-range-to']['month'][0],
+                form.errors['date-range-to']['year'][0],
                 schema.error_messages['SINGLE_DATE_PERIOD_TOO_LATE']
                 % dict(max='June 2017'),
             )

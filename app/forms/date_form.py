@@ -1,12 +1,12 @@
 import logging
 
 from datetime import datetime
+from enum import Enum
 
 from dateutil.relativedelta import relativedelta
 
 from wtforms import Form, StringField, FormField
 
-from app.forms.custom_fields import CustomIntegerField
 from app.questionnaire.rules import (
     get_metadata_value,
     get_answer_store_value,
@@ -16,8 +16,6 @@ from app.validation.validators import (
     DateCheck,
     OptionalForm,
     DateRequired,
-    MonthYearCheck,
-    YearCheck,
     SingleDatePeriodCheck,
 )
 from app.utilities.schema import load_schema_from_metadata
@@ -25,182 +23,118 @@ from app.utilities.schema import load_schema_from_metadata
 logger = logging.getLogger(__name__)
 
 
+class DateFormType(Enum):
+    YearMonthDay = {'date_format': 'yyyy-mm-dd'}
+    YearMonth = {'date_format': 'yyyy-mm'}
+    Year = {'date_format': 'yyyy'}
+
+
 class DateField(FormField):
-    def __init__(self, answer_store, metadata, answer, error_messages, **kwargs):
-        form_class = get_date_form(answer_store, metadata, answer, error_messages)
-        super(DateField, self).__init__(form_class, **kwargs)
-
-    def process(self, formdata, data=None):
-        if data is not None:
-            substrings = data.split('-')
-            data = {'year': substrings[0], 'month': substrings[1], 'day': substrings[2]}
-
-        super().process(formdata, data)
-
-
-class MonthYearField(FormField):
-    def __init__(self, answer_store, metadata, answer, error_messages, **kwargs):
-        form_class = get_month_year_form(answer_store, metadata, answer, error_messages)
-        super(MonthYearField, self).__init__(form_class, **kwargs)
-
-    def process(self, formdata, data=None):
-        if data is not None:
-            substrings = data.split('-')
-            data = {'year': substrings[0], 'month': substrings[1]}
-
-        super().process(formdata, data)
-
-
-class YearField(FormField):
-    def __init__(self, answer_store, metadata, answer, error_messages, **kwargs):
-        form_class = get_year_form(
-            answer_store,
-            metadata,
-            answer,
-            error_messages,
-            kwargs.get('description'),
-            kwargs.get('label'),
+    def __init__(
+        self,
+        date_form_type: DateFormType,
+        answer_store,
+        metadata,
+        answer,
+        error_messages,
+        **kwargs,
+    ):
+        form_class = get_form(
+            date_form_type, answer, answer_store, metadata, error_messages
         )
-        super(YearField, self).__init__(form_class, **kwargs)
+        super().__init__(form_class, **kwargs)
 
     def process(self, formdata, data=None):
         if data is not None:
             substrings = data.split('-')
-            data = {'year': substrings[0]}
+            if len(substrings) == 3:
+                data = {
+                    'year': substrings[0],
+                    'month': substrings[1],
+                    'day': substrings[2],
+                }
+            if len(substrings) == 2:
+                data = {'year': substrings[0], 'month': substrings[1]}
+            if len(substrings) == 1:
+                data = {'year': substrings[0]}
 
         super().process(formdata, data)
 
 
-def get_date_form(answer_store, metadata, answer=None, error_messages=None):
-    """
-    Returns a date form metaclass with appropriate validators. Used in both date and
-    date range form creation.
+class CachedProperty:
+    """ A property that is only computed once per instance and then replaces
+        itself with an ordinary attribute. Deleting the attribute resets the
+        property.
 
-    :param error_messages: The messages during validation
-    :param answer: The answer on which to base this form
-    :param answer_store: The current answer store
-    :param metadata: metadata for reference meta dates
-    :return: The generated DateForm metaclass
-    """
+        Source: https://github.com/bottlepy/bottle/commit/fa7733e075da0d790d809aa3d2f53071897e6f76
+        """
 
-    class DateForm(Form):
-        day = StringField()
-        year = StringField()
-        month = StringField()
+    def __init__(self, func):
+        self.__doc__ = getattr(func, '__doc__')
+        self.func = func
 
-        @property
-        def data(self):
-            data = super().data
-            if not data['year'] and not data['month'] and not data['day']:
-                return None
+    def __get__(self, obj, cls):
+        if obj is None:
+            return self
+        value = obj.__dict__[self.func.__name__] = self.func(obj)
+        return value
 
-            return '{:04d}-{:02d}-{:02d}'.format(
-                int(data['year']), int(data['month']), int(data['day'])
-            )
 
+class DateForm(Form):
+    @CachedProperty
+    def data(self):
+        data = super().data
+        try:
+            if all(k in data for k in ('day', 'month', 'year')):
+                return '{year:04d}-{month:02d}-{day:02d}'.format(
+                    year=int(data['year']),
+                    month=int(data['month']),
+                    day=int(data['day']),
+                )
+
+            if all(k in data for k in ('month', 'year')):
+                return '{year:04d}-{month:02d}'.format(
+                    year=int(data['year']), month=int(data['month'])
+                )
+
+            if 'year' in data and data['year']:
+                return '{year:04d}'.format(year=int(data['year']))
+
+        except (TypeError, ValueError):
+            return None
+
+
+def get_form(form_type, answer, answer_store, metadata, error_messages):
     validate_with = [OptionalForm()]
 
     if answer['mandatory'] is True:
         validate_with = validate_mandatory_date(error_messages, answer)
 
-    error_message = (
-        get_bespoke_message(answer, 'INVALID_DATE') or error_messages['INVALID_DATE']
-    )
+    error_message = get_bespoke_message(answer, 'INVALID_DATE')
 
     validate_with.append(DateCheck(error_message))
 
     if 'minimum' in answer or 'maximum' in answer:
         min_max_validation = validate_min_max_date(
-            answer, answer_store, metadata, 'yyyy-mm-dd'
+            answer, answer_store, metadata, form_type.value['date_format']
         )
         validate_with.append(min_max_validation)
 
-    DateForm.month = StringField(validators=validate_with)
+    class CustomDateForm(DateForm):
+        pass
 
-    return DateForm
+    if form_type in DateFormType:
+        # Validation is only ever added to the 1 field that shows in all 3 variants
+        # This is to prevent an error message for each input box
+        CustomDateForm.year = StringField(validators=validate_with)
 
+    if form_type in [DateFormType.YearMonth, DateFormType.YearMonthDay]:
+        CustomDateForm.month = StringField()
 
-def get_month_year_form(answer, answer_store, metadata, error_messages):
-    """
-    Returns a month year form metaclass with appropriate validators. Used in both date and
-    date range form creation.
+    if form_type == DateFormType.YearMonthDay:
+        CustomDateForm.day = StringField()
 
-    :param answer: The answer on which to base this form
-    :param error_messages: The messages to use upon this form during validation
-    :return: The generated MonthYearDateForm metaclass
-    """
-
-    class MonthYearDateForm(Form):
-        year = StringField()
-        month = StringField()
-
-        @property
-        def data(self):
-            data = super().data
-            if not data['year'] and not data['month']:
-                return None
-
-            return '{:04d}-{:02d}'.format(int(data['year']), int(data['month']))
-
-    validate_with = [OptionalForm()]
-
-    if answer['mandatory'] is True:
-        validate_with = validate_mandatory_date(error_messages, answer)
-
-    error_message = get_bespoke_message(answer, 'INVALID_DATE')
-    validate_with.append(MonthYearCheck(error_message))
-
-    if 'minimum' in answer or 'maximum' in answer:
-        min_max_validation = validate_min_max_date(
-            answer, answer_store, metadata, 'yyyy-mm'
-        )
-        validate_with.append(min_max_validation)
-
-    MonthYearDateForm.month = StringField(validators=validate_with)
-
-    return MonthYearDateForm
-
-
-def get_year_form(answer, answer_store, metadata, error_messages, label, guidance):
-    """
-    Returns a year form metaclass with appropriate validators. Used in both date and
-    date range form creation.
-
-    :param answer: The answer on which to base this form
-    :param error_messages: The messages to use upon this form during validation
-    :return: The generated MonthYearDateForm metaclass
-    """
-
-    class YearDateForm(Form):
-        year = None
-
-        @property
-        def data(self):
-            data = super().data
-            if not data['year']:
-                return None
-
-            return '{:04d}'.format(int(data['year']))
-
-    validate_with = [OptionalForm()]
-
-    if answer['mandatory'] is True:
-        validate_with = validate_mandatory_date(error_messages, answer)
-
-    error_message = get_bespoke_message(answer, 'INVALID_DATE')
-    validate_with.append(YearCheck(error_message))
-
-    if 'minimum' in answer or 'maximum' in answer:
-        min_max_validation = validate_min_max_date(
-            answer, answer_store, metadata, 'yyyy'
-        )
-        validate_with.append(min_max_validation)
-
-    YearDateForm.year = CustomIntegerField(
-        label=label, validators=validate_with, description=guidance
-    )
-
-    return YearDateForm
+    return CustomDateForm
 
 
 def validate_mandatory_date(error_messages, answer):
