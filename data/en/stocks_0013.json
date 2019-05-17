@@ -140,7 +140,23 @@
                                     }
                                 ]
                             }]
-                        }]
+                        }],
+                        "routing_rules": [{
+                                "goto": {
+                                    "block": "value-stocks-materials",
+                                    "when": [{
+                                        "id": "answer6197",
+                                        "condition": "equals",
+                                        "value": "Yes"
+                                    }]
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "block": "which-report-period"
+                                }
+                            }
+                        ]
                     },
                     {
                         "id": "which-report-period",
