@@ -6,9 +6,9 @@
 
 {% block form_content %}
   {% if block['section_number'] %}
-    <h1 class="u-fs-l">Section {{ block['section_number'] }}: {{ block['title'] }}</h1>
+    <h1>Section {{ block['section_number'] }}: {{ block['title'] }}</h1>
   {% else %}
-    <h1 class="u-fs-l">{{ block['title'] }}</h1>
+    <h1>{{ block['title'] }}</h1>
   {% endif %}
   {% if block['description'] %}
     <p>{{ block['description'] | safe }}</p>
@@ -16,7 +16,7 @@
 
   {% for item in block.content %}
     {%- if item.title -%}
-      <h3 class="u-fs-m">{{ item.title }}</h3>
+      <h2{{ item.title }}</h3>
     {% endif %}
     {%- if item.description -%}
       <p>{{ item.description }}</p>

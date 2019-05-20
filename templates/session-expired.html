@@ -7,7 +7,7 @@
 
 {% block main %}
   <div class="u-mb-s" data-qa="session-expired-error">
-    <h1 class="u-fs-l" {{helpers.track('visible', 'Timeout', 'Timeout expired')}}>{{ _("Your session has expired") }}</h1>
+    <h1 {{helpers.track('visible', 'Timeout', 'Timeout expired')}}>{{ _("Your session has expired") }}</h1>
   </div>
 
   {% call onsPanel({

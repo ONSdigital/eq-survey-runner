@@ -8,7 +8,7 @@
 
 {% block form_content %}
   {% if content.summary.summary_type == 'Summary' %}
-    <h1 class="u-fs-l">{{ _("Check your answers and submit") }}</h1>
+    <h1>{{ _("Check your answers and submit") }}</h1>
 
     {% call onsPanel({
       "type": "error",
@@ -26,7 +26,7 @@
   {% elif content.summary.summary_type in ('SectionSummary', 'AnswerSummary') %}
     {% set group = content.summary.groups %}
 
-    <h1 class="u-fs-l">{{content.summary.title}}</h1>
+    <h1>{{content.summary.title}}</h1>
 
     {% call onsPanel({
       "type": "success",
@@ -36,7 +36,7 @@
       <p>{{ _("You can review your answers below") }}</p>
     {% endcall %}
   {% elif content.summary.summary_type == 'CalculatedSummary' %}
-    <h1 class="u-fs-l" data-qa="calculated-summary-title">{{content.summary.title}}</h1>
+    <h1 data-qa="calculated-summary-title">{{content.summary.title}}</h1>
 
     {% call onsPanel({
       "type": "success",

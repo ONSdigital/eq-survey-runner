@@ -546,3 +546,17 @@ def map_list_collector_config(
 @blueprint.app_context_processor
 def map_list_collector_config_processor():
     return dict(map_list_collector_config=map_list_collector_config)
+
+
+@blueprint.app_template_filter()
+def format_paragraphs(text):
+    paragraphs = text.split('\n')
+
+    if len(paragraphs) > 1:
+        return '<p>' + paragraphs.join('</p><p>') + '</p>'
+    else:
+        return '<p>' + text + '</p>'
+
+@blueprint.app_context_processor
+def paragraphs_processor():
+    return dict(format_paragraphs=format_paragraphs)
