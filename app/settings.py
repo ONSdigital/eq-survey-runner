@@ -42,7 +42,6 @@ EQ_MINIMIZE_ASSETS = parse_mode(os.getenv('EQ_MINIMIZE_ASSETS', 'True'))
 # max request payload size in bytes
 MAX_CONTENT_LENGTH = int(os.getenv('EQ_MAX_HTTP_POST_CONTENT_LENGTH', '65536'))
 
-EQ_PROFILING = parse_mode(os.getenv('EQ_PROFILING', 'False'))
 EQ_ENABLE_LIVE_RELOAD = parse_mode(os.getenv('EQ_ENABLE_LIVE_RELOAD', 'False'))
 
 EQ_SECRETS_FILE = os.getenv('EQ_SECRETS_FILE', 'secrets.yml')

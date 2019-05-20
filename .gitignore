@@ -84,6 +84,7 @@ htmlcov/
 
 keys.yml
 secrets.yml
+.env
 
 requirements.txt
 

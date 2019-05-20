@@ -1,8 +1,6 @@
 import copy
 import json
 import logging
-import os
-import sys
 from datetime import timedelta
 from uuid import uuid4
 
@@ -319,26 +317,6 @@ def setup_submitter(application):
         raise Exception('Unknown EQ_SUBMISSION_BACKEND')
 
 
-def setup_profiling(application):
-    # Setup profiling
-
-    from werkzeug.contrib.profiler import ProfilerMiddleware, MergeStream
-
-    profiling_dir = 'profiling'
-
-    f = open('profiler.log', 'w')
-    stream = MergeStream(sys.stdout, f)
-
-    if not os.path.exists(profiling_dir):
-        os.makedirs(profiling_dir)
-
-    application.config['PROFILE'] = True
-    application.wsgi_app = ProfilerMiddleware(
-        application.wsgi_app, stream, profile_dir=profiling_dir
-    )
-    application.debug = True
-
-
 def configure_flask_logging(application):
     # set the logger for this application and stop using flasks broken solution
     application._logger = logging.getLogger(  # pylint: disable=protected-access
@@ -358,9 +336,6 @@ def start_dev_mode(application):
         from flask_debugtoolbar import DebugToolbarExtension
 
         DebugToolbarExtension(application)
-
-    if application.config['EQ_PROFILING']:
-        setup_profiling(application)
 
 
 def add_blueprints(application):

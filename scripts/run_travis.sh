@@ -23,3 +23,6 @@ docker-compose up --build -d
 
 echo "Running Functional tests"
 ./scripts/run_tests_functional.sh
+
+echo "Stopping Docker compose"
+docker-compose kill
