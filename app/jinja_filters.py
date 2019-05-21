@@ -557,6 +557,7 @@ def format_paragraphs(text):
     else:
         return '<p>' + text + '</p>'
 
+
 @blueprint.app_context_processor
 def paragraphs_processor():
     return dict(format_paragraphs=format_paragraphs)
