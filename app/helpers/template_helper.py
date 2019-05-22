@@ -85,5 +85,6 @@ def render_template(template, **kwargs):
         account_service_url=cookie_session.get('account_service_url'),
         account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
         survey_id=g.schema.json['survey_id'],
+        survey_guidance_url=g.schema.json.get('survey_guidance_url'),
         **kwargs
     )
