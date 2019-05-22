@@ -30,8 +30,8 @@ class TestFormHelper(AppContextTestCase):
             period_from_field = getattr(form, 'date-range-from-answer')
             period_to_field = getattr(form, 'date-range-to-answer')
 
-            self.assertIsInstance(period_from_field.month.validators[0], DateRequired)
-            self.assertIsInstance(period_to_field.month.validators[0], DateRequired)
+            self.assertIsInstance(period_from_field.year.validators[0], DateRequired)
+            self.assertIsInstance(period_to_field.year.validators[0], DateRequired)
 
     def test_get_form_and_disable_mandatory_answers(self):
         with self.app_request_context():
@@ -55,8 +55,8 @@ class TestFormHelper(AppContextTestCase):
             assert period_from_field
             assert period_to_field
 
-            self.assertIsInstance(period_from_field.month.validators[0], OptionalForm)
-            self.assertIsInstance(period_to_field.month.validators[0], OptionalForm)
+            self.assertIsInstance(period_from_field.year.validators[0], OptionalForm)
+            self.assertIsInstance(period_to_field.year.validators[0], OptionalForm)
 
     def test_post_form_for_block_location(self):
         with self.app_request_context():
@@ -85,8 +85,8 @@ class TestFormHelper(AppContextTestCase):
             period_from_field = getattr(form, 'date-range-from-answer')
             period_to_field = getattr(form, 'date-range-to-answer')
 
-            self.assertIsInstance(period_from_field.month.validators[0], DateRequired)
-            self.assertIsInstance(period_to_field.month.validators[0], DateRequired)
+            self.assertIsInstance(period_from_field.year.validators[0], DateRequired)
+            self.assertIsInstance(period_to_field.year.validators[0], DateRequired)
 
             self.assertEqual(period_from_field.data, '2015-05-01')
             self.assertEqual(period_to_field.data, '2017-09-01')
@@ -112,8 +112,8 @@ class TestFormHelper(AppContextTestCase):
             period_from_field = getattr(form, 'date-range-from-answer')
             period_to_field = getattr(form, 'date-range-to-answer')
 
-            self.assertIsInstance(period_from_field.month.validators[0], OptionalForm)
-            self.assertIsInstance(period_to_field.month.validators[0], OptionalForm)
+            self.assertIsInstance(period_from_field.year.validators[0], OptionalForm)
+            self.assertIsInstance(period_to_field.year.validators[0], OptionalForm)
 
     def test_post_form_for_radio_other_not_selected(self):
         with self.app_request_context():

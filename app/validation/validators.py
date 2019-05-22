@@ -1,4 +1,3 @@
-import re
 from datetime import datetime
 from decimal import Decimal, InvalidOperation
 
@@ -224,33 +223,19 @@ class DateCheck:
         self.message = message or error_messages['INVALID_DATE']
 
     def __call__(self, form, field):
-        try:
-            datetime.strptime(form.data, '%Y-%m-%d')
-        except ValueError:
+
+        if not form.data:
             raise validators.StopValidation(self.message)
 
-
-class MonthYearCheck:
-    def __init__(self, message=None):
-        self.message = message or error_messages['INVALID_DATE']
-
-    def __call__(self, form, field):
         try:
-            datestr = '{}-{:02d}'.format(
-                int(form.year.data or 0), int(form.month.data or 0)
-            )
-            datetime.strptime(datestr, '%Y-%m')
+            substrings = form.data.split('-')
+            if len(substrings) == 3:
+                datetime.strptime(form.data, '%Y-%m-%d')
+            if len(substrings) == 2:
+                datetime.strptime(form.data, '%Y-%m')
+            if len(substrings) == 1:
+                datetime.strptime(form.data, '%Y')
         except ValueError:
-            raise validators.StopValidation(self.message)
-
-
-class YearCheck:
-    def __init__(self, message=None):
-        self.message = message or error_messages['INVALID_DATE']
-
-    def __call__(self, form, field):
-        # Must be 4 digits long
-        if not re.match(r'\d{4}$', str(form.year.data)):
             raise validators.StopValidation(self.message)
 
 
