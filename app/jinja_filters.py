@@ -550,6 +550,7 @@ def map_list_collector_config_processor():
 
 @blueprint.app_template_filter()
 def format_paragraphs(text):
+        return "\n".join(f'<p>{paragraph}</p>' for paragraph in text.splitlines())
     paragraphs = text.split('\n')
 
     if len(paragraphs) > 1:
