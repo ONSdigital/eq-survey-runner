@@ -120,6 +120,7 @@ def _create_session_data_from_metadata(metadata):
         ru_name=metadata.get('ru_name'),
         ru_ref=metadata.get('ru_ref'),
         response_id=metadata.get('response_id'),
+        questionnaire_id=metadata.get('questionnaire_id'),
         case_id=metadata.get('case_id'),
         case_ref=metadata.get('case_ref'),
         trad_as=metadata.get('trad_as'),

@@ -46,6 +46,7 @@ def fake_metadata():
             'ru_name': 'Apple',
             'return_by': '2016-07-07',
             'case_id': str(uuid.uuid4()),
+            'questionnaire_id': '0123456789000000',
             'case_ref': '1000000000000001',
             'jti': str(uuid.uuid4()),
         },

@@ -15,7 +15,7 @@ def fake_metadata_runner():
         'form_type': 'a',
         'ru_ref': '2016-04-04',
         'collection_exercise_sid': 'test-sid',
-        'case_id': str(uuid.uuid4()),
+        'questionnaire_id': '0123456789000000',
         'response_id': str(uuid.uuid4()),
         'account_service_url': 'https://ras.ons.gov.uk',
     }
@@ -36,6 +36,7 @@ def fake_metadata_full(fake_metadata_runner):
         'ru_name': 'Apple',
         'return_by': '2016-07-07',
         'case_ref': '1000000000000001',
+        'case_id': str(uuid.uuid4()),
     }
 
     return dict(fake_metadata_runner, **fake_questionnaire_claims)

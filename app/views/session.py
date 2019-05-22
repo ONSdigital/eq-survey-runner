@@ -81,8 +81,15 @@ def login():
     form_type = claims['form_type']
     tx_id = claims['tx_id']
     ru_ref = claims['ru_ref']
+    questionnaire_id = claims['questionnaire_id']
 
-    logger.bind(eq_id=eq_id, form_type=form_type, tx_id=tx_id, ru_ref=ru_ref)
+    logger.bind(
+        eq_id=eq_id,
+        form_type=form_type,
+        tx_id=tx_id,
+        ru_ref=ru_ref,
+        questionnaire_id=questionnaire_id,
+    )
     logger.info('decrypted token and parsed metadata')
 
     store_session(claims)

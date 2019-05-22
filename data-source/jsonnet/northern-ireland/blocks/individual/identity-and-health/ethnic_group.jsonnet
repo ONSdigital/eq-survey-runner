@@ -1,0 +1,87 @@
+local placeholders = import '../../../../common/lib/placeholders.libsonnet';
+local rules = import '../../../../common/lib/rules.libsonnet';
+
+local nonProxyTitle = 'What is your ethnic group?';
+local proxyTitle = {
+  text: 'What is <em>{person_name_possessive}</em> ethnic group?',
+  placeholders: [
+    placeholders.personNamePossessive,
+  ],
+};
+
+
+local question(title) = {
+  id: 'ethnic-group-question',
+  title: title,
+  type: 'General',
+  answers: [
+    {
+      id: 'ethnic-group-answer',
+      mandatory: true,
+      options: [
+        {
+          label: 'White',
+          value: 'White',
+        },
+        {
+          label: 'Chinese',
+          value: 'Chinese',
+        },
+        {
+          label: 'Irish Traveller',
+          value: 'Irish Traveller',
+        },
+        {
+          label: 'Roma',
+          value: 'Roma',
+        },
+        {
+          label: 'Indian',
+          value: 'Indian',
+        },
+        {
+          label: 'Filipino',
+          value: 'Filipino',
+        },
+        {
+          label: 'Black African',
+          value: 'Black African',
+        },
+        {
+          label: 'Black other',
+          value: 'Black other',
+        },
+        {
+          label: 'Mixed ethnic group',
+          value: 'Mixed ethnic group',
+        },
+        {
+          label: 'Other ethnic group',
+          value: 'Other ethnic group',
+          detail_answer: {
+            id: 'ehtnic-group-other',
+            type: 'TextField',
+            mandatory: false,
+            label: 'Please specify other religion',
+          },
+        },
+      ],
+      type: 'Radio',
+    },
+  ],
+};
+
+{
+  type: 'Question',
+  id: 'ethnic-group',
+  question_variants: [
+    {
+      question: question(nonProxyTitle),
+      when: [rules.proxyNo],
+    },
+    {
+      question: question(proxyTitle),
+      when: [rules.proxyYes],
+    },
+  ],
+}

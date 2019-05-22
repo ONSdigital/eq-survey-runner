@@ -10,6 +10,7 @@ class TestErrors(IntegrationTestCase):
         'period_str': 'April 2016',
         'period_id': '201604',
         'collection_exercise_sid': '789',
+        'questionnaire_id': '0123456789000000',
         'ru_ref': '123456789012A',
         'response_id': '1234567890123456',
         'ru_name': 'Integration Testing',
