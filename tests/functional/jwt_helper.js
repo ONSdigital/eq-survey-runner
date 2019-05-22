@@ -48,7 +48,7 @@ const encryptionKeyString = '-----BEGIN PUBLIC KEY-----\n' +
 
 const schemaRegEx = /^([a-z0-9]+)_(\w+)\.json/;
 
-module.exports = function generateToken(schema, { userId, collectionId, responseId = utilities.getRandomString(16), periodId = '201605', periodStr = 'May 2016', regionCode = 'GB-ENG', languageCode = 'en', sexualIdentity = false, includeLogoutUrl = true, country = '', locality = '', townName = '', postcode = '', displayAddress = '' }) {
+module.exports = function generateToken(schema, { userId, collectionId, responseId = utilities.getRandomString(16), questionnaireId = utilities.getRandomString(16), periodId = '201605', periodStr = 'May 2016', regionCode = 'GB-ENG', languageCode = 'en', sexualIdentity = false, includeLogoutUrl = true, country = '', locality = '', townName = '', postcode = '', displayAddress = '' }) {
   let schemaParts = schemaRegEx.exec(schema);
 
   // Header
@@ -68,6 +68,7 @@ module.exports = function generateToken(schema, { userId, collectionId, response
     case_id: uuid(),
     ru_ref: '12346789012A',
     response_id: responseId,
+    questionnaire_id: questionnaireId,
     ru_name: 'Apple',
     trad_as: 'Apple',
     eq_id: schemaParts[1],

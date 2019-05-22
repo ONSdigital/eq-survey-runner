@@ -55,10 +55,11 @@ class RunnerMetadataSchema(Schema, StripWhitespaceMixin):
     ru_ref = VALIDATORS['string'](validate=validate.Length(min=1))
     collection_exercise_sid = VALIDATORS['string'](validate=validate.Length(min=1))
     tx_id = VALIDATORS['uuid']()
-    case_id = VALIDATORS['uuid']()
-    response_id = VALIDATORS['string']()
+    questionnaire_id = VALIDATORS['string'](validate=validate.Length(min=1))
+    response_id = VALIDATORS['string'](validate=validate.Length(min=1))
     account_service_url = VALIDATORS['url']()
 
+    case_id = VALIDATORS['uuid'](required=False)
     account_service_log_out_url = VALIDATORS['url'](required=False)
     roles = fields.List(fields.String(), required=False)
     survey_url = VALIDATORS['url'](required=False)

@@ -138,9 +138,19 @@ class TestLogin(IntegrationTestCase):
         # Then
         self.assertStatusNotFound()
 
-    def test_login_without_case_id_in_token_is_unauthorised(self):
+    def test_login_without_case_id_in_token_is_authorised(self):
         # Given
         token = self.token_generator.create_token_without_case_id('textfield', 'test')
+        self.get('/session?token=' + token)
+
+        # Then
+        self.assertStatusOK()
+
+    def test_login_without_questionnaire_id_in_token_is_unauthorised(self):
+        # Given
+        token = self.token_generator.create_token_without_questionnaire_id(
+            'textfield', 'test'
+        )
         self.get('/session?token=' + token)
 
         # Then
