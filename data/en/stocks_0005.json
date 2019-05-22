@@ -283,7 +283,7 @@
                                     "type": "Currency",
                                     "label": "Value of coal stocks at start of period",
                                     "q_code": "174",
-                                    "description": "",
+                                    "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
                                     "decimal_places": 2,
                                     "currency": "GBP"
                                 },
@@ -338,7 +338,7 @@
                                     "type": "Currency",
                                     "label": "Value of oil stocks at start of period",
                                     "q_code": "179",
-                                    "description": "",
+                                    "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
                                     "decimal_places": 0,
                                     "currency": "GBP"
                                 },
@@ -393,7 +393,7 @@
                                     "type": "Currency",
                                     "label": "Value of gas stocks at start of period",
                                     "q_code": "184",
-                                    "description": "",
+                                    "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
                                     "decimal_places": 2,
                                     "currency": "GBP"
                                 },
@@ -447,7 +447,7 @@
                                     "type": "Currency",
                                     "label": "Value of nuclear fuel stocks at start of period",
                                     "q_code": "189",
-                                    "description": "",
+                                    "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
                                     "decimal_places": 0,
                                     "currency": "GBP"
                                 },
@@ -492,7 +492,7 @@
                                     "type": "Currency",
                                     "label": "Value of other stocks at start of period",
                                     "q_code": "191",
-                                    "description": "",
+                                    "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
                                     "decimal_places": 2,
                                     "currency": "GBP"
                                 },
@@ -664,6 +664,7 @@
                         "questions": [{
                             "id": "question4699",
                             "title": "Explain any differences between this quarter&apos;s opening value and the previously returned closing value",
+                            "description": "<p> Include any unusual fluctuations in figures </p>",
                             "type": "General",
                             "answers": [{
                                 "id": "answer5957",

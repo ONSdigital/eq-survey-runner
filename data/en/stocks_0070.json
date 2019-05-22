@@ -178,7 +178,7 @@
                                     "mandatory": true,
                                     "type": "Currency",
                                     "label": "Total value of stocks held at start of period",
-                                    "description": "",
+                                    "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
                                     "q_code": "598",
                                     "decimal_places": 2,
                                     "currency": "GBP"
