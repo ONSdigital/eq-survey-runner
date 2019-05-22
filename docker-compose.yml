@@ -15,25 +15,11 @@ services:
   eq-survey-runner:
     image: onsdigital/eq-survey-runner:v3
     build: ./
+    env_file: 
+      - .development.env
     environment:
-      EQ_DEV_MODE: "True"
-      EQ_DEVELOPER_LOGGING: "True"
-      EQ_ENABLE_SECURE_SESSION_COOKIE: "False"
-      EQ_ENABLE_LIVE_RELOAD: "True"
-      EQ_RABBITMQ_HOST: rabbit
-      EQ_RABBITMQ_HOST_SECONDARY: rabbit
-      EQ_SECRETS_FILE: docker-secrets.yml
-      EQ_KEYS_FILE: docker-keys.yml
-      EQ_SUBMITTED_RESPONSES_TABLE_NAME: dev-submitted-responses
-      EQ_QUESTIONNAIRE_STATE_TABLE_NAME: dev-questionnaire-state
-      EQ_SESSION_TABLE_NAME: dev-eq-session
-      EQ_USED_JTI_CLAIM_TABLE_NAME: dev-used-jti-claim
-      EQ_DATASTORE_EMULATOR_CREDENTIALS: "True"
-      DATASTORE_DATASET: "local"
       DATASTORE_EMULATOR_HOST: datastore:8432
-      EQ_SUBMISSION_BACKEND: "log"
       EQ_REDIS_HOST: "redis"
-      EQ_REDIS_PORT: "6379"
     restart: always
     depends_on:
       - datastore
@@ -43,8 +29,8 @@ services:
     ports:
       - "5000:5000"
 
-  go-launch-a-survey:
-    image: onsdigital/go-launch-a-survey:latest
+  eq-questionnaire-launcher:
+    image: onsdigital/eq-questionnaire-launcher:latest
     environment:
       SURVEY_RUNNER_URL: http://localhost:5000
       SURVEY_RUNNER_SCHEMA_URL: http://eq-survey-runner:5000

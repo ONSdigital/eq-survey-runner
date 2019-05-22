@@ -30,9 +30,7 @@ Once we know more about the implementation a decision will be made whether answe
 
 ---
 
-## Getting Set Up
-
-### Run with Docker
+## Run with Docker
 
 Install Docker for your system: https://www.docker.com/
 
@@ -59,33 +57,7 @@ If you need to rebuild the container from scratch to re-load any dependencies th
 docker-compose build --no-cache
 ```
 
-To run just the unit tests inside Docker:
-
-```
-docker build -t onsdigital/eq-survey-runner .
-docker build -t onsdigital/eq-survey-runner-unit-tests -f Dockerfile.test .
-docker run onsdigital/eq-survey-runner-unit-tests
-```
-
-To run the unit tests locally:
-
-```
-pipenv run scripts/run_tests_unit.sh
-```
-
-If you want to run the app locally, but all other dependencies in docker, you can use the docker-compose-dev.yaml file:
-
-```
-docker-compose -f docker-compose-dev.yml up -d
-```
-
-You will also need these environment variables to your bash profile:
-
-```
-export EQ_DATASTORE_EMULATOR_CREDENTIALS="True"
-export DATASTORE_EMULATOR_HOST="localhost:8432"
-export DATASTORE_DATASET="local"
-```
+## Run locally
 
 ### Pre-Requisites
 
@@ -115,36 +87,54 @@ pipenv install --dev
 Run the server inside the virtual env created by Pipenv with:
 
 ```
-pipenv run ./scripts/run_app.sh
+make run
 ```
 
-Note, you will also need to run an upstream tool (eg, https://github.com/ONSDigital/go-launch-a-survey) to launch a survey.
+### Supporting services
+
+Runner requires three supporting services - a questionnaire launcher, a storage backend, and a cache.
+
+#### Run supporting services with Docker
+
+To run the app locally, but the supporting services in Docker, run:
 
 ```
-docker run -e SURVEY_RUNNER_SCHEMA_URL=http://docker.for.mac.host.internal:5000 -it -p 8000:8000 onsdigital/go-launch-a-survey:latest
+make dev-compose-up
 ```
 
-This will generate a JWT for you to log into the application.
+#### Run supporting services locally
 
-The data storage backend is configurable with the `EQ_STORAGE_BACKEND` environment variable. You will need to run an emulator if you are setting this to DynamoDB or Google Datastore:
+##### Questionnaire launcher
 
-DynamoDB: <https://github.com/ONSDigital/eq-docker-dynamodb>
+https://github.com/ONSDigital/eq-questionnaire-launcher
 
-Google Datastore: <https://hub.docker.com/r/knarz/datastore-emulator/>
+```
+docker run -e SURVEY_RUNNER_SCHEMA_URL=http://docker.for.mac.host.internal:5000 -it -p 8000:8000 onsdigital/eq-questionnaire-launcher:latest
+```
+
+##### Storage backend
+
+DynamoDB - https://github.com/ONSDigital/eq-docker-dynamodb
 
 ```
 docker run -it -p 6060:8000 onsdigital/eq-docker-dynamodb:latest
-OR
+```
+
+or
+
+Google Datastore - https://hub.docker.com/r/knarz/datastore-emulator/
+
+```
 docker run -it -p 8432:8432 knarz/datastore-emulator:latest
 ```
 
-You will also need to run Redis as a cache for JTI tokens
+##### Cache
 
 ```
 docker run -it -p 6379:6379 redis:4
 ```
 
----
+#### Using Google Cloud Platform for supporting services
 
 To use `EQ_STORAGE_BACKEND` as `datastore` or `EQ_SUBMISSION_BACKEND` as `gcs` directly on GCP and not a docker image, you need to set the GCP project using the following command:
 
@@ -156,7 +146,7 @@ Or set the `GOOGLE_CLOUD_PROJECT` environment variable to your gcp project id.
 
 ---
 
-#### Frontend Tests
+## Frontend Tests
 
 The frontend tests use NodeJS to run. You will need to have node version 8.X to run these tests. To do this, do the following commands:
 
@@ -182,8 +172,6 @@ Available commands:
 
 | Command                | Task                                                                                                    |
 | ---------------------- | ------------------------------------------------------------------------------------------------------- |
-| `yarn test`            | Runs the unit tests through Karma and the functional tests through a local Selenium instance.           |
-| `yarn test_unit`       | Watches the unit tests via Karma.                                                                       |
 | `yarn test_functional` | Runs the functional tests through ChimpJS (requires app running on localhost:5000 and generated pages). |
 | `yarn test_cypress`    | Runs the Cypress functional tests (requires app running on localhost:5000 and generated pages).         |
 | `yarn generate_pages`  | Generates the functional test pages.                                                                    |
@@ -196,9 +184,9 @@ Available commands:
 
 The functional tests use a set of selectors that are generated from each of the test schemas. These make it quick to add new functional tests.
 
-To run the functional tests use the script:
+To run the functional tests run :
 
-`./scripts/run_tests_functional.sh`
+`make test-functional`
 
 This will delete the `tests/functional/generated_pages` directory and regenerate all the files in it from the schemas.
 
@@ -236,9 +224,13 @@ To run the tests against a remote deployment you will need to specify the enviro
 
 To run the census functional tests within the cypress UI:
 
+```
 ./node_modules/cypress/bin/cypress open
+```
 
-### Deployment with [Helm](https://helm.sh/)
+---
+
+## Deployment with [Helm](https://helm.sh/)
 
 To deploy this application with helm, you must have a kubernetes cluster already running and be logged into the cluster.
 
@@ -254,19 +246,22 @@ You need to have Helm installed locally
 
 2. Install Helm Tiller plugin for _Tillerless_ deploys `helm plugin install https://github.com/rimusz/helm-tiller`
 
+
+### Deploying credentials
+
 Before deploying the app to a cluster you need to create the application credentials on Kubernetes. Run the following command to provision the credentials:
 
 ```
 EQ_KEYS_FILE=PATH_TO_KEYS_FILE EQ_SECRETS_FILE=PATH_TO_SECRETS_FILE ./k8s/deploy_credentials.sh
 ```
 
-##### Example
+For example:
 
 ```
-EQ_KEYS_FILE=docker-keys.yml EQ_SECRETS_FILE=docker-secrets.yml ./k8s/deploy_credentials.sh
+EQ_KEYS_FILE=dev-keys.yml EQ_SECRETS_FILE=dev-secrets.yml ./k8s/deploy_credentials.sh
 ```
 
----
+### Deploying the app
 
 To deploy the app to the cluster, run the following command:
 
@@ -274,13 +269,15 @@ To deploy the app to the cluster, run the following command:
 ./k8s/deploy_app.sh <SUBMISSION_BUCKET_NAME> <DOCKER_REGISTRY> <IMAGE_TAG>
 ```
 
-##### Example
+For example:
 
 ```
 ./k8s/deploy_app.sh census-eq-dev-1234567-survey-runner-submission eu.gcr.io/census-eq-dev v3.0.0
 ```
 
-### Internationalisation
+---
+
+## Internationalisation
 
 We use flask-babel to do internationalisation. To extract messages from source, in the project root run the following command.
 
@@ -304,29 +301,7 @@ To create the gaelic language files, use the following:
 pipenv run pybabel init -i app/translations/messages.pot -d app/translations -l gd
 ```
 
-#### Getting text translated
-
-Our current language translation service requires a .csv rather than a .po file. To convert a .po file to a .csv you'll need to install the Python translate-toolkit:
-
-```
-brew install translate-toolkit
-```
-
-To generate the .csv file:
-
-```
-po2csv app/translations/cy/LC_MESSAGES/messages.po app.translations/static-cy.csv
-```
-
-To convert back to a .po file:
-
-```
-csv2po app.translations/static-cy.csv app/translations/cy/LC_MESSAGES/messages.po
-```
-
-_Important:_ There are some encoding issues when opening the .csv file in Excel. Opening in Google sheets and saving as a .xslx file resolves this.
-
-#### Compiling the translations
+### Compiling the translations
 
 To compile the language files for use in the application, use the following:
 
@@ -341,7 +316,9 @@ To update the language strings, use:
 pipenv run pybabel update -i app/translations/messages.pot -d app/translations
 ```
 
-### Environment Variables
+---
+
+## Environment Variables
 
 The following env variables can be used
 
@@ -396,7 +373,9 @@ The following env variables can be used when running tests
 EQ_FUNCTIONAL_TEST_ENV - the pre-configured environment [local, docker, preprod] or the url of the environment that should be targeted
 ```
 
-### JWT Integration
+---
+
+## JWT Integration
 
 Integration with the survey runner requires the use of a signed JWT using public and private key pair (see https://jwt.io,
 https://tools.ietf.org/html/rfc7519, https://tools.ietf.org/html/rfc7515).
@@ -428,10 +407,11 @@ There is a python script for generating tokens for use in development, to run:
 python token_generator.py
 ```
 
-### Profiling
+---
 
-Setting the `EQ_PROFILING` environment variable to `True` will enable profiling of the application. Profiling information
-will be collected per-request in the `profiling` directory where it can be examined using the Pstats Interactive Browser.
+## Profiling
+
+To profile the application run `make profile`. Profiling information will be collected per-request in the `profiling` directory where it can be examined using the Pstats Interactive Browser.
 
 `$ python -m pstats <filename>`
 
@@ -448,15 +428,8 @@ pipenv run python scripts/merge_profiles.py
 snakeviz combined_profile.prof
 ```
 
-### Updating / Installing dependencies
+## Updating / Installing dependencies
 
 To add a new dependency, use `pipenv install [package-name]`, which not only installs the package but Pipenv will also go to the trouble of updating the Pipfile as well.
 
 NB: both the Pipfile and Pipfile.lock files are required in source control to accurately pin dependencies.
-
-### Alpha Survey Runner
-
-If you're looking for the Survey Runner code from the Alpha then it has been renamed to: alpha-eq-survey-runner
-
--   https://github.com/ONSdigital/alpha-eq-survey-runner
-

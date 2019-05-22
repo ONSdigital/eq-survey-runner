@@ -12,8 +12,8 @@ services:
     ports:
       - "6379:6379"
 
-  go-launch-a-survey:
-    image: onsdigital/go-launch-a-survey:latest
+  eq-questionnaire-launcher:
+    image: onsdigital/eq-questionnaire-launcher:latest
     environment:
       SURVEY_RUNNER_URL: http://localhost:5000
       SURVEY_RUNNER_SCHEMA_URL: http://docker.for.mac.host.internal:5000

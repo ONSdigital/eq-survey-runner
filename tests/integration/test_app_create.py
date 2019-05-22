@@ -185,6 +185,7 @@ class TestCreateApp(unittest.TestCase):  # pylint: disable=too-many-public-metho
     def test_rabbit_submitter_secondary_host_not_set_raises_exception(self):
         # Given
         self._setting_overrides['EQ_SUBMISSION_BACKEND'] = 'rabbitmq'
+        self._setting_overrides['EQ_RABBITMQ_HOST'] = 'host-1'
         self._setting_overrides['EQ_RABBITMQ_HOST_SECONDARY'] = ''
 
         # When
