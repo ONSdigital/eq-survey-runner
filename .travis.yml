@@ -45,11 +45,11 @@ cache:
 script:
     - set -e
     - make travis
-    - export TAG=`if [ "$TRAVIS_PULL_REQUEST_BRANCH" == "" ]; then echo "v3"; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi`
-    - docker build -t onsdigital/eq-survey-runner:$TAG -f Dockerfile .
-    - echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USERNAME --password-stdin
+    - export TAG="${TRAVIS_PULL_REQUEST_BRANCH:-latest}"
+    - docker build -t eu.gcr.io/census-eq-ci/eq-survey-runner:"$TAG" .
+    - echo "$DOCKER_GCR_PASSWORD" | base64 --decode | docker login -u "$DOCKER_GCR_USERNAME" --password-stdin https://eu.gcr.io
     - echo "Pushing with tag [$TAG]"
-    - docker push onsdigital/eq-survey-runner:$TAG
+    - docker push eu.gcr.io/census-eq-ci/eq-survey-runner:"$TAG"
 after_success:
     - pipenv run bash <(curl -s https://codecov.io/bash)
     - pipenv run pip install codacy-coverage
