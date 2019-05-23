@@ -24,7 +24,7 @@ SR_USER_AUTHENTICATION_PUBLIC_KEY_KID = 'e19091072f920cbf3ca9f436ceba309e7d814a6
 EQ_SUBMISSION_SDX_PRIVATE_KEY = '2225f01580a949801274a5f3e6861947018aff5b'
 EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY = 'fe425f951a0917d7acdd49230b23a5c405c28510'
 
-KEYS_FOLDER = './jwt-test-keys'
+KEYS_FOLDER = './tests/data/jwt-test-keys'
 
 
 def get_file_contents(filename, trim=False):
@@ -67,21 +67,21 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
                         'purpose': KEY_PURPOSE_AUTHENTICATION,
                         'type': 'private',
                         'value': get_file_contents(
-                            'third-party/sdc-rrm-authentication-signing-private-v1.pem'
+                            'sdc-rrm-authentication-signing-private-v1.pem'
                         ),
                     },
                     SR_USER_AUTHENTICATION_PUBLIC_KEY_KID: {
                         'purpose': KEY_PURPOSE_AUTHENTICATION,
                         'type': 'public',
                         'value': get_file_contents(
-                            'third-party/sdc-sr-authentication-encryption-public-v1.pem'
+                            'sdc-sr-authentication-encryption-public-v1.pem'
                         ),
                     },
                     EQ_SUBMISSION_SDX_PRIVATE_KEY: {
                         'purpose': KEY_PURPOSE_SUBMISSION,
                         'type': 'private',
                         'value': get_file_contents(
-                            'third-party/sdc-sdx-submission-encryption-private-v1.pem'
+                            'sdc-sdx-submission-encryption-private-v1.pem'
                         ),
                     },
                     EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY: {

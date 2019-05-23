@@ -11,7 +11,7 @@ from app.forms.custom_fields import (
     CustomSelectMultipleField,
     CustomSelectField,
 )
-from app.forms.date_form import MonthYearField, YearField, DateField
+from app.forms.date_form import DateField, DateFormType
 from app.forms.duration_form import get_duration_form
 from app.validation.validators import (
     NumberCheck,
@@ -147,6 +147,7 @@ def get_text_area_field(
 
 def get_date_field(answer, label, guidance, error_messages, answer_store, metadata):
     return DateField(
+        DateFormType.YearMonthDay,
         answer_store,
         metadata,
         answer,
@@ -159,10 +160,11 @@ def get_date_field(answer, label, guidance, error_messages, answer_store, metada
 def get_month_year_field(
     answer, label, guidance, error_messages, answer_store, metadata
 ):
-    return MonthYearField(
-        answer,
+    return DateField(
+        DateFormType.YearMonth,
         answer_store,
         metadata,
+        answer,
         error_messages,
         label=label,
         description=guidance,
@@ -170,10 +172,11 @@ def get_month_year_field(
 
 
 def get_year_field(answer, label, guidance, error_messages, answer_store, metadata):
-    return YearField(
-        answer,
+    return DateField(
+        DateFormType.Year,
         answer_store,
         metadata,
+        answer,
         error_messages,
         label=label,
         description=guidance,

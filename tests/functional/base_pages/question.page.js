@@ -7,6 +7,8 @@ class QuestionPage extends BasePage {
     this.questions = [];
   }
 
+  url() { return "/questionnaire/" + this.pageName; }
+
   myAccountLink() { return '#my-account'; }
 
   summaryQuestionText() { return '.summary__item-title'; }
