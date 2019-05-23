@@ -102,6 +102,12 @@ To run the app locally, but the supporting services in Docker, run:
 make dev-compose-up
 ```
 
+Note that on Linux you will need to use:
+
+```
+make dev-compose-up-linux
+```
+
 #### Run supporting services locally
 
 ##### Questionnaire launcher
