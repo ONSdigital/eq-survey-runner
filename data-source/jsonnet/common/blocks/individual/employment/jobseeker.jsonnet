@@ -40,8 +40,8 @@ local proxyTitle = {
     placeholders.personName,
   ],
 };
-local nonProxyGuidanceHeader = 'Why do I need to answer if I am retired or long term sick or disabled?';
-local proxyGuidanceHeader = 'Why do I need to answer if they have retired or are long term sick or disabled?';
+local nonProxyGuidanceHeader = 'Why do I need to answer if I am retired or long-term sick or disabled?';
+local proxyGuidanceHeader = 'Why do I need to answer if they have retired or are long-term sick or disabled?';
 
 {
   type: 'Question',

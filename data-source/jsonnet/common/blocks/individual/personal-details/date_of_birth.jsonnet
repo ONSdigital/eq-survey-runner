@@ -4,6 +4,13 @@ local rules = import '../../../lib/rules.libsonnet';
 local question(title) = {
   id: 'date-of-birth-question',
   title: title,
+  guidance: {
+    content: [
+      {
+        title: 'For example 31 12 1970',
+      },
+    ],
+  },
   type: 'General',
   answers: [
     {

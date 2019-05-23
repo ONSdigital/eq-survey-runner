@@ -23,7 +23,7 @@ local question(title) = {
         {
           label: 'Resident',
           value: 'Resident',
-          description: 'For example, student, member of Armed Forces, patient, detainee',
+          description: 'For example, student, member of armed forces, patient, detainee',
         },
         {
           label: 'Staff or owner',
