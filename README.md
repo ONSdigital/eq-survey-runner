@@ -84,6 +84,12 @@ pip install --upgrade pip setuptools pipenv
 pipenv install --dev
 ```
 
+To update the design system templates run:
+
+```
+pipenv run ./scripts/load_templates.sh
+```
+
 Run the server inside the virtual env created by Pipenv with:
 
 ```
