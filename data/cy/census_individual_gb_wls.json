@@ -692,7 +692,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "A question about gender will follow"
+                                                    "title": "Bydd cwestiwn am rywedd yn dilyn yn nes ymlaen"
                                                 }
                                             ]
                                         },
@@ -1675,7 +1675,7 @@
                                                         "description": "We mean a different address to the one at the start of this survey. This might be another parent or guardian\u2019s address, a term-time address, a partner's address or a holiday home."
                                                     }
                                                 ],
-                                                "title": "What do we mean by \u201canother address\u201d?"
+                                                "title": "Beth mae \u201ccyfeiriad arall\u201d yn ei olygu?"
                                             }
                                         ],
                                         "description": "Gallai hyn fod yn fwy na 30 diwrnod un ar \u00f4l y llall neu wedi\u2019u rhannu ar hyd y flwyddyn",
@@ -3751,7 +3751,7 @@
                                                         "description": "Eich prif iaith yw\u2019r iaith rydych chi\u2019n ei defnyddio\u2019n fwyaf naturiol, er enghraifft, yr iaith rydych chi\u2019n ei defnyddio gartref."
                                                     }
                                                 ],
-                                                "title": "What do we mean by \u201cmain language\u201d?"
+                                                "title": "Beth mae \u201cprif iaith\u201d yn ei olygu?"
                                             }
                                         ],
                                         "id": "language-question",
@@ -4038,7 +4038,7 @@
                                                         "description": "Gallai olygu\u2019r wlad neu\u2019r gwledydd lle rydych chi\u2019n teimlo eich bod yn perthyn, neu sy\u2019n teimlo fel cartref i chi."
                                                     }
                                                 ],
-                                                "title": "What do we mean by \u201cnational identity\u201d?"
+                                                "title": "Beth mae \u201chunaniaeth genedlaethol\u201d yn ei olygu?"
                                             }
                                         ],
                                         "id": "national-identity-question",
@@ -5861,7 +5861,7 @@
                                                         "description": "Dylech ystyried cyflyrau sydd bob amser yn effeithio arnoch a\u2019r rhai sy\u2019n ailgychwyn o bryd i\u2019w gilydd. \nGall hyn gynnwys, er enghraifft, gyflwr synhwyraidd, cyflwr datblygiadol neu anhawster dysgu."
                                                     }
                                                 ],
-                                                "title": "What do we mean by \u201cphysical and mental health conditions or illness\u201d?"
+                                                "title": "Beth mae \u201ccyflwr neu salwch corfforol neu feddyliol\u201d yn ei olygu?"
                                             }
                                         ],
                                         "id": "disability-question",
@@ -6601,7 +6601,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Include equivalent apprenticeships completed anywhere outside Wales and England"
+                                                    "title": "Dylech gynnwys prentisiaethau cyfatebol sydd wedi eu cwblhau unrhyw le y tu allan i Gymru a Lloegr"
                                                 }
                                             ]
                                         },
@@ -6708,7 +6708,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Include equivalent qualifications achieved anywhere outside Wales and England"
+                                                    "title": "Dylech chi hefyd gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
                                                 }
                                             ]
                                         },
@@ -6832,7 +6832,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Include equivalent qualifications achieved anywhere outside Wales and England"
+                                                    "title": "Dylech chi hefyd gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
                                                 }
                                             ]
                                         },
@@ -6978,7 +6978,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Include equivalent qualifications achieved anywhere outside Wales and England"
+                                                    "title": "Dylech chi hefyd gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
                                                 }
                                             ]
                                         },
@@ -7132,7 +7132,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Include equivalent qualifications achieved anywhere outside Wales and England"
+                                                    "title": "Dylech chi hefyd gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
                                                 }
                                             ]
                                         },
@@ -7438,7 +7438,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Current serving members should select \u201cNo\u201d"
+                                                    "title": "Aelodau sy\u2019n gwasanaethu ar hyn o bryd, dewiswch \u2018Nac ydy\u2019 yn unig"
                                                 }
                                             ]
                                         },
@@ -7578,7 +7578,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Include casual or temporary work, even if only for one hour"
+                                                    "title": "Dylech gynnwys gwaith achlysurol neu dros dro, hyd yn oed os mai dim ond am awr y buoch chi\u2019n gweithio"
                                                 }
                                             ]
                                         },
@@ -9656,7 +9656,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Include paid and unpaid overtime"
+                                                    "title": "Dylech gynnwys oriau ychwanegol am d\u00e2l neu heb d\u00e2l"
                                                 }
                                             ]
                                         },
