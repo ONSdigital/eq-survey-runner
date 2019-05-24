@@ -109,7 +109,7 @@ make dev-compose-up
 https://github.com/ONSDigital/eq-questionnaire-launcher
 
 ```
-docker run -e SURVEY_RUNNER_SCHEMA_URL=http://docker.for.mac.host.internal:5000 -it -p 8000:8000 onsdigital/eq-questionnaire-launcher:latest
+docker run -e SURVEY_RUNNER_SCHEMA_URL=http://docker.for.mac.host.internal:5000 -it -p 8000:8000 eu.gcr.io/census-eq-ci/eq-questionnaire-launcher:latest
 ```
 
 ##### Storage backend
