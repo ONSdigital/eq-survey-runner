@@ -23,7 +23,6 @@ local question(title, region_code) = (
       {
         id: 'religion-answer',
         mandatory: false,
-        label: 'Select one option only',
         options: [
           {
             label: 'No religion',

@@ -10,7 +10,6 @@ local question(title) = {
     {
       id: 'birth-gender-answer',
       mandatory: true,
-      label: 'Select one option only',
       options: [
         {
           label: 'Yes',
