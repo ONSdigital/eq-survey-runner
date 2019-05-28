@@ -215,7 +215,7 @@
                                     "type": "Currency",
                                     "label": "Value of raw materials and consumable stores at start of period",
                                     "q_code": "319",
-                                    "description": "",
+                                    "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
                                     "decimal_places": 2,
                                     "currency": "GBP"
                                 },
@@ -279,7 +279,7 @@
                                     "type": "Currency",
                                     "label": "Value of all other stocks at start of period",
                                     "q_code": "329",
-                                    "description": "",
+                                    "description": "Enter the full value (e.g. 56,234.33) or a value to the nearest £thousand (e.g. 56,000). Do not enter ‘56’ for £56,000.",
                                     "decimal_places": 2,
                                     "currency": "GBP"
                                 },
@@ -451,6 +451,7 @@
                         "questions": [{
                             "id": "question4712",
                             "title": "Explain any differences between this quarter&apos;s opening value and the previously returned closing value",
+                            "description": "<p> Include any unusual fluctuations in figures </p>",
                             "type": "General",
                             "answers": [{
                                 "id": "answer5976",
