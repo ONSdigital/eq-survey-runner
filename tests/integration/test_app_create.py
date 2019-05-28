@@ -99,14 +99,20 @@ class TestCreateApp(unittest.TestCase):
             csp_policy_parts = headers['Content-Security-Policy'].split('; ')
             self.assertIn("default-src 'self' https://cdn.ons.gov.uk", csp_policy_parts)
             self.assertIn(
-                "script-src 'self' https://www.google-analytics.com https://cdn.ons.gov.uk 'nonce-{}'".format(
+                "font-src 'self' data: https://fonts.gstatic.com https://cdn.ons.gov.uk", csp_policy_parts)
+            self.assertIn(
+                "script-src 'self' https://www.googletagmanager.com https://cdn.ons.gov.uk 'nonce-{}'".format(
                     request.csp_nonce),
                 csp_policy_parts
             )
             self.assertIn(
-                "img-src 'self' data: https://www.google-analytics.com https://cdn.ons.gov.uk", csp_policy_parts)
+                "connect-src 'self' https://www.googletagmanager.com https://tagmanager.google.com https://cdn.ons.gov.uk "
+                'http://localhost:5075 ws://localhost:5075', csp_policy_parts)
             self.assertIn(
-                "font-src 'self' data: https://cdn.ons.gov.uk", csp_policy_parts)
+                "img-src 'self' data: https://www.gstatic.com https://www.google-analytics.com "
+                'https://www.googletagmanager.com https://ssl.gstatic.com https://cdn.ons.gov.uk', csp_policy_parts)
+            self.assertIn(
+                "style-src 'self' https://cdn.ons.gov.uk 'unsafe-inline' https://tagmanager.google.com https://fonts.googleapis.com", csp_policy_parts)
 
     # Indirectly covered by higher level integration
     # tests, keeping to highlight that create_app is where

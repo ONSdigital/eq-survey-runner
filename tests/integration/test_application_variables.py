@@ -8,7 +8,8 @@ class TestApplicationVariables(IntegrationTestCase):
         settings.EQ_ENABLE_FLASK_DEBUG_TOOLBAR = True
         settings.EQ_DEV_MODE = True
         settings.EQ_ENABLE_LIVE_RELOAD = True
-        settings.EQ_UA_ID = 'TestId'
+        settings.EQ_GTM_ID = 'TestId'
+        settings.EQ_GTM_ENV_ID = 'Dev'
         super().setUp()
 
     def tearDown(self):
@@ -16,7 +17,8 @@ class TestApplicationVariables(IntegrationTestCase):
         settings.EQ_ENABLE_FLASK_DEBUG_TOOLBAR = False
         settings.EQ_DEV_MODE = False
         settings.EQ_ENABLE_LIVE_RELOAD = False
-        settings.EQ_UA_ID = None
+        settings.EQ_GTM_ID = None
+        settings.EQ_GTM_ENV_ID = None
 
     def test_flask_toolbar_is_displayed(self):
         self.launchSurvey('0', 'star_wars')
@@ -26,7 +28,7 @@ class TestApplicationVariables(IntegrationTestCase):
     def test_google_analytics_code_is_present(self):
         self.launchSurvey('0', 'star_wars')
         self.assertStatusOK()
-        self.assertInHead('GoogleAnalyticsObject')
+        self.assertInHead('GoogleTagManagerObject')
 
     def test_livereload_script_rendered(self):
         self.launchSurvey('0', 'star_wars')
