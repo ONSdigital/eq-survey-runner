@@ -28,7 +28,7 @@ local question(title) = {
         {
           label: 'Yes',
           value: 'Yes',
-          description: 'For example trade, advanced, foundation or modern apprenticeships',
+          description: 'For example, trade, advanced, foundation or modern apprenticeships',
         },
         {
           label: 'No',

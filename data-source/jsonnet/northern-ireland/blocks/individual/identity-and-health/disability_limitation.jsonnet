@@ -18,12 +18,16 @@ local question(title) = {
       mandatory: true,
       options: [
         {
-          label: 'Yes',
-          value: 'Yes',
-        },
-        {
           label: 'No',
           value: 'No',
+        },
+        {
+          label: 'Yes, limited a little',
+          value: 'Yes, limited a little',
+        },
+        {
+          label: 'Yes, limited a lot',
+          value: 'Yes, limited a lot',
         },
       ],
       type: 'Radio',

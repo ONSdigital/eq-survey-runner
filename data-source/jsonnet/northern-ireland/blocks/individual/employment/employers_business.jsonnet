@@ -1,5 +1,5 @@
-local placeholders = import '../../../lib/placeholders.libsonnet';
-local rules = import '../../../lib/rules.libsonnet';
+local placeholders = import '../../../../common/lib/placeholders.libsonnet';
+local rules = import '../../../../common/lib/rules.libsonnet';
 
 local nonProxyTitle = 'What is the main activity of your organisation, business or freelance work?';
 local proxyTitle = {
@@ -17,45 +17,47 @@ local pastProxyTitle = {
   ],
 };
 
-local englandDescription = 'For example, clothing retail, general hospital, primary education, food wholesale, civil service DWP, local government housing.';
-local walesDescription = 'For example, clothing retail, general hospital, primary education, food wholesale, civil service (Welsh Government), local government (housing).';
-
-local question(title, region_code) = (
-  local description = if region_code == 'GB-WLS' then walesDescription else englandDescription;
+local question(title) = (
   {
     id: 'employers-business-question',
     title: title,
-    description: description,
+    description: 'For example clothing retail, general hospital, primary education, food wholesale, civil service, local government housing.',
     type: 'General',
     answers: [
       {
         id: 'employers-business-answer',
         label: 'Description',
         mandatory: true,
-        type: 'TextField',
+        type: 'TextArea',
+        max_length: 200,
+        validation: {
+          messages: {
+            MAX_LENGTH_EXCEEDED: 'Your answer has to be less than %(max)d characters long',
+          },
+        },
       },
     ],
   }
 );
 
-function(region_code) {
+{
   type: 'Question',
   id: 'employers-business',
   question_variants: [
     {
-      question: question(nonProxyTitle, region_code),
+      question: question(nonProxyTitle),
       when: [rules.proxyNo, rules.mainJob],
     },
     {
-      question: question(proxyTitle, region_code),
+      question: question(proxyTitle),
       when: [rules.proxyYes, rules.mainJob],
     },
     {
-      question: question(pastNonProxyTitle, region_code),
+      question: question(pastNonProxyTitle),
       when: [rules.proxyNo, rules.lastMainJob],
     },
     {
-      question: question(pastProxyTitle, region_code),
+      question: question(pastProxyTitle),
       when: [rules.proxyYes, rules.lastMainJob],
     },
   ],

@@ -11,7 +11,7 @@
   },
   over16: {
     id: 'date-of-birth-answer',
-    condition: 'less than',
+    condition: 'less than or equal to',
     date_comparison: {
       value: 'now',
       offset_by: {

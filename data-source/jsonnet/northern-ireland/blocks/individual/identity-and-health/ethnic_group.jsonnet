@@ -54,15 +54,21 @@ local question(title) = {
         {
           label: 'Mixed ethnic group',
           value: 'Mixed ethnic group',
-        },
-        {
-          label: 'Other ethnic group',
-          value: 'Other ethnic group',
           detail_answer: {
-            id: 'ehtnic-group-other',
+            id: 'ethnic-group-mixed',
             type: 'TextField',
             mandatory: false,
-            label: 'Please specify other religion',
+            label: 'Please specify mixed ethnic group',
+          },
+        },
+        {
+          label: 'Any other ethnic group',
+          value: 'Any other ethnic group',
+          detail_answer: {
+            id: 'ethnic-group-other',
+            type: 'TextField',
+            mandatory: false,
+            label: 'Please specify other ethnic group',
           },
         },
       ],

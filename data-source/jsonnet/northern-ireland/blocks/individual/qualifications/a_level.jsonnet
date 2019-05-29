@@ -1,9 +1,9 @@
 local placeholders = import '../../../../common/lib/placeholders.libsonnet';
 local rules = import '../../../../common/lib/rules.libsonnet';
 
-local nonProxyTitle = 'Have you achieved an AS, A level or equivalent qualification?';
+local nonProxyTitle = 'Have you achieved an A level, AS level or equivalent qualifications?';
 local proxyTitle = {
-  text: 'Has <em>{person_name}</em> achieved an AS, A level or equivalent qualification?',
+  text: 'Has <em>{person_name}</em> achieved an A level, AS level or equivalent qualifications?',
   placeholders: [
     placeholders.personName,
   ],
@@ -35,7 +35,7 @@ local question(title) = {
         {
           label: '1 A level',
           value: '1 A level',
-          description: 'Include 2 to 3 AS levels',
+          description: 'Include 2 or 3 AS levels',
         },
         {
           label: '1 AS level',

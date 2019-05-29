@@ -12,7 +12,8 @@ local proxyTitle = {
 local question(title) = {
   id: 'no-religion-question',
   title: title,
-  type: 'General',
+  type: 'MutuallyExclusive',
+  mandatory: false,
   answers: [
     {
       id: 'no-religion-answer',
@@ -45,12 +46,19 @@ local question(title) = {
             label: 'Please specify religion, religious denomination or body',
           },
         },
+      ],
+      type: 'Checkbox',
+    },
+    {
+      id: 'no-religion-answer-exclusive',
+      type: 'Checkbox',
+      mandatory: false,
+      options: [
         {
           label: 'None',
           value: 'None',
         },
       ],
-      type: 'Radio',
     },
   ],
 };

@@ -37,11 +37,6 @@ local question(title) = {
           value: 'Any other GCSEs',
           description: 'Include any other O levels or CSEs at any grades',
         },
-        {
-          label: 'Basic skills course',
-          value: 'Basic skills course',
-          description: 'Skills for life, literacy, numeracy and language',
-        },
       ],
     },
     {
@@ -101,7 +96,7 @@ local question(title) = {
     },
     {
       goto: {
-        group: 'employment-group',
+        block: 'apprenticeship',
       },
     },
   ],

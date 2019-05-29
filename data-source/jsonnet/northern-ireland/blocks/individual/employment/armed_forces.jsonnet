@@ -7,7 +7,7 @@ local question(title) = {
   guidance: {
     contents: [
       {
-        title: 'Current serving members should select “No”',
+        title: 'Current serving members should only select “No”',
       },
     ],
   },
@@ -16,15 +16,6 @@ local question(title) = {
     {
       id: 'armed-forces-answer',
       mandatory: false,
-      guidance: {
-        show_guidance: 'Why your answer is important',
-        hide_guidance: 'Why your answer is important',
-        contents: [
-          {
-            description: 'We are measuring the number of people who have served in the UK Armed Forces and have now left. Government and councils need this information to carry out their commitments made under the Armed Forces Covenant. This is a promise by the nation ensuring that those who serve or who have served in the armed forces, and their families, are not disadvantaged.',
-          },
-        ],
-      },
       options: [
         {
           label: 'No',
@@ -44,9 +35,9 @@ local question(title) = {
   ],
 };
 
-local nonProxyTitle = 'Have you previously served in the UK Armed Forces?';
+local nonProxyTitle = 'Have you <em>previously</em> served in the UK Armed Forces?';
 local proxyTitle = {
-  text: 'Has <em>{person_name}</em> previously served in the UK Armed Forces?',
+  text: 'Has <em>{person_name}</em> <em>previously</em> served in the UK Armed Forces?',
   placeholders: [
     placeholders.personName,
   ],

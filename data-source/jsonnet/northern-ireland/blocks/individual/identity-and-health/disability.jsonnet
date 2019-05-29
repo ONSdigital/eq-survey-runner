@@ -20,13 +20,13 @@ local question(title) = {
           value: 'Blindness or partial sight loss',
         },
         {
+          label: 'A mobility or dexterity difficulty, which requires the use of a wheelchair in the home',
+          value: 'Full mobility',
+        },
+        {
           label: 'A mobility or dexterity difficulty that limits basic physical activities',
           value: 'Slight mobility',
           description: 'For example walking or dressing',
-        },
-        {
-          label: 'A mobility or dexterity difficulty, which requires the use of a wheelchair in the home',
-          value: 'Full mobility',
         },
         {
           label: 'Shortness of breath or difficulty breathing',
@@ -50,10 +50,10 @@ local question(title) = {
   ],
 };
 
-local nonProxyTitle = 'Do you have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?';
+local nonProxyTitle = 'Do you have any of the following <em>physical health conditions</em> lasting or expected to last 12 months or more?';
 
 local proxyTitle = {
-  text: 'Does <em>{person_name}</em> have any of the following physical health conditions or illnesses lasting or expected to last 12 months or more?',
+  text: 'Does <em>{person_name}</em> have any of the following <em>physical health conditions</em> lasting or expected to last 12 months or more?',
   placeholders: [
     placeholders.personName,
   ],

@@ -12,26 +12,37 @@ local question(title) = {
       mandatory: false,
       options: [
         {
-          label: 'Deafness or partial hearing loss',
-          value: 'Deafness or partial hearing loss',
+          label: 'An intellectual or learning disability',
+          value: 'An intellectual or learning disability',
+          description: 'For example Down syndrome',
         },
         {
-          label: 'Blindness or partial sight loss',
-          value: 'Blindness or partial sight loss',
+          label: 'A learning difficulty',
+          value: 'A learning difficulty',
+          description: 'For example dyslexia',
         },
         {
-          label: 'A mobility or dexterity difficulty that limits basic physical activities',
-          value: 'Slight mobility',
-          description: 'For example walking or dressing',
+          label: 'Autism or Asperger syndrome',
+          value: 'Autism or Asperger syndrome',
         },
         {
-          label: 'A mobility or dexterity difficulty, which requires the use of a wheelchair in the home',
-          value: 'Full mobility',
+          label: 'An emotional, psychological or mental health condition',
+          value: 'An emotional, psychological or mental health condition',
+          description: 'For example depression or schizophrenia',
         },
         {
-          label: 'Shortness of breath or difficulty breathing',
+          label: 'Frequent periods of confusion or memory loss',
+          value: 'Frequent periods of confusion or memory loss',
+          description: 'For example dementia',
+        },
+        {
+          label: 'Long-term pain or discomfort',
+          value: 'Long-term pain or discomfort',
+        },
+        {
+          label: 'Other condition',
           value: 'Shortness of breath or difficulty breathing',
-          description: 'For example Asthma',
+          description: 'For example cancer, diabetes or heart disease',
         },
       ],
       type: 'Checkbox',
@@ -50,10 +61,10 @@ local question(title) = {
   ],
 };
 
-local nonProxyTitle = 'Do you have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?';
+local nonProxyTitle = 'Do you have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?';
 
 local proxyTitle = {
-  text: 'Does <em>{person_name}</em> have any of the following other health conditions or illnesses lasting or expected to last 12 months or more?',
+  text: 'Does <em>{person_name}</em> have any of the following <em>other health conditions</em> which have lasted, or are expected to last, at least 12 months?',
   placeholders: [
     placeholders.personName,
   ],
