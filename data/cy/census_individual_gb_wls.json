@@ -975,7 +975,7 @@
                                                             "arguments": {
                                                                 "date_format": "d MMMM YYYY",
                                                                 "date_to_format": {
-                                                                    "value": "2019-09-01"
+                                                                    "value": "2019-06-12"
                                                                 }
                                                             },
                                                             "transform": "format_date"
@@ -1052,7 +1052,7 @@
                                                             "arguments": {
                                                                 "date_format": "d MMMM YYYY",
                                                                 "date_to_format": {
-                                                                    "value": "2019-09-01"
+                                                                    "value": "2019-06-12"
                                                                 }
                                                             },
                                                             "transform": "format_date"
@@ -3301,7 +3301,7 @@
                                                     "offset_by": {
                                                         "years": -1
                                                     },
-                                                    "value": "2019-09-01"
+                                                    "value": "2019-06-12"
                                                 },
                                                 "id": "arrive-in-country-answer"
                                             }
@@ -3318,7 +3318,7 @@
                                                     "offset_by": {
                                                         "years": -1
                                                     },
-                                                    "value": "2019-09-01"
+                                                    "value": "2019-06-12"
                                                 },
                                                 "id": "arrive-in-country-answer"
                                             }
@@ -3365,7 +3365,7 @@
                                                             "arguments": {
                                                                 "date_format": "d MMMM YYYY",
                                                                 "date_to_format": {
-                                                                    "value": "2019-09-01"
+                                                                    "value": "2019-06-12"
                                                                 }
                                                             },
                                                             "transform": "format_date"
@@ -3432,7 +3432,7 @@
                                                             "arguments": {
                                                                 "date_format": "d MMMM YYYY",
                                                                 "date_to_format": {
-                                                                    "value": "2019-09-01"
+                                                                    "value": "2019-06-12"
                                                                 }
                                                             },
                                                             "transform": "format_date"
