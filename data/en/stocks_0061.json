@@ -19,8 +19,8 @@
                             "id": "primary",
                             "content": [{
                                 "list": [
-                                    "This survey covers UK businesses. The business is the individual company partnership or sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
-                                    "All stocks owned and either held by you or currently in transit within the United Kingdom - what it should be for guidance across all surveys",
+                                    "This survey covers UK businesses. The business is the individual company, partnership or sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
+                                    "All stocks owned and either held by you or currently in transit within the United Kingdom.",
                                     "We will treat your data securely and confidentially."
                                 ]
                             }]
@@ -38,7 +38,7 @@
                                     },
                                     {
                                         "list": [
-                                            "All stocks owned and either held by you or currently in transit within the United Kingdom - what it should be for guidance across all surveys",
+                                            "All stocks owned and either held by you or currently in transit within the United Kingdom.",
                                             "Duty for dutiable goods held out of bond",
                                             "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                         ]
