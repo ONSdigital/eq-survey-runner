@@ -39,11 +39,11 @@ local question(title) = {
   ],
 };
 
-local nonProxyTitle = 'Enter details of the other UK address where you stay for more than 30 days a year';
+local nonProxyTitle = 'Enter details of the other UK address where you stay for more than 30 days a year.';
 local proxyTitle = {
-  text: 'Enter details of the other UK address where <em>{person_name_possessive}</em> stays for more than 30 days a year?',
+  text: 'Enter details of the other UK address where <em>{person_name}</em> stays for more than 30 days a year.',
   placeholders: [
-    placeholders.personNamePossessive,
+    placeholders.personName,
   ],
 };
 

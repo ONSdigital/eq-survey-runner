@@ -47,9 +47,9 @@ local question(title) = {
 
 local nonProxyTitle = 'Do you stay at another address for more than 30 days a year?';
 local proxyTitle = {
-  text: 'Does <em>{person_name_possessive}</em> stay at another address for more than 30 days a year?',
+  text: 'Does <em>{person_name}</em> stay at another address for more than 30 days a year?',
   placeholders: [
-    placeholders.personNamePossessive,
+    placeholders.personName,
   ],
 };
 

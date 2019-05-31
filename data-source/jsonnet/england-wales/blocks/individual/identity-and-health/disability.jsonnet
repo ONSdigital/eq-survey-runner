@@ -6,7 +6,7 @@ local question(title, definitionContent) = {
   title: title,
   definitions: [
     {
-      title: 'What do we mean by “physical and mental health conditions or illness”?',
+      title: 'What do we mean by “physical and mental health conditions or illnesses”?',
       content: definitionContent,
     },
   ],

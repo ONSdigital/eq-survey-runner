@@ -10,13 +10,7 @@ local question(title) = {
       id: 'job-description-answer',
       label: 'Description',
       mandatory: true,
-      type: 'TextArea',
-      max_length: 200,
-      validation: {
-        messages: {
-          MAX_LENGTH_EXCEEDED: 'Your answer has to be less than %(max)d characters long',
-        },
-      },
+      type: 'TextField',
     },
   ],
 };

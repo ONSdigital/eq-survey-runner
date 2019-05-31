@@ -39,8 +39,8 @@ local question(title) = {
   ],
 };
 
-local nonProxyTitle = 'Enter details of your address one year ago';
-local proxyTitle = 'Enter details of their address one year ago';
+local nonProxyTitle = 'Enter details of your address one year ago.';
+local proxyTitle = 'Enter details of their address one year ago.';
 
 {
   type: 'Question',

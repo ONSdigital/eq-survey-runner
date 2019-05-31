@@ -34,7 +34,7 @@ local question(title, region_code) = (
           {
             label: 'Yes',
             value: 'Yes',
-            description: 'For example degree, foundation degree, HND or HNC, NVQ level 4 and above, teaching or nursing',
+            description: 'For example, degree, foundation degree, HND or HNC, NVQ level 4 and above, teaching or nursing',
           },
           {
             label: 'No',

@@ -39,9 +39,9 @@ local question(title) = {
   ],
 };
 
-local nonProxyTitle = 'Enter details of the UK address where you usually stay during term time';
+local nonProxyTitle = 'Enter details of the UK address where you usually stay during term time.';
 local proxyTitle = {
-  text: 'Enter details of the UK address where <em>{person_name}</em> usually stays during term time',
+  text: 'Enter details of the UK address where <em>{person_name}</em> usually stays during term time.',
   placeholders: [
     placeholders.personName,
   ],
