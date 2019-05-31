@@ -19,8 +19,8 @@
                             "id": "primary",
                             "content": [{
                                 "list": [
-                                    "This survey covers UK businesses. The business is the individual company partnership or sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
-                                    "All stocks owned and either held by you or currently in transit within the United Kingdom - what it should be for guidance across all surveys",
+                                    "This survey covers UK businesses. The business is the individual company, partnership or sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
+                                    "All stocks owned and either held by you or currently in transit within the United Kingdom.",
                                     "We will treat your data securely and confidentially."
                                 ]
                             }]
@@ -38,7 +38,7 @@
                                     },
                                     {
                                         "list": [
-                                            "All stocks owned and either held by you or currently in transit within the United Kingdom - what it should be for guidance across all surveys",
+                                            "All stocks owned and either held by you or currently in transit within the United Kingdom.",
                                             "Duty for dutiable goods held out of bond",
                                             "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes",
                                             "Work in progress"
@@ -158,7 +158,7 @@
                                     },
                                     {
                                         "list": [
-                                            "All stocks owned and either held by you or currently in transit within the United Kingdom - what it should be for guidance across all surveys",
+                                            "All stocks owned and either held by you or currently in transit within the United Kingdom.",
                                             "Duty for dutiable goods held out of bond",
                                             "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes",
                                             "Work in progress"
@@ -235,7 +235,7 @@
                         "questions": [{
                             "id": "question4952",
                             "title": "Did any significant changes occur to the total value of stocks for {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}?",
-                            "description": "<p>Please note: what constitutes a &#x2018;significant change&#x2019; is dependent on your own interpretation in relation to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}{{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}&#x2019;s figures from the previous reporting period and the same reporting period last year.</p><p>This information will help us to validate your data and should reduce the need to query any figures with you.</p>",
+                            "description": "<p>Please note: what constitutes a &#x2018;significant change&#x2019; is dependent on your own interpretation in relation to {{ first_non_empty_item(metadata['trad_as'], metadata['ru_name']) }}&#x2019;s figures from the previous reporting period and the same reporting period last year.</p><p>This information will help us to validate your data and should reduce the need to query any figures with you.</p>",
                             "type": "General",
                             "answers": [{
                                 "id": "answer6287",

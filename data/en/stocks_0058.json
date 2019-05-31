@@ -19,8 +19,8 @@
                             "id": "primary",
                             "content": [{
                                 "list": [
-                                    "This survey covers UK businesses. The business is the individual company partnership or sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
-                                    "All stocks owned and either held by you or currently in transit within the United Kingdom - what it should be for guidance across all surveys",
+                                    "This survey covers UK businesses. The business is the individual company, partnership or sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
+                                    "All stocks owned and either held by you or currently in transit within the United Kingdom.",
                                     "We will treat your data securely and confidentially."
                                 ]
                             }]
@@ -38,7 +38,6 @@
                                         },
                                         {
                                             "list": [
-                                                "All stocks owned; whether held by you or in transit in the UK or abroad",
                                                 "Duty for dutiable goods held out of bond",
                                                 "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                             ]
@@ -59,7 +58,6 @@
                                         {
                                             "list": [
                                                 "Cars, caravans, taxis, vans, scooters, mopeds, three-wheelers, other commercial vehicles and public transport service vehicles",
-                                                "All stocks owned; whether held by you or in transit in the UK or abroad",
                                                 "Duty for dutiable goods held out of bond",
                                                 "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                             ]
@@ -85,7 +83,6 @@
                                         {
                                             "list": [
                                                 "Cars, caravans, taxis, vans, scooters, mopeds, three-wheelers, other commercial vehicles, public transport service vehicles",
-                                                "All stocks owned; whether held by you or in transit in the UK or abroad",
                                                 "Duty for dutiable goods held out of bond",
                                                 "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                             ]
@@ -210,7 +207,6 @@
                                     },
                                     {
                                         "list": [
-                                            "All stocks owned; whether held by you or in transit in the UK or abroad",
                                             "Duty for dutiable goods held out of bond",
                                             "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                         ]
@@ -266,7 +262,6 @@
                                     {
                                         "list": [
                                             "Cars, caravans, taxis, vans, scooters, mopeds, three-wheelers, other commercial vehicles and public transport service vehicles",
-                                            "All stocks owned; whether held by you or in transit in the UK or abroad",
                                             "Duty for dutiable goods held out of bond",
                                             "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                         ]
@@ -327,7 +322,6 @@
                                     {
                                         "list": [
                                             "Cars, caravans, taxis, vans, scooters, mopeds, three-wheelers, other commercial vehicles, public transport service vehicles",
-                                            "All stocks owned; whether held by you or in transit in the UK or abroad",
                                             "Duty for dutiable goods held out of bond",
                                             "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                         ]
@@ -506,9 +500,9 @@
                                         "value": "Change of business structure, merger or takeover"
                                     },
                                     {
-                                        "label": "One of increase in stocks",
+                                        "label": "One off increase in stocks",
                                         "q_code": "146f",
-                                        "value": "One of increase in stocks"
+                                        "value": "One off increase in stocks"
                                     },
                                     {
                                         "label": "Introduction or removal of new legislation or incentive",

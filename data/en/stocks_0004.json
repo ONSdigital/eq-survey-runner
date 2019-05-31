@@ -19,8 +19,8 @@
                             "id": "primary",
                             "content": [{
                                 "list": [
-                                    "This survey covers UK businesses. The business is the individual company partnership or sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
-                                    "All stocks owned and either held by you or currently in transit within the United Kingdom - what it should be for guidance across all surveys",
+                                    "This survey covers UK businesses. The business is the individual company, partnership or sole proprietorship to which the questionnaire has been sent, unless specified otherwise.",
+                                    "All stocks owned and either held by you or currently in transit within the United Kingdom.",
                                     "We will treat your data securely and confidentially."
                                 ]
                             }]
@@ -42,7 +42,6 @@
                                                 "Consumable stores",
                                                 "Semi-processed goods",
                                                 "Office supplies (including stationery)and packaging materials",
-                                                "All stocks owned; whether held by you or in transit in the UK or abroad",
                                                 "Duty for dutiable goods held out of bond",
                                                 "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                             ]
@@ -66,7 +65,6 @@
                                                 "Long term business contract balances in line with UK Generally Accepted Accountancy Practice (GAAP) or International GAAP",
                                                 "Buildings for sale",
                                                 "Vehicles, plant or machinery, etc. bought for resale",
-                                                "All stocks owned; whether held by you or in transit in the UK or abroad",
                                                 "Duty for dutiable goods held out of bond",
                                                 "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                             ]
@@ -195,7 +193,6 @@
                                             "Consumable stores",
                                             "Semi-processed goods",
                                             "Office supplies (including stationery) and packaging materials",
-                                            "All stocks owned; whether held by you or in transit in the UK or abroad",
                                             "Duty for dutiable goods held out of bond",
                                             "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                         ]
@@ -248,7 +245,6 @@
                                             "Long term business contract balances in line with UK Generally Accepted Accountancy Practice or International GAAP",
                                             "Buildings for sale",
                                             "Vehicles, plant, machinery, etc. let out to hire only if they were not charged to capital account when acquired or made",
-                                            "All stocks owned; whether held by you or in transit in the UK or abroad",
                                             "Duty for dutiable goods held out of bond",
                                             "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
                                         ]
