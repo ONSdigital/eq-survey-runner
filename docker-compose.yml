@@ -13,9 +13,9 @@ services:
       - eq-env
 
   eq-survey-runner:
-    image: onsdigital/eq-survey-runner:v3
+    image: eu.gcr.io/census-eq-ci/eq-survey-runner:v3
     build: ./
-    env_file: 
+    env_file:
       - .development.env
     environment:
       DATASTORE_EMULATOR_HOST: datastore:8432
@@ -30,7 +30,7 @@ services:
       - "5000:5000"
 
   eq-questionnaire-launcher:
-    image: onsdigital/eq-questionnaire-launcher:latest
+    image: eu.gcr.io/census-eq-ci/eq-questionnaire-launcher:latest
     environment:
       SURVEY_RUNNER_URL: http://localhost:5000
       SURVEY_RUNNER_SCHEMA_URL: http://eq-survey-runner:5000

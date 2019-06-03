@@ -4,13 +4,6 @@ local rules = import '../../../../common/lib/rules.libsonnet';
 local question(title) = {
   id: 'understand-welsh-question',
   title: title,
-  guidance: {
-    content: [
-      {
-        title: 'A question about national identity, including Welsh, will follow',
-      },
-    ],
-  },
   mandatory: true,
   type: 'MutuallyExclusive',
   answers: [

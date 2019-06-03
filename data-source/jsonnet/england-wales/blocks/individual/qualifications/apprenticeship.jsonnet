@@ -11,9 +11,12 @@ local proxyTitle = {
 
 local walesGuidanceTitle = 'Include equivalent apprenticeships completed anywhere outside Wales and England';
 local englandGuidanceTitle = 'Include equivalent apprenticeships completed anywhere outside England and Wales';
+local walesAnswerDescription = 'For example, trade, higher, foundation or modern';
+local englandAnswerDescription = 'For example, trade, advanced, foundation or modern';
 
 local question(title, region_code) = (
   local regionGuidanceTitle = if region_code == 'GB-WLS' then walesGuidanceTitle else englandGuidanceTitle;
+  local answerDescription = if region_code == 'GB-WLS' then walesAnswerDescription else englandAnswerDescription;
   {
     id: 'apprenticeship-question',
     title: title,
@@ -33,7 +36,7 @@ local question(title, region_code) = (
           {
             label: 'Yes',
             value: 'Yes',
-            description: 'For example trade, advanced, foundation, modern',
+            description: answerDescription,
           },
           {
             label: 'No',

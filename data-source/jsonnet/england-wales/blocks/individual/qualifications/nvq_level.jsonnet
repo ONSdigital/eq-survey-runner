@@ -35,12 +35,12 @@ local question(title, region_code) = (
           {
             label: 'NVQ level 3 or equivalent',
             value: 'NVQ level 3 or equivalent',
-            description: 'For example BTEC National, OND or ONC, City and Guilds Advanced Craft',
+            description: 'For example, BTEC National, OND or ONC, City and Guilds Advanced Craft',
           },
           {
             label: 'NVQ level 2 or equivalent',
             value: 'NVQ level 2 or equivalent',
-            description: 'For example BTEC General, City and Guilds Craft',
+            description: 'For example, BTEC General, City and Guilds Craft',
           },
           {
             label: 'NVQ level 1 or equivalent',

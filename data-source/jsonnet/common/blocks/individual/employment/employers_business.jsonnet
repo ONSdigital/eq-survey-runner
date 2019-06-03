@@ -17,8 +17,8 @@ local pastProxyTitle = {
   ],
 };
 
-local englandDescription = 'For example clothing retail, general hospital, primary education, food wholesale, civil service DWP, local government housing.';
-local walesDescription = 'For example clothing retail, general hospital, primary education, food wholesale, civil service Welsh Government, local government housing.';
+local englandDescription = 'For example, clothing retail, general hospital, primary education, food wholesale, civil service DWP, local government housing.';
+local walesDescription = 'For example, clothing retail, general hospital, primary education, food wholesale, civil service (Welsh Government), local government (housing).';
 
 local question(title, region_code) = (
   local description = if region_code == 'GB-WLS' then walesDescription else englandDescription;
@@ -32,13 +32,7 @@ local question(title, region_code) = (
         id: 'employers-business-answer',
         label: 'Description',
         mandatory: true,
-        type: 'TextArea',
-        max_length: 200,
-        validation: {
-          messages: {
-            MAX_LENGTH_EXCEEDED: 'Your answer has to be less than %(max)d characters long',
-          },
-        },
+        type: 'TextField',
       },
     ],
   }

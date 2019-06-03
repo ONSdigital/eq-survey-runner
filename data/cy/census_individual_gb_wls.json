@@ -65,7 +65,7 @@
                                             }
                                         }
                                     ],
-                                    "text": "Pa fath o lety yw <em>{address}</em>?"
+                                    "text": "Pa fath o gartref yw <em>{address}</em>?"
                                 },
                                 "type": "General"
                             },
@@ -271,7 +271,7 @@
                                                         "description": "Sefydliad sy\u2019n cynnig llety preswyl wedi\u2019i reoli yw sefydliad cymunedol. Ystyr \u201cwedi\u2019i reoli\u201d yn y cyd-destun hwn\nyw bod y llety\u2019n cael ei oruchwylio drwy\u2019r amser neu am ran o\u2019r amser. Mae enghreifftiau o sefydliadau cymunedol yn cynnwys neuadd breswyl i fyfyrwyr, ysgol breswyl, un o ganolfannau\u2019r lluoedd arfog, ysbyty, cartref gofal a charchar."
                                                     }
                                                 ],
-                                                "title": "What is an establishment?"
+                                                "title": "Beth yw sefydliad?"
                                             }
                                         ],
                                         "id": "establishment-position-question",
@@ -322,7 +322,7 @@
                                                         "description": "Sefydliad sy\u2019n cynnig llety preswyl wedi\u2019i reoli yw sefydliad cymunedol. Ystyr \u201cwedi\u2019i reoli\u201d yn y cyd-destun hwn\nyw bod y llety\u2019n cael ei oruchwylio drwy\u2019r amser neu am ran o\u2019r amser. Mae enghreifftiau o sefydliadau cymunedol yn cynnwys neuadd breswyl i fyfyrwyr, ysgol breswyl, un o ganolfannau\u2019r lluoedd arfog, ysbyty, cartref gofal a charchar."
                                                     }
                                                 ],
-                                                "title": "What is an establishment?"
+                                                "title": "Beth yw sefydliad?"
                                             }
                                         ],
                                         "id": "establishment-position-question",
@@ -692,7 +692,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "A question about gender will follow"
+                                                    "title": "Bydd cwestiwn am rywedd yn dilyn yn nes ymlaen"
                                                 }
                                             ]
                                         },
@@ -975,7 +975,7 @@
                                                             "arguments": {
                                                                 "date_format": "d MMMM YYYY",
                                                                 "date_to_format": {
-                                                                    "value": "2019-09-01"
+                                                                    "value": "2019-06-12"
                                                                 }
                                                             },
                                                             "transform": "format_date"
@@ -1052,7 +1052,7 @@
                                                             "arguments": {
                                                                 "date_format": "d MMMM YYYY",
                                                                 "date_to_format": {
-                                                                    "value": "2019-09-01"
+                                                                    "value": "2019-06-12"
                                                                 }
                                                             },
                                                             "transform": "format_date"
@@ -1672,10 +1672,10 @@
                                             {
                                                 "content": [
                                                     {
-                                                        "description": "We mean a different address to the one at the start of this survey. This might be another parent or guardian\u2019s address, a term-time address, a partner's address or a holiday home."
+                                                        "description": "Rydym ni\u2019n golygu cyfeiriad gwahanol i\u2019r un ar ddechrau\u2019r arolwg hwn. Gall fod yn gyfeiriad rhiant neu warcheidwad arall, cyfeiriad yn ystod y tymor, cyfeiriad partner, neu gyfeiriad t\u0177 gwyliau."
                                                     }
                                                 ],
-                                                "title": "What do we mean by \u201canother address\u201d?"
+                                                "title": "Beth mae \u201ccyfeiriad arall\u201d yn ei olygu?"
                                             }
                                         ],
                                         "description": "Gallai hyn fod yn fwy na 30 diwrnod un ar \u00f4l y llall neu wedi\u2019u rhannu ar hyd y flwyddyn",
@@ -1699,11 +1699,11 @@
                                                 "mandatory": true,
                                                 "options": [
                                                     {
-                                                        "label": "Nac ydw",
+                                                        "label": "Nac ydy",
                                                         "value": "No"
                                                     },
                                                     {
-                                                        "label": "Ydw, mewn cyfeiriad yn y Deyrnas Unedig",
+                                                        "label": "Ydy, mewn cyfeiriad yn y Deyrnas Unedig",
                                                         "value": "Yes, an address within the UK"
                                                     },
                                                     {
@@ -1713,7 +1713,7 @@
                                                             "mandatory": true,
                                                             "type": "TextField"
                                                         },
-                                                        "label": "Ydw, mewn cyfeiriad y tu allan i\u2019r Deyrnas Unedig",
+                                                        "label": "Ydy, mewn cyfeiriad y tu allan i\u2019r Deyrnas Unedig",
                                                         "value": "Other"
                                                     }
                                                 ],
@@ -1724,7 +1724,7 @@
                                             {
                                                 "content": [
                                                     {
-                                                        "description": "We mean a different address to the one at the start of this survey. This might be another parent or guardian\u2019s address, a term-time address, a partner's address or a holiday home."
+                                                        "description": "Rydym ni\u2019n golygu cyfeiriad gwahanol i\u2019r un ar ddechrau\u2019r arolwg hwn. Gall fod yn gyfeiriad rhiant neu warcheidwad arall, cyfeiriad yn ystod y tymor, cyfeiriad partner, neu gyfeiriad t\u0177 gwyliau."
                                                     }
                                                 ],
                                                 "title": "Beth mae \u201ccyfeiriad arall\u201d yn ei olygu?"
@@ -2187,7 +2187,7 @@
                                                 "mandatory": true,
                                                 "options": [
                                                     {
-                                                        "label": "Ydy",
+                                                        "label": "Ydw",
                                                         "value": "Yes"
                                                     },
                                                     {
@@ -2291,11 +2291,11 @@
                                                 "mandatory": true,
                                                 "options": [
                                                     {
-                                                        "label": "Ydy",
+                                                        "label": "Ydw",
                                                         "value": "Yes"
                                                     },
                                                     {
-                                                        "label": "Nac ydy",
+                                                        "label": "Nac ydw",
                                                         "value": "No"
                                                     }
                                                 ],
@@ -3092,7 +3092,7 @@
                                             }
                                         ],
                                         "id": "country-of-birth-question",
-                                        "title": "Ym mha wlad cawsoch chi eich geni?",
+                                        "title": "Ym mha wlad y cawsoch chi eich geni?",
                                         "type": "General"
                                     },
                                     "when": [
@@ -3301,7 +3301,7 @@
                                                     "offset_by": {
                                                         "years": -1
                                                     },
-                                                    "value": "2019-09-01"
+                                                    "value": "2019-06-12"
                                                 },
                                                 "id": "arrive-in-country-answer"
                                             }
@@ -3318,7 +3318,7 @@
                                                     "offset_by": {
                                                         "years": -1
                                                     },
-                                                    "value": "2019-09-01"
+                                                    "value": "2019-06-12"
                                                 },
                                                 "id": "arrive-in-country-answer"
                                             }
@@ -3365,7 +3365,7 @@
                                                             "arguments": {
                                                                 "date_format": "d MMMM YYYY",
                                                                 "date_to_format": {
-                                                                    "value": "2019-09-01"
+                                                                    "value": "2019-06-12"
                                                                 }
                                                             },
                                                             "transform": "format_date"
@@ -3432,7 +3432,7 @@
                                                             "arguments": {
                                                                 "date_format": "d MMMM YYYY",
                                                                 "date_to_format": {
-                                                                    "value": "2019-09-01"
+                                                                    "value": "2019-06-12"
                                                                 }
                                                             },
                                                             "transform": "format_date"
@@ -3497,7 +3497,7 @@
                                             }
                                         ],
                                         "id": "length-of-stay-question",
-                                        "title": "Gan gynnwys yr amser rydych chi wedi\u2019i dreulio yma\u2019n barod, am faint rydych chi\u2019n bwriadu aros yn y Deyrnas Unedig?",
+                                        "title": "Gan gynnwys yr amser rydych chi wedi\u2019i dreulio yma\u2019n barod, am faint ydych chi\u2019n bwriadu aros yn y Deyrnas Unedig?",
                                         "type": "General"
                                     },
                                     "when": [
@@ -3605,7 +3605,7 @@
                                                 "mandatory": false,
                                                 "options": [
                                                     {
-                                                        "label": "Dim un o\u2019r uchod",
+                                                        "label": "Dim un o\u2019r rhain",
                                                         "value": "None of the these"
                                                     }
                                                 ],
@@ -3663,7 +3663,7 @@
                                                 "mandatory": false,
                                                 "options": [
                                                     {
-                                                        "label": "Dim un o\u2019r uchod",
+                                                        "label": "Dim un o\u2019r rhain",
                                                         "value": "None of the these"
                                                     }
                                                 ],
@@ -3751,7 +3751,7 @@
                                                         "description": "Eich prif iaith yw\u2019r iaith rydych chi\u2019n ei defnyddio\u2019n fwyaf naturiol, er enghraifft, yr iaith rydych chi\u2019n ei defnyddio gartref."
                                                     }
                                                 ],
-                                                "title": "What do we mean by \u201cmain language\u201d?"
+                                                "title": "Beth mae \u201cprif iaith\u201d yn ei olygu?"
                                             }
                                         ],
                                         "id": "language-question",
@@ -3781,7 +3781,7 @@
                                                         "description": "Gan gynnwys laith Arwyddion Prydain",
                                                         "detail_answer": {
                                                             "id": "language-answer-other",
-                                                            "label": "Nodwch eich prif iaith",
+                                                            "label": "Nodwch y brif iaith",
                                                             "mandatory": false,
                                                             "type": "TextField"
                                                         },
@@ -4038,7 +4038,7 @@
                                                         "description": "Gallai olygu\u2019r wlad neu\u2019r gwledydd lle rydych chi\u2019n teimlo eich bod yn perthyn, neu sy\u2019n teimlo fel cartref i chi."
                                                     }
                                                 ],
-                                                "title": "What do we mean by \u201cnational identity\u201d?"
+                                                "title": "Beth mae \u201chunaniaeth genedlaethol\u201d yn ei olygu?"
                                             }
                                         ],
                                         "id": "national-identity-question",
@@ -4083,7 +4083,7 @@
                                                     {
                                                         "detail_answer": {
                                                             "id": "national-identity-answer-other",
-                                                            "label": "Please describe their national identity",
+                                                            "label": "Disgrifiwch ei hunaniaeth genedlaethol",
                                                             "mandatory": false,
                                                             "type": "TextField"
                                                         },
@@ -5065,7 +5065,7 @@
                                                     {
                                                         "detail_answer": {
                                                             "id": "other-ethnic-group-answer-other",
-                                                            "label": "Nodwch y gr\u0175p ethnig arall",
+                                                            "label": "Nodwch y cefndr gr\u0175p ethnig",
                                                             "mandatory": false,
                                                             "type": "TextField"
                                                         },
@@ -5144,7 +5144,7 @@
                                                         "value": "No religion"
                                                     },
                                                     {
-                                                        "description": "All denominations",
+                                                        "description": "Pob enwad",
                                                         "label": "Cristnogaeth",
                                                         "value": "Christian"
                                                     },
@@ -5208,7 +5208,7 @@
                                                         "value": "No religion"
                                                     },
                                                     {
-                                                        "description": "All denominations",
+                                                        "description": "Pob enwad",
                                                         "label": "Cristnogaeth",
                                                         "value": "Christian"
                                                     },
@@ -5527,7 +5527,7 @@
                                         "answers": [
                                             {
                                                 "id": "last-year-address-answer-building",
-                                                "label": "Enw neu rif y t\u0177",
+                                                "label": "Cod post",
                                                 "mandatory": true,
                                                 "type": "TextField"
                                             },
@@ -5861,7 +5861,7 @@
                                                         "description": "Dylech ystyried cyflyrau sydd bob amser yn effeithio arnoch a\u2019r rhai sy\u2019n ailgychwyn o bryd i\u2019w gilydd. \nGall hyn gynnwys, er enghraifft, gyflwr synhwyraidd, cyflwr datblygiadol neu anhawster dysgu."
                                                     }
                                                 ],
-                                                "title": "What do we mean by \u201cphysical and mental health conditions or illness\u201d?"
+                                                "title": "Beth mae \u201ccyflwr neu salwch corfforol neu feddyliol\u201d yn ei olygu?"
                                             }
                                         ],
                                         "id": "disability-question",
@@ -6006,7 +6006,7 @@
                                                         "description": "Dylech ddewis \u201cYdy, yn fawr\u201d os oes angen rhywfaint o gymorth, fel arfer, gan aelodau o\u2019r teulu, ffrindiau neu wasanaethau cymdeithasol personol ar gyfer y rhan fwyaf o weithgareddau pob dydd, arferol."
                                                     }
                                                 ],
-                                                "title": "What do we mean by \u201creduce your ability\u201d?"
+                                                "title": "Beth mae \u201clleihau eich gallu\u201d yn ei olygu\u201d?"
                                             }
                                         ],
                                         "id": "disability-limitation-question",
@@ -6149,7 +6149,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Exclude anything you do as part of your paid employment"
+                                                    "title": "Peidiwch \u00e2 chyfrif unrhyw beth y byddwch chi\u2019n derbyn cyflog am ei wneud"
                                                 }
                                             ]
                                         },
@@ -6173,27 +6173,27 @@
                                                 "mandatory": true,
                                                 "options": [
                                                     {
-                                                        "label": "Nac ydw",
+                                                        "label": "Nac ydy",
                                                         "value": "No"
                                                     },
                                                     {
-                                                        "label": "Ydw, 9 awr neu lai yr wythnos",
+                                                        "label": "Ydy, 9 awr neu lai yr wythnos",
                                                         "value": "Yes, 9 hours a week or less"
                                                     },
                                                     {
-                                                        "label": "Ydw, 10 i 19 awr yr wythnos",
+                                                        "label": "Ydy, 10 i 19 awr yr wythnos",
                                                         "value": "Yes, 10 to 19 hours a week"
                                                     },
                                                     {
-                                                        "label": "Ydw, 20 i 34 awr yr wythnos",
+                                                        "label": "Ydy, 20 i 34 awr yr wythnos",
                                                         "value": "Yes, 20 to 34 hours a week"
                                                     },
                                                     {
-                                                        "label": "Ydw, 35 i 49 awr yr wythnos",
+                                                        "label": "Ydy, 35 i 49 awr yr wythnos",
                                                         "value": "Yes, 35 to 49 hours a week"
                                                     },
                                                     {
-                                                        "label": "Ydw, 50 awr neu fwy yr wythnos",
+                                                        "label": "Ydy, 50 awr neu fwy yr wythnos",
                                                         "value": "Yes, 50 or more hours a week"
                                                     }
                                                 ],
@@ -6280,7 +6280,7 @@
                                                 "mandatory": false,
                                                 "options": [
                                                     {
-                                                        "label": "Heterorywiol/Str\u00eat",
+                                                        "label": "Heterorywiol / Str\u00eat",
                                                         "value": "Straight or Heterosexual"
                                                     },
                                                     {
@@ -6288,7 +6288,7 @@
                                                         "value": "Gay or Lesbian"
                                                     },
                                                     {
-                                                        "label": "Deurywiol/Bi",
+                                                        "label": "Deurywiol / Bi",
                                                         "value": "Bisexual"
                                                     },
                                                     {
@@ -6327,7 +6327,7 @@
                                                 "mandatory": false,
                                                 "options": [
                                                     {
-                                                        "label": "Heterorywiol/Str\u00eat",
+                                                        "label": "Heterorywiol / Str\u00eat",
                                                         "value": "Straight or Heterosexual"
                                                     },
                                                     {
@@ -6335,7 +6335,7 @@
                                                         "value": "Gay or Lesbian"
                                                     },
                                                     {
-                                                        "label": "Deurywiol/Bi",
+                                                        "label": "Deurywiol / Bi",
                                                         "value": "Bisexual"
                                                     },
                                                     {
@@ -6455,7 +6455,7 @@
                                                     {
                                                         "detail_answer": {
                                                             "id": "birth-gender-answer-other",
-                                                            "label": "Nodwch eich rhywedd",
+                                                            "label": "Nodwch y rhywedd",
                                                             "mandatory": false,
                                                             "type": "TextField"
                                                         },
@@ -6586,7 +6586,7 @@
                                                 "mandatory": true,
                                                 "options": [
                                                     {
-                                                        "description": "Er enghraifft, masnach, uwch, sylfaen neu fodern",
+                                                        "description": "Er enghraifft, crefft, uwch, sylfaen neu fodern",
                                                         "label": "Ydw",
                                                         "value": "Yes"
                                                     },
@@ -6601,7 +6601,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Include equivalent apprenticeships completed anywhere outside Wales and England"
+                                                    "title": "Dylech gynnwys prentisiaethau cyfatebol sydd wedi eu cwblhau unrhyw le y tu allan i Gymru a Lloegr"
                                                 }
                                             ]
                                         },
@@ -6625,12 +6625,12 @@
                                                 "mandatory": true,
                                                 "options": [
                                                     {
-                                                        "description": "Er enghraifft, masnach, uwch, sylfaen neu fodern",
-                                                        "label": "Ydw",
+                                                        "description": "Er enghraifft, crefft, uwch, sylfaen neu fodern",
+                                                        "label": "Ydy",
                                                         "value": "Yes"
                                                     },
                                                     {
-                                                        "label": "Nac ydw",
+                                                        "label": "Nac ydy",
                                                         "value": "No"
                                                     }
                                                 ],
@@ -6708,7 +6708,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Include equivalent qualifications achieved anywhere outside Wales and England"
+                                                    "title": "Dylech gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
                                                 }
                                             ]
                                         },
@@ -6748,7 +6748,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Dylech chi hefyd gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
+                                                    "title": "Dylech gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
                                                 }
                                             ]
                                         },
@@ -6832,7 +6832,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Include equivalent qualifications achieved anywhere outside Wales and England"
+                                                    "title": "Dylech gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
                                                 }
                                             ]
                                         },
@@ -6889,7 +6889,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Dylech chi hefyd gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
+                                                    "title": "Dylech gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
                                                 }
                                             ]
                                         },
@@ -6978,7 +6978,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Include equivalent qualifications achieved anywhere outside Wales and England"
+                                                    "title": "Dylech gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
                                                 }
                                             ]
                                         },
@@ -7039,7 +7039,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Dylech chi hefyd gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
+                                                    "title": "Dylech gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
                                                 }
                                             ]
                                         },
@@ -7132,7 +7132,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Include equivalent qualifications achieved anywhere outside Wales and England"
+                                                    "title": "Dylech gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
                                                 }
                                             ]
                                         },
@@ -7197,7 +7197,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Dylech chi hefyd gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
+                                                    "title": "Dylech gynnwys cymwysterau cyfatebol o unrhyw le y tu allan i Gymru a Lloegr"
                                                 }
                                             ]
                                         },
@@ -7438,7 +7438,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Current serving members should select \u201cNo\u201d"
+                                                    "title": "Aelodau sy\u2019n gwasanaethu ar hyn o bryd, dewiswch \u201cNac ydy\u201d"
                                                 }
                                             ]
                                         },
@@ -7471,15 +7471,15 @@
                                                 "mandatory": true,
                                                 "options": [
                                                     {
-                                                        "label": "Nac ydw",
+                                                        "label": "Nac ydy",
                                                         "value": "No"
                                                     },
                                                     {
-                                                        "label": "Ydw, wedi gwasanaethu yn y Lluoedd Arfog Rheolaidd yn y gorffennol",
+                                                        "label": "Ydy, wedi gwasanaethu yn y Lluoedd Arfog Rheolaidd yn y gorffennol",
                                                         "value": "Yes, previously served in Regular Armed Forces"
                                                     },
                                                     {
-                                                        "label": "Ydw, wedi gwasanaethu yn y Lluoedd Arfog Wrth Gefn yn y gorffennol",
+                                                        "label": "Ydy, wedi gwasanaethu yn y Lluoedd Arfog Wrth Gefn yn y gorffennol",
                                                         "value": "Yes, previously served in Reserve Armed Forces"
                                                     }
                                                 ],
@@ -7489,7 +7489,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Aelodau sy\u2019n gwasanaethu ar hyn o bryd, dewiswch \u2018Nac ydy\u2019 yn unig"
+                                                    "title": "Aelodau sy\u2019n gwasanaethu ar hyn o bryd, dewiswch \u201cNac ydy\u201d"
                                                 }
                                             ]
                                         },
@@ -7578,7 +7578,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Include casual or temporary work, even if only for one hour"
+                                                    "title": "Dylech gynnwys gwaith achlysurol neu dros dro, hyd yn oed os mai dim ond am awr y buoch chi\u2019n gweithio"
                                                 }
                                             ]
                                         },
@@ -7607,11 +7607,11 @@
                                                         "value": "Working as an employee"
                                                     },
                                                     {
-                                                        "label": "Gwaith hunangyflogedig neu ar eich liwt eich hun",
+                                                        "label": "Gwaith hunangyflogedig neu ar ei liwt ei hun",
                                                         "value": "Self-employed or freelance"
                                                     },
                                                     {
-                                                        "label": "I ffwrdd o\u2019ch gwaith dros dro yn s\u00e2l, ar wyliau, neu wedi\u2019ch cadw o\u2019ch gwaith dros dro am na all eich cyflogwr gynnig gwaith ar hyn o bryd",
+                                                        "label": "I ffwrdd o\u2019r gwaith dros dro yn s\u00e2l, ar wyliau, neu mae\u2019r unigolyn wedi\u2019i gadw o\u2019r gwaith dros dro am na all y cyflogwr gynnig gwaith ar hyn o bryd",
                                                         "value": "Temporarily away from work ill, on holiday or temporarily laid off"
                                                     },
                                                     {
@@ -7619,7 +7619,7 @@
                                                         "value": "On maternity or paternity leave"
                                                     },
                                                     {
-                                                        "label": "Unrhyw fath arall o waith am d\u00e2l",
+                                                        "label": "Yn gwneud unrhyw fath arall o waith am d\u00e2l",
                                                         "value": "Doing any other kind of paid work"
                                                     }
                                                 ],
@@ -7827,7 +7827,7 @@
                                                 "guidance": {
                                                     "content": [
                                                         {
-                                                            "description": "Pam mae angen i mi ateb os ydw i wedi ymddeol neu wedi bod yn s\u00e2l neu\u2019n anabl am gyfnod hir? \nI gael darlun cywir o\u2019r boblogaeth o oedran gweithio yn y Deyrnas Unedig, rydym ni\u2019n gofyn y cwestiwn hwn i bawb sydd ddim yn gweithio ar hyn o bryd. Rydym ni\u2019n gofyn i bobl sydd wedi ymddeol am fod mwy a mwy o bobl yn parhau i weithio ar \u00f4l oedran ymddeol. Rydym ni\u2019n gofyn i bobl sydd wedi bod yn s\u00e2l neu\u2019n anabl am gyfnod hir am fod rhai ohonyn nhw\u2019n bwriadu mynd yn \u00f4l i\u2019r gwaith."
+                                                            "description": "I gael darlun cywir o\u2019r boblogaeth o oedran gweithio yn y Deyrnas Unedig, rydym ni\u2019n gofyn y cwestiwn hwn i bawb sydd ddim yn gweithio ar hyn o bryd. Rydym ni\u2019n gofyn i bobl sydd wedi ymddeol am fod mwy a mwy o bobl yn parhau i weithio ar \u00f4l oedran ymddeol. Rydym ni\u2019n gofyn i bobl sydd wedi bod yn s\u00e2l neu\u2019n anabl am gyfnod hir am fod rhai ohonyn nhw\u2019n bwriadu mynd yn \u00f4l i\u2019r gwaith."
                                                         }
                                                     ],
                                                     "hide_guidance": "Pam mae angen i mi ateb os ydw i wedi ymddeol neu wedi bod yn s\u00e2l neu\u2019n anabl am gyfnod hir?",
@@ -7867,7 +7867,7 @@
                                                 "guidance": {
                                                     "content": [
                                                         {
-                                                            "description": "Pam mae angen i mi ateb os ydw i wedi ymddeol neu wedi bod yn s\u00e2l neu\u2019n anabl am gyfnod hir? \nI gael darlun cywir o\u2019r boblogaeth o oedran gweithio yn y Deyrnas Unedig, rydym ni\u2019n gofyn y cwestiwn hwn i bawb sydd ddim yn gweithio ar hyn o bryd. Rydym ni\u2019n gofyn i bobl sydd wedi ymddeol am fod mwy a mwy o bobl yn parhau i weithio ar \u00f4l oedran ymddeol. Rydym ni\u2019n gofyn i bobl sydd wedi bod yn s\u00e2l neu\u2019n anabl am gyfnod hir am fod rhai ohonyn nhw\u2019n bwriadu mynd yn \u00f4l i\u2019r gwaith."
+                                                            "description": "I gael darlun cywir o\u2019r boblogaeth o oedran gweithio yn y Deyrnas Unedig, rydym ni\u2019n gofyn y cwestiwn hwn i bawb sydd ddim yn gweithio ar hyn o bryd. Rydym ni\u2019n gofyn i bobl sydd wedi ymddeol am fod mwy a mwy o bobl yn parhau i weithio ar \u00f4l oedran ymddeol. Rydym ni\u2019n gofyn i bobl sydd wedi bod yn s\u00e2l neu\u2019n anabl am gyfnod hir am fod rhai ohonyn nhw\u2019n bwriadu mynd yn \u00f4l i\u2019r gwaith."
                                                         }
                                                     ],
                                                     "hide_guidance": "Pam mae angen i mi ateb os yw wedi ymddeol neu wedi bod yn s\u00e2l neu\u2019n anabl am gyfnod hir?",
@@ -7877,11 +7877,11 @@
                                                 "mandatory": true,
                                                 "options": [
                                                     {
-                                                        "label": "Oeddwn",
+                                                        "label": "Oedd",
                                                         "value": "Yes"
                                                     },
                                                     {
-                                                        "label": "Nac oeddwn",
+                                                        "label": "Nac oedd",
                                                         "value": "No"
                                                     }
                                                 ],
@@ -7986,11 +7986,11 @@
                                                 "mandatory": true,
                                                 "options": [
                                                     {
-                                                        "label": "Ydw",
+                                                        "label": "Ydy",
                                                         "value": "Yes"
                                                     },
                                                     {
-                                                        "label": "Nac ydw",
+                                                        "label": "Nac ydy",
                                                         "value": "No"
                                                     }
                                                 ],
@@ -8095,11 +8095,11 @@
                                                 "mandatory": true,
                                                 "options": [
                                                     {
-                                                        "label": "Oeddwn",
+                                                        "label": "Oedd",
                                                         "value": "Yes"
                                                     },
                                                     {
-                                                        "label": "Nac oeddwn",
+                                                        "label": "Nac oedd",
                                                         "value": "No"
                                                     }
                                                 ],
@@ -8189,11 +8189,11 @@
                                                 "mandatory": true,
                                                 "options": [
                                                     {
-                                                        "label": "Ydw, yn ystod y 12 mis diwethaf",
+                                                        "label": "Ydy, yn ystod y 12 mis diwethaf",
                                                         "value": "Yes, in the last 12 months"
                                                     },
                                                     {
-                                                        "label": "Ydw, ond nid yn ystod y 12 mis diwethaf",
+                                                        "label": "Ydy, ond nid yn ystod y 12 mis diwethaf",
                                                         "value": "Yes, but not in the last 12 months"
                                                     },
                                                     {
@@ -8288,7 +8288,7 @@
                                 {
                                     "content": [
                                         {
-                                            "description": "Atebwch y gyfres nesaf o gwestiynau ar gyfer eich prif swydd ddiwethaf\nEich prif swydd yw\u2019r swydd roeddech chi fel arfer yn gweithio\u2019r nifer fwyaf o oriau ynddi",
+                                            "description": "Atebwch y gyfres nesaf o gwestiynau ar gyfer eich prif swydd. Eich prif swydd yw\u2019r swydd rydych chi fel arfer yn gweithio\u2019r nifer fwyaf o oriau ynddi",
                                             "title": "Prif swydd"
                                         }
                                     ],
@@ -8336,7 +8336,7 @@
                                                         ]
                                                     }
                                                 ],
-                                                "text": "Atebwch y gyfres nesaf o gwestiynau ar gyfer prif swydd ddiwethaf <em>{person_name_possessive}</em>. Prif swydd yr unigolyn hwn yw\u2019r swydd yr oedd fel arfer yn gweithio\u2019r nifer fwyaf o oriau ynddi"
+                                                "text": "Atebwch y gyfres nesaf o gwestiynau ar gyfer prif swydd ddiwethaf <em>{person_name_possessive}</em>. Prif swydd yr unigolyn hwn yw\u2019r swydd yr oedd fel arfer yn gweithio\u2019r nifer fwyaf o oriau ynddi."
                                             },
                                             "title": "Prif swydd"
                                         }
@@ -8356,7 +8356,7 @@
                                 {
                                     "content": [
                                         {
-                                            "description": "Atebwch y gyfres nesaf o gwestiynau ar gyfer eich prif swydd\nEich prif swydd yw\u2019r swydd rydych chi fel arfer yn gweithio\u2019r nifer fwyaf o oriau ynddi",
+                                            "description": "Atebwch y gyfres nesaf o gwestiynau ar gyfer eich prif swydd ddiwethaf. Eich prif swydd yw\u2019r swydd roeddech chi fel arfer yn gweithio\u2019r nifer fwyaf o oriau ynddi",
                                             "title": "Prif swydd ddiwethaf"
                                         }
                                     ],
@@ -8482,7 +8482,7 @@
                                                         "value": "Employee"
                                                     },
                                                     {
-                                                        "label": "Hunangyflogedig neu\u2019n gweithio ar eich liwt eich hun heb gyflogi gweithwyr eraill",
+                                                        "label": "Hunangyflogedig neu\u2019n gweithio ar ei liwt ei hun heb gyflogi gweithwyr eraill",
                                                         "value": "Self-employed or freelance without employees"
                                                     },
                                                     {
@@ -8591,7 +8591,7 @@
                                                         "value": "Employee"
                                                     },
                                                     {
-                                                        "label": "Hunangyflogedig neu\u2019n gweithio ar eich liwt eich hun heb gyflogi gweithwyr eraill",
+                                                        "label": "Hunangyflogedig neu\u2019n gweithio ar ei liwt ei hun heb gyflogi gweithwyr eraill",
                                                         "value": "Self-employed or freelance without employees"
                                                     },
                                                     {
@@ -9052,7 +9052,7 @@
                                             }
                                         ],
                                         "id": "job-description-question",
-                                        "title": "Beth ydych chi\u2019n ei wneud yn eich prif swydd?",
+                                        "title": "Beth ydych chi\u2019n ei wneud yn eich prif swydd",
                                         "type": "General"
                                     },
                                     "when": [
@@ -9105,7 +9105,7 @@
                                                     ]
                                                 }
                                             ],
-                                            "text": "Beth mae <em>{person_name}</em> yn ei wneud yn y brif swydd?"
+                                            "text": "Beth mae <em>{person_name}</em> yn ei wneud yn y brif swydd"
                                         },
                                         "type": "General"
                                     },
@@ -9138,7 +9138,7 @@
                                             }
                                         ],
                                         "id": "job-description-question",
-                                        "title": "Beth oeddech chi\u2019n ei wneud yn eich prif swydd?",
+                                        "title": "Beth oeddech chi\u2019n ei wneud yn eich prif swydd",
                                         "type": "General"
                                     },
                                     "when": [
@@ -9192,7 +9192,7 @@
                                                     ]
                                                 }
                                             ],
-                                            "text": "Beth oedd <em>{person_name}</em> yn ei wneud yn y brif swydd?"
+                                            "text": "Beth oedd <em>{person_name}</em> yn ei wneud yn y brif swydd"
                                         },
                                         "type": "General"
                                     },
@@ -9231,7 +9231,7 @@
                                                 }
                                             }
                                         ],
-                                        "description": "Er enghraifft, manwerthu dillad, ysbyty cyffredinol, addysg gynradd, cyfanwerthu bwyd, y gwasanaeth sifil (Llywodraeth Cymru), llywodraeth leol (tai).",
+                                        "description": "Er enghraifft, gwerthu dillad, ysbyty cyffredinol, addysg gynradd, gwerthu bwyd i fusnesau, y gwasanaeth sifil (Llywodraeth Cymru), llywodraeth leol (tai).",
                                         "id": "employers-business-question",
                                         "title": "Beth yw prif weithgarwch eich sefydliad, busnes neu\u2019ch gwaith ar eich liwt eich hun?",
                                         "type": "General"
@@ -9264,7 +9264,7 @@
                                                 }
                                             }
                                         ],
-                                        "description": "Er enghraifft, manwerthu dillad, ysbyty cyffredinol, addysg gynradd, cyfanwerthu bwyd, y gwasanaeth sifil (Llywodraeth Cymru), llywodraeth leol (tai).",
+                                        "description": "Er enghraifft, gwerthu dillad, ysbyty cyffredinol, addysg gynradd, gwerthu bwyd i fusnesau, y gwasanaeth sifil (Llywodraeth Cymru), llywodraeth leol (tai).",
                                         "id": "employers-business-question",
                                         "title": {
                                             "placeholders": [
@@ -9327,7 +9327,7 @@
                                                 }
                                             }
                                         ],
-                                        "description": "Er enghraifft, manwerthu dillad, ysbyty cyffredinol, addysg gynradd, cyfanwerthu bwyd, y gwasanaeth sifil (Llywodraeth Cymru), llywodraeth leol (tai).",
+                                        "description": "Er enghraifft, gwerthu dillad, ysbyty cyffredinol, addysg gynradd, gwerthu bwyd i fusnesau, y gwasanaeth sifil (Llywodraeth Cymru), llywodraeth leol (tai).",
                                         "id": "employers-business-question",
                                         "title": "Beth oedd prif weithgarwch eich sefydliad, busnes neu\u2019ch gwaith ar eich liwt eich hun?",
                                         "type": "General"
@@ -9361,7 +9361,7 @@
                                                 }
                                             }
                                         ],
-                                        "description": "Er enghraifft, manwerthu dillad, ysbyty cyffredinol, addysg gynradd, cyfanwerthu bwyd, y gwasanaeth sifil (Llywodraeth Cymru), llywodraeth leol (tai).",
+                                        "description": "Er enghraifft, gwerthu dillad, ysbyty cyffredinol, addysg gynradd, gwerthu bwyd i fusnesau, y gwasanaeth sifil (Llywodraeth Cymru), llywodraeth leol (tai).",
                                         "id": "employers-business-question",
                                         "title": {
                                             "placeholders": [
@@ -9458,11 +9458,11 @@
                                                 "mandatory": true,
                                                 "options": [
                                                     {
-                                                        "label": "Ydw",
+                                                        "label": "Ydy",
                                                         "value": "Yes"
                                                     },
                                                     {
-                                                        "label": "Nac ydw",
+                                                        "label": "Nac ydy",
                                                         "value": "No"
                                                     }
                                                 ],
@@ -9515,11 +9515,11 @@
                                                 "mandatory": true,
                                                 "options": [
                                                     {
-                                                        "label": "Ydw",
+                                                        "label": "Oeddwn",
                                                         "value": "Yes"
                                                     },
                                                     {
-                                                        "label": "Nac ydw",
+                                                        "label": "Nac oeddwn",
                                                         "value": "No"
                                                     }
                                                 ],
@@ -9551,11 +9551,11 @@
                                                 "mandatory": true,
                                                 "options": [
                                                     {
-                                                        "label": "Ydw",
+                                                        "label": "Oedd",
                                                         "value": "Yes"
                                                     },
                                                     {
-                                                        "label": "Nac ydw",
+                                                        "label": "Nac oedd",
                                                         "value": "No"
                                                     }
                                                 ],
@@ -9656,7 +9656,7 @@
                                         "guidance": {
                                             "content": [
                                                 {
-                                                    "title": "Include paid and unpaid overtime"
+                                                    "title": "Dylech gynnwys oriau ychwanegol am d\u00e2l neu heb d\u00e2l"
                                                 }
                                             ]
                                         },
@@ -9809,7 +9809,7 @@
                                                 "type": "Radio"
                                             }
                                         ],
-                                        "description": "Atebwch ar gyfer y rhan hiraf, o ran pellter, o\u2019r daith arferol i\u2019r gwaith",
+                                        "description": "Atebwch ar gyfer y rhan hiraf, o ran pellter, o\u2019ch taith arferol i\u2019r gwaith",
                                         "id": "work-travel-question",
                                         "title": "Sut ydych chi\u2019n teithio i\u2019r gwaith fel arfer?",
                                         "type": "General"
@@ -9877,7 +9877,7 @@
                                                 "type": "Radio"
                                             }
                                         ],
-                                        "description": "Atebwch ar gyfer y rhan hiraf, o ran pellter, o\u2019r daith arferol i\u2019r gwaith Atebwch ar gyfer rhan hiraf, yn \u00f4l pellter, o daith arferol yr unigolyn hwn i\u2019r gwaith",
+                                        "description": "Atebwch ar gyfer y rhan hiraf, o ran pellter, o\u2019r daith arferol i\u2019r gwaith",
                                         "id": "work-travel-question",
                                         "title": {
                                             "placeholders": [
@@ -10068,7 +10068,7 @@
                                         "answers": [
                                             {
                                                 "id": "employer-address-workplace-answer-building",
-                                                "label": "Adeilad",
+                                                "label": "Enw neu rif yr adeilad",
                                                 "mandatory": true,
                                                 "type": "TextField"
                                             },
@@ -10123,7 +10123,7 @@
                                         "answers": [
                                             {
                                                 "id": "employer-address-workplace-answer-building",
-                                                "label": "Adeilad",
+                                                "label": "Enw neu rif yr adeilad",
                                                 "mandatory": true,
                                                 "type": "TextField"
                                             },
