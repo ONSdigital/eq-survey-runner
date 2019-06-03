@@ -10,7 +10,6 @@ local question(title, label) = {
     {
       id: 'sexual-identity-answer',
       mandatory: false,
-      label: 'Select one option only',
       options: [
         {
           label: 'Straight or Heterosexual',
