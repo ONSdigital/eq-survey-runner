@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+
+  datastore:
+    image: knarz/datastore-emulator
+    ports:
+      - "8432:8432"
+
+  redis:
+    image: redis:4
+    ports:
+      - "6379:6379"
+
+  eq-questionnaire-launcher:
+    network_mode: "host"
+    image: onsdigital/eq-questionnaire-launcher:latest
+    environment:
+      SURVEY_RUNNER_URL: http://localhost:5000
+      SURVEY_RUNNER_SCHEMA_URL: http://localhost:5000
+    restart: always
+    ports:
+      - "8000:8000"

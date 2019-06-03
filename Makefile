@@ -20,8 +20,14 @@ run:
 dev-compose-up:
 	docker-compose -f docker-compose-dev.yml up -d
 
+dev-compose-up-linux:
+	docker-compose -f docker-compose-dev-linux.yml up -d
+
 dev-compose-down:
 	docker-compose -f docker-compose-dev.yml down
+
+dev-compose-down-linux:
+	docker-compose -f docker-compose-dev-linux.yml down
 
 profile:
 	pipenv run python profile_application.py
