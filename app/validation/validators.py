@@ -1,6 +1,7 @@
 from datetime import datetime
 from decimal import Decimal, InvalidOperation
 
+import re
 import flask_babel
 from flask_babel import ngettext
 from babel import numbers
@@ -224,7 +225,7 @@ class DateCheck:
 
     def __call__(self, form, field):
 
-        if not form.data:
+        if not form.data or not re.match(r'\d{4}$', str(form.year.data)):
             raise validators.StopValidation(self.message)
 
         try:
