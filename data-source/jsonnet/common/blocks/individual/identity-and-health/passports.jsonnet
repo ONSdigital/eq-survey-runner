@@ -1,12 +1,22 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import '../../../lib/rules.libsonnet';
 
-local question(title, label) = {
+local question(title, label, definitionContent) = {
   id: 'passports-question',
   title: title,
   description: '',
   type: 'MutuallyExclusive',
   mandatory: true,
+  definitions: [
+    {
+      title: 'What official documents can be included?',
+      contents: [
+        {
+          description: definitionContent,
+        },
+      ],
+    },
+  ],
   answers: [
     {
       id: 'passports-answer',
@@ -47,8 +57,10 @@ local question(title, label) = {
   ],
 };
 
+local nonProxyDefinitionContent = 'You may have other travel documents that show you are a citizen of a particular country. Please complete this question as if your travel documents are passports.';
 local nonProxyTitle = 'What passports do you hold?';
 local nonProxyLabel = 'Please specify the passports you hold';
+local proxyDefinitionContent = 'They may have other travel documents that show they are a citizen of a particular country. Please complete this question as if their travel documents are passports.';
 local proxyTitle = {
   text: 'What passports does <em>{person_name}</em> hold?',
   placeholders: [
@@ -62,11 +74,11 @@ local proxyLabel = 'Please specify the passports held';
   id: 'passports',
   question_variants: [
     {
-      question: question(nonProxyTitle, nonProxyLabel),
+      question: question(nonProxyTitle, nonProxyLabel, nonProxyDefinitionContent),
       when: [rules.proxyNo],
     },
     {
-      question: question(proxyTitle, proxyLabel),
+      question: question(proxyTitle, proxyLabel, proxyDefinitionContent),
       when: [rules.proxyYes],
     },
   ],

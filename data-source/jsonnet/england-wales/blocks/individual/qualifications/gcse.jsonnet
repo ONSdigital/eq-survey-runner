@@ -55,8 +55,8 @@ local question(title, region_code) = (
             description: 'Include any other O levels or CSEs at any grades',
           },
           {
-            label: 'Basic skills course',
-            value: 'Basic skills course',
+            label: 'Basic Skills course',
+            value: 'Basic Skills course',
             description: 'Skills for life, literacy, numeracy and language',
           },
         ] + regionOptions,
