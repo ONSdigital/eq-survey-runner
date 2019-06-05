@@ -74,7 +74,7 @@ function(region_code) {
   schema_version: '0.0.1',
   data_version: '0.0.3',
   survey_id: 'census',
-  title: '2017 Census Test',
+  title: '2019 Census Test',
   description: 'Census England Individual Schema',
   theme: 'census',
   legal_basis: 'Voluntary',

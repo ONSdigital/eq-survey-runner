@@ -13,7 +13,7 @@ for region_code in GB-WLS GB-ENG GB-NIR; do
         jsonnet --tla-str region_code=${region_code} "${SOURCE_FILE}" > "${DESTINATION_FILE}"
     else
         SOURCE_FILE="data-source/jsonnet/england-wales/census_individual.jsonnet"
-        jsonnet --tla-str region_code=${region_code} --tla-str census_date="2019-09-01" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
+        jsonnet --tla-str region_code=${region_code} --tla-str census_date="2019-06-12" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
     fi
 
     echo "Built ${DESTINATION_FILE}"
