@@ -13,7 +13,10 @@ test-unit:
 test-functional:
 	pipenv run ./scripts/run_tests_functional.sh
 
-run:
+load_templates:
+	pipenv run ./scripts/load_templates.sh
+
+run: load_templates
 	ln -sf .development.env .env
 	pipenv run flask run
 

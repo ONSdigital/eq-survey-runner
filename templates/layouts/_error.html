@@ -5,7 +5,7 @@
 {% set survey_title = _("Error") + " " + status_code | string %}
 
 {% block main %}
-  <h1 class="u-fs-l">{{ _("Error") }} {{status_code}}</h1>
+  <h1>{{ _("Error") }} {{status_code}}</h1>
   {% call onsPanel({
     "type": "error",
     "spacious": true

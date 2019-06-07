@@ -4,22 +4,23 @@
 {%- set itemList = [] -%}
 
 {%- for group in content.summary.groups -%}
-  {%- if group.title -%}
-    {%- set item = {
-      "title": group.title,
-      "content": "",
-      "button": {
-        "open": _('Show'),
-        "close": _('Hide'),
-        "attributes": {
-          "data-ga": "click",
-          "data-ga-category": "Preview Survey",
-          "data-ga-action": "Open panel",
-          "data-ga-label": group.title
+  {%- if group["blocks"] | length -%}
+    {%- if group.title -%}
+      {%- set item = {
+        "title": group.title,
+        "content": "",
+        "button": {
+          "open": _('Show'),
+          "close": _('Hide'),
+          "attributes": {
+            "data-ga": "click",
+            "data-ga-category": "Preview Survey",
+            "data-ga-action": "Open panel",
+            "data-ga-label": group.title
+          }
         }
-      }
-    } -%}
-    {%- for block in group.blocks -%}
+      } -%}
+
       {%- set summary %}
         {{ onsSummary({
           "classes": "summary--no-bottom-border",
@@ -28,8 +29,9 @@
       {%- endset -%}
 
       {%- do item | setAttribute("content", item.content + summary) -%}
-    {%- endfor -%}
-    {%- do itemList.append(item) -%}
+
+      {%- do itemList.append(item) -%}
+    {%- endif -%}
   {%- endif -%}
 {%- endfor -%}
 

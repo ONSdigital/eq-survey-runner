@@ -3,10 +3,10 @@
 <div class="collapsible__introduction">
   {% for content in intro.content %}
     {% if content.title  %}
-      <h3 class="u-fs-r--b u-mt-s">{{ content.title }}</h3>
+      <h3 class="u-mt-s">{{ content.title }}</h3>
     {% endif %}
 
-    <p class="u-fs-r qa-intro-description" data-qa="intro-preview-description">{{ content.description }}</p>
+    <p class="qa-intro-description" data-qa="intro-preview-description">{{ content.description }}</p>
 
     {% if content.list %}
       <ul>
@@ -29,7 +29,7 @@
         {% for item in question.content %}
           <div class="u-mb-s">
             {% if item.title %}
-              <div  class="u-mb-s u-fs-r--b">{{ item.title }}</div>
+              <div class="u-mb-s u-fs-r--b">{{ item.title }}</div>
             {% endif %}
 
             {% if item.description %}
