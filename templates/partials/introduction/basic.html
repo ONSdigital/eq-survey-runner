@@ -1,22 +1,25 @@
 <div id="{{intro.id}}" class="u-mb-s">
-    {% if intro.title %}
+  {% if intro.title %}
     <h2 class="u-fs-l">{{ intro.title }}</h2>
-    {% endif %}
-    {% for content in intro.content  %}
+  {% endif %}
+
+  {% for content in intro.content  %}
     {% if content.title %}
-    <h3 class="u-fs-r--b">{{ content.title }}</h3>
+      <h3>{{ content.title }}</h3>
     {% endif %}
+
     {% if content.description %}
-    <p class="u-fs-r qa-intro-description" data-qa="intro-basic-description">
-        {{ content.description }}
-    </p>
+      <p class="u-fs-r qa-intro-description" data-qa="intro-basic-description">
+          {{ content.description }}
+      </p>
     {% endif %}
+
     {% if content.list %}
-    <ul>
-        {% for li in content.list %}
-        <li>{{ li }}</li>
-        {% endfor %}
-    </ul>
+      <ul>
+          {% for li in content.list %}
+            <li>{{ li }}</li>
+          {% endfor %}
+      </ul>
     {% endif %}
-    {% endfor %}
+  {% endfor %}
 </div>
