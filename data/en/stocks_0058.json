@@ -106,7 +106,7 @@
                             "id": "secondary-content",
                             "title": "How we use your data",
                             "content": [{
-                                "list": ["The information supplied is used to estimate changes in stock levels which are used in the compilation of Gross Domestic Product (GDP), the total UK economic activity. GDP is used to measure the UK's financial health and prosperity over time and in comparison to other countries. The results are used by the Bank of England and HM Treasury to monitor interest rates, inflation and in formulating financial policies (e.g. income, expenditure and taxation) for the UK."]
+                                "list": ["The information supplied is used to estimate changes in stock levels which are used in the compilation of Gross Domestic Product (GDP), the total UK economic activity.", "GDP is used to measure the UK's financial health and prosperity over time and in comparison to other countries.", "The results are used by the Bank of England and HM Treasury to monitor interest rates, inflation and in formulating financial policies (e.g. income, expenditure and taxation) for the UK."]
                             }]
                         }]
                     },
@@ -500,9 +500,9 @@
                                         "value": "Change of business structure, merger or takeover"
                                     },
                                     {
-                                        "label": "One off increase in stocks",
+                                        "label": "One-off increase in stocks",
                                         "q_code": "146f",
-                                        "value": "One off increase in stocks"
+                                        "value": "One-off increase in stocks"
                                     },
                                     {
                                         "label": "Introduction or removal of new legislation or incentive",
