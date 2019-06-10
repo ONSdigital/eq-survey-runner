@@ -8,42 +8,38 @@ We need to be able to collect the (one way) relationships between list items. Fo
 
 ### URLs
 
-The existing url design for lists provides an approach to asking questions related to a given list item:
+The url for an individual relation for a 'relationships' block would be:
 
 ```
-/<list_identifier>/<list_item_id>/<block_id>
+/<block_id>/<from_list_item_id>/to/<to_list_item_id>
+/relationships/a9hd8j/to/skjwo9
 ```
 
-Using a list named "householders" and a block id of "relationships", the url for all relationships for a given list item would be:
-
-```
-/householders/<list_item_id>/relationships
-```
-
-Extending this to support a relationship to something, the url for an individual relation would be:
-
-```
-/householders/<list_item_id>/relationships/<related_list_item_id>
-```
-
-Where the `related_list_item_id` identifies what list item the relation is being formed with.
+Where the `from_list_item_id` and `to_list_item_id` identify which list items the relation is being formed between.
 
 
 ### Storing relationships
 
-For each list item we need to store both the relationship and the other item it is related to. Extending the current answer store value format to support objects allows us to store this: 
+For each relationship we need to store both the relationship type and the items that are related. This is represented by storing all relationships as a list within a single answer: 
 
 ```
 {
   "answer_id": "relationship"
-  "list_item_id": "a9hd8j",
-  "value": {
-    "relationship": "Father or Mother",
-    "related_list_item_id": "kl9s3y"
-  }
+  "value": [
+      {
+        "from_list_item_id": "a9hd8j",
+        "relationship": "Husband or Wife",
+        "to_list_item_id": "kl9s3y"
+      },
+      {
+        "from_list_item_id": "a9hd8j",
+        "relationship": "Father or Mother",
+        "to_list_item_id": "skjwo9"
+      }
+  ]
 }
 ```
-
+ 
 ### Schema
 
 The relationship block will be defined as one block in the schema. 
