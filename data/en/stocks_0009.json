@@ -31,13 +31,144 @@
                             "content": [{
                                 "description": "You can select the dates of the period you are reporting for, if the given dates are not appropriate."
                             }],
-                            "questions": []
+                            "questions": [{
+                                    "question": "Value of stocks held for coal",
+                                    "content": [{
+                                            "title": "Include"
+                                        },
+                                        {
+                                            "list": [
+                                                "All stocks owned; whether held by you or in transit in the UK or abroad",
+                                                "Duty for dutiable goods held out of bond",
+                                                "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                                            ]
+                                        },
+                                        {
+                                            "title": "Exclude"
+                                        },
+                                        {
+                                            "list": ["VAT", "Stocks you hold that do not belong to you", "Duty on stocks held in bond"]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Value of stocks held for oil",
+                                    "content": [{
+                                            "title": "Include"
+                                        },
+                                        {
+                                            "list": [
+                                                "All stocks owned; whether held by you or in transit in the UK or abroad",
+                                                "Duty for dutiable goods held out of bond",
+                                                "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                                            ]
+                                        },
+                                        {
+                                            "title": "Exclude"
+                                        },
+                                        {
+                                            "list": ["VAT", "Stocks you hold that do not belong to you", "Duty on stocks held in bond"]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Value of stocks held for other fuels",
+                                    "content": [{
+                                            "title": "Include"
+                                        },
+                                        {
+                                            "list": [
+                                                "All stocks owned; whether held by you or in transit in the UK or abroad",
+                                                "Duty for dutiable goods held out of bond",
+                                                "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                                            ]
+                                        },
+                                        {
+                                            "title": "Exclude"
+                                        },
+                                        {
+                                            "list": ["VAT", "Stocks you hold that do not belong to you", "Duty on stocks held in bond"]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Value of stocks held for stores",
+                                    "content": [{
+                                            "title": "Include"
+                                        },
+                                        {
+                                            "list": [
+                                                "Raw materials and components purchased for incorporation into products for sale",
+                                                "Consumable stores",
+                                                "Semi-processed goods",
+                                                "Office supplies (including stationery) and packaging materials",
+                                                "All stocks owned; whether held by you or in transit in the UK or abroad",
+                                                "Duty for dutiable goods held out of bond",
+                                                "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                                            ]
+                                        },
+                                        {
+                                            "title": "Exclude"
+                                        },
+                                        {
+                                            "list": ["VAT", "Stocks you hold that do not belong to you", "Duty on stocks held in bond"]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Value of stocks held for work in progress",
+                                    "content": [{
+                                            "title": "Include"
+                                        },
+                                        {
+                                            "list": [
+                                                "Products that you own in intermediate stages of completion (even if not held by you)",
+                                                "Long term business contract balances in line with UK Generally Accepted Accountancy Practice or International GAAP",
+                                                "All stocks owned; whether held by you or in transit in the UK or abroad",
+                                                "Duty for dutiable goods held out of bond",
+                                                "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                                            ]
+                                        },
+                                        {
+                                            "title": "Exclude"
+                                        },
+                                        {
+                                            "list": [
+                                                "VAT",
+                                                "Stocks you hold that do not belong to you",
+                                                "Duty on stocks held in bond",
+                                                "Products in intermediate stages of completion that do not belong to you"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "question": "Total value of stocks",
+                                    "content": [{
+                                            "title": "Include"
+                                        },
+                                        {
+                                            "list": [
+                                                "All stocks owned; whether held by your business in the UK or abroad",
+                                                "Duty for dutiable goods held out of bond",
+                                                "The value of any goods let out on hire, only if they were charged to current account when acquired and do not rank as capital items for taxation purposes"
+                                            ]
+                                        },
+                                        {
+                                            "title": "Exclude"
+                                        },
+                                        {
+                                            "list": ["VAT", "Stocks you hold that do not belong to you", "Duty on stocks held in bond"]
+                                        }
+                                    ]
+                                }
+                            ]
                         },
                         "secondary_content": [{
                             "id": "secondary-content",
                             "title": "How we use your data",
                             "content": [{
-                                "list": ["The information supplied is used to estimate changes in stock levels which are used in the compilation of Gross Domestic Product (GDP), the total UK economic activity. GDP is used to measure the UK's financial health and prosperity over time and in comparison to other countries. The results are used by the Bank of England and HM Treasury to monitor interest rates, inflation and in formulating financial policies (e.g. income, expenditure and taxation) for the UK."]
+                                "list": ["The information supplied is used to estimate changes in stock levels which are used in the compilation of Gross Domestic Product (GDP), the total UK economic activity.", "GDP is used to measure the UK's financial health and prosperity over time and in comparison to other countries.", "The results are used by the Bank of England and HM Treasury to monitor interest rates, inflation and in formulating financial policies (e.g. income, expenditure and taxation) for the UK."]
                             }]
                         }]
                     },
@@ -526,9 +657,9 @@
                                         "value": "Change of business structure, merger or takeover"
                                     },
                                     {
-                                        "label": "One off increase in stocks",
+                                        "label": "One-off increase in stocks",
                                         "q_code": "146f",
-                                        "value": "One off increase in stocks"
+                                        "value": "One-off increase in stocks"
                                     },
                                     {
                                         "label": "Introduction or removal of new legislation or incentive",
