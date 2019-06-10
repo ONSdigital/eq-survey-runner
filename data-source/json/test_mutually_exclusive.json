@@ -64,6 +64,7 @@
                             "type": "Checkbox",
                             "options": [{
                                 "label": "I prefer not to say",
+                                "description": "Some description",
                                 "value": "I prefer not to say"
                             }]
                         }]
