@@ -27,13 +27,13 @@
   {% endif %}
 {% endset %}
 
-{%- set mutually_exclusive_quesstion = question.type == 'MutuallyExclusive' -%}
+{%- set mutually_exclusive_question = question.type == 'MutuallyExclusive' -%}
 
 {% set question_answers %}
-  {% if mutually_exclusive_quesstion %}
+  {% if mutually_exclusive_question %}
     {%- set answer = question.answers[0] -%}
     {%- set mutuallyExclusiveAnswer = question.answers[1] -%}
-    {%- set mutuallyExlusiveOptions = mutuallyExclusiveAnswer.options[0] -%}
+    {%- set mutuallyExlusiveOption = mutuallyExclusiveAnswer.options[0] -%}
 
     {%- set deselectionMessage = _("Selecting this will clear your answer") -%}
     {%- set deselectGroupAdjective = _("cleared") -%}
@@ -48,10 +48,12 @@
       "checkbox": {
         "id": mutuallyExclusiveAnswer.id + "-0",
         "label": {
-          "text": mutuallyExlusiveOptions.label
+          "text": mutuallyExlusiveOption.label,
+          "description": mutuallyExlusiveOption.description
         },
-        "value": mutuallyExlusiveOptions.value,
-        "name": mutuallyExclusiveAnswer.id
+        "value": mutuallyExlusiveOption.value,
+        "name": mutuallyExclusiveAnswer.id,
+        "checked": mutuallyExlusiveOption.checked
       },
       "deselectionMessage": deselectionMessage,
       "deselectGroupAdjective": deselectGroupAdjective,
