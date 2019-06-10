@@ -83,4 +83,19 @@ function(region_code) {
       when: [rules.proxyYes],
     },
   ],
+  routing_rules: [
+    {
+      goto: {
+        block: 'passports',
+        when: [
+          rules.under1,
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'past-usual-household-address',
+      },
+    },
+  ],
 }

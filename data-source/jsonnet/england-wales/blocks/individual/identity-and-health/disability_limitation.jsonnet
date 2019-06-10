@@ -84,4 +84,19 @@ local proxyDefinition = {
       when: [rules.proxyYes],
     },
   ],
+  routing_rules: [
+    {
+      goto: {
+        group: 'comments-group',
+        when: [
+          rules.under5,
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'carer',
+      },
+    },
+  ],
 }

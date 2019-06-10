@@ -67,6 +67,19 @@ function(region_code, census_date) {
     },
     {
       goto: {
+        block: 'national-identity',
+        when: [
+          {
+            id: 'when-arrive-in-uk-answer',
+            condition: 'equals',
+            value: 'No',
+          },
+          rules.under3,
+        ],
+      },
+    },
+    {
+      goto: {
         block: if region_code == 'GB-WLS' then 'understand-welsh' else 'language',
       },
     },
