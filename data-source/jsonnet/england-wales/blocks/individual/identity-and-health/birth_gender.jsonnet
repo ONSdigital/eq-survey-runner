@@ -9,7 +9,7 @@ local question(title) = {
   answers: [
     {
       id: 'birth-gender-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Yes',

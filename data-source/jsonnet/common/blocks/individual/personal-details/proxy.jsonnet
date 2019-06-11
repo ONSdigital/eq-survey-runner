@@ -8,7 +8,8 @@
     answers: [
       {
         id: 'proxy-answer',
-        mandatory: true,
+        mandatory: false,
+        default: 'Yes',
         options: [
           {
             label: 'No, I’m answering for myself',

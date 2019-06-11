@@ -69,7 +69,7 @@ local comments = import '../common/blocks/comments.json';
 // submission confirmation
 local confirmation = import '../common/blocks/confirmation.json';
 
-function(region_code) {
+function(region_code, census_date) {
   mime_type: 'application/json/ons/eq',
   schema_version: '0.0.1',
   data_version: '0.0.3',
@@ -116,7 +116,7 @@ function(region_code) {
             proxy,
             name,
             establishment_position,
-            date_of_birth,
+            date_of_birth(census_date),
             confirm_dob,
             sex,
             marriage_type,
