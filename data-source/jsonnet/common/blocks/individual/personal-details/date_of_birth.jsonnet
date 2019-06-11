@@ -1,7 +1,7 @@
 local placeholders = import '../../../lib/placeholders.libsonnet';
 local rules = import '../../../lib/rules.libsonnet';
 
-local question(title) = {
+local question(title, census_date) = {
   id: 'date-of-birth-question',
   title: title,
   guidance: {
@@ -17,11 +17,14 @@ local question(title) = {
       id: 'date-of-birth-answer',
       mandatory: true,
       type: 'Date',
-      maximum: {
-        value: 'now',
-      },
       minimum: {
-        value: '1900-01-01',
+        value: census_date,
+        offset_by: {
+          years: -115,
+        },
+      },
+      maximum: {
+        value: census_date,
       },
     },
   ],
@@ -35,16 +38,16 @@ local proxyTitle = {
   ],
 };
 
-{
+function(census_date) {
   type: 'Question',
   id: 'date-of-birth',
   question_variants: [
     {
-      question: question(nonProxyTitle),
+      question: question(nonProxyTitle, census_date),
       when: [rules.proxyNo],
     },
     {
-      question: question(proxyTitle),
+      question: question(proxyTitle, census_date),
       when: [rules.proxyYes],
     },
   ],

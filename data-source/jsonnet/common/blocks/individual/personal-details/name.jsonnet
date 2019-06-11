@@ -12,7 +12,7 @@ local question(title) = {
       type: 'TextField',
       validation: {
         messages: {
-          MANDATORY_TEXTFIELD: 'Please enter a name or remove the person to continue',
+          MANDATORY_TEXTFIELD: 'Enter a first name to continue',
         },
       },
     },
@@ -25,8 +25,13 @@ local question(title) = {
     {
       id: 'last-name',
       label: 'Last name',
-      mandatory: false,
+      mandatory: true,
       type: 'TextField',
+      validation: {
+        messages: {
+          MANDATORY_TEXTFIELD: 'Enter a last name to continue',
+        },
+      },
     },
   ],
 };

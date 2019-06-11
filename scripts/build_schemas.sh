@@ -10,11 +10,11 @@ for region_code in GB-WLS GB-ENG GB-NIR; do
 
     if [[ "$region_code" = "GB-NIR" ]]; then
         SOURCE_FILE="data-source/jsonnet/northern-ireland/census_individual.jsonnet"
-        jsonnet --tla-str region_code=${region_code} "${SOURCE_FILE}" > "${DESTINATION_FILE}"
     else
         SOURCE_FILE="data-source/jsonnet/england-wales/census_individual.jsonnet"
-        jsonnet --tla-str region_code=${region_code} --tla-str census_date="2019-06-12" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
     fi
+
+    jsonnet --tla-str region_code="${region_code}" --tla-str census_date="2019-06-12" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
 
     echo "Built ${DESTINATION_FILE}"
 done

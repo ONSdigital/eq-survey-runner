@@ -128,7 +128,7 @@ function(region_code, census_date) {
             proxy,
             name,
             establishment_position,
-            date_of_birth,
+            date_of_birth(census_date),
             confirm_dob,
             sex,
             marriage_type(census_date),

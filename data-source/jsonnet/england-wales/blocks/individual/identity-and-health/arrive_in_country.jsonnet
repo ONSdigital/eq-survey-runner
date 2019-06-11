@@ -11,6 +11,12 @@ local question(title) = {
       id: 'arrive-in-country-answer',
       mandatory: true,
       type: 'MonthYearDate',
+      minimum: {
+        answer_id: 'date-of-birth-answer',
+      },
+      maximum: {
+        value: 'now',
+      },
     },
   ],
 };
