@@ -66,9 +66,6 @@ local employer_type_of_address = import 'blocks/individual/employment/employer_t
 // comments
 local comments = import '../common/blocks/comments.json';
 
-// submission confirmation
-local confirmation = import '../common/blocks/confirmation.json';
-
 function(region_code, census_date) {
   mime_type: 'application/json/ons/eq',
   schema_version: '0.0.1',
@@ -212,7 +209,10 @@ function(region_code, census_date) {
           id: 'submit-group',
           title: 'Submit answers',
           blocks: [
-            confirmation,
+            {
+              id: 'summary',
+              type: 'Summary',
+            },
           ],
         },
       ],

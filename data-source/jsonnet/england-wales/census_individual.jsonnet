@@ -77,8 +77,6 @@ local employer_type_of_address = import 'blocks/individual/employment/employer_t
 
 local comments = import '../common/blocks/comments.json';
 
-local confirmation = import '../common/blocks/confirmation.json';
-
 local understandWelshBlock(region_code) = if region_code == 'GB-WLS' then [understand_welsh] else [];
 
 function(region_code, census_date) {
@@ -236,7 +234,10 @@ function(region_code, census_date) {
           id: 'submit-group',
           title: 'Submit answers',
           blocks: [
-            confirmation,
+            {
+              id: 'summary',
+              type: 'Summary',
+            },
           ],
         },
       ],
