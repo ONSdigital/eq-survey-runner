@@ -8,7 +8,7 @@
     answers: [
       {
         id: 'term-time-address-country-answer',
-        mandatory: true,
+        mandatory: false,
         options: [
           {
             label: 'Yes',
@@ -45,6 +45,18 @@
     {
       goto: {
         group: 'comments-group',
+        when: [
+          {
+            id: 'term-time-address-country-answer',
+            condition: 'equals',
+            value: 'No',
+          },
+        ],
+      },
+    },
+    {
+      goto: {
+        group: 'identity-and-health-group',
       },
     },
   ],

@@ -19,7 +19,7 @@ local question(title) = {
   answers: [
     {
       id: 'another-address-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'No',
@@ -107,6 +107,18 @@ local proxyTitle = {
     {
       goto: {
         block: 'address-type',
+        when: [
+          {
+            id: 'another-address-answer',
+            condition: 'equals',
+            value: 'Other',
+          },
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'in-education',
       },
     },
   ],

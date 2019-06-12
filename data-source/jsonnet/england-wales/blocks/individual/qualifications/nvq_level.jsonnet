@@ -25,7 +25,7 @@ local question(title, region_code) = (
         },
       ],
     },
-    mandatory: true,
+    mandatory: false,
     answers: [
       {
         id: 'nvq-level-answer',

@@ -8,7 +8,7 @@ local question(title) = {
   answers: [
     {
       id: 'employer-type-of-address-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'At a workplace',
@@ -78,6 +78,17 @@ local proxyTitle = {
             id: 'employer-type-of-address-answer',
             condition: 'equals',
             value: 'Report to a depot',
+          },
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'employer-address-workplace',
+        when: [
+          {
+            id: 'employer-type-of-address-answer',
+            condition: 'not set',
           },
         ],
       },

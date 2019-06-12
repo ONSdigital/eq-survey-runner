@@ -6,7 +6,7 @@ local question(title, description, option) = {
   title: title,
   description: description,
   type: 'MutuallyExclusive',
-  mandatory: true,
+  mandatory: false,
   answers: [
     {
       id: 'business-name-answer',

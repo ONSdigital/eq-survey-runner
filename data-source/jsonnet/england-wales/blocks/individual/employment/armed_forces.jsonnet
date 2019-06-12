@@ -15,7 +15,7 @@ local question(title) = {
   answers: [
     {
       id: 'armed-forces-answer',
-      mandatory: true,
+      mandatory: false,
       guidance: {
         show_guidance: 'Why your answer is important',
         hide_guidance: 'Why your answer is important',

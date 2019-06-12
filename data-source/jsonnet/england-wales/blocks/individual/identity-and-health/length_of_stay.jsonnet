@@ -8,7 +8,7 @@ local question(title) = {
   answers: [
     {
       id: 'length-of-stay-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Less than 12 months',

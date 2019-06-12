@@ -79,6 +79,17 @@ local proxyTitle = 'What is their name?';
     },
     {
       goto: {
+        block: 'date-of-birth',
+        when: [
+          {
+            id: 'accommodation-type-answer',
+            condition: 'not set',
+          },
+        ],
+      },
+    },
+    {
+      goto: {
         block: 'establishment-position',
       },
     },

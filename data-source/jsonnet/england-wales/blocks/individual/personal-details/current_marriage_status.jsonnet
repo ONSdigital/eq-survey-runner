@@ -8,7 +8,7 @@ local question(title) = {
   answers: [
     {
       id: 'current-marriage-status-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Someone of the opposite sex',

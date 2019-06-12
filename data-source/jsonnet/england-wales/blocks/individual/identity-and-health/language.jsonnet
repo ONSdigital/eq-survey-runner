@@ -39,7 +39,7 @@ local question(title, definitionDescription, region_code) = (
     answers: [
       {
         id: 'language-answer',
-        mandatory: true,
+        mandatory: false,
         type: 'Radio',
         options: [
           regionOption,

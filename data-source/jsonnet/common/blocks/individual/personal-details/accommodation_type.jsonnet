@@ -15,7 +15,7 @@ local placeholders = import '../../../lib/placeholders.libsonnet';
     answers: [
       {
         id: 'accommodation-type-answer',
-        mandatory: true,
+        mandatory: false,
         options: [
           {
             label: 'A communal establishment',

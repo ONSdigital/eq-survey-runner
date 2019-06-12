@@ -21,7 +21,7 @@ local question(title) = {
         ],
       },
       id: 'black-ethnic-group-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Caribbean',
