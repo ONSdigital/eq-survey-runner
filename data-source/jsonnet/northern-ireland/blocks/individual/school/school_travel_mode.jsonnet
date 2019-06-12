@@ -5,9 +5,9 @@ local question(title, guidance) = {
   id: 'school-travel-mode-question',
   title: title,
   guidance: {
-    content: [
+    contents: [
       {
-        title: guidance,
+        description: guidance,
       },
     ],
   },

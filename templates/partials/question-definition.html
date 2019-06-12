@@ -1,7 +1,6 @@
 {% from "components/details/_macro.njk" import onsDetails %}
 
 {% for definition in question.definitions %}
-  {% set content_block = definition %}
   {% call onsDetails({
       "title": definition.title,
       "classes": "u-mt-s u-mb-s",
@@ -21,6 +20,7 @@
         }
       }
   }) %}
-    {% include 'partials/content-block.html' %}
+    {% set contents = definition.contents %}
+    {% include 'partials/contents.html' %}
   {% endcall %}
 {% endfor %}

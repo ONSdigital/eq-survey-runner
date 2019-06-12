@@ -7,7 +7,7 @@ local question(title) = {
   guidance: {
     contents: [
       {
-        title: 'Include problems relating to old age',
+        description: 'Include problems relating to old age',
       },
     ],
   },
