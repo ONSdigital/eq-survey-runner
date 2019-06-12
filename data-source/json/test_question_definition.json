@@ -24,30 +24,29 @@
             "blocks": [{
                 "type": "Question",
                 "id": "definition-block",
-                "description": "",
                 "question": {
                     "id": "question",
                     "title": "Do you connect a LiFePO4 battery to your <em>photovoltaic system</em> to store surplus energy?",
                     "type": "General",
                     "definitions": [{
-                            "title": "What is a photovoltaic system?",
-                            "content": [{
-                                "description": "A typical photovoltaic system employs solar panels, each comprising a number of solar cells, which generate electrical power. PV installations may be ground-mounted, rooftop mounted or wall mounted. The mount may be fixed, or use a solar tracker to follow the sun across the sky."
-                            }]
-                        },
-                        {
-                            "title": "Why use LiFePO4 batteries?",
-                            "content": [{
+                        "title": "What is a photovoltaic system?",
+                        "contents": [{
+                            "description": "A typical photovoltaic system employs solar panels, each comprising a number of solar cells, which generate electrical power. PV installations may be ground-mounted, rooftop mounted or wall mounted. The mount may be fixed, or use a solar tracker to follow the sun across the sky."
+                        }]
+                    }, {
+                        "title": "Why use LiFePO4 batteries?",
+                        "contents": [{
                                 "title": "3 Benefits of LifePO4 batteries."
-                            }, {
+                            },
+                            {
                                 "list": [
                                     "LifePO4 batteries have a life span 10 times longer than that of traditional lead acid batteries. This dramatically reduces the need for battery changes.",
                                     "Lithium iron phosphate batteries operate with much lower resistance and consequently recharge at a faster rate.",
                                     "LifeP04 lightweight batteries are lighter than lead acid batteries, usually weighing about 1/4 less."
                                 ]
-                            }]
-                        }
-                    ],
+                            }
+                        ]
+                    }],
                     "answers": [{
                         "type": "Radio",
                         "id": "radio-mandatory-answer",
@@ -56,14 +55,11 @@
                             "label": "Yes, I do connect a battery",
                             "value": "yes"
                         }, {
-
                             "label": "No, I don't connect a battery",
                             "value": "no"
-
                         }]
                     }]
-                },
-                "title": "Definition Test"
+                }
             }, {
                 "type": "Summary",
                 "id": "definition-summary"

@@ -27,7 +27,7 @@ until [ "$checks" == 0 ]; do
             sleep 5
         else
             echo -e "Exiting...${default}\\n"
-            exit
+            exit 1
         fi
         (( checks-- ))
     else

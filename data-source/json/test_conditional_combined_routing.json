@@ -22,8 +22,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "conditional-routing-block",
-                "title": "Conditional Routing Test",
-                "description": "",
                 "question": {
                     "id": "conditional-routing-question",
                     "title": "Do you drink coffee?",
@@ -79,8 +77,6 @@
             }, {
                 "type": "Question",
                 "id": "response-any",
-                "title": "Yes/Sometimes, I do drink coffee",
-                "description": "",
                 "question": {
                     "id": "response-any-question",
                     "title": "How many cups of coffee do you drink a day?",
@@ -97,8 +93,6 @@
             }, {
                 "type": "Question",
                 "id": "response-not-any",
-                "title": "No, I prefer tea",
-                "description": "",
                 "question": {
                     "id": "response-not-any-question",
                     "title": "How many cups of tea do you drink a day?",

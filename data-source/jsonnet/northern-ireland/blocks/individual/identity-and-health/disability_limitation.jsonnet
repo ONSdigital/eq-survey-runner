@@ -5,7 +5,7 @@ local question(title) = {
   id: 'disability-limitation-question',
   title: title,
   guidance: {
-    content: [
+    contents: [
       {
         title: 'Include problems relating to old age',
       },

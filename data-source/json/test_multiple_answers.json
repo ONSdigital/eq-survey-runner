@@ -41,8 +41,7 @@
                     "id": "personal-details-question",
                     "title": "Tell me about yourself",
                     "type": "General"
-                },
-                "title": "Multiple questions"
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

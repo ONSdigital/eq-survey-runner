@@ -7,108 +7,90 @@
     "theme": "default",
     "description": "A questionnaire to demo checkbox field combined contains routing",
     "metadata": [{
-            "name": "user_id",
-            "type": "string"
-        },
-        {
-            "name": "period_id",
-            "type": "string"
-        },
-        {
-            "name": "ru_name",
-            "type": "string"
-        }
-    ],
+        "name": "user_id",
+        "type": "string"
+    }, {
+        "name": "period_id",
+        "type": "string"
+    }, {
+        "name": "ru_name",
+        "type": "string"
+    }],
     "sections": [{
         "id": "default-section",
         "groups": [{
             "blocks": [{
-                    "type": "Question",
-                    "id": "country-checkbox",
-                    "title": "Country question",
-                    "question": {
-                        "id": "country-checkbox-question",
-                        "title": "Have you visited any of the following countries?",
-                        "type": "General",
-                        "answers": [{
-                            "id": "country-checkbox-answer",
-                            "label": "",
-                            "mandatory": false,
-                            "type": "Checkbox",
-                            "options": [{
-                                    "label": "India",
-                                    "value": "India"
-                                },
-                                {
-                                    "label": "Azerbaijan",
-                                    "value": "Azerbaijan"
-                                },
-                                {
-                                    "label": "Liechtenstein",
-                                    "value": "Liechtenstein"
-                                },
-                                {
-                                    "label": "Malta",
-                                    "value": "Malta"
-                                }
-                            ]
+                "type": "Question",
+                "id": "country-checkbox",
+                "question": {
+                    "id": "country-checkbox-question",
+                    "title": "Have you visited any of the following countries?",
+                    "type": "General",
+                    "answers": [{
+                        "id": "country-checkbox-answer",
+                        "label": "",
+                        "mandatory": false,
+                        "type": "Checkbox",
+                        "options": [{
+                            "label": "India",
+                            "value": "India"
+                        }, {
+                            "label": "Azerbaijan",
+                            "value": "Azerbaijan"
+                        }, {
+                            "label": "Liechtenstein",
+                            "value": "Liechtenstein"
+                        }, {
+                            "label": "Malta",
+                            "value": "Malta"
                         }]
-                    },
-                    "routing_rules": [{
-                            "goto": {
-                                "block": "country-interstitial-all",
-                                "when": [{
-                                    "id": "country-checkbox-answer",
-                                    "condition": "contains all",
-                                    "values": [
-                                        "India",
-                                        "Azerbaijan",
-                                        "Liechtenstein"
-                                    ]
-                                }]
-                            }
-                        },
-                        {
-                            "goto": {
-                                "block": "country-interstitial-any",
-                                "when": [{
-                                    "id": "country-checkbox-answer",
-                                    "condition": "contains any",
-                                    "values": [
-                                        "India",
-                                        "Azerbaijan"
-                                    ]
-                                }]
-                            }
-                        },
-                        {
-                            "goto": {
-                                "block": "summary"
-                            }
-                        }
-                    ]
+                    }]
                 },
-                {
-                    "id": "country-interstitial-any",
+                "routing_rules": [{
+                    "goto": {
+                        "block": "country-interstitial-all",
+                        "when": [{
+                            "id": "country-checkbox-answer",
+                            "condition": "contains all",
+                            "values": ["India", "Azerbaijan", "Liechtenstein"]
+                        }]
+                    }
+                }, {
+                    "goto": {
+                        "block": "country-interstitial-any",
+                        "when": [{
+                            "id": "country-checkbox-answer",
+                            "condition": "contains any",
+                            "values": ["India", "Azerbaijan"]
+                        }]
+                    }
+                }, {
+                    "goto": {
+                        "block": "summary"
+                    }
+                }]
+            }, {
+                "id": "country-interstitial-any",
+                "type": "Interstitial",
+                "content": {
                     "title": "Condition: Contains Any",
-                    "type": "Interstitial",
-                    "content": [{
+                    "contents": [{
                         "description": "You chose India or Azerbaijan."
                     }]
-                },
-                {
-                    "id": "country-interstitial-all",
+                }
+            }, {
+                "id": "country-interstitial-all",
+                "type": "Interstitial",
+                "content": {
                     "title": "Condition: Contains All",
-                    "type": "Interstitial",
-                    "content": [{
+                    "contents": [{
                         "description": "You chose India, Azerbaijan and Liechtenstein."
                     }]
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
                 }
-            ],
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }],
             "id": "checkboxes",
             "title": ""
         }]

@@ -24,8 +24,6 @@
                 "type": "Question",
                 "id": "do-you-want-to-skip",
                 "routing_rules": [],
-                "description": "",
-                "title": "Do you want to skip?",
                 "question": {
                     "description": "",
                     "id": "do-you-want-to-skip-question",
@@ -52,8 +50,6 @@
                 "type": "Question",
                 "id": "should-skip",
                 "routing_rules": [],
-                "description": "",
-                "title": "Why didn't you skip the block?",
                 "question": {
                     "description": "",
                     "id": "should-skip-question",
@@ -76,8 +72,6 @@
             }, {
                 "type": "Question",
                 "id": "a-non-skipped-block",
-                "description": "an additional question within the same group",
-                "title": "Additional Question",
                 "question": {
                     "id": "will-not-be-skipped-question",
                     "title": "Always ask this question",

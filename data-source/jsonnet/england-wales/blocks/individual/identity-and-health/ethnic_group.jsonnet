@@ -23,7 +23,7 @@ local question(title, region_code) = (
         guidance: {
           show_guidance: 'Why your answer is important',
           hide_guidance: 'Why your answer is important',
-          content: [
+          contents: [
             {
               description: 'Your answer will help to support equality and fairness in your community. Councils and government use information on ethnic group to make sure they:',
               list: [

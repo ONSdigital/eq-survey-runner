@@ -1,13 +1,6 @@
 {% set block = content.block %}
 
 <div class="block" id="{{current_location.block_id}}">
-  {% if block['title'] %}
-    <p class="block__title u-fs-m" data-qa="block-title">{{block['title']}}</p>
-  {% endif %}
-
-  {% if block['description'] %}
-    <div class="block__description" data-qa="block-description">{{ block['description'] }}</div>
-  {% endif %}
 
   {% if 'question' in block %}
       {% set question = block['question'] %}

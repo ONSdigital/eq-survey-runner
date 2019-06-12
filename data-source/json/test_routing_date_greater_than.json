@@ -70,25 +70,27 @@
             }, {
                 "type": "Interstitial",
                 "id": "incorrect-answer",
-                "title": "Incorrect Date",
-                "content": [{
-                    "description": {
-                        "text": "You entered a return date earlier than {date}",
-                        "placeholders": [{
-                            "placeholder": "date",
-                            "transforms": [{
-                                "transform": "format_date",
-                                "arguments": {
-                                    "date_to_format": {
-                                        "source": "metadata",
-                                        "identifier": "return_by"
-                                    },
-                                    "date_format": "d MMMM YYYY"
-                                }
+                "content": {
+                    "title": "Incorrect answer",
+                    "contents": [{
+                        "description": {
+                            "text": "You entered a return date earlier than {date}",
+                            "placeholders": [{
+                                "placeholder": "date",
+                                "transforms": [{
+                                    "transform": "format_date",
+                                    "arguments": {
+                                        "date_to_format": {
+                                            "source": "metadata",
+                                            "identifier": "return_by"
+                                        },
+                                        "date_format": "d MMMM YYYY"
+                                    }
+                                }]
                             }]
-                        }]
-                    }
-                }],
+                        }
+                    }]
+                },
                 "routing_rules": [{
                     "goto": {
                         "block": "summary"
@@ -97,25 +99,27 @@
             }, {
                 "type": "Interstitial",
                 "id": "correct-answer",
-                "title": "Correct Date",
-                "content": [{
-                    "description": {
-                        "text": "You entered a return date later than {date}",
-                        "placeholders": [{
-                            "placeholder": "date",
-                            "transforms": [{
-                                "transform": "format_date",
-                                "arguments": {
-                                    "date_to_format": {
-                                        "source": "metadata",
-                                        "identifier": "return_by"
-                                    },
-                                    "date_format": "d MMMM YYYY"
-                                }
+                "content": {
+                    "title": "Correct answer",
+                    "contents": [{
+                        "description": {
+                            "text": "You entered a return date later than {date}",
+                            "placeholders": [{
+                                "placeholder": "date",
+                                "transforms": [{
+                                    "transform": "format_date",
+                                    "arguments": {
+                                        "date_to_format": {
+                                            "source": "metadata",
+                                            "identifier": "return_by"
+                                        },
+                                        "date_format": "d MMMM YYYY"
+                                    }
+                                }]
                             }]
-                        }]
-                    }
-                }]
+                        }
+                    }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

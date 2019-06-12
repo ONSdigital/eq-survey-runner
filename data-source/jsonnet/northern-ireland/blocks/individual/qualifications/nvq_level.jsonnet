@@ -14,7 +14,7 @@ local question(title) = {
   title: title,
   type: 'MutuallyExclusive',
   guidance: {
-    content: [
+    contents: [
       {
         title: 'Include equivalent qualifications achieved anywhere outside Northern Ireland',
       },

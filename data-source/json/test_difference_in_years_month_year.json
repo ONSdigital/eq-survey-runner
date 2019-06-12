@@ -24,7 +24,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "age-block",
-                "title": "Calculate Difference",
                 "question": {
                     "id": "date-pipe-question",
                     "title": "When did you last go on holiday?",
@@ -39,7 +38,6 @@
             }, {
                 "type": "ConfirmationQuestion",
                 "id": "age-test",
-                "title": "Confirm Duration",
                 "question": {
                     "id": "confirm-dob-question",
                     "title": {

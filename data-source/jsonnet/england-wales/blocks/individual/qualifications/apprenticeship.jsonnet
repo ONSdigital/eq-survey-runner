@@ -22,7 +22,7 @@ local question(title, region_code) = (
     title: title,
     type: 'General',
     guidance: {
-      content: [
+      contents: [
         {
           title: regionGuidanceTitle,
         },

@@ -25,7 +25,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "timeout-block",
-                "title": "Timeout",
                 "question": {
                     "answers": [{
                         "id": "timeout-answer",

@@ -22,7 +22,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "set-length-units-block",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "centimetres",
@@ -61,42 +60,36 @@
                     "id": "set-length-units-question",
                     "title": "Length Units",
                     "type": "General"
-                },
-                "title": "Length Units"
+                }
             }, {
                 "type": "Question",
                 "id": "set-duration-units-block",
-                "description": "",
                 "question": {
                     "answers": [{
-                            "id": "duration-hour",
-                            "description": "",
-                            "label": "Hour",
-                            "mandatory": false,
-                            "type": "Unit",
-                            "unit": "duration-hour",
-                            "unit_length": "long"
-                        },
-                        {
-                            "id": "duration-year",
-                            "description": "",
-                            "label": "Years",
-                            "mandatory": false,
-                            "type": "Unit",
-                            "unit": "duration-year",
-                            "unit_length": "long"
-                        }
-                    ],
+                        "id": "duration-hour",
+                        "description": "",
+                        "label": "Hour",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "duration-hour",
+                        "unit_length": "long"
+                    }, {
+                        "id": "duration-year",
+                        "description": "",
+                        "label": "Years",
+                        "mandatory": false,
+                        "type": "Unit",
+                        "unit": "duration-year",
+                        "unit_length": "long"
+                    }],
                     "description": "",
                     "id": "set-duration-units-question",
                     "title": "Duration Units",
                     "type": "General"
-                },
-                "title": "Duration Units"
+                }
             }, {
                 "type": "Question",
                 "id": "set-area-units-block",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "square-centimetres",
@@ -151,12 +144,10 @@
                     "id": "set-area-unit-questions",
                     "title": "Area Units",
                     "type": "General"
-                },
-                "title": "Area Units"
+                }
             }, {
                 "type": "Question",
                 "id": "set-volume-units-block",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "cubic-centimetres",
@@ -203,8 +194,7 @@
                     "id": "set-volume-unit-questions",
                     "title": "Volume Units",
                     "type": "General"
-                },
-                "title": "Volume Units"
+                }
             }],
             "id": "test",
             "title": ""

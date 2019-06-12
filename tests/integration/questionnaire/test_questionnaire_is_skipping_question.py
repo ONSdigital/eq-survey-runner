@@ -11,7 +11,6 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
         self.get('questionnaire/summary')
 
         # Then I should be redirected to the first incomplete question in the survey
-        self.assertInBody('This is section 1')
         self.assertInBody('Were you forced to complete section 1?')
 
     def test_final_summary_not_available_after_invalidating_section(self):
@@ -43,5 +42,4 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
         self.get('questionnaire/summary')
 
         # Then I should be redirected to the first incomplete question in the survey
-        self.assertInBody('This is section 1')
         self.assertInBody('What would incentivise you to complete this section?')

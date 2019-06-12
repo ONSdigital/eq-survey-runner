@@ -22,8 +22,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "number-question",
-                "description": "",
-                "title": "Zero Default",
                 "question": {
                     "answers": [{
                         "id": "answer",

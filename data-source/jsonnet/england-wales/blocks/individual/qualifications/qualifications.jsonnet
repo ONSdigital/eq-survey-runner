@@ -13,25 +13,30 @@ function(region_code) (
   {
     type: 'Interstitial',
     id: 'qualifications',
-    title: 'Qualifications',
     content_variants: [
       {
-        content: [
-          {
-            description: regionDescriptionNonProxy,
-          },
-        ],
+        content: {
+          title: 'Qualifications',
+          contents: [
+            {
+              description: regionDescriptionNonProxy,
+            },
+          ],
+        },
         when: [rules.proxyNo],
       },
       {
-        content: [
-          {
-            description: {
-              text: regionDescriptionProxy,
-              placeholders: [placeholders.personName],
+        content: {
+          title: 'Qualifications',
+          contents: [
+            {
+              description: {
+                text: regionDescriptionProxy,
+                placeholders: [placeholders.personName],
+              },
             },
-          },
-        ],
+          ],
+        },
         when: [rules.proxyYes],
       },
     ],

@@ -23,17 +23,17 @@ class TestAnswerComparisonsSkips(IntegrationTestCase):
 
         self.post({'comparison-2-answer': 3})
 
-        self.assertInBody('First less than second')
+        self.assertInBody('Your first answer was less than your second number')
 
         # Go back to the second question and change the answer
         self.post({'comparison-2-answer': 2}, url=second_page)
 
-        self.assertInBody('Second equal first')
+        self.assertInBody('Your second number was equal to your first number')
 
         # Go back to the second question and change the answer
         self.post({'comparison-2-answer': 1}, url=second_page)
 
-        self.assertInBody('First greater than second')
+        self.assertInBody('Your first answer was greater than your second number')
 
 
 class TestAnswerComparisonsRoutes(IntegrationTestCase):
@@ -58,9 +58,11 @@ class TestAnswerComparisonsRoutes(IntegrationTestCase):
         # Enter a higher number
         self.post({'route-comparison-2-answer': 3})
 
-        self.assertInBody('Your second number was higher')
+        self.assertInBody('This page should never be skipped')
 
         # Go back to the second question and change the answer to a lower one
         self.post({'route-comparison-2-answer': 1}, url=second_page)
 
-        self.assertInBody('Your second number was lower or equal')
+        self.assertInBody(
+            'This page should be skipped if your second answer was higher than your first'
+        )

@@ -15,7 +15,6 @@
         "groups": [{
             "blocks": [{
                 "type": "Question",
-                "description": "Test schema for known bad text combinations.",
                 "routing_rules": [],
                 "question": {
                     "answers": [{
@@ -3066,7 +3065,6 @@
                     "description": "",
                     "id": "question"
                 },
-                "title": "Textarea Test",
                 "id": "textarea-block"
             }, {
                 "type": "Summary",

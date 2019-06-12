@@ -28,7 +28,7 @@
     }}
   {% else  %}
     {% if block and block.content %}
-      {% set content_block = content.block.content %}
+      {% set content_block = block.content %}
       {% include 'partials/content-block.html' %}
     {% endif %}
     <p class="u-mt-m">

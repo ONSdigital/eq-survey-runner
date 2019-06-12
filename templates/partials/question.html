@@ -16,13 +16,14 @@
 
 {% set question_guidance %}
   {%- if question.guidance -%}
-    {% set content_block = question.guidance.content %}
+    {% set contents = question.guidance.contents %}
     {% from "components/panel/_macro.njk" import onsPanel %}
     {% call onsPanel({
       "id": "question-guidance-" + question.id,
       "classes": "u-mb-m"
     }) %}
-      {% include 'partials/content-block.html' %}
+      {% set contents = question.guidance.contents %}
+      {% include 'partials/contents.html' %}
     {% endcall %}
   {% endif %}
 {% endset %}

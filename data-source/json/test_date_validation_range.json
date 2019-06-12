@@ -24,14 +24,15 @@
             "blocks": [{
                 "type": "Question",
                 "id": "date-range-block",
-                "title": "Date Range",
                 "question": {
                     "id": "date-range-question",
                     "title": "Enter Date Range",
                     "type": "DateRange",
                     "guidance": {
-                        "content": [{
-                            "list": ["Enter a date range between 23 days and 1 month and 20 days apart"]
+                        "contents": [{
+                            "list": [
+                                "Enter a date range between 23 days and 1 month and 20 days apart"
+                            ]
                         }]
                     },
                     "period_limits": {

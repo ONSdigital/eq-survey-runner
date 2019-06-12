@@ -30,14 +30,10 @@
         "groups": [{
             "blocks": [{
                 "type": "Introduction",
-                "id": "introduction",
-                "title": "Introduction",
-                "description": ""
+                "id": "introduction"
             }, {
                 "type": "Question",
                 "id": "breakfast",
-                "description": "",
-                "title": "What is your favourite breakfast food",
                 "question": {
                     "answers": [{
                         "id": "breakfast-answer",
@@ -63,10 +59,9 @@
             "blocks": [{
                 "type": "Confirmation",
                 "id": "confirmation",
-                "title": "Submit answers",
-                "content": [{
+                "content": {
                     "title": "Thank you for your answers, do you wish to submit"
-                }]
+                }
             }],
             "id": "confirmation-group",
             "title": "Submit answers"

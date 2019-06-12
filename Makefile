@@ -13,6 +13,9 @@ test-unit:
 test-functional:
 	pipenv run ./scripts/run_tests_functional.sh
 
+test-schemas:
+	pipenv run ./scripts/test_schemas.sh
+
 load_templates:
 	pipenv run ./scripts/load_templates.sh
 

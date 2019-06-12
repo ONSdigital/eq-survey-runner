@@ -23,28 +23,28 @@
             "title": "",
             "blocks": [{
                 "type": "Introduction",
-                "id": "introduction",
-                "title": "Introduction",
-                "description": ""
+                "id": "introduction"
             }, {
                 "type": "Question",
                 "id": "block-test-guidance-title",
-                "title": "Section: Test guidance title",
-                "description": "",
                 "question": {
                     "id": "question-test-guidance-title",
                     "title": "Question: Test guidance title",
                     "description": "Testing combinations of the title within guidance",
                     "guidance": {
-                        "content": [{
-                            "title": "This one has a description but no list"
-                        }, {
-                            "description": "No list items below this text"
-                        }, {
-                            "title": "This one has no list or description"
-                        }, {
-                            "description": "title, description, title, description"
-                        }]
+                        "contents": [{
+                                "title": "This one has a description but no list"
+                            },
+                            {
+                                "description": "No list items below this text"
+                            },
+                            {
+                                "title": "This one has no list or description"
+                            },
+                            {
+                                "description": "title, description, title, description"
+                            }
+                        ]
                     },
                     "type": "General",
                     "answers": [{
@@ -58,20 +58,26 @@
             }, {
                 "type": "Question",
                 "id": "block-test-guidance-description",
-                "title": "Section: Test guidance descriptions",
-                "description": "",
                 "question": {
                     "id": "question-test-guidance-description",
                     "title": "Question: Test guidance descriptions",
                     "description": "Tests the descriptions within guidance",
                     "guidance": {
-                        "content": [{
-                            "description": "No title above this text, list below"
-                        }, {
-                            "list": ["Item Include 1", "Item Include 2", "Item Include 3", "Item Include 4"]
-                        }, {
-                            "description": "Just description, no title above this text, no list below"
-                        }]
+                        "contents": [{
+                                "description": "No title above this text, list below"
+                            },
+                            {
+                                "list": [
+                                    "Item Include 1",
+                                    "Item Include 2",
+                                    "Item Include 3",
+                                    "Item Include 4"
+                                ]
+                            },
+                            {
+                                "description": "Just description, no title above this text, no list below"
+                            }
+                        ]
                     },
                     "type": "General",
                     "answers": [{
@@ -85,18 +91,28 @@
             }, {
                 "type": "Question",
                 "id": "block-test-guidance-lists",
-                "title": "Section: Test guidance lists",
-                "description": "",
                 "question": {
                     "id": "question-test-guidance-lists",
                     "title": "Question: Test guidance lists (with no question description below)",
                     "guidance": {
-                        "content": [{
-                            "title": "Title, no description, list follows",
-                            "list": ["Item Include 1", "Item Include 2", "Item Include 3", "Item Include 4"]
-                        }, {
-                            "list": ["List with no title or description 1", "List with no title or description 2", "List with no title or description 3", "List with no title or description 4"]
-                        }]
+                        "contents": [{
+                                "title": "Title, no description, list follows",
+                                "list": [
+                                    "Item Include 1",
+                                    "Item Include 2",
+                                    "Item Include 3",
+                                    "Item Include 4"
+                                ]
+                            },
+                            {
+                                "list": [
+                                    "List with no title or description 1",
+                                    "List with no title or description 2",
+                                    "List with no title or description 3",
+                                    "List with no title or description 4"
+                                ]
+                            }
+                        ]
                     },
                     "type": "General",
                     "answers": [{
@@ -110,13 +126,11 @@
             }, {
                 "type": "Question",
                 "id": "block-test-guidance-content-description",
-                "title": "Section: Test show guidance content description",
-                "description": "",
                 "question": {
                     "id": "question-test-guidance-content-description",
                     "title": "Question: Test show guidance content description",
                     "guidance": {
-                        "content": [{
+                        "contents": [{
                             "description": "Guidance with content description"
                         }]
                     },
@@ -125,7 +139,7 @@
                         "guidance": {
                             "show_guidance": "Show test guidance.",
                             "hide_guidance": "Hide test guidance.",
-                            "content": [{
+                            "contents": [{
                                 "description": "The text here is for description"
                             }]
                         },
@@ -139,13 +153,11 @@
             }, {
                 "type": "Question",
                 "id": "block-test-guidance-content-title",
-                "title": "Section: Test show guidance content title",
-                "description": "",
                 "question": {
                     "id": "question-test-guidance-content-title",
                     "title": "Question: Test show guidance content title",
                     "guidance": {
-                        "content": [{
+                        "contents": [{
                             "description": "Guidance with content title"
                         }]
                     },
@@ -154,7 +166,7 @@
                         "guidance": {
                             "show_guidance": "Show test guidance.",
                             "hide_guidance": "Hide test guidance.",
-                            "content": [{
+                            "contents": [{
                                 "title": "The text here is for a title"
                             }]
                         },
@@ -168,13 +180,11 @@
             }, {
                 "type": "Question",
                 "id": "block-test-guidance-content-list",
-                "title": "Section: Test show guidance content list",
-                "description": "",
                 "question": {
                     "id": "question-test-guidance-content-list",
                     "title": "Question: Test show guidance content list",
                     "guidance": {
-                        "content": [{
+                        "contents": [{
                             "title": "Guidance with content list"
                         }]
                     },
@@ -183,8 +193,12 @@
                         "guidance": {
                             "show_guidance": "Show test guidance.",
                             "hide_guidance": "Hide test guidance.",
-                            "content": [{
-                                "list": ["The text here is for a list", "Another list item", "One more"]
+                            "contents": [{
+                                "list": [
+                                    "The text here is for a list",
+                                    "Another list item",
+                                    "One more"
+                                ]
                             }]
                         },
                         "id": "answer-test-guidance-content-list",
@@ -197,46 +211,75 @@
             }, {
                 "type": "Question",
                 "id": "block-test-guidance-all",
-                "title": "Section: Test guidance all",
-                "description": "",
                 "question": {
                     "id": "question-test-guidance-all",
                     "title": "Question: Test guidance all",
                     "description": "Testing all features of the guidance block enabled together",
                     "guidance": {
-                        "content": [{
-                            "title": "Include"
-                        }, {
-                            "description": "<p>Guidance <b>include</b> description text</p>"
-                        }, {
-                            "list": ["Item Include 1", "Item Include 2", "Item Include 3", "Item Include 4"]
-                        }, {
-                            "title": "Exclude"
-                        }, {
-                            "description": "<p>Guidance <b>exclude</b> description text</p>"
-                        }, {
-                            "list": ["Item Exclude 1", "Item Exclude 2", "Item Exclude 3", "Item Exclude 4"]
-                        }, {
-                            "title": "Other"
-                        }, {
-                            "description": "<p>Guidance <b>other</b> description text</p>"
-                        }, {
-                            "list": ["Item Other 1", "Item Other 2", "Item Other 3", "Item Other 4"]
-                        }]
+                        "contents": [{
+                                "title": "Include"
+                            },
+                            {
+                                "description": "<p>Guidance <b>include</b> description text</p>"
+                            },
+                            {
+                                "list": [
+                                    "Item Include 1",
+                                    "Item Include 2",
+                                    "Item Include 3",
+                                    "Item Include 4"
+                                ]
+                            },
+                            {
+                                "title": "Exclude"
+                            },
+                            {
+                                "description": "<p>Guidance <b>exclude</b> description text</p>"
+                            },
+                            {
+                                "list": [
+                                    "Item Exclude 1",
+                                    "Item Exclude 2",
+                                    "Item Exclude 3",
+                                    "Item Exclude 4"
+                                ]
+                            },
+                            {
+                                "title": "Other"
+                            },
+                            {
+                                "description": "<p>Guidance <b>other</b> description text</p>"
+                            },
+                            {
+                                "list": [
+                                    "Item Other 1",
+                                    "Item Other 2",
+                                    "Item Other 3",
+                                    "Item Other 4"
+                                ]
+                            }
+                        ]
                     },
                     "type": "General",
                     "answers": [{
                         "guidance": {
                             "show_guidance": "Show test guidance.",
                             "hide_guidance": "Hide test guidance.",
-                            "content": [{
-                                "description": "The text here is for a description"
-                            }, {
-                                "description": "Here's some more description text"
-                            }, {
-                                "title": "This text here is the title for the list",
-                                "list": ["The text here is for a list", "Another list item", "One more"]
-                            }]
+                            "contents": [{
+                                    "description": "The text here is for a description"
+                                },
+                                {
+                                    "description": "Here's some more description text"
+                                },
+                                {
+                                    "title": "This text here is the title for the list",
+                                    "list": [
+                                        "The text here is for a list",
+                                        "Another list item",
+                                        "One more"
+                                    ]
+                                }
+                            ]
                         },
                         "id": "answer-test-guidance-all",
                         "label": "Text question",

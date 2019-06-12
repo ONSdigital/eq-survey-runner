@@ -1,17 +1,8 @@
 {% import 'macros/helpers.html' as helpers %}
 
-{% for item in content_block %}
-  {%- if item.title -%}
-    <strong class="u-mb-s">{{item.title}}</strong>
+{%- if content_block.title -%}
+    <strong class="u-mb-s">{{content_block.title}}</strong>
   {% endif %}
-  {%- if item.description -%}
-    <p>{{item.description}}</p>
-  {% endif %}
-  {%- if item.list -%}
-    <ul class="u-fs-r">
-      {%- for list_item in item.list -%}
-        <li>{{list_item}}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-{% endfor %}
+{% set contents = content_block.contents %}
+{% include 'partials/contents.html' %}
+

@@ -23,8 +23,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "which-group-block",
-                "description": "",
-                "title": "Pick your next group?",
                 "question": {
                     "description": "",
                     "id": "which-group-question",
@@ -69,8 +67,6 @@
                 "type": "Question",
                 "id": "group1-block",
                 "routing_rules": [],
-                "description": "",
-                "title": "Did you want Group 1?",
                 "question": {
                     "description": "",
                     "id": "group1-question",
@@ -91,8 +87,6 @@
                 "type": "Question",
                 "id": "group2-block",
                 "routing_rules": [],
-                "description": "",
-                "title": "Did you want Group 2?",
                 "question": {
                     "description": "",
                     "id": "group2-question",

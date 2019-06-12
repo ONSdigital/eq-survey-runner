@@ -7,7 +7,7 @@ local question(title) = {
   type: 'MutuallyExclusive',
   mandatory: true,
   guidance: {
-    content: [
+    contents: [
       {
         title: 'Include casual or temporary work, even if only for one hour',
       },

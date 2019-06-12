@@ -24,178 +24,163 @@
         "type": "string"
     }],
     "sections": [{
-            "id": "property-details-section",
-            "title": "Property Details Section",
-            "groups": [{
-                "id": "property-details",
-                "title": "Property Details",
-                "blocks": [{
-                    "id": "insurance-type",
-                    "title": "Property Details",
-                    "type": "Question",
-                    "question": {
-                        "id": "insurance-type-question",
-                        "title": "What kind of insurance would you like?",
-                        "type": "General",
-                        "answers": [{
-                            "id": "insurance-type-answer",
-                            "type": "Radio",
-                            "label": "",
-                            "mandatory": false,
-                            "options": [{
-                                "label": "Buildings",
-                                "value": "Buildings"
-                            }, {
-                                "label": "Contents",
-                                "value": "Contents"
-                            }, {
-                                "label": "Both",
-                                "value": "Both"
-                            }]
-                        }]
-                    }
-                }, {
-                    "id": "insurance-address",
-                    "title": "Property Details",
-                    "type": "Question",
-                    "question": {
-                        "id": "insurance-address-question",
-                        "title": "What is the address you would like to insure?",
-                        "type": "General",
-                        "answers": [{
-                            "id": "insurance-address-answer",
-                            "type": "TextArea",
-                            "label": "",
-                            "mandatory": false
-                        }]
-                    }
-                }]
-            }, {
-                "id": "address-length",
-                "title": "Address Duration",
-                "blocks": [{
-                    "id": "address-duration",
-                    "title": "Address Duration",
-                    "type": "Question",
-                    "question": {
-                        "id": "address-duration-question",
-                        "title": "Have you been living at this address for over 5 years?",
-                        "type": "General",
-                        "answers": [{
-                            "id": "address-duration-answer",
-                            "type": "Radio",
-                            "mandatory": false,
-                            "options": [{
-                                "label": "Yes",
-                                "value": "Yes"
-                            }, {
-                                "label": "No",
-                                "value": "No"
-                            }]
-                        }]
-                    },
-                    "skip_conditions": [{
-                        "when": [{
-                            "id": "insurance-type-answer",
-                            "condition": "equals",
+        "id": "property-details-section",
+        "title": "Property Details Section",
+        "groups": [{
+            "id": "property-details",
+            "title": "Property Details",
+            "blocks": [{
+                "id": "insurance-type",
+                "type": "Question",
+                "question": {
+                    "id": "insurance-type-question",
+                    "title": "What kind of insurance would you like?",
+                    "type": "General",
+                    "answers": [{
+                        "id": "insurance-type-answer",
+                        "type": "Radio",
+                        "label": "",
+                        "mandatory": false,
+                        "options": [{
+                            "label": "Buildings",
+                            "value": "Buildings"
+                        }, {
+                            "label": "Contents",
+                            "value": "Contents"
+                        }, {
+                            "label": "Both",
                             "value": "Both"
                         }]
                     }]
-                }]
+                }
             }, {
-                "id": "property-details-summary-group",
-                "title": "Property Details Summary",
-                "blocks": [{
-                    "id": "property-details-summary",
-                    "type": "SectionSummary"
-                }]
-            }]
-        },
-        {
-            "id": "house-details-section",
-            "title": "House Details Section",
-            "groups": [{
-                    "id": "house-details",
-                    "title": "House Details",
-                    "skip_conditions": [{
-                            "when": [{
-                                "id": "insurance-type-answer",
-                                "condition": "equals",
-                                "value": "Contents"
-                            }]
-                        },
-                        {
-                            "when": [{
-                                "id": "insurance-type-answer",
-                                "condition": "not set"
-                            }]
-                        }
-                    ],
-                    "blocks": [{
-                        "id": "house-type",
-                        "title": "House Details",
-                        "type": "Question",
-                        "question": {
-                            "id": "house-type-question",
-                            "title": "What kind of house is it?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "house-type-answer",
-                                "type": "Radio",
-                                "label": "",
-                                "mandatory": false,
-                                "options": [{
-                                        "label": "Detached",
-                                        "value": "Detached"
-                                    },
-                                    {
-                                        "label": "Semi-detached",
-                                        "value": "Semi-detached"
-                                    },
-                                    {
-                                        "label": "Terrace",
-                                        "value": "Terrace"
-                                    }
-                                ]
-                            }]
-                        }
-                    }]
-                },
-                {
-                    "id": "household-details-summary-group",
-                    "title": "Household Details Summary",
-                    "skip_conditions": [{
-                            "when": [{
-                                "id": "insurance-type-answer",
-                                "condition": "equals",
-                                "value": "Contents"
-                            }]
-                        },
-                        {
-                            "when": [{
-                                "id": "insurance-type-answer",
-                                "condition": "not set"
-                            }]
-                        }
-                    ],
-                    "blocks": [{
-                        "id": "household-details-summary",
-                        "type": "SectionSummary"
+                "id": "insurance-address",
+                "type": "Question",
+                "question": {
+                    "id": "insurance-address-question",
+                    "title": "What is the address you would like to insure?",
+                    "type": "General",
+                    "answers": [{
+                        "id": "insurance-address-answer",
+                        "type": "TextArea",
+                        "label": "",
+                        "mandatory": false
                     }]
                 }
-            ]
+            }]
         }, {
-            "id": "summary-section",
-            "title": "Summary",
-            "groups": [{
-                "id": "summary-group",
-                "title": "Summary",
-                "blocks": [{
-                    "id": "summary",
-                    "type": "Summary",
-                    "collapsible": true
+            "id": "address-length",
+            "title": "Address Duration",
+            "blocks": [{
+                "id": "address-duration",
+                "type": "Question",
+                "question": {
+                    "id": "address-duration-question",
+                    "title": "Have you been living at this address for over 5 years?",
+                    "type": "General",
+                    "answers": [{
+                        "id": "address-duration-answer",
+                        "type": "Radio",
+                        "mandatory": false,
+                        "options": [{
+                            "label": "Yes",
+                            "value": "Yes"
+                        }, {
+                            "label": "No",
+                            "value": "No"
+                        }]
+                    }]
+                },
+                "skip_conditions": [{
+                    "when": [{
+                        "id": "insurance-type-answer",
+                        "condition": "equals",
+                        "value": "Both"
+                    }]
                 }]
             }]
-        }
-    ]
+        }, {
+            "id": "property-details-summary-group",
+            "title": "Property Details Summary",
+            "blocks": [{
+                "id": "property-details-summary",
+                "type": "SectionSummary"
+            }]
+        }]
+    }, {
+        "id": "house-details-section",
+        "title": "House Details Section",
+        "groups": [{
+            "id": "house-details",
+            "title": "House Details",
+            "skip_conditions": [{
+                "when": [{
+                    "id": "insurance-type-answer",
+                    "condition": "equals",
+                    "value": "Contents"
+                }]
+            }, {
+                "when": [{
+                    "id": "insurance-type-answer",
+                    "condition": "not set"
+                }]
+            }],
+            "blocks": [{
+                "id": "house-type",
+                "type": "Question",
+                "question": {
+                    "id": "house-type-question",
+                    "title": "What kind of house is it?",
+                    "type": "General",
+                    "answers": [{
+                        "id": "house-type-answer",
+                        "type": "Radio",
+                        "label": "",
+                        "mandatory": false,
+                        "options": [{
+                            "label": "Detached",
+                            "value": "Detached"
+                        }, {
+                            "label": "Semi-detached",
+                            "value": "Semi-detached"
+                        }, {
+                            "label": "Terrace",
+                            "value": "Terrace"
+                        }]
+                    }]
+                }
+            }]
+        }, {
+            "id": "household-details-summary-group",
+            "title": "Household Details Summary",
+            "skip_conditions": [{
+                "when": [{
+                    "id": "insurance-type-answer",
+                    "condition": "equals",
+                    "value": "Contents"
+                }]
+            }, {
+                "when": [{
+                    "id": "insurance-type-answer",
+                    "condition": "not set"
+                }]
+            }],
+            "blocks": [{
+                "id": "household-details-summary",
+                "type": "SectionSummary"
+            }]
+        }]
+    }, {
+        "id": "summary-section",
+        "title": "Summary",
+        "groups": [{
+            "id": "summary-group",
+            "title": "Summary",
+            "blocks": [{
+                "id": "summary",
+                "type": "Summary",
+                "collapsible": true
+            }]
+        }]
+    }]
 }

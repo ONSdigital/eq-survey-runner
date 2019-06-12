@@ -32,7 +32,7 @@ local proxyTitle = {
   ],
 };
 local guidance = {
-  content: [
+  contents: [
     {
       title: 'A question about gender will follow',
     },

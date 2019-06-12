@@ -24,7 +24,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "age-block",
-                "title": "Calculate Age",
                 "question": {
                     "id": "date-pipe-question",
                     "title": "What is your date of birth?",
@@ -39,7 +38,6 @@
             }, {
                 "type": "ConfirmationQuestion",
                 "id": "age-test",
-                "title": "Confirm Your Age",
                 "question": {
                     "id": "confirm-dob-question",
                     "title": {

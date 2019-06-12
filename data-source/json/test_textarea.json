@@ -27,7 +27,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "textarea-block",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "answer",
@@ -45,8 +44,7 @@
                     "id": "question",
                     "title": "",
                     "type": "General"
-                },
-                "title": "Textarea Test"
+                }
             }, {
                 "type": "Summary",
                 "id": "textarea-summary"

@@ -10,7 +10,7 @@ local question(title, guidanceHeader) = {
       guidance: {
         show_guidance: guidanceHeader,
         hide_guidance: guidanceHeader,
-        content: [
+        contents: [
           {
             description: 'To get a true picture of the UK working population, we ask this question of everyone who is not currently working. We ask people who are retired because the number of people continuing to work after retirement age is increasing. We ask people who are long-term sick or disabled because some intend to go back to work.',
           },

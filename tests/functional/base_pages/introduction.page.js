@@ -35,7 +35,7 @@ class IntroductionPage extends BasePage {
   }
 
   introDescription() {
-    return '[data-qa="intro-basic-description"]';
+    return '#use-of-information p';
   }
 
   introTitleDescription() {

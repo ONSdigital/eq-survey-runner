@@ -27,7 +27,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "name-block",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "name-answer",
@@ -41,7 +40,6 @@
                     "title": "",
                     "type": "General"
                 },
-                "title": "Text Field Test",
                 "routing_rules": []
             }, {
                 "type": "Summary",

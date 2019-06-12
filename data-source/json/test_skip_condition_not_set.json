@@ -23,7 +23,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "food-block",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "food-answer",
@@ -44,12 +43,10 @@
                     "title": "",
                     "type": "General"
                 },
-                "title": "What is your favourite breakfast food",
                 "routing_rules": []
             }, {
                 "type": "Question",
                 "id": "drink-block",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "drink-answer",
@@ -70,7 +67,6 @@
                     "title": "What beverage would you like to accompany your choice of breakfast?",
                     "type": "General"
                 },
-                "title": "",
                 "skip_conditions": [{
                     "when": [{
                         "id": "food-answer",

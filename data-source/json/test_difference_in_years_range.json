@@ -24,7 +24,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "date-block",
-                "title": "Calculate Difference Between Two Dates",
                 "question": {
                     "id": "date-pipe-question",
                     "title": "How long were you outside the UK?",
@@ -44,7 +43,6 @@
             }, {
                 "type": "ConfirmationQuestion",
                 "id": "age-test",
-                "title": "Confirm Dates",
                 "question": {
                     "id": "confirm-dob-question",
                     "title": {

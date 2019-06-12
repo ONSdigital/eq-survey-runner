@@ -23,7 +23,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "comparison-1",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "comparison-1-answer",
@@ -39,7 +38,6 @@
             }, {
                 "type": "Question",
                 "id": "comparison-2",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "comparison-2-answer",
@@ -55,10 +53,12 @@
             }, {
                 "type": "Interstitial",
                 "id": "equals-answers",
-                "title": "Second equal first",
-                "content": [{
-                    "description": "Your second number was equal to your first number"
-                }],
+                "content": {
+                    "title": "Answers equal",
+                    "contents": [{
+                        "description": "Your second number was equal to your first number"
+                    }]
+                },
                 "skip_conditions": [{
                     "when": [{
                         "id": "comparison-1-answer",
@@ -69,10 +69,12 @@
             }, {
                 "type": "Interstitial",
                 "id": "less-than-answers",
-                "title": "First less than second",
-                "content": [{
-                    "description": "Your first answer was less than your second number"
-                }],
+                "content": {
+                    "title": "First less than second",
+                    "contents": [{
+                        "description": "Your first answer was less than your second number"
+                    }]
+                },
                 "skip_conditions": [{
                     "when": [{
                         "id": "comparison-1-answer",
@@ -89,10 +91,12 @@
             }, {
                 "type": "Interstitial",
                 "id": "greater-than-answers",
-                "title": "First greater than second",
-                "content": [{
-                    "description": "Your first answer was greater than your second number"
-                }],
+                "content": {
+                    "title": "First greater than second",
+                    "contents": [{
+                        "description": "Your first answer was greater than your second number"
+                    }]
+                },
                 "skip_conditions": [{
                     "when": [{
                         "id": "comparison-1-answer",

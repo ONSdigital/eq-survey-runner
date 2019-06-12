@@ -21,55 +21,50 @@
             "id": "radio",
             "title": "Radio Mandatory with Mandatory Other Overridden Error",
             "blocks": [{
-                    "type": "Question",
-                    "id": "radio-mandatory",
-                    "question": {
-                        "type": "General",
-                        "id": "radio-mandatory-question",
-                        "title": "What is you favourite breakfast item?",
-                        "answers": [{
-                            "type": "Radio",
-                            "id": "radio-mandatory-answer",
-                            "mandatory": true,
-                            "options": [{
-                                    "label": "Toast",
-                                    "value": "Toast"
-                                },
-                                {
-                                    "label": "Eggs",
-                                    "value": "Eggs",
-                                    "detail_answer": {
-                                        "mandatory": false,
-                                        "id": "eggs-answer",
-                                        "label": "Please write your favourite egg type",
-                                        "type": "TextField"
-                                    }
-                                },
-                                {
-                                    "label": "Favourite not listed",
-                                    "description": "An answer is required.",
-                                    "value": "Favourite not listed",
-                                    "detail_answer": {
-                                        "mandatory": true,
-                                        "id": "alternate-answer",
-                                        "label": "Please write your favourite",
-                                        "type": "TextField",
-                                        "validation": {
-                                            "messages": {
-                                                "MANDATORY_TEXTFIELD": "Enter your favourite to continue"
-                                            }
-                                        }
+                "type": "Question",
+                "id": "radio-mandatory",
+                "question": {
+                    "type": "General",
+                    "id": "radio-mandatory-question",
+                    "title": "What is you favourite breakfast item?",
+                    "answers": [{
+                        "type": "Radio",
+                        "id": "radio-mandatory-answer",
+                        "mandatory": true,
+                        "options": [{
+                            "label": "Toast",
+                            "value": "Toast"
+                        }, {
+                            "label": "Eggs",
+                            "value": "Eggs",
+                            "detail_answer": {
+                                "mandatory": false,
+                                "id": "eggs-answer",
+                                "label": "Please write your favourite egg type",
+                                "type": "TextField"
+                            }
+                        }, {
+                            "label": "Favourite not listed",
+                            "description": "An answer is required.",
+                            "value": "Favourite not listed",
+                            "detail_answer": {
+                                "mandatory": true,
+                                "id": "alternate-answer",
+                                "label": "Please write your favourite",
+                                "type": "TextField",
+                                "validation": {
+                                    "messages": {
+                                        "MANDATORY_TEXTFIELD": "Enter your favourite to continue"
                                     }
                                 }
-                            ]
+                            }
                         }]
-                    }
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
+                    }]
                 }
-            ]
+            }, {
+                "type": "Summary",
+                "id": "summary"
+            }]
         }]
     }]
 }

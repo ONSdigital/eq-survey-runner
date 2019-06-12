@@ -1,0 +1,15 @@
+{% for item in contents %}
+  {%- if item.title -%}
+    <strong class="u-mb-s">{{item.title}}</strong>
+  {% endif %}
+  {%- if item.description -%}
+    <p>{{item.description}}</p>
+  {% endif %}
+  {%- if item.list -%}
+    <ul>
+      {%- for list_item in item.list -%}
+        <li>{{list_item}}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endfor %}

@@ -23,9 +23,7 @@
             "title": "Validate sum against total",
             "blocks": [{
                 "type": "Question",
-                "title": "Target total",
                 "id": "total-block",
-                "description": "",
                 "question": {
                     "id": "total-question",
                     "title": "Total",
@@ -41,7 +39,6 @@
                 }
             }, {
                 "type": "Question",
-                "title": "Calculated total",
                 "id": "breakdown-block",
                 "question": {
                     "id": "breakdown-question",

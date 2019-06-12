@@ -18,7 +18,7 @@ local question(title, definitionDescription) = {
   type: 'General',
   definitions: [{
     title: 'What do we mean by “main language”?',
-    content: [
+    contents: [
       {
         description: definitionDescription,
       },

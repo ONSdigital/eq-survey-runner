@@ -21,7 +21,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "language-block",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "month-year-answer",
@@ -32,10 +31,9 @@
                     }],
                     "description": "",
                     "id": "month-year-question",
-                    "title": "Date with month and year",
+                    "title": "English Questionnaire - Date with month and year",
                     "type": "General"
-                },
-                "title": "English Questionnaire"
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

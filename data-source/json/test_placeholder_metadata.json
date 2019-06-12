@@ -26,16 +26,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "block",
-                "description": {
-                    "text": "What was the <em>total gross weekly pay</em> paid to employees in the last week of {period}?",
-                    "placeholders": [{
-                        "placeholder": "period",
-                        "value": {
-                            "source": "metadata",
-                            "identifier": "period_id"
-                        }
-                    }]
-                },
                 "question": {
                     "answers": [{
                         "description": "Enter the total gross weekly pay",
@@ -48,7 +38,6 @@
                     "title": "",
                     "type": "General"
                 },
-                "title": "Metadata Placeholder Test",
                 "routing_rules": []
             }],
             "id": "group",

@@ -21,7 +21,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "block1",
-                "title": "Question 1",
                 "question": {
                     "id": "block1-question",
                     "title": "Question 1",
@@ -60,7 +59,6 @@
             }, {
                 "type": "Question",
                 "id": "block2",
-                "title": "Question 2",
                 "question": {
                     "id": "block2-question",
                     "title": "Question 2",
@@ -76,7 +74,6 @@
             }, {
                 "type": "Question",
                 "id": "block3",
-                "title": "Question 3",
                 "question": {
                     "id": "block3-question",
                     "title": "Question 3",
