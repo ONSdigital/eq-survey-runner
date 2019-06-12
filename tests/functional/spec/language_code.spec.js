@@ -11,7 +11,7 @@ describe('Language Code', function() {
     return helpers.openQuestionnaire('test_language.json', { language: 'cy' }).then(() => {
 
       return browser
-        .getText(LanguagePage.displayedName()).should.eventually.equal('Holiadur Cymraeg')
+        .getText(LanguagePage.questionText()).should.eventually.contain('Holiadur Cymraeg')
         .setValue(LanguagePage.Month(), 4)
         .setValue(LanguagePage.Year(), 2018)
         .click(LanguagePage.submit())
@@ -31,7 +31,7 @@ describe('Language Code', function() {
     return helpers.openQuestionnaire('test_language.json', { language: 'en' }).then(() => {
 
       return browser
-        .getText(LanguagePage.displayedName()).should.eventually.equal('English Questionnaire')
+        .getText(LanguagePage.questionText()).should.eventually.contain('English Questionnaire')
         .setValue(LanguagePage.Month(), 4)
         .setValue(LanguagePage.Year(), 2018)
         .click(LanguagePage.submit())
@@ -50,9 +50,9 @@ describe('Language Code', function() {
     return helpers.openQuestionnaire('test_language.json', { language: 'en' }).then(() => {
 
       return browser
-        .getText(LanguagePage.displayedName()).should.eventually.equal('English Questionnaire')
+        .getText(LanguagePage.questionText()).should.eventually.contain('English Questionnaire')
         .click(SummaryPage.switchLanguage('cy'))
-        .getText(LanguagePage.displayedName()).should.eventually.equal('Holiadur Cymraeg')
+        .getText(LanguagePage.questionText()).should.eventually.contain('Holiadur Cymraeg')
         .click(SummaryPage.switchLanguage('en'))
         .setValue(LanguagePage.Month(), 4)
         .setValue(LanguagePage.Year(), 2018)
@@ -71,9 +71,9 @@ describe('Language Code', function() {
     return helpers.openQuestionnaire('test_language.json', { language: 'cy' }).then(() => {
 
       return browser
-        .getText(LanguagePage.displayedName()).should.eventually.equal('Holiadur Cymraeg')
+        .getText(LanguagePage.questionText()).should.eventually.contain('Holiadur Cymraeg')
         .click(SummaryPage.switchLanguage('en'))
-        .getText(LanguagePage.displayedName()).should.eventually.equal('English Questionnaire')
+        .getText(LanguagePage.questionText()).should.eventually.contain('English Questionnaire')
         .click(SummaryPage.switchLanguage('cy'))
         .setValue(LanguagePage.Month(), 4)
         .setValue(LanguagePage.Year(), 2018)

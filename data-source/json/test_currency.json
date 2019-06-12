@@ -32,7 +32,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "block",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "answer",
@@ -68,10 +67,9 @@
                     }],
                     "description": "",
                     "id": "question",
-                    "title": "",
+                    "title": "Currency Input Test",
                     "type": "General"
                 },
-                "title": "Currency Input Test",
                 "routing_rules": []
             }, {
                 "type": "Summary",

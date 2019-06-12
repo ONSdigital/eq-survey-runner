@@ -32,7 +32,7 @@ local question(title, region_code) = (
     type: 'MutuallyExclusive',
     mandatory: true,
     guidance: {
-      content: [
+      contents: [
         {
           title: regionGuidanceTitle,
         },

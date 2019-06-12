@@ -5,7 +5,7 @@ local question(title) = {
   title: title,
   id: 'hours-worked-question',
   guidance: {
-    content: [
+    contents: [
       {
         title: 'Include paid and unpaid overtime',
       },

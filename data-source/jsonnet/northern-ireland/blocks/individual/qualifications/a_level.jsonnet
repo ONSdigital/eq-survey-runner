@@ -13,7 +13,7 @@ local question(title) = {
   id: 'a-level-question',
   title: title,
   guidance: {
-    content: [
+    contents: [
       {
         title: 'Include equivalent qualifications achieved anywhere outside Northern Ireland',
       },

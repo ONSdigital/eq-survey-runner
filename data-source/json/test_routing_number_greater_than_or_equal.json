@@ -22,7 +22,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "number-question",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "answer",
@@ -34,7 +33,6 @@
                     "title": "Enter the number greater than or equal to 123",
                     "type": "General"
                 },
-                "title": "Number Routing Greater Than or Equal",
                 "routing_rules": [{
                     "goto": {
                         "block": "correct-answer",
@@ -61,19 +59,21 @@
             }, {
                 "type": "Interstitial",
                 "id": "incorrect-answer",
-                "title": "You entered a number that was not greater than or equal 123",
-                "content": [{
-                    "description": {
-                        "text": "You were asked to enter a number greater than or equal to <em>123</em> but you entered <em>{answer}</em>.",
-                        "placeholders": [{
-                            "placeholder": "answer",
-                            "value": {
-                                "source": "answers",
-                                "identifier": "answer"
-                            }
-                        }]
-                    }
-                }],
+                "content": {
+                    "title": "Incorrect answer",
+                    "contents": [{
+                        "description": {
+                            "text": "You were asked to enter a number greater than or equal to <em>123</em> but you entered <em>{answer}</em>.",
+                            "placeholders": [{
+                                "placeholder": "answer",
+                                "value": {
+                                    "source": "answers",
+                                    "identifier": "answer"
+                                }
+                            }]
+                        }
+                    }]
+                },
                 "routing_rules": [{
                     "goto": {
                         "block": "summary"
@@ -82,19 +82,21 @@
             }, {
                 "type": "Interstitial",
                 "id": "correct-answer",
-                "title": "You entered a number greater than or equal to 123",
-                "content": [{
-                    "description": {
-                        "text": "You were asked to enter a number greater than or equal to <em>123</em> and you entered <em>{answer}</em>.",
-                        "placeholders": [{
-                            "placeholder": "answer",
-                            "value": {
-                                "source": "answers",
-                                "identifier": "answer"
-                            }
-                        }]
-                    }
-                }]
+                "content": {
+                    "title": "Correct answer",
+                    "contents": [{
+                        "description": {
+                            "text": "You were asked to enter a number greater than or equal to <em>123</em> and you entered <em>{answer}</em>.",
+                            "placeholders": [{
+                                "placeholder": "answer",
+                                "value": {
+                                    "source": "answers",
+                                    "identifier": "answer"
+                                }
+                            }]
+                        }
+                    }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

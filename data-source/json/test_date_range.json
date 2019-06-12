@@ -22,7 +22,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "date-block",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "date-range-from-answer",
@@ -41,8 +40,7 @@
                     "id": "date-range-question",
                     "title": "Date range",
                     "type": "DateRange"
-                },
-                "title": "Date Examples"
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

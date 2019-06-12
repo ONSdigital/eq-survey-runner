@@ -22,7 +22,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "test-errors",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "test-number",
@@ -52,8 +51,7 @@
                     "id": "test-min-max-range-question",
                     "title": "Please enter test values (none mandatory)",
                     "type": "General"
-                },
-                "title": ""
+                }
             }],
             "id": "test",
             "title": ""

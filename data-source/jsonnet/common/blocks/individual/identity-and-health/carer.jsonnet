@@ -5,7 +5,7 @@ local question(title, guidance) = {
   id: 'carer-question',
   title: title,
   guidance: {
-    content: [
+    contents: [
       {
         title: guidance,
       },

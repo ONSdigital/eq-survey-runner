@@ -32,7 +32,7 @@ local question(title, definition) = {
 local nonProxyTitle = 'Do any of your conditions or illnesses reduce your ability to carry out day-to-day activities?';
 local nonProxyDefinition = {
   title: 'What do we mean by “reduce your ability”?',
-  content: [
+  contents: [
     {
       description: 'We mean whether your health condition or illness currently affects your ability to carry out day-to-day activities.',
     },
@@ -55,7 +55,7 @@ local proxyTitle = {
 };
 local proxyDefinition = {
   title: 'What do we mean by “reduce their ability”?',
-  content: [
+  contents: [
     {
       description: 'We mean whether their health condition or illness currently affects their ability to carry out day-to-day activities.',
     },

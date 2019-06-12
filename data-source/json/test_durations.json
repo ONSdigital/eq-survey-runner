@@ -22,7 +22,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "duration-block",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "year-month-answer",
@@ -71,8 +70,7 @@
                     "id": "duration-question",
                     "title": "Durations",
                     "type": "General"
-                },
-                "title": "Duration Examples"
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

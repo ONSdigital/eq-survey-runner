@@ -1,21 +1,8 @@
 <h2 class="u-fs-l u-mt-m">{{ intro.title }}</h2>
 
 <div class="collapsible__introduction">
-  {% for content in intro.content %}
-    {% if content.title  %}
-      <h3 class="u-mt-s">{{ content.title }}</h3>
-    {% endif %}
-
-    <p class="qa-intro-description" data-qa="intro-preview-description">{{ content.description }}</p>
-
-    {% if content.list %}
-      <ul>
-          {% for li in content.list %}
-          <li>{{ li }}</li>
-          {% endfor %}
-      </ul>
-    {% endif %}
-  {% endfor %}
+  {% set contents = intro.contents %}
+  {% include "partials/contents.html" %}
 </div>
 
 {% if intro.questions %}
@@ -25,27 +12,8 @@
 
   {% for question in intro.questions %}
     {% set content %}
-      {% if question.content %}
-        {% for item in question.content %}
-          <div class="u-mb-s">
-            {% if item.title %}
-              <div class="u-mb-s u-fs-r--b">{{ item.title }}</div>
-            {% endif %}
-
-            {% if item.description %}
-              <div class="u-mb-s">{{ item.description }}</div>
-            {% endif %}
-
-            {% if item.list %}
-              <ul>
-                  {% for li in item.list %}
-                    <li>{{ li }}</li>
-                  {% endfor %}
-              </ul>
-            {% endif %}
-        </div>
-        {% endfor %}
-      {% endif %}
+      {% set contents = question.contents %}
+      {% include "partials/contents.html" %}
     {% endset %}
 
     {% set item = {

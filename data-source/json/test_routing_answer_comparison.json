@@ -25,7 +25,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "route-comparison-1",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "route-comparison-1-answer",
@@ -41,7 +40,6 @@
             }, {
                 "type": "Question",
                 "id": "route-comparison-2",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "route-comparison-2-answer",
@@ -71,17 +69,21 @@
             }, {
                 "type": "Interstitial",
                 "id": "route-comparison-3",
-                "title": "Your second number was lower or equal",
-                "content": [{
-                    "description": "This page should be skipped if your second answer was higher than your first"
-                }]
+                "content": {
+                    "title": "Your second number was lower or equal",
+                    "contents": [{
+                        "description": "This page should be skipped if your second answer was higher than your first"
+                    }]
+                }
             }, {
                 "type": "Interstitial",
                 "id": "route-comparison-4",
-                "title": "Your second number was higher",
-                "content": [{
-                    "description": "This page should never be skipped"
-                }]
+                "content": {
+                    "title": "Your second number was higher",
+                    "contents": [{
+                        "description": "This page should never be skipped"
+                    }]
+                }
             }]
         }, {
             "id": "summary-group",

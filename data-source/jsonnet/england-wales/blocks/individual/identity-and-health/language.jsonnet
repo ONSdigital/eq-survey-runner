@@ -30,7 +30,7 @@ local question(title, definitionDescription, region_code) = (
     type: 'General',
     definitions: [{
       title: 'What do we mean by “main language”?',
-      content: [
+      contents: [
         {
           description: definitionDescription,
         },

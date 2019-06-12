@@ -14,7 +14,7 @@ local question(title) = {
   title: title,
   type: 'General',
   guidance: {
-    content: [
+    contents: [
       {
         title: 'Include equivalent apprenticeships completed anywhere outside Northern Ireland',
       },

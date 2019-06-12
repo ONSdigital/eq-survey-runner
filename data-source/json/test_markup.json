@@ -24,13 +24,12 @@
             "blocks": [{
                 "type": "Question",
                 "id": "emphasis-block",
-                "title": "Emphasis",
                 "question": {
                     "answers": [{
                         "guidance": {
                             "show_guidance": "Show lorem ipsum guidance",
                             "hide_guidance": "hide lorem ipsum guidance",
-                            "content": [{
+                            "contents": [{
                                 "description": "Lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
                             }]
                         },

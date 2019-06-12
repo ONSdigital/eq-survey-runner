@@ -6,7 +6,7 @@ describe('Introduction page', function() {
 
   const introduction_schema = 'test_introduction.json';
 
-  it('Given I start a survey, When I view the introduction page then I should be able to see introduction information', function() {
+  it('@watch Given I start a survey, When I view the introduction page then I should be able to see introduction information', function() {
     return helpers.openQuestionnaire(introduction_schema).then(() => {
       return browser
         .getText(IntroductionPage.useOfData()).should.eventually.contain('How we use your data')

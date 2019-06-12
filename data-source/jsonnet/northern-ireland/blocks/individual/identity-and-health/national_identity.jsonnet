@@ -37,7 +37,7 @@ local question(title, definitionContent, detailAnswerLabel) = {
   definitions: [
     {
       title: 'What do we mean by “national identity”?',
-      content: definitionContent,
+      contents: definitionContent,
     },
   ],
   answers: [

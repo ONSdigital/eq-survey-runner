@@ -68,9 +68,7 @@ class TestQuestionnaireSchema(AppContextTestCase):
                     'groups': [
                         {
                             'id': 'group1',
-                            'blocks': [
-                                {'id': 'block1', 'type': 'Question', 'title': 'Block 1'}
-                            ],
+                            'blocks': [{'id': 'block1', 'type': 'Question'}],
                         }
                     ],
                 }
@@ -80,7 +78,7 @@ class TestQuestionnaireSchema(AppContextTestCase):
         schema = QuestionnaireSchema(survey_json)
         block = schema.get_block('block1')
 
-        self.assertEqual(block['title'], 'Block 1')
+        self.assertEqual(block['id'], 'block1')
 
     def test_get_groups(self):
         survey_json = {

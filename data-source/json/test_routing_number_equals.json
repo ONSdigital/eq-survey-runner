@@ -22,7 +22,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "number-question",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "answer",
@@ -34,7 +33,6 @@
                     "title": "Enter the number 123",
                     "type": "General"
                 },
-                "title": "Number Routing Equals",
                 "routing_rules": [{
                     "goto": {
                         "block": "correct-answer",
@@ -52,19 +50,21 @@
             }, {
                 "type": "Interstitial",
                 "id": "incorrect-answer",
-                "title": "You did not enter 123",
-                "content": [{
-                    "description": {
-                        "text": "You were asked to enter <em>123</em> but you actually entered <em>{answer}</em>.",
-                        "placeholders": [{
-                            "placeholder": "answer",
-                            "value": {
-                                "source": "answers",
-                                "identifier": "answer"
-                            }
-                        }]
-                    }
-                }],
+                "content": {
+                    "title": "You did not enter 123",
+                    "contents": [{
+                        "description": {
+                            "text": "You were asked to enter <em>123</em> but you actually entered <em>{answer}</em>.",
+                            "placeholders": [{
+                                "placeholder": "answer",
+                                "value": {
+                                    "source": "answers",
+                                    "identifier": "answer"
+                                }
+                            }]
+                        }
+                    }]
+                },
                 "routing_rules": [{
                     "goto": {
                         "block": "summary"
@@ -73,19 +73,21 @@
             }, {
                 "type": "Interstitial",
                 "id": "correct-answer",
-                "title": "You entered 123",
-                "content": [{
-                    "description": {
-                        "text": "You were asked to enter <em>123</em> and you entered <em>{answer}</em>.",
-                        "placeholders": [{
-                            "placeholder": "answer",
-                            "value": {
-                                "source": "answers",
-                                "identifier": "answer"
-                            }
-                        }]
-                    }
-                }]
+                "content": {
+                    "title": "Correct",
+                    "contents": [{
+                        "description": {
+                            "text": "You were asked to enter <em>123</em> and you entered <em>{answer}</em>.",
+                            "placeholders": [{
+                                "placeholder": "answer",
+                                "value": {
+                                    "source": "answers",
+                                    "identifier": "answer"
+                                }
+                            }]
+                        }
+                    }]
+                }
             }, {
                 "type": "Summary",
                 "id": "summary"

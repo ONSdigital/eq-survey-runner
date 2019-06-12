@@ -23,7 +23,7 @@ local question(title, region_code) = (
         guidance: {
           show_guidance: 'Why your answer is important',
           hide_guidance: 'Why your answer is important',
-          content: [
+          contents: [
             {
               description: 'How you define your ethnic group is up to you. Sharing this information enables the government and other organisations to provide appropriate resources and policies such as housing, education, health and criminal justice.',
             },

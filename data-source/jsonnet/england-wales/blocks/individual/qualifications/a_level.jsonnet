@@ -24,7 +24,7 @@ local question(title, region_code) = (
     id: 'a-level-question',
     title: title,
     guidance: {
-      content: [
+      contents: [
         {
           title: regionGuidanceTitle,
         },

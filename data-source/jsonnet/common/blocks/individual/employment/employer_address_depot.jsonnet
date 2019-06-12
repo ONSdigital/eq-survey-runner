@@ -38,7 +38,7 @@ local question(title) = {
       guidance: {
         show_guidance: 'Why your answer is important',
         hide_guidance: 'Why your answer is important',
-        content: [
+        contents: [
           {
             description: 'The government uses information about workplace address and method of travel to work to form transport policies and plan services. The information helps to work out local transport needs.',
           },

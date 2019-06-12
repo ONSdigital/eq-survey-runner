@@ -33,8 +33,6 @@ class QuestionPage extends BasePage {
 
   saveSignOut() { return '[data-qa="btn-save-sign-out"]'; }
 
-  interstitialHeader() { return 'main > h1';}
-
   switchLanguage(language_code) { return 'a[href="?language_code=' + language_code + '"]'; }
 
 }

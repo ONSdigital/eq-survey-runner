@@ -24,7 +24,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "single-title-block",
-                "title": "Single question title",
                 "question": {
                     "id": "single-title-question",
                     "title": "How are you feeling??",

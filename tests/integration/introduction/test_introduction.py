@@ -17,7 +17,9 @@ class TestIntroduction(IntegrationTestCase):
 
         # When on the introduction page
         # Then description should be displayed
-        self.assertInBody('qa-intro-description')
+        self.assertInBody(
+            'To take part, all you need to do is check that you have the information you need to answer the survey questions.'
+        )
 
     def test_intro_description_not_displayed(self):
         # Given survey without introduction description

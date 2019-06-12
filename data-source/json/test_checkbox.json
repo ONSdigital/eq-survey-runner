@@ -27,7 +27,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "mandatory-checkbox",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "mandatory-checkbox-answer",
@@ -79,12 +78,10 @@
                     "title": "Which pizza toppings would you like?",
                     "type": "General"
                 },
-                "title": "Mandatory other option",
                 "routing_rules": []
             }, {
                 "type": "Question",
                 "id": "non-mandatory-checkbox",
-                "description": "",
                 "question": {
                     "answers": [{
                         "id": "non-mandatory-checkbox-answer",
@@ -130,7 +127,6 @@
                     "title": "What extra toppings would you like?",
                     "type": "General"
                 },
-                "title": "Non mandatory other option",
                 "routing_rules": []
             }, {
                 "type": "Summary",

@@ -7,25 +7,30 @@ local descriptionProxy = 'The next set of questions is about the qualifications 
 {
   type: 'Interstitial',
   id: 'qualifications',
-  title: 'Qualifications',
   content_variants: [
     {
-      content: [
-        {
-          description: descriptionNonProxy,
-        },
-      ],
+      content: {
+        title: 'Qualifications',
+        contents: [
+          {
+            description: descriptionNonProxy,
+          },
+        ],
+      },
       when: [rules.proxyNo],
     },
     {
-      content: [
-        {
-          description: {
-            text: descriptionProxy,
-            placeholders: [placeholders.personName],
+      content: {
+        title: 'Qualifications',
+        contents: [
+          {
+            description: {
+              text: descriptionProxy,
+              placeholders: [placeholders.personName],
+            },
           },
-        },
-      ],
+        ],
+      },
       when: [rules.proxyYes],
     },
   ],

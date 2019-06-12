@@ -26,7 +26,6 @@
             "blocks": [{
                 "type": "Question",
                 "id": "block",
-                "description": "",
                 "question": {
                     "answers": [{
                         "description": "Enter percentage of growth",
@@ -44,7 +43,6 @@
                     "title": "",
                     "type": "General"
                 },
-                "title": "Percentage Input Test",
                 "routing_rules": []
             }],
             "id": "group",
