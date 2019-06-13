@@ -37,7 +37,7 @@ local question(title, definitionDescription) = {
         {
           label: 'Other',
           value: 'Other',
-          description: 'Including British or Irish Sign Language',
+          description: 'Including British Sign Language or Irish Sign Language',
           detail_answer: {
             id: 'language-answer-other',
             type: 'TextField',
@@ -61,6 +61,25 @@ local question(title, definitionDescription) = {
     {
       question: question(proxyTitle, proxyDefinitionDescription),
       when: [rules.proxyYes],
+    },
+  ],
+  routing_rules: [
+    {
+      goto: {
+        block: 'understand-irish',
+        when: [
+          {
+            id: 'language-answer',
+            condition: 'equals',
+            value: 'English',
+          },
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'english',
+      },
     },
   ],
 }

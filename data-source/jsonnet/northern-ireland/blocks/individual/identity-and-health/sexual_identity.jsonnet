@@ -1,10 +1,7 @@
 local placeholders = import '../../../../common/lib/placeholders.libsonnet';
 local rules = import '../../../../common/lib/rules.libsonnet';
 
-local nonProxyDetailAnswerLabel = 'Please specify their sexual orientation';
-local proxyDetailAnswerLabel = 'Please specify their sexual orientation';
-
-local question(title, detailAnswerLabel) = {
+local question(title) = {
   id: 'sexual-identity-question',
   title: title,
   type: 'General',
@@ -32,7 +29,7 @@ local question(title, detailAnswerLabel) = {
             id: 'sexual-identity-answer-other',
             type: 'TextField',
             mandatory: false,
-            label: detailAnswerLabel,
+            label: 'Please specify sexual orientation',
           },
         },
         {
@@ -40,7 +37,7 @@ local question(title, detailAnswerLabel) = {
           value: 'Prefer not to say',
         },
       ],
-      type: 'Radio',
+      type: 'Checkbox',
     },
   ],
 };
@@ -59,11 +56,11 @@ local proxyTitle = {
   id: 'sexual-identity',
   question_variants: [
     {
-      question: question(nonProxyTitle, nonProxyDetailAnswerLabel),
+      question: question(nonProxyTitle),
       when: [rules.proxyNo],
     },
     {
-      question: question(proxyTitle, proxyDetailAnswerLabel),
+      question: question(proxyTitle),
       when: [rules.proxyYes],
     },
   ],

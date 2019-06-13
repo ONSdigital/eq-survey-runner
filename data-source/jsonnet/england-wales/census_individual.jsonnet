@@ -20,13 +20,13 @@ local term_time_address_details = import 'blocks/individual/personal-details/ter
 local term_time_location = import 'blocks/individual/personal-details/term_time_location.jsonnet';
 
 // identity and health
-local carer = import '../common/blocks/individual/identity-and-health/carer.jsonnet';
 local health = import '../common/blocks/individual/identity-and-health/health.jsonnet';
 local last_year_address = import '../common/blocks/individual/identity-and-health/last_year_address.jsonnet';
 local passports = import '../common/blocks/individual/identity-and-health/passports.jsonnet';
 local speak_english = import '../common/blocks/individual/identity-and-health/speak_english.jsonnet';
 local arrive_in_country = import 'blocks/individual/identity-and-health/arrive_in_country.jsonnet';
 local birth_gender = import 'blocks/individual/identity-and-health/birth_gender.jsonnet';
+local carer = import 'blocks/individual/identity-and-health/carer.jsonnet';
 local country_of_birth = import 'blocks/individual/identity-and-health/country_of_birth.jsonnet';
 local disability = import 'blocks/individual/identity-and-health/disability.jsonnet';
 local disability_limitation = import 'blocks/individual/identity-and-health/disability_limitation.jsonnet';
@@ -58,10 +58,8 @@ local qualifications = import 'blocks/individual/qualifications/qualifications.j
 local business_name = import '../common/blocks/individual/employment/business_name.jsonnet';
 local employer_address_depot = import '../common/blocks/individual/employment/employer_address_depot.jsonnet';
 local employer_address_workplace = import '../common/blocks/individual/employment/employer_address_workplace.jsonnet';
-local employers_business = import '../common/blocks/individual/employment/employers_business.jsonnet';
 local employment_status = import '../common/blocks/individual/employment/employment_status.jsonnet';
 local employment_type = import '../common/blocks/individual/employment/employment_type.jsonnet';
-local ever_worked = import '../common/blocks/individual/employment/ever_worked.jsonnet';
 local hours_worked = import '../common/blocks/individual/employment/hours_worked.jsonnet';
 local job_availability = import '../common/blocks/individual/employment/job_availability.jsonnet';
 local job_description = import '../common/blocks/individual/employment/job_description.jsonnet';
@@ -74,6 +72,8 @@ local supervise = import '../common/blocks/individual/employment/supervise.jsonn
 local work_travel = import '../common/blocks/individual/employment/work_travel.jsonnet';
 local armed_forces = import 'blocks/individual/employment/armed_forces.jsonnet';
 local employer_type_of_address = import 'blocks/individual/employment/employer_type_of_address.jsonnet';
+local employers_business = import 'blocks/individual/employment/employers_business.jsonnet';
+local ever_worked = import 'blocks/individual/employment/ever_worked.jsonnet';
 
 local comments = import '../common/blocks/comments.json';
 

@@ -12,29 +12,17 @@ local proxyTitle = {
 local question(title) = {
   id: 'other-qualifications-question',
   title: title,
-  type: 'MutuallyExclusive',
-  mandatory: true,
+  type: 'General',
   answers: [
     {
       id: 'other-qualifications-answer',
       mandatory: false,
-      type: 'Checkbox',
+      type: 'Radio',
       options: [
         {
-          label: 'Yes, in England or Wales',
-          value: 'Yes, in England or Wales',
+          label: 'Yes',
+          value: 'Yes',
         },
-        {
-          label: 'Yes, anywhere outside of England and Wales',
-          value: 'Yes, anywhere outside of England and Wales',
-        },
-      ],
-    },
-    {
-      id: 'other-qualifications-answer-exclusive',
-      type: 'Checkbox',
-      mandatory: false,
-      options: [
         {
           label: 'No qualifications',
           value: 'No qualifications',

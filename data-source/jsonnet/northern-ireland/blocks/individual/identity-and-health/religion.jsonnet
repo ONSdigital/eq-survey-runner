@@ -12,11 +12,13 @@ local proxyTitle = {
 local question(title) = {
   id: 'religion-question',
   title: title,
-  type: 'General',
+  type: 'MutuallyExclusive',
+  mandatory: false,
   answers: [
     {
       id: 'religion-answer',
       mandatory: false,
+      type: 'Checkbox',
       options: [
         {
           label: 'Roman Catholic',
@@ -44,12 +46,18 @@ local question(title) = {
             label: 'Please specify religion, religious denomination or body',
           },
         },
+      ],
+    },
+    {
+      id: 'religion-answer-exclusive',
+      type: 'Checkbox',
+      mandatory: false,
+      options: [
         {
           label: 'None',
           value: 'None',
         },
       ],
-      type: 'Radio',
     },
   ],
 };
@@ -73,9 +81,8 @@ local question(title) = {
         block: 'no-religion',
         when: [
           {
-            id: 'religion-answer',
-            condition: 'equals',
-            value: 'None',
+            id: 'religion-answer-exclusive',
+            condition: 'set',
           },
         ],
       },

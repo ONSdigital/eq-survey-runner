@@ -9,37 +9,13 @@ local proxyTitle = {
   ],
 };
 
-local nonProxyDefinitionContent = [
-  {
-    description: 'National identity is not dependent on your ethnic group or citizenship.',
-  },
-  {
-    description: 'It is about the country or countries where you feel you belong or think of as home.',
-  },
-];
-
-local proxyDefinitionContent = [
-  {
-    description: 'National identity is not dependent on their ethnic group or citizenship.',
-  },
-  {
-    description: 'It is about the country or countries where they feel they belong or think of as home.',
-  },
-];
-
 local nonProxyDetailAnswerLabel = 'Please describe your national identity';
 local proxyDetailAnswerLabel = 'Please describe their national identity';
 
-local question(title, definitionContent, detailAnswerLabel) = {
+local question(title, detailAnswerLabel) = {
   id: 'national-identity-question',
   title: title,
   type: 'General',
-  definitions: [
-    {
-      title: 'What do we mean by “national identity”?',
-      contents: definitionContent,
-    },
-  ],
   answers: [
     {
       id: 'national-identity-answer',
@@ -90,11 +66,11 @@ local question(title, definitionContent, detailAnswerLabel) = {
   id: 'national-identity',
   question_variants: [
     {
-      question: question(nonProxyTitle, nonProxyDefinitionContent, nonProxyDetailAnswerLabel),
+      question: question(nonProxyTitle, nonProxyDetailAnswerLabel),
       when: [rules.proxyNo],
     },
     {
-      question: question(proxyTitle, proxyDefinitionContent, proxyDetailAnswerLabel),
+      question: question(proxyTitle, proxyDetailAnswerLabel),
       when: [rules.proxyYes],
     },
   ],

@@ -21,8 +21,8 @@ local question(title) = {
           value: 'household-address',
         },
         {
-          label: 'Another address',
-          value: 'Another address',
+          label: 'At another address',
+          value: 'At another address',
         },
       ],
     },
@@ -58,7 +58,7 @@ local proxyTitle = {
           {
             id: 'term-time-location-answer',
             condition: 'equals',
-            value: 'Another address',
+            value: 'At another address',
           },
         ],
       },
