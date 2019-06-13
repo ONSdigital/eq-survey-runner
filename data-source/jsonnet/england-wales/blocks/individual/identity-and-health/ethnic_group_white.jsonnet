@@ -25,7 +25,11 @@ local question(title, region_code) = (
           hide_guidance: 'Why your answer is important',
           contents: [
             {
-              description: 'How you define your ethnic group is up to you. Sharing this information enables the government and other organisations to provide appropriate resources and policies such as housing, education, health and criminal justice.',
+              description: 'Your answer will help to support equality and fairness in your community. Councils and government use information on ethnic group to make sure they',
+              list: [
+                'provide services and share funding fairly',
+                'understand and represent everyone’s interests',
+              ],
             },
           ],
         },
