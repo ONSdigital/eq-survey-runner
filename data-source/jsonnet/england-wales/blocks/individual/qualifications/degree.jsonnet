@@ -21,7 +21,7 @@ local question(title, region_code) = (
     guidance: {
       contents: [
         {
-          title: regionGuidanceTitle,
+          description: regionGuidanceTitle,
         },
       ],
     },

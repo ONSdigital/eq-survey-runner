@@ -16,7 +16,7 @@ local question(title) = {
   guidance: {
     contents: [
       {
-        title: 'Include equivalent apprenticeships completed anywhere outside Northern Ireland',
+        description: 'Include equivalent apprenticeships completed anywhere outside Northern Ireland',
       },
     ],
   },

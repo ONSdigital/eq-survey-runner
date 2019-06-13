@@ -9,7 +9,7 @@ local question(title) = {
   guidance: {
     contents: [
       {
-        title: 'Include casual or temporary work, even if only for one hour',
+        description: 'Include casual or temporary work, even if only for one hour',
       },
     ],
   },

@@ -5,9 +5,9 @@ local question(title, census_date) = {
   id: 'date-of-birth-question',
   title: title,
   guidance: {
-    content: [
+    contents: [
       {
-        title: 'For example 31 12 1970',
+        description: 'For example 31 12 1970',
       },
     ],
   },
