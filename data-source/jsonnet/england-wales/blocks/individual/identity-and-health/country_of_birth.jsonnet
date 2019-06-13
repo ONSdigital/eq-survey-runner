@@ -135,6 +135,19 @@ function(region_code) {
     },
     {
       goto: {
+        block: 'national-identity',
+        when: [
+          {
+            id: 'country-of-birth-answer',
+            condition: 'equals any',
+            values: ['Wales', 'England', 'Scotland', 'Northern Ireland'],
+          },
+          rules.under3,
+        ],
+      },
+    },
+    {
+      goto: {
         block: if region_code == 'GB-WLS' then 'understand-welsh' else 'language',
       },
     },

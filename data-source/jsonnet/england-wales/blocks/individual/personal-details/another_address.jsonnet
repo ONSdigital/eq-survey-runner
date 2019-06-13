@@ -69,6 +69,19 @@ local proxyTitle = {
   routing_rules: [
     {
       goto: {
+        group: 'identity-and-health-group',
+        when: [
+          {
+            id: 'another-address-answer',
+            condition: 'equals',
+            value: 'No',
+          },
+          rules.under4,
+        ],
+      },
+    },
+    {
+      goto: {
         block: 'in-education',
         when: [
           {

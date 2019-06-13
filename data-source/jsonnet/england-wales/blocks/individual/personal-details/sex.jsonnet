@@ -47,13 +47,13 @@ local guidance = {
       question: question(nonProxyTitle) + {
         guidance: guidance,
       },
-      when: [rules.proxyNo, rules.over16],
+      when: [rules.proxyNo, rules.over15],
     },
     {
       question: question(proxyTitle) + {
         guidance: guidance,
       },
-      when: [rules.proxyYes, rules.over16],
+      when: [rules.proxyYes, rules.over15],
     },
     {
       question: question(nonProxyTitle),
@@ -69,7 +69,7 @@ local guidance = {
       goto: {
         block: 'marriage-type',
         when: [
-          rules.over16,
+          rules.over15,
         ],
       },
     },
