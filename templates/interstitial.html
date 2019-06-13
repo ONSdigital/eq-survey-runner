@@ -6,7 +6,7 @@
 
 {% block form_content %}
   {% if block.content.title %}
-    <h1 class="u-fs-l">{{ block.content.title }}</h1>
+    <h1>{{ block.content.title }}</h1>
   {% endif %}
   {% set contents = block.content.contents %}
   {% include 'partials/contents.html' %}

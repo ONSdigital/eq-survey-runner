@@ -14,6 +14,9 @@
   }
 } %}
 
+{# TODO: Needs to be wrapped in some condition to only include this if the theme is census #}
+{% include 'layouts/configs/_census-theme.html' %}
+
 {% include 'layouts/configs/_languages.html' %}
 {% include 'layouts/configs/_service-links.html' %}
 {% include 'layouts/configs/_save-sign-out-button.html' %}
