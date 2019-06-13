@@ -36,8 +36,8 @@ local question(title) = {
       mandatory: false,
       options: [
         {
-          label: 'None of the these',
-          value: 'None of the these',
+          label: 'None of these apply',
+          value: 'None of these apply',
         },
       ],
     },

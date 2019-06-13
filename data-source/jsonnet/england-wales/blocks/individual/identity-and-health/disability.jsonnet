@@ -82,6 +82,19 @@ local proxyDefinitionContent = [
     },
     {
       goto: {
+        group: 'comments-group',
+        when: [
+          {
+            id: 'disability-answer',
+            condition: 'equals',
+            value: 'No',
+          },
+          rules.under5,
+        ],
+      },
+    },
+    {
+      goto: {
         block: 'carer',
       },
     },

@@ -53,7 +53,7 @@ local question(title) = {
 local nonProxyTitle = 'Do you have any of the following <em>physical health conditions</em> lasting or expected to last 12 months or more?';
 
 local proxyTitle = {
-  text: 'Does <em>{person_name}</em> have any of the following <em>physical health conditions</em> lasting or expected to last 12 months or more?',
+  text: 'Does {person_name} have any of the following <em>physical health conditions</em> lasting or expected to last 12 months or more?',
   placeholders: [
     placeholders.personName,
   ],

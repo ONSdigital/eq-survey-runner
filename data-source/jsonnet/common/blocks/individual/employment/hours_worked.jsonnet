@@ -7,7 +7,7 @@ local question(title) = {
   guidance: {
     contents: [
       {
-        title: 'Include paid and unpaid overtime',
+        description: 'Include paid and unpaid overtime',
       },
     ],
   },

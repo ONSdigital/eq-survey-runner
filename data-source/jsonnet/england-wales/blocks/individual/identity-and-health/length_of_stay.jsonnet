@@ -49,6 +49,14 @@ function(region_code) {
   routing_rules: [
     {
       goto: {
+        block: 'national-identity',
+        when: [
+          rules.under3,
+        ],
+      },
+    },
+    {
+      goto: {
         block: if region_code == 'GB-WLS' then 'understand-welsh' else 'language',
       },
     },

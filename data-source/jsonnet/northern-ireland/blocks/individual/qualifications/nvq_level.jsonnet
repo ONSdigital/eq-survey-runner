@@ -16,7 +16,7 @@ local question(title) = {
   guidance: {
     contents: [
       {
-        title: 'Include equivalent qualifications achieved anywhere outside Northern Ireland',
+        description: 'Include equivalent qualifications achieved anywhere outside Northern Ireland',
       },
     ],
   },
@@ -51,7 +51,7 @@ local question(title) = {
         {
           label: 'None of these apply',
           value: 'None of these apply',
-          description: 'Questions on A levels, GCSEs and equivalents will follow',
+          description: 'Questions on A levels and GCSEs and equivalents will follow',
         },
       ],
     },

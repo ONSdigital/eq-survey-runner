@@ -17,10 +17,6 @@ service:
 
 ingress:
   enabled: true
-  annotations:
-    kubernetes.io/ingress.global-static-ip-name: survey-runner
-  tls:
-    - secretName: tls-cert
 
 resources:
   requests:

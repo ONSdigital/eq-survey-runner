@@ -7,7 +7,7 @@ local question(title, guidance) = {
   guidance: {
     contents: [
       {
-        title: guidance,
+        description: guidance,
       },
     ],
   },

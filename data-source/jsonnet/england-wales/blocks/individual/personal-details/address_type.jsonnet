@@ -115,4 +115,19 @@ local proxyNonUkAddressTitle = {
       when: [rules.proxyYes],
     },
   ],
+  routing_rules: [
+    {
+      goto: {
+        group: 'identity-and-health-group',
+        when: [
+          rules.under4,
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'in-education',
+      },
+    },
+  ],
 }
