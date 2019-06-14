@@ -72,7 +72,7 @@
                                         "source": "answers",
                                         "identifier": "comparison-date-answer"
                                     },
-                                    "date_format": "d MMMM YYYY"
+                                    "date_format": "d MMMM yyyy"
                                 }
                             }]
                         }]

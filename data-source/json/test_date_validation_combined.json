@@ -50,7 +50,7 @@
                                                     "source": "metadata",
                                                     "identifier": "ref_p_start_date"
                                                 },
-                                                "date_format": "d MMMM YYYY"
+                                                "date_format": "d MMMM yyyy"
                                             }
                                         }]
                                     }]
@@ -68,7 +68,7 @@
                                                     "source": "metadata",
                                                     "identifier": "ref_p_end_date"
                                                 },
-                                                "date_format": "d MMMM YYYY"
+                                                "date_format": "d MMMM yyyy"
                                             }
                                         }]
                                     }]

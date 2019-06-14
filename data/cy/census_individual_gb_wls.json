@@ -973,7 +973,7 @@
                                                     "transforms": [
                                                         {
                                                             "arguments": {
-                                                                "date_format": "d MMMM YYYY",
+                                                                "date_format": "d MMMM yyyy",
                                                                 "date_to_format": {
                                                                     "value": "2019-06-12"
                                                                 }
@@ -1050,7 +1050,7 @@
                                                     "transforms": [
                                                         {
                                                             "arguments": {
-                                                                "date_format": "d MMMM YYYY",
+                                                                "date_format": "d MMMM yyyy",
                                                                 "date_to_format": {
                                                                     "value": "2019-06-12"
                                                                 }
@@ -3363,7 +3363,7 @@
                                                     "transforms": [
                                                         {
                                                             "arguments": {
-                                                                "date_format": "d MMMM YYYY",
+                                                                "date_format": "d MMMM yyyy",
                                                                 "date_to_format": {
                                                                     "value": "2019-06-12"
                                                                 }
@@ -3430,7 +3430,7 @@
                                                     "transforms": [
                                                         {
                                                             "arguments": {
-                                                                "date_format": "d MMMM YYYY",
+                                                                "date_format": "d MMMM yyyy",
                                                                 "date_to_format": {
                                                                     "value": "2019-06-12"
                                                                 }
