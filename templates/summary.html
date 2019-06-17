@@ -11,13 +11,6 @@
     <h1>{{ _("Check your answers and submit") }}</h1>
 
     {% call onsPanel({
-      "type": "error",
-      "classes": "print__message u-mb-l"
-    }) %}
-      <h2>{{ _("Please remember to submit these answers") }}.</h2>
-    {% endcall %}
-
-    {% call onsPanel({
       "classes": "print__hidden u-mb-l"
     }) %}
       <strong>{{ _("Please submit this survey to complete it") }}</strong>
