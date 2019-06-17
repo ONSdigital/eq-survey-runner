@@ -47,13 +47,13 @@ local guidance = {
       question: question(nonProxyTitle) + {
         guidance: guidance,
       },
-      when: [rules.proxyNo, rules.over15],
+      when: [rules.proxyNo, rules.over16],
     },
     {
       question: question(proxyTitle) + {
         guidance: guidance,
       },
-      when: [rules.proxyYes, rules.over15],
+      when: [rules.proxyYes, rules.over16],
     },
     {
       question: question(nonProxyTitle),
