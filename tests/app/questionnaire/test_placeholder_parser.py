@@ -100,7 +100,7 @@ class TestPlaceholder(unittest.TestCase):
                                 'source': 'metadata',
                                 'identifier': 'ref_p_start_date',
                             },
-                            'date_format': 'EEEE d MMMM YYYY',
+                            'date_format': 'EEEE d MMMM yyyy',
                         },
                     }
                 ],
@@ -161,14 +161,14 @@ class TestPlaceholder(unittest.TestCase):
                                 'source': 'metadata',
                                 'identifier': 'ref_p_start_date',
                             },
-                            'date_format': 'YYYY-MM-dd',
+                            'date_format': 'yyyy-MM-dd',
                         },
                     },
                     {
                         'transform': 'format_date',
                         'arguments': {
                             'date_to_format': {'source': 'previous_transform'},
-                            'date_format': 'dd/MM/YYYY',
+                            'date_format': 'dd/MM/yyyy',
                         },
                     },
                 ],

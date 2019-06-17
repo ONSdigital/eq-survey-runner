@@ -104,11 +104,11 @@ def get_format_date(value):
     :returns (str): Formatted datetime.
     """
     value = value[0] if isinstance(value, list) else value
-    date_format = 'd MMMM YYYY'
+    date_format = 'd MMMM yyyy'
     if value and re.match(r'\d{4}-\d{2}$', value):
-        date_format = 'MMMM YYYY'
+        date_format = 'MMMM yyyy'
     if value and re.match(r'\d{4}$', value):
-        date_format = 'YYYY'
+        date_format = 'yyyy'
 
     date_to_format = convert_to_datetime(value).date()
     result = "<span class='date'>{date}</span>".format(
@@ -123,7 +123,7 @@ def get_format_date(value):
 def format_datetime(context, value):
     london_date_time = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
     london_date = london_date_time.date()
-    formatted_date = flask_babel.format_date(london_date, format='d MMMM YYYY')
+    formatted_date = flask_babel.format_date(london_date, format='d MMMM yyyy')
     formatted_time = flask_babel.format_time(london_date_time, format='HH:mm')
 
     result = "<span class='date'>{date}</span>".format(

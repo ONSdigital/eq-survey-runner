@@ -50,7 +50,7 @@
         date_to_format: {
           value: census_date,
         },
-        date_format: 'd MMMM YYYY',
+        date_format: 'd MMMM yyyy',
       },
     }],
   },

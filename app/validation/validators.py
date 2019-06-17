@@ -244,7 +244,7 @@ class SingleDatePeriodCheck:
     def __init__(
         self,
         messages=None,
-        date_format='d MMMM YYYY',
+        date_format='d MMMM yyyy',
         minimum_date=None,
         maximum_date=None,
     ):
@@ -279,7 +279,7 @@ class SingleDatePeriodCheck:
                 )
 
     @staticmethod
-    def _format_playback_date(date, date_format='d MMMM YYYY'):
+    def _format_playback_date(date, date_format='d MMMM yyyy'):
         return flask_babel.format_date(date, format=date_format)
 
 
