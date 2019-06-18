@@ -1,41 +1,41 @@
-<!doctype html>
-{% set cdn_hash = "v2.0.0" %}
-{% set cdn_url_prefix = "https://cdn.ons.gov.uk/sdc/"~cdn_hash %}
-{% import 'macros/helpers.html' as helpers %}
+<!DOCTYPE html>
+{% set cdn_hash = "v2.0.0" %} {% set cdn_url_prefix = "https://cdn.ons.gov.uk/sdc/"~cdn_hash %} {% import 'macros/helpers.html' as helpers %}
 <!--[if lt IE 7]>      <html lang="en-gb" dir="ltr" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en-gb" dir="ltr" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en-gb" dir="ltr" class="no-js lt-ie10 lt-ie9"> <![endif]-->
 <!--[if IE 9]>         <html lang="en-gb" dir="ltr" class="no-js lt-ie10"> <![endif]-->
-<!--[if gt IE 9]><!--> <html lang="en-gb" dir="ltr" class="no-js"> <!--<![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="en-gb" dir="ltr" class="no-js">
+  <!--<![endif]-->
   <head>
     {%- block head %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>{% block page_title %}{{ _('ONS Survey') }}{% endblock page_title %}</title>
-    <meta content="" name="description">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ cdn_url_prefix }}/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="{{ cdn_url_prefix }}/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="{{ cdn_url_prefix }}/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="{{ cdn_url_prefix }}/favicons/manifest.json">
-    <link rel="mask-icon" href="{{ cdn_url_prefix }}/favicons/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="theme-color" content="#ffffff">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{% block page_title %}{{ _("ONS Survey") }}{% endblock page_title %}</title>
+    <meta content="" name="description" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ cdn_url_prefix }}/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="{{ cdn_url_prefix }}/favicons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="{{ cdn_url_prefix }}/favicons/favicon-16x16.png" sizes="16x16" />
+    <link rel="manifest" href="{{ cdn_url_prefix }}/favicons/manifest.json" />
+    <link rel="mask-icon" href="{{ cdn_url_prefix }}/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="theme-color" content="#ffffff" />
     <!--[if lt IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
     <!--[if gt IE 8]><!-->
-      <script nonce="{{ csp_nonce() }}">document.documentElement.className = document.documentElement.className.replace('no-js','has-js')</script>
+    <script nonce="{{ csp_nonce() }}">
+      document.documentElement.className = document.documentElement.className.replace("no-js", "has-js");
+    </script>
     <!--<![endif]-->
-    {%- block styles %}
-    {% set css_fixed_cdn = cdn_url_prefix~"/css/fixed.css" %}
-    {% set css_responsive_cdn = cdn_url_prefix~"/css/responsive.css" %}
-    {% set css_theme = "css/"~_theme~"/theme.css" %}
+    {%- block styles %} {% set css_fixed_cdn = cdn_url_prefix~"/css/fixed.css" %} {% set css_responsive_cdn = cdn_url_prefix~"/css/responsive.css" %} {% set
+    css_theme = "css/"~_theme~"/theme.css" %}
 
     <!--[if (gt IE 9) | (IEMobile)]><!-->
     {%- if request.args.get('fixed') == 'true' %}
-      <link href="{{ css_fixed_cdn }}" rel="stylesheet" />
+    <link href="{{ css_fixed_cdn }}" rel="stylesheet" />
     {%- else %}
-      <link href="{{ css_responsive_cdn }}" rel="stylesheet" />
+    <link href="{{ css_responsive_cdn }}" rel="stylesheet" />
     {%- endif %}
     <!--<![endif]-->
     <!--[if (lte IE 9) & (!IEMobile)]>
@@ -44,85 +44,99 @@
 
     <link href="{{ url_for('static', filename=css_theme) }}" rel="stylesheet" />
 
-    {% endblock styles -%}
-    {% endblock head -%}
+    {% endblock styles -%} {% endblock head -%}
     <!-- Google Tag Manager -->
     {% if analytics_gtm_id and analytics_gtm_env_id %}
-      <script nonce="{{ csp_nonce() }}">(function(w,d,s,l,i,e){w['GoogleTagManagerObject']=l;w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?gtm_auth={{analytics_gtm_env_id}}&id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','{{analytics_gtm_id}}', "{{analytics_gtm_env_id}}");</script>
+    <script nonce="{{ csp_nonce() }}">
+      (function(w, d, s, l, i, e) {
+        w["GoogleTagManagerObject"] = l;
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl + "&gtm_auth=" + e + "&gtm_preview=env-8&gtm_cookies_win=x";
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "{{analytics_gtm_id}}", "{{analytics_gtm_env_id}}");
+    </script>
+
     {%- endif %}
     <!-- End Google Tag Manager -->
   </head>
 
   <body>
-
     <!-- Google Tag Manager (noscript) -->
     {% if analytics_gtm_id and analytics_gtm_env_id %}
-      <noscript nonce="{{ csp_nonce() }}"><iframe src="https://www.googletagmanager.com/gtm.js?id={{analytics_gtm_id}}&gtm_auth={{analytics_gtm_env_id}}"
-      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript nonce="{{ csp_nonce() }}"
+      ><iframe
+        src="https://www.googletagmanager.com/gtm.js?id={{ analytics_gtm_id }}&gtm_auth={{ analytics_gtm_env_id }}"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe
+    ></noscript>
     {%- endif %}
     <!-- End Google Tag Manager (noscript) -->
 
-    {% if request.args.get('grid_debug') == 'true' and config['DEBUG'] == true %}
-      {% include 'partials/grid-overlay.html' %}
-    {% endif %}
+    {% if request.args.get('grid_debug') == 'true' and config['DEBUG'] == true %} {% include 'partials/grid-overlay.html' %} {% endif %}
 
     <div class="page">
-
       <div class="page__content">
-
         <div class="skip">
           <a class="skip__link" href="#main">{{ _("Skip to content") }}</a>
         </div>
         <form class="form qa-questionnaire-form" role="form" method="POST" autocomplete="off" novalidate>
-          <input id="csrf_token" name="csrf_token" type="hidden" value="{{ csrf_token() }}"/>
-          <button class="u-vh" tabindex="-1" type="submit" name="action[save_continue]">{{_('Save and continue')}}</button>
-          {% block header %}
-            {% include theme('partials/header.html') %}
-          {% endblock %}
-
-          {% block subheader_container %}
-            <div class="container u-cf">
-              {% block subheader %}
-                {% with position = 'top' %}{% include 'partials/previous-link.html' %}{% endwith %}
-                {% if navigation %}
-                <div class="page__menubtn{{ ' u-mb-s' if previous_location }}">
-                  <button class="btn btn--menu js-menu-btn" data-close-label="{{_('Hide sections')}}" type="button" id="menu-btn" aria-expanded="false" aria-controls="section-nav" aria-label="Toggle section menu" aria-haspopup="true">{{_('View sections')}}</button>
-                </div>
-                {% endif %}
-              {% endblock subheader %}
+          <input id="csrf_token" name="csrf_token" type="hidden" value="{{ csrf_token() }}" />
+          <button class="u-vh" tabindex="-1" type="submit" name="action[save_continue]">{{ _("Save and continue") }}</button>
+          {% block header %} {% include theme('partials/header.html') %} {% endblock %} {% block subheader_container %}
+          <div class="container u-cf">
+            {% block subheader %} {% with position = 'top' %}{% include 'partials/previous-link.html' %}{% endwith %} {% if navigation %}
+            <div class="page__menubtn{{ ' u-mb-s' if previous_location }}">
+              <button
+                class="btn btn--menu js-menu-btn"
+                data-close-label="{{ _('Hide sections') }}"
+                type="button"
+                id="menu-btn"
+                aria-expanded="false"
+                aria-controls="section-nav"
+                aria-label="Toggle section menu"
+                aria-haspopup="true"
+              >
+                {{ _("View sections") }}
+              </button>
             </div>
+            {% endif %} {% endblock subheader %}
+          </div>
           {% endblock subheader_container %}
           <div class="page__container container{{ ' u-mt-s' if not previous_location }}">
-            {% block content %}
-            {% with position = 'bottom' %}{% include 'partials/previous-link.html' %}{% endwith %}
-            {% endblock %}
+            {% block content %} {% with position = 'bottom' %}{% include 'partials/previous-link.html' %}{% endwith %} {% endblock %}
           </div>
         </form>
       </div>
       <footer class="page__footer u-mt-xl u-pt-l">
-        {% block footer %}
-          {% include theme('partials/footer.html') %}
-        {% endblock %}
+        {% block footer %} {% include theme('partials/footer.html') %} {% endblock %}
       </footer>
-
     </div>
 
     <!--[if gte IE 9]><!-->
-    {% block scripts %}
-      {% set scripts_cdn = cdn_url_prefix~"/scripts/bundle.min.js" %}
-      <script src="{{ scripts_cdn }}"></script>
-      <script src="{{ url_for('static', filename='js/bundle.js') }}"></script>
+    {% block scripts %} {% set scripts_cdn = cdn_url_prefix~"/scripts/bundle.min.js" %}
+    <script src="{{ scripts_cdn }}"></script>
+    <script src="{{ url_for('static', filename='js/bundle.js') }}"></script>
     {% endblock scripts %}
-  	  <!--<![endif]-->
-    </body>
+    <!--<![endif]-->
+  </body>
 
-    {% if config['EQ_ENABLE_LIVE_RELOAD'] %}
-    <script nonce="{{ csp_nonce() }}" id="__bs_script__">//<![CDATA[
-      document.write("<script async nonce='{{ csp_nonce() }}' src='http://HOST:5075/browser-sync/browser-sync-client.js?v=2.24.4'><\/script>".replace("HOST", location.hostname));
-    //]]></script>
-    {% endif %}
+  {% if config['EQ_ENABLE_LIVE_RELOAD'] %}
+  <script nonce="{{ csp_nonce() }}" id="__bs_script__">
+    //<![CDATA[
+    document.write(
+      "<script async nonce='{{ csp_nonce() }}' src='http://HOST:5075/browser-sync/browser-sync-client.js?v=2.24.4'><\/script>".replace(
+        "HOST",
+        location.hostname
+      )
+    );
+    //]]>
+  </script>
+  {% endif %}
 </html>
