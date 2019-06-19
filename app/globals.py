@@ -96,6 +96,6 @@ def get_answer_store(user):
     return questionnaire_store.answer_store
 
 
-def get_completed_blocks(user):
+def get_completed_store(user):
     questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
-    return questionnaire_store.completed_blocks
+    return questionnaire_store.completed_store

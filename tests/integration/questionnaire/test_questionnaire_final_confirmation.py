@@ -29,3 +29,17 @@ class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
 
         # Then we are re-directed back
         self.assertInBody('What is your favourite breakfast food')
+
+    def test_invalid_block_once_survey_complete(self):
+        # Given
+        self.launchSurvey('test', 'final_confirmation')
+
+        # When we proceed through the questionnaire
+        self.post(action='start_questionnaire')
+        self.post({'breakfast-answer': 'Bacon'})
+
+        # And try going to an invalid block
+        self.get(url='/questionnaire/invalid')
+
+        # Then we are re-directed back to the confirmation screen
+        self.assertInBody('Thank you for your answers, do you wish to submit')

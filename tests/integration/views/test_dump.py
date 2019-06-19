@@ -145,3 +145,86 @@ class TestDumpSubmission(IntegrationTestCase):
             }
         }
         assert actual == expected
+
+
+class TestDumpRoute(IntegrationTestCase):
+    def test_dump_route_not_authenticated(self):
+        # Given I am not an authenticated user
+        # When I attempt to dump the questionnaire store
+        self.get('/dump/routing-path')
+
+        # Then I receive a 401 Unauthorised response code
+        self.assertStatusUnauthorised()
+
+    def test_dump_route_authenticated_missing_role(self):
+        # Given I am an authenticated user who has launched a survey
+        # but does not have the 'dumper' role in my metadata
+        self.launchSurvey('test', 'radio_mandatory_with_mandatory_other')
+
+        # When I attempt to dump the questionnaire store
+        self.get('/dump/routing-path')
+
+        # Then I receive a 403 Forbidden response code
+        self.assertStatusForbidden()
+
+        # And the response data contains Forbidden
+        self.assertInBody('Error 403')
+
+    def test_dump_route_authenticated_with_role(self):
+        # Given I am an authenticated user who has launched a survey
+        # and does have the 'dumper' role in my metadata
+        self.launchSurvey(
+            'test', 'radio_mandatory_with_mandatory_other', roles=['dumper']
+        )
+
+        # And I attempt to dump the questionnaire store
+        self.get('/dump/routing-path')
+
+        # Then I get a 200 OK response
+        self.assertStatusOK()
+
+    def test_dump_route_authenticated_with_role_no_answers(self):
+        # Given I am an authenticated user who has launched a survey
+        # and does have the 'dumper' role in my metadata
+        self.launchSurvey(
+            'test', 'radio_mandatory_with_mandatory_other', roles=['dumper']
+        )
+
+        # When I haven't submitted any answers
+        # And I attempt to dump the submission payload
+        self.get('/dump/routing-path')
+
+        # Then I get a 200 OK response
+        self.assertStatusOK()
+
+        # And the JSON response contains the data I submitted
+        actual = json.loads(self.getResponseData())
+        # tx_id and submitted_at are dynamic; so copy them over
+        expected = {
+            'routing_path': [{'block_id': 'radio-mandatory'}, {'block_id': 'summary'}]
+        }
+
+        assert actual == expected
+
+    def test_dump_submission_authenticated_with_role_with_answers(self):
+        # Given I am an authenticated user who has launched a survey
+        # and does have the 'dumper' role in my metadata
+        self.launchSurvey('test', 'radio_mandatory', roles=['dumper'])
+
+        # When I submit an answer
+        self.post(post_data={'radio-mandatory-answer': 'Coffee'})
+
+        # And I attempt to dump the submission payload
+        self.get('/dump/routing-path')
+
+        # Then I get a 200 OK response
+        self.assertStatusOK()
+
+        # And the JSON response contains the data I submitted
+        actual = json.loads(self.getResponseData())
+
+        # tx_id and submitted_at are dynamic; so copy them over
+        expected = {
+            'routing_path': [{'block_id': 'radio-mandatory'}, {'block_id': 'summary'}]
+        }
+        assert actual == expected

@@ -1,4 +1,5 @@
 from typing import List, Tuple
+
 from app.data_model.answer_store import Answer
 
 
@@ -15,24 +16,58 @@ class QuestionnaireStoreUpdater:
         self._questionnaire_store = questionnaire_store
         self._answer_store = self._questionnaire_store.answer_store
         self._list_store = self._questionnaire_store.list_store
+        self._completed_store = self._questionnaire_store.completed_store
 
-    def save_answers(self, form, save_completed_blocks=True):
+    def save(self):
+        if self.is_dirty():
+            self._questionnaire_store.save()
+
+    def is_dirty(self):
+        if (
+            self._answer_store.is_dirty
+            or self._list_store.is_dirty
+            or self._completed_store.is_dirty
+        ):
+            return True
+        return False
+
+    def update_answers(self, form):
         self._update_questionnaire_store_with_form_data(form.data)
 
-        if save_completed_blocks:
-            if self._current_location not in self._questionnaire_store.completed_blocks:
-                self._questionnaire_store.completed_blocks.append(
-                    self._current_location
-                )
+    def remove_answers(self, answer_ids: List):
+        for answer_id in answer_ids:
+            self._answer_store.remove_answer(answer_id)
 
-        self._questionnaire_store.add_or_update()
-
-    def save_new_list_item_answers(self, form, list_name):
+    def add_list_item_and_answers(self, form, list_name):
         new_list_item_id = self._list_store.add_list_item(list_name)
 
         self._current_location.list_item_id = new_list_item_id
 
-        self.save_answers(form, False)
+        self.update_answers(form)
+
+    def remove_list_item_and_answers(self, list_name: str, list_item_id: str):
+        """ Remove answers from the answer store and update the list store to remove it
+        """
+        self._list_store.delete_list_item_id(list_name, list_item_id)
+
+        self._answer_store.remove_all_answers_for_list_item_id(
+            list_item_id=list_item_id
+        )
+
+    def add_completed_location(self):
+        self._completed_store.add_completed_location(self._current_location)
+
+    def remove_completed_location(self):
+        self._completed_store.remove_completed_location(self._current_location)
+
+        section = self._schema.get_section_for_block_id(self._current_location.block_id)
+        self._completed_store.remove_completed_section(section['id'])
+
+    def add_completed_section(self, section_id):
+        self._completed_store.add_completed_section(section_id)
+
+    def remove_completed_section(self, section_id):
+        self._completed_store.remove_completed_section(section_id)
 
     def _update_questionnaire_store_with_form_data(self, form_data):
         answer_ids_for_question = self._schema.get_answer_ids_for_question(
@@ -64,23 +99,3 @@ class QuestionnaireStoreUpdater:
                     self._answer_store.add_or_update(answer)
                 else:
                     self._answer_store.remove_answer(answer_id)
-
-    def remove_all_answers_with_list_item_id(self, list_name: str, list_item_id: str):
-        """ Remove answers from the answer store and update the list store to remove it
-        """
-        self._list_store.delete_list_item_id(list_name, list_item_id)
-
-        self._answer_store.remove_all_answers_for_list_item_id(
-            list_item_id=list_item_id
-        )
-
-        self._questionnaire_store.add_or_update()
-
-    def remove_answer_ids(self, answer_ids: List):
-        for answer_id in answer_ids:
-            self._answer_store.remove_answer(answer_id)
-        self._questionnaire_store.add_or_update()
-
-    def remove_completed_blocks(self, location):
-        self._questionnaire_store.remove_completed_blocks(location)
-        self._questionnaire_store.add_or_update()

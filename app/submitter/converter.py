@@ -47,7 +47,7 @@ def convert_answers(schema, questionnaire_store, routing_path, flushed=False):
 
     Args:
         schema: QuestionnaireSchema instance with populated schema json
-        routing_path: The path followed by the user when answering the questionnaire
+        full_routing_path: The full routing path followed by the user when answering the questionnaire
         flushed: True when system submits the users answers, False when submitted by user.
     Returns:
         Data payload

@@ -13,7 +13,7 @@ def with_schema(function):
     ```python
     @login_required
     @with_schema
-    @full_routing_path_required
+    @section_routing_path_required
     def get_block(routing_path, schema, *args):
         ...
     ```

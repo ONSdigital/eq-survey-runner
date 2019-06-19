@@ -138,7 +138,13 @@ describe('Date checks', function() {
 
         return browser
 
-          .url(DateMonthYearPage.url())
+          .setValue(DateRangePage.dateRangeFromday(), 1)
+          .setValue(DateRangePage.dateRangeFrommonth(), 1)
+          .setValue(DateRangePage.dateRangeFromyear(), 2016)
+          .setValue(DateRangePage.dateRangeToday(), 1)
+          .setValue(DateRangePage.dateRangeTomonth(), 1)
+          .setValue(DateRangePage.dateRangeToyear(), 2017)
+          .click(DateRangePage.submit())
 
           // When the year (month year type) is left empty
           .setValue(DateMonthYearPage.Month(), 4)
@@ -154,19 +160,24 @@ describe('Date checks', function() {
 
   it('Given the test_dates survey is selected, ' +
                   'When an error message is shown and it is corrected, ' +
-                  'Then it the next question is displayed', function() {
+                  'Then the next question is displayed', function() {
 
     // Given the test_dates survey is selected
     return helpers.openQuestionnaire('test_dates.json').then(() => {
 
       return browser
 
-        .url(DateMonthYearPage.url())
+        .setValue(DateRangePage.dateRangeFromday(), 1)
+        .setValue(DateRangePage.dateRangeFrommonth(), 1)
+        .setValue(DateRangePage.dateRangeFromyear(), 2016)
+        .setValue(DateRangePage.dateRangeToday(), 1)
+        .setValue(DateRangePage.dateRangeTomonth(), 1)
+        .setValue(DateRangePage.dateRangeToyear(), 2017)
+        .click(DateRangePage.submit())
 
         // When an error message is shown
         .setValue(DateMonthYearPage.Month(), 4)
         .setValue(DateMonthYearPage.Year(), '')
-
         .click(DateMonthYearPage.submit())
 
         .getText(DateMonthYearPage.error()).should.eventually.contain('Enter a valid date.')
@@ -187,16 +198,30 @@ describe('Date checks', function() {
 
       return browser
 
-        .url(DateNonMandatoryPage.url())
+        .setValue(DateRangePage.dateRangeFromday(), 1)
+        .setValue(DateRangePage.dateRangeFrommonth(), 1)
+        .setValue(DateRangePage.dateRangeFromyear(), 2016)
+        .setValue(DateRangePage.dateRangeToday(), 1)
+        .setValue(DateRangePage.dateRangeTomonth(), 1)
+        .setValue(DateRangePage.dateRangeToyear(), 2017)
+        .click(DateRangePage.submit())
 
-         // When non-madatory is partially completed
-          .setValue(DateNonMandatoryPage.day(), 4)
-          .setValue(DateNonMandatoryPage.month(), 1)
+        .setValue(DateMonthYearPage.Month(), 1)
+        .setValue(DateMonthYearPage.Year(), 2016)
+        .click(DateMonthYearPage.submit())
 
-          .click(DateNonMandatoryPage.submit())
+        .setValue(DateSinglePage.day(), 1)
+        .setValue(DateSinglePage.month(), 1)
+        .setValue(DateSinglePage.year(), 2016)
+        .click(DateMonthYearPage.submit())
 
-          // Then an error message is shown
-          .getText(DateNonMandatoryPage.errorNumber(1)).should.eventually.contain('Enter a valid date');
+        // When non-mandatory is partially completed
+        .setValue(DateNonMandatoryPage.day(), 4)
+        .setValue(DateNonMandatoryPage.month(), 1)
+        .click(DateNonMandatoryPage.submit())
+
+        // Then an error message is shown
+        .getText(DateNonMandatoryPage.errorNumber(1)).should.eventually.contain('Enter a valid date');
     });
   });
 
@@ -208,13 +233,23 @@ describe('Date checks', function() {
 
       return browser
 
-        .url(DateSinglePage.url())
+        .setValue(DateRangePage.dateRangeFromday(), 1)
+        .setValue(DateRangePage.dateRangeFrommonth(), 1)
+        .setValue(DateRangePage.dateRangeFromyear(), 2016)
+        .setValue(DateRangePage.dateRangeToday(), 1)
+        .setValue(DateRangePage.dateRangeTomonth(), 1)
+        .setValue(DateRangePage.dateRangeToyear(), 2017)
+        .click(DateRangePage.submit())
 
-         // When a user clicks the day label
-         .click(DateSinglePage.dayLabel())
+        .setValue(DateMonthYearPage.Month(), 1)
+        .setValue(DateMonthYearPage.Year(), 2016)
+        .click(DateMonthYearPage.submit())
 
-         // Then the day subfield should gain the focus
-         .hasFocus(DateSinglePage.day());
+        // When a user clicks the day label
+        .click(DateSinglePage.dayLabel())
+
+        // Then the day subfield should gain the focus
+        .hasFocus(DateSinglePage.day());
     });
   });
 

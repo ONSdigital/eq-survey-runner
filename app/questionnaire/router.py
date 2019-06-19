@@ -1,67 +1,137 @@
-class Router:
-    def __init__(
-        self, schema, routing_path, current_location=None, completed_locations=None
-    ):
-        self._schema = schema
-        self._routing_path = routing_path
-        self._current_location = current_location
-        self._completed_locations = completed_locations
+from app.helpers.path_finder_helper import path_finder
+from app.questionnaire.location import Location
 
-    def can_access_location(self):
+
+class Router:
+    def __init__(self, schema, completed_store=None):
+        self._schema = schema
+        self._completed_store = completed_store
+
+    def can_access_location(self, location: Location, routing_path):
         """
-        Checks whether the current location is valid and accessible.
+        Checks whether the location is valid and accessible.
         :return: boolean
         """
-        if (
-            self._is_current_location_valid()
-            and not self._get_survey_redirect_location()
-        ):
+        allowable_path = self._get_allowable_path(routing_path)
+        if location in allowable_path:
+            block = self._schema.get_block(location.block_id)
+            if (
+                block['type'] in ['Confirmation', 'Summary']
+                and not self.is_survey_complete()
+            ):
+                return False
+
             return True
 
         return False
 
-    def get_next_location(self):
+    def get_next_location(self, location, routing_path):
         """
         Get the first incomplete block in section/survey if trying to access the section/survey end,
         and the section/survey is incomplete or gets the next default location if the above is false.
-        :return: boolean
         """
-        return self._get_survey_redirect_location() or self._get_default_location()
+        current_block_type = self._schema.get_block(location.block_id)['type']
+        last_block_location = routing_path[-1]
+        last_block_type = self._schema.get_block(last_block_location.block_id)['type']
 
-    def _is_current_location_valid(self):
+        # If the section is complete and contains a SectionSummary, return the SectionSummary location
+        if (
+            last_block_type == 'SectionSummary'
+            and current_block_type != last_block_type
+            and path_finder.is_path_complete(routing_path)
+        ):
+            return last_block_location
+
+        if self.is_survey_complete():
+            section_ids = self._schema.get_section_ids()
+            last_block_id = self._schema.get_last_block_id_for_section(section_ids[-1])
+            return Location(block_id=last_block_id)
+
+        location_index = routing_path.index(location)
+        # At end of routing path, so go to next incomplete location
+        if location_index == len(routing_path) - 1:
+            return self.get_first_incomplete_location_in_survey()
+
+        return routing_path[location_index + 1]
+
+    def get_previous_location(self, location, routing_path):
         """
-        Checks whether the current location is within the routing path.
-        :return: boolean
-        """
-        return self._current_location in self._routing_path
-
-    def _get_default_location(self):
-        """
-        Calculates the next location if the current location is invalid
-        or if the current location is valid but not accessible.
-        :return: Location to direct to.
+        Returns the previous 'location' to visit given a set of user answers
         """
 
-        first_incomplete_location = self._get_first_incomplete_location_in_survey()
+        block_id = location.block_id
 
-        return first_incomplete_location or self._routing_path[-1]
+        if self._schema.is_block_list_collector_child(block_id):
+            # If this is a list collector sub block, return the collector in the previous link
+            block = self._schema.get_block(block_id)
+            return Location(block_id=block['parent_id'])
 
-    def _get_survey_redirect_location(self):
-        """
-        Ensure that the user can't access the end of the survey if the survey is not complete.
-        :return: Location to direct to if current location is not accessible.
-        """
-        if not self._is_current_location_valid():
-            return None
+        location_index = routing_path.index(location)
 
-        expected_location = self._get_first_incomplete_location_in_survey()
-        block = self._schema.get_block(self._current_location.block_id)
-        cannot_access_survey_end = self._current_location != expected_location
+        if location_index != 0:
+            return routing_path[location_index - 1]
 
-        if block['type'] in ['Confirmation', 'Summary'] and cannot_access_survey_end:
-            return expected_location
+        return None
 
-    def _get_first_incomplete_location_in_survey(self):
-        for location in self._routing_path:
-            if location not in self._completed_locations:
+    def get_first_incomplete_location_in_survey(self):
+        incomplete_section_ids = self._get_incomplete_section_ids()
+
+        if incomplete_section_ids:
+            first_incomplete_section = self._schema.get_section(
+                incomplete_section_ids[0]
+            )
+            section_routing_path = path_finder.routing_path(first_incomplete_section)
+            location = path_finder.get_first_incomplete_location(section_routing_path)
+            if location:
                 return location
+
+        all_section_ids = self._schema.get_section_ids()
+        last_block_id = self._schema.get_last_block_id_for_section(all_section_ids[-1])
+        return Location(block_id=last_block_id)
+
+    def is_survey_complete(self):
+        incomplete_section_ids = self._get_incomplete_section_ids()
+
+        if incomplete_section_ids:
+            if len(incomplete_section_ids) > 1:
+                return False
+            if self._does_section_only_contain_summary(incomplete_section_ids[0]):
+                return True
+            return False
+
+        return True
+
+    def _get_allowable_path(self, routing_path):
+        """
+        The allowable path is the completed path plus the next location
+        """
+        allowable_path = []
+        for location in routing_path:
+            allowable_path.append(location)
+            if location not in self._completed_store.locations:
+                return allowable_path
+        return allowable_path
+
+    def _get_incomplete_section_ids(self):
+        all_section_ids = self._schema.get_section_ids()
+        incomplete_section_ids = [
+            section_id
+            for section_id in all_section_ids
+            if section_id not in self._completed_store.sections
+        ]
+        return incomplete_section_ids
+
+    # This is horrible and only necessary as currently a section can be defined that only
+    # contains a Summary or Confirmation. The ideal solution is to move Summary/Confirmation
+    # blocks from sections and into the top level of the schema. Once that's done this can be
+    # removed.
+    def _does_section_only_contain_summary(self, section_id):
+        section = self._schema.get_section(section_id)
+        groups = section.get('groups')
+        if len(groups) == 1:
+            blocks = groups[0].get('blocks')
+            if len(blocks) == 1:
+                block_type = blocks[0].get('type')
+                if block_type in ['Summary', 'Confirmation']:
+                    return True
+        return False

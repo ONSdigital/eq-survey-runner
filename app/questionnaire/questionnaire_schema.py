@@ -1,4 +1,5 @@
 from collections import OrderedDict, defaultdict
+from typing import Union
 
 from flask_babel import force_locale
 
@@ -14,36 +15,61 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         self.language_code = language_code
         self._parse_schema()
 
-    @property
-    def sections(self):
+    def get_sections(self):
         return self._sections_by_id.values()
 
-    @property
-    def groups(self):
-        return self._groups_by_id.values()
+    def get_section_ids(self):
+        return list(self._sections_by_id.keys())
 
-    @property
-    def blocks(self):
-        return self._blocks_by_id.values()
-
-    @property
-    def answers(self):
-        return self._answers_by_id.values()
-
-    def get_section(self, section_id):
+    def get_section(self, section_id: str):
         return self._sections_by_id.get(section_id)
 
-    def get_group(self, group_id):
+    def get_section_for_block_id(self, block_id):
+        block = self.get_block(block_id)
+
+        if block.get('type') in LIST_COLLECTOR_CHILDREN:
+            section_id = self._get_section_id_for_list_block(block)
+        else:
+            section_id = self.get_group(block['parent_id'])['parent_id']
+
+        return self.get_section(section_id)
+
+    def get_groups(self):
+        return self._groups_by_id.values()
+
+    def get_group(self, group_id: str) -> Union[str, None]:
         return self._groups_by_id.get(group_id)
+
+    def get_group_for_block_id(self, block_id: str) -> Union[str, None]:
+        return self._group_for_block(block_id)
+
+    def get_last_block_id_for_section(self, section_id):
+        section = self.get_section(section_id)
+        if section:
+            return section['groups'][-1]['blocks'][-1]['id']
+
+    def get_first_block_id_for_group(self, group_id):
+        group = self.get_group(group_id)
+        if group:
+            return group['blocks'][0]['id']
+
+    def get_blocks(self):
+        return self._blocks_by_id.values()
 
     def get_block(self, block_id):
         return self._blocks_by_id.get(block_id)
 
     def get_block_for_answer_id(self, answer_id):
-        answers = self.get_answers(answer_id)
-        # All matching questions / answers must be within the same block
-        questions = self.get_questions(answers[0]['parent_id'])
-        return self.get_block(questions[0]['parent_id'])
+        return self._block_for_answer(answer_id)
+
+    def get_answer_ids(self):
+        return self._answers_by_id.values()
+
+    def get_answers_by_answer_id(self, answer_id):
+        """ Return answers matching answer id, including all matching answers inside
+        variants
+        """
+        return self._answers_by_id.get(answer_id)
 
     def get_questions(self, question_id):
         """ Return a list of questions matching some question id
@@ -51,35 +77,11 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         """
         return self._questions_by_id.get(question_id)
 
-    def get_answers(self, answer_id):
-        """ Return a list of answers matching some answer id
-        This includes all matching answers inside variants
-        """
-        return self._answers_by_id.get(answer_id)
-
-    def get_section_by_block_id(self, block_id):
-        block = self.get_block(block_id)
-        group = self.get_group(block['parent_id'])
-        return self.get_section(group['parent_id'])
-
     def group_has_questions(self, group_id):
         for block in self.get_group(group_id)['blocks']:
             if block['type'] == 'Question':
                 return True
-
         return False
-
-    def get_first_block_id_for_group(self, group_id):
-        group = self.get_group(group_id)
-        if group:
-            return group['blocks'][0]['id']
-
-    def get_group_by_block_id(self, block_id):
-        block = self.get_block(block_id)
-        if block['type'] in LIST_COLLECTOR_CHILDREN:
-            parent = self.get_block(block['parent_id'])
-            return self.get_group(parent['parent_id'])
-        return self.get_group(block['parent_id'])
 
     @classmethod
     def get_answer_ids_for_question(cls, question):
@@ -108,7 +110,7 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def get_summary_and_confirmation_blocks(self):
         return [
             block['id']
-            for block in self.blocks
+            for block in self.get_blocks()
             if block['type'] in ('Summary', 'Confirmation')
         ]
 
@@ -163,9 +165,6 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
 
     def is_block_list_collector_child(self, block_id):
         block = self.get_block(block_id)
-        if not block:
-            return False
-
         return block['type'] in LIST_COLLECTOR_CHILDREN
 
     def _parse_schema(self):
@@ -175,6 +174,11 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         self._questions_by_id = self._get_questions_by_id()
         self._answers_by_id = self._get_answers_by_id()
         self.error_messages = self._get_error_messages()
+
+    def _get_section_id_for_list_block(self, block):
+        return self.get_group(self.get_block(block['parent_id'])['parent_id'])[
+            'parent_id'
+        ]
 
     def _get_blocks_by_id(self):
         blocks = defaultdict(list)
@@ -195,6 +199,19 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
                         blocks[nested_block['id']] = nested_block
 
         return blocks
+
+    def _block_for_answer(self, answer_id):
+        answers = self.get_answers_by_answer_id(answer_id)
+        # All matching questions / answers must be within the same block
+        questions = self.get_questions(answers[0]['parent_id'])
+        return self.get_block(questions[0]['parent_id'])
+
+    def _group_for_block(self, block_id):
+        block = self.get_block(block_id)
+        if block['type'] in LIST_COLLECTOR_CHILDREN:
+            parent = self.get_block(block['parent_id'])
+            return self.get_group(parent['parent_id'])
+        return self.get_group(block['parent_id'])
 
     def _get_questions_by_id(self):
         questions_by_id = defaultdict(list)

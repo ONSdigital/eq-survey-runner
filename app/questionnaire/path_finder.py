@@ -1,7 +1,12 @@
 import copy
+from typing import List, Mapping
+
 from structlog import get_logger
 
+from app.data_model.answer_store import AnswerStore
+from app.data_model.completed_store import CompletedStore
 from app.questionnaire.location import Location
+from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.routing_path import RoutingPath
 from app.questionnaire.rules import (
     evaluate_goto,
@@ -13,45 +18,54 @@ logger = get_logger()
 
 
 class PathFinder:
-    def __init__(self, schema, answer_store, metadata, completed_blocks):
+    def __init__(
+        self,
+        schema: QuestionnaireSchema,
+        answer_store: AnswerStore,
+        metadata: Mapping,
+        completed_store: CompletedStore = None,
+    ):
         self.answer_store = answer_store
         self.metadata = metadata
         self.schema = schema
-        self.completed_blocks = completed_blocks
-        self._full_routing_path = None
+        self.completed_store = completed_store
 
-    @staticmethod
-    def _block_index_for_location(blocks, location):
-        return next(
-            (
-                index
-                for (index, block) in enumerate(blocks)
-                if block['id'] == location.block_id
-            ),
-            None,
-        )
+    def is_path_complete(self, path):
+        return not self.get_first_incomplete_location(path)
 
-    def build_path(self):
+    def get_first_incomplete_location(self, path):
+        for location in path:
+            block = self.schema.get_block(location.block_id)
+            block_type = block.get('type')
+            if location not in self.completed_store.locations and block_type not in [
+                'SectionSummary',
+                'Summary',
+                'Confirmation',
+            ]:
+                return location
+
+        return None
+
+    def full_routing_path(self):
+        path = []
+        sections = self.schema.get_sections()
+        for section in sections:
+            path = path + list(self.routing_path(section))
+        return path
+
+    def routing_path(self, section: Mapping) -> RoutingPath:
         """
-        Visits all the blocks from a location forwards and returns path
-        taken given a list of answers.
-
-        :param blocks: A list containing all block content in the survey
-        :param this_location: The location to visit, represented as a dict
-        :return: A list of locations followed through the survey
+        Visits all the blocks in a section and returns a path given a list of answers.
         """
         this_location = None
+        blocks: List[Mapping] = []
+        path: List[Location] = []
+        block_index: int = 0
+        first_group_id = section['groups'][0]['id']
 
-        blocks = []
-        path = []
-        block_index = 0
-        first_groups = self._get_first_group_in_section()
-
-        for group in self.schema.groups:
-            if group['id'] in first_groups:
-                first_block_in_group = self.schema.get_first_block_id_for_group(
-                    group['id']
-                )
+        for group in section['groups']:
+            if group['id'] == first_group_id:
+                first_block_in_group = group['blocks'][0]['id']
                 this_location = Location(block_id=first_block_in_group)
 
             if 'skip_conditions' in group:
@@ -73,15 +87,23 @@ class PathFinder:
 
         return RoutingPath(path)
 
-    def _get_first_group_in_section(self):
-        return [section['groups'][0]['id'] for section in self.schema.sections]
+    @staticmethod
+    def _block_index_for_location(blocks, location):
+        return next(
+            (
+                index
+                for (index, block) in enumerate(blocks)
+                if block['id'] == location.block_id
+            ),
+            None,
+        )
 
     def _build_path_within_group(self, blocks, block_index, this_location, path):
         # Keep going unless we've hit the last block
-        # for block_identifier in blocks:
         while block_index < len(blocks):
             prev_block_index = block_index
             block_index = PathFinder._block_index_for_location(blocks, this_location)
+
             if block_index is None:
                 return path, prev_block_index
 
@@ -164,114 +186,4 @@ class PathFinder:
                 if 'meta' not in condition.keys():
                     self.answer_store.remove_answer(condition['id'])
 
-        if this_location in self.completed_blocks:
-            self.completed_blocks.remove(this_location)
-
-    def get_full_routing_path(self):
-        """
-        Returns a list of the block ids visited based on answers provided
-        :return: List of block location dicts
-        """
-        if self._full_routing_path and not self.answer_store.is_dirty:
-            return self._full_routing_path
-
-        self._full_routing_path = self.build_path()
-
-        return self._full_routing_path
-
-    @staticmethod
-    def _get_current_location_index(path, current_location):
-        if current_location in path:
-            return path.index(current_location)
-
-    def get_next_location(self, current_location):
-        """
-        Returns the next 'location' to visit given a set of user answers
-        If Summary or SectionSummary is available then next location will be those.
-        :param current_location:
-        :return: The next location as a dict
-        """
-        routing_path = self.get_full_routing_path()
-
-        current_location_index = PathFinder._get_current_location_index(
-            routing_path, current_location
-        )
-
-        if (
-            current_location_index is not None
-            and current_location_index < len(routing_path) - 1
-        ):
-            if self._is_survey_completed(routing_path):
-                return routing_path[-1]  # Go to Summary location
-
-            section_summary_location = self._get_valid_section_summary(
-                current_location.block_id, routing_path
-            )
-            if section_summary_location:
-                return section_summary_location  # Go to SectionSummary location
-
-            return routing_path[current_location_index + 1]
-
-    def _is_survey_completed(self, routing_path):
-        # Check all blocks on routing path are complete
-        for location in routing_path[
-            :-1
-        ]:  # Don't evaluate end block (Summary or Confirmation)
-            if location not in self.completed_blocks:
-                return False
-
-        return True
-
-    def _get_valid_section_summary(self, current_block_id, routing_path):
-        """
-        Check only the section you are on and that all blocks in that section are complete
-        If the section has a summary section then pass that back as the next location
-        The SectionSummary block itself does not need to be completed
-        :param current_block_id: Id of block you're routing from
-        :param routing_path: routing path
-        :return: location or None
-        """
-        current_section = self.schema.get_section_by_block_id(current_block_id)
-
-        if self.schema.get_block(current_block_id)['type'] in [
-            'Summary',
-            'SectionSummary',
-            'AnswerSummary',
-        ]:
-            return None
-
-        for location in routing_path:
-            location_section = self.schema.get_section_by_block_id(location.block_id)
-            if location_section == current_section:
-                block_type = self.schema.get_block(location.block_id)['type']
-                if block_type in ['SectionSummary', 'AnswerSummary']:
-                    return location
-
-                if location not in self.completed_blocks:
-                    return None
-
-    def get_previous_location(self, current_location, schema):
-        """
-        Returns the previous 'location' to visit given a set of user answers
-        :param current_location:
-        :return: The previous location as a dict
-        :return:
-        """
-        group = self.schema.get_group_by_block_id(current_location.block_id)
-        first_block_for_group = self.schema.get_first_block_id_for_group(group['id'])
-
-        if first_block_for_group == current_location.block_id:
-            return None
-
-        block = schema.get_block(current_location.block_id)
-        if schema.is_block_list_collector_child(current_location.block_id):
-            # If this is a list collector sub block, return the collector in the previous link
-            return Location(block_id=block['parent_id'])
-
-        routing_path = self.get_full_routing_path()
-        current_location_index = PathFinder._get_current_location_index(
-            routing_path, current_location
-        )
-
-        if current_location_index is not None and current_location_index != 0:
-            return routing_path[current_location_index - 1]
+        self.completed_store.remove_completed_location(this_location)

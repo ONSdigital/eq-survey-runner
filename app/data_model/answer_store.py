@@ -1,11 +1,7 @@
 from __future__ import annotations
 from typing import List, Optional, Dict
 
-from structlog import get_logger
-
 from app.data_model.answer import Answer
-
-logger = get_logger()
 
 
 class AnswerStore:

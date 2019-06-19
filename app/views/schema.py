@@ -11,7 +11,6 @@ schema_blueprint = Blueprint('schema', __name__)
 def get_schema_json(eq_id, form_type):
     try:
         schema = load_schema_from_params(eq_id, form_type)
-
         return jsonify(schema.json)
     except FileNotFoundError:
         return 'Schema Not Found', 404
