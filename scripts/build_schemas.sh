@@ -14,7 +14,7 @@ for region_code in GB-WLS GB-ENG GB-NIR; do
         SOURCE_FILE="data-source/jsonnet/england-wales/census_individual.jsonnet"
     fi
 
-    jsonnet --tla-str region_code="${region_code}" --tla-str census_date="2019-06-12" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
+    jsonnet --tla-str region_code="${region_code}" --tla-str census_date="2019-06-20" "${SOURCE_FILE}" > "${DESTINATION_FILE}"
 
     echo "Built ${DESTINATION_FILE}"
 done
