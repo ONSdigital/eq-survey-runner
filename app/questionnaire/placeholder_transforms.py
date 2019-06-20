@@ -3,9 +3,8 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from dateutil.tz import tzutc
 
-from babel.numbers import format_currency
+from babel.numbers import format_currency, format_decimal
 from babel.dates import format_datetime
-from babel import numbers
 
 from app.settings import DEFAULT_LOCALE
 
@@ -17,8 +16,8 @@ class PlaceholderTransforms:
 
     def __init__(self, language):
         self.language = language
+        self.locale = DEFAULT_LOCALE if language == 'en' else language
 
-    locale = DEFAULT_LOCALE
     input_date_format = '%Y-%m-%d'
     input_date_format_month_year_only = '%Y-%m'
 
@@ -75,10 +74,9 @@ class PlaceholderTransforms:
 
         return string_to_format
 
-    @staticmethod
-    def format_number(number):
+    def format_number(self, number):
         if number or number == 0:
-            return numbers.format_decimal(number, locale=PlaceholderTransforms.locale)
+            return format_decimal(number, locale=self.locale)
 
         return ''
 
