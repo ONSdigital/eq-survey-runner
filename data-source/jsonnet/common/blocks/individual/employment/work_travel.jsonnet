@@ -9,7 +9,7 @@ local question(title, description) = {
   answers: [
     {
       id: 'work-travel-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Work mainly at or from home',

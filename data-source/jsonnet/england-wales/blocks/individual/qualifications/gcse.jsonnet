@@ -30,7 +30,7 @@ local question(title, region_code) = (
     id: 'gcse-question',
     title: title,
     type: 'MutuallyExclusive',
-    mandatory: true,
+    mandatory: false,
     guidance: {
       contents: [
         {
@@ -92,27 +92,12 @@ function(region_code) {
   routing_rules: [
     {
       goto: {
-        block: 'other-qualifications',
+        group: 'employment-group',
         when: [
           {
             id: 'degree-answer',
             condition: 'equals',
-            value: 'No',
-          },
-          {
-            id: 'gcse-answer-exclusive',
-            condition: 'contains',
-            value: 'None of these apply',
-          },
-          {
-            id: 'a-level-answer-exclusive',
-            condition: 'contains',
-            value: 'None of these apply',
-          },
-          {
-            id: 'nvq-level-answer-exclusive',
-            condition: 'contains',
-            value: 'None of these apply',
+            value: 'Yes',
           },
         ],
       },
@@ -120,6 +105,39 @@ function(region_code) {
     {
       goto: {
         group: 'employment-group',
+        when: [
+          {
+            id: 'gcse-answer',
+            condition: 'set',
+          },
+        ],
+      },
+    },
+    {
+      goto: {
+        group: 'employment-group',
+        when: [
+          {
+            id: 'a-level-answer',
+            condition: 'set',
+          },
+        ],
+      },
+    },
+    {
+      goto: {
+        group: 'employment-group',
+        when: [
+          {
+            id: 'nvq-level-answer',
+            condition: 'set',
+          },
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'other-qualifications',
       },
     },
   ],

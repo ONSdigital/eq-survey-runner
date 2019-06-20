@@ -4,7 +4,7 @@ local rules = import '../../../../common/lib/rules.libsonnet';
 local question(title) = {
   id: 'understand-welsh-question',
   title: title,
-  mandatory: true,
+  mandatory: false,
   type: 'MutuallyExclusive',
   answers: [
     {

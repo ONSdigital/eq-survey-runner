@@ -8,7 +8,7 @@ local question(title) = {
   answers: [
     {
       id: 'health-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Very good',

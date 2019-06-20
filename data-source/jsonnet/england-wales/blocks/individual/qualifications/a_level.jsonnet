@@ -31,7 +31,7 @@ local question(title, region_code) = (
       ],
     },
     type: 'MutuallyExclusive',
-    mandatory: true,
+    mandatory: false,
     answers: [
       {
         id: 'a-level-answer',

@@ -9,7 +9,7 @@ local question(title, definition) = {
   answers: [
     {
       id: 'disability-limitation-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Yes, a lot',

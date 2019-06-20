@@ -8,7 +8,7 @@ local question(title) = {
   answers: [
     {
       id: 'sex-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Female',

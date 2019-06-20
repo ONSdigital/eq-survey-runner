@@ -28,7 +28,7 @@ local question(title, region_code) = (
     answers: [
       {
         id: 'degree-answer',
-        mandatory: true,
+        mandatory: false,
         type: 'Radio',
         options: [
           {

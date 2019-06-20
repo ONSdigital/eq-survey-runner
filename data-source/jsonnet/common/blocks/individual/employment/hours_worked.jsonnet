@@ -15,7 +15,7 @@ local question(title) = {
   answers: [
     {
       id: 'hours-worked-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: '0 to 15 hours',

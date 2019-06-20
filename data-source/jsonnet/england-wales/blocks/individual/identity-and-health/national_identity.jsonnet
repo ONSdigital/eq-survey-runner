@@ -67,7 +67,7 @@ local question(title, definitionContent, detailAnswerLabel, region_code) = (
     answers: [
       {
         id: 'national-identity-answer',
-        mandatory: true,
+        mandatory: false,
         type: 'Checkbox',
         options: regionOptions + [
           {

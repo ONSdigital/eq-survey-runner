@@ -8,7 +8,7 @@ local question(title) = {
   answers: [
     {
       id: 'main-job-type-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Employee',

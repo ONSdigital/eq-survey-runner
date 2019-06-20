@@ -9,7 +9,7 @@ local question(title, description) = {
   answers: [
     {
       id: 'past-usual-address-household-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: {

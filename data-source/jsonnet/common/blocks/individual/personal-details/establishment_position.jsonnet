@@ -18,7 +18,7 @@ local question(title) = {
   answers: [
     {
       id: 'establishment-position-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Resident',

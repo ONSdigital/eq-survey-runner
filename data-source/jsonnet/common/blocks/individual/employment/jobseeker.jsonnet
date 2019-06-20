@@ -17,7 +17,7 @@ local question(title, guidanceHeader) = {
         ],
       },
       id: 'jobseeker-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Yes',
@@ -59,19 +59,19 @@ local proxyGuidanceHeader = 'Why do I need to answer if they have retired or are
   routing_rules: [
     {
       goto: {
-        block: 'job-availability',
+        block: 'job-pending',
         when: [
           {
             id: 'jobseeker-answer',
             condition: 'equals',
-            value: 'Yes',
+            value: 'No',
           },
         ],
       },
     },
     {
       goto: {
-        block: 'job-pending',
+        block: 'job-availability',
       },
     },
   ],

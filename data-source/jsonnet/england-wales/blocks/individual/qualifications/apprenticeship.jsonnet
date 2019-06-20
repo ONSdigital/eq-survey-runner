@@ -31,7 +31,7 @@ local question(title, region_code) = (
     answers: [
       {
         id: 'apprenticeship-answer',
-        mandatory: true,
+        mandatory: false,
         options: [
           {
             label: 'Yes',
