@@ -140,11 +140,7 @@ def build_view_context_for_list_collector(
 def build_view_context_for_final_summary(
     metadata, schema, answer_store, block_type, rendered_block
 ):
-    section_list = schema.json['sections']
-
-    context = build_view_context_for_summary(
-        schema, section_list, answer_store, metadata, block_type
-    )
+    context = build_view_context_for_summary(schema, answer_store, metadata, block_type)
 
     context['summary'].update(
         {
@@ -159,10 +155,10 @@ def build_view_context_for_final_summary(
 
 
 def build_view_context_for_summary(
-    schema, section_list, answer_store, metadata, block_type
+    schema, answer_store, metadata, block_type, sections=None
 ):
     summary_rendering_context = build_summary_rendering_context(
-        schema, section_list, answer_store, metadata
+        schema, answer_store, metadata, sections
     )
 
     context = {
@@ -178,13 +174,13 @@ def build_view_context_for_summary(
 def build_view_context_for_section_summary(
     metadata, schema, answer_store, block_type, current_location
 ):
-    group = schema.get_group_by_block_id(current_location.block_id)
+    group = schema.get_group_for_block_id(current_location.block_id)
     section_id = group['parent_id']
     section = schema.get_section(section_id)
     title = section.get('title')
 
     context = build_view_context_for_summary(
-        schema, [section], answer_store, metadata, block_type
+        schema, answer_store, metadata, block_type, [section]
     )
 
     context['summary'].update({'title': title})
@@ -195,12 +191,13 @@ def build_view_context_for_calculated_summary(
     metadata, schema, answer_store, block_type, current_location
 ):
     block = schema.get_block(current_location.block_id)
+
     section_list = _build_calculated_summary_section_list(
         schema, block, current_location, answer_store, metadata
     )
 
     context = build_view_context_for_summary(
-        schema, section_list, answer_store, metadata, block_type
+        schema, answer_store, metadata, block_type, section_list
     )
 
     formatted_total = _get_formatted_total(
@@ -265,7 +262,7 @@ def _build_calculated_summary_section_list(
     schema, rendered_block, current_location, answer_store, metadata
 ):
     """Build up the list of blocks only including blocks / questions / answers which are relevant to the summary"""
-    group = schema.get_group_by_block_id(current_location.block_id)
+    group = schema.get_group_for_block_id(current_location.block_id)
     blocks = []
     answers_to_calculate = rendered_block['calculation']['answers_to_calculate']
     blocks_to_calculate = [
@@ -283,9 +280,7 @@ def _build_calculated_summary_section_list(
             ):
                 blocks.append(transformed_block)
 
-    section = {'groups': [{'id': group['id'], 'blocks': blocks}]}
-
-    return [section]
+    return [{'groups': [{'id': group['id'], 'blocks': blocks}]}]
 
 
 def _remove_unwanted_questions_answers(
@@ -300,7 +295,7 @@ def _remove_unwanted_questions_answers(
 
     matching_answers = []
     for answer_id in answer_ids_to_keep:
-        matching_answers.extend(schema.get_answers(answer_id))
+        matching_answers.extend(schema.get_answers_by_answer_id(answer_id))
 
     questions_to_keep = [answer['parent_id'] for answer in matching_answers]
 

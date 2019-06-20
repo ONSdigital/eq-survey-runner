@@ -1,6 +1,5 @@
 import snappy
 from flask import current_app
-
 from structlog import get_logger
 
 from app.data_model.app_models import QuestionnaireState
@@ -18,7 +17,7 @@ class EncryptedQuestionnaireStorage:
         self._user_id = user_id
         self.encrypter = StorageEncryption(user_id, user_ik, pepper)
 
-    def add_or_update(self, data):
+    def save(self, data):
         compressed_data = snappy.compress(data)
         encrypted_data = self.encrypter.encrypt_data(compressed_data)
         questionnaire_state = QuestionnaireState(

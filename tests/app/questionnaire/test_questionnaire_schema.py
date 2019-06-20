@@ -20,7 +20,7 @@ class TestQuestionnaireSchema(AppContextTestCase):
         }
 
         schema = QuestionnaireSchema(survey_json)
-        self.assertEqual(len(schema.sections), 1)
+        self.assertEqual(len(schema.get_sections()), 1)
 
     def test_get_section(self):
         survey_json = {
@@ -58,7 +58,7 @@ class TestQuestionnaireSchema(AppContextTestCase):
         }
 
         schema = QuestionnaireSchema(survey_json)
-        self.assertEqual(len(schema.blocks), 1)
+        self.assertEqual(len(schema.get_blocks()), 1)
 
     def test_get_block(self):
         survey_json = {
@@ -98,7 +98,7 @@ class TestQuestionnaireSchema(AppContextTestCase):
         }
 
         schema = QuestionnaireSchema(survey_json)
-        self.assertEqual(len(schema.groups), 1)
+        self.assertEqual(len(schema.get_groups()), 1)
 
     def test_get_group(self):
         survey_json = {
@@ -244,7 +244,7 @@ class TestQuestionnaireSchema(AppContextTestCase):
         }
 
         schema = QuestionnaireSchema(survey_json)
-        answers = schema.answers
+        answers = schema.get_answer_ids()
         self.assertEqual(len(answers), 1)
 
     def test_get_answers_with_variants(self):
@@ -298,7 +298,7 @@ class TestQuestionnaireSchema(AppContextTestCase):
         }
 
         schema = QuestionnaireSchema(survey_json)
-        answers = schema.get_answers('answer1')
+        answers = schema.get_answers_by_answer_id('answer1')
         self.assertEqual(len(answers), 2)
         self.assertEqual(answers[0]['label'], 'Answer 1')
         self.assertEqual(answers[1]['label'], 'Another Answer 1')
@@ -333,7 +333,7 @@ class TestQuestionnaireSchema(AppContextTestCase):
         }
 
         schema = QuestionnaireSchema(survey_json)
-        answers = schema.get_answers('answer1')
+        answers = schema.get_answers_by_answer_id('answer1')
         self.assertEqual(len(answers), 1)
         self.assertEqual(answers[0]['label'], 'Answer 1')
 
@@ -454,6 +454,50 @@ class TestQuestionnaireSchema(AppContextTestCase):
         self.assertTrue(schema.is_confirmation_group(schema.get_group('group-1')))
         self.assertFalse(schema.is_summary_section(schema.get_section('section-1')))
         self.assertFalse(schema.is_summary_group(schema.get_group('group-1')))
+
+    def test_get_group_for_list_collector_child_block(self):
+        survey_json = {
+            'sections': [
+                {
+                    'id': 'section1',
+                    'groups': [
+                        {
+                            'id': 'group',
+                            'blocks': [
+                                {
+                                    'id': 'list-collector',
+                                    'type': 'ListCollector',
+                                    'populates_list': 'list',
+                                    'question': {},
+                                    'add_block': {
+                                        'id': 'add-block',
+                                        'type': 'ListAddQuestion',
+                                        'question': {},
+                                    },
+                                    'edit_block': {
+                                        'id': 'edit-block',
+                                        'type': 'ListEditQuestion',
+                                        'question': {},
+                                    },
+                                    'remove_block': {
+                                        'id': 'remove-block',
+                                        'type': 'ListRemoveQuestion',
+                                        'question': {},
+                                    },
+                                }
+                            ],
+                        }
+                    ],
+                }
+            ]
+        }
+
+        schema = QuestionnaireSchema(survey_json)
+
+        group = schema.get_group_for_block_id('add-block')
+
+        self.assertIsNotNone(group)
+        self.assertEqual(group['id'], 'group')
 
 
 def test_get_all_questions_for_block_question():

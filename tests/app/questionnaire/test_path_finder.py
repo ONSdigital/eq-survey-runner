@@ -2,6 +2,7 @@ from unittest.mock import patch
 import pytest
 
 from app.data_model.answer_store import Answer, AnswerStore
+from app.data_model.completed_store import CompletedStore
 from app.questionnaire.location import Location
 from app.questionnaire.path_finder import PathFinder
 from app.utilities.schema import load_schema_from_params
@@ -11,123 +12,76 @@ from tests.app.app_context_test_case import AppContextTestCase
 class TestPathFinder(
     AppContextTestCase
 ):  # pylint: disable=too-many-public-methods, too-many-lines
-    def test_next_block(self):
+    def test_simple_path(self):
         schema = load_schema_from_params('test', 'textfield')
-
-        current_location = Location(block_id='name-block')
-        next_location = Location(block_id='summary')
-
+        completed_store = CompletedStore({'locations': [{'block_id': 'name-block'}]})
         path_finder = PathFinder(
-            schema, AnswerStore(), metadata={}, completed_blocks=[]
-        )
-        self.assertEqual(
-            path_finder.get_next_location(current_location=current_location),
-            next_location,
+            schema, AnswerStore(), metadata={}, completed_store=completed_store
         )
 
-    def test_previous_block(self):
-        schema = load_schema_from_params('test', 'textfield')
+        section = schema.get_section_for_block_id('name-block')
+        routing_path = path_finder.routing_path(section)
 
-        current_location = Location(block_id='summary')
-        previous_location = Location(block_id='name-block')
+        assumed_routing_path = [
+            Location(block_id='name-block'),
+            Location(block_id='summary'),
+        ]
 
-        path_finder = PathFinder(
-            schema, AnswerStore(), metadata={}, completed_blocks=[]
-        )
-        self.assertEqual(
-            path_finder.get_previous_location(current_location, schema),
-            previous_location,
-        )
-
-    def test_previous_block_on_list_collector(self):
-        schema = load_schema_from_params('test', 'list_collector')
-
-        current_location = Location(list_name='people', block_id='add-person')
-        previous_location = Location(block_id='list-collector')
-
-        path_finder = PathFinder(
-            schema, AnswerStore(), metadata={}, completed_blocks=[]
-        )
-        self.assertEqual(
-            path_finder.get_previous_location(current_location, schema),
-            previous_location,
-        )
-
-    def test_previous_block_on_list_collector_list_operation(self):
-        """ Ensure we always return to the list collector when the previous link is used on a sub block
-        """
-        schema = load_schema_from_params('test', 'list_collector')
-
-        for list_block, list_id in [
-            ('add-person', None),
-            ('edit-person', 'abc123'),
-            ('remove-person', 'abc123'),
-        ]:
-            current_location = Location(
-                block_id=list_block, list_name='people', list_item_id=list_id
-            )
-            previous_location = Location(block_id='list-collector')
-
-            path_finder = PathFinder(
-                schema, AnswerStore(), metadata={}, completed_blocks=[]
-            )
-            self.assertEqual(
-                path_finder.get_previous_location(current_location, schema),
-                previous_location,
-            )
+        self.assertEqual(routing_path, assumed_routing_path)
 
     def test_introduction_in_path_when_in_schema(self):
         schema = load_schema_from_params('test', 'introduction')
+        current_section = schema.get_section('introduction-section')
 
         path_finder = PathFinder(
-            schema, AnswerStore(), metadata={}, completed_blocks=[]
+            schema, AnswerStore(), metadata={}, completed_store=CompletedStore()
         )
 
-        blocks = [b.block_id for b in path_finder.get_full_routing_path()]
+        blocks = [b.block_id for b in path_finder.routing_path(current_section)]
 
         self.assertIn('introduction', blocks)
 
     def test_introduction_not_in_path_when_not_in_schema(self):
         schema = load_schema_from_params('test', 'checkbox')
-
+        current_section = schema.get_section('default-section')
         path_finder = PathFinder(
-            schema, AnswerStore(), metadata={}, completed_blocks=[]
+            schema, AnswerStore(), metadata={}, completed_store=CompletedStore()
         )
 
         with patch('app.questionnaire.rules.evaluate_when_rules', return_value=False):
-            blocks = [b.block_id for b in path_finder.get_full_routing_path()]
+            blocks = [b.block_id for b in path_finder.routing_path(current_section)]
 
         self.assertNotIn('introduction', blocks)
 
-    def test_next_with_conditional_path(self):
+    def test_routing_path_with_conditional_path(self):
         schema = load_schema_from_params('test', 'routing_number_equals')
+        current_section = schema.get_section_for_block_id('number-question')
+        expected_path = [
+            Location(block_id='number-question'),
+            Location(block_id='correct-answer'),
+            Location(block_id='summary'),
+        ]
 
-        expected_path = [Location('number-question'), Location('correct-answer')]
-
-        answer_1 = Answer(answer_id='answer', value=123)
-
+        answer = Answer(answer_id='answer', value=123)
         answers = AnswerStore()
-        answers.add_or_update(answer_1)
+        answers.add_or_update(answer)
 
-        current_location = expected_path[0]
-        expected_next_location = expected_path[1]
-
-        completed_blocks = [expected_path[0]]
+        completed_store = CompletedStore(
+            {'locations': [{'block_id': 'number-question'}]}
+        )
 
         path_finder = PathFinder(
-            schema, answer_store=answers, metadata={}, completed_blocks=completed_blocks
+            schema, answer_store=answers, metadata={}, completed_store=completed_store
         )
 
-        actual_next_block = path_finder.get_next_location(
-            current_location=current_location
-        )
+        routing_path = path_finder.routing_path(current_section)
 
-        self.assertEqual(actual_next_block, expected_next_location)
+        self.assertEqual(routing_path, expected_path)
 
     def test_routing_basic_and_conditional_path(self):
         # Given
         schema = load_schema_from_params('test', 'routing_number_equals')
-
+        current_section = schema.get_section_for_block_id('number-question')
         expected_path = [
             Location('number-question'),
             Location('correct-answer'),
@@ -141,103 +95,32 @@ class TestPathFinder(
 
         # When
         path_finder = PathFinder(
-            schema, answer_store=answers, metadata={}, completed_blocks=[]
+            schema, answer_store=answers, metadata={}, completed_store=CompletedStore()
         )
-        routing_path = path_finder.get_full_routing_path()
+        routing_path = path_finder.routing_path(current_section)
 
         # Then
         self.assertEqual(routing_path, expected_path)
 
-    def test_get_next_location_introduction(self):
+    def test_routing_path_with_complete_introduction(self):
         schema = load_schema_from_params('test', 'introduction')
+        current_section = schema.get_section_for_block_id('introduction')
+        completed_store = CompletedStore({'locations': [{'block_id': 'introduction'}]})
 
-        introduction = Location('introduction')
+        expected_routing_path = [
+            Location(block_id='introduction'),
+            Location(block_id='general-business-information-completed'),
+            Location(block_id='confirmation'),
+        ]
 
-        path_finder = PathFinder(schema, AnswerStore(), {}, [introduction])
+        path_finder = PathFinder(schema, AnswerStore(), {}, completed_store)
+        routing_path = path_finder.routing_path(current_section)
 
-        next_location = path_finder.get_next_location(current_location=introduction)
+        self.assertEqual(routing_path, expected_routing_path)
 
-        self.assertEqual(
-            'general-business-information-completed', next_location.block_id
-        )
-
-    def test_get_next_location_summary(self):
+    def test_routing_path_full_path(self):
         schema = load_schema_from_params('test', 'summary')
-
-        answers = AnswerStore()
-
-        path_finder = PathFinder(
-            schema, answer_store=answers, metadata={}, completed_blocks=[]
-        )
-
-        current_location = Location('dessert-block')
-
-        next_location = path_finder.get_next_location(current_location=current_location)
-
-        expected_next_location = Location('summary')
-
-        self.assertEqual(expected_next_location, next_location)
-
-    def test_get_previous_location_introduction(self):
-        schema = load_schema_from_params('test', 'introduction')
-
-        path_finder = PathFinder(
-            schema, AnswerStore(), metadata={}, completed_blocks=[]
-        )
-
-        first_location = Location('general-business-information-completed')
-
-        previous_location = path_finder.get_previous_location(first_location, schema)
-
-        self.assertEqual('introduction', previous_location.block_id)
-
-    def test_previous_with_conditional_path(self):
-        schema = load_schema_from_params('test', 'routing_number_equals')
-
-        expected_path = [Location('number-question'), Location('correct-answer')]
-
-        answer_1 = Answer(answer_id='answer', value=123)
-
-        answers = AnswerStore()
-        answers.add_or_update(answer_1)
-
-        current_location = expected_path[1]
-        expected_previous_location = expected_path[0]
-
-        path_finder = PathFinder(
-            schema, answer_store=answers, metadata={}, completed_blocks=[]
-        )
-        actual_previous_block = path_finder.get_previous_location(
-            current_location, schema
-        )
-
-        self.assertEqual(actual_previous_block, expected_previous_location)
-
-    def test_previous_with_conditional_path_alternative(self):
-        schema = load_schema_from_params('test', 'routing_number_equals')
-
-        expected_path = [Location('number-question'), Location('incorrect-answer')]
-
-        answer_1 = Answer(answer_id='answer', value=456)
-
-        current_location = expected_path[1]
-        expected_previous_location = expected_path[0]
-
-        answers = AnswerStore()
-        answers.add_or_update(answer_1)
-
-        path_finder = PathFinder(
-            schema, answer_store=answers, metadata={}, completed_blocks=[]
-        )
-
-        self.assertEqual(
-            path_finder.get_previous_location(current_location, schema),
-            expected_previous_location,
-        )
-
-    def test_next_location_goto_summary(self):
-        schema = load_schema_from_params('test', 'summary')
-
+        current_section = schema.get_section_for_block_id('dessert-block')
         expected_path = [
             Location('radio'),
             Location('test-number-block'),
@@ -246,20 +129,25 @@ class TestPathFinder(
         ]
 
         answers = AnswerStore()
-        path_finder = PathFinder(
-            schema, answer_store=answers, metadata={}, completed_blocks=[]
+        completed_store = CompletedStore(
+            {
+                'locations': [
+                    {'block_id': 'radio'},
+                    {'block_id': 'test-number-block'},
+                    {'block_id': 'dessert-block'},
+                ]
+            }
         )
+        path_finder = PathFinder(
+            schema, answer_store=answers, metadata={}, completed_store=completed_store
+        )
+        routing_path = path_finder.routing_path(current_section)
 
-        current_location = expected_path[2]
-        expected_next_location = expected_path[3]
+        self.assertEqual(routing_path, expected_path)
 
-        next_location = path_finder.get_next_location(current_location=current_location)
-
-        self.assertEqual(next_location, expected_next_location)
-
-    def test_next_location_empty_routing_rules(self):
+    def test_routing_path_empty_routing_rules(self):
         schema = load_schema_from_params('test', 'checkbox')
-
+        current_section = schema.get_section_for_block_id('mandatory-checkbox')
         expected_path = [
             Location('mandatory-checkbox'),
             Location('non-mandatory-checkbox'),
@@ -273,111 +161,142 @@ class TestPathFinder(
         answers.add_or_update(answer_1)
         answers.add_or_update(answer_2)
 
-        path_finder = PathFinder(
-            schema, answer_store=answers, metadata={}, completed_blocks=[]
+        completed_store = CompletedStore(
+            {'locations': [{'block_id': 'mandatory-checkbox'}]}
         )
 
-        current_location = expected_path[0]
-        expected_next_location = expected_path[1]
+        path_finder = PathFinder(
+            schema, answer_store=answers, metadata={}, completed_store=completed_store
+        )
+        routing_path = path_finder.routing_path(current_section)
 
-        next_location = path_finder.get_next_location(current_location=current_location)
+        self.assertEqual(routing_path, expected_path)
 
-        self.assertEqual(next_location, expected_next_location)
-
-    def test_next_with_conditional_path_when_value_not_in_metadata(self):
+    def test_routing_path_with_conditional_value_not_in_metadata(self):
         schema = load_schema_from_params('test', 'metadata_routing')
+        current_section = schema.get_section_for_block_id('block1')
+        expected_path = [
+            Location(block_id='block1'),
+            Location(block_id='block2'),
+            Location(block_id='block3'),
+            Location(block_id='summary'),
+        ]
 
-        expected_path = [Location('block1'), Location('block2')]
-
-        current_location = expected_path[0]
-
-        expected_next_location = expected_path[1]
-
+        completed_store = CompletedStore({'locations': [{'block_id': 'block1'}]})
         metadata = {}
 
         path_finder = PathFinder(
-            schema, AnswerStore(), metadata=metadata, completed_blocks=[]
+            schema, AnswerStore(), metadata=metadata, completed_store=completed_store
         )
+        routing_path = path_finder.routing_path(current_section)
 
-        self.assertEqual(
-            expected_next_location,
-            path_finder.get_next_location(current_location=current_location),
-        )
+        self.assertEqual(routing_path, expected_path)
 
-    def test_get_next_location_should_skip_block(self):
+    def test_routing_path_should_skip_block(self):
         # Given
         schema = load_schema_from_params('test', 'skip_condition_block')
-        current_location = Location('do-you-want-to-skip')
+        current_section = schema.get_section_for_block_id('should-skip')
+        answer_store = AnswerStore()
+        answer_store.add_or_update(
+            Answer(answer_id='do-you-want-to-skip-answer', value='Yes')
+        )
+        completed_store = CompletedStore(
+            {'locations': [{'block_id': 'do-you-want-to-skip'}]}
+        )
+
+        # When
+        path_finder = PathFinder(
+            schema,
+            answer_store=answer_store,
+            metadata={},
+            completed_store=completed_store,
+        )
+        routing_path = path_finder.routing_path(current_section)
+
+        # Then
+        expected_routing_path = [
+            Location(block_id='do-you-want-to-skip'),
+            Location(block_id='a-non-skipped-block'),
+            Location(block_id='summary'),
+        ]
+
+        with patch(
+            'app.questionnaire.path_finder.evaluate_skip_conditions', return_value=True
+        ):
+            self.assertEqual(routing_path, expected_routing_path)
+
+    def test_routing_path_should_skip_group(self):
+        # Given
+        schema = load_schema_from_params('test', 'skip_condition_group')
+
+        current_section = schema.get_section_for_block_id('do-you-want-to-skip')
+
         answer_store = AnswerStore()
         answer_store.add_or_update(
             Answer(answer_id='do-you-want-to-skip-answer', value='Yes')
         )
 
-        # When
-        path_finder = PathFinder(
-            schema, answer_store=answer_store, metadata={}, completed_blocks=[]
-        )
-
-        # Then
-        expected_next_location = Location('a-non-skipped-block')
-
-        with patch(
-            'app.questionnaire.path_finder.evaluate_skip_conditions', return_value=True
-        ):
-            self.assertEqual(
-                path_finder.get_next_location(current_location=current_location),
-                expected_next_location,
-            )
-
-    def test_get_next_location_should_skip_group(self):
-        # Given
-        schema = load_schema_from_params('test', 'skip_condition_group')
-        current_location = Location('do-you-want-to-skip')
-        answer_store = AnswerStore()
-        answer_store.add_or_update(
-            Answer(answer_id='do-you-want-to-skip-answer', value='Yes')
+        completed_store = CompletedStore(
+            {'locations': [{'block_id': 'do-you-want-to-skip'}]}
         )
 
         # When
         path_finder = PathFinder(
-            schema, answer_store=answer_store, metadata={}, completed_blocks=[]
+            schema,
+            answer_store=answer_store,
+            metadata={},
+            completed_store=completed_store,
         )
+        routing_path = path_finder.routing_path(current_section)
 
         # Then
-        expected_next_location = Location('last-group-block')
+        expected_routing_path = [
+            Location(block_id='do-you-want-to-skip'),
+            Location(block_id='last-group-block'),
+            Location(block_id='summary'),
+        ]
 
         with patch(
             'app.questionnaire.path_finder.evaluate_skip_conditions', return_value=True
         ):
-            self.assertEqual(
-                path_finder.get_next_location(current_location=current_location),
-                expected_next_location,
-            )
+            self.assertEqual(routing_path, expected_routing_path)
 
-    def test_get_next_location_should_not_skip_group(self):
+    def test_routing_path_should_not_skip_group(self):
         # Given
         schema = load_schema_from_params('test', 'skip_condition_group')
-        current_location = Location('do-you-want-to-skip')
+
+        current_section = schema.get_section_for_block_id('do-you-want-to-skip')
+
         answer_store = AnswerStore()
         answer_store.add_or_update(
             Answer(answer_id='do-you-want-to-skip-answer', value='No')
         )
 
-        # When
-        path_finder = PathFinder(
-            schema, answer_store=answer_store, metadata={}, completed_blocks=[]
+        completed_store = CompletedStore(
+            {'locations': [{'block_id': 'do-you-want-to-skip'}]}
         )
 
+        # When
+        path_finder = PathFinder(
+            schema,
+            answer_store=answer_store,
+            metadata={},
+            completed_store=completed_store,
+        )
+        routing_path = path_finder.routing_path(current_section)
+
         # Then
-        expected_location = Location('should-skip')
+        expected_routing_path = [
+            Location(block_id='do-you-want-to-skip'),
+            Location(block_id='should-skip'),
+            Location(block_id='last-group-block'),
+            Location(block_id='summary'),
+        ]
 
         with patch(
             'app.questionnaire.path_finder.evaluate_skip_conditions', return_value=False
         ):
-            self.assertEqual(
-                path_finder.get_next_location(current_location=current_location),
-                expected_location,
-            )
+            self.assertEqual(routing_path, expected_routing_path)
 
     def test_get_routing_path_when_first_block_in_group_skipped(self):
         # Given
@@ -389,7 +308,10 @@ class TestPathFinder(
 
         # When
         path_finder = PathFinder(
-            schema, answer_store=answer_store, metadata={}, completed_blocks=[]
+            schema,
+            answer_store=answer_store,
+            metadata={},
+            completed_store=CompletedStore(),
         )
 
         # Then
@@ -400,15 +322,17 @@ class TestPathFinder(
             },
             {'block_id': 'summary', 'group_id': 'should-skip-group'},
         ]
-
+        current_section = schema.get_section_for_block_id('summary')
         pytest.xfail(
             reason='Known bug when skipping last group due to summary bundled into it'
         )
-        self.assertEqual(path_finder.get_full_routing_path(), expected_route)
+
+        self.assertEqual(path_finder.routing_path(current_section), expected_route)
 
     def test_build_path_with_group_routing(self):
         # Given i have answered the routing question
         schema = load_schema_from_params('test', 'routing_group')
+        current_section = schema.get_section_for_block_id('group2-block')
 
         answer_store = AnswerStore()
         answer_store.add_or_update(
@@ -417,48 +341,31 @@ class TestPathFinder(
 
         # When i build the path
         path_finder = PathFinder(
-            schema, answer_store=answer_store, metadata={}, completed_blocks=[]
+            schema,
+            answer_store=answer_store,
+            metadata={},
+            completed_store=CompletedStore(),
         )
-        path = path_finder.build_path()
+        path = path_finder.routing_path(current_section)
 
         # Then it should route me straight to Group2 and not Group1
         self.assertNotIn(Location('group1-block'), path)
         self.assertIn(Location('group2-block'), path)
 
-    def test_return_to_summary_if_complete(self):
-        schema = load_schema_from_params('test', 'summary')
-
-        # All blocks completed
-        completed_blocks = [
-            Location('radio'),
-            Location('test-number-block'),
-            Location('dessert-block'),
-        ]
-
-        answer_store = AnswerStore()
-        answer_store.add_or_update(Answer(answer_id='radio-answer', value='Bacon'))
-        answer_store.add_or_update(Answer(answer_id='test-currency', value='123'))
-        answer_store.add_or_update(Answer(answer_id='dessert', value='Cake'))
-
-        summary_location = Location('summary')
-
-        path_finder = PathFinder(
-            schema, answer_store, metadata={}, completed_blocks=completed_blocks
-        )
-
-        self.assertEqual(
-            path_finder.get_next_location(current_location=completed_blocks[0]),
-            summary_location,
-        )
-
     def test_remove_answer_and_block_if_routing_backwards(self):
         schema = load_schema_from_params('test', 'confirmation_question')
-
+        current_section = schema.get_section_for_block_id(
+            'confirm-zero-employees-block'
+        )
         # All blocks completed
-        completed_blocks = [
-            Location('number-of-employees-total-block'),
-            Location('confirm-zero-employees-block'),
-        ]
+        completed_store = CompletedStore(
+            {
+                'locations': [
+                    {'block_id': 'number-of-employees-total-block'},
+                    {'block_id': 'confirm-zero-employees-block'},
+                ]
+            }
+        )
 
         answer_store = AnswerStore()
         number_of_employees_answer = Answer(
@@ -471,15 +378,22 @@ class TestPathFinder(
         answer_store.add_or_update(confirm_zero_answer)
 
         path_finder = PathFinder(
-            schema, answer_store, metadata={}, completed_blocks=completed_blocks
+            schema, answer_store, metadata={}, completed_store=completed_store
         )
-        self.assertEqual(len(path_finder.completed_blocks), 2)
+
+        self.assertEqual(len(path_finder.completed_store.locations), 2)
         self.assertEqual(len(path_finder.answer_store), 2)
 
-        self.assertEqual(
-            path_finder.get_next_location(current_location=completed_blocks[1]),
-            completed_blocks[0],
-        )
+        routing_path = path_finder.routing_path(current_section)
 
-        self.assertEqual(path_finder.completed_blocks, [completed_blocks[0]])
+        expected_path = [
+            Location(block_id='number-of-employees-total-block'),
+            Location(block_id='confirm-zero-employees-block'),
+            Location(block_id='number-of-employees-total-block'),
+        ]
+        self.assertEqual(routing_path, expected_path)
+
+        self.assertEqual(
+            path_finder.completed_store.locations, [completed_store.locations[0]]
+        )
         self.assertEqual(len(path_finder.answer_store), 1)

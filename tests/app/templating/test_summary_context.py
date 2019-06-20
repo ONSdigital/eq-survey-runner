@@ -72,9 +72,8 @@ class TestSummaryContext(TestStandardSummaryContext):
         }
 
     def test_build_summary_rendering_context(self):
-        sections = self.schema.sections
         summary_rendering_context = build_summary_rendering_context(
-            self.schema, sections, self.answer_store, self.metadata
+            self.schema, self.answer_store, self.metadata
         )
         self.check_summary_rendering_context(summary_rendering_context)
 
@@ -104,7 +103,7 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
     def test_build_summary_rendering_context(self):
         sections = [self.schema.get_section('property-details-section')]
         summary_rendering_context = build_summary_rendering_context(
-            self.schema, sections, self.answer_store, self.metadata
+            self.schema, self.answer_store, self.metadata, sections
         )
         self.check_summary_rendering_context(summary_rendering_context)
 

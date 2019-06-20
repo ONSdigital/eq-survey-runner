@@ -78,10 +78,8 @@ class QuestionnaireForm(FlaskForm):
 
         period_from_id = date_from['id']
         period_to_id = date_to['id']
-        messages = None
 
-        if 'validation' in question:
-            messages = question['validation'].get('messages')
+        messages = question.get('validation', {}).get('messages')
 
         if not (
             self.answers_all_valid([period_from_id, period_to_id])
@@ -135,7 +133,9 @@ class QuestionnaireForm(FlaskForm):
         if 'value' in calculation:
             return calculation['value'], question.get('currency')
 
-        target_answer = self.schema.get_answers(calculation['answer_id'])[0]
+        target_answer = self.schema.get_answers_by_answer_id(calculation['answer_id'])[
+            0
+        ]
         return (
             self.answer_store.get_answer(calculation['answer_id']).value,
             target_answer.get('currency'),

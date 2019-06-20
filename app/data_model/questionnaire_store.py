@@ -2,8 +2,8 @@ from types import MappingProxyType
 import simplejson as json
 
 from app.data_model.answer_store import AnswerStore
+from app.data_model.completed_store import CompletedStore
 from app.data_model.list_store import ListStore
-from app.questionnaire.location import Location
 
 
 class QuestionnaireStore:
@@ -15,12 +15,12 @@ class QuestionnaireStore:
             version = self.get_latest_version_number()
         self.version = version
         self._metadata = {}
-        # metadata is a read-only view over self._metadata
+        # self.metadata is a read-only view over self._metadata
         self.metadata = MappingProxyType(self._metadata)
         self.collection_metadata = {}
         self.list_store = ListStore()
         self.answer_store = AnswerStore()
-        self.completed_blocks = []
+        self.completed_store = CompletedStore()
 
         raw_data, version = self._storage.get_user_data()
         if raw_data:
@@ -43,14 +43,10 @@ class QuestionnaireStore:
 
     def _deserialise(self, data):
         json_data = json.loads(data, use_decimal=True)
-        completed_blocks = [
-            Location.from_dict(location_dict=completed_block)
-            for completed_block in json_data.get('COMPLETED_BLOCKS', [])
-        ]
+        self.completed_store = CompletedStore(json_data.get('COMPLETED'))
         self.set_metadata(json_data.get('METADATA', {}))
         self.answer_store = AnswerStore(json_data.get('ANSWERS'))
         self.list_store = ListStore.deserialise(json_data.get('LISTS'))
-        self.completed_blocks = completed_blocks
         self.collection_metadata = json_data.get('COLLECTION_METADATA', {})
 
     def serialise(self):
@@ -58,7 +54,7 @@ class QuestionnaireStore:
             'METADATA': self._metadata,
             'ANSWERS': list(self.answer_store),
             'LISTS': self.list_store.serialise(),
-            'COMPLETED_BLOCKS': self.completed_blocks,
+            'COMPLETED': self.completed_store.serialise(),
             'COLLECTION_METADATA': self.collection_metadata,
         }
         return json.dumps(data, for_json=True)
@@ -68,13 +64,8 @@ class QuestionnaireStore:
         self._metadata.clear()
         self.collection_metadata = {}
         self.answer_store.clear()
-        self.completed_blocks = []
+        self.completed_store.clear()
 
-    def add_or_update(self):
+    def save(self):
         data = self.serialise()
-        self._storage.add_or_update(data=data)
-
-    def remove_completed_blocks(self, location):
-        """Removes completed blocks from store
-        """
-        self.completed_blocks.remove(location)
+        self._storage.save(data=data)
