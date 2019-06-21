@@ -12,6 +12,7 @@ from structlog import get_logger
 
 from app.authentication.no_token_exception import NoTokenException
 from app.data_model.answer_store import AnswerStore
+from app.data_model.list_store import ListStore
 from app.data_model.app_models import SubmittedResponse
 from app.globals import (
     get_answer_store,
@@ -196,6 +197,7 @@ def get_block_handler(
     list_store = questionnaire_store.list_store
     metadata = questionnaire_store.metadata
     answer_store = questionnaire_store.answer_store
+    list_store = questionnaire_store.list_store
     current_location = Location(block_id, list_name, list_item_id)
 
     to_redirect = validate_location(schema, routing_path, list_store, current_location)
@@ -206,7 +208,13 @@ def get_block_handler(
     previous_location = router.get_previous_location(current_location, routing_path)
 
     return _render_block(
-        schema, metadata, answer_store, block_id, current_location, previous_location
+        schema,
+        metadata,
+        answer_store,
+        list_store,
+        block_id,
+        current_location,
+        previous_location,
     )
 
 
@@ -234,7 +242,9 @@ def post_block_handler(
     section = schema.get_section_for_block_id(block_id)
     block = schema.get_block(block_id)
 
-    transformed_block = transform_variants(block, schema, metadata, answer_store)
+    transformed_block = transform_variants(
+        block, schema, metadata, answer_store, list_store
+    )
 
     placeholder_renderer = PlaceholderRenderer(
         language=flask_babel.get_locale().language,
@@ -288,6 +298,7 @@ def post_block_handler(
             schema,
             metadata,
             answer_store,
+            list_store,
             current_location,
             form,
             rendered_block,
@@ -324,6 +335,7 @@ def perform_list_action(
     schema,
     metadata,
     answer_store,
+    list_store,
     current_location,
     form,
     rendered_block,
@@ -367,7 +379,7 @@ def perform_list_action(
 
     # Clear the answer from the confirmation question on the list collector question
     transformed_parent = transform_variants(
-        parent_block, schema, metadata, answer_store
+        parent_block, schema, metadata, answer_store, list_store
     )
     answer_ids_to_remove = [
         answer['id'] for answer in transformed_parent['question']['answers']
@@ -478,11 +490,12 @@ def get_view_submission(schema):  # pylint: too-many-locals
 
             submitted_data = json.loads(submitted_data)
             answer_store = AnswerStore(submitted_data.get('answers'))
+            list_store = ListStore(submitted_data.get('lists'))
 
             metadata = submitted_data.get('metadata')
 
             summary_rendered_context = build_summary_rendering_context(
-                schema, answer_store, metadata
+                schema, answer_store, list_store, metadata
             )
 
             context = {
@@ -564,6 +577,7 @@ def submit_answers(schema):
         current_user.user_id, current_user.user_ik
     )
     answer_store = questionnaire_store.answer_store
+    list_store = questionnaire_store.list_store
     metadata = questionnaire_store.metadata
     full_routing_path = path_finder.full_routing_path()
 
@@ -589,7 +603,9 @@ def submit_answers(schema):
     _store_submitted_time_in_session(submitted_time)
 
     if is_view_submitted_response_enabled(schema.json):
-        _store_viewable_submission(answer_store.serialise(), metadata, submitted_time)
+        _store_viewable_submission(
+            answer_store.serialise(), list_store.serialise(), metadata, submitted_time
+        )
 
     get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
 
@@ -603,13 +619,13 @@ def _store_submitted_time_in_session(submitted_time):
     session_store.save()
 
 
-def _store_viewable_submission(answers, metadata, submitted_time):
+def _store_viewable_submission(answers, lists, metadata, submitted_time):
     pepper = current_app.eq['secret_store'].get_secret_by_name(
         'EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER'
     )
     encrypter = StorageEncryption(current_user.user_id, current_user.user_ik, pepper)
     encrypted_data = encrypter.encrypt_data(
-        {'answers': answers, 'metadata': metadata.copy()}
+        {'answers': answers, 'lists': lists, 'metadata': metadata.copy()}
     )
 
     valid_until = submitted_time + timedelta(
@@ -743,10 +759,18 @@ def request_wants_json():
 
 
 def _render_block(
-    schema, metadata, answer_store, block_id, current_location, previous_location
+    schema,
+    metadata,
+    answer_store,
+    list_store,
+    block_id,
+    current_location,
+    previous_location,
 ):
     block = schema.get_block(block_id)
-    transformed_block = transform_variants(block, schema, metadata, answer_store)
+    transformed_block = transform_variants(
+        block, schema, metadata, answer_store, list_store
+    )
 
     placeholder_renderer = PlaceholderRenderer(
         language=flask_babel.get_locale().language,

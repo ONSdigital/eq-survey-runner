@@ -26,17 +26,17 @@ def build_view_context(
 ):
     if block_type == 'Summary':
         return build_view_context_for_final_summary(
-            metadata, schema, answer_store, block_type, rendered_block
+            metadata, schema, answer_store, list_store, block_type, rendered_block
         )
 
     if block_type == 'SectionSummary':
         return build_view_context_for_section_summary(
-            metadata, schema, answer_store, block_type, current_location
+            metadata, schema, answer_store, list_store, block_type, current_location
         )
 
     if block_type == 'CalculatedSummary':
         return build_view_context_for_calculated_summary(
-            metadata, schema, answer_store, block_type, current_location
+            metadata, schema, answer_store, list_store, block_type, current_location
         )
 
     if block_type in (
@@ -138,9 +138,11 @@ def build_view_context_for_list_collector(
 
 
 def build_view_context_for_final_summary(
-    metadata, schema, answer_store, block_type, rendered_block
+    metadata, schema, answer_store, list_store, block_type, rendered_block
 ):
-    context = build_view_context_for_summary(schema, answer_store, metadata, block_type)
+    context = build_view_context_for_summary(
+        schema, answer_store, list_store, metadata, block_type
+    )
 
     context['summary'].update(
         {
@@ -155,10 +157,10 @@ def build_view_context_for_final_summary(
 
 
 def build_view_context_for_summary(
-    schema, answer_store, metadata, block_type, sections=None
+    schema, answer_store, list_store, metadata, block_type, sections=None
 ):
     summary_rendering_context = build_summary_rendering_context(
-        schema, answer_store, metadata, sections
+        schema, answer_store, list_store, metadata, sections
     )
 
     context = {
@@ -172,7 +174,7 @@ def build_view_context_for_summary(
 
 
 def build_view_context_for_section_summary(
-    metadata, schema, answer_store, block_type, current_location
+    metadata, schema, answer_store, list_store, block_type, current_location
 ):
     group = schema.get_group_for_block_id(current_location.block_id)
     section_id = group['parent_id']
@@ -180,7 +182,7 @@ def build_view_context_for_section_summary(
     title = section.get('title')
 
     context = build_view_context_for_summary(
-        schema, answer_store, metadata, block_type, [section]
+        schema, answer_store, list_store, metadata, block_type, [section]
     )
 
     context['summary'].update({'title': title})
@@ -188,20 +190,20 @@ def build_view_context_for_section_summary(
 
 
 def build_view_context_for_calculated_summary(
-    metadata, schema, answer_store, block_type, current_location
+    metadata, schema, answer_store, list_store, block_type, current_location
 ):
     block = schema.get_block(current_location.block_id)
 
     section_list = _build_calculated_summary_section_list(
-        schema, block, current_location, answer_store, metadata
+        schema, block, current_location, answer_store, list_store, metadata
     )
 
     context = build_view_context_for_summary(
-        schema, answer_store, metadata, block_type, section_list
+        schema, answer_store, list_store, metadata, block_type, section_list
     )
 
     formatted_total = _get_formatted_total(
-        context['summary'].get('groups', []), metadata, answer_store, schema
+        context['summary'].get('groups', []), metadata, answer_store, list_store, schema
     )
 
     context['summary'].update(
@@ -259,7 +261,7 @@ def build_view_context_for_question(
 
 
 def _build_calculated_summary_section_list(
-    schema, rendered_block, current_location, answer_store, metadata
+    schema, rendered_block, current_location, answer_store, list_store, metadata
 ):
     """Build up the list of blocks only including blocks / questions / answers which are relevant to the summary"""
     group = schema.get_group_for_block_id(current_location.block_id)
@@ -273,7 +275,7 @@ def _build_calculated_summary_section_list(
     for block in unique_blocks:
         if block['type'] == 'Question':
             transformed_block = _remove_unwanted_questions_answers(
-                block, answers_to_calculate, answer_store, metadata, schema
+                block, answers_to_calculate, answer_store, list_store, metadata, schema
             )
             if set(get_answer_ids_in_block(transformed_block)) & set(
                 answers_to_calculate
@@ -284,12 +286,14 @@ def _build_calculated_summary_section_list(
 
 
 def _remove_unwanted_questions_answers(
-    block, answer_ids_to_keep, answer_store, metadata, schema
+    block, answer_ids_to_keep, answer_store, list_store, metadata, schema
 ):
     """
     Evaluates questions in a block and removes any questions not containing a relevant answer
     """
-    block_question = choose_question_to_display(block, schema, answer_store, metadata)
+    block_question = choose_question_to_display(
+        block, schema, answer_store, list_store, metadata
+    )
 
     reduced_block = block.copy()
 
@@ -310,12 +314,14 @@ def _remove_unwanted_questions_answers(
     return reduced_block
 
 
-def _get_formatted_total(groups, metadata, answer_store, schema):
+def _get_formatted_total(groups, metadata, answer_store, list_store, schema):
     calculated_total = 0
     answer_format = {'type': None}
     for group in groups:
         for block in group['blocks']:
-            question = choose_question_to_display(block, schema, metadata, answer_store)
+            question = choose_question_to_display(
+                block, schema, metadata, answer_store, list_store
+            )
             for answer in question['answers']:
                 if not answer_format['type']:
                     answer_format = {

@@ -132,7 +132,9 @@ def convert_to_datetime(value):
     return datetime.strptime(value, date_format) if value else None
 
 
-def evaluate_goto(goto_rule, schema, metadata, answer_store, routing_path=None):
+def evaluate_goto(
+    goto_rule, schema, metadata, answer_store, list_store, routing_path=None
+):
     """
     Determine whether a goto rule will be satisfied based on a given answer
     :param goto_rule: goto rule to evaluate
@@ -143,7 +145,12 @@ def evaluate_goto(goto_rule, schema, metadata, answer_store, routing_path=None):
     """
     if 'when' in goto_rule:
         return evaluate_when_rules(
-            goto_rule['when'], schema, metadata, answer_store, routing_path=routing_path
+            goto_rule['when'],
+            schema,
+            metadata,
+            answer_store,
+            list_store,
+            routing_path=routing_path,
         )
     return True
 
@@ -165,7 +172,7 @@ def _get_comparison_id_value(when_rule, answer_store, schema):
 
 
 def evaluate_skip_conditions(
-    skip_conditions, schema, metadata, answer_store, routing_path=None
+    skip_conditions, schema, metadata, answer_store, list_store, routing_path=None
 ):
     """
     Determine whether a skip condition will be satisfied based on a given answer
@@ -181,14 +188,16 @@ def evaluate_skip_conditions(
 
     for when in skip_conditions:
         condition = evaluate_when_rules(
-            when['when'], schema, metadata, answer_store, routing_path
+            when['when'], schema, metadata, answer_store, list_store, routing_path
         )
         if condition is True:
             return True
     return False
 
 
-def _get_when_rule_value(when_rule, answer_store, schema, metadata, routing_path=None):
+def _get_when_rule_value(
+    when_rule, answer_store, list_store, schema, metadata, routing_path=None
+):
     """
     Get the value from a when rule.
     :raises: Exception if none of `id` or `meta` are provided.
@@ -200,13 +209,17 @@ def _get_when_rule_value(when_rule, answer_store, schema, metadata, routing_path
         )
     elif 'meta' in when_rule:
         value = get_metadata_value(metadata, when_rule['meta'])
+    elif 'list' in when_rule:
+        value = get_list_count(list_store, when_rule['list'])
     else:
         raise Exception('The when rule is invalid')
 
     return value
 
 
-def evaluate_when_rules(when_rules, schema, metadata, answer_store, routing_path=None):
+def evaluate_when_rules(
+    when_rules, schema, metadata, answer_store, list_store, routing_path=None
+):
     """
     Whether the skip condition has been met.
     :param when_rules: when rules to evaluate
@@ -218,7 +231,12 @@ def evaluate_when_rules(when_rules, schema, metadata, answer_store, routing_path
     """
     for when_rule in when_rules:
         value = _get_when_rule_value(
-            when_rule, answer_store, schema, metadata, routing_path=routing_path
+            when_rule,
+            answer_store,
+            list_store,
+            schema,
+            metadata,
+            routing_path=routing_path,
         )
 
         if 'date_comparison' in when_rule:
@@ -255,6 +273,10 @@ def get_answer_store_value(answer_id, answer_store, schema, routing_path=None):
 
 def get_metadata_value(metadata, key):
     return metadata.get(key)
+
+
+def get_list_count(list_store, list_name):
+    return len(list_store[list_name])
 
 
 def is_goto_rule(rule):

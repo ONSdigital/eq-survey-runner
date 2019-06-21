@@ -49,10 +49,13 @@ def _submit_data(user):
         answer_store = questionnaire_store.answer_store
         metadata = questionnaire_store.metadata
         completed_store = questionnaire_store.completed_store
+        list_store = questionnaire_store.list_store
 
         schema = load_schema_from_metadata(metadata)
 
-        path_finder = PathFinder(schema, answer_store, metadata, completed_store)
+        path_finder = PathFinder(
+            schema, answer_store, metadata, completed_store, list_store
+        )
         full_routing_path = path_finder.full_routing_path()
 
         message = convert_answers(

@@ -4,7 +4,12 @@ from flask import g
 from flask_login import current_user, login_required
 from werkzeug.local import LocalProxy
 
-from app.globals import get_answer_store, get_metadata, get_completed_store
+from app.globals import (
+    get_answer_store,
+    get_metadata,
+    get_completed_store,
+    get_list_store,
+)
 from app.questionnaire.path_finder import PathFinder
 
 
@@ -16,7 +21,10 @@ def get_path_finder():
         metadata = get_metadata(current_user)
         answer_store = get_answer_store(current_user)
         completed_store = get_completed_store(current_user)
-        finder = PathFinder(g.schema, answer_store, metadata, completed_store)
+        list_store = get_list_store(current_user)
+        finder = PathFinder(
+            g.schema, answer_store, metadata, completed_store, list_store
+        )
         g.path_finder = finder
     return finder
 

@@ -4,7 +4,10 @@ from datetime import datetime
 from app.questionnaire.schema_utils import choose_question_to_display
 
 
-def convert_answers_to_payload_0_0_1(metadata, answer_store, schema, routing_path):
+# pylint: disable=too-many-locals
+def convert_answers_to_payload_0_0_1(
+    metadata, answer_store, list_store, schema, routing_path
+):
     """
     Convert answers into the data format below
     'data': {
@@ -28,7 +31,9 @@ def convert_answers_to_payload_0_0_1(metadata, answer_store, schema, routing_pat
             answer_schema = None
 
             block = schema.get_block_for_answer_id(answer_in_block.answer_id)
-            question = choose_question_to_display(block, schema, metadata, answer_store)
+            question = choose_question_to_display(
+                block, schema, metadata, answer_store, list_store
+            )
             for answer in question['answers']:
                 if answer['id'] == answer_in_block.answer_id:
                     answer_schema = answer

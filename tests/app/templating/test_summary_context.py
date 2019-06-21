@@ -1,6 +1,7 @@
 from unittest.mock import Mock, patch
 
 from app.data_model.answer_store import AnswerStore, Answer
+from app.data_model.list_store import ListStore
 from app.questionnaire.location import Location
 from app.templating.summary_context import build_summary_rendering_context
 from app.templating.view_context import (
@@ -63,6 +64,7 @@ class TestSummaryContext(TestStandardSummaryContext):
         super().setUp()
         self.schema = load_schema_from_params('test', 'summary')
         self.answer_store = AnswerStore()
+        self.list_store = ListStore()
         self.block_type = 'Summary'
         self.rendered_block = {
             'parent_id': 'summary-group',
@@ -73,7 +75,7 @@ class TestSummaryContext(TestStandardSummaryContext):
 
     def test_build_summary_rendering_context(self):
         summary_rendering_context = build_summary_rendering_context(
-            self.schema, self.answer_store, self.metadata
+            self.schema, self.answer_store, self.list_store, self.metadata
         )
         self.check_summary_rendering_context(summary_rendering_context)
 
@@ -82,6 +84,7 @@ class TestSummaryContext(TestStandardSummaryContext):
             self.metadata,
             self.schema,
             self.answer_store,
+            self.list_store,
             self.block_type,
             self.rendered_block,
         )
@@ -98,12 +101,13 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
         super().setUp()
         self.schema = load_schema_from_params('test', 'section_summary')
         self.answer_store = AnswerStore()
+        self.list_store = ListStore()
         self.block_type = 'SectionSummary'
 
     def test_build_summary_rendering_context(self):
         sections = [self.schema.get_section('property-details-section')]
         summary_rendering_context = build_summary_rendering_context(
-            self.schema, self.answer_store, self.metadata, sections
+            self.schema, self.answer_store, self.list_store, self.metadata, sections
         )
         self.check_summary_rendering_context(summary_rendering_context)
 
@@ -114,6 +118,7 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
             self.metadata,
             self.schema,
             self.answer_store,
+            self.list_store,
             self.block_type,
             current_location,
         )
@@ -144,6 +149,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             {'value': 12, 'answer_id': 'sixth-number-answer'},
         ]
         self.answer_store = AnswerStore(answers)
+        self.list_store = ListStore()
         self.block_type = 'CalculatedSummary'
 
     @patch('app.jinja_filters.flask_babel.get_locale', Mock(return_value='en_GB'))
@@ -154,6 +160,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             self.metadata,
             self.schema,
             self.answer_store,
+            self.list_store,
             self.block_type,
             current_location,
         )
@@ -188,6 +195,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             self.metadata,
             self.schema,
             self.answer_store,
+            self.list_store,
             self.block_type,
             current_location,
         )
@@ -220,6 +228,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             self.metadata,
             self.schema,
             self.answer_store,
+            self.list_store,
             self.block_type,
             current_location,
         )
@@ -250,6 +259,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             self.metadata,
             self.schema,
             self.answer_store,
+            self.list_store,
             self.block_type,
             current_location,
         )
@@ -281,6 +291,7 @@ class TestCalculatedSummaryContext(TestStandardSummaryContext):
             self.metadata,
             self.schema,
             self.answer_store,
+            self.list_store,
             self.block_type,
             current_location,
         )

@@ -87,7 +87,7 @@ def convert_answers(schema, questionnaire_store, routing_path, flushed=False):
         )
     elif schema.json['data_version'] == '0.0.1':
         payload['data'] = convert_answers_to_payload_0_0_1(
-            metadata, answer_store, schema, routing_path
+            metadata, answer_store, list_store, schema, routing_path
         )
     else:
         raise DataVersionError(schema.json['data_version'])

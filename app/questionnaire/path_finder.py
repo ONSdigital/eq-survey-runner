@@ -5,6 +5,7 @@ from structlog import get_logger
 
 from app.data_model.answer_store import AnswerStore
 from app.data_model.completed_store import CompletedStore
+from app.data_model.list_store import ListStore
 from app.questionnaire.location import Location
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.routing_path import RoutingPath
@@ -24,11 +25,13 @@ class PathFinder:
         answer_store: AnswerStore,
         metadata: Mapping,
         completed_store: CompletedStore = None,
+        list_store: ListStore = None,
     ):
         self.answer_store = answer_store
         self.metadata = metadata
         self.schema = schema
         self.completed_store = completed_store
+        self.list_store = list_store
 
     def is_path_complete(self, path):
         return not self.get_first_incomplete_location(path)
@@ -74,6 +77,7 @@ class PathFinder:
                     self.schema,
                     self.metadata,
                     self.answer_store,
+                    self.list_store,
                     routing_path=path,
                 ):
                     continue
@@ -114,6 +118,7 @@ class PathFinder:
                 self.schema,
                 self.metadata,
                 self.answer_store,
+                self.list_store,
                 routing_path=path,
             ):
 
@@ -149,6 +154,7 @@ class PathFinder:
                 self.schema,
                 self.metadata,
                 self.answer_store,
+                self.list_store,
                 routing_path=path,
             )
 
