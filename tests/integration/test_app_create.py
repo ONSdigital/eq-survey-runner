@@ -82,6 +82,8 @@ class TestCreateApp(unittest.TestCase):  # pylint: disable=too-many-public-metho
             self.assertTrue(UUID(kwargs['request_id'], version=4))
 
     def test_enforces_secure_headers(self):
+        self._setting_overrides['EQ_ENABLE_LIVE_RELOAD'] = False
+
         with create_app(self._setting_overrides).test_client() as client:
             headers = client.get(
                 '/',
@@ -105,18 +107,25 @@ class TestCreateApp(unittest.TestCase):  # pylint: disable=too-many-public-metho
             csp_policy_parts = headers['Content-Security-Policy'].split('; ')
             self.assertIn("default-src 'self' https://cdn.ons.gov.uk", csp_policy_parts)
             self.assertIn(
-                "script-src 'self' https://www.google-analytics.com https://cdn.ons.gov.uk 'nonce-{}'".format(
-                    request.csp_nonce
-                ),
+                f"script-src 'self' https://cdn.ons.gov.uk https://www.googletagmanager.com 'unsafe-inline' 'unsafe-eval' 'nonce-{request.csp_nonce}'",
                 csp_policy_parts,
             )
             self.assertIn(
-                "img-src 'self' data: https://www.google-analytics.com https://cdn.ons.gov.uk",
+                "style-src 'self' https://cdn.ons.gov.uk https://tagmanager.google.com https://fonts.googleapis.com 'unsafe-inline'",
                 csp_policy_parts,
             )
             self.assertIn(
-                "font-src 'self' data: https://cdn.ons.gov.uk", csp_policy_parts
+                "img-src 'self' data: https://cdn.ons.gov.uk https://www.google-analytics.com https://ssl.gstatic.com https://www.gstatic.com",
+                csp_policy_parts,
             )
+            self.assertIn(
+                "font-src 'self' data: https://cdn.ons.gov.uk https://fonts.gstatic.com",
+                csp_policy_parts,
+            )
+            self.assertIn(
+                'frame-src https://www.googletagmanager.com', csp_policy_parts
+            )
+            self.assertIn("connect-src 'self' https://cdn.ons.gov.uk", csp_policy_parts)
 
     # Indirectly covered by higher level integration
     # tests, keeping to highlight that create_app is where

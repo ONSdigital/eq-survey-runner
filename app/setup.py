@@ -39,22 +39,35 @@ CACHE_HEADERS = {
 
 CSP_POLICY = {
     'default-src': ["'self'", 'https://cdn.ons.gov.uk'],
-    'font-src': ["'self'", 'data:', 'https://cdn.ons.gov.uk'],
+    'font-src': [
+        "'self'",
+        'data:',
+        'https://cdn.ons.gov.uk',
+        'https://fonts.gstatic.com',
+    ],
     'script-src': [
         "'self'",
-        'https://www.google-analytics.com',
         'https://cdn.ons.gov.uk',
+        'https://www.googletagmanager.com',
+        "'unsafe-inline'",
+        "'unsafe-eval'",
     ],
-    'connect-src': [
+    'style-src': [
         "'self'",
-        'https://www.google-analytics.com',
         'https://cdn.ons.gov.uk',
+        'https://tagmanager.google.com',
+        'https://fonts.googleapis.com',
+        "'unsafe-inline'",
     ],
+    'connect-src': ["'self'", 'https://cdn.ons.gov.uk'],
+    'frame-src': ['https://www.googletagmanager.com'],
     'img-src': [
         "'self'",
         'data:',
-        'https://www.google-analytics.com',
         'https://cdn.ons.gov.uk',
+        'https://www.google-analytics.com',
+        'https://ssl.gstatic.com',
+        'https://www.gstatic.com',
     ],
 }
 

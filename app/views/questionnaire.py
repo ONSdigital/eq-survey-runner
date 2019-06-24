@@ -5,7 +5,6 @@ import humanize
 import simplejson as json
 from dateutil.tz import tzutc
 from flask import Blueprint, g, redirect, request, url_for, current_app, jsonify
-from flask import session as cookie_session, render_template as flask_render_template
 from flask_login import current_user, login_required, logout_user
 from jwcrypto.common import base64url_decode
 from sdc.crypto.encrypter import encrypt
@@ -20,22 +19,17 @@ from app.globals import (
     get_metadata,
     get_questionnaire_store,
     get_session_store,
+    get_session_timeout_in_seconds,
 )
 from app.helpers.form_helper import post_form_for_block
 from app.helpers.path_finder_helper import path_finder, section_routing_path_required
 from app.helpers.schema_helpers import with_schema
 from app.helpers.session_helpers import with_questionnaire_store
-from app.helpers.template_helper import (
-    with_session_timeout,
-    with_analytics,
-    with_legal_basis,
-    render_template,
-    safe_content,
-)
+from app.helpers.template_helper import render_template, safe_content
 from app.keys import KEY_PURPOSE_SUBMISSION
-from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
 from app.questionnaire.location import Location
 from app.questionnaire.placeholder_renderer import PlaceholderRenderer
+from app.questionnaire.questionnaire_store_updater import QuestionnaireStoreUpdater
 from app.questionnaire.router import Router
 from app.questionnaire.schema_utils import transform_variants
 from app.storage.storage_encryption import StorageEncryption
@@ -226,7 +220,6 @@ def post_block_handler(
     list_name=None,
     list_item_id=None,
 ):
-
     metadata = questionnaire_store.metadata
     collection_metadata = questionnaire_store.collection_metadata
     list_store = questionnaire_store.list_store
@@ -429,18 +422,15 @@ def get_thank_you(schema):
             timedelta(seconds=schema.json['view_submitted_response']['duration'])
         )
 
-    return flask_render_template(
-        'thank-you.html',
+    return render_template(
+        template='thank-you',
         metadata=metadata_context,
-        analytics_ua_id=current_app.config['EQ_UA_ID'],
         survey_id=schema.json['survey_id'],
         survey_title=safe_content(schema.json['title']),
         is_view_submitted_response_enabled=is_view_submitted_response_enabled(
             schema.json
         ),
         view_submission_url=view_submission_url,
-        account_service_url=cookie_session.get('account_service_url'),
-        account_service_log_out_url=cookie_session.get('account_service_log_out_url'),
         view_submission_duration=view_submission_duration,
     )
 
@@ -505,17 +495,12 @@ def get_view_submission(schema):  # pylint: too-many-locals
                 }
             }
 
-            return flask_render_template(
-                'view-submission.html',
+            return render_template(
+                template='view-submission',
                 metadata=metadata_context,
-                analytics_ua_id=current_app.config['EQ_UA_ID'],
+                content=context,
                 survey_id=schema.json['survey_id'],
                 survey_title=safe_content(schema.json['title']),
-                account_service_url=cookie_session.get('account_service_url'),
-                account_service_log_out_url=cookie_session.get(
-                    'account_service_log_out_url'
-                ),
-                content=context,
             )
 
     return redirect(url_for('post_submission.get_thank_you'))
@@ -547,7 +532,11 @@ def _render_page(block_type, context, current_location, previous_location, schem
         return jsonify(context)
 
     return _render_template(
-        context, current_location, previous_location, block_type, schema
+        template=block_type,
+        context=context,
+        current_location=current_location,
+        previous_location=previous_location,
+        schema=schema,
     )
 
 
@@ -723,16 +712,10 @@ def get_page_title_for_location(schema, current_location, context):
     return safe_content(page_title)
 
 
-@with_session_timeout
-@with_analytics
-@with_legal_basis
-def _render_template(
-    context, current_location, previous_location, template, schema, **kwargs
-):
+def _render_template(template, context, current_location, previous_location, schema):
     page_title = get_page_title_for_location(schema, current_location, context)
-
-    session_store = get_session_store()
-    session_data = session_store.session_data
+    session_data = get_session_store().session_data
+    session_timeout = get_session_timeout_in_seconds(schema)
 
     previous_location_url = None
     if previous_location:
@@ -745,7 +728,9 @@ def _render_template(
         previous_location=previous_location_url,
         page_title=page_title,
         language_code=session_data.language_code,
-        **kwargs,
+        session_timeout=session_timeout,
+        survey_title=schema.json.get('title'),
+        legal_basis=schema.json.get('legal_basis'),
     )
 
 

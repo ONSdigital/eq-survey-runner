@@ -1,32 +1,23 @@
 from datetime import datetime
 
 from dateutil.tz import tzutc
-from flask import (
-    Blueprint,
-    current_app,
-    redirect,
-    request,
-    url_for,
-    g,
-    session as cookie_session,
-    render_template as flask_render_template,
-)
+from flask import Blueprint, redirect, request, g, session as cookie_session
+from flask import url_for
 from flask_login import logout_user
+from marshmallow import ValidationError
 from sdc.crypto.exceptions import InvalidTokenException
 from structlog import get_logger
-from marshmallow import ValidationError
 from werkzeug.exceptions import Unauthorized
 
 from app.authentication.authenticator import store_session, decrypt_token
 from app.authentication.jti_claim_storage import JtiTokenUsed, use_jti_claim
 from app.globals import get_session_timeout_in_seconds
-from app.helpers.template_helper import safe_content
+from app.helpers.template_helper import safe_content, render_template
 from app.storage.metadata_parser import (
     validate_questionnaire_claims,
     validate_runner_claims,
 )
 from app.utilities.schema import load_schema_from_metadata
-from app.views.errors import render_template
 
 logger = get_logger()
 
@@ -126,7 +117,7 @@ def validate_jti(decrypted_token):
 def get_session_expired():
     logout_user()
 
-    return render_template('session-expired.html')
+    return render_template('session-expired')
 
 
 @session_blueprint.route('/signed-out', methods=['GET'])
@@ -135,15 +126,13 @@ def get_sign_out():
     Signs the user first out of eq, then the account service by hitting the account services'
     logout url.
     """
-    account_service_log_out_url = cookie_session.get('account_service_log_out_url')
     logout_user()
 
+    account_service_log_out_url = cookie_session.get('account_service_log_out_url')
     if account_service_log_out_url:
         return redirect(account_service_log_out_url)
 
-    return flask_render_template(
-        'signed-out.html',
-        analytics_ua_id=current_app.config['EQ_UA_ID'],
-        account_service_url=cookie_session.get('account_service_url'),
-        survey_title=safe_content(cookie_session.get('survey_title', '')),
+    return render_template(
+        template='signed-out',
+        survey_title=safe_content(cookie_session.get('survey_title')),
     )
