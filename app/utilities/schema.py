@@ -21,8 +21,17 @@ def load_schema_from_metadata(metadata):
         return load_schema_from_url(
             metadata['survey_url'], metadata.get('language_code')
         )
-    return load_schema_from_params(
-        metadata['eq_id'], metadata['form_type'], metadata.get('language_code')
+
+    if metadata.get('survey'):
+        return load_schema_from_census_params(
+            metadata.get('survey'),
+            metadata.get('case_type'),
+            metadata.get('region_code'),
+            language_code=metadata.get('language_code'),
+        )
+
+    return load_schema_from_name(
+        metadata.get('schema_name'), language_code=metadata.get('language_code')
     )
 
 
@@ -33,9 +42,7 @@ def load_schema_from_session_data(session_data):
 @cache.memoize()
 def load_schema_from_name(schema_name, language_code=None):
     language_code = language_code or DEFAULT_LANGUAGE_CODE
-    schema_json = _load_schema_file(
-        '{}.json'.format(schema_name), language_code
-    )
+    schema_json = _load_schema_file(schema_name, language_code)
 
     return QuestionnaireSchema(schema_json, language_code)
 
@@ -48,42 +55,44 @@ def load_schema_from_census_params(survey, case_type, region_code, language_code
         'HH': 'household',
         'HI': 'individual',
         'CE': 'communal_establishment',
-        'CI': 'communal_individual'
+        'CI': 'communal_individual',
     }
 
     region_code_transformed = region_code.lower().replace('-', '_')
 
     try:
-        schema_name = f'{survey}_{census_case_types[case_type]}_{region_code_transformed}'
+        schema_name = (
+            f'{survey}_{census_case_types[case_type]}_{region_code_transformed}'
+        )
     except KeyError:
         # TODO: Raise a reasonable error here
         return None
 
-    schema_json = _load_schema_file(f'{schema_name}.json', language_code)
+    schema_json = _load_schema_file(schema_name, language_code)
 
     return QuestionnaireSchema(schema_json, language_code)
 
 
-def _load_schema_file(schema_file, language_code):
+def _load_schema_file(schema_name, language_code):
     """
     Load a schema, optionally for a specified language.
-    :param schema_file: The name of the schema e.g. census_household.json
+    :param schema_name: The name of the schema e.g. census_household
     :param language_code: ISO 2-character code for language e.g. 'en', 'cy'
     """
-    schema_path = get_schema_file_path(schema_file, language_code)
+    schema_path = get_schema_file_path(schema_name, language_code)
 
     if language_code != DEFAULT_LANGUAGE_CODE and not os.path.exists(schema_path):
         logger.info(
             "couldn't find requested language schema, falling back to 'en'",
-            schema_file=schema_file,
+            schema_file=schema_name,
             language_code=language_code,
             schema_path=schema_path,
         )
-        schema_path = get_schema_file_path(schema_file, DEFAULT_LANGUAGE_CODE)
+        schema_path = get_schema_file_path(schema_name, DEFAULT_LANGUAGE_CODE)
 
     logger.info(
         'loading schema',
-        schema_file=schema_file,
+        schema_name=schema_name,
         language_code=language_code,
         schema_path=schema_path,
     )
@@ -120,6 +129,7 @@ def get_schema_path(language_code, schema_dir=DEFAULT_SCHEMA_DIR):
     return os.path.join(schema_dir, language_code)
 
 
-def get_schema_file_path(schema_file, language_code):
+def get_schema_file_path(schema_name, language_code):
     schema_dir = get_schema_path(language_code)
-    return os.path.join(schema_dir, schema_file)
+    schema_filename = f'{schema_name}.json'
+    return os.path.join(schema_dir, schema_filename)
