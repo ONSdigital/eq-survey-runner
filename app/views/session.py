@@ -6,11 +6,12 @@ from flask import (
     current_app,
     redirect,
     request,
+    url_for,
     g,
     session as cookie_session,
     render_template as flask_render_template,
 )
-from flask_login import current_user, logout_user
+from flask_login import logout_user
 from sdc.crypto.exceptions import InvalidTokenException
 from structlog import get_logger
 from marshmallow import ValidationError
@@ -18,10 +19,8 @@ from werkzeug.exceptions import Unauthorized
 
 from app.authentication.authenticator import store_session, decrypt_token
 from app.authentication.jti_claim_storage import JtiTokenUsed, use_jti_claim
-from app.globals import get_session_timeout_in_seconds, get_completed_blocks
-from app.helpers.path_finder_helper import path_finder
+from app.globals import get_session_timeout_in_seconds
 from app.helpers.template_helper import safe_content
-from app.questionnaire.router import Router
 from app.storage.metadata_parser import (
     validate_questionnaire_claims,
     validate_runner_claims,
@@ -104,13 +103,7 @@ def login():
             'account_service_log_out_url'
         )
 
-    routing_path = path_finder.get_full_routing_path()
-    completed_locations = get_completed_blocks(current_user)
-    router = Router(g.schema, routing_path, completed_locations=completed_locations)
-
-    next_location = router.get_next_location()
-
-    return redirect(next_location.url())
+    return redirect(url_for('questionnaire.get_questionnaire'))
 
 
 def validate_jti(decrypted_token):

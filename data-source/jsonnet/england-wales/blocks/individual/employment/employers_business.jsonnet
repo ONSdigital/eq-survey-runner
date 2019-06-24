@@ -31,7 +31,7 @@ local question(title, region_code) = (
       {
         id: 'employers-business-answer',
         label: 'Description',
-        mandatory: true,
+        mandatory: false,
         type: 'TextField',
       },
     ],

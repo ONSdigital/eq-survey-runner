@@ -9,7 +9,7 @@ local question(title) = {
     {
       id: 'employer-address-depot-answer-building',
       label: 'Building',
-      mandatory: true,
+      mandatory: false,
       type: 'TextField',
     },
     {

@@ -6,7 +6,7 @@ local question(title, label, definitionContent) = {
   title: title,
   description: '',
   type: 'MutuallyExclusive',
-  mandatory: true,
+  mandatory: false,
   definitions: [
     {
       title: 'What official documents can be included?',

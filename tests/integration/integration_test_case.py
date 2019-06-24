@@ -184,7 +184,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
             _post_data.update({'csrf_token': self.last_csrf_token})
 
         if action:
-            _post_data.update({'action[{action}]'.format(action=action): action_value})
+            _post_data.update({f'action[{action}]': action_value})
 
         environ, response = self._client.post(
             url, data=_post_data, as_tuple=True, follow_redirects=True, **kwargs

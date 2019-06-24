@@ -26,7 +26,7 @@ class TestDateForm(AppContextTestCase):
         with self.app_request_context('/'):
             form = get_form(
                 DateFormType.YearMonthDay,
-                schema.get_answers('single-date-answer')[0],
+                schema.get_answers_by_answer_id('single-date-answer')[0],
                 AnswerStore(),
                 {},
                 error_messages=error_messages,
@@ -43,7 +43,7 @@ class TestDateForm(AppContextTestCase):
         with self.app_request_context('/'):
             form = get_form(
                 DateFormType.YearMonth,
-                schema.get_answers('month-year-answer')[0],
+                schema.get_answers_by_answer_id('month-year-answer')[0],
                 {},
                 {},
                 error_messages=error_messages,
@@ -59,7 +59,7 @@ class TestDateForm(AppContextTestCase):
 
         form = get_form(
             DateFormType.Year,
-            schema.get_answers('year-date-answer')[0],
+            schema.get_answers_by_answer_id('year-date-answer')[0],
             {},
             {},
             error_messages=error_messages,
@@ -76,7 +76,7 @@ class TestDateForm(AppContextTestCase):
         with self.app_request_context('/'):
             form = get_form(
                 DateFormType.YearMonthDay,
-                schema.get_answers('single-date-answer')[0],
+                schema.get_answers_by_answer_id('single-date-answer')[0],
                 AnswerStore(),
                 {},
                 error_messages=error_messages,
@@ -91,7 +91,7 @@ class TestDateForm(AppContextTestCase):
         with self.app_request_context('/'):
             form = get_form(
                 DateFormType.YearMonth,
-                schema.get_answers('month-year-answer')[0],
+                schema.get_answers_by_answer_id('month-year-answer')[0],
                 {},
                 {},
                 error_messages=error_messages,
@@ -105,7 +105,7 @@ class TestDateForm(AppContextTestCase):
 
         form = get_form(
             DateFormType.Year,
-            schema.get_answers('year-date-answer')[0],
+            schema.get_answers_by_answer_id('year-date-answer')[0],
             {},
             {},
             error_messages=error_messages,
@@ -126,7 +126,7 @@ class TestDateForm(AppContextTestCase):
                     DateFormType.YearMonthDay,
                     AnswerStore(),
                     {},
-                    schema.get_answers('single-date-answer')[0],
+                    schema.get_answers_by_answer_id('single-date-answer')[0],
                     error_messages,
                 )
 
@@ -147,7 +147,7 @@ class TestDateForm(AppContextTestCase):
                     DateFormType.YearMonth,
                     {},
                     {},
-                    schema.get_answers('month-year-answer')[0],
+                    schema.get_answers_by_answer_id('month-year-answer')[0],
                     error_messages,
                 )
 
@@ -166,7 +166,7 @@ class TestDateForm(AppContextTestCase):
                 DateFormType.Year,
                 {},
                 {},
-                schema.get_answers('year-date-answer')[0],
+                schema.get_answers_by_answer_id('year-date-answer')[0],
                 error_messages,
             )
 
@@ -182,7 +182,7 @@ class TestDateForm(AppContextTestCase):
         with self.app_request_context('/'):
             form = get_form(
                 DateFormType.YearMonthDay,
-                schema.get_answers('date-range-from')[0],
+                schema.get_answers_by_answer_id('date-range-from')[0],
                 AnswerStore(),
                 test_metadata,
                 error_messages=error_messages,
@@ -205,7 +205,7 @@ class TestDateForm(AppContextTestCase):
         }
 
         with patch(
-            'app.questionnaire.questionnaire_schema.QuestionnaireSchema.get_answers',
+            'app.questionnaire.questionnaire_schema.QuestionnaireSchema.get_answers_by_answer_id',
             return_value=[answer],
         ), self.app_request_context('/'):
             form = get_form(

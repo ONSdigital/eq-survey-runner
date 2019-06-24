@@ -154,7 +154,7 @@ def store_session(metadata):
 
     questionnaire_store = get_questionnaire_store(user_id, user_ik)
     questionnaire_store.set_metadata(metadata)
-    questionnaire_store.add_or_update()
+    questionnaire_store.save()
 
     logger.info('user authenticated')
 

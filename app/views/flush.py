@@ -4,9 +4,9 @@ from sdc.crypto.decrypter import decrypt
 
 
 from app.authentication.user import User
-from app.globals import get_answer_store, get_questionnaire_store, get_completed_blocks
-from app.questionnaire.path_finder import PathFinder
+from app.globals import get_answer_store, get_questionnaire_store
 from app.keys import KEY_PURPOSE_AUTHENTICATION, KEY_PURPOSE_SUBMISSION
+from app.questionnaire.path_finder import PathFinder
 from app.submitter.converter import convert_answers
 from app.submitter.submission_failed import SubmissionFailedException
 from app.utilities.schema import load_schema_from_metadata
@@ -16,7 +16,6 @@ flush_blueprint = Blueprint('flush', __name__)
 
 @flush_blueprint.route('/flush', methods=['POST'])
 def flush_data():
-
     if session:
         session.clear()
 
@@ -43,22 +42,21 @@ def flush_data():
 
 
 def _submit_data(user):
-
     answer_store = get_answer_store(user)
 
     if answer_store:
         questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
         answer_store = questionnaire_store.answer_store
         metadata = questionnaire_store.metadata
+        completed_store = questionnaire_store.completed_store
 
         schema = load_schema_from_metadata(metadata)
-        completed_blocks = get_completed_blocks(user)
-        routing_path = PathFinder(
-            schema, answer_store, metadata, completed_blocks
-        ).get_full_routing_path()
+
+        path_finder = PathFinder(schema, answer_store, metadata, completed_store)
+        full_routing_path = path_finder.full_routing_path()
 
         message = convert_answers(
-            schema, questionnaire_store, routing_path, flushed=True
+            schema, questionnaire_store, full_routing_path, flushed=True
         )
         encrypted_message = encrypt(
             message, current_app.eq['key_store'], KEY_PURPOSE_SUBMISSION

@@ -113,18 +113,6 @@
         "groups": [{
             "id": "house-details",
             "title": "House Details",
-            "skip_conditions": [{
-                "when": [{
-                    "id": "insurance-type-answer",
-                    "condition": "equals",
-                    "value": "Contents"
-                }]
-            }, {
-                "when": [{
-                    "id": "insurance-type-answer",
-                    "condition": "not set"
-                }]
-            }],
             "blocks": [{
                 "id": "house-type",
                 "type": "Question",
@@ -153,18 +141,6 @@
         }, {
             "id": "household-details-summary-group",
             "title": "Household Details Summary",
-            "skip_conditions": [{
-                "when": [{
-                    "id": "insurance-type-answer",
-                    "condition": "equals",
-                    "value": "Contents"
-                }]
-            }, {
-                "when": [{
-                    "id": "insurance-type-answer",
-                    "condition": "not set"
-                }]
-            }],
             "blocks": [{
                 "id": "household-details-summary",
                 "type": "SectionSummary"

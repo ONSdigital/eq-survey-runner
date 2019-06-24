@@ -9,7 +9,7 @@ local question(title) = {
   answers: [
     {
       id: 'arrive-in-country-answer',
-      mandatory: true,
+      mandatory: false,
       type: 'MonthYearDate',
       minimum: {
         answer_id: 'date-of-birth-answer',
@@ -88,6 +88,23 @@ function(region_code, census_date) {
     {
       goto: {
         block: if region_code == 'GB-WLS' then 'understand-welsh' else 'language',
+        when: [
+          {
+            id: 'arrive-in-country-answer',
+            condition: 'less than',
+            date_comparison: {
+              value: census_date,
+              offset_by: {
+                years: -1,
+              },
+            },
+          },
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'when-arrive-in-uk',
       },
     },
   ],

@@ -37,7 +37,7 @@ local question(title, region_code) = (
     id: 'other-qualifications-question',
     title: title,
     type: 'MutuallyExclusive',
-    mandatory: true,
+    mandatory: false,
     answers: [
       {
         id: 'other-qualifications-answer',

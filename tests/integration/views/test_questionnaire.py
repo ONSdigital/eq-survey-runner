@@ -18,7 +18,7 @@ class TestQuestionnaire(IntegrationTestCase):
         self._application_context.push()
 
         storage = Mock()
-        data = {'METADATA': 'test', 'ANSWERS': [], 'COMPLETED_BLOCKS': []}
+        data = {'METADATA': 'test', 'ANSWERS': [], 'COMPLETED': []}
         storage.get_user_data = Mock(
             return_value=(json.dumps(data), QuestionnaireStore.LATEST_VERSION)
         )

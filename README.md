@@ -278,7 +278,7 @@ EQ_KEYS_FILE=dev-keys.yml EQ_SECRETS_FILE=dev-secrets.yml ./k8s/deploy_credentia
 To deploy the app to the cluster, run the following command:
 
 ```
-./k8s/deploy_app.sh <SUBMISSION_BUCKET_NAME> [<DOCKER_REGISTRY>] [<IMAGE_TAG>] [<MANAGED_CERTIFICATE_NAME>]
+./k8s/deploy_app.sh <SUBMISSION_BUCKET_NAME> [<DOCKER_REGISTRY>] [<IMAGE_TAG>]
 ```
 
 For example:

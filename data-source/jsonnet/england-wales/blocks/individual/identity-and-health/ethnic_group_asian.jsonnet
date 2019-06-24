@@ -21,7 +21,7 @@ local question(title) = {
         ],
       },
       id: 'asian-ethnic-group-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Indian',

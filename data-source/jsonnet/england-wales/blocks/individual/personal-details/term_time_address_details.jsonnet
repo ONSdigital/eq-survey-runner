@@ -9,7 +9,7 @@ local question(title) = {
     {
       id: 'term-time-address-details-answer-building',
       label: 'House name or number',
-      mandatory: true,
+      mandatory: false,
       type: 'TextField',
     },
     {

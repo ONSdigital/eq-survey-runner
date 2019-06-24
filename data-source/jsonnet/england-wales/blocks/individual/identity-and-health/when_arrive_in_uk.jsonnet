@@ -8,7 +8,7 @@ local question(title) = {
   answers: [
     {
       id: 'when-arrive-in-uk-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Yes',
@@ -81,6 +81,18 @@ function(region_code, census_date) {
     {
       goto: {
         block: if region_code == 'GB-WLS' then 'understand-welsh' else 'language',
+        when: [
+          {
+            id: 'when-arrive-in-uk-answer',
+            condition: 'equals',
+            value: 'No',
+          },
+        ],
+      },
+    },
+    {
+      goto: {
+        block: 'length-of-stay',
       },
     },
   ],

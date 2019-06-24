@@ -21,6 +21,7 @@ class ListStore:
             existing_items = []
 
         self._lists = dict(existing_items)
+        self._is_dirty = False
 
     def __getitem__(self, item):
         try:
@@ -42,10 +43,15 @@ class ListStore:
 
         return ids
 
+    @property
+    def is_dirty(self):
+        return self._is_dirty
+
     def delete_list_item_id(self, list_name, item_id):
         self._lists[list_name].remove(item_id)
         if not self._lists[list_name]:
             del self._lists[list_name]
+            self._is_dirty = True
 
     def add_list_item(self, list_name):
         """ Add a new list item to a named list.
@@ -61,6 +67,7 @@ class ListStore:
         named_list.append(new_list_identifier)
 
         self._lists[list_name] = named_list
+        self._is_dirty = True
 
         return new_list_identifier
 

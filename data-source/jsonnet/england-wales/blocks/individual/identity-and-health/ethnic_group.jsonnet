@@ -34,7 +34,7 @@ local question(title, region_code) = (
           ],
         },
         id: 'ethnic-group-answer',
-        mandatory: true,
+        mandatory: false,
         options: [
           {
             label: 'White',

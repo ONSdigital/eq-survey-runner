@@ -10,7 +10,10 @@ from tests.app.submitter.schema import make_schema, load_schema
 
 
 def test_convert_answers_to_payload_0_0_3(fake_questionnaire_store):
-    routing_path = [Location(block_id='about you'), Location(block_id='where you live')]
+    full_routing_path = [
+        Location(block_id='about you'),
+        Location(block_id='where you live'),
+    ]
 
     fake_questionnaire_store.answer_store = AnswerStore(
         [
@@ -59,7 +62,7 @@ def test_convert_answers_to_payload_0_0_3(fake_questionnaire_store):
 
     # When
     answer_object = convert_answers(
-        QuestionnaireSchema(questionnaire), fake_questionnaire_store, routing_path
+        QuestionnaireSchema(questionnaire), fake_questionnaire_store, full_routing_path
     )
 
     # Then

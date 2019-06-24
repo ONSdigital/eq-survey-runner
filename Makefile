@@ -16,21 +16,21 @@ test-functional:
 test-schemas:
 	pipenv run ./scripts/test_schemas.sh
 
-load_templates:
+load-templates:
 	pipenv run ./scripts/load_templates.sh
 
-run: load_templates
+run: build
 	ln -sf .development.env .env
 	pipenv run flask run
 
 dev-compose-up:
-	docker-compose -f docker-compose-dev.yml up -d
+	docker-compose -f docker-compose-dev-mac.yml up -d
 
 dev-compose-up-linux:
 	docker-compose -f docker-compose-dev-linux.yml up -d
 
 dev-compose-down:
-	docker-compose -f docker-compose-dev.yml down
+	docker-compose -f docker-compose-dev-mac.yml down
 
 dev-compose-down-linux:
 	docker-compose -f docker-compose-dev-linux.yml down

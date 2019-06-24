@@ -37,7 +37,6 @@ class TestTextArea(IntegrationTestCase):
         for counter, value in enumerate(NAUGHTY_STRINGS):
             key = 'answer{}'.format(counter)
             answers[key] = value
-
         self.post(answers)
         self.assertInUrl('summary')
         self.assertEqual(200, self.last_response.status_code)

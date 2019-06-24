@@ -21,7 +21,7 @@ local question(title) = {
         ],
       },
       id: 'mixed-ethnic-group-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'White and Black Caribbean',

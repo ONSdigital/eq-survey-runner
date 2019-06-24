@@ -8,7 +8,7 @@ local question(title) = {
   answers: [
     {
       id: 'address-type-answer',
-      mandatory: true,
+      mandatory: false,
       options: [
         {
           label: 'Armed forces base address',
