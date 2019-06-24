@@ -8,8 +8,7 @@ class TestSaveSignOut(IntegrationTestCase):
 
         # Given
         self.launchSurvey(
-            'test',
-            'radio_mandatory',
+            'test_radio_mandatory',
             account_service_url='https://localhost/my-account',
             account_service_log_out_url='https://localhost/logout',
         )
@@ -56,8 +55,7 @@ class TestSaveSignOut(IntegrationTestCase):
 
         # Given
         self.launchSurvey(
-            'test',
-            'introduction',
+            'test_introduction',
             account_service_url='https://localhost/my-account',
             account_service_log_out_url='https://localhost/logout',
         )

@@ -47,7 +47,7 @@ class TestIntroduction(IntegrationTestCase):
 
     def test_start_survey_sets_started_at(self):
         # Given survey with a start survey button
-        self.launchSurvey('test', 'introduction', roles=['dumper'])
+        self.launchSurvey('test_introduction', roles=['dumper'])
 
         self.post(action='start_questionnaire')
 

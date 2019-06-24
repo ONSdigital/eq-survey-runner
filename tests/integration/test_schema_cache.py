@@ -12,11 +12,11 @@ class TestApplicationVariables(IntegrationTestCase):
             self.launchSurvey('test_textfield')
             self.assertStatusOK()
             self.assertNotEqual(
-                cache.get('app.utilities.schema.load_schema_from_params_memver'), None
+                cache.get('app.utilities.schema.load_schema_from_name_memver'), None
             )
 
             self.launchSurvey('test_textfield')
             self.assertStatusOK()
             self.assertNotEqual(
-                cache.get('app.utilities.schema.load_schema_from_params_memver'), None
+                cache.get('app.utilities.schema.load_schema_from_name_memver'), None
             )

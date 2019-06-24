@@ -6,7 +6,7 @@ class TestQuestionnaireCalculatedSummary(IntegrationTestCase):
     BASE_URL = '/questionnaire/'
 
     def test_calculated_summary(self):
-        self.launchSurvey('test', 'calculated_summary')
+        self.launchSurvey('test_calculated_summary')
         self.post({'first-number-answer': '10'})
         self.post(
             {

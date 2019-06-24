@@ -30,7 +30,7 @@ class TestLogin(IntegrationTestCase):
 
     def test_login_with_valid_token_should_redirect_to_survey(self):
         # Given
-        token = self.token_generator.create_token('checkbox', 'test')
+        token = self.token_generator.create_token('test_checkbox')
 
         # When
         self.get('/session?token=' + token)
@@ -41,7 +41,7 @@ class TestLogin(IntegrationTestCase):
 
     def test_login_with_token_twice_is_unauthorised_when_same_jti_provided(self):
         # Given
-        token = self.token_generator.create_token('checkbox', 'test')
+        token = self.token_generator.create_token('test_checkbox')
         self.get('/session?token=' + token)
 
         # When
@@ -52,7 +52,7 @@ class TestLogin(IntegrationTestCase):
 
     def test_login_without_jti_in_token_is_unauthorised(self):
         # Given
-        token = self.token_generator.create_token_without_jti('checkbox', 'test')
+        token = self.token_generator.create_token_without_jti('test_checkbox')
         self.get('/session?token=' + token)
 
         # Then
@@ -70,7 +70,7 @@ class TestLogin(IntegrationTestCase):
 
     def test_http_head_request_to_login_returns_successfully_and_get_still_works(self):
         # Given
-        token = self.token_generator.create_token('checkbox', 'test')
+        token = self.token_generator.create_token('test_checkbox')
 
         # When
         self._client.head(
@@ -98,9 +98,7 @@ class TestLogin(IntegrationTestCase):
 
     def test_login_with_invalid_questionnaire_claims_should_be_forbidden(self):
         # flag_1 should be a boolean
-        token = self.token_generator.create_token(
-            'metadata_routing', 'test', flag_1=123
-        )
+        token = self.token_generator.create_token('test_metadata_routing', flag_1=123)
 
         self.get('/session?token=' + token)
 
@@ -112,7 +110,7 @@ class TestLogin(IntegrationTestCase):
 
         # Given
         token = self.token_generator.create_token_with_survey_url(
-            'textarea', 'test', survey_url
+            'test_textarea', survey_url
         )
 
         # When
@@ -128,7 +126,7 @@ class TestLogin(IntegrationTestCase):
 
         # Given
         token = self.token_generator.create_token_with_survey_url(
-            'textarea', 'test', survey_url
+            'test_textarea', survey_url
         )
 
         # When
@@ -140,7 +138,7 @@ class TestLogin(IntegrationTestCase):
 
     def test_login_without_case_id_in_token_is_authorised(self):
         # Given
-        token = self.token_generator.create_token_without_case_id('textfield', 'test')
+        token = self.token_generator.create_token_without_case_id('test_textfield')
         self.get('/session?token=' + token)
 
         # Then
@@ -149,7 +147,7 @@ class TestLogin(IntegrationTestCase):
     def test_login_without_questionnaire_id_in_token_is_unauthorised(self):
         # Given
         token = self.token_generator.create_token_without_questionnaire_id(
-            'textfield', 'test'
+            'textfield_test'
         )
         self.get('/session?token=' + token)
 
@@ -159,7 +157,7 @@ class TestLogin(IntegrationTestCase):
     @staticmethod
     @urlmatch(netloc=r'eq-survey-register', path=r'\/my-test-schema')
     def survey_url_mock(_url, _request):
-        schema_path = get_schema_file_path('test_textarea.json', 'en')
+        schema_path = get_schema_file_path('test_textarea', language_code='en')
 
         with open(schema_path, encoding='utf8') as json_data:
             return json_data.read()

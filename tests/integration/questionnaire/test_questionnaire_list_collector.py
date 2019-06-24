@@ -21,35 +21,35 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
         return selected[0].get('href')
 
     def test_invalid_list_collector(self):
-        self.launchSurvey('test', 'list_collector')
+        self.launchSurvey('test_list_collector')
 
         self.get('/questionnaire/invalid/some-list-id/edit-person')
 
         self.assertInUrl('/questionnaire/list-collector')
 
     def test_invalid_list_item_id_on_add_block(self):
-        self.launchSurvey('test', 'list_collector')
+        self.launchSurvey('test_list_collector')
 
         self.get('/questionnaire/people/123/add-person')
 
         self.assertInBody('Error 404')
 
     def test_invalid_block(self):
-        self.launchSurvey('test', 'list_collector')
+        self.launchSurvey('test_list_collector')
 
         self.get('/questionnaire/bad-block')
 
         self.assertInUrl('list-collector')
 
     def test_invalid_list_item_id(self):
-        self.launchSurvey('test', 'list_collector')
+        self.launchSurvey('test_list_collector')
 
         self.get('/questionnaire/people/123/edit-person')
 
         self.assertInUrl('list-collector')
 
     def test_happy_path(self):
-        self.launchSurvey('test', 'list_collector')
+        self.launchSurvey('test_list_collector')
 
         self.assertInBody('Does anyone else live here?')
 
@@ -123,7 +123,7 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
         self.assertEqualUrl('/questionnaire/list-collector/')
 
     def test_list_collector_submission(self):
-        self.launchSurvey('test', 'list_collector')
+        self.launchSurvey('test_list_collector')
 
         self.post(action='start_questionnaire')
 
@@ -150,7 +150,7 @@ class TestQuestionnaireListCollector(IntegrationTestCase):
         self.assertInBody('Submission successful')
 
     def test_optional_list_collector_submission(self):
-        self.launchSurvey('test', 'list_collector')
+        self.launchSurvey('test_list_collector')
 
         self.post(action='start_questionnaire')
 

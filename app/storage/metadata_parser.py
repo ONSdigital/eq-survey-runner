@@ -102,11 +102,6 @@ class RunnerMetadataSchema(Schema, StripWhitespaceMixin):
                 raise ValidationError(
                     "Either 'schema_name' or 'survey' and 'case_type' and 'region_code' must be defined"
                 )
-        else:
-            if any(individual_schema_claims):
-                raise ValidationError(
-                    "'schema_name' cannot be defined at the same time as 'survey', 'case_type', 'region_code'"
-                )
 
 
 def validate_questionnaire_claims(claims, questionnaire_specific_metadata):
