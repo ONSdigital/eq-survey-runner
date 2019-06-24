@@ -1,10 +1,19 @@
 import functools
+import re
 
 from typing import Dict
 from structlog import get_logger
-from marshmallow import Schema, fields, validate, EXCLUDE, pre_load
+from marshmallow import Schema, fields, validate, EXCLUDE, pre_load, validates_schema, ValidationError
 
 logger = get_logger()
+
+class RegionCode(validate.Regexp):
+    """ A region code defined as per ISO 3166-2:GB
+    Currently, this does not validate the subdivision, but only checks length
+    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.regex = re.compile('^GB-[A-Z]{3}$')
 
 
 class UUIDString(fields.UUID):
@@ -50,8 +59,6 @@ class RunnerMetadataSchema(Schema, StripWhitespaceMixin):
     """
 
     jti = VALIDATORS['uuid']()
-    eq_id = VALIDATORS['string'](validate=validate.Length(min=1))
-    form_type = VALIDATORS['string'](validate=validate.Length(min=1))
     ru_ref = VALIDATORS['string'](validate=validate.Length(min=1))
     collection_exercise_sid = VALIDATORS['string'](validate=validate.Length(min=1))
     tx_id = VALIDATORS['uuid']()
@@ -64,6 +71,22 @@ class RunnerMetadataSchema(Schema, StripWhitespaceMixin):
     roles = fields.List(fields.String(), required=False)
     survey_url = VALIDATORS['url'](required=False)
     language_code = VALIDATORS['string'](required=False)
+
+    schema_name = VALIDATORS['string'](required=False)
+    survey = VALIDATORS['string'](required=False, validate=validate.ContainsOnly(('CENSUS', 'CCS')))
+    case_type = VALIDATORS['string'](required=False, validate=validate.ContainsOnly(('HH', 'HI', 'CE', 'CI')))
+    region_code = VALIDATORS['string'](required=False, validate=RegionCode())
+
+    @validates_schema
+    def validate_schema_name(self, data, **kwargs):
+        individual_schema_claims = (data['survey'], data['case_type'], data['region_code'])
+        if not data["schema_name"]:
+            if not all(individual_schema_claims):
+                raise ValidationError("Either 'schema_name' or 'survey' and 'case_type' and 'region_code' must be defined")
+        else:
+            if any(individual_schema_claims):
+                raise ValidationError("'schema_name' cannot be defined at the same time as 'survey', 'case_type', 'region_code'")
+
 
 
 def validate_questionnaire_claims(claims, questionnaire_specific_metadata):

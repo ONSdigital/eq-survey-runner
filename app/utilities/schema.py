@@ -31,11 +31,35 @@ def load_schema_from_session_data(session_data):
 
 
 @cache.memoize()
-def load_schema_from_params(eq_id, form_type, language_code=None):
+def load_schema_from_name(schema_name, language_code=None):
     language_code = language_code or DEFAULT_LANGUAGE_CODE
     schema_json = _load_schema_file(
-        '{}_{}.json'.format(eq_id, form_type), language_code
+        '{}.json'.format(schema_name), language_code
     )
+
+    return QuestionnaireSchema(schema_json, language_code)
+
+
+@cache.memoize()
+def load_schema_from_census_params(survey, case_type, region_code, language_code=None):
+    language_code = language_code or DEFAULT_LANGUAGE_CODE
+
+    census_case_types = {
+        'HH': 'household',
+        'HI': 'individual',
+        'CE': 'communal_establishment',
+        'CI': 'communal_individual'
+    }
+
+    region_code_transformed = region_code.lower().replace('-', '_')
+
+    try:
+        schema_name = f'{survey}_{census_case_types[case_type]}_{region_code_transformed}'
+    except KeyError:
+        # TODO: Raise a reasonable error here
+        return None
+
+    schema_json = _load_schema_file(f'{schema_name}.json', language_code)
 
     return QuestionnaireSchema(schema_json, language_code)
 
