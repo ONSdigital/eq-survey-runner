@@ -4,7 +4,7 @@ import pytest
 from app.data_model.answer_store import Answer, AnswerStore
 from app.questionnaire.location import Location
 from app.questionnaire.path_finder import PathFinder
-from app.utilities.schema import load_schema_from_params
+from app.utilities.schema import load_schema_from_name
 from tests.app.app_context_test_case import AppContextTestCase
 
 
@@ -12,7 +12,7 @@ class TestPathFinder(
     AppContextTestCase
 ):  # pylint: disable=too-many-public-methods, too-many-lines
     def test_next_block(self):
-        schema = load_schema_from_params('test', 'textfield')
+        schema = load_schema_from_name('test_textfield')
 
         current_location = Location(block_id='name-block')
         next_location = Location(block_id='summary')
@@ -26,7 +26,7 @@ class TestPathFinder(
         )
 
     def test_previous_block(self):
-        schema = load_schema_from_params('test', 'textfield')
+        schema = load_schema_from_name('test_textfield')
 
         current_location = Location(block_id='summary')
         previous_location = Location(block_id='name-block')
@@ -40,7 +40,7 @@ class TestPathFinder(
         )
 
     def test_previous_block_on_list_collector(self):
-        schema = load_schema_from_params('test', 'list_collector')
+        schema = load_schema_from_name('test_list_collector')
 
         current_location = Location(list_name='people', block_id='add-person')
         previous_location = Location(block_id='list-collector')
@@ -56,7 +56,7 @@ class TestPathFinder(
     def test_previous_block_on_list_collector_list_operation(self):
         """ Ensure we always return to the list collector when the previous link is used on a sub block
         """
-        schema = load_schema_from_params('test', 'list_collector')
+        schema = load_schema_from_name('test_list_collector')
 
         for list_block, list_id in [
             ('add-person', None),
@@ -77,7 +77,7 @@ class TestPathFinder(
             )
 
     def test_introduction_in_path_when_in_schema(self):
-        schema = load_schema_from_params('test', 'introduction')
+        schema = load_schema_from_name('test_introduction')
 
         path_finder = PathFinder(
             schema, AnswerStore(), metadata={}, completed_blocks=[]
@@ -88,7 +88,7 @@ class TestPathFinder(
         self.assertIn('introduction', blocks)
 
     def test_introduction_not_in_path_when_not_in_schema(self):
-        schema = load_schema_from_params('test', 'checkbox')
+        schema = load_schema_from_name('test_checkbox')
 
         path_finder = PathFinder(
             schema, AnswerStore(), metadata={}, completed_blocks=[]
@@ -100,7 +100,7 @@ class TestPathFinder(
         self.assertNotIn('introduction', blocks)
 
     def test_next_with_conditional_path(self):
-        schema = load_schema_from_params('test', 'routing_number_equals')
+        schema = load_schema_from_name('test_routing_number_equals')
 
         expected_path = [Location('number-question'), Location('correct-answer')]
 
@@ -126,7 +126,7 @@ class TestPathFinder(
 
     def test_routing_basic_and_conditional_path(self):
         # Given
-        schema = load_schema_from_params('test', 'routing_number_equals')
+        schema = load_schema_from_name('test_routing_number_equals')
 
         expected_path = [
             Location('number-question'),
@@ -149,7 +149,7 @@ class TestPathFinder(
         self.assertEqual(routing_path, expected_path)
 
     def test_get_next_location_introduction(self):
-        schema = load_schema_from_params('test', 'introduction')
+        schema = load_schema_from_name('test_introduction')
 
         introduction = Location('introduction')
 
@@ -162,7 +162,7 @@ class TestPathFinder(
         )
 
     def test_get_next_location_summary(self):
-        schema = load_schema_from_params('test', 'summary')
+        schema = load_schema_from_name('test_summary')
 
         answers = AnswerStore()
 
@@ -179,7 +179,7 @@ class TestPathFinder(
         self.assertEqual(expected_next_location, next_location)
 
     def test_get_previous_location_introduction(self):
-        schema = load_schema_from_params('test', 'introduction')
+        schema = load_schema_from_name('test_introduction')
 
         path_finder = PathFinder(
             schema, AnswerStore(), metadata={}, completed_blocks=[]
@@ -192,7 +192,7 @@ class TestPathFinder(
         self.assertEqual('introduction', previous_location.block_id)
 
     def test_previous_with_conditional_path(self):
-        schema = load_schema_from_params('test', 'routing_number_equals')
+        schema = load_schema_from_name('test_routing_number_equals')
 
         expected_path = [Location('number-question'), Location('correct-answer')]
 
@@ -214,7 +214,7 @@ class TestPathFinder(
         self.assertEqual(actual_previous_block, expected_previous_location)
 
     def test_previous_with_conditional_path_alternative(self):
-        schema = load_schema_from_params('test', 'routing_number_equals')
+        schema = load_schema_from_name('test_routing_number_equals')
 
         expected_path = [Location('number-question'), Location('incorrect-answer')]
 
@@ -236,7 +236,7 @@ class TestPathFinder(
         )
 
     def test_next_location_goto_summary(self):
-        schema = load_schema_from_params('test', 'summary')
+        schema = load_schema_from_name('test_summary')
 
         expected_path = [
             Location('radio'),
@@ -258,7 +258,7 @@ class TestPathFinder(
         self.assertEqual(next_location, expected_next_location)
 
     def test_next_location_empty_routing_rules(self):
-        schema = load_schema_from_params('test', 'checkbox')
+        schema = load_schema_from_name('test_checkbox')
 
         expected_path = [
             Location('mandatory-checkbox'),
@@ -285,7 +285,7 @@ class TestPathFinder(
         self.assertEqual(next_location, expected_next_location)
 
     def test_next_with_conditional_path_when_value_not_in_metadata(self):
-        schema = load_schema_from_params('test', 'metadata_routing')
+        schema = load_schema_from_name('test_metadata_routing')
 
         expected_path = [Location('block1'), Location('block2')]
 
@@ -306,7 +306,7 @@ class TestPathFinder(
 
     def test_get_next_location_should_skip_block(self):
         # Given
-        schema = load_schema_from_params('test', 'skip_condition_block')
+        schema = load_schema_from_name('test_skip_condition_block')
         current_location = Location('do-you-want-to-skip')
         answer_store = AnswerStore()
         answer_store.add_or_update(
@@ -331,7 +331,7 @@ class TestPathFinder(
 
     def test_get_next_location_should_skip_group(self):
         # Given
-        schema = load_schema_from_params('test', 'skip_condition_group')
+        schema = load_schema_from_name('test_skip_condition_group')
         current_location = Location('do-you-want-to-skip')
         answer_store = AnswerStore()
         answer_store.add_or_update(
@@ -356,7 +356,7 @@ class TestPathFinder(
 
     def test_get_next_location_should_not_skip_group(self):
         # Given
-        schema = load_schema_from_params('test', 'skip_condition_group')
+        schema = load_schema_from_name('test_skip_condition_group')
         current_location = Location('do-you-want-to-skip')
         answer_store = AnswerStore()
         answer_store.add_or_update(
@@ -381,7 +381,7 @@ class TestPathFinder(
 
     def test_get_routing_path_when_first_block_in_group_skipped(self):
         # Given
-        schema = load_schema_from_params('test', 'skip_condition_group')
+        schema = load_schema_from_name('test_skip_condition_group')
         answer_store = AnswerStore()
         answer_store.add_or_update(
             Answer(answer_id='do-you-want-to-skip-answer', value='Yes')
@@ -408,7 +408,7 @@ class TestPathFinder(
 
     def test_build_path_with_group_routing(self):
         # Given i have answered the routing question
-        schema = load_schema_from_params('test', 'routing_group')
+        schema = load_schema_from_name('test_routing_group')
 
         answer_store = AnswerStore()
         answer_store.add_or_update(
@@ -426,7 +426,7 @@ class TestPathFinder(
         self.assertIn(Location('group2-block'), path)
 
     def test_return_to_summary_if_complete(self):
-        schema = load_schema_from_params('test', 'summary')
+        schema = load_schema_from_name('test_summary')
 
         # All blocks completed
         completed_blocks = [
@@ -452,7 +452,7 @@ class TestPathFinder(
         )
 
     def test_remove_answer_and_block_if_routing_backwards(self):
-        schema = load_schema_from_params('test', 'confirmation_question')
+        schema = load_schema_from_name('test_confirmation_question')
 
         # All blocks completed
         completed_blocks = [

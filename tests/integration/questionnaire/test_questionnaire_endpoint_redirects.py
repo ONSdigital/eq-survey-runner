@@ -6,7 +6,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
     def test_get_invalid_questionnaire_location_redirects_to_latest(self):
         # Given
-        self.launchSurvey('test', 'introduction')
+        self.launchSurvey('test_introduction')
 
         base_url = '/questionnaire/'
 
@@ -18,7 +18,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
 
     def test_post_invalid_questionnaire_location_redirects_to_latest(self):
         # Given
-        self.launchSurvey('test', 'introduction')
+        self.launchSurvey('test_introduction')
 
         base_url = '/questionnaire/'
 
@@ -32,7 +32,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self
     ):
         # Given
-        self.launchSurvey('test', 'textfield')
+        self.launchSurvey('test_textfield')
 
         base_url = '/questionnaire/'
 

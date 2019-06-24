@@ -16,8 +16,7 @@ class TestAuthenticator(AppContextTestCase):  # pylint: disable=too-many-public-
         super().setUp()
         self.session_data = SessionData(
             tx_id='tx_id',
-            eq_id='eq_id',
-            form_type='form_type',
+            schema_name='some_schema_name',
             response_id='response_id',
             period_str='period_str',
             language_code=None,

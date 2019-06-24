@@ -8,7 +8,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self
     ):
         # Given
-        self.launchSurvey('test', 'interstitial_page')
+        self.launchSurvey('test_interstitial_page')
         self.last_csrf_token = None
 
         # When
@@ -22,7 +22,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self
     ):
         # Given
-        self.launchSurvey('test', 'interstitial_page')
+        self.launchSurvey('test_interstitial_page')
         self.last_csrf_token = 'made-up-token'
 
         # When
@@ -36,7 +36,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self
     ):
         # Given
-        self.launchSurvey('test', 'interstitial_page')
+        self.launchSurvey('test_interstitial_page')
 
         # When
         self.post(action='start_questionnaire')

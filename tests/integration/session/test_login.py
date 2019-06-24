@@ -58,9 +58,9 @@ class TestLogin(IntegrationTestCase):
         # Then
         self.assertStatusForbidden()
 
-    def test_login_with_valid_token_no_eq_id_and_form_type(self):
+    def test_login_with_valid_token_no_schema_name(self):
         # Given
-        token = self.token_generator.create_token('', '')
+        token = self.token_generator.create_token('')
 
         # When
         self.get('/session?token=' + token)

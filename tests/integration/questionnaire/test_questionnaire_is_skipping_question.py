@@ -5,7 +5,7 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
     def test_final_summary_not_available_if_any_question_incomplete(self):
 
         # Given I launched a survey and have not answered any questions
-        self.launchSurvey('test', 'is_skipping_to_end')
+        self.launchSurvey('test_is_skipping_to_end')
 
         # When I try access the final summary
         self.get('questionnaire/summary')
@@ -16,7 +16,7 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
     def test_final_summary_not_available_after_invalidating_section(self):
 
         # Given I launched a survey and have answered all questions
-        self.launchSurvey('test', 'is_skipping_to_end')
+        self.launchSurvey('test_is_skipping_to_end')
         self.post({'test-skipping-answer': 'No'})
         self.assertInBody('This section is now complete')
         self.assertInBody('Were you forced to complete section 1?')

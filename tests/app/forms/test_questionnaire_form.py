@@ -4,7 +4,7 @@ from decimal import Decimal
 from mock import patch
 
 from app.forms.questionnaire_form import generate_form
-from app.utilities.schema import load_schema_from_params
+from app.utilities.schema import load_schema_from_name
 from app.validation.validators import ResponseRequired
 from app.data_model.answer_store import AnswerStore, Answer
 
@@ -23,7 +23,7 @@ class TestQuestionnaireForm(
 
     def test_form_ids_match_block_answer_ids(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'textfield')
+            schema = load_schema_from_name('test_textfield')
 
             question_schema = schema.get_block('name-block').get('question')
 
@@ -34,7 +34,7 @@ class TestQuestionnaireForm(
 
     def test_form_date_range_populates_data(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_range')
+            schema = load_schema_from_name('test_date_range')
 
             question_schema = schema.get_block('date-block').get('question')
 
@@ -60,7 +60,7 @@ class TestQuestionnaireForm(
 
     def test_date_range_matching_dates_raises_question_error(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_range')
+            schema = load_schema_from_name('test_date_range')
 
             question_schema = schema.get_block('date-block').get('question')
 
@@ -91,7 +91,7 @@ class TestQuestionnaireForm(
 
     def test_date_range_to_precedes_from_raises_question_error(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_range')
+            schema = load_schema_from_name('test_date_range')
 
             question_schema = schema.get_block('date-block').get('question')
 
@@ -124,7 +124,7 @@ class TestQuestionnaireForm(
 
     def test_date_range_too_large_period_raises_question_error(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_validation_range')
+            schema = load_schema_from_name('test_date_validation_range')
 
             question_schema = schema.get_block('date-range-block').get('question')
 
@@ -157,7 +157,7 @@ class TestQuestionnaireForm(
 
     def test_date_range_too_small_period_raises_question_error(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_validation_range')
+            schema = load_schema_from_name('test_date_validation_range')
 
             question_schema = schema.get_block('date-range-block').get('question')
 
@@ -189,7 +189,7 @@ class TestQuestionnaireForm(
 
     def test_date_range_valid_period(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_validation_range')
+            schema = load_schema_from_name('test_date_validation_range')
 
             question_schema = schema.get_block('date-range-block')['question']
 
@@ -216,7 +216,7 @@ class TestQuestionnaireForm(
 
     def test_date_combined_single_validation(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_validation_combined')
+            schema = load_schema_from_name('test_date_validation_combined')
 
             question_schema = schema.get_block('date-range-block')['question']
 
@@ -259,7 +259,7 @@ class TestQuestionnaireForm(
 
     def test_date_combined_range_too_small_validation(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_validation_combined')
+            schema = load_schema_from_name('test_date_validation_combined')
 
             question_schema = schema.get_block('date-range-block').get('question')
 
@@ -295,7 +295,7 @@ class TestQuestionnaireForm(
 
     def test_date_combined_range_too_large_validation(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_validation_combined')
+            schema = load_schema_from_name('test_date_validation_combined')
 
             question_schema = schema.get_block('date-range-block').get('question')
 
@@ -331,7 +331,7 @@ class TestQuestionnaireForm(
 
     def test_date_mm_yyyy_combined_single_validation(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_validation_mm_yyyy_combined')
+            schema = load_schema_from_name('test_date_validation_mm_yyyy_combined')
 
             question_schema = schema.get_block('date-range-block').get('question')
 
@@ -372,7 +372,7 @@ class TestQuestionnaireForm(
 
     def test_date_mm_yyyy_combined_range_too_small_validation(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_validation_mm_yyyy_combined')
+            schema = load_schema_from_name('test_date_validation_mm_yyyy_combined')
 
             question_schema = schema.get_block('date-range-block').get('question')
 
@@ -406,7 +406,7 @@ class TestQuestionnaireForm(
 
     def test_date_mm_yyyy_combined_range_too_large_validation(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_validation_mm_yyyy_combined')
+            schema = load_schema_from_name('test_date_validation_mm_yyyy_combined')
 
             question_schema = schema.get_block('date-range-block').get('question')
 
@@ -440,7 +440,7 @@ class TestQuestionnaireForm(
 
     def test_date_yyyy_combined_single_validation(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_validation_yyyy_combined')
+            schema = load_schema_from_name('test_date_validation_yyyy_combined')
 
             question_schema = schema.get_block('date-range-block').get('question')
 
@@ -475,7 +475,7 @@ class TestQuestionnaireForm(
 
     def test_date_yyyy_combined_range_too_small_validation(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_validation_yyyy_combined')
+            schema = load_schema_from_name('test_date_validation_yyyy_combined')
 
             question_schema = schema.get_block('date-range-block').get('question')
 
@@ -504,7 +504,7 @@ class TestQuestionnaireForm(
 
     def test_date_yyyy_combined_range_too_large_validation(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_validation_yyyy_combined')
+            schema = load_schema_from_name('test_date_validation_yyyy_combined')
 
             question_schema = schema.get_block('date-range-block').get('question')
 
@@ -533,7 +533,7 @@ class TestQuestionnaireForm(
 
     def test_bespoke_message_for_date_validation_range(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_validation_range')
+            schema = load_schema_from_name('test_date_validation_range')
 
             question_schema = schema.get_block('date-range-block').get('question')
 
@@ -582,7 +582,7 @@ class TestQuestionnaireForm(
 
     def test_invalid_minimum_period_limit_and_single_date_periods(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_validation_range')
+            schema = load_schema_from_name('test_date_validation_range')
 
             question_schema = schema.get_block('date-range-block')['question']
 
@@ -634,7 +634,7 @@ class TestQuestionnaireForm(
 
     def test_invalid_maximum_period_limit_and_single_date_periods(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_validation_range')
+            schema = load_schema_from_name('test_date_validation_range')
 
             question_schema = schema.get_block('date-range-block').get('question')
 
@@ -690,7 +690,7 @@ class TestQuestionnaireForm(
             test_answer_id = Answer(answer_id='date', value='2017-03-20')
             store.add_or_update(test_answer_id)
 
-            schema = load_schema_from_params('test', 'date_validation_range')
+            schema = load_schema_from_name('test_date_validation_range')
 
             question_schema = schema.get_block('date-range-block').get('question')
 
@@ -724,7 +724,7 @@ class TestQuestionnaireForm(
                 'date-range-to-year': '2018',
             }
 
-            metadata = {'eq_id': 'test', 'form_type': 'date_validation_range'}
+            metadata = {'schema_name': 'test_date_validation_range'}
 
             form = generate_form(
                 schema, question_schema, store, metadata=metadata, formdata=data
@@ -749,9 +749,7 @@ class TestQuestionnaireForm(
         store.add_or_update(answer_total)
 
         with self.app_request_context():
-            schema = load_schema_from_params(
-                'test', 'sum_equal_validation_against_total'
-            )
+            schema = load_schema_from_name('test_sum_equal_validation_against_total')
 
             question_schema = schema.get_block('breakdown-block').get('question')
 
@@ -788,9 +786,7 @@ class TestQuestionnaireForm(
         store.add_or_update(answer_total)
 
         with self.app_request_context():
-            schema = load_schema_from_params(
-                'test', 'sum_equal_validation_against_total'
-            )
+            schema = load_schema_from_name('test_sum_equal_validation_against_total')
 
             question_schema = schema.get_block('breakdown-block').get('question')
 
@@ -821,9 +817,7 @@ class TestQuestionnaireForm(
         store.add_or_update(answer_total)
 
         with self.app_request_context():
-            schema = load_schema_from_params(
-                'test', 'sum_equal_validation_against_total'
-            )
+            schema = load_schema_from_name('test_sum_equal_validation_against_total')
 
             question_schema = schema.get_block('breakdown-block').get('question')
 
@@ -861,9 +855,7 @@ class TestQuestionnaireForm(
         store.add_or_update(answer_total)
 
         with self.app_request_context():
-            schema = load_schema_from_params(
-                'test', 'sum_equal_validation_against_total'
-            )
+            schema = load_schema_from_name('test_sum_equal_validation_against_total')
 
             question_schema = schema.get_block('breakdown-block').get('question')
 
@@ -896,9 +888,7 @@ class TestQuestionnaireForm(
         store.add_or_update(answer_total)
 
         with self.app_request_context():
-            schema = load_schema_from_params(
-                'test', 'sum_equal_validation_against_total'
-            )
+            schema = load_schema_from_name('test_sum_equal_validation_against_total')
 
             question_schema = schema.get_block('breakdown-block').get('question')
 
@@ -936,9 +926,7 @@ class TestQuestionnaireForm(
         store.add_or_update(answer_total)
 
         with self.app_request_context():
-            schema = load_schema_from_params(
-                'test', 'sum_multi_validation_against_total'
-            )
+            schema = load_schema_from_name('test_sum_multi_validation_against_total')
 
             question_schema = schema.get_block('breakdown-block').get('question')
 
@@ -991,7 +979,7 @@ class TestQuestionnaireForm(
         store.add_or_update(conditional_answer)
 
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'title')
+            schema = load_schema_from_name('test_title')
 
             question_schema = schema.get_block('single-title-block').get('question')
 
@@ -1011,7 +999,7 @@ class TestQuestionnaireForm(
 
     def test_form_errors_are_correctly_mapped(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'numbers')
+            schema = load_schema_from_name('test_numbers')
 
             question_schema = schema.get_block('set-min-max-block').get('question')
 
@@ -1030,7 +1018,7 @@ class TestQuestionnaireForm(
 
     def test_form_subfield_errors_are_correctly_mapped(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_range')
+            schema = load_schema_from_name('test_date_range')
 
             question_schema = schema.get_block('date-block').get('question')
 
@@ -1057,7 +1045,7 @@ class TestQuestionnaireForm(
     def test_detail_answer_mandatory_only_checked_if_option_selected(self):
         # The detail_answer can only be mandatory if the option it is associated with is answered
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'checkbox_multiple_detail_answers')
+            schema = load_schema_from_name('test_checkbox_multiple_detail_answers')
 
             question_schema = schema.get_block('mandatory-checkbox').get('question')
 
@@ -1087,9 +1075,7 @@ class TestQuestionnaireForm(
 
     def test_answer_with_detail_answer_errors_are_correctly_mapped(self):
         with self.app_request_context():
-            schema = load_schema_from_params(
-                'test', 'radio_mandatory_with_mandatory_other'
-            )
+            schema = load_schema_from_name('test_radio_mandatory_with_mandatory_other')
 
             question_schema = schema.get_block('radio-mandatory').get('question')
 
@@ -1121,7 +1107,7 @@ class TestQuestionnaireForm(
 
     def test_answer_errors_are_interpolated(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'numbers')
+            schema = load_schema_from_name('test_numbers')
 
             question_schema = schema.get_block('set-min-max-block').get('question')
 
@@ -1141,7 +1127,7 @@ class TestQuestionnaireForm(
 
     def test_mandatory_mutually_exclusive_question_raises_error_when_not_answered(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'mutually_exclusive')
+            schema = load_schema_from_name('test_mutually_exclusive')
 
             question_schema = schema.get_block('mutually-exclusive-checkbox').get(
                 'question'
@@ -1159,7 +1145,7 @@ class TestQuestionnaireForm(
 
     def test_mutually_exclusive_question_raises_error_when_both_answered(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'mutually_exclusive')
+            schema = load_schema_from_name('test_mutually_exclusive')
 
             question_schema = schema.get_block('mutually-exclusive-date').get(
                 'question'

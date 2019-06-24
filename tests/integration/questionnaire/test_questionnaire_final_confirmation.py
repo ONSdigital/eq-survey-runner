@@ -4,7 +4,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
     def test_final_confirmation_asked_at_end_of_questionnaire(self):
         # Given
-        self.launchSurvey('test', 'final_confirmation')
+        self.launchSurvey('test_final_confirmation')
 
         # When we proceed through the questionnaire
         self.post(action='start_questionnaire')
@@ -18,7 +18,7 @@ class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
 
     def test_requesting_final_confirmation_before_finished_redirects(self):
         # Given
-        self.launchSurvey('test', 'final_confirmation')
+        self.launchSurvey('test_final_confirmation')
 
         # When we proceed through the questionnaire
         self.post(action='start_questionnaire')

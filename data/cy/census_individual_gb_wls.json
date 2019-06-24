@@ -1,8 +1,6 @@
 {
     "data_version": "0.0.3",
     "description": "Crynodeb Unigol Cyfrifiad Lloegr",
-    "eq_id": "census",
-    "form_type": "individual_gb_wls",
     "legal_basis": "Gwirfoddol",
     "metadata": [
         {

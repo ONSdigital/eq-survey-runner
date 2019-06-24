@@ -11,7 +11,7 @@ class TestBrokenSubmission(IntegrationTestCase):
         self.instance.send_message.return_value = False
 
         super().setUp()
-        self.launchSurvey('test', 'percentage')
+        self.launchSurvey('test_percentage')
 
     def tearDown(self):
         self.patcher.stop()

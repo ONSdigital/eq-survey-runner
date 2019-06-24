@@ -11,8 +11,7 @@ def fake_metadata_runner():
     return {
         'tx_id': str(uuid.uuid4()),
         'jti': str(uuid.uuid4()),
-        'eq_id': '2',
-        'form_type': 'a',
+        'schema_name': '2_a',
         'ru_ref': '2016-04-04',
         'collection_exercise_sid': 'test-sid',
         'questionnaire_id': '0123456789000000',

@@ -18,7 +18,7 @@ class TestFlushData(IntegrationTestCase):
         self.encrypt_instance = mock_encrypter_class
 
         super().setUp()
-        self.launchSurvey('test', 'textfield')
+        self.launchSurvey('test_textfield')
 
         form_data = {'name-answer': 'Joe Bloggs'}
         self.post(form_data)
@@ -111,8 +111,7 @@ class TestFlushData(IntegrationTestCase):
             'jti': str(uuid.uuid4()),
             'iat': time.time(),
             'exp': time.time() + 1000,
-            'eq_id': 'test',
-            'form_type': 'textfield',
+            'schema_name': 'test_textfield',
             'collection_exercise_sid': '789',
             'ru_ref': '123456789012A',
             'response_id': '1234567890123456',

@@ -15,7 +15,7 @@ class TestDumpDebug(IntegrationTestCase):
     def test_dump_debug_authenticated_missing_role(self):
         # Given I am an authenticated user who has launched a survey
         # but does not have the 'dumper' role in my metadata
-        self.launchSurvey('test', 'radio_mandatory_with_mandatory_other')
+        self.launchSurvey('test_radio_mandatory_with_mandatory_other')
 
         # When I attempt to dump the questionnaire store
         self.get('/dump/debug')
@@ -52,7 +52,7 @@ class TestDumpSubmission(IntegrationTestCase):
     def test_dump_submission_authenticated_missing_role(self):
         # Given I am an authenticated user who has launched a survey
         # but does not have the 'dumper' role in my metadata
-        self.launchSurvey('test', 'radio_mandatory_with_mandatory_other')
+        self.launchSurvey('test_radio_mandatory_with_mandatory_other')
 
         # When I attempt to dump the submission payload
         self.get('/dump/submission')

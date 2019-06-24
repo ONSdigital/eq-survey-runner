@@ -8,7 +8,7 @@ class TestAnswerComparisonsSkips(IntegrationTestCase):
     """
 
     def test_skip_condition_answer_comparison(self):
-        self.launchSurvey('test', 'skip_condition_answer_comparison')
+        self.launchSurvey('test_skip_condition_answer_comparison')
 
         self.post(action='start_questionnaire')
 
@@ -42,7 +42,7 @@ class TestAnswerComparisonsRoutes(IntegrationTestCase):
     """
 
     def test_routes_over_interstitial(self):
-        self.launchSurvey('test', 'routing_answer_comparison')
+        self.launchSurvey('test_routing_answer_comparison')
 
         self.post(action='start_questionnaire')
 

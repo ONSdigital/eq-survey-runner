@@ -18,16 +18,16 @@ class TestApplicationVariables(IntegrationTestCase):
         settings.EQ_UA_ID = None
 
     def test_flask_toolbar_is_displayed(self):
-        self.launchSurvey('test', 'textfield')
+        self.launchSurvey('test_textfield')
         self.assertStatusOK()
         self.assertInBody('flDebugToolbarHandle')
 
     def test_google_analytics_code_is_present(self):
-        self.launchSurvey('test', 'textfield')
+        self.launchSurvey('test_textfield')
         self.assertStatusOK()
         self.assertInBody('GoogleAnalyticsObject')
 
     def test_livereload_script_rendered(self):
-        self.launchSurvey('test', 'textfield')
+        self.launchSurvey('test_textfield')
         self.assertStatusOK()
         self.assertTrue('__bs_script__' in self.getResponseData())

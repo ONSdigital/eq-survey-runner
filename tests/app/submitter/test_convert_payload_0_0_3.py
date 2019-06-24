@@ -377,7 +377,7 @@ def test_list_item_conversion(fake_questionnaire_store):
     fake_questionnaire_store.answer_store = answers
     fake_questionnaire_store.list_store = list_store
 
-    schema = load_schema('test', 'list_collector')
+    schema = load_schema('test_list_collector')
 
     output = convert_answers(schema, fake_questionnaire_store, routing_path)
 
@@ -414,7 +414,7 @@ def test_list_item_conversion_empty_list(fake_questionnaire_store):
     fake_questionnaire_store.answer_store = answers
     fake_questionnaire_store.list_store = list_store
 
-    schema = load_schema('test', 'list_collector')
+    schema = load_schema('test_list_collector')
 
     output = convert_answers(schema, fake_questionnaire_store, routing_path)
 

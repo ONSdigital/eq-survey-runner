@@ -27,9 +27,8 @@ class TestFields(AppContextTestCase):
         self.answer_store = AnswerStore()
         self.metadata = {
             'user_id': '789473423',
-            'form_type': '0000',
+            'schema_name': '0000',
             'collection_exercise_sid': 'test-sid',
-            'eq_id': '1',
             'period_id': '2016-02-01',
             'period_str': '2016-01-01',
             'ref_p_start_date': '2016-02-02',

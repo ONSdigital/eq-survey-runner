@@ -9,13 +9,13 @@ class TestApplicationVariables(IntegrationTestCase):
             cache_length = len(cache.cache._cache)  # pylint: disable=protected-access
             self.assertEqual(cache_length, 0)
 
-            self.launchSurvey('test', 'textfield')
+            self.launchSurvey('test_textfield')
             self.assertStatusOK()
             self.assertNotEqual(
                 cache.get('app.utilities.schema.load_schema_from_params_memver'), None
             )
 
-            self.launchSurvey('test', 'textfield')
+            self.launchSurvey('test_textfield')
             self.assertStatusOK()
             self.assertNotEqual(
                 cache.get('app.utilities.schema.load_schema_from_params_memver'), None

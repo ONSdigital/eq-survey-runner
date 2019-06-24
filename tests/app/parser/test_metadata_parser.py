@@ -18,7 +18,7 @@ def test_spaces_are_stripped_from_string_fields(fake_metadata_runner):
 
 
 def test_empty_strings_are_not_valid(fake_metadata_runner):
-    fake_metadata_runner['eq_id'] = ''
+    fake_metadata_runner['schema_name'] = ''
 
     with pytest.raises(ValidationError):
         validate_runner_claims(fake_metadata_runner)
@@ -129,7 +129,7 @@ def test_unknown_claims_are_not_deserialised(fake_metadata_runner):
 def test_minimum_length_on_runner_metadata(fake_metadata_runner):
     validate_runner_claims(fake_metadata_runner)
 
-    fake_metadata_runner['eq_id'] = ''
+    fake_metadata_runner['schema_name'] = ''
     with pytest.raises(ValidationError):
         validate_runner_claims(fake_metadata_runner)
 
