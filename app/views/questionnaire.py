@@ -97,11 +97,7 @@ def before_post_submission_request():
     session_data = session_store.session_data
     g.schema = load_schema_from_session_data(session_data)
 
-    logger.bind(
-        tx_id=session_data.tx_id,
-        eq_id=session_data.eq_id,
-        form_type=session_data.form_type,
-    )
+    logger.bind(tx_id=session_data.tx_id, schema_name=session_data.schema_name)
 
     logger.info(
         'questionnaire request', method=request.method, url_path=request.full_path

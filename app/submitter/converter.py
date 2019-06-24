@@ -99,7 +99,7 @@ def convert_answers(schema, questionnaire_store, routing_path, flushed=False):
 def _build_collection(metadata):
     return {
         'exercise_sid': metadata['collection_exercise_sid'],
-        'instrument_id': metadata['form_type'],
+        'schema_name': metadata['schema_name'],
         'period': metadata['period_id'],
     }
 
