@@ -1,4 +1,5 @@
 from app.data_model.answer_store import AnswerStore, Answer
+from app.data_model.list_store import ListStore
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.questionnaire.schema_utils import (
     choose_question_to_display,
@@ -21,13 +22,17 @@ def test_transform_variants_with_question_variants(question_variant_schema):
 
     block = schema.get_block('block1')
 
-    transformed_block = transform_variants(block, schema, metadata, answer_store)
+    transformed_block = transform_variants(
+        block, schema, metadata, answer_store, ListStore({})
+    )
 
     compare_transformed_block(block, transformed_block, 'Question 1, No')
 
     answer_store.add_or_update(Answer(answer_id='when-answer', value='yes'))
 
-    transformed_block = transform_variants(block, schema, metadata, answer_store)
+    transformed_block = transform_variants(
+        block, schema, metadata, answer_store, ListStore({})
+    )
 
     compare_transformed_block(block, transformed_block, 'Question 1, Yes')
 
@@ -40,7 +45,9 @@ def test_transform_variants_with_content(content_variant_schema):
 
     block = schema.get_block('block1')
 
-    transformed_block = transform_variants(block, schema, metadata, answer_store)
+    transformed_block = transform_variants(
+        block, schema, metadata, answer_store, ListStore({})
+    )
 
     assert transformed_block != block
     assert 'content_variants' not in transformed_block
@@ -54,7 +61,9 @@ def test_transform_variants_with_no_variants(question_schema):
 
     block = schema.get_block('block1')
 
-    transformed_block = transform_variants(block, schema, metadata, answer_store)
+    transformed_block = transform_variants(
+        block, schema, metadata, answer_store, ListStore({})
+    )
 
     assert transformed_block == block
 
@@ -67,7 +76,9 @@ def test_transform_variants_list_collector(list_collector_variant_schema):
 
     block = schema.get_block('block1')
 
-    transformed_block = transform_variants(block, schema, metadata, answer_store)
+    transformed_block = transform_variants(
+        block, schema, metadata, answer_store, ListStore({})
+    )
 
     compare_transformed_block(
         block['add_block'], transformed_block['add_block'], 'Add, No'
@@ -81,7 +92,9 @@ def test_transform_variants_list_collector(list_collector_variant_schema):
 
     answer_store.add_or_update(Answer(answer_id='when-answer', value='yes'))
 
-    transformed_block = transform_variants(block, schema, metadata, answer_store)
+    transformed_block = transform_variants(
+        block, schema, metadata, answer_store, ListStore({})
+    )
 
     compare_transformed_block(
         block['add_block'], transformed_block['add_block'], 'Add, Yes'
@@ -101,7 +114,7 @@ def test_choose_content_to_display(content_variant_schema):
     metadata = {}
 
     content_to_display = choose_content_to_display(
-        schema.get_block('block1'), schema, metadata, answer_store
+        schema.get_block('block1'), schema, metadata, answer_store, ListStore({})
     )
 
     assert content_to_display[0]['title'] == 'You are over 16'
@@ -109,7 +122,7 @@ def test_choose_content_to_display(content_variant_schema):
     answer_store = AnswerStore({})
 
     content_to_display = choose_content_to_display(
-        schema.get_block('block1'), schema, metadata, answer_store
+        schema.get_block('block1'), schema, metadata, answer_store, ListStore({})
     )
 
     assert content_to_display[0]['title'] == 'You are ageless'
@@ -122,7 +135,7 @@ def test_choose_question_to_display(question_variant_schema):
     metadata = {}
 
     question_to_display = choose_question_to_display(
-        schema.get_block('block1'), schema, metadata, answer_store
+        schema.get_block('block1'), schema, metadata, answer_store, ListStore({})
     )
 
     assert question_to_display['title'] == 'Question 1, Yes'
@@ -130,7 +143,7 @@ def test_choose_question_to_display(question_variant_schema):
     answer_store = AnswerStore({})
 
     question_to_display = choose_question_to_display(
-        schema.get_block('block1'), schema, metadata, answer_store
+        schema.get_block('block1'), schema, metadata, answer_store, ListStore({})
     )
 
     assert question_to_display['title'] == 'Question 1, No'

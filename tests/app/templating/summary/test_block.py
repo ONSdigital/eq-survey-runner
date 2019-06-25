@@ -23,6 +23,7 @@ def get_mock_question(placeholder):
 class TestSection(TestCase):
     def setUp(self):
         self.answer_store = MagicMock()
+        self.list_store = MagicMock()
         self.metadata = MagicMock()
         self.schema = MagicMock()
 
@@ -35,7 +36,13 @@ class TestSection(TestCase):
             'app.templating.summary.block.Question',
             return_value=get_mock_question('A Question'),
         ), patch('app.templating.summary.block.url_for', return_value='http://a.url/'):
-            block = Block(block_schema, self.answer_store, self.metadata, self.schema)
+            block = Block(
+                block_schema,
+                self.answer_store,
+                self.list_store,
+                self.metadata,
+                self.schema,
+            )
 
         # Then
         self.assertEqual(block.id, 'block_id')

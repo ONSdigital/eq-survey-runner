@@ -1,6 +1,7 @@
 from typing import List, Mapping
 
 from app.data_model.answer_store import AnswerStore
+from app.data_model.list_store import ListStore
 from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.questionnaire_schema import QuestionnaireSchema
 from app.templating.summary.group import Group
@@ -9,6 +10,7 @@ from app.templating.summary.group import Group
 def build_summary_rendering_context(
     schema: QuestionnaireSchema,
     answer_store: AnswerStore,
+    list_store: ListStore,
     metadata: Mapping,
     sections: List[Mapping] = None,
 ) -> List:
@@ -19,13 +21,13 @@ def build_summary_rendering_context(
     :param metadata: all of the metadata
     :return: questionnaire summary context
     """
-    path_finder = PathFinder(schema, answer_store, metadata)
+    path_finder = PathFinder(schema, answer_store, metadata, list_store=list_store)
 
     sections = sections or schema.get_sections()
     paths = [path_finder.routing_path(section) for section in sections]
 
     return [
-        Group(group, path, answer_store, metadata, schema).serialize()
+        Group(group, path, answer_store, list_store, metadata, schema).serialize()
         for path, section in zip(paths, sections)
         for group in section['groups']
     ]
