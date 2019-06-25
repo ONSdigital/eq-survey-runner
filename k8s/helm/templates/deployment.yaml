@@ -79,6 +79,12 @@ spec:
               value: "9"
             - name: EQ_GCS_SUBMISSION_BUCKET_ID
               value: "{{- .Values.submissionBucket }}"
+            - name: EQ_GOOGLE_TAG_MANAGER_ID
+              value: "{{- .Values.googleTagManagerId }}"
+            - name: EQ_GOOGLE_TAG_MANAGER_AUTH
+              value: "{{- .Values.googleTagManagerAuth }}"
+            - name: EQ_GOOGLE_TAG_MANAGER_PREVIEW
+              value: "{{- .Values.googleTagManagerPreview }}"
             - name: EQ_REDIS_HOST
               valueFrom:
                 configMapKeyRef:

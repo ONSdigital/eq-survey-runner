@@ -2,15 +2,15 @@ from flask import Blueprint, redirect, url_for, escape, request, current_app, g
 from flask_login import login_required, current_user
 from flask_wtf import FlaskForm
 from sdc.crypto.encrypter import encrypt
+from structlog import get_logger
 from wtforms import StringField, TextAreaField
 from wtforms.validators import InputRequired
-from structlog import get_logger
 
-from app.helpers import template_helper
+from app.globals import get_metadata, get_session_store, get_session_timeout_in_seconds
+from app.helpers.template_helper import render_template
 from app.keys import KEY_PURPOSE_SUBMISSION
-from app.submitter.submission_failed import SubmissionFailedException
-from app.globals import get_metadata, get_session_store
 from app.submitter.converter import convert_feedback
+from app.submitter.submission_failed import SubmissionFailedException
 from app.utilities.schema import load_schema_from_session_data
 
 logger = get_logger()
@@ -41,13 +41,16 @@ def before_request():
 def get_form():
     form = FeedbackForm()
     content = {'csrf_token': form.csrf_token}
-    return _render_template('feedback', content=content)
+
+    session_timeout = get_session_timeout_in_seconds(g.schema)
+    return render_template(
+        template='feedback', content=content, session_timeout=session_timeout
+    )
 
 
 @feedback_blueprint.route('', methods=['POST'])
 @login_required
 def send_feedback():
-
     if 'action[sign_out]' in request.form:
         return redirect(url_for('session.get_sign_out'))
 
@@ -88,7 +91,8 @@ def send_feedback():
 @feedback_blueprint.route('/thank-you', methods=['GET'])
 @login_required
 def thank_you():
-    return _render_template('feedback_sent')
+    session_timeout = get_session_timeout_in_seconds(g.schema)
+    return render_template(template='feedback_sent', session_timeout=session_timeout)
 
 
 @feedback_blueprint.route('/thank-you', methods=['POST'])
@@ -98,9 +102,3 @@ def post_thank_you():
         return redirect(url_for('session.get_sign_out'))
 
     return redirect(url_for('feedback.thank_you'))
-
-
-@template_helper.with_session_timeout
-@template_helper.with_analytics
-def _render_template(template, **kwargs):
-    return template_helper.render_template(template, **kwargs)

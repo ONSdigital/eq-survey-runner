@@ -10,6 +10,9 @@ image:
   pullPolicy: Always
 
 submissionBucket: ""
+googleTagManagerId: ""
+googleTagManagerAuth: ""
+googleTagManagerPreview: ""
 
 service:
   type: NodePort

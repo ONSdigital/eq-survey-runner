@@ -1,23 +1,16 @@
-from flask import (
-    Blueprint,
-    request,
-    current_app,
-    session as cookie_session,
-    render_template as flask_render_template,
-)
+from flask import Blueprint, request
 from flask_login import current_user
 from flask_wtf.csrf import CSRFError
 from sdc.crypto.exceptions import InvalidTokenException
-
 from structlog import get_logger
 from ua_parser import user_agent_parser
 
 from app.authentication.no_token_exception import NoTokenException
-from app.views.exceptions import PageNotFoundException
 from app.globals import get_metadata
-from app.helpers.template_helper import safe_content
+from app.helpers.template_helper import render_template
 from app.libs.utils import convert_tx_id_for_boxes
 from app.submitter.submission_failed import SubmissionFailedException
+from app.views.exceptions import PageNotFoundException
 
 logger = get_logger()
 
@@ -28,13 +21,13 @@ errors_blueprint = Blueprint('errors', __name__)
 @errors_blueprint.app_errorhandler(NoTokenException)
 def unauthorized(error=None):
     log_exception(error, 401)
-    return render_template('session-expired.html'), 401
+    return _render_error_page(401, 'session-expired')
 
 
 @errors_blueprint.app_errorhandler(CSRFError)
 def csrf_error(error=None):
     log_exception(error, 401)
-    return render_template('session-expired.html'), 401
+    return _render_error_page(401, 'session-expired')
 
 
 @errors_blueprint.app_errorhandler(InvalidTokenException)
@@ -81,18 +74,14 @@ def log_exception(error, status_code):
     )
 
 
-def _render_error_page(status_code):
+def _render_error_page(status_code, template=None):
     tx_id = get_tx_id()
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
+    template = template or 'error'
 
     return (
-        flask_render_template(
-            'errors/error.html',
-            status_code=status_code,
-            analytics_ua_id=current_app.config['EQ_UA_ID'],
-            account_service_url=cookie_session.get('account_service_url'),
-            ua=user_agent,
-            tx_id=tx_id,
+        render_template(
+            template=template, status_code=status_code, ua=user_agent, tx_id=tx_id
         ),
         status_code,
     )
@@ -104,17 +93,3 @@ def get_tx_id():
     if metadata:
         tx_id = convert_tx_id_for_boxes(metadata['tx_id'])
     return tx_id
-
-
-def render_template(template_name):
-    tx_id = get_tx_id()
-    user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
-
-    return flask_render_template(
-        template_name,
-        analytics_ua_id=current_app.config['EQ_UA_ID'],
-        ua=user_agent,
-        tx_id=tx_id,
-        account_service_url=cookie_session.get('account_service_url'),
-        survey_title=safe_content(cookie_session.get('survey_title', '')),
-    )

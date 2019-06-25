@@ -1,4 +1,4 @@
-{% set language_code = language_code | default("en") %}
+{% set language_code = language_code or "en" %}
 
 {% set page = page | setAttributes({
   "theme": "census"

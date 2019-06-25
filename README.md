@@ -275,16 +275,24 @@ EQ_KEYS_FILE=dev-keys.yml EQ_SECRETS_FILE=dev-secrets.yml ./k8s/deploy_credentia
 
 ### Deploying the app
 
+The following environment variables can be set when deploying the app.
+- SUBMISSION_BUCKET_NAME
+- DOCKER_REGISTRY *(optional)*
+- IMAGE_TAG *(optional)*
+- GOOGLE_TAG_MANAGER_ID *(optional)*
+- GOOGLE_TAG_MANAGER_AUTH *(optional)*
+- GOOGLE_TAG_MANAGER_PREVIEW *(optional)*
+
 To deploy the app to the cluster, run the following command:
 
 ```
-./k8s/deploy_app.sh <SUBMISSION_BUCKET_NAME> [<DOCKER_REGISTRY>] [<IMAGE_TAG>]
+./k8s/deploy_app.sh
 ```
 
 For example:
 
 ```
-./k8s/deploy_app.sh census-eq-dev-1234567-survey-runner-submission eu.gcr.io/census-eq-dev v3.0.0 runner-mc
+SUBMISSION_BUCKET_NAME=census-eq-dev-1234567-survey-runner-submission ./k8s/deploy_app.sh
 ```
 
 ---
@@ -341,7 +349,9 @@ The following env variables can be used
 | EQ_WERKZEUG_LOG_LEVEL                     | INFO                  | The default logging level for werkzeug (defaults to 'INFO' for local development)             |
 | EQ_SESSION_TIMEOUT_SECONDS                | 2700 (45 mins)        | The duration of the flask session                                                             |
 | EQ_PROFILING                              | False                 | Enables or disables profiling (True/False) Default False/Disabled                             |
-| EQ_UA_ID                                  |                       | The Google Analytics ID                                                                       |
+| EQ_GOOGLE_TAG_MANAGER_ID                  |                       | The Google Tag Manger ID - Specifies the GTM account                                          |
+| EQ_GOOGLE_TAG_MANAGER_AUTH                |                       | The Google Tag Manger Auth - Ties the GTM container with the whole enviroment                 |
+| EQ_GOOGLE_TAG_MANAGER_PREVIEW             |                       | The Google Tag Manger Preview - Specifies the environment                                     |
 | EQ_DEV_MODE                               | False                 | Enable dev mode                                                                               |
 | EQ_ENABLE_FLASK_DEBUG_TOOLBAR             | False                 | Enable the flask debug toolbar                                                                |
 | EQ_ENABLE_CACHE                           | True                  | Enable caching of the schema                                                                  |
