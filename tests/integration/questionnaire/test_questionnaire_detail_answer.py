@@ -6,7 +6,7 @@ class TestQuestionnaireDetailAnswer(IntegrationTestCase):
     BASE_URL = '/questionnaire/'
 
     def test_detail_answer(self):
-        self.launchSurvey('test', 'checkbox_multiple_detail_answers')
+        self.launchSurvey('test_checkbox_multiple_detail_answers')
         self.post(
             {
                 'mandatory-checkbox-answer': ['Ham', 'Pineapple', 'Your choice'],

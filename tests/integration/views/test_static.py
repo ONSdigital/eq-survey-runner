@@ -11,7 +11,7 @@ class TestStatic(IntegrationTestCase):
     @mock.patch('app.utilities.schema.load_schema_from_session_data')
     def test_contact(self, mock_contact):
         mock_contact.return_value = data
-        self.launchSurvey('test', 'checkbox')
+        self.launchSurvey('test_checkbox')
         self.get('/contact-us')
         self.assertInBody('123456789012A')
 

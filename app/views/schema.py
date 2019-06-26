@@ -2,15 +2,15 @@ from os import listdir
 from os.path import isfile, join
 
 from flask import Blueprint, jsonify
-from app.utilities.schema import load_schema_from_params
+from app.utilities.schema import load_schema_from_name
 
 schema_blueprint = Blueprint('schema', __name__)
 
 
-@schema_blueprint.route('/schemas/<eq_id>/<form_type>', methods=['GET'])
-def get_schema_json(eq_id, form_type):
+@schema_blueprint.route('/schemas/<schema_name>', methods=['GET'])
+def get_schema_json_from_name(schema_name):
     try:
-        schema = load_schema_from_params(eq_id, form_type)
+        schema = load_schema_from_name(schema_name)
         return jsonify(schema.json)
     except FileNotFoundError:
         return 'Schema Not Found', 404
@@ -19,10 +19,10 @@ def get_schema_json(eq_id, form_type):
 @schema_blueprint.route('/schemas', methods=['GET'])
 def list_schemas():
     schema_path = 'data/en'
-    onlyfiles = [
-        f
+    schema_names = [
+        f.replace('.json', '')
         for f in listdir(schema_path)
         if isfile(join(schema_path, f)) and f.endswith('.json')
     ]
 
-    return jsonify(onlyfiles)
+    return jsonify(schema_names)

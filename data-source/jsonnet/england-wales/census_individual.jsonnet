@@ -88,8 +88,6 @@ function(region_code, census_date) {
   description: 'Census England Individual Schema',
   theme: 'census',
   legal_basis: 'Voluntary',
-  eq_id: 'census',
-  form_type: if region_code == 'GB-WLS' then 'individual_gb_wls' else 'individual_gb_eng',
   navigation: {
     visible: false,
   },

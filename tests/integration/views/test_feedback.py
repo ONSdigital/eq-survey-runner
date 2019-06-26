@@ -26,7 +26,7 @@ class Feedback(IntegrationTestCase):
         self.instance.send_message.return_value = True
 
         super().setUp()
-        self.launchSurvey('test', 'textfield')
+        self.launchSurvey('test_textfield')
 
     def tearDown(self):
         self.patcher.stop()

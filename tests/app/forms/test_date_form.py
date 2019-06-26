@@ -14,13 +14,13 @@ from app.forms.date_form import (
     DateField,
 )
 from app.questionnaire.rules import convert_to_datetime
-from app.utilities.schema import load_schema_from_params
+from app.utilities.schema import load_schema_from_name
 from tests.app.app_context_test_case import AppContextTestCase
 
 
 class TestDateForm(AppContextTestCase):
     def test_generate_date_form_creates_empty_form(self):
-        schema = load_schema_from_params('test', 'dates')
+        schema = load_schema_from_name('test_dates')
         error_messages = schema.error_messages
 
         with self.app_request_context('/'):
@@ -37,7 +37,7 @@ class TestDateForm(AppContextTestCase):
         self.assertTrue(hasattr(form, 'year'))
 
     def test_generate_month_year_date_form_creates_empty_form(self):
-        schema = load_schema_from_params('test', 'dates')
+        schema = load_schema_from_name('test_dates')
         error_messages = schema.error_messages
 
         with self.app_request_context('/'):
@@ -54,7 +54,7 @@ class TestDateForm(AppContextTestCase):
         self.assertTrue(hasattr(form, 'year'))
 
     def test_generate_year_date_form_creates_empty_form(self):
-        schema = load_schema_from_params('test', 'dates')
+        schema = load_schema_from_name('test_dates')
         error_messages = schema.error_messages
 
         form = get_form(
@@ -70,7 +70,7 @@ class TestDateForm(AppContextTestCase):
         self.assertTrue(hasattr(form, 'year'))
 
     def test_date_form_empty_data(self):
-        schema = load_schema_from_params('test', 'dates')
+        schema = load_schema_from_name('test_dates')
         error_messages = schema.error_messages
 
         with self.app_request_context('/'):
@@ -85,7 +85,7 @@ class TestDateForm(AppContextTestCase):
         self.assertIsNone(form().data)
 
     def test_month_year_date_form_empty_data(self):
-        schema = load_schema_from_params('test', 'dates')
+        schema = load_schema_from_name('test_dates')
         error_messages = schema.error_messages
 
         with self.app_request_context('/'):
@@ -100,7 +100,7 @@ class TestDateForm(AppContextTestCase):
         self.assertIsNone(form().data)
 
     def test_year_date_form_empty_data(self):
-        schema = load_schema_from_params('test', 'dates')
+        schema = load_schema_from_name('test_dates')
         error_messages = schema.error_messages
 
         form = get_form(
@@ -114,7 +114,7 @@ class TestDateForm(AppContextTestCase):
         self.assertIsNone(form().data)
 
     def test_date_form_format_data(self):
-        schema = load_schema_from_params('test', 'dates')
+        schema = load_schema_from_name('test_dates')
         error_messages = schema.error_messages
 
         data = {'field': '2000-01-01'}
@@ -135,7 +135,7 @@ class TestDateForm(AppContextTestCase):
         self.assertEqual(test_form.field.data, '2000-01-01')
 
     def test_month_year_date_form_format_data(self):
-        schema = load_schema_from_params('test', 'dates')
+        schema = load_schema_from_name('test_dates')
         error_messages = schema.error_messages
 
         data = {'field': '2000-01'}
@@ -156,7 +156,7 @@ class TestDateForm(AppContextTestCase):
         self.assertEqual(test_form.field.data, '2000-01')
 
     def test_year_date_form_format_data(self):
-        schema = load_schema_from_params('test', 'dates')
+        schema = load_schema_from_name('test_dates')
         error_messages = schema.error_messages
 
         data = {'field': '2000'}
@@ -175,7 +175,7 @@ class TestDateForm(AppContextTestCase):
         self.assertEqual(test_form.field.data, '2000')
 
     def test_generate_date_form_validates_single_date_period(self):
-        schema = load_schema_from_params('test', 'date_validation_single')
+        schema = load_schema_from_name('test_date_validation_single')
         error_messages = schema.error_messages
         test_metadata = {'ref_p_start_date': '2017-02-20'}
 
@@ -193,7 +193,7 @@ class TestDateForm(AppContextTestCase):
         self.assertTrue(hasattr(form, 'year'))
 
     def test_generate_date_form_validates_single_date_period_with_bespoke_message(self):
-        schema = load_schema_from_params('test', 'date_validation_single')
+        schema = load_schema_from_name('test_date_validation_single')
         error_messages = schema.error_messages
         answer = {
             'id': 'date-range-from',
@@ -308,7 +308,7 @@ class TestDateForm(AppContextTestCase):
             )
 
     def test_validate_mandatory_date(self):
-        schema = load_schema_from_params('test', 'date_validation_single')
+        schema = load_schema_from_name('test_date_validation_single')
         error_messages = schema.error_messages
         answer = {
             'id': 'date-range-from',

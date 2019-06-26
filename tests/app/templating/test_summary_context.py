@@ -9,7 +9,7 @@ from app.templating.view_context import (
     build_view_context_for_section_summary,
     build_view_context_for_calculated_summary,
 )
-from app.utilities.schema import load_schema_from_params
+from app.utilities.schema import load_schema_from_name
 from tests.app.app_context_test_case import AppContextTestCase
 
 
@@ -28,8 +28,7 @@ class TestStandardSummaryContext(AppContextTestCase):
             'period_str': '201610',
             'employment_date': '2016-10-10',
             'collection_exercise_sid': '789',
-            'form_type': '0000',
-            'eq_id': '1',
+            'schema_name': '0000_1',
         }
 
     def check_context(self, context):
@@ -62,7 +61,7 @@ class TestStandardSummaryContext(AppContextTestCase):
 class TestSummaryContext(TestStandardSummaryContext):
     def setUp(self):
         super().setUp()
-        self.schema = load_schema_from_params('test', 'summary')
+        self.schema = load_schema_from_name('test_summary')
         self.answer_store = AnswerStore()
         self.list_store = ListStore()
         self.block_type = 'Summary'
@@ -99,7 +98,7 @@ class TestSummaryContext(TestStandardSummaryContext):
 class TestSectionSummaryContext(TestStandardSummaryContext):
     def setUp(self):
         super().setUp()
-        self.schema = load_schema_from_params('test', 'section_summary')
+        self.schema = load_schema_from_name('test_section_summary')
         self.answer_store = AnswerStore()
         self.list_store = ListStore()
         self.block_type = 'SectionSummary'
@@ -132,7 +131,7 @@ class TestSectionSummaryContext(TestStandardSummaryContext):
 class TestCalculatedSummaryContext(TestStandardSummaryContext):
     def setUp(self):
         super().setUp()
-        self.schema = load_schema_from_params('test', 'calculated_summary')
+        self.schema = load_schema_from_name('test_calculated_summary')
         answers = [
             {'value': 1, 'answer_id': 'first-number-answer'},
             {'value': 2, 'answer_id': 'second-number-answer'},

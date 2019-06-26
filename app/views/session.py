@@ -67,15 +67,13 @@ def login():
 
     claims = {**runner_claims, **questionnaire_claims}
 
-    eq_id = claims['eq_id']
-    form_type = claims['form_type']
+    schema_name = claims['schema_name']
     tx_id = claims['tx_id']
     ru_ref = claims['ru_ref']
     questionnaire_id = claims['questionnaire_id']
 
     logger.bind(
-        eq_id=eq_id,
-        form_type=form_type,
+        schema_name=schema_name,
         tx_id=tx_id,
         ru_ref=ru_ref,
         questionnaire_id=questionnaire_id,

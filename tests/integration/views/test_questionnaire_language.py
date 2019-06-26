@@ -8,20 +8,20 @@ class TestQuestionnaireLanguage(IntegrationTestCase):
 
     def test_load_cy_survey(self):
         # When: load a cy survey
-        self.launchSurvey('test', 'language', language_code='cy')
+        self.launchSurvey('test_language', language_code='cy')
         # Then: welsh
         pytest.xfail(reason='Broken until translations are part of build')
         self.assertInBody('Holiadur Cymraeg')
 
     def test_load_non_existant_lang_fallback(self):
         # When: load a hindi survey
-        self.launchSurvey('test', 'language', language_code='hi')
+        self.launchSurvey('test_language', language_code='hi')
         # Then: Falls back to english
         self.assertInBody('English Questionnaire')
 
     def test_language_switch_in_flight(self):
         # load a english survey
-        self.launchSurvey('test', 'language', language_code='en')
+        self.launchSurvey('test_language', language_code='en')
         # The language is english
         self.assertInBody('English Questionnaire')
         # Switch the language to welsh

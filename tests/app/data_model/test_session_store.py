@@ -4,7 +4,6 @@ from datetime import datetime, timedelta
 from flask import current_app
 from jwcrypto import jwe
 from jwcrypto.common import base64url_encode
-from mock import patch
 from tests.app.app_context_test_case import AppContextTestCase
 
 from app.data_model.app_models import EQSession
@@ -21,8 +20,7 @@ class SessionStoreTest(AppContextTestCase):
         self.expires_at = datetime.utcnow() + timedelta(seconds=1)
         self.session_data = SessionData(
             tx_id='tx_id',
-            eq_id='eq_id',
-            form_type='form_type',
+            schema_name='some_schema_name',
             period_str='period_str',
             language_code=None,
             survey_url=None,
@@ -99,8 +97,7 @@ class SessionStoreTest(AppContextTestCase):
     def test_session_store_ignores_new_values_in_session_data(self):
         session_data = SessionData(
             tx_id='tx_id',
-            eq_id='eq_id',
-            form_type='form_type',
+            schema_name='some_schema_name',
             period_str='period_str',
             language_code=None,
             survey_url=None,
@@ -125,8 +122,7 @@ class SessionStoreTest(AppContextTestCase):
     def test_session_store_ignores_multiple_new_values_in_session_data(self):
         session_data = SessionData(
             tx_id='tx_id',
-            eq_id='eq_id',
-            form_type='form_type',
+            schema_name='some_schema_name',
             period_str='period_str',
             language_code=None,
             survey_url=None,
@@ -155,8 +151,7 @@ class SessionStoreTest(AppContextTestCase):
     def test_session_store_stores_trading_as_value_if_present(self):
         session_data = SessionData(
             tx_id='tx_id',
-            eq_id='eq_id',
-            form_type='form_type',
+            schema_name='some_schema_name',
             period_str='period_str',
             language_code=None,
             survey_url=None,
@@ -179,8 +174,7 @@ class SessionStoreTest(AppContextTestCase):
     def test_session_store_stores_none_for_trading_as_if_not_present(self):
         session_data = SessionData(
             tx_id='tx_id',
-            eq_id='eq_id',
-            form_type='form_type',
+            schema_name='some_schema_name',
             period_str='period_str',
             language_code=None,
             survey_url=None,
@@ -199,107 +193,6 @@ class SessionStoreTest(AppContextTestCase):
 
             self.assertIsNone(session_store.session_data.trad_as)
 
-    def test_session_store_reads_data_saved_without_trading_as_but_read_expecting_trading_as(
-        self
-    ):
-        old_session_data = SessionData(
-            tx_id='tx_id',
-            eq_id='eq_id',
-            form_type='form_type',
-            period_str='period_str',
-            language_code=None,
-            survey_url=None,
-            ru_name='ru_name',
-            ru_ref='ru_ref',
-            response_id='response_id',
-            questionnaire_id='questionnaire_id',
-            case_id='case_id',
-        )
-        delattr(old_session_data, 'trad_as')  # Make class look like old style class
-        with self._app.test_request_context():
-            self.session_store.create(
-                'eq_session_id', 'test', old_session_data, self.expires_at
-            ).save()
-
-            session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
-
-            self.assertIsNone(session_store.session_data.trad_as)
-
-    def test_session_store_reads_data_saved_with_trading_as_but_read_not_expecting_trading_as(
-        self
-    ):
-        """This test simulates the case where a session is created using a new session store that holds trading as
-            but this gets read in an old session that does NOT support trading as """
-
-        original_loads_func = json.loads
-
-        class OldSessionData:
-            """class representing what old sessions expect ( no trading as) """
-
-            def __init__(
-                self,
-                tx_id,
-                eq_id,
-                form_type,
-                period_str,
-                language_code,
-                survey_url,
-                ru_name,
-                ru_ref,
-                case_id,
-                case_ref=None,
-                account_service_url=None,
-                submitted_time=None,
-                **_,
-            ):
-                self.tx_id = tx_id
-                self.eq_id = eq_id
-                self.form_type = form_type
-                self.period_str = period_str
-                self.language_code = language_code
-                self.survey_url = survey_url
-                self.ru_name = ru_name
-                self.ru_ref = ru_ref
-                self.submitted_time = submitted_time
-                self.case_id = case_id
-                self.case_ref = case_ref
-                self.account_service_url = account_service_url
-
-        def old_json_loader(raw, object_hook):  # pylint: disable=unused-argument
-            """replacement for json.loads to decode to old format ( no trading as) """
-
-            old_data = original_loads_func(
-                raw, object_hook=lambda d: OldSessionData(**d)
-            )  # call json.loads ,hook pointing to an old class
-            return old_data
-
-        session_data = SessionData(
-            tx_id='tx_id',
-            eq_id='eq_id',
-            form_type='form_type',
-            period_str='period_str',
-            language_code=None,
-            survey_url=None,
-            ru_name='ru_name',
-            response_id='response_id',
-            questionnaire_id='questionnaire_id',
-            ru_ref='ru_ref',
-            trad_as='trading_as_name',
-            case_id='case_id',
-        )
-        with self._app.test_request_context():
-
-            with patch(
-                'app.data_model.session_store.json.loads', old_json_loader
-            ):  # patch json.loads to use old_json_loader above
-                self.session_store.create(
-                    'eq_session_id', 'test', session_data, self.expires_at
-                ).save()
-
-                session_store = SessionStore('user_ik', 'pepper', 'eq_session_id')
-
-                self.assertFalse(hasattr(session_store.session_data, 'trad_as'))
-
 
 class TestSessionStoreEncoding(AppContextTestCase):
     """Session data used to be base64-encoded. For performance reasons the
@@ -314,8 +207,7 @@ class TestSessionStoreEncoding(AppContextTestCase):
         self.session_id = 'session_id'
         self.session_data = SessionData(
             tx_id='tx_id',
-            eq_id='eq_id',
-            form_type='form_type',
+            schema_name='some_schema_name',
             period_str='period_str',
             language_code=None,
             survey_url=None,

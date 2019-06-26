@@ -10,12 +10,8 @@ class MultipleClientTestCase(IntegrationTestCase):
 
         self.cache = {}
 
-    def launchSurvey(
-        self, client, eq_id='test', form_type_id='textfield', **payload_kwargs
-    ):
-        token = self.token_generator.create_token(
-            form_type_id=form_type_id, eq_id=eq_id, **payload_kwargs
-        )
+    def launchSurvey(self, client, schema_name='test_textfield', **payload_kwargs):
+        token = self.token_generator.create_token(schema_name, **payload_kwargs)
         self.get(client, '/session?token=' + token)
 
     def get(self, client, url, **kwargs):
@@ -92,11 +88,11 @@ class TestMultipleLogin(MultipleClientTestCase):
         input_data = 'foo bar'
 
         # user A inputs an answer
-        self.launchSurvey(self.client_a, 'test', 'textfield')
+        self.launchSurvey(self.client_a, 'test_textfield')
         self.post(self.client_a, {'name-answer': input_data})
 
         # user B gets taken straight to summary as survey is complete
-        self.launchSurvey(self.client_b, 'test', 'textfield')
+        self.launchSurvey(self.client_b, 'test_textfield')
         last_url_b = self.cache[self.client_b]['last_url']
         self.assertIn('/questionnaire/summary', last_url_b)
 
@@ -130,7 +126,7 @@ class TestCollectionMetadataStorage(MultipleClientTestCase):
         Ensure that started_at is retained between collections
         """
         # User A starts a survey
-        self.launchSurvey(self.client_a, 'test', 'introduction', roles=['dumper'])
+        self.launchSurvey(self.client_a, 'test_introduction', roles=['dumper'])
         # And starts the questionnaire
         self.post(self.client_a, action='start_questionnaire')
 
@@ -138,7 +134,7 @@ class TestCollectionMetadataStorage(MultipleClientTestCase):
         a_submission = self.dumpSubmission(self.client_a)['submission']
 
         # User B loads the survey
-        self.launchSurvey(self.client_b, 'test', 'introduction', roles=['dumper'])
+        self.launchSurvey(self.client_b, 'test_introduction', roles=['dumper'])
         # And we dump their submission
         b_submission = self.dumpSubmission(self.client_b)['submission']
 

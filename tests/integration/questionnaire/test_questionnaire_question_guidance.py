@@ -4,7 +4,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 class TestQuestionnaireQuestionGuidance(IntegrationTestCase):
     def test_question_guidance(self):
         # Given I launch a questionnaire with various guidance
-        self.launchSurvey('test', 'question_guidance')
+        self.launchSurvey('test_question_guidance')
         self.post(action='start_questionnaire')
 
         # When I start the survey I am presented with the title guidance correctly

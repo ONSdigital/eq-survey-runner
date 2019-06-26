@@ -5,7 +5,7 @@ class TestQuestionnaireChangeAnswer(IntegrationTestCase):
     def test_change_non_mandatory_date_from_answered_to_not_answered(self):
 
         # Given the test_dates questionnaire with a non-mandatory date answered.
-        self.launchSurvey('test', 'dates')
+        self.launchSurvey('test_dates')
 
         post_data = [
             {

@@ -79,8 +79,6 @@ function(region_code, census_date) {
   description: 'Census England Individual Schema',
   theme: 'census',
   legal_basis: 'Voluntary',
-  eq_id: 'census',
-  form_type: 'individual_gb_nir',
   navigation: {
     visible: false,
   },

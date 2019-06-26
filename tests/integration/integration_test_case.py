@@ -107,14 +107,13 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         self._ds.stop()
         self._redis.stop()
 
-    def launchSurvey(self, eq_id='test', form_type_id='dates', **payload_kwargs):
+    def launchSurvey(self, schema_name='test_dates', **payload_kwargs):
         """
         Launch a survey as an authenticated user and follow re-directs
-        :param eq_id: The id of the survey to launch e.g. 'census', 'test' etc.
-        :param form_type_id: The form type of the survey e.g. 'household', 'radio' etc.
+        :param schema_name: The name of the schema to load
         """
         token = self.token_generator.create_token(
-            form_type_id=form_type_id, eq_id=eq_id, **payload_kwargs
+            schema_name=schema_name, **payload_kwargs
         )
         self.get('/session?token=' + token)
 

@@ -24,7 +24,7 @@ class TestThankYou(IntegrationTestCase):
     }
 
     def test_thank_you_page_shows_trading_as_if_present(self):
-        self.launchSurvey('test', 'currency')
+        self.launchSurvey('test_currency')
 
         # check we're on first page
         self.assertInBody('Currency Input Test')
@@ -56,7 +56,7 @@ class TestThankYou(IntegrationTestCase):
     ):
 
         with patch('tests.integration.create_token.PAYLOAD', self.example_payload):
-            self.launchSurvey('test', 'currency')
+            self.launchSurvey('test_currency')
 
             # check we're on first page
             self.assertInBody('Currency Input Test')
@@ -90,7 +90,7 @@ class TestThankYou(IntegrationTestCase):
         empty_trading_as_payload['trad_as'] = ''
 
         with patch('tests.integration.create_token.PAYLOAD', empty_trading_as_payload):
-            self.launchSurvey('test', 'currency')
+            self.launchSurvey('test_currency')
 
             # check we're on first page
             self.assertInBody('Currency Input Test')
@@ -124,7 +124,7 @@ class TestThankYou(IntegrationTestCase):
         with patch(
             'tests.integration.create_token.PAYLOAD', account_service_url_supplied
         ):
-            self.launchSurvey('test', 'currency')
+            self.launchSurvey('test_currency')
 
             # check we're on first page
             self.assertInBody('Currency Input Test')
@@ -153,7 +153,7 @@ class TestThankYou(IntegrationTestCase):
             self.assertInBody('href="http://correct.place"')
 
     def test_thank_you_page_sign_out(self):
-        self.launchSurvey('test', 'currency')
+        self.launchSurvey('test_currency')
 
         # We fill in our answers
         form_data = {

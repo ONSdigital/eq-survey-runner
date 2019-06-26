@@ -33,11 +33,10 @@ class TokenGenerator:
         self._sr_public_kid = sr_public_kid
 
     @staticmethod
-    def _get_payload_with_params(form_type_id, eq_id, survey_url=None, **extra_payload):
+    def _get_payload_with_params(schema_name, survey_url=None, **extra_payload):
         payload_vars = PAYLOAD.copy()
         payload_vars['tx_id'] = str(uuid4())
-        payload_vars['eq_id'] = eq_id
-        payload_vars['form_type'] = form_type_id
+        payload_vars['schema_name'] = schema_name
         if survey_url:
             payload_vars['survey_url'] = survey_url
 
@@ -51,44 +50,32 @@ class TokenGenerator:
 
         return payload_vars
 
-    def create_token(self, form_type_id, eq_id, **extra_payload):
-        payload_vars = self._get_payload_with_params(
-            form_type_id, eq_id, None, **extra_payload
-        )
+    def create_token(self, schema_name, **extra_payload):
+        payload_vars = self._get_payload_with_params(schema_name, None, **extra_payload)
 
         return self.generate_token(payload_vars)
 
-    def create_token_without_jti(self, form_type_id, eq_id, **extra_payload):
-        payload_vars = self._get_payload_with_params(
-            form_type_id, eq_id, None, **extra_payload
-        )
+    def create_token_without_jti(self, schema_name, **extra_payload):
+        payload_vars = self._get_payload_with_params(schema_name, None, **extra_payload)
         del payload_vars['jti']
 
         return self.generate_token(payload_vars)
 
-    def create_token_without_case_id(self, form_type_id, eq_id, **extra_payload):
-        payload_vars = self._get_payload_with_params(
-            form_type_id, eq_id, None, **extra_payload
-        )
+    def create_token_without_case_id(self, schema_name, **extra_payload):
+        payload_vars = self._get_payload_with_params(schema_name, None, **extra_payload)
         del payload_vars['case_id']
 
         return self.generate_token(payload_vars)
 
-    def create_token_without_questionnaire_id(
-        self, form_type_id, eq_id, **extra_payload
-    ):
-        payload_vars = self._get_payload_with_params(
-            form_type_id, eq_id, None, **extra_payload
-        )
+    def create_token_without_questionnaire_id(self, schema_name, **extra_payload):
+        payload_vars = self._get_payload_with_params(schema_name, None, **extra_payload)
         del payload_vars['questionnaire_id']
 
         return self.generate_token(payload_vars)
 
-    def create_token_with_survey_url(
-        self, form_type_id, eq_id, survey_url, **extra_payload
-    ):
+    def create_token_with_survey_url(self, schema_name, survey_url, **extra_payload):
         payload_vars = self._get_payload_with_params(
-            form_type_id, eq_id, survey_url, **extra_payload
+            schema_name, survey_url, **extra_payload
         )
 
         return self.generate_token(payload_vars)

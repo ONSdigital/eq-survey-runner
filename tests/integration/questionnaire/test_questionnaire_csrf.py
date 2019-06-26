@@ -8,7 +8,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self
     ):
         # Given
-        self.launchSurvey('test', 'interstitial_page')
+        self.launchSurvey('test_interstitial_page')
         self.last_csrf_token = None
 
         # When
@@ -22,7 +22,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self
     ):
         # Given
-        self.launchSurvey('test', 'interstitial_page')
+        self.launchSurvey('test_interstitial_page')
         self.last_csrf_token = 'made-up-token'
 
         # When
@@ -36,7 +36,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self
     ):
         # Given
-        self.launchSurvey('test', 'interstitial_page')
+        self.launchSurvey('test_interstitial_page')
 
         # When
         self.post(action='start_questionnaire')
@@ -49,7 +49,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self
     ):
         # Given
-        self.launchSurvey('test', 'interstitial_page', roles=['dumper'])
+        self.launchSurvey('test_interstitial_page', roles=['dumper'])
         self.post()
         self.post({'favourite-breakfast': 'Muesli'})
 
@@ -67,7 +67,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self
     ):
         # Given
-        self.launchSurvey('test', 'checkbox', roles=['dumper'])
+        self.launchSurvey('test_checkbox', roles=['dumper'])
         self.post(
             {
                 'mandatory-checkbox-answer': 'Other',
@@ -89,7 +89,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
         self
     ):
         # Given
-        self.launchSurvey('test', 'interstitial_page', roles=['dumper'])
+        self.launchSurvey('test_interstitial_page', roles=['dumper'])
         self.post()
         post_data = {'favourite-breakfast': 'Muesli'}
 
@@ -105,7 +105,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
 
     def test_given_csrf_attack_when_refresh_then_on_question(self):
         # Given
-        self.launchSurvey('test', 'interstitial_page', roles=['dumper'])
+        self.launchSurvey('test_interstitial_page', roles=['dumper'])
         self.post()
         self.last_csrf_token = 'made-up-token'
         self.post({'favourite-breakfast': 'Pancakes'})
@@ -121,7 +121,7 @@ class TestQuestionnaireCsrf(IntegrationTestCase):
 
     def test_given_csrf_attack_when_submit_new_answers_then_answers_saved(self):
         # Given
-        self.launchSurvey('test', 'interstitial_page', roles=['dumper'])
+        self.launchSurvey('test_interstitial_page', roles=['dumper'])
         self.post()
         self.last_csrf_token = 'made-up-token'
         self.post({'favourite-breakfast': 'Muesli'})
