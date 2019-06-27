@@ -4,7 +4,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 class TestQuestionnaireQuestionDefinition(IntegrationTestCase):
     def test_question_definition(self):
         # Given I launch a questionnaire with definitions
-        self.launchSurvey('test', 'question_definition')
+        self.launchSurvey('test_question_definition')
 
         # When I start the survey I am presented with the definitions title and content correctly
         self.assertInBody(

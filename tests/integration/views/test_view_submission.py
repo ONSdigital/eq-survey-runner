@@ -12,7 +12,7 @@ class TestViewSubmission(IntegrationTestCase):
     def setUp(self):
         super().setUp()
 
-        self.launchSurvey('test', 'view_submitted_response')
+        self.launchSurvey('test_view_submitted_response')
 
         form_data = {'radio-answer': 'Bacon'}
         self.post(form_data)
@@ -65,7 +65,7 @@ class TestViewSubmission(IntegrationTestCase):
 
 class TestCantViewSubmission(IntegrationTestCase):
     def test_try_view_submission_when_not_available(self):
-        self.launchSurvey('test', 'currency')
+        self.launchSurvey('test_currency')
 
         # check we're on first page
         self.assertInBody('Currency Input Test')
@@ -99,7 +99,7 @@ class TestCantViewSubmission(IntegrationTestCase):
         self.assertInUrl('thank-you')
 
     def test_try_view_submission_early(self):
-        self.launchSurvey('test', 'view_submitted_response')
+        self.launchSurvey('test_view_submitted_response')
 
         # check we're on first page
         self.assertInBody('What is your favourite breakfast food')
@@ -113,7 +113,7 @@ class TestCantViewSubmission(IntegrationTestCase):
 
 class TestViewSubmissionTradingAs(IntegrationTestCase):
     def test_view_submission_shows_trading_as_if_present(self):
-        self.launchSurvey('test', 'view_submitted_response')
+        self.launchSurvey('test_view_submitted_response')
 
         # check we're on first page
         self.assertInBody('What is your favourite breakfast food')
@@ -171,7 +171,7 @@ class TestViewSubmissionTradingAs(IntegrationTestCase):
             'account_service_url': 'http://upstream.url/',
         }
         with patch('tests.integration.create_token.PAYLOAD', no_trading_as_payload):
-            self.launchSurvey('test', 'view_submitted_response')
+            self.launchSurvey('test_view_submitted_response')
 
             # check we're on first page
             self.assertInBody('What is your favourite breakfast food')
@@ -230,7 +230,7 @@ class TestViewSubmissionTradingAs(IntegrationTestCase):
             'account_service_url': 'http://upstream.url',
         }
         with patch('tests.integration.create_token.PAYLOAD', no_trading_as_payload):
-            self.launchSurvey('test', 'view_submitted_response')
+            self.launchSurvey('test_view_submitted_response')
 
             # check we're on first page
             self.assertInBody('What is your favourite breakfast food')
@@ -278,7 +278,7 @@ class TestViewSubmissionCompression(IntegrationTestCase):
             'app.views.questionnaire.StorageEncryption',
             wraps=_CompressedStorageEncryption,
         ):
-            self.launchSurvey('test', 'view_submitted_response')
+            self.launchSurvey('test_view_submitted_response')
 
             form_data = {'radio-answer': 'Bacon'}
             self.post(form_data)

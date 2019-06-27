@@ -4,14 +4,14 @@ from tests.integration.integration_test_case import IntegrationTestCase
 class TestQuestionnairePreviousLink(IntegrationTestCase):
     def test_previous_link_doesnt_appear_on_introduction(self):
         # Given
-        self.launchSurvey('test', 'final_confirmation')
+        self.launchSurvey('test_final_confirmation')
         # When we open the introduction
         # Then previous link does not appear
         self.assertNotInBody('Previous')
 
     def test_previous_link_doesnt_appear_on_page_following_introduction(self):
         # Given
-        self.launchSurvey('test', 'final_confirmation')
+        self.launchSurvey('test_final_confirmation')
 
         # When we proceed through the questionnaire
         self.post(action='start_questionnaire')
@@ -22,7 +22,7 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
 
     def test_previous_link_doesnt_appear_on_thank_you(self):
         # Given
-        self.launchSurvey('test', 'final_confirmation')
+        self.launchSurvey('test_final_confirmation')
 
         # When ee proceed through the questionnaire
         self.post(action='start_questionnaire')
@@ -34,7 +34,7 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
     def test_previous_link_appears_on_questions_preceded_by_another_question(self):
 
         # Given a survey with multiple questions
-        self.launchSurvey('test', 'checkbox')
+        self.launchSurvey('test_checkbox')
 
         # When I answer a question
         self.assertInUrl('mandatory-checkbox')

@@ -7,6 +7,7 @@ from app.storage.metadata_parser import (
     validate_runner_claims,
     validate_questionnaire_claims,
 )
+from app.utilities.schema import transform_region_code, transform_case_type
 
 
 def test_spaces_are_stripped_from_string_fields(fake_metadata_runner):
@@ -18,7 +19,7 @@ def test_spaces_are_stripped_from_string_fields(fake_metadata_runner):
 
 
 def test_empty_strings_are_not_valid(fake_metadata_runner):
-    fake_metadata_runner['eq_id'] = ''
+    fake_metadata_runner['schema_name'] = ''
 
     with pytest.raises(ValidationError):
         validate_runner_claims(fake_metadata_runner)
@@ -129,7 +130,7 @@ def test_unknown_claims_are_not_deserialised(fake_metadata_runner):
 def test_minimum_length_on_runner_metadata(fake_metadata_runner):
     validate_runner_claims(fake_metadata_runner)
 
-    fake_metadata_runner['eq_id'] = ''
+    fake_metadata_runner['schema_name'] = ''
     with pytest.raises(ValidationError):
         validate_runner_claims(fake_metadata_runner)
 
@@ -142,3 +143,65 @@ def test_deserialisation_iso_8601_dates(fake_metadata_runner):
     claims = validate_questionnaire_claims(fake_metadata_runner, field_specification)
 
     assert isinstance(claims['birthday'], str)
+
+
+def test_census_params_without_schema_name(fake_census_metadata_runner):
+    claims = validate_runner_claims(fake_census_metadata_runner)
+
+    assert claims['schema_name'] == 'census_individual_gb_eng'
+
+
+def test_case_type_transform():
+    assert transform_case_type('HI') == 'individual'
+    assert transform_case_type('HH') == 'household'
+    assert transform_case_type('CE') == 'communal_establishment'
+    assert transform_case_type('CI') == 'communal_individual'
+
+    with pytest.raises(KeyError):
+        transform_case_type('household')
+
+    with pytest.raises(KeyError):
+        transform_case_type('BAD')
+
+
+@pytest.mark.parametrize(
+    'test_input, expected',
+    [('GB-ENG', 'gb_eng'), ('GB-WLS', 'gb_wls'), ('GB-NIR', 'gb_nir')],
+)
+def test_region_code_is_lower_cased_and_underscored(test_input, expected):
+    assert transform_region_code(test_input) == expected
+
+
+def test_survey_parameter_defaults_to_census(fake_census_metadata_runner):
+    claims = validate_runner_claims(fake_census_metadata_runner)
+    del claims['survey']
+
+    assert claims['schema_name'] == 'census_individual_gb_eng'
+
+
+def test_bad_survey_parameter(fake_census_metadata_runner):
+    fake_census_metadata_runner['survey'] = 'bad_survey'
+    with pytest.raises(ValidationError):
+        validate_runner_claims(fake_census_metadata_runner)
+
+
+def test_bad_case_type_parameter(fake_census_metadata_runner):
+    fake_census_metadata_runner['case_type'] = 'bad_case_type'
+    with pytest.raises(ValidationError):
+        validate_runner_claims(fake_census_metadata_runner)
+
+
+def test_bad_region_code_parameter(fake_census_metadata_runner):
+    fake_census_metadata_runner['region_code'] = 'bad_region_code'
+    with pytest.raises(ValidationError):
+        validate_runner_claims(fake_census_metadata_runner)
+
+
+def test_no_census_params_and_no_schema_name_raises_error(fake_census_metadata_runner):
+    fake_census_metadata_runner.pop('schema_name', None)
+    fake_census_metadata_runner.pop('region_code', None)
+    fake_census_metadata_runner.pop('case_type', None)
+    fake_census_metadata_runner.pop('survey', None)
+
+    with pytest.raises(ValidationError):
+        validate_runner_claims(fake_census_metadata_runner)

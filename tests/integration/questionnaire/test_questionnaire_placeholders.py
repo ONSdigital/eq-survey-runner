@@ -3,7 +3,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 class TestPlaceholders(IntegrationTestCase):
     def test_title_placeholders_rendered_in_summary(self):
-        self.launchSurvey('test', 'placeholder_full')
+        self.launchSurvey('test_placeholder_full')
         self.assertInBody('Please enter your name')
         self.post({'first-name': 'Kevin', 'last-name': 'Bacon'})
 

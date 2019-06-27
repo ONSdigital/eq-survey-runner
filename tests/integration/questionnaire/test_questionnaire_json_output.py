@@ -6,7 +6,7 @@ class TestQuestionnaireJSONOutput(IntegrationTestCase):
     def test_questionnaire_json_response(self):
 
         # Given
-        self.launchSurvey('test', 'final_confirmation')
+        self.launchSurvey('test_final_confirmation')
 
         # When
         self.get('/questionnaire/introduction', headers={'Accept': 'application/json'})

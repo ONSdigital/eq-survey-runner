@@ -28,7 +28,7 @@ def convert_answers(schema, questionnaire_store, routing_path, flushed=False):
         'flushed': true|false
         'collection':{
           'exercise_sid': 'hfjdskf',
-          'instrument_id': 'yui789',
+          'schema_name': 'yui789',
           'period': '2016-02-01'
         },
         'started_at': '2016-03-06T15:28:05Z',
@@ -99,7 +99,7 @@ def convert_answers(schema, questionnaire_store, routing_path, flushed=False):
 def _build_collection(metadata):
     return {
         'exercise_sid': metadata['collection_exercise_sid'],
-        'instrument_id': metadata['form_type'],
+        'schema_name': metadata['schema_name'],
         'period': metadata['period_id'],
     }
 
@@ -130,7 +130,7 @@ def convert_feedback(message, name, email, url, metadata, survey_id):
         'survey_id': '021',
         'collection':{
           'exercise_sid': 'hfjdskf',
-          'instrument_id': 'yui789',
+          'schema_name': 'yui789',
           'period': '201602'
         },
         'submitted_at': '2016-03-07T15:28:05Z',

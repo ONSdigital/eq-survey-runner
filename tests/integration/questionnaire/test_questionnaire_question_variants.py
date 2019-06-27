@@ -7,17 +7,17 @@ class TestQuestionnaireQuestionVariants(IntegrationTestCase):
         super().__init__(*args, **kwargs)
 
     def test_non_proxy_answer_shows_non_proxy_title(self):
-        self.launchSurvey('test', 'variants_question')
+        self.launchSurvey('test_variants_question')
 
         self.complete_first_section(proxy=False)
 
     def test_proxy_answer_shows_proxy_title(self):
-        self.launchSurvey('test', 'variants_question')
+        self.launchSurvey('test_variants_question')
 
         self.complete_first_section(proxy=True)
 
     def test_summaries_proxy(self):
-        self.launchSurvey('test', 'variants_question')
+        self.launchSurvey('test_variants_question')
 
         self.complete_first_section(proxy=True)
 

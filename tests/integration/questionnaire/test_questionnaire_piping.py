@@ -6,7 +6,7 @@ class TestQuestionnairePiping(IntegrationTestCase):
         self
     ):
         # Given
-        self.launchSurvey('test', 'multiple_piping')
+        self.launchSurvey('test_multiple_piping')
         self.post(action='start_questionnaire')
         self.post({'address-line-1': '44 hill side'})
         self.post(action='save_continue')
@@ -26,7 +26,7 @@ class TestQuestionnairePiping(IntegrationTestCase):
         self
     ):
         # Given
-        self.launchSurvey('test', 'multiple_piping')
+        self.launchSurvey('test_multiple_piping')
         self.post(action='start_questionnaire')
         self.post({'address-line-1': '44 hill side'})
         self.post(action='save_continue')
@@ -42,7 +42,7 @@ class TestQuestionnairePiping(IntegrationTestCase):
 
     def test_answer_piped_into_option(self):
         # Given
-        self.launchSurvey('test', 'multiple_piping')
+        self.launchSurvey('test_multiple_piping')
         self.post(action='start_questionnaire')
         self.post({'address-line-1': '44 hill side', 'town-city': 'newport'})
         self.post(action='save_continue')
@@ -63,7 +63,7 @@ class TestQuestionnairePiping(IntegrationTestCase):
         the option label on the form it is rendered with a validation error
         """
         # Given
-        self.launchSurvey('test', 'multiple_piping')
+        self.launchSurvey('test_multiple_piping')
         self.post(action='start_questionnaire')
         self.post({'address-line-1': '44 hill side', 'town-city': 'newport'})
         self.post(action='save_continue')

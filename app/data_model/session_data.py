@@ -2,8 +2,7 @@ class SessionData:
     def __init__(
         self,
         tx_id,
-        eq_id,
-        form_type,
+        schema_name,
         period_str,
         language_code,
         survey_url,
@@ -20,8 +19,7 @@ class SessionData:
         **_,
     ):  # pylint: disable=too-many-locals
         self.tx_id = tx_id
-        self.eq_id = eq_id
-        self.form_type = form_type
+        self.schema_name = schema_name
         self.period_str = period_str
         self.language_code = language_code
         self.survey_url = survey_url

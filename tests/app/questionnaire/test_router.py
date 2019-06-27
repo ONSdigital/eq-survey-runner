@@ -1,13 +1,13 @@
 from app.data_model.completed_store import CompletedStore
 from app.questionnaire.location import Location
 from app.questionnaire.router import Router
-from app.utilities.schema import load_schema_from_params
+from app.utilities.schema import load_schema_from_name
 from tests.app.app_context_test_case import AppContextTestCase
 
 
 class TestRouter(AppContextTestCase):
     def test_can_access_location(self):
-        schema = load_schema_from_params('test', 'textfield')
+        schema = load_schema_from_name('test_textfield')
         completed_store = CompletedStore({})
         router = Router(schema, completed_store)
 
@@ -18,7 +18,7 @@ class TestRouter(AppContextTestCase):
         self.assertTrue(can_access_location)
 
     def test_cant_access_location(self):
-        schema = load_schema_from_params('test', 'textfield')
+        schema = load_schema_from_name('test_textfield')
         completed_store = CompletedStore({})
         router = Router(schema, completed_store)
 
@@ -29,7 +29,7 @@ class TestRouter(AppContextTestCase):
         self.assertFalse(can_access_location)
 
     def test_cant_access_location_not_on_allowable_path(self):
-        schema = load_schema_from_params('test', 'unit_patterns')
+        schema = load_schema_from_name('test_unit_patterns')
         completed_store = CompletedStore({})
         router = Router(schema, completed_store)
 
@@ -46,7 +46,7 @@ class TestRouter(AppContextTestCase):
         self.assertFalse(can_access_location)
 
     def test_next_location(self):
-        schema = load_schema_from_params('test', 'textfield')
+        schema = load_schema_from_name('test_textfield')
         completed_store = CompletedStore({'sections': ['default-section']})
         router = Router(schema, completed_store)
 
@@ -58,7 +58,7 @@ class TestRouter(AppContextTestCase):
         self.assertEqual(next_location, expected_location)
 
     def test_previous_location(self):
-        schema = load_schema_from_params('test', 'textfield')
+        schema = load_schema_from_name('test_textfield')
         completed_store = CompletedStore({})
         router = Router(schema, completed_store)
 
@@ -70,7 +70,7 @@ class TestRouter(AppContextTestCase):
         self.assertEqual(previous_location, expected_location)
 
     def test_is_survey_not_complete(self):
-        schema = load_schema_from_params('test', 'textfield')
+        schema = load_schema_from_name('test_textfield')
         completed_store = CompletedStore({})
         router = Router(schema, completed_store)
 
@@ -79,7 +79,7 @@ class TestRouter(AppContextTestCase):
         self.assertFalse(is_survey_complete)
 
     def test_is_survey_complete(self):
-        schema = load_schema_from_params('test', 'textfield')
+        schema = load_schema_from_name('test_textfield')
         completed_store = CompletedStore(
             {'blocks': [{'block_id': 'name-block'}], 'sections': ['default-section']}
         )
@@ -90,7 +90,7 @@ class TestRouter(AppContextTestCase):
         self.assertTrue(is_survey_complete)
 
     def test_is_survey_complete_summary_in_own_section(self):
-        schema = load_schema_from_params('test', 'placeholder_full')
+        schema = load_schema_from_name('test_placeholder_full')
         completed_store = CompletedStore(
             {
                 'blocks': [],

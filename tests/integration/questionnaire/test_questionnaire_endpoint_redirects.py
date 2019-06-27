@@ -6,7 +6,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
     def test_get_invalid_questionnaire_location_redirects_to_latest(self):
         # Given
-        self.launchSurvey('test', 'introduction')
+        self.launchSurvey('test_introduction')
 
         base_url = '/questionnaire/'
 
@@ -18,7 +18,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
 
     def test_post_invalid_questionnaire_location_redirects_to_latest(self):
         # Given
-        self.launchSurvey('test', 'introduction')
+        self.launchSurvey('test_introduction')
 
         base_url = '/questionnaire/'
 
@@ -32,7 +32,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self
     ):
         # Given
-        self.launchSurvey('test', 'textfield')
+        self.launchSurvey('test_textfield')
 
         base_url = '/questionnaire/'
 
@@ -46,7 +46,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self
     ):
         # Given we start a survey
-        self.launchSurvey('test', 'percentage', roles=['dumper'])
+        self.launchSurvey('test_percentage', roles=['dumper'])
         self.post({'answer': '99'})
 
         # When we request the thank you page (without submitting the survey)
@@ -61,7 +61,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self
     ):
         # Given we start a survey
-        self.launchSurvey('test', 'percentage', roles=['dumper'])
+        self.launchSurvey('test_percentage', roles=['dumper'])
 
         # When we request the thank you page (without submitting the survey)
         self.get('submitted/thank-you')
@@ -71,12 +71,12 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
 
     def test_given_complete_questionnaire_when_submitted_then_data_is_deleted(self):
         # Given we submit a survey
-        self.launchSurvey('test', 'percentage', roles=['dumper'])
+        self.launchSurvey('test_percentage', roles=['dumper'])
         self.post({'answer': '99'})
         self.post(action=None)
 
         # When we start the survey again
-        self.launchSurvey('test', 'percentage', roles=['dumper'])
+        self.launchSurvey('test_percentage', roles=['dumper'])
 
         # Then no answers should have persisted
         self.get('/dump/debug')
@@ -85,7 +85,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
 
     def test_when_on_thank_you_get_summary_returns_unauthorised(self):
         # Given we complete the test_percentage survey and are on the thank you page
-        self.launchSurvey('test', 'percentage', roles=['dumper'])
+        self.launchSurvey('test_percentage', roles=['dumper'])
         self.post({'answer': '99'})
         self.post(action=None)
 
@@ -97,7 +97,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
 
     def test_when_on_thank_you_get_thank_you_returns_thank_you(self):
         # Given we complete the test_percentage survey and are on the thank you page
-        self.launchSurvey('test', 'percentage', roles=['dumper'])
+        self.launchSurvey('test_percentage', roles=['dumper'])
         self.post({'answer': '99'})
         self.post(action=None)
 
@@ -109,7 +109,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
 
     def test_when_survey_submitted_re_submitting_returns_unauthorised(self):
         # Given we have submitted the test_percentage survey
-        self.launchSurvey('test', 'percentage', roles=['dumper'])
+        self.launchSurvey('test_percentage', roles=['dumper'])
         self.post({'answer': '99'})
         self.post(action=None)
 

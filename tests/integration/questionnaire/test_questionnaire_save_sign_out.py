@@ -8,8 +8,7 @@ class TestSaveSignOut(IntegrationTestCase):
 
         # Given
         self.launchSurvey(
-            'test',
-            'radio_mandatory',
+            'test_radio_mandatory',
             account_service_url='https://localhost/my-account',
             account_service_log_out_url='https://localhost/logout',
         )
@@ -24,7 +23,7 @@ class TestSaveSignOut(IntegrationTestCase):
         # We can't save if a validation error is caused, this doesn't include missing a mandatory question
 
         # Given
-        self.launchSurvey('test', 'error_messages')
+        self.launchSurvey('test_error_messages')
 
         # When
         self.post(post_data={'test-number': 'error'}, action='save_sign_out')
@@ -36,7 +35,7 @@ class TestSaveSignOut(IntegrationTestCase):
         # If a user completes a block, but then goes back and uses save and come back on that block, that block
         # should no longer be considered complete and on re-authenticate it should return to it
 
-        self.launchSurvey('test', 'textfield')
+        self.launchSurvey('test_textfield')
 
         block_one_url = self.last_url
 
@@ -49,15 +48,14 @@ class TestSaveSignOut(IntegrationTestCase):
         self.post(action='save_sign_out')
 
         # We re-authenticate and check we are on the first page
-        self.launchSurvey('test', 'textfield')
+        self.launchSurvey('test_textfield')
         self.assertEqual(block_one_url, self.last_url)
 
     def test_sign_out_on_introduction_page(self):
 
         # Given
         self.launchSurvey(
-            'test',
-            'introduction',
+            'test_introduction',
             account_service_url='https://localhost/my-account',
             account_service_log_out_url='https://localhost/logout',
         )
@@ -72,7 +70,7 @@ class TestSaveSignOut(IntegrationTestCase):
         """
         If the signed-out url is hit but there is no account_service_log_out_url, then a sign out page is rendered.
         """
-        self.launchSurvey('test', 'textarea')
+        self.launchSurvey('test_textarea')
         self.post({'answer': 'This is an answer'})
         token = self.last_csrf_token
 
@@ -90,7 +88,7 @@ class TestSaveSignOut(IntegrationTestCase):
         it takes you back to the thank you page.
         """
 
-        self.launchSurvey('test', 'textarea')
+        self.launchSurvey('test_textarea')
         self.post({'answer': 'This is an answer'})
         token = self.last_csrf_token
 

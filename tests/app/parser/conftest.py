@@ -11,14 +11,26 @@ def fake_metadata_runner():
     return {
         'tx_id': str(uuid.uuid4()),
         'jti': str(uuid.uuid4()),
-        'eq_id': '2',
-        'form_type': 'a',
+        'schema_name': '2_a',
         'ru_ref': '2016-04-04',
         'collection_exercise_sid': 'test-sid',
         'questionnaire_id': '0123456789000000',
         'response_id': str(uuid.uuid4()),
         'account_service_url': 'https://ras.ons.gov.uk',
     }
+
+
+@pytest.fixture
+def fake_census_metadata_runner(fake_metadata_runner):
+    """ Generate a set of claims required for runner using census parameters instead of schema_name
+    """
+    del fake_metadata_runner['schema_name']
+
+    fake_metadata_runner['survey'] = 'CENSUS'
+    fake_metadata_runner['case_type'] = 'HI'
+    fake_metadata_runner['region_code'] = 'GB-ENG'
+
+    return fake_metadata_runner
 
 
 @pytest.fixture

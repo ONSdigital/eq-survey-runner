@@ -6,7 +6,7 @@ from app.data_model.list_store import ListStore
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.questionnaire.location import Location
 from app.templating.view_context import build_view_context
-from app.utilities.schema import load_schema_from_params
+from app.utilities.schema import load_schema_from_name
 from app.views.questionnaire import get_page_title_for_location
 from tests.integration.integration_test_case import IntegrationTestCase
 
@@ -33,7 +33,7 @@ class TestQuestionnaire(IntegrationTestCase):
         self
     ):
         # Given
-        schema = load_schema_from_params('test', 'final_confirmation')
+        schema = load_schema_from_name('test_final_confirmation')
 
         # When
         page_title = get_page_title_for_location(
@@ -47,7 +47,7 @@ class TestQuestionnaire(IntegrationTestCase):
         self
     ):
         # Given
-        schema = load_schema_from_params('test', 'interstitial_page')
+        schema = load_schema_from_name('test_interstitial_page')
 
         # When
         page_title = get_page_title_for_location(
@@ -61,7 +61,7 @@ class TestQuestionnaire(IntegrationTestCase):
         self
     ):
         # Given
-        schema = load_schema_from_params('test', 'final_confirmation')
+        schema = load_schema_from_name('test_final_confirmation')
 
         # When
         page_title = get_page_title_for_location(
@@ -73,13 +73,12 @@ class TestQuestionnaire(IntegrationTestCase):
 
     def test_build_view_context_for_calculation_summary(self):
         # Given
-        schema = load_schema_from_params('test', 'calculated_summary')
+        schema = load_schema_from_name('test_calculated_summary')
         block = schema.get_block('currency-total-playback-with-fourth')
         metadata = {
             'tx_id': '12345678-1234-5678-1234-567812345678',
             'collection_exercise_sid': '789',
-            'form_type': 'calculated_summary',
-            'eq_id': 'test',
+            'schema_name': 'test_calculated_summary',
         }
         answers = [
             {'answer_id': 'first-number-answer', 'value': 1},

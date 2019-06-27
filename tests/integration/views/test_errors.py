@@ -35,7 +35,7 @@ class TestErrors(IntegrationTestCase):
 
     def test_errors_404_with_payload(self):
         with patch('tests.integration.create_token.PAYLOAD', self.example_payload):
-            self.launchSurvey('test', 'percentage')
+            self.launchSurvey('test_percentage')
             self.get('/hfjdskahfjdkashfsa')
             self.assertStatusNotFound()
             self.assertInBody('Error 404')
@@ -52,7 +52,7 @@ class TestErrors(IntegrationTestCase):
             'tests.integration.create_token.PAYLOAD',
             payload_without_account_service_url,
         ):
-            self.launchSurvey('test', 'percentage')
+            self.launchSurvey('test_percentage')
         # When / Then
         # Patch out a class in post to raise an exception so that the application error handler
         # gets called
@@ -70,7 +70,7 @@ class TestErrors(IntegrationTestCase):
     def test_errors_500_with_payload(self):
         # Given
         with patch('tests.integration.create_token.PAYLOAD', self.example_payload):
-            self.launchSurvey('test', 'percentage')
+            self.launchSurvey('test_percentage')
             # When / Then
             # Patch out a class in post to raise an exception so that the application error handler
             # gets called

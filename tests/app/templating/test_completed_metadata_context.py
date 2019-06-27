@@ -8,8 +8,7 @@ from app.data_model.session_data import SessionData
 def fake_session_data():
     return SessionData(
         tx_id='tx_id',
-        eq_id='eq_id',
-        form_type='form_type',
+        schema_name='some_schema_name',
         language_code=None,
         survey_url=None,
         ru_ref='ru_ref',

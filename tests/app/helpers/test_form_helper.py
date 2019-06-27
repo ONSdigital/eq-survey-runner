@@ -7,7 +7,7 @@ from app.helpers.form_helper import (
     get_mapped_answers,
 )
 from app.questionnaire.location import Location
-from app.utilities.schema import load_schema_from_params
+from app.utilities.schema import load_schema_from_name
 from app.data_model.answer_store import AnswerStore
 from app.validation.validators import DateRequired, OptionalForm
 
@@ -15,7 +15,7 @@ from app.validation.validators import DateRequired, OptionalForm
 class TestFormHelper(AppContextTestCase):
     def test_get_form_for_block_location(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_range')
+            schema = load_schema_from_name('test_date_range')
 
             block_json = schema.get_block('date-block')
             location = Location(block_id='date-block')
@@ -35,7 +35,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_and_disable_mandatory_answers(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_range')
+            schema = load_schema_from_name('test_date_range')
 
             block_json = schema.get_block('date-block')
             location = Location(block_id='date-block')
@@ -60,7 +60,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_for_block_location(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_range')
+            schema = load_schema_from_name('test_date_range')
 
             block_json = schema.get_block('date-block')
 
@@ -93,7 +93,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_and_disable_mandatory(self):
         with self.app_request_context():
-            schema = load_schema_from_params('test', 'date_range')
+            schema = load_schema_from_name('test_date_range')
 
             block_json = schema.get_block('date-block')
 
@@ -117,9 +117,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_for_radio_other_not_selected(self):
         with self.app_request_context():
-            schema = load_schema_from_params(
-                'test', 'radio_mandatory_with_mandatory_other'
-            )
+            schema = load_schema_from_name('test_radio_mandatory_with_mandatory_other')
 
             block_json = schema.get_block('radio-mandatory')
 
@@ -153,9 +151,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_for_radio_other_selected(self):
         with self.app_request_context():
-            schema = load_schema_from_params(
-                'test', 'radio_mandatory_with_mandatory_other'
-            )
+            schema = load_schema_from_name('test_radio_mandatory_with_mandatory_other')
 
             block_json = schema.get_block('radio-mandatory')
 
@@ -187,7 +183,7 @@ class TestFormHelper(AppContextTestCase):
             self.assertEqual(other_text_field.data, 'Other text field value')
 
     def test_get_mapped_answers(self):
-        schema = load_schema_from_params('test', 'list_collector')
+        schema = load_schema_from_name('test_list_collector')
         location = Location(block_id='add-person', list_name='people')
         answer_store = AnswerStore(
             [
