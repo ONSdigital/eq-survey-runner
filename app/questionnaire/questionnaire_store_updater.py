@@ -10,13 +10,17 @@ class QuestionnaireStoreUpdater:
     EMPTY_ANSWER_VALUES: Tuple = (None, [], '')
 
     def __init__(self, current_location, schema, questionnaire_store, current_question):
+        current_section_id = schema.get_section_for_block_id(current_location.block_id)[
+            'id'
+        ]
         self._current_location = current_location
+        self._current_section_id = current_section_id
         self._current_question = current_question or {}
         self._schema = schema
         self._questionnaire_store = questionnaire_store
         self._answer_store = self._questionnaire_store.answer_store
         self._list_store = self._questionnaire_store.list_store
-        self._completed_store = self._questionnaire_store.completed_store
+        self._progress_store = self._questionnaire_store.progress_store
 
     def save(self):
         if self.is_dirty():
@@ -26,7 +30,7 @@ class QuestionnaireStoreUpdater:
         if (
             self._answer_store.is_dirty
             or self._list_store.is_dirty
-            or self._completed_store.is_dirty
+            or self._progress_store.is_dirty
         ):
             return True
         return False
@@ -55,19 +59,19 @@ class QuestionnaireStoreUpdater:
         )
 
     def add_completed_location(self):
-        self._completed_store.add_completed_location(self._current_location)
+        self._progress_store.add_completed_location(
+            self._current_section_id, self._current_location
+        )
 
     def remove_completed_location(self):
-        self._completed_store.remove_completed_location(self._current_location)
+        self._progress_store.remove_completed_location(
+            self._current_section_id, self._current_location
+        )
 
-        section = self._schema.get_section_for_block_id(self._current_location.block_id)
-        self._completed_store.remove_completed_section(section['id'])
-
-    def add_completed_section(self, section_id):
-        self._completed_store.add_completed_section(section_id)
-
-    def remove_completed_section(self, section_id):
-        self._completed_store.remove_completed_section(section_id)
+    def update_section_status(self, section_status):
+        self._progress_store.update_section_status(
+            self._current_section_id, section_status
+        )
 
     def _update_questionnaire_store_with_form_data(self, form_data):
         answer_ids_for_question = self._schema.get_answer_ids_for_question(

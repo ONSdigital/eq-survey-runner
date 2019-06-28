@@ -15,6 +15,9 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
         self.language_code = language_code
         self._parse_schema()
 
+    def is_hub_enabled(self):
+        return self.json.get('hub', {}).get('enabled')
+
     def get_sections(self):
         return self._sections_by_id.values()
 
@@ -33,6 +36,9 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
             section_id = self.get_group(block['parent_id'])['parent_id']
 
         return self.get_section(section_id)
+
+    def get_section_id_for_block_id(self, block_id):
+        return self.get_section_for_block_id(block_id)['id']
 
     def get_groups(self):
         return self._groups_by_id.values()
@@ -166,6 +172,10 @@ class QuestionnaireSchema:  # pylint: disable=too-many-public-methods
     def is_block_list_collector_child(self, block_id):
         block = self.get_block(block_id)
         return block['type'] in LIST_COLLECTOR_CHILDREN
+
+    @staticmethod
+    def is_list_block_type(block_type):
+        return block_type in ['ListCollector'] + LIST_COLLECTOR_CHILDREN
 
     def _parse_schema(self):
         self._sections_by_id = self._get_sections_by_id()

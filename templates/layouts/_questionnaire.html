@@ -12,9 +12,9 @@
 {% endblock %}
 
 {% block main %}
-  {% if previous_location %}
+  {% if previous_location_url %}
     <div class="u-mb-s">
-      <a {{ helpers.track('click', 'Navigation', 'Previous link click', position )}} href="{{ previous_location }}" id="top-previous">{{ _("Previous") }}</a>
+      <a {{ helpers.track('click', 'Navigation', 'Previous link click', position )}} href="{{ previous_location_url }}" id="top-previous">{{ _("Previous") }}</a>
     </div>
   {% endif %}
 

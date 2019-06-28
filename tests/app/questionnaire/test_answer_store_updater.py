@@ -3,7 +3,7 @@ import unittest
 from mock import MagicMock
 
 from app.data_model.answer_store import AnswerStore
-from app.data_model.completed_store import CompletedStore
+from app.data_model.progress_store import ProgressStore
 from app.data_model.list_store import ListStore
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.forms.questionnaire_form import QuestionnaireForm
@@ -19,15 +19,15 @@ class TestAnswerStoreUpdater(unittest.TestCase):
         self.location = Location('block_bar')
         self.schema = MagicMock(spec=QuestionnaireSchema)
         self.answer_store = MagicMock(spec=AnswerStore)
-        self.completed_store = MagicMock(spec=CompletedStore)
-        self.completed_store.locations = list()
+        self.progress_store = MagicMock(spec=ProgressStore)
+        self.progress_store.locations = list()
         self.list_store = MagicMock(spec=ListStore)
         self.questionnaire_store = MagicMock(
             spec=QuestionnaireStore,
             completed_blocks=[],
             answer_store=self.answer_store,
             list_store=self.list_store,
-            completed_store=self.completed_store,
+            progress_store=self.progress_store,
         )
         self.metadata = MagicMock()
         self.answer_store_updater = None
@@ -134,7 +134,7 @@ class TestAnswerStoreUpdater(unittest.TestCase):
             completed_blocks=[],
             answer_store=answer_store,
             list_store=MagicMock(spec=ListStore),
-            completed_store=CompletedStore(),
+            progress_store=ProgressStore(),
         )
 
         self.answer_store_updater = QuestionnaireStoreUpdater(
