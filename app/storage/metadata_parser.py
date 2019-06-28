@@ -88,7 +88,7 @@ class RunnerMetadataSchema(Schema, StripWhitespaceMixin):
 
     # The following three parameters can be removed after Census
     survey = VALIDATORS['string'](
-        required=False, validate=validate.OneOf(('CENSUS', 'CCS'))
+        required=False, validate=validate.OneOf(('CENSUS', 'CCS')), missing='CENSUS'
     )
     case_type = VALIDATORS['string'](
         required=False, validate=validate.OneOf(('HH', 'HI', 'CE', 'CI'))
