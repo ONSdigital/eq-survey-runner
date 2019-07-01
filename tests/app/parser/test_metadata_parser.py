@@ -173,10 +173,17 @@ def test_region_code_is_lower_cased_and_underscored(test_input, expected):
 
 
 def test_survey_parameter_defaults_to_census(fake_census_metadata_runner):
+    del fake_census_metadata_runner['survey']
     claims = validate_runner_claims(fake_census_metadata_runner)
-    del claims['survey']
 
     assert claims['schema_name'] == 'census_individual_gb_eng'
+
+
+def test_survey_parameter_allows_ccs(fake_census_metadata_runner):
+    fake_census_metadata_runner['survey'] = 'CCS'
+    claims = validate_runner_claims(fake_census_metadata_runner)
+
+    assert claims['schema_name'] == 'ccs_individual_gb_eng'
 
 
 def test_bad_survey_parameter(fake_census_metadata_runner):
