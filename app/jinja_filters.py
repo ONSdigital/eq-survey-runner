@@ -188,21 +188,38 @@ def setAttributes(dictionary, attributes):
         dictionary[key] = attributes[key]
     return dictionary
 
+@blueprint.app_template_filter()
+def answers_require_legend(question):
+    question_type = question['type']
+
+    if question_type == 'MutuallyExclusive':
+        return False
+
+    answers = question['answers']
+    more_than_one_question = len(answers) > 1
+
+    if more_than_one_question and question_type != 'DateRange':
+        return True
+
+    return False
+
+@blueprint.app_context_processor
+def answers_require_legend_processor():
+    return dict(answers_require_legend=answers_require_legend)
+
 
 @blueprint.app_template_filter()
-def question_as_legend(question):
+def answer_requires_legend(question):
+    if answers_require_legend(question):
+        return False
+
     question_type = question['type']
 
     if question_type == 'MutuallyExclusive':
         return True
 
-    answers = question['answers']
-    more_than_one_question = len(answers) > 1
+    answer = question['answers'][0]
 
-    if more_than_one_question:
-        return True
-
-    answer = answers[0]
     if 'type' in answer and any(
         answer['type'] in answer_type
         for answer_type in ['Checkbox', 'Radio', 'Date', 'Duration']
@@ -213,8 +230,8 @@ def question_as_legend(question):
 
 
 @blueprint.app_context_processor
-def question_as_legend_processor():
-    return dict(question_as_legend=question_as_legend)
+def answer_requires_legend_processor():
+    return dict(answer_requires_legend=answer_requires_legend)
 
 
 class LabelConfig:

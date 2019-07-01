@@ -5,6 +5,7 @@
 {{ onsSelect({
   "id": answer.id,
   "name": select.name,
+  "legend": question_title if answer_requires_legend,
   "label": {
     "text": answer.label,
     "description": answer.description

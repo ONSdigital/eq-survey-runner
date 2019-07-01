@@ -1,4 +1,5 @@
 {% from "components/question/_macro.njk" import onsQuestion %}
+{% from "components/field/_macro.njk" import onsField %}
 
 {% set form = content.form %}
 
@@ -6,7 +7,8 @@
 {% set question_description = format_paragraphs(question.description) if question.description else None %}
 {% set question_guidance = "" %}
 {% set question_definition = "" %}
-{% set wrap_question_in_fieldset = question_as_legend(question) %}
+{% set answers_require_legend = answers_require_legend(question) %}
+{% set answer_requires_legend = answer_requires_legend(question) %}
 
 {%- set question_definition -%}
   {%- if question.definitions -%}
@@ -62,17 +64,28 @@
     } %}
     {% include 'partials/answer.html' %}
   {%- else -%}
-    {%- for answer in question.answers -%}
-      {% include 'partials/answer.html' %}
-    {%- endfor -%}
+    {%- set answers -%}
+      {%- for answer in question.answers -%}
+        {% include 'partials/answer.html' %}
+      {%- endfor -%}
+    {%- endset -%}
+
+    {%- if answers_require_legend -%}
+      {%- call onsField({
+        "legend": question_title
+      }) -%}
+        {{ answers }}
+      {%- endcall -%}
+    {%- else -%}
+      {{ answers }}
+    {%- endif -%}
   {%- endif -%}
 {% endset %}
 
 {% call onsQuestion({
   "id": question.id,
   "title": question_title,
-  "description": question_description,
-  "useFieldset": wrap_question_in_fieldset
+  "description": question_description
 }) %}
   {%- if content.list_items -%}
     {% include 'partials/summary/list-summary.html' %}
