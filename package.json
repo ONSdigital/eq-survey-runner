@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "gulp watch",
-    "lint": "gulp lint",
+    "lint": "rm -rf ./tests/functional/generated_pages && eslint tests/functional",
     "test_functional": "chimp tests/functional/chimp.js",
     "test_cypress": "node tests/functional/cypress.js",
     "cypress": "cypress open",
@@ -27,6 +27,7 @@
     "cypress": "^3.1.5",
     "del": "^3.0.0",
     "eslint": "^4.3.0",
+    "eslint-cli": "^1.1.1",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-import": "^2.7.0",

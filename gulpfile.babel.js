@@ -5,7 +5,6 @@ import prettify from 'gulp-jsbeautifier'
 import diff from 'gulp-diff'
 
 import { paths } from './gulp/paths'
-import { lint as lintScripts, lintFunctionalTests } from './gulp/scripts'
 import browserSync from './gulp/bs'
 
 // Remove pre-existing content from output and test folders
@@ -26,15 +25,6 @@ gulp.task('listen', () => {
   gulp.watch(paths.templates.input).on('change', browserSync.reload)
 })
 
-// Lint scripts
-gulp.task('lint:scripts', () => {
-  lintScripts()
-})
-
-gulp.task('lint:tests', () => {
-  lintFunctionalTests()
-})
-
 // Compile files and generate docs when something changes
 gulp.task('watch', [
   'clean:dist',
@@ -44,7 +34,7 @@ gulp.task('watch', [
 // Run unit tests
 gulp.task('test', ['default', 'test:scripts'])
 // Run unit tests
-gulp.task('lint', ['lint:scripts', 'lint:json', 'lint:tests'])
+gulp.task('lint', ['lint:json'])
 
 gulp.task('lint:json', () => {
   return gulp

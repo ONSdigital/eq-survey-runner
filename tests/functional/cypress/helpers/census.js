@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const utilities = require('../../utilities');
 const generateToken = require('../../jwt_helper');
 
@@ -16,6 +15,5 @@ const openCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-EN
 
 module.exports = {
   getUri,
-  getRandomString,
   openCensusQuestionnaire
 };
