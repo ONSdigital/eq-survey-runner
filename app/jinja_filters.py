@@ -188,6 +188,7 @@ def setAttributes(dictionary, attributes):
         dictionary[key] = attributes[key]
     return dictionary
 
+
 @blueprint.app_template_filter()
 def answers_require_legend(question):
     question_type = question['type']
@@ -202,6 +203,7 @@ def answers_require_legend(question):
         return True
 
     return False
+
 
 @blueprint.app_context_processor
 def answers_require_legend_processor():
