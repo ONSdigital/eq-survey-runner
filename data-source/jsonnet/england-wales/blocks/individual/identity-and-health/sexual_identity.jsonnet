@@ -5,11 +5,18 @@ local question(title, label) = {
   id: 'sexual-identity-question',
   title: title,
   type: 'General',
-  description: 'This question is voluntary',
+  guidance: {
+    contents: [
+      {
+        description: 'This question is <strong>voluntary</strong>',
+      },
+    ],
+  },
   answers: [
     {
       id: 'sexual-identity-answer',
       mandatory: false,
+      label: '',
       options: [
         {
           label: 'Straight or Heterosexual',
