@@ -85,7 +85,6 @@
                 "question": {
                     "answers": [{
                         "id": "non-mandatory-checkbox-answer",
-                        "label": "",
                         "mandatory": false,
                         "options": [{
                             "label": "None",
