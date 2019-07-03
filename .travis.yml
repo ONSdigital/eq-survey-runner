@@ -9,7 +9,7 @@ addons:
       - libsnappy-dev
       - libgconf-2-4
 language: node_js
-node_js: 6
+node_js: 8.16.0
 env:
   global:
     - EQ_RUN_FUNCTIONAL_TESTS_HEADLESS=True
