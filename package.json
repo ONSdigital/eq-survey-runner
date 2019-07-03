@@ -14,10 +14,13 @@
     "start": "make dev-compose-up && concurrently \"make run\" \"livereload . -e 'html,njk'\"",
     "lint": "rm -rf ./tests/functional/generated_pages && eslint tests/functional && eslint data-source/json/*.json",
     "test_functional": "chimp tests/functional/chimp.js",
-    "test_cypress": "node tests/functional/cypress.js",
-    "cypress": "cypress open",
     "generate_pages": "rm -rf ./tests/functional/generated_pages && cd tests/functional && pipenv run ./generate_pages.py ../../data/en/ ./generated_pages -r '../../base_pages' && cd ../..",
     "format": "prettier data-source/json/*.json --write && pipenv run black app tests"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn format && yarn lint"
+    }
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
@@ -32,6 +35,7 @@
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
+    "husky": "^3.0.0",
     "json-web-key": "^0.3.0",
     "jsrsasign": "^8.0.3",
     "livereload": "^0.8.0",

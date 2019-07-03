@@ -125,7 +125,10 @@ class TestCreateApp(unittest.TestCase):  # pylint: disable=too-many-public-metho
             self.assertIn(
                 'frame-src https://www.googletagmanager.com', csp_policy_parts
             )
-            self.assertIn("connect-src 'self' ws://localhost:35729 https://cdn.ons.gov.uk", csp_policy_parts)
+            self.assertIn(
+                "connect-src 'self' ws://localhost:35729 https://cdn.ons.gov.uk",
+                csp_policy_parts,
+            )
 
     # Indirectly covered by higher level integration
     # tests, keeping to highlight that create_app is where
