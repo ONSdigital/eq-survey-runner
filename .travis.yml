@@ -30,11 +30,12 @@ before_install:
     - pyenv versions
     - pyenv install --skip-existing
     - pyenv rehash
-    - pyenv global $(cat .python-version) 2.7.15
+    - pyenv global $(cat .python-version)
     - pip install -U pip pipenv wheel
     - pipenv install --dev --deploy
     - pipenv check
     - pushd /opt && if [ ! -e jsonnet/Makefile ]; then git clone --branch v0.12.1 --depth 1 https://github.com/google/jsonnet.git; fi && cd jsonnet && make && popd
+    - npm config --global set python python2.7
 cache:
     - yarn
     - pip
