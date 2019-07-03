@@ -30,7 +30,7 @@ before_install:
     - pyenv versions
     - pyenv install --skip-existing
     - pyenv rehash
-    - pyenv global $(cat .python-version)
+    - pyenv global $(cat .python-version) 2.7.15
     - pip install -U pip pipenv wheel
     - pipenv install --dev --deploy
     - pipenv check
